@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
@@ -26,7 +27,7 @@ export class InvestmentAccountService {
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
     private investmentAccountFormError: any = new InvestmentAccountFormError();
 
-    constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+    constructor(private signUpService: SignUpService, private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
         this.getInvestmentAccountFormData();
         this.setDefaultValueForFormData();
     }

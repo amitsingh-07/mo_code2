@@ -129,27 +129,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardList() {
-    let investmentStatus = this.userProfileInfo.investementDetails
-      && this.userProfileInfo.investementDetails.account
-      && this.userProfileInfo.investementDetails.account.accountStatus ?
-      this.userProfileInfo.investementDetails.account.accountStatus : null;
-    if (investmentStatus === null || !investmentStatus) {
-      if (this.userProfileInfo.investementDetails &&
-        this.userProfileInfo.investementDetails.portfolios &&
-        this.userProfileInfo.investementDetails.portfolios.length > 0) {
-        investmentStatus = 'RECOMMENDED';
-      }
-    }
+    const investmentStatus = this.signUpService.getInvestmentStatus();
     if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
-      if (this.userProfileInfo.investementDetails.cashAccountDetails) {
-        // this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
-        //   this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
-      } else {
-        this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails = 0;
-
-      }
+      this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
+          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
       case 'PORTFOLIO_PURCHASED': {

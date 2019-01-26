@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up/sign-up.service';
+import { PORTFOLIO_ROUTE_PATHS } from './portfolio-routes.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class EngagementGuardService implements CanActivate {
     if (this.authService.isSignedUser() &&
     userInfo.investementDetails && userInfo.investementDetails.portfolios &&
     userInfo.investementDetails.portfolios.length > 0) {
-      this.route.navigate([PORTFOLIO_ROUTES.PORTFOLIO_EXIST]);
+      this.route.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
       return false;
     }
     return true;
