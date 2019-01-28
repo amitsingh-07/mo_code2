@@ -18,9 +18,12 @@ app-edit-investment-modal{
   }
 
   .form-control .input-control {
-    text-align: left;
-    padding-left: 15px;
+    text-align: right;
+    
   }
+  .monthly-input{
+    padding-right: 35px;
+   }
 
   .dropdown-control {
     .btn-dropdown {
@@ -57,6 +60,13 @@ app-edit-investment-modal{
     font-style: italic;
     color: #e57300;
   }
+  .input-label-normal {
+    font-family: $muli-italic;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: -0.1px;
+    color: #5e5e5e;
+  } 
 
 }
 }
