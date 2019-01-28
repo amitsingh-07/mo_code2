@@ -133,6 +133,17 @@ export class TopupAndWithDrawService {
   getInvestmentOverview() {
     return this.apiService.getInvestmentOverview();
   }
+  deletePortfolio(data) {
+    const payload = this.constructDeletePortfolioParams(data);
+    return this.apiService.deletePortfolio(payload);
+  }
+
+  constructDeletePortfolioParams(data) {
+    return {
+      portfolioId: data.productCode
+    };
+  }
+
   setPortfolioValues(portfolio) {
     this.topUpAndWithdrawFormData.PortfolioValues = portfolio;
     this.commit();

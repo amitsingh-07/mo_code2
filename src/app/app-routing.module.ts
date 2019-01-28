@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
+import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
+import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
+import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
@@ -27,21 +31,30 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
-      { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
-      { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
+
+      { path: 'articles',
+        loadChildren: './article/article.module#ArticleModule',
+        canActivate: [ArticleEnableGuard],
+        canActivateChild: [ArticleChildEnableGuard]
+      },
+      { path: 'learn',
+        loadChildren: './article/article.module#ArticleModule',
+        canActivate: [ArticleEnableGuard],
+        canActivateChild: [ArticleEnableGuard]
+      },
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
       { path: 'investment', loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule' },
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
-        /*
-        canActivate: [WillWritingEnableGuard],
-        canActivateChild: [WillWritingChildEnableGuard]
-        */
+        /*canActivate: [WillWritingEnableGuard],
+        canActivateChild: [WillWritingChildEnableGuard]*/
       },
-      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule' },
-
+      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
+        canActivate: [PromotionEnableGuard],
+        canActivateChild: [PromotionChildEnableGuard]
+      },
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },

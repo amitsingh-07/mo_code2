@@ -208,7 +208,48 @@ p{
     }
 }
 .form-group-with-bg--content{
-    padding: 20px 28px 20px 27px;
+    padding: 20px 28px 16px 27px !important;
+    &.your_portfolio_value_content{
+        padding: 0 0 10px !important;
+        font-family: $muli-regular;
+        font-size: 15px;
+        line-height: 21px;
+        letter-spacing: -0.14px;
+        text-align: center;
+        color: #5e5e5e;
+        .flex-row{
+            padding: 20px 65px 20px;
+        }
+        hr{
+            background: #eaeaea;     
+            margin: 0;   
+        }
+        .portfolio_footer{
+            margin: 10px 13px 0;
+            .btn-primary{
+                background-color: #ffffff;
+                border: 1px solid #eaeaea;
+                color: #9b9b9b;
+                font-size: 18px;
+                letter-spacing: -0.18px;
+                &:hover{
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
+                }
+                &:active{
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
+                }
+                &:focus{
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
 }
 .portfolio_heading{
 font-family: $muli-bold;

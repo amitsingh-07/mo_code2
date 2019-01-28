@@ -70,7 +70,10 @@
     "SELECT_POTODOLIO": "1. Select Portfolio ",
     "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
-    "PLEASE_TOPUP": "Please top up"
+    "PLEASE_TOPUP": "Please top up",
+    "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
+    "SUBMIT": "Submit"
+
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",
@@ -83,11 +86,15 @@
     "TOTAL_OF": "Total of",
     "YOUR_PORTFOLIOS": "Your Portfolio(s)",
     "PORTFOLIO_VALUES": "Portfolio Value",
-    "NO_INVESTMENT_YET": "Your portfolio has not started.",
+    "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
     "ADD_PORTFOLIO": "Add Portfolio",
     "MORE": "More",
     "REMEMBER": "Remember to top up your portfolio by",
-    "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?"
+    "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?",
+    "DELETE": "Delete Portfolio",
+    "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
+    "EXPIRED":"Your portfolio has expired.",
+    "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -141,13 +148,14 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "WITHDRAW_PAYMENT_METHOD": {
+    "ADD_BANK_ACCOUNT": "Add Bank Account",
+    "BANK_DETAIL": "Bank Details",
     "TITLE": "Bank Details",
     "SELECT": "Select",
     "BY_BANK_TRANSFER_LBL1": "By Bank",
     "BY_BANK_TRANSFER_LBL2": "Transfer",
     "BY_CHEQUE_LBL1": "By",
     "BY_CHEQUE_LBL2": "Cheque",
-    "ADD_BANK_ACCOUNT": "Add Bank Account",
     "CHEQUES_WILL_BE_POSTED_ADDRESS": "Cheque will be posted to this address",
     "CHEQUE_POSTED_ADDRESS_LINE1": "23 Keong Saik Road",
     "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
@@ -172,9 +180,8 @@
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"
-},
+  },
   "FUND_DETAILS": {
     "TITLE": "Fund Details"
-    
   }
 }
