@@ -178,6 +178,15 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     });
   }
   goBack() {
+    this.clearTheValues();
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
   }
+  clearTheValues() {
+    this.myFinancialsForm.controls.monthlyIncome.setValue(0);
+    this.myFinancialsForm.controls.percentageOfSaving.setValue(0);
+    this.myFinancialsForm.controls.totalAssets.setValue(0);
+    this.myFinancialsForm.controls.totalLiabilities.setValue(0);
+    this.myFinancialsForm.controls.initialInvestment.setValue(0);
+    this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
+    }
 }
