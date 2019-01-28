@@ -424,4 +424,19 @@ export class SignUpService {
     return this.apiService.getDetailedCustomerInfo();
   }
 
+  getInvestmentStatus() {
+    const userInfo = this.getUserProfileInfo();
+    let investmentStatus = userInfo.investementDetails
+      && userInfo.investementDetails.account
+      && userInfo.investementDetails.account.accountStatus ?
+      userInfo.investementDetails.account.accountStatus : null;
+    if (investmentStatus === null || !investmentStatus) {
+      if (userInfo.investementDetails &&
+        userInfo.investementDetails.portfolios &&
+        userInfo.investementDetails.portfolios.length > 0) {
+        investmentStatus = 'RECOMMENDED';
+      }
+    }
+    return investmentStatus;
+  }
 }
