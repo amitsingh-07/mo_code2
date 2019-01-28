@@ -404,10 +404,11 @@ export class SignUpService {
     const messages = [];
     const notificationMessageList = notifications.map((notification) => {
       const messageList = notification.messages.map((message) => {
-        let messageDate = '';
+        let messageDate;
         let messageMonth = '';
         if (message.time) {
-          messageDate = message.time.split('T')[0];
+          message.time = parseInt(message.time, 10);
+          messageDate = new Date(message.time);
           messageMonth = this.datePipe.transform(messageDate, 'MMMM yyyy');
         }
         message.date = messageDate;
