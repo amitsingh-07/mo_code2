@@ -237,8 +237,14 @@ export class EditProfileComponent implements OnInit {
 
   }
   editBankDetails() {
+    let AccountHolderName;
+    if (this.bankDetails && this.bankDetails.accountName) {
+      AccountHolderName = this.bankDetails.accountName;
+    } else {
+      AccountHolderName = this.fullName;
+    }
     // tslint:disable-next-line:max-line-length accountName
-    this.investmentAccountService.setEditProfileBankDetail(this.bankDetails.accountName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
+    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
   addBankDetails() {

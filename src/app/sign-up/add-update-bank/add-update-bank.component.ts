@@ -85,6 +85,7 @@ export class AddUpdateBankComponent implements OnInit {
       accountNo: [this.formValues.accountNumber],
       accountHolderName: [this.formValues.fullName, [Validators.required,  Validators.pattern(RegexConstants.SymbolAlphabets)]]
     });
+    this.bankForm.controls.accountHolderName.disable();
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
