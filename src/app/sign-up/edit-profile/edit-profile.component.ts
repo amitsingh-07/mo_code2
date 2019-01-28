@@ -100,6 +100,7 @@ export class EditProfileComponent implements OnInit {
       confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
+  // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
