@@ -3,6 +3,9 @@
 
 app-start-journey{
     .container-fluid{
+        @include allmobiles {
+            padding: 110px 0;
+        }
         &.full-height{
             min-height: 100vh;
         }
