@@ -1,16 +1,14 @@
-import 'rxjs/add/observable/timer';
-
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-
 import { CurrencyPipe } from '@angular/common';
-import { Token } from '@angular/compiler';
 import {
-  AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
+  Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import 'rxjs/add/observable/timer';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import {
@@ -57,6 +55,7 @@ export class PortfolioRecommendationComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private translate: TranslateService,
     private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
@@ -77,7 +76,8 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
   }

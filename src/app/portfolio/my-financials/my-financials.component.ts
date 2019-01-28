@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
@@ -44,6 +45,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     private portfolioService: PortfolioService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
@@ -64,7 +66,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
     this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox;
