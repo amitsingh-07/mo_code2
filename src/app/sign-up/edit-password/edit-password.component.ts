@@ -10,6 +10,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-password',
   templateUrl: './edit-password.component.html',
@@ -25,6 +26,7 @@ export class EditPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public headerService: HeaderService,
+    private footerService: FooterService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -43,7 +45,8 @@ export class EditPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
   }
   buildForgotPasswordForm() {

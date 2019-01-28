@@ -124,6 +124,7 @@
         "CITY": "City",
         "STATE": "State / Province / Region",
         "ZIPCODE": "Zip Code",
+        "APPLY": "Apply Changes",
         "ERROR": {
             "POSTAL_CODE_TITLE": "Error !",
             "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."

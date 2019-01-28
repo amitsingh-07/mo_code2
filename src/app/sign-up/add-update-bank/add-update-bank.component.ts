@@ -19,6 +19,7 @@ import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-with
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-add-update-bank',
   templateUrl: './add-update-bank.component.html',
@@ -39,6 +40,7 @@ export class AddUpdateBankComponent implements OnInit {
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private footerService: FooterService,
     private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -57,7 +59,7 @@ export class AddUpdateBankComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
     this.queryParams = this.route.snapshot.queryParams;
     this.addBank = this.queryParams.addBank;
     if (this.addBank === 'true') {
@@ -68,6 +70,7 @@ export class AddUpdateBankComponent implements OnInit {
       this.buttonTitle = 'Apply Changes';
     }
     this.setPageTitle(this.pageTitle);
+    this.footerService.setFooterVisibility(false);
     this.getLookupList();
     this.buildBankForm();
 

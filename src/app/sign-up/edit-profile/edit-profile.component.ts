@@ -13,6 +13,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -49,6 +50,7 @@ export class EditProfileComponent implements OnInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
@@ -68,8 +70,9 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
     this.setPageTitle(this.pageTitle);
+    this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
