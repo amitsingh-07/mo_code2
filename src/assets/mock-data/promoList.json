@@ -37,5 +37,57 @@
         "date_expiry": "1554047999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
+    },
+    {
+        "promoId": 4,
+        "type": 1,
+        "owner": "Aviva",
+        "title": "Aviva MyProtector - Legacy Plan",
+        "thumbnail": "/assets/promotions/images/4/thumbnail.jpg",
+        "banner": "/assets/promotions/images/4/banner.jpg",
+        "desc": "Enjoy a 10% perpetual premium discount for Aviva MyProtector - Legacy Plan",
+        "date_created": "1547481600000",
+        "date_expiry": "1554047999000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 5,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Manulife 10% Premium Discount or Cash Reward",
+        "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
+        "banner": "/assets/promotions/images/5/banner.jpg",
+        "desc": "Enjoy a 10% premium discount or cash reward for RetireReady Plus or ReadyBuilder",
+        "date_created": "1547405449000",
+        "date_expiry": "1555084799000",
+        "tag": ["Insurance", "Retirement"],
+        "external": false
+    },
+    {
+        "promoId": 6,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Manulife 0.35% Premium Discount",
+        "thumbnail": "/assets/promotions/images/6/thumbnail.jpg",
+        "banner": "/assets/promotions/images/6/banner.jpg",
+        "desc": "Enjoy 0.3% Premium Discount for Manulife Signature Income",
+        "date_created": "1548000000000",
+        "date_expiry": "1555084799000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 7,
+        "type": 1,
+        "owner": "Aviva",
+        "title": "Aviva Gifts & Treats with purchase of Aviva's Plans",
+        "thumbnail": "/assets/promotions/images/7/thumbnail.jpg",
+        "banner": "/assets/promotions/images/7/banner.jpg",
+        "desc": "Enjoy delightful treats from Aviva with purchase of Aviva's Plans",
+        "date_created": "1546272000000",
+        "date_expiry": "1554047999000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
     }
 ]
