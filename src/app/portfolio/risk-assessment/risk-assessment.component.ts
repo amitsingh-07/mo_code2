@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -37,6 +38,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     public log: LoggerService) {
@@ -52,7 +54,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.riskFormValues = this.portfolioService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {

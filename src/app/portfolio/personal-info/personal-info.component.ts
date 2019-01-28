@@ -1,20 +1,19 @@
-import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-
-import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-  AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NouisliderComponent } from 'ng2-nouislider';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 
 const assetImgPath = './assets/images/';
@@ -43,6 +42,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     private router: Router,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private config: NgbDatepickerConfig,
     private portfolioService: PortfolioService,
     private modal: NgbModal,
@@ -77,7 +77,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
       investmentPeriod: ['', Validators.required],

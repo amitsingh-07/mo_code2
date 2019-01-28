@@ -6,32 +6,22 @@
       <div class="close-btn" (click)="closeBrowserError()"></div>
     </div>
   </div>
-  <div class="navbar-wrapper space-between">
+  <div class="navbar-wrapper space-between" *ngIf="(navbarMode == 1 || navbarMode == 3 ||  navbarMode == 4 || navbarMode == 5 || navbarMode == 6)">
     <div class="navbar-group space-between" [ngClass]="{'navbar--hidden': !showMobileNavbar}">
       <div class="navbar-brand" [ngClass]="{'top': subTitle}">
-        <li *ngIf="(navbarMode == 2)" class="nav-item">
-          <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
-          <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
-        </li>
         <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
         </li>
         <li class="navbar__logo--primary hidden-sm-md" (click)="goToHome()">
         </li>
-        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg"
+        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5 || navbarMode == 6)" class="navbar__logo--tertiary hidden-lg"
           (click)="goToHome()">
         </li>
-        <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
-        </li>
-        <li *ngIf="(navbarMode == 2)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
-          <p>Insurance Adviser</p>
-          <p class="secondary">powered by DIYInsurance</p>
-        </li>
+
         <li *ngIf="(navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
           <p style="cursor: default">Will Writing</p>
         </li>
       </div>
-
       <!-- NOTIFICATION ICON -->
       <div *ngIf="isNotificationEnabled">
         <button class="notification-icon hidden-lg" type="button" (click)="toggleRecentNotification()">
@@ -41,9 +31,7 @@
           </span>
         </button>
       </div>
-
       <div class="notification-tooltip__arrow" [hidden]="isNotificationHidden"></div>
-
       <!-- RECENT NOTIFICATIONS CONTENT -->
       <div class="notification-tooltip" [hidden]="isNotificationHidden">
         <div class="notification-tooltip__header">Notifications</div>
@@ -64,36 +52,13 @@
         </div>
         <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
       </div>
-
-
-      <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button"
-        (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav" aria-controls="navbarNav"
+      <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 6)" class="navbar-toggler hidden-lg"
+        type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
+        <span *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
       </button>
-      <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
-        <div class="navbar__title--mobile superTitle" *ngIf="pageSuperTitle">{{pageSuperTitle}}</div>
-        <div class="navbar__title--mobile">{{pageTitle}}</div>
-        <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
-        <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
-          <div class="tooltip-icon"></div>
-        </div>
-        <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
-          <div class="tooltip-icon"></div>
-        </div>
-        <!--
-        <div class="navbar__helpIcon--mobile-filter navbar_" *ngIf="filterIcon" (click)="showFilterModalPopUp()">
-          <div class="filter-icon"></div>
-        </div>
-        -->
-        <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
-          <div class="close-icon"></div>
-        </div>
-      </ul>
     </div>
-
-
-    <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse"
+    <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
       id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
       <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
         <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
@@ -141,7 +106,8 @@
         <li *ngIf="isPromotionEnabled" class="nav-item" [routerLink]="['/promotions']">
           <a class="nav-link">Promotions</a>
         </li>
-        <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
+        <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);"
+          (mouseleave)="closeDropdown(id02);">
           <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
             <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
@@ -184,8 +150,44 @@
       </ul>
     </div>
   </div>
+  <!-- Back icon and Page Title -->
+  <div class="navbar-wrapper space-between" *ngIf="(navbarMode == 2 || navbarMode == 4 || navbarMode == 6)">
+    <div class="navbar-group space-between" [ngClass]="{'navbar--hidden': !showMobileNavbar}">
+      <div class="navbar-brand" [ngClass]="{'top': subTitle}">
+        <li *ngIf="(navbarMode == 2 || navbarMode == 6)" class="nav-item">
+          <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
+          <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
+        </li>
+        <li *ngIf="(navbarMode == 2 || navbarMode == 4 || navbarMode == 6)" class="navbar__separator hidden-sm-md">
+        </li>
+        <li *ngIf="(navbarMode == 2 || navbarMode == 6)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+          <p>Insurance Adviser</p>
+          <p class="secondary">powered by DIYInsurance</p>
+        </li>
+      </div>
+      <ul *ngIf="(navbarMode == 2 || navbarMode == 6)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
+        <div class="navbar__title--mobile superTitle" *ngIf="pageSuperTitle">{{pageSuperTitle}}</div>
+        <div class="navbar__title--mobile">{{pageTitle}}</div>
+        <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
+        <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
+          <div class="tooltip-icon"></div>
+        </div>
+        <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
+          <div class="tooltip-icon"></div>
+        </div>
+        <!--
+            <div class="navbar__helpIcon--mobile-filter navbar_" *ngIf="filterIcon" (click)="showFilterModalPopUp()">
+              <div class="filter-icon"></div>
+            </div>
+            -->
+        <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
+          <div class="close-icon"></div>
+        </div>
+      </ul>
+    </div>
+  </div>
 </nav>
-<nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2)}"></nav>
+<nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2 || navbarMode == 6)}"></nav>
 <div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop"
   id="navbarsDefault">
 </div>
