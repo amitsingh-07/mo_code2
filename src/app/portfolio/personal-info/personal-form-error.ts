@@ -31,11 +31,11 @@ export class PersonalFormError {
                         // tslint:disable-next-line:max-line-length
                         moreassetandinvestment: { errorTitle: 'Oops! Is this correct?', errorMessage: 'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?' , isButtons: 'Yes' },
                         // tslint:disable-next-line:max-line-length
-                        one: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a one-time investment of at least $100 or a monthly investment of at least $50.<br><br>To continue, please review your investment amount.' },
+                        one: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a one-time investment of at least $100 or a monthly investment of at least $50.' },
                         // tslint:disable-next-line:max-line-length
-                        two: { errorTitle: 'Oops! Review Monthly<br>Investment Amount', errorMessage: 'We require a monthly investment of at least $50.<br><br>To continue, please review your investment amount.' },
+                        two: { errorTitle: 'Oops! Review Monthly<br>Investment Amount', errorMessage: 'We require a monthly investment of at least $50.' },
                         // tslint:disable-next-line:max-line-length
-                        three: { errorTitle: 'Oops! Review One-time<br>Investment Amount', errorMessage: 'We require a one-time investment of at least $100.<br><br>To continue, please review your investment amount..' },
+                        three: { errorTitle: 'Oops! Review One-time<br>Investment Amount', errorMessage: 'We require a one-time investment of at least $100.' },
                         four: { errorTitle: 'Invalid Amount', errorMessage: ' Must select at least 1 checkbox to continue.' }
                         }
         };
