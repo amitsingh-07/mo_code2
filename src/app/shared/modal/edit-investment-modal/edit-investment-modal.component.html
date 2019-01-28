@@ -32,6 +32,7 @@
       <div class="flex-row">
         <div class="flex-col-6">
           <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.ONE_TIME_INVESTMENT' | translate}}</label>
+          <div class="input-label-normal">Min. $100</div>
         </div>
         <div class="flex-col-6">
           <div class="form-control">
@@ -40,6 +41,7 @@
               <input id="editInvestment-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" maxLength="10" name="oneTimeInvestment"
                 appCurrencyInput formControlName="oneTimeInvestment" value="0">
             </div>
+           
           </div>
         </div>
         <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.oneTimeInvestment.hasError('minInitialAmount')">
@@ -49,14 +51,17 @@
       <div class="flex-row">
         <div class="flex-col-6">
           <label id="editInvestment-monthlyTimeInv-lbl" for="editInvestment-monthlyTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.MONTHLY_INVESTMENT' | translate}}</label>
+          <div class="input-label-normal">Min. $50</div>
         </div>
         <div class="flex-col-6">
           <div class="form-control">
             <i>$</i>
             <div name="cpf">
-              <input id="editInvestment-monthlyTimeInv-txt" autocomplete="off" class="input-control" type="text" maxLength="10" name="monthlyInvestment"
+              <input   id="editInvestment-monthlyTimeInv-txt" autocomplete="off" class="input-control monthly-input" type="text" maxLength="10" name="monthlyInvestment"
                 appCurrencyInput formControlName="monthlyInvestment" value="0">
+                <i class="right">/mth</i>
             </div>
+           
           </div>
         </div>
         <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.monthlyInvestment.hasError('minMonthlyAmount')">

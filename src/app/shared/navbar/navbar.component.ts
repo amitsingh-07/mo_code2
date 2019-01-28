@@ -206,6 +206,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.signUpService.getRecentNotifications().subscribe((response) => {
       this.count = response.objectList[0].unreadCount;
       this.recentMessages = response.objectList[0].notifications[0].messages;
+      this.recentMessages.map((message) => {
+        message.time = parseInt(message.time, 10);
+    });
     });
   }
 
