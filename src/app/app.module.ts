@@ -1,7 +1,7 @@
-import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import 'hammerjs';
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 
-import { CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -74,11 +74,11 @@ import { UrlRedirectComponent } from './url-redirect.component';
 
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
+import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -154,7 +154,7 @@ export function tokenGetterFn() {
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
