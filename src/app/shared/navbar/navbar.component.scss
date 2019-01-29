@@ -187,10 +187,11 @@ border-bottom-right-radius: 6px;
     text-align: center;
     font-family: $muli;
 }
-
 .mobile-menu {
-    position: absolute;
-    top: 45px;
-    background-color: #fff;
-    z-index: 3;
+    @include allmobiles {
+        position: absolute;
+        top: 45px;
+        background-color: #fff;
+        z-index: 3;
+    }
 }

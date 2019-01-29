@@ -63,7 +63,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
     component: EmploymentDetailsComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,

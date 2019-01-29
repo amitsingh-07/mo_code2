@@ -1,9 +1,10 @@
 @import '../../../variables';
+@import '../../../mixins';
 
 app-risk-assessment{
 .question-info {
   position: relative;
-  top: 60px;
+  top: 100px;
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -24,13 +25,13 @@ app-risk-assessment{
     top: 0px;
   }
   .risk-assessment {
-    padding-top: 50px;
+    padding-top: 110px;
   }
 }
 
 @media (max-width: 767px) {
   .risk-assessment {
-    padding-top: 75px;
+    padding-top: 110px;
   }
 }
 
