@@ -1,4 +1,4 @@
-import { Component, ElementRef , OnInit , ViewChild} from '@angular/core';
+import { Component, ElementRef , OnInit , ViewChild, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,10 +10,12 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-password',
   templateUrl: './edit-password.component.html',
-  styleUrls: ['./edit-password.component.scss']
+  styleUrls: ['./edit-password.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditPasswordComponent implements OnInit {
 
@@ -25,6 +27,7 @@ export class EditPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public headerService: HeaderService,
+    private footerService: FooterService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -43,7 +46,8 @@ export class EditPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
   }
   buildForgotPasswordForm() {
