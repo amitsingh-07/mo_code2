@@ -26,6 +26,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 import { HostListener } from '@angular/core';
 
 import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
@@ -63,6 +64,7 @@ export class YourInvestmentComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
+    public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
@@ -79,7 +81,8 @@ export class YourInvestmentComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -121,6 +124,18 @@ export class YourInvestmentComponent implements OnInit {
     //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
 
+  showTotalReturnPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
+  }
+  showCashAccountPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.MESSAGE');
+
+  }
+
   getImg(i) {
     const riskProfileImg = ProfileIcons[i]['icon'];
     return riskProfileImg;
@@ -136,7 +151,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   deletePortfolio(portfolio) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle =  this.translate.instant('YOUR_INVESTMENT.TITLE');
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_INVESTMENT.DELETE_TXT');
     ref.componentInstance.yesOrNoButton = 'Yes';
@@ -146,9 +161,9 @@ export class YourInvestmentComponent implements OnInit {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }
       });
-  });
+    });
     ref.componentInstance.noClickAction.subscribe(() => {
-  });
+    });
   }
   selectOption(option) {
     if (option.id === 1) {

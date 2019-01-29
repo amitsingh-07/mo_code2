@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +21,8 @@ import { ValidateRange } from './range.validator';
 @Component({
   selector: 'app-update-user-id',
   templateUrl: './update-user-id.component.html',
-  styleUrls: ['./update-user-id.component.scss']
+  styleUrls: ['./update-user-id.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UpdateUserIdComponent implements OnInit {
   private pageTitle: string;
@@ -69,9 +70,10 @@ export class UpdateUserIdComponent implements OnInit {
    */
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
     this.buildUpdateAccountForm();
     this.getCountryCode();
+    this.footerService.setFooterVisibility(false);
   }
 
   /**

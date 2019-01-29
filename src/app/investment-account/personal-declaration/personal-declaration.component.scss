@@ -4,10 +4,9 @@
 
 app-personal-declaration{
 .personal-declaration{
-    // .container-fluid {
-    //     padding-top: 0px;
-    //     padding-bottom: 0px;
-    // }
+    .container-fluid {
+        padding-top: 120px;
+    }
     .flex-row {
     align-items: center;
     }
@@ -80,7 +79,7 @@ padding-right: 10px;
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -126,6 +125,9 @@ padding-right: 10px;
   line-height: normal;
   letter-spacing: -0.3px;
   color: #ffffff;
+  }
+  .btn__footer--fixed{
+    font-family: $muli-bold !important;
   }
 }
 }

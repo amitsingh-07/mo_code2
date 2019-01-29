@@ -3,6 +3,11 @@
 
 app-fund-your-account{
 .fund-your-account {
+  .container-fluid{
+    @include allmobiles{
+      padding: 130px 0;
+    }
+  }
 
   font-family: $muli;
 

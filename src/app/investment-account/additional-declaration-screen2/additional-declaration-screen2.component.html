@@ -61,7 +61,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
-                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name}}</button>
                       </div>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
               </div>
               <div class="flex-col-7">
 
-                <div class="form-control form-control-right">
+                <div class="form-control form-control-right investment-duration">
 
                   <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="durationInvestment"  class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
                   <i class="right year">year(s)</i>
@@ -148,7 +148,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated, 'investmentEarnings')"
-                          id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name | titlecase}}</button>
+                          id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name}}</button>
                       </div>
                     </div>
                   </div>

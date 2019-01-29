@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,10 +17,12 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-residential-address',
   templateUrl: './edit-residential-address.component.html',
-  styleUrls: ['./edit-residential-address.component.scss']
+  styleUrls: ['./edit-residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditResidentialAddressComponent implements OnInit {
 
@@ -41,6 +43,7 @@ export class EditResidentialAddressComponent implements OnInit {
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private modal: NgbModal,
@@ -52,7 +55,6 @@ export class EditResidentialAddressComponent implements OnInit {
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
       this.showLoader = false;
     });
-    //this.getNationalityCountryList();
   }
 
   setPageTitle(title: string) {
@@ -61,7 +63,8 @@ export class EditResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
@@ -235,9 +238,7 @@ buildForm(): FormGroup {
     }
     return defaultCountry;
   }
-
-
-  getInlineErrorStatus(control) {
+getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
   }
 
@@ -318,8 +319,6 @@ buildForm(): FormGroup {
   isDisabled(field) {
     return this.investmentAccountService.isDisabled(field);
   }
-
-  
 
   uploadDocument() {
     this.showUploadLoader();

@@ -3,7 +3,7 @@
 app-your-investment{
 
 .investment-bg{
-    padding-top: 60px;  
+ padding-top: 105px;  
 }
 .background_img {
     object-fit: contain;
@@ -12,7 +12,10 @@ app-your-investment{
 }
 .user_content{
     position: absolute;
-    top: 110px;
+    top: 156px;
+    @include iphone5 {
+        top: 125px;
+    }
     .user_summary{
         font-family: $muli-regular;
         font-size: 18px;
@@ -24,16 +27,32 @@ app-your-investment{
     .flex-col-3{
         position: absolute;
         right: 29px;
-        top: 40px;
+        top: 45px;
         max-width: 85px;
         @include iphone5{
-            top: 30px;
+            top: 28px;
         }
+        @include allmobiles{
+            top: 60px;
+           }
+           @include iphone5{
+               top: 40px;
+           } 
+            @include iphone6plus{
+               top: 72px;
+           }
+           @include iphone6{
+               top: 55px;
+           }
+           @include tablet{
+           top: 129px;
+           }
+           @include iPadLandscape{
+               top: 129px;
+           }
     }
 }
-hr{
-    background-color: #98dfdf;
-}
+
 p{
    
     padding: 20px;
@@ -243,9 +262,9 @@ p{
                     color: #ffffff !important;
                 }
                 &:focus{
-                    background-color: #0de0de !important;
+                    background-color: #ffffff !important;
                     border-color: #e4f8f8 !important;
-                    color: #ffffff !important;
+                    color: #9b9b9b !important;
                 }
             }
         }

@@ -75,9 +75,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(5);
-    this.navbarService.setNavbarMobileVisibility(false);
-    this.navbarService.setNavbarShadowVisibility(false);
+    this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
