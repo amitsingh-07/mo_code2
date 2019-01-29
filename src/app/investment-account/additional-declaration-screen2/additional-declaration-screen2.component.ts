@@ -1,17 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
   AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
@@ -36,6 +32,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   sourse: string;
   constructor(
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public activeModal: NgbActiveModal,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -54,7 +51,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getSourceList();
     this.getGeneratedFrom();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();

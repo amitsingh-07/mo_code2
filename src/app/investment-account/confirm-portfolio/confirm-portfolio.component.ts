@@ -1,21 +1,13 @@
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
-
 import { CurrencyPipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
-import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
-import {
-  BreakdownAccordionComponent
-} from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
-import {
-  BreakdownBarComponent
-} from '../../shared/components/breakdown-bar/breakdown-bar.component';
-import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import {
   EditInvestmentModalComponent
@@ -25,8 +17,6 @@ import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { FundDetails } from '../../topup-and-withdraw/fund-your-account/fund-details';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import {
   AccountCreationErrorModalComponent
@@ -55,7 +45,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   portfolio;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
   userInputSubtext;
-  //riskProfileImage: any;
 
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
@@ -70,6 +59,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public portfolioService: PortfolioService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService) {
@@ -86,7 +76,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getPortfolioDetails();
   }
@@ -172,7 +163,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorMessageHTML = errorMessage;
   }
-
 
   openEditInvestmentModal() {
     const ref = this.modal.open(EditInvestmentModalComponent, {
