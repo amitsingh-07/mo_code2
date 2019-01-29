@@ -1,7 +1,9 @@
 @import '../../../variables';
 app-residential-address{
 .residential-address {
-
+  .container-fluid{
+    padding-top: 110px;
+  }
   .postal-code-control {
     display: flex;
 
@@ -65,7 +67,7 @@ app-residential-address{
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -204,5 +206,8 @@ max-height: 52px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+}
+.btn__footer--fixed{
+  font-family: $muli-bold !important;
 }
 }

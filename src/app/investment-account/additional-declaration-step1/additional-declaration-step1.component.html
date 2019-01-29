@@ -89,7 +89,7 @@
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepoccupation)}">
               <div class="dropdown-control">
                 <div ngbDropdown>
-                  <button class="btn btn-dropdown without-border grey" id="pep_Info_employement_details_status-drpdown"
+                  <button class="btn btn-dropdown without-border" id="pep_Info_employement_details_status-drpdown"
                     ngbDropdownToggle>
                     <span *ngIf="!addInfoForm.controls.pepoccupation.value">Select Occupation</span>
                     <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation}}</span>
@@ -135,7 +135,7 @@
             <div class="flex-col-7">
               <div class="dropdown-control">
                 <div ngbDropdown>
-                  <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown"
+                  <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border" id="pep_Info_residentialAddress-country-drpdown"
                     ngbDropdownToggle>{{addInfoForm.controls.pepCountry.value.name | titlecase}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
