@@ -70,9 +70,11 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.footerService.setFooterVisibility(false);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
-    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox;
+    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox ?
+      this.myFinancialsFormValues.oneTimeInvestmentChkBox : false;
     // tslint:disable-next-line:max-line-length
-    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox;
+    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox ?
+     this.myFinancialsFormValues.monthlyInvestmentChkBox : false;
     if (typeof this.oneTimeInvestmentChkBoxVal === 'undefined') {
       this.oneTimeInvestmentChkBoxVal = true;
     }
@@ -138,6 +140,10 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     }
   }
   goToNext(form) {
+    if (this.myFinancialsForm.controls.suffEmergencyFund.value === 'no') {
+      this.showEmergencyFundModal();
+      return;
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -169,6 +175,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     } else {
       this.saveAndProceed(form);
     }
+
   }
   saveAndProceed(form: any) {
     this.portfolioService.setMyFinancials(form.value);
@@ -181,6 +188,15 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     });
   }
   goBack() {
+    this.clearTheValues();
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
+  }
+  clearTheValues() {
+    this.myFinancialsForm.controls.monthlyIncome.setValue(0);
+    this.myFinancialsForm.controls.percentageOfSaving.setValue(0);
+    this.myFinancialsForm.controls.totalAssets.setValue(0);
+    this.myFinancialsForm.controls.totalLiabilities.setValue(0);
+    this.myFinancialsForm.controls.initialInvestment.setValue(0);
+    this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
   }
 }
