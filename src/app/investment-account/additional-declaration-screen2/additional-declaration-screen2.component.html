@@ -61,7 +61,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
-                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name}}</button>
                       </div>
                     </div>
                   </div>
@@ -148,7 +148,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated, 'investmentEarnings')"
-                          id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name | titlecase}}</button>
+                          id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name}}</button>
                       </div>
                     </div>
                   </div>
