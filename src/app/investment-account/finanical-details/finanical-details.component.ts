@@ -1,23 +1,16 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
+import { PortfolioService } from '../../portfolio/portfolio.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
-
-import { PortfolioService } from '../../portfolio/portfolio.service';
-
-import { PortfolioFormData } from '../../portfolio/portfolio-form-data';
 
 @Component({
   selector: 'app-finanical-details',
@@ -43,6 +36,7 @@ export class FinanicalDetailsComponent implements OnInit {
     public headerService: HeaderService,
     public portfolioService: PortfolioService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -54,7 +48,8 @@ export class FinanicalDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getIncomeRangeList();
     this.FinancialFormData = this.portfolioService.getMyFinancials();
     this.formValues = this.investmentAccountService.getFinancialFormData();

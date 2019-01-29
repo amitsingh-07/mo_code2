@@ -44,7 +44,7 @@ export class AcknowledgementComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
   }
   goNext() {

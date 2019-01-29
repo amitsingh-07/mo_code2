@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
@@ -26,7 +25,6 @@ export class AccountSetupPendingComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -39,7 +37,8 @@ export class AccountSetupPendingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
