@@ -10,6 +10,7 @@ import { DependantSelectionComponent } from './dependant-selection/dependant-sel
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 const routes: Routes = [
   {
     path: '', canActivate: [LoggedUserService], children: [
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'dependant-education', component: DependantEducationComponent },
       { path: 'dependant-education-list', component: DependantEducationListComponent },
       { path: 'dependant-education-preference', component : EducationPreferenceComponent},
-      { path: 'my-earnings', component: MyEarningsComponent}
+      { path: 'my-earnings', component: MyEarningsComponent},
+      { path: 'getting-started', component: MyProfileComponent}
     ]
   }
 ];

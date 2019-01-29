@@ -1,13 +1,26 @@
 @import '../../../variables';
 @import '../../../mixins';
+.endowmentListForm{
+
+
 input[type='checkbox']+label {
-    margin: 0;
-    clear: none;
-    padding: 0px 0 0px 40px;
-    cursor: pointer;
-    background: url("../../../assets/images/check-box-normal.svg") left center no-repeat;
-  }
+  background: url("../../../assets/images/check-box-normal.svg") left top no-repeat;
+}
+input[type='checkbox']:checked+label {
+  background-image: url("../../../assets/images/check-box-select.svg");
+}
+.title {
   
-  input[type='checkbox']:checked+label {
-    background-image: url("../../../assets/images/check-box-select.svg");
-  }
+  position: relative;
+  top: -6px;
+}
+.sub-title {
+  position: relative;
+  top: -4px;
+
+  opacity: 0.7;
+  font-size: 16px;
+  line-height: 21px;
+}
+}
+

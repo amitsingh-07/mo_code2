@@ -10,6 +10,19 @@
     "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
     "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help"
   },
+  "NATIONALITY": [{
+      "text": "Singaporean",
+      "value": "singaporean"
+    },
+    {
+      "text": "Singaporean PR",
+      "value": "singaporean_pr"
+    },
+    {
+      "text": "Foreigner",
+      "value": "foreigner"
+    }
+  ],
   "COMPREHENSIVE_STEPS": {
     "FIRST": "Step 1",
     "FIRST_TITLE": "Understand What's On Your Shoulders",
@@ -32,11 +45,7 @@
   "DEPENDANT_DETAILS": {
     "ABOUT": "About Your Dependant",
     "DESC": "Tell us who you need to take care of so that we can include these factors into your financial planning.",
-    "NAME": "Name",
-    "RELATIONSHIP": "Relationship",
-    "GENDER": "Gender",
-    "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
-    "NATIONALITY": "Nationality",
+
     "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Parent-in-law", "Friend", "Relative"]
   },
   "DEPENDANT_EDUCATION": {
@@ -44,34 +53,48 @@
     "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
   },
   "ENDOWMENT_PLAN": {
-    "ABOUT": "Select which child has education endowment plan",
-    "MATRURITY_AMOUNT": "Maturity Amount",
-    "MATURITY_YEAR": "Maturity Year"
+    "ABOUT": "Select which child has education endowment plan"
+
   },
   "EDUCATION_PREFERENCE": {
     "HEADER": "Tell us about the education Preferences.",
-    "ABOUT": "About",
-    "YEARS_LATER": "Years later",
-    "LOCATION": "Location",
-    "COURSE_OF_STUDY": "Course of study",
-    "NATIONALITY": "Nationality"
+    "ABOUT": "About"
+
   },
   "MY_EARNINGS": {
     "HEADER": "What You Earn",
     "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
     "BUCKET_TITLE": "Your Annual Income Bucket",
-    "AMOUNT":"Amount",
-    "MONTHLY_SALARY":"Monthly Salary",
-    "EMPLOYMENT_TYPE":"Employment Type",
-    "ANNUAL_BONUS":"Annual Bonus",
-    "RENTAL_INCOME":"Rental Income",
-    "OTHER_WORK_INCOME":"Other Work Income",
-    "OTHER_MONTHLY_INCOME":"Other Monthly Income",
-    "ANNUAL_DIVIDENDS":"Annual Dividends",
-    "OTHER_ANNUAL_INCOME":"Other Annual Income"
+    "MONTHLY_SALARY": "Monthly Salary",
+    "EMPLOYMENT_TYPE": "Employment Type",
+    "ANNUAL_BONUS": "Annual Bonus",
+    "RENTAL_INCOME": "Rental Income",
+    "OTHER_WORK_INCOME": "Other Work Income",
+    "OTHER_MONTHLY_INCOME": "Other Monthly Income",
+    "ANNUAL_DIVIDENDS": "Annual Dividends",
+    "OTHER_ANNUAL_INCOME": "Other Annual Income"
+
+  },
+  "GETTING_STARTED": {
+    "TITLE": "Get Started",
+    "HI": "Hi",
+    "HEADER": "Welcome to MoneyOwl roboadvisory",
+    "DESC": "Your financial report will be generated at the end of the journey! Ready to go?"
+  },
+  "FORM_LABEL": {
+    "NAME": "Name",
+    "RELATIONSHIP": "Relationship",
+    "GENDER": "Gender",
+    "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
+    "NATIONALITY": "Nationality",
+    "AMOUNT": "Amount",
+    "YEARS_LATER": "Years later",
+    "LOCATION": "Location",
+    "COURSE_OF_STUDY": "Course of study",
+    "MATRURITY_AMOUNT": "Maturity Amount",
+    "MATURITY_YEAR": "Maturity Year",
+    "I_AM_A": "I am a",
+    "SAVE_AND_CONTINUE":"Save and Continue"
 
   }
-
-
-
 }
