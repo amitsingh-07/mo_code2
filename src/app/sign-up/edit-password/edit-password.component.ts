@@ -1,4 +1,4 @@
-import { Component, ElementRef , OnInit , ViewChild} from '@angular/core';
+import { Component, ElementRef , OnInit , ViewChild, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,8 @@ import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-password',
   templateUrl: './edit-password.component.html',
-  styleUrls: ['./edit-password.component.scss']
+  styleUrls: ['./edit-password.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditPasswordComponent implements OnInit {
 

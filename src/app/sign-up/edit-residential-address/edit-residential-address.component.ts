@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +21,8 @@ import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-residential-address',
   templateUrl: './edit-residential-address.component.html',
-  styleUrls: ['./edit-residential-address.component.scss']
+  styleUrls: ['./edit-residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditResidentialAddressComponent implements OnInit {
 
