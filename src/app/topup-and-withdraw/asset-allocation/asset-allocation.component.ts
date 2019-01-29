@@ -19,6 +19,9 @@ import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+
+import { FooterService } from './../../shared/footer/footer.service';
+
 import { SignUpService } from '../../sign-up/sign-up.service';
 
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
@@ -60,6 +63,7 @@ export class AssetAllocationComponent implements OnInit {
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private translate: TranslateService,
+    public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
@@ -77,7 +81,8 @@ export class AssetAllocationComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.assetAllocation = this.topupAndWithDrawService.getSelectedPortfolio();
   }
 

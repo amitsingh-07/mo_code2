@@ -124,6 +124,7 @@
         "CITY": "City",
         "STATE": "State / Province / Region",
         "ZIPCODE": "Zip Code",
+        "APPLY": "Apply Changes",
         "ERROR": {
             "POSTAL_CODE_TITLE": "Error !",
             "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
@@ -265,7 +266,13 @@
         "BANK_ACC": " Bank Account",
         "NO_BANK": "No bank added",
         "ADD_BANK": " Add Bank",
-        "CONFIRMATION": "Confirmation"
+        "CONFIRMATION": "Confirmation",
+        "EDIT_PASSWORD_TITLE":"Your Password",
+        "OLD_PASSWORD":"Old Password",
+        "NEW_PASSWORD":"New Password",
+        "CONFIRM_PASSWORD":"Confirm Password",
+        "FORGET_PASSWORD":"Forgot your password?",
+        "APPLY_CHANGES":"Apply Changes"
     },
     "ADD_BANK": {
         "ACCOUNT_NAME": "Account Holders Name",

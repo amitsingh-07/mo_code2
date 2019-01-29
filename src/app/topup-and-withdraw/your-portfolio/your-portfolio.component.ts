@@ -9,6 +9,8 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { FooterService } from './../../shared/footer/footer.service';
+
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -42,6 +44,7 @@ export class YourPortfolioComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
+    public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public portfolioService: PortfolioService) {
@@ -58,8 +61,8 @@ export class YourPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarDirectGuided(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
     this.totalReturns = this.portfolioValues.totalReturns ? this.portfolioValues.totalReturns : 0;
