@@ -2,7 +2,11 @@
 @import "../../../_mixins.scss";
 
 app-edit-profile{
- 
+ .content{
+  @include allmobiles {
+   padding-top: 100px;
+  }
+ }
 .grass_bg {
     width: 100%;
     height: 100%;

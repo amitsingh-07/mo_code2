@@ -1,9 +1,11 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-update-user-id{
-  // .container-fluid{
-  //   padding-top: 120px;
-  // }
+  .container-fluid{
+    @include allmobiles {
+    padding-top: 120px;
+    }
+  }
 .checkbox-button a {
   color: $white-color;
   text-decoration: underline;

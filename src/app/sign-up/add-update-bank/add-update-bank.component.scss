@@ -1,8 +1,11 @@
 @import '../../../variables';
+@import "../../../_mixins.scss";
 app-add-update-bank{
-// .container-fluid{
-//   padding-top: 120px;
-// }
+.container-fluid{
+  @include allmobiles {
+  padding-top: 120px;
+  }
+}
 .dots{
     // background:white;
     // border-top-left-radius: 8px;
