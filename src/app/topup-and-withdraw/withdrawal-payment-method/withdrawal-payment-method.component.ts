@@ -15,6 +15,7 @@ import { TopUpAndWithdrawCommon } from '../topup-and-withdraw-common';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-withdrawal-payment-method',
@@ -38,6 +39,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
@@ -46,6 +48,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getLookupList();
     this.getUserBankList();
     this.getUserAddress();

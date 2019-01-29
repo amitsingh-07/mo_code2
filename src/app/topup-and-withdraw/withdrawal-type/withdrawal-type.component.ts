@@ -9,6 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+
+import { FooterService } from './../../shared/footer/footer.service';
+
 import {
   ConfirmWithdrawalModalComponent
 } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -39,6 +42,7 @@ export class WithdrawalTypeComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -52,9 +56,10 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLookupList();
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
+    this.getLookupList();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
@@ -177,18 +182,18 @@ export class WithdrawalTypeComponent implements OnInit {
   saveWithdrawal() {
     this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
       if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length ) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
           this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
         }
       } else {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
       }
     },
-    (err) => {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-    });
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+      });
   }
 
   showCustomErrorModal(title, desc) {
