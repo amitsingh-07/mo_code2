@@ -90,7 +90,7 @@ export class EmploymentDetailsComponent implements OnInit {
         value: this.formValues.companyName,
         disabled: this.investmentAccountService.isDisabled('companyName')
       },
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
+        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
       this.employementDetailsForm.addControl('occupation', new FormControl({
         value: this.formValues.occupation,
         disabled: this.investmentAccountService.isDisabled('occupation')
@@ -163,8 +163,8 @@ export class EmploymentDetailsComponent implements OnInit {
         empCountry: [this.formValues.empCountry ? this.formValues.empCountry
           : this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
         Validators.required],
-        empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-        empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+        empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
+        empAddress2: [this.formValues.empAddress2, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
       }));
       this.addOrRemoveAdditionalControlsMailing(this.employementDetailsForm.get('employeaddress').get('empCountry').value);
       this.observeEmpAddressCountryChange();
@@ -210,7 +210,7 @@ export class EmploymentDetailsComponent implements OnInit {
       empAddressFormGroup.addControl('empPostalCode', new FormControl(
         this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
       empAddressFormGroup.addControl('empUnitNo', new FormControl(
-        this.formValues.empUnitNo, Validators.required));
+        this.formValues.empUnitNo, Validators.pattern(RegexConstants.SymbolNumber)));
 
       empAddressFormGroup.removeControl('empCity');
       empAddressFormGroup.removeControl('empState');

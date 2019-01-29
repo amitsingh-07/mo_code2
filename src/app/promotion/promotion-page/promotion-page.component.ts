@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService } from 'src/app/config/config.service';
 import { PromotionService } from '../promotion.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -28,11 +29,14 @@ export class PromotionPageComponent implements OnInit {
   constructor(
     public navbarService: NavbarService, private route: ActivatedRoute,
     public footerService: FooterService, private renderer: Renderer2,
-    private translate: TranslateService,
+    private translate: TranslateService, private configService: ConfigService,
     private promotionService: PromotionService, private promotionApiService: PromotionApiService) { }
 
   ngOnInit() {
-    this.translate.use('en');
+    this.configService.getConfig().subscribe((config) => {
+      this.translate.setDefaultLang(config.language);
+      this.translate.use(config.language);
+    });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);

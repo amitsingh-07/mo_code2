@@ -49,7 +49,7 @@
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                   <div class="dropdown-control">
-                    <div ngbDropdown>
+                    <div ngbDropdown placement="top-right">
                       <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
                   {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' || financialDetails.controls.numberOfHouseHoldMembers.value)  ? financialDetails.controls.numberOfHouseHoldMembers.value  :'Select Number'}}
                       </button>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('salaryRange').valid && !financialDetails.get('salaryRange').pristine}">
                   <div class="dropdown-control">
-                    <div ngbDropdown>
+                    <div ngbDropdown placement="top-right">
                       <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
                   {{(financialDetails.controls.salaryRange.value == '' || financialDetails.controls.salaryRange.value)  ? financialDetails.controls.salaryRange.value.name  :'Select Range'}}
                       </button>

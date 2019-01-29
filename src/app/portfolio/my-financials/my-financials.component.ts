@@ -67,9 +67,9 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(2);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
-    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox ;
+    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox;
     // tslint:disable-next-line:max-line-length
-    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox ;
+    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox;
     if (typeof this.oneTimeInvestmentChkBoxVal === 'undefined') {
       this.oneTimeInvestmentChkBoxVal = true;
     }
@@ -106,8 +106,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     ref.componentInstance.primaryActionLabel = this.translator.RETURN_HOME;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-      // tslint:disable-next-line:triple-equals
-      return false;
+      this.router.navigate(['home']);
     });
   }
   showHelpModal() {
@@ -118,23 +117,23 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
   secondChkBoxChange() {
     if (this.myFinancialsForm.controls.secondChkBox.value === true) {
-      this.myFinancialsForm.controls.monthlyInvestment.enable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.enable();
       this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
     } else {
-      this.myFinancialsForm.controls.monthlyInvestment.disable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.disable();
       this.myFinancialsForm.controls.monthlyInvestment.setValue('');
     }
   }
-firstChkBoxChange() {
-  if (this.myFinancialsForm.controls.firstChkBox.value === true) {
-    this.myFinancialsForm.controls.initialInvestment.enable() ;
-    this.myFinancialsForm.controls.initialInvestment.setValue(0);
+  firstChkBoxChange() {
+    if (this.myFinancialsForm.controls.firstChkBox.value === true) {
+      this.myFinancialsForm.controls.initialInvestment.enable();
+      this.myFinancialsForm.controls.initialInvestment.setValue(0);
 
-  } else {
-    this.myFinancialsForm.controls.initialInvestment.disable() ;
-    this.myFinancialsForm.controls.initialInvestment.setValue('');
+    } else {
+      this.myFinancialsForm.controls.initialInvestment.disable();
+      this.myFinancialsForm.controls.initialInvestment.setValue('');
+    }
   }
-}
   goToNext(form) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -158,7 +157,7 @@ firstChkBoxChange() {
         });
         ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-         this.saveAndProceed(form);
+          this.saveAndProceed(form);
         });
       } else {
         ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
@@ -179,6 +178,6 @@ firstChkBoxChange() {
     });
   }
   goBack() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
   }
 }

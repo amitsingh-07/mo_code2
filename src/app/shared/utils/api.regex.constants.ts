@@ -20,7 +20,8 @@ export const RegexConstants = {
     ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
     Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
     NRIC: /^[STst][a-zA-Z0-9]{8}$/,
-    SymbolNumber: /^[0-9*#+$@$!%?&]+$/,
+    SymbolNumber: /^[0-9\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/,
     NumericOnly: /^[0-9]*$/,
-    SymbolAlphabets: /^[a-zA-Z\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
+    SymbolAlphabets: /^[a-zA-Z\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+    AlphanumericWithSymbol: /^[a-zA-Z0-9\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
 };

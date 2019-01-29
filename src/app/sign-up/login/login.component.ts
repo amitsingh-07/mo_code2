@@ -8,6 +8,7 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
@@ -158,22 +159,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
 
               // Investment status
-              let investmentStatus = userInfo.objectList.investementDetails
-                && userInfo.objectList.investementDetails.account
-                && userInfo.objectList.investementDetails.account.accountStatus ?
-                userInfo.objectList.investementDetails.account.accountStatus : null;
-              if (investmentStatus === null || !investmentStatus) {
-                if (userInfo.objectList.investementDetails &&
-                  userInfo.objectList.investementDetails.portfolios &&
-                  userInfo.objectList.investementDetails.portfolios.length > 0) {
-                  investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED;
-                }
-              }
-
+              const investmentStatus = this.signUpService.getInvestmentStatus();
               const redirect_url = this.signUpService.getRedirectUrl();
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
-                this.router.navigate([redirect_url]);
+                if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
+                  investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED) {
+                    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+                } else {
+                  this.router.navigate([redirect_url]);
+                }
               } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
                 this.willWritingService.getExecTrusteeInfo().length > 0) {
                 if (!this.willWritingService.getIsWillCreated()) {

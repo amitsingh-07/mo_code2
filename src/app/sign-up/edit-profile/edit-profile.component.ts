@@ -201,12 +201,13 @@ export class EditProfileComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-      nationality.countries.forEach((country) => {
-        countryList.push(country);
-      });
-    });
+        if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+            countryList.push(country);
+        });
+    }});
     return countryList;
-  }
+ }
   editContactDetails() {
     let uploadedDocuments = [] ;
     let mailingUrl;

@@ -2,10 +2,12 @@
   <div class="flex-col autofill-link" [ngClass]="position" (click)="openModal()">
     <div class="flex-row flex-col-12">
       <div class="autofill-text" *ngIf="label">{{label}}</div>
-      <div class="autofill-text" *ngIf="!label">Autofill Forms Via</div>
+      <div class="autofill-text" *ngIf="!label">{{'INVESTMENT_ACCOUNT_MYINFO.TAB_BUTTON.LABEL'
+        | translate}}</div>
       <div class="autofill-logo"><img src="../../../assets/images/investment-account/myinfo-logo.svg" /></div>
     </div>
-    <div class="autofill-estimation">Estimate about 5 mins</div>
+    <div class="autofill-estimation">{{'INVESTMENT_ACCOUNT_MYINFO.TAB_BUTTON.TIME'
+      | translate}}</div>
   </div>
   <div class="loader-modal" *ngIf="showConfirmation">
     <div class="backdrop">

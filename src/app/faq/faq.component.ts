@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Component,
          ElementRef,
          OnInit,
@@ -36,15 +37,6 @@ export class FAQComponent implements OnInit{
   constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
               public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
               public route: ActivatedRoute) {
-                this.translate.use('en');
-                this.translate.get('COMMON').subscribe((result: string) => {
-                  this.pageTitle = this.translate.instant('FAQ.TITLE');
-                  this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
-                  this.seoService.setTitle(this.translate.instant('FAQ_GENERAL.TITLE'));
-                  this.seoService.setBaseSocialMetaTags(this.translate.instant('FAQ_GENERAL.TITLE'),
-                                                        this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
-                                                        this.translate.instant('FAQ_GENERAL.KEYWORDS'));
-                });
                 this.configService.getConfig().subscribe((config: IConfig) => {
                   this.isWillWritingEnabled = config.willWritingEnabled;
                   this.isInvestmentEnabled = config.investmentEnabled;
@@ -56,6 +48,14 @@ export class FAQComponent implements OnInit{
               }
 
   ngOnInit() {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('FAQ.TITLE');
+      this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
+      this.seoService.setTitle(this.translate.instant('FAQ_GENERAL.TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('FAQ_GENERAL.TITLE'),
+                                            this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
+                                            this.translate.instant('FAQ_GENERAL.KEYWORDS'));
+    });
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(true);

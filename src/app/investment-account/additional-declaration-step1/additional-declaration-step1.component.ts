@@ -68,7 +68,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   buildForm() {
     return new FormGroup({
-      radioPEP: new FormControl({value: this.addInfoFormValues.pep, disabled: true}),
+      radioPEP: new FormControl({ value: this.addInfoFormValues.pep, disabled: true }),
       fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
@@ -76,8 +76,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
       pepCountry: new FormControl(this.getDefaultCountry(), Validators.required),
       pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2,
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
     });
   }
 
@@ -88,11 +89,11 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     if (isSingapore) {
       this.addInfoForm.addControl('pepPostalCode', new FormControl(this.addInfoFormValues.pepPostalCode,
-        [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       this.addInfoForm.addControl('pepFloor', new FormControl(
-        this.addInfoFormValues.pepFloor, Validators.required));
+        this.addInfoFormValues.pepFloor,  [Validators.pattern(RegexConstants.SymbolNumber)]));
       this.addInfoForm.addControl('pepUnitNo', new FormControl(this.addInfoFormValues.pepUnitNo,
-        [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]));
+        [Validators.pattern(RegexConstants.SymbolNumber)]));
 
       this.addInfoForm.removeControl('pepCity');
       this.addInfoForm.removeControl('pepState');
@@ -140,7 +141,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   addOtherOccupation(value) {
     if (value.occupation === 'Others') {
       this.addInfoForm.addControl('pepOtherOccupation',
-      new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
+        new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
     } else {
       this.addInfoForm.removeControl('pepOtherOccupation');
     }

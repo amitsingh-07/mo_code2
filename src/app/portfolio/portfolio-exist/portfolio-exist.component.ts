@@ -1,9 +1,11 @@
+import { INVESTMENT_API_BASE_URL } from './../../shared/http/api.constants';
 import { Component, OnInit , ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 
@@ -35,6 +37,9 @@ export class PortfolioExistComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+  }
+  proceed() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 
 }

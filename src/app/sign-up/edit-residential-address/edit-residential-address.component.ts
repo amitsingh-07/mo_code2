@@ -90,19 +90,15 @@ export class EditResidentialAddressComponent implements OnInit {
 }
 
 getCountryList(data) {
-    const countryList = [];
-    data.forEach((nationality) => {
-        nationality.countries.forEach((country) => {
-            countryList.push(country);
-        });
-    });
-    return countryList;
+  const countryList = [];
+  data.forEach((nationality) => {
+      if (!nationality.blocked) {
+      nationality.countries.forEach((country) => {
+          countryList.push(country);
+      });
+  }});
+  return countryList;
 }
-
-
-
-
-
 
 buildForm(): FormGroup {
   return this.formBuilder.group({

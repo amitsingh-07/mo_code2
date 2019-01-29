@@ -36,7 +36,7 @@
                 <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="showPortffolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW_ALL' | translate}}</span>
+                <span class="view_all" *ngIf="showPortffolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -53,8 +53,8 @@
                         <div class="portfolio_footer_value">{{totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                       <div class="flex-col col-7">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
-                        <div class="portfolio_footer_value">{{totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
+                        <div class="portfolio_footer_value">{{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                     </div>
                   </div>

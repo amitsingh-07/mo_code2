@@ -3,6 +3,9 @@
 
 .instruction-content{
     padding-top: 20px;
+    color: #4a4a4a;
+    line-height: 22px;
+    letter-spacing: -0.16px;
     .list-none{
         padding: 0;
         margin: 0;
@@ -16,7 +19,7 @@
         .section {
             border-left: 1px solid #00a7a7;
             margin-left: -10px;
-            padding-bottom: 20px;
+            padding-bottom: 45px;
             font-size: 16px;
             .sub-section {
                 margin-left: 19.5px;
@@ -46,7 +49,7 @@
         border-radius: 6px;
         padding: 25px;
         position: relative;
-        margin: 30px 18px 20px;
+        margin: 0px 18px 20px;
         display: flex;
         justify-content: center;
   
@@ -58,10 +61,10 @@
           position: absolute;
           top: -18px;
           padding: 5px 15px 5px 55px;
-          background-color: #f4fafb;
+          background-color: #ffffff;
           display: flex;
           flex: 1;
-          background: url('../../../../assets/images/investment-account/subcard_owl.svg') no-repeat;
+          background: url('../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
           background-color: #f4fafb;
           background-position: 15px 4px;
         }
@@ -73,5 +76,18 @@
     font-size: 16px;
         }
   
+    }
+    .faq-link{
+        text-align: center;
+        padding-bottom: 53px;
+        a{
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #ff872f;
+            text-decoration: none;
+        }
     }
 }
