@@ -2,7 +2,9 @@
 
 app-inv-personal-info{
 .personal-info {
-
+  .container-fluid{
+    padding-top: 90px;
+  }
   .inline-error-inv {
     color: $inline-error-border-color;
     border: 1px solid $inline-error-border-color !important;
@@ -149,6 +151,9 @@ app-inv-personal-info{
   }
   .fixed-btn--sm{
     color: #99dbdb;
+  }
+  .btn__footer--fixed{
+    font-family: $muli-bold !important;
   }
 }
 }

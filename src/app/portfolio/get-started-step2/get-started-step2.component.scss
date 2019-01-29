@@ -80,8 +80,7 @@ app-get-started-step2{
     .block__start-text-container{
         position:relative;
         display:block;
-        width:85%;
-        margin-left:55px;
+        width:100%;
         @include tablet{
             margin-left:35px;
             margin-top:30px;

@@ -2,6 +2,9 @@
 
 app-finanical-details{
 .financial-details {
+  .container-fluid{
+    padding-top: 110px;
+  }
 
   .inline-error-inv {
     color: $inline-error-border-color;
@@ -37,7 +40,7 @@ app-finanical-details{
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -145,6 +148,9 @@ app-finanical-details{
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    .btn__footer--fixed{
+      font-family: $muli-bold !important;
+  }
 }
 .form-group-with-bg--content-label{
     font-size: 18px;
