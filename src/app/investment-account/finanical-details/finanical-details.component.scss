@@ -126,19 +126,13 @@ app-finanical-details{
     }
   }
 
-  .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: auto;
-    max-height: 264px;
-      }
     
       .dropdown-menu.show {
         right: 0 !important;
         overflow: auto;
         height: auto;
-        max-height: 264px;
-          }
+        max-height: 190px;
+      }
         
     .dropdown-item {
       white-space: normal;
