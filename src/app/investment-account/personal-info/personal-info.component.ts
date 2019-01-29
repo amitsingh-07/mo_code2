@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -46,6 +47,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private config: NgbDatepickerConfig,
     private modal: NgbModal,
     private signUpService: SignUpService,
@@ -67,7 +69,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.setOptionList();
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();

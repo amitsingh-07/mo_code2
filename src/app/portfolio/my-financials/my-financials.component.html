@@ -10,8 +10,7 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="myFinancialLbl">{{
-                    'MY_FINANCIALS.MY_FINANCIALS_LBL' | translate}}
+                  <div class="form-group-with-bg--header-label" id="myFinancialLbl">{{ 'MY_FINANCIALS.MY_FINANCIALS_LBL' | translate}}
 
                   </div>
                 </div>
@@ -22,10 +21,9 @@
             <div class="form-group-with-bg--content">
               <div class="flex-row">
                 <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyIncomeParentLbl"><span
-                      id="myFinancialMonthlyIncomeLbl1">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' | translate}}</span>
-                    <div class="form-group-with-bg--content-sub-label" id="myFinancialMonthlyIncomeLbl">{{
-                      'MY_FINANCIALS.MONTHLY_INCOME_SUB_LBL' | translate}}
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyIncomeParentLbl">
+                    <span id="myFinancialMonthlyIncomeLbl1">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' | translate}}</span>
+                    <div class="form-group-with-bg--content-sub-label" id="myFinancialMonthlyIncomeLbl">{{ 'MY_FINANCIALS.MONTHLY_INCOME_SUB_LBL' | translate}}
 
                     </div>
                   </div>
@@ -34,23 +32,22 @@
                   <div class="form-control">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div name="monthlyIncome" [ngClass]="{'readonly': monthlyIncome.value != 0}">
-                      <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput"
-                        appCurrencyInputPortfolio maxLength="7" #monthlyIncome formControlName="monthlyIncome" value="0">
+                      <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput" appCurrencyInputPortfolio maxLength="7" #monthlyIncome
+                        formControlName="monthlyIncome" value="0">
                     </div>
                   </div>
                 </div>
               </div>
               <div class="flex-row">
                 <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialSavedIncomeLbl">{{
-                    'MY_FINANCIALS.SAVED_INCOME_LBL' | translate}}</div>
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialSavedIncomeLbl">{{ 'MY_FINANCIALS.SAVED_INCOME_LBL' | translate}}</div>
                 </div>
                 <div class="flex-col-6">
                   <div class="form-control form-control-right">
 
                     <div name="percentageOfSaving" [ngClass]="{'readonly': percentageOfSaving.value != 0}">
-                      <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput
-                        maxLength="3" #percentageOfSaving formControlName="percentageOfSaving" value="0">
+                      <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput maxLength="3" #percentageOfSaving
+                        formControlName="percentageOfSaving" value="0">
                       <i id="myFinancialPersentage" class="right">%</i>
                     </div>
                   </div>
@@ -60,10 +57,9 @@
 
               <div class="flex-row">
                 <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl"><span id="myFinancialTotalAssetsLbl1">{{
-                      'MY_FINANCIALS.TOTAL_ASSET_LBL' | translate}}</span>
-                    <div class="form-group-with-bg--content-sub-label" id="myFinancialTotalAssetSubLbl">{{
-                      'MY_FINANCIALS.TOTAL_ASSET_SUB_LBL' | translate}}
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">
+                    <span id="myFinancialTotalAssetsLbl1">{{ 'MY_FINANCIALS.TOTAL_ASSET_LBL' | translate}}</span>
+                    <div class="form-group-with-bg--content-sub-label" id="myFinancialTotalAssetSubLbl">{{ 'MY_FINANCIALS.TOTAL_ASSET_SUB_LBL' | translate}}
 
                     </div>
                   </div>
@@ -72,8 +68,8 @@
                   <div class="form-control">
                     <i id="myFinancialDollerSymbTwo">$</i>
                     <div name="totalAssets" [ngClass]="{'readonly': totalAssets.value != 0}">
-                      <input class="input-control" type="text" id="myFinancialTotalAssetInput"
-                        appCurrencyInputPortfolio maxLength="7" #totalAssets formControlName="totalAssets" value="0">
+                      <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets
+                        formControlName="totalAssets" value="0">
                     </div>
                   </div>
                 </div>
@@ -81,10 +77,9 @@
 
               <div class="flex-row">
                 <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl"><span id="myFinancialTotalLoansLbl1">{{
-                      'MY_FINANCIALS.LOANS_LBL' | translate}}</span>
-                    <div class="form-group-with-bg--content-sub-label" id="myFinancialLoansSubLbl">{{
-                      'MY_FINANCIALS.LOANS_SUB_LBL' | translate}}
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl">
+                    <span id="myFinancialTotalLoansLbl1">{{ 'MY_FINANCIALS.LOANS_LBL' | translate}}</span>
+                    <div class="form-group-with-bg--content-sub-label" id="myFinancialLoansSubLbl">{{ 'MY_FINANCIALS.LOANS_SUB_LBL' | translate}}
 
                     </div>
                   </div>
@@ -93,8 +88,8 @@
                   <div class="form-control">
                     <i id="myFinancialDollerSymbThree">$</i>
                     <div name="totalLiabilities" [ngClass]="{'readonly': totalLiabilities.value != 0}">
-                      <input class="input-control" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio
-                        maxLength="7" #totalLiabilities formControlName="totalLiabilities" value="0">
+                      <input class="input-control" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio maxLength="7" #totalLiabilities
+                        formControlName="totalLiabilities" value="0">
                     </div>
                   </div>
                 </div>
@@ -103,8 +98,7 @@
 
               <div class="flex-row">
                 <div class=flex-col-10>
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialQuestaion">{{
-                    'MY_FINANCIALS.QUESTATION' | translate}}
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialQuestaion">{{ 'MY_FINANCIALS.QUESTATION' | translate}}
 
                   </div>
 
@@ -121,14 +115,12 @@
                     <div class="flex-row">
                       <div class="flex-col-6">
                         <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="my_financial_yes_lab">
-                          <input ngbButton type="radio" value="yes" id="my_financial_yes_btn"> {{
-                          'MY_FINANCIALS.LABEL_YES' | translate}}
+                          <input ngbButton type="radio" value="yes" id="my_financial_yes_btn"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
                         </label>
                       </div>
                       <div class="flex-col-6">
                         <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_no_lab">
-                          <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()" id="my_financial_no_btn">
-                          {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
+                          <input ngbButton type="radio" value="no" id="my_financial_no_btn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
                       </div>
                     </div>
                   </div>
@@ -152,8 +144,7 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="My_finacialInvestment_Lbl">{{
-                    'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
+                  <div class="form-group-with-bg--header-label" id="My_finacialInvestment_Lbl">{{ 'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
 
                   </div>
                 </div>
@@ -211,8 +202,8 @@
                     <i id="myFinancialDollerSymbFour">$</i>
 
                     <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
-                      <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment formControlName="initialInvestment"
-                        value="0">
+                      <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment
+                        formControlName="initialInvestment" value="0">
                     </div>
 
                   </div>
@@ -229,7 +220,7 @@
 
                   <label for="2" id="c2">
 
-                    <div class="input-label-black">  {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div> 
+                    <div class="input-label-black"> {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
 
                     <div class="input-label-normal">Min. $50</div>
 
@@ -244,9 +235,9 @@
                     <i id="myFinancialDollerSymbFour">$</i>
 
                     <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
-                      <input class="input-control " id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment formControlName="monthlyInvestment"
-                        value="0">
-                        <i class="right">/mth</i>
+                      <input class="input-control " id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment
+                        formControlName="monthlyInvestment" value="0">
+                      <i class="right">/mth</i>
                     </div>
 
                   </div>
@@ -261,9 +252,9 @@
                       [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
                     </jqxSlider> -->
           </div>
-          <button type="button" [disabled]="myFinancialsForm.controls.suffEmergencyFund.value == 'no'" (click)="goToNext(myFinancialsForm)"
-            class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' |
-            translate}}</button>
+         <button type="button" [disabled]="(myFinancialsForm.controls.firstChkBox.value == false) && (myFinancialsForm.controls.secondChkBox.value == false)"
+            (click)="goToNext(myFinancialsForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}
+          </button>
 
         </div>
       </div>

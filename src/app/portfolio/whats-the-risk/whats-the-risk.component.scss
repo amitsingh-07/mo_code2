@@ -5,7 +5,11 @@
   background-color:$dark-teal-color; 
 }
 app-whats-the-risk{
-
+  .container-fluid{
+    @include allmobiles {
+        padding: 110px 0;
+    }
+  }
 .title{
   font-family: "Muli Semi Bold";
   font-size: 22px;

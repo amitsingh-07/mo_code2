@@ -26,7 +26,7 @@
       <div class="text-center">
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">
           <div class="banner-image"><img src={{iconImage}} id="riskProfileImg" /></div>
-          <p class="risk-profile-block__content__title mb30" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
+          <p class="risk-profile-block__content__title" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
         </div>
         <div class="risk-profile-block__content__desc">
           <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.desc" *ngIf="selectedRiskProfile.htmlDescription.desc"></div>

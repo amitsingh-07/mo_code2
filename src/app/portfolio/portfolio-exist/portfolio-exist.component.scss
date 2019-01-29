@@ -1,5 +1,11 @@
+@import '../../../variables';
+@import '../../../mixins';
+
 app-portfolio-exist{
     .container-fluid{
+        @include allmobiles {
+            padding: 110px 0;
+        }
         &.full-height{
             min-height: 100vh;
         }
@@ -15,5 +21,10 @@ app-portfolio-exist{
         line-height: 21px;
         letter-spacing: -0.16px;
         color: #4a4a4a;
+    }
+    .btn__footer--fixed{
+        font-family: $muli-bold !important;
+        letter-spacing: -0.25px;
+        font-size: 24px;
     }
 }

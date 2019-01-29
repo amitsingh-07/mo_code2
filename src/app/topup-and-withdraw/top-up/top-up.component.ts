@@ -16,6 +16,9 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+
+import { FooterService } from './../../shared/footer/footer.service';
+
 import { FundDetails } from '../fund-your-account/fund-details';
 import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
@@ -49,6 +52,7 @@ export class TopUpComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private modal: NgbModal,
 
     public topupAndWithDrawService: TopupAndWithDrawService) {
@@ -65,8 +69,8 @@ export class TopUpComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarDirectGuided(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {

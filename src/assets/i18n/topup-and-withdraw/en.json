@@ -114,6 +114,10 @@
       "TOTAL_RETURNS": {
         "TITLE": "Total Returns",
         "MESSAGE": "The total returns are calculated by geometrically linking the periodic returns between all your transactions. This return is also known as the time-weighted return."
+      },
+      "CASH_ACCOUNT_BALANCE": {
+        "TITLE": "Cash Account Balance",
+        "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       }
     }
   },

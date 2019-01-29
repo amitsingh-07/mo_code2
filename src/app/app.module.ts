@@ -1,7 +1,7 @@
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import 'hammerjs';
 
-import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -154,7 +154,7 @@ export function tokenGetterFn() {
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig

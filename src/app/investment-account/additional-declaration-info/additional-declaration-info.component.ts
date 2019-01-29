@@ -27,7 +27,8 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
   }
   goNext() {

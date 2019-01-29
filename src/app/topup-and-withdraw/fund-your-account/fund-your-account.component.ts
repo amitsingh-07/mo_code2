@@ -11,6 +11,8 @@ import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-detai
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { FooterService } from './../../shared/footer/footer.service';
+
 import {
   TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
@@ -43,6 +45,7 @@ export class FundYourAccountComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -54,7 +57,8 @@ export class FundYourAccountComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();

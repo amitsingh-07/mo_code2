@@ -78,7 +78,7 @@ text-overflow: ellipsis;
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -160,7 +160,7 @@ text-overflow: ellipsis;
     padding: 60px 20px 40px;
     position: relative;
     &:first-child{
-      padding-top: 0;
+      padding-top: 50px;
       .thumb-close-icon{
         display: none;
       }
@@ -189,6 +189,9 @@ text-overflow: ellipsis;
         height: 14px;
       }
     }
+  }
+  .btn__footer--fixed{
+    font-family: $muli-bold !important;
   }
 }
 }

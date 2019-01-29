@@ -1,11 +1,10 @@
-import { catchError } from 'rxjs/operators';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -35,6 +34,7 @@ export class ResidentialAddressComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -50,7 +50,8 @@ export class ResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getReasoneList();  // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
