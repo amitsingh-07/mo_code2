@@ -146,7 +146,7 @@ firstChkBoxChange() {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
+      ref.componentInstance.errorMessageHTML = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.isButtons) {
         ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
