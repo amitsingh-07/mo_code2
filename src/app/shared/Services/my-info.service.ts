@@ -188,8 +188,8 @@ export class MyInfoService {
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         // Todo - Robo2 MyInfo changes
-        // this.goToMyInfo();
-        this.goToUAT1MyInfo();
+        this.goToMyInfo();
+        // this.goToUAT1MyInfo();
       }).catch((e) => {
       });
     }

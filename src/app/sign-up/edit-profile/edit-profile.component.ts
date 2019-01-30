@@ -253,7 +253,13 @@ export class EditProfileComponent implements OnInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
   addBankDetails() {
-    this.investmentAccountService.setEditProfileBankDetail(null, null, null, null, true);
+    let AccountHolderName;
+    if (this.bankDetails && this.bankDetails.accountName) {
+      AccountHolderName = this.bankDetails.accountName;
+    } else {
+      AccountHolderName = this.fullName;
+    }
+    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 }
