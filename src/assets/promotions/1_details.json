@@ -1,0 +1,13 @@
+{
+    "promoId": 1,
+    "type": 1,
+    "owner": "Aviva",
+    "title": "35% off Aviva IdealIncome",
+    "thumbnail": "/assets/promotions/images/1/thumbnail.jpg",
+    "banner": "/assets/promotions/images/1/banner.jpg",
+    "desc": "Enjoy lifetime discount with Occupational Disability coverage!",
+    "date_created": "2019-01-15 00:00:00",
+    "date_expiry": "2018-03-31 23:59:59",
+    "tag" : ["Insurance", "Protection"],
+    "external": false
+}
