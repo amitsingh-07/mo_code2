@@ -182,7 +182,7 @@ export class DashboardComponent implements OnInit {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case 'SUSPENDED_ACCOUNT': {
+      case 'ACCOUNT_SUSPENDED': {
         this.showSuspendedAccount = true;
         break;
       }
