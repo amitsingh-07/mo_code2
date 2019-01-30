@@ -2,6 +2,9 @@
 
 app-finanical-details{
 .financial-details {
+  .container-fluid{
+    padding-top: 110px;
+  }
 
   .inline-error-inv {
     color: $inline-error-border-color;
@@ -37,7 +40,7 @@ app-finanical-details{
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -126,49 +129,13 @@ app-finanical-details{
     }
   }
 
-
-  .autofill-link{
-    border:1px solid $secondary-action-color;
-    padding:23px 34px;
-    background-color:#fff;
-    border-radius:6px;
-    margin-bottom:20px;
-    cursor: pointer;
-    display: flex;
-
-    .autofill-text, .autofill-logo{
-        
-        
-    }
-
-    .autofill-logo{
-      
-      width:35%;
-  }
-
-    .autofill-text{
-      width:65%;
-      font-family: Muli;
-      font-size: 18px;
-      font-weight: bold;
-      color: #e57300;
-    }
-    
-   
-  }
-  .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: auto;
-    max-height: 264px;
-      }
     
       .dropdown-menu.show {
         right: 0 !important;
         overflow: auto;
         height: auto;
-        max-height: 264px;
-          }
+        max-height: 190px;
+      }
         
     .dropdown-item {
       white-space: normal;
@@ -181,6 +148,9 @@ app-finanical-details{
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    .btn__footer--fixed{
+      font-family: $muli-bold !important;
+  }
 }
 .form-group-with-bg--content-label{
     font-size: 18px;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,10 +13,12 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrls: ['./edit-profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditProfileComponent implements OnInit {
   resetPasswordForm: FormGroup;
@@ -49,6 +51,7 @@ export class EditProfileComponent implements OnInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
@@ -68,8 +71,9 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
     this.setPageTitle(this.pageTitle);
+    this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
@@ -100,6 +104,7 @@ export class EditProfileComponent implements OnInit {
       confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
+  // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
@@ -201,12 +206,13 @@ export class EditProfileComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-      nationality.countries.forEach((country) => {
-        countryList.push(country);
-      });
-    });
+        if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+            countryList.push(country);
+        });
+    }});
     return countryList;
-  }
+ }
   editContactDetails() {
     let uploadedDocuments = [] ;
     let mailingUrl;
@@ -236,12 +242,24 @@ export class EditProfileComponent implements OnInit {
 
   }
   editBankDetails() {
+    let AccountHolderName;
+    if (this.bankDetails && this.bankDetails.accountName) {
+      AccountHolderName = this.bankDetails.accountName;
+    } else {
+      AccountHolderName = this.fullName;
+    }
     // tslint:disable-next-line:max-line-length accountName
-    this.investmentAccountService.setEditProfileBankDetail(this.bankDetails.accountName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
+    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
   addBankDetails() {
-    this.investmentAccountService.setEditProfileBankDetail(null, null, null, null, true);
+    let AccountHolderName;
+    if (this.bankDetails && this.bankDetails.accountName) {
+      AccountHolderName = this.bankDetails.accountName;
+    } else {
+      AccountHolderName = this.fullName;
+    }
+    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 }

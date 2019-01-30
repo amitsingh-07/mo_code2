@@ -2,9 +2,37 @@
 @import '../../../mixins';
 
 app-top-up{
+  .container-fluid{
+    padding-bottom: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-top: 125px !important;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    .content{
+      &:first-child{
+        margin: 0 18px;
+      }
+    }
+  }
 .form-group-with-bg .form-group-with-bg--content {
     padding: 20px 20px 30px 20px;
 }
+  .request_txt{
+    background-color: #009999;
+    font-family: "Muli Bold", sans-serif;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.18px;
+    text-align: center;
+    color: #ffffff;
+    padding: 30px 20px;
+    position: relative;
+    bottom: 66px;
+  }
   .balance-amount {
       font-family:$muli-italic;
       font-size: 14px;
@@ -180,6 +208,7 @@ app-top-up{
   }
 
 .second-section{
+  padding-bottom: 80px;
   .btn__footer--fixed{
     font-family: $muli-bold;
     font-size: 24px;

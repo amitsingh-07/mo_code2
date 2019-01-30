@@ -1,17 +1,16 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -42,6 +41,7 @@ export class UploadDocumentsComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,7 +58,8 @@ export class UploadDocumentsComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
@@ -140,9 +141,9 @@ export class UploadDocumentsComponent implements OnInit {
     this.showUploadLoader();
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       if (response) {
-        this.hideUploadLoader();
         // INTERIM SAVE
         this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.hideUploadLoader();
           this.redirectToNextPage();
         });
       }

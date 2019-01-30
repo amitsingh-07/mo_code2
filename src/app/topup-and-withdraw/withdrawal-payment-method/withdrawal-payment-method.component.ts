@@ -15,6 +15,7 @@ import { TopUpAndWithdrawCommon } from '../topup-and-withdraw-common';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-withdrawal-payment-method',
@@ -38,16 +39,18 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('WITHDRAW_PAYMENT_METHOD.TITLE');
-      this.setPageTitle(this.pageTitle);
-    });
+     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getLookupList();
     this.getUserBankList();
     this.getUserAddress();
@@ -66,9 +69,18 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         this.userBankList = data.objectList;
         if (this.userBankList.length > 0) {
           this.hideAddBankAccount = false;
-        }
-      }
+          }
+        this.pageTitle = this.getTitle();
+        this.setPageTitle(this.pageTitle);
+       }
     });
+  }
+
+  getTitle() {
+    let title = '';
+    title = (this.hideAddBankAccount) ? this.translate.instant('WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT')
+       : this.translate.instant('WITHDRAW_PAYMENT_METHOD.BANK_DETAIL');
+    return title;
   }
 
   getUserAddress() {
@@ -157,6 +169,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   goToNext() {
-      this.showConfirmWithdrawModal();
+    this.showConfirmWithdrawModal();
   }
 }

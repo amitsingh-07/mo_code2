@@ -19,6 +19,9 @@ app-ci-assessment {
 }
 app-personal-info{
 .container-fluid{
+  @include allmobiles {
+    padding: 110px 0;
+  }
   padding-right: 15px !important;
   padding-left: 23px !important;
 }
@@ -191,7 +194,12 @@ hr{
 }
 
 }
-
+.btn{
+  &:disabled{
+     background-color: #3bbcbc;
+     color: #00a7a7;
+   }
+}
 .investmentSlider {
   .noUi-target {
     height: 50px !important;

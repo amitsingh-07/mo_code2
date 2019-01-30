@@ -1,16 +1,21 @@
 @import '../../../variables';
 @import '../../../mixins';
 
-.body {
-  font-weight: 600;
-}
+// .body {
+//   font-weight: 600;
+// }
 
 app-my-financials {
+  .container-fluid{
+    @include allmobiles {
+        padding: 120px 0 80px 0;
+    }
+  }
   .fixed-btn--sm {
     border: 1px solid rgba(0, 135, 134, 0.4);
     color: #00a7a7;
     font-size: 16px;
-    font-family: "Muli Regular", sans-serif;
+    font-family: $muli-regular;
     font-weight: normal !important;
     padding: .90rem;
     height: 50px;
@@ -94,6 +99,16 @@ app-my-financials {
       input {
         padding-right: 20px;
       }
+    }
+  }
+
+  .btn{
+    &:disabled{
+        background-color: #3bbcbc;
+        color: #00a7a7;
+      }
+    &.btn__footer--fixed{
+      font-family: $muli-bold !important;
     }
   }
 }

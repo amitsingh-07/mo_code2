@@ -1,16 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -35,6 +32,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -55,7 +53,8 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getOccupationList();
     this.countries = this.investmentAccountService.getCountriesFormData();
@@ -68,7 +67,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   buildForm() {
     return new FormGroup({
-      radioPEP: new FormControl({value: this.addInfoFormValues.pep, disabled: true}),
+      radioPEP: new FormControl({ value: this.addInfoFormValues.pep, disabled: true }),
       fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
@@ -76,8 +75,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
       pepCountry: new FormControl(this.getDefaultCountry(), Validators.required),
       pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2,
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
     });
   }
 
@@ -88,11 +88,11 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     if (isSingapore) {
       this.addInfoForm.addControl('pepPostalCode', new FormControl(this.addInfoFormValues.pepPostalCode,
-        [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       this.addInfoForm.addControl('pepFloor', new FormControl(
-        this.addInfoFormValues.pepFloor, Validators.required));
+        this.addInfoFormValues.pepFloor,  [Validators.pattern(RegexConstants.SymbolNumber)]));
       this.addInfoForm.addControl('pepUnitNo', new FormControl(this.addInfoFormValues.pepUnitNo,
-        [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]));
+        [Validators.pattern(RegexConstants.SymbolNumber)]));
 
       this.addInfoForm.removeControl('pepCity');
       this.addInfoForm.removeControl('pepState');
@@ -140,7 +140,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   addOtherOccupation(value) {
     if (value.occupation === 'Others') {
       this.addInfoForm.addControl('pepOtherOccupation',
-      new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
+        new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
     } else {
       this.addInfoForm.removeControl('pepOtherOccupation');
     }

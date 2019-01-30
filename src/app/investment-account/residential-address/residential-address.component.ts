@@ -1,11 +1,10 @@
-import { catchError } from 'rxjs/operators';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -35,6 +34,7 @@ export class ResidentialAddressComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -50,7 +50,8 @@ export class ResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getReasoneList();  // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
@@ -91,11 +92,13 @@ export class ResidentialAddressComponent implements OnInit {
         disabled: this.investmentAccountService.isDisabled('country')
       }, Validators.required],
       address1: [{ value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1') },
-      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
       address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
-      [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      isMailingAddressSame: [{value: this.formValues.isMailingAddressSame,
-        disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')}]
+      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
+      isMailingAddressSame: [{
+        value: this.formValues.isMailingAddressSame,
+        disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')
+      }]
     });
   }
 
@@ -108,10 +111,13 @@ export class ResidentialAddressComponent implements OnInit {
         [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
       this.addressForm.addControl('floor', new FormControl({
         value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')
-      }));
+      },
+      [Validators.pattern(RegexConstants.SymbolNumber)]));
       this.addressForm.addControl('unitNo', new FormControl({
         value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')
-      }));
+      },
+      [Validators.pattern(RegexConstants.SymbolNumber)]
+    ));
 
       this.addressForm.removeControl('city');
       this.addressForm.removeControl('state');
@@ -148,9 +154,9 @@ export class ResidentialAddressComponent implements OnInit {
           disabled: this.investmentAccountService.isDisabled('mailCountry')
         }, Validators.required],
         mailAddress1: [{ value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1') },
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
         mailAddress2: [{ value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2') },
-        [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]]
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]]
       }));
       this.addOrRemoveAdditionalControlsMailing(this.addressForm.get('mailingAddress').get('mailCountry').value);
       this.observeMailCountryChange();
@@ -185,15 +191,19 @@ export class ResidentialAddressComponent implements OnInit {
       mailFormGroup.addControl('mailPostalCode', new FormControl({
         value: this.formValues.mailPostalCode,
         disabled: this.investmentAccountService.isDisabled('mailPostalCode')
-      }, Validators.required));
+      }, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
       mailFormGroup.addControl('mailFloor', new FormControl({
         value: this.formValues.mailFloor,
         disabled: this.investmentAccountService.isDisabled('mailFloor')
-      }));
+      },
+      [Validators.pattern(RegexConstants.SymbolNumber)]
+    ));
       mailFormGroup.addControl('mailUnitNo', new FormControl({
         value: this.formValues.mailUnitNo,
         disabled: this.investmentAccountService.isDisabled('mailUnitNo')
-      }));
+      },
+      [Validators.pattern(RegexConstants.SymbolNumber)]
+    ));
 
       mailFormGroup.removeControl('mailCity');
       mailFormGroup.removeControl('mailState');

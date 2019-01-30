@@ -404,10 +404,11 @@ export class SignUpService {
     const messages = [];
     const notificationMessageList = notifications.map((notification) => {
       const messageList = notification.messages.map((message) => {
-        let messageDate = '';
+        let messageDate;
         let messageMonth = '';
         if (message.time) {
-          messageDate = message.time.split('T')[0];
+          message.time = parseInt(message.time, 10);
+          messageDate = new Date(message.time);
           messageMonth = this.datePipe.transform(messageDate, 'MMMM yyyy');
         }
         message.date = messageDate;
@@ -424,4 +425,19 @@ export class SignUpService {
     return this.apiService.getDetailedCustomerInfo();
   }
 
+  getInvestmentStatus() {
+    const userInfo = this.getUserProfileInfo();
+    let investmentStatus = userInfo.investementDetails
+      && userInfo.investementDetails.account
+      && userInfo.investementDetails.account.accountStatus ?
+      userInfo.investementDetails.account.accountStatus : null;
+    if (investmentStatus === null || !investmentStatus) {
+      if (userInfo.investementDetails &&
+        userInfo.investementDetails.portfolios &&
+        userInfo.investementDetails.portfolios.length > 0) {
+        investmentStatus = 'RECOMMENDED';
+      }
+    }
+    return investmentStatus;
+  }
 }

@@ -47,6 +47,8 @@ export class AppService {
     if (window.sessionStorage) {
       // App data
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      // Selected Data
+      sessionStorage.removeItem('app_selected_plan_session_storage_key');
       // Direct Journey Data
       sessionStorage.removeItem('app_direct_session');
       // Guided Journey Data

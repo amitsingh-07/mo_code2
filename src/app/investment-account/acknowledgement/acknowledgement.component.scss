@@ -3,13 +3,15 @@
 
 app-acknowledgement{
 .app-acknowledgement{
-    background-color:white;
-        background: white;
+    background-color:$white-color;
+        .container-fluid{
+          padding-top: 110px;
+        }
     .step-indicator-container {
         background-color: #fff;
         padding: 10px 0px;
         position: relative;
-        top: 60px;
+        top: 106px;
         margin-bottom: 15px;
     
         .container-fluid {
@@ -87,7 +89,9 @@ app-acknowledgement{
       margin: 0;
       list-style-type: none;
     }
-    
+    .btn__footer--fixed{
+      font-family: $muli-bold !important;
+    }
 }
 
 }

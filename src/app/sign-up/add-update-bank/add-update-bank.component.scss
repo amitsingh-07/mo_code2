@@ -1,4 +1,11 @@
 @import '../../../variables';
+@import "../../../_mixins.scss";
+app-add-update-bank{
+.container-fluid{
+  @include allmobiles {
+  padding-top: 120px;
+  }
+}
 .dots{
     // background:white;
     // border-top-left-radius: 8px;
@@ -25,9 +32,6 @@
      padding: 10px;
      border-bottom: 0.5px solid #ffffff;
    }
-   .input-control {
-    text-align: left;
-  }
   .form-lbl{
     font-family:  $muli-semi-bold;
     font-size: 18px;
@@ -103,6 +107,7 @@
 
   .input-control {
     text-align: left;
+    color: #00a7a7;
   }
 
   .step-indicator-container {
@@ -431,3 +436,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}

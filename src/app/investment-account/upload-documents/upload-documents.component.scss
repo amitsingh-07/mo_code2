@@ -2,11 +2,14 @@
 @import '../../../mixins';
 app-upload-documents{
 .upload-doc-nric {
+  .container-fluid {
+    padding-top: 120px;
+  }
   .step-indicator-container {
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -34,6 +37,7 @@ app-upload-documents{
     border-radius: 6px;
     margin-bottom: 21px;
     font-family: $muli-bold;
+    line-height: 18px;
     .sub-title {
       font-size: 16px;
       letter-spacing: -0.3px;
@@ -42,10 +46,11 @@ app-upload-documents{
     .file-logs{
       font-size: 14px;
       letter-spacing: -0.26px;
+      color: #ceebeb;
       span{
         &:first-child{
           font-family: $muli-semi-bold;
-          padding-right: 5px;
+          padding-right: 4px;
         }
       }
     }
@@ -206,6 +211,8 @@ app-upload-documents{
       }
     }
   }
-
+  .btn__footer--fixed{
+    font-family: $muli-bold !important;
+  }
 }
 }

@@ -2,11 +2,14 @@
 @import '../../../mixins';
 app-upload-document-bo{
 .upload-doc-nric {
+  .container-fluid {
+    padding-top: 120px;
+  }
   .step-indicator-container {
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
-    top: 60px;
+    top: 106px;
     margin-bottom: 15px;
 
     .container-fluid {
@@ -185,6 +188,8 @@ app-upload-document-bo{
       }
     }
   }
-
+  .btn__footer--fixed{
+    font-family: $muli-bold !important;
+  }
 }
 }

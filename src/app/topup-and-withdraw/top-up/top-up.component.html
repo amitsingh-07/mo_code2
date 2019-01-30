@@ -85,10 +85,14 @@
               <p id="cash_account_balance" class="balance-amount mb10">{{'TOPUP.CASH_ACCOUNT_BALANCE' | translate}}{{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
               <p id="topup_amount" class="topupportfolio-amount" *ngIf="isAmountExceedBalance">{{'TOPUP.PLEASE_TOPUP' | translate}} {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
             </div>
-          </div>
-          <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </div>   
         </div>
+        
       </div>
     </form>
+  </div>
+  <div class="content">
+    <div class="request_txt"> {{ 'TOPUP.PROCESS_TXT' | translate}} </div>
+        <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'TOPUP.SUBMIT' | translate}}</button>
   </div>
 </div>

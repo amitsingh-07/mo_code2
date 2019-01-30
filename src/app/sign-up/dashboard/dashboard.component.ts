@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   showEddCheckFailStatus = false;
   totalValue: any;
   totalReturns: any;
-  totalInvested: any;
+  availableBalance: any;
 
   constructor(
     private router: Router,
@@ -105,8 +105,12 @@ export class DashboardComponent implements OnInit {
       const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
         this.userProfileInfo.investementDetails.myInfoVerified : false;
       this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
-      if (myInfoVerified && beneficialOwner) {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+      if (myInfoVerified) {
+        if (beneficialOwner) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        }
       } else {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
       }
@@ -116,9 +120,11 @@ export class DashboardComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-      nationality.countries.forEach((country) => {
-        countryList.push(country);
-      });
+      if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+          countryList.push(country);
+        });
+      }
     });
     return countryList;
   }
@@ -127,22 +133,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardList() {
-    let investmentStatus = this.userProfileInfo.investementDetails
-      && this.userProfileInfo.investementDetails.account
-      && this.userProfileInfo.investementDetails.account.accountStatus ?
-      this.userProfileInfo.investementDetails.account.accountStatus : null;
-    if (investmentStatus === null || !investmentStatus) {
-      if (this.userProfileInfo.investementDetails &&
-        this.userProfileInfo.investementDetails.portfolios &&
-        this.userProfileInfo.investementDetails.portfolios.length > 0) {
-        investmentStatus = 'RECOMMENDED';
-      }
-    }
+    const investmentStatus = this.signUpService.getInvestmentStatus();
     if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.totalInvested = this.userProfileInfo.investementDetails.totalInvested ?
-        this.userProfileInfo.investementDetails.totalInvested : 0;
+      this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
+          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
       case 'PORTFOLIO_PURCHASED': {

@@ -124,6 +124,7 @@
         "CITY": "City",
         "STATE": "State / Province / Region",
         "ZIPCODE": "Zip Code",
+        "APPLY": "Apply Changes",
         "ERROR": {
             "POSTAL_CODE_TITLE": "Error !",
             "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
@@ -198,12 +199,14 @@
             "TITLE_MY_INVESTMENT": "My Investment",
             "TITLE_INVESTMENT": "Investment",
             "VIEW_ALL": "View all",
+            "PROCEED": "Proceed",
             "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
             "CREATE_YOUR_PORTFOLIO_DESC": "Answer a few questions to determine the portfolio most suited to you!",
             "GET_STARTED": "Get Started!",
             "TIME": "8mins",
             "TOTAL_PORTFOLIO": "Total Portfolio Value",
             "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
+            "CASH_ACCOUNT_BALANCE":"Cash Account Balance",
             "TOTAL_RETURNS": "Total Returns",
             "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
             "UPDATE": "Update",
@@ -263,7 +266,13 @@
         "BANK_ACC": " Bank Account",
         "NO_BANK": "No bank added",
         "ADD_BANK": " Add Bank",
-        "CONFIRMATION": "Confirmation"
+        "CONFIRMATION": "Confirmation",
+        "EDIT_PASSWORD_TITLE":"Your Password",
+        "OLD_PASSWORD":"Old Password",
+        "NEW_PASSWORD":"New Password",
+        "CONFIRM_PASSWORD":"Confirm Password",
+        "FORGET_PASSWORD":"Forgot your password?",
+        "APPLY_CHANGES":"Apply Changes"
     },
     "ADD_BANK": {
         "ACCOUNT_NAME": "Account Holders Name",

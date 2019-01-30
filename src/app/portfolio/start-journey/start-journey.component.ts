@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class StartJourneyComponent implements OnInit {
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private _location: Location,
     private modal: NgbModal) {
     this.translate.use('en');
@@ -35,7 +36,8 @@ export class StartJourneyComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

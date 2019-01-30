@@ -52,8 +52,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   count: any;
   isNotificationEnabled: boolean;
 
+  isPromotionEnabled = false;
+  isArticleEnabled = false;
   isWillWritingEnabled = false;
-  isInvestmentEnabled = true;
+  isInvestmentEnabled = false;
   isComprehensiveEnabled = true;
 
   isLoggedIn = false;
@@ -75,6 +77,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.configService.getConfig().subscribe((moduleConfig: IConfig) => {
+      this.isArticleEnabled = moduleConfig.articleEnabled;
+      this.isPromotionEnabled = moduleConfig.promotionEnabled;
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
@@ -202,6 +206,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.signUpService.getRecentNotifications().subscribe((response) => {
       this.count = response.objectList[0].unreadCount;
       this.recentMessages = response.objectList[0].notifications[0].messages;
+      this.recentMessages.map((message) => {
+        message.time = parseInt(message.time, 10);
+    });
     });
   }
 
@@ -227,10 +234,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    if (!this.authService.isSignedUser()) {
-      return false;
-    }
-    return true;
+    return (this.router.url === '/account/dashboard');
   }
 
   showFilterModalPopUp(data) {
