@@ -542,4 +542,36 @@ export class WillWritingService {
     }
     return false;
   }
+
+  checkDuplicateUin(members: any[]) {
+    const groupUin: any = {};
+    let isDuplicate = false;
+    for (const member of members) {
+      const uin = (member.uin).toLowerCase();
+      if (uin in groupUin) {
+        groupUin[uin].push(member);
+        isDuplicate = true;
+      } else {
+        groupUin[uin] = [];
+        groupUin[uin].push(member);
+      }
+    }
+    if (isDuplicate) {
+      const errors: any = {};
+      errors.errorMessages = [];
+      const errorMsg = { formName: '', errors: [] };
+      errorMsg.errors.push('The following profiles should not have the same Identification Number:');
+      for (const uin in groupUin) {
+        if (groupUin.hasOwnProperty(uin) && groupUin[uin].length > 1) {
+          for (const val of groupUin[uin]) {
+            errorMsg.errors.push(val['name'] + ' (' + val['uin'] + ')');
+          }
+        }
+      }
+      errors.errorMessages.push(errorMsg);
+      return this.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+    } else {
+      return true;
+    }
+  }
 }
