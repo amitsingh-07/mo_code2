@@ -7,7 +7,7 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { DASHBOARD_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import {
   TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
@@ -234,7 +234,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    return (this.router.url === '/account/dashboard');
+    return (this.router.url === DASHBOARD_PATH);
   }
 
   showFilterModalPopUp(data) {
