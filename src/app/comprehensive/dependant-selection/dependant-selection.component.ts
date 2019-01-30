@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
+import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -20,8 +21,11 @@ export class DependantSelectionComponent implements OnInit {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService) {
-    this.translate.use('en');
+              private translate: TranslateService, private configService: ConfigService) {
+    this.configService.getConfig().subscribe((config) => {
+      this.translate.setDefaultLang(config.language);
+      this.translate.use(config.language);
+    });
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
       this.pageTitle = this.translate.instant('DEPENDANT_SELECTION.TITLE');
