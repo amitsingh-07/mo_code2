@@ -45,7 +45,9 @@ export class YourInvestmentComponent implements OnInit {
   welcomeInfo;
   investmentoverviewlist: any;
   portfolioList;
-  totalReturnss;
+  totalReturns: any;
+  cashAccountBalance: any;
+  totalValue: any;
   selectedDropDown;
   pageTitle: string;
   moreList: any;
@@ -110,6 +112,11 @@ export class YourInvestmentComponent implements OnInit {
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
+      this.totalReturns = this.investmentoverviewlist.data.totalReturns ? this.investmentoverviewlist.data.totalReturns : 0;
+      this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails ?
+        this.investmentoverviewlist.data.cashAccountDetails.availableBalance : 0;
+      this.totalValue = this.investmentoverviewlist.data.totalValue ?
+        this.investmentoverviewlist.data.totalValue : 0;
       this.portfolioList = this.investmentoverviewlist.data.portfolios;
       this.totalPortfolio = this.portfolioList.length;
       this.welcomeInfo = { name: this.userProfileInfo.firstName, total: this.totalPortfolio };
@@ -129,7 +136,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
   }
-  showCashAccountPopUp() {
+  showCashAccountPopUp() { 
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.MESSAGE');
