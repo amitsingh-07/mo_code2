@@ -3,8 +3,131 @@
 
     <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="myFinancialsForm">
       <!-- FIRST SECTION -->
+      <div class="row second-section">
+        <div class="col-lg-12 col-md-12">
+          <!-- second setion -->
+          <div class="form-group-with-bg">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="form-group-with-bg--header-label" id="My_finacialInvestment_Lbl">{{ 'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <!-- <div class="flex-row">
+                  <div class="flex-col-6">
+                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialInitialDepositLbl">{{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}} </div>
+                  </div>
+                  <div class="flex-col-6">
+                    <div class="form-control">
+                      <i id="myFinancialDollerSymbFour">$</i>
+                      <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
+                        <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment formControlName="initialInvestment"
+                          value="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row">
+                  <div class="flex-col-6">
+                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyDepositLbl">{{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
+                  </div>
+                  <div class="flex-col-6">
+                    <div class="form-control">
+                      <i>$</i>
+                      <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
+                        <input class="input-control" id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment formControlName="monthlyInvestment"
+                          value="0">
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              <div class="checkbox_instruction"> {{ 'MY_FINANCIALS.ATLEAST_ONE' | translate}}</div>
+              <!-- checkbox -->
+              <div class="form-group-single-column mb0 flex-col-12">
+                <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
+                  <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
+                  <label for="1" id="c1">
+                    <div class="input-label-black"> {{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}}</div>
+
+                    <div class="input-label-normal">Min. $100</div>
+
+                  </label>
+
+                </div>
+
+                <div class="flex-col-6">
+
+                  <div class="form-control">
+
+                    <i id="myFinancialDollerSymbFour">$</i>
+
+                    <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
+                      <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment
+                        formControlName="initialInvestment" value="0">
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="form-group-single-column mb0 flex-col-12">
+
+                <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
+
+                  <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox" name="secondChkBox" (change)="secondChkBoxChange()">
+
+                  <label for="2" id="c2">
+
+                    <div class="input-label-black"> {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
+
+                    <div class="input-label-normal">Min. $50</div>
+
+                  </label>
+
+                </div>
+
+                <div class="flex-col-6">
+
+                  <div class="form-control form-control-right">
+
+                    <i id="myFinancialDollerSymbFour">$</i>
+
+                    <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
+                      <input class="input-control " id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment
+                        formControlName="monthlyInvestment" value="0">
+                      <i class="right">/mth</i>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- checkbox ends -->
+            </div>
+            <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
+                        [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
+                      </jqxSlider> -->
+          </div>
+          <!-- end1 -->
+        </div>
+      </div>
+
+      <!-- SECOND SECTION -->
       <div class="row">
         <div class="col-lg-12 col-md-12">
+
+          <!-- first section -->
           <div class="form-group-with-bg">
             <!--Form Header-->
             <div class="form-group-with-bg--header">
@@ -132,132 +255,14 @@
             </div>
 
           </div>
-        </div>
-      </div>
-
-      <!-- SECOND SECTION -->
-      <div class="row second-section">
-        <div class="col-lg-12 col-md-12">
-
-          <div class="form-group-with-bg">
-            <!--Form Header-->
-            <div class="form-group-with-bg--header">
-              <div class="flex-row">
-                <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="My_finacialInvestment_Lbl">{{ 'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <!--Form Content-->
-            <div class="form-group-with-bg--content">
-              <!-- <div class="flex-row">
-                <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialInitialDepositLbl">{{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}} </div>
-                </div>
-                <div class="flex-col-6">
-                  <div class="form-control">
-                    <i id="myFinancialDollerSymbFour">$</i>
-                    <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
-                      <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment formControlName="initialInvestment"
-                        value="0">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-row">
-                <div class="flex-col-6">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyDepositLbl">{{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
-                </div>
-                <div class="flex-col-6">
-                  <div class="form-control">
-                    <i>$</i>
-                    <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
-                      <input class="input-control" id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment formControlName="monthlyInvestment"
-                        value="0">
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-              <div class="checkbox_instruction"> {{ 'MY_FINANCIALS.ATLEAST_ONE' | translate}}</div>
-              <!-- checkbox -->
-              <div class="form-group-single-column mb0 flex-col-12">
-                <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
-                  <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
-                  <label for="1" id="c1">
-                    <div class="input-label-black"> {{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}}</div>
-
-                    <div class="input-label-normal">Min. $100</div>
-
-                  </label>
-
-                </div>
-
-                <div class="flex-col-6">
-
-                  <div class="form-control">
-
-                    <i id="myFinancialDollerSymbFour">$</i>
-
-                    <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
-                      <input class="input-control" id="myFinancialInitialDepositInput" type="text" appCurrencyInputPortfolio maxLength="7" #initialInvestment
-                        formControlName="initialInvestment" value="0">
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="form-group-single-column mb0 flex-col-12">
-
-                <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
-
-                  <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox" name="secondChkBox" (change)="secondChkBoxChange()">
-
-                  <label for="2" id="c2">
-
-                    <div class="input-label-black"> {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
-
-                    <div class="input-label-normal">Min. $50</div>
-
-                  </label>
-
-                </div>
-
-                <div class="flex-col-6">
-
-                  <div class="form-control form-control-right">
-
-                    <i id="myFinancialDollerSymbFour">$</i>
-
-                    <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
-                      <input class="input-control " id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment
-                        formControlName="monthlyInvestment" value="0">
-                      <i class="right">/mth</i>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <!-- checkbox ends -->
-            </div>
-            <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
-                      [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
-                    </jqxSlider> -->
-          </div>
-         <button type="button" [disabled]="(myFinancialsForm.controls.firstChkBox.value == false) && (myFinancialsForm.controls.secondChkBox.value == false)"
+          <!-- end -->
+          <button type="button" [disabled]="(myFinancialsForm.controls.firstChkBox.value == false) && (myFinancialsForm.controls.secondChkBox.value == false)"
             (click)="goToNext(myFinancialsForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}
           </button>
 
         </div>
       </div>
+      <!-- end -->
     </form>
   </div>
 </div>
