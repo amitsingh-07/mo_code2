@@ -19,6 +19,7 @@ import { DependantsDetailsComponent } from './dependants-details/dependants-deta
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -47,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     DependantEducationListComponent,
     EducationPreferenceComponent,
     MyEarningsComponent,
-    MyProfileComponent]
+    MyProfileComponent,
+    DependantEducationSelectionComponent]
 })
 export class ComprehensiveModule { }

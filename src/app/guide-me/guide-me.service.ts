@@ -58,7 +58,8 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private modal: NgbModal,
+  constructor(
+    private http: HttpClient, private modal: NgbModal,
     private authService: AuthenticationService, private translate: TranslateService) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
@@ -158,6 +159,7 @@ export class GuideMeService {
   }
 
   setMyIncome(data: IMyIncome) {
+    data.annualSalary = data.monthlySalary * 12;
     this.isMyIncomeFormValid = true;
     this.guideMeFormData.income = data;
     this.commit();

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
@@ -24,8 +25,11 @@ export class ArticleCategoryComponent implements OnInit {
   public articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService, public translate: TranslateService,
               private articleService: ArticleService, private articleApiService: ArticleApiService, private seoService: SeoServiceService,
-              private config: NgbDropdownConfig, private route: ActivatedRoute, private router: Router) {
-                this.translate.use('en');
+              private route: ActivatedRoute, private router: Router, private configService: ConfigService) {
+                this.configService.getConfig().subscribe((config) => {
+                  this.translate.setDefaultLang(config.language);
+                  this.translate.use(config.language);
+                });
               }
 
   ngOnInit() {

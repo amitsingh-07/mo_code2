@@ -137,6 +137,48 @@
                         "ANSWER": "The terms and coverage of your policy <b>will not be affected</b> in any way. In the event that the MoneyOwl representative who has been serving you leaves the company, we will assign another adviser to take over your account so that you will always have a trusted adviser to go to."
                     }
                 ],
+                "Supplementary Retirement Scheme (SRS)": [
+                    {
+                        "QUESTION": "What is the Supplementary Retirement Scheme (SRS)",
+                        "ANSWER": "<p>The SRS is a voluntary scheme to encourage individuals to save more for their retirement, over and above their Central Provident Fund (CPF) savings, with the benefit of tax relief. It began in 2001 and is operated by the private sector.</p><p>SRS members can contribute any amount up to a yearly cap of $15,300 for Singaporeans and PRs and $35,700 for foreigners. Every amount of SRS contribution will be eligible for tax relief in the following year of assessment for income tax. SRS contributions may be used to purchase various investment instruments.</p>"
+                    },
+                    {
+                        "QUESTION":  "What are the benefits of using SRS?",
+                        "ANSWER": "<p>The SRS offers attractive tax benefits as contributions to SRS are eligible for tax relief in the following year of assessment for tax. However, do note that with effect from 1 Jan 2017, there is a cap on personal income tax relief of $80,000 per year of assessment, so if your personal relief have exceeded $80,000 for the year, further contribution to SRS would not attract any tax benefit.</p><p>Investment returns are accumulated tax-free. SRS, however, are taxable but only at withdrawals. Only 50% of the withdrawals <strong>after</strong> the statutory retirement age* from SRS are taxable (referred to as a “50% tax concession”).</p><p><small>*The statutory retirement age is the prevailing age when you made your first SRS contribution. Currently, it is 62.</small></p>"
+                    },
+                    {
+                        "QUESTION": "How does tax relief using SRS work?",
+                        "ANSWER": "<p>Tax relief will be granted in the year following the year of contribution provided that you are assessed as a tax resident. For example, you will get tax relief for contributions made in year 2018 and the tax relief will be given in Year of Assessment 2019, if you are regarded as a tax resident in Year of Assessment 2018.</p><p>Tax relief is granted automatically by the tax authority (IRAS), based on information provided by the SRS operators.</p>"
+                    },
+                    {
+                        "QUESTION": "Who is eligible to open an SRS account?",
+                        "ANSWER": "<p>All Singaporeans, Singapore Permanent Residents (SPRs) and foreigners who</p><ul><li>are at least 18 years old;</li><li>are not undischarged bankrupts; and</li><li>are not of unsound mind.</li></ul>"
+                    },
+                    {
+                        "QUESTION": "How do I create an SRS account?",
+                        "ANSWER": "<p>You can open an SRS account with the with any of the three SRS operators; DBS, OCBC or UOB. You should only have one SRS account at any point in time. However, you may transfer your SRS account between different SRS operators. Some SRS operators offer easy opening of SRS account via online banking.</p>"
+                    },
+                    {
+                        "QUESTION": "When can I withdraw money from my SRS account?",
+                        "ANSWER": "<p>You can withdraw your SRS monies any time. As SRS is meant for retirement purpose, any early withdrawals may be penalized. </p><p><u>If withdrawals made <strong>after</strong> statutory retirement age*</u><br/><ul><li>Only 50% of the withdrawal amount for the year are taxable as income</li><li>No penalty on the amount withdrawn</li></ul></p><p><u>If withdrawals made <strong>before</strong> statutory retirement age*</u><ul><li>100% of the withdrawal amount for the year are taxable as income</li><li>5% penalty on the amount withdrawn</li></ul></p><p>However, if early withdrawals are due to these exceptional circumstances, the 5% penalty will not be imposed but the withdrawal amount may be tax as follows:<ol type='a'><li>Death or Terminal Illness<ul><li>50% of net withdrawal amount (after deducting up to a limit of $400,000) are taxable</li></ul></li><li>Medical grounds<ul><li>50% of withdrawal amount are taxable</li></ul></li><li>Bankruptcy<ul><li>100% of withdrawal amount are taxable</li></ul></li><li>Full withdrawal by a foreigner, provided he/she must have maintained the SRS account for <strong> at least ten years </strong>from the date of the first contribution and have been a non-Singaporean for a continuous period of ten years before the date of withdrawal.<ul><li>50% of withdrawal amount are taxable</li></ul></li></ol></p><p><small>*The statutory retirement age is the prevailing age when you made your first SRS contribution. Currently, it is 62.</small></p>"
+                    },
+                    {
+                        "QUESTION": "Must I withdraw all my money at retirement?",
+                        "ANSWER": "<p>No. To help lower your tax liabilities, you are allowed to spread your withdrawals over a period of 10 years upon the first withdrawal at or after the statutory retirement age*. The withdrawals are subjected to the 50% tax concession. After the 10-year withdrawal period, any remaining balance in your SRS account would be subject to tax at 50% of the remaining balance.</p><p>However, if you have a life annuity as SRS, 50% of the annual annuity payout will still be taxable even after the 10-year withdrawal period.</p><p><small>*The statutory retirement age is the prevailing age when you made your first SRS contribution. Currently, it is 62.</small></p>"
+                    },
+                    {
+                        "QUESTION": "Why should I grow my funds in my SRS account?",
+                        "ANSWER": "<p>The interest rate on uninvested balances in the SRS Account is almost negligible (currently 0.05% p.a.). You should grow your SRS funds in order to keep pace with inflation. There are avenues for you to grow your SRS funds such as:</p><ul><li>Singapore Savings Bonds</li><li>Insurance products</li><li>Managed Investments</li></ul>"
+                    },
+                    {
+                        "QUESTION": "How can I grow my SRS funds with MoneyOwl?",
+                        "ANSWER": "<p>You can consider purchasing SRS-approved Single premium retirement income products with MoneyOwl.  Begin by comparing SRS products easily at <a href=\"https://www.moneyowl.com.sg/#/direct\">https://www.moneyowl.com.sg/#/direct</a> and submit a quote! Our Client Advisers will then be in touch with you to fine-tune your needs and answer any questions you may have.</p>"
+                    },
+                    {
+                        "QUESTION": "My question about SRS is not listed here.",
+                        "ANSWER": "<p>Learn more about our SRS through our easy-to-understand articles.</p><ol type='a'><li><a href=\"https://www.moneyowl.com.sg/#/articles/entry/44\">How to Save on Taxes Using the SRS</a></li><li><a href=\"https://www.moneyowl.com.sg/#/articles/entry/45\">Here’s How to Use Your Funds in the SRS</a></li><li><a href=\"https://www.moneyowl.com.sg/#/articles/entry/57\">A Visual Guide to SRS Part I</a></li><li><a href=\"https://www.moneyowl.com.sg/#/articles/entry/58\">A Visual Guide to SRS Part II</a></li></ol><p>Find out more about SRS on the Ministry of Finance’s (MOF) webpage: <a href=\"https://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS\">https://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS</a></p><p>And contact our Client Advisory team at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
+                    }
+                ],
                 "Privacy and Security": [
                     {
                         "QUESTION": "What if MoneyOwl ceases as a business concern and closes down?",

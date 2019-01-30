@@ -70,6 +70,7 @@ export class NavbarService {
   setNavbarVisibility(isVisible: boolean) {
     this.navbarVisibility.next(isVisible);
   }
+
   setNavbarMobileVisibility(isVisible: boolean) {
     this.navbarMobileVisibility.next(isVisible);
   }

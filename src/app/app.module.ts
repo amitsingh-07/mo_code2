@@ -1,3 +1,4 @@
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import 'hammerjs';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
@@ -67,6 +68,11 @@ import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settin
 import { SignUpService } from './sign-up/sign-up.service';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+
+import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
+import { ArticleEnableGuard } from './article/article-enable-guard';
+import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
+import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
@@ -138,7 +144,7 @@ export function tokenGetterFn() {
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService, TitleCasePipe, PendingChangesGuard,
+    AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -155,6 +161,10 @@ export function tokenGetterFn() {
     StateStoreService, Util,
     WillWritingEnableGuard,
     WillWritingChildEnableGuard,
+    PromotionEnableGuard,
+    PromotionChildEnableGuard,
+    ArticleEnableGuard,
+    ArticleChildEnableGuard,
     SignUpService
   ],
   bootstrap: [AppComponent],

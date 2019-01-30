@@ -36,7 +36,7 @@ export class DependantEducationListComponent implements OnInit {
       age: '2',
       maturityAmount: '',
       maturityYear: '',
-      endowmentplanShow: true
+      endowmentplanShow: false
 
     },
     {
@@ -44,7 +44,7 @@ export class DependantEducationListComponent implements OnInit {
       age: '2',
       maturityAmount: '',
       maturityYear: '',
-      endowmentplanShow: true
+      endowmentplanShow: false
 
     }];
   }

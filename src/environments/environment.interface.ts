@@ -5,7 +5,10 @@ export interface IEnvironment {
     myInfoClientId: string;
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
-    gtagPropertyId: string;
-    gaPropertyId: string;
-    fbPropertyId: string;
+    gaPropertyId: string; // Google Analytics
+    gtagPropertyId?: string; // Google Pixel
+    fbPropertyId?: string; // Facebook Pixel
+    adRollPropertyId?: string; // AdRoll Property Id
+    adRollAdvId?: string; // AdRoll Advert Id
+    projectG ?: boolean; // Project G
 }

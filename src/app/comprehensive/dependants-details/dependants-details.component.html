@@ -1,10 +1,11 @@
 <div class="container-fluid max-width--1024 ">
   <header>{{'DEPENDANT_DETAILS.ABOUT'|translate}}</header>
   <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
-  <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant">
-    <div formArrayName="dependant" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
-        <div class="text-left">Dependant {{i+1}}</div>
-      <div *ngIf=" myDependantForm.controls.dependant.controls.length > 1" (click)="removeDependant(i)" class="text-right">Delete</div>
+  <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant ">
+    <div formArrayName="dependant" class="myDependantFormArray p-3 mt-3" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
+      <div class="text-left"><b>Dependant {{i+1}}</b></div>
+      <div *ngIf=" myDependantForm.controls.dependant.controls.length > 1" (click)="removeDependant(i)" class="text-right"><i
+          class="fa fa-2x fa-trash" aria-hidden="true"></i></div>
       <div class="form-group" [formGroupName]="i">
 
         <div class="flex-row">
@@ -14,7 +15,7 @@
               </div>
             </label>
           </div>
-          <div class="pr0 col-7">
+          <div class=" flex-col-7">
             <input type="text" [ngClass]="{'inline-error': submitted && dependant.controls.name.invalid}" id="myFamilyFormInpt3"
               class="form-control" #name formControlName="name">
           </div>
@@ -28,12 +29,11 @@
               <div ngbDropdown id="relationshipDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
                   <span>{{'COMMON.LBL_SELECT' | translate}}</span>
-                  <span >{{relationship}}</span>
+                  <span>{{relationship}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownRelation">
                   <button class="dropdown-item" (click)="selectRelationship('','')">Select</button>
-                  <button type="button" class="dropdown-item" *ngFor="let relation of relationShipList;"
-                    (click)="selectRelationship(relation, i)">
+                  <button type="button" class="dropdown-item" *ngFor="let relation of relationShipList;" (click)="selectRelationship(relation, i)">
                     {{relation}}
                   </button>
                 </div>
@@ -52,7 +52,7 @@
                   (click)="openToolTipModal()"></span></div> -->
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class=" flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
               <div ngbDropdown id="relationshipDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
@@ -78,9 +78,12 @@
                   (click)="openToolTipModal()"></span></div> -->
             </label>
           </div>
-          <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && dependant.controls.age.invalid}" id="myFamilyFormInpt4"
-              class="form-control" #age formControlName="age">
+          <div class="flex-col-7">
+            <div class="form-control form-control-right">
+              <input type="text" [ngClass]="{'inline-error': submitted && dependant.controls.age.invalid}" id="myFamilyFormInpt4"
+              class="input-control" #age formControlName="age">
+              <i class="right">yrs old</i>
+            </div>
           </div>
         </div>
         <div class="flex-row">
@@ -91,7 +94,7 @@
                   (click)="openToolTipModal()"></span></div> -->
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
               <div ngbDropdown id="relationshipDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
@@ -112,11 +115,11 @@
       </div>
 
     </div>
-    <button type="button"  (click)="goToNext(myDependantForm)" class="btn btn-primary btn__footer--fixed width100"
-      id="prfBtn1">{{ 'LABEL.CONTINUE' |
+    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+      'LABEL.CONTINUE' |
       translate}}</button>
   </form>
 
 
-<span (click)="addDependant()"><i class="fa fa-icon"></i>Add Dependant</span>
+  <span class="mt-3" (click)="addDependant()"><i class="fa fa-icon"></i>Add Dependant</span>
 </div>

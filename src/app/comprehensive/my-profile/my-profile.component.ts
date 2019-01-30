@@ -48,7 +48,7 @@ export class MyProfileComponent implements OnInit {
     });
   }
   goToNext(profileForm) {
-
+console.log(profileForm);
   }
   selectNationality(nationality) {
     nationality = nationality ? nationality : { text: '', value: '' };

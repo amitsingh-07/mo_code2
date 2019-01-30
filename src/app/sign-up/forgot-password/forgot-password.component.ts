@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   heighlightMobileNumber;
   buttonTitle;
-  captchaSrc: any;
+  captchaSrc = '';
 
   constructor(
     // tslint:disable-next-line
@@ -58,6 +58,10 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
       this.buttonTitle = this.translate.instant('COMMON.TRY_AGAIN');
     });
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
   }
 
   ngOnInit() {

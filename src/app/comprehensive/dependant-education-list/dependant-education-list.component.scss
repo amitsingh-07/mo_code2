@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-.endowmentListForm{
+.education-support{
 
 
 input[type='checkbox']+label {
@@ -24,3 +24,14 @@ input[type='checkbox']:checked+label {
 }
 }
 
+
+.education-support-array{
+  background: #fff;
+  color:#000;
+  border-radius:5px;
+}
+.education-plan{
+  background: #f0ffff!important;
+  color:#005960 !important;
+ 
+}
