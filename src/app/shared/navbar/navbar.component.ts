@@ -234,10 +234,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    if (!this.authService.isSignedUser()) {
-      return false;
-    }
-    return true;
+    return (this.router.url === '/account/dashboard');
   }
 
   showFilterModalPopUp(data) {
