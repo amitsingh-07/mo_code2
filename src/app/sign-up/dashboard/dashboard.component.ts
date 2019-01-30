@@ -15,6 +15,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,17 +47,16 @@ export class DashboardComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) { }
+    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
+    this.translate.use('en');
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
-    this.translate.use('en');
-
     this.loadOptionListCollection();
-
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       this.signUpService.setUserProfileInfo(userInfo.objectList);
       this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -134,59 +134,60 @@ export class DashboardComponent implements OnInit {
 
   getDashboardList() {
     const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
+    if (investmentStatus === SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED ||
+      investmentStatus === SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
-          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
-          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
+        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
-      case 'PORTFOLIO_PURCHASED': {
+      case SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED: {
         this.showPortffolioPurchased = true;
         break;
       }
-      case 'ACCOUNT_CREATED': {
+      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED: {
         this.showPortffolioPurchased = true;
         break;
       }
-      case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
+      case SIGN_UP_CONFIG.DASHBOARD.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
         this.showInvestmentDetailsSaved = true;
         break;
       }
-      case 'CDD_CHECK_PENDING': {
+      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case 'RECOMMENDED': {
+      case SIGN_UP_CONFIG.DASHBOARD.RECOMMENDED: {
         this.showSetupAccount = true;
         break;
       }
-      case 'ACCEPTED_NATIONALITY': {
+      case SIGN_UP_CONFIG.DASHBOARD.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
         break;
       }
-      case 'CDD_CHECK_FAILED': {
+      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_FAILED: {
         this.showCddCheckFail = true;
         break;
       }
-      case 'BLOCKED_NATIONALITY': {
+      case SIGN_UP_CONFIG.DASHBOARD.BLOCKED_NATIONALITY: {
         this.showBlockedNationalityStatus = true;
         break;
       }
-      case 'EDD_CHECK_PENDING': {
+      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case 'EDD_CHECK_FAILED': {
+      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_FAILED: {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case 'SUSPENDED_ACCOUNT': {
+      case SIGN_UP_CONFIG.DASHBOARD.SUSPENDED_ACCOUNT: {
         this.showSuspendedAccount = true;
         break;
       }
-      case 'ADD_POERFOLIO': {
+      case SIGN_UP_CONFIG.DASHBOARD.ADD_POERFOLIO: {
         this.showAddportfolio = true;
         break;
       }
