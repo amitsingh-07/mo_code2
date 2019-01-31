@@ -131,7 +131,9 @@
     "NO_LABEL": "No",
     "REASON_TEXT": "Reason",
     "TIN_TEXT": "TIN Number",
-    "CONTINUE": "Continue"
+    "CONTINUE": "Continue",
+    "COUNTRY_ERROR":"Country can not be same",
+    "COUNTRY_ERROR_MSG":"Please check your selected countries"
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",

@@ -1,5 +1,5 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {

@@ -75,7 +75,6 @@ export class TaxInfoComponent implements OnInit {
   }
 
   addTaxForm(data): void {
-      console.log('leng' + this.taxInfoForm.controls.addTax.value.length);
       const control = this.taxInfoForm.controls['addTax'] as FormArray;
       const newFormGroup = this.createForm(data);
       control.push(newFormGroup);
@@ -154,7 +153,6 @@ export class TaxInfoComponent implements OnInit {
   }
 
   goToNext(form) {
-    console.log(form.getRawValue());
     const taxObj = form.getRawValue();
     const selCountryArr = [];
     if (taxObj) { // Existing Value
@@ -164,8 +162,8 @@ export class TaxInfoComponent implements OnInit {
     }
     if (this.hasDuplicates(selCountryArr)) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Country can not be same';
-      ref.componentInstance.errorMessage = 'Please check your selected countries';
+      ref.componentInstance.errorTitle = this.translate.instant('TAX_INFO.COUNTRY_ERROR');
+      ref.componentInstance.errorMessage = this.translate.instant('TAX_INFO.COUNTRY_ERROR_MSG');
       return false;
     } else {
     if (!form.valid) {
@@ -181,14 +179,9 @@ export class TaxInfoComponent implements OnInit {
     }
   }
   }
-  getBorder()
-  {
-    if(this.taxInfoForm.get('addTax')['controls'].length > 1)
-    {
-      return true;
-    }
-    return false;
-  }
+  getBorder() {
+   return (this.taxInfoForm.get('addTax')['controls'].length > 1) ;
+   }
   removeTaxForm(formGroup, index): void {
     const control = formGroup.controls['addTax'] as FormArray;
     control.removeAt(index);

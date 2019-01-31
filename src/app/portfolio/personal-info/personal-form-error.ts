@@ -33,9 +33,9 @@ export class PersonalFormError {
                         // tslint:disable-next-line:max-line-length
                         one: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a one-time investment of at least $100 or a monthly investment of at least $50.' },
                         // tslint:disable-next-line:max-line-length
-                        two: { errorTitle: 'Oops! Review Monthly<br>Investment Amount', errorMessage: 'We require a monthly investment of at least $50.' },
+                        two: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a monthly investment of at least $50.<br><br>To continue, please review your investment amount.' },
                         // tslint:disable-next-line:max-line-length
-                        three: { errorTitle: 'Oops! Review One-time<br>Investment Amount', errorMessage: 'We require a one-time investment of at least $100.' },
+                        three: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a one-time investment of at least $100.<br><br>To continue, please review your investment amount.' },
                         
                         four: { errorTitle: 'Invalid Amount', errorMessage: ' Must select at least 1 checkbox to continue.' }
                         }
