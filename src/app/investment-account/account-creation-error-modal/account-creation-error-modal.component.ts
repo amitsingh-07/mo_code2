@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AccountCreationErrorModalComponent implements OnInit {
-  @Input() errorTitle: any;
-  @Input() errorMessage: any;
+  @Input() errorTitle: string;
+  @Input() errorMessage: string;
   @Input() errorList: any;
 
   constructor(
