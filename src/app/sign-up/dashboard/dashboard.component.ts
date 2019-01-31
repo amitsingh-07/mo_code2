@@ -143,12 +143,16 @@ export class DashboardComponent implements OnInit {
         this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
-      case SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED: {
-        this.showPortffolioPurchased = true;
+      case SIGN_UP_CONFIG.DASHBOARD.RECOMMENDED: {
+        this.showSetupAccount = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED: {
-        this.showPortffolioPurchased = true;
+      case SIGN_UP_CONFIG.DASHBOARD.ACCEPTED_NATIONALITY: {
+        this.showSetupAccount = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.DASHBOARD.BLOCKED_NATIONALITY: {
+        this.showBlockedNationalityStatus = true;
         break;
       }
       case SIGN_UP_CONFIG.DASHBOARD.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
@@ -159,20 +163,12 @@ export class DashboardComponent implements OnInit {
         this.showCddCheckOngoing = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.RECOMMENDED: {
-        this.showSetupAccount = true;
+      case SIGN_UP_CONFIG.DASHBOARD.DOCUMENTS_UPLOADED: {
+        this.showInvestmentDetailsSaved = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCEPTED_NATIONALITY: {
-        this.showSetupAccount = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_FAILED: {
-        this.showCddCheckFail = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.DASHBOARD.BLOCKED_NATIONALITY: {
-        this.showBlockedNationalityStatus = true;
+      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_CLEARED: {
+        this.showCddCheckOngoing = true;
         break;
       }
       case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_PENDING: {
@@ -183,12 +179,24 @@ export class DashboardComponent implements OnInit {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.SUSPENDED_ACCOUNT: {
+      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_FAILED: {
+        this.showCddCheckFail = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED: {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_FUNDED: {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_SUSPENDED: {
         this.showSuspendedAccount = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ADD_POERFOLIO: {
-        this.showAddportfolio = true;
+      case SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED: {
+        this.showPortffolioPurchased = true;
         break;
       }
       default: {
