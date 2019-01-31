@@ -1,56 +1,73 @@
 <!--Assets Screen-->
 <div class="container-fluid max-width--1024">
-    <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md">
-          <h2>{{ pageTitle }}</h2>
-          <h6>{{ '' | translate}}</h6>
-        <div class="banner-image">
-            <img src="assets/images/assets.svg" />
-        </div>
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <h2>{{ pageTitle }}</h2>
+      <h6>{{ '' | translate}}</h6>
+      <div class="banner-image">
+        <img src="assets/images/assets.svg" />
       </div>
-      <div class="col-lg-5 col-md-6">
-<!--         <div class="myinfo__block">
-          <div class="myinfo__block__btn">
-            <span class="myinfo__block__btn--arrow"></span>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div>
+        <form id="testMyInfoForm" name="testMyInfoForm" [formGroup]="testMyInfoForm">
+          <!-- Robo2 -->
+          <div class="form-group-with-bg--content" *ngIf="project === 'robo2'">
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="form-group-with-bg--content-label" for="name">
+                  <button type="button" class="button" (click)="openModal()()">
+                    Robo2 MyInfo
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="form-group-with-bg--content-label" for="name">
+                  <div>{{robo2Results}}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
-        <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
-      </div> -->
-        <div>
-          <form id="testMyInfoForm" name="testMyInfoForm" [formGroup]="testMyInfoForm">
-              <div  class="form-group-with-bg">
-                  <!--Form Header-->
-                  <div class="form-group-with-bg--header">
-                      <div class="flex-row">
-                        <div class="flex-col-6">
-                        <div class="form-group-with-bg--header-label">{{ 'Test MyInfo' | translate}}<div class="form-group-with-bg--header-sub-label">{{ 'Test MyInfo Service' | translate}}</div></div>
-                        </div>
-                        <div class="flex-col-6">
-                        <div class="total">{{assetsTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                        </div>  
-                      </div>
-                    </div>
-                    <!--Form Content-->
-                    <div class="form-group-with-bg--content">
-                      <div class="flex-row">
-                        <div class="flex-col-6">
-                           <div class="form-group-with-bg--content-label" for="name">{{ 'CPF' | translate}}<div class="form-group-with-bg--content-sub-label">{{ '(All Accounts)' | translate}}</div>
-                          <div *ngIf="true" class="sing-pass-link" (click)="openModal()">{{ 'Fill Via SingPass' | translate}}<span class="sing-pass-icon"></span></div>
-                          <!-- <div class="sing-pass-link" (click)="openModal()">Fill Via SingPass <span class="sing-pass-icon"></span></div> -->
-                        </div>
-
-                        </div>
-                        <div class="flex-col-6">
-                        <div class="form-control">
-                            <i>$</i>
-                        <div name="cpf" [ngClass]="{'readonly': cpf.value != 0}"><input  class="input-control" type="text" appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
-                        </div>    
-                      </div>
-                      </div>
-                    </div>
+          <div class="form-group-with-bg" *ngIf="project !== 'robo2'">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--header-label">{{ 'Test MyInfo' | translate}}<div class="form-group-with-bg--header-sub-label">{{
+                      'Test MyInfo Service' | translate}}</div>
                   </div>
-          </form>
-        </div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="total">{{assetsTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                </div>
+              </div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">{{ 'CPF' | translate}}<div class="form-group-with-bg--content-sub-label">{{
+                      '(All Accounts)' | translate}}</div>
+                    <div *ngIf="true" class="sing-pass-link" (click)="openModal()">{{ 'Fill Via SingPass' | translate}}<span
+                        class="sing-pass-icon"></span></div>
+                    <!-- <div class="sing-pass-link" (click)="openModal()">Fill Via SingPass <span class="sing-pass-icon"></span></div> -->
+                  </div>
+
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="cpf" [ngClass]="{'readonly': cpf.value != 0}"><input class="input-control" type="text"
+                        appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

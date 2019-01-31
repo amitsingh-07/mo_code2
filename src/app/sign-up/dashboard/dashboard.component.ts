@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
 
   getDashboardList() {
     const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
+    if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED' || investmentStatus === 'ACCOUNT_FUNDED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
@@ -142,22 +142,6 @@ export class DashboardComponent implements OnInit {
           this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
-      case 'PORTFOLIO_PURCHASED': {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case 'ACCOUNT_CREATED': {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
-        this.showInvestmentDetailsSaved = true;
-        break;
-      }
-      case 'CDD_CHECK_PENDING': {
-        this.showCddCheckOngoing = true;
-        break;
-      }
       case 'RECOMMENDED': {
         this.showSetupAccount = true;
         break;
@@ -166,15 +150,23 @@ export class DashboardComponent implements OnInit {
         this.showSetupAccount = true;
         break;
       }
-      case 'CDD_CHECK_FAILED': {
-        this.showCddCheckFail = true;
-        break;
-      }
       case 'BLOCKED_NATIONALITY': {
         this.showBlockedNationalityStatus = true;
         break;
       }
+      case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
+        this.showInvestmentDetailsSaved = true;
+        break;
+      }
+      case 'DOCUMENTS_UPLOADED': {
+        this.showInvestmentDetailsSaved = true;
+        break;
+      }
       case 'EDD_CHECK_PENDING': {
+        this.showCddCheckOngoing = true;
+        break;
+      }
+      case 'EDD_CHECK_CLEARED': {
         this.showCddCheckOngoing = true;
         break;
       }
@@ -182,12 +174,28 @@ export class DashboardComponent implements OnInit {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case 'SUSPENDED_ACCOUNT': {
-        this.showSuspendedAccount = true;
+      case 'CDD_CHECK_PENDING': {
+        this.showCddCheckOngoing = true;
         break;
       }
-      case 'ADD_POERFOLIO': {
-        this.showAddportfolio = true;
+      case 'CDD_CHECK_FAILED': {
+        this.showCddCheckFail = true;
+        break;
+      }
+      case 'ACCOUNT_CREATED': {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case 'ACCOUNT_FUNDED': {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case 'PORTFOLIO_PURCHASED': {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case 'ACCOUNT_SUSPENDED': {
+        this.showSuspendedAccount = true;
         break;
       }
       default: {
