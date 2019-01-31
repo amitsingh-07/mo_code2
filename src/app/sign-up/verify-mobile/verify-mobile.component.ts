@@ -62,9 +62,8 @@ export class VerifyMobileComponent implements OnInit {
     this.editProfile = this.signUpService.getAccountInfo().editContact;
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(5);
-    this.navbarService.setNavbarMobileVisibility(false);
-    this.navbarService.setNavbarShadowVisibility(false);
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.startRetryCounter();
