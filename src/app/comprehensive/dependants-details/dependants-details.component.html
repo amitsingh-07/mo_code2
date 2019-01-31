@@ -3,9 +3,9 @@
   <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
   <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant ">
     <div formArrayName="dependant" class="myDependantFormArray p-3 mt-3" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
-      <div class="text-left"><b>Dependant {{i+1}}</b></div>
-      <div *ngIf=" myDependantForm.controls.dependant.controls.length > 1" (click)="removeDependant(i)" class="text-right"><i
-          class="fa fa-2x fa-trash" aria-hidden="true"></i></div>
+      <div class="text-left"><b>Dependant {{i+1}}</b>
+      </div>
+
       <div class="form-group" [formGroupName]="i">
 
         <div class="flex-row">
@@ -82,7 +82,7 @@
             <div class="form-control form-control-right">
               <input type="text" [ngClass]="{'inline-error': submitted && dependant.controls.age.invalid}" id="myFamilyFormInpt4"
               class="input-control" #age formControlName="age">
-              <i class="right">yrs old</i>
+              <i class="right">  yrs old</i>
             </div>
           </div>
         </div>

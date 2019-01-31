@@ -23,7 +23,7 @@ export class DependantEducationListComponent implements OnInit {
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);

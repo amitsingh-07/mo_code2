@@ -21,6 +21,7 @@ export class DependantEducationSelectionComponent implements OnInit {
 
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
+  dependantsArray: any;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
               private configService: ConfigService) {
@@ -33,17 +34,44 @@ export class DependantEducationSelectionComponent implements OnInit {
       this.pageTitle = this.translate.instant('DEPENDANT_SELECTION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.dependantSelection();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
-    this.buildEducationSelectionForm();
+    this.buildEducationSelectionForm(this.dependantsArray);
   }
-  buildEducationSelectionForm() {
+
+  dependantSelection() {
+    this.dependantsArray = [{
+      name: 'Nathan Ng',
+    },
+    {
+      name: 'Marie Ng',
+    }];
+  }
+
+  buildEducationSelectionForm(dependantsArray) {
+    const dependantListArray = [];
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < dependantsArray.length; i++) {
+      dependantListArray.push(this.buildEducationlist(dependantsArray[i]));
+    }
     this.dependantEducationSelectionForm = this.formBuilder.group({
-      education_plan_selection: ['', Validators.required]
+      education_plan_selection: ['', Validators.required],
+      dependant_list: this.formBuilder.array(dependantListArray)
     });
 
+  }
+
+  buildEducationlist(value) {
+
+    return this.formBuilder.group({
+      name: [value.name, [Validators.required]],
+      dependantSelection: [false, [Validators.required]],
+
+    });
   }
 }
