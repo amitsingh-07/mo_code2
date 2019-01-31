@@ -27,10 +27,10 @@ export class UploadDocumentBOComponent implements OnInit {
   pageTitle: string;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
-  defaultThumb;
-  loaderVisible;
-  formValues;
-  loaderInfo;
+  defaultThumb: any;
+  loaderVisible: any;
+  formValues: any;
+  loaderInfo: any;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,

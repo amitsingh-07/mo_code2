@@ -26,12 +26,12 @@ export class UploadDocumentsComponent implements OnInit {
 
   uploadForm: FormGroup;
   pageTitle: string;
-  formValues;
-  countries;
-  isUserNationalitySingapore;
-  defaultThumb;
-  loaderVisible;
-  loaderInfo;
+  formValues: any;
+  countries: any;
+  isUserNationalitySingapore: any;
+  defaultThumb: any;
+  loaderVisible: any;
+  loaderInfo: any;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(

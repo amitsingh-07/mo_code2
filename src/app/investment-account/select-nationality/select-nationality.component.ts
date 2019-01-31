@@ -125,12 +125,13 @@ export class SelectNationalityComponent implements OnInit {
         const countryList = [];
         data.forEach((nationality) => {
             if (!nationality.blocked) {
-            nationality.countries.forEach((country) => {
-                countryList.push(country);
-            });
-        }});
+                nationality.countries.forEach((country) => {
+                    countryList.push(country);
+                });
+            }
+        });
         return countryList;
-     }
+    }
 
     save(form) {
         const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : false;
@@ -162,19 +163,19 @@ export class SelectNationalityComponent implements OnInit {
             } else {
                 this.save(form);
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
-              }
+            }
         }
     }
     saveNationality() {
         this.investmentAccountService.saveNationality(this.nationality).subscribe((data) => {
-          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
+            this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
         },
-          (err) => {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
-          });
-      }
+            (err) => {
+                const ref = this.modal.open(ErrorModalComponent, { centered: true });
+                ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+                ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+            });
+    }
 
     isDisabled() {
         return this.investmentAccountService.isDisabled('nationality');
