@@ -1,27 +1,18 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { FundDetails } from '../fund-your-account/fund-details';
-import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
-import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({
   selector: 'app-top-up',
@@ -53,14 +44,13 @@ export class TopUpComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('TOPUP.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -80,9 +70,18 @@ export class TopUpComponent implements OnInit {
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.PortfolioValues, Validators.required],
-      Investment: [this.formValues.Investment ? this.formValues.Investment : 'One-time Investment', Validators.required],
-      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
-      MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
+      Investment: [
+        this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
+        Validators.required
+      ],
+      oneTimeInvestmentAmount: [
+        this.formValues.oneTimeInvestmentAmount,
+        Validators.required
+      ],
+      MonthlyInvestmentAmount: [
+        this.formValues.MonthlyInvestmentAmount,
+        Validators.required
+      ]
     });
     this.buildFormInvestment();
 
@@ -90,13 +89,17 @@ export class TopUpComponent implements OnInit {
       this.topForm.get('oneTimeInvestmentAmount').valueChanges.subscribe((value) => {
         this.validateAmonut(value);
       });
-      this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+      this.topForm
+        .get('oneTimeInvestmentAmount')
+        .setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
     }
     if (this.topForm.get('MonthlyInvestmentAmount')) {
       this.topForm.get('MonthlyInvestmentAmount').valueChanges.subscribe((value) => {
         this.validateAmonut(value);
       });
-      this.topForm.get('MonthlyInvestmentAmount').setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+      this.topForm
+        .get('MonthlyInvestmentAmount')
+        .setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
     }
   }
   getPortfolioList() {
@@ -125,12 +128,18 @@ export class TopUpComponent implements OnInit {
   }
   buildFormInvestment() {
     if (this.formValues.Investment === TOPUPANDWITHDRAW_CONFIG.TOPUP.MONTHLY_INVESTMENT) {
-      this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.addControl(
+        'MonthlyInvestmentAmount',
+        new FormControl('', Validators.required)
+      );
       this.topForm.removeControl('oneTimeInvestmentAmount');
       this.showOnetimeInvestmentAmount = false;
       this.showmonthlyInvestmentAmount = true;
     } else {
-      this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.addControl(
+        'oneTimeInvestmentAmount',
+        new FormControl('', Validators.required)
+      );
       this.topForm.removeControl('MonthlyInvestmentAmount');
       this.showOnetimeInvestmentAmount = true;
       this.showmonthlyInvestmentAmount = false;
@@ -156,7 +165,6 @@ export class TopUpComponent implements OnInit {
         ref.componentInstance.errorTitle = error.errorTitle;
         ref.componentInstance.errorMessage = error.errorMessage;
         // tslint:disable-next-line:triple-equals
-
       } else {
         this.saveAndProceed(form);
       }
@@ -175,7 +183,8 @@ export class TopUpComponent implements OnInit {
       portfolio: this.formValues.portfolio,
       oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
       monthlyInvestment: this.formValues.MonthlyInvestmentAmount, // topup
-      fundingType: this.formValues.MonthlyInvestmentAmount ? TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY
+      fundingType: this.formValues.MonthlyInvestmentAmount
+        ? TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY
         : TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME,
       isAmountExceedBalance: this.isAmountExceedBalance,
       exceededAmount: this.topupAmount

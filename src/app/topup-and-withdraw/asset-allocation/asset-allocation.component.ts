@@ -1,39 +1,21 @@
 import { CurrencyPipe } from '@angular/common';
-import { Token } from '@angular/compiler';
-import {
-  AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { PortfolioService } from '../../portfolio/portfolio.service';
+import { RiskProfile } from '../../portfolio/risk-profile/riskprofile';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-
-import { FooterService } from './../../shared/footer/footer.service';
-
-import { SignUpService } from '../../sign-up/sign-up.service';
-
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
-
-import { PortfolioService } from '../../portfolio/portfolio.service';
-
-import { RiskProfile } from '../../portfolio/risk-profile/riskprofile';
-
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-
-import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({
@@ -63,7 +45,8 @@ export class AssetAllocationComponent implements OnInit {
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
-    private portfolioService: PortfolioService) {
+    private portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,7 +76,7 @@ export class AssetAllocationComponent implements OnInit {
   }
 
   selectAllocation(event) {
-    if ((!this.isAllocationOpen)) {
+    if (!this.isAllocationOpen) {
       this.breakdownSelectionindex = event;
       this.isAllocationOpen = true;
     } else {
@@ -114,8 +97,12 @@ export class AssetAllocationComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.imgType = 1;
     ref.componentInstance.errorMessageHTML = errorMessage;
-    ref.componentInstance.primaryActionLabel = this.translate.instant('PRELOGIN_MODAL.LOG_IN');
-    ref.componentInstance.secondaryActionLabel = this.translate.instant('PRELOGIN_MODAL.CREATE_ACCOUNT');
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PRELOGIN_MODAL.LOG_IN'
+    );
+    ref.componentInstance.secondaryActionLabel = this.translate.instant(
+      'PRELOGIN_MODAL.CREATE_ACCOUNT'
+    );
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe(() => {
       // Login

@@ -4,12 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -23,7 +21,6 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentsComponent implements OnInit {
-
   uploadForm: FormGroup;
   pageTitle: string;
   formValues;
@@ -42,7 +39,8 @@ export class UploadDocumentsComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
@@ -62,7 +60,9 @@ export class UploadDocumentsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+    this.uploadForm = this.isUserNationalitySingapore
+      ? this.buildFormForSingapore()
+      : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddressproof();
   }
 
@@ -80,12 +80,15 @@ export class UploadDocumentsComponent implements OnInit {
     });
   }
   addOrRemoveMailingAddressproof() {
-    if (!(this.formValues.isMailingAddressSame)) {
-      this.uploadForm.addControl('mailAdressProof', new FormControl('', Validators.required));
+    if (!this.formValues.isMailingAddressSame) {
+      this.uploadForm.addControl(
+        'mailAdressProof',
+        new FormControl('', Validators.required)
+      );
     }
   }
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   setNestedDropDownValue(key, value, nestedKey) {
@@ -111,18 +114,32 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
-    const response = this.investmentAccountCommon.fileSelected(this.formData, control, controlname, fileElem, thumbElem);
+    const response = this.investmentAccountCommon.fileSelected(
+      this.formData,
+      control,
+      controlname,
+      fileElem,
+      thumbElem
+    );
     if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
-      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE'
+      );
+      const errorDesc = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE'
+      );
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else if (!response.validFileType) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
-      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE'
+      );
+      const errorDesc = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE'
+      );
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
@@ -166,8 +183,12 @@ export class UploadDocumentsComponent implements OnInit {
 
   showProofOfMailingDetails() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE');
-    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE');
+    const errorTitle = this.translate.instant(
+      'UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE'
+    );
+    const errorDesc = this.translate.instant(
+      'UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE'
+    );
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorDescription = errorDesc;
   }
@@ -175,23 +196,35 @@ export class UploadDocumentsComponent implements OnInit {
   // tslint:disable-next-line:no-identical-functions
   showProofOfResDetails() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.TITLE');
-    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.MESSAGE');
+    const errorTitle = this.translate.instant(
+      'UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.TITLE'
+    );
+    const errorDesc = this.translate.instant(
+      'UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.MESSAGE'
+    );
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorDescription = errorDesc;
   }
 
   goToNext(form) {
     if (!form.valid) {
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE');
-      const errorMessage = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE');
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE'
+      );
+      const errorMessage = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE'
+      );
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorMessageHTML = errorMessage;
-      ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED'
+      );
       ref.componentInstance.primaryAction.subscribe(() => {
         this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.documents_pending);
+          this.investmentAccountService.setAccountCreationStatus(
+            INVESTMENT_ACCOUNT_CONFIG.status.documents_pending
+          );
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
         });
       });
@@ -224,5 +257,4 @@ export class UploadDocumentsComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
     }
   }
-
 }

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -11,7 +12,6 @@ import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class AddBankModalComponent implements OnInit {
-
   @Input() banks;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   addBankForm: FormGroup;
@@ -19,15 +19,19 @@ export class AddBankModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private topupAndWithDrawService: TopupAndWithDrawService
-    ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.SymbolAlphabets)]),
+      accountHolderName: new FormControl('', [
+        Validators.required,
+        Validators.pattern(RegexConstants.SymbolAlphabets)
+      ]),
       bank: new FormControl('', Validators.required),
-      accountNo: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NumericOnly)])
+      accountNo: new FormControl('', [
+        Validators.required,
+        Validators.pattern(RegexConstants.NumericOnly)
+      ])
     });
   }
 
@@ -48,15 +52,15 @@ export class AddBankModalComponent implements OnInit {
   }
 
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   save(form) {
-    if (!form.valid) { // INVALID FORM
+    if (!form.valid) {
+      // INVALID FORM
       this.markAllFieldsDirty(form);
     } else {
       this.saved.emit(this.addBankForm.value);
     }
   }
-
 }

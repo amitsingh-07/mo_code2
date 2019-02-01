@@ -1,17 +1,14 @@
-import { FooterService } from 'src/app/shared/footer/footer.service';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import {
-    AccountCreationErrorModalComponent
-} from '../account-creation-error-modal/account-creation-error-modal.component';
+import { AccountCreationErrorModalComponent } from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -37,7 +34,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.TITLE');
@@ -55,48 +53,72 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.getGeneratedFrom();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.additionDeclarationtwo = this.formBuilder.group({
-      expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
-      expectedAmountPerTranction: [this.formValues.expectedAmountPerTranction, Validators.required],
-      source: [this.formValues.source, Validators.required],
+      expectedNumberOfTransation: [
+        this.formValues.expectedNumberOfTransation,
+        Validators.required
+      ],
+      expectedAmountPerTranction: [
+        this.formValues.expectedAmountPerTranction,
+        Validators.required
+      ],
+      source: [this.formValues.source, Validators.required]
     });
     this.addAndRemoveSourseFields();
   }
 
   addAndRemoveSourseFields() {
-    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name ===
-      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SAVING) {
-      this.additionDeclarationtwo.addControl('personalSavingForm', this.formBuilder.group({
-        personalSavings: [this.formValues.personalSavings, Validators.required]
-      }));
+    if (
+      this.additionDeclarationtwo.controls.source.value &&
+      this.additionDeclarationtwo.controls.source.value.name ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SAVING
+    ) {
+      this.additionDeclarationtwo.addControl(
+        'personalSavingForm',
+        this.formBuilder.group({
+          personalSavings: [this.formValues.personalSavings, Validators.required]
+        })
+      );
       this.additionDeclarationtwo.removeControl('investmentEarning');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if (this.additionDeclarationtwo.controls.source.value &&
+    if (
+      this.additionDeclarationtwo.controls.source.value &&
       this.additionDeclarationtwo.controls.source.value.name ===
-      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE) {
-      this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
-        inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
-      }));
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+    ) {
+      this.additionDeclarationtwo.addControl(
+        'inheritanceGiftFrom',
+        this.formBuilder.group({
+          inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
+        })
+      );
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
     }
-    if (this.additionDeclarationtwo.controls.source.value &&
+    if (
+      this.additionDeclarationtwo.controls.source.value &&
       this.additionDeclarationtwo.controls.source.value.name ===
-      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS) {
-      this.additionDeclarationtwo.addControl('investmentEarnings', this.formBuilder.group({
-        durationInvestment: [this.formValues.durationInvestment, Validators.required],
-        earningsGenerated: [this.formValues.earningsGenerated, Validators.required],
-      }));
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+    ) {
+      this.additionDeclarationtwo.addControl(
+        'investmentEarnings',
+        this.formBuilder.group({
+          durationInvestment: [this.formValues.durationInvestment, Validators.required],
+          earningsGenerated: [this.formValues.earningsGenerated, Validators.required]
+        })
+      );
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if (this.additionDeclarationtwo.controls.source.value && (
+    if (
+      this.additionDeclarationtwo.controls.source.value &&
       (this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.BUSINESS_PROFITS) ||
-      (this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALE_OF_REAL_ESTATE) ||
-      (this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALARY))) {
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.BUSINESS_PROFITS ||
+        this.additionDeclarationtwo.controls.source.value.name ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALE_OF_REAL_ESTATE ||
+        this.additionDeclarationtwo.controls.source.value.name ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALARY)
+    ) {
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
@@ -107,7 +129,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
     });
-
   }
 
   getGeneratedFrom() {
@@ -126,7 +147,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   selectSource(key, value) {
     this.additionDeclarationtwo.controls[key].setValue(value);
     this.addAndRemoveSourseFields();
-
   }
 
   markAllFieldsDirty(form) {
@@ -142,7 +162,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
 
   showInvestmentAccountErrorModal(errorList) {
-    const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
+    const errorTitle = this.translate.instant(
+      'INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
+    );
     const ref = this.modal.open(AccountCreationErrorModalComponent, {
       centered: true
     });
@@ -166,17 +188,25 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
 
   saveAdditionalDeclarations() {
-    this.investmentAccountService.saveAdditionalDeclarations().subscribe((data) => {
-      this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
-    },
+    this.investmentAccountService.saveAdditionalDeclarations().subscribe(
+      (data) => {
+        this.investmentAccountService.setAccountCreationStatus(
+          INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted
+        );
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+      },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, {
           centered: true
         });
-        ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
+        );
+      }
+    );
   }
 
   showCustomErrorModal(title, desc) {
@@ -188,5 +218,4 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorMessage = errorMessage;
   }
-
 }

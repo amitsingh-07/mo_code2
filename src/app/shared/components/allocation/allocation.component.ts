@@ -1,9 +1,9 @@
-import { FundDetailsComponent } from 'src/app/portfolio/fund-details/fund-details.component';
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
-
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { FundDetailsComponent } from '../../../portfolio/fund-details/fund-details.component';
+import { PortfolioService } from '../../../portfolio/portfolio.service';
 
 @Component({
   selector: 'app-allocation',

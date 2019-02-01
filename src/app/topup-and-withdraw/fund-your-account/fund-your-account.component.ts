@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
@@ -12,9 +12,7 @@ import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-detai
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
@@ -25,7 +23,6 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class FundYourAccountComponent implements OnInit {
-
   uploadForm: FormGroup;
   pageTitle: string;
   formValues;
@@ -47,11 +44,14 @@ export class FundYourAccountComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.fundAccountContent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
+      this.fundAccountContent = this.translate.instant(
+        'FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK'
+      );
     });
   }
 
@@ -62,10 +62,14 @@ export class FundYourAccountComponent implements OnInit {
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
-    const pageTitle = this.getPageTitleBySource(this.fundDetails.source, this.fundDetails.fundingType);
+    const pageTitle = this.getPageTitleBySource(
+      this.fundDetails.source,
+      this.fundDetails.fundingType
+    );
     this.setPageTitle(pageTitle);
     if (this.fundDetails.portfolio.riskProfile) {
-      this.riskProfileImg = ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
+      this.riskProfileImg =
+        ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
     }
   }
 
@@ -81,17 +85,31 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   showBankTransctionDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height'});
-    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION');
-    ref.componentInstance.errorDescription = this.translate.instant('FUND_YOUR_ACCOUNT.VIA_BANK_ONE');
+    const ref = this.modal.open(BankDetailsComponent, {
+      centered: true,
+      windowClass: 'full-height'
+    });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
+    );
+    ref.componentInstance.errorDescription = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.VIA_BANK_ONE'
+    );
     ref.componentInstance.showBankTransctions = true;
     ref.componentInstance.setBankDetails = this.bankDetails;
     return false;
   }
   showPayNowDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height' });
-    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION');
-    ref.componentInstance.errorDescription =  this.translate.instant('FUND_YOUR_ACCOUNT.VIA_PAYNOW_ONE');
+    const ref = this.modal.open(BankDetailsComponent, {
+      centered: true,
+      windowClass: 'full-height'
+    });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
+    );
+    ref.componentInstance.errorDescription = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.VIA_PAYNOW_ONE'
+    );
     ref.componentInstance.showPayNow = true;
     ref.componentInstance.setPaynowDetails = this.paynowDetails;
     return false;
@@ -101,10 +119,10 @@ export class FundYourAccountComponent implements OnInit {
     let pageTitle;
     if (source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.FUNDING) {
       pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TITLE');
-    } else if ( source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP) {
-      type === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ?
-        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT') :
-         pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT');
+    } else if (source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP) {
+      type === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME
+        ? (pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT'))
+        : (pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT'));
     }
     return pageTitle;
   }
@@ -120,18 +138,30 @@ export class FundYourAccountComponent implements OnInit {
   }
   showPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE');
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE'
+    );
   }
   setBankPayNowDetails(data) {
-    this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
-    this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
+    this.bankDetails = data.filter(
+      (transferType) => transferType.institutionType === 'bank'
+    )[0];
+    this.paynowDetails = data.filter(
+      (transferType) => transferType.institutionType === 'PayNow'
+    )[0];
   }
 
   oneTimeOrMonthlySufficient() {
-    return ( (this.fundDetails.fundingType === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ||
-       this.fundDetails.fundingType === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY)
-      && !this.fundDetails.isAmountExceedBalance);
+    return (
+      (this.fundDetails.fundingType ===
+        TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ||
+        this.fundDetails.fundingType ===
+          TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY) &&
+      !this.fundDetails.isAmountExceedBalance
+    );
   }
   goToNext() {
     // redirect to dashboard
@@ -141,7 +171,6 @@ export class FundYourAccountComponent implements OnInit {
   buyPortfolio() {
     if (this.fundDetails.oneTimeInvestment) {
       this.topUpOneTime();
-
     } else {
       this.topUpMonthly();
     }
@@ -153,45 +182,79 @@ export class FundYourAccountComponent implements OnInit {
   }
   // ONETIME INVESTMENT
   topUpOneTime() {
-    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
-      if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
-          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
-        }
-      } else {
-        if (!this.fundDetails.isAmountExceedBalance) {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe(
+      (response) => {
+        if (response.responseMessage.responseCode < 6000) {
+          if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg
+            );
+          }
         } else {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+          if (!this.fundDetails.isAmountExceedBalance) {
+            this.router.navigate([
+              TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success'
+            ]);
+          } else {
+            this.router.navigate([
+              TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending'
+            ]);
+          }
         }
-      }
-    },
+      },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.DESC'
+        );
+      }
+    );
   }
   // MONTHLY INVESTMENT
   topUpMonthly() {
-    this.topupAndWithDrawService.monthlyInvestment(this.fundDetails).subscribe((response) => {
-      if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
-          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
-        }
-      } else {
-        if (!this.fundDetails.isAmountExceedBalance) {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+    this.topupAndWithDrawService.monthlyInvestment(this.fundDetails).subscribe(
+      (response) => {
+        if (response.responseMessage.responseCode < 6000) {
+          if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg
+            );
+          }
         } else {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+          if (!this.fundDetails.isAmountExceedBalance) {
+            this.router.navigate([
+              TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success'
+            ]);
+          } else {
+            this.router.navigate([
+              TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending'
+            ]);
+          }
         }
-      }
-    },
+      },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.DESC'
+        );
+      }
+    );
   }
- // tslint:disable-next-line
-} 
+  // tslint:disable-next-line
+}

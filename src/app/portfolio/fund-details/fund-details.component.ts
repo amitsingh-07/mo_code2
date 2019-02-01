@@ -1,6 +1,6 @@
-import { CurrencyPipe, Location } from '@angular/common';
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,17 +38,20 @@ export class FundDetailsComponent implements OnInit {
     private modal: NgbModal,
     public activeModal: NgbActiveModal,
     private _location: Location,
-    public portfolioService: PortfolioService) {
+    public portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
   }
   ngOnInit() {
     this.fundDetails = this.portfolioService.getFundDetails();
-
   }
 
   showHide(el) {
     const fundContentEle = el.getElementsByClassName('funding-content')[0];
-    if (fundContentEle.classList.contains('active') || fundContentEle.classList.contains('first')) {
+    if (
+      fundContentEle.classList.contains('active') ||
+      fundContentEle.classList.contains('first')
+    ) {
       fundContentEle.classList.remove('active');
       fundContentEle.classList.remove('first');
       el.getElementsByClassName('fund-heading')[0].classList.remove('active');

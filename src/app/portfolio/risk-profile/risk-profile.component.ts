@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
@@ -36,7 +36,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private modal: NgbModal) {
+    private modal: NgbModal
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RISK_PROFILE.TITLE');
@@ -78,7 +79,9 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   }
 
   canProceed() {
-    return this.selectedRiskProfile.riskProfileId !== PORTFOLIO_CONFIG.risk_profile.should_not_invest_id;
+    return (
+      this.selectedRiskProfile.riskProfileId !==
+      PORTFOLIO_CONFIG.risk_profile.should_not_invest_id
+    );
   }
-
 }

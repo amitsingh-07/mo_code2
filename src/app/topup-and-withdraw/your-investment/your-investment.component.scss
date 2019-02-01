@@ -1,8 +1,7 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
 app-your-investment {
-
   .investment-bg {
     padding-top: 105px;
   }
@@ -93,7 +92,6 @@ app-your-investment {
     background-color: #276f75;
   }
 
-
   .container-fluid {
     @include allmobiles {
       padding-left: 20px !important;
@@ -105,7 +103,6 @@ app-your-investment {
       margin-top: -42px;
     }
   }
-
 
   .dropdown-control .dropdown-menu.show {
     left: auto !important;
@@ -126,8 +123,6 @@ app-your-investment {
     letter-spacing: -0.2px;
     color: #2d8289 !important;
     //border-bottom: solid 1px #00a7a7 !important;
-
-
   }
 
   .dropdown-item:first-child {
@@ -369,9 +364,6 @@ app-your-investment {
       margin-left: 8px;
       margin-top: -1px;
     }
-
-
-
   }
 
   .Remember {
@@ -398,7 +390,7 @@ app-your-investment {
     right: 25px !important;
     top: 15px !important;
     text-shadow: none !important;
-    background: url("/assets/images/close-button-dark.svg") !important;
+    background: url('/assets/images/close-button-dark.svg') !important;
     width: 18px;
     height: 18px;
     background-repeat: no-repeat !important;

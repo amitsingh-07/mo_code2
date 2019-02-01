@@ -1,6 +1,6 @@
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
-export class InvestmentAccountCommon {
 
+export class InvestmentAccountCommon {
   getPayloadKey(controlname) {
     let payloadKey;
     switch (controlname) {
@@ -57,9 +57,14 @@ export class InvestmentAccountCommon {
   fileSelected(formData, control, controlname, fileElem, thumbElem?) {
     const selectedFile: File = fileElem.target.files[0];
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
-    const fileType = selectedFile.name.split('.')[selectedFile.name.split('.').length - 1].toUpperCase();
-    const isValidFileSize = fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
-    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.includes(fileType);
+    const fileType = selectedFile.name
+      .split('.')
+      [selectedFile.name.split('.').length - 1].toUpperCase();
+    const isValidFileSize =
+      fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
+    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.includes(
+      fileType
+    );
     if (isValidFileSize && isValidFileType) {
       const payloadKey = this.getPayloadKey(controlname);
       formData.append(payloadKey, selectedFile);
@@ -104,7 +109,7 @@ export class InvestmentAccountCommon {
     for (i = 1; i < 8; i++) {
       weight += icArray[i];
     }
-    const offset = (icArray[0] === 'T' || icArray[0] === 'G') ? 4 : 0;
+    const offset = icArray[0] === 'T' || icArray[0] === 'G' ? 4 : 0;
     const temp = (offset + weight) % 11;
     const st = ['J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
     const fg = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'];
@@ -114,7 +119,6 @@ export class InvestmentAccountCommon {
     } else if (icArray[0] === 'F' || icArray[0] === 'G') {
       theAlpha = fg[temp];
     }
-    return (icArray[8] === theAlpha);
+    return icArray[8] === theAlpha;
   }
-
 }
