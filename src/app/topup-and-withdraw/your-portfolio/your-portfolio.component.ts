@@ -19,7 +19,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
-
 @Component({
   selector: 'app-your-portfolio',
   templateUrl: './your-portfolio.component.html',
@@ -47,13 +46,13 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public portfolioService: PortfolioService) {
+    public portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -65,19 +64,25 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.totalReturns = this.portfolioValues.totalReturns ? this.portfolioValues.totalReturns : 0;
-    this.yearlyReturns = this.portfolioValues.yearlyReturns ? this.portfolioValues.yearlyReturns : 0;
-    this.getPortfolioHoldingList(this.portfolioValues.productCode);   // SET THE PORTFOLIO ID
+    this.totalReturns = this.portfolioValues.totalReturns
+      ? this.portfolioValues.totalReturns
+      : 0;
+    this.yearlyReturns = this.portfolioValues.yearlyReturns
+      ? this.portfolioValues.yearlyReturns
+      : 0;
+    this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
   }
   getPortfolioHoldingList(portfolioid) {
-    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioid).subscribe((data) => {
-      this.portfolio = data.objectList;
-      const fundingParams = this.constructFundingParams(this.portfolio);
-      this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
-    });
+    this.topupAndWithDrawService
+      .getIndividualPortfolioDetails(portfolioid)
+      .subscribe((data) => {
+        this.portfolio = data.objectList;
+        const fundingParams = this.constructFundingParams(this.portfolio);
+        this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
+      });
   }
 
   constructFundingParams(data) {
@@ -103,8 +108,12 @@ export class YourPortfolioComponent implements OnInit {
   }
   showTotalReturnPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE'
+    );
   }
   goToHoldings() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.HOLDINGS]);
@@ -118,6 +127,5 @@ export class YourPortfolioComponent implements OnInit {
     } else {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     }
-
   }
 }

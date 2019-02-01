@@ -31,7 +31,8 @@ export class AcknowledgementComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public footerService: FooterService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
@@ -50,5 +51,4 @@ export class AcknowledgementComponent implements OnInit {
   goNext() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
-
 }

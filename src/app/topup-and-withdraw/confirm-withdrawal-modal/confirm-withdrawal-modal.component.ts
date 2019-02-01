@@ -1,4 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
@@ -10,15 +18,12 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class ConfirmWithdrawalModalComponent implements OnInit {
-
   @Input() withdrawAmount: any;
   @Input() withdrawType: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
   WITHDRAW_CONSTANTS;
 
-  constructor(public activeModal: NgbActiveModal) {
-
-  }
+  constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
     this.WITHDRAW_CONSTANTS = TOPUPANDWITHDRAW_CONFIG.WITHDRAW;
@@ -27,5 +32,4 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   confirmWithdrawal() {
     this.confirmed.emit();
   }
-
 }

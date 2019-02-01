@@ -1,5 +1,5 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
 app-additional-declaration-step1 {
   .app-add-step1 {
@@ -40,7 +40,6 @@ app-additional-declaration-step1 {
 
     .dropdown-item {
       white-space: normal;
-
     }
 
     .fixed-btn--sm {
@@ -90,7 +89,7 @@ app-additional-declaration-step1 {
     // }
 
     .tooltip-icon {
-      background: url("../../../assets/images/investment-account/tin-info.svg") no-repeat;
+      background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
@@ -144,20 +143,18 @@ app-additional-declaration-step1 {
 
     .form-control {
       &.with-button {
-        padding: 0.50rem;
+        padding: 0.5rem;
         padding-left: 0.8rem;
 
         input {
           margin-top: 6px;
         }
       }
-
-
     }
 
     .btn {
       &.btn-secondary {
-        padding: 0.50rem;
+        padding: 0.5rem;
         font-size: 16px;
         background-color: #ff872f;
         color: $white-color;
@@ -195,7 +192,6 @@ app-additional-declaration-step1 {
       font-family: $muli;
 
       label {
-
         padding: 0px 0 0px 35px;
       }
 
@@ -235,7 +231,6 @@ app-additional-declaration-step1 {
         font-weight: bold;
         color: #e57300;
       }
-
     }
 
     .inline-error {
@@ -304,7 +299,7 @@ app-additional-declaration-step1 {
             color: #ffffff;
           }
 
-          background-color:#ff872f !important;
+          background-color: #ff872f !important;
         }
       }
     }

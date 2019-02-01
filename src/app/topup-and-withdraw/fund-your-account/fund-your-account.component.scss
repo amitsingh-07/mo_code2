@@ -121,8 +121,6 @@ app-fund-your-account {
             border-bottom: 3px solid #ff872f;
           }
         }
-
-
       }
 
       .tab-content-container {
@@ -161,8 +159,6 @@ app-fund-your-account {
         display: flex;
         padding: 6px 30px;
       }
-
-
 
       .account-detail {
         margin-top: 20px;
@@ -235,7 +231,8 @@ app-fund-your-account {
           background-color: #f4fafb;
           display: flex;
           flex: 1;
-          background: url('../../../assets/images/investment-account/subcard_owl.svg') no-repeat;
+          background: url('../../../assets/images/investment-account/subcard_owl.svg')
+            no-repeat;
           background-color: #f4fafb;
           background-position: 15px 4px;
         }
@@ -243,14 +240,8 @@ app-fund-your-account {
         p {
           color: #000000;
         }
-
       }
-
-
     }
-
-
-
 
     .btn-with-icon {
       border-radius: 6px;

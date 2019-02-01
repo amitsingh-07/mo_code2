@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,8 @@ export class PortfolioExistComponent implements OnInit {
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -42,5 +43,4 @@ export class PortfolioExistComponent implements OnInit {
   proceed() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
-
 }

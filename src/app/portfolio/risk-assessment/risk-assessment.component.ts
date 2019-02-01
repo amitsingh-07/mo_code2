@@ -21,7 +21,6 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
   encapsulation: ViewEncapsulation.None
 })
 export class RiskAssessmentComponent implements IPageComponent, OnInit {
-
   pageTitle: string;
   QuestionLabel: string;
   ofLabel: string;
@@ -41,8 +40,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     public footerService: FooterService,
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
-    public log: LoggerService) {
-
+    public log: LoggerService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RISK_ASSESSMENT.TITLE');
@@ -61,7 +60,10 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
       this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl(this.riskFormValues.questSelectedOption, Validators.required)
+        questSelOption: new FormControl(
+          this.riskFormValues.questSelectedOption,
+          Validators.required
+        )
       });
       if (!self.questionsList.length) {
         self.getQuestions();
@@ -73,7 +75,14 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   setPageTitle(title: string) {
     const stepLabel = this.translate.instant('RISK_ASSESSMENT.STEP_2_LABEL');
-    this.navbarService.setPageTitle(title, undefined, undefined, undefined, undefined, stepLabel);
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
 
   getQuestions() {
@@ -88,7 +97,9 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
     this.isSpecialCase = this.currentQuestion.listOrder === 4 ? true : false;
-    const selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
+    const selectedOption = this.portfolioService.getSelectedOptionByIndex(
+      this.questionIndex
+    );
     if (selectedOption) {
       this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
     }
@@ -108,10 +119,15 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.portfolioService.setRiskAssessment(form.controls.questSelOption.value, this.questionIndex);
+      this.portfolioService.setRiskAssessment(
+        form.controls.questSelOption.value,
+        this.questionIndex
+      );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)]);
+        this.router.navigate([
+          PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)
+        ]);
       } else {
         // RISK PROFILE
         // CALL API

@@ -1,5 +1,5 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
 app-additional-declaration-info {
   .app-additional-declaration {
@@ -68,7 +68,6 @@ app-additional-declaration-info {
     }
 
     .intro-block__content__desc {
-
       @include allmobiles {
         margin-top: 30px;
         text-align: center;
@@ -102,6 +101,5 @@ app-additional-declaration-info {
       text-align: center;
       color: #ffffff;
     }
-
   }
 }

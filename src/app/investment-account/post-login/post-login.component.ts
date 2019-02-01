@@ -3,9 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -33,10 +31,10 @@ export class PostLoginComponent implements OnInit {
     private router: Router,
     private _location: Location,
     private investmentAccountService: InvestmentAccountService,
-    private translate: TranslateService) {
+    private translate: TranslateService
+  ) {
     this.translate.use('en');
-    this.route.params.subscribe((params) => {
-    });
+    this.route.params.subscribe((params) => {});
 
     this.translate.get('COMMON').subscribe((result: string) => {
       this.singPassLinkTitle = this.translate.instant('POSTLOGIN.PROCEED');

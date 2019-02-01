@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDateParserFormatter,
+  NgbDatepickerConfig,
+  NgbModal
+} from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from 'src/app/shared/footer/footer.service';
@@ -21,7 +25,9 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   selector: 'app-inv-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class PersonalInfoComponent implements IPageComponent, OnInit {
@@ -52,16 +58,33 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private modal: NgbModal,
     private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
       this.setPageTitle(this.pageTitle);
       const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      this.passportMinDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      this.passportMaxDate = { year: (today.getFullYear() + 20), month: (today.getMonth() + 1), day: today.getDate() };
+      config.minDate = {
+        year: today.getFullYear() - 100,
+        month: today.getMonth() + 1,
+        day: today.getDate()
+      };
+      config.maxDate = {
+        year: today.getFullYear(),
+        month: today.getMonth() + 1,
+        day: today.getDate()
+      };
+      this.passportMinDate = {
+        year: today.getFullYear(),
+        month: today.getMonth() + 1,
+        day: today.getDate()
+      };
+      this.passportMaxDate = {
+        year: today.getFullYear() + 20,
+        month: today.getMonth() + 1,
+        day: today.getDate()
+      };
     });
   }
   setPageTitle(title: string) {
@@ -87,71 +110,161 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
 
   buildFormForNricNumber(): FormGroup {
-    return this.formBuilder.group({
-      salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
-      [Validators.required]],
-      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: false },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: false },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
-      [Validators.required, this.validateNric.bind(this)]],
-      dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
-      [Validators.required, this.validateMinimumAge]],
-      gender: [{
-        value: this.formValues.gender,
-        disabled: this.investmentAccountService.isDisabled('gender')
+    return this.formBuilder.group(
+      {
+        salutation: [
+          {
+            value: this.formValues.salutation,
+            disabled: this.investmentAccountService.isDisabled('salutation')
+          },
+          [Validators.required]
+        ],
+        fullName: [
+          {
+            value: this.formValues.fullName,
+            disabled: this.investmentAccountService.isDisabled('fullName')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        firstName: [
+          { value: this.formValues.firstName, disabled: false },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        lastName: [
+          { value: this.formValues.lastName, disabled: false },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        nricNumber: [
+          {
+            value: this.formValues.nricNumber,
+            disabled: this.investmentAccountService.isDisabled('nricNumber')
+          },
+          [Validators.required, this.validateNric.bind(this)]
+        ],
+        dob: [
+          {
+            value: this.formValues.dob,
+            disabled: this.investmentAccountService.isDisabled('dob')
+          },
+          [Validators.required, this.validateMinimumAge]
+        ],
+        gender: [
+          {
+            value: this.formValues.gender,
+            disabled: this.investmentAccountService.isDisabled('gender')
+          },
+          Validators.required
+        ],
+        birthCountry: [
+          {
+            value: this.formValues.birthCountry,
+            disabled: this.investmentAccountService.isDisabled('birthCountry')
+          },
+          Validators.required
+        ],
+        passportIssuedCountry: [
+          {
+            value: this.formValues.passportIssuedCountry
+              ? this.formValues.passportIssuedCountry
+              : this.investmentAccountService.getCountryFromNationalityCode(
+                  this.formValues.nationalityCode
+                ),
+            disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
+          },
+          Validators.required
+        ],
+        race: [
+          {
+            value: this.formValues.race,
+            disabled: this.investmentAccountService.isDisabled('race')
+          },
+          [Validators.required]
+        ]
       },
-      Validators.required],
-      birthCountry: [{
-        value: this.formValues.birthCountry,
-        disabled: this.investmentAccountService.isDisabled('birthCountry')
-      }, Validators.required],
-      passportIssuedCountry: [{
-        value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
-          this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
-      }, Validators.required],
-      race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
-      [Validators.required]]
-    }, { validator: this.validateName() });
+      { validator: this.validateName() }
+    );
   }
   buildFormForPassportDetails(): FormGroup {
-    return this.formBuilder.group({
-      salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
-      [Validators.required]],
-      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: false },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: false },
-      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
-      [Validators.required, this.validateMinimumAge]],
-      gender: [{
-        value: this.formValues.gender ? this.formValues.gender : 'male',
-        disabled: this.investmentAccountService.isDisabled('gender')
-      }, Validators.required],
-      birthCountry: [{
-        value: this.formValues.birthCountry,
-        disabled: this.investmentAccountService.isDisabled('birthCountry')
-      }, Validators.required],
-      passportNumber: [{ value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber') },
-      [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      passportIssuedCountry: [{
-        value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
-          this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
-      }, Validators.required],
-      passportExpiry: [{
-        value: this.formValues.passportExpiry,
-        disabled: this.investmentAccountService.isDisabled('passportExpiry')
-      }, [Validators.required, this.validateExpiry]],
-      race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
-      [Validators.required]]
-    }, { validator: this.validateName() });
+    return this.formBuilder.group(
+      {
+        salutation: [
+          {
+            value: this.formValues.salutation,
+            disabled: this.investmentAccountService.isDisabled('salutation')
+          },
+          [Validators.required]
+        ],
+        fullName: [
+          {
+            value: this.formValues.fullName,
+            disabled: this.investmentAccountService.isDisabled('fullName')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        firstName: [
+          { value: this.formValues.firstName, disabled: false },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        lastName: [
+          { value: this.formValues.lastName, disabled: false },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        ],
+        dob: [
+          {
+            value: this.formValues.dob,
+            disabled: this.investmentAccountService.isDisabled('dob')
+          },
+          [Validators.required, this.validateMinimumAge]
+        ],
+        gender: [
+          {
+            value: this.formValues.gender ? this.formValues.gender : 'male',
+            disabled: this.investmentAccountService.isDisabled('gender')
+          },
+          Validators.required
+        ],
+        birthCountry: [
+          {
+            value: this.formValues.birthCountry,
+            disabled: this.investmentAccountService.isDisabled('birthCountry')
+          },
+          Validators.required
+        ],
+        passportNumber: [
+          {
+            value: this.formValues.passportNumber,
+            disabled: this.investmentAccountService.isDisabled('passportNumber')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+        ],
+        passportIssuedCountry: [
+          {
+            value: this.formValues.passportIssuedCountry
+              ? this.formValues.passportIssuedCountry
+              : this.investmentAccountService.getCountryFromNationalityCode(
+                  this.formValues.nationalityCode
+                ),
+            disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
+          },
+          Validators.required
+        ],
+        passportExpiry: [
+          {
+            value: this.formValues.passportExpiry,
+            disabled: this.investmentAccountService.isDisabled('passportExpiry')
+          },
+          [Validators.required, this.validateExpiry]
+        ],
+        race: [
+          {
+            value: this.formValues.race,
+            disabled: this.investmentAccountService.isDisabled('race')
+          },
+          [Validators.required]
+        ]
+      },
+      { validator: this.validateName() }
+    );
   }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
@@ -166,10 +279,15 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   populateFullName() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.formValues.firstName = this.formValues.firstName ? this.formValues.firstName : this.userProfileInfo.firstName;
-    this.formValues.lastName = this.formValues.lastName ? this.formValues.lastName : this.userProfileInfo.lastName;
-    this.formValues.fullName = this.formValues.fullName ? this.formValues.fullName :
-      this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+    this.formValues.firstName = this.formValues.firstName
+      ? this.formValues.firstName
+      : this.userProfileInfo.firstName;
+    this.formValues.lastName = this.formValues.lastName
+      ? this.formValues.lastName
+      : this.userProfileInfo.lastName;
+    this.formValues.fullName = this.formValues.fullName
+      ? this.formValues.fullName
+      : this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
   }
   toggleDate(openEle, closeEle) {
     openEle.toggle();
@@ -190,10 +308,15 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   private validateName() {
     return (group: FormGroup) => {
-      const name = group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
-      const name1 = group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
+      const name =
+        group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
+      const name1 =
+        group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
       const fullName = group.controls['fullName'].value;
-      if (fullName.toUpperCase() === name.toUpperCase() || fullName.toUpperCase() === name1.toUpperCase()) {
+      if (
+        fullName.toUpperCase() === name.toUpperCase() ||
+        fullName.toUpperCase() === name1.toUpperCase()
+      ) {
         return group.controls['firstName'].setErrors(null);
       } else {
         return group.controls['firstName'].setErrors({ nameMatch: true });
@@ -203,9 +326,13 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   private validateMinimumAge(control: AbstractControl) {
     const value = control.value;
-    if (control.value !== undefined && (isNaN(control.value))) {
+    if (control.value !== undefined && isNaN(control.value)) {
       const isMinAge =
-        new Date(value.year + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_age, value.month - 1, value.day) <= new Date();
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
       if (!isMinAge) {
         return { isMinAge: true };
       }
@@ -216,9 +343,14 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   private validateExpiry(control: AbstractControl) {
     const value = control.value;
     const today = new Date();
-    if (control.value !== undefined && (isNaN(control.value))) {
-      const isMinExpiry = new Date(value.year, value.month - 1, value.day)
-        >= new Date(today.getFullYear(), today.getMonth() + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_passport_expiry, today.getDate());
+    if (control.value !== undefined && isNaN(control.value)) {
+      const isMinExpiry =
+        new Date(value.year, value.month - 1, value.day) >=
+        new Date(
+          today.getFullYear(),
+          today.getMonth() + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_passport_expiry,
+          today.getDate()
+        );
       if (!isMinExpiry) {
         return { isMinExpiry: true };
       }
@@ -228,7 +360,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   validateNric(control: AbstractControl) {
     const value = control.value;
-    if (value !== undefined && (isNaN(value))) {
+    if (value !== undefined && isNaN(value)) {
       const isValidNric = this.investmentAccountCommon.isValidNric(value);
       if (!isValidNric) {
         return { nric: true };
@@ -250,5 +382,4 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   setDropDownValue(key, value) {
     this.invPersonalInfoForm.controls[key].setValue(value);
   }
-
 }

@@ -36,7 +36,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private modal: NgbModal) {
+    private modal: NgbModal
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RISK_PROFILE.TITLE');
@@ -78,7 +79,9 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   }
 
   canProceed() {
-    return this.selectedRiskProfile.riskProfileId !== PORTFOLIO_CONFIG.risk_profile.should_not_invest_id;
+    return (
+      this.selectedRiskProfile.riskProfileId !==
+      PORTFOLIO_CONFIG.risk_profile.should_not_invest_id
+    );
   }
-
 }

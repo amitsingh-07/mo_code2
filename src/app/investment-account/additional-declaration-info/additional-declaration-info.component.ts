@@ -21,10 +21,10 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService) {
+    public footerService: FooterService
+  ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    });
+    this.translate.get('COMMON').subscribe((result: string) => {});
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -33,5 +33,5 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
   }
   goNext() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
-}
+  }
 }

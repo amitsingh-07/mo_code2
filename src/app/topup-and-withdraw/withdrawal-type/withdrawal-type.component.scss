@@ -1,54 +1,51 @@
 @import '../../../variables';
 @import '../../../mixins';
-app-withdrawal-type{
-  .container-fluid{
-    @include allmobiles{
+app-withdrawal-type {
+  .container-fluid {
+    @include allmobiles {
       padding: 120px 0;
     }
-}
-.withdraw {
-
-  .dropdown-control .btn-dropdown {
-    padding-right: 26px !important ;
   }
-
-  .dropdown-control .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    
-    
+  .withdraw {
+    .dropdown-control .btn-dropdown {
+      padding-right: 26px !important ;
     }
 
-    .dropdown-item{
-      white-space:normal;
+    .dropdown-control .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
     }
 
-  .amount-panel{
-    padding: 30px;
-    background-color:#276f75;
-    border-radius: 6px;
-    .input-control{
+    .dropdown-item {
+      white-space: normal;
+    }
+
+    .amount-panel {
+      padding: 30px;
+      background-color: #276f75;
+      border-radius: 6px;
+      .input-control {
+        font-size: 22px;
+      }
+    }
+
+    .withdrawal-amount-lbl {
+      font-size: 18px;
+      font-family: $muli-bold;
+      color: #fff;
+    }
+
+    .cash-balance {
+      border-top: 1px solid #ffffff;
+      padding-top: 19px;
+      margin-top: 23px;
+      font-size: 16px;
+      color: #93e9e9;
+      justify-content: space-between;
+    }
+    .btn__footer--fixed {
       font-size: 22px;
+      font-family: $muli-bold;
     }
   }
-
-  .withdrawal-amount-lbl{
-    font-size: 18px;
-    font-family:$muli-bold;
-    color:#fff;
-  }
-
-  .cash-balance {
-    border-top: 1px solid #ffffff; 
-    padding-top: 19px;
-    margin-top: 23px;
-    font-size: 16px;
-    color: #93e9e9;
-    justify-content: space-between;
-  }
-  .btn__footer--fixed{
-    font-size: 22px;
-    font-family: $muli-bold;
-  }
-}
 }

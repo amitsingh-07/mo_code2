@@ -27,14 +27,13 @@ export class TopupRequestComponent implements OnInit {
     private modal: NgbModal,
     private route: ActivatedRoute,
     public authService: AuthenticationService,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
-  }
+    public topupAndWithDrawService: TopupAndWithDrawService
+  ) {}
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.status = params['status'];
       console.log(this.status);
     });
-
   }
   goToNext() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);

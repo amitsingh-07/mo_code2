@@ -46,5 +46,4 @@ export class GetStartedStep2Component implements OnInit {
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
   }
-
 }

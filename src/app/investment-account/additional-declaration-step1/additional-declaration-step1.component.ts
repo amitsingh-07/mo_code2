@@ -40,7 +40,8 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ADDITIONAL_DECLARATION.TITLE');
@@ -69,16 +70,29 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   buildForm() {
     return new FormGroup({
       radioPEP: new FormControl({ value: this.addInfoFormValues.pep, disabled: true }),
-      fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
-      lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
+      fName: new FormControl(this.addInfoFormValues.fName, [
+        Validators.required,
+        Validators.pattern(RegexConstants.OnlyAlpha)
+      ]),
+      lName: new FormControl(this.addInfoFormValues.lName, [
+        Validators.required,
+        Validators.pattern(RegexConstants.OnlyAlpha)
+      ]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
-      pepoccupation: new FormControl(this.addInfoFormValues.pepoccupation, Validators.required),
+      pepoccupation: new FormControl(
+        this.addInfoFormValues.pepoccupation,
+        Validators.required
+      ),
 
       pepCountry: new FormControl(this.getDefaultCountry(), Validators.required),
-      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]),
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
+      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, [
+        Validators.required,
+        Validators.pattern(RegexConstants.AlphanumericWithSymbol)
+      ]),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [
+        Validators.required,
+        Validators.pattern(RegexConstants.AlphanumericWithSymbol)
+      ])
     });
   }
 
@@ -88,23 +102,51 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     }
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     if (isSingapore) {
-      this.addInfoForm.addControl('pepPostalCode', new FormControl(this.addInfoFormValues.pepPostalCode,
-        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
-      this.addInfoForm.addControl('pepFloor', new FormControl(
-        this.addInfoFormValues.pepFloor,  [Validators.pattern(RegexConstants.SymbolNumber)]));
-      this.addInfoForm.addControl('pepUnitNo', new FormControl(this.addInfoFormValues.pepUnitNo,
-        [Validators.pattern(RegexConstants.SymbolNumber)]));
+      this.addInfoForm.addControl(
+        'pepPostalCode',
+        new FormControl(this.addInfoFormValues.pepPostalCode, [
+          Validators.required,
+          Validators.pattern(RegexConstants.NumericOnly)
+        ])
+      );
+      this.addInfoForm.addControl(
+        'pepFloor',
+        new FormControl(this.addInfoFormValues.pepFloor, [
+          Validators.pattern(RegexConstants.SymbolNumber)
+        ])
+      );
+      this.addInfoForm.addControl(
+        'pepUnitNo',
+        new FormControl(this.addInfoFormValues.pepUnitNo, [
+          Validators.pattern(RegexConstants.SymbolNumber)
+        ])
+      );
 
       this.addInfoForm.removeControl('pepCity');
       this.addInfoForm.removeControl('pepState');
       this.addInfoForm.removeControl('pepZipCode');
     } else {
-      this.addInfoForm.addControl('pepCity', new FormControl(
-        this.addInfoFormValues.pepCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      this.addInfoForm.addControl('pepState', new FormControl(
-        this.addInfoFormValues.pepState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      this.addInfoForm.addControl('pepZipCode', new FormControl(
-        this.addInfoFormValues.pepZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+      this.addInfoForm.addControl(
+        'pepCity',
+        new FormControl(this.addInfoFormValues.pepCity, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addInfoForm.addControl(
+        'pepState',
+        new FormControl(this.addInfoFormValues.pepState, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addInfoForm.addControl(
+        'pepZipCode',
+        new FormControl(this.addInfoFormValues.pepZipCode, [
+          Validators.required,
+          Validators.pattern(RegexConstants.Alphanumeric)
+        ])
+      );
 
       this.addInfoForm.removeControl('pepPostalCode');
       this.addInfoForm.removeControl('pepFloor');
@@ -115,12 +157,16 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   getDefaultCountry() {
     let defaultCountry;
     if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
+      );
     } else {
       if (this.addInfoFormValues.pepCountry) {
         defaultCountry = this.addInfoFormValues.pepCountry;
       } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.addInfoFormValues.nationalityCode);
+        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+          this.addInfoFormValues.nationalityCode
+        );
       }
     }
     return defaultCountry;
@@ -139,9 +185,13 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   }
 
   addOtherOccupation(value) {
-    if (value.occupation === INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_ONE.OTHERS) {
-      this.addInfoForm.addControl('pepOtherOccupation',
-        new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
+    if (
+      value.occupation === INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_ONE.OTHERS
+    ) {
+      this.addInfoForm.addControl(
+        'pepOtherOccupation',
+        new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required)
+      );
     } else {
       this.addInfoForm.removeControl('pepOtherOccupation');
     }
@@ -171,14 +221,19 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       (response: any) => {
         if (response) {
           if (response.Status.code === 200) {
-            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+            const address1 =
+              response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
             const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
             address1Control.setValue(address1);
             address2Control.setValue(address2);
           } else {
             const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            ref.componentInstance.errorTitle = this.translate.instant(
+              'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE'
+            );
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC'
+            );
             address1Control.setValue('');
             address2Control.setValue('');
           }
@@ -186,12 +241,17 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC'
+        );
+      }
+    );
   }
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
   goToNext(form) {
     if (!form.valid) {
@@ -203,7 +263,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionalInfoFormData(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
+      this.router.navigate([
+        INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2
+      ]);
     }
   }
   markAllFieldsDirty(form) {

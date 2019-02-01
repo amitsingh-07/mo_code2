@@ -58,62 +58,62 @@ app-account-setup-pending {
       }
       .custom-modal--title {
         font-family: $muli-bold;
-      font-size: 24px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.18px;
-      text-align: center;
-      color: #ffffff;
-    }
-
-    .custom-modal--desc {
-      font-family: $muli-regular;
-      font-size: 16px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.12px;
-      text-align: center;
-      color: #ffffff;
-      margin: 0 auto;
-
-      @include allmobiles {
-        width: 283px;
+        font-size: 24px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.18px;
+        text-align: center;
+        color: #ffffff;
       }
-    }
 
-    .custom-modal--content {
-      @include allmobiles {
-        width: 250px;
+      .custom-modal--desc {
+        font-family: $muli-regular;
+        font-size: 16px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.12px;
+        text-align: center;
+        color: #ffffff;
         margin: 0 auto;
+
         @include allmobiles {
           width: 283px;
-          padding-bottom: 70px;
         }
       }
+
+      .custom-modal--content {
+        @include allmobiles {
+          width: 250px;
+          margin: 0 auto;
+          @include allmobiles {
+            width: 283px;
+            padding-bottom: 70px;
+          }
+        }
       }
 
-    .btn__footer--fixed {
-      font-family: $muli-bold;
+      .btn__footer--fixed {
+        font-family: $muli-bold;
+      }
+
+      // @include allmobiles {
+      // .btn__footer--fixed {
+      //   width: 100%;
+      // }
+      // }
     }
 
-    // @include allmobiles {
-    // .btn__footer--fixed {
-    //   width: 100%;
-    // }
-    // }
-  }
+    .number {
+      display: flex;
+      flex-direction: row;
 
-  .number {
-    display: flex;
-    flex-direction: row;
-
-    @include allmobiles {
-      flex-direction: col;
+      @include allmobiles {
+        flex-direction: col;
+      }
     }
   }
-}
 }

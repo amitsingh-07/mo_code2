@@ -33,7 +33,8 @@ export class PersonalDeclarationComponent implements OnInit {
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('PERSONAL_DECLARATION.TITLE');
@@ -63,13 +64,14 @@ export class PersonalDeclarationComponent implements OnInit {
       radioEmploye: new FormControl(this.personalDeclarationFormValues.ExistingEmploye),
       radioBeneficial: new FormControl(this.personalDeclarationFormValues.beneficial),
       radioPEP: new FormControl(this.personalDeclarationFormValues.pep),
-      sourceOfIncome: new FormControl(this.personalDeclarationFormValues.sourceOfIncome, Validators.required)
+      sourceOfIncome: new FormControl(
+        this.personalDeclarationFormValues.sourceOfIncome,
+        Validators.required
+      )
     });
   }
-  yesClick() {
-  }
-  noClick() {
-  }
+  yesClick() {}
+  noClick() {}
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translator.PEP;
@@ -93,28 +95,36 @@ export class PersonalDeclarationComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else if (this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())) {
-        this.saveInvestmentAccount();
+    } else if (
+      this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())
+    ) {
+      this.saveInvestmentAccount();
     }
   }
 
   saveInvestmentAccount() {
-    this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-      if (this.investmentAccountService.getMyInfoStatus()) {
-        if (this.personalDeclarationForm.controls.radioBeneficial.value) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+    this.investmentAccountService.saveInvestmentAccount().subscribe(
+      (data) => {
+        if (this.investmentAccountService.getMyInfoStatus()) {
+          if (this.personalDeclarationForm.controls.radioBeneficial.value) {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+          } else {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          }
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
         }
-      } else {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
-      }
-    },
+      },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
+        );
+      }
+    );
   }
 
   markAllFieldsDirty(form) {
@@ -130,7 +140,11 @@ export class PersonalDeclarationComponent implements OnInit {
   }
   disableButton() {
     // tslint:disable-next-line:max-line-length
-    if (this.personalDeclarationForm.controls.radioEmploye.value == null || this.personalDeclarationForm.controls.radioBeneficial.value == null || this.personalDeclarationForm.controls.radioPEP.value == null) {
+    if (
+      this.personalDeclarationForm.controls.radioEmploye.value == null ||
+      this.personalDeclarationForm.controls.radioBeneficial.value == null ||
+      this.personalDeclarationForm.controls.radioPEP.value == null
+    ) {
       return true;
     }
   }

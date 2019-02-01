@@ -12,10 +12,7 @@ export class IntroScreenComponent implements OnInit {
   @Input() description2: string;
   @Input() tab: string;
 
-  constructor() {
-   }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

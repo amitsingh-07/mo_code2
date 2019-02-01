@@ -26,7 +26,8 @@ export class StartJourneyComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private _location: Location,
-    private modal: NgbModal) {
+    private modal: NgbModal
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = 'Welcome';
@@ -48,5 +49,4 @@ export class StartJourneyComponent implements OnInit {
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
-
 }

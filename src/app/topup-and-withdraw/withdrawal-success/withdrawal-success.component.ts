@@ -1,4 +1,3 @@
-
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -35,12 +34,12 @@ export class WithdrawalSuccessComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService
+  ) {
     this.translate.use('en');
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   goToNext() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }

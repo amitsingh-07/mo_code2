@@ -2,7 +2,6 @@
 @import '../../../mixins';
 
 app-confirm-portfolio {
-
   .container-fluid {
     @include allmobiles {
       padding-right: 15px !important;
@@ -38,7 +37,6 @@ app-confirm-portfolio {
               font-family: $muli-bold;
             }
           }
-
         }
       }
 
@@ -52,7 +50,7 @@ app-confirm-portfolio {
         color: #b3d6d6;
 
         .edit_button {
-          background: url("../../../assets/images/edit_button.svg") no-repeat;
+          background: url('../../../assets/images/edit_button.svg') no-repeat;
           cursor: pointer;
           display: inline-flex;
           margin-left: 12px;
@@ -122,11 +120,6 @@ app-confirm-portfolio {
     border-color: #00a7a7;
     margin: 0;
   }
-
-
-
-
-
 
   /*
 .confirm-portfolio {

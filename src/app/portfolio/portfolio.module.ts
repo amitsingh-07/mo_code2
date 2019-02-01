@@ -16,9 +16,7 @@ import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
-import {
-    PortfolioRecommendationComponent
-} from './portfolio-recommendation/portfolio-recommendation.component';
+import { PortfolioRecommendationComponent } from './portfolio-recommendation/portfolio-recommendation.component';
 import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
@@ -26,17 +24,18 @@ import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new MultiTranslateHttpLoader(
-    http,
-    [
-        { prefix: './assets/i18n/app/', suffix: '.json' },
-        { prefix: './assets/i18n/portfolio/', suffix: '.json' }
-    ]);
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: './assets/i18n/app/', suffix: '.json' },
+    { prefix: './assets/i18n/portfolio/', suffix: '.json' }
+  ]);
 }
 
 @NgModule({
   imports: [
-    CommonModule, PortfolioRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
+    CommonModule,
+    PortfolioRoutingModule,
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
     NouisliderModule,
     FormsModule,
     TranslateModule.forRoot({
@@ -62,7 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
     WhatsTheRiskComponent,
     PortfolioExistComponent,
     StartJourneyComponent
-    ],
+  ],
   providers: [CurrencyPipe]
 })
-export class PortfolioModule { }
+export class PortfolioModule {}

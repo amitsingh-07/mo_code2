@@ -20,7 +20,9 @@ export class WhatsTheRiskComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public headerService: HeaderService, private portfolioService: PortfolioService) {
+    public headerService: HeaderService,
+    private portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WHATS_THE_RISK.TITLE');
@@ -37,5 +39,4 @@ export class WhatsTheRiskComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
   }
-
 }

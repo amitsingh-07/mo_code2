@@ -10,9 +10,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -36,10 +34,10 @@ export class AccountSetupCompletedComponent implements OnInit {
     private topupAndWithDrawService: TopupAndWithDrawService,
     private modal: NgbModal,
     public footerService: FooterService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe(() => {
-    });
+    this.translate.get('COMMON').subscribe(() => {});
   }
 
   ngOnInit() {
@@ -50,5 +48,4 @@ export class AccountSetupCompletedComponent implements OnInit {
   redirectToFund() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
   }
-
 }

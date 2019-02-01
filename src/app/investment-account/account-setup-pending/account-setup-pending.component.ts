@@ -17,7 +17,6 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   encapsulation: ViewEncapsulation.None
 })
 export class AccountSetupPendingComponent implements OnInit {
-
   status: string;
   pageTitle: string;
   pageDesc: string;
@@ -30,10 +29,10 @@ export class AccountSetupPendingComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public footerService: FooterService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe(() => {
-      });
+    this.translate.get('COMMON').subscribe(() => {});
   }
 
   ngOnInit() {
@@ -46,19 +45,30 @@ export class AccountSetupPendingComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.status === INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending) {
-        this.pageTitle = this.translate.instant('ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE');
-        this.pageDesc = this.translate.instant('ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.DESC');
+        this.pageTitle = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE'
+        );
+        this.pageDesc = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.DESC'
+        );
       } else if (this.status === INVESTMENT_ACCOUNT_CONFIG.status.documents_pending) {
-        this.pageTitle = this.translate.instant('ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.TITLE');
-        this.pageDesc = this.translate.instant('ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC');
+        this.pageTitle = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.TITLE'
+        );
+        this.pageDesc = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC'
+        );
       } else {
-        this.pageTitle = this.translate.instant('ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE');
-        this.pageDesc = this.translate.instant('ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.DESC');
+        this.pageTitle = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE'
+        );
+        this.pageDesc = this.translate.instant(
+          'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.DESC'
+        );
       }
     });
   }
   redirectToDashboard() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-}
-
+  }
 }

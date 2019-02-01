@@ -1,6 +1,4 @@
-import {
-    ModelWithButtonComponent
-} from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
@@ -29,20 +27,33 @@ export class SingPassComponent implements OnInit {
   showSingPass: boolean;
   investmentData: any;
 
-  constructor(private modal: NgbModal,
-              private router: Router,
-              private myInfoService: MyInfoService,
-              public readonly translate: TranslateService,
-              private investmentAccountService: InvestmentAccountService
-            ) {
+  constructor(
+    private modal: NgbModal,
+    private router: Router,
+    private myInfoService: MyInfoService,
+    public readonly translate: TranslateService,
+    private investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.modelTitle = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE');
-      this.modelMessge = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-      this.modelBtnText = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
-      this.modelTitle1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE');
-      this.modelMessge1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION');
-      this.modelBtnText1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT');
+      this.modelTitle = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
+      );
+      this.modelMessge = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
+      );
+      this.modelBtnText = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
+      );
+      this.modelTitle1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
+      );
+      this.modelMessge1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION'
+      );
+      this.modelBtnText1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
+      );
     });
   }
 
@@ -64,16 +75,19 @@ export class SingPassComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
     }
-    ref.result.then(() => {
-      this.showConfirmation = true;
-    }).catch((e) => {
-    });
+    ref.result
+      .then(() => {
+        this.showConfirmation = true;
+      })
+      .catch((e) => {});
   }
 
   getMyInfo() {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
-    this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
+    this.myInfoService.setMyInfoAttributes(
+      this.investmentAccountService.myInfoAttributes
+    );
     // this.myInfoService.goToMyInfo();
     // Todo - Robo2 Hard coded UAT1 path for testing
     this.myInfoService.goToUAT1MyInfo();

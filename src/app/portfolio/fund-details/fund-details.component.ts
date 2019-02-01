@@ -38,17 +38,20 @@ export class FundDetailsComponent implements OnInit {
     private modal: NgbModal,
     public activeModal: NgbActiveModal,
     private _location: Location,
-    public portfolioService: PortfolioService) {
+    public portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
   }
   ngOnInit() {
     this.fundDetails = this.portfolioService.getFundDetails();
-
   }
 
   showHide(el) {
     const fundContentEle = el.getElementsByClassName('funding-content')[0];
-    if (fundContentEle.classList.contains('active') || fundContentEle.classList.contains('first')) {
+    if (
+      fundContentEle.classList.contains('active') ||
+      fundContentEle.classList.contains('first')
+    ) {
       fundContentEle.classList.remove('active');
       fundContentEle.classList.remove('first');
       el.getElementsByClassName('fund-heading')[0].classList.remove('active');

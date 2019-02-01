@@ -1,9 +1,18 @@
 import {
-  AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDateParserFormatter,
+  NgbDatepickerConfig,
+  NgbModal
+} from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
@@ -22,7 +31,9 @@ const assetImgPath = './assets/images/';
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageComponent {
@@ -48,7 +59,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     private modal: NgbModal,
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
@@ -85,7 +97,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       sliderValueSetter: ['']
     });
 
-    this.personalInfoForm.get('sliderValueSetter').valueChanges.subscribe( (value) => {
+    this.personalInfoForm.get('sliderValueSetter').valueChanges.subscribe((value) => {
       this.piInvestmentSlider.writeValue(value);
       this.onSliderChange(value);
     });
@@ -93,7 +105,14 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
 
   setPageTitle(title: string) {
     const stepLabel = this.translate.instant('PERSONAL_INFO.STEP_1_LABEL');
-    this.navbarService.setPageTitle(title, undefined, undefined, undefined, undefined, stepLabel);
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
 
   onSliderChange(value): void {
@@ -101,10 +120,14 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     const self = this;
     setTimeout(() => {
       self.personalInfoForm.controls.investmentPeriod.setValue(value);
-      const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
-      self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
+      const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0]
+        .style.transform;
+      self.elRef.nativeElement.querySelectorAll(
+        '.pointer-container'
+      )[0].style.transform = pointerPosition;
     }, 1);
-    this.isSufficientInvYears = (value > PORTFOLIO_CONFIG.personal_info.min_investment_period) ? true : false;
+    this.isSufficientInvYears =
+      value > PORTFOLIO_CONFIG.personal_info.min_investment_period ? true : false;
   }
 
   setSliderDescByRange(value) {
@@ -114,7 +137,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
         this.sliderDesc = this.translate.instant(range.content);
       }
     });
-
   }
 
   isValueBetweenRange(x, min, max) {
@@ -127,8 +149,12 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
         form.get(key).markAsDirty();
       });
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.portfolioService.currentFormError(form)['errorTitle'];
-      ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
+      ref.componentInstance.errorTitle = this.portfolioService.currentFormError(form)[
+        'errorTitle'
+      ];
+      ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)[
+        'errorMessage'
+      ];
       return false;
     }
     this.portfolioService.setPersonalInfo(form.value);
@@ -140,5 +166,4 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
     }
   }
-
 }

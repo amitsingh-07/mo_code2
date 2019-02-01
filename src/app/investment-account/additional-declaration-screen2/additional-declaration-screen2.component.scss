@@ -1,11 +1,11 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
 app-additional-declaration-screen2 {
-  .container-fluid{
+  .container-fluid {
     padding-top: 110px;
   }
-.step-indicator-container {
+  .step-indicator-container {
     background-color: #fff;
     padding: 10px 0px;
     position: relative;
@@ -23,49 +23,47 @@ app-additional-declaration-screen2 {
       top: 0px;
     }
   }
-  .label-font{
+  .label-font {
     font-size: 18px;
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
     font-weight: normal;
   }
-  .form-group-with-bg--content-label{
-   font-size: 18px;
+  .form-group-with-bg--content-label {
+    font-size: 18px;
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
-   
   }
   .lable {
     font-size: 18px;
     letter-spacing: -0.3px;
-    font-family: $muli-semi-bold; 
+    font-family: $muli-semi-bold;
     font-weight: normal;
   }
- 
-  
-.year {
-  font-family: $muli-regular;
-  font-size: 17px !important ;
-  letter-spacing: -0.3px;
-  text-align: right;
-  color: #9b9b9b !important;
-}
-.dropdown-control .btn-dropdown {
- padding-right: 28px;
-}
-.form-control-right {
-  padding-left: 0;
+
+  .year {
+    font-family: $muli-regular;
+    font-size: 17px !important ;
+    letter-spacing: -0.3px;
+    text-align: right;
+    color: #9b9b9b !important;
+  }
+  .dropdown-control .btn-dropdown {
+    padding-right: 28px;
+  }
+  .form-control-right {
+    padding-left: 0;
     padding-right: 18px;
     text-align: right;
-}
+  }
 
-.form-control.form-control-right input {
-  padding-right: 43px;
-}
-.form-control.form-control-right.investment-duration input {
-  padding-right: 54px;
-}
-.btn__footer--fixed{
-  font-family: $muli-bold !important;
-}
+  .form-control.form-control-right input {
+    padding-right: 43px;
+  }
+  .form-control.form-control-right.investment-duration input {
+    padding-right: 54px;
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+  }
 }
