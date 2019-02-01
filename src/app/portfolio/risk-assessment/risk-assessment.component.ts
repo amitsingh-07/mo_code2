@@ -2,17 +2,17 @@ import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FooterService } from 'src/app/shared/footer/footer.service';
+
+import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PORTFOLIO_CONFIG } from '../portfolio.constants';
 import { PortfolioService } from '../portfolio.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-risk-assessment',

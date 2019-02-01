@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
+import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
-
 import { TransactionComponent } from './transaction/transaction.component';
-import { WithdrawalPaymentMethodComponent } from './withdrawal-payment-method/withdrawal-payment-method.component';
+import {
+    WithdrawalPaymentMethodComponent
+} from './withdrawal-payment-method/withdrawal-payment-method.component';
 import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 import { YourInvestmentComponent } from './your-investment/your-investment.component';

@@ -2,11 +2,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FooterService } from 'src/app/shared/footer/footer.service';
+
+import { FooterService } from '../../shared/footer/footer.service';
+import { INVESTMENT_API_BASE_URL } from '../../shared/http/api.constants';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { PortfolioService } from '../portfolio.service';
-import { INVESTMENT_API_BASE_URL } from './../../shared/http/api.constants';
 
 @Component({
   selector: 'app-portfolio-exist',

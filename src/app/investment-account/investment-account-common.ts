@@ -1,4 +1,5 @@
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
+
 export class InvestmentAccountCommon {
   getPayloadKey(controlname) {
     let payloadKey;

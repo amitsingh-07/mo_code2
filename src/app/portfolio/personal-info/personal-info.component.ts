@@ -1,23 +1,15 @@
+import { NouisliderComponent } from 'ng2-nouislider';
+
 import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
+    AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  NgbDateParserFormatter,
-  NgbDatepickerConfig,
-  NgbModal
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { NouisliderComponent } from 'ng2-nouislider';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';

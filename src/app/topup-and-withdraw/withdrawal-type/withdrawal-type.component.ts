@@ -1,29 +1,18 @@
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators
+    AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
 } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-
-import { FooterService } from './../../shared/footer/footer.service';
-
-import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+    ConfirmWithdrawalModalComponent
+} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';

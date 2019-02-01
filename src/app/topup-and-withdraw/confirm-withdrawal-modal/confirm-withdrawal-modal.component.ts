@@ -1,14 +1,9 @@
 import {
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
+    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
 @Component({

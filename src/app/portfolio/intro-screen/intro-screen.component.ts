@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+
 @Component({
   selector: 'app-intro-screen',
   templateUrl: './intro-screen.component.html',

@@ -1,41 +1,34 @@
 import { CurrencyPipe } from '@angular/common';
-
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { HeaderService } from '../../shared/header/header.service';
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
-
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
-import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-
-import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
-
-import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 
 import {
-  PORTFOLIO_ROUTE_PATHS,
-  PORTFOLIO_ROUTES
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
+import {
+    PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES
 } from '../../portfolio/portfolio-routes.constants';
-
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-
-import { HostListener } from '@angular/core';
-
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+import { FooterService } from '../../shared/footer/footer.service';
+import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
-import { FooterService } from './../../shared/footer/footer.service';
-
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
-
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',

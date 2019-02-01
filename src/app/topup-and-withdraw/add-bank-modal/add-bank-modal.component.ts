@@ -1,16 +1,11 @@
 import {
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation
+    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-add-bank-modal',
