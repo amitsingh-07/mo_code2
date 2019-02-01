@@ -81,13 +81,13 @@ export class YourInvestmentComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   yourPortfolio(portfolio) {
-    this.PortfolioValues = this.topupAndWithDrawService.setPortfolioValues(portfolio);
+    this.topupAndWithDrawService.setPortfolioValues(portfolio);
     if (portfolio.currentValue) {
       this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
     }
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
   }
-  selectSource(option) {}
+  selectSource(option) { }
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
@@ -115,10 +115,6 @@ export class YourInvestmentComponent implements OnInit {
     });
   }
 
-  fundYourAccount() {
-    //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-  }
-
   showTotalReturnPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -128,6 +124,7 @@ export class YourInvestmentComponent implements OnInit {
       'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE'
     );
   }
+  // tslint:disable-next-line
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -165,7 +162,7 @@ export class YourInvestmentComponent implements OnInit {
         }
       });
     });
-    ref.componentInstance.noClickAction.subscribe(() => {});
+    ref.componentInstance.noClickAction.subscribe(() => { });
   }
   selectOption(option) {
     if (option.id === 1) {
