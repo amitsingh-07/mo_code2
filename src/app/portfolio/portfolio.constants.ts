@@ -38,6 +38,7 @@ export let PORTFOLIO_CONFIG = {
       2: 'hfhr',
       3: 'mfmr',
       4: 'lflr'
-    }
+    },
+    special_question_order: 4
   }
 };

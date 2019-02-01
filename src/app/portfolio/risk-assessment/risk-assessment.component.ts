@@ -96,7 +96,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
-    this.isSpecialCase = this.currentQuestion.listOrder === 4 ? true : false;
+    this.isSpecialCase = this.currentQuestion.listOrder === PORTFOLIO_CONFIG.risk_assessment.special_question_order ? true : false;
     const selectedOption = this.portfolioService.getSelectedOptionByIndex(
       this.questionIndex
     );
