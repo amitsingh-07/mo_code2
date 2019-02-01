@@ -11,7 +11,7 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { FooterService } from '../../shared/footer/footer.service';
+
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';

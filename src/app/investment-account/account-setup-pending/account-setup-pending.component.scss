@@ -94,13 +94,7 @@ app-account-setup-pending {
           padding-bottom: 70px;
         }
       }
-      .custom-modal--content{
-        @include allmobiles {
-          width: 250px;
-          margin: 0 auto;
-        }
       }
-    }
 
     .btn__footer--fixed {
       font-family: $muli-bold;
@@ -121,5 +115,5 @@ app-account-setup-pending {
       flex-direction: col;
     }
   }
-
+}
 }
