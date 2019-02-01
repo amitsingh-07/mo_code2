@@ -25,6 +25,7 @@ export class PersonalFormError {
     financialValidations: {
       // tslint:disable-next-line:no-duplicate-string
       zero: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Amount',
         errorMessage: 'One-Time Investment and Monthly Investment cannot be 0'
       },
@@ -36,6 +37,7 @@ export class PersonalFormError {
       },
       // tslint:disable-next-line:max-line-length
       moreasset: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Oops! Is this correct?',
         errorMessage:
           'We noticed that your investment amount is more than your total assets. Would you like to review your inputs?',
@@ -52,11 +54,13 @@ export class PersonalFormError {
       moreassetandinvestment: {
         errorTitle: 'Oops! Is this correct?',
         errorMessage:
+          // tslint:disable-next-line:max-line-length
           'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?',
         isButtons: 'Yes'
       },
       // tslint:disable-next-line:max-line-length
       one: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Oops! Review Investment<br>Amount',
         errorMessage:
           'We require a one-time investment of at least $100 or a monthly investment of at least $50.'
