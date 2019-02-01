@@ -258,16 +258,15 @@ export class TopupAndWithDrawService {
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
-    request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
+    request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null;
     request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
     request['redemptionAmount'] = data.withdrawAmount;
-    request['mode'] = data.withdrawMode; // todo
-    if (request['mode'] === 'BANK') {
-      request['customerBankDetail'] = (data.withdrawBank) ? data.withdrawBank : null; // todo
-    }
+    request['customerBankDetail'] = {
+      accountNumber: data.bank ? data.bank.accountNumber : null
+    };
     return request;
   }
-// ONE-TIME INVESTMENT PAYLOAD
+  // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
     return this.apiService.buyPortfolio(payload);

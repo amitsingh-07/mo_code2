@@ -1,4 +1,5 @@
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
@@ -154,7 +155,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
+      ref.componentInstance.errorMessageHTML = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.isButtons) {
         ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;

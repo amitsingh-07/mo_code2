@@ -52,7 +52,8 @@ export class FinanicalDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getIncomeRangeList();
     this.FinancialFormData = this.portfolioService.getMyFinancials();
-    this.formValues = this.investmentAccountService.getFinancialFormData();
+    //this.formValues = this.investmentAccountService.getFinancialFormData();
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.financialDetails = this.formBuilder.group({
       annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
         disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
@@ -107,5 +108,9 @@ export class FinanicalDetailsComponent implements OnInit {
   }
  isDisabled() {
     return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
+  }
+
+  getPlacement() {
+    return this.formValues.isMyInfoEnabled ? 'bottom' : 'top';
   }
 }

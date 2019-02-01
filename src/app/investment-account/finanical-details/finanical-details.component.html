@@ -54,6 +54,9 @@
                         {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' ||
                         financialDetails.controls.numberOfHouseHoldMembers.value) ?
                         financialDetails.controls.numberOfHouseHoldMembers.value :'Select Number'}}
+                    <div ngbDropdown [placement]="getPlacement()">
+                      <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
+                  {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' || financialDetails.controls.numberOfHouseHoldMembers.value)  ? financialDetails.controls.numberOfHouseHoldMembers.value  :'Select Number'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let numberOfHouseHoldMembers of numberOfHouseHoldMembersList; let i = index;"
