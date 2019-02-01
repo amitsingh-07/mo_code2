@@ -1,7 +1,8 @@
 export let TOPUPANDWITHDRAW_CONFIG = {
     TOPUP: {
         ONE_TIME_INVESTMENT_OPTION_ID: 1,
-        MONTHLY_INVESTMENT_OPTION_ID: 2
+        MONTHLY_INVESTMENT_OPTION_ID: 2,
+        MONTHLY_INVESTMENT: 'Monthly Investment'
     },
     WITHDRAW: {
         WITHDRAWAL_TYPES: [
@@ -16,5 +17,23 @@ export let TOPUPANDWITHDRAW_CONFIG = {
     },
     STATEMENT: {
         STATEMENT_BASE_PATH: window.location.origin + '/assets/docs/portfolio/transaction/'
+    },
+    FUND_YOUR_ACCOUNT: {
+        ONETIME: 'ONETIME',
+        MONTHLY: 'MONTHLY',
+        BANK: 'bank',
+        PAYNOW: 'PayNow',
+        SUCCESS: '/success',
+        PENDING: '/pending',
+        FUNDING: 'FUNDING',
+        TOPUP: 'TOPUP'
+    },
+    INVESTMENT_OVERVIEW: {
+        MORE_LIST: [
+            { id: 1, name: 'Transactions', value: 'TRANSACTIONS' },
+            { id: 2, name: 'Withdrawal', value: 'WITHDRAWAL' }
+        ],
+        TRANSACTIONS: 'Transactions',
+        WITHDRAWAL: 'Withdrawal'
     }
 };

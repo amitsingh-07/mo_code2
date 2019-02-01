@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { FooterService } from 'src/app/shared/footer/footer.service';
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -26,17 +27,13 @@ export class EmploymentDetailsComponent implements OnInit {
   employementStatusList: any;
   employementDetailsForm: FormGroup;
   formValues: any;
-  countries;
-
+  countries: any;
   isUserNationalitySingapore;
-  option: any;
-  showEmployment = true;
   occupation;
   industry: any;
   empStatus: any;
   industryList;
   occupationList;
-  employementstatus;
   isEditProfile: any;
 
   constructor(
@@ -88,7 +85,8 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   addOrRemoveAdditionalControls(empStatus) {
-    if (empStatus === 'Self Employed' || empStatus === 'Employed') {
+    if (empStatus === INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.SELE_EMPLOYED ||
+       empStatus === INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.EMPLOYED) {
       this.employementDetailsForm.addControl('companyName', new FormControl({
         value: this.formValues.companyName,
         disabled: this.investmentAccountService.isDisabled('companyName')
@@ -161,7 +159,8 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   addOrRemoveMailingAddress(empStatus) {
-    if (empStatus === 'Self Employed' || empStatus === 'Employed') {
+    if (empStatus === INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.SELE_EMPLOYED ||
+      empStatus === INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.EMPLOYED) {
       this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
         empCountry: [this.formValues.empCountry ? this.formValues.empCountry
           : this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
@@ -183,9 +182,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   addOtherIndustry(value) {
-    if (value.industry === 'Others') {
+    if (value.industry === INVESTMENT_ACCOUNT_CONFIG.OTHERS) {
       this.employementDetailsForm.addControl('otherIndustry',
-      new FormControl(this.formValues.otherIndustry, Validators.required));
+        new FormControl(this.formValues.otherIndustry, Validators.required));
     } else {
       this.employementDetailsForm.removeControl('otherIndustry');
     }
@@ -198,9 +197,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   addOtherOccupation(value) {
-    if (value.occupation === 'Others') {
+    if (value.occupation === INVESTMENT_ACCOUNT_CONFIG.OTHERS) {
       this.employementDetailsForm.addControl('otherOccupation',
-      new FormControl(this.formValues.otherOccupation, Validators.required));
+        new FormControl(this.formValues.otherOccupation, Validators.required));
     } else {
       this.employementDetailsForm.removeControl('otherOccupation');
     }

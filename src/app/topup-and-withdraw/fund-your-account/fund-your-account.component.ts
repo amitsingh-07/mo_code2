@@ -6,17 +6,17 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { FooterService } from './../../shared/footer/footer.service';
-
 import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -82,16 +82,16 @@ export class FundYourAccountComponent implements OnInit {
 
   showBankTransctionDetails() {
     const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height'});
-    ref.componentInstance.errorTitle = 'Transfer Instructions';
-    ref.componentInstance.errorDescription = 'Sending money via Bank Transfer:';
+    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION');
+    ref.componentInstance.errorDescription = this.translate.instant('FUND_YOUR_ACCOUNT.VIA_BANK_ONE');
     ref.componentInstance.showBankTransctions = true;
     ref.componentInstance.setBankDetails = this.bankDetails;
     return false;
   }
   showPayNowDetails() {
     const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height' });
-    ref.componentInstance.errorTitle = 'Transfer Instructions';
-    ref.componentInstance.errorDescription = 'Sending money via PayNow:';
+    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION');
+    ref.componentInstance.errorDescription =  this.translate.instant('FUND_YOUR_ACCOUNT.VIA_PAYNOW_ONE');
     ref.componentInstance.showPayNow = true;
     ref.componentInstance.setPaynowDetails = this.paynowDetails;
     return false;
@@ -99,11 +99,12 @@ export class FundYourAccountComponent implements OnInit {
 
   getPageTitleBySource(source, type) {
     let pageTitle;
-    if (source === 'FUNDING') {
-      pageTitle = this.translate.instant('Fund Your Account');
-    } else if (source === 'TOPUP') {
-      type === 'ONETIME' ?
-        pageTitle = this.translate.instant('One-time Investment') : pageTitle = this.translate.instant('Monthly Investment');
+    if (source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.FUNDING) {
+      pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TITLE');
+    } else if ( source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP) {
+      type === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ?
+        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT') :
+         pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT');
     }
     return pageTitle;
   }
@@ -128,7 +129,8 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   oneTimeOrMonthlySufficient() {
-    return ( (this.fundDetails.fundingType === 'ONETIME' || this.fundDetails.fundingType === 'MONTHLY')
+    return ( (this.fundDetails.fundingType === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ||
+       this.fundDetails.fundingType === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY)
       && !this.fundDetails.isAmountExceedBalance);
   }
   goToNext() {

@@ -106,8 +106,7 @@ export class FinanicalDetailsComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.TAX_INFO]);
     }
   }
-
-  isDisabled() {
+ isDisabled() {
     return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
   }
 

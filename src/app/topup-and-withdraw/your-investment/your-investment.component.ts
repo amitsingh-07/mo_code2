@@ -29,6 +29,7 @@ import { ConsoleLoggerService } from '../../shared/logger/console-logger.service
 import { FooterService } from './../../shared/footer/footer.service';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
 import {
   ModelWithButtonComponent
@@ -90,11 +91,7 @@ export class YourInvestmentComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
   }
   getMoreList() {
-    this.topupAndWithDrawService.getMoreList().subscribe((data) => {
-      this.moreList = data.objectList;
-      console.log(this.moreList);
-    });
-
+    this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
   }
   addPortfolio() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
@@ -136,7 +133,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
   }
-  showCashAccountPopUp() { 
+  showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.CASH_ACCOUNT_BALANCE.MESSAGE');
@@ -175,11 +172,10 @@ export class YourInvestmentComponent implements OnInit {
   selectOption(option) {
     if (option.id === 1) {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else if (option.id === 2) {
+    } else  {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    } else {
-      console.log('Transaction History');
     }
+
   }
 
 }

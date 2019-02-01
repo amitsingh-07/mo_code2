@@ -1,15 +1,16 @@
+import { FooterService } from 'src/app/shared/footer/footer.service';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
-  AccountCreationErrorModalComponent
+    AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -25,11 +26,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   pageTitle: string;
   sourceOfIncomeList;
   generatedList;
-  investmentPeriodList;
   additionDeclarationtwo: FormGroup;
   formValues;
-  additionDeclarationtwoFormValues;
-  sourse: string;
   constructor(
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -60,13 +58,13 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
       expectedAmountPerTranction: [this.formValues.expectedAmountPerTranction, Validators.required],
       source: [this.formValues.source, Validators.required],
-
     });
     this.addAndRemoveSourseFields();
   }
 
   addAndRemoveSourseFields() {
-    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name === 'Saving') {
+    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SAVING) {
       this.additionDeclarationtwo.addControl('personalSavingForm', this.formBuilder.group({
         personalSavings: [this.formValues.personalSavings, Validators.required]
       }));
@@ -74,34 +72,35 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
     if (this.additionDeclarationtwo.controls.source.value &&
-      this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritance') {
+      this.additionDeclarationtwo.controls.source.value.name ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE) {
       this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
         inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
       }));
-
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
-
     }
     if (this.additionDeclarationtwo.controls.source.value &&
-      this.additionDeclarationtwo.controls.source.value.name === 'Investment Earnings') {
+      this.additionDeclarationtwo.controls.source.value.name ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS) {
       this.additionDeclarationtwo.addControl('investmentEarnings', this.formBuilder.group({
         durationInvestment: [this.formValues.durationInvestment, Validators.required],
         earningsGenerated: [this.formValues.earningsGenerated, Validators.required],
-
       }));
-
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if ((this.additionDeclarationtwo.controls.source.value.name === 'Business Profits') ||
-      (this.additionDeclarationtwo.controls.source.value.name === 'Sale of Real Estate') ||
-      (this.additionDeclarationtwo.controls.source.value.name === 'Salary')) {
+    if (this.additionDeclarationtwo.controls.source.value && (
+      (this.additionDeclarationtwo.controls.source.value.name ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.BUSINESS_PROFITS) ||
+      (this.additionDeclarationtwo.controls.source.value.name ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALE_OF_REAL_ESTATE) ||
+      (this.additionDeclarationtwo.controls.source.value.name ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALARY))) {
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-
   }
 
   getSourceList() {
@@ -144,7 +143,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
-    const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
+    const ref = this.modal.open(AccountCreationErrorModalComponent, {
+      centered: true
+    });
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorList = errorList;
   }
@@ -153,7 +154,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const ref = this.modal.open(ErrorModalComponent, {
+        centered: true
+      });
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
@@ -168,7 +171,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
     },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        const ref = this.modal.open(ErrorModalComponent, {
+          centered: true
+        });
         ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
         ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
       });
@@ -177,7 +182,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   showCustomErrorModal(title, desc) {
     const errorTitle = title;
     const errorMessage = desc;
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, {
+      centered: true
+    });
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorMessage = errorMessage;
   }
