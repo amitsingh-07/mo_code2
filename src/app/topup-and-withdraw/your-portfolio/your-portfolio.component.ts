@@ -76,7 +76,7 @@ export class YourPortfolioComponent implements OnInit {
       .getIndividualPortfolioDetails(portfolioid)
       .subscribe((data) => {
         this.portfolio = data.objectList;
-        const fundingParams = this.constructFundingParams(this.portfolio);
+        this.constructFundingParams(this.portfolio);
         this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
       });
   }

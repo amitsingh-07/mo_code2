@@ -73,7 +73,7 @@ export class TopupAndWithDrawService {
     // tslint:disable-next-line:triple-equals                              //TODO
     if (
       Number(form.value.oneTimeInvestmentAmount) <
-        this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
+      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'One-time Investment'
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
@@ -81,7 +81,7 @@ export class TopupAndWithDrawService {
       // tslint:disable-next-line:max-line-length                            //TODO
     } else if (
       Number(form.value.MonthlyInvestmentAmount) <
-        this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
+      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'Monthly Investment'
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
@@ -328,7 +328,7 @@ export class TopupAndWithDrawService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map((e) => {
+    Object.keys(objectKeys).forEach((e) => {
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();
@@ -370,11 +370,10 @@ export class TopupAndWithDrawService {
       groups[groupName].push(month);
     }
     durationMonths = [];
-    for (let groupName in groups) {
+    for (const groupName in groups) {
       durationMonths.unshift({ year: groupName, months: groups[groupName] });
+        // tslint:disable-next-line
     }
-    console.log(durationMonths);
-
     return durationMonths;
   }
 }

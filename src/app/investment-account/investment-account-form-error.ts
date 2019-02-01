@@ -28,7 +28,9 @@ export class InvestmentAccountFormError {
 
     country: {
       required: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Country',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Select Country'
       }
     },
@@ -53,7 +55,9 @@ export class InvestmentAccountFormError {
     },
     postalCode: {
       required: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Postal Code',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Enter Postal Code'
       },
       pattern: {
@@ -100,12 +104,14 @@ export class InvestmentAccountFormError {
     floor: {
       pattern: {
         errorTitle: 'Invalid  Floor',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Floor should contain Symbol and Number.'
       }
     },
     unitNo: {
       pattern: {
         errorTitle: 'Invalid  unitNo',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Unit No. should contain Symbol and Number.'
       }
     },
@@ -146,7 +152,9 @@ export class InvestmentAccountFormError {
     },
     city: {
       required: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid City',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Enter City'
       },
       pattern: {
@@ -167,6 +175,7 @@ export class InvestmentAccountFormError {
     },
     state: {
       required: {
+        // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid State',
         errorMessage: 'Enter State'
       },
@@ -190,6 +199,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Zip Code',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'Enter Zip Code'
       },
       pattern: {

@@ -81,7 +81,6 @@ export class PortfolioService {
 
   // tslint:disable-next-line:cognitive-complexity
   doFinancialValidations(form) {
-    const invalid = [];
     if (form.value.firstChkBox && form.value.secondChkBox) {
       // tslint:disable-next-line:max-line-length
       if (
@@ -90,25 +89,16 @@ export class PortfolioService {
         Number(this.removeCommas(form.value.monthlyInvestment)) <
           PORTFOLIO_CONFIG.my_financials.min_monthly_amount
       ) {
-        invalid.push(
-          this.personalFormError.formFieldErrors['financialValidations']['one']
-        );
         return this.personalFormError.formFieldErrors['financialValidations']['one'];
       } else if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
         PORTFOLIO_CONFIG.my_financials.min_monthly_amount
       ) {
-        invalid.push(
-          this.personalFormError.formFieldErrors['financialValidations']['two']
-        );
         return this.personalFormError.formFieldErrors['financialValidations']['two'];
       } else if (
         Number(this.removeCommas(form.value.initialInvestment)) <
         PORTFOLIO_CONFIG.my_financials.min_initial_amount
       ) {
-        invalid.push(
-          this.personalFormError.formFieldErrors['financialValidations']['three']
-        );
         return this.personalFormError.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
@@ -116,9 +106,6 @@ export class PortfolioService {
         Number(this.removeCommas(form.value.initialInvestment)) <
         PORTFOLIO_CONFIG.my_financials.min_initial_amount
       ) {
-        invalid.push(
-          this.personalFormError.formFieldErrors['financialValidations']['three']
-        );
         return this.personalFormError.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.secondChkBox) {
@@ -126,34 +113,22 @@ export class PortfolioService {
         Number(this.removeCommas(form.value.monthlyInvestment)) <
         PORTFOLIO_CONFIG.my_financials.min_monthly_amount
       ) {
-        invalid.push(
-          this.personalFormError.formFieldErrors['financialValidations']['two']
-        );
         return this.personalFormError.formFieldErrors['financialValidations']['two'];
       }
     } else {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations']['four']
-      );
       return this.personalFormError.formFieldErrors['financialValidations']['four'];
     }
     // tslint:disable-next-line:triple-equals
     if (
-      Number(this.removeCommas(form.value.initialInvestment)) == 0 &&
-      Number(this.removeCommas(form.value.monthlyInvestment)) == 0
+      Number(this.removeCommas(form.value.initialInvestment)) === 0 &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) === 0
     ) {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations']['zero']
-      );
       return this.personalFormError.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.initialInvestment)) < 100 &&
       Number(this.removeCommas(form.value.monthlyInvestment)) < 50
     ) {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations']['more']
-      );
       return this.personalFormError.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length
     } else if (
@@ -163,11 +138,6 @@ export class PortfolioService {
         Number(this.removeCommas(form.value.percentageOfSaving)) *
           Number(this.removeCommas(form.value.monthlyIncome))
     ) {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations'][
-          'moreassetandinvestment'
-        ]
-      );
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
       ];
@@ -175,9 +145,6 @@ export class PortfolioService {
       Number(this.removeCommas(form.value.initialInvestment)) >
       Number(this.removeCommas(form.value.totalAssets))
     ) {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations']['moreasset']
-      );
       return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
       // tslint:disable-next-line:max-line-length
     } else if (
@@ -185,9 +152,6 @@ export class PortfolioService {
       Number(this.removeCommas(form.value.percentageOfSaving / 100)) *
         Number(this.removeCommas(form.value.monthlyIncome))
     ) {
-      invalid.push(
-        this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']
-      );
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreinvestment'
       ];
@@ -208,7 +172,6 @@ export class PortfolioService {
   }
 
   setPersonalInfo(data: PersonalInfo) {
-    // this.portfolioFormData.dob = data.dob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;
     this.commit();
   }
@@ -317,7 +280,7 @@ export class PortfolioService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map((e) => {
+    Object.keys(objectKeys).forEach((e) => {
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();
