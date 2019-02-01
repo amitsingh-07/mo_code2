@@ -49,12 +49,6 @@ export class AssetAllocationComponent implements OnInit {
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
-  helpDate: any;
-  editPortfolio: any;
-  buttonTitle: any;
-  event1 = true;
-  event2 = true;
-  userInputSubtext;
   assetAllocation;
 
   constructor(
@@ -73,8 +67,7 @@ export class AssetAllocationComponent implements OnInit {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.pageTitle = this.translate.instant('Asset Allocation');
-
+      self.pageTitle = this.translate.instant('ASSET_ALLOCATION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }

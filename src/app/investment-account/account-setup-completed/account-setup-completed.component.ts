@@ -1,5 +1,3 @@
-import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +13,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import {
     TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 

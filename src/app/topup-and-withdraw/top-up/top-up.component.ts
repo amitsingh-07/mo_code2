@@ -4,10 +4,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -16,13 +16,12 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-
-import { FooterService } from './../../shared/footer/footer.service';
-
 import { FundDetails } from '../fund-your-account/fund-details';
 import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
 @Component({
   selector: 'app-top-up',
@@ -108,7 +107,6 @@ export class TopUpComponent implements OnInit {
   }
 
   validateAmonut(amount) {
-    // this.cashBalance = this.cashBalance ? this.cashBalance : 0;
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
@@ -126,7 +124,7 @@ export class TopUpComponent implements OnInit {
     this.buildFormInvestment();
   }
   buildFormInvestment() {
-    if (this.formValues.Investment === 'Monthly Investment') {
+    if (this.formValues.Investment === TOPUPANDWITHDRAW_CONFIG.TOPUP.MONTHLY_INVESTMENT) {
       this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
       this.topForm.removeControl('oneTimeInvestmentAmount');
       this.showOnetimeInvestmentAmount = false;
@@ -173,11 +171,12 @@ export class TopUpComponent implements OnInit {
   }
   saveFundingDetails() {
     const topupValues = {
-      source: 'TOPUP',
+      source: TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP,
       portfolio: this.formValues.portfolio,
       oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
       monthlyInvestment: this.formValues.MonthlyInvestmentAmount, // topup
-      fundingType: this.formValues.MonthlyInvestmentAmount ? 'MONTHLY' : 'ONETIME',
+      fundingType: this.formValues.MonthlyInvestmentAmount ? TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY
+        : TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME,
       isAmountExceedBalance: this.isAmountExceedBalance,
       exceededAmount: this.topupAmount
     };

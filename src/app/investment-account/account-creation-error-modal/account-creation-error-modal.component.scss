@@ -1,7 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
-app-account-creation-error-modal{
+app-account-creation-error-modal {
   .action-button {
     width: 100%;
     border-radius: 6px;
@@ -20,7 +20,7 @@ app-account-creation-error-modal{
     color: #ffffff;
     padding: 10px;
   }
-  
+
   .popup-header-icon {
     &.glass {
       width: 100%;
@@ -28,29 +28,30 @@ app-account-creation-error-modal{
       display: flex;
       justify-content: center;
       margin-bottom: -15px;
-  
+
       img {
         height: 100%;
         width: 100%;
       }
     }
   }
-  
+
   .modal-body-message {
     margin-bottom: 15px;
   }
-  
+
   .action-button:active {
     background-color: #0de0de;
     color: #fff;
   }
-  
-  .error-code{
-    color:#ff7900;
-    font-size:16px;
+
+  .error-code {
+    color: #ff7900;
+    font-size: 16px;
   }
+
   .error-desc {
-    color:#5e5e5e;
-    font-size:16px;
+    color: #5e5e5e;
+    font-size: 16px;
   }
 }
