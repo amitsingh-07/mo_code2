@@ -17,6 +17,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 
 
 @Component({
@@ -29,7 +30,6 @@ export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
   moreList: any;
   portfolioValues;
-  selectedDropDown;
   portfolio;
   HoldingValues;
   holdingsDPMSData;
@@ -67,14 +67,10 @@ export class YourPortfolioComponent implements OnInit {
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
     this.totalReturns = this.portfolioValues.totalReturns ? this.portfolioValues.totalReturns : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns ? this.portfolioValues.yearlyReturns : 0;
-    console.log(this.portfolioValues + 'portfolio values ');
     this.getPortfolioHoldingList(this.portfolioValues.productCode);   // SET THE PORTFOLIO ID
   }
   getMoreList() {
-    this.topupAndWithDrawService.getMoreList().subscribe((data) => {
-      this.moreList = data.objectList;
-      console.log(this.moreList);
-    });
+    this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
   }
   getPortfolioHoldingList(portfolioid) {
     this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioid).subscribe((data) => {
@@ -119,11 +115,9 @@ export class YourPortfolioComponent implements OnInit {
   selectOption(option) {
     if (option.id === 1) {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else if (option.id === 2) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     } else {
-      console.log('Transaction History');
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     }
-  }
 
+  }
 }

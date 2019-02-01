@@ -27,6 +27,13 @@ export let TOPUPANDWITHDRAW_CONFIG = {
         PENDING: '/pending',
         FUNDING: 'FUNDING',
         TOPUP: 'TOPUP'
+    },
+    INVESTMENT_OVERVIEW: {
+        MORE_LIST: [
+            { id: 1, name: 'Transactions', value: 'TRANSACTIONS' },
+            { id: 2, name: 'Withdrawal', value: 'WITHDRAWAL' }
+        ],
+        TRANSACTIONS: 'Transactions',
+        WITHDRAWAL: 'Withdrawal'
     }
-
 };
