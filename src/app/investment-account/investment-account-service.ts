@@ -73,8 +73,7 @@ export class InvestmentAccountService {
   }
   /* Residential Address */
   getCountriesFormData() {
-    const countries = this.investmentAccountFormData.countryList;
-    return countries;
+    return this.investmentAccountFormData.countryList;
   }
   isSingaporeResident() {
     const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
@@ -259,12 +258,10 @@ export class InvestmentAccountService {
     };
   }
   getPepData() {
-    const pepVal = this.investmentAccountFormData.pep;
-    return pepVal;
+    return this.investmentAccountFormData.pep;
   }
   getBOStatus() {
-    const boVal = this.investmentAccountFormData.beneficial;
-    return boVal;
+    return this.investmentAccountFormData.beneficial;
   }
   getPersonalDeclaration() {
     return {
@@ -975,7 +972,7 @@ export class InvestmentAccountService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map((e) => {
+    Object.keys(objectKeys).forEach((e) => {
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();
@@ -1069,6 +1066,7 @@ export class InvestmentAccountService {
     }
     this.commit();
   }
+  // tslint:disable-next-line:cognitive-complexity
   setEditProfileEmployeInfo(data, nationalityList, countryList, isSingaporeResident) {
     this.investmentAccountFormData.nationalityCode =
       data.contactDetails.homeAddress.country.nationalityCode;
@@ -1132,6 +1130,7 @@ export class InvestmentAccountService {
           data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.state;
         // tslint:disable-next-line:max-line-length
         this.investmentAccountFormData.empZipCode =
+          // tslint:disable-next-line:max-line-length
           data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode; // discussed and only one feild name is available in backend
       }
     }

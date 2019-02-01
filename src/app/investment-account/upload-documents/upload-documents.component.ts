@@ -150,8 +150,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   getPayloadKey(controlname) {
-    const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
-    return payloadKey;
+    return this.investmentAccountCommon.getPayloadKey(controlname);
   }
 
   uploadDocument() {
@@ -173,8 +172,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   getFileName(fileElem) {
-    const fileName = this.investmentAccountCommon.getFileName(fileElem);
-    return fileName;
+    return this.investmentAccountCommon.getFileName(fileElem);
   }
 
   clearFileSelection(control, event, thumbElem?, fileElem?) {

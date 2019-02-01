@@ -103,7 +103,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   constructFundingParams(data) {
-    const topupValues = {
+    return {
       source: 'FUNDING',
       portfolio: {
         productName: data.portfolioName,
@@ -115,7 +115,6 @@ export class ConfirmPortfolioComponent implements OnInit {
       isAmountExceedBalance: 0,
       exceededAmount: 0
     };
-    return topupValues;
   }
 
   constructgetPortfolioParams() {
@@ -263,24 +262,18 @@ export class ConfirmPortfolioComponent implements OnInit {
         }
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
-        );
+        this.showGenericError();
       }
     );
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   createInvestmentAccount() {
     const pepData = this.investmentAccountService.getPepData();
     if (pepData) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
       // CREATE INVESTMENT ACCOUNT
-      console.log('Attempting to create ifast account');
       this.showLoader();
       this.investmentAccountService.createInvestmentAccount().subscribe(
         (response) => {
@@ -317,16 +310,20 @@ export class ConfirmPortfolioComponent implements OnInit {
           }
         },
         (err) => {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant(
-            'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
-          );
-          ref.componentInstance.errorMessage = this.translate.instant(
-            'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
-          );
+          this.showGenericError();
         }
       );
     }
+  }
+
+  showGenericError() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
+    );
   }
 
   showLoader() {
