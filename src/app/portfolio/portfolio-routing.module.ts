@@ -7,9 +7,7 @@ import { EngagementGuardService as EngagementGuard } from './investment-guard.se
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
-import {
-    PortfolioRecommendationComponent
-} from './portfolio-recommendation/portfolio-recommendation.component';
+import { PortfolioRecommendationComponent } from './portfolio-recommendation/portfolio-recommendation.component';
 import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';

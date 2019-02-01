@@ -8,8 +8,13 @@ import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, IEmployment, IFinancial, IHousehold, INationality, IPep, IPersonalDeclaration,
-    IPersonalInfo, ISaveInvestmentAccountRequest, ITax
+  IAddress,
+  IEmployment,
+  IFinancial,
+  IHousehold,
+  IPersonalDeclaration,
+  IPersonalInfo,
+  ISaveInvestmentAccountRequest,
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 

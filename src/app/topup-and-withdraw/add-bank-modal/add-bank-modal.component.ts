@@ -1,6 +1,4 @@
-import {
-    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 

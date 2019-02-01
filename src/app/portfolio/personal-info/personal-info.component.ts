@@ -1,12 +1,9 @@
-import { NouisliderComponent } from 'ng2-nouislider';
-
-import {
-    AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NouisliderComponent } from 'ng2-nouislider';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { FooterService } from '../../shared/footer/footer.service';

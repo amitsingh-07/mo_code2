@@ -1,9 +1,8 @@
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
-
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
