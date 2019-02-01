@@ -102,6 +102,7 @@ padding: 21px 0 16px;
     }
     &:disabled{
         color: #00a7a7 !important;
+        -webkit-text-fill-color: #00a7a7 !important;
         background-color: #d4eded !important;
         opacity: 1 !important;
     }
