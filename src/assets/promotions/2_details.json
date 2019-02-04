@@ -6,8 +6,8 @@
     "thumbnail": "/assets/promotions/images/2/thumbnail.jpg",
     "banner": "/assets/promotions/images/2/banner.jpg",
     "desc":  "Get S$100 off your first year's premium with long-term care coverage!",
-    "date_created": "2019-01-15 00:00:00",
-    "date_expiry": "2018-03-31 23:59:59",
+    "date_created": "1547481600000",
+    "date_expiry": "1554047999000",
     "tag" : ["Insurance", "Protection"],
     "external": false
 }
