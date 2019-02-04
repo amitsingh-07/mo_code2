@@ -64,16 +64,13 @@ export class MyInfoService {
   }
 
   newWindow(authoriseUrl): void {
-    let self = this;
+    const self = this;
     this.openFetchPopup();
     this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
     const screenHeight = screen.height;
     const left = 0;
     const top = 0;
-    // tslint:disable-next-line:max-line-length
-    // Todo - Robo2 changes
-    // const this.this.windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
     this.windowRef = window.open(authoriseUrl);
 
     const timer = setInterval(() => {

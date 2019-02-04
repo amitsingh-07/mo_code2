@@ -427,12 +427,12 @@ export class SignUpService {
 
   getInvestmentStatus() {
     const userInfo = this.getUserProfileInfo();
-    let investmentStatus = userInfo.investementDetails
+    let investmentStatus = userInfo && userInfo.investementDetails
       && userInfo.investementDetails.account
       && userInfo.investementDetails.account.accountStatus ?
       userInfo.investementDetails.account.accountStatus : null;
     if (investmentStatus === null || !investmentStatus) {
-      if (userInfo.investementDetails &&
+      if (userInfo && userInfo.investementDetails &&
         userInfo.investementDetails.portfolios &&
         userInfo.investementDetails.portfolios.length > 0) {
         investmentStatus = 'RECOMMENDED';
