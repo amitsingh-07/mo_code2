@@ -7,7 +7,7 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: true,
   isDebugMode: false,
-  apiBaseUrl: 'https://bfa-uat2.ntucbfa.com',
+  apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
   apiBaseUrl2: 'https://bfa-uat.ntucbfa.com',
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
