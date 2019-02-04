@@ -67,7 +67,7 @@
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
     "modalData": {
-      "modalTitle": "Insufficient Emergency Fund!",
+      "modalTitle": "Insufficient Emergency Fund",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
     },
     "helpData": {
