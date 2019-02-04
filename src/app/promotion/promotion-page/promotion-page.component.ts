@@ -57,10 +57,17 @@ export class PromotionPageComponent implements OnInit {
 
       // Setting Banner background-image
       const banner = this.BannerElement.nativeElement.childNodes[0];
-      this.renderer.setStyle(banner,
+      if (this.promoDetails.banner) {
+        this.renderer.setStyle(banner,
                             'background-image',
                             'url(' + this.promoDetails.banner + ')'
                             );
+      } else {
+        this.renderer.setStyle(banner,
+                            'background-image',
+                            'url(' + this.promoDetails.thumbnail + ')'
+                              );
+      }
       // Getting promo content
       this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {
         this.promoContent = content;
