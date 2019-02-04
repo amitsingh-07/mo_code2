@@ -1,0 +1,152 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.portfolio-info-container {
+  padding: 20px 0px;
+}
+
+.portfolio-desc {
+  padding: 0 15px !important;
+}
+
+.portfolio-type-details {
+  font-family: $muli-italic;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.31;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+
+  .portfolio-type-details-title {
+    font-family: $muli-bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 0.88;
+    letter-spacing: -0.3px;
+    padding-bottom: 11px;
+  }
+
+  .portfolio-type-details-desc {
+    color: #b3d6d6;
+  }
+}
+
+.portfolio-graph-block {
+  margin-top: 28px;
+
+  .portfolio-graph-container {
+    font-family: $muli-bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    padding-top: 30px;
+    position: relative;
+
+    .graph {
+      width: 315px;
+      height: 205px;
+      margin: 0 auto;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+      }
+    }
+
+    .graph_values {
+      position: absolute;
+      top: -24px;
+
+      span {
+        padding: 23px 10px 7px;
+        &:nth-child(2){
+          margin-top: 7px;
+        }
+        &:last-child{
+          padding: 0 10px;
+          margin-bottom: 4px;
+          margin-top: 8px;
+        }
+      }
+    }
+    .time-lapse{
+      justify-content: space-between;
+      font-family: $muli-regular;
+      font-size: 13px;
+      line-height: 1.23;
+      letter-spacing: -0.2px;
+      padding-top: 9.8px; 
+      span{
+        &:last-child{
+          font-family: $muli-bold;
+        }
+      }
+    }
+  }
+}
+
+.portfolio-graph-indicator {
+  padding-top: 45px;
+  font-family: $muli-italic;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  color: #b3d6d6;
+
+  .indicators {
+    justify-content: space-evenly;
+    margin: 0 auto;
+    margin-bottom:5px;
+
+    .flex-row {
+      align-items: center;
+    }
+
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+
+      &.best {
+        background-color: #55ffa0;
+      }
+
+      &.median {
+        background-color: #00d42f;
+      }
+
+      &.worst {
+        background-color: #015168;
+      }
+    }
+  }
+
+  .capital {
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 31px;
+    align-items: center;
+    span {
+      &:first-child {
+        padding-right: 9px;
+      }
+    }
+  }
+
+  .desc {
+    font-size: 13px;
+    line-height: normal;
+    padding-bottom: 10px;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}

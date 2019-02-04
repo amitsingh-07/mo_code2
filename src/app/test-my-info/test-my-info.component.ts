@@ -22,6 +22,7 @@ export class TestMyInfoComponent implements OnInit {
   cpfValue;
   pageTitle: string;
   project: string;
+  robo2Results: any;
   constructor(
     private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
     public navbarService: NavbarService,
@@ -47,7 +48,7 @@ export class TestMyInfoComponent implements OnInit {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           // Todo - Robo2 changes
-          if (this.project === 'robo2') {
+          if (this.project === 'robo') {
             this.closeMyInfoPopup();
             window.opener.postMessage(myinfoObj.authorizeCode, '*');
             // tslint:disable-next-line:max-line-length
@@ -55,6 +56,7 @@ export class TestMyInfoComponent implements OnInit {
           } else {
             this.myInfoService.getMyInfoData().subscribe((data) => {
               if (this.project === 'robo2') {
+                this.robo2Results = data['objectList'];
                 console.log(data);
               } else if (data && data['objectList']) {
                 this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
@@ -75,12 +77,12 @@ export class TestMyInfoComponent implements OnInit {
       }
     });
     // Todo - Robo2 MyInfo changes
-    if (this.project === 'robo2') {
-      const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
-      'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
-      this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
-      this.myInfoService.goToMyInfo();
-    }
+    // if (this.project === 'robo2') {
+    //   const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+    //   'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
+    //   this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
+    //   this.myInfoService.goToMyInfo();
+    // }
   }
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);

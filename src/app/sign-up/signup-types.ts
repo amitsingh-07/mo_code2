@@ -42,6 +42,7 @@ export interface ICustomer {
 export interface IVerifyRequestOTP {
     customerRef: string;
     otp?: number;
+    editProfile?: boolean;
 }
 
 export interface ISetPassword {

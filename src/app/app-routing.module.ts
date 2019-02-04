@@ -1,21 +1,20 @@
-import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
-import { ArticleEnableGuard } from './article/article-enable-guard';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
+import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
+import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
+import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
-
-import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
-import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
@@ -43,10 +42,9 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      /*
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
-      */
+      { path: 'investment', loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule' },
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
