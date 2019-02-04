@@ -330,7 +330,7 @@ export class InvestmentAccountFormError {
       isMinAge: {
         errorTitle: 'Invalid Date of Birth',
         errorMessage:
-          'You have to be at least 18 years old to set up an investment account with MoneyOwl.'
+          'You must be at least 18 years old to proceed.'
       }
     },
     gender: {
