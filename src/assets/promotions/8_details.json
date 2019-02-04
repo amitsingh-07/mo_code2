@@ -1,0 +1,12 @@
+{
+    "promoId": 8,
+    "type": 1,
+    "owner": "Tokio Marine",
+    "title": "10% off First Year Annual Premiums with Tokio Marine's Plans",
+    "thumbnail": "/assets/promotions/images/8/thumbnail.jpg",
+    "desc": "Enjoy 10% First Year Annual Premium Discount with Tokio Marine's Plans",
+    "date_created": "1548950400000",
+    "date_expiry": "1556639999000",
+    "tag" : ["Insurance", "Protection"],
+    "external": false
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="483px" height="108px" viewBox="0 0 483 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>3CBF3592-1407-4188-BC83-3FBFE1E1AA03</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="485" height="324"></rect>
+    </defs>
+    <g id="Latest-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-134.000000, -3093.000000)">
+            <g id="Group-26-Copy" transform="translate(132.000000, 2963.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask" fill-rule="nonzero"></g>
+                <g mask="url(#mask-2)" fill-rule="nonzero" id="Path-4" stroke="#004472" stroke-dasharray="6,7" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="translate(-67.000000, -10.000000)">
+                        <path d="M609.513788,0 C566.650892,55.7150483 560.988742,97.3817149 592.527338,125 C656.476326,181 618.064944,270.399405 521.58393,242 C436.651681,217 417.666825,141 242.806312,141 C126.232637,141 45.2971995,193 0,297"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
