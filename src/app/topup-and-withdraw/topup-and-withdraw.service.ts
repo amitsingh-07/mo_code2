@@ -70,7 +70,7 @@ export class TopupAndWithDrawService {
 
   doFinancialValidations(form) {
     const invalid = [];
-    // tslint:disable-next-line:triple-equals                              //TODO
+    // tslint:disable-next-line:triple-equals
     if (
       Number(form.value.oneTimeInvestmentAmount) <
       this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
@@ -78,7 +78,7 @@ export class TopupAndWithDrawService {
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
-      // tslint:disable-next-line:max-line-length                            //TODO
+      // tslint:disable-next-line:max-line-length
     } else if (
       Number(form.value.MonthlyInvestmentAmount) <
       this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
@@ -298,7 +298,7 @@ export class TopupAndWithDrawService {
     oneTimeInvestment = data.oneTimeInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      oneTimeInvestment: Number(oneTimeInvestment) // todo
+      oneTimeInvestment: Number(oneTimeInvestment)
     };
   }
 
@@ -313,7 +313,7 @@ export class TopupAndWithDrawService {
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      monthlyInvestmentAmount: Number(monthlyInvestmentAmount) // todo
+      monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
   getTransactionHistory(from?, to?) {
