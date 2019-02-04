@@ -1,20 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import {
-  AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
-} from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-
-import { FooterService } from './../../shared/footer/footer.service';
-
-import {
-  ConfirmWithdrawalModalComponent
-} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
@@ -26,14 +20,13 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
   encapsulation: ViewEncapsulation.None
 })
 export class WithdrawalTypeComponent implements OnInit {
-
   pageTitle: string;
   withdrawForm;
   formValues;
   isFromPortfolio = false;
   withdrawalTypes;
   portfolioList;
-  cashBalance; // Todo
+  cashBalance;
 
   constructor(
     public readonly translate: TranslateService,
@@ -43,7 +36,8 @@ export class WithdrawalTypeComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WITHDRAW.TITLE');
@@ -93,38 +87,75 @@ export class WithdrawalTypeComponent implements OnInit {
       }
     });
 
-    if (this.formValues.withdrawType) { // trigger change event
+    if (this.formValues.withdrawType) {
+      // trigger change event
       this.withdrawForm.get('withdrawType').setValue(this.formValues.withdrawType);
     }
-    if (this.withdrawForm.get('withdrawPortfolio')) { // trigger change event
-      this.withdrawForm.get('withdrawPortfolio').setValue(this.formValues.withdrawPortfolio);
+    if (this.withdrawForm.get('withdrawPortfolio')) {
+      // trigger change event
+      this.withdrawForm
+        .get('withdrawPortfolio')
+        .setValue(this.formValues.withdrawPortfolio);
     }
   }
 
   buildFormForPortfolioToCash() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.addControl(
+      'withdrawPortfolio',
+      new FormControl('', Validators.required)
+    );
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
-      value ?
-        this.withdrawForm.addControl('withdrawAmount', new FormControl('',
-          [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
-        this.withdrawForm.removeControl('withdrawAmount');
+      value
+        ? this.withdrawForm.addControl(
+            'withdrawAmount',
+            new FormControl('', [
+              Validators.required,
+              this.withdrawAmountValidator(
+                this.withdrawForm.get('withdrawPortfolio'),
+                'CONTROL'
+              )
+            ])
+          )
+        : this.withdrawForm.removeControl('withdrawAmount');
     });
-    this.withdrawForm.controls.withdrawPortfolio.setValue(this.formValues.PortfolioValues);
+    this.withdrawForm.controls.withdrawPortfolio.setValue(
+      this.formValues.PortfolioValues
+    );
   }
 
   // tslint:disable
   buildFormForPortfolioToBank() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.addControl(
+      'withdrawPortfolio',
+      new FormControl('', Validators.required)
+    );
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
-      value ?
-        this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
-        this.withdrawForm.removeControl('withdrawAmount');
+      value
+        ? this.withdrawForm.addControl(
+            'withdrawAmount',
+            new FormControl('', [
+              Validators.required,
+              this.withdrawAmountValidator(
+                this.withdrawForm.get('withdrawPortfolio'),
+                'CONTROL'
+              )
+            ])
+          )
+        : this.withdrawForm.removeControl('withdrawAmount');
     });
-    this.withdrawForm.controls.withdrawPortfolio.setValue(this.formValues.PortfolioValues);
+    this.withdrawForm.controls.withdrawPortfolio.setValue(
+      this.formValues.PortfolioValues
+    );
   }
 
   buildFormForCashToBank() {
-    this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.cashBalance, 'VALUE')]));
+    this.withdrawForm.addControl(
+      'withdrawAmount',
+      new FormControl('', [
+        Validators.required,
+        this.withdrawAmountValidator(this.cashBalance, 'VALUE')
+      ])
+    );
     this.withdrawForm.removeControl('withdrawPortfolio');
   }
 
@@ -133,7 +164,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   setDropDownValue(key, value) {
@@ -180,20 +211,33 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   saveWithdrawal() {
-    this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
-      if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
-          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+    this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe(
+      (response) => {
+        if (response.responseMessage.responseCode < 6000) {
+          if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg
+            );
+          }
+        } else {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
         }
-      } else {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
-      }
-    },
+      },
       (err) => {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-      });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'COMMON_ERRORS.API_FAILED.DESC'
+        );
+      }
+    );
   }
 
   showCustomErrorModal(title, desc) {
@@ -212,8 +256,12 @@ export class WithdrawalTypeComponent implements OnInit {
       return false;
     } else {
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
-      if ((form.value.withdrawType.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID) ||
-        (form.value.withdrawType.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID)) {
+      if (
+        form.value.withdrawType.id ===
+          TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID ||
+        form.value.withdrawType.id ===
+          TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID
+      ) {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD]);
       } else {
         this.showConfirmWithdrawModal(form);
@@ -227,8 +275,7 @@ export class WithdrawalTypeComponent implements OnInit {
         let isValid;
         if (type === 'CONTROL') {
           isValid = c.value <= amount.value.currentValue;
-        }
-        else {
+        } else {
           isValid = c.value <= amount;
         }
 
@@ -240,5 +287,4 @@ export class WithdrawalTypeComponent implements OnInit {
       }
     };
   }
-
 }

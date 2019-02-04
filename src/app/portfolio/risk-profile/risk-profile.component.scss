@@ -1,8 +1,8 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
-app-risk-profile{
-.hide-custom-modal {
+app-risk-profile {
+  .hide-custom-modal {
     display: none;
   }
 
@@ -75,13 +75,7 @@ app-risk-profile{
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 20%;
-
-    @include allmobiles {
-      img {
-        width: 60%;
-      }
-    }
+    top: 30px;
   }
 
   .custom-modal--title {
@@ -106,111 +100,108 @@ app-risk-profile{
     }
   }
 
-
-  
-.risk-profile-block {
+  .risk-profile-block {
     .container-fluid {
-        padding-top: 30px !important;
-        padding-left:0px !important;
-        padding-right:0px !important;
-        @include allmobiles {
-            padding-top: 100px !important;
-        }
+      padding-top: 30px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      @include allmobiles {
+        padding-top: 100px !important;
+      }
     }
     .fin-accessment-block__tab-container {
-        @extend .flex;
-        @extend .space-btwn;
-        width: 100%;
-        .fin-accessment-block__tab {
-            width: calc(50% - 10px);
-            opacity:0.2;
-            padding-right: 10px;
-            background-color:$app-backgrnd-secondary-color;
-            min-height:5px;
-            &.active {
-               opacity:1; 
-            }
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+      .fin-accessment-block__tab {
+        width: calc(50% - 10px);
+        opacity: 0.2;
+        padding-right: 10px;
+        background-color: $app-backgrnd-secondary-color;
+        min-height: 5px;
+        &.active {
+          opacity: 1;
         }
+      }
     }
     .risk-profile-block__content {
-        @include tablet {
-            .banner-image img {
-                max-width:90%;
-                //margin: 5px;
-            }
+      @include tablet {
+        .banner-image img {
+          max-width: 90%;
+          //margin: 5px;
         }
-        @include allmobiles {
-            .banner-image img {
-                max-width:70%;
-               // margin: 5px;
-            }
+      }
+      @include allmobiles {
+        .banner-image img {
+          max-width: 70%;
+          // margin: 5px;
         }
-        @include iPadProPortrait {
-            .banner-image img {
-                max-width:80%;
-               //margin: 5px;
-
-            }
+      }
+      @include iPadProPortrait {
+        .banner-image img {
+          max-width: 80%;
+          //margin: 5px;
         }
+      }
     }
     .risk-profile-block__content__desc {
-        // margin-top: 100px;
-        text-align: left;
-        padding: 0px 30px;
-        @include allmobiles {
-            //margin-top: 45px;            text-align: center;
-        }
-        @include tablet {
-            //margin-top: 45px;
-            margin-top: 0px;
-        }
+      // margin-top: 100px;
+      text-align: left;
+      padding: 0px 30px;
+      @include allmobiles {
+        //margin-top: 45px;            text-align: center;
+      }
+      @include tablet {
+        //margin-top: 45px;
+        margin-top: 0px;
+      }
     }
     .risk-profile-block__content__heading {
-        opacity: 0.55;
-        font-family: $muli-regular;
-        font-size: 36px;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.4px;
-        color: $white-color;
-        margin-bottom:15px;
+      opacity: 0.55;
+      font-family: $muli-regular;
+      font-size: 36px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.4px;
+      color: $white-color;
+      margin-bottom: 15px;
     }
     .risk-profile-block__content__title {
-        font-family: $muli-semi-bold;
-        font-size: 24px;
-        line-height: normal;
-        letter-spacing: -0.17px;
-        color: $teal-color;
-        font-weight: bold;
-        text-align: center;
-        margin: 0;
-        padding-top: 13px;
+      font-family: $muli-semi-bold;
+      font-size: 24px;
+      line-height: normal;
+      letter-spacing: -0.17px;
+      color: $teal-color;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      padding-top: 13px;
     }
     .risk-profile-block__content__sub-title {
-        font-family: $muli-regular;
-        font-size: 16px;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 21px;
-        letter-spacing: -0.15px;
-        color: $white-color;
-        margin-bottom:30px;
+      font-family: $muli-regular;
+      font-size: 16px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 21px;
+      letter-spacing: -0.15px;
+      color: $white-color;
+      margin-bottom: 30px;
     }
     .btn-proceed {
-        font-family: $muli-bold !important;
-        font-size: 24px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.25px;
-        text-align: center;
-        color: #ffffff;
+      font-family: $muli-bold !important;
+      font-size: 24px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.25px;
+      text-align: center;
+      color: #ffffff;
     }
-}
+  }
 
-.Convservative {
+  .Convservative {
     width: 159px;
     height: 30px;
     font-family: Muli;
@@ -228,28 +219,28 @@ app-risk-profile{
     height: auto;
     margin: auto;
     // padding-top: 10vh;
-}
+  }
 
-.risk-head{
-    font-size:19px;
+  .risk-head {
+    font-size: 19px;
     font-family: $muli-bold;
     font-weight: bold;
     letter-spacing: -0.18px;
-    margin-bottom:10px;
-}
+    margin-bottom: 10px;
+  }
 
-.risk-profile-title-block {
-    background-color:#fff;
+  .risk-profile-title-block {
+    background-color: #fff;
     //padding-top: 50px;
     padding-bottom: 35px;
-    margin-bottom:37px;
-}
-.risk-profile-title-block.invert {
+    margin-bottom: 37px;
+  }
+  .risk-profile-title-block.invert {
     background: none;
     padding-bottom: 0px;
-    
-    .risk-profile-block__content__title{
-        color:$white-color;
+
+    .risk-profile-block__content__title {
+      color: $white-color;
     }
-}
+  }
 }

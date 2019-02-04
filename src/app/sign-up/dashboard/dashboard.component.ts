@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { AppService } from '../../app.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -10,8 +13,11 @@ import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
@@ -26,7 +32,7 @@ export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
   showPortffolioPurchased = false;
-  showNotPurchasedPortfolio = false;
+  showStartInvesting = false;
   showInvestmentDetailsSaved = false;
   showNoInvestmentAccount = false;
   showAddportfolio = false;
@@ -46,17 +52,16 @@ export class DashboardComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) { }
+    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
+    this.translate.use('en');
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
-    this.translate.use('en');
-
     this.loadOptionListCollection();
-
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       this.signUpService.setUserProfileInfo(userInfo.objectList);
       this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -134,64 +139,73 @@ export class DashboardComponent implements OnInit {
 
   getDashboardList() {
     const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
+    if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED ||
+      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
-          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
-          this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
+        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
-      case 'PORTFOLIO_PURCHASED': {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case 'ACCOUNT_CREATED': {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
-        this.showInvestmentDetailsSaved = true;
-        break;
-      }
-      case 'CDD_CHECK_PENDING': {
-        this.showCddCheckOngoing = true;
-        break;
-      }
-      case 'RECOMMENDED': {
+      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {
         this.showSetupAccount = true;
         break;
       }
-      case 'ACCEPTED_NATIONALITY': {
+      case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
         break;
       }
-      case 'CDD_CHECK_FAILED': {
-        this.showCddCheckFail = true;
-        break;
-      }
-      case 'BLOCKED_NATIONALITY': {
+      case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY: {
         this.showBlockedNationalityStatus = true;
         break;
       }
-      case 'EDD_CHECK_PENDING': {
+      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
+        this.showInvestmentDetailsSaved = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case 'EDD_CHECK_FAILED': {
+      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
+        this.showInvestmentDetailsSaved = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED: {
+        this.showCddCheckOngoing = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
+        this.showCddCheckOngoing = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED: {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case 'SUSPENDED_ACCOUNT': {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
+        this.showCddCheckFail = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED: {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED: {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
         this.showSuspendedAccount = true;
         break;
       }
-      case 'ADD_POERFOLIO': {
-        this.showAddportfolio = true;
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
+        this.showPortffolioPurchased = true;
         break;
       }
       default: {
-        this.showNotPurchasedPortfolio = true;
+        this.showStartInvesting = true;
         break;
       }
     }

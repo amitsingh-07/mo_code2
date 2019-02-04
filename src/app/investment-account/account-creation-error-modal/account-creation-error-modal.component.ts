@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,20 +10,18 @@ import { TranslateService } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AccountCreationErrorModalComponent implements OnInit {
-  @Input() errorTitle: any;
-  @Input() errorMessage: any;
+  @Input() errorTitle: string;
+  @Input() errorMessage: string;
   @Input() errorList: any;
 
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    });
+    this.translate.get('COMMON').subscribe((result: string) => {});
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

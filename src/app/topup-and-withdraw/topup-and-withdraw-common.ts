@@ -1,3 +1,1 @@
-export class TopUpAndWithdrawCommon {
-
-}
+export class TopUpAndWithdrawCommon {}

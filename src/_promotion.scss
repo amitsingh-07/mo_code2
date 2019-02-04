@@ -79,6 +79,9 @@
     width:100%;
     td{
         padding:35px 22px;
+        @include minMobilemaxPhablet{
+            padding:15px 10px;
+        }
         border:1px solid rgba(0, 167, 167, 0.15);
         color:$black-color;
         &.cell--side-header{
@@ -87,6 +90,9 @@
             vertical-align: middle;
             padding:18px 20px;
             border: 1px solid $lighter-teal-color;
+            @include minMobilemaxPhablet{
+                padding:18px 10px;
+            }
         }
         &.cell--header{
             background-color:$teal-color;
@@ -95,6 +101,9 @@
             vertical-align: top;
             padding:18px 20px;
             border: 1px solid $lighter-teal-color;
+            @include minMobilemaxPhablet{
+                padding:18px 10px;
+            }
         } 
     }
     .text--bold{

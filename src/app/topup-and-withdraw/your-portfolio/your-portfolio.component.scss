@@ -1,63 +1,62 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-app-your-portfolio{
-.portfolio-bg{
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-your-portfolio {
+  .portfolio-bg {
     padding-top: 105px;
-}
-.background_img {
+  }
+  .background_img {
     object-fit: contain;
     position: relative;
-    width: 100%
-}
-.user_content{
+    width: 100%;
+  }
+  .user_content {
     position: absolute;
     top: 158px;
-   
-    .user_portfolio{
-        font-family: $muli-regular;
-        font-size: 30px;;
-        line-height: 1.28;
-        letter-spacing: -0.3px;
-        position: relative;
-        padding: 0 29px 0 28px;
-        div{
-            &:last-child{
-                font-weight: bold;
-                letter-spacing: -0.4px;
-            }
+
+    .user_portfolio {
+      font-family: $muli-regular;
+      font-size: 30px;
+      line-height: 1.28;
+      letter-spacing: -0.3px;
+      position: relative;
+      padding: 0 29px 0 28px;
+      div {
+        &:last-child {
+          font-weight: bold;
+          letter-spacing: -0.4px;
         }
+      }
     }
-    .flex-col-3{
-        position: absolute;
-        right: 29px;
+    .flex-col-3 {
+      position: absolute;
+      right: 29px;
+      top: 60px;
+      @include allmobiles {
         top: 60px;
-        @include allmobiles{
-         top: 60px;
-        }
-        @include iphone5{
-            top: 40px;
-        } 
-         @include iphone6plus{
-            top: 72px;
-        }
-        @include iphone6{
-            top: 55px;
-        }
-        @include tablet{
+      }
+      @include iphone5 {
+        top: 40px;
+      }
+      @include iphone6plus {
+        top: 72px;
+      }
+      @include iphone6 {
+        top: 55px;
+      }
+      @include tablet {
         top: 129px;
-        }
-        @include iPadLandscape{
-            top: 129px;
-        }
+      }
+      @include iPadLandscape {
+        top: 129px;
+      }
     }
-}
-.dropdown-control 
-.dropdown-menu.show {
+  }
+  .dropdown-control .dropdown-menu.show {
     left: auto !important;
     right: 0;
-}
+  }
 
-.dropdown-item {
+  .dropdown-item {
     display: block;
     width: 100%;
     padding: 0.25rem 1.5rem;
@@ -71,14 +70,12 @@ app-your-portfolio{
     letter-spacing: -0.2px;
     color: #2d8289 !important;
     //border-bottom: solid 1px #00a7a7 !important;
-
-    
-} 
-.dropdown-item:first-child{
+  }
+  .dropdown-item:first-child {
     border-bottom: solid 1px #00a7a7 !important;
-}
+  }
 
-.dropdown-control .btn-dropdown:after {
+  .dropdown-control .btn-dropdown:after {
     background-image: url('/assets/images/dropdown_white.svg');
     width: 16px;
     height: 10px;
@@ -87,72 +84,69 @@ app-your-portfolio{
     top: 24px;
     right: 13px;
     background-repeat: no-repeat;
-    @include iphone5{
-             top: 24px;
-            right: 5px;
+    @include iphone5 {
+      top: 24px;
+      right: 5px;
     }
-    
-}
+  }
 
-.dropdown-control .btn-dropdown.grey {
+  .dropdown-control .btn-dropdown.grey {
     color: #fff;
-    background-color: #006D75;
-}
-.container-fluid {
-    @include allmobiles{
-        position: relative;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding:  0px;
-        margin-top: -42px;
-        height: auto;
+    background-color: #006d75;
+  }
+  .container-fluid {
+    @include allmobiles {
+      position: relative;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      padding: 0px;
+      margin-top: -42px;
+      height: auto;
     }
-    @include iphone6plus{
-        margin-top: -42px;
+    @include iphone6plus {
+      margin-top: -42px;
     }
-    @include iphone5{
-        margin-top: -30px;
+    @include iphone5 {
+      margin-top: -30px;
     }
-   @include min360{
-        margin-top: -42px;
+    @include min360 {
+      margin-top: -42px;
     }
-    @include tablet{
-        margin-top: -139px;
+    @include tablet {
+      margin-top: -139px;
     }
-    @include iPadLandscape{
-        margin-top: -139px;
+    @include iPadLandscape {
+      margin-top: -139px;
     }
-    @include iPadProPortrait{
-        margin-top: -139px;
+    @include iPadProPortrait {
+      margin-top: -139px;
     }
-    @include iPadProLandscape{
-        margin-top: -139px;
+    @include iPadProLandscape {
+      margin-top: -139px;
     }
-    
-}
+  }
 
-
-.form-group-with-bg {
+  .form-group-with-bg {
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
     background-color: #ffffff;
     margin-bottom: 20px;
-.your_total_value{
-    background-color: #006D75;
-    padding: 20px 20px 17px;
-}
-}
-.total_values{
-  font-family: $muli-bold;
-  font-size: 40px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.4px;
-  text-align: center;
-  color: #ffffff;
-}
-.total_values_label{
+    .your_total_value {
+      background-color: #006d75;
+      padding: 20px 20px 17px;
+    }
+  }
+  .total_values {
+    font-family: $muli-bold;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .total_values_label {
     font-family: $muli-regular;
     font-size: 16px;
     line-height: 0.88;
@@ -160,15 +154,14 @@ app-your-portfolio{
     text-align: center;
     color: #ffffff;
     margin-top: 6px;
-}
+  }
 
-
-.total_return_label{
+  .total_return_label {
     color: #5e5e5e;
     font-size: 16px;
     color: #2d8289;
-}
-.total_return_value{
+  }
+  .total_return_value {
     font-family: $muli-bold;
     font-size: 16px;
     font-weight: bold;
@@ -176,56 +169,55 @@ app-your-portfolio{
     text-align: right;
     color: #11b600;
     word-break: break-all;
-}
+  }
 
-.your_portfolio_label{
-  font-family: $muli-regular;
-  font-size: 21px;
-  letter-spacing: -0.2px;
-  color: #ffffff;
-}
-.start_investment_label{
+  .your_portfolio_label {
+    font-family: $muli-regular;
+    font-size: 21px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+  }
+  .start_investment_label {
     font-size: 13px;
     line-height: 1.62;
     letter-spacing: -0.1px;
     color: #5e5e5e;
-}
-.your_portfolio_number{
-  font-family: $muli-regular;
-  font-size: 15px;
-  letter-spacing: -0.3px;
-  color: #ffffff;
-}
-.your_portfolio_value{
+  }
+  .your_portfolio_number {
+    font-family: $muli-regular;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+  }
+  .your_portfolio_value {
     background-color: #e7f3f3;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 11px !important;
-    .flex-row{
-        align-items: center !important;
-        .conserve-icon{
-            width: 35px;
-            height: 35px;
-            img{
-                max-width: 100%;
-                height: auto;
-            }
+    .flex-row {
+      align-items: center !important;
+      .conserve-icon {
+        width: 35px;
+        height: 35px;
+        img {
+          max-width: 100%;
+          height: auto;
         }
+      }
     }
-    .forward_img{
-        margin-left: 25px;
+    .forward_img {
+      margin-left: 25px;
     }
-}
-.portfolio_heading{
-  font-family: $muli-bold;
-  font-size: 18px;
-  letter-spacing: -0.3px;
-  color: #00a7a7;
-  padding-left: 15px;
-  
-}
-.btn-with-icon {
+  }
+  .portfolio_heading {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #00a7a7;
+    padding-left: 15px;
+  }
+  .btn-with-icon {
     border-radius: 6px;
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
     border: solid 1px rgba(0, 135, 134, 0.4);
@@ -257,10 +249,10 @@ app-your-portfolio{
     }
   }
 
-  .asset_allocation_btn   {
+  .asset_allocation_btn {
     border-radius: 6px;
     border: solid 1px rgb(0, 153, 153);
-    background-color: #009999;;
+    background-color: #009999;
     font-family: $muli-bold;
     font-size: 18px;
     font-weight: bold;
@@ -287,7 +279,7 @@ app-your-portfolio{
       color: #fff;
     }
   }
-  .fund-account{
+  .fund-account {
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
@@ -296,29 +288,27 @@ app-your-portfolio{
     padding: 30px;
   }
   .fund-account-information {
-   font-size: 16px;
+    font-size: 16px;
     line-height: 1.38;
     letter-spacing: -0.2px;
     color: #000000;
     background-color: #ffffff;
-   
   }
-  .fund-account-btn{
+  .fund-account-btn {
     font-size: 21px;
     font-weight: bold;
-    
-   letter-spacing: -0.2px;
-   color: #ff872f;
-}
 
-.form-group-with-bg 
-.form-group-with-bg--content {
-    padding: 25px 27px 35px 28px;;
-.flex-row:not(:last-child) {
-      margin-bottom: 0px; 
-}
-}
-  hr{
+    letter-spacing: -0.2px;
+    color: #ff872f;
+  }
+
+  .form-group-with-bg .form-group-with-bg--content {
+    padding: 25px 27px 35px 28px;
+    .flex-row:not(:last-child) {
+      margin-bottom: 0px;
+    }
+  }
+  hr {
     background-color: #98dfdf;
   }
 }

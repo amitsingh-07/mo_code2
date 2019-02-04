@@ -9,8 +9,8 @@
 
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName}}</div>
-                <div>
-                  <span class="user-edit-img" (click)="goToEditProfile()">
+                <div (click)="goToEditProfile()">
+                  <span class="user-edit-img">
                     <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
                   </span>
                   <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <!--  STEP-1 PORTFOLIO -->
-                  <div class="no_account col-12" *ngIf="showNotPurchasedPortfolio">
+                  <div class="no_account col-12" *ngIf="showStartInvesting">
                     <div class="warning-txt">
                       <div class="flex-col-8">
                         {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>

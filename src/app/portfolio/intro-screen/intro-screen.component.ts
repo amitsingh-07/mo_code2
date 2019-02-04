@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+
 @Component({
   selector: 'app-intro-screen',
   templateUrl: './intro-screen.component.html',
@@ -12,10 +13,7 @@ export class IntroScreenComponent implements OnInit {
   @Input() description2: string;
   @Input() tab: string;
 
-  constructor() {
-   }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,12 +1,11 @@
-import { PORTFOLIO_CONFIG } from 'src/app/portfolio/portfolio.constants';
-
 import {
-  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
+import { PORTFOLIO_CONFIG } from '../../../portfolio/portfolio.constants';
 import { Formatter } from '../../../shared/utils/formatter.util';
 
 @Component({

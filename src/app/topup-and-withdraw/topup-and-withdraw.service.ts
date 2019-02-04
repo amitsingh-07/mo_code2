@@ -13,13 +13,17 @@ const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
   providedIn: 'root'
 })
-
 export class TopupAndWithDrawService {
-  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService,
+    public authService: AuthenticationService
+  ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
     this.getTopupInvestmentList();
-    this.topUpAndWithdrawFormData.withdrawMode = TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
+    this.topUpAndWithdrawFormData.withdrawMode =
+      TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
   }
   private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
@@ -28,14 +32,19 @@ export class TopupAndWithDrawService {
 
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.topUpAndWithdrawFormData));
+      sessionStorage.setItem(
+        SESSION_STORAGE_KEY,
+        JSON.stringify(this.topUpAndWithdrawFormData)
+      );
     }
   }
 
   // Return the entire Form Data
   getTopUpFormData() {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-      this.topUpAndWithdrawFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+      this.topUpAndWithdrawFormData = JSON.parse(
+        sessionStorage.getItem(SESSION_STORAGE_KEY)
+      );
     }
     return this.topUpAndWithdrawFormData;
   }
@@ -45,15 +54,12 @@ export class TopupAndWithDrawService {
 
   getTopupInvestmentList() {
     return this.apiService.getAllDropdownList();
-
   }
   getHoldingList() {
     return this.apiService.getHoldingList();
-
   }
   getPortfolioList() {
     return this.apiService.getPortfolioList();
-
   }
   getMoreList() {
     return this.apiService.getMoreList();
@@ -62,17 +68,22 @@ export class TopupAndWithDrawService {
     return this.apiService.getIndividualPortfolioDetails(portfolioId);
   }
 
-
   doFinancialValidations(form) {
     const invalid = [];
-    // tslint:disable-next-line:triple-equals                              //TODO
-    if (Number(form.value.oneTimeInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
-      form.value.Investment === 'One-time Investment') {
+    // tslint:disable-next-line:triple-equals
+    if (
+      Number(form.value.oneTimeInvestmentAmount) <
+      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
+      form.value.Investment === 'One-time Investment'
+    ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
-      // tslint:disable-next-line:max-line-length                            //TODO
-    } else if (Number(form.value.MonthlyInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
-      form.value.Investment === 'Monthly Investment') {
+      // tslint:disable-next-line:max-line-length
+    } else if (
+      Number(form.value.MonthlyInvestmentAmount) <
+      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
+      form.value.Investment === 'Monthly Investment'
+    ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
       // tslint:disable-next-line:max-line-length
@@ -98,7 +109,6 @@ export class TopupAndWithDrawService {
       MonthlyInvestmentAmount: this.topUpAndWithdrawFormData.MonthlyInvestmentAmount,
       Investment: this.topUpAndWithdrawFormData.Investment,
       topupportfolioamount: this.topUpAndWithdrawFormData.topupportfolioamount
-
     };
   }
   setTopUp(data) {
@@ -211,12 +221,21 @@ export class TopupAndWithDrawService {
           for (const nestedControlName in nestedControls) {
             if (nestedControls[nestedControlName].invalid) {
               // tslint:disable-next-line
-              errors.errorMessages.push(this.topUpAndWithdrawFormError.formFieldErrors[nestedControlName][Object.keys(nestedControls[nestedControlName]['errors'])[0]].errorMessage);
+              errors.errorMessages.push(
+                this.topUpAndWithdrawFormError.formFieldErrors[nestedControlName][
+                  Object.keys(nestedControls[nestedControlName]['errors'])[0]
+                ].errorMessage
+              );
             }
           }
-        } else { // NO NESTED CONTROLS
+        } else {
+          // NO NESTED CONTROLS
           // tslint:disable-next-line
-          errors.errorMessages.push(this.topUpAndWithdrawFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+          errors.errorMessages.push(
+            this.topUpAndWithdrawFormError.formFieldErrors[name][
+              Object.keys(controls[name]['errors'])[0]
+            ].errorMessage
+          );
         }
       }
     }
@@ -258,16 +277,17 @@ export class TopupAndWithDrawService {
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
-    request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
-    request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
+    request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
+    request['portfolioId'] = data.withdrawPortfolio
+      ? data.withdrawPortfolio.productCode
+      : null;
     request['redemptionAmount'] = data.withdrawAmount;
-    request['mode'] = data.withdrawMode; // todo
-    if (request['mode'] === 'BANK') {
-      request['customerBankDetail'] = (data.withdrawBank) ? data.withdrawBank : null; // todo
-    }
+    request['customerBankDetail'] = {
+      accountNumber: data.bank ? data.bank.accountNumber : null
+    };
     return request;
   }
-// ONE-TIME INVESTMENT PAYLOAD
+  // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
     return this.apiService.buyPortfolio(payload);
@@ -278,8 +298,7 @@ export class TopupAndWithDrawService {
     oneTimeInvestment = data.oneTimeInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      oneTimeInvestment: Number(oneTimeInvestment), // todo
-
+      oneTimeInvestment: Number(oneTimeInvestment)
     };
   }
 
@@ -294,8 +313,7 @@ export class TopupAndWithDrawService {
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      monthlyInvestmentAmount: Number(monthlyInvestmentAmount), // todo
-
+      monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
   getTransactionHistory(from?, to?) {
@@ -310,23 +328,35 @@ export class TopupAndWithDrawService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map((e) => {
+    Object.keys(objectKeys).forEach((e) => {
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = (12 * (toYear - fromYear)) + to.getMonth();
+    const diffYear = 12 * (toYear - fromYear) + to.getMonth();
     for (let i = from.getMonth(); i <= diffYear; i++) {
       durationMonths.unshift({
         monthName: monthNames[i % 12],
-        year: Math.floor(fromYear + (i / 12))
+        year: Math.floor(fromYear + i / 12)
       });
     }
 
@@ -340,12 +370,10 @@ export class TopupAndWithDrawService {
       groups[groupName].push(month);
     }
     durationMonths = [];
-    for (let groupName in groups) {
+    for (const groupName in groups) {
       durationMonths.unshift({ year: groupName, months: groups[groupName] });
+        // tslint:disable-next-line
     }
-    console.log(durationMonths);
-
     return durationMonths;
   }
-
 }

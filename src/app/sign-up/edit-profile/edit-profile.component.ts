@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -61,12 +61,12 @@ export class EditProfileComponent implements OnInit {
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService) {
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe(() => {
-        this.pageTitle = this.translate.instant('EDIT_PROFILE.CONFIRMATION');
-        this.setPageTitle(this.pageTitle);
-      });
-      this.getNationalityCountryList();
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe(() => {
+      this.pageTitle = this.translate.instant('EDIT_PROFILE.CONFIRMATION');
+      this.setPageTitle(this.pageTitle);
+    });
+    this.getNationalityCountryList();
   }
 
   ngOnInit() {
@@ -109,49 +109,48 @@ export class EditProfileComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
       if (data.objectList) {
-      if ( data.objectList.personalInformation ) {
-      this.personalData = data.objectList.personalInformation;
+        if (data.objectList.personalInformation) {
+          this.personalData = data.objectList.personalInformation;
+        }
+        if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+          this.residentialAddress = data.objectList.contactDetails.homeAddress;
+        }
+        this.empolymentDetails = data.objectList.employmentDetails;
+        if (data.objectList.customerBankDetail) {
+          this.bankDetails = data.objectList.customerBankDetail[0];
+        }
+        if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+          this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+          this.isMailingAddressSame = false;
+        }
+        if (data.objectList.contactDetails) {
+          this.contactDetails = data.objectList.contactDetails;
+        }
+        if (this.personalData) {
+          this.setFullName(this.personalData.firstName, this.personalData.lastName);
+          this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+          this.setNric(this.personalData.nricNumber);
+          if (this.personalData.passportNumber) {
+            this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+          }
+          if (this.personalData && this.personalData.isSingaporeResident) {
+            this.isSingaporeResident = this.personalData.isSingaporeResident;
+          }
+        }
       }
-      if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-        this.residentialAddress = data.objectList.contactDetails.homeAddress;
-      }
-      this.empolymentDetails = data.objectList.employmentDetails;
-      if (data.objectList.customerBankDetail) {
-        this.bankDetails = data.objectList.customerBankDetail[0];
-      }
-      if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-        this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-        this.isMailingAddressSame = false;
-      }
-      if (data.objectList.contactDetails) {
-        this.contactDetails = data.objectList.contactDetails;
-      }
-      console.log(this.personalData);
-      if (this.personalData) {
-      this.setFullName(this.personalData.firstName, this.personalData.lastName);
-      this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-      this.setNric(this.personalData.nricNumber);
-      if ( this.personalData.passportNumber) {
-      this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
-      }
-      if (this.personalData &&  this.personalData.isSingaporeResident) {
-        this.isSingaporeResident = this.personalData.isSingaporeResident;
-      }
-    }
-    }
       // tslint:disable-next-line:max-line-length
       if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
         this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
       }
-      if ( this.residentialAddress && this.residentialAddress.country &&  this.residentialAddress.country.nationalityCode ) {
-      this.resNationality = this.residentialAddress.country.nationalityCode;
+      if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+        this.resNationality = this.residentialAddress.country.nationalityCode;
       }
-      if ( this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-      this.mailNationality = this.mailingAddress.country.nationalityCode;
+      if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+        this.mailNationality = this.mailingAddress.country.nationalityCode;
       }
       // tslint:disable-next-line:max-line-length
-      if ( this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress &&  this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress &&  this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode ) {
-      this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+        this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
       }
     });
   }
@@ -206,40 +205,36 @@ export class EditProfileComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-        if (!nationality.blocked) {
+      if (!nationality.blocked) {
         nationality.countries.forEach((country) => {
-            countryList.push(country);
+          countryList.push(country);
         });
-    }});
+      }
+    });
     return countryList;
- }
+  }
   editContactDetails() {
-    let uploadedDocuments = [] ;
+    let uploadedDocuments = [];
     let mailingUrl;
-    let ResUrl ;
+    let ResUrl;
     if (this.entireUserData.documentDetails) {
-    uploadedDocuments = this.entireUserData.documentDetails;
+      uploadedDocuments = this.entireUserData.documentDetails;
     }
     let i;
     for (i = 0; i < uploadedDocuments.length; i++) {
-    if ( uploadedDocuments[i].docType === 'MAILING_ADDRESS_PROOF' ) {
-      mailingUrl = uploadedDocuments[i].fileName;
-    }
-    if ( uploadedDocuments[i].docType === 'RESIDENTIAL_ADDRESS_PROOF' ) {
-      ResUrl = uploadedDocuments[i].fileName;
-    }
+      if (uploadedDocuments[i].docType === 'MAILING_ADDRESS_PROOF') {
+        mailingUrl = uploadedDocuments[i].fileName;
+      }
+      if (uploadedDocuments[i].docType === 'RESIDENTIAL_ADDRESS_PROOF') {
+        ResUrl = uploadedDocuments[i].fileName;
+      }
     }
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident , mailingUrl , ResUrl);
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident, mailingUrl, ResUrl);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   isCountrySIngapore(nationalityCode) {
-    if (nationalityCode === 'SG') {
-    return true;
-    } else {
-      return false;
-    }
-
+    return nationalityCode === 'SG';
   }
   editBankDetails() {
     let AccountHolderName;
@@ -253,7 +248,13 @@ export class EditProfileComponent implements OnInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
   addBankDetails() {
-    this.investmentAccountService.setEditProfileBankDetail(null, null, null, null, true);
+    let AccountHolderName;
+    if (this.bankDetails && this.bankDetails.accountName) {
+      AccountHolderName = this.bankDetails.accountName;
+    } else {
+      AccountHolderName = this.fullName;
+    }
+    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 }
