@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -36,7 +36,8 @@ export class ResidentialAddressComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
@@ -52,15 +53,19 @@ export class ResidentialAddressComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.getReasoneList();  // API CALLING FOR REASONLIST
+    this.getReasoneList(); // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     if (this.formValues.isMyInfoEnabled) {
       if (this.formValues.countryCode) {
-        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(
+          this.formValues.countryCode
+        );
       }
       if (this.formValues.mailCountryCode) {
-        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(
+          this.formValues.mailCountryCode
+        );
       }
     }
     this.countries = this.investmentAccountService.getCountriesFormData();
@@ -75,7 +80,9 @@ export class ResidentialAddressComponent implements OnInit {
       this.observeReasonChange();
     }
     if (this.addressForm.get('mailingAddress')) {
-      this.addOrRemoveOtherControl(this.addressForm.get('mailingAddress').get('reason').value);
+      this.addOrRemoveOtherControl(
+        this.addressForm.get('mailingAddress').get('reason').value
+      );
     }
   }
   getReasoneList() {
@@ -86,50 +93,98 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildForm(): FormGroup {
     return this.formBuilder.group({
-      country: [{
-        value: this.getDefaultCountry(),
-        disabled: this.investmentAccountService.isDisabled('country')
-      }, Validators.required],
-      address1: [{ value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1') },
-      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
-      address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
-      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
-      isMailingAddressSame: [{
-        value: this.formValues.isMailingAddressSame,
-        disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')
-      }]
+      country: [
+        {
+          value: this.getDefaultCountry(),
+          disabled: this.investmentAccountService.isDisabled('country')
+        },
+        Validators.required
+      ],
+      address1: [
+        {
+          value: this.formValues.address1,
+          disabled: this.investmentAccountService.isDisabled('address1')
+        },
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+      ],
+      address2: [
+        {
+          value: this.formValues.address2,
+          disabled: this.investmentAccountService.isDisabled('address2')
+        },
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+      ],
+      isMailingAddressSame: [
+        {
+          value: this.formValues.isMailingAddressSame,
+          disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')
+        }
+      ]
     });
   }
 
   addOrRemoveAdditionalControls(country) {
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     if (isSingapore) {
-      this.addressForm.addControl('postalCode', new FormControl({
-        value: this.formValues.postalCode, disabled: this.investmentAccountService.isDisabled('postalCode')
-      },
-        [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
-      this.addressForm.addControl('floor', new FormControl({
-        value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')
-      },
-      [Validators.pattern(RegexConstants.SymbolNumber)]));
-      this.addressForm.addControl('unitNo', new FormControl({
-        value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')
-      },
-      [Validators.pattern(RegexConstants.SymbolNumber)]
-    ));
+      this.addressForm.addControl(
+        'postalCode',
+        new FormControl(
+          {
+            value: this.formValues.postalCode,
+            disabled: this.investmentAccountService.isDisabled('postalCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]
+        )
+      );
+      this.addressForm.addControl(
+        'floor',
+        new FormControl(
+          {
+            value: this.formValues.floor,
+            disabled: this.investmentAccountService.isDisabled('floor')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+      this.addressForm.addControl(
+        'unitNo',
+        new FormControl(
+          {
+            value: this.formValues.unitNo,
+            disabled: this.investmentAccountService.isDisabled('unitNo')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
 
       this.addressForm.removeControl('city');
       this.addressForm.removeControl('state');
       this.addressForm.removeControl('zipCode');
     } else {
-      this.addressForm.addControl('city', new FormControl(
-        this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      this.addressForm.addControl('state', new FormControl(
-        this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      this.addressForm.addControl('zipCode', new FormControl({
-        value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')
-      },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+      this.addressForm.addControl(
+        'city',
+        new FormControl(this.formValues.city, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addressForm.addControl(
+        'state',
+        new FormControl(this.formValues.state, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addressForm.addControl(
+        'zipCode',
+        new FormControl(
+          {
+            value: this.formValues.zipCode,
+            disabled: this.investmentAccountService.isDisabled('zipCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+        )
+      );
 
       this.addressForm.removeControl('postalCode');
       this.addressForm.removeControl('floor');
@@ -145,19 +200,46 @@ export class ResidentialAddressComponent implements OnInit {
 
   addOrRemoveMailingAddress() {
     if (!this.addressForm.controls.isMailingAddressSame.value) {
-      this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-        reason: [this.formValues.reason, Validators.required],
-        mailCountry: [{
-          value: this.formValues.mailCountry ? this.formValues.mailCountry :
-            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-          disabled: this.investmentAccountService.isDisabled('mailCountry')
-        }, Validators.required],
-        mailAddress1: [{ value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1') },
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]],
-        mailAddress2: [{ value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2') },
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]]
-      }));
-      this.addOrRemoveAdditionalControlsMailing(this.addressForm.get('mailingAddress').get('mailCountry').value);
+      this.addressForm.addControl(
+        'mailingAddress',
+        this.formBuilder.group({
+          reason: [this.formValues.reason, Validators.required],
+          mailCountry: [
+            {
+              value: this.formValues.mailCountry
+                ? this.formValues.mailCountry
+                : this.investmentAccountService.getCountryFromNationalityCode(
+                    this.formValues.nationalityCode
+                  ),
+              disabled: this.investmentAccountService.isDisabled('mailCountry')
+            },
+            Validators.required
+          ],
+          mailAddress1: [
+            {
+              value: this.formValues.mailAddress1,
+              disabled: this.investmentAccountService.isDisabled('mailAddress1')
+            },
+            [
+              Validators.required,
+              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
+            ]
+          ],
+          mailAddress2: [
+            {
+              value: this.formValues.mailAddress2,
+              disabled: this.investmentAccountService.isDisabled('mailAddress2')
+            },
+            [
+              Validators.required,
+              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
+            ]
+          ]
+        })
+      );
+      this.addOrRemoveAdditionalControlsMailing(
+        this.addressForm.get('mailingAddress').get('mailCountry').value
+      );
       this.observeMailCountryChange();
       this.observeReasonChange();
     } else {
@@ -165,19 +247,26 @@ export class ResidentialAddressComponent implements OnInit {
     }
   }
   observeReasonChange() {
-    this.addressForm.get('mailingAddress').get('reason').valueChanges.subscribe((value) => {
-      this.addOrRemoveOtherControl(value);
-    });
-
+    this.addressForm
+      .get('mailingAddress')
+      .get('reason')
+      .valueChanges.subscribe((value) => {
+        this.addOrRemoveOtherControl(value);
+      });
   }
   addOrRemoveOtherControl(value) {
     const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
     if (value.name === 'Others, please specify') {
-      mailFormGroup.addControl('reasonForOthers', new FormControl({
-        value: this.formValues.reasonForOthers,
-        disabled: this.investmentAccountService.isDisabled('reasonForOthers')
-      }, Validators.required));
-
+      mailFormGroup.addControl(
+        'reasonForOthers',
+        new FormControl(
+          {
+            value: this.formValues.reasonForOthers,
+            disabled: this.investmentAccountService.isDisabled('reasonForOthers')
+          },
+          Validators.required
+        )
+      );
     } else {
       mailFormGroup.removeControl('reasonForOthers');
     }
@@ -187,39 +276,71 @@ export class ResidentialAddressComponent implements OnInit {
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
     if (isSingapore) {
-      mailFormGroup.addControl('mailPostalCode', new FormControl({
-        value: this.formValues.mailPostalCode,
-        disabled: this.investmentAccountService.isDisabled('mailPostalCode')
-      }, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
-      mailFormGroup.addControl('mailFloor', new FormControl({
-        value: this.formValues.mailFloor,
-        disabled: this.investmentAccountService.isDisabled('mailFloor')
-      },
-      [Validators.pattern(RegexConstants.SymbolNumber)]
-    ));
-      mailFormGroup.addControl('mailUnitNo', new FormControl({
-        value: this.formValues.mailUnitNo,
-        disabled: this.investmentAccountService.isDisabled('mailUnitNo')
-      },
-      [Validators.pattern(RegexConstants.SymbolNumber)]
-    ));
+      mailFormGroup.addControl(
+        'mailPostalCode',
+        new FormControl(
+          {
+            value: this.formValues.mailPostalCode,
+            disabled: this.investmentAccountService.isDisabled('mailPostalCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailFloor',
+        new FormControl(
+          {
+            value: this.formValues.mailFloor,
+            disabled: this.investmentAccountService.isDisabled('mailFloor')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailUnitNo',
+        new FormControl(
+          {
+            value: this.formValues.mailUnitNo,
+            disabled: this.investmentAccountService.isDisabled('mailUnitNo')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
 
       mailFormGroup.removeControl('mailCity');
       mailFormGroup.removeControl('mailState');
       mailFormGroup.removeControl('mailZipCode');
     } else {
-      mailFormGroup.addControl('mailCity', new FormControl({
-        value: this.formValues.mailCity, disabled: this.investmentAccountService.isDisabled('mailCity')
-      },
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      mailFormGroup.addControl('mailState', new FormControl({
-        value: this.formValues.mailState, disabled: this.investmentAccountService.isDisabled('mailState')
-      },
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
-      mailFormGroup.addControl('mailZipCode', new FormControl({
-        value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')
-      },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+      mailFormGroup.addControl(
+        'mailCity',
+        new FormControl(
+          {
+            value: this.formValues.mailCity,
+            disabled: this.investmentAccountService.isDisabled('mailCity')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailState',
+        new FormControl(
+          {
+            value: this.formValues.mailState,
+            disabled: this.investmentAccountService.isDisabled('mailState')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailZipCode',
+        new FormControl(
+          {
+            value: this.formValues.mailZipCode,
+            disabled: this.investmentAccountService.isDisabled('mailZipCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+        )
+      );
 
       mailFormGroup.removeControl('mailPostalCode');
       mailFormGroup.removeControl('mailFloor');
@@ -228,27 +349,34 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   observeMailCountryChange() {
-    this.addressForm.get('mailingAddress').get('mailCountry').valueChanges.subscribe((value) => {
-      this.addOrRemoveAdditionalControlsMailing(value);
-    });
+    this.addressForm
+      .get('mailingAddress')
+      .get('mailCountry')
+      .valueChanges.subscribe((value) => {
+        this.addOrRemoveAdditionalControlsMailing(value);
+      });
   }
 
   getDefaultCountry() {
     let defaultCountry;
     if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
+      );
     } else {
       if (this.formValues.country) {
         defaultCountry = this.formValues.country;
       } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
+        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+          this.formValues.nationalityCode
+        );
       }
     }
     return defaultCountry;
   }
 
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   setDropDownValue(key, value) {
@@ -279,14 +407,20 @@ export class ResidentialAddressComponent implements OnInit {
         (response: any) => {
           if (response) {
             if (response.Status.code === 200) {
-              const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+              const address1 =
+                response.Placemark[0].AddressDetails.Country.Thoroughfare
+                  .ThoroughfareName;
               const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
               address1Control.setValue(address1);
               address2Control.setValue(address2);
             } else {
               const ref = this.modal.open(ErrorModalComponent, { centered: true });
-              ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-              ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
+              ref.componentInstance.errorTitle = this.translate.instant(
+                'RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE'
+              );
+              ref.componentInstance.errorMessage = this.translate.instant(
+                'RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE'
+              );
               address1Control.setValue('');
               address2Control.setValue('');
             }
@@ -294,13 +428,22 @@ export class ResidentialAddressComponent implements OnInit {
         },
         (err) => {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-        });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC'
+          );
+        }
+      );
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+      ref.componentInstance.errorTitle = this.translate.instant(
+        'RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE'
+      );
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE'
+      );
     }
   }
 

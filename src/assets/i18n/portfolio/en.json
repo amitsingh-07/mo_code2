@@ -15,7 +15,7 @@
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Your Risk Ability",
-    "DESCRIPTION": "In the next step, we will assess your ability to take risk.",
+    "DESCRIPTION": "In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.",
     "PROCEED": "Proceed"
   },
   "PERSONAL_INFO": {
@@ -34,7 +34,7 @@
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
     "CAPTION": "Your Risk Willingness",
-    "DESCRIPTION": "In the next step, we will assess your willingness to take risk based on your investment amount and period."
+    "DESCRIPTION": "In the next step, we will assess your willingness to take risk based on your answers selected for the questionaire. Your inputs will determine the recommendations suggested."
   },
   "RISK_ASSESSMENT": {
     "TITLE": "Your Risk Willingness",
@@ -48,7 +48,7 @@
     "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
-    "ATLEAST_ONE": "At least one of the following is required",
+    "ATLEAST_ONE": "Select at least one of the following.",
     "TITLE": "Your Financials",
     "STEP_1_LABEL": "Step 1",
     "MONTHLY_INCOME_LBL": "Monthly Income",
@@ -58,13 +58,13 @@
     "TOTAL_ASSET_SUB_LBL": "(E.g. Cash, CPF, Investment, Property)",
     "LOANS_LBL": "Total Loans",
     "LOANS_SUB_LBL": "(E.g. Car, Property)",
-    "INVESTMENT_LBL": "My Investment Amount ",
+    "INVESTMENT_LBL": "I want to invest",
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
-    "MY_FINANCIALS_LBL": "My Financials",
+    "MY_FINANCIALS_LBL": "My Finances",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."

@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { FooterService } from '../../shared/footer/footer.service';
+
 @Component({
   selector: 'app-get-started-step2',
   templateUrl: './get-started-step2.component.html',
@@ -46,5 +47,4 @@ export class GetStartedStep2Component implements OnInit {
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
   }
-
 }

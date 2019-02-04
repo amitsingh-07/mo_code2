@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PortfolioService } from '../portfolio.service';
@@ -20,7 +20,9 @@ export class WhatsTheRiskComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public headerService: HeaderService, private portfolioService: PortfolioService) {
+    public headerService: HeaderService,
+    private portfolioService: PortfolioService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WHATS_THE_RISK.TITLE');
@@ -37,5 +39,4 @@ export class WhatsTheRiskComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
   }
-
 }

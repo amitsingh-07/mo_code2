@@ -6,9 +6,9 @@
 // }
 
 app-my-financials {
-  .container-fluid{
+  .container-fluid {
     @include allmobiles {
-        padding: 120px 0;
+      padding: 120px 0 80px 0;
     }
   }
   .fixed-btn--sm {
@@ -17,13 +17,13 @@ app-my-financials {
     font-size: 16px;
     font-family: $muli-regular;
     font-weight: normal !important;
-    padding: .90rem;
+    padding: 0.9rem;
     height: 50px;
   }
 
   .fixed-btn--sm.active {
-    border: 1px solid #FFFFFF !important;
-    color: #FFFFFF !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
     background: #00a7a7 !important;
   }
 
@@ -40,7 +40,6 @@ app-my-financials {
     line-height: 22px;
   }
 
-
   .second-section {
     margin-top: 4px;
     .form-group-with-bg--content {
@@ -55,7 +54,7 @@ app-my-financials {
       .form-group-single-column {
         justify-content: center;
         align-items: center;
-        input[type='checkbox']+label {
+        input[type='checkbox'] + label {
           padding-left: 40px;
         }
         .checkbox-button {
@@ -71,12 +70,12 @@ app-my-financials {
             font-style: italic;
             letter-spacing: -0.1px;
             color: #5e5e5e;
-          } 
+          }
         }
-        .form-control{
-          &.form-control-right{
-            input{
-             padding-right: 40px !important;
+        .form-control {
+          &.form-control-right {
+            input {
+              padding-right: 40px !important;
             }
           }
         }
@@ -85,14 +84,12 @@ app-my-financials {
   }
 
   .tooltip-icon {
-    background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
+    background: url('../../../assets/images/tooltip-icon.svg') no-repeat;
     height: 20px;
     width: 20px;
     cursor: pointer;
     display: block;
   }
-
-
 
   .form-control {
     &.form-control-right {
@@ -102,12 +99,12 @@ app-my-financials {
     }
   }
 
-  .btn{
-    &:disabled{
-        background-color: #3bbcbc;
-        color: #00a7a7;
-      }
-    &.btn__footer--fixed{
+  .btn {
+    &:disabled {
+      background-color: #3bbcbc;
+      color: #00a7a7;
+    }
+    &.btn__footer--fixed {
       font-family: $muli-bold !important;
     }
   }

@@ -1,27 +1,20 @@
-import { FooterService } from './../../shared/footer/footer.service';
-import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import {
-  AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { IMyFinancials } from './my-financials.interface';
 
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
@@ -47,7 +40,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -61,7 +55,14 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
 
   setPageTitle(title: string) {
     const stepLabel = this.translate.instant('MY_FINANCIALS.STEP_1_LABEL');
-    this.navbarService.setPageTitle(title, undefined, undefined, undefined, undefined, stepLabel);
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
 
   ngOnInit() {
@@ -70,11 +71,13 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.footerService.setFooterVisibility(false);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
-    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox ?
-      this.myFinancialsFormValues.oneTimeInvestmentChkBox : false;
+    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox
+      ? this.myFinancialsFormValues.oneTimeInvestmentChkBox
+      : false;
     // tslint:disable-next-line:max-line-length
-    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox ?
-     this.myFinancialsFormValues.monthlyInvestmentChkBox : false;
+    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox
+      ? this.myFinancialsFormValues.monthlyInvestmentChkBox
+      : false;
     if (typeof this.oneTimeInvestmentChkBoxVal === 'undefined') {
       this.oneTimeInvestmentChkBoxVal = true;
     }
@@ -86,9 +89,14 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
       totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets),
       totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
-      initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
+      initialInvestment: new FormControl(
+        this.myFinancialsFormValues.initialInvestment,
+        Validators.required
+      ),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
-      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund),
+      suffEmergencyFund: new FormControl(
+        PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund
+      ),
       // tslint:disable-next-line:max-line-length
       firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
       // tslint:disable-next-line:max-line-length
@@ -133,7 +141,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     if (this.myFinancialsForm.controls.firstChkBox.value === true) {
       this.myFinancialsForm.controls.initialInvestment.enable();
       this.myFinancialsForm.controls.initialInvestment.setValue(0);
-
     } else {
       this.myFinancialsForm.controls.initialInvestment.disable();
       this.myFinancialsForm.controls.initialInvestment.setValue('');
@@ -154,7 +161,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
+      ref.componentInstance.errorMessageHTML = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.isButtons) {
         ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
@@ -175,7 +182,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     } else {
       this.saveAndProceed(form);
     }
-
   }
   saveAndProceed(form: any) {
     this.portfolioService.setMyFinancials(form.value);

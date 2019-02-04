@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
 import { PortfolioService } from '../../portfolio/portfolio.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -27,7 +27,9 @@ export class FinanicalDetailsComponent implements OnInit {
   numberOfHouseHoldMembers: string;
   annualHouseHoldIncomeRanges: any;
   salaryRanges: any;
-  numberOfHouseHoldMembersList = Array(11).fill(0).map((x, i) => i);
+  numberOfHouseHoldMembersList = Array(11)
+    .fill(0)
+    .map((x, i) => i);
 
   constructor(
     public readonly translate: TranslateService,
@@ -38,7 +40,8 @@ export class FinanicalDetailsComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('FINANCIAL_DETAILS.TITLE');
@@ -52,11 +55,19 @@ export class FinanicalDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getIncomeRangeList();
     this.FinancialFormData = this.portfolioService.getMyFinancials();
-    this.formValues = this.investmentAccountService.getFinancialFormData();
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.financialDetails = this.formBuilder.group({
-      annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
-        disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
-      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
+      annualHouseHoldIncomeRange: [
+        {
+          value: this.formValues.annualHouseHoldIncomeRange,
+          disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')
+        },
+        Validators.required
+      ],
+      numberOfHouseHoldMembers: [
+        this.formValues.numberOfHouseHoldMembers,
+        Validators.required
+      ],
       salaryRange: [this.formValues.salaryRange, Validators.required]
     });
   }
@@ -70,7 +81,9 @@ export class FinanicalDetailsComponent implements OnInit {
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
-    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(annualHouseHoldIncome);
+    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(
+      annualHouseHoldIncome
+    );
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
     this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
@@ -79,7 +92,7 @@ export class FinanicalDetailsComponent implements OnInit {
     this.financialDetails.controls['salaryRange'].setValue(range);
   }
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
@@ -105,8 +118,11 @@ export class FinanicalDetailsComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.TAX_INFO]);
     }
   }
-
   isDisabled() {
     return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
+  }
+
+  getPlacement() {
+    return this.formValues.isMyInfoEnabled ? 'bottom' : 'top';
   }
 }

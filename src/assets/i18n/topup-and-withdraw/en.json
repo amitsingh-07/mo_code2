@@ -23,6 +23,12 @@
     "RECIPENTS_NAME": "Recipent's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
+    "TRANSFER_INSTRUCTION": "Transfer Instructions",
+    "VIA_BANK_ONE": "Sending money via Bank Transfer",
+    "TRANSER_INSTRUCTION": "Transfer Instructions",
+    "VIA_PAYNOW_ONE": "Sending money via PayNow",
+    "ONE_TIME_INVESTMENT": "One-time Investment",
+    "MONTHLY_INVESTMENT": "Monthly Investment",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
         "STEP_1": "STEP 1",
@@ -93,7 +99,7 @@
     "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?",
     "DELETE": "Delete Portfolio",
     "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
-    "EXPIRED":"Your portfolio has expired.",
+    "EXPIRED": "Your portfolio has expired.",
     "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days"
   },
   "YOUR_PORTFOLIO": {
@@ -187,5 +193,12 @@
   },
   "FUND_DETAILS": {
     "TITLE": "Fund Details"
+  },
+  "ASSET_ALLOCATION": {
+    "TITLE": "Asset Allocation",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "ANNUAL_FEES": "Annual Fees"
+
   }
+
 }

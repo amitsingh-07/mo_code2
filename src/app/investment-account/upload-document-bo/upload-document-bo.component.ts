@@ -4,12 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -39,7 +37,8 @@ export class UploadDocumentBOComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
@@ -59,30 +58,44 @@ export class UploadDocumentBOComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = new FormGroup({
-      passportImage: new FormControl (this.formValues.passportImageBO, Validators.required),
-      });
+      passportImage: new FormControl(this.formValues.passportImageBO, Validators.required)
+    });
   }
 
   openFileDialog(elem) {
-      elem.click();
+    elem.click();
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
-    const response = this.investmentAccountCommon.fileSelected(this.formData , control, controlname, fileElem, thumbElem);
+    const response = this.investmentAccountCommon.fileSelected(
+      this.formData,
+      control,
+      controlname,
+      fileElem,
+      thumbElem
+    );
     if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
-      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE'
+      );
+      const errorDesc = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE'
+      );
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else if (!response.validFileType) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
-        const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
-        ref.componentInstance.errorTitle = errorTitle;
-        ref.componentInstance.errorDescription = errorDesc;
-        control.setValue('');
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE'
+      );
+      const errorDesc = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE'
+      );
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
     } else {
       const selFile = fileElem.target.files[0];
       control.setValue(selFile ? selFile.name : '');
@@ -90,8 +103,7 @@ export class UploadDocumentBOComponent implements OnInit {
   }
 
   getPayloadKey(controlname) {
-    const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
-    return payloadKey;
+    return this.investmentAccountCommon.getPayloadKey(controlname);
   }
 
   uploadDocument() {
@@ -113,8 +125,7 @@ export class UploadDocumentBOComponent implements OnInit {
   }
 
   getFileName(fileElem) {
-    const fileName = this.investmentAccountCommon.getFileName(fileElem);
-    return fileName;
+    return this.investmentAccountCommon.getFileName(fileElem);
   }
 
   clearFileSelection(control, event, thumbElem?, fileElem?) {
@@ -134,15 +145,23 @@ export class UploadDocumentBOComponent implements OnInit {
   goToNext(form) {
     if (!form.valid) {
       // Add an error message saying that need to uplopad passport
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE');
-      const errorMessage = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE');
+      const errorTitle = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE'
+      );
+      const errorMessage = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE'
+      );
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorMessageHTML = errorMessage;
-      ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED'
+      );
       ref.componentInstance.primaryAction.subscribe(() => {
         this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.documents_pending);
+          this.investmentAccountService.setAccountCreationStatus(
+            INVESTMENT_ACCOUNT_CONFIG.status.documents_pending
+          );
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
         });
       });
@@ -158,5 +177,4 @@ export class UploadDocumentBOComponent implements OnInit {
   redirectToNextPage() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
-
 }

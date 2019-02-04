@@ -1,12 +1,9 @@
 <div class="employement-details">
-
   <div class="step-indicator-container" *ngIf="!isEditProfile">
     <div class="container-fluid">
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-
-
   <div class="container-fluid">
     <div class="content">
       <div class="row">
@@ -81,7 +78,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- INDUSTRY for OTHERS -->
               <div *ngIf="employementDetailsForm.controls.industry && employementDetailsForm.controls.industry.value && 
               employementDetailsForm.controls.industry.value.industry =='Others'">
@@ -99,7 +95,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- Occupation -->
               <div class="form-group" *ngIf="employementDetailsForm.get('occupation')">
                 <div class="flex-row">
@@ -126,7 +121,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- OCCUPATION for OTHERS -->
               <div *ngIf="employementDetailsForm.controls.occupation && employementDetailsForm.controls.occupation.value && 
               employementDetailsForm.controls.occupation.value.occupation =='Others'">
@@ -144,7 +138,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="flex-row mb10" *ngIf="employementDetailsForm.get('contactNumber')">
                 <div class="flex-col-5">
                   <label for="name" id="employement_contact_number_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' |
@@ -158,7 +151,7 @@
               </div>
               <div>
                 <div *ngIf="employementDetailsForm.get('employeaddress')" formGroupName="employeaddress">
-                    <div class="emp_add_lbl"><label>Your office address:</label></div>
+                  <div class="emp_add_lbl"><label>Your office address:</label></div>
                   <!-- COUNTRY -->
                   <div class="form-group">
                     <div class="flex-row">
@@ -182,7 +175,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- POSTAL CODE -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empPostalCode')">
                     <div class="flex-row">
@@ -207,7 +199,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- ADDRESS 1 -->
                   <div class="form-group">
                     <div class="flex-row">
@@ -222,8 +213,6 @@
                       </div>
                     </div>
                   </div>
-
-
                   <!-- ADDRESS 2 -->
                   <div class="form-group">
                     <div class="flex-row">
@@ -238,7 +227,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- UNIT NO -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empUnitNo')">
                     <div class="flex-row">
@@ -253,7 +241,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- CITY -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empCity')">
                     <div class="flex-row">
@@ -268,7 +255,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- STATE -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empState')">
                     <div class="flex-row">
@@ -283,7 +269,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- ZIP CODE -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empZipCode')">
                     <div class="flex-row">
@@ -301,15 +286,11 @@
                 </div>
               </div>
             </div>
-
-
-
             <button *ngIf="!isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)"
               class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
               'COMMON.LABEL.CONTINUE' | translate}}</button>
             <button *ngIf="isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)"
               class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">Apply Changes</button>
-
           </form>
         </div>
       </div>

@@ -107,6 +107,9 @@ app-edit-profile{
     letter-spacing: -0.2px;
     color: #2d8289;
     word-break: break-all;
+    @include iphone6{
+      font-size: 16px;
+    }
   }
   .form-group-heading {
     font-family: $muli-semi-bold;

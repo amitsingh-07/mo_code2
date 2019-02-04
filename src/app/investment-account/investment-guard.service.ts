@@ -10,17 +10,19 @@ import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
   providedIn: 'root'
 })
 export class InvestmentGuardService implements CanActivate {
-  constructor(private signUpService: SignUpService,
-              private route: Router,
-              private authService: AuthenticationService
-  ) {
-  }
+  constructor(
+    private signUpService: SignUpService,
+    private route: Router,
+    private authService: AuthenticationService
+  ) {}
   canActivate(): boolean {
     const investmentStatus = this.signUpService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
-    } else if (INVESTMENT_ACCOUNT_CONFIG.INVESTMENT_ACCOUNT_GUARD_STATUS.includes(investmentStatus)) {
+    } else if (
+      INVESTMENT_ACCOUNT_CONFIG.INVESTMENT_ACCOUNT_GUARD_STATUS.includes(investmentStatus)
+    ) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     }

@@ -1,77 +1,88 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
 
-app-acknowledgement{
-.app-acknowledgement{
-    background-color:$white-color;
-        .container-fluid{
-          padding-top: 110px;
-        }
-    .step-indicator-container {
-        background-color: #fff;
-        padding: 10px 0px;
-        position: relative;
-        top: 106px;
-        margin-bottom: 15px;
-    
-        .container-fluid {
-          padding-top: 0px;
-          padding-bottom: 0px;
-        }
-      }
-    
-      @media (min-width: 768px) {
-        .step-indicator-container {
-          top: 0px;
-        }
-      }
-    .acknowledgement_text{
-            font-family: $muli-regular;
-            font-size: 16px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.31;
-            letter-spacing: -0.2px;
-            color: #848484;
-          
+app-acknowledgement {
+  .app-acknowledgement {
+    background-color: $white-color;
+
+    .container-fluid {
+      padding-top: 110px;
     }
-    .text-bold{
+
+    .step-indicator-container {
+      background-color: #fff;
+      padding: 10px 0px;
+      position: relative;
+      top: 106px;
+      margin-bottom: 15px;
+
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .step-indicator-container {
+        top: 0px;
+      }
+    }
+
+    .acknowledgement_text {
+      font-family: $muli-regular;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.31;
+      letter-spacing: -0.2px;
+      color: #848484;
+    }
+
+    .text-bold {
       font-weight: bold;
       color: #000000;
     }
-    ol{
+
+    ol {
       padding: 0;
       margin: 0;
       padding-left: 18px;
-      ul.list-none{
+
+      ul.list-none {
         padding: 10px 0;
         font-weight: normal;
         color: #848484;
-        .flex{
-          span{
-            &:first-child{
+
+        .flex {
+          span {
+            &:first-child {
               padding-right: 5px;
               padding-bottom: 10px;
             }
           }
         }
+
         strong {
           font-family: $muli-bold;
           color: #000000;
         }
       }
-      .inner-list{
-        li{
+
+      .inner-list {
+        li {
           padding-left: 20px;
         }
       }
-     .list-style{
-       padding-left: 10px !important;
-       .flex{
-         align-items: center;
-       }
-        .disc{
+
+      .list-style {
+        padding-left: 10px !important;
+
+        .flex {
+          align-items: center;
+        }
+
+        .disc {
           width: 5px;
           height: 5px;
           border-radius: 50%;
@@ -79,19 +90,20 @@ app-acknowledgement{
           padding: 0 !important;
         }
       }
-      .flex{
-        justify-content: space-between;
 
+      .flex {
+        justify-content: space-between;
       }
     }
-    .list-none{
+
+    .list-none {
       padding: 0;
       margin: 0;
       list-style-type: none;
     }
-    .btn__footer--fixed{
+
+    .btn__footer--fixed {
       font-family: $muli-bold !important;
     }
-}
-
+  }
 }
