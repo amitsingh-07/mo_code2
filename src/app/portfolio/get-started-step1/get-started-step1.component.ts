@@ -1,9 +1,8 @@
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
-
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -18,7 +17,6 @@ import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class GetStartedStep1Component implements OnInit {
-
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
   description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
@@ -34,7 +32,8 @@ export class GetStartedStep1Component implements OnInit {
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
-    public signUpService: SignUpService) {
+    public signUpService: SignUpService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -48,10 +47,8 @@ export class GetStartedStep1Component implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
+      this.authService.authenticate().subscribe((token) => {});
     }
-
   }
   goBack() {
     this._location.back();

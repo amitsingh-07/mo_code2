@@ -1,13 +1,11 @@
-import {
-    ModelWithButtonComponent
-} from 'src/app/shared/modal/model-with-button/model-with-button.component';
-
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
@@ -28,21 +26,35 @@ export class SingPassComponent implements OnInit {
   showConfirmation: boolean;
   showSingPass: boolean;
   investmentData: any;
+  myInfoSubscription: any;
 
-  constructor(private modal: NgbModal,
-              private router: Router,
-              private myInfoService: MyInfoService,
-              public readonly translate: TranslateService,
-              private investmentAccountService: InvestmentAccountService
-            ) {
+  constructor(
+    private modal: NgbModal,
+    private router: Router,
+    private myInfoService: MyInfoService,
+    public readonly translate: TranslateService,
+    private investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.modelTitle = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE');
-      this.modelMessge = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-      this.modelBtnText = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
-      this.modelTitle1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE');
-      this.modelMessge1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION');
-      this.modelBtnText1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT');
+      this.modelTitle = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
+      );
+      this.modelMessge = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
+      );
+      this.modelBtnText = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
+      );
+      this.modelTitle1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
+      );
+      this.modelMessge1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION'
+      );
+      this.modelBtnText1 = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
+      );
     });
   }
 
@@ -50,6 +62,30 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoData();
+        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED' && this.myInfoService.isMyInfoEnabled) {
+          this.cancelMyInfo();
+        } else {
+          this.myInfoService.closeMyInfoPopup(false);
+        }
+      }
+    });
+  }
+
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+    if (window.sessionStorage.currentUrl) {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 
   openModal() {
@@ -64,18 +100,41 @@ export class SingPassComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
     }
-    ref.result.then(() => {
-      this.showConfirmation = true;
-    }).catch((e) => {
-    });
+    ref.result
+      .then(() => {
+        this.showConfirmation = true;
+      })
+      .catch((e) => { });
+  }
+
+  getMyInfoData() {
+    this.myInfoService.openFetchPopup();
+    this.myInfoService.isMyInfoEnabled = true;
+
+    // Investment account
+    if (this.investmentAccountService.getCallBackInvestmentAccount()) {
+      this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+        this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
+        this.myInfoService.isMyInfoEnabled = false;
+        this.myInfoService.closeMyInfoPopup(false);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+      }, (error) => {
+        this.myInfoService.closeMyInfoPopup(true);
+        this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+      });
+    } else {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+    }
   }
 
   getMyInfo() {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
-    this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-    // this.myInfoService.goToMyInfo();
+    this.myInfoService.setMyInfoAttributes(
+      this.investmentAccountService.myInfoAttributes
+    );
+    this.myInfoService.goToMyInfo();
     // Todo - Robo2 Hard coded UAT1 path for testing
-    this.myInfoService.goToUAT1MyInfo();
+    // this.myInfoService.goToUAT1MyInfo();
   }
 }

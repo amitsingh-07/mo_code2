@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal,  NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -42,7 +42,8 @@ export class TaxInfoComponent implements OnInit {
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('TAX_INFO.TITLE');
@@ -64,31 +65,33 @@ export class TaxInfoComponent implements OnInit {
     this.taxInfoForm = this.formBuilder.group({
       addTax: this.formBuilder.array([])
     });
-    if (this.taxInfoFormValues.taxObj) { // Existing Value
+    if (this.taxInfoFormValues.taxObj) {
+      // Existing Value
       this.taxInfoFormValues.taxObj.addTax.map((item) => {
         this.addTaxForm(item);
       });
-    } else { // New form
+    } else {
+      // New form
       this.addTaxForm(null);
     }
     this.singPlaceHolder = '';
   }
 
   addTaxForm(data): void {
-      const control = this.taxInfoForm.controls['addTax'] as FormArray;
-      const newFormGroup = this.createForm(data);
-      control.push(newFormGroup);
-      if (data) {
-        this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
-      }
-      this.formCount = this.taxInfoForm.controls.addTax.value.length;
+    const control = this.taxInfoForm.controls['addTax'] as FormArray;
+    const newFormGroup = this.createForm(data);
+    control.push(newFormGroup);
+    if (data) {
+      this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
+    }
+    this.formCount = this.taxInfoForm.controls.addTax.value.length;
   }
 
   createForm(data) {
     let formGroup;
     formGroup = this.formBuilder.group({
       radioTin: new FormControl(data ? data.radioTin : '', Validators.required),
-      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required),
+      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required)
     });
     return formGroup;
   }
@@ -134,14 +137,20 @@ export class TaxInfoComponent implements OnInit {
   }
 
   isTinNumberAvailChanged(flag, formgroup, data) {
-
     if (flag) {
-      formgroup.addControl('tinNumber',
-        new FormControl(data ? data.tinNumber : '', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+      formgroup.addControl(
+        'tinNumber',
+        new FormControl(data ? data.tinNumber : '', [
+          Validators.required,
+          Validators.pattern(RegexConstants.Alphanumeric)
+        ])
+      );
       formgroup.removeControl('noTinReason');
     } else {
-      formgroup.addControl('noTinReason',
-        new FormControl(data ? data.noTinReason : '', Validators.required));
+      formgroup.addControl(
+        'noTinReason',
+        new FormControl(data ? data.noTinReason : '', Validators.required)
+      );
       formgroup.removeControl('tinNumber');
     }
   }
@@ -149,13 +158,14 @@ export class TaxInfoComponent implements OnInit {
     this.taxInfoForm.controls[key].setValue(value);
   }
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   goToNext(form) {
     const taxObj = form.getRawValue();
     const selCountryArr = [];
-    if (taxObj) { // Existing Value
+    if (taxObj) {
+      // Existing Value
       taxObj.addTax.map((item) => {
         selCountryArr.push(item.taxCountry.countryCode);
       });
@@ -163,25 +173,29 @@ export class TaxInfoComponent implements OnInit {
     if (this.hasDuplicates(selCountryArr)) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.translate.instant('TAX_INFO.COUNTRY_ERROR');
-      ref.componentInstance.errorMessage = this.translate.instant('TAX_INFO.COUNTRY_ERROR_MSG');
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'TAX_INFO.COUNTRY_ERROR_MSG'
+      );
       return false;
     } else {
-    if (!form.valid) {
-      this.markAllFieldsDirty(form);
-      const error = this.investmentAccountService.getFormErrorList(form.controls.addTax);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
-      return false;
-    } else {
-      this.investmentAccountService.setTaxInfoFormData(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
+      if (!form.valid) {
+        this.markAllFieldsDirty(form);
+        const error = this.investmentAccountService.getFormErrorList(
+          form.controls.addTax
+        );
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.title;
+        ref.componentInstance.errorMessageList = error.errorMessages;
+        return false;
+      } else {
+        this.investmentAccountService.setTaxInfoFormData(form.getRawValue());
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
+      }
     }
   }
-  }
   getBorder() {
-   return (this.taxInfoForm.get('addTax')['controls'].length > 1) ;
-   }
+    return this.taxInfoForm.get('addTax')['controls'].length > 1;
+  }
   removeTaxForm(formGroup, index): void {
     const control = formGroup.controls['addTax'] as FormArray;
     control.removeAt(index);
@@ -197,9 +211,8 @@ export class TaxInfoComponent implements OnInit {
     } else {
       return '';
     }
-
   }
   hasDuplicates(array) {
-    return (new Set(array)).size !== array.length;
+    return new Set(array).size !== array.length;
   }
 }

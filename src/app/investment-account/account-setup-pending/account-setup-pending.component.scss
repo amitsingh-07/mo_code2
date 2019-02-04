@@ -1,32 +1,55 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 /*Modal styles*/
-app-account-setup-pending{
+app-account-setup-pending {
   .account-created-success-modal {
     .custom-modal-backdrop {
-        background: #2d8289;
-        position: fixed;
-        opacity:1;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        top: 0;
+      background: #2d8289;
+      position: fixed;
+      opacity: 1;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      top: 0;
+    }
+
+    .custom-modal-wrapper {
+      top: 0;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 10000;
+      text-align: center;
+      // @extend .flex;
+      // @extend .justify-center;
+      // @extend .align-center;
+    }
+
+    .custom-modal-content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .custom-modal--icon {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 20%;
+
+      img {
+        width: 15%;
       }
-      .custom-modal-wrapper {
-        top: 0;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        z-index: 10000;
-        text-align: center;
-        // @extend .flex;
-        // @extend .justify-center;
-        // @extend .align-center;
+
+      @include allmobiles {
+        img {
+          width: 60%;
+        }
       }
-      .custom-modal-content {
-        width: 100%;
-        height: 100%;
-      }
+    }
+
+    .custom-modal--title {
+      font-family: $muli-bold;
       .custom-modal--icon {
         width: 100%;
         height: 100%;
@@ -35,15 +58,16 @@ app-account-setup-pending{
       }
       .custom-modal--title {
         font-family: $muli-bold;
-      font-size: 24px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.18px;
-      text-align: center;
-      color: #ffffff;
+        font-size: 24px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.18px;
+        text-align: center;
+        color: #ffffff;
       }
+
       .custom-modal--desc {
         font-family: $muli-regular;
         font-size: 16px;
@@ -55,33 +79,41 @@ app-account-setup-pending{
         text-align: center;
         color: #ffffff;
         margin: 0 auto;
+
         @include allmobiles {
           width: 283px;
-          padding-bottom: 70px;
         }
       }
-      .custom-modal--content{
+
+      .custom-modal--content {
         @include allmobiles {
           width: 250px;
           margin: 0 auto;
+          @include allmobiles {
+            width: 283px;
+            padding-bottom: 70px;
+          }
         }
       }
+
       .btn__footer--fixed {
         font-family: $muli-bold;
       }
+
       // @include allmobiles {
       // .btn__footer--fixed {
       //   width: 100%;
       // }
       // }
     }
-    
-    .number{
-        display: flex;
-        flex-direction: row;
-        @include allmobiles {
-            flex-direction: col;
-          }
+
+    .number {
+      display: flex;
+      flex-direction: row;
+
+      @include allmobiles {
+        flex-direction: col;
+      }
     }
-    
+  }
 }

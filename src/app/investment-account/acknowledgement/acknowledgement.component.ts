@@ -1,16 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-
 import { FooterService } from '../../shared/footer/footer.service';
+import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -31,7 +27,8 @@ export class AcknowledgementComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public footerService: FooterService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
@@ -50,5 +47,4 @@ export class AcknowledgementComponent implements OnInit {
   goNext() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
-
 }
