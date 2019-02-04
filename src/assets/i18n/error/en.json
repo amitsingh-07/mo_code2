@@ -2,7 +2,8 @@
 "ERROR": {
     "CONTACT_US": {
         "EMPTY_TEXT": "*Please input your message.",
-        "EMPTY_SUBJECT": "Please input your subject"
+        "EMPTY_SUBJECT": "Please input your subject",
+        "PENDING": "Your enquiry is being sent. Please hold on."
         }
     }
 }

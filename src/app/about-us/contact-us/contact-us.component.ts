@@ -24,6 +24,7 @@ export class ContactUsComponent implements OnInit {
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;
+  contactUsFormSent: boolean;
   contactUsErrorMessage: string;
   subjectList: any;
   subjectPreset = 'Choose a Subject*';
@@ -42,8 +43,9 @@ export class ContactUsComponent implements OnInit {
     private configService: ConfigService,
     private seoService: SeoServiceService
     ) {
-      this.authService.authenticate();
-
+      this.authService.authenticate().subscribe((data) => {
+      });
+      this.contactUsFormSent  = false;
       this.configService.getConfig().subscribe((config) => {
         this.translate.setDefaultLang(config.language);
         this.translate.use(config.language);
@@ -80,15 +82,19 @@ export class ContactUsComponent implements OnInit {
 
   save(form: any) {
     Object.keys(form.controls).forEach((key) => {
-      form.get(key).markAsDirty();
+    form.get(key).markAsDirty();
     });
     form.value.subject = this.subject;
     form.value.email = this.email;
+    this.contactUsFormSent = true;
     form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
       if (data.responseMessage.responseDescription === 'Successful response') {
         this.sendSuccess = true;
+      } else {
+        this.sendSuccess = false;
       }
+      this.contactUsFormSent = false;
     });
   }
 }
