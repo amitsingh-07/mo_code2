@@ -74,7 +74,8 @@ export class PromotionService {
 
   getPartnerLogo(owner) {
     if (owner) {
-      const partner_name = owner.toLowerCase();
+      let partner_name = owner.toLowerCase();
+      partner_name = partner_name.replace(/ /g, '');
       const logo = '/assets/images/partners/logo-' + partner_name + '.png';
       return logo;
     } else {
