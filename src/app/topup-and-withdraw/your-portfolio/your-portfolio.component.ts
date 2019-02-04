@@ -91,7 +91,7 @@ export class YourPortfolioComponent implements OnInit {
       },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
-      fundingType: '', // todo
+      fundingType: '',
       isAmountExceedBalance: 0,
       exceededAmount: 0
     };

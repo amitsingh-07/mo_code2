@@ -22,7 +22,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class TopUpComponent implements OnInit {
   pageTitle: string;
-  portfolio; // todo
+  portfolio;
   investment;
   portfolioList;
   isAmountExceedBalance = false;
