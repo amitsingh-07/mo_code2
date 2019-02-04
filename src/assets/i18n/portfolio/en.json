@@ -43,8 +43,8 @@
     "STEP_2_LABEL": "Step 2"
   },
   "MY_FINANCIALS": {
-    "REVIEW_INPUT": "Review My Inputs",
-    "PROCEED_NEXT": "Proceed To Next Step",
+    "REVIEW_INPUT": "Yes, Review My Inputs",
+    "PROCEED_NEXT": "No, Proceed To Next Screen",
     "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",

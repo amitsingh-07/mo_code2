@@ -40,14 +40,14 @@ export class PersonalFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Oops! Is this correct?',
         errorMessage:
-          'We noticed that your investment amount is more than your total assets. Would you like to review your inputs?',
+          'We noticed that your One-Time investment amount is more than your total assets. Would you like to review your inputs?',
         isButtons: 'Yes'
       },
       // tslint:disable-next-line:max-line-length
       moreinvestment: {
         errorTitle: 'Oops! Is this correct?',
         errorMessage:
-          'We noticed that your monthly investment amount is more than your total assets. Would you like to review your inputs?',
+          'We noticed that your monthly investment amount is more than your monthly savings. Would you like to review your inputs?',
         isButtons: 'Yes'
       },
       // tslint:disable-next-line:max-line-length
