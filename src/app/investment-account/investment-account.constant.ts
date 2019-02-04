@@ -1,4 +1,17 @@
 export let INVESTMENT_ACCOUNT_CONFIG = {
+  MY_INFO_ATTRIBUTES: [
+    'nationality',
+    'name',
+    'passportnumber',
+    'passportexpirydate',
+    'dob',
+    'sex',
+    'regadd',
+    'mailadd',
+    'employment',
+    'occupation',
+    'householdincome'
+  ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'PORTFOLIO_PURCHASED',
     'ACCOUNT_CREATED',
@@ -6,7 +19,9 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     'CDD_CHECK_FAILED',
     'EDD_CHECK_PENDING',
     'EDD_CHECK_FAILED',
-    'SUSPENDED_ACCOUNT'
+    'ACCOUNT_SUSPENDED',
+    'EDD_CHECK_CLEARED',
+    'ACCOUNT_FUNDED'
   ],
   SINGAPORE_NATIONALITY_CODE: 'SG',
   SINGAPORE_COUNTRY_CODE: 'SG',
