@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
@@ -25,6 +26,7 @@ export class SingPassComponent implements OnInit {
   showConfirmation: boolean;
   showSingPass: boolean;
   investmentData: any;
+  myInfoSubscription: any;
 
   constructor(
     private modal: NgbModal,
@@ -60,6 +62,30 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoData();
+        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED' && this.myInfoService.isMyInfoEnabled) {
+          this.cancelMyInfo();
+        } else {
+          this.myInfoService.closeMyInfoPopup(false);
+        }
+      }
+    });
+  }
+
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+    if (window.sessionStorage.currentUrl) {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 
   openModal() {
@@ -78,7 +104,27 @@ export class SingPassComponent implements OnInit {
       .then(() => {
         this.showConfirmation = true;
       })
-      .catch((e) => {});
+      .catch((e) => { });
+  }
+
+  getMyInfoData() {
+    this.myInfoService.openFetchPopup();
+    this.myInfoService.isMyInfoEnabled = true;
+
+    // Investment account
+    if (this.investmentAccountService.getCallBackInvestmentAccount()) {
+      this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+        this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
+        this.myInfoService.isMyInfoEnabled = false;
+        this.myInfoService.closeMyInfoPopup(false);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+      }, (error) => {
+        this.myInfoService.closeMyInfoPopup(true);
+        this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+      });
+    } else {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+    }
   }
 
   getMyInfo() {
@@ -87,8 +133,8 @@ export class SingPassComponent implements OnInit {
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );
-    // this.myInfoService.goToMyInfo();
+    this.myInfoService.goToMyInfo();
     // Todo - Robo2 Hard coded UAT1 path for testing
-    this.myInfoService.goToUAT1MyInfo();
+    // this.myInfoService.goToUAT1MyInfo();
   }
 }
