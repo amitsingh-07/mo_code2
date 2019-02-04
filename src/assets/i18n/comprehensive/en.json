@@ -66,13 +66,34 @@
     "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
     "BUCKET_TITLE": "Your Annual Income Bucket",
     "MONTHLY_SALARY": "Monthly Salary",
-    "EMPLOYMENT_TYPE": "Employment Type",
     "ANNUAL_BONUS": "Annual Bonus",
     "RENTAL_INCOME": "Rental Income",
     "OTHER_WORK_INCOME": "Other Work Income",
     "OTHER_MONTHLY_INCOME": "Other Monthly Income",
     "ANNUAL_DIVIDENDS": "Annual Dividends",
-    "OTHER_ANNUAL_INCOME": "Other Annual Income"
+    "OTHER_ANNUAL_INCOME": "Other Annual Income",
+    "ADD_MONTHLY_INCOME":"Add other monthly income",
+    "ADD_DIVIDENDS":"Add dividends & other Annual Income",
+    "OTHER_MONTHLY_INCOME_LIST":[{
+      "text":"Monthly Rental Income",
+      "value":"MRI"
+    },{
+      "text":"Other Monthly Work Income",
+      "value":"OMWI"
+    },{
+      "text":"Other Monthly Income",
+      "value":"OMI"
+    }
+  ],
+    "EMPLOYMENT_TYPE_LIST":[{
+      "text":"Employed",
+      "value":"employed"
+    },
+    {
+      "text":"Self-Employed",
+      "value":"selfEmployed"
+    }
+    ]
 
   },
   "GETTING_STARTED": {
@@ -87,6 +108,7 @@
     "GENDER": "Gender",
     "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
     "NATIONALITY": "Nationality",
+    "EMPLOYMENT_TYPE": "Employment Type",
     "AMOUNT": "Amount",
     "YEARS_LATER": "Years later",
     "LOCATION": "Location",

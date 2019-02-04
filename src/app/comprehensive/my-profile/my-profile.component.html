@@ -19,7 +19,7 @@
             </div>
           </label>
         </div>
-        <div class="pr0 col-7">
+        <div class="flex-col-7">
           <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.controls.name.invalid}" id="myProfileFormInpt3"
             class="form-control" #name formControlName="name">
         </div>
@@ -82,7 +82,7 @@
             </div>
           </label>
         </div>
-        <div class="pr0 col-7 input-group">
+        <div class="flex-col-7 input-group">
           <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.age.invalid}" id="myProfileFormInpt6"
             class="form-control" #age formControlName="age">
         </div>

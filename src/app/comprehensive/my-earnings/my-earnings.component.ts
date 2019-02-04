@@ -19,6 +19,13 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 export class MyEarningsComponent implements OnInit {
   pageTitle: string;
   myEarningsForm: FormGroup;
+  employmentType = '';
+  employmentTypeList: any;
+  otherMonthlyIncomeList: any;
+  MRI = '';
+  OMWI = '';
+  OMI = '';
+
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config) => {
@@ -28,6 +35,8 @@ export class MyEarningsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
       this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+      this.employmentTypeList = this.translate.instant('MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
+      this.otherMonthlyIncomeList = this.translate.instant('MY_EARNINGS.OTHER_MONTHLY_INCOME_LIST');
 
       this.setPageTitle(this.pageTitle);
     });
@@ -35,6 +44,20 @@ export class MyEarningsComponent implements OnInit {
   }
   ngOnInit() {
     this.buildMyEarningsForm();
+  }
+
+  SelectEarningsType(earningsType) {
+    switch (earningsType) {
+     case 'MRI':
+     this.MRI = earningsType;
+     break;
+     case 'OMWI':
+     this.OMWI = earningsType;
+     break;
+     case 'OMI':
+     this.OMI = earningsType;
+     break;
+    }
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -49,5 +72,11 @@ export class MyEarningsComponent implements OnInit {
       annualBonus: ['', [Validators.required]],
       otherAnnualIncome: ['', [Validators.required]]
     });
+  }
+  selectEmploymentType(employmentType) {
+    employmentType = employmentType ? employmentType : { text: '', value: '' };
+    this.employmentType = employmentType.text;
+    this.myEarningsForm.controls['employmentType'].setValue(employmentType.value);
+    this.myEarningsForm.markAsDirty();
   }
 }
