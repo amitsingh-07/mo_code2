@@ -169,6 +169,17 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  checkUin(form) {
+    let members = [];
+    if (this.hasSpouse) {
+      members = [...form.value.spouse];
+    }
+    if (this.hasChild) {
+      members = [...members, ...form.value.children];
+    }
+    return this.willWritingService.checkDuplicateUin(members);
+  }
+
   openToolTipModal() {
     this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
@@ -209,7 +220,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.validateFamilyForm(form)) {
+    if (this.validateFamilyForm(form) && this.checkUin(form)) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
       url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.children)) ?
         (url === WILL_WRITING_ROUTE_PATHS.CONFIRMATION && this.willWritingService.getGuardianInfo().length > 0) ?
