@@ -70,8 +70,6 @@ export class PersonalDeclarationComponent implements OnInit {
       )
     });
   }
-  yesClick() {}
-  noClick() {}
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translator.PEP;
@@ -95,9 +93,7 @@ export class PersonalDeclarationComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else if (
-      this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())
-    ) {
+    } else if (this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())) {
       this.saveInvestmentAccount();
     }
   }

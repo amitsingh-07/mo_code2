@@ -17,8 +17,8 @@ import { InvestmentAccountService } from '../investment-account-service';
   encapsulation: ViewEncapsulation.None
 })
 export class PostLoginComponent implements OnInit {
-  singPassLinkTitle;
-  formData;
+  singPassLinkTitle: any;
+  formData: any;
   showSingPass: boolean;
 
   constructor(

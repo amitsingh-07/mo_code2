@@ -1,8 +1,8 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute , Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -37,7 +37,6 @@ export class AddUpdateBankComponent implements OnInit {
   updateId: any;
   isAccountEdited: boolean;
   constructor(
-    public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
     private router: Router,
     private footerService: FooterService,
@@ -47,9 +46,10 @@ export class AddUpdateBankComponent implements OnInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    public readonly translate: TranslateService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
+    this.translate.get('COMMON').subscribe(() => {
     });
   }
 
@@ -62,12 +62,13 @@ export class AddUpdateBankComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.queryParams = this.route.snapshot.queryParams;
     this.addBank = this.queryParams.addBank;
+
     if (this.addBank === 'true') {
-      this.pageTitle = 'Add Bank Details';
-      this.buttonTitle = 'Add Now';
+      this.pageTitle = this.translate.instant('ADD_BANK.ADD');
+      this.buttonTitle = this.translate.instant('ADD_BANK.ADD_NOW');
     } else {
-      this.pageTitle = 'Edit Bank Details';
-      this.buttonTitle = 'Apply Changes';
+      this.pageTitle = this.translate.instant('ADD_BANK.EDIT');
+      this.buttonTitle = this.translate.instant('ADD_BANK.APPLY');
     }
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
@@ -75,7 +76,7 @@ export class AddUpdateBankComponent implements OnInit {
     this.buildBankForm();
 
     this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
-      this.bankForm.get('accountNo').setValidators([Validators.required,  Validators.pattern(RegexConstants.NumericOnly)]);
+      this.bankForm.get('accountNo').setValidators([Validators.required, Validators.pattern(RegexConstants.NumericOnly)]);
       this.bankForm.get('accountNo').updateValueAndValidity();
       this.isAccountEdited = true;
     });
@@ -86,7 +87,7 @@ export class AddUpdateBankComponent implements OnInit {
     this.bankForm = this.formBuilder.group({
       bank: [this.formValues.bank, [Validators.required]],
       accountNo: [this.formValues.accountNumber],
-      accountHolderName: [this.formValues.fullName, [Validators.required,  Validators.pattern(RegexConstants.SymbolAlphabets)]]
+      accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.SymbolAlphabets)]]
     });
     this.bankForm.controls.accountHolderName.disable();
   }
@@ -114,26 +115,26 @@ export class AddUpdateBankComponent implements OnInit {
     } else {
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
-       // Add Bank API Here
-       this.topupAndWithDrawService.saveNewBank(form.value).subscribe((response) => {
-        if (response.responseMessage.responseCode >= 6000) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-        }
-      });
+        // Add Bank API Here
+        this.topupAndWithDrawService.saveNewBank(form.value).subscribe((response) => {
+          if (response.responseMessage.responseCode >= 6000) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          }
+        });
       } else {
         // tslint:disable-next-line:max-line-length
         let accountNum = null;
         if (this.isAccountEdited) {
-         accountNum = form.value.accountNo;
+          accountNum = form.value.accountNo;
         }
-        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName , accountNum , this.updateId).subscribe((data) => {
+        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
           // tslint:disable-next-line:triple-equals
-          if ( data.responseMessage.responseCode == 6000) {
+          if (data.responseMessage.responseCode == 6000) {
             // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
         });
-      // Edit Bank APi here
+        // Edit Bank APi here
       }
     }
   }
