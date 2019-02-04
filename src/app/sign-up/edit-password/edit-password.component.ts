@@ -1,4 +1,4 @@
-import { Component, ElementRef , OnInit , ViewChild, ViewEncapsulation} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -34,11 +34,11 @@ export class EditPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService) {
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
-        this.pageTitle = 'Change Password';
-        this.setPageTitle(this.pageTitle);
-      });
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = 'Change Password';
+      this.setPageTitle(this.pageTitle);
+    });
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -54,8 +54,8 @@ export class EditPasswordComponent implements OnInit {
     this.formValues = this.signUpService.getForgotPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       oldPassword: [this.formValues.oldPassword, [Validators.required]],
-      newPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]],
-      confirmPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]]
+      newPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
+      confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
   showHidePassword(el) {
@@ -80,20 +80,20 @@ export class EditPasswordComponent implements OnInit {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Password Should Match';
       return false;
-    // tslint:disable-next-line:no-duplicated-branches
+      // tslint:disable-next-line:no-duplicated-branches
     } else if (form.value.newPassword === form.value.oldPassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Old password and new password can not be same';
       return false;
     } else {
-    this.signUpService.setEditPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
-      // tslint:disable-next-line:triple-equals
-      if ( data.responseMessage.responseCode == 6000) {
-        // tslint:disable-next-line:max-line-length
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-      }
-    });
-  }
+      this.signUpService.setEditPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
+        // tslint:disable-next-line:triple-equals
+        if (data.responseMessage.responseCode === 6000) {
+          // tslint:disable-next-line:max-line-length
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+        }
+      });
+    }
   }
 }

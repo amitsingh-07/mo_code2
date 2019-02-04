@@ -33,13 +33,9 @@ export class SelectNationalityComponent implements OnInit {
   nationalityObj: any;
   selectNationalityFormValues: any;
   editModalData: any;
-  modalTitle: any;
-  modalMessage: any;
   ButtonTitle: any;
-  editModalData1: any;
-  modalTitle1: any;
-  modalMessage1: any;
-  countries: ['Singapore', 'India'];
+  blockedNationalityModal: any;
+  countries: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -54,7 +50,7 @@ export class SelectNationalityComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
-      this.editModalData1 = this.translate.instant('SELECT_NATIONALITY.editModalData1');
+      this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
     });
     this.selectedNationality = 'Select Nationality';
     this.getNationalityCountryList();
@@ -164,10 +160,15 @@ export class SelectNationalityComponent implements OnInit {
 
   goToNext(form) {
     this.saveNationality();
-    if (this.blocked) {
+    if (this.nationality.name === 'AMERICAN') {
       this.showErrorMessage(
         this.editModalData.modalTitle,
         this.editModalData.modalMessage
+      );
+    } else if (this.blocked) {
+      this.showErrorMessage(
+        this.blockedNationalityModal.blockedNationalityTitle,
+        this.blockedNationalityModal.blockedNationalityMessage
       );
     } else if (form.valid && form.controls.unitedStatesResident) {
       if (
@@ -179,8 +180,8 @@ export class SelectNationalityComponent implements OnInit {
             form.controls.singaporeanResident.value === false))
       ) {
         this.showErrorMessage(
-          this.editModalData1.modalTitle1,
-          this.editModalData1.modalMessage1
+          this.editModalData.modalTitle,
+          this.editModalData.modalMessage
         );
       } else {
         this.save(form);
