@@ -110,7 +110,7 @@
     },
     "editModalData": {
       "modalTitle": "Oops, Unable To Proceed",
-      "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents",
+      "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
       "ButtonTitle": "Return To Homepage"
     }
   },
@@ -241,7 +241,7 @@
     "ANNUAL_FEES": "Annual Fees",
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
     "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
-    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have started funding your account.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
     "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
     "NOW": "Now",
     "YEARS": "years",
@@ -284,14 +284,14 @@
       "TIME": "Estimate about 5 mins"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Autofill Forms via MyInfo",
+      "TITLE": "Autofill Forms Via MyInfo",
       "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details.",
-      "BTN-TEXT": "Let's go!"
+      "TITLE": "Retrieve Details via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.",
+      "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",

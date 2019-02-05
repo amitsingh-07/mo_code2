@@ -145,9 +145,22 @@ app-additional-declaration-step1 {
       &.with-button {
         padding: 0.5rem;
         padding-left: 0.8rem;
+      }
+
+      &:disabled, &.disabled {
+        color: #00a7a7 !important;
+        -webkit-text-fill-color: #00a7a7 !important;
+        background-color: #d4eded !important;
+        opacity: 1 !important;
 
         input {
-          margin-top: 6px;
+          background-color: #d4eded !important;    
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button{
+          display:none;
         }
       }
     }

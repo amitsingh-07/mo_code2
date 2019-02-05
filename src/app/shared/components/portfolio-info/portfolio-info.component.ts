@@ -18,9 +18,9 @@ export class PortfolioInfoComponent implements OnInit {
   ngOnInit() {
 
     this.portfolioProjectionSubText = {
-      best: this.currencyPipe.transform(this.portfolio.projectedReturnsHighEnd, 'USD', 'symbol-narrow', '1.0-2'),
-      median: this.currencyPipe.transform(this.portfolio.projectedReturnsMedian, 'USD', 'symbol-narrow', '1.0-2'),
-      worst: this.currencyPipe.transform(this.portfolio.projectedReturnsLowEnd, 'USD', 'symbol-narrow', '1.0-2'),
+      best: this.currencyPipe.transform(this.portfolio.projectedReturnsHighEnd, 'USD', 'symbol-narrow', '1.2-2'),
+      median: this.currencyPipe.transform(this.portfolio.projectedReturnsMedian, 'USD', 'symbol-narrow', '1.2-2'),
+      worst: this.currencyPipe.transform(this.portfolio.projectedReturnsLowEnd, 'USD', 'symbol-narrow', '1.2-2'),
     };
   }
 
