@@ -289,9 +289,9 @@
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details.",
-      "BTN-TEXT": "Let's go!"
+      "TITLE": "Retrieve Details via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.",
+      "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
