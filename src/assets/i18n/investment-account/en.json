@@ -110,7 +110,7 @@
     },
     "editModalData": {
       "modalTitle": "Oops, Unable To Proceed",
-      "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents",
+      "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
       "ButtonTitle": "Return To Homepage"
     }
   },
