@@ -44,14 +44,14 @@ export class AccountSetupPendingComponent implements OnInit {
     console.log(this.status);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.status === INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending) {
+      if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending.toUpperCase()) {
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE'
         );
         this.pageDesc = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.DESC'
         );
-      } else if (this.status === INVESTMENT_ACCOUNT_CONFIG.status.documents_pending) {
+      } else if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.documents_pending.toUpperCase()) {
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.TITLE'
         );

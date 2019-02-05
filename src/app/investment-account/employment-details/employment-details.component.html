@@ -184,12 +184,12 @@
                       </div>
                       <div class="flex-col-7">
 
-                        <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode)}">
+                        <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode), 'disabled':employementDetailsForm.controls.employeaddress.controls.empPostalCode.disabled}">
                           <div class="postal-code-control">
                             <div class="control">
                               <input type="text" class="input-control grey" formControlName="empPostalCode" id="employment_details-mailpostalcode-txt" />
                             </div>
-                            <div>
+                            <div class="button">
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
                                 class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>

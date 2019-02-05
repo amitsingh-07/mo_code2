@@ -1,6 +1,6 @@
 export class InvestmentAccountFormError {
   formFieldErrors: object = {
-    errorTitle: 'Oops! Please check the following details',
+    errorTitle: 'Oops! Please check the following details:',
     salutation: {
       required: {
         errorTitle: 'Invalid Salutation',
@@ -62,7 +62,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Postal Code',
-        errorMessage: 'The postal code you entered is invalid'
+        errorMessage: 'The postal code you entered is invalid.'
       }
     },
     mailPostalCode: {
@@ -72,7 +72,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Postal Code',
-        errorMessage: 'The postal code you entered is invalid in mailing address'
+        errorMessage: 'The postal code you entered is invalid in mailing address.'
       }
     },
     address1: {
@@ -159,6 +159,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid City',
+        // tslint:disable-next-line:no-duplicate-string
         errorMessage: 'City should not contain numbers and special characters.'
       }
     },
@@ -350,7 +351,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Source of Employment Status ',
-        errorMessage: 'Select Employment Status.'
+        errorMessage: 'Select Employment Status'
       }
     },
     companyName: {
@@ -361,7 +362,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Company Name',
-        errorMessage: 'Company Name should not contain special characters'
+        errorMessage: 'Company Name should not contain special characters.'
       }
     },
     occupation: {
@@ -409,7 +410,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Postal Code',
-        errorMessage: 'The postal code you entered is invalid'
+        errorMessage: 'The postal code you entered is invalid.'
       }
     },
     empAddress1: {
@@ -433,7 +434,7 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
-          'Address Line 2  should contain  alphanumeric and  Special characters'
+          'Address Line 2  should contain  alphanumeric and  Special characters.'
       }
     },
 
@@ -477,7 +478,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Zip Code',
-        errorMessage: 'Zip Code should not contain special characters'
+        errorMessage: 'Zip Code should not contain special characters.'
       }
     },
     annualHouseHoldIncomeRange: {
@@ -577,7 +578,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Last Name',
-        errorMessage: 'Last Name should not contain numbers and special characters'
+        errorMessage: 'Last Name should not contain numbers and special characters.'
       }
     },
     cName: {
@@ -646,7 +647,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid City',
-        errorMessage: 'City should not contain numbers and special characters'
+        errorMessage: 'City should not contain numbers and special characters.'
       }
     },
     pepState: {
