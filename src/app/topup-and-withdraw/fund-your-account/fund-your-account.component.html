@@ -41,7 +41,8 @@
           <div class="strong">{{fundDetails.portfolio.productName}}</div>
         </div>
       </div>
-      <div class="fund-instruction">Please transfer the following amount using your preferred payment method details:</div>
+      <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">Please transfer the following amount using your
+        preferred payment method details:</div>
       <!-- TRANSFER DETAILS -->
       <div class="transfer-details">
 
@@ -240,7 +241,14 @@
 
     </div>
   </div>
-  <p class="process-time-info">{{ 'FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO' | translate }}</p>
+
+  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{ 'FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO' |
+    translate
+    }}</p>
+  <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUND_YOUR_ACCOUNT.SUCCESSFUL_TOPUP' | translate
+    }}</p>
+
+
   <button *ngIf="fundDetails.source == 'TOPUP'" type="button" (click)="buyPortfolio()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
     id="portfolioRecommendationNextBtn">
     Submit
