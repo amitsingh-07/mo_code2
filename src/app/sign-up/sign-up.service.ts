@@ -437,6 +437,8 @@ export class SignUpService {
         userInfo.investementDetails.portfolios.length > 0) {
         investmentStatus = 'RECOMMENDED';
       }
+    } else {
+      investmentStatus = investmentStatus.toUpperCase();
     }
     return investmentStatus;
   }
