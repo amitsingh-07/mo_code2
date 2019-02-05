@@ -1,6 +1,6 @@
 export class InvestmentAccountFormError {
   formFieldErrors: object = {
-    errorTitle: 'Oops! Please check the following details',
+    errorTitle: 'Oops! Please check the following details:',
     salutation: {
       required: {
         errorTitle: 'Invalid Salutation',
