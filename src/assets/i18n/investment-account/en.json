@@ -241,7 +241,7 @@
     "ANNUAL_FEES": "Annual Fees",
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
     "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
-    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have started funding your account.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
     "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
     "NOW": "Now",
     "YEARS": "years",
