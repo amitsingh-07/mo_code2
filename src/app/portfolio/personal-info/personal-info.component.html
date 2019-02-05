@@ -2,46 +2,39 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
-          
-
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
-                  <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
-                <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
-                  [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" id="personalInfoSlider" data-placement="bottom"></nouislider>
+                <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
+                <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false"
+                  [min]="sliderMinValue" [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip"
+                  id="personalInfoSlider" data-placement="bottom"></nouislider>
               </div>
             </div>
             <div class="pointer-container" id="personalInfoPointer">
-                <div class="pointer"></div>
-              </div>
-          </div>
-
-
-          <div class="callout">
-            
-
-            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-                <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
-                  <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+              <div class="pointer"></div>
             </div>
-
+          </div>
+          <div class="callout">
+            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
+              <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
+              <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{
+                'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+            </div>
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
-                <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
+                <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
               <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
           </div>
           <div>
-            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue"
-              id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue" id="getStrdBtn3">{{
+              'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
-
-
       </div>
     </div>
   </div>

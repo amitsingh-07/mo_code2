@@ -19,19 +19,18 @@ app-get-started-step1 {
         padding-top: 10px !important;
       }
     }
-
     .btn-proceed {
       border: 0px;
       border-radius: 6px;
       background-color: $white-color;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
       cursor: pointer;
       font-family: $muli-bold;
       font-size: 22px;
       font-weight: bold;
       letter-spacing: -0.2px;
       text-align: center;
-      color: #00a7a7;
+      color: $teal-color;
       @include allmobiles {
         position: fixed;
         width: 100%;

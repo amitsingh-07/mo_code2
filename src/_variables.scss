@@ -48,6 +48,7 @@ $muli-extra-light : 'Muli Extra Light',sans-serif;
 $btn-disabled: #bff1f1;
 $btn-disabled-bg: #009a9a;
 $btn-disabled-color: #99cfcf;
+$btn-disabled-light-bg: #3bbcbc;
 $fixed-btn-txt-color: #99dbdb;
 $fixed-btn-brdr-color: rgba(0, 135, 134, 0.4);
 $myinfo-block-brdr-color: #ff872f;
@@ -59,6 +60,10 @@ $myinfo-btn-color: #ff872f;
 $modal-txt-highlight-color: #00a7a7;
 $modal-body-title-color: #009999;
 
+// custom modal colors
+$custom-modal-title-color : #00aaa8;
+$custom-modal-desc-color : #5e5e5e;
+
 //Form block color
 $form-block-title-color: #313644;
 $form-block-sub-title-color: #5e5e5e;
@@ -66,6 +71,23 @@ $form-block-sub-title-color: #5e5e5e;
 //Portfolio - Slider color
 $slider-selection-color:#ff872f;
 $accordion-link-color:#ec681c;
+$investment-slider-noui-base-bg: #007474;
+
+// Portfolio
+$intro-block-heading-color : #8cd7d7;
+$btn-proceed-shadow-color : rgba(0, 0, 0, 0.21);
+$question-info-brdr-color : #cccccc;
+$risk-table-cell-bg-color : #f2f9fa;
+$risk-table-cell-color : #007d7d;
+$portfolio-allocation-details-bg : #00717e;
+$portfolio-allocation-details-shadow : rgba(0, 0, 0, 0.14);
+$portfolio-allocation-details-content-color : #008b90;
+$review-text-color : #b3d6d6;
+$review-block-bg : #009999;
+$bond-container-bg : #f4fafb;
+$bar-container-bg : #c7e9e9;
+$allocation-card-body-brdr-color : #50c2c2;
+$allocation-btn-view-color : #FF872F;
 
 //Investment Account
 $secondary-action-color:#ff872f;
@@ -79,3 +101,4 @@ $col-xs: 450px;
 
 // Post Login Dashboard
 $welcome-user-txt-color: #00a6a6;
+

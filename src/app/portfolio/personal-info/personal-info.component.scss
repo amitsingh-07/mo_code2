@@ -57,9 +57,6 @@ app-personal-info {
   }
 
   #userInfoForm {
-    @include allmobiles {
-      //margin-top: 50px;
-    }
     .flex-col-6 {
       label {
         white-space: normal;
@@ -106,14 +103,10 @@ app-personal-info {
     margin-top: 50px;
   }
 
-  .personal {
-    border: solid 1px rgba(255, 255, 255, 0.15);
-  }
-
   .callout {
     padding: 15px;
-    background-color: #fff;
-    color: #000;
+    background-color: $white-color;
+    color: $black-color;
     border-radius: 6px;
     margin-top: 30px;
     position: relative;
@@ -138,7 +131,7 @@ app-personal-info {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #ffffff;
+    color: $white-color;
     width: 74px;
   }
   .personalInfoInvestmentDesc,
@@ -150,7 +143,7 @@ app-personal-info {
     font-stretch: normal;
     line-height: 24px;
     letter-spacing: -0.18px;
-    color: #5e5e5e;
+    color: $text-color-secondary;
   }
 
   .personalInfoSliderDesc b {
@@ -166,7 +159,7 @@ app-personal-info {
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
   }
 
   .pointer {
@@ -174,7 +167,7 @@ app-personal-info {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 18px solid transparent;
-    border-bottom: 18px solid #fff;
+    border-bottom: 18px solid $white-color;
     right: 0px;
     left: auto;
     position: absolute;
@@ -194,8 +187,8 @@ app-personal-info {
 }
 .btn {
   &:disabled {
-    background-color: #3bbcbc;
-    color: #00a7a7;
+    background-color: $btn-disabled-light-bg;
+    color: $teal-color;
   }
 }
 .investmentSlider {
@@ -207,7 +200,7 @@ app-personal-info {
     border-radius: 25px !important;
   }
   .noUi-base {
-    background-color: #007474 !important;
+    background-color: $investment-slider-noui-base-bg !important;
   }
   .noUi-connects {
     border-radius: 25px !important;

@@ -12,8 +12,8 @@ app-my-financials {
     }
   }
   .fixed-btn--sm {
-    border: 1px solid rgba(0, 135, 134, 0.4);
-    color: #00a7a7;
+    border: 1px solid $fixed-btn-brdr-color;
+    color: $teal-color;
     font-size: 16px;
     font-family: $muli-regular;
     font-weight: normal !important;
@@ -22,9 +22,9 @@ app-my-financials {
   }
 
   .fixed-btn--sm.active {
-    border: 1px solid #ffffff !important;
-    color: #ffffff !important;
-    background: #00a7a7 !important;
+    border: 1px solid $white-color !important;
+    color: $white-color !important;
+    background: $app-backgrnd-color !important;
   }
 
   .form-group-with-bg--header-label {
@@ -48,7 +48,7 @@ app-my-financials {
         font-size: 14px;
         font-style: italic;
         letter-spacing: -0.1px;
-        color: #5e5e5e;
+        color: $text-color-secondary;
         padding-bottom: 13px;
       }
       .form-group-single-column {
@@ -62,14 +62,14 @@ app-my-financials {
           .input-label-black {
             font-weight: 600;
             letter-spacing: -0.3px;
-            color: #2d8289;
+            color: $dark-teal-color;
           }
           .input-label-normal {
             font-family: $muli-italic;
             font-size: 14px;
             font-style: italic;
             letter-spacing: -0.1px;
-            color: #5e5e5e;
+            color: $text-color-secondary;
           }
         }
         .form-control {
@@ -101,8 +101,8 @@ app-my-financials {
 
   .btn {
     &:disabled {
-      background-color: #3bbcbc;
-      color: #00a7a7;
+      background-color: $btn-disabled-light-bg;
+      color: $teal-color;
     }
     &.btn__footer--fixed {
       font-family: $muli-bold !important;
@@ -114,7 +114,7 @@ app-my-financials {
   @include allmobiles {
     .modal-body {
       b {
-        color: #5e5e5e;
+        color: $form-block-sub-title-color;
         font-family: $muli-bold;
       }
     }
