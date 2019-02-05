@@ -157,7 +157,7 @@
                 | translate}}</label>
             </div>
             <div class="flex-col-7">
-              <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepPostalCode)}">
+              <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepPostalCode),'disabled':addInfoForm.controls.pepPostalCode.disabled}">
                 <div class="postal-code-control">
                   <div class="control">
                     <input type="text" class="input-control grey" formControlName="pepPostalCode" id="pep_Info_residentialAddress-mailpostalcode-txt" />
