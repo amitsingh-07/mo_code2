@@ -20,6 +20,7 @@
     "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
     "VIEW_TRANSFER_INST": "View Transfer Instructions",
     "PROCESS_TIME_INFO": "Fund your account within 21 days to kickstart your investment!",
+    "SUCCESSFUL_TOPUP":"Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
     "RECIPENTS_NAME": "Recipent's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
@@ -80,6 +81,11 @@
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit"
 
+  },
+  "TOPUP_REQUEST": {
+    "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
+    "REQUEST_PROCESSED": "Request will be processed once fund transfer is complete",
+    "BACK_TO_DASHBOARD": "BackTo Dashboard"
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",

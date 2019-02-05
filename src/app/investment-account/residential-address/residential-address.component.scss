@@ -86,16 +86,22 @@ app-residential-address {
       &.with-button {
         padding: 0.5rem;
         padding-left: 0.8rem;
-
-        input {
-          margin-top: 6px;
-        }
       }
-      &:disabled {
+      &:disabled, &.disabled {
         color: #00a7a7 !important;
         -webkit-text-fill-color: #00a7a7 !important;
         background-color: #d4eded !important;
         opacity: 1 !important;
+
+        input {
+          background-color: #d4eded !important;    
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button{
+          display:none;
+        }
       }
     }
     .input-group-append {

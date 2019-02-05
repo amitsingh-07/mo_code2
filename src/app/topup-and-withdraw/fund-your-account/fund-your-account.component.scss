@@ -231,8 +231,7 @@ app-fund-your-account {
           background-color: #f4fafb;
           display: flex;
           flex: 1;
-          background: url('../../../assets/images/investment-account/subcard_owl.svg')
-            no-repeat;
+          background: url('../../../assets/images/investment-account/subcard_owl.svg') no-repeat;
           background-color: #f4fafb;
           background-position: 15px 4px;
         }
@@ -288,6 +287,18 @@ app-fund-your-account {
       margin: 15px 0px;
       padding: 30px 18px;
       background: #009999;
+
+      @include allmobiles {
+        margin-bottom: 66px;
+      }
+    }
+
+    .topup_success {
+      font-family: $muli-regular;
+      padding: 17px 42px;
+      line-height: 21px;
+      letter-spacing:  -0.2px;
+      text-align: center;
 
       @include allmobiles {
         margin-bottom: 66px;
