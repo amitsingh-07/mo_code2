@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -52,7 +53,7 @@ export class MyProfileComponent implements OnInit {
     });
   }
   goToNext(profileForm) {
-    console.log(profileForm);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
   }
   selectNationality(nationality) {
     nationality = nationality ? nationality : { text: '', value: '' };
