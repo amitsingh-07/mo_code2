@@ -105,7 +105,8 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.VIEW_ALL_NOTIFICATIONS,
-    component: ViewAllNotificationsComponent
+    component: ViewAllNotificationsComponent,
+    canActivate: [AuthGuard]
   },
   { path: SIGN_UP_ROUTES.UPDATE_BANK,
     component: AddUpdateBankComponent,
