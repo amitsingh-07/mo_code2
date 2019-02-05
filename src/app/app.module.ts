@@ -75,6 +75,8 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
@@ -166,6 +168,8 @@ export function tokenGetterFn() {
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util,
+    InvestmentEnableGuard,
+    InvestmentChildEnableGuard,
     WillWritingEnableGuard,
     WillWritingChildEnableGuard,
     PromotionEnableGuard,
