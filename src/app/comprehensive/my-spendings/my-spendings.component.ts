@@ -12,23 +12,15 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-my-earnings',
-  templateUrl: './my-earnings.component.html',
-  styleUrls: ['./my-earnings.component.scss']
+  selector: 'app-my-spendings',
+  templateUrl: './my-spendings.component.html',
+  styleUrls: ['./my-spendings.component.scss']
 })
-export class MyEarningsComponent implements OnInit {
+export class MySpendingsComponent implements OnInit {
   pageTitle: string;
   myEarningsForm: FormGroup;
-  employmentType = '';
-  employmentTypeList: any;
-  monthlyRentIncome = false;
-  othermonthlyWorkIncome = false;
-  otherMonthlyIncome = false;
-  annualDividends = false;
-  otherAnnualIncomeType = false;
-
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+    constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+                private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -36,39 +28,18 @@ export class MyEarningsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
       this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
-      this.employmentTypeList = this.translate.instant('MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
 
       this.setPageTitle(this.pageTitle);
     });
 
   }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
   ngOnInit() {
     this.buildMyEarningsForm();
   }
 
-  SelectEarningsType(earningsType) {
-
-    switch (earningsType) {
-     case 'monthlyRentIncome':
-     this.monthlyRentIncome = true;
-     break;
-     case 'othermonthlyWorkIncome':
-     this.othermonthlyWorkIncome = true;
-     break;
-     case 'otherMonthlyIncome':
-     this.otherMonthlyIncome = true;
-     break;
-     case 'annualDividends':
-     this.annualDividends = true;
-     break;
-     case 'otherAnnualIncomeType':
-     this.otherAnnualIncomeType = true;
-     break;
-    }
-  }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
   buildMyEarningsForm() {
     this.myEarningsForm = this.formBuilder.group({
       employmentType: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
@@ -77,13 +48,8 @@ export class MyEarningsComponent implements OnInit {
       otherIncome: ['', [Validators.required]],
       otherMonthlyIncome: ['', [Validators.required]],
       annualBonus: ['', [Validators.required]],
-      otherAnnualIncome: ['', [Validators.required]]
+      HomeType: [ '', [Validators.required]],
+      otherAnnualIncome: [ '', [Validators.required]]
     });
-  }
-  selectEmploymentType(employmentType) {
-    employmentType = employmentType ? employmentType : { text: '', value: '' };
-    this.employmentType = employmentType.text;
-    this.myEarningsForm.controls['employmentType'].setValue(employmentType.value);
-    this.myEarningsForm.markAsDirty();
   }
 }

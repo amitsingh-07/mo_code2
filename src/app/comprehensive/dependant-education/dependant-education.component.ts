@@ -50,6 +50,6 @@ export class DependantEducationComponent implements OnInit {
     });
   }
   goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
   }
 }

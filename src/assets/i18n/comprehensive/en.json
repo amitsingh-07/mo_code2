@@ -67,35 +67,44 @@
     "BUCKET_TITLE": "Your Annual Income Bucket",
     "MONTHLY_SALARY": "Monthly Salary",
     "ANNUAL_BONUS": "Annual Bonus",
-    "RENTAL_INCOME": "Rental Income",
+    "RENTAL_INCOME": "Monthly Rental Income",
     "OTHER_WORK_INCOME": "Other Work Income",
     "OTHER_MONTHLY_INCOME": "Other Monthly Income",
     "ANNUAL_DIVIDENDS": "Annual Dividends",
     "OTHER_ANNUAL_INCOME": "Other Annual Income",
-    "ADD_MONTHLY_INCOME":"Add other monthly income",
-    "ADD_DIVIDENDS":"Add dividends & other Annual Income",
-    "OTHER_MONTHLY_INCOME_LIST":[{
-      "text":"Monthly Rental Income",
-      "value":"MRI"
-    },{
-      "text":"Other Monthly Work Income",
-      "value":"OMWI"
-    },{
-      "text":"Other Monthly Income",
-      "value":"OMI"
-    }
-  ],
-    "EMPLOYMENT_TYPE_LIST":[{
-      "text":"Employed",
-      "value":"employed"
-    },
-    {
-      "text":"Self-Employed",
-      "value":"selfEmployed"
-    }
+    "ADD_MONTHLY_INCOME": "Add other monthly income",
+    "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+    "EMPLOYMENT_TYPE_LIST": [{
+        "text": "Employed",
+        "value": "employed"
+      },
+      {
+        "text": "Self-Employed",
+        "value": "selfEmployed"
+      }
     ]
 
   },
+  "MY_SPENDINGS":{
+    "MONTHLY_LIVING_EXPENSES":"Monthly Living Expenses",
+    "MONTHLY_LIVING_EXPENSES_HINT":"e.g. food,utilites,rent",
+    "YEARLY_AD_HOC_EXPENSES":"Yearly or Ad-Hoc Expenses",
+    "YEARLY_AD_HOC_EXPENSES_HINT":"e.g Holidays",
+    "MONTHLY_HOME_LOAN_PAYMENT":"Monthly Home Loan Payment",
+    "MORTAGE_PAYMENT_CPF":"Mortage Payment Using CPF ",
+    "MORTAGE_PAYMENT_CASH":"Mortage Payment Using Cash",
+    "HOME_TYPE":"Type of Home",
+    "TO_PAY_OFF":"To Pay Off",
+    "ADD_OTHER_MORTAGE":"Add Other Mortage Repayment",
+    "OTHER_MORTAGE_PAYMENT":"Other Mortage Repayment",
+    "MONTHLY_CAR_LOAN_PAYMENT":"Monthly Car loan Payment",
+    "MONTHLY_OTHER_CAR_LOAN_PAYMENT":"Monthly Other Car Loan Payment"
+
+
+    
+
+
+},
   "GETTING_STARTED": {
     "TITLE": "Get Started",
     "HI": "Hi",
@@ -116,15 +125,17 @@
     "MATRURITY_AMOUNT": "Maturity Amount",
     "MATURITY_YEAR": "Maturity Year",
     "I_AM_A": "I am a",
+    "HDB":"HDB",
+    "PRIVATE":"Private",
     "SAVE_AND_CONTINUE": "Save and Continue"
-},
-  
-    "DEPENDANT_EDUCATION_SELECTION": {
-      "TITLE": "Do you need to save up for any of your children's education ?",
-      "YES_DESC":"whose education you would like to fund?",
-      "NO_LABEL":"No, but i need an insurance payout to cover education expenses in case i pass away",
-      "NO_DESC":"Select which child you will like to cover for."
-    }
+  },
 
-  
+  "DEPENDANT_EDUCATION_SELECTION": {
+    "TITLE": "Do you need to save up for any of your children's education ?",
+    "YES_DESC": "whose education you would like to fund?",
+    "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
+    "NO_DESC": "Select which child you will like to cover for."
+  }
+
+
 }
