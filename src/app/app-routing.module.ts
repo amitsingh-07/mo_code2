@@ -7,6 +7,8 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
@@ -42,14 +44,26 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
-      { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
-      { path: 'investment', loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule' },
+      { path: 'portfolio',
+        loadChildren: './portfolio/portfolio.module#PortfolioModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
+      { path: 'investment-account',
+        loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
+      { path: 'investment',
+        loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
-        /*canActivate: [WillWritingEnableGuard],
-        canActivateChild: [WillWritingChildEnableGuard]*/
+        canActivate: [WillWritingEnableGuard],
+        canActivateChild: [WillWritingChildEnableGuard]
       },
       { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
         canActivate: [PromotionEnableGuard],
