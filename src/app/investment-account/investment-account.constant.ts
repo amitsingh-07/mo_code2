@@ -59,12 +59,10 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     documents_pending: 'documents_pending'
   },
   ADDITIONAL_DECLARATION_TWO: {
-    SAVING: 'Saving',
-    GIFT_INHERITANCE: 'Gift/Inheritance',
-    INVESTMENT_EARNINGS: 'Investment Earnings',
-    BUSINESS_PROFITS: 'Business Profits',
-    SALE_OF_REAL_ESTATE: 'Sale of Real Estate',
-    SALARY: 'Salary'
+    PERSONAL_SAVING: 'savings',
+    GIFT_INHERITANCE: 'gift',
+    INVESTMENT_EARNINGS: 'earnings',
+    OTHERS: 'others',
   },
   ADDITIONAL_DECLARATION_ONE: {
     OTHERS: 'Others'
