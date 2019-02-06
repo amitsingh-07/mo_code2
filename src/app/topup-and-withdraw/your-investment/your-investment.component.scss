@@ -1,0 +1,432 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+app-your-investment {
+  .investment-bg {
+    padding-top: 105px;
+  }
+
+  .background_img {
+    object-fit: contain;
+    position: relative;
+    width: 100%;
+  }
+
+  .user_content {
+    position: absolute;
+    top: 156px;
+
+    @include iphone5 {
+      top: 125px;
+    }
+
+    .user_summary {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: -0.2px;
+      position: relative;
+      padding: 0 29px 0 28px;
+    }
+
+    .flex-col-3 {
+      position: absolute;
+      right: 29px;
+      top: 45px;
+      max-width: 85px;
+
+      @include iphone5 {
+        top: 28px;
+      }
+
+      @include allmobiles {
+        top: 60px;
+      }
+
+      @include iphone5 {
+        top: 40px;
+      }
+
+      @include iphone6plus {
+        top: 72px;
+      }
+
+      @include iphone6 {
+        top: 55px;
+      }
+
+      @include tablet {
+        top: 129px;
+      }
+
+      @include iPadLandscape {
+        top: 129px;
+      }
+    }
+  }
+
+  p {
+    padding: 20px;
+    text-align: center;
+    font-family: Muli;
+    font-size: 14px;
+
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #5e5e5e;
+  }
+
+  .dropdown-control .btn-dropdown:after {
+    background-image: url('/assets/images/dropdown_white.svg');
+    width: 16px;
+    height: 10px;
+    border: none;
+    position: absolute;
+    top: 24px;
+    right: 5px;
+    background-repeat: no-repeat;
+  }
+
+  .dropdown-control .btn-dropdown.grey {
+    color: #fff;
+    background-color: #276f75;
+  }
+
+  .container-fluid {
+    @include allmobiles {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      position: relative;
+      height: 100%;
+      padding: 0px;
+      padding-bottom: 20px;
+      margin-top: -42px;
+    }
+  }
+
+  .dropdown-control .dropdown-menu.show {
+    left: auto !important;
+    right: 0;
+  }
+
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: inherit;
+    white-space: nowrap !important;
+    background-color: transparent;
+    border: 0;
+    letter-spacing: -0.2px;
+    color: #2d8289 !important;
+    //border-bottom: solid 1px #00a7a7 !important;
+  }
+
+  .dropdown-item:first-child {
+    border-bottom: solid 1px #00a7a7 !important;
+  }
+
+  .form-group-with-bg {
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
+    background-color: #ffffff;
+    margin-bottom: 30px;
+
+    .your_total_value {
+      background-color: #276f75;
+      padding: 20px 20px 17px;
+    }
+  }
+
+  .total_values {
+    font-family: $muli-bold;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #ffffff;
+    word-break: break-all;
+  }
+
+  .total_values_label {
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: 0.88;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 6px;
+  }
+
+  .start_investment_label {
+    font-size: 13px;
+    line-height: 1.62;
+    letter-spacing: -0.1px;
+    color: #5e5e5e;
+  }
+
+  .start_investment_value {
+    font-family: $muli-bold;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    text-align: right;
+    color: #11b600;
+  }
+
+  .form-group-with-bg .form-group-with-bg--content .flex-row:not(:last-child) {
+    margin-bottom: 0px;
+  }
+
+  .total_return_label {
+    color: #5e5e5e;
+    font-size: 16px;
+    color: #2d8289;
+  }
+
+  .total_return_value {
+    font-family: $muli-bold;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    text-align: right;
+    color: #00a7a7;
+    word-break: break-all;
+
+    &.txt-bold {
+      font-size: 18px;
+    }
+  }
+
+  .your_portfolio_container {
+    padding: 20px;
+    align-items: baseline;
+  }
+
+  .your_portfolio_label {
+    font-size: 21px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    padding-left: 12px;
+  }
+
+  .your_portfolio_number {
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    padding-top: 5px;
+  }
+
+  .your_portfolio_value {
+    position: relative;
+    background-color: #e7f3f3 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 11px !important;
+
+    .flex-row {
+      align-items: center !important;
+
+      .conserve-icon {
+        width: 35px;
+        height: 35px;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .forward_img {
+      margin-right: 5px;
+      padding-left: 25px;
+    }
+  }
+
+  .form-group-with-bg--content {
+    padding: 20px 28px 16px 27px !important;
+
+    &.your_portfolio_value_content {
+      padding: 0 0 10px !important;
+      font-family: $muli-regular;
+      font-size: 15px;
+      line-height: 21px;
+      letter-spacing: -0.14px;
+      text-align: center;
+      color: #5e5e5e;
+
+      .flex-row {
+        padding: 20px 65px 20px;
+      }
+
+      hr {
+        background: #eaeaea;
+        margin: 0;
+      }
+
+      .portfolio_footer {
+        margin: 10px 13px 0;
+
+        .btn-primary {
+          background-color: #ffffff;
+          border: 1px solid #eaeaea;
+          color: #9b9b9b;
+          font-size: 18px;
+          letter-spacing: -0.18px;
+
+          &:hover {
+            background-color: #0de0de !important;
+            border-color: #e4f8f8 !important;
+            color: #ffffff !important;
+          }
+
+          &:active {
+            background-color: #0de0de !important;
+            border-color: #e4f8f8 !important;
+            color: #ffffff !important;
+          }
+
+          &:focus {
+            background-color: #ffffff !important;
+            border-color: #e4f8f8 !important;
+            color: #9b9b9b !important;
+          }
+        }
+      }
+    }
+  }
+
+  .portfolio_heading {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #00a7a7;
+    padding-left: 15px;
+    max-width: 180px;
+  }
+
+  .portfolio_value {
+    font-family: $muli-bold;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #00a7a7;
+    word-break: break-all;
+  }
+
+  .portfolio_label {
+    font-size: 16px;
+    line-height: 1.31;
+    letter-spacing: -0.1px;
+    color: #8a9ba9;
+  }
+
+  .top_alert {
+    position: relative;
+  }
+
+  .btn-with-icon {
+    border-radius: 6px;
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
+    background-color: #00c5c4;
+    font-family: $muli-bold;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 21px 0px;
+    border-width: 0px;
+
+    &:active {
+      outline: none;
+      background-color: #00c5c4;
+      //   color: #fff;
+    }
+
+    &:hover {
+      outline: none;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: #00c5c4;
+      //   color: #fff;
+    }
+
+    img {
+      margin-left: 8px;
+      margin-top: -1px;
+    }
+  }
+
+  .Remember {
+    font-family: $muli-regular;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    margin-bottom: 13px;
+    width: 243px;
+  }
+
+  .Fund_your_account {
+    width: 203px;
+    height: 20px;
+    font-family: $muli-regular;
+    font-size: 16px;
+
+    letter-spacing: -0.2px;
+    color: #ff872f;
+  }
+
+  .close {
+    position: absolute !important;
+    right: 25px !important;
+    top: 15px !important;
+    text-shadow: none !important;
+    background: url('/assets/images/close-button-dark.svg') !important;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat !important;
+
+    // position: relative;
+    // float: right;
+    // top: 14px;
+    // right: 5px;
+    @include allmobiles {
+      top: 14px !important;
+      z-index: 9;
+      //opacity: 1 !important;
+      right: 14px !important;
+    }
+  }
+
+  .callout-content {
+    padding: 10px 23px;
+    background-color: #276f75;
+    color: #000;
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 54px;
+    min-height: 108.7px;
+  }
+
+  .callout-arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 18px solid #276f75;
+    left: auto;
+    bottom: -17px;
+    right: 43px;
+    position: absolute;
+  }
+}

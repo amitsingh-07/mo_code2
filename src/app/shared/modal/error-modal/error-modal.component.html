@@ -1,14 +1,14 @@
 <div class="modal-header">
-    <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div>
+    <div class="modal-title popup-header-icon" id="error_message_owl_img"><img src="./assets/images/owl.svg" /></div>
   </div>
-  <div class="modal-body white-bg">
-    <div class="modal-body-title" *ngIf="errorTitle" [innerHTML]="errorTitle"></div>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <div class="modal-body white-bg" id="erorr_popup">
+    <div class="modal-body-title" *ngIf="errorTitle" [innerHTML]="errorTitle" id="error_title"></div>
+    <button type="button" class="close" aria-label="Close" id="error_cross_img" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
-    <div class="modal-body-message">
-      <span *ngIf="errorMessage" [innerHTML]="errorMessage"></span>
-      <ng-container *ngIf="errorMessageList">
+    <div class="modal-body-message" id="error_message">
+      <span *ngIf="errorMessage" [innerHTML]="errorMessage" id="error_message_one"></span>
+      <ng-container *ngIf="errorMessageList" id="error_message_list">
         <p class="label">{{formName  | titlecase}}</p>
         <p *ngFor="let errorMessage of errorMessageList"><span [innerHTML]="errorMessage"></span></p>
       </ng-container>
@@ -18,17 +18,17 @@
           <p *ngFor="let error of errorMessage.errors"><span [innerHTML]="error"></span></p>
         </div>
       </ng-container>
-      <span *ngIf="errorDescription" [innerHTML]="errorDescription"></span>
+      <span *ngIf="errorDescription hyperlink_color" [innerHTML]="errorDescription" id="error_description"></span>
       <div *ngIf="hasImpact" class="modal-body-title" [innerHTML]="hasImpact"></div>
     </div>
-    <button *ngIf="showErrorButton" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>
-    <button *ngIf="isButtonEnabled" (click)="goBack()" type="button" class="btn btn-primary width100 mt20">Let’s Go</button>
-    <button *ngIf="isError" type="button" class="btn btn-primary width100 mt10" (click)="tryAgain()">Try Again</button>
-    <button *ngIf="isError" type="button" (click)="activeModal.dismiss('Close click')" class="btn btn-secondary width100 mt10">Enter Manually</button>
-    <button *ngIf="navToHome" type="button" class="btn btn-primary width100 mt10" (click)="goToHome()">Back To Homepage</button>
+    <button *ngIf="showErrorButton" id="error_crose_click" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>
+    <button *ngIf="isButtonEnabled" id="error_go_back" (click)="goBack()" type="button" class="btn btn-primary width100 mt20">Let’s Go</button>
+    <button *ngIf="isError" id="error_try_again" type="button" class="btn btn-primary width100 mt10" (click)="tryAgain()">Try Again</button>
+    <button *ngIf="isError" type="button" id="error_enter_manually" (click)="activeModal.dismiss('Close click')" class="btn btn-secondary width100 mt10">Enter Manually</button>
+    <button *ngIf="navToHome" type="button" id="error_back_to_home" class="btn btn-primary width100 mt10" (click)="goToHome()">Back To Homepage</button>
     <div class="yes_r_no">
-      <button *ngIf="unSaved" type="button" class="btn width100 mt10 col-5" (click)="activeModal.close('no')">No</button>
-      <button *ngIf="unSaved" type="button" class="btn btn-primary width100 mt10 col-5" (click)="activeModal.close('yes')">Yes</button>
+      <button *ngIf="unSaved" type="button"  id="error_no" class="btn width100 mt10 col-5" (click)="activeModal.close('no')">No</button>
+      <button *ngIf="unSaved" type="button" id="error_yes" class="btn btn-primary width100 mt10 col-5" (click)="activeModal.close('yes')">Yes</button>
     </div>    
   </div>
   
