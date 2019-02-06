@@ -69,8 +69,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   addAndRemoveSourseFields() {
     if (
       this.additionDeclarationtwo.controls.source.value &&
-      this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SAVING
+      this.additionDeclarationtwo.controls.source.value.key ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
     ) {
       this.additionDeclarationtwo.addControl(
         'personalSavingForm',
@@ -80,11 +80,12 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       );
       this.additionDeclarationtwo.removeControl('investmentEarning');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+      this.additionDeclarationtwo.removeControl('othersFrom');
     }
     if (
       this.additionDeclarationtwo.controls.source.value &&
-      this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+      this.additionDeclarationtwo.controls.source.value.key ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
     ) {
       this.additionDeclarationtwo.addControl(
         'inheritanceGiftFrom',
@@ -94,11 +95,12 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       );
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
+      this.additionDeclarationtwo.removeControl('otherSources');
     }
     if (
       this.additionDeclarationtwo.controls.source.value &&
-      this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+      this.additionDeclarationtwo.controls.source.value.key ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
     ) {
       this.additionDeclarationtwo.addControl(
         'investmentEarnings',
@@ -109,16 +111,19 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       );
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+      this.additionDeclarationtwo.removeControl('othersFrom');
     }
     if (
       this.additionDeclarationtwo.controls.source.value &&
-      (this.additionDeclarationtwo.controls.source.value.name ===
-        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.BUSINESS_PROFITS ||
-        this.additionDeclarationtwo.controls.source.value.name ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALE_OF_REAL_ESTATE ||
-        this.additionDeclarationtwo.controls.source.value.name ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.SALARY)
+      this.additionDeclarationtwo.controls.source.value.key ===
+      INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.OTHERS
     ) {
+      this.additionDeclarationtwo.addControl(
+        'othersFrom',
+        this.formBuilder.group({
+          otherSources: [this.formValues.otherSources, Validators.required]
+        })
+      );
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('investmentEarnings');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');

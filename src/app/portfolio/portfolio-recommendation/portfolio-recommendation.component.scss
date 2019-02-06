@@ -14,8 +14,8 @@ app-portfolio-recommendation {
     .portfolio-allocation-details__container {
       color: $white-color;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14);
-      background-color: #00717e;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      background-color: $portfolio-allocation-details-bg;
       .portfolio-allocation-details__content {
         padding: 20px 0px;
         .portfolio-allocation-details__content__desc {
@@ -27,7 +27,7 @@ app-portfolio-recommendation {
             letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
-            background-color: #008b90;
+            background-color: $portfolio-allocation-details-content-color;
             padding: 20px 15px;
             strong {
               font-family: $muli-bold;
@@ -43,7 +43,7 @@ app-portfolio-recommendation {
         font-size: 18px;
         font-weight: 600;
         letter-spacing: -0.2px;
-        color: #b3d6d6;
+        color: $review-text-color;
         .edit_button {
           background: url('../../../assets/images/edit-icon.svg') no-repeat;
           cursor: pointer;
@@ -63,7 +63,7 @@ app-portfolio-recommendation {
       font-size: 21px;
       font-weight: bold;
       letter-spacing: -0.4px;
-      color: #ffffff;
+      color: $white-color;
       padding-bottom: 14px;
     }
   }
@@ -76,27 +76,27 @@ app-portfolio-recommendation {
     text-align: center;
     padding: 21px 0 50px;
     a {
-      color: #ffffff;
+      color: $white-color;
       text-decoration: underline;
     }
   }
   .review-block {
     padding: 20px 35px;
-    background-color: #009999;
+    background-color: $review-block-bg;
     font-family: $muli-bold;
     font-size: 18px;
     font-weight: bold;
     line-height: 1.44;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;
       font-style: italic;
       line-height: 1.36;
       letter-spacing: -0.1px;
-      color: #b3d6d6;
+      color: $review-text-color;
       padding-top: 10px;
     }
   }
@@ -106,7 +106,7 @@ app-portfolio-recommendation {
     font-size: 24px;
   }
   hr {
-    border-color: #00a7a7;
+    border-color: $teal-color;
     margin: 0;
   }
 }

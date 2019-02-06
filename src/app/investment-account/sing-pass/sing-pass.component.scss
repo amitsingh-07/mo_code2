@@ -4,10 +4,10 @@ app-sing-pass {
   .autofill-link {
     border: 1px solid $secondary-action-color;
     padding: 15px 20px;
-    background-color: #fff;
+    background-color: $white-color;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0px 9px 19px 2px #007d7d;
+    box-shadow: 0px 9px 19px 2px $risk-table-cell-color;
     margin-bottom: 20px;
     .flex-row {
       &.flex-col-12 {
@@ -29,7 +29,7 @@ app-sing-pass {
       font-family: $muli-bold;
       font-size: 18px;
       font-weight: bold;
-      color: #e57300;
+      color: $inline-error-border-color;
       padding-right: 15px;
       padding-bottom: 7px;
     }
@@ -38,7 +38,7 @@ app-sing-pass {
     }
 
     &.postlogin {
-      box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
       margin-bottom: 0px;
       @include max360 {
         padding: 10px 14px;
@@ -67,15 +67,14 @@ app-sing-pass {
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
-        color: #4a4a4a;
+        color: $dark-grey-color;
         justify-content: center;
       }
     }
   }
 
   .backdrop {
-    background: url('../../../assets/images/investment-account/transparent-black.png')
-      repeat;
+    background: url('../../../assets/images/investment-account/transparent-black.png') repeat;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -88,18 +87,16 @@ app-sing-pass {
   }
 
   .loader-content-wrapper {
-    background-color: #fff;
+    background-color: $white-color;
     border-radius: 8px;
-    color: #ccc;
+    color: $question-info-brdr-color;
     margin: 0 32px;
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 15px 34px;
-
     position: absolute;
-    // top: 0px;
     left: 0px;
     z-index: 9999;
   }
@@ -112,13 +109,13 @@ app-sing-pass {
 
   .loader-content {
     font-family: $muli;
-    color: #5e5e5e;
+    color: $text-color-secondary;
     text-align: center;
     font-size: 16px;
 
     .loader-title {
       font-family: $muli-regular;
-      color: #4a4a4a;
+      color: $dark-grey-color;
       margin-bottom: 5px;
       letter-spacing: -0.2px;
       .dots {
@@ -130,7 +127,7 @@ app-sing-pass {
       font-style: italic;
       line-height: 1.31;
       letter-spacing: -0.2px;
-      color: #000000;
+      color: $black-color;
     }
   }
 }
