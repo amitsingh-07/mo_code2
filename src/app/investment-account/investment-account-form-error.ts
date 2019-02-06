@@ -234,7 +234,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Country',
-        errorMessage: 'Select Country'
+        errorMessage: 'Select Country of Tax Residence'
       }
     },
     radioTin: {
