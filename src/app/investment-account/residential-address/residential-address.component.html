@@ -43,7 +43,7 @@
                   <label for="residentialAddress-postalcode-drpdown" id="residentialAddress-postalcode-lbl">{{ 'RESIDENTIAL_ADDRESS.POSTAL_CODE' | translate}}</label>
                 </div>
                 <div class="flex-col-7">
-                  <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.postalCode)}">
+                  <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.postalCode), 'disabled':addressForm.controls.postalCode.disabled}">
                     <div class="postal-code-control">
                       <div class="control">
                         <input type="text" class="input-control grey" formControlName="postalCode" id="residentialAddress-postalcode-txt" />
@@ -247,7 +247,7 @@
                   </div>
                   <div class="flex-col-7">
 
-                    <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailPostalCode)}">
+                    <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailPostalCode), 'disabled':addressForm.controls.mailingAddress.controls.mailPostalCode.disabled}">
                       <div class="postal-code-control">
                         <div class="control">
                           <input type="text" class="input-control grey" formControlName="mailPostalCode" id="residentialAddress-mailpostalcode-txt"

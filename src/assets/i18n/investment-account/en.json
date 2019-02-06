@@ -284,7 +284,7 @@
       "TIME": "Estimate about 5 mins"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Autofill Forms via MyInfo",
+      "TITLE": "Autofill Forms Via MyInfo",
       "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
       "BTN-TEXT": "Yes, Proceed"
     },

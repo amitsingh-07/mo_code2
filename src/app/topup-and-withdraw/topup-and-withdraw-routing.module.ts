@@ -5,6 +5,7 @@ import { AssetAllocationComponent } from './asset-allocation/asset-allocation.co
 import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
+import { TopupAndWithdrawGuardService as  TopupAndWithdrawGuard} from './topup-and-withdraw-guard.service';
 import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
 import { TransactionComponent } from './transaction/transaction.component';
@@ -22,47 +23,58 @@ const routes: Routes = [
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP,
-    component: TopUpComponent
+    component: TopUpComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST + '/:status',
-    component: TopupRequestComponent
+    component: TopupRequestComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.FUND_YOUR_ACCOUNT,
-    component: FundYourAccountComponent
+    component: FundYourAccountComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESTMENT,
-    component: YourInvestmentComponent
+    component: YourInvestmentComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_PORTFOLIO,
-    component: YourPortfolioComponent
+    component: YourPortfolioComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL,
-    component: WithdrawalTypeComponent
+    component: WithdrawalTypeComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL_PAYMENT_METHOD,
-    component: WithdrawalPaymentMethodComponent
+    component: WithdrawalPaymentMethodComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL_SUCCESS,
-    component: WithdrawalSuccessComponent
+    component: WithdrawalSuccessComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.TRANSACTION,
-    component: TransactionComponent
+    component: TransactionComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.HOLDINGS,
-    component: HoldingsComponent
+    component: HoldingsComponent,
+    canActivate: [TopupAndWithdrawGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.ASSET_ALLOCATION,
-    component: AssetAllocationComponent
+    component: AssetAllocationComponent,
+    canActivate: [TopupAndWithdrawGuard]
   }
 ];
 

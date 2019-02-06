@@ -55,6 +55,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     aml_failed: 'FAILED',
     ddc_submitted: 'ddc_submitted',
     account_creation_pending: 'account_creation_pending',
+    account_creation_confirmed: 'confirmed',
     documents_pending: 'documents_pending'
   },
   ADDITIONAL_DECLARATION_TWO: {
