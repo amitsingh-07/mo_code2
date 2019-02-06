@@ -1,0 +1,11 @@
+@import '../../../variables';
+@import '../../../mixins';
+.earnings-section {
+    background:$white-color;
+    color:$black-color;
+    border-radius: 5px;
+}
+.earnings-field{
+background: $light-aqua-color;
+color: $dark-teal-color;
+}

@@ -68,11 +68,11 @@ export class DependantsDetailsComponent implements OnInit {
     });
   }
   addDependant() {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.push(this.buildDependantDetailsForm());
   }
   removeDependant(i) {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.removeAt(i);
   }
   goToNext(form) {

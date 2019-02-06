@@ -12,16 +12,16 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-my-spendings',
-  templateUrl: './my-spendings.component.html',
-  styleUrls: ['./my-spendings.component.scss']
+  selector: 'app-my-liabilities',
+  templateUrl: './my-liabilities.component.html',
+  styleUrls: ['./my-liabilities.component.scss']
 })
-export class MySpendingsComponent implements OnInit {
+export class MyLiabilitiesComponent implements OnInit {
   pageTitle: string;
-  mySpendingsForm: FormGroup;
-  otherMortage = true;
-    constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-                private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+  myLiabilitiesForm: FormGroup;
+  propertyLoan = true;
+  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -37,22 +37,20 @@ export class MySpendingsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  ngOnInit() {
-    this.buildMyEarningsForm();
+  addPropertyLoan() {
+    this.propertyLoan = !this.propertyLoan;
   }
-  addOtherMortage() {
-    this.otherMortage = !this.otherMortage;
-  }
-  buildMyEarningsForm() {
-    this.mySpendingsForm = this.formBuilder.group({
-      employmentType: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      monthlySalary: ['', [Validators.required]],
-      rentalIncome: ['', [Validators.required]],
-      otherIncome: ['', [Validators.required]],
-      otherMonthlyIncome: ['', [Validators.required]],
-      annualBonus: ['', [Validators.required]],
-      HomeType: [ '', [Validators.required]],
-      otherAnnualIncome: [ '', [Validators.required]]
+  buildmyLiabilitiesForm() {
+    this.myLiabilitiesForm = this.formBuilder.group({
+      homeLoanOutstanding: ['', [Validators.required]],
+      otherPropertyLoan: ['', [Validators.required]],
+      otherLoanAmountOustanding: ['', [Validators.required]],
+      carLoan: ['', [Validators.required]],
+
     });
   }
+  ngOnInit() {
+    this.buildmyLiabilitiesForm();
+  }
+
 }

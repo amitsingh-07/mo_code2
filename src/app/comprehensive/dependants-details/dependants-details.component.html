@@ -5,6 +5,7 @@
     <div formArrayName="dependant" class="myDependantFormArray p-3 mt-3" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
       <div class="text-left"><b>Dependant {{i+1}}</b>
       </div>
+      <div (click)="removeDependant(i)" *ngIf="myDependantForm.controls.dependant.controls.length>1" class="text-right"><i class="fa fa-trash"></i></div>
 
       <div class="form-group" [formGroupName]="i">
 
