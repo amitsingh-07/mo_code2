@@ -298,7 +298,7 @@ export class TopupAndWithDrawService {
     oneTimeInvestment = data.oneTimeInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      oneTimeInvestment: Number(oneTimeInvestment) // todo
+      investmentAmount: Number(oneTimeInvestment) // todo
     };
   }
 
