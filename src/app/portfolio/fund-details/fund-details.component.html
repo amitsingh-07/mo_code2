@@ -19,12 +19,9 @@
         </div>
       </div>
       <div class="funding-content" [class.first]="j === 0" id="fund-details-content_{{j}}">
-        {{fund.htmlDesc}}
-        
-        <a download target="_blank" [href]="getFactSheetLink(fund.factSheetLink)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>
-       
+        {{fund.htmlDesc}}        
+        <a download target="_blank" [href]="getFactSheetLink(fund.factSheetLink)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
       </div>
-
     </div>
     <a download target="_blank" [href]="getProspectusLink(fundDetails[0].factSheetLink)" class="btn btn-orange width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
    </div>

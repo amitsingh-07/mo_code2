@@ -7,7 +7,7 @@ app-additional-declaration-info {
       border: 0px;
       border-radius: 6px;
       background-color: $white-color;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
       cursor: pointer;
       font-family: $muli-bold;
       font-size: 22px;
@@ -17,8 +17,7 @@ app-additional-declaration-info {
       line-height: normal;
       letter-spacing: -0.2px;
       text-align: center;
-      color: #00a7a7;
-
+      color: $teal-color;
       @include allmobiles {
         position: fixed;
         width: 100%;
@@ -32,14 +31,12 @@ app-additional-declaration-info {
       @extend .flex;
       @extend .space-btwn;
       width: 100%;
-
       .intro-block__tab {
         width: calc(50% - 10px);
         opacity: 0.2;
         padding-right: 10px;
         background-color: $app-backgrnd-secondary-color;
         min-height: 5px;
-
         &.active {
           opacity: 1;
         }
@@ -87,7 +84,7 @@ app-additional-declaration-info {
       line-height: normal;
       letter-spacing: -0.25px;
       text-align: center;
-      color: #ffffff;
+      color: $white-color;
     }
 
     .intro-block__content__title {
@@ -99,7 +96,7 @@ app-additional-declaration-info {
       line-height: 22px;
       letter-spacing: -0.18px;
       text-align: center;
-      color: #ffffff;
+      color: $white-color;
     }
   }
 }

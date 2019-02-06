@@ -22,14 +22,14 @@ app-inv-personal-info {
       .btn-outline-primary {
         &.disabled {
           cursor: not-allowed;
-          border-color: rgba(0, 135, 134, 0.4) !important;
+          border-color: $fixed-btn-brdr-color !important;
           &.active {
-            border: 1px solid #ffffff !important;
+            border: 1px solid $white-color !important;
           }
         }
       }
       .fixed-btn--sm {
-        border-color: rgba(0, 135, 134, 0.4);
+        border-color: $fixed-btn-brdr-color;
       }
     }
 
@@ -44,7 +44,7 @@ app-inv-personal-info {
     }
 
     .step-indicator-container {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 106px;
@@ -72,17 +72,17 @@ app-inv-personal-info {
         }
       }
       &:disabled {
-        color: #00a7a7 !important;
-        -webkit-text-fill-color: #00a7a7 !important;
-        background-color: #d4eded !important;
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
         opacity: 1 !important;
       }
     }
     .input-group-append {
       .btn-primary {
         &:disabled {
-          color: #00a7a7 !important;
-          background-color: #d4eded !important;
+          color: $teal-color !important;
+          background-color: $inv-btn-disabled-bg !important;
           opacity: 1 !important;
         }
       }
@@ -90,41 +90,20 @@ app-inv-personal-info {
 
     .btn {
       &:disabled {
-        color: #00a7a7 !important;
-        background-color: #d4eded !important;
+        color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
         opacity: 1 !important;
       }
     }
-    .btn {
-      &.btn-secondary {
-        padding: 0.5rem;
-        font-size: 16px;
-        background-color: #ff872f;
-        color: #fff;
-        border: none;
-        font-family: $muli;
 
-        &.right {
-          float: right;
-        }
-
-        &:focus {
-          background-color: #ff730c !important;
-        }
-
-        &:active {
-          background-color: #ff730c !important;
-        }
-      }
-    }
     input::placeholder {
-      color: #5e5e5e !important;
+      color: $text-color-secondary !important;
       line-height: 1.25;
       letter-spacing: -0.2px;
     }
 
     .white-bg-checkbox {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 18px 10px 18px;
       border-radius: 6px;
       font-family: $muli;
@@ -138,18 +117,18 @@ app-inv-personal-info {
       }
 
       .option-title {
-        color: #000;
+        color: $black-color;
         font-size: 18px;
       }
 
       .option-desc {
-        color: #4a4a4a;
+        color: $dark-grey-color;
         font-family: $muli-semi-bold;
         font-size: 16px;
       }
     }
     .fixed-btn--sm {
-      color: #99dbdb;
+      color: $fixed-btn-txt-color;
     }
     .btn__footer--fixed {
       font-family: $muli-bold !important;

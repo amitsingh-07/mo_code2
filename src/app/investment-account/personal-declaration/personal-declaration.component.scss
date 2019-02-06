@@ -15,7 +15,6 @@ app-personal-declaration {
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.2px;
-        font-family: Muli;
         font-weight: normal;
         font-style: normal;
         font-stretch: normal;
@@ -53,13 +52,12 @@ app-personal-declaration {
     .btn {
       z-index: 1001;
       &:disabled {
-        background-color: #3bbcbc;
-        color: #00a7a7;
+        background-color: $btn-disabled-light-bg;
+        color: $teal-color;
       }
     }
     .fixed-btn--sm {
-      color: #fff;
-      // flex-wrap: initial;
+      color: $white-color;
     }
     .mr16 {
       margin-right: 5px !important;
@@ -74,12 +72,11 @@ app-personal-declaration {
       padding-right: 14px;
     }
     .step-indicator-container {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 106px;
       margin-bottom: 15px;
-
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
@@ -91,9 +88,6 @@ app-personal-declaration {
         top: 0px;
       }
     }
-    // .QuestionLabel{
-    //     width: 83%;
-    // }
 
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
@@ -112,7 +106,7 @@ app-personal-declaration {
       font-stretch: normal;
       line-height: normal;
       letter-spacing: -0.3px;
-      color: #ffffff;
+      color: $white-color;
     }
     .tin_question_text {
       font-family: $muli-semi-bold;
@@ -122,7 +116,7 @@ app-personal-declaration {
       font-stretch: normal;
       line-height: normal;
       letter-spacing: -0.3px;
-      color: #ffffff;
+      color: $white-color;
     }
     .btn__footer--fixed {
       font-family: $muli-bold !important;
