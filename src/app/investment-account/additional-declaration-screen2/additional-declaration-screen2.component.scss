@@ -6,12 +6,11 @@ app-additional-declaration-screen2 {
     padding-top: 110px;
   }
   .step-indicator-container {
-    background-color: #fff;
+    background-color: $white-color;
     padding: 10px 0px;
     position: relative;
     top: 106px;
     margin-bottom: 15px;
-
     .container-fluid {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -40,13 +39,12 @@ app-additional-declaration-screen2 {
     font-family: $muli-semi-bold;
     font-weight: normal;
   }
-
   .year {
     font-family: $muli-regular;
     font-size: 17px !important ;
     letter-spacing: -0.3px;
     text-align: right;
-    color: #9b9b9b !important;
+    color: $light-grey-color !important;
   }
   .dropdown-control .btn-dropdown {
     padding-right: 28px;

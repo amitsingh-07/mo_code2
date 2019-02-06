@@ -234,7 +234,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Country',
-        errorMessage: 'Select Country'
+        errorMessage: 'Select Country of Tax Residence'
       }
     },
     radioTin: {
@@ -543,6 +543,13 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Investment Period.',
         errorMessage: 'Eenter Duration investment held for'
+      }
+    },
+    otherSources: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Invalid others.',
+        errorMessage: 'Eenter Others'
       }
     },
     earningsGenerated: {

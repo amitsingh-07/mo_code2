@@ -14,8 +14,8 @@ app-post-login {
   }
   .yes-login-but {
     border-radius: 6px;
-    background-color: #ffffff;
-    box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
+    background-color: $white-color;
+    box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
     width: 100%;
     height: 57px;
     font-family: $muli-bold;
@@ -23,7 +23,7 @@ app-post-login {
     font-weight: bold;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #00a7a7;
+    color: $teal-color;
   }
   .no-login-but {
     font-size: 18px;
@@ -31,10 +31,10 @@ app-post-login {
     font-weight: bold;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     width: 100%;
     height: 57px;
-    background-color: #00a7a7;
+    background-color: $teal-color;
     border: none;
   }
   .prelogin-wrapper__title {
@@ -44,7 +44,7 @@ app-post-login {
     width: 327px;
     letter-spacing: -0.3px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
   }
   .signup-wrapper__header-icon {
     @include allmobiles {
@@ -61,11 +61,11 @@ app-post-login {
     &.postlogin {
       border: 1px solid $secondary-action-color;
       padding: 15px 20px;
-      background-color: #fff;
+      background-color: $white-color;
       border-radius: 6px;
       cursor: pointer;
       margin-bottom: 20px;
-      box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
       justify-content: center;
       align-items: center;
       margin-bottom: 0px;
@@ -73,7 +73,7 @@ app-post-login {
         font-family: $muli-bold;
         font-size: 18px;
         font-weight: bold;
-        color: #e57300;
+        color: $inline-error-border-color;
         font-size: 21px;
         padding: 0;
       }
@@ -89,13 +89,13 @@ app-post-login {
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
-        color: #4a4a4a;
+        color: $dark-grey-color;
       }
     }
   }
   .widgets {
     .widget {
-      background: #f4fafb;
+      background: $bond-container-bg;
       padding-bottom: 28px;
       border-radius: 6px;
       margin-bottom: 11px;
@@ -107,8 +107,8 @@ app-post-login {
         font-size: 21px;
         font-weight: bold;
         letter-spacing: -0.2px;
-        color: #066360;
-        background-color: #ffffff;
+        color: $post-login-widget-title;
+        background-color: $white-color;
         padding: 16px 25px 13px;
         border-radius: 6px;
       }
@@ -117,7 +117,7 @@ app-post-login {
         font-size: 15px;
         line-height: 1.4;
         letter-spacing: -0.2px;
-        color: #2d8289;
+        color: $dark-teal-color;
         padding: 0 21px;
         .desc {
           padding: 19px 0;

@@ -33,12 +33,6 @@ export let PORTFOLIO_CONFIG = {
     should_not_invest_id: 6
   },
   risk_assessment: {
-    chart_legend: {
-      1: 'vhfvhr',
-      2: 'hfhr',
-      3: 'mfmr',
-      4: 'lflr'
-    },
     special_question_order: 4
   }
 };
