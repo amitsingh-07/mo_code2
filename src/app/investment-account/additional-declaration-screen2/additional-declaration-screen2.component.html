@@ -1,50 +1,38 @@
 <div class="additional_declaration-screen">
-
   <div class="step-indicator-container">
     <div class="container-fluid">
       <app-step-indicator [count]="2" [activeStepIndex]="1"></app-step-indicator>
     </div>
   </div>
-
   <div class="container-fluid">
     <div class="content">
       <div class="row">
-
         <div class="col-lg-12 col-md-12">
             <form id="additional_declaration-screen_address_form" name="additional_declaration-screen" [formGroup]="additionDeclarationtwo">
-
-
             <div class="flex-row mb10">
               <div class="flex-col-5">
                 <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">
                   {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_NUMBER_OF_TRANSATIONS' | translate}}</div>
               </div>
               <div class="flex-col-7">
-
                 <div class="form-control form-control-right">
-
                   <input type="text"    id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="expectedNumberOfTransation" class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
                   <i class="right year">/year</i>
                 </div>
               </div>
             </div>
-
             <div class="flex-row mb10">
               <div class="flex-col-5">
                 <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_amount_of_transaction_lab"  for="name"> 
                   {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_AMOUNT_PER_TRANSATION' | translate}}</div>
               </div>
               <div class="flex-col-7">
-
                 <div class="form-control">
                     <i id="doller_syb">$</i>
-                  <input type="text"  formControlName="expectedAmountPerTranction"   id="additional_declaration_Expected_amount_of_transaction_input"  class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">
-                  
+                  <input type="text"  formControlName="expectedAmountPerTranction"   id="additional_declaration_Expected_amount_of_transaction_input"  class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">              
                 </div>
               </div>
             </div>
-
-
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
@@ -57,7 +45,6 @@
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{additionDeclarationtwo.controls.source.value ? additionDeclarationtwo.controls.source.value.name :'Select Source'}}
-
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
@@ -68,23 +55,16 @@
                 </div>
               </div>
             </div>
-
             <!-- one type -->
-
-         
             <!-- two type -->
-          
-          
             <div class="form-group" *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Saving'">
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
                   <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS' | translate}}
-
                   </div>
                 </div>
                 <div class="flex-col-12">
                   <div class="form-control" formGroupName="personalSavingForm" >
-
                     <div name="totalAssets">
                       <input class="input-control" type="text"  formControlName="personalSavings"  id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio  #totalAssets>
                     </div>
@@ -92,20 +72,15 @@
                 </div>
               </div>
             </div>
-
-
             <!-- three type -->
-            
             <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Gift/Inheritance'" >
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
                   <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT' | translate}}
-
                   </div>
                 </div>
                 <div class="flex-col-12">
                   <div class="form-control" formGroupName="inheritanceGiftFrom">
-
                     <div name="totalAssets">
                       <input class="input-control" type="text"   formControlName="inheritanceGift"  id="additional_declaration_Gift_inheritanc_input" appCurrencyInputPortfolio  #totalAssets>
                     </div>
@@ -113,25 +88,20 @@
                 </div>
               </div>
             </div>
-            <!--  four type -->
-         
-            <div *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">
-           
+            <!--  four type -->      
+            <div *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">          
             <div class="flex-row mb10">
               <div class="flex-col-5">
                 <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">
                   {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.DURATION_INVESTMENT' | translate}}</div>
               </div>
               <div class="flex-col-7">
-
                 <div class="form-control form-control-right investment-duration">
-
                   <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="durationInvestment"  class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
                   <i class="right year">year(s)</i>
                 </div>
               </div>
             </div>
- 
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
@@ -144,7 +114,6 @@
                       <button class="btn btn-dropdown without-border" id="additional_declaration_earnings_generated_lab-drpdown" ngbDropdownToggle>
                          <span *ngIf="!additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">Select Earnings</span>
                          <span *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value.name }} </span>
-
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated, 'investmentEarnings')"
@@ -156,9 +125,6 @@
               </div>
             </div>
             </div>
-          
-           
-
 <!-- continue button -->
             <button type="button" id="additional_declaration_screen_two_Btn" (click)="goToNext(additionDeclarationtwo)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">{{ 'COMMON.LABEL.SUBMIT' | translate}}</button>

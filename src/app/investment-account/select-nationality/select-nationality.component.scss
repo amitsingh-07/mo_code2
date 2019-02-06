@@ -53,13 +53,16 @@ app-select-nationality {
   }
   .btn {
     &:disabled {
-      color: #00a7a7 !important;
-      background-color: #d4eded !important;
+      color: $teal-color !important;
+      background-color: $inv-btn-disabled-bg !important;
       opacity: 1 !important;
+      &:hover{
+        background-color: $inv-btn-disabled-bg !important;
+      }
     }
   }
   .fixed-btn--sm {
-    color: #fff;
+    color: $white-color;
   }
   .mr16 {
     margin-right: 5px !important;
