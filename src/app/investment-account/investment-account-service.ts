@@ -693,9 +693,10 @@ export class InvestmentAccountService {
       personalSavings: this.investmentAccountFormData.personalSavings,
 
       inheritanceGift: this.investmentAccountFormData.inheritanceGift,
-      investmenteEarning: this.investmentAccountFormData.investmenteEarning,
+      investmentEarnings: this.investmentAccountFormData.investmentEarnings,
       durationInvestment: this.investmentAccountFormData.durationInvestment,
-      earningsGenerated: this.investmentAccountFormData.earningsGenerated
+      earningsGenerated: this.investmentAccountFormData.earningsGenerated,
+      otherSources: this.investmentAccountFormData.otherSources
     };
   }
   setAdditionDeclaration(data) {
@@ -711,6 +712,10 @@ export class InvestmentAccountService {
     if (data.inheritanceGiftFrom) {
       this.investmentAccountFormData.inheritanceGift =
         data.inheritanceGiftFrom.inheritanceGift;
+    }
+    if (data.othersFrom) {
+      this.investmentAccountFormData.otherSources =
+        data.othersFrom.otherSources;
     }
     if (data.investmentEarnings) {
       this.investmentAccountFormData.durationInvestment =
@@ -953,6 +958,8 @@ export class InvestmentAccountService {
       additionalDesc = data.inheritanceGift;
     } else if (data.personalSavings) {
       additionalDesc = data.personalSavings;
+    } else if (data.otherSources) {
+      additionalDesc = data.otherSources;
     }
     return additionalDesc;
   }
@@ -1536,11 +1543,12 @@ export class InvestmentAccountService {
       pepDetails.expectedNumberOfTransactions;
     this.investmentAccountFormData.expectedAmountPerTranction =
       pepDetails.expectedAmountPerTransactions;
-    this.investmentAccountFormData.investmenteEarning = this.getPropertyFromId(
+    this.investmentAccountFormData.investmentEarnings = this.getPropertyFromId(
       pepDetails.investmentSourceId,
       'investmentSource'
     );
     this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
+
     this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
       pepDetails.earningsGeneratedFromId,
       'earningsGenerated'
