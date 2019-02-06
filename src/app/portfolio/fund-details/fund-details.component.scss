@@ -9,8 +9,8 @@ app-fund-details {
     font-weight: 600;
     letter-spacing: -0.3px;
     text-align: center;
-    color: #00a7a7;
-    border-bottom: 1px solid #edeff1;
+    color: $teal-color;
+    border-bottom: 1px solid $fund-details-title-brdr;
     margin-bottom: 0;
     margin-right: 0;
     padding-bottom: 10px;
@@ -37,7 +37,7 @@ app-fund-details {
   .fund-details-content {
     .dimentional {
       padding: 26px 25px 23px;
-      border-bottom: 1px solid #c2d9ec;
+      border-bottom: 1px solid $fund-details-dimentional-brdr;
       .img-container {
         width: 180px;
         height: 41px;
@@ -53,22 +53,22 @@ app-fund-details {
       border: none;
       .card-header {
         padding: 23px 48px 19px 22px;
-        border-bottom-color: #c9ddee;
-        background: #ffffff;
+        border-bottom-color: $fund-details-card-brdr;
+        background: $white-color;
         .btn {
           white-space: normal;
           padding: 0;
           text-align: left;
-          background: #ffffff;
+          background: $white-color;
           font-family: $muli-semi-bold;
           font-size: 16px;
           font-weight: 600;
           letter-spacing: -0.3px;
-          color: #000000;
+          color: $black-color;
           display: flex;
           align-items: center;
           i {
-            color: #2d8288;
+            color: $fund-details-arrow-color;
             position: absolute;
             right: 25px;
           }
@@ -84,7 +84,7 @@ app-fund-details {
         }
       }
       .card-body {
-        color: #000000;
+        color: $black-color;
         padding: 13px 45px 27px 32px;
         .btn {
           margin-top: 22px;
@@ -101,7 +101,7 @@ app-fund-details {
       font-weight: bold;
       letter-spacing: -0.1px;
       text-align: center;
-      color: #ff872f;
+      color: $secondary-action-color;
       border: none;
       background: none;
       padding: 29px 29px 33px;
@@ -111,7 +111,7 @@ app-fund-details {
   .arrow {
     display: block;
     border-style: solid;
-    border-color: #2d8288;
+    border-color: $fund-details-arrow-color;
     border-width: 0 0 2px 2px;
     width: 10px;
     height: 10px;
@@ -140,9 +140,9 @@ app-fund-details {
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.3px;
-    color: #000000;
+    color: $black-color;
     padding: 20px;
-    border-bottom: 1px solid #c2d9ec;
+    border-bottom: 1px solid $fund-details-dimentional-brdr;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -158,9 +158,9 @@ app-fund-details {
     font-size: 16px;
     line-height: 1.38;
     letter-spacing: -0.2px;
-    color: #5e5e5e;
+    color: $text-color-secondary;
     padding: 29px 29px 33px;
-    border-bottom: 1px solid #c2d9ec;
+    border-bottom: 1px solid $fund-details-dimentional-brdr;
     display: none;
   }
   .funding-content.first {

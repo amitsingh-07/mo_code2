@@ -26,19 +26,7 @@ const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 })
 export class InvestmentAccountService {
   disableAttributes = [];
-  myInfoAttributes = [
-    'nationality',
-    'name',
-    'passportnumber',
-    'passportexpirydate',
-    'dob',
-    'sex',
-    'regadd',
-    'mailadd',
-    'employment',
-    'occupation',
-    'householdincome'
-  ];
+  myInfoAttributes = INVESTMENT_ACCOUNT_CONFIG.MY_INFO_ATTRIBUTES;
 
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private investmentAccountFormError: any = new InvestmentAccountFormError();

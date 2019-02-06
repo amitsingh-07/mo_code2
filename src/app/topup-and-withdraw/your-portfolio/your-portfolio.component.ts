@@ -84,13 +84,14 @@ export class YourPortfolioComponent implements OnInit {
   constructFundingParams(data) {
     const FundValues = {
       source: 'FUNDING',
+      redirectTo: 'PORTFOLIO',
       portfolio: {
         productName: data.portfolioName,
         riskProfile: data.riskProfile
       },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
-      fundingType: '', // todo
+      fundingType: '',
       isAmountExceedBalance: 0,
       exceededAmount: 0
     };

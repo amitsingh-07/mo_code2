@@ -22,10 +22,10 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 export class ResidentialAddressComponent implements OnInit {
   addressForm: FormGroup;
   pageTitle: string;
-  formValues;
-  countries;
-  isUserNationalitySingapore;
-  reasonList;
+  formValues: any;
+  countries: any;
+  isUserNationalitySingapore: any;
+  reasonList: any;
   showOtherTex = false;
 
   constructor(
@@ -88,7 +88,6 @@ export class ResidentialAddressComponent implements OnInit {
   getReasoneList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.reasonList = data.objectList.differentAddressReason;
-      console.log(this.reasonList);
     });
   }
 

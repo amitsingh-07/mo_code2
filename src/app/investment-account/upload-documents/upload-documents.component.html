@@ -1,5 +1,4 @@
 <app-loader [isVisible]="loaderVisible" [content]="loaderInfo"></app-loader>
-
 <div class="upload-doc-nric">
   <div class="step-indicator-container">
     <div class="container-fluid">
@@ -11,9 +10,10 @@
     <div class="content">
       <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
           <div class="col-12 doc-upload-instructions">
-            <div class="sub-title">Please ensure each document upload:</div>
+            <div class="sub-title">
+                Specifications for documents to be uploaded:</div>
             <div class="file-logs"><span>File less than</span><span>10MB</span></div>
-            <div class="file-logs"><span>Allowed file types:</span><span>pdf, jpg, jpeg, png, gif, bmp</span></div>
+            <div class="file-logs"><span>File types:</span><span>pdf, jpg, jpeg, png, gif, bmp</span></div>
           </div>
         <div class="row">
           <div class="col-12 sub-title-block">
@@ -42,7 +42,6 @@
                   <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricFrontHidden" formControlName="nricFrontImage"/>
               </div>
             </div>
-
             <!-- BACK IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricBack)">
               <div class="thumb-container">
@@ -60,7 +59,6 @@
                   <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricBackHidden" formControlName="nricBackImage"/>
               </div>
             </div>
-
             <!-- PASSPORT IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="!isUserNationalitySingapore" (click)="openFileDialog(passport)">
               <div class="thumb-container">
@@ -80,9 +78,7 @@
             </div>
           </div>
         </div>
-
-         <!-- RESIDENTIAL ADDRESS PROOF UPLOAD -->
-         
+         <!-- RESIDENTIAL ADDRESS PROOF UPLOAD -->         
          <div class="row" *ngIf="!isUserNationalitySingapore">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
@@ -91,7 +87,6 @@
             <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}</div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.resAddressProof.value">
-
               <div class="upload-desc" (click)="openFileDialog(resAddressProof)">
                   <div class="thumb-container">
                     <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, $event, resThumb, resAddressProof)" *ngIf="uploadForm.controls.resAddressProof.value">
@@ -102,19 +97,14 @@
                   <div class="upload-content">
                     <div class="title">Verification Document</div>
                     <div class="sub-text" *ngIf="!uploadForm.controls.resAddressProof.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-                    <div class="sub-text" *ngIf="uploadForm.controls.resAddressProof.value" [innerHtml]="getFileName(resAddressProof)"></div>
-                    
+                    <div class="sub-text" *ngIf="uploadForm.controls.resAddressProof.value" [innerHtml]="getFileName(resAddressProof)"></div>                  
                   </div>
                 </div>
-
           </div>
           <input type="file" accept="image/*, .pdf" #resAddressProof (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event, resThumb)"
             name="proofOfResAddress" class="is-hidden">
             <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="resAddressProofHidden" formControlName="resAddressProof"/>
         </div>
-       
-
-
         <!-- MAILING ADDRESS PROOF UPLOAD -->
         <div class="row" *ngIf="!formValues.isMailingAddressSame">
           <div class="col-12 sub-title-block">
@@ -127,7 +117,6 @@
             <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}</div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.mailAdressProof.value">
-
               <div class="upload-desc" (click)="openFileDialog(mailAdressProof)">
                   <div class="thumb-container">
                     <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event, mailThumb, mailAdressProof)" *ngIf="uploadForm.controls.mailAdressProof.value">
@@ -138,8 +127,7 @@
                   <div class="upload-content">
                     <div class="title">Verification Document</div>
                     <div class="sub-text" *ngIf="!uploadForm.controls.mailAdressProof.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-                    <div class="sub-text" *ngIf="uploadForm.controls.mailAdressProof.value" [innerHtml]="getFileName(mailAdressProof)"></div>
-                    
+                    <div class="sub-text" *ngIf="uploadForm.controls.mailAdressProof.value" [innerHtml]="getFileName(mailAdressProof)"></div>                   
                   </div>
                 </div>
             </div>
@@ -147,7 +135,6 @@
             name="proofOfMailAddress" class="is-hidden">
             <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="mailAdressProofHidden" formControlName="mailAdressProof"/>
         </div>
-
         <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
           id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
       </form>

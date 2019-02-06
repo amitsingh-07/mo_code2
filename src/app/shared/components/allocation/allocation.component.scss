@@ -3,8 +3,8 @@
 
 .bond_container {
   border-radius: 6px;
-  box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14);
-  background-color: #f4fafb;
+  box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+  background-color: $bond-container-bg;
 
   .bonds_equity_block {
     padding: 15px;
@@ -15,7 +15,7 @@
       font-weight: 600;
       line-height: 1.44;
       letter-spacing: -0.3px;
-      color: #00a7a7;
+      color: $teal-color;
       padding: 0px 0 12px;
 
       .equity_bar {
@@ -28,7 +28,7 @@
       }
 
       .bar-container {
-        background-color: #c7e9e9;
+        background-color: $bar-container-bg;
       }
 
       .bar {
@@ -41,18 +41,16 @@
 
       .bonds_equity_title {
         border-radius: 6px;
-        // border-top-left-radius: 6px;
-        // border-top-right-radius: 6px;
-        background-color: #009999;
-        border: 1px solid #00a7a7;
-        color: #ffffff;
+        background-color: $review-block-bg;
+        border: 1px solid $teal-color;
+        color: $white-color;
         padding: 14px 20px 13px;
         font-family: $muli-bold;
         font-size: 18px;
         font-weight: bold;
 
         .arrow {
-          border: solid #fff;
+          border: solid $white-color;
           border-width: 0 3px 3px 0;
           display: inline-block;
           padding: 3px;
@@ -78,12 +76,12 @@
         border: none;
         border-bottom-right-radius: 6px;
         border-bottom-left-radius: 6px;
-        background-color: #f4fafb;
+        background-color: $bond-container-bg;
         .card-header {
           display: none;
 
           .btn {
-            color: #ffffff;
+            color: $white-color;
           }
         }
 
@@ -92,7 +90,7 @@
           margin-bottom: 20px;
           border-bottom-left-radius: 6px;
           border-bottom-right-radius: 6px;
-          border: 1px solid #50c2c2;
+          border: 1px solid $allocation-card-body-brdr-color;
 
           div {
             &:last-child {
@@ -103,24 +101,14 @@
       }
 
       .bond_desc {
-        color: #000000;
-        border-bottom: 1px solid #00a7a7;
-
-        &:first-child {
-          .rating_type {
-            /*
-              border-right: none;
-              */
-          }
-        }
-
+        color: $black-color;
+        border-bottom: 1px solid $teal-color;
         .rating_type {
           padding: 16px 17px 13px;
-          border-right: 1px solid #00a7a7;
+          border-right: 1px solid $teal-color;
           display: flex;
           align-items: center;
         }
-
         .rating {
           font-family: $muli-regular;
           font-size: 14px;
@@ -130,14 +118,13 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-
           .flex-row {
             justify-content: space-between;
           }
 
           .rating_value {
             font-weight: bold;
-            color: #00a7a7;
+            color: $teal-color;
             font-family: $muli-bold;
             text-align: right;
           }
@@ -150,9 +137,9 @@
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.2px;
-    color: #FF872F;
+    color: $allocation-btn-view-color;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: #f4fafb;
+    background-color: $bond-container-bg;
   }
 }

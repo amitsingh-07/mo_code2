@@ -30,7 +30,6 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionIndex: number;
   currentQuestion: any;
   isSpecialCase = false;
-  chartLegendEnum = PORTFOLIO_CONFIG.risk_assessment.chart_legend;
 
   constructor(
     private portfolioService: PortfolioService,
@@ -103,10 +102,6 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     if (selectedOption) {
       this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
     }
-  }
-
-  setLegend(id) {
-    return this.chartLegendEnum[id];
   }
 
   save(form): boolean {

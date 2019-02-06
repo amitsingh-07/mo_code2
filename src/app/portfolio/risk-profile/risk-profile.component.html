@@ -1,6 +1,5 @@
 <!-- popup -->
 <div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
-
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
@@ -10,18 +9,11 @@
         <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
       </div>
     </div>
-    <!-- <div class="custom-modal-content">
-      <div>
-        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="portfolioRecommendationCustModalImg2" />
-      </div>
-    </div> -->
   </div>
 </div>
 <!-- popUp -->
-
 <div class="risk-profile-block">
   <div class="container-fluid">
-
     <div class="risk-profile-block__content">
       <div class="text-center">
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">

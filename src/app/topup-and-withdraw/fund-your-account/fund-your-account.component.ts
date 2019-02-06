@@ -163,9 +163,18 @@ export class FundYourAccountComponent implements OnInit {
       !this.fundDetails.isAmountExceedBalance
     );
   }
-  goToNext() {
-    // redirect to dashboard
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  goToNext(target) {
+    switch (target) {
+      case 'PORTFOLIO':
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO], { replaceUrl: true });
+        break;
+      case 'DASHBOARD':
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        break;
+      default:
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        break;
+      }
   }
   // tslint:disable-next-line
   buyPortfolio() {

@@ -5,15 +5,12 @@ app-employment-details {
     .container-fluid {
       padding-top: 110px;
     }
-
     .postal-code-control {
       display: flex;
-
       div.control {
         display: flex;
         flex: 3;
       }
-
       div.button {
         display: flex;
         flex: 2;
@@ -52,7 +49,7 @@ app-employment-details {
     .inline-error {
       .btn {
         &.btn-secondary {
-          background-color: #ff872f !important;
+          background-color: $secondary-action-color !important;
         }
       }
     }
@@ -78,7 +75,7 @@ app-employment-details {
     }
 
     .step-indicator-container {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 106px;
@@ -100,25 +97,31 @@ app-employment-details {
       &.with-button {
         padding: 0.5rem;
         padding-left: 0.8rem;
-
-        input {
-          margin-top: 6px;
-        }
       }
 
-      &:disabled {
-        color: #00a7a7 !important;
-        -webkit-text-fill-color: #00a7a7 !important;
-        background-color: #d4eded !important;
+      &:disabled, &.disabled {
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
         opacity: 1 !important;
+
+        input {
+          background-color: $inv-btn-disabled-bg !important;    
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button{
+          display:none;
+        }
       }
     }
 
     .input-group-append {
       .btn-primary {
         &:disabled {
-          color: #00a7a7 !important;
-          background-color: #d4eded !important;
+          color: $teal-color !important;
+          background-color: $inv-btn-disabled-bg !important;
           opacity: 1 !important;
         }
       }
@@ -126,8 +129,8 @@ app-employment-details {
 
     .btn {
       &:disabled {
-        color: #00a7a7 !important;
-        background-color: #d4eded !important;
+        color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
         opacity: 1 !important;
       }
     }
@@ -136,8 +139,8 @@ app-employment-details {
       &.btn-secondary {
         padding: 0.5rem;
         font-size: 16px;
-        background-color: #ff872f;
-        color: #fff;
+        background-color: $secondary-action-color;
+        color: $white-color;
         border: none;
         font-family: $muli;
 
@@ -146,27 +149,27 @@ app-employment-details {
         }
 
         &:hover {
-          background-color: #ff872f !important;
+          background-color: $secondary-action-color !important;
           border: none !important;
-          color: #ffffff !important;
+          color: $white-color !important;
         }
 
         &:focus {
-          background-color: #ff872f !important;
+          background-color: $secondary-action-color !important;
           border: none !important;
-          color: #ffffff !important;
+          color: $white-color !important;
         }
 
         &:active {
-          background-color: #ff872f !important;
+          background-color: $secondary-action-color !important;
           border: none !important;
-          color: #ffffff !important;
+          color: $white-color !important;
         }
       }
     }
 
     .white-bg-checkbox {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 18px 10px 18px;
       border-radius: 6px;
       font-family: $muli;
@@ -180,12 +183,12 @@ app-employment-details {
       }
 
       .option-title {
-        color: #000;
+        color: $black-color;
         font-size: 18px;
       }
 
       .option-desc {
-        color: #4a4a4a;
+        color: $dark-grey-color;
         font-family: $muli-semi-bold;
         font-size: 16px;
       }

@@ -26,7 +26,7 @@ export class WithdrawalTypeComponent implements OnInit {
   isFromPortfolio = false;
   withdrawalTypes;
   portfolioList;
-  cashBalance; // Todo
+  cashBalance;
 
   constructor(
     public readonly translate: TranslateService,

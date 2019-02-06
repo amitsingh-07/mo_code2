@@ -16,7 +16,6 @@ app-tax-info {
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.2px;
-        font-family: $muli;
         font-weight: normal;
         font-style: normal;
         font-stretch: normal;
@@ -57,8 +56,7 @@ app-tax-info {
       }
     }
     .fixed-btn--sm {
-      color: #fff;
-      // flex-wrap: initial;
+      color: $white-color;
     }
     .mr16 {
       margin-right: 5px !important;
@@ -73,7 +71,7 @@ app-tax-info {
       padding-right: 14px;
     }
     .step-indicator-container {
-      background-color: #fff;
+      background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 106px;
@@ -105,7 +103,7 @@ app-tax-info {
       font-family: $muli-semi-bold;
       font-size: 18px;
       font-weight: 600;
-      color: #ffffff;
+      color: $white-color;
       margin: 0px 10px 0px 0px;
     }
     .tin_question_text {
@@ -116,33 +114,25 @@ app-tax-info {
       font-stretch: normal;
       line-height: normal;
       letter-spacing: -0.3px;
-      color: #ffffff;
+      color: $white-color;
       margin-top: 12px;
       margin-bottom: 12px;
     }
 
     input::placeholder {
-      color: #8d9aa8 !important;
+      color: $teal-grey-color !important;
     }
 
-    .inline-error {
-      border-radius: 6px;
-      .btn {
-        &.btn-secondary {
-          background-color: #ff872f !important;
-        }
-      }
-    }
     .add-tax-box {
       padding: 30px 20px;
       border-radius: 6px;
-      box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-      background-color: #ffffff;
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
+      background-color: $white-color;
       font-family: $muli-regular;
       font-size: 16px;
       letter-spacing: -0.3px;
       text-align: center;
-      color: #000000;
+      color: $black-color;
       margin-top: 33px !important;
       margin: 20px;
     }
@@ -151,7 +141,7 @@ app-tax-info {
       font-family: $muli-bold;
       font-size: 18px;
       font-weight: bold;
-      color: #e57300;
+      color: $inline-error-border-color;
       padding-top: 10px;
     }
     .tax-form {
@@ -164,12 +154,12 @@ app-tax-info {
         }
       }
       &.brdr-btm {
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 1px solid $white-color;
       }
       .thumb-close-icon {
         position: absolute;
         border-radius: 100%;
-        background-color: #fff;
+        background-color: $white-color;
         bottom: -12px;
         width: 30px;
         height: 30px;

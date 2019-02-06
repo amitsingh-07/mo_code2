@@ -36,7 +36,6 @@
         <div class="to-account">
           <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
           <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
-          <!-- TODO  -->
           <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_PORTFOLIO' | translate }}</div>
           <div class="strong">{{fundDetails.portfolio.productName}}</div>
         </div>
@@ -254,8 +253,12 @@
     Submit
   </button>
 
-  <button *ngIf="fundDetails.source == 'FUNDING'" type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+  <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'DASHBOARD'" type="button" (click)="goToNext('DASHBOARD')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
     id="portfolioRecommendationNextBtn">
     Back to Dashboard
+  </button>
+  <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'PORTFOLIO'" type="button" (click)="goToNext('PORTFOLIO')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+    id="portfolioRecommendationNextBtn">
+    Okay, Got It!
   </button>
 </div>

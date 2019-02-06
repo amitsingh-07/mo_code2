@@ -105,13 +105,14 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructFundingParams(data) {
     return {
       source: 'FUNDING',
+      redirectTo: 'DASHBOARD',
       portfolio: {
         productName: data.portfolioName,
         riskProfile: data.riskProfile
       },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
-      fundingType: '', // todo
+      fundingType: '',
       isAmountExceedBalance: 0,
       exceededAmount: 0
     };
@@ -253,7 +254,7 @@ export class ConfirmPortfolioComponent implements OnInit {
             this.showInvestmentAccountErrorModal(errorList);
           }
         } else if (
-          response.objectList.status === INVESTMENT_ACCOUNT_CONFIG.status.aml_cleared &&
+          response.objectList.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.aml_cleared.toUpperCase() &&
           !pepData
         ) {
           this.createInvestmentAccount();
@@ -295,8 +296,8 @@ export class ConfirmPortfolioComponent implements OnInit {
             // SUCCESS SCENARIO
             if (response.objectList[response.objectList.length - 1]) {
               if (
-                response.objectList[response.objectList.length - 1].data.status ===
-                'confirmed'
+                response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
+                INVESTMENT_ACCOUNT_CONFIG.status.account_creation_confirmed.toUpperCase()
               ) {
                 this.investmentAccountService.setAccountSuccussModalCounter(0);
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);

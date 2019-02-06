@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
   showPortffolioPurchased = false;
-  showNotPurchasedPortfolio = false;
+  showStartInvesting = false;
   showInvestmentDetailsSaved = false;
   showNoInvestmentAccount = false;
   showAddportfolio = false;
@@ -139,8 +139,8 @@ export class DashboardComponent implements OnInit {
 
   getDashboardList() {
     const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED ||
-      investmentStatus === SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED) {
+    if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED.toUpperCase() ||
+      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
@@ -148,64 +148,64 @@ export class DashboardComponent implements OnInit {
         this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
-      case SIGN_UP_CONFIG.DASHBOARD.RECOMMENDED: {
+      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {
         this.showSetupAccount = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCEPTED_NATIONALITY: {
+      case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.BLOCKED_NATIONALITY: {
+      case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY: {
         this.showBlockedNationalityStatus = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
+      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
         this.showInvestmentDetailsSaved = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_PENDING: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.DOCUMENTS_UPLOADED: {
+      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
         this.showInvestmentDetailsSaved = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_CLEARED: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_PENDING: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.EDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED: {
         this.showEddCheckFailStatus = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.CDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
         this.showCddCheckFail = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_CREATED: {
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED: {
         this.showPortffolioPurchased = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_FUNDED: {
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED: {
         this.showPortffolioPurchased = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.ACCOUNT_SUSPENDED: {
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
         this.showSuspendedAccount = true;
         break;
       }
-      case SIGN_UP_CONFIG.DASHBOARD.PORTFOLIO_PURCHASED: {
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
         this.showPortffolioPurchased = true;
         break;
       }
       default: {
-        this.showNotPurchasedPortfolio = true;
+        this.showStartInvesting = true;
         break;
       }
     }

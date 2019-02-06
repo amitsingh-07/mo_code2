@@ -147,9 +147,9 @@
     "BACK_NRIC": "Back NRIC",
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_MAILING": "Proof Of Mailing Address",
-    "PROOF_OF_MAILING_SUBTEXT": "Upload a file that contains the first page of  either your utility bills, phone bills, credit card bills that displays your name, residential address (which matches your earlier input) and is no more than 90 days old.",
+    "PROOF_OF_MAILING_SUBTEXT": "This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today's date.You may use utility bills, phone bills, credit card bills etc.",
     "PROOF_OF_RESIDENT": "Proof Of Residential Address",
-    "PROOF_OF_RESIDENT_SUBTEXT": "Upload a file that contains the first page of  either your utility bills, phone bills, credit card bills that displays your name, residential address (which matches your earlier input) and is no more than 90 days old.",
+    "PROOF_OF_RESIDENT_SUBTEXT": "This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.You may use utility bills, phone bills, credit card bills etc.",
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
@@ -165,7 +165,7 @@
       "UPLOAD_LATER": {
         "TITLE": "Upload Documents Later?",
         "MESSAGE": "<p>You can upload your verification documents later to complete your investment account set up.</p><p>Would you like to continue?</p>",
-        "CONFIRM_PROCEED": "Yes! Upload Later"
+        "CONFIRM_PROCEED": "Yes, Upload Later"
       },
       "UPLOADING_LOADER": {
         "TITLE": "Uploading",
@@ -285,14 +285,14 @@
       "TIME": "Estimate about 5 mins"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Autofill Forms via MyInfo",
+      "TITLE": "Autofill Forms Via MyInfo",
       "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details.",
-      "BTN-TEXT": "Let's go!"
+      "TITLE": "Retrieve Details via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.",
+      "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
