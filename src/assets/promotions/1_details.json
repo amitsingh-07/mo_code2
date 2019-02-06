@@ -6,8 +6,8 @@
     "thumbnail": "/assets/promotions/images/1/thumbnail.jpg",
     "banner": "/assets/promotions/images/1/banner.jpg",
     "desc": "Enjoy lifetime discount with Occupational Disability coverage!",
-    "date_created": "2019-01-15 00:00:00",
-    "date_expiry": "2018-03-31 23:59:59",
+    "date_created": "1547481600000",
+    "date_expiry": "1554047999000",
     "tag" : ["Insurance", "Protection"],
     "external": false
 }

@@ -1,5 +1,5 @@
-import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import 'hammerjs';
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
@@ -51,6 +51,8 @@ import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
+
+import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
@@ -58,6 +60,7 @@ import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.comp
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
@@ -71,6 +74,9 @@ import { UrlRedirectComponent } from './url-redirect.component';
 
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
+import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
@@ -98,6 +104,7 @@ export function tokenGetterFn() {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
+    BankDetailsComponent,
     ToolTipModalComponent,
     ModelWithButtonComponent,
     LifeProtectionModalComponent,
@@ -116,7 +123,9 @@ export function tokenGetterFn() {
     HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
-    FAQComponent
+    TransactionModalComponent,
+    FAQComponent,
+    FundDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -159,6 +168,8 @@ export function tokenGetterFn() {
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util,
+    InvestmentEnableGuard,
+    InvestmentChildEnableGuard,
     WillWritingEnableGuard,
     WillWritingChildEnableGuard,
     PromotionEnableGuard,
@@ -169,10 +180,11 @@ export function tokenGetterFn() {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
+    FundDetailsComponent]
 })
 
 export class AppModule {
