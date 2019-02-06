@@ -544,6 +544,13 @@ export class InvestmentAccountFormError {
         errorMessage: 'Eenter Duration investment held for'
       }
     },
+    otherSources: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Invalid others.',
+        errorMessage: 'Eenter Others'
+      }
+    },
     earningsGenerated: {
       required: {
         // tslint:disable-next-line:no-duplicate-string

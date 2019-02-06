@@ -101,7 +101,7 @@ export class InvestmentAccountFormData {
   personalSavings: string;
   otherSources: string;
   inheritanceGift: string;
-  investmenteEarning: string;
+  investmentEarnings: string;
   earningsGenerated: string;
   durationInvestment: number;
 
