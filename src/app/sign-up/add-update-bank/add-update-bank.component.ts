@@ -116,7 +116,7 @@ export class AddUpdateBankComponent implements OnInit {
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
         // Add Bank API Here
-        this.topupAndWithDrawService.saveNewBank(form.value).subscribe((response) => {
+        this.topupAndWithDrawService.saveNewBank(form.getRawValue()).subscribe((response) => {
           if (response.responseMessage.responseCode >= 6000) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
@@ -127,7 +127,8 @@ export class AddUpdateBankComponent implements OnInit {
         if (this.isAccountEdited) {
           accountNum = form.value.accountNo;
         }
-        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
+        this.signUpService.updateBankInfo(form.value.bank,
+          form.getRawValue().accountHolderName, accountNum, this.updateId).subscribe((data) => {
           // tslint:disable-next-line:triple-equals
           if (data.responseMessage.responseCode == 6000) {
             // tslint:disable-next-line:max-line-length

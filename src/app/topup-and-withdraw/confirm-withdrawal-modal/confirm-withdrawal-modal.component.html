@@ -13,12 +13,10 @@
     </button>
 
     <div class="modal-body-message">
-      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID">{{
-        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}</span>
-      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID">{{
-        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}</span>
-      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">{{
-        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}</span><br />
+      <p></p>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}"></span><br />
 
       <div class="amount-section">
         <img src="../../../../assets/images/topupwithdraw/wallet.svg" alt="" />
