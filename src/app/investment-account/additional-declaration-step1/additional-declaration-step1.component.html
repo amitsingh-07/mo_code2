@@ -122,7 +122,6 @@
             </div>
           </div>
         </div>
-
         <div class="office-addr-lbl" id="office-addr-lbl">Your office address:</div>
         <!-- COUNTRY -->
         <div class="form-group">
@@ -147,7 +146,6 @@
             </div>
           </div>
         </div>
-
         <!-- POSTAL CODE -->
         <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
           <div class="flex-row">
@@ -157,7 +155,7 @@
                 | translate}}</label>
             </div>
             <div class="flex-col-7">
-              <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepPostalCode)}">
+              <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepPostalCode),'disabled':addInfoForm.controls.pepPostalCode.disabled}">
                 <div class="postal-code-control">
                   <div class="control">
                     <input type="text" class="input-control grey" formControlName="pepPostalCode" id="pep_Info_residentialAddress-mailpostalcode-txt" />
@@ -174,7 +172,6 @@
             </div>
           </div>
         </div>
-
         <!-- ADDRESS 1 -->
         <div class="form-group">
           <div class="flex-row">
@@ -189,8 +186,6 @@
             </div>
           </div>
         </div>
-
-
         <!-- ADDRESS 2 -->
         <div class="form-group">
           <div class="flex-row">
@@ -205,8 +200,6 @@
             </div>
           </div>
         </div>
-
-
         <!-- Floor -->
         <div class="form-group" *ngIf="addInfoForm.get('pepFloor')">
           <div class="flex-row">
@@ -221,7 +214,6 @@
             </div>
           </div>
         </div>
-
         <!-- UNIT NO -->
         <div class="form-group" *ngIf="addInfoForm.get('pepUnitNo')">
           <div class="flex-row">
@@ -236,7 +228,6 @@
             </div>
           </div>
         </div>
-
         <!-- CITY -->
         <div class="form-group" *ngIf="addInfoForm.get('pepCity')">
           <div class="flex-row">
@@ -251,7 +242,6 @@
             </div>
           </div>
         </div>
-
         <!-- STATE -->
         <div class="form-group" *ngIf="addInfoForm.get('pepState')">
           <div class="flex-row">
@@ -266,7 +256,6 @@
             </div>
           </div>
         </div>
-
         <!-- ZIP CODE -->
         <div class="form-group" *ngIf="addInfoForm.get('pepZipCode')">
           <div class="flex-row">
@@ -281,11 +270,9 @@
             </div>
           </div>
         </div>
-
       </div>
       <button type="button" id="pep_Info_personalInforNextBtn" (click)="goToNext(addInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{
         'COMMON.LABEL.CONTINUE' | translate}}</button>
     </form>
   </div>
-
 </div>

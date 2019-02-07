@@ -1,5 +1,4 @@
 <app-loader [isVisible]="loaderVisible" [content]="loaderInfo"></app-loader>
-
 <div class="upload-doc-nric">
   <div class="step-indicator-container">
     <div class="container-fluid">
@@ -48,7 +47,6 @@
                   formControlName="nricFrontImage" />
               </div>
             </div>
-
             <!-- BACK IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricBack)">
               <div class="thumb-container">
@@ -69,7 +67,6 @@
                   formControlName="nricBackImage" />
               </div>
             </div>
-
             <!-- PASSPORT IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="!isUserNationalitySingapore" (click)="openFileDialog(passport)">
               <div class="thumb-container">
@@ -127,9 +124,6 @@
           <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="resAddressProofHidden"
             formControlName="resAddressProof" />
         </div>
-
-
-
         <!-- MAILING ADDRESS PROOF UPLOAD -->
         <div class="row" *ngIf="!formValues.isMailingAddressSame">
           <div class="col-12 sub-title-block">
@@ -165,7 +159,6 @@
           <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="mailAdressProofHidden"
             formControlName="mailAdressProof" />
         </div>
-
         <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
           id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
       </form>

@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -19,7 +21,7 @@ import { FooterService } from './../../shared/footer/footer.service';
   styleUrls: ['./edit-profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit, OnDestroy {
   resetPasswordForm: FormGroup;
   formValues: any;
   personalData: any;
@@ -46,6 +48,7 @@ export class EditProfileComponent implements OnInit {
   mailNationality: any;
   employerNationality: any;
   pageTitle: any;
+  private subscription: Subscription;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -73,6 +76,7 @@ export class EditProfileComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
+    this.headerSubscription();
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
@@ -255,5 +259,18 @@ export class EditProfileComponent implements OnInit {
     }
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 }

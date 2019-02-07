@@ -7,15 +7,15 @@
                     Eligible Plan
                     </div>
                 <div class="info--details">
-                    MyFamilyCover
+                    Aviva MyProtector - Legacy
                     </div>
                 </div>
             <div class="promo-info__element">
                 <div class="info--title">
-                    Min. Annual Premium
+                    Min. Sum Assured
                     </div>
                 <div class="info--details">
-                    $225
+                    $1 Million
                     </div>
                 </div>
             <div class="promo-info__element">
@@ -23,7 +23,7 @@
                     Premium Discount
                     </div>
                 <div class="info--details">
-                    20% off lifetime
+                    10% off lifetime
                     </div>
                 </div>
         </div>

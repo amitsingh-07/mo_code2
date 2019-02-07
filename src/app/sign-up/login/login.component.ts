@@ -162,7 +162,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
-                  investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED) {
+                  investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
                     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
                 } else {
                   this.router.navigate([redirect_url]);
@@ -183,7 +183,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                 }
-              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED) {
+              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);

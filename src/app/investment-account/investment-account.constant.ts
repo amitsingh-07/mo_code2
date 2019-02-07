@@ -1,4 +1,17 @@
 export let INVESTMENT_ACCOUNT_CONFIG = {
+  MY_INFO_ATTRIBUTES: [
+    'nationality',
+    'name',
+    'passportnumber',
+    'passportexpirydate',
+    'dob',
+    'sex',
+    'regadd',
+    'mailadd',
+    'employment',
+    'occupation',
+    'householdincome'
+  ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'PORTFOLIO_PURCHASED',
     'ACCOUNT_CREATED',
@@ -6,7 +19,9 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     'CDD_CHECK_FAILED',
     'EDD_CHECK_PENDING',
     'EDD_CHECK_FAILED',
-    'SUSPENDED_ACCOUNT'
+    'ACCOUNT_SUSPENDED',
+    'EDD_CHECK_CLEARED',
+    'ACCOUNT_FUNDED'
   ],
   SINGAPORE_NATIONALITY_CODE: 'SG',
   SINGAPORE_COUNTRY_CODE: 'SG',
@@ -40,15 +55,14 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     aml_failed: 'FAILED',
     ddc_submitted: 'ddc_submitted',
     account_creation_pending: 'account_creation_pending',
+    account_creation_confirmed: 'confirmed',
     documents_pending: 'documents_pending'
   },
   ADDITIONAL_DECLARATION_TWO: {
-    SAVING: 'Saving',
-    GIFT_INHERITANCE: 'Gift/Inheritance',
-    INVESTMENT_EARNINGS: 'Investment Earnings',
-    BUSINESS_PROFITS: 'Business Profits',
-    SALE_OF_REAL_ESTATE: 'Sale of Real Estate',
-    SALARY: 'Salary'
+    PERSONAL_SAVING: 'savings',
+    GIFT_INHERITANCE: 'gift',
+    INVESTMENT_EARNINGS: 'earnings',
+    OTHERS: 'others',
   },
   ADDITIONAL_DECLARATION_ONE: {
     OTHERS: 'Others'

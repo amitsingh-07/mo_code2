@@ -63,7 +63,8 @@ export class PersonalFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Oops! Review Investment<br>Amount',
         errorMessage:
-          'We require a one-time investment of at least $100 or a monthly investment of at least $50.'
+        // tslint:disable-next-line:no-duplicate-string
+          'We require a one-time investment of at least $100 or a monthly investment of at least $50.<br><br>To continue, please review your investment amount.'
       },
       // tslint:disable-next-line:max-line-length
       two: {
