@@ -97,7 +97,7 @@
             <div class="sub-title">
               <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT' | translate}}</span>
             </div>
-            <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}</div>
+            <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}"></div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.resAddressProof.value">
 
@@ -133,7 +133,7 @@
                 <img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt="">
               </div> -->
             </div>
-            <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}</div>
+            <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}"></div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.mailAdressProof.value">
 

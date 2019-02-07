@@ -175,7 +175,7 @@
                     <img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt="">
                   </div>
                 </div>
-                <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}</div>
+                <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}"></div>
                 <div class="upload-file" [class.selected]="addressForm.controls.resAddressProof.value || isResidentialAddressAvail">
                   <button type="button" class="btn btn-primary" (click)="openFileDialog(resAddressProof)">
                     <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
@@ -379,7 +379,7 @@
                       <img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt="">
                     </div>
                   </div>
-                  <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}</div>
+                  <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}"></div>
                   <div class="upload-file" [class.selected]="addressForm.controls.mailingAddress.controls.mailAdressProof.value || isMailingAddressAvail">
                     <button type="button" class="btn btn-primary" (click)="openFileDialog(mailAdressProof)">
                       <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
