@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { userInfo } from 'os';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -17,7 +18,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit {
+  registeredUser = true;
   pageTitle: string;
+  userDetails: any;
   myProfileForm: FormGroup;
   nationality = '';
   nationalityList: string;
@@ -41,20 +44,31 @@ export class MyProfileComponent implements OnInit {
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
 
+    this.userDetails = {
+      name: 'kelvin NG',
+      gender: 'male',
+      dob: '04/05/1995',
+      nationality: 'singaporean',
+      registeredUser: false
+
+    };
+    this.registeredUser = this.userDetails.registeredUser;
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
-    this.buildMyProfileForm();
+
+    this.buildMyProfileForm(this.userDetails);
   }
-  buildMyProfileForm() {
+  buildMyProfileForm(userDetails) {
     this.myProfileForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      gender: ['', [Validators.required]],
-      nationality: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
+      name: [userDetails.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      gender: [userDetails.gender, [Validators.required]],
+      nationality: [userDetails.nationality, [Validators.required]],
+      dob: [userDetails.dob, [Validators.required]],
 
     });
   }
