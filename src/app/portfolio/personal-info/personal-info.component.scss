@@ -188,7 +188,7 @@ app-personal-info {
 .btn {
   &:disabled {
     background-color: $btn-disabled-light-bg;
-    color: $teal-color;
+    color: $disabled-teal-color;
   }
 }
 .investmentSlider {
