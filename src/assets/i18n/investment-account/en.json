@@ -133,7 +133,8 @@
     "TIN_TEXT": "TIN Number",
     "CONTINUE": "Continue",
     "COUNTRY_ERROR":"Country can not be same",
-    "COUNTRY_ERROR_MSG":"Please check your selected countries"
+    "COUNTRY_ERROR_MSG":"Please check your selected countries",
+    "SELECT_COUNTRY":"Select Country"
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
@@ -153,6 +154,12 @@
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
+    "SPECIFICATION":"Specifications for documents to be uploaded:",
+    "FILE_LESS-THAN":"File less than",
+    "TEN_MB":"10MB",
+    "FILE_TYPE":"File types:",
+    "SUPPORTED_FILES":"pdf, jpg, jpeg, png, gif, bmp",
+    "VERIFICATION_DOC":"Verification Document",
     "MODAL": {
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",
