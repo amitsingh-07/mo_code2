@@ -142,36 +142,20 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'Beneficiary');
     } else {
-      if (this.checkUin(form)) {
-        if (!this.isEdit) {
-          form.value.selected = true;
-          form.value.distPercentage = 0;
-          this.beneficiaryList.push(form.value);
-          this.resetForm();
-        } else {
-          this.beneficiaryList[this.selectedIndex].name = form.value.name;
-          this.beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
-          this.beneficiaryList[this.selectedIndex].uin = form.value.uin;
-          this.resetForm();
-        }
-        this.isFormAltered = true;
-        this.addBeneficiaryForm.markAsDirty();
+      if (!this.isEdit) {
+        form.value.selected = true;
+        form.value.distPercentage = 0;
+        this.beneficiaryList.push(form.value);
+        this.resetForm();
+      } else {
+        this.beneficiaryList[this.selectedIndex].name = form.value.name;
+        this.beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
+        this.beneficiaryList[this.selectedIndex].uin = form.value.uin;
+        this.resetForm();
       }
+      this.isFormAltered = true;
+      this.addBeneficiaryForm.markAsDirty();
     }
-  }
-
-  checkUin(form) {
-    let members = [];
-    const  beneficiaryList = [...this.beneficiaryList];
-    if (!this.isEdit) {
-      members = [...beneficiaryList, ...form.value];
-    } else {
-      beneficiaryList[this.selectedIndex].name = form.value.name;
-      beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
-      beneficiaryList[this.selectedIndex].uin = form.value.uin;
-      members = [...beneficiaryList];
-    }
-    return this.willWritingService.checkDuplicateUin(members);
   }
 
   get addBen() { return this.addBeneficiaryForm.controls; }
@@ -270,7 +254,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
-    if (this.validateBeneficiaryForm()) {
+    if (this.validateBeneficiaryForm() && this.willWritingService.checkDuplicateUin(this.beneficiaryList)) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData() && this.isFormAltered) {

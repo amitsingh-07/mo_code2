@@ -1,7 +1,6 @@
 <div class="container-fluid">
   <form id="bankForm" name="bankForm" [formGroup]="bankForm">
     <div class="content">
-
       <!-- Account Holder Name -->
       <div class="form-group">
         <div class="flex-row">
@@ -16,14 +15,12 @@
           </div>
         </div>
       </div>
-
       <!-- text description -->
       <div class="flex-row">
         <div class="flex-col-12">
           <label class="desc-lbl">{{'ADD_BANK.DESC' | translate}}</label>
         </div>
       </div>
-
       <!-- Bank name  -->
       <div class="form-group">
         <div class="flex-row">
@@ -48,7 +45,6 @@
           </div>
         </div>
       </div>
-
       <!-- Account  -->
       <div class="form-group">
         <div class="flex-row">
@@ -62,10 +58,7 @@
           </div>
         </div>
       </div>
-
-
     </div>
-
   </form>
 </div>
 <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>

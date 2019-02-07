@@ -32,7 +32,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   formValues: any;
   ciAssessmentFormValues: any;
   sliderMinValue = 0;
-  sliderMaxValue = 99;
+  sliderMaxValue = PORTFOLIO_CONFIG.personal_info.max_investment_years;
   sliderDesc: string;
   // dob: string;
   isSufficientInvYears = false;

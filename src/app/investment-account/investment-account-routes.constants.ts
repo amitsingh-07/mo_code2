@@ -1,4 +1,4 @@
-export const INVESTMENT_ACCOUNT_BASE_ROUTE = '../investment-account/';
+export const INVESTMENT_ACCOUNT_BASE_ROUTE = '../invest/account/';
 
 export const INVESTMENT_ACCOUNT_ROUTES = {
   ROOT: '',

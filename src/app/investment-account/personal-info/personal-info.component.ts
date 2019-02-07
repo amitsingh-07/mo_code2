@@ -286,8 +286,12 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       : this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
   }
   toggleDate(openEle, closeEle) {
-    openEle.toggle();
-    closeEle.close();
+    if (openEle) {
+      openEle.toggle();
+    }
+    if (closeEle) {
+      closeEle.close();
+    }
   }
   goToNext(form) {
     if (!form.valid) {
@@ -356,7 +360,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   validateNric(control: AbstractControl) {
     const value = control.value;
-    if (value !== undefined && isNaN(value)) {
+    if (value !== undefined) {
       const isValidNric = this.investmentAccountCommon.isValidNric(value);
       if (!isValidNric) {
         return { nric: true };

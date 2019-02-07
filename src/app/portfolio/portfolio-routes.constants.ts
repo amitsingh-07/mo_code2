@@ -1,18 +1,18 @@
-export const PORTFOLIO_BASE_ROUTE = '../portfolio/';
+export const PORTFOLIO_BASE_ROUTE = '../invest/';
 
 export const PORTFOLIO_ROUTES = {
   ROOT: '',
+  START: 'start',
   GET_STARTED_STEP1: 'step-1',
-  PORTFOLIO_EXIST: 'portfolio-exist',
-  PERSONAL_INFO: 'personal-info',
-  MY_FINANCIALS: 'my-financials',
+  PERSONAL_INFO: 'investment-period',
+  MY_FINANCIALS: 'your-financials',
   GET_STARTED_STEP2: 'step-2',
-  RISK_ASSESSMENT: 'risk-assessment',
-  RISK_PROFILE: 'risk-profile',
-  PORTFOLIO_RECOMMENDATION: 'portfolio-recommendation',
+  RISK_ASSESSMENT: 'risk-willingness',
+  RISK_PROFILE: 'recommendation',
+  PORTFOLIO_RECOMMENDATION: 'portfolio',
   WHATS_THE_RISK: 'whats-the-risk',
   FUND_DETAILS: 'fund-details',
-  START: 'start'
+  PORTFOLIO_EXIST: 'portfolio-exist'
 };
 
 export const PORTFOLIO_ROUTE_PATHS = {
