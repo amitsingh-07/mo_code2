@@ -13,12 +13,10 @@ app-update-user-id{
 input[type='checkbox']+label {
   background-position: left top;
 }
-
 .dropdown-menu.show {
   height: 200px;
   overflow-y: auto;
 }
-
 .back-btn {
   background-image: url("../../../assets/images/back-web.svg");
   width: 43px;
@@ -29,33 +27,28 @@ input[type='checkbox']+label {
   left: 20px;
   background-repeat: no-repeat;
 }
-
 .form-group-captcha-wrapper {
   display: flex;
   align-items: center;
   height: 60%;
 }
-
 .link-white {
   text-decoration: underline;
   cursor: pointer;
   font-size: 13px;
-  //float: right;
   margin-top: 10px;
 }
-
 .dots {
   padding: 10px;
   margin: 0 20px;
 }
-
 .update-user-id-text {
   font-family: $muli-semi-bold;
   font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.4px;
-  color: #ffffff;
-  border-bottom: 0.5px solid #ffffff;
+  color: $white-color;
+  border-bottom: 0.5px solid $white-color;
   margin-bottom: 25px;
 }
 .flex-row{

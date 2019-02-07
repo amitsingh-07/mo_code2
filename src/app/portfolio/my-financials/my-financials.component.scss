@@ -98,7 +98,7 @@ app-my-financials {
   .btn {
     &:disabled {
       background-color: $btn-disabled-light-bg;
-      color: $teal-color;
+      color: $disabled-teal-color;
     }
     &.btn__footer--fixed {
       font-family: $muli-bold !important;
