@@ -1,5 +1,4 @@
 export const TOPUP_AND_WITHDRAW_BASE_ROUTE = '../investment/';
-export const PORTFOLIO_BASE_ROUTE = '../investment/portfolio/';
 export const TOPUP_AND_WITHDRAW_ROUTES = {
   ROOT: '',
   YOUR_INVESTMENT: 'overview',

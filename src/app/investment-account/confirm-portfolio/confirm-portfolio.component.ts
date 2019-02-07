@@ -283,7 +283,8 @@ export class ConfirmPortfolioComponent implements OnInit {
             // ERROR SCENARIO
             if (
               response.responseMessage.responseCode === 5018 ||
-              response.responseMessage.responseCode === 5019
+              response.responseMessage.responseCode === 5019 ||
+              response.responseMessage.responseCode === 5105
             ) {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);

@@ -154,14 +154,20 @@
         "CHOOSE_FILE": "Choose File",
         "UPLOADED": "Uploaded",
         "NO_FILE_SELECTED": "no file selected",
+        "SPECIFICATION":"Specifications for documents to be uploaded:",
+        "FILE_LESS-THAN":"File less than",
+        "TEN_MB":"10MB",
+        "FILE_TYPE":"File types:",
+        "SUPPORTED_FILES":"pdf, jpg, jpeg, png, gif, bmp",
+        "VERIFICATION_DOC":"Verification Document",
         "MODAL": {
             "MAILING_ADDRESS_PROOF": {
                 "TITLE": "Proof Of Mailing Address",
-                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
             },
             "RES_ADDRESS_PROOF": {
                 "TITLE": "Proof Of Residential Address",
-                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
             },
             "UPLOAD_LATER": {
                 "TITLE": "Upload Documents Later?",

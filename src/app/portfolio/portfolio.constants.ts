@@ -1,5 +1,6 @@
 export let PORTFOLIO_CONFIG = {
   personal_info: {
+    max_investment_years: 40,
     range_with_desc: [
       {
         min: 0,
@@ -18,7 +19,7 @@ export let PORTFOLIO_CONFIG = {
       },
       {
         min: 14,
-        max: 99,
+        max: 40,
         content: 'PERSONAL_INFO.RANGE_14_DESC'
       }
     ],

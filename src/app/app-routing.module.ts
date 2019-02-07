@@ -44,12 +44,12 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: 'portfolio',
+      { path: 'invest',
         loadChildren: './portfolio/portfolio.module#PortfolioModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'investment-account',
+      { path: 'invest/account',
         loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
