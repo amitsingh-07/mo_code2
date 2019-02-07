@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-verify-mobile{
 .verify-mobile-block {
   .verify-mobile-block__otp__title {
     font-size: 18px;
@@ -324,4 +325,5 @@
     animation-name: rotate-rt;
     transform-origin: 100% 50%;
   }
+}
 }
