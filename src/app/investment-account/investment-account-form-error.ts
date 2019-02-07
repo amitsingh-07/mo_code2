@@ -541,7 +541,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Investment Period.',
-        errorMessage: 'Eenter Duration investment held for'
+        errorMessage: 'Enter Duration investment held for'
       }
     },
     earningsGenerated: {
