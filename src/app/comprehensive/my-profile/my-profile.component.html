@@ -75,18 +75,27 @@
           </div>
         </div>
       </div>
-      <div class="flex-row p-2">
-        <div class="pl0 col-5">
-          <label for="age" id="myProfileFormLbl6">
-            <div>{{ 'FORM_LABEL.AGE_NEXT_BIRTHDAY' | translate}}
+      <div class="flex-row">
+          <div class="flex-col-4">
+            <label for="name" id="myProfileFormLb6">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
+          </div>
+          <div #usrFrmDp class="flex-col-8">
+            <div class="datepicker-control">
+              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine}">
+                <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+                  required id="myProfileFormInpt5">
+                <div class="input-group-append">
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
+                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dob').valid || myProfileForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
+                    />
+                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
-          </label>
+          </div>
         </div>
-        <div class="flex-col-7 input-group">
-          <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.age.invalid}" id="myProfileFormInpt6"
-            class="form-control" #age formControlName="age">
-        </div>
-      </div>
 
      
     </div>

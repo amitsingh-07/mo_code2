@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -23,7 +23,9 @@ export class MyProfileComponent implements OnInit {
   nationalityList: string;
 
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+              private configDate: NgbDatepickerConfig) {
+
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -34,6 +36,10 @@ export class MyProfileComponent implements OnInit {
       this.nationalityList = this.translate.instant('NATIONALITY');
       this.setPageTitle(this.pageTitle);
     });
+    const today: Date = new Date();
+    configDate.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.outsideDays = 'collapsed';
 
   }
   setPageTitle(title: string) {
@@ -48,7 +54,7 @@ export class MyProfileComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       gender: ['', [Validators.required]],
       nationality: ['', [Validators.required]],
-      age: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
 
     });
   }

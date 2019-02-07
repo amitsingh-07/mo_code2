@@ -115,6 +115,7 @@
     "RELATIONSHIP": "Relationship",
     "GENDER": "Gender",
     "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
+    "DATE_OF_BIRTH":"Date Of Birth",
     "NATIONALITY": "Nationality",
     "EMPLOYMENT_TYPE": "Employment Type",
     "AMOUNT": "Amount",
