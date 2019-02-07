@@ -1,6 +1,5 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
 app-edit-profile{
  .content{
   @include allmobiles {
@@ -149,7 +148,6 @@ app-edit-profile{
       line-height: 1.5;
       letter-spacing: -0.3px;
       color: $review-block-bg;
-    
   }
   .update-contact-value{
     font-family:  $muli-semi-bold;
@@ -227,7 +225,6 @@ app-edit-profile{
   letter-spacing: -0.3px;
   text-align: right;
   color: $teal-color;
-
   }
   .banking-details-text{
     object-fit: contain;
@@ -269,7 +266,6 @@ app-edit-profile{
     letter-spacing: -0.25px;
   }
   .user-edit-img{
-    
     position: absolute;
     top:5px;
     right: 20px;

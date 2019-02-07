@@ -4,7 +4,7 @@
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" [class.isEditProfile]="isEditProfile">
     <div class="content">
       <div class="row">
         <div class="col-12" *ngIf="!isEditProfile">
@@ -51,7 +51,6 @@
                   <input type="text" formControlName="companyName" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
-
               <!-- Industry -->
               <div class="form-group" *ngIf="employementDetailsForm.get('industry')">
                 <div class="flex-row">
@@ -145,7 +144,6 @@
                   </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('contactNumber').valid && !employementDetailsForm.get('contactNumber').pristine}">
-
                   <input type="text" formControlName="contactNumber" id="employement_status_company_name_input" class="form-control">
                 </div>
               </div>
@@ -183,7 +181,6 @@
                           'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-
                         <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode), 'disabled':employementDetailsForm.controls.employeaddress.controls.empPostalCode.disabled}">
                           <div class="postal-code-control">
                             <div class="control">
