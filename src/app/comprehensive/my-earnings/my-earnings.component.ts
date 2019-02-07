@@ -21,10 +21,11 @@ export class MyEarningsComponent implements OnInit {
   myEarningsForm: FormGroup;
   employmentType = '';
   employmentTypeList: any;
-  otherMonthlyIncomeList: any;
-  MRI = '';
-  OMWI = '';
-  OMI = '';
+  monthlyRentIncome = false;
+  othermonthlyWorkIncome = false;
+  otherMonthlyIncome = false;
+  annualDividends = false;
+  otherAnnualIncomeType = false;
 
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
@@ -36,7 +37,6 @@ export class MyEarningsComponent implements OnInit {
       // meta tag and title
       this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
       this.employmentTypeList = this.translate.instant('MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
-      this.otherMonthlyIncomeList = this.translate.instant('MY_EARNINGS.OTHER_MONTHLY_INCOME_LIST');
 
       this.setPageTitle(this.pageTitle);
     });
@@ -47,15 +47,22 @@ export class MyEarningsComponent implements OnInit {
   }
 
   SelectEarningsType(earningsType) {
+
     switch (earningsType) {
-     case 'MRI':
-     this.MRI = earningsType;
+     case 'monthlyRentIncome':
+     this.monthlyRentIncome = true;
      break;
-     case 'OMWI':
-     this.OMWI = earningsType;
+     case 'othermonthlyWorkIncome':
+     this.othermonthlyWorkIncome = true;
      break;
-     case 'OMI':
-     this.OMI = earningsType;
+     case 'otherMonthlyIncome':
+     this.otherMonthlyIncome = true;
+     break;
+     case 'annualDividends':
+     this.annualDividends = true;
+     break;
+     case 'otherAnnualIncomeType':
+     this.otherAnnualIncomeType = true;
      break;
     }
   }

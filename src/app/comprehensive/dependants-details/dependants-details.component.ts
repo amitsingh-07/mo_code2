@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -67,14 +68,14 @@ export class DependantsDetailsComponent implements OnInit {
     });
   }
   addDependant() {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.push(this.buildDependantDetailsForm());
   }
   removeDependant(i) {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.removeAt(i);
   }
   goToNext(form) {
-
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
   }
 }

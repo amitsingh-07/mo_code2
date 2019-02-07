@@ -76,10 +76,12 @@ export class EducationPreferenceComponent implements OnInit {
       name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       age: [value.age, [Validators.required]],
       location: ['', [Validators.required]],
-      course_of_study: ['', [Validators.required]],
-      nationality: [value.endowmentplanShow, [Validators.required]]
+      course_of_study: ['', [Validators.required]]
 
     });
 
+  }
+  goToNext(form) {
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
   }
 }

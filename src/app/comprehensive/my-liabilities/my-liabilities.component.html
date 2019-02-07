@@ -1,0 +1,104 @@
+<div class="container-fluid max-width--1024 ">
+  <header>{{'DEPENDANT_DETAILS.ABOUT'|translate}}</header>
+  <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
+  <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm" class="myLiabilitiesForm">
+    <section class="earnings-section  mb-3  pt-2">
+      <p class="p-2"><b>{{'MY_LIABILITIES.HOME_LOAN_OUTSTANDING'|translate}}</b></p>
+      <div class="earnings-field ">
+
+
+        <div class="flex-row p-2 ">
+          <div class="flex-col-5">
+            <label for="name" id="myDependantFormLb1">
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              </div>
+            </label>
+          </div>
+          <div class="pr0 flex-col-7">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #homeLoanOutstanding formControlName="homeLoanOutstanding"
+                value="0">
+
+            </div>
+          </div>
+        </div>
+        <div (click)="addPropertyLoan()" [hidden]="!propertyLoan">{{'MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN'|translate}}</div>
+        <div [hidden]="propertyLoan"> {{ 'MY_LIABILITIES.OTHER_PROPERTY_LOAN'| translate }}
+          <i (click)="addPropertyLoan()" class="fa fa-trash"></i>
+
+          <div class="flex-row p-2 ">
+            <div class="flex-col-5">
+              <label for="name" id="myDependantFormLb1">
+                <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class="pr0 flex-col-7">
+              <div class="form-control form-control-right">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput #otherPropertyLoan formControlName="otherPropertyLoan"
+                  value="0">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_LIABILITIES.OTHER_LOANS_AMOUNT_OUTSTANDING'|translate}}</b></p>
+      <div class="earnings-field ">
+        <div class="flex-row p-2">
+          <div class="pl0 col-5">
+            <label for="name" id="myDependantFormLb1">
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              </div>
+            </label>
+          </div>
+          <div class="pr0 flex-col-7">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherLoanAmountOustanding formControlName="otherLoanAmountOustanding"
+                value="0">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_LIABILITIES.CAR_LOANS'|translate}}</b></p>
+      <div class="earnings-field ">
+        <div class="flex-row p-2">
+          <div class="pl0 col-5">
+            <label for="name" id="myDependantFormLb1">
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              </div>
+            </label>
+          </div>
+          <div class="pr0 flex-col-7">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #carLoan formControlName="carLoan"
+                value="0">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+   
+
+
+    <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+      'LABEL.CONTINUE' |
+      translate}}</button>
+  </form>
+
+
+
+</div>

@@ -10,21 +10,29 @@ import { DependantEducationComponent } from './dependant-education/dependant-edu
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
+import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
+import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MySpendingsComponent } from './my-spendings/my-spendings.component';
+import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 const routes: Routes = [
   {
     path: '', canActivate: [LoggedUserService], children: [
       { path: '', component: ComprehensiveComponent },
+      { path: 'getting-started', component: MyProfileComponent},
       { path: 'steps', component: ComprehensiveStepsComponent },
       { path: 'dependant-selection', component: DependantSelectionComponent },
       { path: 'dependant-details', component: DependantsDetailsComponent },
       { path: 'dependant-education', component: DependantEducationComponent },
       { path: 'dependant-education-list', component: DependantEducationListComponent },
       { path: 'dependant-education-preference', component : EducationPreferenceComponent},
-       {path: 'dependant-education-selection', component : DependantEducationSelectionComponent},
+      { path: 'dependant-education-selection', component : DependantEducationSelectionComponent},
       { path: 'my-earnings', component: MyEarningsComponent},
-      { path: 'getting-started', component: MyProfileComponent}
+      { path: 'my-spendings', component: MySpendingsComponent},
+      { path: 'regular-saving-plan' , component: RegularSavingPlanComponent },
+      { path: 'my-assets', component: MyAssetsComponent},
+      { path: 'my-liabilities', component: MyLiabilitiesComponent}
     ]
   }
 ];
