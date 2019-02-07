@@ -1315,7 +1315,7 @@ export class InvestmentAccountService {
   }
 
   clearInvestmentAccountFormData() {
-    this.investmentAccountFormData.isMyInfoEnabled = false;
+    this.investmentAccountFormData = new InvestmentAccountFormData();
     this.commit();
   }
 
