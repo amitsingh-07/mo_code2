@@ -1,16 +1,17 @@
 <div class="container-fluid my-profile-comprehensive max-width--1024 ">
-   
+
 
 
   <section classs="p-2">
-    <h5 class="text-center">{{'GETTING_STARTED.HI'|translate }} Kelvin NG</h5>
-    <p class="text-center">{{'GETTING_STARTED.HEADER'|translate }}</p>
+    <h5 class="text-center">{{'GETTING_STARTED.HI'|translate }} {{userDetails.name}}</h5>
+    <p [hidden]="registeredUser" class="text-center">{{'GETTING_STARTED.HEADER'|translate }}</p>
+    <p [hidden]="!registeredUser" class="text-center">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</p>
     <img class="owl-img" src="/assets/images/value_prop/high-tech.svg" />
     <article class="text-center">
       {{'GETTING_STARTED.DESC'|translate}}
     </article>
   </section>
-  <form name="myProfileForm" [formGroup]="myProfileForm" >
+  <form name="myProfileForm" [formGroup]="myProfileForm">
     <div class="form-group-single-column  flex-col p-2 mt-3 myProfileForm">
       <div class="flex-row p-2">
         <div class="pl0 col-5">
@@ -20,8 +21,7 @@
           </label>
         </div>
         <div class="flex-col-7">
-          <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.controls.name.invalid}" id="myProfileFormInpt3"
-            class="form-control" #name formControlName="name">
+          {{myProfileForm.get('name').value}}
         </div>
       </div>
       <div class="flex-row p-2">
@@ -76,31 +76,31 @@
         </div>
       </div>
       <div class="flex-row">
-          <div class="flex-col-4">
-            <label for="name" id="myProfileFormLb6">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
-          </div>
-          <div #usrFrmDp class="flex-col-8">
-            <div class="datepicker-control">
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine}">
-                <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
-                  required id="myProfileFormInpt5">
-                <div class="input-group-append">
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
-                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dob').valid || myProfileForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
-                    />
-                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
-                    />
-                  </button>
-                </div>
+        <div class="flex-col-4">
+          <label for="name" id="myProfileFormLb6">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
+        </div>
+        <div #usrFrmDp class="flex-col-8">
+          <div class="datepicker-control">
+            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine}">
+              <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
+                name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileFormInpt5">
+              <div class="input-group-append">
+                <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
+                  <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dob').valid || myProfileForm.get('dob').pristine"
+                    src="./assets/images/calendar-normal.svg" />
+                  <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine"
+                    src="./assets/images/calendar-error.svg" />
+                </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-     
+
     </div>
     <button type="button" [disabled]="!myProfileForm.valid" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100"
-    id="prfBtn1">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
-    translate}}</button>
+      id="prfBtn1">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
+      translate}}</button>
   </form>
 </div>
