@@ -59,7 +59,7 @@ export interface IEmployment {
 
 export interface IHousehold {
   numberOfMembers: number;
-  houseHoldIncome: number;
+  houseHoldIncomeId: number;
 }
 
 export interface IFinancial {

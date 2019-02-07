@@ -14,7 +14,7 @@ import {
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
-  ISaveInvestmentAccountRequest,
+  ISaveInvestmentAccountRequest
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -714,8 +714,7 @@ export class InvestmentAccountService {
         data.inheritanceGiftFrom.inheritanceGift;
     }
     if (data.othersFrom) {
-      this.investmentAccountFormData.otherSources =
-        data.othersFrom.otherSources;
+      this.investmentAccountFormData.otherSources = data.othersFrom.otherSources;
     }
     if (data.investmentEarnings) {
       this.investmentAccountFormData.durationInvestment =
@@ -876,7 +875,7 @@ export class InvestmentAccountService {
   getHouseholdDetailsReqData(data): IHousehold {
     return {
       numberOfMembers: data.numberOfHouseHoldMembers,
-      houseHoldIncome: data.annualHouseHoldIncomeRange
+      houseHoldIncomeId: data.annualHouseHoldIncomeRange
         ? data.annualHouseHoldIncomeRange.id
         : null
     };
@@ -1483,7 +1482,7 @@ export class InvestmentAccountService {
     this.commit();
   }
   setFinancialDetailsFromApi(customer) {
-    this.investmentAccountFormData.annualHouseHoldIncomeRange = customer.test; // TODO : VERIFY
+    this.investmentAccountFormData.annualHouseHoldIncomeRange = customer.houseHoldDetail.houseHoldIncome;
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       customer.houseHoldDetail.numberOfMembers;
     this.investmentAccountFormData.salaryRange = customer.test; // TODO : VERIFY
@@ -1508,7 +1507,9 @@ export class InvestmentAccountService {
     this.commit();
   }
   setPersonalDeclarationFromApi(investmentObjective, additionalDetails) {
-    this.investmentAccountFormData.sourceOfIncome = investmentObjective.investmentSource;
+    this.investmentAccountFormData.sourceOfIncome = investmentObjective
+      ? investmentObjective.investmentSource
+      : null;
     this.investmentAccountFormData.ExistingEmploye =
       additionalDetails.connectedToInvestmentFirm;
     this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
@@ -1516,42 +1517,47 @@ export class InvestmentAccountService {
     this.commit();
   }
   setDueDiligence1FromApi(pepDetails) {
-    this.investmentAccountFormData.fName = pepDetails.firstName;
-    this.investmentAccountFormData.lName = pepDetails.lastName;
-    this.investmentAccountFormData.cName = pepDetails.companyName;
-    this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
-    this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
-    this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
-      pepDetails.pepAddress.country.countryCode
-    );
-    this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-    this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
-    this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
-    this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
-    this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
-    this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
-    this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
-    if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
+    if (pepDetails) {
+      this.investmentAccountFormData.fName = pepDetails.firstName;
+      this.investmentAccountFormData.lName = pepDetails.lastName;
+      this.investmentAccountFormData.cName = pepDetails.companyName;
+      this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
+      this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
+      this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
+        pepDetails.pepAddress.country.countryCode
+      );
       this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-    } else {
-      this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+      this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
+      this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
+      this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
+      this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
+      this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
+      this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
+      if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
+        this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+      } else {
+        this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+      }
+      this.commit();
     }
-    this.commit();
   }
   setDueDiligence2FromApi(pepDetails) {
-    this.investmentAccountFormData.expectedNumberOfTransation =
-      pepDetails.expectedNumberOfTransactions;
-    this.investmentAccountFormData.expectedAmountPerTranction =
-      pepDetails.expectedAmountPerTransactions;
-    this.investmentAccountFormData.investmentEarnings = this.getPropertyFromId(
-      pepDetails.investmentSourceId,
-      'investmentSource'
-    );
-    this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
+    if (pepDetails) {
+      this.investmentAccountFormData.expectedNumberOfTransation =
+        pepDetails.expectedNumberOfTransactions;
+      this.investmentAccountFormData.expectedAmountPerTranction =
+        pepDetails.expectedAmountPerTransactions;
+      this.investmentAccountFormData.investmentEarnings = this.getPropertyFromId(
+        pepDetails.investmentSourceId,
+        'investmentSource'
+      );
+      this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
 
-    this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
-      pepDetails.earningsGeneratedFromId,
-      'earningsGenerated'
-    );
+      this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
+        pepDetails.earningsGeneratedFromId,
+        'earningsGenerated'
+      );
+      this.commit();
+    }
   }
 }
