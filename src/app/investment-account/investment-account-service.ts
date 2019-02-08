@@ -938,7 +938,7 @@ export class InvestmentAccountService {
 
   convertDate(dateObject) {
     let convertedDate = '';
-    if (dateObject.day && dateObject.month && dateObject.year) {
+    if (dateObject && dateObject.day && dateObject.month && dateObject.year) {
       convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
     }
     return convertedDate;
