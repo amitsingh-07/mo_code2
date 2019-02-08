@@ -1495,7 +1495,10 @@ export class InvestmentAccountService {
       customer.houseHoldDetail.houseHoldIncome;
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       customer.houseHoldDetail.numberOfMembers;
-    this.investmentAccountFormData.salaryRange = this.getPropertyFromValue(income.incomeRange, 'salaryRange');
+    this.investmentAccountFormData.salaryRange = this.getPropertyFromValue(
+      income.incomeRange,
+      'salaryRange'
+    );
     this.commit();
   }
   setTaxInfoFromApi(taxDetails) {
@@ -1557,16 +1560,38 @@ export class InvestmentAccountService {
         pepDetails.expectedNumberOfTransactions;
       this.investmentAccountFormData.expectedAmountPerTranction =
         pepDetails.expectedAmountPerTransactions;
-      this.investmentAccountFormData.investmentEarnings = this.getPropertyFromId(
-        pepDetails.investmentSourceId,
-        'investmentSource'
-      );
-      this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
+      this.investmentAccountFormData.source = pepDetails.investmentSourceId;
 
-      this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
-        pepDetails.earningsGeneratedFromId,
-        'earningsGenerated'
-      );
+      if (
+        pepDetails.investmentSourceId &&
+        pepDetails.investmentSourceId.key ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
+      ) {
+        this.investmentAccountFormData.personalSavings = pepDetails.additionalInfo;
+      } else if (
+        pepDetails.investmentSourceId &&
+        pepDetails.investmentSourceId.key ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+      ) {
+        this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
+        this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
+          pepDetails.earningsGeneratedFromId,
+          'earningsGenerated'
+        );
+      } else if (
+        pepDetails.investmentSourceId &&
+        pepDetails.investmentSourceId.key ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+      ) {
+        this.investmentAccountFormData.inheritanceGift = pepDetails.additionalInfo;
+      } else if (
+        pepDetails.investmentSourceId &&
+        pepDetails.investmentSourceId.key ===
+          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.OTHERS
+      ) {
+        this.investmentAccountFormData.otherSources = pepDetails.additionalInfo;
+      } else {
+      }
       this.commit();
     }
   }
