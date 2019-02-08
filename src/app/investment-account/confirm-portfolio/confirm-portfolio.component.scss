@@ -1,6 +1,5 @@
 @import '../../../variables';
 @import '../../../mixins';
-
 app-confirm-portfolio {
   .container-fluid {
     @include allmobiles {
@@ -34,7 +33,6 @@ app-confirm-portfolio {
           }
         }
       }
-
       .review-edit {
         justify-content: center;
         align-items: center;
@@ -54,7 +52,6 @@ app-confirm-portfolio {
       }
     }
   }
-
   .asset-allocation {
     margin-top: 33px;
     .title {
@@ -66,7 +63,6 @@ app-confirm-portfolio {
       padding-bottom: 14px;
     }
   }
-
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -74,13 +70,11 @@ app-confirm-portfolio {
     letter-spacing: -0.2px;
     text-align: center;
     padding: 21px 0 50px;
-
     a {
       color: $white-color;
       text-decoration: underline;
     }
   }
-
   .review-block {
     padding: 20px 35px;
     background-color: $review-block-bg;
@@ -91,7 +85,6 @@ app-confirm-portfolio {
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
-
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;
@@ -102,13 +95,11 @@ app-confirm-portfolio {
       padding-top: 10px;
     }
   }
-
   .btn__footer--fixed {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
     font-size: 24px;
   }
-
   hr {
     border-color: $teal-color;
     margin: 0;

@@ -1,6 +1,5 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-tax-info {
   .app-tax-info {
     .container-fluid {
@@ -21,7 +20,6 @@ app-tax-info {
         font-stretch: normal;
       }
     }
-
     label {
       font-size: 18px;
       letter-spacing: -0.3px;
@@ -38,7 +36,6 @@ app-tax-info {
       height: auto;
       max-height: 264px;
     }
-
     .dropdown-item {
       white-space: normal;
       word-break: break-word;
@@ -76,13 +73,11 @@ app-tax-info {
       position: relative;
       top: 106px;
       margin-bottom: 15px;
-
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
     }
-
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
@@ -91,7 +86,6 @@ app-tax-info {
     // .QuestionLabel{
     //     width: 83%;
     // }
-
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
@@ -118,11 +112,9 @@ app-tax-info {
       margin-top: 12px;
       margin-bottom: 12px;
     }
-
     input::placeholder {
       color: $teal-grey-color !important;
     }
-
     .add-tax-box {
       padding: 30px 20px;
       border-radius: 6px;
@@ -136,7 +128,6 @@ app-tax-info {
       margin-top: 33px !important;
       margin: 20px;
     }
-
     .add-tax-text {
       font-family: $muli-bold;
       font-size: 18px;

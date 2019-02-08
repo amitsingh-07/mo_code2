@@ -9,12 +9,9 @@
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
   <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage">{{errorMessage}}</div>
-
   <div class="modal-body-message" *ngFor="let error of errorList" id="errorModelMessage">
     <div class="error">
       <div class="error-desc">{{error.msg}} ({{error.code}})</div>
     </div>
   </div>
-
-
 </div>

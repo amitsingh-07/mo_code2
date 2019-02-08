@@ -1,6 +1,5 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-additional-declaration-step1 {
   .app-add-step1 {
     .container-fluid {
@@ -23,25 +22,20 @@ app-additional-declaration-step1 {
       letter-spacing: -0.3px;
       padding-right: 5px;
     }
-
     .dropdown-control .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
       height: calc(70vh);
     }
-
     .dropdown-item {
       white-space: normal;
     }
-
     .fixed-btn--sm {
       color: $white-color;
     }
-
     .mr16 {
       margin-right: 5px !important;
     }
-
     .text {
       font-family: $muli-regular;
       font-size: 18px;
@@ -51,7 +45,6 @@ app-additional-declaration-step1 {
       padding-left: 17px;
       padding-right: 14px;
     }
-
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
@@ -76,7 +69,6 @@ app-additional-declaration-step1 {
       display: block;
       margin-top: 3px;
     }
-
     .country_text {
       width: 100px;
       height: 69px;
@@ -89,7 +81,6 @@ app-additional-declaration-step1 {
       letter-spacing: -0.3px;
       color: $white-color;
     }
-
     .tin_question_text {
       font-family: $muli-semi-bold;
       font-size: 18px;
@@ -101,12 +92,10 @@ app-additional-declaration-step1 {
       color: $white-color;
       margin-bottom: 12px;
     }
-
     .disabled {
       cursor: not-allowed;
       border-color: $fixed-btn-brdr-color;
     }
-
     .inline-error-inv {
       color: $inline-error-border-color;
       border: 1px solid $inline-error-border-color !important;
@@ -115,11 +104,9 @@ app-additional-declaration-step1 {
         color: $inline-error-border-color !important;
       }
     }
-
     .input-control {
       text-align: left;
     }
-
     .form-group{
       .dropdown-control{
         .btn{
@@ -135,7 +122,6 @@ app-additional-declaration-step1 {
         }
       }
     }
-
     .form-control {
       &.with-button {
         padding: 0.5rem;
@@ -187,7 +173,6 @@ app-additional-declaration-step1 {
         }
       }
     }
-
     .white-bg-checkbox {
       background-color: $white-color;
       padding: 10px 18px 10px 18px;
@@ -209,7 +194,6 @@ app-additional-declaration-step1 {
         font-size: 16px;
       }
     }
-
     .autofill-link {
       border: 1px solid $secondary-action-color;
       padding: 23px 34px;
@@ -244,19 +228,16 @@ app-additional-declaration-step1 {
         color: $inline-error-border-color !important;
       }
     }
-
     .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
       height: auto;
       max-height: 264px;
     }
-
     .dropdown-item {
       white-space: normal;
       word-break: break-word;
     }
-
     .dropdown-control .btn-dropdown {
       padding-right: 27px;
       max-height: 52px;
@@ -264,13 +245,11 @@ app-additional-declaration-step1 {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .office-addr-lbl {
       margin-top: 25px;
       margin-bottom: 24px;
       font-size: 18px;
     }
-
     .postal-code-control {
       display: flex;
       div.control {
@@ -282,7 +261,6 @@ app-additional-declaration-step1 {
         flex: 2;
       }
     }
-
     .inline-error {
       .btn {
         &.btn-secondary {
