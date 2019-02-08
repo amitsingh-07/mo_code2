@@ -372,7 +372,7 @@ export class TopupAndWithDrawService {
     durationMonths = [];
     for (const groupName in groups) {
       durationMonths.unshift({ year: groupName, months: groups[groupName] });
-        // tslint:disable-next-line
+      // tslint:disable-next-line
     }
     return durationMonths;
   }

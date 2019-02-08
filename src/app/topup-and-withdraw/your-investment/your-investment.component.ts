@@ -42,8 +42,9 @@ export class YourInvestmentComponent implements OnInit {
   showAlretPopUp = false;
   selected;
   riskProfileImg: any;
-  portfolioValues: any;
   portfolio;
+  productCode;
+
 
   constructor(
     public readonly translate: TranslateService,
@@ -75,33 +76,7 @@ export class YourInvestmentComponent implements OnInit {
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.getPortfolioHoldingList(this.portfolioValues.productCode);
-  }
-  getPortfolioHoldingList(portfolioid) {
-    this.topupAndWithDrawService
-      .getIndividualPortfolioDetails(portfolioid)
-      .subscribe((data) => {
-        this.portfolio = data.objectList;
-        this.constructFundingParams(this.portfolio);
-        this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
-      });
-  }
-  constructFundingParams(data) {
-    const FundValues = {
-      source: 'FUNDING',
-      redirectTo: 'PORTFOLIO',
-      portfolio: {
-        productName: data.portfolioName,
-        riskProfile: data.riskProfile
-      },
-      oneTimeInvestment: data.initialInvestment,
-      monthlyInvestment: data.monthlyInvestment,
-      fundingType: '',
-      isAmountExceedBalance: 0,
-      exceededAmount: 0
-    };
-    this.topupAndWithDrawService.setFundingDetails(FundValues);
+
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
@@ -153,8 +128,36 @@ export class YourInvestmentComponent implements OnInit {
       'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE'
     );
   }
-  ViewTransferInst() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+  ViewTransferInst(productCode) {
+    this.productCode = productCode;
+    this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
+  }
+
+  getPortfolioHoldingList(portfolioid) {   // CALLING THE API
+    this.topupAndWithDrawService
+      .getIndividualPortfolioDetails(portfolioid)
+      .subscribe((data) => {
+        this.portfolio = data.objectList;
+        const fundingParams = this.constructFundingParams(data.objectList);
+        this.topupAndWithDrawService.setFundingDetails(fundingParams);
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+      });
+  }
+
+  constructFundingParams(data) {   // SET FUND DETAILS VAlUES
+    return {
+      source: 'FUNDING',
+      redirectTo: 'PORTFOLIO',
+      portfolio: {
+        productName: data.portfolioName,
+        riskProfile: data.riskProfile
+      },
+      oneTimeInvestment: data.initialInvestment,
+      monthlyInvestment: data.monthlyInvestment,
+      fundingType: '',
+      isAmountExceedBalance: 0,
+      exceededAmount: 0
+    };
   }
   // tslint:disable-next-line
   showCashAccountPopUp() {

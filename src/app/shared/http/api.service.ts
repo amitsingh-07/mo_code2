@@ -692,7 +692,7 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   deletePortfolio(data) {
     // need to change the correct endpoint
-    return this.http.post(apiConstants.endpoint.investmentAccount.deletePortfolio + '?handleError=true', data)
+    return this.http.delete(apiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
