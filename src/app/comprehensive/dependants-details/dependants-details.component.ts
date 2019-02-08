@@ -22,7 +22,8 @@ export class DependantsDetailsComponent implements OnInit {
   formName: string[] = [];
   pageTitle: string;
   dependant: any = [];
-  relationShipList;
+  relationShipList: any;
+  nationalityList: any;
   relationship;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
@@ -34,6 +35,7 @@ export class DependantsDetailsComponent implements OnInit {
       // meta tag and title
       this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
       this.relationShipList = this.translate.instant('DEPENDANT_DETAILS.RELATIONSHIP_LIST');
+      this.nationalityList = this.translate.instant('NATIONALITY');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -52,9 +54,14 @@ export class DependantsDetailsComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   selectRelationship(status, i) {
+const relationship = status ? status : '';
+this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(relationship);
 
-    this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(status);
-
+  }
+  selectNationality(status, i) {
+    const nationality = status ? status : '';
+    console.log(status, i);
+    this.myDependantForm.controls['dependant']['controls'][i].controls.nationality.setValue(nationality);
   }
 
   buildDependantDetailsForm() {
@@ -62,7 +69,7 @@ export class DependantsDetailsComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      age: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       nationality: ['', [Validators.required]]
 
     });

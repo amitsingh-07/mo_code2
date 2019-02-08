@@ -40,7 +40,7 @@ export class DependantSelectionComponent implements OnInit {
 
     this.navbarService.setNavbarDirectGuided(true);
     this.dependantSelectionForm = new FormGroup({
-      dependant_selection: new FormControl('', Validators.required)
+      dependantSelection: new FormControl('', Validators.required)
     });
   }
   goToNext(dependantSelectionForm) {

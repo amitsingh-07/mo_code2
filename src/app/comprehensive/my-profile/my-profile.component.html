@@ -32,14 +32,14 @@
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
             <div class="flex-row section pl0 pr0 mb0">
               <div class="flex-col-6">
-                <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfileForm.gender.invalid}"
+                <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfile.gender.invalid}"
                   id="myProfileFormLbl3">
                   <input ngbButton type="radio" value="male" id="myProfileFormInpt3"> {{ 'LABEL.MALE' |
                   translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-                <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfileForm.gender.invalid}"
+                <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfile.gender.invalid}"
                   id="myProfileFormLbl4">
                   <input ngbButton type="radio" value="female" id="myProfileFormInpt4"> {{ 'LABEL.FEMALE' |
                   translate}}
@@ -58,7 +58,7 @@
           </label>
         </div>
         <div class="pr0 flex-col-7">
-          <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
+          <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfile.nationality.invalid}">
             <div ngbDropdown id="nationalityDropDown">
               <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                 <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -99,7 +99,7 @@
 
 
     </div>
-    <button type="button" [disabled]="!myProfileForm.valid" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100"
+    <button type="button"  (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100"
       id="prfBtn1">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
   </form>
