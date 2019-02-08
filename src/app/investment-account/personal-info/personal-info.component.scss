@@ -1,5 +1,4 @@
 @import '../../../variables';
-
 app-inv-personal-info {
   .personal-info {
     .container-fluid {
@@ -9,12 +8,10 @@ app-inv-personal-info {
       color: $inline-error-border-color;
       border: 1px solid $inline-error-border-color !important;
       color: $inline-error-border-color;
-
       input {
         color: $inline-error-border-color !important;
       }
     }
-
     .btn-group--toggle {
       label {
         padding: 0.9rem;
@@ -32,41 +29,34 @@ app-inv-personal-info {
         border-color: $fixed-btn-brdr-color;
       }
     }
-
     label {
       font-size: 18px;
       font-family: $muli-semi-bold;
       padding-right: 5px;
     }
-
     .input-control {
       text-align: left;
     }
-
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 106px;
       margin-bottom: 42px;
-
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
     }
-
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
       }
     }
-
     .form-control {
       &.with-button {
         padding: 0.5rem;
         padding-left: 0.8rem;
-
         input {
           margin-top: 6px;
         }
@@ -87,7 +77,6 @@ app-inv-personal-info {
         }
       }
     }
-
     .btn {
       &:disabled {
         color: $teal-color !important;
@@ -95,32 +84,26 @@ app-inv-personal-info {
         opacity: 1 !important;
       }
     }
-
     input::placeholder {
       color: $text-color-secondary !important;
       line-height: 1.25;
       letter-spacing: -0.2px;
     }
-
     .white-bg-checkbox {
       background-color: $white-color;
       padding: 10px 18px 10px 18px;
       border-radius: 6px;
       font-family: $muli;
-
       label {
         padding: 0px 0 0px 35px;
       }
-
       .option-row {
         margin-left: 0px;
       }
-
       .option-title {
         color: $black-color;
         font-size: 18px;
       }
-
       .option-desc {
         color: $dark-grey-color;
         font-family: $muli-semi-bold;
