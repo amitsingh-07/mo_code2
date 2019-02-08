@@ -87,7 +87,7 @@ export class FundYourAccountComponent implements OnInit {
   showBankTransctionDetails() {
     const ref = this.modal.open(BankDetailsComponent, {
       centered: true,
-      windowClass: 'full-height'
+      windowClass: 'custom-full-height'
     });
     ref.componentInstance.errorTitle = this.translate.instant(
       'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
@@ -101,7 +101,7 @@ export class FundYourAccountComponent implements OnInit {
   }
   showPayNowDetails() {
     const ref = this.modal.open(BankDetailsComponent, {
-      centered: true, windowClass: 'full-height'
+      centered: true, windowClass: 'custom-full-height'
     });
     ref.componentInstance.errorTitle = this.translate.instant(
       'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
