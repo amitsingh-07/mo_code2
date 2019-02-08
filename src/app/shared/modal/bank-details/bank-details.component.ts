@@ -6,7 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bank-details',
   templateUrl: './bank-details.component.html',
-  styleUrls: ['./bank-details.component.scss']
+  styleUrls: ['./bank-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BankDetailsComponent implements OnInit {
 

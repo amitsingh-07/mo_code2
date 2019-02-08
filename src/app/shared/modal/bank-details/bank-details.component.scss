@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+app-bank-details{
 .instruction-content{
     padding-top: 20px;
     color: $dark-grey-color;
@@ -85,4 +86,5 @@
             text-decoration: none;
         }
     }
+}
 }
