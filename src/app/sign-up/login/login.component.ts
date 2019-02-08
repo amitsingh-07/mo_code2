@@ -8,7 +8,7 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
@@ -163,7 +163,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.signUpService.clearRedirectUrl();
                 if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
                   investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+                    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
                 } else {
                   this.router.navigate([redirect_url]);
                 }

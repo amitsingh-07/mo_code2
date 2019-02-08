@@ -50,7 +50,7 @@ export class AllocationComponent implements OnInit, OnChanges {
 
   showFundDetails() {
     this.portfolioService.setFundDetails(this.funds);
-    const ref = this.modal.open(FundDetailsComponent, { centered: true, windowClass: 'full-height' });
+    const ref = this.modal.open(FundDetailsComponent, { centered: true});
     return false;
   }
 

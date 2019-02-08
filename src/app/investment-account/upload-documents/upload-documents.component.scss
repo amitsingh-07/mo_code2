@@ -23,7 +23,6 @@ app-upload-documents {
         text-align: center;
       }
     }
-
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
@@ -70,14 +69,12 @@ app-upload-documents {
           display: inline-flex;
         }
       }
-
       .sub-title-desc {
         font-family: $muli-semi-bold;
         color: $upload-sub-title-desc-color;
         font-weight: 600;
         letter-spacing: -0.3px;
       }
-
       .upload-file {
         font-family: $muli-semi-bold;
         font-size: 16px;
@@ -103,7 +100,6 @@ app-upload-documents {
             background-color: $btn-primary-backgrnd-color;
           }
         }
-
         .btn {
           font-size: 16px;
           background-color: $secondary-action-color;

@@ -42,7 +42,6 @@
         </div>
       </div>
       <!-- Starting the actual form design  -->
-
       <div class="form-group">
         <!-- first name -->
         <div class="form-group">
@@ -93,7 +92,6 @@
                     ngbDropdownToggle>
                     <span *ngIf="!addInfoForm.controls.pepoccupation.value">Select Occupation</span>
                     <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation}}</span>
-
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                     <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option)"
@@ -104,7 +102,6 @@
             </div>
           </div>
         </div>
-
         <!-- OCCUPATION for OTHERS -->
         <div *ngIf="addInfoForm.controls.pepoccupation && addInfoForm.controls.pepoccupation.value && 
         addInfoForm.controls.pepoccupation.value.occupation =='Others'">
@@ -159,7 +156,6 @@
                 <div class="postal-code-control">
                   <div class="control">
                     <input type="text" class="input-control grey" formControlName="pepPostalCode" id="pep_Info_residentialAddress-mailpostalcode-txt" />
-
                   </div>
                   <div class="button">
                     <button type="button" (click)="retrieveAddress(addInfoForm.controls.pepPostalCode.value, addInfoForm.controls.pepAddress1, addInfoForm.controls.pepAddress2)"

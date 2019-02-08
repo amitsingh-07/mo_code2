@@ -171,7 +171,6 @@
                         <span *ngIf="invPersonalInfoForm.controls.passportIssuedCountry.value">
                             {{invPersonalInfoForm.controls.passportIssuedCountry.value.name | titlecase}}
                         </span>
-                        
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('passportIssuedCountry', country, i)"

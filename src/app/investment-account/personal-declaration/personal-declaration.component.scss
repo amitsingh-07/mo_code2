@@ -1,6 +1,5 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-personal-declaration {
   .personal-declaration {
     .container-fluid {
@@ -20,7 +19,6 @@ app-personal-declaration {
         font-stretch: normal;
       }
     }
-
     label {
       font-size: 18px;
       letter-spacing: -0.3px;
@@ -37,7 +35,6 @@ app-personal-declaration {
       height: auto;
       max-height: 264px;
     }
-
     .dropdown-item {
       white-space: normal;
       word-break: break-word;
@@ -82,13 +79,11 @@ app-personal-declaration {
         padding-bottom: 0px;
       }
     }
-
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
       }
     }
-
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
