@@ -89,9 +89,7 @@
             </div>
           </div>
         </div>
-
         <!-- RESIDENTIAL ADDRESS PROOF UPLOAD -->
-
         <div class="row" *ngIf="!isUserNationalitySingapore">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
@@ -100,7 +98,6 @@
             <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}"></div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.resAddressProof.value">
-
             <div class="upload-desc" (click)="openFileDialog(resAddressProof)">
               <div class="thumb-container">
                 <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, $event, resThumb, resAddressProof)"
@@ -114,10 +111,8 @@
                 <div class="sub-text" *ngIf="!uploadForm.controls.resAddressProof.value">{{
                   'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.resAddressProof.value" [innerHtml]="getFileName(resAddressProof)"></div>
-
               </div>
             </div>
-
           </div>
           <input type="file" accept="image/*, .pdf" #resAddressProof (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event, resThumb)"
             name="proofOfResAddress" class="is-hidden">
@@ -136,7 +131,6 @@
             <div class="sub-title-desc" innerHTML="{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}"></div>
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.mailAdressProof.value">
-
             <div class="upload-desc" (click)="openFileDialog(mailAdressProof)">
               <div class="thumb-container">
                 <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event, mailThumb, mailAdressProof)"
@@ -150,7 +144,6 @@
                 <div class="sub-text" *ngIf="!uploadForm.controls.mailAdressProof.value">{{
                   'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.mailAdressProof.value" [innerHtml]="getFileName(mailAdressProof)"></div>
-
               </div>
             </div>
           </div>

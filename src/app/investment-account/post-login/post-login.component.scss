@@ -1,6 +1,5 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-post-login {
   .back-btn {
     background-image: url('../../../assets/images/back-web.svg');
@@ -56,7 +55,6 @@ app-post-login {
       height: auto;
     }
   }
-
   .autofill-link {
     &.postlogin {
       border: 1px solid $secondary-action-color;

@@ -1,11 +1,9 @@
 <div class="residential-address">
-
   <div class="step-indicator-container">
     <div class="container-fluid">
       <app-step-indicator [count]="9" [activeStepIndex]="1"></app-step-indicator>
     </div>
   </div>
-
   <div class="container-fluid">
     <div class="content">
       <div class="row">
@@ -35,7 +33,6 @@
                 </div>
               </div>
             </div>
-
             <!-- POSTAL CODE -->
             <div class="form-group" *ngIf="addressForm.get('postalCode')">
               <div class="flex-row">
@@ -47,7 +44,6 @@
                     <div class="postal-code-control">
                       <div class="control">
                         <input type="text" class="input-control grey" formControlName="postalCode" id="residentialAddress-postalcode-txt" />
-
                       </div>
                       <div class="button" *ngIf="!isDisabled('postalCode')">
                         <button type="button" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)"
@@ -59,7 +55,6 @@
                 </div>
               </div>
             </div>
-
             <!-- ADDRESS 1 -->
             <div class="form-group">
               <div class="flex-row">
@@ -73,7 +68,6 @@
                 </div>
               </div>
             </div>
-
             <!-- ADDRESS 2 -->
             <div class="form-group">
               <div class="flex-row">
@@ -87,7 +81,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Floor -->
             <div class="form-group" *ngIf="addressForm.get('floor')">
               <div class="flex-row">
@@ -101,7 +94,6 @@
                 </div>
               </div>
             </div>
-
             <!-- UNIT NO -->
             <div class="form-group" *ngIf="addressForm.get('unitNo')">
               <div class="flex-row">
@@ -115,7 +107,6 @@
                 </div>
               </div>
             </div>
-
             <!-- CITY -->
             <div class="form-group" *ngIf="addressForm.get('city')">
               <div class="flex-row">
@@ -129,7 +120,6 @@
                 </div>
               </div>
             </div>
-
             <!-- STATE -->
             <div class="form-group" *ngIf="addressForm.get('state')">
               <div class="flex-row">
@@ -143,7 +133,6 @@
                 </div>
               </div>
             </div>
-
             <!-- ZIP CODE -->
             <div class="form-group" *ngIf="addressForm.get('zipCode')">
               <div class="flex-row">
@@ -157,7 +146,6 @@
                 </div>
               </div>
             </div>
-
             <!-- IS MAILING ADDRESS SAME -->
             <div class="form-group-single-column  mb10 flex-col">
               <div class="checkbox-button two-label">
@@ -169,7 +157,6 @@
                 </label>
               </div>
             </div>
-
             <!-- ----------------------------- MAIL ----------------------------------------- -->
             <div *ngIf="!addressForm.get('isMailingAddressSame').value" formGroupName="mailingAddress">
               <div class="your-mailing-address">{{'RESIDENTIAL_ADDRESS.YOUR_MAILING_ADDRESS' | translate}}</div>
@@ -189,7 +176,6 @@
                         </button>
                         <button *ngIf="addressForm.controls.mailingAddress.controls.reason.value" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                           ngbDropdownToggle>
-
                           {{addressForm.controls.mailingAddress.controls.reason.value.name}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -238,7 +224,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- POSTAL CODE -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailPostalCode')">
                 <div class="flex-row">
@@ -246,7 +231,6 @@
                     <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{ 'RESIDENTIAL_ADDRESS.POSTAL_CODE' | translate}}</label>
                   </div>
                   <div class="flex-col-7">
-
                     <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailPostalCode), 'disabled':addressForm.controls.mailingAddress.controls.mailPostalCode.disabled}">
                       <div class="postal-code-control">
                         <div class="control">
@@ -263,7 +247,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- ADDRESS 1 -->
               <div class="form-group">
                 <div class="flex-row">
@@ -277,7 +260,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- ADDRESS 2 -->
               <div class="form-group">
                 <div class="flex-row">
@@ -291,7 +273,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- Floor -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailFloor')">
                 <div class="flex-row">
@@ -305,7 +286,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- UNIT NO -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailUnitNo')">
                 <div class="flex-row">
@@ -319,7 +299,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- CITY -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailCity')">
                 <div class="flex-row">
@@ -333,7 +312,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- STATE -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailState')">
                 <div class="flex-row">
@@ -347,7 +325,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- ZIP CODE -->
               <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailZipCode')">
                 <div class="flex-row">
@@ -362,9 +339,6 @@
                 </div>
               </div>
             </div>
-
-
-
             <button type="button" id="personalInforNextBtn" (click)="goToNext(addressForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
           </form>
