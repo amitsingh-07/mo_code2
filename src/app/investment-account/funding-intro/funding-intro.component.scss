@@ -1,11 +1,9 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-funding-intro {
   .hide-custom-modal {
     display: none;
   }
-
   .fade-out-animation {
     -webkit-animation: fadeOut 1000ms ease-in-out;
     /* Chrome, Safari, Opera */
@@ -14,29 +12,24 @@ app-funding-intro {
     z-index: 9999;
     position: fixed;
   }
-
   /* Chrome, Safari, Opera */
   @-webkit-keyframes fadeOut {
     0% {
       opacity: 0.8;
     }
-
     100% {
       opacity: 0;
     }
   }
-
   /* Standard syntax */
   @keyframes fadeOut {
     0% {
       opacity: 1;
     }
-
     100% {
       opacity: 0;
     }
   }
-
   .custom-modal-backdrop {
     background: $white-color;
     position: fixed;
@@ -47,7 +40,6 @@ app-funding-intro {
     top: 0;
     left: 0;
   }
-
   .custom-modal-wrapper {
     top: 0;
     left: 0;
@@ -60,62 +52,52 @@ app-funding-intro {
     @extend .justify-center;
     @extend .align-center;
   }
-
   .custom-modal-content {
     width: 100%;
     height: 100%;
-
     img {
       width: 100%;
       height: 100%;
     }
   }
-
   .custom-modal--icon {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 20%;
-
-    @include allmobiles {
-      img {
-        width: 60%;
-      }
+    top: 30px;
+    img{
+      width: 358px;
+      height: 353px;
     }
   }
-
   .custom-modal--title {
-    color: #00aaa8;
+    color: $custom-modal-title-color;
     font-family: $muli-regular;
     font-size: 36px;
     letter-spacing: -0.4px;
     line-height: 1.11;
     margin-top: 20px;
+    padding-top: 12px;
   }
-
   .custom-modal--desc {
-    color: #5e5e5e;
+    color: $custom-modal-desc-color;
     font-size: 18px;
     line-height: 1.33;
     letter-spacing: -0.2px;
     font-family: $muli-regular;
     padding: 0 35%;
-
     @include allmobiles {
       padding: 0 10%;
     }
   }
-
   .app-additional-declaration {
     .btn-proceed {
-      width: 179px;
-      height: 60px;
       border: 0px;
       border-radius: 6px;
       background-color: $white-color;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
       cursor: pointer;
-      font-family: Muli;
+      font-family: $muli-bold;
       font-size: 22px;
       font-weight: bold;
       font-style: normal;
@@ -123,7 +105,7 @@ app-funding-intro {
       line-height: normal;
       letter-spacing: -0.2px;
       text-align: center;
-      color: #00a7a7;
+      color: $teal-color;
       @include allmobiles {
         position: fixed;
         width: 100%;
@@ -166,6 +148,11 @@ app-funding-intro {
       }
     }
     .intro-block__content__desc {
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      text-align: center;
+      color: $white-color;
       @include allmobiles {
         margin-top: 30px;
         text-align: center;
@@ -173,40 +160,19 @@ app-funding-intro {
       @include tablet {
         margin-top: 30px;
       }
-    }
-    .intro-block__content__heading {
-      font-family: Muli;
-      font-size: 24px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.3px;
-      text-align: center;
-      color: #ffffff;
-    }
-    .intro-block__content__title {
-      font-family: Muli;
-      font-size: 18px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: 1.22;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #ffffff;
-      margin: 25px;
-    }
-    .intro-block__content__sub-title {
-      font-family: Muli;
-      font-size: 18px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: 1.22;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #ffffff;
+      .intro-block__content__heading {
+        font-family: $muli-bold;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: -0.25px;
+      }
+      .intro-block__content__title {
+        font-family: $muli-regular;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.18px;
+        margin: 25px;
+      }
     }
   }
 }

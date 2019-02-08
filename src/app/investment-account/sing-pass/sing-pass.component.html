@@ -1,4 +1,4 @@
-<div *ngIf="showSingPass">
+<div *ngIf="showSingPass && isInvestmentMyInfoEnabled">
   <div class="flex-col autofill-link" [ngClass]="position" (click)="openModal()">
     <div class="flex-row flex-col-12">
       <div class="autofill-text" *ngIf="label">{{label}}</div>

@@ -1,13 +1,11 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
-
 app-select-nationality {
   .banner-image {
     img {
       padding-top: 1vh;
     }
   }
-
   .container-fluid {
     padding-top: 0px !important;
   }
@@ -22,7 +20,6 @@ app-select-nationality {
       letter-spacing: -0.2px;
     }
   }
-
   label {
     font-size: 18px;
     letter-spacing: -0.3px;
@@ -39,7 +36,6 @@ app-select-nationality {
     height: auto;
     max-height: 264px;
   }
-
   .dropdown-item {
     white-space: normal;
     word-break: break-word;

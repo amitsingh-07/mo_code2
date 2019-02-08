@@ -1,5 +1,4 @@
 @import '../../../variables';
-
 app-finanical-details {
   .financial-details {
     .container-fluid {
@@ -13,18 +12,15 @@ app-finanical-details {
         color: $inline-error-border-color !important;
       }
     }
-
     label {
       font-size: 18px;
       font-family: $muli-semi-bold;
       padding-right: 10px;
     }
-
     .input-control {
       text-align: right;
       color: $text-color-secondary;
     }
-
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
@@ -36,13 +32,11 @@ app-finanical-details {
         padding-bottom: 0px;
       }
     }
-
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
       }
     }
-
     .form-control {
       &.with-button {
         padding: 0.5rem;
@@ -60,7 +54,6 @@ app-finanical-details {
         opacity: 1 !important;
       }
     }
-
     .white-bg-checkbox {
       background-color: $white-color;
       padding: 10px 18px 10px 18px;
@@ -82,14 +75,12 @@ app-finanical-details {
         font-size: 16px;
       }
     }
-
     .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
       height: auto;
       max-height: 190px;
     }
-
     .dropdown-item {
       white-space: normal;
       word-break: break-word;
