@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -20,9 +21,11 @@ export class PostLoginComponent implements OnInit {
   singPassLinkTitle: any;
   formData: any;
   showSingPass: boolean;
+  isInvestmentMyInfoEnabled = false;
 
   constructor(
     // tslint:disable-next-line
+    private configService: ConfigService,
     public authService: AuthenticationService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -38,6 +41,9 @@ export class PostLoginComponent implements OnInit {
 
     this.translate.get('COMMON').subscribe((result: string) => {
       this.singPassLinkTitle = this.translate.instant('POSTLOGIN.PROCEED');
+    });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isInvestmentMyInfoEnabled = config.investmentEnabled;
     });
   }
 

@@ -637,6 +637,12 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.custom-full-height{
+  @include allmobiles {
+    max-height: calc(100vh - 56px) !important;
+  }
+}
+
 .full-height {
   &.modal {
     display: block !important;

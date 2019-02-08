@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -27,8 +28,10 @@ export class SingPassComponent implements OnInit {
   showSingPass: boolean;
   investmentData: any;
   myInfoSubscription: any;
+  isInvestmentMyInfoEnabled = false;
 
   constructor(
+    private configService: ConfigService,
     private modal: NgbModal,
     private router: Router,
     private myInfoService: MyInfoService,
@@ -55,6 +58,9 @@ export class SingPassComponent implements OnInit {
       this.modelBtnText1 = this.translate.instant(
         'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
       );
+    });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isInvestmentMyInfoEnabled = config.investmentEnabled;
     });
   }
 
