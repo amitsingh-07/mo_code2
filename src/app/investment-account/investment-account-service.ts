@@ -653,7 +653,7 @@ export class InvestmentAccountService {
   }
 
   dateFormatFromApi(date: string) {
-    const dateArr: any = date.split(' ')[0].split('/');
+    const dateArr: any = date ? date.split(' ')[0].split('/') : [];
     return {
       year: Number(dateArr[2]),
       month: Number(dateArr[0]),
@@ -883,7 +883,7 @@ export class InvestmentAccountService {
 
   getFinancialDetailsReqData(data): IFinancial {
     return {
-      incomeRange: data.salaryRange ? data.salaryRange.id : null
+      incomeRange: data.salaryRange ? data.salaryRange.value : null
     };
   }
 
