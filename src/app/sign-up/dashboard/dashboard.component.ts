@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AppService } from '../../app.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
@@ -14,7 +14,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -143,9 +143,9 @@ export class DashboardComponent implements OnInit {
       investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails &&
-        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
-        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
+      this.availableBalance = this.userProfileInfo.investementDetails.account &&
+        this.userProfileInfo.investementDetails.account.cashAccountBalance ?
+        this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
     }
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {

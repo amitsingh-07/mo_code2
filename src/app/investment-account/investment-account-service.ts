@@ -653,7 +653,7 @@ export class InvestmentAccountService {
   }
 
   dateFormatFromApi(date: string) {
-    const dateArr: any = date.split(' ')[0].split('/');
+    const dateArr: any = date ? date.split(' ')[0].split('/') : [];
     return {
       year: Number(dateArr[2]),
       month: Number(dateArr[0]),
@@ -883,7 +883,7 @@ export class InvestmentAccountService {
 
   getFinancialDetailsReqData(data): IFinancial {
     return {
-      incomeRange: data.salaryRange ? data.salaryRange.id : null
+      incomeRange: data.salaryRange ? data.salaryRange.value : null
     };
   }
 
@@ -1332,6 +1332,13 @@ export class InvestmentAccountService {
     return filteredObj[0];
   }
 
+  getPropertyFromValue(value, arrayKey) {
+    const filteredObj = this.investmentAccountFormData.optionList[arrayKey].filter(
+      (prop) => prop.value === value
+    );
+    return filteredObj[0];
+  }
+
   getNationalityFromNationalityCode(nationalityList, nationalityCode) {
     const selectedNationality = nationalityList.filter(
       (nationality) => nationality.nationalityCode === nationalityCode
@@ -1348,7 +1355,7 @@ export class InvestmentAccountService {
     this.setPersonalInfoFromApi(customerData.identityDetails);
     this.setResidentialAddressDetailsFromApi(customerData.identityDetails.customer);
     this.setEmploymentDetailsFromApi(customerData.employmentInformation);
-    this.setFinancialDetailsFromApi(customerData.customer);
+    this.setFinancialDetailsFromApi(customerData.customer, customerData.income);
     this.setTaxInfoFromApi(customerData.taxDetails);
     this.setPersonalDeclarationFromApi(
       customerData.investmentObjective,
@@ -1455,9 +1462,11 @@ export class InvestmentAccountService {
       employmentInformation.customerEmploymentDetails.otherOccupation; // TODO : VERIFY
     this.investmentAccountFormData.contactNumber =
       employmentInformation.employerAddress.contactNumber;
-    this.investmentAccountFormData.empCountry = this.getCountryFromCountryCode(
-      employmentInformation.employerAddress.employerAddress.country.countryCode
-    );
+    if (employmentInformation.employerAddress.employerAddress.country) {
+      this.investmentAccountFormData.empCountry = this.getCountryFromCountryCode(
+        employmentInformation.employerAddress.employerAddress.country.countryCode
+      );
+    }
     if (
       this.isCountrySingapore(
         employmentInformation.employerAddress.employerAddress.country
@@ -1481,11 +1490,12 @@ export class InvestmentAccountService {
       employmentInformation.employerAddress.employerAddress.unitNumber;
     this.commit();
   }
-  setFinancialDetailsFromApi(customer) {
-    this.investmentAccountFormData.annualHouseHoldIncomeRange = customer.houseHoldDetail.houseHoldIncome;
+  setFinancialDetailsFromApi(customer, income) {
+    this.investmentAccountFormData.annualHouseHoldIncomeRange =
+      customer.houseHoldDetail.houseHoldIncome;
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       customer.houseHoldDetail.numberOfMembers;
-    this.investmentAccountFormData.salaryRange = customer.test; // TODO : VERIFY
+    this.investmentAccountFormData.salaryRange = this.getPropertyFromValue(income.incomeRange, 'salaryRange');
     this.commit();
   }
   setTaxInfoFromApi(taxDetails) {
