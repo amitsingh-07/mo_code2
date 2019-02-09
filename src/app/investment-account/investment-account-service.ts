@@ -818,7 +818,7 @@ export class InvestmentAccountService {
   }
   getMailingAddressReqData(data): IAddress {
     let addressDetails = null;
-    if (!data.isMailingAddressSame) {
+    if (typeof(data.isMailingAddressSame) !== 'undefined' && !data.isMailingAddressSame) {
       addressDetails = {
         countryId: data.mailCountry ? data.mailCountry.id : null,
         state: data.mailState,

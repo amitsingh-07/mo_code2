@@ -157,11 +157,8 @@ export class UploadDocumentsComponent implements OnInit {
     this.showUploadLoader();
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       if (response) {
-        // INTERIM SAVE
-        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-          this.hideUploadLoader();
-          this.redirectToNextPage();
-        });
+        this.hideUploadLoader();
+        this.redirectToNextPage();
       }
     });
   }
@@ -219,12 +216,7 @@ export class UploadDocumentsComponent implements OnInit {
         'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED'
       );
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-          this.investmentAccountService.setAccountCreationStatus(
-            INVESTMENT_ACCOUNT_CONFIG.status.documents_pending
-          );
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
-        });
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
       });
     } else {
       this.proceed(form);
