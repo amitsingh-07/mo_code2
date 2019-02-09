@@ -120,14 +120,13 @@
                 <div class="conserve-icon">
                   <img [src]="getImg(i)" alt="" />
                 </div>
-                <div class="portfolio_heading">{{portfolio.riskProfile.type}} </div>
+                <div class="portfolio_heading">{{portfolio.riskProfile.type}}</div>
               </div>
               <div class="flex-row">
                 <div *ngIf="selected === i">
                   <div class="callout-content" *ngIf="showAlretPopUp">
 
-                    <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
-                      {{portfolio.expiryDate}}.</div>
+                    <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}} {{portfolio.expiryDate}}.</div>
                     <div class="Fund_your_account">
                       <u (click)="ViewTransferInst(portfolio.productCode)" id="fund_your_account_link">
                         {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>
