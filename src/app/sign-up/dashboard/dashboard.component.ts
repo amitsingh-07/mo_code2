@@ -98,27 +98,31 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
-    this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
-      const nationalityList = data.objectList;
-      const countryList = this.getCountryList(data.objectList);
-      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
-      const beneficialOwner = this.userProfileInfo.investementDetails
-        && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
-      const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
-        this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
-      const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
-        this.userProfileInfo.investementDetails.myInfoVerified : false;
-      this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
-      if (myInfoVerified) {
-        if (beneficialOwner) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+    this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
+      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
+        const nationalityList = nationalityData.objectList;
+        const countryList = this.getCountryList(nationalityData.objectList);
+        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+        const beneficialOwner = this.userProfileInfo.investementDetails
+          && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
+        const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
+          this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
+        const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
+          this.userProfileInfo.investementDetails.myInfoVerified : false;
+        this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
+        if (myInfoVerified) {
+          if (beneficialOwner) {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+          } else {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          }
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
         }
-      } else {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
-      }
+      });
     });
   }
 
@@ -140,6 +144,7 @@ export class DashboardComponent implements OnInit {
   getDashboardList() {
     const investmentStatus = this.signUpService.getInvestmentStatus();
     if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED.toUpperCase() ||
+    investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED.toUpperCase() ||
       investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
@@ -147,6 +152,10 @@ export class DashboardComponent implements OnInit {
         this.userProfileInfo.investementDetails.account.cashAccountBalance ?
         this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
     }
+    this.setInvestmentDashboardStatus(investmentStatus);
+  }
+
+  setInvestmentDashboardStatus(investmentStatus) {
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {
         this.showSetupAccount = true;
