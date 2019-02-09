@@ -98,7 +98,7 @@ export class YourInvestmentComponent implements OnInit {
       this.totalReturns = this.investmentoverviewlist.data.totalReturns
         ? this.investmentoverviewlist.data.totalReturns
         : 0;
-      this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails
+      this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
         ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
         : 0;
       this.totalValue = this.investmentoverviewlist.data.totalValue
