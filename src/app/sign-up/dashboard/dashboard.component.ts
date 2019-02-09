@@ -213,6 +213,10 @@ export class DashboardComponent implements OnInit {
         this.showPortffolioPurchased = true;
         break;
       }
+      case SIGN_UP_CONFIG.INVESTMENT.START_INVESTING: {
+        this.showStartInvesting = true;
+        break;
+      }
       default: {
         this.showStartInvesting = true;
         break;
