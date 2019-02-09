@@ -123,12 +123,7 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
     this.commit();
   }
-  getInvestmentValue(minimumBalanceOfTopup) {
-    this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
-    this.commit();
-  }
-
-  setFundingDetails(fundDetails) {
+setFundingDetails(fundDetails) {
     this.topUpAndWithdrawFormData.fundDetails = fundDetails;
     this.commit();
   }
