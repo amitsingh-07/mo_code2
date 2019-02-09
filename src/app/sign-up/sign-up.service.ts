@@ -8,6 +8,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -430,15 +431,17 @@ export class SignUpService {
     let investmentStatus = userInfo && userInfo.investementDetails
       && userInfo.investementDetails.account
       && userInfo.investementDetails.account.accountStatus ?
-      userInfo.investementDetails.account.accountStatus : null;
+      userInfo.investementDetails.account.accountStatus.toUpperCase() : null;
     if (investmentStatus === null || !investmentStatus) {
       if (userInfo && userInfo.investementDetails &&
         userInfo.investementDetails.portfolios &&
         userInfo.investementDetails.portfolios.length > 0) {
-        investmentStatus = 'RECOMMENDED';
+        investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
       }
-    } else {
-      investmentStatus = investmentStatus.toUpperCase();
+    } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED &&
+      userInfo && userInfo.investementDetails && userInfo.investementDetails.portfolios &&
+      userInfo.investementDetails.portfolios.length <= 0) {
+      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.START_INVESTING.toUpperCase();
     }
     return investmentStatus;
   }
