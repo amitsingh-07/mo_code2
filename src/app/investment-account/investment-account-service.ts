@@ -818,7 +818,7 @@ export class InvestmentAccountService {
   }
   getMailingAddressReqData(data): IAddress {
     let addressDetails = null;
-    if (typeof(data.isMailingAddressSame) !== 'undefined' && !data.isMailingAddressSame) {
+    if (typeof data.isMailingAddressSame !== 'undefined' && !data.isMailingAddressSame) {
       addressDetails = {
         countryId: data.mailCountry ? data.mailCountry.id : null,
         state: data.mailState,
@@ -930,8 +930,18 @@ export class InvestmentAccountService {
         expectedAmountPerTransaction: parseInt(data.expectedAmountPerTranction, 10),
         investmentSourceId: data.source ? data.source.id : null,
         additionalInfo: this.getadditionalInfoDesc(data),
-        investmentDuration: data.durationInvestment,
-        earningSourceId: data.earningsGenerated ? data.earningsGenerated.id : null
+        investmentDuration:
+          data.source &&
+          data.source.key ===
+            INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+            ? data.durationInvestment
+            : null,
+        earningSourceId:
+          data.source &&
+          data.source.key ===
+            INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+            ? data.earningsGenerated.id
+            : null
       }
     };
   }
@@ -953,13 +963,24 @@ export class InvestmentAccountService {
 
   getadditionalInfoDesc(data) {
     let additionalDesc = '';
-    if (data.inheritanceGift) {
-      additionalDesc = data.inheritanceGift;
-    } else if (data.personalSavings) {
-      additionalDesc = data.personalSavings;
-    } else if (data.otherSources) {
-      additionalDesc = data.otherSources;
+    if (data.source) {
+      if (
+        data.source.key ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
+      ) {
+        additionalDesc = data.personalSavings;
+      } else if (
+        data.source.key ===
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+      ) {
+        additionalDesc = data.inheritanceGift;
+      } else if (
+        data.source.key === INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.OTHERS
+      ) {
+        additionalDesc = data.otherSources;
+      }
     }
+
     return additionalDesc;
   }
 
@@ -1492,13 +1513,17 @@ export class InvestmentAccountService {
   }
   setFinancialDetailsFromApi(customer, income) {
     this.investmentAccountFormData.annualHouseHoldIncomeRange =
-    customer && customer.houseHoldDetail && customer.houseHoldDetail.houseHoldIncome ? customer.houseHoldDetail.houseHoldIncome : null;
+      customer && customer.houseHoldDetail && customer.houseHoldDetail.houseHoldIncome
+        ? customer.houseHoldDetail.houseHoldIncome
+        : null;
     this.investmentAccountFormData.numberOfHouseHoldMembers =
-    customer && customer.houseHoldDetail && customer.houseHoldDetail.numberOfMembers ? customer.houseHoldDetail.numberOfMembers : null;
-    this.investmentAccountFormData.salaryRange = income && income.incomeRange ? this.getPropertyFromValue(
-      income.incomeRange,
-      'salaryRange'
-    ) : null;
+      customer && customer.houseHoldDetail && customer.houseHoldDetail.numberOfMembers
+        ? customer.houseHoldDetail.numberOfMembers
+        : null;
+    this.investmentAccountFormData.salaryRange =
+      income && income.incomeRange
+        ? this.getPropertyFromValue(income.incomeRange, 'salaryRange')
+        : null;
     this.commit();
   }
   setTaxInfoFromApi(taxDetails) {
