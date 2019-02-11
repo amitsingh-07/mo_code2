@@ -5,12 +5,11 @@ app-holdings {
     padding: 120px 0;
   }
   .form-group-with-bg {
-    
     border-radius: 6px !important;
     .form-group-with-bg--header {
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
-      background-color: #009999;
+      background-color: $review-block-bg;
       padding: 16px 26px 26px 26px;
       font-family: $muli-bold;
       font-size: 16px;
@@ -18,7 +17,7 @@ app-holdings {
     }
     .form-group-with-bg--content {
       border-radius: 6px;
-      background-color: #f4fafb;
+      background-color: $bond-container-bg;
       margin-bottom: 22px;
     }
     .flex-row {
@@ -29,7 +28,7 @@ app-holdings {
       font-size: 14px;
       line-height: 1.64;
       letter-spacing: -0.1px;
-      color: #000000;
+      color: $black-color;
     }
     .text_bold {
       font-family: $muli-bold;
@@ -41,7 +40,7 @@ app-holdings {
       font-weight: bold;
       line-height: 1.64;
       letter-spacing: -0.1px;
-      color: #00a7a7;
+      color: $teal-color;
       text-align: right;
     }
     .flex-row:not(:last-child) {

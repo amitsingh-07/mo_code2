@@ -10,7 +10,7 @@ app-withdrawal-payment-method {
     .btn-group--toggle {
       &.tabs {
         .flex-row {
-          border: 1px solid #ffffff;
+          border: 1px solid $white-color;
           border-radius: 6px;
         }
         .btn {
@@ -23,10 +23,10 @@ app-withdrawal-payment-method {
             line-height: 1.22;
             letter-spacing: -0.2px;
             text-align: center;
-            background-color: #00a7a7;
+            background-color: $teal-color;
             &.active {
               background-color: $white-color !important;
-              color: #00a7a7;
+              color: $teal-color;
               &.right-btn {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
@@ -40,7 +40,7 @@ app-withdrawal-payment-method {
             &:active,
             &:focus {
               background-color: $white-color !important;
-              color: #00a7a7;
+              color: $teal-color;
               &.right-btn {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
@@ -61,7 +61,7 @@ app-withdrawal-payment-method {
       background-color: $white-color;
       font-family: $muli-regular;
       font-size: 16px;
-      color: #00a7a7;
+      color: $teal-color;
       margin-bottom: 10px;
       align-items: center;
       justify-content: center;
@@ -89,7 +89,7 @@ app-withdrawal-payment-method {
         margin-bottom: 4px;
       }
       .user_name {
-        color: #000000;
+        color: $black-color;
       }
       // &.selected{
       //     opacity: 1 !important;
@@ -114,7 +114,7 @@ app-withdrawal-payment-method {
       align-items: center;
       justify-content: center;
       border-radius: 6px;
-      border: 1px solid #98dfdf;
+      border: 1px solid $withdrawal-add-account-brdr-color;
       font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.18px;
@@ -148,7 +148,7 @@ app-withdrawal-payment-method {
       }
       .cheque_address {
         border-radius: 6px;
-        background-color: #2d8289;
+        background-color: $dark-teal-color;
         min-height: 110px;
         align-items: center;
         justify-content: center;

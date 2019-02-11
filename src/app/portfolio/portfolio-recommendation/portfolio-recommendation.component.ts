@@ -1,10 +1,9 @@
-import 'rxjs/add/observable/timer';
-
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import 'rxjs/add/observable/timer';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
@@ -22,6 +21,9 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
+import { SignUpApiService } from './../../sign-up/sign-up.api.service';
+import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from './../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 @Component({
   selector: 'app-portfolio-recommendation',
@@ -44,6 +46,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   userInputSubtext;
 
   constructor(
+    private signUpApiService: SignUpApiService,
     private appService: AppService,
     private router: Router,
     public headerService: HeaderService,
@@ -208,10 +211,18 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    if (!this.authService.isSignedUser()) {
-      this.showLoginOrSignupModal();
+    if (this.authService.isSignedUser()) {
+      this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+        const investmentStatus = this.signUpService.getInvestmentStatus();
+        if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+        }
+      });
     } else {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+      this.showLoginOrSignupModal();
     }
   }
 
