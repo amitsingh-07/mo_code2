@@ -1492,13 +1492,13 @@ export class InvestmentAccountService {
   }
   setFinancialDetailsFromApi(customer, income) {
     this.investmentAccountFormData.annualHouseHoldIncomeRange =
-      customer.houseHoldDetail.houseHoldIncome;
+    customer && customer.houseHoldDetail && customer.houseHoldDetail.houseHoldIncome ? customer.houseHoldDetail.houseHoldIncome : null;
     this.investmentAccountFormData.numberOfHouseHoldMembers =
-      customer.houseHoldDetail.numberOfMembers;
-    this.investmentAccountFormData.salaryRange = this.getPropertyFromValue(
+    customer && customer.houseHoldDetail && customer.houseHoldDetail.numberOfMembers ? customer.houseHoldDetail.numberOfMembers : null;
+    this.investmentAccountFormData.salaryRange = income && income.incomeRange ? this.getPropertyFromValue(
       income.incomeRange,
       'salaryRange'
-    );
+    ) : null;
     this.commit();
   }
   setTaxInfoFromApi(taxDetails) {

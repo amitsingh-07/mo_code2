@@ -1,5 +1,4 @@
 <div class="withdraw">
-
   <div class="container-fluid">
     <div class="content">
       <div class="row">
@@ -39,7 +38,6 @@
               </div>
             </div>
           </div> -->
-
           <!-- BANK -->
           <!-- <div class="bank_transfer flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'">
             <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;" (click)="selectBank(userBank)"
@@ -57,9 +55,7 @@
               <div>Kelvin Goh</div>
             </div>
             -->
-            
           <!-- </div> -->
-
           <!-- CHEQUE -->
           <!-- <div class="cheque flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'">
             <div class="cheque_msg">{{ 'WITHDRAW_PAYMENT_METHOD.CHEQUES_WILL_BE_POSTED_ADDRESS' | translate}}:</div>
@@ -76,11 +72,9 @@
           </div> -->
         </div>
       </div>
-
       <button type="button" [disabled]="userBankList && userBankList.length === 0" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{
         'LABEL.CONTINUE' | translate}}</button>
-
     </div>
   </div>
 </div>
