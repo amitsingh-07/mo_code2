@@ -184,9 +184,7 @@ export class MyInfoService {
       ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
-        // Todo - Robo2 MyInfo changes
         this.goToMyInfo();
-        // this.goToUAT1MyInfo();
       }).catch((e) => {
       });
     }

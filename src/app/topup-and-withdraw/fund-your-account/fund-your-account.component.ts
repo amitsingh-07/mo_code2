@@ -52,6 +52,11 @@ export class FundYourAccountComponent implements OnInit {
       this.fundAccountContent = this.translate.instant(
         'FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK'
       );
+      this.pageTitle = this.getPageTitleBySource(
+        this.fundDetails.source,
+        this.fundDetails.fundingType
+      );
+      this.setPageTitle(this.pageTitle);
     });
   }
 
@@ -62,11 +67,6 @@ export class FundYourAccountComponent implements OnInit {
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
-    const pageTitle = this.getPageTitleBySource(
-      this.fundDetails.source,
-      this.fundDetails.fundingType
-    );
-    this.setPageTitle(pageTitle);
     if (this.fundDetails.portfolio.riskProfile) {
       this.riskProfileImg =
         ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
@@ -119,9 +119,11 @@ export class FundYourAccountComponent implements OnInit {
     if (source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.FUNDING) {
       pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TITLE');
     } else if (source === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP) {
-      type === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME
-        ? (pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT'))
-        : (pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT'));
+      if (type === TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME) {
+        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT');
+      } else {
+        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT');
+      }
     }
     return pageTitle;
   }
