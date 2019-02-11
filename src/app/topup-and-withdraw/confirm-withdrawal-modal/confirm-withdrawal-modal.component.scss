@@ -1,39 +1,32 @@
 @import '../../../variables.scss';
-
 app-confirm-withdrawal-modal {
   .edit-investment-modal {
     font-family: $muli;
-
     .modal-body-message {
       margin-bottom: 15px;
     }
-
     .strong {
       font-weight: bold;
     }
-
     .amount-section {
       padding: 20px;
-      border: 1px solid #c2d9ec;
+      border: 1px solid $fund-details-dimentional-brdr;
       border-radius: 6px;
       margin: 15px 0px;
       text-align: center;
-
       .amt {
         font-size: 22px;
         font-family: $muli-bold;
         font-weight: bold;
-        color: #00a7a7;
+        color: $teal-color;
         margin-top: 10px;
       }
-
       .lbl {
         font-size: 16px;
-        color: #8a9ba9;
+        color: $withdrawal-modal-lbl-color;
         margin-top: 2px;
       }
     }
-
     .btn {
       &.btn-primary {
         font-family: $muli-bold;
