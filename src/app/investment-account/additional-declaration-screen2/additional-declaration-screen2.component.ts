@@ -78,7 +78,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
           personalSavings: [this.formValues.personalSavings, Validators.required]
         })
       );
-      this.additionDeclarationtwo.removeControl('investmentEarning');
+      this.additionDeclarationtwo.removeControl('investmentEarnings');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
       this.additionDeclarationtwo.removeControl('othersFrom');
     }
