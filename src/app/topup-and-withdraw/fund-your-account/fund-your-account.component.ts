@@ -167,7 +167,7 @@ export class FundYourAccountComponent implements OnInit {
   goToNext(target) {
     switch (target) {
       case 'PORTFOLIO':
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO], { replaceUrl: true });
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT], { replaceUrl: true });
         break;
       case 'DASHBOARD':
         this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
