@@ -1,6 +1,5 @@
 @import '../../../variables';
 @import '../../../mixins';
-
 app-asset-allocation {
   .container-fluid {
     @include allmobiles {
@@ -10,29 +9,25 @@ app-asset-allocation {
       padding-top: 95px;
     }
   }
-
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
       color: $white-color;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14);
-      background-color: #00717e;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      background-color: $portfolio-allocation-details-bg;
     }
   }
-
   .asset-allocation {
     margin-top: 33px;
-
     .title {
       font-family: $muli-bold;
       font-size: 21px;
       font-weight: bold;
       letter-spacing: -0.4px;
-      color: #ffffff;
+      color: $white-color;
       padding-bottom: 14px;
     }
   }
-
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -40,9 +35,8 @@ app-asset-allocation {
     letter-spacing: -0.2px;
     text-align: center;
     padding: 21px 0 19px;
-
     a {
-      color: #ffffff;
+      color: $white-color;
       text-decoration: underline;
     }
   }

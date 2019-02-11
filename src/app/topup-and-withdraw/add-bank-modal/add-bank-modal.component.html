@@ -1,5 +1,4 @@
 <div class="add-bank-modal">
-
   <form id="addBankForm" name="addBankForm" [formGroup]="addBankForm" autocomplete="off">
     <div class="modal-header">
       <div class="modal-title popup-header-icon">
@@ -12,7 +11,6 @@
         <span aria-hidden="true"></span>
       </button>
       <div class="form-group">
-
         <!-- Account holder name -->
         <div class="flex-row">
           <div class="flex-col-6">
@@ -52,7 +50,6 @@
             </div>
           </div>
         </div>
-
         <!-- Account No -->
         <div class="flex-row">
           <div class="flex-col-6">
@@ -66,7 +63,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <button type="button" (click)="save(addBankForm)" class="btn btn-primary width100 mt5" id="incomeBtn">{{
         'LABEL.SAVE' | translate}}</button>
