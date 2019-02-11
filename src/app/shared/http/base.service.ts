@@ -2,7 +2,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import {apiConstants } from './api.constants';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +9,6 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { Util } from '../utils/util';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
@@ -38,13 +36,9 @@ export class BaseService {
   }
 
   get(url) {
-    let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(apiConstants.endpoint.getMyInfoValues) !== -1) {
-      baseUrl = environment.apiBaseUrl2;
-    }
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${baseUrl}/${url}`)
+      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -73,10 +67,6 @@ export class BaseService {
   }
 
   post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
-    let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(apiConstants.endpoint.getMyInfoValues) !== -1) {
-      baseUrl = environment.apiBaseUrl2;
-    }
     if (showLoader) {
       this.helperService.showLoader();
     }
@@ -86,7 +76,7 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post<IServerResponse>(`${baseUrl}/${url}${param}`, postBody)
+      .post<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });

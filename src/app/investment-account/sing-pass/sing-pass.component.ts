@@ -72,7 +72,7 @@ export class SingPassComponent implements OnInit {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.getMyInfoData();
-        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED' && this.myInfoService.isMyInfoEnabled) {
+        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
           this.cancelMyInfo();
         } else {
           this.myInfoService.closeMyInfoPopup(false);
@@ -114,23 +114,20 @@ export class SingPassComponent implements OnInit {
   }
 
   getMyInfoData() {
-    this.myInfoService.openFetchPopup();
-    this.myInfoService.isMyInfoEnabled = true;
-
-    // Investment account
-    if (this.investmentAccountService.getCallBackInvestmentAccount()) {
-      this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+    this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+      if (data && data.objectList[0]) {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
         this.myInfoService.closeMyInfoPopup(false);
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-      }, (error) => {
+      } else {
         this.myInfoService.closeMyInfoPopup(true);
         this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
-      });
-    } else {
+      }
+    }, (error) => {
+      this.myInfoService.closeMyInfoPopup(true);
       this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
-    }
+    });
   }
 
   getMyInfo() {
@@ -140,7 +137,5 @@ export class SingPassComponent implements OnInit {
       this.investmentAccountService.myInfoAttributes
     );
     this.myInfoService.goToMyInfo();
-    // Todo - Robo2 Hard coded UAT1 path for testing
-    // this.myInfoService.goToUAT1MyInfo();
   }
 }

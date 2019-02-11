@@ -56,13 +56,13 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
       this.portfolioService.setPortfolioSplashModalCounter(1);
-      setInterval(() => {
+      setTimeout(() => {
         this.animateStaticModal = true;
-      }, 2000);
-
-      setInterval(() => {
-        this.hideStaticModal = true;
       }, 3000);
+
+      setTimeout(() => {
+        this.hideStaticModal = true;
+      }, 4000);
     } else {
       this.hideStaticModal = true;
     }
