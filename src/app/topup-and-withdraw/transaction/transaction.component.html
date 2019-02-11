@@ -9,7 +9,6 @@
                 <div class="transaction-panel__history white-bg">
                   <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
-
                     <div class="transaction-panel__history--details">
                       <div *ngFor="let transaction of group.value; let j = index">
                         <div class="flex-row transaction-panel__history--details--title" (click)="expandCollapseAccordion(i, j)">
@@ -20,7 +19,6 @@
                             <i *ngIf="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length" class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
                           </div>
                         </div>
-
                         <div *ngFor="let fund of transaction.fundInvestmentSplits">
                           <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()"
                             >
@@ -28,21 +26,18 @@
                             <div class="flex-col-4 text-right">{{fund.unitPrice | currency }}</div>
                           </div>
                         </div>
-
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
               <div class="no-content">
               <img src="../../../assets/images/investment-account/light_owl.svg" />
               <div class="mt15">No Transaction History!</div>
             </div>
             </div>
-
           </ng-template>
         </ngb-tab>
         <ngb-tab class="btn width100" title="Statements">
@@ -60,14 +55,12 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="no-transaction" *ngIf="!statementMonthsList || !statementMonthsList.length">
                     <div class="no-content">
                     <img src="../../../assets/images/investment-account/light_owl.svg" />
                     <div class="mt15">No Transaction Statements!</div>
                   </div>
                 </div>
-
               </div>
             </div>
           </ng-template>

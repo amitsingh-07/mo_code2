@@ -12,7 +12,6 @@ app-your-portfolio {
   .user_content {
     position: absolute;
     top: 158px;
-
     .user_portfolio {
       font-family: $muli-regular;
       font-size: 30px;
@@ -55,7 +54,6 @@ app-your-portfolio {
     left: auto !important;
     right: 0;
   }
-
   .dropdown-item {
     display: block;
     width: 100%;
@@ -68,13 +66,11 @@ app-your-portfolio {
     background-color: transparent;
     border: 0;
     letter-spacing: -0.2px;
-    color: #2d8289 !important;
-    //border-bottom: solid 1px #00a7a7 !important;
+    color: $dark-teal-color !important;
   }
   .dropdown-item:first-child {
-    border-bottom: solid 1px #00a7a7 !important;
+    border-bottom: solid 1px $teal-color !important;
   }
-
   .dropdown-control .btn-dropdown:after {
     background-image: url('/assets/images/dropdown_white.svg');
     width: 16px;
@@ -89,10 +85,9 @@ app-your-portfolio {
       right: 5px;
     }
   }
-
   .dropdown-control .btn-dropdown.grey {
-    color: #fff;
-    background-color: #006d75;
+    color: $white-color;
+    background-color: $top-up-your-portfolio-your-total-value-bg;
   }
   .container-fluid {
     @include allmobiles {
@@ -125,13 +120,12 @@ app-your-portfolio {
       margin-top: -139px;
     }
   }
-
   .form-group-with-bg {
-    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
-    background-color: #ffffff;
+    box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
+    background-color: $white-color;
     margin-bottom: 20px;
     .your_total_value {
-      background-color: #006d75;
+      background-color: $top-up-your-portfolio-your-total-value-bg;
       padding: 20px 20px 17px;
     }
   }
@@ -144,7 +138,7 @@ app-your-portfolio {
     line-height: normal;
     letter-spacing: -0.4px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
   }
   .total_values_label {
     font-family: $muli-regular;
@@ -152,14 +146,13 @@ app-your-portfolio {
     line-height: 0.88;
     letter-spacing: -0.1px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     margin-top: 6px;
   }
-
   .total_return_label {
-    color: #5e5e5e;
+    color: $text-color-secondary;
     font-size: 16px;
-    color: #2d8289;
+    color: $dark-teal-color;
   }
   .total_return_value {
     font-family: $muli-bold;
@@ -167,30 +160,29 @@ app-your-portfolio {
     font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
-    color: #11b600;
+    color: $transaction-panel-buy-color;
     word-break: break-all;
   }
-
   .your_portfolio_label {
     font-family: $muli-regular;
     font-size: 21px;
     letter-spacing: -0.2px;
-    color: #ffffff;
+    color: $white-color;
   }
   .start_investment_label {
     font-size: 13px;
     line-height: 1.62;
     letter-spacing: -0.1px;
-    color: #5e5e5e;
+    color: $text-color-secondary;
   }
   .your_portfolio_number {
     font-family: $muli-regular;
     font-size: 15px;
     letter-spacing: -0.3px;
-    color: #ffffff;
+    color: $white-color;
   }
   .your_portfolio_value {
-    background-color: #e7f3f3;
+    background-color: $top-up-your-portfolio-value-bg;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -214,14 +206,14 @@ app-your-portfolio {
     font-family: $muli-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #00a7a7;
+    color: $teal-color;
     padding-left: 15px;
   }
   .btn-with-icon {
     border-radius: 6px;
-    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
-    border: solid 1px rgba(0, 135, 134, 0.4);
-    background-color: #ffffff;
+    box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow !important;
+    border: 1px solid $fixed-btn-brdr-color;
+    background-color: $white-color;
     font-family: $muli-bold;
     font-size: 21px;
     font-weight: bold;
@@ -230,36 +222,35 @@ app-your-portfolio {
     text-align: center;
     width: 100%;
     padding: 21px 0px;
-    color: #ff872f;
+    color: $secondary-action-color;
     display: flex;
     justify-content: center;
     &:active {
       outline: none;
-      background-color: #fff;
+      background-color: $white-color;
     }
     &:hover {
       outline: none;
     }
     &:focus {
       outline: none;
-      background-color: #fff;
+      background-color: $white-color;
     }
     img {
       margin-right: 10px;
     }
   }
-
   .asset_allocation_btn {
     border-radius: 6px;
-    border: solid 1px rgb(0, 153, 153);
-    background-color: #009999;
+    border: 1px solid $top-up-your-portfolio-asset-btn-shadow;
+    background-color: $review-block-bg;
     font-family: $muli-bold;
     font-size: 18px;
     font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
-    color: #fff;
+    color: $white-color;
     width: 100%;
     padding: 21px;
     display: flex;
@@ -267,23 +258,23 @@ app-your-portfolio {
     align-items: center;
     &:active {
       outline: none;
-      background-color: #009999;
-      color: #fff;
+      background-color: $review-block-bg;
+      color: $white-color;
     }
     &:hover {
       outline: none;
     }
     &:focus {
       outline: none;
-      background-color: #009999;
-      color: #fff;
+      background-color: $review-block-bg;
+      color: $white-color;
     }
   }
   .fund-account {
     text-align: center;
     border-radius: 6px;
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
-    background-color: #ffffff;
+    box-shadow: 0 4px 5px 0 $btn-proceed-shadow-color;
+    background-color: $white-color;
     width: 100%;
     padding: 30px;
   }
@@ -291,17 +282,15 @@ app-your-portfolio {
     font-size: 16px;
     line-height: 1.38;
     letter-spacing: -0.2px;
-    color: #000000;
-    background-color: #ffffff;
+    color: $black-color;
+    background-color: $white-color;
   }
   .fund-account-btn {
     font-size: 21px;
     font-weight: bold;
-
     letter-spacing: -0.2px;
-    color: #ff872f;
+    color: $secondary-action-color;
   }
-
   .form-group-with-bg .form-group-with-bg--content {
     padding: 25px 27px 35px 28px;
     .flex-row:not(:last-child) {
@@ -309,6 +298,6 @@ app-your-portfolio {
     }
   }
   hr {
-    background-color: #98dfdf;
+    background-color: $withdrawal-add-account-brdr-color;
   }
 }
