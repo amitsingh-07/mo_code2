@@ -5,39 +5,39 @@
     <div class="promo__table">
     <table class="promo__inner-table">
         <tr>
-            <td class="cell--header" rowspan="2">Qualifying Products</td>
+            <td class="cell--header text--center" rowspan="2">Qualifying Products</td>
             <td class="cell--header text--center" colspan="3">Qualifying Criteria</td>
-            <td class="cell--header" rowspan="2">Premium Discount per Policy</td>
+            <td class="cell--header text--center" rowspan="2">Premium Discount per Policy</td>
             </tr>
         <tr>
-            <td class="cell--header">Payment Mode</td>
-            <td class="cell--header">Premium Payment Term</td>
-            <td class="cell--header">Minimum 1<sup>st</sup> Year Premium per Policy</td>
+            <td class="cell--header text--center">Payment Mode</td>
+            <td class="cell--header text--center">Premium Payment Term</td>
+            <td class="cell--header text--center">Minimum 1<sup>st</sup> Year Premium per Policy</td>
             </tr>
         <tr>
-            <td rowspan="4">
+            <td rowspan="4" class="text--center">
                 RetireReady Plus or ReadyBuilder
                 </td>
-            <td>NA</td>
-            <td>Single Premium (except SRS)</td>
-            <td>$20,000 and above</td>
-            <td>1%</td>
+            <td class="text--center">NA</td>
+            <td class="text--center">Single Premium (except SRS)</td>
+            <td class="text--center">$20,000 and above</td>
+            <td class="text--center">1%</td>
             </tr>
         <tr>
-            <td rowspan="3">Annually</td>
-            <td>5 years</td>
-            <td>$6,000 and above</td>
-            <td>6%</td>
+            <td rowspan="3" class="text--center">Annually</td>
+            <td class="text--center">5 years</td>
+            <td class="text--center">$6,000 and above</td>
+            <td class="text--center">6%</td>
             </tr> 
         <tr>
-            <td>10/ 15/ 20 years</td>
-            <td>$3,600 to less than $10,000</td>
-            <td>6%</td>
+            <td class="text--center">10/ 15/ 20 years</td>
+            <td class="text--center">$3,600 to less than $10,000</td>
+            <td class="text--center">6%</td>
             </tr> 
         <tr>
-            <td>10/ 15/ 20 years</td>
-            <td>$10,000 and above</td>
-            <td>10%</td>
+            <td class="text--center">10/ 15/ 20 years</td>
+            <td class="text--center">$10,000 and above</td>
+            <td class="text--center">10%</td>
             </tr>
         </table>
         </div>
@@ -47,33 +47,33 @@
     <div class="promo__table">
     <table class="promo__inner-table">
         <tr>
-            <td class="cell--header" rowspan="2">Qualifying Products</td>
+            <td class="cell--header text--center" rowspan="2">Qualifying Products</td>
             <td class="cell--header text--center" colspan="3">Qualifying Criteria</td>
-            <td class="cell--header" rowspan="2">Cash Reward per Policy</td>
+            <td class="cell--header text--center" rowspan="2">Cash Reward per Policy</td>
             </tr>
         <tr>
-            <td class="cell--header">Payment Mode</td>
-            <td class="cell--header">Premium Payment Term</td>
-            <td class="cell--header">Minimum 1<sup>st</sup> Year Premium per Policy</td>
+            <td class="cell--header text--center">Payment Mode</td>
+            <td class="cell--header text--center">Premium Payment Term</td>
+            <td class="cell--header text--center">Minimum 1<sup>st</sup> Year Premium per Policy</td>
             </tr>
         <tr>
-            <td rowspan="3">
+            <td rowspan="3" class="text--center">
                 RetireReady Plus or ReadyBuilder
                 </td>
-            <td rowspan="3">Monthly/ Quarterly/ Half-Yearly</td>
-            <td>5 years</td>
-            <td>$6,000 and above</td>
-            <td>6%</td>
+            <td rowspan="3" class="text--center">Monthly/ Quarterly/ Half-Yearly</td>
+            <td class="text--center">5 years</td>
+            <td class="text--center">$6,000 and above</td>
+            <td class="text--center">6%</td>
             </tr>
         <tr>
-            <td>10/ 15/ 20 years</td>
-            <td>$3,600 to less than $10,000</td>
-            <td>6%</td>
+            <td class="text--center">10/ 15/ 20 years</td>
+            <td class="text--center">$3,600 to less than $10,000</td>
+            <td class="text--center">6%</td>
             </tr> 
         <tr>
-            <td>10/ 15/ 20 years</td>
-            <td>$10,000 and above</td>
-            <td>10%</td>
+            <td class="text--center">10/ 15/ 20 years</td>
+            <td class="text--center">$10,000 and above</td>
+            <td class="text--center">10%</td>
             </tr> 
         </table>
         </div>
