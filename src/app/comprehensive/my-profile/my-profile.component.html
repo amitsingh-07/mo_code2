@@ -15,7 +15,7 @@
     <div class="form-group-single-column  flex-col p-2 mt-3 myProfileForm">
       <div class="flex-row p-2">
         <div class="pl0 col-5">
-          <label for="name" id="myProfileFormLb1">
+          <label for="name" id="myProfileNameLbl">
             <div>{{ 'FORM_LABEL.NAME' | translate}}
             </div>
           </label>
@@ -26,22 +26,22 @@
       </div>
       <div class="flex-row p-2">
         <div class="pl0 col-5">
-          <label for="gender" id="myProfileFormLbl2">{{ 'FORM_LABEL.I_AM_A' | translate}}</label>
+          <label for="gender" id="myProfileGenderLbl">{{ 'FORM_LABEL.I_AM_A' | translate}}</label>
         </div>
         <div class="flex-col-7 profile-form-grp">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
             <div class="flex-row section pl0 pr0 mb0">
               <div class="flex-col-6">
-                <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfile.gender.invalid}"
+                <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}"
                   id="myProfileFormLbl3">
-                  <input ngbButton type="radio" value="male" id="myProfileFormInpt3"> {{ 'LABEL.MALE' |
+                  <input ngbButton type="radio" value="male" id="myProfileRadioMale"> {{ 'LABEL.MALE' |
                   translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-                <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfile.gender.invalid}"
+                <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}"
                   id="myProfileFormLbl4">
-                  <input ngbButton type="radio" value="female" id="myProfileFormInpt4"> {{ 'LABEL.FEMALE' |
+                  <input ngbButton type="radio" value="female" id="myProfileRadioFemale"> {{ 'LABEL.FEMALE' |
                   translate}}
                 </label>
               </div>
@@ -51,23 +51,21 @@
       </div>
       <div class="flex-row p-2">
         <div class="pl0 col-5">
-          <label for="nationality" id="myProfileFormLbl5">
+          <label for="nationality" id="myProfileNationalityLbl">
             <div>{{ 'FORM_LABEL.NATIONALITY' | translate}}</div>
-            <!-- <div class="with-help-icon">{{ 'DEPENDANT_DETAILS.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon"
-                  (click)="openToolTipModal()"></span></div> -->
           </label>
         </div>
         <div class="pr0 flex-col-7">
-          <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfile.nationality.invalid}">
+          <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nationality.invalid}">
             <div ngbDropdown id="nationalityDropDown">
               <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                 <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                 <span *ngIf="nationality !== ''">{{nationality}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownNationality">
-                <button class="dropdown-item" (click)="selectNationality('','')">Select</button>
+                <button class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                 <button type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
-                  (click)="selectNationality(nationality, 'html')">
+                  (click)="selectNationality(nationality)">
                   {{nationality.text}}
                 </button>
               </div>
@@ -77,13 +75,13 @@
       </div>
       <div class="flex-row">
         <div class="flex-col-4">
-          <label for="name" id="myProfileFormLb6">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
+          <label for="name" id="myProfileDOBLbl">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
         </div>
         <div #usrFrmDp class="flex-col-8">
           <div class="datepicker-control">
             <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine}">
               <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
-                name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileFormInpt5">
+                name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
                   <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dob').valid || myProfileForm.get('dob').pristine"
@@ -99,8 +97,8 @@
 
 
     </div>
-    <button type="button"  (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100"
-      id="prfBtn1">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
+    <button type="button" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100" id="myProfileSubmitBtn">{{
+      'FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
   </form>
 </div>

@@ -208,5 +208,9 @@
     "OTHER_PROPERTY_LOAN":"Other Property Loans",
     "OTHER_LOANS_AMOUNT_OUTSTANDING":"Other Loans Amount OutStanding",
     "CAR_LOANS":"Car Loans"
+  },
+  "ERROR_MODAL_TITLE":{
+    "MY_PROFILE":"My Profile",
+    "DEPENDANT_DETAIL":"Dependant Details"
   }
 }

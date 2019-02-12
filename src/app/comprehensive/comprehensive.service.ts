@@ -28,7 +28,37 @@ export class ComprehensiveService {
     for (const name in controls) {
       if (controls[name].invalid) {
         errors.errorMessages.push(
-          this.ComprehensiveFormError[formName].formFieldErrors[name].required.errorMessage);
+          this.ComprehensiveFormError[formName].formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+    return errors;
+  }
+  getMultipleFormError(form, formName, formTitle) {
+    const forms = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.ComprehensiveFormError[formName].formFieldErrors.errorTitle;
+    console.log(  errors.title);
+    let index = 0;
+
+    // tslint:disable-next-line:forin
+    for (const field in forms) {
+      for (const control of forms[field].controls) {
+        const formGroup = { formName: '', errors: [] };
+        // tslint:disable-next-line:forin
+        for (const name in control.controls) {
+          formGroup.formName = formTitle[index];
+          if (control.controls[name].invalid) {
+            console.log(this.ComprehensiveFormError[formName].formFieldErrors[name]);
+            formGroup.errors.push(
+              this.ComprehensiveFormError[formName].formFieldErrors[name][Object.keys(control.controls[name]['errors'])
+              [0]].errorMessage);
+          }
+        }
+        if (formGroup.errors.length > 0) {
+          errors.errorMessages.push(formGroup);
+        }
+        index++;
       }
     }
     return errors;

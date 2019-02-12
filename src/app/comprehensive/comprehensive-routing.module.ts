@@ -19,9 +19,8 @@ import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving
 const routes: Routes = [
   {
     path: '', canActivate: [LoggedUserService], children: [
-      { path: '', component: ComprehensiveComponent },
+      { path: '', redirectTo: '/comprehensive/getting-started', pathMatch: 'full'},
       { path: 'getting-started', component: MyProfileComponent},
-      { path: 'steps', component: ComprehensiveStepsComponent },
       { path: 'dependant-selection', component: DependantSelectionComponent },
       { path: 'dependant-details', component: DependantsDetailsComponent },
       { path: 'dependant-education', component: DependantEducationComponent },
