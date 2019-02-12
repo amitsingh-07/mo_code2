@@ -12,9 +12,9 @@
             <td class="cell--header text--center">Premium Term</td>
             </tr> 
         <tr>
-            <td>Signature Income (SGD)</td>
-            <td>Single Premium</td>
-            <td>0.3%</td>
+            <td class="text--center">Signature Income (SGD)</td>
+            <td class="text--center">Single Premium</td>
+            <td class="text--center">0.3%</td>
             </tr>
         </table>
         </div>
