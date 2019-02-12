@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -26,9 +27,7 @@ export class UploadDocumentBOComponent implements OnInit {
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   defaultThumb: any;
-  loaderVisible: any;
   formValues: any;
-  loaderInfo: any;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -37,14 +36,14 @@ export class UploadDocumentBOComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public investmentAccountService: InvestmentAccountService
+    public investmentAccountService: InvestmentAccountService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
-      this.loaderVisible = false;
     });
   }
 
@@ -107,10 +106,13 @@ export class UploadDocumentBOComponent implements OnInit {
   }
 
   uploadDocument() {
-    this.showUploadLoader();
+    this.loaderService.showLoader({
+      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
+      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
+    });
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       if (response) {
-        this.hideUploadLoader();
+        this.loaderService.hideLoader();
         this.redirectToNextPage();
       }
     });
@@ -127,17 +129,6 @@ export class UploadDocumentBOComponent implements OnInit {
 
   clearFileSelection(control, event, thumbElem?, fileElem?) {
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
-  }
-  showUploadLoader() {
-    this.loaderVisible = true;
-    this.loaderInfo = {
-      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
-      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
-    };
-  }
-
-  hideUploadLoader() {
-    this.loaderVisible = false;
   }
   goToNext(form) {
     if (!form.valid) {
