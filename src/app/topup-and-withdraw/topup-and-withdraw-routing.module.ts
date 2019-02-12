@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { HoldingsComponent } from './holdings/holdings.component';
@@ -34,7 +35,7 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.FUND_YOUR_ACCOUNT,
     component: FundYourAccountComponent,
-    canActivate: [TopupAndWithdrawGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESTMENT,
