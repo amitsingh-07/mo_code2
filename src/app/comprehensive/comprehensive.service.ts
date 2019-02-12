@@ -38,7 +38,7 @@ export class ComprehensiveService {
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.ComprehensiveFormError[formName].formFieldErrors.errorTitle;
-    console.log(  errors.title);
+
     let index = 0;
 
     // tslint:disable-next-line:forin
@@ -49,7 +49,7 @@ export class ComprehensiveService {
         for (const name in control.controls) {
           formGroup.formName = formTitle[index];
           if (control.controls[name].invalid) {
-            console.log(this.ComprehensiveFormError[formName].formFieldErrors[name]);
+
             formGroup.errors.push(
               this.ComprehensiveFormError[formName].formFieldErrors[name][Object.keys(control.controls[name]['errors'])
               [0]].errorMessage);

@@ -211,6 +211,6 @@
   },
   "ERROR_MODAL_TITLE":{
     "MY_PROFILE":"My Profile",
-    "DEPENDANT_DETAIL":"Dependant Details"
+    "DEPENDANT_DETAIL":["Dependant Details 1","Dependant Details 2","Dependant Details 3","Dependant Details 4","Dependant Details 5"]
   }
 }

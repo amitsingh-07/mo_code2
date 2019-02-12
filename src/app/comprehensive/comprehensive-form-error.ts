@@ -62,6 +62,12 @@ export class ComprehensiveFormError {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'
                 }
+            },
+            relationship: {
+                required: {
+                    errorTitle: 'Invalid Relationship',
+                    errorMessage: 'Relationship'
+                }
             }
 
         }

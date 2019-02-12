@@ -91,12 +91,12 @@ export class DependantsDetailsComponent implements OnInit {
     dependantdetails.removeAt(i);
   }
   validateDependantform(form: FormGroup) {
-    console.log(form);
+
     this.submitted = true;
     if (!form.valid) {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
         this.translate.instant('ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
-      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
         );
       return false;
     }
