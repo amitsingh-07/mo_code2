@@ -1477,3 +1477,64 @@ a.link-white {
 .dropdown-toggle.last::after {
   background-image: none !important;
 }
+
+
+//Comprehensive Styles
+.comprehensive {
+  &__page-heading {
+    padding: 16px 0;
+    font-size: 20px;
+    font-family: $muli-semi-bold;
+    @extend .text-center;
+  }
+  &__page-sub-heading {
+    padding-bottom: 20px;
+    font-size: 18px;
+    @extend .text-center;
+  }
+  &__page-content {
+    font-size: 16px;
+    @extend .text-center;
+    margin-bottom: 30px;
+  }
+  .owl-img {
+    width: 100px;
+    height: 100px;
+  }
+  .datepicker-upside {
+    .dropdown-menu.show {
+      top: -240px !important;
+    }
+  }
+  .road-map {
+    border-left: 2px solid #FFF;
+    padding-left: 52px;
+    margin-left: 20px;
+    li{
+      position: relative;
+      span {
+        height: 15px;
+        width: 15px;
+        background-color: #00a7a7;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: -60px;
+        border: 2px solid #FFF;
+        top: 5px;
+      }
+      span.active {
+        background-image: url(/assets/images/createAccount-icon.svg);
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: -68px;
+        background-color: transparent;
+        border: 2px solid #fff;
+        background-size: 100%;
+        top: 0;
+      }
+    }
+
+  }
+}

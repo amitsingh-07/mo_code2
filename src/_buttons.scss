@@ -997,3 +997,33 @@ button:active:focus {
   background: #fff!important;
   color: #99cfcf!important; 
 }
+
+/*Fixed button small comprehensive*/
+
+.fixed-btn--sm-comprehensive {
+  border: 1px solid $fixed-btn-brdr-color;
+  color: $fixed-btn-txt-color;
+  font-size: 16px;
+  font-family: $muli-regular;
+  font-weight: normal !important;
+  //width: 133px;
+  padding: .90rem;
+  @extend .align-center;
+  @extend .flex;
+  @extend .justify-center;
+  height: 50px;
+
+  //margin-bottom: 5px;
+  &.active {
+    border: 1px solid $app-backgrnd-color !important;
+    color: $white-color !important;
+    background: $app-backgrnd-color !important;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $app-backgrnd-color !important;
+    border-color: $app-backgrnd-color;
+  }
+}
