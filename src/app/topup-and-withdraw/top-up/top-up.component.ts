@@ -75,6 +75,7 @@ export class TopUpComponent implements OnInit {
         this.formValues.oneTimeInvestmentAmount,
         Validators.required
       ]
+      
     });
     this.buildFormInvestment();
   }
@@ -173,8 +174,6 @@ export class TopUpComponent implements OnInit {
       }
     }
   }
-
-
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.topupAndWithDrawService.setTopUp(form.value);
