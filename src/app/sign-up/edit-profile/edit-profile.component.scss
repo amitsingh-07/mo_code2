@@ -1,6 +1,12 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+app-edit-profile{
+ .content{
+  @include allmobiles {
+   padding-top: 100px;
+  }
+ }
 .grass_bg {
     width: 100%;
     height: 100%;
@@ -8,39 +14,47 @@
   }
   .white-bg
   {
-      background: white;
+    background:#ffffff;
   }
   .user-profile-bg{
-    background:white;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 10px;
-    margin: 25px;
+    background:#ffffff;
+    border-radius: 8px;
+    padding: 26px 23px;
+    margin: 23px 16px;
     position: relative;
-
+    box-shadow: 0 12px 14px 2px rgba(0, 0, 0, 0.21);
+    @include max360{
+      padding: 26px 16px;
+    }
 }
 .overlap-grass{
   margin-top: -100px;
   .seperator{
     border-right: 0.5px solid #2d8289;
-    padding: 0 7px;
-    height: 34px;
-    width: 8px;
-    position: absolute;
-    bottom: 43px;
+    // padding: 16px 7px;
+    height: 28px;
+    width: 2px;
+    margin-top: 10px;
+    margin-left: 10px;
   }
 }
   .edit-profile-section-bg{
-      background:white;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      padding: 10px;
-      margin: 25px;
-
+      background: #ffffff;
+      border-radius: 8px;
+      margin: 23px 19px;
+      .flex-row{
+        padding: 20px 17px;
+      }
+      .dots{
+        background-color: #f6f6f6; 
+        padding: 0 21px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin: 0;
+        .flex-row{
+          padding: 0;
+        }
+      }
   }
   .heading
   {
@@ -92,37 +106,34 @@
     line-height: 1.33;
     letter-spacing: -0.2px;
     color: #2d8289;
+    word-break: break-all;
+    @include iphone6{
+      font-size: 16px;
+    }
   }
   .form-group-heading {
-    object-fit: contain;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     color: #313644;
-    margin-bottom: 10px;
-    margin-left: 10px
-   
   }
   .dropdown-img {
     width: 16px;
     height: 10px;
     border: none;
   }
-  .password-placeholder{
-    object-fit: contain;
-    font-family: Muli;
-    font-size: 10px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    color: #5e5e5e;
-  }
+  // .password-placeholder{
+  //   object-fit: contain;
+  //   font-family: Muli;
+  //   font-size: 10px;
+  //   font-weight: 600;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: -0.2px;
+  //   color: #5e5e5e;
+  // }
   form-group-floating-label{
     border: 2px solid #add9d8
   }
@@ -164,23 +175,21 @@
     
   }
   .update-contact-value{
-    font-family:  $muli-regular;
-  font-size: 18px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.33;
-  letter-spacing: -0.2px;
-  color: #2d8289;
+    font-family:  $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.18px;
+    color: #2d8289;
   }
   .section-margin{
-   margin: 10px;
+   padding-top: 13px;
   }
   .mailing-address{
     height: 66px;
     border-radius: 6px;
     background-color: #00c5c4;
-    margin: 20px 5px 10px;
+    margin: 20px 0px 10px;
     .flex-col{
       justify-content: center;
       font-weight: normal;
@@ -199,18 +208,16 @@
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
-    background-color:white;
+    background-color:#ffffff;
     border: solid 1px #00a7a7;
     margin-top: 15px;
-    font-family: Muli;
-    font-size: 24px;
+    font-family: $muli-bold;
+    font-size: 22px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
     color:#00a7a7;
+    margin-bottom: 21px;
   }
   .bank-details-heading
   {
@@ -233,7 +240,7 @@
   line-height: normal;
   letter-spacing: -0.3px;
   color: #2d8289;
-  margin: 15px 10px;
+
   }
   .bank-account-num{
     font-family:$muli-semi-bold;
@@ -245,7 +252,7 @@
   letter-spacing: -0.3px;
   text-align: right;
   color: #00a7a7;
-  margin: 15px 10px;
+
   }
   .banking-details-text{
     object-fit: contain;
@@ -260,22 +267,31 @@
     color: #2d8289;
     margin: 10px 5px 10px 10px;
   }
+  .bank_details{
+    .dots{
+      .flex-row{
+        padding: 16px 0 0;
+      }
+    }
+  }
   .user-img{
     margin-top: -100px;
-
-
   }
   .circle{
     height: 86px;
-  width: 86px;
-  background-color: #00a7a7;
-  border-radius: 50%;
-  margin-top: -60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin:0px auto;
-  margin-top: -60px;
+    width: 86px;
+    background-color: #00a7a7;
+    border-radius: 50%;
+    margin-top: -60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0px auto;
+    margin-top: -60px;
+    font-size: 24px;
+    font-family: $muli-bold;
+    font-weight: 600;
+    letter-spacing: -0.25px;
   }
   .user-edit-img{
     
@@ -284,6 +300,54 @@
     right: 20px;
   }
   .chk-box-img{
-    margin: 15px 2px;
+    margin: 18px 15px;
   }
-  
+  .mailing-address-text {
+    font-family:  $muli-bold;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #868686;
+    border-bottom: solid 0.5px #bbbbbb;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+  }
+  .arrow {
+    display:block;
+    border-style: solid;
+    border-color:#00a7a7;
+    border-width: 0 0 2px 2px;
+    width: 10px;
+    height: 10px;
+    line-height: 0;
+    font-size: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    float:right;
+    margin-top:6px;
+}
+.arrow.active {
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  margin-top:10px;
+}
+.no-bank-account{
+  font-family: $muli-italic;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #a2cfcf;
+  margin: 50px 30px 30px 30px;
+}
+}

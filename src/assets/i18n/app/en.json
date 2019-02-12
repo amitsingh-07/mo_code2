@@ -229,6 +229,12 @@
       "ALL_RIGHTS_RESERVED": "© 2018-2019 MoneyOwl Pte Ltd. All Rights Reserved."
     }
   },
+  "COMMON_ERRORS": {
+    "API_FAILED": {
+      "TITLE": "Error !",
+      "DESC": "Oops. Something went wrong."
+    }
+  },
   "SUBSCRIBE_SIDE": {
     "TITLE": "Join our Mailing List and get wiser!",
     "PROMO_TITLE": "Join our Mailing List &",
@@ -238,6 +244,11 @@
     "EMAIL": "Email",
     "SUB_TEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!",
     "SUBSCRIBE": "Subscribe"
+  },
+  "FUND_DETAILS": {
+    "TITLE": "Fund Details",
+    "DOWNLOAD_FACTSHEET": "Download Factsheet",
+    "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Highlight Sheet"
   }
 }
 
