@@ -56,7 +56,7 @@
         "owner": "Manulife",
         "title": "Manulife 10% Premium Discount or Cash Reward",
         "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
-        "desc": "Enjoy a 10% premium discount or cash reward for RetireReady Plus or ReadyBuilder",
+        "desc": "Enjoy up to 10% Premium Discount or Cash Rewards for RetireReady Plus and ReadyBuilder",
         "date_created": "1547405449000",
         "date_expiry": "1555084799000",
         "tag": ["Insurance", "Retirement"],
@@ -95,6 +95,18 @@
         "desc": "Enjoy 10% First Year Annual Premium Discount with Tokio Marine's Plans",
         "date_created": "1548950400000",
         "date_expiry": "1556639999000",
+        "tag" : ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 9,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,000 CapitaVouchers when you care for your loved one today",
+        "thumbnail": "/assets/promotions/images/9/thumbnail.jpg",
+        "desc": "Receive up to $1000 CapitaVoucher with purchase of selected NTUC Income's plans",
+        "date_created": "1549814400000",
+        "date_expiry": "1553875199000",
         "tag" : ["Insurance", "Protection"],
         "external": false
     }

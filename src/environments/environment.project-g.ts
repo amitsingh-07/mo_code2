@@ -15,7 +15,7 @@ export const environment: IEnvironment = {
   gtagPropertyId: '',
   gaPropertyId: '',
   fbPropertyId: '',
-  projectG: true
+  brand: 'g'
 };
 
 /*

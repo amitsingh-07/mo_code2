@@ -6,7 +6,7 @@
     <table class="promo__inner-table">
         <tr>
             <td class="cell--header" rowspan="2">Qualifying Products</td>
-            <td class="cell--header" colspan="3">Qualifying Criteria</td>
+            <td class="cell--header text--center" colspan="3">Qualifying Criteria</td>
             <td class="cell--header" rowspan="2">Premium Discount per Policy</td>
             </tr>
         <tr>
@@ -48,7 +48,7 @@
     <table class="promo__inner-table">
         <tr>
             <td class="cell--header" rowspan="2">Qualifying Products</td>
-            <td class="cell--header" colspan="3">Qualifying Criteria</td>
+            <td class="cell--header text--center" colspan="3">Qualifying Criteria</td>
             <td class="cell--header" rowspan="2">Cash Reward per Policy</td>
             </tr>
         <tr>
