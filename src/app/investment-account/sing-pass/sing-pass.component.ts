@@ -87,11 +87,6 @@ export class SingPassComponent implements OnInit {
     if (this.myInfoSubscription) {
       this.myInfoSubscription.unsubscribe();
     }
-    if (window.sessionStorage.currentUrl) {
-      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
-    } else {
-      this.router.navigate(['home']);
-    }
   }
 
   openModal() {
@@ -122,11 +117,9 @@ export class SingPassComponent implements OnInit {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
       } else {
         this.myInfoService.closeMyInfoPopup(true);
-        this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
       }
     }, (error) => {
       this.myInfoService.closeMyInfoPopup(true);
-      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
     });
   }
 
