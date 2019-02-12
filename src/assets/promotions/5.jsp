@@ -19,7 +19,7 @@
                 RetireReady Plus or ReadyBuilder
                 </td>
             <td>NA</td>
-            <td>Single Premium (expect SRS)</td>
+            <td>Single Premium (except SRS)</td>
             <td>$20,000 and above</td>
             <td>1%</td>
             </tr>
