@@ -5,6 +5,7 @@
     background: $white-color;
 }
 .notifications-container {
+    min-height: calc(100vh - 107px);
     &__header {
         background-color: #f4fafb;
         padding: 10px;
@@ -27,6 +28,13 @@
         font-size: 18px;
         font-family: $muli-regular;
         top: 45%;
+        img {
+            left: 0;
+            right: 0;
+            position: relative;
+            width: 12px;
+            height: 12px;
+        }
     }
     &__lists--desc {
         font-family: $muli-regular;
