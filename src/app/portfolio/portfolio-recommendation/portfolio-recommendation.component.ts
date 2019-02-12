@@ -1,9 +1,10 @@
+import 'rxjs/add/observable/timer';
+
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/observable/timer';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
@@ -18,6 +19,7 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
@@ -58,7 +60,8 @@ export class PortfolioRecommendationComponent implements OnInit {
     public modal: NgbModal,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private topupAndWithDrawService: TopupAndWithDrawService
   ) {
     this.translate.use('en');
     const self = this;
@@ -209,6 +212,22 @@ export class PortfolioRecommendationComponent implements OnInit {
     });
   }
 
+  constructFundingParams(data) {
+    return {
+      source: 'FUNDING',
+      redirectTo: 'DASHBOARD',
+      portfolio: {
+        productName: data.portfolioName,
+        riskProfile: data.riskProfile
+      },
+      oneTimeInvestment: data.initialInvestment,
+      monthlyInvestment: data.monthlyInvestment,
+      fundingType: '',
+      isAmountExceedBalance: 0,
+      exceededAmount: 0
+    };
+  }
+
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
@@ -216,7 +235,9 @@ export class PortfolioRecommendationComponent implements OnInit {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         const investmentStatus = this.signUpService.getInvestmentStatus();
         if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+          const fundingParams = this.constructFundingParams(this.portfolio);
+          this.topupAndWithDrawService.setFundingDetails(fundingParams);
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
         } else {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
         }

@@ -18,6 +18,7 @@ import { AccountCreationErrorModalComponent } from '../account-creation-error-mo
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -32,8 +33,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   countries;
   isUserNationalitySingapore;
   defaultThumb;
-  loaderVisible;
-  loaderInfo;
   formData: FormData = new FormData();
   portfolio;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -55,7 +54,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     public footerService: FooterService,
     public portfolioService: PortfolioService,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public investmentAccountService: InvestmentAccountService
+    public investmentAccountService: InvestmentAccountService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -275,10 +275,17 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
       // CREATE INVESTMENT ACCOUNT
-      this.showLoader();
+      this.loaderService.showLoader({
+        title: this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+        ),
+        desc: this.translate.instant(
+          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+        )
+      });
       this.investmentAccountService.createInvestmentAccount().subscribe(
         (response) => {
-          this.hideLoader();
+          this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             // ERROR SCENARIO
             if (
@@ -326,21 +333,5 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant(
       'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
     );
-  }
-
-  showLoader() {
-    this.loaderVisible = true;
-    this.loaderInfo = {
-      title: this.translate.instant(
-        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
-      ),
-      desc: this.translate.instant(
-        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
-      )
-    };
-  }
-
-  hideLoader() {
-    this.loaderVisible = false;
   }
 }

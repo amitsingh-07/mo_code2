@@ -13,7 +13,7 @@
           <!--Notifications Header //-->
           <!--Notifications lists-->
           <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of group.value">
-            <div class="notifications-container__lists--close" (click)="clearNotification(message, group)">X</div>
+            <div class="notifications-container__lists--close" (click)="clearNotification(message, group)"><img src="../../../assets/images/close-button.svg" alt="x" /></div>
             <div class="notifications-container__lists--desc">
               {{message.message}}
               <div class="notifications-container__lists--duration" *ngIf="message.time">

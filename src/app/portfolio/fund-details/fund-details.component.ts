@@ -61,12 +61,16 @@ export class FundDetailsComponent implements OnInit {
     }
   }
 
-  getFactSheetLink(fund) {
-    const factsheetFileName = fund.split('|')[0];
-    return window.location.origin + '/assets/docs/portfolio/fund/' + factsheetFileName;
+  getHighlightSheetLink(fund) {
+    let highlightSheetFileName;
+    if (fund.factSheetLink) {
+      highlightSheetFileName = fund.factSheetLink.split('|')[1];
+    }
+    return window.location.origin + '/assets/docs/portfolio/fund/' + highlightSheetFileName;
   }
-  getProspectusLink(prospectus) {
-    const ProspectusName = prospectus.split('|')[1];
-    return window.location.origin + '/assets/docs/portfolio/fund/' + ProspectusName;
+  getProspectusLink(fund) {
+    //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
+    let prospectusFileName = 'prospectus.pdf';
+    return window.location.origin + '/assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }
