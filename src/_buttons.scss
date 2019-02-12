@@ -114,6 +114,16 @@ button:active:focus {
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
+    &.absolute {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      padding: 5px 10px;
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: #8cd7d7;
+      border: 1px solid #8cd7d7;
+    }
   }
 
   &:disabled {
@@ -854,6 +864,42 @@ button:active:focus {
     }
   }
 }
+// dropdown-listitems with 24px gap 
+.dropdown-control {
+  .dropdown{
+    .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .dropdown-menu {
+    &.show{
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
+      padding-top: 0;
+      padding-bottom: 0;
+      .dropdown-item {
+        padding: 10px 14.4px;
+        white-space: normal;
+        word-break: break-word;
+        &:hover{
+          background-color: #EAFAF9;
+          border:none;
+        }
+        &:active{
+          background-color: #EAFAF9;
+          border:none;
+          color: #00a7a7;
+        }
+      }
+    }
+  }
+}
 
 .btn-txt-wrap {
   display: inline-block;
@@ -950,4 +996,34 @@ button:active:focus {
 .btn-comprehensive:disabled{
   background: #fff!important;
   color: #99cfcf!important; 
+}
+
+/*Fixed button small comprehensive*/
+
+.fixed-btn--sm-comprehensive {
+  border: 1px solid $fixed-btn-brdr-color;
+  color: $fixed-btn-txt-color;
+  font-size: 16px;
+  font-family: $muli-regular;
+  font-weight: normal !important;
+  //width: 133px;
+  padding: .90rem;
+  @extend .align-center;
+  @extend .flex;
+  @extend .justify-center;
+  height: 50px;
+
+  //margin-bottom: 5px;
+  &.active {
+    border: 1px solid $app-backgrnd-color !important;
+    color: $white-color !important;
+    background: $app-backgrnd-color !important;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $app-backgrnd-color !important;
+    border-color: $app-backgrnd-color;
+  }
 }

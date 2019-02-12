@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="211px" viewBox="0 0 375 211" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>2.0 Investment Overview Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="375" height="210"></rect>
+        <path d="M0,0 L375,0 L375,358 C312.5,371.333333 250,378 187.5,378 C125,378 62.5,371.333333 0,358 L0,0 Z" id="path-3"></path>
+        <filter x="-6.5%" y="-3.8%" width="113.1%" height="113.0%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.37278828   0 0 0 0 0.392830193   0 0 0 0 0.443711698  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="2.0-Investment-Overview-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#00A7A7" x="0" y="0" width="375" height="211"></rect>
+        <g id="curve_header">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group-5" mask="url(#mask-2)">
+                <g transform="translate(0.000000, -173.000000)">
+                    <g id="Oval">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Mask">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+                            <use fill="#3BBFBF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                        <g id="Group-4" mask="url(#mask-4)">
+                            <g transform="translate(221.000000, 21.000000)">
+                                <path d="M173.226426,233.281608 L157.281586,249.226428 C154.91704,251.591191 151.08296,251.591191 148.718194,249.226428 L132.773574,233.281608 C130.408809,230.916845 130.408809,227.08299 132.773574,224.718227 L148.718194,208.773408 C151.08296,206.408864 154.91704,206.408864 157.281586,208.773408 L173.226426,224.718227 C175.591191,227.08299 175.591191,230.916845 173.226426,233.281608" id="Fill-5" fill="#009792" opacity="0.697879464"></path>
+                                <path d="M9.5,177 C4.25323636,177 0,172.746591 0,167.5 C0,162.253409 4.25323636,158 9.5,158 C14.7467636,158 19,162.253409 19,167.5 C19,172.746591 14.7467636,177 9.5,177" id="Fill-1" fill="#98DFDF" opacity="0.432700893"></path>
+                                <path d="M43.2581407,197.952105 C114.057376,235.946626 144.721538,203.68187 167.486853,175.502834 C199.974013,135.290041 245.573472,172.106567 230.488557,130.87375 C215.403642,89.6409328 114.245976,26.5213044 61.8924475,70.399426 C9.53891886,114.277548 -9.98273588,169.380305 43.2581407,197.952105 Z" id="Oval-Copy" fill="#20A4A4" opacity="0.247823661" transform="translate(122.587235, 135.400328) rotate(-298.000000) translate(-122.587235, -135.400328) "></path>
+                                <polygon id="Fill-1" fill="#59C09C" opacity="0.563448661" points="124 180 138 180 138 166 124 166"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="back" transform="translate(20.000000, 182.000000)"></g>
+                    <g id="back" transform="translate(20.000000, 182.000000)"></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="73px" height="50px" viewBox="0 0 73 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>bank_icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bank_details" transform="translate(-132.000000, -24.000000)">
+            <g id="Group-2">
+                <g id="bank_icon" transform="translate(133.000000, 24.000000)">
+                    <g id="Group-5">
+                        <g id="Group-2-Copy" transform="translate(34.554060, 24.844125) rotate(-372.000000) translate(-34.554060, -24.844125) translate(3.054060, 6.844125)" fill="#CFF1F1" stroke="#98DFDF">
+                            <path d="M61.1510181,0 L1.84898195,0 C0.827887287,0 0,0.8213709 0,1.83442842 L0,34.1655716 C0,35.1786291 0.827887287,36 1.84898195,36 L61.1510181,36 C62.1721127,36 63,35.1786291 63,34.1655716 L63,1.83442842 C63,0.8213709 62.1721127,0 61.1510181,0" id="Fill-5"></path>
+                        </g>
+                        <g id="Group-2" transform="translate(39.500000, 25.000000) rotate(-360.000000) translate(-39.500000, -25.000000) translate(8.000000, 7.000000)">
+                            <path d="M61.1510181,0 L1.84898195,0 C0.827887287,0 0,0.8213709 0,1.83442842 L0,34.1655716 C0,35.1786291 0.827887287,36 1.84898195,36 L61.1510181,36 C62.1721127,36 63,35.1786291 63,34.1655716 L63,1.83442842 C63,0.8213709 62.1721127,0 61.1510181,0" id="Fill-5" stroke="#98DFDF" fill="#FFFFFF"></path>
+                            <polygon id="Fill-6" fill="#8CD7D7" points="0 14 63 14 63 7 0 7"></polygon>
+                            <polygon id="Fill-9" fill="#175059" points="41 24.5757576 54 24.5757576 54 23 41 23"></polygon>
+                            <polygon id="Fill-10" fill="#175059" points="21 28.5757576 55 28.5757576 55 27 21 27"></polygon>
+                            <polygon id="Fill-43" fill="#FF872F" points="50 21 59 21 59 16 50 16"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

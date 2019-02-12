@@ -269,6 +269,126 @@
                         "ANSWER": "MoneyOwl is not a law firm and does not give legal advice. This service is provided as a general service over the Internet and the information provided is not to be construed as legal advice and is not guaranteed to be correct, complete or up-to-date and which may change from time to time. By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed nor relied upon as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations and are provided on an “as is” basis.<br><br>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.<br><br>MoneyOwl is not responsible for any loss, claim, liability, or damage related to your use of this." 
                     }
                 ]
+            },
+            "Investment": {
+                "Getting Started": [
+                    {
+                        "QUESTION": "What is the minimum age at which I can start investing?",
+                        "ANSWER": "Anyone above the age of 18 can open an investment Account"
+                    },
+                    {
+                        "QUESTION": "What is the minimum amount required to start investing?",
+                        "ANSWER": "The minimum one-time investment amount is $100 and the minimum monthly investment amount is $50."
+                    },
+                    {
+                        "QUESTION": "How can I start investing?",
+                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
+                    },
+                    {
+                        "QUESTION": "What is an Investment Cash Account?",
+                        "ANSWER": "<p>The Investment Cash Account is an online cash management service by iFAST Financial Pte Ltd (Please refer to General Question on who iFAST Financial is) which facilitates online transactions. The monies in your Investment Cash Account are held with Standard Chartered Bank.</p><p>As long as there are sufficient funds in the Investment Cash Account, your One-Time or Monthly Investment Request will be processed.</p><p>The Investment Cash Account currently pays an interest of 0.35% per annum. The interest is accrued daily, compounded monthly and credited on a quarterly basis into your Investment Cash Account.</p>"
+                    },
+                    {
+                        "QUESTION": "How can I fund my Investment Cash Account for investments?",
+                        "ANSWER": "<p>You can login to your online banking to do a FAST transfer or do an offline bank transfer to our custodian’s bank account.</p><p><strong>Transfer Details -</strong><br/>Recipient's Name: IFASTFINANCIALPteLtd<br/>Bank Name: Standard Chartered Bank (Singapore)<br/>Bank Account No.: 0102046042<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>You can also fund your account using PayNow.</p><p><strong>Transfer Details -</strong><br/>Unique Entity Number (UEN): 200000231RAIY<br/>Entity Name: IFAST FINANCIAL PL-CT SUB<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>The monies will be deposited into your Investment Cash Account.</p>"
+                    },
+                    {
+                        "QUESTION": "I do not live in Singapore. Can I open an account?",
+                        "ANSWER": "Yes, you can. However, please take note that your account has to be funded from a Singapore registered bank."
+                    },
+                    {
+                        "QUESTION": "I am not a Singaporean/PR. Can I open an account?",
+                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p>Please note that this list may be updated from time to time.</p></ol>"
+                    },
+                    {
+                        "QUESTION": "Can I open multiple MoneyOwl Accounts?",
+                        "ANSWER": "No. You can only create one MoneyOwl Account."
+                    },
+                    {
+                        "QUESTION": "Can I invest in other currencies?",
+                        "ANSWER": "No. We are currently accepting only SGD."
+                    }
+                ],
+                "Managing your investments": [
+                    {
+                        "QUESTION": "Where can I see the value of my investments?",
+                        "ANSWER": "You can login to your MoneyOwl Account to check on your portfolio value."
+                    },
+                    {
+                        "QUESTION": "How are my returns calculated?",
+                        "ANSWER": "The returns are calculated based on a time-weighted return approach."
+                    },
+                    {
+                        "QUESTION": "What is rebalancing? How often is rebalancing done?",
+                        "ANSWER": "Portfolio rebalancing is the process of realigning the weightages of the assets in a portfolio. MoneyOwl may rebalance the portfolio quarterly in March, June, September and December, and upon review of the asset allocation of the portfolio."
+                    },
+                    {
+                        "QUESTION": "How do I submit an investment top-up request?",
+                        "ANSWER": "You can login to your MoneyOwl Investment Account to submit a top-up request. The top up request will be processed when there are sufficient monies in your Investment Cash Account." 
+                    },
+                    {
+                        "QUESTION": "When will my top-up request expire? ",
+                        "ANSWER": "Your top-up request will expire after 21 calendar days if there are insufficient monies in your Investment Cash Account to process the order."
+                    },
+                    {
+                        "QUESTION": "How do I submit a monthly buy request?",
+                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15th of every month. If there are insufficient monies in your Investment Cash Account by the 15th of the month, the monthly investment request will be processed on the 15th of the following month.</p>"
+                    },
+                    {
+                        "QUESTION": "How fast will my buy request be processed?",
+                        "ANSWER": "<p>As soon as there are sufficient monies in your Investment Cash Account, we will process the request by 3pm on the current business day. If the buy request is received after 3pm, the request will be processed by the next business day.</p><p>You will receive an email notifying you on the transaction within 2 business days after request is processed. The holdings will be reflected in your Investment Account within 7 business days after the request is processed.</p>"
+                    },
+                    {
+                        "QUESTION": "How soon will my sell request be processed? ",
+                        "ANSWER": "<p>We will process the request by 11am on the current business day. If the request is received after 11am, the request will be processed by the next business day.<br/>The price of the funds sold will be based on the ending Net Asset Value (NAV) of business day the request is processed.</p><p>You will receive an email notification within the next 2 business days. The monies will be transferred to your Investment Cash Account within the next business day.<br/>Monies will be reflected in your bank account within 7 business days of redemption from your Investment Cash Account.</p>"
+                    },
+                    {
+                        "QUESTION": "I have funded my Investment Account but have decided not to proceed with the investment. How do I get my monies back?",
+                        "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
+                    }
+                ],
+                "Withdrawals": [
+                    {
+                        "QUESTION": "How do I withdraw monies?",
+                        "ANSWER": "<p>For funds that are invested in your portfolio, you can choose to sell part or all your portfolio. However, please note that fund units’ Net Asset Value (NAV) fluctuate and portfolio values are not guaranteed. You may receive more or less than the capital invested.</p><p>Redemption monies can be transferred to your Investment Cash Account or bank account.</p><p>For monies that are in your Investment Cash Account, you can choose to withdraw all or part of it to your bank account.</p>"
+                    },
+                    {
+                        "QUESTION": "How soon will I receive the cash in my bank account?",
+                        "ANSWER": "<p>If you redeem (sell) investments and choose to receive the proceeds directly in your bank account, the money will be transferred to your designated bank account in the next 7 business days.</p><p>If withdrawal is done from your Investment Cash Account to your bank account, the money will be transferred to your bank account in the next business day.</p>"
+                    },
+                    {
+                        "QUESTION": "How do I add my bank account details for purpose of receiving redemption proceeds?",
+                        "ANSWER": "<p>You can login to your account and go to the “Edit Profile” page to add your bank account details.</p><p>Alternatively, upon your first withdrawal request, you will be asked to add your bank account details. Once your bank account is added, there is no need to fill in your bank account details for subsequent transactions<br/>Note: Bank Account must be registered under your legal name.</p>"
+                    },
+                    {
+                        "QUESTION": "Can I designate more than one bank account in which to receive redemption proceeds or withdrawn cash?",
+                        "ANSWER": "<p>You can only add one bank account. If you would like to change the bank account, you can login to your MoneyOwl Account and edit the bank account details in the “Edit Profile” page.</p>"
+                    }
+                ],
+                "Fees": [
+                    {
+                        "QUESTION": "What are the total fees that I have to pay?",
+                        "ANSWER": "The total annual fees you have to pay is as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65%</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18%</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.32% to 0.38%</td></tr></table>"
+                    },
+                    {
+                        "QUESTION": "How are fees deducted?", 
+                        "ANSWER": "The fees are deducted from the units in your portfolio on a monthly basis. For MoneyOwl, projected returns are net of Total Fees."
+                    },
+                    {
+                        "QUESTION": "Are there any fees if I close my MoneyOwl Investment Account?",
+                        "ANSWER": "There are no fees involved."
+                    }
+                ],
+                "General Questions": [
+                    {
+                        "QUESTION": "Who is iFAST Financial Pte Ltd?",
+                        "ANSWER": "iFAST Financial Pte Ltd provides custodial services to MoneyOwl. <br/> Please refer to <a href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
+                    },
+                    { 
+                        "QUESTION": "How can I get help when I need it?",
+                        "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
+                    }
+                ]
             }
         }
     }
