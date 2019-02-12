@@ -23,7 +23,7 @@
 
           <div class="pl0 col-5">
 
-            <label for="name" id="myProfileFormLb1">
+            <label for="name" id="myProfileNameLabel">
 
               <div>{{ 'FORM_LABEL.NAME' | translate}}
 
@@ -45,7 +45,7 @@
 
           <div class="flex-col-5">
 
-            <label for="gender">Gender</label>
+            <label for="gender">{{'FORM_LABEL.GENDER'|translate}}</label>
 
           </div>
 
@@ -59,7 +59,7 @@
 
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr17" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
 
-                    <input ngbButton type="radio" value="male">Male
+                    <input ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
 
                   </label>
 
@@ -69,7 +69,7 @@
 
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
 
-                    <input ngbButton type="radio" value="female">Female
+                    <input ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' | translate}}
 
                   </label>
 
@@ -87,7 +87,7 @@
 
           <div class="flex-col-5">
 
-            <label for="nationality">Nationality</label>
+            <label for="nationality">{{ 'FORM_LABEL.NATIONALITY' | translate}}</label>
 
           </div>
 
@@ -107,7 +107,7 @@
 
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
 
-                  <button class="dropdown-item" (click)="selectNationality('','')">Select</button>
+                  <button class="dropdown-item" (click)="selectNationality('','')">{{'COMMON.LBL_SELECT' | translate}}</button>
 
                   <button type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index" (click)="selectNationality(nationality, 'html')">
 
@@ -129,7 +129,7 @@
 
           <div class="flex-col-5">
 
-            <label for="dob">Date of Birth</label>
+            <label for="dob">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
 
           </div>
 
@@ -140,11 +140,11 @@
               <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dob').valid && !myProfileForm.get('dob').pristine}">
 
                 <input readonly (click)="d.toggle()" class="form-control" placeholder="Select" formControlName="dob" name="dp" ngbDatepicker
-                  #d="ngbDatepicker" required id="myProfileFormInpt5">
+                  #d="ngbDatepicker" required id="myProfileDOB">
 
                 <div class="input-group-append">
 
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker">
 
                     <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dob').valid || myProfileForm.get('dob').pristine"
                       src="./assets/images/calendar-normal.svg" />
