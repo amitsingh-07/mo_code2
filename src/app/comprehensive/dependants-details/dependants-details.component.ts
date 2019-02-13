@@ -4,12 +4,17 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { ImyDependant } from './../comprehensive-types';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-dependants-details',
@@ -21,23 +26,29 @@ export class DependantsDetailsComponent implements OnInit {
   formName: string[] = [];
   pageTitle: string;
   dependant: any = [];
-  relationShipList;
-  relationship;
+  relationShipList: any;
+  nationalityList: any;
+  dependantDetails: ImyDependant;
+  relationship: string;
+  submitted: boolean;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
-    this.configService.getConfig().subscribe((config) => {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+              private comprehensiveService: ComprehensiveService) {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
-      this.relationShipList = this.translate.instant('DEPENDANT_DETAILS.RELATIONSHIP_LIST');
-      this.setPageTitle(this.pageTitle);
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and title
+        this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+        this.relationShipList = this.translate.instant('DEPENDANT_DETAILS.RELATIONSHIP_LIST');
+        this.nationalityList = this.translate.instant('NATIONALITY');
+        this.setPageTitle(this.pageTitle);
+      });
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.buildDependantForm();
   }
 
@@ -51,30 +62,49 @@ export class DependantsDetailsComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   selectRelationship(status, i) {
+    const relationship = status ? status : '';
+    this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(relationship);
 
-    this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(status);
-
+  }
+  selectNationality(status, i) {
+    const nationality = status ? status : '';
+    this.myDependantForm.controls['dependant']['controls'][i].controls.nationality.setValue(nationality);
   }
 
   buildDependantDetailsForm() {
     return this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+      Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      age: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       nationality: ['', [Validators.required]]
 
     });
   }
   addDependant() {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.push(this.buildDependantDetailsForm());
   }
   removeDependant(i) {
-    const dependantdetails = <FormArray>this.myDependantForm.get('dependant');
+    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
     dependantdetails.removeAt(i);
   }
-  goToNext(form) {
+  validateDependantform(form: FormGroup) {
 
+    this.submitted = true;
+    if (!form.valid) {
+      const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
+        this.translate.instant('ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+        );
+      return false;
+    }
+    return true;
+    }
+    goToNext(form: FormGroup) {
+      if (this.validateDependantform(form)) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
+      }
+    }
   }
-}

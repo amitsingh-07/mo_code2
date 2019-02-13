@@ -1,4 +1,4 @@
-<div class="comprehensive-procedures pb-3 ">
+<!-- <div class="comprehensive-procedures pb-3 ">
   <section class="comprehensive-first-step p-2 m-2 mt-4">
     <img class="comprehensive-img" src="assets/images/banner1-thumbnail.svg">
 
@@ -18,4 +18,18 @@
   </section>
 
   <button class="start-now-btn btn-block btn btn-primary-dark " (click)="proceed()">{{'COMPREHENSIVE_STEPS.PROCEED'|translate}}</button>
-</div>
+</div> -->
+
+<div class="container-fluid--comprehensive max-width--1024 comprehensive">
+   <ul class="road-map">
+     <li class="active"><span></span><div class="road-map__step-number">Step-1</div><div class="road-map__step-title">What's On Your Shoulders</div><div class="road-map__step-desc">Your family commitments will impact on your financial planning. Let's list it out now!</div></li>
+     <li><span></span><div class="road-map__step-number">Step 2</div><div class="road-map__step-desc">Your Finances</div></li>
+     <li><span></span><div class="road-map__step-number">Step 3</div><div class="road-map__step-desc">Your Current Fire Proofing</div></li>
+     <li><span></span><div class="road-map__step-number">Step 4</div><div class="road-map__step-desc">Financial Independence. Retire Early</div></li>
+     <li><span></span><div class="road-map__step-number">Congratulations!</div><div class="road-map__step-desc">Report Generation</div></li>
+   </ul>
+   <button type="button" (click)="goToNext(dependantSelectionForm)"
+           class="btn btn-primary  width100" id="dependantSelectionBtn">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
+           translate}}</button>
+ </div>
+

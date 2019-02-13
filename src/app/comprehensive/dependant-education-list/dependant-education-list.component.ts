@@ -84,7 +84,7 @@ export class DependantEducationListComponent implements OnInit {
 
   }
   goToNext(form) {
-    console.log(form);
+
   }
 
 }

@@ -2,138 +2,234 @@
   <header>{{'DEPENDANT_DETAILS.ABOUT'|translate}}</header>
   <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
   <form [formGroup]="myEarningsForm" id="myEarningsForm" name="myEarningsForm" class="myEarningsForm">
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.MONTHLY_SALARY'|translate}}</b></p>
-      <div class="earnings-field p-2">
-        <div class="flex-row">
+    <section class="earnings-section  mb-3  pt-2">
+      <p class="p-2"><b>{{'MY_EARNINGS.MONTHLY_SALARY'|translate}}</b></p>
+      <div class="earnings-field ">
+
+        <div class="flex-row p-2">
           <div class="pl0 col-5">
+            <label for="employmentType" id="myProfileFormLbl5">
+              <div>{{ 'FORM_LABEL.EMPLOYMENT_TYPE' | translate}}</div>
+              <!-- <div class="with-help-icon">{{ 'DEPENDANT_DETAILS.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon"
+                    (click)="openToolTipModal()"></span></div> -->
+            </label>
+          </div>
+          <div class=" pr0 flex-col-7">
+            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
+              <div ngbDropdown id="employmentTypeDropDown">
+                <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+                  <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="employmentType !== ''">{{employmentType}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownNationality">
+                  <button class="dropdown-item" (click)="selectEmploymentType('','')">Select</button>
+                  <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
+                    (click)="selectEmploymentType(employmentType, 'html')">
+                    {{employmentType.text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row p-2 ">
+          <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'MY_EARNINGS.MONTHLY_SALARY' | translate}}
               </div>
             </label>
           </div>
-          <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+          <div class="pr0 flex-col-7">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
+    <section class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
+      <div class="earnings-field ">
+        <div class="flex-row p-2">
+          <div class="pl0 col-5">
+            <label for="name" id="myDependantFormLb1">
+              <div>{{ 'MY_EARNINGS.ANNUAL_BONUS' | translate}}
+              </div>
+            </label>
+          </div>
+          <div class="pr0 flex-col-7">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualBonus formControlName="annualBonus" value="0">
+              
+            </div>
+          </div> 
+        </div>
+      </div>
+    </section>
+    <article>
+      <img src=""/>
+      <aside>
+          <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
+              <div ngbDropdown id="employmentTypeDropDown">
+                <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+                  <span >  {{'MY_EARNINGS.ADD_MONTHLY_INCOME'|translate}}</span>
+                
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownNationality">
+                 
+                  <button [disabled]="monthlyRentIncome" type="button" class="dropdown-item"  (click)="SelectEarningsType('monthlyRentIncome')">
+                <span  > {{'MY_EARNINGS.RENTAL_INCOME'|translate}} </span> 
+                  </button>
+                  <button  [disabled]="othermonthlyWorkIncome" type="button" class="dropdown-item" (click)="SelectEarningsType('othermonthlyWorkIncome')">
+              <span >  {{'MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</span> 
+                </button>
+                <button   [disabled]="otherMonthlyIncome" type="button" class="dropdown-item" (click)="SelectEarningsType('otherMonthlyIncome')">
+            <span >{{'MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</span> 
+              </button>
+                </div>
+              </div>
+            </div>
+      </aside>
+    </article>
+    <section [hidden]="!monthlyRentIncome" class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.RENTAL_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.RENTAL_INCOME'|translate}}</b></p>
+    <section [hidden]="!othermonthlyWorkIncome" class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</b></p>
+    <section [hidden]="!otherMonthlyIncome" class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</b></p>
+    <section class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.MONTHLY_SALARY'|translate}}</b></p>
-      <div class="earnings-field p-2">
+    <aside>
+      <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
+          <div ngbDropdown id="employmentTypeDropDown">
+            <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+              <span >  {{'MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
+            
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownNationality">
+             
+              <button [disabled]="annualDividends" type="button" class="dropdown-item"  (click)="SelectEarningsType('annualDividends')">
+            <span  > {{'MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} </span> 
+              </button>
+              <button  [disabled]="otherAnnualIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherAnnualIncomeType')">
+          <span >  {{'MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</span> 
+            </button>
+           
+            </div>
+          </div>
+        </div>
+  </aside>
+    <section [hidden]="!annualDividends" class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}}</b></p>
+      <div class="earnings-field p-2 py-0">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+              
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}}</b></p>
+    <section [hidden]="!otherAnnualIncomeType" class="earnings-section pt-2 mb-3">
+      <p class="p-2"><b>{{'MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
+              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="earnings-section p-2">
-      <p><b>{{'MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</b></p>
-      <div class="earnings-field p-2">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.AMOUNT' | translate}}
-              </div>
-            </label>
-          </div>
-          <div class="pr0 col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myEarningsForm.controls.monthlySalary.invalid}"
-              id="myFamilyFormInpt3" class="form-control" #monthlySalary formControlName="monthlySalary">
+            <div class="form-control form-control-right">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
+              
+            </div>
           </div>
         </div>
       </div>

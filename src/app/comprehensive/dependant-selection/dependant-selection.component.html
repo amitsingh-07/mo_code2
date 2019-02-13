@@ -1,29 +1,29 @@
-<div class="container-fluid max-width--1024 ">
+<div class="container-fluid max-width--1024 comprehensive">
   <header>{{'DEPENDANT_SELECTION.DEPENDANTS'|translate}}</header>
   <article class="py-2">{{'DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</article>
 
 
-  <div class="col-lg-5 col-md-6">
+  <div class="col-lg-5 col-md-6 p-0">
     <form name="dependantSelectionForm" [formGroup]="dependantSelectionForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_yes" name="dependant_selection" formControlName="dependant_selection" type="radio"
-            value="dependant_yes" class="field radio">
-          <label for="dependant_selection_yes">
-            <span class="input-label-grey">{{'DEPENDANT_SELECTION.DEPENDANT_YES'|translate}}</span>
+          <input id="dependantYesInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
+            value="dependantYes" class="field radio">
+          <label id="dependantYesLabel" for="dependantYesInput">
+            <span class="input-label-grey">{{'FORM_LABEL.YES'|translate}}</span>
           </label>
 
         </div>
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_no" name="dependant_selection" formControlName="dependant_selection" type="radio"
-            value="dependant_no" class="field radio">
-          <label for="dependant_selection_no">
-            <span class="input-label-grey">{{'DEPENDANT_SELECTION.DEPENDANT_NO'|translate}}</span>
+          <input id="dependantNoInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
+            value="dependantNo" class="field radio">
+          <label id="dependantNoLabel" for="dependantNoInput">
+            <span class="input-label-grey">{{'FORM_LABEL.NO'|translate}}</span>
           </label>
 
         </div>
         <button type="button" [disabled]="!dependantSelectionForm.valid" (click)="goToNext(dependantSelectionForm)"
-          class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' |
+          class="btn btn-primary  width100" id="dependantSelectionBtn">{{ 'FORM_LABEL.SAVE_AND_CONTINUE' |
           translate}}</button>
       </div>
     </form>

@@ -13,14 +13,14 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-dependant-education-selection',
-  templateUrl: './dependant-education-selection.component.html',
-  styleUrls: ['./dependant-education-selection.component.scss']
+  selector: 'app-regular-saving-plan',
+  templateUrl: './regular-saving-plan.component.html',
+  styleUrls: ['./regular-saving-plan.component.scss']
 })
-export class DependantEducationSelectionComponent implements OnInit {
+export class RegularSavingPlanComponent implements OnInit {
 
   pageTitle: string;
-  dependantEducationSelectionForm: FormGroup;
+  RSPForm: FormGroup;
   dependantsArray: any;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
@@ -34,47 +34,41 @@ export class DependantEducationSelectionComponent implements OnInit {
       this.pageTitle = this.translate.instant('DEPENDANT_SELECTION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-    this.dependantSelection();
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
-    this.buildEducationSelectionForm(this.dependantsArray);
+    this.buildRSPForm();
   }
+  buildRSPForm() {
 
-  dependantSelection() {
-    this.dependantsArray = [{
-      name: 'Nathan Ng',
-    },
-    {
-      name: 'Marie Ng',
-    }];
-  }
+    this.RSPForm = this.formBuilder.group({
+      RSPSelection: ['', Validators.required],
+      RSPDetails: this.formBuilder.array([this.buildRSPDetailsForm()]),
 
-  buildEducationSelectionForm(dependantsArray) {
-    const dependantListArray = [];
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < dependantsArray.length; i++) {
-      dependantListArray.push(this.buildEducationlist(dependantsArray[i]));
-    }
-    this.dependantEducationSelectionForm = this.formBuilder.group({
-      education_plan_selection: ['', Validators.required],
-      dependant_list: this.formBuilder.array(dependantListArray)
     });
 
   }
-
-  buildEducationlist(value) {
-
+  buildRSPDetailsForm() {
     return this.formBuilder.group({
-      name: [value.name, [Validators.required]],
-      dependantSelection: [false, [Validators.required]],
+      unitTypeTrust: ['', [Validators.required]],
+      paidByCash: ['', [Validators.required]],
+      paidByCPF: ['', [Validators.required]]
 
     });
+  }
+  addRSP() {
+    const RSPDetails = this.RSPForm.get('RSPDetails') as FormArray;
+    RSPDetails.push(this.buildRSPDetailsForm());
+  }
+  removeRSP(i) {
+    const dependantdetails = this.RSPForm.get('RSPDetails') as FormArray;
+    dependantdetails.removeAt(i);
   }
   goToNext(form) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
   }
 }

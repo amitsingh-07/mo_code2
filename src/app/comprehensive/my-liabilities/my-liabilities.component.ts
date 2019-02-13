@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -13,14 +12,14 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-dependant-education',
-  templateUrl: './dependant-education.component.html',
-  styleUrls: ['./dependant-education.component.scss']
+  selector: 'app-my-liabilities',
+  templateUrl: './my-liabilities.component.html',
+  styleUrls: ['./my-liabilities.component.scss']
 })
-export class DependantEducationComponent implements OnInit {
+export class MyLiabilitiesComponent implements OnInit {
   pageTitle: string;
-  educationPlanOption: any;
-  dependantEducationSelectionForm: FormGroup;
+  myLiabilitiesForm: FormGroup;
+  propertyLoan = true;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config) => {
@@ -29,27 +28,29 @@ export class DependantEducationComponent implements OnInit {
     });
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
-      this.pageTitle = this.translate.instant('DEPENDANT_EDUCATION.TITLE');
-      this.educationPlanOption = this.translate.instant('DEPENDANT_EDUCATION.OPTIONS');
+      this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
 
       this.setPageTitle(this.pageTitle);
     });
-  }
 
-  ngOnInit() {
-    this.buildDependantForm();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+  addPropertyLoan() {
+    this.propertyLoan = !this.propertyLoan;
+  }
+  buildmyLiabilitiesForm() {
+    this.myLiabilitiesForm = this.formBuilder.group({
+      homeLoanOutstanding: ['', [Validators.required]],
+      otherPropertyLoan: ['', [Validators.required]],
+      otherLoanAmountOustanding: ['', [Validators.required]],
+      carLoan: ['', [Validators.required]],
 
-  buildDependantForm() {
-
-    this.dependantEducationSelectionForm = new FormGroup({
-      dependant_selection: new FormControl('', Validators.required)
     });
   }
-  goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+  ngOnInit() {
+    this.buildmyLiabilitiesForm();
   }
+
 }
