@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService } from 'src/app/config/config.service';
@@ -27,7 +27,7 @@ export class PromotionPageComponent implements OnInit {
   public promoTnc = '';
 
   constructor(
-    public navbarService: NavbarService, private route: ActivatedRoute,
+    public navbarService: NavbarService, private router: Router, private route: ActivatedRoute,
     public footerService: FooterService, private renderer: Renderer2,
     private translate: TranslateService, private configService: ConfigService,
     private promotionService: PromotionService, private promotionApiService: PromotionApiService) { }
@@ -52,23 +52,37 @@ export class PromotionPageComponent implements OnInit {
 
   getPromoDetails() {
     window.scroll(0, 0);
-    this.promotionApiService.getPromoDetail(this.promoId).subscribe((details) => {
-      this.promoDetails = this.promotionService.createPromotion(details);
-
-      // Setting Banner background-image
-      const banner = this.BannerElement.nativeElement.childNodes[0];
-      this.renderer.setStyle(banner,
-                            'background-image',
-                            'url(' + this.promoDetails.banner + ')'
-                            );
-      // Getting promo content
-      this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {
-        this.promoContent = content;
-      });
-      // Getting promo tnc
-      this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
-        this.promoTnc = tnc;
-      });
+    this.promotionApiService.getPromoList().subscribe((promoList) => {
+      let is_exist: boolean;
+      is_exist = this.promotionService.checkPromoIdList(promoList, this.promoId);
+      if (is_exist) {
+        this.promotionApiService.getPromoDetail(this.promoId).subscribe((details) => {
+          this.promoDetails = this.promotionService.createPromotion(details);
+          // Setting Banner background-image
+          const banner = this.BannerElement.nativeElement.childNodes[0];
+          if (this.promoDetails.banner) {
+            this.renderer.setStyle(banner,
+                                'background-image',
+                                'url(' + this.promoDetails.banner + ')'
+                                );
+          } else {
+            this.renderer.setStyle(banner,
+                                'background-image',
+                                'url(' + this.promoDetails.thumbnail + ')'
+                                  );
+          }
+          // Getting promo content
+          this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {
+            this.promoContent = content;
+          });
+          // Getting promo tnc
+          this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
+            this.promoTnc = tnc;
+          });
+        });
+      } else {
+        this.router.navigate(['../promotions/']);
+      }
     });
   }
 
