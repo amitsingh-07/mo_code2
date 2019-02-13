@@ -22,14 +22,15 @@ export class AllocationComponent implements OnInit, OnChanges {
   constructor(
     private portfolioService: PortfolioService,
     private router: Router,
-    public modal: NgbModal) { }
+    public modal: NgbModal
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
+      this.portfolioService.sortByProperty(groupedAllocation, 'name', 'asc');
       allocation.groupedAllocationDetails = groupedAllocation;
     });
   }
@@ -38,6 +39,7 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
+      this.portfolioService.sortByProperty(targetObj[prop], 'percentage', 'desc');
       const classObj = {
         name: prop,
         value: targetObj[prop]
@@ -47,18 +49,22 @@ export class AllocationComponent implements OnInit, OnChanges {
     return groupObjects;
   }
 
-
   showFundDetails() {
     this.portfolioService.setFundDetails(this.funds);
-    const ref = this.modal.open(FundDetailsComponent, { centered: true, windowClass: 'custom-full-height'});
+    const ref = this.modal.open(FundDetailsComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });
     return false;
   }
 
   showHidePanel(accordionEle, panelId, panelHeadEle) {
     accordionEle.toggle(panelId);
-    if(panelHeadEle.currentTarget.classList.contains('active') ) { // Opened State
+    if (panelHeadEle.currentTarget.classList.contains('active')) {
+      // Opened State
       panelHeadEle.currentTarget.classList.remove('active');
-    } else { // Closed State
+    } else {
+      // Closed State
       panelHeadEle.currentTarget.classList.add('active');
     }
   }
