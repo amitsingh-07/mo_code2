@@ -254,7 +254,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
-    if (this.validateBeneficiaryForm() && this.willWritingService.checkDuplicateUin(this.beneficiaryList)) {
+    if (this.validateBeneficiaryForm()) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData() && this.isFormAltered) {
