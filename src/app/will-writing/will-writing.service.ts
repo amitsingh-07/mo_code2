@@ -542,4 +542,92 @@ export class WillWritingService {
     }
     return false;
   }
+
+  checkDuplicateUin(members: any[]) {
+    const groupUin: any = {};
+    let isDuplicate = false;
+    for (const member of members) {
+      const uin = (member.uin).toLowerCase();
+      if (uin in groupUin) {
+        isDuplicate = true;
+      } else {
+        groupUin[uin] = [];
+      }
+      groupUin[uin].push(member);
+    }
+
+    if (!isDuplicate) {
+      return true;
+    }
+
+    const errors: any = {};
+    errors.errorMessages = [];
+    const errorMsg = { formName: '', errors: [] };
+    errorMsg.errors.push('The following profiles should not have the same Identification Number:');
+    for (const uin in groupUin) {
+      if (groupUin.hasOwnProperty(uin) && groupUin[uin].length > 1) {
+        for (const val of groupUin[uin]) {
+          errorMsg.errors.push(val['name'] + ' (' + val['uin'] + ')');
+        }
+      }
+    }
+    errors.errorMessages.push(errorMsg);
+    return this.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+  }
+
+  checkUinNameRelationship(source: any, target: any) {
+    if ((source.uin).toLowerCase() !== (target.uin).toLowerCase()) {
+      return false;
+    }
+    return (source.name).toLowerCase() !== (target.name).toLowerCase() ||
+      (source.relationship).toLowerCase() !== (target.relationship).toLowerCase();
+  }
+
+  compareValues(sources: any, targets: any, section1: string, section2: string) {
+    const errors = [];
+    for (const source of sources) {
+      for (const target of targets) {
+        if (this.checkUinNameRelationship(source, target)) {
+          errors.push(`The ${source.name}/${source.relationship} for ${source.uin} in ${section1} section
+              does not match the ${target.name}/${target.relationship} defined for the same profile in ${section2} section.`);
+        }
+      }
+    }
+    return errors;
+  }
+
+  checkDuplicateUinAll() {
+    const errors: any = {};
+    errors.errorMessages = [];
+    const errorMsg = { formName: '', errors: [] };
+    let myFamily = [];
+    let guardians = [];
+    let beneficiaries = this.getBeneficiaryInfo().filter((data) => data.relationship !== WILL_WRITING_CONFIG.SPOUSE
+      && data.relationship !== WILL_WRITING_CONFIG.CHILD);
+    beneficiaries = [...beneficiaries];
+    const executorTrustee = [...this.getExecTrusteeInfo()];
+    if (this.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
+      myFamily = [...this.getSpouseInfo()];
+    }
+    if (this.getAboutMeInfo().noOfChildren !== 0) {
+      myFamily = [...myFamily, ...this.getChildrenInfo()];
+      if (this.checkChildrenAge(this.getChildrenInfo())) {
+        guardians = [...this.getGuardianInfo()];
+      }
+    }
+    const compFamilyWithGuardian = this.compareValues(myFamily, guardians, 'About My Family', 'My Children\'s Guardian');
+    const compFamilyWithExec = this.compareValues(myFamily, executorTrustee, 'About My Family', 'My Executor & Trustee');
+    const compGuardianWithBene = this.compareValues(guardians, beneficiaries, 'My Children\'s Guardian', 'My Beneficiaries');
+    const compGuardianWithExec = this.compareValues(guardians, executorTrustee, 'My Children\'s Guardian', 'My Executor & Trustee');
+    const compBeneWithExec = this.compareValues(beneficiaries, executorTrustee, 'My Beneficiaries', 'My Executor & Trustee');
+    errorMsg.errors = [...compFamilyWithGuardian, ...compFamilyWithExec,
+    ...compGuardianWithBene, ...compGuardianWithExec, ...compBeneWithExec];
+    if (errorMsg.errors.length === 0) {
+      return true;
+    }
+    errorMsg.errors = errorMsg.errors.slice(0, 2);
+    errors.errorMessages.push(errorMsg);
+    return this.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+  }
+
 }
