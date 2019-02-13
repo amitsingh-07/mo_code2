@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
-
-import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
-import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { FAQComponent } from './faq/faq.component';
