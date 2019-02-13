@@ -1174,8 +1174,10 @@ input::placeholder {
 .comprehensive {
   .form-group-with-bg {
     padding: 10px 0;
+    color:$app-backgrnd-color;
     label {
-      color: $app-backgrnd-color;
+      color: $dark-teal-color;
+      margin-bottom: 0;
     }
   }
   .datepicker-control {
@@ -1184,5 +1186,13 @@ input::placeholder {
   }
   input::placeholder {
     color: #888888 !important;
+  }
+  .form-group-with-bg--content {
+    .flex-row:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    .flex-row:last-child {
+      margin-bottom: 10px;
+    }
   }
 }

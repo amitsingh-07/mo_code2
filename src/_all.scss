@@ -1483,13 +1483,13 @@ a.link-white {
 .comprehensive {
   &__page-heading {
     padding: 16px 0;
-    font-size: 20px;
-    font-family: $muli-semi-bold;
+    font-size: 22px;
+    font-family: $muli-bold;
     @extend .text-center;
   }
   &__page-sub-heading {
     padding-bottom: 20px;
-    font-size: 18px;
+    font-size: 17px;
     @extend .text-center;
   }
   &__page-content {
@@ -1498,8 +1498,8 @@ a.link-white {
     margin-bottom: 30px;
   }
   .owl-img {
-    width: 100px;
-    height: 100px;
+    width: 83px;
+    height: 82px;
   }
   .datepicker-upside {
     .dropdown-menu.show {
@@ -1507,34 +1507,59 @@ a.link-white {
     }
   }
   .road-map {
-    border-left: 2px solid #FFF;
+    border-left: 3px solid $screen-separator-bar-color;
     padding-left: 52px;
     margin-left: 20px;
+    margin-top: 50px;
+    &__step-number {
+      font-size: 18px;
+      font-family: $muli-bold;
+    }
+    &__step-title {
+      font-size: 18px;
+      font-family: $muli-regular;
+    }
+    &__step-desc {
+      font-size: 14px;
+      font-family: $muli-regular;
+      margin-top: 16px;
+    }
     li{
       position: relative;
+      margin-bottom: 30px;
+      color: #9fd4d4;
       span {
         height: 15px;
         width: 15px;
-        background-color: #00a7a7;
+        background-color: $app-backgrnd-color;
         border-radius: 50%;
         display: inline-block;
         position: absolute;
-        left: -60px;
-        border: 2px solid #FFF;
-        top: 5px;
+        left: -61px;
+        border: 3px solid $screen-separator-bar-color;
+        top: 8px;
       }
-      span.active {
-        background-image: url(/assets/images/createAccount-icon.svg);
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        left: -68px;
-        background-color: transparent;
-        border: 2px solid #fff;
-        background-size: 100%;
-        top: 0;
+      &.active {
+        .road-map__step-number, .road-map__step-title, .road-map__step-desc {
+          color: $white-color;
+        }
+        span {
+          background-image: url(/assets/images/createAccount-icon.svg);
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: -68px;
+          background-color: transparent;
+          border: 2px solid $screen-separator-bar-color;
+          background-size: 100%;
+          top: 0;
+        }
       }
-    }
 
+    }
+  }
+  .info-msg {
+    color: $dark-teal-color;
+    font-size: 14px;
   }
 }
