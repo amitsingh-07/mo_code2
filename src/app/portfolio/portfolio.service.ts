@@ -135,8 +135,8 @@ export class PortfolioService {
       Number(this.removeCommas(form.value.initialInvestment)) >
         Number(this.removeCommas(form.value.totalAssets)) &&
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-        Number(this.removeCommas(form.value.percentageOfSaving)) *
-          Number(this.removeCommas(form.value.monthlyIncome))
+        (Number(this.removeCommas(form.value.percentageOfSaving)) *
+          Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
@@ -149,8 +149,8 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-      Number(this.removeCommas(form.value.percentageOfSaving / 100)) *
-        Number(this.removeCommas(form.value.monthlyIncome))
+      (Number(this.removeCommas(form.value.percentageOfSaving)) *
+        Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreinvestment'
