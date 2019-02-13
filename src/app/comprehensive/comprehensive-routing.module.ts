@@ -31,7 +31,8 @@ const routes: Routes = [
       { path: 'my-spendings', component: MySpendingsComponent},
       { path: 'regular-saving-plan' , component: RegularSavingPlanComponent },
       { path: 'my-assets', component: MyAssetsComponent},
-      { path: 'my-liabilities', component: MyLiabilitiesComponent}
+      { path: 'my-liabilities', component: MyLiabilitiesComponent},
+      { path: 'steps', component: ComprehensiveStepsComponent}
     ]
   }
 ];
