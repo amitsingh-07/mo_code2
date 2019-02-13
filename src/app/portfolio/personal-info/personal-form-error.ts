@@ -55,7 +55,7 @@ export class PersonalFormError {
         errorTitle: 'Oops! Is this correct?',
         errorMessage:
           // tslint:disable-next-line:max-line-length
-          'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?',
+          'We noticed that your One-Time investment amount is more than your total assets and monthly investment amount is more than your monthly savings. Would you like to review your inputs?',
         isButtons: 'Yes'
       },
       // tslint:disable-next-line:max-line-length

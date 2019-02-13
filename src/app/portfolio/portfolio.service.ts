@@ -135,8 +135,8 @@ export class PortfolioService {
       Number(this.removeCommas(form.value.initialInvestment)) >
         Number(this.removeCommas(form.value.totalAssets)) &&
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-        Number(this.removeCommas(form.value.percentageOfSaving)) *
-          Number(this.removeCommas(form.value.monthlyIncome))
+        (Number(this.removeCommas(form.value.percentageOfSaving)) *
+          Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
@@ -149,8 +149,8 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-      Number(this.removeCommas(form.value.percentageOfSaving / 100)) *
-        Number(this.removeCommas(form.value.monthlyIncome))
+      (Number(this.removeCommas(form.value.percentageOfSaving)) *
+        Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreinvestment'
@@ -294,4 +294,29 @@ export class PortfolioService {
     this.portfolioFormData.fundDetails = fundDetails;
     this.commit();
   }
+
+  // tslint:disable-next-line:cognitive-complexity
+  sortByProperty(list, prop, order) {
+    list.sort((a, b) => {
+      const itemA = typeof a[prop] === 'string' ? a[prop].toLowerCase() : a[prop];
+      const itemB = typeof b[prop] === 'string' ? b[prop].toLowerCase() : b[prop];
+      if (order === 'asc') {
+        if (itemA < itemB) {
+          return -1;
+        }
+        if (itemA > itemB) {
+          return 1;
+        }
+      } else {
+        if (itemA > itemB) {
+          return -1;
+        }
+        if (itemA < itemB) {
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
+
 }
