@@ -75,7 +75,6 @@ export class TopUpComponent implements OnInit {
         this.formValues.oneTimeInvestmentAmount,
         Validators.required
       ]
-      
     });
     this.buildFormInvestment();
   }
@@ -88,10 +87,9 @@ export class TopUpComponent implements OnInit {
   getTopupInvestmentList() {
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList.topupInvestment; // Getting the information from the API
+      this.setOnetimeMinAmount(this.investmentTypeList);
     });
-
   }
-
   validateAmonut(amount) {
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
@@ -148,6 +146,11 @@ export class TopUpComponent implements OnInit {
       this.topForm
         .get('MonthlyInvestmentAmount')
         .setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
+  }
+  setOnetimeMinAmount(data) {
+    if (data[0].name === 'One-time Investment') {
+      this.topupAndWithDrawService.setInvestmentValue(data[0].value);
     }
   }
   goToNext(form) {

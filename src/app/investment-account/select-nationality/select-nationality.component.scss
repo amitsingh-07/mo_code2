@@ -47,13 +47,15 @@ app-select-nationality {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .btn {
-    &:disabled {
-      color: $teal-color !important;
-      background-color: $inv-btn-disabled-bg !important;
-      opacity: 1 !important;
-      &:hover{
+  .dropdown-control{
+    .btn {
+      &:disabled {
+        color: $teal-color !important;
         background-color: $inv-btn-disabled-bg !important;
+        opacity: 1 !important;
+        &:hover{
+          background-color: $inv-btn-disabled-bg !important;
+        }
       }
     }
   }
