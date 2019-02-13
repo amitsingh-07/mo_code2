@@ -37,5 +37,77 @@
         "date_expiry": "1554047999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
+    },
+    {
+        "promoId": 4,
+        "type": 1,
+        "owner": "Aviva",
+        "title": "10% Premium Discount for Aviva MyProtector Legacy Plan",
+        "thumbnail": "/assets/promotions/images/4/thumbnail.jpg",
+        "desc": "Enjoy a 10% perpetual premium discount for Aviva MyProtector - Legacy Plan",
+        "date_created": "1547481600000",
+        "date_expiry": "1554047999000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 5,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Manulife 10% Premium Discount or Cash Reward",
+        "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
+        "desc": "Enjoy up to 10% Premium Discount or Cash Rewards for RetireReady Plus and ReadyBuilder",
+        "date_created": "1547405449000",
+        "date_expiry": "1555084799000",
+        "tag": ["Insurance", "Retirement"],
+        "external": false
+    },
+    {
+        "promoId": 6,
+        "type": 1,
+    "owner": "Manulife",
+        "title": "Manulife 0.3% Premium Discount for Signature Income",
+        "thumbnail": "/assets/promotions/images/6/thumbnail.jpg",
+        "desc": "Enjoy 0.3% Premium Discount for Manulife Signature Income",
+        "date_created": "1548000000000",
+        "date_expiry": "1555084799000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 7,
+        "type": 1,
+        "owner": "Aviva",
+        "title": "Aviva Gifts & Treats with purchase of Aviva's Plans",
+        "thumbnail": "/assets/promotions/images/7/thumbnail.jpg",
+        "desc": "Enjoy delightful treats from Aviva with purchase of Aviva's Plans",
+        "date_created": "1546272000000",
+        "date_expiry": "1554047999000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 8,
+        "type": 1,
+        "owner": "Tokio Marine",
+        "title": "10% off First Year Annual Premiums with Tokio Marine's Plans",
+        "thumbnail": "/assets/promotions/images/8/thumbnail.jpg",
+        "desc": "Enjoy 10% First Year Annual Premium Discount with Tokio Marine's Plans",
+        "date_created": "1548950400000",
+        "date_expiry": "1556639999000",
+        "tag" : ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 9,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,000 CapitaVouchers when you care for your loved one today",
+        "thumbnail": "/assets/promotions/images/9/thumbnail.jpg",
+        "desc": "Receive up to $1000 CapitaVoucher with purchase of selected NTUC Income's plans",
+        "date_created": "1549814400000",
+        "date_expiry": "1553875199000",
+        "tag" : ["Insurance", "Protection"],
+        "external": false
     }
 ]

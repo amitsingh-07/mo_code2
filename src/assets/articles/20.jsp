@@ -52,14 +52,14 @@
         <td>$819</td>
 	      <td>$925</td>
 	      <td>-</td>
-	      <td>$910</td>
+	      <td>$810</td>
 	      <td>$1,070</td>
 	      <td>-</td>
 	      <td>$1,044</td>
 	      <td>$1,131</td>
 	      <td>$1,166</td>
 				<td>$957</td>
-				<td>$1120</td>
+				<td>$1,120</td>
 	    </tr>
 		<tr>
 	      <td style="text-align: center;">35</td>
@@ -67,7 +67,7 @@
         <td>$1,274</td>
 	      <td>$1,259</td>
 	      <td>-</td>
-	      <td>$1,110</td>
+	      <td>$1,060</td>
 	      <td>$1,400</td>
 	      <td>$1,454</td>
 	      <td>$1,386</td>
@@ -82,7 +82,7 @@
         <td>$1,447</td>
 	      <td>$1,590</td>
 	      <td>-</td>
-	      <td>$1,410</td>
+	      <td>$1,440</td>
 	      <td>$1,830</td>
 	      <td>$1,947</td>
 	      <td>$1,523</td>
@@ -97,7 +97,7 @@
 	      <td>$2,014</td>
 	      <td>$1,990</td>
 	      <td>$1,917</td>
-	      <td>$2,010</td>
+	      <td>$1,760</td>
 	      <td>$2,390</td>
 	      <td>$2,482</td>
 	      <td>$2,305</td>
@@ -154,7 +154,7 @@
         <td>$713</td>
 	      <td>$675</td>
 	      <td>-</td>
-	      <td>$630</td>
+	      <td>$610</td>
 	      <td>$760</td>
 	      <td>-</td>
 	      <td>$758</td>
@@ -169,7 +169,7 @@
         <td>$989</td>
 	      <td>$888</td>
 	      <td>-</td>
-	      <td>$750</td>
+	      <td>$810</td>
 	      <td>$1,000</td>
 	      <td>$1,071</td>
 	      <td>$975</td>
@@ -184,7 +184,7 @@
         <td>$1,121</td>
 	      <td>$1,076</td>
 	      <td>-</td>
-	      <td>$1,090</td>
+	      <td>$990</td>
 	      <td>$1,370</td>
 	      <td>$1,360</td>
 	      <td>$1,147</td>
@@ -199,8 +199,8 @@
         <td>$1,457</td>
 	      <td>$1,305</td>
 	      <td>$1,404</td>
-	      <td>$1,340</td>
-	      <td>$1,520</td>
+	      <td>$1,290</td>
+	      <td>$1,620</td>
 	      <td>$1,692</td>
 	      <td>$1,491</td>
 	      <td>$1,696</td>
@@ -212,7 +212,7 @@
 	</table>
 </div>
 
-<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 4 January 2019. </em>
+<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 4 February 2019. </em>
 <em class="md-grey-color">**Prices reflected in the table reflect ongoing existing promotions and discounts which are in the knowledge of. Data is generated based on date of birth on 1st January.</em>
 <em class="md-grey-color">***Prices are not reflected for certain products due to individual product specification limitations.</em>
 <br><br>

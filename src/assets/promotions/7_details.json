@@ -1,0 +1,12 @@
+{
+    "promoId": 7,
+    "type": 1,
+    "owner": "Aviva",
+    "title": "Aviva Gifts & Treats with purchase of Aviva's Plans",
+    "thumbnail": "/assets/promotions/images/7/thumbnail.jpg",
+    "desc": "Enjoy delightful treats from Aviva with purchase of Aviva's Plans",
+    "date_created": "1546272000000",
+    "date_expiry": "1554047999000",
+    "tag": ["Insurance", "Protection"],
+    "external": false
+}

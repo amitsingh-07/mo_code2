@@ -686,7 +686,7 @@ h6 {
   }
 
   .navbar__menu-icon-close {
-    background-image: url(/assets/images/close.svg) !important;
+    background-image: url("/assets/images/close.svg") !important;
     opacity: 0.5;
   }
 }
@@ -892,27 +892,6 @@ h6 {
       }
       &:hover {
         text-decoration: underline;
-      }
-      
-      &.separator {
-        display: inline-block;
-        font-size: 10px;
-        margin: 0px 2px;
-        cursor: default;
-        color: $black-color;
-
-        &::after {
-          content: '>';
-          display: inline-block;
-          width: 10px;
-          height: 15px;
-          font-stretch: extra-condensed;
-          text-align: center;
-        }
-
-        &:hover {
-          text-decoration: none;
-        }
       }
 
       &:last-child {
