@@ -1,102 +1,125 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-
-.autofill-link {
-  border: 1px solid $secondary-action-color;
-  padding: 15px 20px;
-  background-color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  box-shadow: 0px 9px 19px 2px #007d7d;
-  margin-bottom: 20px;
-
-  .autofill-logo {
-    display: flex;
-    flex: 4;
-    display: flex;
-    justify-content: flex-start;
-
-    img {
-      width: 80%;
-      height: 100%;
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-sing-pass {
+  .autofill-link {
+    border: 1px solid $secondary-action-color;
+    padding: 15px 20px;
+    background-color: $white-color;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 9px 19px 2px $risk-table-cell-color;
+    margin-bottom: 20px;
+    .flex-row {
+      &.flex-col-12 {
+        justify-content: center;
+      }
     }
-  }
-
-  .autofill-text {
-    display: flex;
-    flex: 5;
-    align-items: center;
-    font-family: Muli;
-    font-size: 18px;
-    font-weight: bold;
-    color: #e57300;
-    justify-content: flex-end;
-    padding-right: 15px;
-  }
-
-
-  &.postlogin {
-    margin-bottom: 8px;
-
+    .autofill-logo {
+      width: 92px;
+      height: 35px;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
     .autofill-text {
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      font-family: $muli-bold;
+      font-size: 18px;
+      font-weight: bold;
+      color: $inline-error-border-color;
+      padding-right: 15px;
+      padding-bottom: 7px;
+    }
+    .autofill-estimation {
+      display: none;
+    }
+    &.postlogin {
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
+      margin-bottom: 0px;
+      @include max360 {
+        padding: 10px 14px;
+      }
+      .flex-row {
+        &.flex-col-12 {
+          justify-content: space-evenly;
+        }
+      }
+      .autofill-text {
+        font-size: 21px;
+        padding: 0;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-bottom: 7px;
+      }
+      .autofill-logo {
+        width: 107px;
+        height: 40px;
+      }
+      .autofill-estimation {
+        display: flex;
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: -0.1px;
+        text-align: center;
+        color: $dark-grey-color;
+        justify-content: center;
+      }
     }
   }
-}
-
-.backdrop {
-  background: $black-color;
-  position: fixed;
-  opacity: 0.95;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loader-content-wrapper {
-  background-color: #fff;
-  border-radius: 8px;
-  color: #ccc;
-  margin: 0 32px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 15px 34px;
-}
-
-.loader-image {
-  img {
-    max-width: 110px;
+  .backdrop {
+    background: url('../../../assets/images/investment-account/transparent-black.png') repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
-
-.loader-content {
-  font-family: $muli;
-  color: #5e5e5e;
-  text-align: center;
-  font-size: 16px;
-
-  .loader-title {
-    font-family: $muli-regular;
-    color: #4a4a4a;
-    margin-bottom: 5px;
-    letter-spacing: -0.2px;
-    .dots {
-      display: inline-block;
+  .loader-content-wrapper {
+    background-color: $white-color;
+    border-radius: 8px;
+    color: $question-info-brdr-color;
+    margin: 0 32px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px 34px;
+    position: absolute;
+    left: 0px;
+    z-index: 9999;
+  }
+  .loader-image {
+    img {
+      max-width: 110px;
     }
   }
-
-  .loader-desc {
-    font-style: italic;
-    line-height: 1.31;
-    letter-spacing: -0.2px;
-    color: #000000;
+  .loader-content {
+    font-family: $muli;
+    color: $text-color-secondary;
+    text-align: center;
+    font-size: 16px;
+    .loader-title {
+      font-family: $muli-regular;
+      color: $dark-grey-color;
+      margin-bottom: 5px;
+      letter-spacing: -0.2px;
+      .dots {
+        display: inline-block;
+      }
+    }
+    .loader-desc {
+      font-style: italic;
+      line-height: 1.31;
+      letter-spacing: -0.2px;
+      color: $black-color;
+    }
   }
 }

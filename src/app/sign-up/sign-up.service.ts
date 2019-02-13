@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -7,6 +8,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -28,7 +30,8 @@ export class SignUpService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    public cryptoService: CryptoService) {
+    public cryptoService: CryptoService,
+    private datePipe: DatePipe) {
     this.getAccountInfo();
   }
 
@@ -269,6 +272,13 @@ export class SignUpService {
     }
   }
 
+  setEditContact(editContact, mobileUpdate, emailUpdate) {
+    this.signUpFormData.editContact = editContact;
+    this.signUpFormData.updateMobile = mobileUpdate;
+    this.signUpFormData.updateEmail = emailUpdate;
+    this.commit();
+  }
+
   clearRedirectUrl() {
     sessionStorage.removeItem(REDIRECT_URL_KEY);
   }
@@ -300,5 +310,139 @@ export class SignUpService {
   removeCaptchaSessionId() {
     sessionStorage.removeItem(CAPTCHA_SESSION_ID);
     sessionStorage.removeItem(IS_CAPTCHA_SHOWN);
+  }
+
+  getEditProfileInfo() {
+    // API Call here
+    return this.apiService.getEditProfileList();
+  }
+  constructEditPassword(oldpassword, newpassword) {
+    return {
+      oldPassword: oldpassword,
+      newPassword: newpassword
+    };
+  }
+  setEditPasswordInfo(oldPassword, newPassword) {
+    // API Call here
+    const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
+    return this.apiService.requestEditPassword(data);
+  }
+  updateBankInfo(bank, fullName , accountNum , id) {
+    // API Call here
+    const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
+    return this.apiService.saveNewBank(data);
+  }
+  // tslint:disable-next-line:no-identical-functions
+  constructUpdateBankPayload(bank , fullName , accountNum , id) {
+    const request = {};
+    request['id'] = id;
+    request['bank'] = bank;
+    request['accountName'] = fullName;
+    request['accountNumber'] = accountNum;
+    return request;
+  }
+
+  setContactDetails(countryCode, mobileNumber, email) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.signUpFormData.email = email;
+    this.commit();
+  }
+
+  setOldContactDetails(countryCode, mobileNumber, email) {
+    this.setContactDetails(countryCode, mobileNumber, email);
+    this.signUpFormData.OldCountryCode = countryCode;
+    this.signUpFormData.OldMobileNumber = mobileNumber;
+    this.signUpFormData.OldEmail = email;
+    this.commit();
+  }
+
+  getRecentNotifications() {
+    return this.apiService.getRecentNotifications();
+  }
+
+  getAllNotifications() {
+    return this.apiService.getAllNotifications();
+  }
+
+  updateNotifications(messages, type) {
+    const payload = this.constructPayloadUpdateNotifications(messages, type);
+    console.log('payload');
+    console.log(payload);
+    return this.apiService.updateNotifications(payload);
+  }
+
+  constructPayloadUpdateNotifications(messages, type) {
+    const messageIdList = this.getMessageIdsFromMessages(messages);
+    return {
+      messageStatus: type,
+      messageIds: messageIdList
+    };
+  }
+
+  getMessageIdsFromMessages(messages) {
+    if (messages === null) {
+      return null;
+    } else {
+      return messages.map( (message) =>  message.messageId);
+    }
+  }
+
+  deleteNotifications(data) {
+    return this.apiService.deleteNotifications(data);
+  }
+
+  // setNotificationList(data) {
+  //   this.signUpFormData.notificationList = data;
+  //   this.commit();
+  // }
+
+  getNotificationList() {
+    return this.signUpFormData.notificationList;
+  }
+
+  getAllMessagesByNotifications(notifications) {
+    const messages = [];
+    const notificationMessageList = notifications.map((notification) => {
+      const messageList = notification.messages.map((message) => {
+        let messageDate;
+        let messageMonth = '';
+        if (message.time) {
+          message.time = parseInt(message.time, 10);
+          messageDate = new Date(message.time);
+          messageMonth = this.datePipe.transform(messageDate, 'MMMM yyyy');
+        }
+        message.date = messageDate;
+        message.month = messageMonth;
+        messages.push(message);
+      });
+    });
+    console.log(messages);
+    return messages;
+  }
+
+  getDetailedCustomerInfo() {
+    // API Call here
+    return this.apiService.getDetailedCustomerInfo();
+  }
+
+  getInvestmentStatus() {
+    const userInfo = this.getUserProfileInfo();
+    let investmentStatus = userInfo && userInfo.investementDetails
+      && userInfo.investementDetails.account
+      && userInfo.investementDetails.account.accountStatus ?
+      userInfo.investementDetails.account.accountStatus.toUpperCase() : null;
+    if (investmentStatus === null || !investmentStatus) {
+      if (userInfo && userInfo.investementDetails &&
+        userInfo.investementDetails.portfolios &&
+        userInfo.investementDetails.portfolios.length > 0) {
+        investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
+      }
+    } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED &&
+      userInfo && userInfo.investementDetails && userInfo.investementDetails.portfolios &&
+      userInfo.investementDetails.portfolios.length <= 0) {
+      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.START_INVESTING.toUpperCase();
+    }
+    return investmentStatus;
   }
 }

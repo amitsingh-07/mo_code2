@@ -1,72 +1,118 @@
 @import '../../../variables';
 @import '../../../mixins';
 
-.body {
-  font-weight: 600;
-}
+app-my-financials {
+  .container-fluid {
+    @include allmobiles {
+      padding: 120px 0 80px 0;
+    }
+  }
+  .fixed-btn--sm {
+    border: 1px solid $fixed-btn-brdr-color;
+    color: $teal-color;
+    font-size: 16px;
+    font-family: $muli-regular;
+    font-weight: normal !important;
+    padding: 0.9rem;
+    height: 50px;
+  }
 
-.fixed-btn--sm {
-  border: 1px solid rgba(0, 135, 134, 0.4);
-  color: #00a7a7;
-  font-size: 16px;
-  font-family: "Muli Regular", sans-serif;
-  font-weight: normal !important;
-  padding: .90rem;
-  height: 50px;
-}
+  .fixed-btn--sm.active {
+    border: 1px solid $white-color !important;
+    color: $white-color !important;
+    background: $app-backgrnd-color !important;
+  }
 
-.fixed-btn--sm.active {
-  border: 1px solid #FFFFFF !important;
-  color: #FFFFFF !important;
-  background: #00a7a7 !important;
-}
+  .form-group-with-bg--header-label {
+    font-weight: 600;
+  }
 
-.form-group-with-bg--header-label {
-  font-weight: 600;
-}
+  .form-group-with-bg--content-sub-label {
+    font-weight: 400;
+  }
 
-.form-group-with-bg--content-sub-label {
-  font-weight: 400;
-}
+  .form-group-with-bg--content-label {
+    font-weight: 600;
+    line-height: 22px;
+  }
 
-.form-group-with-bg--content-label {
-  font-weight: 600;
-  line-height: 22px;
-}
+  .second-section {
+    margin-top: 4px;
+    .form-group-with-bg--content {
+      .checkbox_instruction {
+        font-family: $muli-italic;
+        font-size: 14px;
+        font-style: italic;
+        letter-spacing: -0.1px;
+        color: $text-color-secondary;
+        padding-bottom: 13px;
+      }
+      .form-group-single-column {
+        justify-content: center;
+        align-items: center;
+        input[type='checkbox'] + label {
+          padding-left: 40px;
+        }
+        .checkbox-button {
+          background: none;
+          .input-label-black {
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: $dark-teal-color;
+          }
+          .input-label-normal {
+            font-family: $muli-italic;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: -0.1px;
+            color: $text-color-secondary;
+          }
+        }
+        .form-control {
+          &.form-control-right {
+            input {
+              padding-right: 40px !important;
+            }
+          }
+        }
+      }
+    }
+  }
 
+  .tooltip-icon {
+    background: url('../../../assets/images/tooltip-icon.svg') no-repeat;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    display: block;
+  }
 
-.second-section {
-  margin-top: 20px;
-}
+  .form-control {
+    &.form-control-right {
+      input {
+        padding-right: 20px;
+      }
+    }
+  }
 
-.tooltip-icon {
-  background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  display: block;
+  .btn {
+    &:disabled {
+      background-color: $btn-disabled-light-bg;
+      color: $disabled-teal-color;
+    }
+    &.btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
 }
 
 .modal {
   @include allmobiles {
-
     .modal-body {
-
       b {
-        color: #5e5e5e;
+        color: $form-block-sub-title-color;
         font-family: $muli-bold;
       }
     }
-
-  }
-}
-
-
-.form-control {
-  &.form-control-right {
-    input {
-      padding-right: 20px;
-    }
-
   }
 }

@@ -98,10 +98,16 @@ export class BaseService {
       });
   }
 
-  delete(url, postBody: any) {
-    this.helperService.showLoader();
-    return this.http
-      .delete(url)
+  delete(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+    return this.httpClient
+      .delete(`${this.apiBaseUrl}/${url}${param}`)
       .map((res: Response) => {
         return this.handleResponse(res);
       })
@@ -161,5 +167,4 @@ export class BaseService {
       return data;
     }
   }
-
 }

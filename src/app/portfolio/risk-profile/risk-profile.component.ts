@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
 import { ProfileIcons } from './profileIcons';
@@ -14,7 +15,8 @@ import { ProfileIcons } from './profileIcons';
 @Component({
   selector: 'app-risk-profile',
   templateUrl: './risk-profile.component.html',
-  styleUrls: ['./risk-profile.component.scss']
+  styleUrls: ['./risk-profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RiskProfileComponent implements OnInit, AfterViewInit {
   animateStaticModal = false;
@@ -33,7 +35,9 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
-    private modal: NgbModal) {
+    public footerService: FooterService,
+    private modal: NgbModal
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RISK_PROFILE.TITLE');
@@ -43,7 +47,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
@@ -51,13 +56,13 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
       this.portfolioService.setPortfolioSplashModalCounter(1);
-      setInterval(() => {
+      setTimeout(() => {
         this.animateStaticModal = true;
-      }, 2000);
-
-      setInterval(() => {
-        this.hideStaticModal = true;
       }, 3000);
+
+      setTimeout(() => {
+        this.hideStaticModal = true;
+      }, 4000);
     } else {
       this.hideStaticModal = true;
     }
@@ -66,12 +71,17 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   goToNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
+  goToHomepage() {
+    this.router.navigate(['home']);
+  }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 
   canProceed() {
-    return this.selectedRiskProfile.riskProfileId !== PORTFOLIO_CONFIG.risk_profile.should_not_invest_id;
+    return (
+      this.selectedRiskProfile.riskProfileId !==
+      PORTFOLIO_CONFIG.risk_profile.should_not_invest_id
+    );
   }
-
 }

@@ -1,0 +1,109 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-bank-details {
+  .modal-body-message {
+    font-size: 24px !important;
+    padding-top: 28px;
+    color: $dark-grey-color;
+  }
+.instruction-content {
+    padding-top: 20px;
+    color: $dark-grey-color;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+
+    .list-none {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      &:last-child {
+        .section {
+          border-left: none;
+        }
+      }
+
+      .section {
+        border-left: 1px solid $teal-color;
+        margin-left: -10px;
+        padding-bottom: 45px;
+        font-size: 16px;
+
+        .sub-section {
+          margin-left: 19.5px;
+
+          &.step {
+            color: $teal-color;
+            font-size: 18px;
+          }
+
+          strong {
+            font-family: $muli-bold;
+          }
+        }
+      }
+    }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: $teal-color;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    .bank_details {
+      margin-left: 19.5px;
+      margin-top: 20px;
+    }
+
+    .setup-auto-deposit {
+      border: 1.5px solid $dark-teal-color;
+      border-radius: 6px;
+      padding: 25px;
+      position: relative;
+      margin: 0px 18px 20px;
+      display: flex;
+      justify-content: center;
+
+      .head {
+        font-family: $muli-bold;
+        font-size: 16px;
+        text-align: center;
+        color: $teal-color;
+        position: absolute;
+        top: -18px;
+        padding: 5px 15px 5px 55px;
+        display: flex;
+        flex: 1;
+        background: url('../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
+        background-color: $white-color;
+        background-position: 15px 4px;
+      }
+
+      p {
+        color: $black-color;
+        text-align: center;
+        margin: 0;
+        font-size: 16px;
+      }
+    }
+
+    .faq-link {
+      text-align: center;
+      padding-bottom: 53px;
+
+      a {
+        font-family: $muli-bold;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: $secondary-action-color;
+        text-decoration: none;
+      }
+    }
+  }
+}

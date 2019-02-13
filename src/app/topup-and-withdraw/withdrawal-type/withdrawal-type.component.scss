@@ -1,0 +1,46 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-withdrawal-type {
+  .container-fluid {
+    @include allmobiles {
+      padding: 120px 0;
+    }
+  }
+  .withdraw {
+    .dropdown-control .btn-dropdown {
+      padding-right: 26px !important ;
+    }
+    .dropdown-control .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
+    }
+    .dropdown-item {
+      white-space: normal;
+    }
+    .amount-panel {
+      padding: 30px;
+      background-color: $withdrawal-amount-panel-bg-color;
+      border-radius: 6px;
+      .input-control {
+        font-size: 22px;
+      }
+    }
+    .withdrawal-amount-lbl {
+      font-size: 18px;
+      font-family: $muli-bold;
+      color: $white-color;
+    }
+    .cash-balance {
+      border-top: 1px solid $white-color;
+      padding-top: 19px;
+      margin-top: 23px;
+      font-size: 16px;
+      color: $withdrawal-cash-balance-color;
+      justify-content: space-between;
+    }
+    .btn__footer--fixed {
+      font-size: 22px;
+      font-family: $muli-bold;
+    }
+  }
+}

@@ -1,6 +1,5 @@
-
 export class RiskProfile {
-    riskProfileId: number;
-    riskProfileName: string;
-    htmlDescription: string;
+  riskProfileId: number;
+  riskProfileName: string;
+  htmlDescription: any;
 }

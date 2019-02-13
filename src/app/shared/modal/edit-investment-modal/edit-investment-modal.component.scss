@@ -1,0 +1,56 @@
+@import '../../../../variables';
+
+app-edit-investment-modal{
+.edit-investment-modal {
+  font-family: $muli;
+  .dropdown-control {
+    position: relative;
+  }
+  .modal-body .form-group {
+    label {
+      font-size: 18px;
+      font-weight: 600;
+      padding-right: 15px;
+    }
+  }
+  .form-control .input-control {
+    text-align: right;
+  }
+  .monthly-input{
+    padding-right: 35px;
+   }
+  .dropdown-control {
+    .btn-dropdown {
+      color: $teal-color;
+    }
+    border-radius: 6px;
+    position: relative;
+    background: $white-color;
+    cursor: pointer;
+    .dropdown-toggle {
+      padding: 0.90rem;
+      &:disabled {
+        cursor: not-allowed;
+        &:hover {
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+
+  .error-label {
+    font-size: 14px;
+    margin: 3px 0px 0px 0px;
+    font-style: italic;
+    color: $inline-error-border-color;
+  }
+  .input-label-normal {
+    font-family: $muli-italic;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: -0.1px;
+    color: $form-block-sub-title-color;
+  } 
+
+}
+}

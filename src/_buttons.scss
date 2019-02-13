@@ -114,6 +114,16 @@ button:active:focus {
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
+    &.absolute {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      padding: 5px 10px;
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: #8cd7d7;
+      border: 1px solid #8cd7d7;
+    }
   }
 
   &:disabled {
@@ -850,6 +860,42 @@ button:active:focus {
         overflow: auto;
         left: auto !important;
         right: 0px !important;
+      }
+    }
+  }
+}
+// dropdown-listitems with 24px gap 
+.dropdown-control {
+  .dropdown{
+    .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .dropdown-menu {
+    &.show{
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
+      padding-top: 0;
+      padding-bottom: 0;
+      .dropdown-item {
+        padding: 10px 14.4px;
+        white-space: normal;
+        word-break: break-word;
+        &:hover{
+          background-color: #EAFAF9;
+          border:none;
+        }
+        &:active{
+          background-color: #EAFAF9;
+          border:none;
+          color: #00a7a7;
+        }
       }
     }
   }

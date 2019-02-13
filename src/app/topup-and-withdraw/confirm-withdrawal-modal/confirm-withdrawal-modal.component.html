@@ -1,0 +1,26 @@
+<div class="edit-investment-modal">
+  <div class="modal-header">
+    <div class="modal-title popup-header-icon">
+      <img src="./assets/images/owl.svg" />
+    </div>
+  </div>
+  <div class="modal-body white-bg">
+    <div class="modal-body-title">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TITLE' | translate}}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="modal-body-message">
+      <p></p>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}"></span><br />
+      <div class="amount-section">
+        <img src="../../../../assets/images/topupwithdraw/wallet.svg" alt="" />
+        <div class="amt">{{withdrawAmount | currency}}</div>
+        <div class="lbl">{{ 'WITHDRAW.WITHDRAWAL_AMOUNT' | translate}}</div>
+      </div>
+      <button type="button" (click)="confirmWithdrawal()" class="btn btn-primary width100 mt5" id="incomeBtn">{{
+        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
+    </div>
+  </div>
+</div>
