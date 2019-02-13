@@ -902,6 +902,7 @@ export class InvestmentAccountService {
   }
 
   getPersonalDecReqData(data): IPersonalDeclaration {
+    const earningsGeneratedId = data.earningsGenerated ? data.earningsGenerated.id : null;
     return {
       investmentSourceId: data.sourceOfIncome ? data.sourceOfIncome.id : null,
       beneficialOwner: data.beneficial,
@@ -940,7 +941,7 @@ export class InvestmentAccountService {
           data.source &&
           data.source.key ===
             INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
-            ? data.earningsGenerated.id
+            ? earningsGeneratedId
             : null
       }
     };
