@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoggedUserService } from '../sign-up/auth-guard.service';
+import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
-import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
+import {
+  DependantEducationSelectionComponent
+} from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
@@ -16,9 +18,11 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+
 const routes: Routes = [
   {
-    path: '', canActivate: [LoggedUserService], children: [
+    path: '', canActivate: [ComprehensiveEnableGuard], children: [
+      { path: '', component: ComprehensiveComponent },
       { path: '', redirectTo: '/comprehensive/getting-started', pathMatch: 'full'},
       { path: 'getting-started', component: MyProfileComponent},
       { path: 'dependant-selection', component: DependantSelectionComponent },
@@ -42,3 +46,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ComprehensiveRoutingModule { }
+
+

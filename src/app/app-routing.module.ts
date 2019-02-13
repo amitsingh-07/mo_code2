@@ -4,6 +4,8 @@ import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
+import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
@@ -32,14 +34,20 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
-      { path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule'},
+      {
+        path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
+        canActivate: [ComprehensiveEnableGuard],
+        canActivateChild: [ComprehensiveChildEnableGuard]
+      },
 
-      { path: 'articles',
+      {
+        path: 'articles',
         loadChildren: './article/article.module#ArticleModule',
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleChildEnableGuard]
       },
-      { path: 'learn',
+      {
+        path: 'learn',
         loadChildren: './article/article.module#ArticleModule',
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]

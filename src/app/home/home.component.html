@@ -112,7 +112,7 @@
         <button *ngIf="!isComprehensiveEnabled" class="btn btn-secondary home__section--btn" disabled>
           <span>{{'GENERAL.COMING_SOON' | translate}}</span>
         </button>
-        <button *ngIf="isComprehensiveEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/comprehensive">
+        <button *ngIf="isComprehensiveEnabled" class="btn btn-primary-dark home__section--btn" (click)="startComprehensiveJourney()">
           <span>{{'COMPREHENSIVE.LINK1' | translate}}</span>
         </button>
       </div>

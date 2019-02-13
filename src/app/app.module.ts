@@ -21,6 +21,8 @@ import { AppService } from './app.service';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
+import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -176,7 +178,8 @@ export function tokenGetterFn() {
     PromotionChildEnableGuard,
     ArticleEnableGuard,
     ArticleChildEnableGuard,
-    SignUpService
+    SignUpService,
+    ComprehensiveEnableGuard, ComprehensiveChildEnableGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
