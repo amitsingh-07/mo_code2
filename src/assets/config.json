@@ -1,5 +1,6 @@
 {
   "language": "en",
+  "common":"COMMON",
   "useMyInfo": false,
   "willWritingEnabled": false,
   "investmentEnabled": true,

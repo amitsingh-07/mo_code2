@@ -1477,3 +1477,89 @@ a.link-white {
 .dropdown-toggle.last::after {
   background-image: none !important;
 }
+
+
+//Comprehensive Styles
+.comprehensive {
+  &__page-heading {
+    padding: 16px 0;
+    font-size: 22px;
+    font-family: $muli-bold;
+    @extend .text-center;
+  }
+  &__page-sub-heading {
+    padding-bottom: 20px;
+    font-size: 17px;
+    @extend .text-center;
+  }
+  &__page-content {
+    font-size: 16px;
+    @extend .text-center;
+    margin-bottom: 30px;
+  }
+  .owl-img {
+    width: 83px;
+    height: 82px;
+  }
+  .datepicker-upside {
+    .dropdown-menu.show {
+      top: -240px !important;
+    }
+  }
+  .road-map {
+    border-left: 3px solid $screen-separator-bar-color;
+    padding-left: 52px;
+    margin-left: 20px;
+    margin-top: 50px;
+    &__step-number {
+      font-size: 18px;
+      font-family: $muli-bold;
+    }
+    &__step-title {
+      font-size: 18px;
+      font-family: $muli-regular;
+    }
+    &__step-desc {
+      font-size: 14px;
+      font-family: $muli-regular;
+      margin-top: 16px;
+    }
+    li{
+      position: relative;
+      margin-bottom: 30px;
+      color: #9fd4d4;
+      span {
+        height: 15px;
+        width: 15px;
+        background-color: $app-backgrnd-color;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: -61px;
+        border: 3px solid $screen-separator-bar-color;
+        top: 8px;
+      }
+      &.active {
+        .road-map__step-number, .road-map__step-title, .road-map__step-desc {
+          color: $white-color;
+        }
+        span {
+          background-image: url(/assets/images/createAccount-icon.svg);
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: -68px;
+          background-color: transparent;
+          border: 2px solid $screen-separator-bar-color;
+          background-size: 100%;
+          top: 0;
+        }
+      }
+
+    }
+  }
+  .info-msg {
+    color: $dark-teal-color;
+    font-size: 14px;
+  }
+}

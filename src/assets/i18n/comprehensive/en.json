@@ -1,0 +1,216 @@
+{
+  "COMPREHENSIVE": {
+    "GET_STARTED": "A step-by-step guide to help you plan your finances!",
+    "START": "Start Now",
+    "PHILOSOPHY_TITLE": " Our Philosophy",
+    "PHILOSOPHY_DESC": "when planning for your future, we show you the 'good enough' concept of what children education and retirement could like.(pls edit text)",
+    "PHOLOSOPHY_DESC_SUB": "your money will be used to first fund children education and later support your retirement. Let's see how it turns out",
+    "RESULT_TITLE": "What will you get?",
+    "RESULT_SUB_TITLE": "At the end of the session ,you will get:",
+    "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
+    "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help"
+  },
+  "NATIONALITY": [{
+      "text": "Singaporean",
+      "value": "singaporean"
+    },
+    {
+      "text": "Singaporean PR",
+      "value": "singaporean_pr"
+    },
+    {
+      "text": "Foreigner",
+      "value": "foreigner"
+    }
+  ],
+  "COMPREHENSIVE_STEPS": {
+    "FIRST": "Step 1",
+    "FIRST_TITLE": "Understand What's On Your Shoulders",
+    "FIRST_DESC": "Fun fact :XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX",
+    "SECOND": "Step 2",
+    "SECOND_TITLE": " Your Finances",
+    "THIRD": "Step 3",
+    "THIRD_TITLE": "Results!",
+    "PROCEED": "Proceed"
+  },
+
+  "DEPENDANT_SELECTION": {
+    "TITLE": "What's On Your Shoulders",
+    "DEPENDANTS": "Do you Have any dependants?",
+    "DEPENDANTS_DESC": "A dependant is children,parent,spouse or sibling whom i'm supporting"
+
+
+  },
+  "DEPENDANT_DETAILS": {
+    "ABOUT": "About Your Dependant",
+    "DESC": "Tell us who you need to take care of so that we can include these factors into your financial planning.",
+
+    "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Parent-in-law", "Friend", "Relative"]
+  },
+  "DEPENDANT_EDUCATION": {
+    "ABOUT": "Do you want to save up for your child's university education?",
+    "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
+  },
+  "ENDOWMENT_PLAN": {
+    "ABOUT": "Select which child has education endowment plan"
+
+  },
+  "EDUCATION_PREFERENCE": {
+    "HEADER": "Tell us about the education Preferences.",
+    "ABOUT": "About"
+
+  },
+  "MY_EARNINGS": {
+    "HEADER": "What You Earn",
+    "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
+    "BUCKET_TITLE": "Your Annual Income Bucket",
+    "MONTHLY_SALARY": "Monthly Salary",
+    "ANNUAL_BONUS": "Annual Bonus",
+    "RENTAL_INCOME": "Monthly Rental Income",
+    "OTHER_WORK_INCOME": "Other Work Income",
+    "OTHER_MONTHLY_INCOME": "Other Monthly Income",
+    "ANNUAL_DIVIDENDS": "Annual Dividends",
+    "OTHER_ANNUAL_INCOME": "Other Annual Income",
+    "ADD_MONTHLY_INCOME": "Add other monthly income",
+    "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+    "EMPLOYMENT_TYPE_LIST": [{
+        "text": "Employed",
+        "value": "employed"
+      },
+      {
+        "text": "Self-Employed",
+        "value": "selfEmployed"
+      }
+    ]
+
+  },
+  "MY_SPENDINGS": {
+    "MONTHLY_LIVING_EXPENSES": "Monthly Living Expenses",
+    "MONTHLY_LIVING_EXPENSES_HINT": "e.g. food,utilites,rent",
+    "YEARLY_AD_HOC_EXPENSES": "Yearly or Ad-Hoc Expenses",
+    "YEARLY_AD_HOC_EXPENSES_HINT": "e.g Holidays",
+    "MONTHLY_HOME_LOAN_PAYMENT": "Monthly Home Loan Payment",
+    "MORTAGE_PAYMENT_CPF": "Mortage Payment Using CPF ",
+    "MORTAGE_PAYMENT_CASH": "Mortage Payment Using Cash",
+    "HOME_TYPE": "Type of Home",
+    "TO_PAY_OFF": "To Pay Off",
+    "ADD_OTHER_MORTAGE": "Add Other Mortage Repayment",
+    "OTHER_MORTAGE_PAYMENT": "Other Mortage Repayment",
+    "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car loan Payment",
+    "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Car Loan Payment"
+
+
+
+
+
+  },
+  "GETTING_STARTED": {
+    "TITLE": "Get Started",
+    "HI": "Hi",
+    "HEADER": "Welcome to MoneyOwl roboadvisory",
+    "WELCOME_BACK":"Welcome Back",
+    "DESC": "Your financial report will be generated at the end of the journey! Ready to go?"
+  },
+  "FORM_LABEL": {
+    "NAME": "Name",
+    "RELATIONSHIP": "Relationship",
+    "GENDER": "Gender",
+    "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
+    "DATE_OF_BIRTH":"Date Of Birth",
+    "NATIONALITY": "Nationality",
+    "EMPLOYMENT_TYPE": "Employment Type",
+    "AMOUNT": "Amount",
+    "YEARS_LATER": "Years later",
+    "LOCATION": "Location",
+    "COURSE_OF_STUDY": "Course of study",
+    "MATURITY_AMOUNT": "Maturity Amount",
+    "MATURITY_YEAR": "Maturity Year",
+    "I_AM_A": "I am a",
+    "HDB": "HDB",
+    "PRIVATE": "Private",
+    "SAVE_AND_CONTINUE": "Save and Continue",
+    "YES": "Yes, I do",
+    "NO": "No,I don't"
+  },
+
+  "DEPENDANT_EDUCATION_SELECTION": {
+    "TITLE": "Do you need to save up for any of your children's education ?",
+    "YES_DESC": "whose education you would like to fund?",
+    "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
+    "NO_DESC": "Select which child you will like to cover for."
+  },
+
+  "RSP": {
+    "TITLE": "Do you have any Regular Unit Trust Saving Plans(RSP)?",
+    "HEADER": "Regular Saving Plan",
+    "OTHER": "Other Regular Saving Plan",
+    "ADD_RSP": "Add Other Regular Saving Plan",
+    "UNIT_TRUST_TYPE": "Type of Unit Trust",
+    "PAID_BY_CASH": "Paid By Cash",
+    "PAID_BY_CPF": "Paid By CPF",
+    "MONTH": "mth"
+  },
+  "MY_ASSETS": {
+    "TITLE": "What You Own",
+    "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
+    "ASSETS_BUCKETS": "Your Assets Buckets",
+    "TOTAL": "in total",
+    "CASH": "Cash",
+    "CASH_IN_BANK": "Cash in bank",
+    "SINGAPORE_SAVING_BONDS": "Singapore Saving Bonds",
+    "YOUR_CPF": "Your CPF",
+    "CPF_OA": "CPF Ordinary Account (OA)",
+    "CPF_SA": "CPF Special Account (SA)",
+    "CPF_MA": "CPF Medisave Account (MA)",
+    "YOUR_HOME": "Your Home",
+    "MARKET_VALUE": "At Market Value",
+    "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
+    "INVESTMENT_PROPERTIES": "Investment Properties",
+    "INVESTMENTS": "Investments",
+    "INVESTMENT_TYPE": "Type of Investment",
+    "OTHERS": "Others",
+    "OTHER_INVESTMENT": "Other Investments",
+    "ADD_INVESTMENT": "Add other Investment",
+    "OTHER_ASSETS": "Other Assets",
+    "OTHER_ASSETS_HINT": "eg. jewellery",
+    "INVESTMENT_TYPE_LIST": [{
+        "text": "Equities",
+        "value": "equities"
+      },
+      {
+        "text": "Bonds",
+        "value": "bonds"
+      },
+      {
+        "text": "Balanced",
+        "value": "balanced"
+      },
+      {
+        "text": "Multi Assets",
+        "value": "multiAssets"
+      },
+      {
+        "text": "Alternatives",
+        "value": "alternatives"
+      },
+      {
+        "text": "Others",
+        "value": "others"
+      }
+    ]
+  },
+  "MY_LIABILITIES":{
+    "TITLE":"What You Owe",
+    "HEADER":"Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
+    "LIABILITIES_BUCKETS":"Your Liabilities in Buckets",
+    "HOME_LOAN_OUTSTANDING":"Home Loan Outstanding",
+    "ADD_OTHER_PROPERTY_lOAN":"Add other Property Loans",
+    "OTHER_PROPERTY_LOAN":"Other Property Loans",
+    "OTHER_LOANS_AMOUNT_OUTSTANDING":"Other Loans Amount OutStanding",
+    "CAR_LOANS":"Car Loans"
+  },
+  "ERROR_MODAL_TITLE":{
+    "MY_PROFILE":"My Profile",
+    "DEPENDANT_DETAIL":["Dependant Details 1","Dependant Details 2","Dependant Details 3","Dependant Details 4","Dependant Details 5"]
+  }
+}

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
-
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
@@ -33,6 +32,7 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
+      { path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule'},
 
       { path: 'articles',
         loadChildren: './article/article.module#ArticleModule',
