@@ -53,6 +53,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     aml_accepted: 'ACCEPTED',
     aml_rejected: 'REJECTED',
     aml_failed: 'FAILED',
+    nationality_selected: 'nationality_selected',
     ddc_submitted: 'ddc_submitted',
     account_creation_pending: 'account_creation_pending',
     account_creation_confirmed: 'confirmed',
