@@ -294,4 +294,29 @@ export class PortfolioService {
     this.portfolioFormData.fundDetails = fundDetails;
     this.commit();
   }
+
+  // tslint:disable-next-line:cognitive-complexity
+  sortByProperty(list, prop, order) {
+    list.sort((a, b) => {
+      const itemA = typeof a[prop] === 'string' ? a[prop].toLowerCase() : a[prop];
+      const itemB = typeof b[prop] === 'string' ? b[prop].toLowerCase() : b[prop];
+      if (order === 'asc') {
+        if (itemA < itemB) {
+          return -1;
+        }
+        if (itemA > itemB) {
+          return 1;
+        }
+      } else {
+        if (itemA > itemB) {
+          return -1;
+        }
+        if (itemA < itemB) {
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
+
 }
