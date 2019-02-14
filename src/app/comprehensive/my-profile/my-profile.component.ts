@@ -25,6 +25,7 @@ export class MyProfileComponent implements OnInit {
   nationality = '';
   nationalityList: string;
   submitted: boolean;
+  nationalityAlert = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -45,18 +46,23 @@ export class MyProfileComponent implements OnInit {
     });
 
     // This array should be deleted after the Integration with API
+
     this.userDetails = {
-      name: 'kelvin NG',
+      id: 'abc',
+      firstName: 'kelvin ',
+      lastName: 'NG',
+      dateOfBirth: '20-01-1980',
+      nation: 'singaporean',
       gender: 'male',
-      dob: '',
-      nationality: '',
       registeredUser: false
 
     };
     this.registeredUser = this.userDetails.registeredUser;
-    this.nationality = this.userDetails.nationality;
+    this.nationality = this.userDetails.nation;
     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : 'male';
-
+    const dob = this.userDetails.dateOfBirth.split('-');
+    // tslint:disable-next-line:radix
+    this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
   }
 
   ngOnInit() {
@@ -67,30 +73,31 @@ export class MyProfileComponent implements OnInit {
 
   buildMyProfileForm(userDetails) {
     this.myProfileForm = this.formBuilder.group({
-      name: [userDetails.name],
+      firstName: [userDetails.firstName],
+      lastName: [userDetails.lastName],
       gender: [userDetails.gender, [Validators.required]],
-      nationality: [userDetails.nationality, [Validators.required]],
-      dob: [userDetails.dob, [Validators.required]],
+      nation: [userDetails.nation, [Validators.required]],
+      dateOfBirth: [userDetails.dateOfBirth, [Validators.required]],
 
     });
   }
 
   goToNext(form: FormGroup) {
     if (this.validateProfileForm(form)) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION]);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
     }
 
   }
   selectNationality(nationality: any) {
+    this.nationalityAlert = true;
     nationality = nationality ? nationality : { text: '', value: '' };
-    this.nationality = nationality.text;
-    this.myProfileForm.controls['nationality'].setValue(nationality.value);
+    this.myProfileForm.controls['nation'].setValue(nationality.value);
     this.myProfileForm.markAsDirty();
   }
 
   validateProfileForm(form: FormGroup) {
 
-    form.value.customDob = this.parserFormatter.format(form.value.dob);
+    form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
 
     this.submitted = true;
     if (!form.valid) {
