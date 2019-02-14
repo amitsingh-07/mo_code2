@@ -88,19 +88,8 @@ export class EditResidentialAddressComponent implements OnInit {
   }
   getNationalityCountryList() {
         this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
-            this.countries = this.getCountryList(data.objectList);
+            this.countries = this.investmentAccountService.getCountryList(data.objectList);
         });
-}
-
-getCountryList(data) {
-  const countryList = [];
-  data.forEach((nationality) => {
-      if (!nationality.blocked) {
-      nationality.countries.forEach((country) => {
-          countryList.push(country);
-      });
-  }});
-  return countryList;
 }
 
 buildForm(): FormGroup {
