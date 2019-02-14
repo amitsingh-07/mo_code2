@@ -10,6 +10,21 @@
     "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
     "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help"
   },
+  "COMPREHENSIVE_STEPS":{
+    "STEP":"Step",
+    "STEP_1_TITLE":"What's On Your Shoulders",
+    "STEP_1_DESC":"Your family commitments will impact on your financial Planning.Lets list it out now!",
+    "STEP_2_TITLE":"Your Finances",
+    "STEP_2_DESC":"The information help us to estimate what you can save and invest, your protection need and your financial health.",
+    "STEP_3_TITLE":"Your Current Fire Proofing",
+    "STEP_3_DESC":"Let's find out how protected you are in face unexpected events",
+    "STEP_4_TITLE":"Financial Independence, Retire Early",
+    "STEP_4_DESC":"Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
+    "STEP_5_TITLE":"Congratulations",
+    "STEP_5_DESC":"Report Generation"
+    
+  },
+
   "NATIONALITY": [{
       "text": "Singaporean",
       "value": "singaporean"
@@ -23,16 +38,7 @@
       "value": "foreigner"
     }
   ],
-  "COMPREHENSIVE_STEPS": {
-    "FIRST": "Step 1",
-    "FIRST_TITLE": "Understand What's On Your Shoulders",
-    "FIRST_DESC": "Fun fact :XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX",
-    "SECOND": "Step 2",
-    "SECOND_TITLE": " Your Finances",
-    "THIRD": "Step 3",
-    "THIRD_TITLE": "Results!",
-    "PROCEED": "Proceed"
-  },
+ 
 
   "DEPENDANT_SELECTION": {
     "TITLE": "What's On Your Shoulders",

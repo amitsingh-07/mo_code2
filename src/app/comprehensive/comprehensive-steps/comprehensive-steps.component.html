@@ -1,34 +1,29 @@
 <div class="container-fluid--comprehensive max-width--1024 comprehensive">
   <ul class="road-map">
     <li [ngClass]=" {'active': step==1, 'success': step == 2 || step == 3 || step== 4 } "><span></span>
-      <div class="road-map__step-number">Step-1</div>
-      <div class="road-map__step-title">What's On Your Shoulders</div>
-      <div *ngIf="step=='1'" class="road-map__step-desc">Your family commitments will impact on your financial
-        planning. Let's list it out now!</div>
+      <div class="road-map__step-number">{{'COMPREHENSIVE_STEPS.STEP' | translate}} 1</div>
+      <div class="road-map__step-title">{{'COMPREHENSIVE_STEPS.STEP_1_TITLE' | translate}} </div>
+      <div *ngIf="step=='1'" class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_1_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{'active': step==2, 'success': step == 3 || step== 4}"><span></span>
-      <div class="road-map__step-number">Step 2</div>
-      <div class="road-map__step-desc">Your Finances</div>
-      <div *ngIf="step=='2'" class="road-map__step-desc">Your family commitments will impact on your financial
-        planning. Let's list it out now!</div>
+      <div class="road-map__step-number">{{'COMPREHENSIVE_STEPS.STEP' | translate}} 2</div>
+      <div class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_2_TITLE' | translate}} </div>
+      <div *ngIf="step=='2'" class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_2_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{'active': step==3, 'success': step==4}"><span></span>
-      <div class="road-map__step-number">Step 3</div>
-      <div class="road-map__step-desc">Your Current Fire Proofing</div>
-      <div *ngIf="step=='3'" class="road-map__step-desc">Your family commitments will impact on your financial
-        planning. Let's list it out now!</div>
+      <div class="road-map__step-number">{{'COMPREHENSIVE_STEPS.STEP' | translate}} 3</div>
+      <div class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
+      <div *ngIf="step=='3'" class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_3_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{'active': step==4, 'success': step==5}"><span></span>
-      <div class="road-map__step-number">Step 4</div>
-      <div class="road-map__step-desc">Financial Independence. Retire Early</div>
-      <div *ngIf="step=='4'" class="road-map__step-desc">Your family commitments will impact on your financial
-        planning. Let's list it out now!</div>
+      <div class="road-map__step-number">{{'COMPREHENSIVE_STEPS.STEP' | translate}} 4</div>
+      <div class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
+      <div *ngIf="step=='4'" class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{ 'success': step==5}"><span></span>
-      <div class="road-map__step-number">Congratulations!</div>
-      <div class="road-map__step-desc">Report Generation</div>
-      <div *ngIf="step=='5'" class="road-map__step-desc">Your family commitments will impact on your financial
-        planning. Let's list it out now!</div>
+      <div class="road-map__step-number">{{'COMPREHENSIVE_STEPS.STEP' | translate}}</div>
+      <div class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_5_TITLE' | translate}}</div>
+      <div *ngIf="step=='5'" class="road-map__step-desc">{{'COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
     </li>
   </ul>
   <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">{{

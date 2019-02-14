@@ -36,7 +36,7 @@ export class DependantSelectionComponent implements OnInit {
     });
   }
   goToNext(dependantSelectionForm) {
-    if ( dependantSelectionForm.value.dependantSelection === 'dependantYes') {
+    if ( dependantSelectionForm.value.dependantSelection === 'yes') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     }
 
