@@ -228,7 +228,8 @@
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empFloor')">
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">Floor</label>
+                        <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'EMPLOYMENT_DETAILS.FLOOR'
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empFloor)}">

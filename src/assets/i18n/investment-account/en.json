@@ -76,6 +76,7 @@
     "ADDRESS_2": "Address Line 2",
     "UNIT_NO": "Unit No.",
     "CITY": "City",
+    "FLOOR": "Floor",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
     "EMPLOYERS_ADDRESS": "Employer's Address",
