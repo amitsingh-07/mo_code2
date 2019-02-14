@@ -3,19 +3,16 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppService } from '../../app.service';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
-import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -103,7 +100,7 @@ export class DashboardComponent implements OnInit {
     this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
       this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
         const nationalityList = nationalityData.objectList;
-        const countryList = this.getCountryList(nationalityData.objectList);
+        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
         this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
         this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
         const beneficialOwner = this.userProfileInfo.investementDetails
@@ -126,17 +123,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getCountryList(data) {
-    const countryList = [];
-    data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          countryList.push(country);
-        });
-      }
-    });
-    return countryList;
-  }
   goToInvestmentAccount() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
@@ -228,7 +214,7 @@ export class DashboardComponent implements OnInit {
     this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
       this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
         const nationalityList = nationalityData.objectList;
-        const countryList = this.getCountryList(nationalityData.objectList);
+        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
         this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
         this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);

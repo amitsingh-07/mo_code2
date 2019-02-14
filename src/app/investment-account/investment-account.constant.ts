@@ -24,6 +24,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   ],
   SINGAPORE_NATIONALITY_CODE: 'SG',
   SINGAPORE_COUNTRY_CODE: 'SG',
+  PRIORITIZED_COUNTRY_LIST_CODES: ['SG', 'MY'],
   OTHERS: 'Others',
   personal_info: {
     min_age: 18,

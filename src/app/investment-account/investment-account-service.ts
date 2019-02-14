@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
+import { PortfolioService } from '../portfolio/portfolio.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up/sign-up.service';
@@ -14,7 +15,7 @@ import {
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
-  ISaveInvestmentAccountRequest
+  ISaveInvestmentAccountRequest,
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -35,7 +36,8 @@ export class InvestmentAccountService {
     private signUpService: SignUpService,
     private http: HttpClient,
     private apiService: ApiService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private portfolioService: PortfolioService
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -96,6 +98,26 @@ export class InvestmentAccountService {
       country = selectedCountry[0];
     }
     return country;
+  }
+  getCountryList(data) {
+    const countryList = [];
+    const sortedCountryList = [];
+    data.forEach((nationality) => {
+      if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+          countryList.push(country);
+        });
+      }
+    });
+    INVESTMENT_ACCOUNT_CONFIG.PRIORITIZED_COUNTRY_LIST_CODES.forEach((countryCode) => {
+      const filteredCountry = countryList.filter(
+        (country) => country.countryCode === countryCode
+      );
+      sortedCountryList.push(filteredCountry[0]);
+      countryList.splice(countryList.indexOf(filteredCountry[0]), 1);
+    });
+    this.portfolioService.sortByProperty(countryList, 'name', 'asc');
+    return sortedCountryList.concat(countryList);
   }
   setDefaultValueForFormData() {
     this.investmentAccountFormData.isMailingAddressSame =
