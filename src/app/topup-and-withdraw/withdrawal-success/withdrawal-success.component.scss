@@ -19,9 +19,6 @@ app-withdrawal-success {
       position: fixed;
       z-index: 10000;
       text-align: center;
-      // @extend .flex;
-      // @extend .justify-center;
-      // @extend .align-center;
     }
     .custom-modal-content {
       width: 100%;
@@ -31,7 +28,6 @@ app-withdrawal-success {
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 30px;
     }
     .custom-modal--title {
       font-family: $muli-bold;
@@ -75,6 +71,6 @@ app-withdrawal-success {
     }
   }
   .success-text-content {
-    padding: 0px 50px;
+    padding: 0px 50px 30px;
   }
 }
