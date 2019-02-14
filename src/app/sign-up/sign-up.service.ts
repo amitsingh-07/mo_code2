@@ -403,8 +403,8 @@ export class SignUpService {
 
   getAllMessagesByNotifications(notifications) {
     const messages = [];
-    const notificationMessageList = notifications.map((notification) => {
-      const messageList = notification.messages.map((message) => {
+    notifications.map((notification) => {
+      notification.messages.map((message) => {
         let messageDate;
         let messageMonth = '';
         if (message.time) {
@@ -417,7 +417,6 @@ export class SignUpService {
         messages.push(message);
       });
     });
-    console.log(messages);
     return messages;
   }
 
