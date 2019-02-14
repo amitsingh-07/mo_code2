@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { PortfolioService } from '../../portfolio/portfolio.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -28,7 +29,8 @@ export class TransactionComponent implements OnInit {
     public navbarService: NavbarService,
     private translate: TranslateService,
     private topupAndWithDrawService: TopupAndWithDrawService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private portfolioService: PortfolioService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -69,6 +71,11 @@ export class TransactionComponent implements OnInit {
   getTransactionHistory(from?, to?) {
     this.topupAndWithDrawService.getTransactionHistory(from, to).subscribe((response) => {
       this.transactionHistory = response.objectList;
+      this.portfolioService.sortByProperty(
+        this.transactionHistory,
+        'createdDate',
+        'desc'
+      );
       this.transactionHistory = new GroupByPipe().transform(
         this.transactionHistory,
         'displayCreatedDate'
