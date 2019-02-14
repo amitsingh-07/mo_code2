@@ -437,7 +437,13 @@ export class InvestmentAccountFormError {
           'Address Line 2  should contain  alphanumeric and  Special characters.'
       }
     },
-
+    empFloor: {
+      pattern: {
+        errorTitle: 'Invalid  Floor',
+        // tslint:disable-next-line:no-duplicate-string
+        errorMessage: 'Floor should contain Symbol and Number.'
+      }
+    },
     empUnitNo: {
       pattern: {
         errorTitle: 'Invalid  unitNo',

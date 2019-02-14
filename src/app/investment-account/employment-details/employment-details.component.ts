@@ -201,8 +201,8 @@ export class EmploymentDetailsComponent implements OnInit {
             this.formValues.empCountry
               ? this.formValues.empCountry
               : this.investmentAccountService.getCountryFromNationalityCode(
-                  INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
-                ),
+                INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
+              ),
             Validators.required
           ],
           empAddress1: [
@@ -278,6 +278,13 @@ export class EmploymentDetailsComponent implements OnInit {
         ])
       );
       empAddressFormGroup.addControl(
+        'empFloor',
+        new FormControl(
+          this.formValues.empFloor,
+          Validators.pattern(RegexConstants.SymbolNumber)
+        )
+      );
+      empAddressFormGroup.addControl(
         'empUnitNo',
         new FormControl(
           this.formValues.empUnitNo,
@@ -312,8 +319,9 @@ export class EmploymentDetailsComponent implements OnInit {
       );
 
       empAddressFormGroup.removeControl('empPostalCode');
+      empAddressFormGroup.removeControl('empFloor');
       empAddressFormGroup.removeControl('empUnitNo');
-    }
+     }
   }
 
   observeEmpAddressCountryChange() {
