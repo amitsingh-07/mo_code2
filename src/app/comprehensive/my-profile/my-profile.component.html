@@ -1,4 +1,4 @@
-<div class="container-fluid--comprehensive max-width--1024 comprehensive">
+<div  class="container-fluid--comprehensive max-width--1024 comprehensive">
   <div class="text-center">
     <img class="owl-img" src="/assets/images/createAccount-icon.svg" />
   </div>
@@ -7,7 +7,7 @@
   <div [hidden]="registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.HEADER'|translate }}</div>
   <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div>
   <div class="comprehensive__page-content">{{'GETTING_STARTED.DESC'|translate}}</div>
-  <form id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
+  <form  id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
     <div class="form-group-with-bg">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
@@ -27,7 +27,7 @@
             <label for="gender">{{'FORM_LABEL.GENDER'|translate}}</label>
           </div>
           <div class="flex-col-7">
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+            <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
               <div class="flex-row mb0">
                 <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
@@ -50,14 +50,14 @@
           </div>
           <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
-              <div ngbDropdown id="nationalityDropDown" placement="top-right">
-                <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+              <div  ngbDropdown id="nationalityDropDown" placement="top-right">
+                <button [disabled]="nationDisabled"  type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                   <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
-                  <button class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-                  <button type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
+                  <button   class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                  <button  type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
                     (click)="selectNationality(nationality)">
                     {{nationality.text}}
                   </button>
