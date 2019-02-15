@@ -796,4 +796,12 @@ export class ApiService {
       );
   }
 
+  // Comprehensive Module
+  getPersonalDetails() {
+    return this.http.get(apiConstants.endpoint.comprehensive.personalDetails)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
 }

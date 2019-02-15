@@ -10,6 +10,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants'
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
@@ -78,10 +79,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
-    }
   }
 
   ngAfterViewInit() {
@@ -133,7 +130,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    * login submit.
    * @param form - login form.
    */
-  // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
@@ -143,16 +139,40 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue).subscribe((data) => {
-          if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-            try {
-              if (data.objectList[0].customerId) {
-                this.appService.setCustomerId(data.objectList[0].customerId);
-              }
-            } catch (e) {
-              console.log(e);
+      if (this.authService.isAuthenticated()) {
+        this.login();
+      } else {
+        if (!this.authService.isAuthenticated()) {
+          this.authService.authenticate().subscribe((token) => {
+            this.login();
+          });
+        }
+      }
+    }
+  }
+
+  // tslint:disable-next-line:cognitive-complexity
+  private login() {
+    this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
+      this.loginForm.value.captchaValue).subscribe((data) => {
+        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+          try {
+            if (data.objectList[0].customerId) {
+              this.appService.setCustomerId(data.objectList[0].customerId);
             }
+          } catch (e) {
+            console.log(e);
+          }
+          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+            const redirect_url = this.signUpService.getRedirectUrl();
+            if (redirect_url) {
+              this.signUpService.clearRedirectUrl();
+              this.router.navigate([redirect_url]);
+            } else {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+            }
+
+          } else {
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
 
@@ -163,7 +183,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.signUpService.clearRedirectUrl();
                 if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
                   investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+                  this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
                 } else {
                   this.router.navigate([redirect_url]);
                 }
@@ -189,25 +209,25 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
               }
             });
-            this.signUpService.removeCaptchaSessionId();
-          } else if (data.responseMessage.responseCode === 5016) {
-            this.loginForm.controls['captchaValue'].reset();
-            this.loginForm.controls['loginPassword'].reset();
-            this.openErrorModal(data.responseMessage.responseDescription);
-            this.refreshCaptcha();
-          } else {
-            this.loginForm.controls['captchaValue'].reset();
-            this.loginForm.controls['loginPassword'].reset();
-            this.openErrorModal(data.responseMessage.responseDescription);
-            if (data.objectList[0] && data.objectList[0].sessionId) {
-              this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-            } else if (data.objectList[0].attempt >= 3) {
-              this.signUpService.setCaptchaShown();
-              this.setCaptchaValidator();
-            }
           }
-        });
-    }
+          this.signUpService.removeCaptchaSessionId();
+        } else if (data.responseMessage.responseCode === 5016) {
+          this.loginForm.controls['captchaValue'].reset();
+          this.loginForm.controls['loginPassword'].reset();
+          this.openErrorModal(data.responseMessage.responseDescription);
+          this.refreshCaptcha();
+        } else {
+          this.loginForm.controls['captchaValue'].reset();
+          this.loginForm.controls['loginPassword'].reset();
+          this.openErrorModal(data.responseMessage.responseDescription);
+          if (data.objectList[0] && data.objectList[0].sessionId) {
+            this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+          } else if (data.objectList[0].attempt >= 3) {
+            this.signUpService.setCaptchaShown();
+            this.setCaptchaValidator();
+          }
+        }
+      });
   }
 
   openErrorModal(error) {

@@ -9,6 +9,7 @@ import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ImyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
+import { ComprehensiveApiService} from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -20,7 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
 export class MyProfileComponent implements OnInit {
   registeredUser = true;
   pageTitle: string;
-  userDetails: ImyProfile;
+  userDetails: any;
   myProfileForm: FormGroup;
   nationality = '';
   nationalityList: string;
@@ -30,7 +31,7 @@ export class MyProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
               private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
-              private parserFormatter: NgbDateParserFormatter) {
+              private parserFormatter: NgbDateParserFormatter, private comprehensiveApiService: ComprehensiveApiService) {
     const today: Date = new Date();
     configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -45,7 +46,7 @@ export class MyProfileComponent implements OnInit {
       });
     });
 
-    // This array should be deleted after the Integration with API
+  //  This array should be deleted after the Integration with API
 
     this.userDetails = {
       id: 'abc',
@@ -57,6 +58,10 @@ export class MyProfileComponent implements OnInit {
       registeredUser: false
 
     };
+
+    this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+console.log(data);
+    });
     this.registeredUser = this.userDetails.registeredUser;
     this.nationality = this.userDetails.nation;
     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : 'male';

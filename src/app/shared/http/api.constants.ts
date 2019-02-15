@@ -5,10 +5,11 @@ const ACCOUNT_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
+const COMPREHENSIVE_API_BASE_URL = 'account-microservice/api/customer/comprehensive/';
 
 export let apiConstants = {
     endpoint: {
-        authenticate: 'account/account-microservice/authenticate',
+        authenticate: 'account-microservice/authenticate',
         login: 'login',
         logout: 'account/account-microservice/api/logout',
         getProfileList: 'account/account-microservice/api/getProfileTypeList',
@@ -93,6 +94,9 @@ export let apiConstants = {
             getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile?handleError=true',
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
+        },
+        comprehensive: {
+         personalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails'
         }
     }
 };

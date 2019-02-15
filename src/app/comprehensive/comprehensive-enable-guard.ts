@@ -25,7 +25,7 @@ export class ComprehensiveEnableGuard implements CanActivate {
     if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
-    } else if (!this.authService.isAuthenticated()) {
+    } else if (!this.authService.isSignedUser()) {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
       this.signUpService.setRedirectUrl(COMPREHENSIVE_BASE_ROUTE);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
