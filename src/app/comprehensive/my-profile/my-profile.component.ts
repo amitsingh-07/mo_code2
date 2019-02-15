@@ -20,6 +20,9 @@ import { ComprehensiveService } from './../comprehensive.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
 export class MyProfileComponent implements IPageComponent, OnInit {
+  nationDisabled: boolean;
+  DobDisabled: boolean;
+  DobBoolean: any;
   registeredUser = true;
   pageTitle: string;
   userDetails: any;
@@ -29,6 +32,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   submitted: boolean;
   nationalityAlert = false;
   pageId: string;
+  genderDisabled = false;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -58,10 +62,9 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       id: 'abc',
       firstName: 'kelvin ',
       lastName: 'NG',
-      dateOfBirth: '20-01-1980',
-      nation: 'singaporean',
+      dateOfBirth: '04-05-1995',
+      nation: 'Singaporean',
       gender: 'male',
-      registeredUser: false
 
     };
 
@@ -69,11 +72,16 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       console.log(data);
     });
     this.registeredUser = this.userDetails.registeredUser;
+    this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
+    this.nationDisabled = this.userDetails.nation ? true : false;
+    this.genderDisabled = this.userDetails.gender ? true : false;
     this.nationality = this.userDetails.nation;
-    this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : 'male';
-    const dob = this.userDetails.dateOfBirth.split('-');
+    const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
+    this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
     // tslint:disable-next-line:radix
-    this.userDetails.dateOfBirth = { year: parseInt(dob[2]), month: parseInt(dob[1]), day: parseInt(dob[0]) };
+    this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
+
+    //this.comprehensiveApiService.getPersonalDetails();
   }
 
   ngOnInit() {
@@ -94,11 +102,11 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
   buildMyProfileForm(userDetails) {
     this.myProfileForm = this.formBuilder.group({
-      firstName: [userDetails.firstName],
-      lastName: [userDetails.lastName],
-      gender: [userDetails.gender, [Validators.required]],
-      nation: [userDetails.nation, [Validators.required]],
-      dateOfBirth: [userDetails.dateOfBirth, [Validators.required]],
+      firstName: [userDetails.firstName ? userDetails.firstName : ''  ],
+      lastName: [userDetails.lastName ? userDetails.lastName : ''],
+      gender: [{ value: userDetails.gender ? userDetails.gender : '', disabled: this.genderDisabled}, [Validators.required]],
+      nation: [{ value: userDetails.nation ? userDetails.nation : '' } , [Validators.required]],
+      dateOfBirth: [{value : userDetails.dateOfBirth ? userDetails.dateOfBirth : '', disabled:  this.DobDisabled}, [Validators.required]],
 
     });
   }
@@ -112,6 +120,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   selectNationality(nationality: any) {
     this.nationalityAlert = true;
     nationality = nationality ? nationality : { text: '', value: '' };
+    this.nationality = nationality.text;
     this.myProfileForm.controls['nation'].setValue(nationality.value);
     this.myProfileForm.markAsDirty();
   }
@@ -134,3 +143,4 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     return true;
   }
 }
+
