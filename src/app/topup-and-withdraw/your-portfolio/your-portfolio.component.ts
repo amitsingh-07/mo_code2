@@ -31,7 +31,7 @@ export class YourPortfolioComponent implements OnInit {
   holdingsDPMSData;
   assetAllocationValues;
   yearlyReturns: any;
-  totalReturns: any;
+  totalReturnsPercentage: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -62,8 +62,8 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.totalReturns = this.portfolioValues.totalReturns
-      ? this.portfolioValues.totalReturns
+    this.totalReturnsPercentage = this.portfolioValues.totalReturnsPercentage
+      ? this.portfolioValues.totalReturnsPercentage
       : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns
