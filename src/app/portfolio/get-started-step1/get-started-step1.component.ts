@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -32,7 +33,8 @@ export class GetStartedStep1Component implements OnInit {
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
-    public signUpService: SignUpService
+    public signUpService: SignUpService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -47,7 +49,11 @@ export class GetStartedStep1Component implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {});
+      this.authService.authenticate().subscribe((token) => {
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
     }
   }
   goBack() {

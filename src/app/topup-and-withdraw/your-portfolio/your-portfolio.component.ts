@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PortfolioService } from '../../portfolio/portfolio.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -30,7 +31,7 @@ export class YourPortfolioComponent implements OnInit {
   holdingsDPMSData;
   assetAllocationValues;
   yearlyReturns: any;
-  totalReturns: any;
+  totalReturnsPercentage: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -42,7 +43,8 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public portfolioService: PortfolioService
+    public portfolioService: PortfolioService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -60,8 +62,8 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.totalReturns = this.portfolioValues.totalReturns
-      ? this.portfolioValues.totalReturns
+    this.totalReturnsPercentage = this.portfolioValues.totalReturnsPercentage
+      ? this.portfolioValues.totalReturnsPercentage
       : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns
@@ -78,6 +80,9 @@ export class YourPortfolioComponent implements OnInit {
         this.portfolio = data.objectList;
         this.constructFundingParams(this.portfolio);
         this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 

@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -38,7 +39,8 @@ export class WithdrawalTypeComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -237,13 +239,7 @@ export class WithdrawalTypeComponent implements OnInit {
       },
       (err) => {
         this.loaderService.hideLoader();
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
