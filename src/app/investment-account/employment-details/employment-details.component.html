@@ -224,6 +224,20 @@
                       </div>
                     </div>
                   </div>
+                  <!-- FLOOR -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empFloor')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'EMPLOYMENT_DETAILS.FLOOR'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empFloor)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empFloor" id="employeeAddress-floor-txt" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <!-- UNIT NO -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empUnitNo')">
                     <div class="flex-row">
@@ -238,6 +252,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <!-- CITY -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empCity')">
                     <div class="flex-row">

@@ -368,6 +368,7 @@ export class InvestmentAccountService {
       empPostalCode: this.investmentAccountFormData.empPostalCode,
       empAddress1: this.investmentAccountFormData.empAddress1,
       empAddress2: this.investmentAccountFormData.empAddress2,
+      empFloor: this.investmentAccountFormData.empFloor,
       empUnitNo: this.investmentAccountFormData.empUnitNo,
       empCity: this.investmentAccountFormData.empCity,
       empState: this.investmentAccountFormData.empState,
@@ -395,6 +396,7 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.empPostalCode = data.employeaddress.empPostalCode;
       this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
       this.investmentAccountFormData.empAddress2 = data.employeaddress.empAddress2;
+      this.investmentAccountFormData.empFloor = data.employeaddress.empFloor;
       this.investmentAccountFormData.empUnitNo = data.employeaddress.empUnitNo;
       this.investmentAccountFormData.empCity = data.employeaddress.empCity;
       this.investmentAccountFormData.empState = data.employeaddress.empState;
@@ -436,6 +438,7 @@ export class InvestmentAccountService {
         : data.empZipCode,
       addressLine1: data.empAddress1,
       addressLine2: data.empAddress2,
+      Floor: data.empFloor,
       unitNumber: data.empUnitNo,
       townName: null, // todo not available in client
       city: data.empCity
@@ -887,6 +890,7 @@ export class InvestmentAccountService {
         : data.empZipCode,
       addressLine1: data.empAddress1,
       addressLine2: data.empAddress2,
+      floor: data.empFloor,
       unitNumber: data.empUnitNo,
       townName: null, // todo not available in client
       city: data.empCity
@@ -955,13 +959,13 @@ export class InvestmentAccountService {
         additionalInfo: this.getadditionalInfoDesc(data),
         investmentDuration:
           data.source &&
-          data.source.key ===
+            data.source.key ===
             INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
             ? data.durationInvestment
             : null,
         earningSourceId:
           data.source &&
-          data.source.key ===
+            data.source.key ===
             INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
             ? earningsGeneratedId
             : null
@@ -1157,6 +1161,9 @@ export class InvestmentAccountService {
         // tslint:disable-next-line:max-line-length
         this.investmentAccountFormData.empAddress2 =
           data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2;
+        // tslint:disable-next-line:max-line-length
+        this.investmentAccountFormData.empFloor =
+          data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.floor;
         // tslint:disable-next-line:max-line-length
         this.investmentAccountFormData.empUnitNo =
           data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber;
@@ -1530,6 +1537,8 @@ export class InvestmentAccountService {
       employmentInformation.employerAddress.employerAddress.city;
     this.investmentAccountFormData.empState =
       employmentInformation.employerAddress.employerAddress.state;
+    this.investmentAccountFormData.empFloor =
+      employmentInformation.employerAddress.employerAddress.floor;
     this.investmentAccountFormData.empUnitNo =
       employmentInformation.employerAddress.employerAddress.unitNumber;
     this.commit();
@@ -1613,13 +1622,13 @@ export class InvestmentAccountService {
       if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
       ) {
         this.investmentAccountFormData.personalSavings = pepDetails.additionalInfo;
       } else if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
       ) {
         this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
         this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
@@ -1629,13 +1638,13 @@ export class InvestmentAccountService {
       } else if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
       ) {
         this.investmentAccountFormData.inheritanceGift = pepDetails.additionalInfo;
       } else if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===
-          INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.OTHERS
+        INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.OTHERS
       ) {
         this.investmentAccountFormData.otherSources = pepDetails.additionalInfo;
       } else {
