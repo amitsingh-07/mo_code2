@@ -231,8 +231,8 @@
   },
   "COMMON_ERRORS": {
     "API_FAILED": {
-      "TITLE": "Error !",
-      "DESC": "Oops. Something went wrong."
+      "TITLE": "Oops !",
+      "DESC": "Something went wrong. Please try again."
     }
   },
   "SUBSCRIBE_SIDE": {

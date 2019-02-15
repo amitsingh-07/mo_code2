@@ -158,10 +158,14 @@ export class UploadDocumentsComponent implements OnInit {
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      this.loaderService.hideLoader();
       if (response) {
-        this.loaderService.hideLoader();
         this.redirectToNextPage();
       }
+    },
+    (err) => {
+      this.loaderService.hideLoader();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

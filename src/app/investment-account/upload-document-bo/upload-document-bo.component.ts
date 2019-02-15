@@ -110,12 +110,18 @@ export class UploadDocumentBOComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-    this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
-      if (response) {
+    this.investmentAccountService.uploadDocument(this.formData).subscribe(
+      (response) => {
         this.loaderService.hideLoader();
-        this.redirectToNextPage();
+        if (response) {
+          this.redirectToNextPage();
+        }
+      },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
       }
-    });
+    );
   }
 
   setThumbnail(thumbElem, file) {
