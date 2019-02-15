@@ -1,6 +1,7 @@
 import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { IHeaderIcon as IHeaderMenuItem } from './navbar.types';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,8 @@ export class NavbarService {
   private pageSettingsIcon = new BehaviorSubject(true);
   private pageFilterIcon = new BehaviorSubject(true);
   private pageSuperTitle = new BehaviorSubject('');
+  private menuItem = new BehaviorSubject({} as IHeaderMenuItem);
+  private $menuItemClick = new BehaviorSubject('');
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -45,6 +48,9 @@ export class NavbarService {
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
   currentPageFilterIcon = this.pageFilterIcon.asObservable();
   currentPageSuperTitle = this.pageSuperTitle.asObservable();
+  currentMenuItem = this.menuItem.asObservable();
+
+  onMenuItemClicked = this.$menuItemClick.asObservable();
 
   constructor() { }
 
@@ -56,6 +62,14 @@ export class NavbarService {
   getNavbarDetails() {
     this.getNavEvent.next(true);
   }
+
+  setNavbarComprehensive(secondaryVisible: boolean) {
+    this.setNavbarVisibility(true);
+    this.setNavbarMode(6);
+    this.setNavbarMobileVisibility(secondaryVisible);
+    this.setNavbarShadowVisibility(false);
+  }
+
   /* Visibility Functions */
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
@@ -92,6 +106,14 @@ export class NavbarService {
     this.pageProdInfoIcon.next(isVisible);
   }
 
+  setPageTitleWithIcon(title: string, menuItem: IHeaderMenuItem) {
+    this.pageTitle.next(title);
+    this.menuItem.next(menuItem);
+    this.pageHelpIcon.next(false);
+    this.pageSettingsIcon.next(false);
+    this.pageFilterIcon.next(false);
+  }
+
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
@@ -125,6 +147,10 @@ export class NavbarService {
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
     this.mobileModal.next(event);
+  }
+
+  menuItemClicked(pageId) {
+    this.$menuItemClick.next(pageId);
   }
 
   // Hiding Product Info Modal Trigger

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { ImyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
-import { ComprehensiveApiService} from './../comprehensive-api.service';
+import { IPageComponent } from './../../shared/interfaces/page-component.interface';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -18,7 +19,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./my-profile.component.scss'],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent implements IPageComponent, OnInit {
   registeredUser = true;
   pageTitle: string;
   userDetails: any;
@@ -27,11 +28,13 @@ export class MyProfileComponent implements OnInit {
   nationalityList: string;
   submitted: boolean;
   nationalityAlert = false;
+  pageId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
-              private parserFormatter: NgbDateParserFormatter, private comprehensiveApiService: ComprehensiveApiService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
+    private parserFormatter: NgbDateParserFormatter, private comprehensiveApiService: ComprehensiveApiService) {
     const today: Date = new Date();
     configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -41,12 +44,15 @@ export class MyProfileComponent implements OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+        this.pageTitle = this.translate.instant('GETTING_STARTED.TITLE');
         this.nationalityList = this.translate.instant('NATIONALITY');
+        this.setPageTitle(this.pageTitle);
       });
     });
 
-  //  This array should be deleted after the Integration with API
+    this.pageId = this.route.routeConfig.component.name;
+
+    //  This array should be deleted after the Integration with API
 
     this.userDetails = {
       id: 'abc',
@@ -60,18 +66,28 @@ export class MyProfileComponent implements OnInit {
     };
 
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-console.log(data);
+      console.log(data);
     });
     this.registeredUser = this.userDetails.registeredUser;
     this.nationality = this.userDetails.nation;
     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : 'male';
     const dob = this.userDetails.dateOfBirth.split('-');
     // tslint:disable-next-line:radix
-    this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
+    this.userDetails.dateOfBirth = { year: parseInt(dob[2]), month: parseInt(dob[1]), day: parseInt(dob[0]) };
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarComprehensive(true);
+    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        alert('Menu Clicked');
+      }
+    });
     this.buildMyProfileForm(this.userDetails);
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
   }
 
   get myProfileControls() { return this.myProfileForm.controls; }

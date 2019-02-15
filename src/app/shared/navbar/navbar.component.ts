@@ -61,6 +61,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   userInfo;
 
+  showMenuItem = false;
+  menuItemClass = '';
+  pageId: any;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -127,6 +131,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
 
+    this.navbarService.currentMenuItem.subscribe((menuItem) => {
+      if (typeof menuItem.iconClass !== undefined) {
+        this.showMenuItem = true;
+      }
+      this.menuItemClass = menuItem.iconClass;
+      this.pageId = menuItem.id;
+    });
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url !== this.currentUrl) {
@@ -165,6 +177,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showMobilePopUp() {
     this.navbarService.showMobilePopUp(this.pageTitle);
+  }
+
+  onMenuItemClicked() {
+    this.navbarService.menuItemClicked(this.pageId);
   }
 
   goBack() {
@@ -208,7 +224,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.recentMessages = response.objectList[0].notifications[0].messages;
       this.recentMessages.map((message) => {
         message.time = parseInt(message.time, 10);
-    });
+      });
     });
   }
 
