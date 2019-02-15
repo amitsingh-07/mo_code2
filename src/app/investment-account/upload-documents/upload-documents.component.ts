@@ -158,10 +158,20 @@ export class UploadDocumentsComponent implements OnInit {
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      this.loaderService.hideLoader();
       if (response) {
-        this.loaderService.hideLoader();
         this.redirectToNextPage();
       }
+    },
+    (err) => {
+      this.loaderService.hideLoader();
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant(
+        'COMMON_ERRORS.API_FAILED.TITLE'
+      );
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'COMMON_ERRORS.API_FAILED.DESC'
+      );
     });
   }
 
