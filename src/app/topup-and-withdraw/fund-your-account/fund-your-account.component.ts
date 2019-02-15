@@ -83,6 +83,9 @@ export class FundYourAccountComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
       console.log(this.bankDetailsList);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -134,6 +137,9 @@ export class FundYourAccountComponent implements OnInit {
   getTransferDetails() {
     this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
       this.setBankPayNowDetails(data.objectList[0]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -229,13 +235,7 @@ export class FundYourAccountComponent implements OnInit {
       },
       (err) => {
         this.loaderService.hideLoader();
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
@@ -273,13 +273,7 @@ export class FundYourAccountComponent implements OnInit {
       },
       (err) => {
         this.loaderService.hideLoader();
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }

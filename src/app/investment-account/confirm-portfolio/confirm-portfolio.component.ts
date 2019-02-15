@@ -325,6 +325,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           }
         },
         (err) => {
+          this.loaderService.hideLoader();
           this.investmentAccountService.showGenericErrorModal();
         }
       );
