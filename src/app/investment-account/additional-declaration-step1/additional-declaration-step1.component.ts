@@ -199,6 +199,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   getOccupationList() {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   setOccupationValue(value) {

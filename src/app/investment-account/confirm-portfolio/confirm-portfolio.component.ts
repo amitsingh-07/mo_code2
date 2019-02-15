@@ -99,6 +99,9 @@ export class ConfirmPortfolioComponent implements OnInit {
           ),
           period: this.portfolio.investmentPeriod
         };
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -200,6 +203,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     const params = this.constructUpdateInvestmentParams(updatedData);
     this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioDetails();
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -263,7 +269,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         }
       },
       (err) => {
-        this.showGenericError();
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
@@ -319,19 +325,9 @@ export class ConfirmPortfolioComponent implements OnInit {
           }
         },
         (err) => {
-          this.showGenericError();
+          this.investmentAccountService.showGenericErrorModal();
         }
       );
     }
-  }
-
-  showGenericError() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
-    );
   }
 }

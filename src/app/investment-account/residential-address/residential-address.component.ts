@@ -88,6 +88,9 @@ export class ResidentialAddressComponent implements OnInit {
   getReasoneList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.reasonList = data.objectList.differentAddressReason;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
