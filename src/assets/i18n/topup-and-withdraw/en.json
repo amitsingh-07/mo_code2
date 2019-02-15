@@ -80,8 +80,11 @@
     "PLEASE_TOPUP": "Please transfer",
     "CASH_ACCOUNT": " to your cash account.",
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
-    "SUBMIT": "Submit"
-
+    "SUBMIT": "Submit",
+    "TOPUP_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the topup request"
+    }
   },
   "TOPUP_REQUEST": {
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
@@ -158,6 +161,10 @@
         "ACCOUNT": "account",
         "SUBMIT": "Confirm"
       }
+    },
+    "WITHDRAW_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the withdraw request"
     }
   },
   "WITHDRAW_SUCCESS": {
