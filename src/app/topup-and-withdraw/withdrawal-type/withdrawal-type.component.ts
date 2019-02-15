@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -36,7 +37,8 @@ export class WithdrawalTypeComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public topupAndWithDrawService: TopupAndWithDrawService
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -211,8 +213,13 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   saveWithdrawal() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.DESC')
+    });
     this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
@@ -229,6 +236,7 @@ export class WithdrawalTypeComponent implements OnInit {
         }
       },
       (err) => {
+        this.loaderService.hideLoader();
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorTitle = this.translate.instant(
           'COMMON_ERRORS.API_FAILED.TITLE'
