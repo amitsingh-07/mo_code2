@@ -108,6 +108,11 @@
           border-right: 1px solid $teal-color;
           display: flex;
           align-items: center;
+
+          &.border-right-none{
+            border-right-width:0px;
+            padding-right:0px;
+          }
         }
         .rating {
           font-family: $muli-regular;
