@@ -31,6 +31,7 @@ export class DependantsDetailsComponent implements OnInit {
   dependantDetails: ImyDependant;
   relationship: string;
   submitted: boolean;
+  pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService) {
@@ -39,28 +40,35 @@ export class DependantsDetailsComponent implements OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
         this.relationShipList = this.translate.instant('DEPENDANT_DETAILS.RELATIONSHIP_LIST');
         this.nationalityList = this.translate.instant('NATIONALITY');
+        this.pageTitle = this.translate.instant('COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.pageId = this.route.routeConfig.component.name;
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarComprehensive(true);
+    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        alert('Menu Clicked');
+      }
+    });
     this.buildDependantForm();
   }
 
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+  }
   buildDependantForm() {
     this.myDependantForm = this.formBuilder.group({
       dependant: this.formBuilder.array([this.buildDependantDetailsForm()]),
 
     });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
+
   selectRelationship(status, i) {
     const relationship = status ? status : '';
     this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(relationship);

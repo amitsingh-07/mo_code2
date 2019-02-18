@@ -2,10 +2,10 @@
   <div class="text-center">
     <img class="owl-img" src="/assets/images/createAccount-icon.svg" />
   </div>
-  <div class="comprehensive__page-heading">{{'GETTING_STARTED.HI'|translate }} {{userDetails.firstName}}
-    {{userDetails.lastName}}</div>
+  <div class="comprehensive__page-heading">{{'GETTING_STARTED.HI'|translate }} 
+    {{userDetails ?userDetails.firstName : ''}}</div>
   <div [hidden]="registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.HEADER'|translate }}</div>
-  <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div>
+  <!-- <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div> -->
   <div class="comprehensive__page-content">{{'GETTING_STARTED.DESC'|translate}}</div>
   <form  id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
     <div class="form-group-with-bg">
@@ -19,7 +19,7 @@
             </label>
           </div>
           <div class="flex-col-7">
-            {{userDetails.firstName}} {{userDetails.lastName}}
+              {{userDetails ?userDetails.firstName : ''}}
           </div>
         </div>
         <div class="flex-row">

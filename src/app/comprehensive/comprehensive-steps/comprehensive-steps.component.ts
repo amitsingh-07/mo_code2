@@ -18,6 +18,7 @@ export class ComprehensiveStepsComponent implements OnInit {
   pageTitle: string;
   step: number;
   url: string;
+  pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
               private translate: TranslateService, private configService: ConfigService) {
               this.configService.getConfig().subscribe((config: any) => {
@@ -25,20 +26,27 @@ export class ComprehensiveStepsComponent implements OnInit {
               this.translate.use(config.language);
               this.translate.get(config.common).subscribe((result: string) => {
               // meta tag and title
-              this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+              this.pageTitle = this.translate.instant('ROAD_MAP.TITLE');
+              this.setPageTitle(this.pageTitle);
               });
               });
 
               // tslint:disable-next-line:radix
               this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
+              this.pageId = this.route.routeConfig.component.name;
 
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
-
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarComprehensive(true);
+    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        alert('Menu Clicked');
+      }
+    });
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
   }
 
   goToNext(step) {

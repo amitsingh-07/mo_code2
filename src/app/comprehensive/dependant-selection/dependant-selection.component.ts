@@ -15,6 +15,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 export class DependantSelectionComponent implements OnInit {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
+  pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private configService: ConfigService) {
     this.configService.getConfig().subscribe((config: any) => {
@@ -22,19 +23,33 @@ export class DependantSelectionComponent implements OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+        this.pageTitle = this.translate.instant('COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.setPageTitle(this.pageTitle);
 
       });
     });
+    this.pageId = this.route.routeConfig.component.name;
+  }
+  ngOnInit() {
+    this.navbarService.setNavbarComprehensive(true);
+    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        alert('Menu Clicked');
+      }
+    });
+    this.buildMyDependantSelectionForm();
   }
 
-  ngOnInit() {
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+  }
 
-    this.navbarService.setNavbarDirectGuided(true);
+  buildMyDependantSelectionForm() {
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl('', Validators.required)
     });
   }
+
   goToNext(dependantSelectionForm) {
     if ( dependantSelectionForm.value.dependantSelection === 'yes') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
