@@ -555,6 +555,9 @@ export class InvestmentAccountService {
     if (data.employment && data.employment.value) {
       this.investmentAccountFormData.companyName = data.employment.value;
       this.disableAttributes.push('companyName');
+      this.disableAttributes.push('employmentStatus');
+    } else {
+      this.disableAttributes.push('employmentStatus');
     }
 
     // Occupation
@@ -697,7 +700,13 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.isMyInfoEnabled &&
       this.investmentAccountFormData.disableAttributes.includes(fieldName)
     ) {
-      disable = true;
+      if ((fieldName === INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS.COMPANY_NAME ||
+        fieldName === INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS.EMPLOYMENT_STATUS)
+        && this.isSingaporeResident()) {
+        disable = false;
+      } else {
+        disable = true;
+      }
     } else {
       disable = false;
     }

@@ -23,13 +23,10 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button *ngIf="!employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
+                      <button [disabled]="isDisabled('employmentStatus')" class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
-                        Select
-                      </button>
-                      <button *ngIf="employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
-                        id="employement_details_status-drpdown" ngbDropdownToggle>
-                        {{employementDetailsForm.controls.employmentStatus.value}}
+                        <span *ngIf="!employementDetailsForm.controls.employmentStatus.value">Select</span>
+                        <span *ngIf="employementDetailsForm.controls.employmentStatus.value">{{employementDetailsForm.controls.employmentStatus.value}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;"
@@ -105,7 +102,7 @@
                   <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('occupation').enabled && !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
                     <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
-                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
+                        <button [disabled]="isDisabled('occupation')" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
                           <span *ngIf="!employementDetailsForm.controls.occupation.value">Select Occupation</span>
                           <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
