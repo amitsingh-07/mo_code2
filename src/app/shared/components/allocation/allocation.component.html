@@ -14,11 +14,11 @@
       <ngb-accordion #acc="ngbAccordion">
         <ngb-panel id="panel-{{i}}" title="Second">
           <ng-template ngbPanelContent>
-            <div class="bond_desc" *ngIf="asset.numberOfHoldings">
+            <div class="bond_desc" *ngIf="asset.holdingsCount">
               <div class="flex-row flex-col-12">
-                <div class="rating_type">Number of Holdings</div>
+                <div class="rating_type border-right-none">Number of Holdings</div>
                 <div class="rating">
-                  <div class="flex-row"><span class="rating_value">{{asset.numberOfHoldings}}</span></div>
+                  <div class="flex-row"><span class="rating_value">{{asset.holdingsCount}}</span></div>
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="flex-col-7 rating">
                   <div class="flex-row" *ngFor="let detail of allocation.value;">
                     <span class="flex-col-8">{{detail.sectorRegion}}</span>
-                    <span class="rating_value flex-col-4">{{detail.percentage}}%</span>
+                    <span class="rating_value flex-col-4">{{detail.percentage | number : '1.1-1'}}%</span>
                   </div>
                 </div>
               </div>

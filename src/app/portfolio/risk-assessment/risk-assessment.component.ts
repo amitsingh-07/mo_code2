@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -39,7 +40,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     public footerService: FooterService,
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
-    public log: LoggerService
+    public log: LoggerService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -88,6 +90,9 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.portfolioService.getQuestionsList().subscribe((data) => {
       this.questionsList = data.objectList;
       this.setCurrentQuestion();
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -130,6 +135,9 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
           this.portfolioService.setRiskProfile(data.objectList);
           this.portfolioService.setPortfolioSplashModalCounter(0);
           this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
+        },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
         });
       }
     }

@@ -11,16 +11,18 @@ app-portfolio-exist {
     }
   }
   .journey-wrapper {
-    width: 120px;
-    height: 120px;
-    margin: 60px auto 0;
+    width: 175px;
+    height: 165px;
+    margin: 66px auto 0;
   }
   .journey-content {
-    margin-top: 30px;
+    margin-top: 13px;
     font-size: 16px;
-    line-height: 21px;
+    line-height: 22px;
     letter-spacing: -0.16px;
-    color: $dark-grey-color;
+    color: $white-color;
+    text-align: center;
+    padding: 0 30px;
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;

@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 import { PortfolioService } from '../portfolio/portfolio.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
@@ -37,7 +40,9 @@ export class InvestmentAccountService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    public readonly translate: TranslateService,
+    private modal: NgbModal
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -1651,5 +1656,15 @@ export class InvestmentAccountService {
       }
       this.commit();
     }
+  }
+
+  showGenericErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'COMMON_ERRORS.API_FAILED.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'COMMON_ERRORS.API_FAILED.DESC'
+    );
   }
 }

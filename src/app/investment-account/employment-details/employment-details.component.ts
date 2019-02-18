@@ -102,7 +102,7 @@ export class EmploymentDetailsComponent implements OnInit {
             value: this.formValues.companyName,
             disabled: this.investmentAccountService.isDisabled('companyName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.AlphanumericSpace)]
+          [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
         )
       );
       this.employementDetailsForm.addControl(
@@ -157,11 +157,17 @@ export class EmploymentDetailsComponent implements OnInit {
   getIndustryList() {
     this.investmentAccountService.getIndustryList().subscribe((data) => {
       this.industryList = data.objectList;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   getOccupationList() {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   getEmployeList() {
@@ -170,6 +176,9 @@ export class EmploymentDetailsComponent implements OnInit {
       this.investmentAccountService.setEmploymentStatusList(
         data.objectList.employmentStatus
       );
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   setEmployementStatus(key, value) {
@@ -407,6 +416,9 @@ export class EmploymentDetailsComponent implements OnInit {
               // tslint:disable-next-line:max-line-length
               this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
             }
+          },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
           });
       } else {
         this.investmentAccountService.setEmployeAddressFormData(form.getRawValue());

@@ -8,6 +8,7 @@ import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-transaction',
@@ -30,7 +31,8 @@ export class TransactionComponent implements OnInit {
     private translate: TranslateService,
     private topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -80,6 +82,9 @@ export class TransactionComponent implements OnInit {
         this.transactionHistory,
         'displayCreatedDate'
       );
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

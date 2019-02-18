@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -40,7 +41,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     const self = this;
@@ -191,6 +193,9 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   goBack() {
