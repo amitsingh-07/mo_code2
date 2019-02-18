@@ -1,8 +1,10 @@
 export interface ImyProfile {
-name: string;
+id: string;
+firstName: string;
+lastName: string;
+dateOfBirth: any;
+nation: string;
 gender: string;
-nationality: string;
-dob: any;
 registeredUser: boolean;
 }
 export interface ImyDependant {

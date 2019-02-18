@@ -36,7 +36,10 @@ export class DependantSelectionComponent implements OnInit {
     });
   }
   goToNext(dependantSelectionForm) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+    if ( dependantSelectionForm.value.dependantSelection === 'yes') {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+    }
+
   }
 
 }

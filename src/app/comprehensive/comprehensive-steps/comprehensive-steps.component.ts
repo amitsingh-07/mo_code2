@@ -15,22 +15,41 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
   styleUrls: ['./comprehensive-steps.component.scss']
 })
 export class ComprehensiveStepsComponent implements OnInit {
-
+  pageTitle: string;
+  step: number;
+  url: string;
   constructor(private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
               private translate: TranslateService, private configService: ConfigService) {
-    this.configService.getConfig().subscribe((config) => {
-      this.translate.setDefaultLang(config.language);
-      this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
+              this.configService.getConfig().subscribe((config: any) => {
+              this.translate.setDefaultLang(config.language);
+              this.translate.use(config.language);
+              this.translate.get(config.common).subscribe((result: string) => {
+              // meta tag and title
+              this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
+              });
+              });
 
-    });
+              // tslint:disable-next-line:radix
+              this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
+
+  }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
   }
-  proceed() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION]);
+
+  goToNext(step) {
+    switch (step) {
+      case 1:
+      this.url = COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION;
+      break;
+      case 2:
+      break;
+
+    }
+    this.router.navigate([this.url]);
   }
 }

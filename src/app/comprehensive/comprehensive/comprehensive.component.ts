@@ -19,19 +19,21 @@ export class ComprehensiveComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, public translate: TranslateService,
               public navbarService: NavbarService, private configService: ConfigService) {
-    this.configService.getConfig().subscribe((config) => {
-      this.translate.setDefaultLang(config.language);
-      this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
+                this.configService.getConfig().subscribe((config: any) => {
+                  this.translate.setDefaultLang(config.language);
+                  this.translate.use(config.language);
+                  this.translate.get(config.common).subscribe((result: string) => {
+                  // meta tag and title
 
-    });
+                  });
+                  });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
+
   }
   start() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
   }
 }
