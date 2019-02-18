@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { ImyProfile} from '../comprehensive-types';
 
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -25,7 +26,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   DobBoolean: any;
   registeredUser = true;
   pageTitle: string;
-  userDetails: any;
+  userDetails: ImyProfile;
   myProfileForm: FormGroup;
   nationality = '';
   nationalityList: string;
@@ -55,33 +56,20 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     });
 
     this.pageId = this.route.routeConfig.component.name;
-
-    //  This array should be deleted after the Integration with API
-
-    this.userDetails = {
-      id: 'abc',
-      firstName: 'kelvin ',
-      lastName: 'NG',
-      dateOfBirth: '04-05-1995',
-      nation: 'Singaporean',
-      gender: 'male',
-
-    };
-
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-      console.log(data);
-    });
-    this.registeredUser = this.userDetails.registeredUser;
-    this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
-    this.nationDisabled = this.userDetails.nation ? true : false;
-    this.genderDisabled = this.userDetails.gender ? true : false;
-    this.nationality = this.userDetails.nation;
-    const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
-    this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
+     this.userDetails = data.objectList[0];
+     console.log(this.userDetails);
+     this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
+     this.nationDisabled = this.userDetails.nation ? true : false;
+     this.genderDisabled = this.userDetails.gender ? true : false;
+     this.nationality = this.userDetails.nation;
+     const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
+     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
     // tslint:disable-next-line:radix
-    this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
+     this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
 
-    //this.comprehensiveApiService.getPersonalDetails();
+    });
+
   }
 
   ngOnInit() {
@@ -102,11 +90,12 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
   buildMyProfileForm(userDetails) {
     this.myProfileForm = this.formBuilder.group({
-      firstName: [userDetails.firstName ? userDetails.firstName : ''  ],
-      lastName: [userDetails.lastName ? userDetails.lastName : ''],
-      gender: [{ value: userDetails.gender ? userDetails.gender : '', disabled: this.genderDisabled}, [Validators.required]],
-      nation: [{ value: userDetails.nation ? userDetails.nation : '' } , [Validators.required]],
-      dateOfBirth: [{value : userDetails.dateOfBirth ? userDetails.dateOfBirth : '', disabled:  this.DobDisabled}, [Validators.required]],
+      firstName: [userDetails ? userDetails.firstName : ''  ],
+      lastName: [userDetails ? userDetails.lastName : ''],
+      gender: [{ value: userDetails ? userDetails.gender : '', disabled: this.genderDisabled}, [Validators.required]],
+      nation: [{ value: userDetails ? userDetails.nation : '' } , [Validators.required]],
+      dateOfBirth: [{value : userDetails ? userDetails.dateOfBirth : '', disabled:  this.DobDisabled},
+       [Validators.required]],
 
     });
   }
@@ -143,4 +132,3 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     return true;
   }
 }
-
