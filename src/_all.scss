@@ -1569,4 +1569,40 @@ a.link-white {
     color: $dark-teal-color;
     font-size: 14px;
   }
+  //Tooltip container
+  .tooltip-container {
+    color: $white-color;
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    position: absolute;
+    top: 107px;
+    width: 92%;
+    right: 4%;
+    left: 4%;
+    &__inner {
+      position: relative;
+      border-radius: 6px;
+      padding: 20px;
+      background: #066360;
+      &__title, &__close {
+        color: #2d8289;
+      }
+      &__arrow {
+        position: absolute;
+        top: -19px;
+        right: 10px;
+        border-top: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #066360;
+        z-index: 9999;
+      }
+      &__close {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        font-size: 25px;
+      }
+    }
+  }
 }
