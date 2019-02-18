@@ -37,7 +37,9 @@
       <!-- Provide details of PEP  -->
       <div class="flex-row">
         <div class="flex-col-12">
-          <div class="tin_question_text" id="pep_Info_question-one">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}
+          <div class="tin_question_text" id="pep_Info_question-one">
+            <span *ngIf="addInfoFormValues.pep">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}</span>
+            <span *ngIf="!addInfoFormValues.pep">{{ 'ADDITIONAL_DECLARATION.PEP_INFO_NO' | translate}}</span>
           </div>
         </div>
       </div>
