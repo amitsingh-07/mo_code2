@@ -132,11 +132,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
 
     this.navbarService.currentMenuItem.subscribe((menuItem) => {
-      if (typeof menuItem.iconClass !== undefined) {
+      if (typeof menuItem.iconClass !== 'undefined') {
         this.showMenuItem = true;
+        this.menuItemClass = menuItem.iconClass;
+        this.pageId = menuItem.id;
+      } else {
+        this.showMenuItem = false;
       }
-      this.menuItemClass = menuItem.iconClass;
-      this.pageId = menuItem.id;
     });
 
     this.router.events.subscribe((val) => {

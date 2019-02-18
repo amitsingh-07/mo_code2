@@ -29,7 +29,7 @@ export class NavbarService {
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
   private pageSubTitle = new BehaviorSubject('');
-  private pageHelpIcon = new BehaviorSubject(true);
+  private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
 
   private mobileModal = new BehaviorSubject('');
@@ -71,6 +71,7 @@ export class NavbarService {
   }
 
   /* Visibility Functions */
+  // tslint:disable-next-line:no-identical-functions
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
     this.setNavbarMode(2);
@@ -143,6 +144,9 @@ export class NavbarService {
     } else {
       this.pageSuperTitle.next('');
     }
+
+    // Reset/Hide menuItem
+    this.menuItem.next('');
   }
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
