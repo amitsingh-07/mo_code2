@@ -3,11 +3,11 @@
     <img class="owl-img" src="/assets/images/createAccount-icon.svg" />
   </div>
   <div class="comprehensive__page-heading">{{'GETTING_STARTED.HI'|translate }} 
-    {{userDetails ?userDetails.firstName : ''}}</div>
+    {{userDetails ?userDetails.firstName : ''}}  {{userDetails ?userDetails.lastName : ''}}</div>
   <div [hidden]="registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.HEADER'|translate }}</div>
   <!-- <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div> -->
   <div class="comprehensive__page-content">{{'GETTING_STARTED.DESC'|translate}}</div>
-  <form  id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
+  <form [hidden]="myProfileShow" id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
     <div class="form-group-with-bg">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
@@ -19,7 +19,7 @@
             </label>
           </div>
           <div class="flex-col-7">
-              {{userDetails ?userDetails.firstName : ''}}
+              {{userDetails ?userDetails.firstName : ''}}    {{userDetails ?userDetails.lastName : ''}}
           </div>
         </div>
         <div class="flex-row">
@@ -66,22 +66,21 @@
             </div>
           </div>
         </div>
-        <div [hidden]="!nationalityAlert" class="flex-row info-msg">Seems like you have changed your nationality.
-          Changes will be applied to all platforms upon saving.</div>
+        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
         <div class="flex-row">
           <div class="flex-col-5">
             <label for="dob">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
           </div>
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dateOfBirth').valid && !myProfileForm.get('dateOfBirth').pristine}">
-                <input readonly (click)="d.toggle()" class="form-control" placeholder="Select" formControlName="dateOfBirth"
-                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB">
+              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dateOfBirth').valid && submitted}">
+                <input readonly (click)="d.toggle();" class="form-control" placeholder="Select" formControlName="dateOfBirth"
+                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
                 <div class="input-group-append">
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker">
-                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dateOfBirth').valid || myProfileForm.get('dateOfBirth').pristine"
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" >
+                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dateOfBirth').valid || !submitted"
                       src="./assets/images/calendar-normal.svg" />
-                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dateOfBirth').valid && !myProfileForm.get('dateOfBirth').pristine"
+                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dateOfBirth').valid && submitted"
                       src="./assets/images/calendar-error.svg" />
                   </button>
                 </div>
@@ -89,9 +88,10 @@
             </div>
           </div>
         </div>
+        <div [hidden]="!DOBAlert" class="flex-row info-msg">{{ 'MY_PROFILE.DOB_ALERT' | translate}}</div>
       </div>
     </div>
-    <button type="button" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100" id="prfBtn1">{{
+    <button [disabled]="DOBAlert" type="button" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100" id="prfBtn1">{{
       'FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
   </form>

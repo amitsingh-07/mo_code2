@@ -1,5 +1,6 @@
 {
   "COMPREHENSIVE": {
+
     "GET_STARTED": "A step-by-step guide to help you plan your finances!",
     "START": "Start Now",
     "PHILOSOPHY_TITLE": " Our Philosophy",
@@ -23,6 +24,10 @@
     "STEP_5_TITLE":"Congratulations",
     "STEP_5_DESC":"Report Generation"
     
+  },
+  "MY_PROFILE":{
+    "NATIONALITY_ALERT":"Seems like you have changed your nationality.Changes will be applied to all platforms upon saving.",
+    "DOB_ALERT":"Sorry, this tool is not suitable for people age 55 and above.For queries,You may wish to contact us at enquiries@moneyowl.com.sg"
   },
   "ROAD_MAP":{
    "TITLE":"Your Road Map"

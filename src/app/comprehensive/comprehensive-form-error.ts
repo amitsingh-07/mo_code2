@@ -9,13 +9,13 @@ export class ComprehensiveFormError {
                     errorMessage: 'Gender'
                 }
             },
-            dob: {
+            dateOfBirth: {
                 required: {
                     errorTitle: 'Invalid Date of Birth',
                     errorMessage: 'Date of Birth'
                 }
             },
-            nationality: {
+            nation: {
                 required: {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'
@@ -34,6 +34,7 @@ export class ComprehensiveFormError {
                 },
                 pattern: {
                         errorTitle:  this.invalidName,
+                        // tslint:disable-next-line:max-line-length
                         errorMessage: 'Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !"#$%&\'()*+,-./:;<=>?@[\\\]^_`{|}~'
                 },
                 minlength: {
@@ -51,13 +52,13 @@ export class ComprehensiveFormError {
                     errorMessage: 'Gender'
                 }
             },
-            dob: {
+            dateOfBirth: {
                 required: {
                     errorTitle: 'Invalid Date of Birth',
                     errorMessage: 'Date of Birth'
                 }
             },
-            nationality: {
+            nation: {
                 required: {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'

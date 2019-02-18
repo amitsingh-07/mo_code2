@@ -34,6 +34,8 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   nationalityAlert = false;
   pageId: string;
   genderDisabled = false;
+  myProfileShow = true;
+  DOBAlert = false;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -41,7 +43,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
     private parserFormatter: NgbDateParserFormatter, private comprehensiveApiService: ComprehensiveApiService) {
     const today: Date = new Date();
-    configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
     this.configService.getConfig().subscribe((config: any) => {
@@ -58,7 +60,6 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.pageId = this.route.routeConfig.component.name;
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
      this.userDetails = data.objectList[0];
-     console.log(this.userDetails);
      this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
      this.nationDisabled = this.userDetails.nation ? true : false;
      this.genderDisabled = this.userDetails.gender ? true : false;
@@ -66,8 +67,9 @@ export class MyProfileComponent implements IPageComponent, OnInit {
      const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
      this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
     // tslint:disable-next-line:radix
-     this.userDetails.dateOfBirth = { year: parseInt (dob[2]), month: parseInt (dob[1]), day: parseInt (dob[0]) };
-
+     this.userDetails.dateOfBirth = { year: parseInt (dob[0]), month: parseInt (dob[1]), day: parseInt (dob[2
+    ]) };
+     this.buildMyProfileForm(this.userDetails);
     });
 
   }
@@ -80,6 +82,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       }
     });
     this.buildMyProfileForm(this.userDetails);
+
   }
 
   setPageTitle(title: string) {
@@ -93,11 +96,12 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       firstName: [userDetails ? userDetails.firstName : ''  ],
       lastName: [userDetails ? userDetails.lastName : ''],
       gender: [{ value: userDetails ? userDetails.gender : '', disabled: this.genderDisabled}, [Validators.required]],
-      nation: [{ value: userDetails ? userDetails.nation : '' } , [Validators.required]],
+      nation: [ userDetails ? userDetails.nation : ''  , [Validators.required]],
       dateOfBirth: [{value : userDetails ? userDetails.dateOfBirth : '', disabled:  this.DobDisabled},
-       [Validators.required]],
+       [Validators.required, ]],
 
     });
+    this.myProfileShow = false;
   }
 
   goToNext(form: FormGroup) {
@@ -113,6 +117,15 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.myProfileForm.controls['nation'].setValue(nationality.value);
     this.myProfileForm.markAsDirty();
   }
+  validateDOB(date) {
+    const today: Date = new Date();
+    if ((today.getFullYear()  - date._model.year) > 55) {
+    this.DOBAlert = true;
+   } else {
+    this.DOBAlert = false;
+   }
+
+  }
 
   validateProfileForm(form: FormGroup) {
 
@@ -121,6 +134,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
+
         form.get(key).markAsDirty();
       });
 
