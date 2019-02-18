@@ -37,6 +37,14 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   myProfileShow = true;
   DOBAlert = false;
 
+
+  public showToolTip: boolean= true;
+
+  public onCloseClick(): void {
+    this.showToolTip = false;
+  }
+
+
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -71,7 +79,6 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     ]) };
      this.buildMyProfileForm(this.userDetails);
     });
-
   }
 
   ngOnInit() {
