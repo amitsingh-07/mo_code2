@@ -24,6 +24,7 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { SharedModule } from '../shared/shared.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -37,9 +38,12 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
-    CommonModule, ReactiveFormsModule, NgbModule.forRoot(),
+    CommonModule, 
+    ReactiveFormsModule, 
+    NgbModule.forRoot(),
     ComprehensiveRoutingModule,
     NgbModule.forRoot(),
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

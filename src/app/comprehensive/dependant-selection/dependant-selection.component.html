@@ -1,8 +1,9 @@
-<div class="container-fluid max-width--1024 ">
+<div class="step-indicator-container">
+    <app-step-indicator [count]="5" [activeStepIndex]="0"></app-step-indicator>
+</div>
+<div class="container-fluid max-width--1024 comprehensive">
   <header>{{'DEPENDANT_SELECTION.DEPENDANTS'|translate}}</header>
   <article class="py-2">{{'DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</article>
-
-
   <div class="col-lg-5 col-md-6 p-0">
     <form name="dependantSelectionForm" [formGroup]="dependantSelectionForm">
       <div class="form-group-single-column  flex-col">
