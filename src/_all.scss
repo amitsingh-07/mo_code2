@@ -819,8 +819,10 @@ h6 {
 }
 
 .navbar__menuItem--journey-map {
-  background-image: url("/assets/images/settings-icon.png");
+  background-image: url("/assets/images/road-map-icon.svg");
   background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
 }
 
 .navbar__closeIcon {
@@ -1515,7 +1517,7 @@ a.link-white {
     border-left: 3px solid $screen-separator-bar-color;
     padding-left: 52px;
     margin-left: 20px;
-    margin-top: 50px;
+    margin-top: 100px;
     &__step-number {
       font-size: 18px;
       font-family: $muli-bold;
