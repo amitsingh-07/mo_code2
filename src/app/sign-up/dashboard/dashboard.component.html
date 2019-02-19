@@ -5,8 +5,7 @@
         <div class="flex-col-12" *ngIf="userProfileInfo">
           <div class="container-fluid widget-block">
             <div class="overlap-grass">
-              <div class="user-profile-bg flex-col-6">
-
+              <div class="user-profile-bg flex-col-8">
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName}}</div>
                 <div (click)="goToEditProfile()">
@@ -14,15 +13,6 @@
                     <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
                   </span>
                   <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
-                </div>
-              </div>
-              <div class="advisor-profile-bg flex-col-6" *ngIf="false">
-                <div>
-                  <img src="assets/images/investment-account/agent.svg" />
-                </div>
-                <div class="advisor-details">
-                  <div>{{'DASHBOARD.PROFILE.YOUR_ADVISOR' | translate}}</div>
-                  <div>Peter Neo</div>
                 </div>
               </div>
               <div class="grass_bg">
@@ -131,10 +121,8 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
               <!-- THIS SENARIO IS NOT COVERED  -->
               <div class="no_portfolio col-12" *ngIf="false">
                 <div class="warning-txt">
