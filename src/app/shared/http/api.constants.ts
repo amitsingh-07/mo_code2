@@ -96,7 +96,8 @@ export let apiConstants = {
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         },
         comprehensive: {
-         personalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails'
+         getpersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
+         addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
         }
     }
 };
