@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { ImyProfile} from '../comprehensive-types';
+import { ImyProfile } from '../comprehensive-types';
 
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -27,7 +27,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   registeredUser = true;
   pageTitle: string;
   userDetails: ImyProfile;
-  myProfileForm: FormGroup;
+  moGetStrdForm: FormGroup;
   nationality = '';
   nationalityList: string;
   submitted: boolean;
@@ -37,9 +37,10 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   myProfileShow = true;
   DOBAlert = false;
 
-  public showToolTip = true;
+  public showToolTip = false;
 
   public onCloseClick(): void {
+    this.comprehensiveService.setProgressToolTipShown(true);
     this.showToolTip = false;
   }
 
@@ -57,25 +58,24 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('GETTING_STARTED.TITLE');
-        this.nationalityList = this.translate.instant('NATIONALITY');
+        this.pageTitle = this.translate.instant('CMP.GETTING_STARTED.TITLE');
+        this.nationalityList = this.translate.instant('CMP.NATIONALITY');
         this.setPageTitle(this.pageTitle);
       });
     });
 
     this.pageId = this.route.routeConfig.component.name;
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-     this.userDetails = data.objectList[0];
-     this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
-     this.nationDisabled = this.userDetails.nation ? true : false;
-     this.genderDisabled = this.userDetails.gender ? true : false;
-     this.nationality = this.userDetails.nation;
-     const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
-     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
-    // tslint:disable-next-line:radix
-     this.userDetails.dateOfBirth = { year: parseInt (dob[0]), month: parseInt (dob[1]), day: parseInt (dob[2
-    ]) };
-     this.buildMyProfileForm(this.userDetails);
+      this.userDetails = data.objectList[0];
+      this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+      const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('/') : '';
+      this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
+      this.userDetails.dateOfBirth = {
+        // tslint:disable-next-line:radix
+        year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2
+        ])
+      };
+      this.buildProfileForm(this.userDetails);
     });
   }
 
@@ -86,32 +86,37 @@ export class MyProfileComponent implements IPageComponent, OnInit {
         alert('Menu Clicked');
       }
     });
-    this.buildMyProfileForm(this.userDetails);
+    this.buildProfileForm(this.userDetails);
+    if (!this.comprehensiveService.isProgressToolTipShown()) {
+      setTimeout(() => {
+        this.showToolTip = true;
+      }, 1000);
+    }
 
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
-  get myProfileControls() { return this.myProfileForm.controls; }
+  get myProfileControls() { return this.moGetStrdForm.controls; }
 
-  buildMyProfileForm(userDetails) {
-    this.myProfileForm = this.formBuilder.group({
-      firstName: [userDetails ? userDetails.firstName : ''  ],
-      lastName: [userDetails ? userDetails.lastName : ''],
-      gender: [{ value: userDetails ? userDetails.gender : '', disabled: this.genderDisabled}, [Validators.required]],
-      nation: [ userDetails ? userDetails.nation : ''  , [Validators.required]],
-      dateOfBirth: [{value : userDetails ? userDetails.dateOfBirth : '', disabled:  this.DobDisabled},
-       [Validators.required, ]],
+  buildProfileForm(userDetails) {
+    this.moGetStrdForm = this.formBuilder.group({
+      firstName: [userDetails ? userDetails.firstName : ''],
+      gender: [userDetails ? userDetails.gender : '', [Validators.required]],
+      nation: [userDetails ? userDetails.nation : '', [Validators.required]],
+      dateOfBirth: [userDetails ? userDetails.dateOfBirth : '', [Validators.required]],
 
     });
     this.myProfileShow = false;
   }
 
   goToNext(form: FormGroup) {
-    if (this.validateProfileForm(form)) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+    if (this.validateMoGetStrdForm(form)) {
+      this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+      });
     }
 
   }
@@ -119,22 +124,23 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.nationalityAlert = true;
     nationality = nationality ? nationality : { text: '', value: '' };
     this.nationality = nationality.text;
-    this.myProfileForm.controls['nation'].setValue(nationality.value);
-    this.myProfileForm.markAsDirty();
+    this.moGetStrdForm.controls['nation'].setValue(nationality.value);
+    this.moGetStrdForm.markAsDirty();
   }
   validateDOB(date) {
     const today: Date = new Date();
-    if ((today.getFullYear()  - date._model.year) > 55) {
-    this.DOBAlert = true;
-   } else {
-    this.DOBAlert = false;
-   }
+    if ((today.getFullYear() - date._model.year) > 55) {
+      this.DOBAlert = true;
+    } else {
+      this.DOBAlert = false;
+    }
 
   }
 
-  validateProfileForm(form: FormGroup) {
+  validateMoGetStrdForm(form: FormGroup) {
 
     form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
+
 
     this.submitted = true;
     if (!form.valid) {
@@ -145,9 +151,10 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
       const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_PROFILE);
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
-        this.translate.instant('ERROR_MODAL_TITLE.MY_PROFILE'));
+        this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_PROFILE'));
       return false;
     }
     return true;
   }
 }
+

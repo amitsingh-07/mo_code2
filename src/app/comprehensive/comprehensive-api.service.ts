@@ -8,6 +8,11 @@ export class ComprehensiveApiService {
   constructor(private apiService: ApiService) { }
 
   getPersonalDetails() {
-return this.apiService.getPersonalDetails();
+    return this.apiService.getPersonalDetails();
   }
+  savePersonalDetails(data) {
+
+    return this.apiService.addPersonalDetails(data);
+  }
+
 }

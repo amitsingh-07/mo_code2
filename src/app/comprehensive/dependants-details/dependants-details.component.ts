@@ -40,9 +40,9 @@ export class DependantsDetailsComponent implements OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.relationShipList = this.translate.instant('DEPENDANT_DETAILS.RELATIONSHIP_LIST');
-        this.nationalityList = this.translate.instant('NATIONALITY');
-        this.pageTitle = this.translate.instant('COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.relationShipList = this.translate.instant('CMP.DEPENDANT_DETAILS.RELATIONSHIP_LIST');
+        this.nationalityList = this.translate.instant('CMP.NATIONALITY');
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -76,7 +76,7 @@ export class DependantsDetailsComponent implements OnInit {
   }
   selectNationality(status, i) {
     const nationality = status ? status : '';
-    this.myDependantForm.controls['dependant']['controls'][i].controls.nationality.setValue(nationality);
+    this.myDependantForm.controls['dependant']['controls'][i].controls.nation.setValue(nationality);
   }
 
   buildDependantDetailsForm() {
@@ -85,8 +85,8 @@ export class DependantsDetailsComponent implements OnInit {
       Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
-      nationality: ['', [Validators.required]]
+      dateOfBirth: ['', [Validators.required]],
+      nation: ['', [Validators.required]]
 
     });
   }
@@ -103,7 +103,7 @@ export class DependantsDetailsComponent implements OnInit {
     this.submitted = true;
     if (!form.valid) {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
-        this.translate.instant('ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
+        this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
         );
       return false;

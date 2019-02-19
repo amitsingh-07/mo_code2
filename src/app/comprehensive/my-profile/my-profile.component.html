@@ -1,38 +1,38 @@
 <div class="container-fluid--comprehensive max-width--1024 comprehensive" style="padding-top: 136px !important">
   <div class="tooltip-container" *ngIf="showToolTip">
     <div class="tooltip-container__inner">
-      <span class="tooltip-container__inner__arrow"></span>
-      <div class="tooltip-container__inner__title">Some tips for you</div>
-      <div class="tooltip-container__inner__desc">You can check your progress here!</div>
-      <span class="tooltip-container__inner__close" (click)="onCloseClick()">x</span>
+      <!-- <span class="tooltip-container__inner__arrow"></span> -->
+      <div class="tooltip-container__inner__title">{{'CMP.GETTING_STARTED.TOOL_TIP_TITLE'|translate}}</div>
+      <div class="tooltip-container__inner__desc">{{'CMP.GETTING_STARTED.TOOL_TIP_DESC'|translate}}</div>
+      <span class="tooltip-container__inner__close" (click)="onCloseClick()">{{'CMP.GETTING_STARTED.TOOL_TIP_CLOSE'|translate}}</span>
     </div>
   </div>
   <div class="text-center">
-    <img class="owl-img" src="/assets/images/createAccount-icon.svg" />
+    <img class="owl-img" src="/assets/images/createAccount-icon.svg" id="moGetStrdOwlImg" />
   </div>
-  <div class="comprehensive__page-heading">{{'GETTING_STARTED.HI'|translate }} 
-    {{userDetails ?userDetails.firstName : ''}}  {{userDetails ?userDetails.lastName : ''}}</div>
-  <div [hidden]="registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.HEADER'|translate }}</div>
+  <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
+    {{userDetails ?userDetails.firstName : ''}} </div>
+  <div [hidden]="registeredUser" class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg">{{'CMP.GETTING_STARTED.HEADER'|translate }}</div>
   <!-- <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div> -->
-  <div class="comprehensive__page-content">{{'GETTING_STARTED.DESC'|translate}}</div>
-  <form [hidden]="myProfileShow" id="myProfileForm" name="myProfileForm" [formGroup]="myProfileForm">
+  <div class="comprehensive__page-content" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
+  <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
     <div class="form-group-with-bg">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row ">
           <div class="pl0 col-5">
             <label for="name" id="myProfileNameLabel">
-              <div>{{ 'FORM_LABEL.NAME' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.NAME' | translate}}
               </div>
             </label>
           </div>
           <div class="flex-col-7">
-              {{userDetails ?userDetails.firstName : ''}}    {{userDetails ?userDetails.lastName : ''}}
+              {{userDetails ?userDetails.firstName : ''}}    
           </div>
         </div>
         <div class="flex-row">
           <div class="flex-col-5">
-            <label for="gender">{{'FORM_LABEL.GENDER'|translate}}</label>
+            <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
           </div>
           <div class="flex-col-7">
             <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
@@ -54,12 +54,12 @@
         </div>
         <div class="flex-row">
           <div class="flex-col-5">
-            <label for="nationality">{{ 'FORM_LABEL.NATIONALITY' | translate}}</label>
+            <label for="nationality">{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</label>
           </div>
           <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
               <div  ngbDropdown id="nationalityDropDown" placement="top-right">
-                <button [disabled]="nationDisabled"  type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                   <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
@@ -74,21 +74,21 @@
             </div>
           </div>
         </div>
-        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
+        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
         <div class="flex-row">
           <div class="flex-col-5">
-            <label for="dob">{{ 'FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
+            <label for="dob">{{ 'CMP.FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
           </div>
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !myProfileForm.get('dateOfBirth').valid && submitted}">
+              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('dateOfBirth').valid && submitted}">
                 <input readonly (click)="d.toggle();" class="form-control" placeholder="Select" formControlName="dateOfBirth"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" >
-                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="myProfileForm.get('dateOfBirth').valid || !submitted"
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('dateOfBirth').valid || !submitted"
                       src="./assets/images/calendar-normal.svg" />
-                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!myProfileForm.get('dateOfBirth').valid && submitted"
+                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('dateOfBirth').valid && submitted"
                       src="./assets/images/calendar-error.svg" />
                   </button>
                 </div>
@@ -96,11 +96,11 @@
             </div>
           </div>
         </div>
-        <div [hidden]="!DOBAlert" class="flex-row info-msg">{{ 'MY_PROFILE.DOB_ALERT' | translate}}</div>
+        <div [hidden]="!DOBAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
       </div>
     </div>
-    <button [disabled]="DOBAlert" type="button" (click)="goToNext(myProfileForm)" class="btn btn-primary mt-4 width100" id="prfBtn1">{{
-      'FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary mt-4 width100" id="prfBtn1">{{
+      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
   </form>
 </div>

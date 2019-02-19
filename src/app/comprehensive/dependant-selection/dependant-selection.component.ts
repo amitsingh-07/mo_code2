@@ -23,7 +23,7 @@ export class DependantSelectionComponent implements OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
 
       });

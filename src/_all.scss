@@ -1488,6 +1488,9 @@ a.link-white {
 
 //Comprehensive Styles
 .comprehensive {
+  &.container-fluid {
+    height: 100vh;
+  }
   &__page-heading {
     padding: 16px 0;
     font-size: 22px;
@@ -1569,16 +1572,26 @@ a.link-white {
     color: $dark-teal-color;
     font-size: 14px;
   }
+
+  //Button Styles
+  .fixed-button {
+    position: absolute;
+    bottom: 50px;
+    width: calc(100% - 40px);
+    right: 20px;
+    left: 20px;
+  }
   //Tooltip container
   .tooltip-container {
     color: $white-color;
     font-family: $muli-semi-bold;
     font-size: 16px;
-    position: absolute;
+    position: fixed;
     top: 107px;
     width: 92%;
     right: 4%;
     left: 4%;
+    z-index: 1039;
     &__inner {
       position: relative;
       border-radius: 6px;
@@ -1587,7 +1600,8 @@ a.link-white {
       &__title, &__close {
         color: #2d8289;
       }
-      &__arrow {
+      &:before {
+        content: '';
         position: absolute;
         top: -19px;
         right: 10px;
@@ -1595,7 +1609,6 @@ a.link-white {
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-bottom: 10px solid #066360;
-        z-index: 9999;
       }
       &__close {
         position: absolute;
