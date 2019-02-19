@@ -26,7 +26,7 @@ export class ComprehensiveStepsComponent implements OnInit {
               this.translate.use(config.language);
               this.translate.get(config.common).subscribe((result: string) => {
               // meta tag and title
-              this.pageTitle = this.translate.instant('ROAD_MAP.TITLE');
+              this.pageTitle = this.translate.instant('CMP.ROAD_MAP.TITLE');
               this.setPageTitle(this.pageTitle);
               });
               });

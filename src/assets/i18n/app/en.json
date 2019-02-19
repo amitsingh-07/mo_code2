@@ -21,7 +21,9 @@
     "LBL_PERCENTAGE_PER_ANNUM": " p.a",
     "LBL_PROJECTED_RETURN": "Projected Return",
     "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
-    "LBL_PROJECTED_PAYOUT": "Projected Payout"
+    "LBL_PROJECTED_PAYOUT": "Projected Payout",
+    "CREATE_ACCOUNT": "Create Account",
+    "LOGIN": "Log In"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",

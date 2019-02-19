@@ -1,5 +1,4 @@
 import 'hammerjs';
-import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
@@ -18,6 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
 import { AppService } from './app.service';
+import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
+import { ArticleEnableGuard } from './article/article-enable-guard';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
@@ -41,6 +42,11 @@ import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.compo
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
+import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
+import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
+import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
 import { WillDisclaimerComponent } from './shared/components/will-disclaimer/will-disclaimer.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
@@ -52,11 +58,14 @@ import { CustomErrorHandlerService } from './shared/http/custom-error-handler.se
 import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
-import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
-
 import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
+import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
+import {
+  LoginCreateAccountModelComponent
+} from './shared/modal/login-create-account-model/login-create-account-model.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
@@ -73,14 +82,6 @@ import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settin
 import { SignUpService } from './sign-up/sign-up.service';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
-
-import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
-import { ArticleEnableGuard } from './article/article-enable-guard';
-import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
-import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
-import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
-import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
@@ -112,6 +113,7 @@ export function tokenGetterFn() {
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
+    LoginCreateAccountModelComponent,
     ExistingCoverageModalComponent,
     PopupModalComponent,
     SuccessModalComponent,
@@ -187,7 +189,7 @@ export function tokenGetterFn() {
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
-    FundDetailsComponent]
+    FundDetailsComponent, LoginCreateAccountModelComponent]
 })
 
 export class AppModule {

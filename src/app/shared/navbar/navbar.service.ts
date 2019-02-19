@@ -1,7 +1,8 @@
-import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
-import { IHeaderIcon as IHeaderMenuItem, IHeaderIcon } from './navbar.types';
+
+import { IHeaderMenuItem } from './navbar.types';
 
 @Injectable({
   providedIn: 'root'
@@ -146,7 +147,7 @@ export class NavbarService {
     }
 
     // Reset/Hide menuItem
-    this.menuItem.next({} as IHeaderIcon);
+    this.menuItem.next({} as IHeaderMenuItem);
   }
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
