@@ -12,7 +12,7 @@
           <div class="widget" *ngIf="showSingPass && isInvestmentMyInfoEnabled">
             <div class="widget-title">{{ 'POSTLOGIN.APPLY_USING_MYINFO' | translate}}</div>
             <div class="widget-body flex-row">
-              <div class="desc">{{ 'POSTLOGIN.AUTOFILL_QIICKLY' | translate}}</div>
+              <div class="desc">{{ 'POSTLOGIN.AUTOFILL_QUICKLY' | translate}}</div>
               <div class="flex-col-12 stretch">
                 <div class="flex-col-12">
                     <app-sing-pass [label]="singPassLinkTitle" [position]="'postlogin'"></app-sing-pass>
@@ -28,7 +28,7 @@
                   <div class="flex-col-12">
                       <div class="flex-col autofill-link postlogin" (click)="myInfoManual()">
                         <div class="autofill-text">{{ 'POSTLOGIN.MANUALLY' | translate}}</div>
-                        <div class="autofill-estimation">{{ 'POSTLOGIN.EASIMALT' | translate}}</div>
+                        <div class="autofill-estimation">{{ 'POSTLOGIN.ESTIMATE_TIME' | translate}}</div>
                       </div>
                   </div>
                 </div>

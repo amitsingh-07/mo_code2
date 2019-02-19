@@ -13,11 +13,11 @@
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass",
     "APPLY_USING_MYINFO":"Apply Using MyInfo",
-    "AUTOFILL_QIICKLY":"Autofill your information quickly. Supporting documents are not required.",
+    "AUTOFILL_QUICKLY":"Autofill your information quickly. Supporting documents are not required.",
     "APPLY_WITHOUT_MYINFO":"Apply Without MyInfo",
     "FILL_MANUALLY":"Fill in your information manually. Takes at least 1 working day to get your account approved.",
     "MANUALLY":"Fill Form Manually",
-    "EASIMALT":"Estimate about 10 mins"
+    "ESTIMATE_TIME":"Estimate about 10 mins"
 },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
