@@ -195,7 +195,9 @@
     }
   },
   "TRANSACTIONS": {
-    "TITLE": "Transactions"
+    "TITLE": "Transactions",
+    "NO_TRANSACTION_HISTORY":"No Transaction History!",
+    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!"
   },
   "HOLDINGS": {
     "TITLE": "Holdings",
