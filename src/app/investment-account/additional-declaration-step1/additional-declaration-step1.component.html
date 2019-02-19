@@ -23,12 +23,12 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true> Yes
+                  <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true>{{'ADDITIONAL_DECLARATION.YES' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_no" [value]=false>No</label>
+                  <input ngbButton type="radio" id="pep_Info_tin_no" [value]=false>{{'ADDITIONAL_DECLARATION.NO' | translate}}</label>
               </div>
             </div>
           </div>
@@ -90,9 +90,9 @@
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepoccupation)}">
               <div class="dropdown-control">
                 <div ngbDropdown>
-                  <button class="btn btn-dropdown without-border" id="pep_Info_employement_details_status-drpdown"
+                  <button class="btn btn-dropdown without-border" id="pep_Info_status-drpdown"
                     ngbDropdownToggle>
-                    <span *ngIf="!addInfoForm.controls.pepoccupation.value">Select Occupation</span>
+                    <span *ngIf="!addInfoForm.controls.pepoccupation.value">{{ 'ADDITIONAL_DECLARATION.SELECT_OCCUPATION' | translate}}</span>
                     <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation}}</span>
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -110,7 +110,7 @@
           <div class="form-group">
             <div class="flex-row">
               <div class="flex-col-12">
-                <label for="employement-occupation-others-txt" id="employement-occupation-others-lbl">
+                <label for="employement-occupation-others-txt" id="additional-declaration-others-lbl">
                   {{'EMPLOYMENT_DETAILS.OTHER_OCCUPATION' | translate}}</label>
               </div>
               <div class="flex-col-12">
@@ -121,12 +121,12 @@
             </div>
           </div>
         </div>
-        <div class="office-addr-lbl" id="office-addr-lbl">Your office address:</div>
+        <div class="office-addr-lbl" id="office-addr-lbl">{{ 'ADDITIONAL_DECLARATION.YOUR_OFFICE_ADDRESS' | translate}}</div>
         <!-- COUNTRY -->
         <div class="form-group">
           <div class="flex-row">
             <div class="flex-col-5">
-              <label for="residentialAddress-mailcountry-drpdown" id="pep_Info_residentialAddress-mailcountry-lbl">{{
+              <label for="residentialAddress-mailcountry-drpdown" id="addtion-declaration-country-lbl">{{
                 'EMPLOYMENT_DETAILS.COUNTRY'
                 | translate}}</label>
             </div>
@@ -149,7 +149,7 @@
         <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
           <div class="flex-row">
             <div class="flex-col-5">
-              <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{
+              <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
                 'EMPLOYMENT_DETAILS.POSTAL_CODE'
                 | translate}}</label>
             </div>
@@ -174,7 +174,7 @@
         <div class="form-group">
           <div class="flex-row">
             <div class="flex-col-5">
-              <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
+              <label for="residentialAddress-mailaddress1-txt" id="Additional-address-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
                 | translate}}</label>
             </div>
             <div class="flex-col-7">

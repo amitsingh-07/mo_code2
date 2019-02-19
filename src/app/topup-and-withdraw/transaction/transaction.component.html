@@ -35,7 +35,7 @@
             <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
               <div class="no-content">
               <img src="../../../assets/images/investment-account/light_owl.svg" />
-              <div class="mt15">No Transaction History!</div>
+              <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_HISTORY' | translate}}</div>
             </div>
             </div>
           </ng-template>
@@ -58,7 +58,7 @@
                 <div class="no-transaction" *ngIf="!statementMonthsList || !statementMonthsList.length">
                     <div class="no-content">
                     <img src="../../../assets/images/investment-account/light_owl.svg" />
-                    <div class="mt15">No Transaction Statements!</div>
+                    <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_STATEMENTS' | translate}}</div>
                   </div>
                 </div>
               </div>
