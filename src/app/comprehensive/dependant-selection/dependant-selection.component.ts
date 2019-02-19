@@ -16,8 +16,10 @@ export class DependantSelectionComponent implements OnInit {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
   pageId: string;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private configService: ConfigService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private configService: ConfigService) {
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -28,7 +30,6 @@ export class DependantSelectionComponent implements OnInit {
 
       });
     });
-    this.pageId = this.route.routeConfig.component.name;
   }
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
@@ -41,7 +42,7 @@ export class DependantSelectionComponent implements OnInit {
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
   buildMyDependantSelectionForm() {
@@ -51,7 +52,7 @@ export class DependantSelectionComponent implements OnInit {
   }
 
   goToNext(dependantSelectionForm) {
-    if ( dependantSelectionForm.value.dependantSelection === 'yes') {
+    if (dependantSelectionForm.value.dependantSelection === 'yes') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     }
 

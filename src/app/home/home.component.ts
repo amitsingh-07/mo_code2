@@ -314,6 +314,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   startComprehensiveJourney() {
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     this.router.navigate([COMPREHENSIVE_BASE_ROUTE]);
   }
 }

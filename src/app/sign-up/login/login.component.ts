@@ -152,8 +152,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // tslint:disable-next-line:cognitive-complexity
   private login() {
+    this.loaderService.showLoader({title: 'Signing in'});
     this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
       this.loginForm.value.captchaValue).subscribe((data) => {
+        this.loaderService.hideLoader();
         if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
           try {
             if (data.objectList[0].customerId) {

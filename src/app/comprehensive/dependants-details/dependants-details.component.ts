@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ImyDependant } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
@@ -21,7 +17,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './dependants-details.component.html',
   styleUrls: ['./dependants-details.component.scss']
 })
-export class DependantsDetailsComponent implements OnInit {
+export class DependantsDetailsComponent implements OnInit, OnDestroy {
   myDependantForm: FormGroup;
   formName: string[] = [];
   pageTitle: string;
@@ -32,9 +28,12 @@ export class DependantsDetailsComponent implements OnInit {
   relationship: string;
   submitted: boolean;
   pageId: string;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService) {
+  menuClickSubscription: Subscription;
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService) {
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -46,7 +45,7 @@ export class DependantsDetailsComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.pageId = this.route.routeConfig.component.name;
+
   }
 
   ngOnInit() {
@@ -59,8 +58,12 @@ export class DependantsDetailsComponent implements OnInit {
     this.buildDependantForm();
   }
 
+  ngOnDestroy() {
+    this.menuClickSubscription.unsubscribe();
+  }
+
   setPageTitle(title: string) {
-    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   buildDependantForm() {
     this.myDependantForm = this.formBuilder.group({
@@ -105,14 +108,14 @@ export class DependantsDetailsComponent implements OnInit {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
-        );
+      );
       return false;
     }
     return true;
-    }
-    goToNext(form: FormGroup) {
-      if (this.validateDependantform(form)) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
-      }
+  }
+  goToNext(form: FormGroup) {
+    if (this.validateDependantform(form)) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
     }
   }
+}

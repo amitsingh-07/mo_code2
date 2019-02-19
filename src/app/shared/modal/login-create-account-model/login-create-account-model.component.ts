@@ -33,6 +33,9 @@ export class LoginCreateAccountModelComponent implements OnInit {
   }
 
   next(page) {
+    if (this.data && this.data.redirectUrl) {
+      this.signUpService.setRedirectUrl(this.data.redirectUrl);
+    }
     this.loaderService.showLoader({
       title: 'Loading',
       desc: ''
@@ -47,4 +50,8 @@ export class LoginCreateAccountModelComponent implements OnInit {
     }
   }
 
+  close() {
+    this.signUpService.clearRedirectUrl();
+    this.activeModal.dismiss();
+  }
 }

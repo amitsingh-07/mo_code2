@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 
@@ -11,33 +11,48 @@ import { ComprehensiveFormError } from './comprehensive-form-error';
   providedIn: 'root'
 })
 export class ComprehensiveService {
-  private ComprehensiveFormData: ComprehensiveFormData = new ComprehensiveFormData();
-  private ComprehensiveFormError: any = new ComprehensiveFormError();
+  private comprehensiveFormData: ComprehensiveFormData = new ComprehensiveFormData();
+  private comprehensiveFormError: any = new ComprehensiveFormError();
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
   ) { }
+
+  commit() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(appConstants.SESSION_KEY.COMPREHENSIVE, JSON.stringify(this.comprehensiveFormData));
+    }
+  }
+
+  isProgressToolTipShown() {
+    return this.comprehensiveFormData.isToolTipShown;
+  }
+
+  setProgressToolTipShown(shown: boolean) {
+    this.comprehensiveFormData.isToolTipShown = shown;
+  }
 
   getFormError(form, formName) {
 
     const controls = form.controls;
     const errors: any = {};
     errors.errorMessages = [];
-    errors.title = this.ComprehensiveFormError[formName].formFieldErrors.errorTitle;
+    errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
     for (const name in controls) {
       if (controls[name].invalid) {
         errors.errorMessages.push(
-          this.ComprehensiveFormError[formName].formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+          this.comprehensiveFormError[formName].formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
       }
     }
     return errors;
   }
+
   getMultipleFormError(form, formName, formTitle) {
     const forms = form.controls;
     const errors: any = {};
     errors.errorMessages = [];
-    errors.title = this.ComprehensiveFormError[formName].formFieldErrors.errorTitle;
+    errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
     let index = 0;
 
@@ -51,7 +66,7 @@ export class ComprehensiveService {
           if (control.controls[name].invalid) {
 
             formGroup.errors.push(
-              this.ComprehensiveFormError[formName].formFieldErrors[name][Object.keys(control.controls[name]['errors'])
+              this.comprehensiveFormError[formName].formFieldErrors[name][Object.keys(control.controls[name]['errors'])
               [0]].errorMessage);
           }
         }
@@ -63,6 +78,7 @@ export class ComprehensiveService {
     }
     return errors;
   }
+
   openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.errorTitle = title;

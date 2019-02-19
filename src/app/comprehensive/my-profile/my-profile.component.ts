@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { ImyProfile } from '../comprehensive-types';
 
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ImyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
@@ -20,7 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./my-profile.component.scss'],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
-export class MyProfileComponent implements IPageComponent, OnInit {
+export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   nationDisabled: boolean;
   DobDisabled: boolean;
   DobBoolean: any;
@@ -37,6 +38,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   myProfileShow = true;
   DOBAlert = false;
 
+  menuClickSubscription: Subscription;
   public showToolTip = false;
 
   public onCloseClick(): void {
@@ -53,6 +55,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     configDate.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -64,7 +67,6 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       });
     });
 
-    this.pageId = this.route.routeConfig.component.name;
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
       this.userDetails = data.objectList[0];
       this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
@@ -81,7 +83,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
-    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
         alert('Menu Clicked');
       }
@@ -93,6 +95,10 @@ export class MyProfileComponent implements IPageComponent, OnInit {
       }, 1000);
     }
 
+  }
+
+  ngOnDestroy() {
+    this.menuClickSubscription.unsubscribe();
   }
 
   setPageTitle(title: string) {
@@ -141,7 +147,6 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
     form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
 
-
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -157,4 +162,3 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     return true;
   }
 }
-

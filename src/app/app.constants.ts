@@ -16,4 +16,7 @@ export let appConstants = {
     JOURNEY_TYPE_GUIDED: 'GUIDED',
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING',
     JOURNEY_TYPE_COMPREHENSIVE: 'COMPREHENSIVE',
+    SESSION_KEY: {
+        COMPREHENSIVE: 'app-comprehensive-session'
+    }
 };
