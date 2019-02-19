@@ -7,7 +7,7 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: true,
   isDebugMode: false,
-  apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
+  apiBaseUrl: 'http://10.144.124.152:8080',
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',

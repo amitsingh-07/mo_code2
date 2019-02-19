@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { LoaderService } from '../../components/loader/loader.service';
 
 @Component({
   selector: 'app-login-create-account-model',
@@ -18,7 +19,7 @@ export class LoginCreateAccountModelComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    public signUpService: SignUpService,
+    public signUpService: SignUpService, private loaderService: LoaderService,
     private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -32,6 +33,10 @@ export class LoginCreateAccountModelComponent implements OnInit {
   }
 
   next(page) {
+    this.loaderService.showLoader({
+      title: 'Loading',
+      desc: ''
+    });
     this.activeModal.close();
     if (page === 'signup') {
       this.signUpService.clearData();

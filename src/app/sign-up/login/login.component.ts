@@ -4,26 +4,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { WillWritingService } from '../../will-writing/will-writing.service';
-import { AppService } from './../../app.service';
-import { FooterService } from './../../shared/footer/footer.service';
-
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants'
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../app.constants';
+import { AppService } from './../../app.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { FooterService } from './../../shared/footer/footer.service';
 import { LoginFormError } from './login-form-error';
 
 @Component({
@@ -60,7 +58,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private willWritingService: WillWritingService,
-    private _location: Location,
+    private _location: Location, private loaderService: LoaderService,
     private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -85,6 +83,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+    this.loaderService.hideLoader();
   }
 
   setCaptchaValidator() {
@@ -190,11 +189,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
                 this.willWritingService.getExecTrusteeInfo().length > 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
-                  this.willWritingApiService.createWill().subscribe((data) => {
-                    if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+                  this.willWritingApiService.createWill().subscribe((willData) => {
+                    if (willData.responseMessage && willData.responseMessage.responseCode >= 6000) {
                       this.willWritingService.setIsWillCreated(true);
                       this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                    } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+                    } else if (willData.responseMessage && willData.responseMessage.responseCode === 5006) {
                       const ref = this.modal.open(ErrorModalComponent, { centered: true });
                       ref.componentInstance.errorTitle = '';
                       ref.componentInstance.errorMessage = this.duplicateError;

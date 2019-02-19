@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
+import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import {
   LoginCreateAccountModelComponent
@@ -24,7 +25,7 @@ export class ComprehensiveComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
     public navbarService: NavbarService, private configService: ConfigService,
-    private authService: AuthenticationService, public modal: NgbModal) {
+    private authService: AuthenticationService, public modal: NgbModal, public footerService: FooterService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -36,7 +37,8 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMode(1);
+    this.footerService.setFooterVisibility(false);
 
   }
   start() {
