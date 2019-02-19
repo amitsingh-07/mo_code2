@@ -1579,7 +1579,7 @@ a.link-white {
     width: 92%;
     right: 4%;
     left: 4%;
-    z-index: 9999;
+    z-index: 1039;
     &__inner {
       position: relative;
       border-radius: 6px;
@@ -1588,7 +1588,8 @@ a.link-white {
       &__title, &__close {
         color: #2d8289;
       }
-      &__arrow {
+      &:before {
+        content: '';
         position: absolute;
         top: -19px;
         right: 10px;
@@ -1596,7 +1597,6 @@ a.link-white {
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-bottom: 10px solid #066360;
-        z-index: 9999;
       }
       &__close {
         position: absolute;
