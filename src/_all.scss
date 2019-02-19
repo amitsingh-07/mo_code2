@@ -1574,11 +1574,12 @@ a.link-white {
     color: $white-color;
     font-family: $muli-semi-bold;
     font-size: 16px;
-    position: absolute;
+    position: fixed;
     top: 107px;
     width: 92%;
     right: 4%;
     left: 4%;
+    z-index: 9999;
     &__inner {
       position: relative;
       border-radius: 6px;

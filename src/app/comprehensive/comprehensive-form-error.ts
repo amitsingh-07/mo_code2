@@ -1,6 +1,6 @@
 export class ComprehensiveFormError {
     invalidName = 'Invalid Name';
-    myProfileForm: object = {
+    moGetStrdForm: object = {
         formFieldErrors: {
             errorTitle: 'Oops! Please enter the following details:',
             gender: {

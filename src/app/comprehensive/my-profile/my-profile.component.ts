@@ -27,7 +27,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   registeredUser = true;
   pageTitle: string;
   userDetails: ImyProfile;
-  myProfileForm: FormGroup;
+  moGetStrdForm: FormGroup;
   nationality = '';
   nationalityList: string;
   submitted: boolean;
@@ -77,7 +77,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     // tslint:disable-next-line:radix
      this.userDetails.dateOfBirth = { year: parseInt (dob[0]), month: parseInt (dob[1]), day: parseInt (dob[2
     ]) };
-     this.buildMyProfileForm(this.userDetails);
+     this.buildMoGetStrdForm(this.userDetails);
     });
   }
 
@@ -88,7 +88,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
         alert('Menu Clicked');
       }
     });
-    this.buildMyProfileForm(this.userDetails);
+    this.buildMoGetStrdForm(this.userDetails);
     setTimeout(() => {
       this.showToolTip = true;
  }, 1000);
@@ -98,10 +98,10 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
   }
 
-  get myProfileControls() { return this.myProfileForm.controls; }
+  get myProfileControls() { return this.moGetStrdForm.controls; }
 
-  buildMyProfileForm(userDetails) {
-    this.myProfileForm = this.formBuilder.group({
+  buildMoGetStrdForm(userDetails) {
+    this.moGetStrdForm = this.formBuilder.group({
       firstName: [userDetails ? userDetails.firstName : ''  ],
       gender: [userDetails ? userDetails.gender : '', [Validators.required]],
       nation: [ userDetails ? userDetails.nation : ''  , [Validators.required]],
@@ -113,7 +113,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   }
 
   goToNext(form: FormGroup) {
-    if (this.validateProfileForm(form)) {
+    if (this.validateMoGetStrdForm(form)) {
       console.log(form.value);
       this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
         console.log(data);
@@ -126,8 +126,8 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.nationalityAlert = true;
     nationality = nationality ? nationality : { text: '', value: '' };
     this.nationality = nationality.text;
-    this.myProfileForm.controls['nation'].setValue(nationality.value);
-    this.myProfileForm.markAsDirty();
+    this.moGetStrdForm.controls['nation'].setValue(nationality.value);
+    this.moGetStrdForm.markAsDirty();
   }
   validateDOB(date) {
     const today: Date = new Date();
@@ -139,7 +139,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
   }
 
-  validateProfileForm(form: FormGroup) {
+  validateMoGetStrdForm(form: FormGroup) {
 
     form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
     console.log(form.value.dateOfBirth);
