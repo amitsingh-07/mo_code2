@@ -1,5 +1,5 @@
 
 export const COMPREHENSIVE_FORM_CONSTANTS = {
-MY_PROFILE: 'myProfileForm',
+MY_PROFILE: 'moGetStrdForm',
 dependantForm: 'dependantForm'
 };
