@@ -1,4 +1,7 @@
 <div class="container-fluid--comprehensive max-width--1024 comprehensive">
+    <div class="step-indicator-container">
+        <app-step-indicator [count]="5" [activeStepIndex]="0"></app-step-indicator>
+    </div>
   <header>{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
   <article class="py-2">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</article>
   <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant ">
@@ -100,19 +103,19 @@
 
             <div class="datepicker-control datepicker-upside">
 
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !dependant.get('dob').valid && !dependant.get('dob').pristine}">
+              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !dependant.get('dateOfBirth').valid && submitted}">
 
-                <input readonly (click)="d.toggle()" class="form-control" placeholder="Select" formControlName="dob"
+                <input readonly (click)="d.toggle()" class="form-control" placeholder="Select" formControlName="dateOfBirth"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB">
 
                 <div class="input-group-append">
 
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myDependantDatePicker">
 
-                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="dependant.get('dob').valid || dependant.get('dob').pristine"
+                    <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="dependant.get('dateOfBirth').valid || !submitted"
                       src="./assets/images/calendar-normal.svg" />
 
-                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!dependant.get('dob').valid && !dependant.get('dob').pristine"
+                    <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!dependant.get('dateOfBirth').valid && submitted"
                       src="./assets/images/calendar-error.svg" />
 
                   </button>
@@ -134,11 +137,11 @@
             </label>
           </div>
           <div class="flex-col-7">
-            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.nationality.invalid}">
+            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.nation.invalid}">
               <div ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
-                  <span *ngIf="dependant.get('nationality').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                  <span *ngIf="dependant.get('nationality').value !==''">{{dependant.get('nationality').value}}</span>
+                  <span *ngIf="dependant.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="dependant.get('nation').value !==''">{{dependant.get('nationality').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
                   <button class="dropdown-item" (click)="selectNationality('',i)">{{'COMMON.LBL_SELECT' | translate}}</button>

@@ -20,6 +20,12 @@ export class ComprehensiveFormError {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'
                 }
+            },
+            firstName: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Full Name (as per ID)'
+                }
             }
 
         }

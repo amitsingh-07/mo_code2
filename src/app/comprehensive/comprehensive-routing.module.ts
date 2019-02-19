@@ -18,25 +18,29 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 
 const routes: Routes = [
   {
-    path: '', canActivate: [ComprehensiveEnableGuard], children: [
+    path: '',
+    canActivate: [ComprehensiveEnableGuard],
+    children: [
       { path: '', component: ComprehensiveComponent },
-      { path: '', redirectTo: '/comprehensive/getting-started', pathMatch: 'full'},
-      { path: 'getting-started', component: MyProfileComponent},
+      { path: '', redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
+      { path: 'getting-started', component: MyProfileComponent },
       { path: 'dependant-selection', component: DependantSelectionComponent },
       { path: 'dependant-details', component: DependantsDetailsComponent },
       { path: 'dependant-education', component: DependantEducationComponent },
       { path: 'dependant-education-list', component: DependantEducationListComponent },
-      { path: 'dependant-education-preference', component : EducationPreferenceComponent},
-      { path: 'dependant-education-selection', component : DependantEducationSelectionComponent},
-      { path: 'my-earnings', component: MyEarningsComponent},
-      { path: 'my-spendings', component: MySpendingsComponent},
-      { path: 'regular-saving-plan' , component: RegularSavingPlanComponent },
-      { path: 'my-assets', component: MyAssetsComponent},
-      { path: 'my-liabilities', component: MyLiabilitiesComponent},
-      { path: 'steps/:stepNo', component: ComprehensiveStepsComponent}
+      { path: 'dependant-education-preference', component: EducationPreferenceComponent },
+      { path: 'dependant-education-selection', component: DependantEducationSelectionComponent },
+      { path: 'my-earnings', component: MyEarningsComponent },
+      { path: 'my-spendings', component: MySpendingsComponent },
+      { path: 'regular-saving-plan', component: RegularSavingPlanComponent },
+      { path: 'my-assets', component: MyAssetsComponent },
+      { path: 'my-liabilities', component: MyLiabilitiesComponent },
+      { path: 'steps/:stepNo', component: ComprehensiveStepsComponent },
+      { path: 'first-report', component: FirstReportDependantComponent}
     ]
   }
 ];

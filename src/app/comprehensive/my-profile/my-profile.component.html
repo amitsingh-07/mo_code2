@@ -59,7 +59,7 @@
           <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
               <div  ngbDropdown id="nationalityDropDown" placement="top-right">
-                <button [disabled]="nationDisabled"  type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                   <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>

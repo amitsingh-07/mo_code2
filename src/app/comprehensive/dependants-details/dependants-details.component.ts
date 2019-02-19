@@ -76,7 +76,7 @@ export class DependantsDetailsComponent implements OnInit {
   }
   selectNationality(status, i) {
     const nationality = status ? status : '';
-    this.myDependantForm.controls['dependant']['controls'][i].controls.nationality.setValue(nationality);
+    this.myDependantForm.controls['dependant']['controls'][i].controls.nation.setValue(nationality);
   }
 
   buildDependantDetailsForm() {
@@ -85,8 +85,8 @@ export class DependantsDetailsComponent implements OnInit {
       Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
-      nationality: ['', [Validators.required]]
+      dateOfBirth: ['', [Validators.required]],
+      nation: ['', [Validators.required]]
 
     });
   }

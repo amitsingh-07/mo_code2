@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { ImyProfile} from '../comprehensive-types';
+import { ImyProfile } from '../comprehensive-types';
 
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -65,19 +65,16 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
     this.pageId = this.route.routeConfig.component.name;
     this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-     this.userDetails = data.objectList[0];
-     console.log( this.userDetails);
-     this.DobDisabled = this.userDetails.dateOfBirth ? true : false;
-     this.nationDisabled = this.userDetails.nation ? true : false;
-     this.genderDisabled = this.userDetails.gender ? true : false;
-     this.nationality = this.userDetails.nation;
-
-     const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('-') : '';
-     this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
-    // tslint:disable-next-line:radix
-     this.userDetails.dateOfBirth = { year: parseInt (dob[0]), month: parseInt (dob[1]), day: parseInt (dob[2
-    ]) };
-     this.buildMoGetStrdForm(this.userDetails);
+      this.userDetails = data.objectList[0];
+      this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+      const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('/') : '';
+      this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
+      this.userDetails.dateOfBirth = {
+        // tslint:disable-next-line:radix
+        year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2
+        ])
+      };
+      this.buildMoGetStrdForm(this.userDetails);
     });
   }
 
@@ -91,22 +88,22 @@ export class MyProfileComponent implements IPageComponent, OnInit {
     this.buildMoGetStrdForm(this.userDetails);
     setTimeout(() => {
       this.showToolTip = true;
- }, 1000);
+    }, 1000);
+
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitleWithIcon(title, {id: this.pageId, iconClass: 'navbar__menuItem--journey-map'});
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
   get myProfileControls() { return this.moGetStrdForm.controls; }
 
   buildMoGetStrdForm(userDetails) {
     this.moGetStrdForm = this.formBuilder.group({
-      firstName: [userDetails ? userDetails.firstName : ''  ],
+      firstName: [userDetails ? userDetails.firstName : ''],
       gender: [userDetails ? userDetails.gender : '', [Validators.required]],
-      nation: [ userDetails ? userDetails.nation : ''  , [Validators.required]],
-      dateOfBirth: [userDetails ? userDetails.dateOfBirth : '' ,
-       [Validators.required, ]],
+      nation: [userDetails ? userDetails.nation : '', [Validators.required]],
+      dateOfBirth: [userDetails ? userDetails.dateOfBirth : '', [Validators.required]],
 
     });
     this.myProfileShow = false;
@@ -114,9 +111,7 @@ export class MyProfileComponent implements IPageComponent, OnInit {
 
   goToNext(form: FormGroup) {
     if (this.validateMoGetStrdForm(form)) {
-      console.log(form.value);
       this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-        console.log(data);
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
       });
     }
@@ -131,18 +126,19 @@ export class MyProfileComponent implements IPageComponent, OnInit {
   }
   validateDOB(date) {
     const today: Date = new Date();
-    if ((today.getFullYear()  - date._model.year) > 55) {
-    this.DOBAlert = true;
-   } else {
-    this.DOBAlert = false;
-   }
+    if ((today.getFullYear() - date._model.year) > 55) {
+      this.DOBAlert = true;
+    } else {
+      this.DOBAlert = false;
+    }
 
   }
 
   validateMoGetStrdForm(form: FormGroup) {
 
     form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
-    console.log(form.value.dateOfBirth);
+   
+
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
