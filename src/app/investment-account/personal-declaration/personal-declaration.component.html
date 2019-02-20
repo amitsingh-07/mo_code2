@@ -1,10 +1,10 @@
 <div class="personal-declaration">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="5"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <form name="personalDeclarationForm" [formGroup]="personalDeclarationForm">
       <div class="flex-row mb30">
         <div class="flex-col-4">
@@ -120,8 +120,8 @@
         </div>
       </div>
     </form>
+    <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()"
+      class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
+      'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
   </div>
-  <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()"
-    class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
-    'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
 </div>

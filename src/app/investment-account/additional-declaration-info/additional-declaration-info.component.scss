@@ -1,6 +1,12 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-additional-declaration-info {
+  .container-fluid{
+    @include allmobiles{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
   .app-additional-declaration {
     .btn-proceed {
       border: 0px;
@@ -49,7 +55,7 @@ app-additional-declaration-info {
       @include allmobiles {
         .banner-image img {
           max-width: 70%;
-          padding-top: 15vh;
+          padding-top: 5vh;
         }
       }
       @include iPadProPortrait {
