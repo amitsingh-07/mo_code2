@@ -141,18 +141,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.authService.isAuthenticated()) {
         this.login();
       } else {
-        if (!this.authService.isAuthenticated()) {
-          this.authService.authenticate().subscribe((token) => {
-            this.login();
-          });
-        }
+        this.authService.authenticate().subscribe((token) => {
+          this.login();
+        });
       }
     }
   }
 
   // tslint:disable-next-line:cognitive-complexity
   private login() {
-    this.loaderService.showLoader({title: 'Signing in'});
+    this.loaderService.showLoader({ title: 'Signing in' });
     this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
       this.loginForm.value.captchaValue).subscribe((data) => {
         this.loaderService.hideLoader();
@@ -164,6 +162,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           } catch (e) {
             console.log(e);
           }
+
+          // TODO: Remove this IF block after getUserProfileInfo() API is available
+          /** START - IF block */
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
             const redirect_url = this.signUpService.getRedirectUrl();
             if (redirect_url) {
@@ -172,45 +173,54 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } else {
               this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
             }
+            return;
+          }
+          /** END - IF block */
 
-          } else {
-            this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-              this.signUpService.setUserProfileInfo(userInfo.objectList);
+          this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+            this.signUpService.setUserProfileInfo(userInfo.objectList);
 
-              // Investment status
-              const investmentStatus = this.signUpService.getInvestmentStatus();
-              const redirect_url = this.signUpService.getRedirectUrl();
+            // Investment status
+            const investmentStatus = this.signUpService.getInvestmentStatus();
+            const redirect_url = this.signUpService.getRedirectUrl();
+            if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
-                if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
-                  investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                  this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
-                } else {
-                  this.router.navigate([redirect_url]);
-                }
-              } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-                this.willWritingService.getExecTrusteeInfo().length > 0) {
-                if (!this.willWritingService.getIsWillCreated()) {
-                  this.willWritingApiService.createWill().subscribe((willData) => {
-                    if (willData.responseMessage && willData.responseMessage.responseCode >= 6000) {
-                      this.willWritingService.setIsWillCreated(true);
-                      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                    } else if (willData.responseMessage && willData.responseMessage.responseCode === 5006) {
-                      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-                      ref.componentInstance.errorTitle = '';
-                      ref.componentInstance.errorMessage = this.duplicateError;
-                    }
-                  });
-                } else {
-                  this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                }
-              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+                this.router.navigate([redirect_url]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
               }
-            });
-          }
+            } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+              this.willWritingService.getExecTrusteeInfo().length > 0) {
+              if (!this.willWritingService.getIsWillCreated()) {
+                this.willWritingApiService.createWill().subscribe((willData) => {
+                  if (willData.responseMessage && willData.responseMessage.responseCode >= 6000) {
+                    this.willWritingService.setIsWillCreated(true);
+                    this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                  } else if (willData.responseMessage && willData.responseMessage.responseCode === 5006) {
+                    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+                    ref.componentInstance.errorTitle = '';
+                    ref.componentInstance.errorMessage = this.duplicateError;
+                  }
+                });
+              } else {
+                this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+              }
+            } else if (redirect_url) {
+              this.signUpService.clearRedirectUrl();
+              if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
+                investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+                this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+              } else {
+                this.router.navigate([redirect_url]);
+              }
+            } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+            } else {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+            }
+          });
+
           this.signUpService.removeCaptchaSessionId();
         } else if (data.responseMessage.responseCode === 5016) {
           this.loginForm.controls['captchaValue'].reset();

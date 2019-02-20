@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -23,6 +25,7 @@ export class ComprehensiveComponent implements OnInit {
   modalRef: NgbModalRef;
 
   constructor(
+    private appService: AppService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
     public navbarService: NavbarService, private configService: ConfigService,
     private authService: AuthenticationService, public modal: NgbModal, public footerService: FooterService) {
@@ -39,7 +42,7 @@ export class ComprehensiveComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
-
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
   }
   start() {
     if (this.authService.isSignedUser()) {

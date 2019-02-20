@@ -1,7 +1,7 @@
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
-const ACCOUNT_API_BASE_URL = 'account/account-microservice';
+const ACCOUNT_API_BASE_URL = 'account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
@@ -11,30 +11,30 @@ export let apiConstants = {
     endpoint: {
         authenticate: 'account-microservice/authenticate',
         login: 'login',
-        logout: 'account/account-microservice/api/logout',
-        getProfileList: 'account/account-microservice/api/getProfileTypeList',
+        logout: 'account-microservice/api/logout',
+        getProfileList: 'account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
-        updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
+        updateProductEnquiry: 'account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
-        signUp: 'account/account-microservice/api/signup',
-        updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
-        verifyOTP: 'account/account-microservice/api/verifyOTP',
-        resendOTP: 'account/account-microservice/api/resendOTP',
-        setPassword: 'account/account-microservice/api/setPassword',
-        verifyEmail: 'account/account-microservice/api/verifyEmail',
-        resetPassword: 'account/account-microservice/api/resetPassword',
-        forgotPassword: 'account/account-microservice/api/forgotPassword',
-        userProfileInfo: 'account/account-microservice/api/getCustomerProfileDetails',
-        editContactDeatails: 'account/account-microservice/api/updateAddress',
-        editPassword: 'account/account-microservice/api/editPassword',
-        editProfile: 'account/account-microservice/api/customer/customerProfile',
-        editEmployerAddress: 'account/account-microservice/api/updateEmployment',
-        emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
-        detailCustomerSummary: 'account/account-microservice/api/getDetailedCustomerSummary',
+        signUp: 'account-microservice/api/signup',
+        updateUserId: 'account-microservice/api/updatePersonalDetails?handleError=true',
+        verifyOTP: 'account-microservice/api/verifyOTP',
+        resendOTP: 'account-microservice/api/resendOTP',
+        setPassword: 'account-microservice/api/setPassword',
+        verifyEmail: 'account-microservice/api/verifyEmail',
+        resetPassword: 'account-microservice/api/resetPassword',
+        forgotPassword: 'account-microservice/api/forgotPassword',
+        userProfileInfo: 'account-microservice/api/getCustomerProfileDetails',
+        editContactDeatails: 'account-microservice/api/updateAddress',
+        editPassword: 'account-microservice/api/editPassword',
+        editProfile: 'account-microservice/api/customer/customerProfile',
+        editEmployerAddress: 'account-microservice/api/updateEmployment',
+        emailValidityCheck: 'account-microservice/api/emailValidityCheck',
+        detailCustomerSummary: 'account-microservice/api/getDetailedCustomerSummary',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -63,8 +63,8 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
-            uploadDocument: 'account/account-microservice/saveDocuments',
-            saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
+            uploadDocument: 'account-microservice/saveDocuments',
+            saveInvestmentAccount: 'account-microservice/api/saveCustomerDetails',
             saveNationality: 'invest/investment-microservice/customer/setNationality',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
@@ -78,9 +78,9 @@ export let apiConstants = {
             porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {
-            getUserAddress: 'account/account-microservice/api/customer/address',
-            getUserBankList: 'account/account-microservice/api/customer/banks',
-            addNewBank: 'account/account-microservice/api/customer/bank',
+            getUserAddress: 'account-microservice/api/customer/address',
+            getUserBankList: 'account-microservice/api/customer/banks',
+            addNewBank: 'account-microservice/api/customer/bank',
             getTransactions: INVESTMENT_API_BASE_URL + '/portfolio/transactions'
         },
         notification: {
@@ -89,7 +89,7 @@ export let apiConstants = {
             updateNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/updateNotification'
         },
         willWriting: {
-            verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
+            verifyPromoCode: 'account-microservice/api/promocode/validatePromoCode',
             createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile?handleError=true',
             getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile?handleError=true',

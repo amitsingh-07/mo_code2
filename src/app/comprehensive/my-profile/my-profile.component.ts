@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -47,6 +48,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   constructor(
+    private loaderService: LoaderService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
@@ -67,18 +69,16 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       });
     });
 
-    this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-      this.userDetails = data.objectList[0];
-      this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
-      const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('/') : '';
-      this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
-      this.userDetails.dateOfBirth = {
-        // tslint:disable-next-line:radix
-        year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2
-        ])
-      };
-      this.buildProfileForm(this.userDetails);
-    });
+    this.userDetails = this.comprehensiveService.getMyProfile();
+    if (!this.userDetails.dateOfBirth) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+        this.loaderService.hideLoader();
+        this.userDetails = data.objectList[0];
+      });
+    } else {
+      this.setUserProfileData();
+    }
   }
 
   ngOnInit() {
@@ -105,6 +105,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
+  setUserProfileData() {
+    this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+    const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('/') : '';
+    this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
+    this.userDetails.dateOfBirth = {
+      // tslint:disable-next-line:radix
+      year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2
+      ])
+    };
+  }
+
   get myProfileControls() { return this.moGetStrdForm.controls; }
 
   buildProfileForm(userDetails) {
@@ -120,6 +131,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   goToNext(form: FormGroup) {
     if (this.validateMoGetStrdForm(form)) {
+      this.comprehensiveService.setMyProfile(form.value);
       this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
       });

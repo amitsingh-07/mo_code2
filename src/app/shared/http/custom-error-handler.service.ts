@@ -56,7 +56,7 @@ export class CustomErrorHandlerService {
       console.error('An error occured do nothing let it flow');
     } else {
       console.log('Do nothing let it flow');
-      }
+    }
     return throwError(
       'Something bad happened; please try again later.');
   }
@@ -65,7 +65,7 @@ export class CustomErrorHandlerService {
     if (httpError.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', httpError.error.message);
-    } else {
+    } else if (httpError.error && httpError.error.error) {
       const error: IError = {
         error: httpError.error.error,
         message: httpError.error.message
