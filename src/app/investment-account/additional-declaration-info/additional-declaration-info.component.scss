@@ -55,7 +55,7 @@ app-additional-declaration-info {
       @include allmobiles {
         .banner-image img {
           max-width: 70%;
-          //padding-top: 15vh;
+          padding-top: 5vh;
         }
       }
       @include iPadProPortrait {
