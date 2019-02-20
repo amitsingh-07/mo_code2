@@ -7,9 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -60,7 +58,7 @@ export class SelectNationalityComponent implements OnInit {
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
-      this.countryList = this.getCountryList(data.objectList);
+      this.countryList = this.investmentAccountService.getCountryList(data.objectList);
       if (this.selectNationalityFormValues.nationalityCode) {
         const nationalityObj = this.getSelectedNationality(
           this.selectNationalityFormValues.nationalityCode
@@ -68,6 +66,9 @@ export class SelectNationalityComponent implements OnInit {
         this.selectNationalityForm.controls.nationality.setValue(nationalityObj);
       }
       this.buildAdditionalControls();
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -105,18 +106,6 @@ export class SelectNationalityComponent implements OnInit {
   selectNationality(nationality) {
     this.selectNationalityForm.get('nationality').setValue(nationality);
     this.buildAdditionalControls();
-  }
-
-  getCountryList(data) {
-    const countryList = [];
-    data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          countryList.push(country);
-        });
-      }
-    });
-    return countryList;
   }
 
   setNationlityFormData(form) {
@@ -184,13 +173,7 @@ export class SelectNationalityComponent implements OnInit {
         );
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
-        );
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }

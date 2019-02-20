@@ -141,5 +141,9 @@
     "DESC": "To continue, please log in or create a MoneyOwl account.",
     "LOG_IN": "Log In",
     "CREATE_ACCOUNT": "Create Account"
+  },
+  "PORTFOLIO_EXIST": {    
+    "DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
+    "PROCEED_BTN_TEXT": "Proceed To Portfolio"
   }
 }

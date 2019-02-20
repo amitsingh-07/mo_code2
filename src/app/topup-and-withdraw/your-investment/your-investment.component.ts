@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -58,7 +59,8 @@ export class YourInvestmentComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
-    public topupAndWithDrawService: TopupAndWithDrawService
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -116,6 +118,9 @@ export class YourInvestmentComponent implements OnInit {
           this.investmentoverviewlist.data.cashAccountDetails.availableBalance
         );
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -141,6 +146,9 @@ export class YourInvestmentComponent implements OnInit {
         const fundingParams = this.constructFundingParams(data.objectList);
         this.topupAndWithDrawService.setFundingDetails(fundingParams);
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -195,6 +203,9 @@ export class YourInvestmentComponent implements OnInit {
         if (data.responseMessage.responseCode === 6000) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
     });
     ref.componentInstance.noClickAction.subscribe(() => { });

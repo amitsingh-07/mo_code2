@@ -133,12 +133,18 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
   getGeneratedFrom() {
     this.investmentAccountService.getGeneratedFrom().subscribe((data) => {
       this.generatedList = data.objectList.earningsGenerated;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -201,15 +207,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, {
-          centered: true
-        });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION'
-        );
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
