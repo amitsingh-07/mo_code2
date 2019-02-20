@@ -187,11 +187,11 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
   saveAndProceed(form: any) {
     this.portfolioService.setMyFinancials(form.value);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     },
     (err) => {

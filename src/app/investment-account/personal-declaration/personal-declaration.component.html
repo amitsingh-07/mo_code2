@@ -17,7 +17,7 @@
             <div ngbDropdown>
               <button class="btn btn-dropdown" ngbDropdownToggle>
                 <span class="dependent-count dropdown_text" *ngIf="!personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source1">Select Source</span>
+                  id="persoanl_declaration__dropdown_source1">{{ 'PERSONAL_DECLARATION.SELECT_SOURCE' | translate}}</span>
                 <span class="dependent-count dropdown_text" *ngIf="personalDeclarationForm.controls.sourceOfIncome.value"
                   id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name |
                   titlecase}}</span>

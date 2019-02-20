@@ -105,8 +105,8 @@
         </div>
       </div>
       <div class="add-tax-box" *ngIf="formCount < 4" (click)="addTaxForm(null)">
-        <div>Are you paying tax in another country?</div>
-        <div class="add-tax-text">Add Tax Residence</div>
+        <div>{{ 'TAX_INFO.TAX_OTHER_COUNTRY' | translate}}</div>
+        <div class="add-tax-text">{{ 'TAX_INFO.ADD_TAX_RESIDENCE' | translate}}</div>
       </div>
     </form>
     <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
