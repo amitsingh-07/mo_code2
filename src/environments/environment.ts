@@ -5,11 +5,11 @@ import { IEnvironment } from './environment.interface';
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: IEnvironment = {
-  production: true,
-  isDebugMode: false,
-  apiBaseUrl: 'http://10.144.124.152:8080',
-  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
-  myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
+  production: false,
+  isDebugMode: true,
+  apiBaseUrl: 'https://bfa-uat2.ntucbfa.com',
+  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
+  myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
   gaPropertyId: 'UA-125256446-1'
 };
@@ -21,4 +21,3 @@ export const environment: IEnvironment = {
  * because it will have performance impact when throw error
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-
