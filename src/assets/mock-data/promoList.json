@@ -109,5 +109,18 @@
         "date_expiry": "1553875199000",
         "tag" : ["Insurance", "Protection"],
         "external": false
+    },
+    {
+        "promoId": 10,
+        "type": 2,
+        "owner": "MoneyOwl",
+        "title": "Write your Will, for Free! (worth $150!)",
+        "thumbnail": "/assets/promotions/images/10/thumbnail.svg",
+        "desc": "Subscribe to our mailing list & get a promo code to write for free! Limited offer.",
+        "date_created": "1550505600000",
+        "date_expiry": "1620230399000",
+        "tag" : ["Wills"],
+        "external": true,
+        "url": "/home#subscribe"
     }
 ]
