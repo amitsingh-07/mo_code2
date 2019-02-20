@@ -3,9 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -25,7 +27,7 @@ export class ComprehensiveComponent implements OnInit {
   modalRef: NgbModalRef;
 
   constructor(
-    private appService: AppService,
+    private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
     public navbarService: NavbarService, private configService: ConfigService,
     private authService: AuthenticationService, public modal: NgbModal, public footerService: FooterService) {
@@ -53,6 +55,8 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   showLoginOrSignupModal() {
+    this.cmpService.clearFormData();
+    this.cmpService.setStartingPage(APP_ROUTES.COMPREHENSIVE);
     this.modalRef = this.modal.open(LoginCreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true

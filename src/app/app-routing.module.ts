@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { APP_ROUTES } from './app-routes.constants';
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
@@ -35,7 +36,7 @@ const routes: Routes = [
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
       {
-        path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
+        path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
         canActivate: [ComprehensiveEnableGuard],
         canActivateChild: [ComprehensiveChildEnableGuard]
       },
@@ -52,17 +53,20 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: 'invest',
+      {
+        path: 'invest',
         loadChildren: './portfolio/portfolio.module#PortfolioModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'invest/account',
+      {
+        path: 'invest/account',
         loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'investment',
+      {
+        path: 'investment',
         loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
@@ -73,7 +77,8 @@ const routes: Routes = [
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingChildEnableGuard]
       },
-      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
+      {
+        path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
         canActivate: [PromotionEnableGuard],
         canActivateChild: [PromotionChildEnableGuard]
       },

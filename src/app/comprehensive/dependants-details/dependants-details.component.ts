@@ -50,7 +50,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
-    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
         alert('Menu Clicked');
       }

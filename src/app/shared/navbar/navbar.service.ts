@@ -176,4 +176,9 @@ export class NavbarService {
     this.isBackPressSubscribed.next(false);
     this.backListener.next('');
   }
+
+  unsubscribeMenuItemClick() {
+    this.menuItem.next(null);
+    this.$menuItemClick.next('');
+  }
 }
