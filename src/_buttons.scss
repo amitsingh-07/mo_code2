@@ -1032,12 +1032,15 @@ button:active:focus {
     &.btn-primary {
       font-size: 18px;
       background: $btn-comprehensive;
-      margin: 0 3%;
-      width: 94%;
+      width: calc(100% - 40px);
       &:disabled {
         background: $btn-comprehensive-disabled-bg;
         color: $white-color;
       }
     }
+  }
+  .fixed-button {
+    position: absolute;
+    bottom: 50px;
   }
 }
