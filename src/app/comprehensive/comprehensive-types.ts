@@ -1,12 +1,12 @@
-export interface ImyProfile {
-id: string;
-firstName: string;
-lastName: string;
-dateOfBirth: any;
-nation: string;
-gender: string;
+export interface IMyProfile {
+    id: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: any;
+    nation: string;
+    gender: string;
 }
-export interface ImyDependant {
+export interface IMyDependant {
     name: string;
     relationship: string;
     gender: string;

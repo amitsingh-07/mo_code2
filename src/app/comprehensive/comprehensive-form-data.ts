@@ -1,11 +1,11 @@
 
-import {ImyDependant, ImyProfile } from './comprehensive-types';
+import {IMyDependant, IMyProfile } from './comprehensive-types';
 
 export class ComprehensiveFormData {
 
     isToolTipShown = false;
     // myProfile info
-    myProfile: ImyProfile;
-    myDependant: ImyDependant;
+    myProfile: IMyProfile;
+    myDependant: IMyDependant;
 
 }

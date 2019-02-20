@@ -4,13 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { ImyDependant } from './../comprehensive-types';
+import { IMyDependant } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -25,7 +24,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   dependant: any = [];
   relationShipList: any;
   nationalityList: any;
-  dependantDetails: ImyDependant;
+  dependantDetails: IMyDependant;
   relationship: string;
   submitted: boolean;
   pageId: string;
@@ -33,7 +32,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService , private parserFormatter: NgbDateParserFormatter) {
+    private comprehensiveService: ComprehensiveService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -104,8 +103,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   validateDependantform(form: FormGroup) {
 
-    console.log(form);
-
     this.submitted = true;
     if (!form.valid) {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
@@ -117,10 +114,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-
-    form.value.dependant.forEach((element: any, index) => {
-      form.value.dependant[index].dateOfBirth = this.parserFormatter.format(element.dateOfBirth);
-          });
     if (this.validateDependantform(form)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
     }
