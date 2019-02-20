@@ -141,7 +141,7 @@
               <div ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                   <span *ngIf="dependant.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                  <span *ngIf="dependant.get('nation').value !==''">{{dependant.get('nationality').value}}</span>
+                  <span *ngIf="dependant.get('nation').value !==''">{{dependant.get('nation').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
                   <button class="dropdown-item" (click)="selectNationality('',i)">{{'COMMON.LBL_SELECT' | translate}}</button>

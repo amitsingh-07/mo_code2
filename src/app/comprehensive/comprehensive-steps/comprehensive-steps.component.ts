@@ -54,7 +54,9 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   }
 
   goToNext(step) {
+    console.log(step)
     switch (step) {
+     
       case 1:
         this.url = COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION;
         break;
