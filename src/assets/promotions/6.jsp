@@ -4,17 +4,17 @@
     <div class="promo__table">
     <table class="promo__inner-table">
         <tr>
-            <td class="cell--header" colspan="2">Qualifying Criteria</td>
-            <td class="cell--header" rowspan="2">Premium Discount</td>
+            <td class="cell--header text--center" colspan="2">Qualifying Criteria</td>
+            <td class="cell--header text--center" rowspan="2">Premium Discount</td>
             </tr>
         <tr>
-            <td class="cell--header">Qualifying Product</td>
-            <td class="cell--header">Premium Term</td>
+            <td class="cell--header text--center">Qualifying Product</td>
+            <td class="cell--header text--center">Premium Term</td>
             </tr> 
         <tr>
-            <td>Signature Income (SGD)</td>
-            <td>Single Premium</td>
-            <td>0.3%</td>
+            <td class="text--center">Signature Income (SGD)</td>
+            <td class="text--center">Single Premium</td>
+            <td class="text--center">0.3%</td>
             </tr>
         </table>
         </div>

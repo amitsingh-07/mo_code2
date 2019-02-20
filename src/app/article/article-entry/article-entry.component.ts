@@ -11,7 +11,6 @@ import { ArticleApiService } from '../article.api.service';
 import { ArticleService } from '../article.service';
 
 import { IArticleElement } from './../articleElement.interface';
-import { IArticleEntry } from './articleEntry.interface';
 
 @Component({
   selector: 'app-article-entry',
