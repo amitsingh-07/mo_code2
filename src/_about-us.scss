@@ -12,13 +12,17 @@
     .about-us__header--bg{
         position: absolute;
         display:block;
-        background-image:url('/assets/images/small-cloud-repeatable.svg');
+        background-image:url('/assets/images/bg/cloud-bg.svg');
+        background-position-y:-100px;
+        background-size:120%;
+        background-repeat:repeat-x;
         z-index:1;  
         width:100%;
-        height: 106px;
+        height:200px;
         background-color:$white-color;
         @include minMobilemaxPhablet{
-            height:0px;
+            height:130px;
+            background-position-y:0px;
         }
     }
     .about-us__header--inner{
@@ -31,17 +35,14 @@
             position: relative;
             display:block;
             color:$teal-color;
-            margin-bottom:18px;
             font-family:$muli-bold;
-            h1{
-                font-size:36px;
+            margin:10px 0px 30px 0px;
+            @include minPhabletmaxTablet{
+                padding:0px 20px 20px 20px;
             }
             @include minMobilemaxPhablet{
-                padding:15px 0px;
+                padding:20px;
                 margin:0px;
-                h1{
-                    font-size:1.9rem;
-                }
             }
         }
         .sub-navigation{

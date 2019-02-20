@@ -1,7 +1,7 @@
 {
   "language": "en",
   "useMyInfo": false,
-  "willWritingEnabled": false,
+  "willWritingEnabled": true,
   "investmentEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": false,

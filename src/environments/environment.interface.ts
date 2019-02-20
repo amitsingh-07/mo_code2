@@ -10,5 +10,5 @@ export interface IEnvironment {
     fbPropertyId?: string; // Facebook Pixel
     adRollPropertyId?: string; // AdRoll Property Id
     adRollAdvId?: string; // AdRoll Advert Id
-    projectG ?: boolean; // Project G
+    brand ?: string; // Project G
 }

@@ -1,4 +1,4 @@
-<p class="tnc--title">Terms and Conditions</p>
+<p class="tnc--title">Terms & Conditions:</p>
 <ol class="tnc--ordered">
     <li>The Promotion is valid until <strong>12 April 2019</strong> (date inclusive). Application must be submitted and received by Manulife before 12 April 2019, 6pm. The policy must be issued between 21 January 2019 and 13 May 2019.</li>
     <li>This Promotion is applicable for Signature Income Singapore Dollars (SGD) plan only.</li>
