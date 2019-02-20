@@ -74,7 +74,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
       this.userDetails.dateOfBirth = {
         // tslint:disable-next-line:radix
-        year: parseInt(dob[0]), month: parseInt(dob[1]), day: parseInt(dob[2
+        year: parseInt(dob[2]), month: parseInt(dob[1]), day: parseInt(dob[0
         ])
       };
       this.buildProfileForm(this.userDetails);
