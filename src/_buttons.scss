@@ -1032,7 +1032,6 @@ button:active:focus {
     &.btn-primary {
       font-size: 18px;
       background: $btn-comprehensive;
-      width: calc(100% - 40px);
       &:disabled {
         background: $btn-comprehensive-disabled-bg;
         color: $white-color;
@@ -1042,5 +1041,6 @@ button:active:focus {
   .fixed-button {
     position: absolute;
     bottom: 50px;
+    width: calc(100% - 40px);
   }
 }
