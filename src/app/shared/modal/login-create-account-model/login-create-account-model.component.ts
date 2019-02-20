@@ -43,10 +43,10 @@ export class LoginCreateAccountModelComponent implements OnInit {
     this.activeModal.close();
     if (page === 'signup') {
       this.signUpService.clearData();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT], { skipLocationChange: true });
     }
     if (page === 'login') {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN], { skipLocationChange: true });
     }
   }
 

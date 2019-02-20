@@ -99,6 +99,9 @@ export class TaxInfoComponent implements OnInit {
   getReasonList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.noTinReasonlist = data.objectList.noTinReason;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

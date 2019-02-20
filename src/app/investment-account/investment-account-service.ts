@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
+import { PortfolioService } from '../portfolio/portfolio.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
@@ -14,7 +18,7 @@ import {
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
-  ISaveInvestmentAccountRequest
+  ISaveInvestmentAccountRequest,
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -35,7 +39,10 @@ export class InvestmentAccountService {
     private signUpService: SignUpService,
     private http: HttpClient,
     private apiService: ApiService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private portfolioService: PortfolioService,
+    public readonly translate: TranslateService,
+    private modal: NgbModal
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -96,6 +103,26 @@ export class InvestmentAccountService {
       country = selectedCountry[0];
     }
     return country;
+  }
+  getCountryList(data) {
+    const countryList = [];
+    const sortedCountryList = [];
+    data.forEach((nationality) => {
+      if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+          countryList.push(country);
+        });
+      }
+    });
+    INVESTMENT_ACCOUNT_CONFIG.PRIORITIZED_COUNTRY_LIST_CODES.forEach((countryCode) => {
+      const filteredCountry = countryList.filter(
+        (country) => country.countryCode === countryCode
+      );
+      sortedCountryList.push(filteredCountry[0]);
+      countryList.splice(countryList.indexOf(filteredCountry[0]), 1);
+    });
+    this.portfolioService.sortByProperty(countryList, 'name', 'asc');
+    return sortedCountryList.concat(countryList);
   }
   setDefaultValueForFormData() {
     this.investmentAccountFormData.isMailingAddressSame =
@@ -902,6 +929,7 @@ export class InvestmentAccountService {
   }
 
   getPersonalDecReqData(data): IPersonalDeclaration {
+    const earningsGeneratedId = data.earningsGenerated ? data.earningsGenerated.id : null;
     return {
       investmentSourceId: data.sourceOfIncome ? data.sourceOfIncome.id : null,
       beneficialOwner: data.beneficial,
@@ -940,7 +968,7 @@ export class InvestmentAccountService {
           data.source &&
           data.source.key ===
             INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
-            ? data.earningsGenerated.id
+            ? earningsGeneratedId
             : null
       }
     };
@@ -1619,5 +1647,15 @@ export class InvestmentAccountService {
       }
       this.commit();
     }
+  }
+
+  showGenericErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'COMMON_ERRORS.API_FAILED.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'COMMON_ERRORS.API_FAILED.DESC'
+    );
   }
 }

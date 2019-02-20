@@ -160,7 +160,7 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Log In",
-    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
+    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life."
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -233,8 +233,8 @@
   },
   "COMMON_ERRORS": {
     "API_FAILED": {
-      "TITLE": "Error !",
-      "DESC": "Oops. Something went wrong."
+      "TITLE": "Oops !",
+      "DESC": "Something went wrong. Please try again."
     }
   },
   "SUBSCRIBE_SIDE": {

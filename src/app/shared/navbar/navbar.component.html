@@ -40,10 +40,10 @@
         </button>
       </div>
 
-      <div class="notification-tooltip__arrow" [hidden]="isNotificationHidden"></div>
+      <div class="notification-tooltip__arrow" *ngIf="isNotificationEnabled" [hidden]="isNotificationHidden"></div>
 
       <!-- RECENT NOTIFICATIONS CONTENT -->
-      <div class="notification-tooltip" [hidden]="isNotificationHidden">
+      <div class="notification-tooltip" *ngIf="isNotificationEnabled" [hidden]="isNotificationHidden">
         <div class="notification-tooltip__header">Notifications</div>
         <div class="notification-tooltip__container">
           <ul class="pl0">
@@ -76,7 +76,7 @@
       id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
       <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
         <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
-          <a class="nav-link txt-capitalize">{{userInfo.firstName}}</a>
+          <a *ngIf="userInfo" class="nav-link txt-capitalize">{{userInfo.firstName}}</a>
           <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout
             <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
         </li>
@@ -153,7 +153,7 @@
           <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o"
               style="font-size: 20px; color: #00a7a7"></i></a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
-            <button class="dropdown-item">
+            <button class="dropdown-item" *ngIf="userInfo">
               <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
             </button>
             <button class="dropdown-item">

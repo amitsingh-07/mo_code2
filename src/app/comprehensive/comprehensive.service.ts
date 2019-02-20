@@ -12,25 +12,59 @@ import { IMyProfile } from './comprehensive-types';
   providedIn: 'root'
 })
 export class ComprehensiveService {
+  public static SESSION_KEY_FORM_DATA = 'cmp-form-data';
   private comprehensiveFormData: ComprehensiveFormData = new ComprehensiveFormData();
   private comprehensiveFormError: any = new ComprehensiveFormError();
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
-  ) { }
+  ) {
+    this.getComprehensiveFormData();
+  }
 
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(appConstants.SESSION_KEY.COMPREHENSIVE, JSON.stringify(this.comprehensiveFormData));
+      const cmpSessionData = this.getComprehensiveSessionData();
+      cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA] = this.comprehensiveFormData;
+      sessionStorage.setItem(appConstants.SESSION_KEY.COMPREHENSIVE, JSON.stringify(cmpSessionData));
     }
   }
 
+  getComprehensiveSessionData() {
+    if (window.sessionStorage && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)) {
+      return JSON.parse(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE));
+    }
+    return {};
+  }
+
+  clearFormData() {
+    this.comprehensiveFormData = {} as ComprehensiveFormData;
+    this.commit();
+  }
+
+  // Return the entire Comprehensive Form Data
+  getComprehensiveFormData(): ComprehensiveFormData {
+    if (window.sessionStorage && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)) {
+      const cmpSessionData = this.getComprehensiveSessionData();
+      if (cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA]) {
+        this.comprehensiveFormData = cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA];
+      } else {
+        this.comprehensiveFormData = {} as ComprehensiveFormData;
+      }
+    }
+    return this.comprehensiveFormData;
+  }
+
   isProgressToolTipShown() {
+    if (!this.comprehensiveFormData.isToolTipShown) {
+      this.comprehensiveFormData.isToolTipShown = false;
+    }
     return this.comprehensiveFormData.isToolTipShown;
   }
 
   setProgressToolTipShown(shown: boolean) {
     this.comprehensiveFormData.isToolTipShown = shown;
+    this.commit();
   }
 
   getMyProfile() {
@@ -39,9 +73,19 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myProfile;
   }
+
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
+    this.commit();
+  }
+
+  getStartingPage() {
+    return this.comprehensiveFormData.startingPage;
+  }
+
+  setStartingPage(pageRoute: string) {
+    this.comprehensiveFormData.startingPage = pageRoute;
     this.commit();
   }
 

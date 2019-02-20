@@ -201,21 +201,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
-      this.countryList = this.getCountryList(data.objectList);
+      this.countryList = this.investmentAccountService.getCountryList(data.objectList);
     });
   }
 
-  getCountryList(data) {
-    const countryList = [];
-    data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          countryList.push(country);
-        });
-      }
-    });
-    return countryList;
-  }
   editContactDetails() {
     let uploadedDocuments = [];
     let mailingUrl;

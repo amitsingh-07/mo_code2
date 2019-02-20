@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -16,10 +17,11 @@ import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
-  selector: 'app-my-profile',
+  selector: 'app-cmp-my-profile',
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.scss'],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   nationDisabled: boolean;
@@ -47,6 +49,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   constructor(
+    private loaderService: LoaderService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
@@ -67,28 +70,26 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       });
     });
 
-    this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-      this.userDetails = data.objectList[0];
-      this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
-      const dob = this.userDetails.dateOfBirth ? this.userDetails.dateOfBirth.split('/') : '';
-      this.userDetails.gender = this.userDetails.gender ? this.userDetails.gender : '';
-      this.userDetails.dateOfBirth = {
-        // tslint:disable-next-line:radix
-        year: parseInt(dob[2]), month: parseInt(dob[1]), day: parseInt(dob[0
-        ])
-      };
-      this.buildProfileForm(this.userDetails);
-    });
+    this.userDetails = this.comprehensiveService.getMyProfile();
+    if (!this.userDetails.dateOfBirth) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+        this.loaderService.hideLoader();
+        this.userDetails = data.objectList[0];
+      });
+    } else {
+      this.setUserProfileData();
+    }
   }
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        alert('Get Started Menu Clicked');
       }
     });
-    this.buildProfileForm(this.userDetails);
+    this.buildProfileForm();
     if (!this.comprehensiveService.isProgressToolTipShown()) {
       setTimeout(() => {
         this.showToolTip = true;
@@ -98,6 +99,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
 
@@ -105,14 +107,19 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
+  setUserProfileData() {
+    this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+  }
+
   get myProfileControls() { return this.moGetStrdForm.controls; }
 
-  buildProfileForm(userDetails) {
+  buildProfileForm() {
     this.moGetStrdForm = this.formBuilder.group({
-      firstName: [userDetails ? userDetails.firstName : ''],
-      gender: [userDetails ? userDetails.gender : '', [Validators.required]],
-      nation: [userDetails ? userDetails.nation : '', [Validators.required]],
-      dateOfBirth: [userDetails ? userDetails.dateOfBirth : '', [Validators.required]],
+      firstName: [this.userDetails ? this.userDetails.firstName : ''],
+      gender: [this.userDetails ? this.userDetails.gender : '', [Validators.required]],
+      nation: [this.userDetails ? this.userDetails.nation : '', [Validators.required]],
+      dateOfBirth: [this.userDetails ? this.userDetails.dateOfBirth : ''],
+      ngbDob: [this.userDetails ? this.userDetails.ngbDob : '', [Validators.required]]
 
     });
     this.myProfileShow = false;
@@ -120,6 +127,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   goToNext(form: FormGroup) {
     if (this.validateMoGetStrdForm(form)) {
+      form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
+      form.value.firstName = this.userDetails.firstName;
+      this.comprehensiveService.setMyProfile(form.value);
+      this.comprehensiveService.setProgressToolTipShown(true);
       this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
       });
@@ -127,7 +138,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   }
   selectNationality(nationality: any) {
-    this.nationalityAlert = true;
+    if (this.nationality) {
+      this.nationalityAlert = true;
+    }
     nationality = nationality ? nationality : { text: '', value: '' };
     this.nationality = nationality.text;
     this.moGetStrdForm.controls['nation'].setValue(nationality.value);
@@ -144,9 +157,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   validateMoGetStrdForm(form: FormGroup) {
-
-    form.value.dateOfBirth = this.parserFormatter.format(form.value.dateOfBirth);
-
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {

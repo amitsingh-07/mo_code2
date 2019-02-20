@@ -80,8 +80,11 @@
     "PLEASE_TOPUP": "Please transfer",
     "CASH_ACCOUNT": " to your cash account.",
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
-    "SUBMIT": "Submit"
-
+    "SUBMIT": "Submit",
+    "TOPUP_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the topup request"
+    }
   },
   "TOPUP_REQUEST": {
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
@@ -158,6 +161,10 @@
         "ACCOUNT": "account",
         "SUBMIT": "Confirm"
       }
+    },
+    "WITHDRAW_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the withdraw request"
     }
   },
   "WITHDRAW_SUCCESS": {
@@ -174,6 +181,8 @@
     "BY_BANK_TRANSFER_LBL2": "Transfer",
     "BY_CHEQUE_LBL1": "By",
     "BY_CHEQUE_LBL2": "Cheque",
+    "REGULATION_MSG":"Due to regulations, you can only withdraw funds to an account under your legal name.",
+    "GO_TO_EDIT_PROFILE":"To change your bank details, please go to “Edit Profile”.",
     "CHEQUES_WILL_BE_POSTED_ADDRESS": "Cheque will be posted to this address",
     "CHEQUE_POSTED_ADDRESS_LINE1": "23 Keong Saik Road",
     "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
@@ -188,7 +197,9 @@
     }
   },
   "TRANSACTIONS": {
-    "TITLE": "Transactions"
+    "TITLE": "Transactions",
+    "NO_TRANSACTION_HISTORY":"No Transaction History!",
+    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!"
   },
   "HOLDINGS": {
     "TITLE": "Holdings",

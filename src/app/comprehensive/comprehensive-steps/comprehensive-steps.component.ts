@@ -40,12 +40,13 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        alert('Road Map 1 Menu Clicked');
       }
     });
   }
 
   ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
 
@@ -54,15 +55,12 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   }
 
   goToNext(step) {
-    console.log(step)
     switch (step) {
-     
       case 1:
         this.url = COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION;
         break;
       case 2:
         break;
-
     }
     this.router.navigate([this.url]);
   }

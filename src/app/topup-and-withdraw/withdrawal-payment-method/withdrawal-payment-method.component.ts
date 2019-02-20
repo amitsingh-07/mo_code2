@@ -4,6 +4,8 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -36,7 +38,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     private modal: NgbModal,
     public footerService: FooterService,
     public navbarService: NavbarService,
-    public topupAndWithDrawService: TopupAndWithDrawService
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    private loaderService: LoaderService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {});
@@ -55,6 +59,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   getLookupList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -68,6 +75,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         this.pageTitle = this.getTitle();
         this.setPageTitle(this.pageTitle);
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -86,6 +96,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           ? data.objectList.mailingAddress
           : data.objectList.homeAddress;
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -138,14 +151,22 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
         }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
     });
     this.dismissPopup(ref);
   }
 
   saveWithdrawal() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.DESC')
+    });
     this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
@@ -162,13 +183,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         }
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }

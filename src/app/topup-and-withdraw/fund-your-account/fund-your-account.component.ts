@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
@@ -44,7 +45,8 @@ export class FundYourAccountComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public investmentAccountService: InvestmentAccountService
+    public investmentAccountService: InvestmentAccountService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
@@ -81,6 +83,9 @@ export class FundYourAccountComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
       console.log(this.bankDetailsList);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -101,7 +106,8 @@ export class FundYourAccountComponent implements OnInit {
   }
   showPayNowDetails() {
     const ref = this.modal.open(BankDetailsComponent, {
-      centered: true, windowClass: 'custom-full-height'
+      centered: true,
+      windowClass: 'custom-full-height'
     });
     ref.componentInstance.errorTitle = this.translate.instant(
       'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
@@ -131,6 +137,9 @@ export class FundYourAccountComponent implements OnInit {
   getTransferDetails() {
     this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
       this.setBankPayNowDetails(data.objectList[0]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -167,7 +176,9 @@ export class FundYourAccountComponent implements OnInit {
   goToNext(target) {
     switch (target) {
       case 'PORTFOLIO':
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT], { replaceUrl: true });
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT], {
+          replaceUrl: true
+        });
         break;
       case 'DASHBOARD':
         this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
@@ -175,7 +186,7 @@ export class FundYourAccountComponent implements OnInit {
       default:
         this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         break;
-      }
+    }
   }
   // tslint:disable-next-line
   buyPortfolio() {
@@ -192,8 +203,13 @@ export class FundYourAccountComponent implements OnInit {
   }
   // ONETIME INVESTMENT
   topUpOneTime() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
     this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
@@ -218,20 +234,20 @@ export class FundYourAccountComponent implements OnInit {
         }
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
   // MONTHLY INVESTMENT
   topUpMonthly() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
     this.topupAndWithDrawService.monthlyInvestment(this.fundDetails).subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
@@ -256,13 +272,8 @@ export class FundYourAccountComponent implements OnInit {
         }
       },
       (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'COMMON_ERRORS.API_FAILED.DESC'
-        );
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }

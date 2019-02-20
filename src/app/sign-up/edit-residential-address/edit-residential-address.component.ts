@@ -88,19 +88,8 @@ export class EditResidentialAddressComponent implements OnInit {
   }
   getNationalityCountryList() {
         this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
-            this.countries = this.getCountryList(data.objectList);
+            this.countries = this.investmentAccountService.getCountryList(data.objectList);
         });
-}
-
-getCountryList(data) {
-  const countryList = [];
-  data.forEach((nationality) => {
-      if (!nationality.blocked) {
-      nationality.countries.forEach((country) => {
-          countryList.push(country);
-      });
-  }});
-  return countryList;
 }
 
 buildForm(): FormGroup {
@@ -399,13 +388,15 @@ getInlineErrorStatus(control) {
     return fileName;
   }
 
-  clearFileSelection(type , control, event, thumbElem?) {
-    if ( type === 'Residential') {
+  clearFileSelection(type , controlName, control, event, thumbElem?) {
+    if (type === 'Residential') {
     this.isResidentialAddressAvail = false;
     }
-    if ( type === 'Mailing') {
+    if (type === 'Mailing') {
       this.isMailingAddressAvail = false;
-      }
+    }
+    const payloadKey = this.getPayloadKey(controlName);
+    this.formData.delete(payloadKey);
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 

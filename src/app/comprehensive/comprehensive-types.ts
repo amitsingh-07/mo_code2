@@ -5,6 +5,7 @@ export interface IMyProfile {
     dateOfBirth: any;
     nation: string;
     gender: string;
+    ngbDob: any;
 }
 export interface IMyDependant {
     name: string;

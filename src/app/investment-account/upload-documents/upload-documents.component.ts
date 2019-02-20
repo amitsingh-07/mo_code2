@@ -158,10 +158,14 @@ export class UploadDocumentsComponent implements OnInit {
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      this.loaderService.hideLoader();
       if (response) {
-        this.loaderService.hideLoader();
         this.redirectToNextPage();
       }
+    },
+    (err) => {
+      this.loaderService.hideLoader();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -174,7 +178,9 @@ export class UploadDocumentsComponent implements OnInit {
     return this.investmentAccountCommon.getFileName(fileElem);
   }
 
-  clearFileSelection(control, event, thumbElem?, fileElem?) {
+  clearFileSelection(control, controlName, event, thumbElem?, fileElem?) {
+    const payloadKey = this.getPayloadKey(controlName);
+    this.formData.delete(payloadKey);
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
 
