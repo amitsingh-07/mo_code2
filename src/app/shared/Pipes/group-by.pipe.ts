@@ -17,8 +17,6 @@ export class GroupByPipe implements PipeTransform {
             groupName,
             value: groupedObj[groupName]
         }));
-
-        console.log(c);
         return c;
     }
 }

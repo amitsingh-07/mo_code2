@@ -376,6 +376,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.salutaionList = this.optionList.salutation;
       this.raceList = this.optionList.race;
       this.countries = this.investmentAccountService.getCountriesFormData();
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

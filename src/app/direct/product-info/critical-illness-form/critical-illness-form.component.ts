@@ -122,7 +122,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.earlyCI = form.value.earlyCI === 'yes' ? true : false;
+    form.value.earlyCI = (form.value.earlyCI === 'yes' ||  form.value.earlyCI === true) ? true : false;
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
     this.directService.setCriticalIllnessForm(form.value);

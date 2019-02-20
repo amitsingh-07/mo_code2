@@ -1,18 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
+import { PortfolioService } from '../../portfolio/portfolio.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SignUpService } from '../sign-up.service';
 
@@ -34,6 +29,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
+    public portfolioService: PortfolioService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -54,6 +50,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     this.signUpService.getAllNotifications().subscribe((response) => {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
+      this.portfolioService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     });

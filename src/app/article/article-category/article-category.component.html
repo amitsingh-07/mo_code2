@@ -14,7 +14,7 @@
   <div class="article-category__container">
     <div class="article-category__articles">
       <div class="article-category__element" *ngFor="let article of articleListCategory">
-          <div class="article-element__image" routerLink="/articles/entry/{{article.id}}" [ngStyle]="{'background-image': 'url(../../../assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
+          <div class="article-element__image" routerLink="/articles/entry/{{article.id}}" [ngStyle]="{'background-image': 'url(/assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
             </div>
           <div class="article-element__desc">
             <div class="article-title">

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -44,7 +45,8 @@ export class TopUpComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-    public topupAndWithDrawService: TopupAndWithDrawService
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -88,6 +90,9 @@ export class TopUpComponent implements OnInit {
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList.topupInvestment; // Getting the information from the API
       this.setOnetimeMinAmount(this.investmentTypeList);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   validateAmonut(amount) {

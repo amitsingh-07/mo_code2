@@ -11,6 +11,7 @@
       <div class="navbar-brand" [ngClass]="{'top': subTitle}">
         <li *ngIf="(navbarMode == 2 || navbarMode == 6)" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
+          <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
         </li>
         <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
@@ -63,14 +64,12 @@
         <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
       </div>
 
-
       <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 6)" class="navbar-toggler hidden-lg"
         type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
         <span *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
       </button>
     </div>
-
 
     <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
       id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>

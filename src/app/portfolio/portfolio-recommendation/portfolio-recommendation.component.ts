@@ -121,6 +121,9 @@ export class PortfolioRecommendationComponent implements OnInit {
     const params = this.constructUpdateInvestmentParams(updatedData);
     this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -159,6 +162,9 @@ export class PortfolioRecommendationComponent implements OnInit {
         ),
         period: this.portfolio.investmentPeriod
       };
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -241,6 +247,9 @@ export class PortfolioRecommendationComponent implements OnInit {
         } else {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
         }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
     } else {
       this.showLoginOrSignupModal();

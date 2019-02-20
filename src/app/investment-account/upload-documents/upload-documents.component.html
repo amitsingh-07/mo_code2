@@ -29,7 +29,7 @@
             <!-- FRONT IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricFront)">
               <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricFrontImage, $event, frontThumb, nricFront)"
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb, nricFront)"
                   *ngIf="uploadForm.controls.nricFrontImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
@@ -49,7 +49,7 @@
             <!-- BACK IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricBack)">
               <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricBackImage, $event, backThumb, nricBack)"
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb, nricBack)"
                   *ngIf="uploadForm.controls.nricBackImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
@@ -69,7 +69,7 @@
             <!-- PASSPORT IMAGE UPLOAD -->
             <div class="upload-desc" *ngIf="!isUserNationalitySingapore" (click)="openFileDialog(passport)">
               <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb, passport)"
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb, passport)"
                   *ngIf="uploadForm.controls.passportImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
@@ -99,7 +99,7 @@
           <div class="upload-doc" [class.selected]="uploadForm.controls.resAddressProof.value">
             <div class="upload-desc" (click)="openFileDialog(resAddressProof)">
               <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, $event, resThumb, resAddressProof)"
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event, resThumb, resAddressProof)"
                   *ngIf="uploadForm.controls.resAddressProof.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
@@ -132,7 +132,7 @@
           <div class="upload-doc" [class.selected]="uploadForm.controls.mailAdressProof.value">
             <div class="upload-desc" (click)="openFileDialog(mailAdressProof)">
               <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event, mailThumb, mailAdressProof)"
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event, mailThumb, mailAdressProof)"
                   *ngIf="uploadForm.controls.mailAdressProof.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
