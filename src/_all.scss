@@ -1572,15 +1572,6 @@ a.link-white {
     color: $dark-teal-color;
     font-size: 14px;
   }
-
-  //Button Styles
-  .fixed-button {
-    position: absolute;
-    bottom: 50px;
-    width: calc(100% - 40px);
-    right: 20px;
-    left: 20px;
-  }
   //Tooltip container
   .tooltip-container {
     color: $white-color;
@@ -1612,9 +1603,9 @@ a.link-white {
       }
       &__close {
         position: absolute;
-        top: 0;
+        top: 5px;
         right: 15px;
-        font-size: 25px;
+        font-size: 20px;
       }
     }
   }
