@@ -171,6 +171,17 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  checkUin(form) {
+    if (this.hasSpouse) {
+      let members = [];
+      const spouse: any = this.willWritingService.getSpouseInfo();
+      members = [...spouse, ...form.value];
+      return this.willWritingService.checkDuplicateUin(members);
+    } else {
+      return true;
+    }
+  }
+
   save(form) {
     if (!this.isEdit) {
       form.value.isAlt = this.hasSpouse ? true : false;
@@ -201,7 +212,6 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
-
   openConfirmationModal(url: string, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
@@ -222,13 +232,13 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   goToNext(form) {
     const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
     if (this.guardianList.length !== this.maxGuardian) {
-      if (this.validateGuardianForm(form) && this.save(form)) {
+      if (this.validateGuardianForm(form) && this.checkUin(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
       if (this.isEdit) {
         if (this.addGuardianForm.dirty) {
-          if (this.validateGuardianForm(form)) {
+          if (this.validateGuardianForm(form) && this.checkUin(form)) {
             this.openConfirmationModal(url, form);
           }
         } else {
