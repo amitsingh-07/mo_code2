@@ -9,7 +9,7 @@ import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { ImyProfile } from '../comprehensive-types';
+import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
@@ -27,7 +27,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   DobBoolean: any;
   registeredUser = true;
   pageTitle: string;
-  userDetails: ImyProfile;
+  userDetails: IMyProfile;
   moGetStrdForm: FormGroup;
   nationality = '';
   nationalityList: string;

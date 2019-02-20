@@ -6,6 +6,7 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+import { IMyProfile } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,18 @@ export class ComprehensiveService {
 
   setProgressToolTipShown(shown: boolean) {
     this.comprehensiveFormData.isToolTipShown = shown;
+  }
+
+  getMyProfile() {
+    if (!this.comprehensiveFormData.myProfile) {
+      this.comprehensiveFormData.myProfile = {} as IMyProfile;
+    }
+    return this.comprehensiveFormData.myProfile;
+  }
+  /* Product Category drop down Handler */
+  setMyProfile(profile: IMyProfile) {
+    this.comprehensiveFormData.myProfile = profile;
+    this.commit();
   }
 
   getFormError(form, formName) {
