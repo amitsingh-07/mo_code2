@@ -42,8 +42,10 @@ app-post-login {
     font-weight: bold;
     width: 327px;
     letter-spacing: -0.3px;
-    text-align: center;
     color: $white-color;
+    @include allmobiles{
+      text-align: center;
+    }
   }
   .signup-wrapper__header-icon {
     @include allmobiles {

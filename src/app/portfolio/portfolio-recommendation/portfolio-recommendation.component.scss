@@ -1,6 +1,5 @@
 @import '../../../variables';
 @import '../../../mixins';
-
 app-portfolio-recommendation {
   .container-fluid {
     @include allmobiles {
@@ -22,7 +21,6 @@ app-portfolio-recommendation {
           padding: 0 15px;
           .portfolio-allocation-details__content__block {
             font-size: 14px;
-            // font-weight: bold;
             line-height: 1.5;
             letter-spacing: -0.14px;
             text-align: center;
@@ -35,7 +33,6 @@ app-portfolio-recommendation {
           }
         }
       }
-
       .review-edit {
         justify-content: center;
         align-items: center;
@@ -55,7 +52,6 @@ app-portfolio-recommendation {
       }
     }
   }
-
   .asset-allocation {
     margin-top: 33px;
     .title {
@@ -67,7 +63,6 @@ app-portfolio-recommendation {
       padding-bottom: 14px;
     }
   }
-
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -90,6 +85,10 @@ app-portfolio-recommendation {
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
+    margin-bottom: 30px;
+    @include allmobiles{
+      margin-bottom: 0;
+    }
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;

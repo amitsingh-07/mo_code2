@@ -1,10 +1,10 @@
 <div class="employement-details">
   <div class="step-indicator-container" *ngIf="!isEditProfile">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid" [class.isEditProfile]="isEditProfile">
+  <div class="container-fluid max-width--1024" [class.isEditProfile]="isEditProfile">
     <div class="content">
       <div class="row">
         <div class="col-12" *ngIf="!isEditProfile">
@@ -188,7 +188,7 @@
                             </div>
                             <div class="button">
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
-                                class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                                class="btn btn-secondary right width100">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>
                             </div>
                           </div>
