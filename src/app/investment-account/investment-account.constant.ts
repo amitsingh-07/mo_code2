@@ -73,8 +73,5 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     EMPLOYED: 'Employed',
     UNEMPLOYED: 'Unemployed'
   },
-  DISABLE_FIELDS: {
-    COMPANY_NAME: 'companyName',
-    EMPLOYMENT_STATUS: 'employmentStatus'
-  }
+  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation']
 };
