@@ -223,10 +223,7 @@ export class EmploymentDetailsComponent implements OnInit {
           ],
           empAddress2: [
             this.formValues.empAddress2,
-            [
-              Validators.required,
-              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
-            ]
+            [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
           ]
         })
       );

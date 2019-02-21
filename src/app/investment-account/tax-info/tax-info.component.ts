@@ -109,7 +109,7 @@ export class TaxInfoComponent implements OnInit {
     taxInfoItem.controls.taxCountry.setValue(country);
     if (taxInfoItem.controls.tinNumber) {
       if (country.countryCode === 'SG') {
-        this.singPlaceHolder = 'E.g S9840139C';
+        this.singPlaceHolder = 'e.g S****5678C';
       } else {
         this.singPlaceHolder = '';
       }
@@ -207,7 +207,7 @@ export class TaxInfoComponent implements OnInit {
   getPlaceholder(country, taxInfoItem) {
     if (taxInfoItem.controls.tinNumber && country) {
       if (country.countryCode === 'SG') {
-        return 'E.g S9840139C';
+        return 'e.g S****5678C';
       } else {
         return '';
       }

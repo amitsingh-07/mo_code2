@@ -115,7 +115,7 @@ export class ResidentialAddressComponent implements OnInit {
           value: this.formValues.address2,
           disabled: this.investmentAccountService.isDisabled('address2')
         },
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+        [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
       ],
       isMailingAddressSame: [
         {
@@ -233,10 +233,7 @@ export class ResidentialAddressComponent implements OnInit {
               value: this.formValues.mailAddress2,
               disabled: this.investmentAccountService.isDisabled('mailAddress2')
             },
-            [
-              Validators.required,
-              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
-            ]
+            [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
           ]
         })
       );
