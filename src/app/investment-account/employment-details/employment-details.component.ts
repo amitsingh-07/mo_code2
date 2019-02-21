@@ -67,6 +67,10 @@ export class EmploymentDetailsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
+    // Set employment status in MyInfo
+    if (this.formValues.isMyInfoEnabled) {
+      this.setEmploymentStatus();
+    }
     this.isEditProfile =
       this.route.snapshot.queryParams && this.route.snapshot.queryParams.enableEditProfile
         ? true
@@ -88,6 +92,14 @@ export class EmploymentDetailsComponent implements OnInit {
     return this.formBuilder.group({
       employmentStatus: [this.formValues.employmentStatus, Validators.required]
     });
+  }
+
+  setEmploymentStatus() {
+    if (this.formValues.companyName) {
+      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.EMPLOYED;
+    } else {
+      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.UNEMPLOYED;
+    }
   }
 
   addOrRemoveAdditionalControls(empStatus) {
@@ -424,7 +436,7 @@ export class EmploymentDetailsComponent implements OnInit {
     }
   }
 
-  isDisabled() {
-    return this.investmentAccountService.isDisabled('occupation');
+  isDisabled(fieldName) {
+    return this.investmentAccountService.isDisabled(fieldName);
   }
 }

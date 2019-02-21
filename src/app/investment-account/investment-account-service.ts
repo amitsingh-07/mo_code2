@@ -555,12 +555,19 @@ export class InvestmentAccountService {
     if (data.employment && data.employment.value) {
       this.investmentAccountFormData.companyName = data.employment.value;
       this.disableAttributes.push('companyName');
+      this.disableAttributes.push('employmentStatus');
+    } else {
+      this.disableAttributes.push('employmentStatus');
     }
 
     // Occupation
     if (data.occupation && data.occupation.occupationDetails) {
       this.investmentAccountFormData.occupation = data.occupation.occupationDetails;
       this.disableAttributes.push('occupation');
+      if (data.occupation.occupationDetails.occupation && data.occupation.occupationDetails.occupation === 'Others') {
+        this.investmentAccountFormData.otherOccupation = data.occupation.desc;
+        this.disableAttributes.push('otherOccupation');
+      }
     }
 
     // Monthly Household Income
@@ -697,7 +704,11 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.isMyInfoEnabled &&
       this.investmentAccountFormData.disableAttributes.includes(fieldName)
     ) {
-      disable = true;
+      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.includes(fieldName) && this.isSingaporeResident()) {
+        disable = false;
+      } else {
+        disable = true;
+      }
     } else {
       disable = false;
     }
