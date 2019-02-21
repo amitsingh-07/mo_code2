@@ -158,10 +158,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
               // Investment status
               const investmentStatus = this.signUpService.getInvestmentStatus();
+              const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
               const redirect_url = this.signUpService.getRedirectUrl();
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
-                if (redirect_url === INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN &&
+                if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+                  this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+                } else if (investmentRoutes.includes(redirect_url) &&
                   investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
                     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
                 } else {
