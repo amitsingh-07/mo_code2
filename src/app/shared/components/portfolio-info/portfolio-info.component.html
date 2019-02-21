@@ -1,7 +1,7 @@
 <div class="portfolio-info-container">
   <div class="flex-col-12 portfolio-desc">
     <div class="portfolio-type-details">
-      <div class="portfolio-type-details-title">{{portfolio.portfolioName}} {{ 'PORTFOLIO_RECOMMENDATION.PORTFOLIO' |
+      <div class="portfolio-type-details-title">{{portfolio.riskProfile.type}} {{ 'PORTFOLIO_RECOMMENDATION.PORTFOLIO' |
         translate}}</div>
       <div class="portfolio-type-details-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.PORTFOLIO_PROJECTION_SUBTEXT' | translate:portfolioProjectionSubText">
       </div>
