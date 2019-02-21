@@ -52,10 +52,7 @@ export class BaseService {
       .get<IServerResponse>(url)
       .finally(() => {
         this.helperService.hideLoader();
-      })
-      .pipe(
-        catchError(this.errorHandler.handleError)
-      );
+      });
   }
 
   getArticle(url) {

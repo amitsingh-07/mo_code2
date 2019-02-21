@@ -1,23 +1,18 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
-
 app-dashboard{
 .post-login-dashboard{
     @include allmobiles{
         padding: 0 !important;
     }
     .widget-block{
-        position: absolute;
         width: 100%;
         background: #00a7a7;
-        top:85px;
         min-height: 230px;
-        left: 0;
-        right: 0;
         overflow: hidden;
+        padding: 0  0 10px;
         @include allmobiles{
-            padding: 0 20px !important;
+            padding: 0 0px 0 20px !important;
             top: 0;
             min-height: 200px;
             max-height: 200px;
@@ -28,11 +23,9 @@ app-dashboard{
         height: 113px;
         object-fit: contain;
         position: relative;
-        top: 91px;
-        right: -40px;
+        top: 50px;
         @include allmobiles{
             top: 65px;
-            right: -30px;
         }
         img{
             width: 100%;
@@ -41,29 +34,31 @@ app-dashboard{
     }
     .overlap-grass{
         display: flex;
-        justify-content: space-evenly;
-        padding: 0 40px;
+        justify-content: space-between;
         @include allmobiles{
             padding: 0;
             padding-top: 35px;
-            justify-content: space-between;
         }
         @include iPadLandscape{
-            justify-content: space-between;
             padding-left: 15px;
         }
         @include iPadProPortrait{
-            justify-content: space-between;
             padding-left: 15px;
         }
     }
     .user-profile-bg{
-        padding-left: 3px;
+        padding-left: 15px;
         font-family: $muli-extra-light;
         font-size: 22px; 
         font-weight: 200;
         line-height: 34PX;
         letter-spacing: -0.22px;
+        @include allmobiles{
+            padding-left: 3px;
+        }
+        @include iPadLandscape{
+            padding-left: 3px;
+        }
         .user_name{
             font-family: $muli-semi-bold;
             font-weight: 600;
@@ -109,25 +104,10 @@ app-dashboard{
    }
     .widgets{
         position: relative;
-        top: 135px;
+        top: -100px;
         @include allmobiles{
-            top: 166px;
+            top: -30px;
         }
-        // @include min360{
-        //     top: 185px;
-        // }
-        // @include tablet{
-        //     top: 25%;
-        // }
-        // @include iPadLandscape{
-        //     top: 35%;
-        // }
-        // @include iPadProPortrait{
-        //     top: 30%;
-        // }
-        // @include iPadProLandscape{
-        //     top: 35%;
-        // }
         .widget{
             background: $white-color;
             margin: 0px 15px 20px;

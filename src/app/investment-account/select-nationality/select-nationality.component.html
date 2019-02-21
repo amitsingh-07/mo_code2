@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
   <div class="row mt30">
     <div class="col-12">
       <app-sing-pass></app-sing-pass>
@@ -22,7 +22,7 @@
         <div class="dropdown-control">
           <div ngbDropdown placement="top-right">
             <button [disabled]="isDisabled()" class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-              <span class="dependent-count" id="select_nationality_dropdown_defaltvalue" *ngIf="!selectNationalityForm.controls.nationality.value">Select Nationality
+              <span class="dependent-count" id="select_nationality_dropdown_defaltvalue" *ngIf="!selectNationalityForm.controls.nationality.value">{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY' | translate}}
               </span>
               <span class="dependent-count" id="select_nationality_dropdown_defaltvalue" *ngIf="selectNationalityForm.controls.nationality.value">{{selectNationalityForm.controls.nationality.value.name | titlecase}}
               </span>

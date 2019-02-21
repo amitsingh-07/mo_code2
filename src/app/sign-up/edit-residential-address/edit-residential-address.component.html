@@ -183,7 +183,7 @@
                   </button>
                   <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
                   <label class="selected-state" [innerHtml]="getFileName(resAddressProof)"></label>
-                  <div class="selected-state" (click)="clearFileSelection('Residential' , addressForm.controls.resAddressProof, $event)">
+                  <div class="selected-state" (click)="clearFileSelection('Residential' , 'RESIDENTIAL_ADDRESS', addressForm.controls.resAddressProof, $event)">
                     <img src="../assets/images/close-button.svg" alt="" />
                   </div>
                 </div>
@@ -387,7 +387,7 @@
                     </button>
                     <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
                     <label class="selected-state" [innerHtml]="getFileNameMailing(mailAdressProof)"></label>
-                    <div class="selected-state" (click)="clearFileSelection('Mailing' , addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
+                    <div class="selected-state" (click)="clearFileSelection('Mailing', 'MAILING_ADDRESS', addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
                       <img src="../assets/images/close-button.svg" alt="" />
                     </div>
                   </div>

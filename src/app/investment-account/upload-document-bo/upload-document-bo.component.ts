@@ -133,7 +133,9 @@ export class UploadDocumentBOComponent implements OnInit {
     return this.investmentAccountCommon.getFileName(fileElem);
   }
 
-  clearFileSelection(control, event, thumbElem?, fileElem?) {
+  clearFileSelection(control, controlName, event, thumbElem?, fileElem?) {
+    const payloadKey = this.getPayloadKey(controlName);
+    this.formData.delete(payloadKey);
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
   goToNext(form) {

@@ -388,13 +388,15 @@ getInlineErrorStatus(control) {
     return fileName;
   }
 
-  clearFileSelection(type , control, event, thumbElem?) {
-    if ( type === 'Residential') {
+  clearFileSelection(type , controlName, control, event, thumbElem?) {
+    if (type === 'Residential') {
     this.isResidentialAddressAvail = false;
     }
-    if ( type === 'Mailing') {
+    if (type === 'Mailing') {
       this.isMailingAddressAvail = false;
-      }
+    }
+    const payloadKey = this.getPayloadKey(controlName);
+    this.formData.delete(payloadKey);
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 

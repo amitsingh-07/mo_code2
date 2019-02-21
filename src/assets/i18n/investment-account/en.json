@@ -11,8 +11,14 @@
   "POSTLOGIN": {
     "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
-    "PROCEED_WITHOUT": "Proceed without SingPass"
-  },
+    "PROCEED_WITHOUT": "Proceed without SingPass",
+    "APPLY_USING_MYINFO":"Apply Using MyInfo",
+    "AUTOFILL_QUICKLY":"Autofill your information quickly. Supporting documents are not required.",
+    "APPLY_WITHOUT_MYINFO":"Apply Without MyInfo",
+    "FILL_MANUALLY":"Fill in your information manually. Takes at least 1 working day to get your account approved.",
+    "MANUALLY":"Fill Form Manually",
+    "ESTIMATE_TIME":"Estimate about 10 mins"
+},
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
@@ -46,6 +52,8 @@
     "ZIPCODE": "Zip Code",
     "REASON": "Reason",
     "SELECT_REASON": "Select Reason",
+    "MAILING_ADDRESS":"Mailing Address",
+    "SAME_AS_RESIDENTIAL_ADDRESS":"Same as Residential Address",
     "YOUR_MAILING_ADDRESS": "Your mailing address:",
     "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
@@ -66,6 +74,9 @@
     "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
+    "SELECT":"Select",
+    "SELECT_INDUSTRY":"Select Industry",
+    "SELECT_OCCUPATION":"Select Occupation",
     "OTHER_INDUSTRY": "Please enter your industry in the input box provided.",
     "OTHER_OCCUPATION": "Please enter your occupation in the input box provided.",
     "OCCUPATION": "Occupation",
@@ -79,6 +90,7 @@
     "FLOOR": "Floor",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "YOUR_OFFICE_ADDRESS":"Your office address:",
     "EMPLOYERS_ADDRESS": "Employer's Address",
     "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
     "CONTINUE": "Continue",
@@ -97,6 +109,7 @@
   },
   "SELECT_NATIONALITY": {
     "SELECT_NATIONALITY_LBL": "Nationality",
+    "SELECT_NATIONALITY":"Select Nationality",
     "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
     "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
     "NATIONALITY_LEB": "Nationality",
@@ -133,9 +146,11 @@
     "REASON_TEXT": "Reason",
     "TIN_TEXT": "TIN Number",
     "CONTINUE": "Continue",
-    "COUNTRY_ERROR":"Country can not be same",
-    "COUNTRY_ERROR_MSG":"Please check your selected countries",
-    "SELECT_COUNTRY":"Select Country"
+    "COUNTRY_ERROR": "Country can not be same",
+    "COUNTRY_ERROR_MSG": "Please check your selected countries",
+    "SELECT_COUNTRY": "Select Country",
+    "TAX_OTHER_COUNTRY":"Are you paying tax in another country?",
+    "ADD_TAX_RESIDENCE":"Add Tax Residence"
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
@@ -155,12 +170,12 @@
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
-    "SPECIFICATION":"Specifications for documents to be uploaded:",
-    "FILE_LESS-THAN":"File less than",
-    "TEN_MB":"10MB",
-    "FILE_TYPE":"File types:",
-    "SUPPORTED_FILES":"pdf, jpg, jpeg, png, gif, bmp",
-    "VERIFICATION_DOC":"Verification Document",
+    "SPECIFICATION": "Specifications for documents to be uploaded:",
+    "FILE_LESS-THAN": "File less than",
+    "TEN_MB": "10MB",
+    "FILE_TYPE": "File types:",
+    "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
+    "VERIFICATION_DOC": "Verification Document",
     "MODAL": {
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",
@@ -181,7 +196,7 @@
       },
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
-        "MESSAGE": "File of size more than 2 MB is not allowed."
+        "MESSAGE": "File of size more than 10 MB is not allowed."
       },
       "FILE_TYPE_MISMATCH": {
         "TITLE": "Error !",
@@ -193,6 +208,7 @@
     "SOURCE": "Source Of Investment Funds",
     "TITLE": "Personal Declaration",
     "PEP": "Politically Exposed Person",
+    "SELECT_SOURCE":"Select Source",
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
@@ -221,7 +237,7 @@
     "DURATION_INVESTMENT": "Duration investment held for?",
     "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:",
-    "OTHERS":"Please Elaborate:"
+    "OTHERS": "Please Elaborate:"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
@@ -270,9 +286,13 @@
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Due Diligence Check",
+    "YES": "Yes",
+    "NO": "No",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
-    "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions."
+    "PEP_INFO_NO": "Please provide the following details",
+    "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions.",
+    "YOUR_OFFICE_ADDRESS": "Your office address:"
   },
   "ACKNOWLEDGEMENT": {
     "TITLE": "Acknowledgement",

@@ -1,10 +1,10 @@
 <div class="employement-details">
   <div class="step-indicator-container" *ngIf="!isEditProfile">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid" [class.isEditProfile]="isEditProfile">
+  <div class="container-fluid max-width--1024" [class.isEditProfile]="isEditProfile">
     <div class="content">
       <div class="row">
         <div class="col-12" *ngIf="!isEditProfile">
@@ -25,7 +25,7 @@
                     <div ngbDropdown>
                       <button [disabled]="isDisabled('employmentStatus')" class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
-                        <span *ngIf="!employementDetailsForm.controls.employmentStatus.value">Select</span>
+                        <span *ngIf="!employementDetailsForm.controls.employmentStatus.value">{{'EMPLOYMENT_DETAILS.SELECT' | translate}}</span>
                         <span *ngIf="employementDetailsForm.controls.employmentStatus.value">{{employementDetailsForm.controls.employmentStatus.value}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -61,7 +61,8 @@
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
-                          <span *ngIf="!employementDetailsForm.controls.industry.value">Select Industry</span>
+                          <span *ngIf="!employementDetailsForm.controls.industry.value">{{
+                            'EMPLOYMENT_DETAILS.SELECT_INDUSTRY' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
                             | titlecase}}</span>
                         </button>
@@ -104,7 +105,8 @@
                       <div ngbDropdown>
                         <button [disabled]="isDisabled('occupation')" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
-                          <span *ngIf="!employementDetailsForm.controls.occupation.value">Select Occupation</span>
+                          <span *ngIf="!employementDetailsForm.controls.occupation.value">{{
+                            'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
                             | titlecase}}</span>
                         </button>
@@ -146,7 +148,7 @@
               </div>
               <div>
                 <div *ngIf="employementDetailsForm.get('employeaddress')" formGroupName="employeaddress">
-                  <div class="emp_add_lbl"><label>Your office address:</label></div>
+                  <div class="emp_add_lbl"><label>{{'EMPLOYMENT_DETAILS.YOUR_OFFICE_ADDRESS' | translate}}</label></div>
                   <!-- COUNTRY -->
                   <div class="form-group">
                     <div class="flex-row">
@@ -185,7 +187,7 @@
                             </div>
                             <div class="button">
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
-                                class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                                class="btn btn-secondary right width100">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>
                             </div>
                           </div>

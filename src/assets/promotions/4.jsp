@@ -15,7 +15,7 @@
                     Min. Sum Assured
                     </div>
                 <div class="info--details">
-                    $1 Million
+                    S$1 Million
                     </div>
                 </div>
             <div class="promo-info__element">
