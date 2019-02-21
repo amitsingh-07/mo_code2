@@ -131,9 +131,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       form.value.firstName = this.userDetails.firstName;
       this.comprehensiveService.setMyProfile(form.value);
       this.comprehensiveService.setProgressToolTipShown(true);
-      this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
-      });
+      if (!form.pristine) {
+        this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+        });
+
+      }
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+
     }
 
   }
@@ -143,7 +147,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     nationality = nationality ? nationality : { text: '', value: '' };
     this.nationality = nationality.text;
-    this.moGetStrdForm.controls['nation'].setValue(nationality.value);
+    this.moGetStrdForm.controls['nation'].setValue(nationality.text);
     this.moGetStrdForm.markAsDirty();
   }
   validateDOB(date) {

@@ -14,5 +14,11 @@ export class ComprehensiveApiService {
 
     return this.apiService.addPersonalDetails(data);
   }
+  getDependents() {
+    return this.apiService.getDependents();
+  }
+  addDependents(data) {
 
+    return this.apiService.addDependents(data);
+  }
 }
