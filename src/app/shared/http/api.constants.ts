@@ -98,6 +98,8 @@ export let apiConstants = {
         comprehensive: {
          getpersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
          addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
+         getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
+         addDependents: COMPREHENSIVE_API_BASE_URL + 'SaveDependents'
         }
     }
 };
