@@ -48,6 +48,18 @@ export class PromotionService {
     return promotionArray;
   }
 
+  checkPromoIdList(promoList, promoId): boolean {
+    let is_exist: boolean;
+    promoId = +promoId;
+    promoList.forEach((element) => {
+      if (promoId === +element.promoId) {
+        is_exist = true;
+        return;
+      }
+    });
+    return is_exist;
+  }
+
   createPromotion(in_promotion): IPromotion {
     const promotion = {
       promoId: in_promotion.promoId,

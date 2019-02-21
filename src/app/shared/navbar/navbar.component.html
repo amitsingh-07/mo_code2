@@ -40,10 +40,10 @@
         </button>
       </div>
 
-      <div class="notification-tooltip__arrow" [hidden]="isNotificationHidden"></div>
+      <div *ngIf="isNotificationEnabled" class="notification-tooltip__arrow" [hidden]="isNotificationHidden"></div>
 
       <!-- RECENT NOTIFICATIONS CONTENT -->
-      <div class="notification-tooltip" [hidden]="isNotificationHidden">
+      <div *ngIf="isNotificationEnabled" class="notification-tooltip" [hidden]="isNotificationHidden">
         <div class="notification-tooltip__header">Notifications</div>
         <div class="notification-tooltip__container">
           <ul class="pl0">
@@ -156,8 +156,8 @@
             <button class="dropdown-item">
               <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
             </button>
-            <button class="dropdown-item">
-              <a class="navbar--text" (click)="logout()" href="javascript: void(0);">Logout</a>
+            <button class="dropdown-item" (click)="logout()">
+              <a class="navbar--text" href="javascript: void(0);">Logout</a>
             </button>
           </div>
         </li>

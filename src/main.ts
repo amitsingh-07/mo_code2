@@ -4,6 +4,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+// Implementing Brand to Body
+if (environment.brand) {
+  document.body.setAttribute('class', environment.brand + '-theme');
+}
+
 /* Google Analytics Code */
 const ga_script = document.createElement('script');
 // tslint:disable-next-line:max-line-length

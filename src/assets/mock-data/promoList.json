@@ -42,7 +42,7 @@
         "promoId": 4,
         "type": 1,
         "owner": "Aviva",
-        "title": "Aviva MyProtector - Legacy Plan",
+        "title": "10% Premium Discount for Aviva MyProtector Legacy Plan",
         "thumbnail": "/assets/promotions/images/4/thumbnail.jpg",
         "desc": "Enjoy a 10% perpetual premium discount for Aviva MyProtector - Legacy Plan",
         "date_created": "1547481600000",
@@ -56,7 +56,7 @@
         "owner": "Manulife",
         "title": "Manulife 10% Premium Discount or Cash Reward",
         "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
-        "desc": "Enjoy a 10% premium discount or cash reward for RetireReady Plus or ReadyBuilder",
+        "desc": "Enjoy up to 10% Premium Discount or Cash Rewards for RetireReady Plus and ReadyBuilder",
         "date_created": "1547405449000",
         "date_expiry": "1555084799000",
         "tag": ["Insurance", "Retirement"],
@@ -65,8 +65,8 @@
     {
         "promoId": 6,
         "type": 1,
-        "owner": "Manulife",
-        "title": "Manulife 0.3% Premium Discount",
+    "owner": "Manulife",
+        "title": "Manulife 0.3% Premium Discount for Signature Income",
         "thumbnail": "/assets/promotions/images/6/thumbnail.jpg",
         "desc": "Enjoy 0.3% Premium Discount for Manulife Signature Income",
         "date_created": "1548000000000",
@@ -97,5 +97,30 @@
         "date_expiry": "1556639999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
+    },
+    {
+        "promoId": 9,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,000 CapitaVouchers when you care for your loved one today",
+        "thumbnail": "/assets/promotions/images/9/thumbnail.jpg",
+        "desc": "Receive up to $1000 CapitaVoucher with purchase of selected NTUC Income's plans",
+        "date_created": "1549814400000",
+        "date_expiry": "1553875199000",
+        "tag" : ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 10,
+        "type": 2,
+        "owner": "MoneyOwl",
+        "title": "Write your Will, for Free! (worth $150!)",
+        "thumbnail": "/assets/promotions/images/10/thumbnail.svg",
+        "desc": "Subscribe to our mailing list & get a promo code to write for free! Limited offer.",
+        "date_created": "1550505600000",
+        "date_expiry": "1620230399000",
+        "tag" : ["Wills"],
+        "external": true,
+        "url": "/home#subscribe"
     }
 ]
