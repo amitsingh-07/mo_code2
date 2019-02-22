@@ -682,7 +682,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
+  // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
@@ -704,7 +704,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
@@ -798,17 +798,28 @@ export class ApiService {
 
   // Comprehensive Module
   getPersonalDetails() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getpersonalDetails)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+    return this.http.get(apiConstants.endpoint.comprehensive.getPersonalDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
-addPersonalDetails(payload) {
+  addPersonalDetails(payload) {
     return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
-
+  getDependents() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getDependents)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  addDependents(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

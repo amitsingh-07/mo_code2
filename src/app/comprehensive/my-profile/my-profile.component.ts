@@ -8,6 +8,7 @@ import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
@@ -49,7 +50,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   constructor(
-    private loaderService: LoaderService,
+    private loaderService: LoaderService, private signUpService: SignUpService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private configDate: NgbDatepickerConfig, private comprehensiveService: ComprehensiveService,
@@ -70,19 +71,24 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       });
     });
 
-    this.userDetails = this.comprehensiveService.getMyProfile();
-    if (!this.userDetails.dateOfBirth) {
-      this.loaderService.showLoader({ title: 'Fetching Data' });
-      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-        this.loaderService.hideLoader();
-        this.userDetails = data.objectList[0];
-      });
-    } else {
-      this.setUserProfileData();
-    }
+    // TODO: Remove the below line after 'getComprehensiveSummary()' API is implemented
+    this.getUserProfileData();
   }
 
   ngOnInit() {
+    this.loaderService.showLoader({ title: 'Fetching Data' });
+    // #this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+    this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+      const redirectUrl = this.signUpService.getRedirectUrl();
+      if (redirectUrl) {
+        this.signUpService.clearRedirectUrl();
+        this.loaderService.hideLoader();
+        this.router.navigate([redirectUrl]);
+      } else {
+        this.getUserProfileData();
+      }
+    });
+
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
@@ -105,6 +111,21 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
+  }
+
+  getUserProfileData() {
+    this.userDetails = this.comprehensiveService.getMyProfile();
+    if (!this.userDetails.dateOfBirth) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+        this.loaderService.hideLoader();
+        this.userDetails = data.objectList[0];
+        this.setUserProfileData();
+        this.loaderService.hideLoader();
+      });
+    } else {
+      this.setUserProfileData();
+    }
   }
 
   setUserProfileData() {
@@ -131,9 +152,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       form.value.firstName = this.userDetails.firstName;
       this.comprehensiveService.setMyProfile(form.value);
       this.comprehensiveService.setProgressToolTipShown(true);
-      this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
-      });
+      if (!form.pristine) {
+        this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+        });
+
+      }
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+
     }
 
   }
@@ -143,7 +168,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     nationality = nationality ? nationality : { text: '', value: '' };
     this.nationality = nationality.text;
-    this.moGetStrdForm.controls['nation'].setValue(nationality.value);
+    this.moGetStrdForm.controls['nation'].setValue(nationality.text);
     this.moGetStrdForm.markAsDirty();
   }
   validateDOB(date) {

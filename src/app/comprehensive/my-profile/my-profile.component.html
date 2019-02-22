@@ -12,8 +12,7 @@
   </div>
   <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
     {{userDetails ?userDetails.firstName : ''}} </div>
-  <div [hidden]="registeredUser" class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg">{{'CMP.GETTING_STARTED.HEADER'|translate }}</div>
-  <!-- <div [hidden]="!registeredUser" class="comprehensive__page-sub-heading">{{'GETTING_STARTED.WELCOME_BACK'|translate }}</div> -->
+  <div  class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg">{{'CMP.GETTING_STARTED.HEADER'|translate }}</div>
   <div class="comprehensive__page-content" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
   <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
     <div class="form-group-with-bg">

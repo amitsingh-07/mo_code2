@@ -9,7 +9,7 @@ export class ComprehensiveFormError {
                     errorMessage: 'Gender'
                 }
             },
-            dateOfBirth: {
+            ngbDob: {
                 required: {
                     errorTitle: 'Invalid Date of Birth',
                     errorMessage: 'Date of Birth'
