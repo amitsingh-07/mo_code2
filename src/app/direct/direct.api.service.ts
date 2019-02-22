@@ -97,7 +97,7 @@ export class DirectApiService {
             const hospitalPlan = this.directService.getHospitalPlanForm();
             const hospitalPlanData: IHospitalizationNeedsData = {
                 hospitalClassId: hospitalPlan.selectedPlan.hospitalClassId,
-                isFullRider: hospitalPlan.fullOrPartialRider
+                isPartialRider: hospitalPlan.fullOrPartialRider
             };
             return hospitalPlanData;
         } else {
