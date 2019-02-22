@@ -1,13 +1,34 @@
-.myDependant{
-    .myDependantFormArray{
-
-    
+@import '../../../variables';
+@import '../../../mixins';
+.myDependant {
+    .myDependantFormArray {
     background: #f0ffff!important;
     color:#005960 !important;
     border-radius:10px;
     h5{
         color:#000!important;
     }
-    
+  }
 }
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+        .step-indicator-container {
+            background: $white-color;
+            margin: -15px -20px 20px;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+        }
+    }
+    .dependant-title {
+        font-size: 18px;
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+}
+.comprehensive .form-group-with-bg {
+    padding: 0;
 }
