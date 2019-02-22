@@ -70,9 +70,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-
     // TODO: Remove the below line after 'getComprehensiveSummary()' API is implemented
     this.getUserProfileData();
+    this.buildProfileForm();
   }
 
   ngOnInit() {
@@ -95,13 +95,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         alert('Get Started Menu Clicked');
       }
     });
-    this.buildProfileForm();
     if (!this.comprehensiveService.isProgressToolTipShown()) {
       setTimeout(() => {
         this.showToolTip = true;
       }, 1000);
     }
-
   }
 
   ngOnDestroy() {
@@ -116,11 +114,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   getUserProfileData() {
     this.userDetails = this.comprehensiveService.getMyProfile();
     if (!this.userDetails.dateOfBirth) {
-      this.loaderService.showLoader({ title: 'Fetching Data' });
       this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
         this.loaderService.hideLoader();
         this.userDetails = data.objectList[0];
         this.setUserProfileData();
+        this.buildProfileForm();
         this.loaderService.hideLoader();
       });
     } else {
@@ -130,6 +128,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   setUserProfileData() {
     this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+    this.userDetails.ngbDob = this.parserFormatter.parse(this.userDetails.dateOfBirth);
   }
 
   get myProfileControls() { return this.moGetStrdForm.controls; }

@@ -36,12 +36,12 @@
           <div class="flex-col-7">
             <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
               <div class="flex-row mb0">
-                <div class="flex-col-6" style="width: 50% !important">
+                <div class="flex-col-6" style="width: 50% !important;">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
                     <input id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-6" style="width: 50% !important">
+                <div class="flex-col-6" style="width: 50% !important;">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
                     <input id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
                     translate}}
