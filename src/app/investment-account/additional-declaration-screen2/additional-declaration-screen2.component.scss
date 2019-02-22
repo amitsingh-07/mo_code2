@@ -46,7 +46,8 @@ app-additional-declaration-screen2 {
   }
   .dropdown-control .btn-dropdown {
     padding-right: 28px;
-  }
+    
+}
   .form-control-right {
     padding-left: 0;
     padding-right: 18px;
@@ -60,5 +61,8 @@ app-additional-declaration-screen2 {
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
+  }
+  .text-right{
+    text-align: left !important;
   }
 }
