@@ -50,8 +50,7 @@
         "value": "foreigner"
       }
     ],
-
-
+    "GENDER": ["Male", "Female"],
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you Have any dependants?",

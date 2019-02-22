@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -20,6 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./dependants-details.component.scss']
 })
 export class DependantsDetailsComponent implements OnInit, OnDestroy {
+  genderList: any;
   myDependantForm: FormGroup;
   formName: string[] = [];
   pageTitle: string;
@@ -28,15 +30,17 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   nationalityList: any;
   dependantDetails: IMyDependant[];
   relationship: string;
-  submitted: boolean;
+  submitted = false;
   pageId: string;
   menuClickSubscription: Subscription;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private loaderService: LoaderService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private parserFormatter: NgbDateParserFormatter) {
     this.pageId = this.route.routeConfig.component.name;
+    this.dependantDetails = [];
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -44,13 +48,17 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         // meta tag and title
         this.relationShipList = this.translate.instant('CMP.DEPENDANT_DETAILS.RELATIONSHIP_LIST');
         this.nationalityList = this.translate.instant('CMP.NATIONALITY');
+        this.genderList = this.translate.instant('CMP.GENDER');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.loaderService.showLoader({ title: 'Fetching Data' });
     this.comprehensiveApiService.getDependents().subscribe((data) => {
-    this.dependantDetails = data.objectList;
+      this.dependantDetails = data.objectList;
+      this.loaderService.hideLoader();
     });
+    this.buildDependantForm();
   }
 
   ngOnInit() {
@@ -60,7 +68,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
-    this.buildDependantForm();
   }
 
   ngOnDestroy() {
@@ -71,10 +78,21 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   buildDependantForm() {
+    const dependantFormArray = [];
+    if (this.dependantDetails.length > 0) {
+      this.dependantDetails.forEach((dependant) => {
+        dependantFormArray.push(this.buildDependantDetailsForm(dependant));
+      });
+    } else {
+      dependantFormArray.push(this.buildEmptyForm());
+    }
     this.myDependantForm = this.formBuilder.group({
-      dependant: this.formBuilder.array([this.buildDependantDetailsForm()]),
-
+      dependant: this.formBuilder.array(dependantFormArray),
     });
+  }
+
+  getCurrentFormsCount() {
+    return this.myDependantForm.controls['dependant']['controls'].length;
   }
 
   selectRelationship(status, i) {
@@ -82,25 +100,40 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(relationship);
 
   }
+  selectGender(status, i) {
+    const gender = status ? status : '';
+    this.myDependantForm.controls['dependant']['controls'][i].controls.gender.setValue(gender);
+  }
   selectNationality(status, i) {
     const nationality = status ? status : '';
     this.myDependantForm.controls['dependant']['controls'][i].controls.nation.setValue(nationality);
   }
 
-  buildDependantDetailsForm() {
+  buildDependantDetailsForm(thisDependant) {
     return this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
-      Validators.pattern(RegexConstants.NameWithSymbol)]],
+      name: [thisDependant.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)
+        , Validators.pattern(RegexConstants.NameWithSymbol)]],
+      relationship: [thisDependant.relationship, [Validators.required]],
+      gender: [thisDependant.gender, [Validators.required]],
+      dateOfBirth: [this.parserFormatter.parse(thisDependant.dateOfBirth), [Validators.required]],
+      nation: [thisDependant.nation, [Validators.required]]
+    });
+  }
+
+  buildEmptyForm() {
+    return this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)
+        , Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       dateOfBirth: ['', [Validators.required]],
       nation: ['', [Validators.required]]
-
     });
   }
+
   addDependant() {
     const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
-    dependantdetails.push(this.buildDependantDetailsForm());
+    dependantdetails.push(this.buildEmptyForm());
   }
   removeDependant(i) {
     const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
