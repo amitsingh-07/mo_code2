@@ -18,6 +18,7 @@ export let apiConstants = {
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
+        createEnquiry: 'recommend/recomm-microservice/api/createEnquiry',
         updateProductEnquiry: 'account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         signUp: 'account-microservice/api/signup',
@@ -96,10 +97,11 @@ export let apiConstants = {
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         },
         comprehensive: {
-         getpersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
-         addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
-         getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
-         addDependents: COMPREHENSIVE_API_BASE_URL + 'SaveDependents'
+            getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveSummary',
+            getPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
+            addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
+            getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
+            addDependents: COMPREHENSIVE_API_BASE_URL + 'saveDependents',
         }
     }
 };

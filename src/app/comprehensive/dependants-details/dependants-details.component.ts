@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
@@ -24,7 +26,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   dependant: any = [];
   relationShipList: any;
   nationalityList: any;
-  dependantDetails: IMyDependant;
+  dependantDetails: IMyDependant[];
   relationship: string;
   submitted: boolean;
   pageId: string;
@@ -32,7 +34,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService) {
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private parserFormatter: NgbDateParserFormatter) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -45,7 +48,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-
+    this.comprehensiveApiService.getDependents().subscribe((data) => {
+    this.dependantDetails = data.objectList;
+    });
   }
 
   ngOnInit() {
@@ -115,7 +120,15 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.validateDependantform(form)) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
+      form.value.dependant.forEach((dependant: any, index) => {
+        form.value.dependant[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+        form.value.dependant[index].enquiryId = 1;
+      });
+      console.log(form.value);
+      this.comprehensiveApiService.addDependents(form.value.dependant).subscribe((data) => {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
+      });
+
     }
   }
 }

@@ -55,7 +55,7 @@
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you Have any dependants?",
-      "DEPENDANTS_DESC": "A dependant is children,parent,spouse or sibling whom i'm supporting"
+      "DEPENDANTS_DESC": "A dependant is child,parent,spouse or sibling whom i'm supporting"
 
 
     },

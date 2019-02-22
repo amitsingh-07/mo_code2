@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 
+import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -168,10 +169,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
             const redirect_url = this.signUpService.getRedirectUrl();
             if (redirect_url) {
-              this.signUpService.clearRedirectUrl();
-              this.router.navigate([redirect_url]);
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: true });
             } else {
-              this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
             }
             return;
           }
@@ -185,10 +185,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             const redirect_url = this.signUpService.getRedirectUrl();
             if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
               if (redirect_url) {
-                this.signUpService.clearRedirectUrl();
-                this.router.navigate([redirect_url]);
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: true });
               } else {
-                this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
               }
             } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
               this.willWritingService.getExecTrusteeInfo().length > 0) {

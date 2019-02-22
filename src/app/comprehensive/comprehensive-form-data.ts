@@ -7,6 +7,8 @@ export class ComprehensiveFormData {
     isToolTipShown = false;
     // myProfile info
     myProfile: IMyProfile;
-    myDependant: IMyDependant;
+
+    // dependant Details
+    myDependant: IMyDependant[];
 
 }

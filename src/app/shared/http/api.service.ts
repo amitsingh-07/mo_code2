@@ -798,7 +798,7 @@ export class ApiService {
 
   // Comprehensive Module
   getPersonalDetails() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getpersonalDetails)
+    return this.http.get(apiConstants.endpoint.comprehensive.getPersonalDetails)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
