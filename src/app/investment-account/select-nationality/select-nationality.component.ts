@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -36,8 +36,7 @@ export class SelectNationalityComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService,
-    private zone: NgZone
+    public readonly translate: TranslateService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -52,9 +51,6 @@ export class SelectNationalityComponent implements OnInit {
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
-    });
-    this.zone.run(() => {
-      console.log('force update the screen');
     });
     this.getNationalityCountryList();
   }
