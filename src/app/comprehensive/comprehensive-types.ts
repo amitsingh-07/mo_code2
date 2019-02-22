@@ -11,7 +11,8 @@ export interface IMyDependant {
     name: string;
     relationship: string;
     gender: string;
-    dob: string;
+    dateOfBirth: string;
     nation: string;
+    enquiryId: number;
 
 }

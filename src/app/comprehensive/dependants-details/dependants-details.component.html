@@ -2,7 +2,7 @@
     <div class="step-indicator-container">
         <app-step-indicator [count]="5" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
     </div>
-  <header>{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
+  <header style="margin-top: 40px;">{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
   <article class="py-2">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</article>
   <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant ">
     <div formArrayName="dependant" class="myDependantFormArray  form-group-with-bg" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
@@ -63,46 +63,27 @@
 
         </div>
         <div class="flex-row">
-
-          <div class="flex-col-5">
-
-            <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
-
+          <div class="pl0 col-5">
+            <label for="name" id="myDependantNationalityLabel">
+              <div>{{ 'CMP.FORM_LABEL.GENDER' | translate}}</div>
+            </label>
           </div>
-
           <div class="flex-col-7">
-
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-
-              <div class="flex-row mb0">
-
-                <div class="flex-col-6">
-
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted &&  dependant.controls.gender.invalid}">
-
-                    <input id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
-
-                  </label>
-
+            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.gender.invalid}">
+              <div ngbDropdown id="genderDropDown" placement="top-right">
+                <button type="button" class="btn btn-dropdown" id="dropdownGender" ngbDropdownToggle>
+                  <span *ngIf="dependant.get('gender').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="dependant.get('gender').value !==''">{{dependant.get('gender').value}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownGender">
+                  <button class="dropdown-item" (click)="selectGender('',i)">{{'COMMON.LBL_SELECT' | translate}}</button>
+                  <button type="button" class="dropdown-item" *ngFor="let gender of genderList;" (click)="selectGender(gender,i)">
+                    {{gender}}
+                  </button>
                 </div>
-
-                <div class="flex-col-6">
-
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted &&  dependant.controls.gender.invalid}">
-
-                    <input id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
-                    translate}}
-
-                  </label>
-
-                </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
         <div class="flex-row">
 
