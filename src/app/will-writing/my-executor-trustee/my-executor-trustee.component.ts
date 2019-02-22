@@ -227,15 +227,17 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
             errorMsg.errors.push(errorMessage);
           } else if (spouseWithUin.length === 0) {
             errorMsg.formName = formName;
-            const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
+            const errorMessage = this.replaceStringValues('NO_MATCH',
+              ['<Full Name>', '<Relationship>', '<ID>', '<Section>'],
+              [item.name, item.relationship, item.uin, formName]);
             errorMsg.errors.push(errorMessage);
           } else {
             const spouse = this.checkNameUIN('name', item.name, 'spouse');
             if (spouse.length === 0) {
               errorMsg.formName = formName;
-              const errorMessage = this.replaceStringValues('NAME_NO_MATCH',
-                ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
-                [item.name, item.uin, spouseWithUin[0].name, spouseWithUin[0].uin]);
+              const errorMessage = this.replaceStringValues('NO_MATCH',
+                ['<Full Name>', '<Relationship>', '<ID>', '<Section>'],
+                [item.name, item.relationship, item.uin, formName]);
               errorMsg.errors.push(errorMessage);
             }
           }
@@ -247,15 +249,17 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
             errorMsg.errors.push(errorMessage);
           } else if (childWithUin.length === 0) {
             errorMsg.formName = formName;
-            const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
+            const errorMessage = this.replaceStringValues('NO_MATCH',
+              ['<Full Name>', '<Relationship>', '<ID>', '<Section>'],
+              [item.name, item.relationship, item.uin, formName]);
             errorMsg.errors.push(errorMessage);
           } else {
             const child = this.checkNameWithUIN(item.name, item.uin);
             if (child.length === 0) {
               errorMsg.formName = formName;
-              const errorMessage = this.replaceStringValues('NAME_NO_MATCH',
-                ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
-                [item.name, item.uin, childWithUin[0].name, childWithUin[0].uin]);
+              const errorMessage = this.replaceStringValues('NO_MATCH',
+                ['<Full Name>', '<Relationship>', '<ID>', '<Section>'],
+                [item.name, item.relationship, item.uin, formName]);
               errorMsg.errors.push(errorMessage);
             } else if (this.willWritingService.checkChildrenAge(this.checkNameUIN('uin', item.uin))) {
               errorMsg.formName = formName;
