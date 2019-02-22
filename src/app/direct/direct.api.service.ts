@@ -95,13 +95,13 @@ export class DirectApiService {
     getHospitalPlanData() {
         if (this.directService.getProductCategory().id === formConstants.PROTECTION_TYPES.HOSPITAL_PLAN) {
             const hospitalPlan = this.directService.getHospitalPlanForm();
-            const hospitalPlanData: IHospitalizationNeedsData = {
+            const hospitalPlanData = {
                 hospitalClassId: hospitalPlan.selectedPlan.hospitalClassId,
                 isPartialRider: hospitalPlan.fullOrPartialRider
-            };
+            } as IHospitalizationNeedsData;
             return hospitalPlanData;
         } else {
-            return {} as HospitalPlan;
+            return {} as IHospitalizationNeedsData;
         }
     }
 
