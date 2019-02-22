@@ -32,7 +32,7 @@
                         </span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;" (click)="setDropDownValue('salutation', salutaion, i)"
+                        <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;" (click)="setDropDownValue($event, 'salutation', salutaion, i)"
                           id="salutation-option-{{i}}">{{salutaion.name | titlecase}}</button>
                       </div>
                     </div>
@@ -137,7 +137,7 @@
                         </span>                        
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('birthCountry', country, i)"
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event, 'birthCountry', country, i)"
                           id="birth-country-option-{{i}}">{{country.name | titlecase}}</button>
                       </div>
                     </div>
@@ -173,7 +173,7 @@
                         </span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('passportIssuedCountry', country, i)"
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event,'passportIssuedCountry', country, i)"
                           id="passport-issued-country-option-{{i}}">{{country.name | titlecase}}</button>
                       </div>
                     </div>
@@ -224,7 +224,7 @@
                       </button>
                       <!-- show-up -->
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let race of raceList; let i = index;" (click)="setDropDownValue('race', race, i)"
+                        <button class="dropdown-item" *ngFor="let race of raceList; let i = index;" (click)="setDropDownValue($event, 'race', race, i)"
                           id="race-option-{{i}}">{{race.name | titlecase}}</button>
                       </div>
                     </div>
