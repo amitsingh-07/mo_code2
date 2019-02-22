@@ -76,11 +76,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // #this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
     this.userDetails = this.comprehensiveService.getMyProfile();
     if (!this.userDetails.dateOfBirth) {
       this.loaderService.showLoader({ title: 'Fetching Data' });
-      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+      // #this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         const redirectUrl = this.signUpService.getRedirectUrl();
         if (redirectUrl) {
           this.signUpService.clearRedirectUrl();

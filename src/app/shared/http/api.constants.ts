@@ -97,7 +97,7 @@ export let apiConstants = {
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         },
         comprehensive: {
-            getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveSummary',
+            getComprehensiveSummary: 'account-microservice/api/getComprehensiveSummary',
             getPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
             addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
             getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
