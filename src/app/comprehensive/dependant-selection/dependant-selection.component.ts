@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-dependant-selection',
@@ -16,10 +17,16 @@ export class DependantSelectionComponent implements OnInit {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
   pageId: string;
+  hasDependant: string;
+
   constructor(
+    private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService) {
     this.pageId = this.route.routeConfig.component.name;
+
+    this.hasDependant = this.cmpService.hasDependant();
+
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -47,13 +54,16 @@ export class DependantSelectionComponent implements OnInit {
 
   buildMyDependantSelectionForm() {
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl('', Validators.required)
+      dependantSelection: new FormControl(this.hasDependant, Validators.required)
     });
   }
 
   goToNext(dependantSelectionForm) {
+    this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
     if (dependantSelectionForm.value.dependantSelection === 'yes') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+    } else {
+
     }
 
   }
