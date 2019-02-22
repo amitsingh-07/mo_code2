@@ -67,11 +67,11 @@
                           <span *ngIf="!employementDetailsForm.controls.industry.value">{{
                             'EMPLOYMENT_DETAILS.SELECT_INDUSTRY' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
-                            | titlecase}}</span>
+                            }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setIndustryValue('industry',option,i)"
-                            id="employement_details-industry-option-{{i}}">{{ option.industry| titlecase}}</button>
+                            id="employement_details-industry-option-{{i}}">{{ option.industry}}</button>
                         </div>
                       </div>
                     </div>
@@ -111,11 +111,11 @@
                           <span *ngIf="!employementDetailsForm.controls.occupation.value">{{
                             'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
-                            | titlecase}}</span>
+                            }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option,i)"
-                            id="employement_details-occupation-option-{{i}}">{{ option.occupation | titlecase}}</button>
+                            id="employement_details-occupation-option-{{i}}">{{ option.occupation}}</button>
                         </div>
                       </div>
                     </div>

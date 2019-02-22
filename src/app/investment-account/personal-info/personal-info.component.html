@@ -28,12 +28,12 @@
                           {{'PERSONAL_INFO.SELECT_SALUTATION'  | translate}}
                         </span>
                         <span *ngIf="invPersonalInfoForm.controls.salutation.value">
-                          {{invPersonalInfoForm.controls.salutation.value.name | titlecase}}
+                          {{invPersonalInfoForm.controls.salutation.value.name }}
                         </span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;" (click)="setDropDownValue('salutation', salutaion, i)"
-                          id="salutation-option-{{i}}">{{salutaion.name | titlecase}}</button>
+                          id="salutation-option-{{i}}">{{salutaion.name }}</button>
                       </div>
                     </div>
                   </div>
