@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
@@ -13,12 +14,12 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './dependant-selection.component.html',
   styleUrls: ['./dependant-selection.component.scss']
 })
-export class DependantSelectionComponent implements OnInit {
+export class DependantSelectionComponent implements OnInit, OnDestroy {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
   pageId: string;
   hasDependant: string;
-
+  menuClickSubscription: Subscription;
   constructor(
     private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -40,12 +41,17 @@ export class DependantSelectionComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
-    this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
         alert('Menu Clicked');
       }
     });
     this.buildMyDependantSelectionForm();
+  }
+
+  ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
+    this.menuClickSubscription.unsubscribe();
   }
 
   setPageTitle(title: string) {

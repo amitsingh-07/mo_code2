@@ -60,7 +60,7 @@
     "DEPENDANT_DETAILS": {
       "ABOUT": "About your dependants",
       "DESC": "Tell us more about those you need to take care of and we will include their needs in your financial plan.",
-
+      "PLACEHOLDER_NAME": "Enter Name",
       "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Parent-in-law", "Friend", "Relative"]
     },
     "DEPENDANT_EDUCATION": {

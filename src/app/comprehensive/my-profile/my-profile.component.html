@@ -59,7 +59,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
               <div  ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
-                  <span style="color: #888888;" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span class="grey-text" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
@@ -81,7 +81,7 @@
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted}">
-                <input readonly (click)="d.toggle();" class="form-control" placeholder="Select" formControlName="ngbDob"
+                <input readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" >

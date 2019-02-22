@@ -71,6 +71,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
 

@@ -4,7 +4,7 @@
     </div>
   <header style="margin-top: 40px;">{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
   <article class="py-2">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</article>
-  <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant ">
+  <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant" style="padding-bottom: 50px;">
     <div formArrayName="dependant" class="myDependantFormArray  form-group-with-bg" *ngFor="let dependant of myDependantForm.controls.dependant.controls; let i = index;">
       <!-- <div class="text-left"><b>Dependant {{i+1}}</b>
       </div>
@@ -35,7 +35,7 @@
           </div>
           <div class=" flex-col-7">
             <input type="text" [ngClass]="{'inline-error': submitted && dependant.controls.name.invalid}" id="myDependantFormInpt1"
-              class="form-control" #name formControlName="name">
+              class="form-control" #name formControlName="name" placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}">
           </div>
         </div>
         <div class="flex-row section">
@@ -46,7 +46,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
               <div ngbDropdown id="relationshipDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
-                  <span *ngIf="dependant.get('relationship'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span class="grey-text" *ngIf="dependant.get('relationship'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="dependant.get('relationship'). value !==''">{{dependant.get('relationship').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
@@ -72,7 +72,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.gender.invalid}">
               <div ngbDropdown id="genderDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownGender" ngbDropdownToggle>
-                  <span *ngIf="dependant.get('gender').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span class="grey-text" *ngIf="dependant.get('gender').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="dependant.get('gender').value !==''">{{dependant.get('gender').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownGender">
@@ -99,7 +99,7 @@
 
               <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !dependant.get('dateOfBirth').valid && submitted}">
 
-                <input readonly (click)="d.toggle()" class="form-control" placeholder="Select" formControlName="dateOfBirth"
+                <input readonly (click)="d.toggle()" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="dateOfBirth"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB">
 
                 <div class="input-group-append">
@@ -134,7 +134,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.nation.invalid}">
               <div ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
-                  <span *ngIf="dependant.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span class="grey-text" *ngIf="dependant.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="dependant.get('nation').value !==''">{{dependant.get('nation').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
