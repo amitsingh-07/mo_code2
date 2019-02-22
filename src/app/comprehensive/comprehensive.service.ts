@@ -89,6 +89,15 @@ export class ComprehensiveService {
     this.commit();
   }
 
+  hasDependant() {
+    return this.comprehensiveFormData.hasDependant;
+  }
+
+  setDependantSelection(selection: string) {
+    this.comprehensiveFormData.hasDependant = selection;
+    this.commit();
+  }
+
   getFormError(form, formName) {
 
     const controls = form.controls;

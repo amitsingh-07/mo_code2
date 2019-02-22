@@ -8,6 +8,8 @@ export class ComprehensiveFormData {
     // myProfile info
     myProfile: IMyProfile;
 
+    hasDependant = 'no';
+
     // dependant Details
     myDependant: IMyDependant[];
 
