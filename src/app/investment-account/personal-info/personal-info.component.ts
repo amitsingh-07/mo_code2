@@ -383,8 +383,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
 
   setDropDownValue(event, key, value) {
-    event.stopPropagation();
-    console.log("selected");
     this.invPersonalInfoForm.controls[key].setValue(value);
   }
 }
