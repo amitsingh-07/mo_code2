@@ -153,7 +153,7 @@
           <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o"
               style="font-size: 20px; color: #00a7a7"></i></a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
-            <button class="dropdown-item">
+            <button class="dropdown-item" (click)="goToDashboard()">
               <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
             </button>
             <button class="dropdown-item" (click)="logout()">

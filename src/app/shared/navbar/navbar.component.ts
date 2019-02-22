@@ -255,6 +255,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.router.navigate([appConstants.homePageUrl]);
   }
 
+  goToDashboard() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  }
+
   browserCheck() {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/

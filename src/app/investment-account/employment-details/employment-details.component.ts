@@ -119,13 +119,7 @@ export class EmploymentDetailsComponent implements OnInit {
       );
       this.employementDetailsForm.addControl(
         'occupation',
-        new FormControl(
-          {
-            value: this.formValues.occupation,
-            disabled: this.investmentAccountService.isDisabled('occupation')
-          },
-          Validators.required
-        )
+        new FormControl(this.formValues.occupation, Validators.required)
       );
       this.employementDetailsForm.addControl(
         'industry',
@@ -275,7 +269,12 @@ export class EmploymentDetailsComponent implements OnInit {
     if (value.occupation === INVESTMENT_ACCOUNT_CONFIG.OTHERS) {
       this.employementDetailsForm.addControl(
         'otherOccupation',
-        new FormControl(this.formValues.otherOccupation, Validators.required)
+        new FormControl(
+          {
+            value: this.formValues.otherOccupation,
+            disabled: this.investmentAccountService.isDisabled('otherOccupation')
+          },
+          Validators.required)
       );
     } else {
       this.employementDetailsForm.removeControl('otherOccupation');

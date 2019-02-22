@@ -564,7 +564,8 @@ export class InvestmentAccountService {
     if (data.occupation && data.occupation.occupationDetails) {
       this.investmentAccountFormData.occupation = data.occupation.occupationDetails;
       this.disableAttributes.push('occupation');
-      if (data.occupation.occupationDetails.occupation && data.occupation.occupationDetails.occupation === 'Others') {
+      if (data.occupation.occupationDetails.occupation &&
+        data.occupation.occupationDetails.occupation.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.OTHERS.toUpperCase()) {
         this.investmentAccountFormData.otherOccupation = data.occupation.desc;
         this.disableAttributes.push('otherOccupation');
       }
