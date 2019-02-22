@@ -2,14 +2,14 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-        <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="custModalImg1" />
+        <img src="../../../assets/images/investment-account/success_small.svg" id="custModalImg1" />
     </div>
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_CREATED.TITLE' | translate}}</p>
-        <p *ngIf="!willWritingEnabled" class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}} </p>
+        <p *ngIf="!willWritingEnabled" class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}}</p>
         <div *ngIf="willWritingEnabled">
         <div class="section">
-          <div class="title">Insurance Users</div>
+          <div class="title">Insurance / Investment Users</div>
           <div>Please verify your email via the verification link sent to your email address.</div>
         </div>
         <div class="section">

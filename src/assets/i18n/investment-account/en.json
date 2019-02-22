@@ -120,12 +120,12 @@
     "blockedNationality": {
       "blockedNationalityTitle": "Oops, Unable To Proceed",
       "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
-      "blockedNationalityButtonTitle": "Return To Homepage"
+      "blockedNationalityButtonTitle": "Back To Dashboard"
     },
     "editModalData": {
       "modalTitle": "Oops, Unable To Proceed",
       "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
-      "ButtonTitle": "Return To Homepage"
+      "ButtonTitle": "Back To Dashboard"
     }
   },
   "FINANCIAL_DETAILS": {
@@ -226,7 +226,7 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
-    "TITLE": "Due Diligence Check",
+    "TITLE": "Additional Declaration",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard",
@@ -285,13 +285,13 @@
     }
   },
   "ADDITIONAL_DECLARATION": {
-    "TITLE": "Due Diligence Check",
+    "TITLE": "Additional Declaration",
     "YES": "Yes",
     "NO": "No",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please provide the following details",
-    "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions.",
+    "PEP_MORE_DETAILS": "Just a Few More Questions.",
     "YOUR_OFFICE_ADDRESS": "Your office address:"
   },
   "ACKNOWLEDGEMENT": {
@@ -331,7 +331,7 @@
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
     },
     "SING_PASS_CONFIRM": {
-      "TITLE": "The following details have been autofilled via MyInfo:",
+      "TITLE": "Following details will be auto filled Via Myinfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
     }

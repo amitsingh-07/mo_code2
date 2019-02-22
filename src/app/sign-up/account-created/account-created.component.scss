@@ -20,9 +20,9 @@
     position: fixed;
     z-index: 10000;
     text-align: center;
-    padding: 80px 0;
+    padding: 40px 0 80px;
     @include allmobiles{
-      padding-top: 0;
+      padding-top: 40px;
     }
   }
   .custom-modal-content {
@@ -34,10 +34,9 @@
     }
   }
   .custom-modal--icon {
-    width: 358px;
-    height: 353px;
+    width: 306px;
+    height: 185px;
     margin: 0 auto;
-    top: 30px;
   }
   .custom-modal--title {
     color: $white-color;
@@ -45,7 +44,7 @@
     font-size: 24px;
     letter-spacing: -0.18px;
     line-height: 0.56;
-    margin-top: 6px;
+    margin-top: 12px;
     margin-bottom: 14px;
     @include allmobiles {
       font-size: 20px;

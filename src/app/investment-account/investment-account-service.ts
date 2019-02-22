@@ -1,16 +1,3 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-
-import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
-import { PortfolioService } from '../portfolio/portfolio.service';
-import { ApiService } from '../shared/http/api.service';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
-import { SignUpService } from '../sign-up/sign-up.service';
-import { InvestmentAccountFormData } from './investment-account-form-data';
-import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
   IAddress,
   IEmployment,
@@ -20,7 +7,20 @@ import {
   IPersonalInfo,
   ISaveInvestmentAccountRequest,
 } from './investment-account.request';
+
+import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { HttpClient } from '@angular/common/http';
+import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
+import { Injectable } from '@angular/core';
+import { InvestmentAccountFormData } from './investment-account-form-data';
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonalInfo } from './personal-info/personal-info';
+import { PortfolioService } from '../portfolio/portfolio.service';
+import { SignUpService } from '../sign-up/sign-up.service';
+import { TranslateService } from '@ngx-translate/core';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -1648,10 +1648,7 @@ export class InvestmentAccountService {
         INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
       ) {
         this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
-        this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(
-          pepDetails.earningsGeneratedFromId,
-          'earningsGenerated'
-        );
+        this.investmentAccountFormData.earningsGenerated = pepDetails.earningsGeneratedFromId;
       } else if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===
