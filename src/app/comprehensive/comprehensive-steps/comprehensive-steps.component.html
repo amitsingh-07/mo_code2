@@ -21,12 +21,11 @@
       <div *ngIf="step=='4'" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{ 'success': step==5}"><span></span>
-      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}}</div>
-      <div class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE' | translate}}</div>
-      <div *ngIf="step=='5'" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
+      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE' | translate}}</div>
+      <div *ngIf="step!='4'" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
+      <div *ngIf="step=='4'" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC2' | translate}}</div>
     </li>
   </ul>
   <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">{{
-    'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
-    translate}}</button>
+    'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}</button>
 </div>

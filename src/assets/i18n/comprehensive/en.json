@@ -25,13 +25,14 @@
       "STEP_3_DESC": "Let's find out how protected you are in face unexpected events",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
-      "STEP_5_TITLE": "Congratulations",
-      "STEP_5_DESC": "Report Generation"
+      "STEP_5_TITLE": "Congratulations!",
+      "STEP_5_DESC": "Report Generation",
+      "STEP_5_DESC2": "Your data is submitted."
 
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your nationality.Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is not suitable for people age 55 and above.For queries,You may wish to contact us at enquiries@moneyowl.com.sg"
+      "DOB_ALERT": "Sorry, this tool is not suitable for people age 55 and above.For queries,You may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
@@ -54,14 +55,12 @@
 
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
-      "DEPENDANTS": "Do you Have any dependants?",
-      "DEPENDANTS_DESC": "A dependant is child,parent,spouse or sibling whom i'm supporting"
-
-
+      "DEPENDANTS": "Do you have any dependants?",
+      "DEPENDANTS_DESC": "A dependant is child, parent, spouse, sibling and relative I need to provide for."
     },
     "DEPENDANT_DETAILS": {
-      "ABOUT": "About Your Dependant",
-      "DESC": "Tell us who you need to take care of so that we can include these factors into your financial planning.",
+      "ABOUT": "About your dependants",
+      "DESC": "Tell us more about those you need to take care of and we will include their needs in your financial plan.",
 
       "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Parent-in-law", "Friend", "Relative"]
     },
@@ -116,16 +115,11 @@
       "OTHER_MORTAGE_PAYMENT": "Other Mortage Repayment",
       "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car loan Payment",
       "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Car Loan Payment"
-
-
-
-
-
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",
       "HI": "Hi",
-      "HEADER": "Welcome to MoneyOwl roboadvisory",
+      "HEADER": "Welcome to MoneyOwl <br>roboadvisory!",
       "WELCOME_BACK": "Welcome Back",
       "DESC": "Your financial report will be generated at the end of the journey! Ready to go?",
       "TOOL_TIP_TITLE": "Some tips for you",
@@ -151,7 +145,7 @@
       "PRIVATE": "Private",
       "SAVE_AND_CONTINUE": "Save and Continue",
       "YES": "Yes, I do",
-      "NO": "No,I don't"
+      "NO": "No, I don't"
     },
 
     "DEPENDANT_EDUCATION_SELECTION": {

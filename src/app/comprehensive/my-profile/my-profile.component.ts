@@ -76,18 +76,21 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loaderService.showLoader({ title: 'Fetching Data' });
     // #this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-    this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-      const redirectUrl = this.signUpService.getRedirectUrl();
-      if (redirectUrl) {
-        this.signUpService.clearRedirectUrl();
-        this.loaderService.hideLoader();
-        this.router.navigate([redirectUrl]);
-      } else {
-        this.getUserProfileData();
-      }
-    });
+    this.userDetails = this.comprehensiveService.getMyProfile();
+    if (!this.userDetails.dateOfBirth) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+        const redirectUrl = this.signUpService.getRedirectUrl();
+        if (redirectUrl) {
+          this.signUpService.clearRedirectUrl();
+          this.loaderService.hideLoader();
+          this.router.navigate([redirectUrl]);
+        } else {
+          this.getUserProfileData();
+        }
+      });
+    }
 
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -162,7 +165,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
   }
   selectNationality(nationality: any) {
-    if (this.nationality) {
+    if (this.nationality && this.nationality !== 'Select') {
       this.nationalityAlert = true;
     }
     nationality = nationality ? nationality : { text: '', value: '' };

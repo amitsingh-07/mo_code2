@@ -12,7 +12,7 @@
   </div>
   <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
     {{userDetails ?userDetails.firstName : ''}} </div>
-  <div  class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg">{{'CMP.GETTING_STARTED.HEADER'|translate }}</div>
+  <div  class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg" [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
   <div class="comprehensive__page-content" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
   <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
     <div class="form-group-with-bg">
@@ -59,7 +59,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
               <div  ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
-                  <span *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span style="color: #888888;" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
