@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from '../../shared/footer/footer.service';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MyInfoService } from '../../shared/Services/my-info.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
-import { SignUpService } from '../../sign-up/sign-up.service';
-import { InvestmentAccountCommon } from '../investment-account-common';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { InvestmentAccountCommon } from '../investment-account-common';
+import { InvestmentAccountService } from '../investment-account-service';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Router } from '@angular/router';
+import { SignUpService } from '../../sign-up/sign-up.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inv-personal-info',
@@ -382,7 +382,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
 
-  setDropDownValue(key, value) {
+  setDropDownValue(event, key, value) {
     this.invPersonalInfoForm.controls[key].setValue(value);
   }
 }

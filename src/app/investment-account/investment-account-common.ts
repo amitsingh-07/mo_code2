@@ -71,6 +71,8 @@ export class InvestmentAccountCommon {
       if (fileType !== 'PDF') {
         this.setThumbnail(thumbElem, selectedFile);
       }
+    } else {
+      fileElem.currentTarget.value = '';
     }
     return {
       validFileSize: isValidFileSize,
