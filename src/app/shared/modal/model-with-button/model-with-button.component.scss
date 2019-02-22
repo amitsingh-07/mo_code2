@@ -23,7 +23,8 @@
   padding: 10px;
   &.secondary-button {
     background-color:$white-color;
-    color:$teal-color;
+    color:$teal-color !important;
+    -webkit-text-fill-color: $teal-color !important;
     box-shadow: none !important;
   }
 }
