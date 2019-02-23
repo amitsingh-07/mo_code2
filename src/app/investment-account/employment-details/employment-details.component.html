@@ -23,17 +23,14 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button *ngIf="!employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
+                      <button class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
-                        {{'EMPLOYMENT_DETAILS.SELECT' | translate}}
-                      </button>
-                      <button *ngIf="employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
-                        id="employement_details_status-drpdown" ngbDropdownToggle>
-                        {{employementDetailsForm.controls.employmentStatus.value}}
+                        <span *ngIf="!employementDetailsForm.controls.employmentStatus.value">{{'EMPLOYMENT_DETAILS.SELECT' | translate}}</span>
+                        <span *ngIf="employementDetailsForm.controls.employmentStatus.value">{{employementDetailsForm.controls.employmentStatus.value}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;"
-                          (click)="setEmployementStatus('employmentStatus', empStatus.name)" id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
+                          (click)="setEmpDropDownValue('employmentStatus', empStatus.name)" id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
                       </div>
                     </div>
                   </div>
@@ -70,7 +67,7 @@
                             | titlecase}}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setIndustryValue('industry',option,i)"
+                          <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setEmpDropDownValue('industry',option,i)"
                             id="employement_details-industry-option-{{i}}">{{ option.industry| titlecase}}</button>
                         </div>
                       </div>
@@ -114,7 +111,7 @@
                             | titlecase}}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option,i)"
+                          <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setEmpDropDownValue('occupation',option,i)"
                             id="employement_details-occupation-option-{{i}}">{{ option.occupation | titlecase}}</button>
                         </div>
                       </div>
