@@ -1,23 +1,29 @@
+import { NouisliderModule } from 'ng2-nouislider';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { NouisliderModule } from 'ng2-nouislider';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { SharedModule } from '../shared/shared.module';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
-import { ConfirmWithdrawalModalComponent } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+    ConfirmWithdrawalModalComponent
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
 import { TransactionComponent } from './transaction/transaction.component';
-import { WithdrawalPaymentMethodComponent } from './withdrawal-payment-method/withdrawal-payment-method.component';
+import {
+    WithdrawalPaymentMethodComponent
+} from './withdrawal-payment-method/withdrawal-payment-method.component';
 import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
@@ -45,7 +51,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     TopUpComponent,
