@@ -1,27 +1,27 @@
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { FooterService } from '../../shared/footer/footer.service';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { InvestmentAccountCommon } from '../investment-account-common';
-import { InvestmentAccountService } from '../investment-account-service';
-import { MyInfoService } from '../../shared/Services/my-info.service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Router } from '@angular/router';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from '../../shared/footer/footer.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { SignUpService } from '../../sign-up/sign-up.service';
+import { InvestmentAccountCommon } from '../investment-account-common';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-inv-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  providers: [
+  providers: [NgbDropdownConfig,
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
   ],
   encapsulation: ViewEncapsulation.None
@@ -45,6 +45,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   raceList: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
+    private configDropdown: NgbDropdownConfig,
     private router: Router,
     private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
@@ -56,6 +57,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService
   ) {
+    configDropdown.autoClose = true;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
