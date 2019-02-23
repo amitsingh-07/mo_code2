@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   selector: 'app-inv-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  providers: [NgbDropdownConfig,
+  providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
   ],
   encapsulation: ViewEncapsulation.None
@@ -45,7 +45,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   raceList: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
-    private configDropdown: NgbDropdownConfig,
     private router: Router,
     private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
@@ -57,7 +56,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService
   ) {
-    configDropdown.autoClose = true;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
@@ -385,6 +383,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
 
   setDropDownValue(event, key, value) {
-    this.invPersonalInfoForm.controls[key].setValue(value);
+    setTimeout( () => {
+      this.invPersonalInfoForm.controls[key].setValue(value);
+    }, 100);
   }
 }
