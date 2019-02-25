@@ -112,8 +112,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           {
             value: this.formValues.salutation,
             disabled: this.investmentAccountService.isDisabled('salutation')
-          },
-          [Validators.required]
+          }
         ],
         fullName: [
           {
@@ -187,8 +186,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           {
             value: this.formValues.salutation,
             disabled: this.investmentAccountService.isDisabled('salutation')
-          },
-          [Validators.required]
+          }
         ],
         fullName: [
           {
