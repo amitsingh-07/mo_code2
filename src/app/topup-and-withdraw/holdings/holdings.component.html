@@ -25,11 +25,11 @@
                 </div>
               </div>
               <div class="flex-col-4" *ngIf="holding.availableUnits">
-                <div class="value" for="name" id="investment_overview_investment_start_value">{{holding.availableUnits | currency:'USD':'symbol-narrow':'1.0-2'}}
+                <div class="value" for="name" id="investment_overview_investment_start_value">{{holding.availableUnits}}
                 </div>
               </div>
               <div class="flex-col-4" *ngIf="!holding.availableUnits">
-                  <div class="value" for="name" id="investment_overview_investment_start_value">$0 <!-- PRINT 0 IF VALUE NULL -->
+                  <div class="value" for="name" id="investment_overview_investment_start_value">0 <!-- PRINT 0 IF VALUE NULL -->
                   </div>
                 </div>
             </div>

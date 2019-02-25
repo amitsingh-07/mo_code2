@@ -7,7 +7,7 @@
             <div class="overlap-grass">
               <div class="user-profile-bg flex-col-8">
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
-                <div class="user_name">{{userProfileInfo.firstName}}</div>
+                <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
                 <div (click)="goToEditProfile()">
                   <span class="user-edit-img">
                     <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
@@ -40,7 +40,7 @@
                     <div class="portfolio_footer">
                       <div class="flex-col col-5">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div class="portfolio_footer_value">{{totalReturns | number : '1.0-2'}}%</div>
+                        <div class="portfolio_footer_value">{{formatReturns(totalReturns)}}%</div>
                       </div>
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
