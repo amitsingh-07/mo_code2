@@ -12,20 +12,21 @@ import { ComprehensiveRoutingModule } from './comprehensive-routing.module';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
 
+import { SharedModule } from '../shared/shared.module';
+import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
+import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
-import { SharedModule } from '../shared/shared.module';
-import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -39,8 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
+    CommonModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     ComprehensiveRoutingModule,
     NgbModule.forRoot(),
@@ -64,6 +65,7 @@ export function createTranslateLoader(http: HttpClient) {
     RegularSavingPlanComponent,
     MyAssetsComponent,
     MyLiabilitiesComponent,
-    FirstReportDependantComponent]
+    FirstReportDependantComponent,
+    BadMoodFundComponent]
 })
 export class ComprehensiveModule { }

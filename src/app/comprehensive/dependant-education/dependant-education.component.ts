@@ -29,7 +29,7 @@ export class DependantEducationComponent implements OnInit {
     });
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.DEPENDANT_EDUCATION.TITLE');
+      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
       this.educationPlanOption = this.translate.instant('CMP.DEPENDANT_EDUCATION.OPTIONS');
 
       this.setPageTitle(this.pageTitle);

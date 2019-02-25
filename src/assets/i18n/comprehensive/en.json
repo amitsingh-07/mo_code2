@@ -223,6 +223,10 @@
       "OTHER_LOANS_AMOUNT_OUTSTANDING": "Other Loans Amount OutStanding",
       "CAR_LOANS": "Car Loans"
     },
+    "YOUR_FINANCES":{
+         "TITLE":"Bad Mood Fund",
+         "DESC":"Why not put little aside to each month to pamper yourself on rough days without guilt or worry,out of your monthly surplus?"
+    },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
       "DEPENDANT_DETAIL": ["Dependant Details 1", "Dependant Details 2", "Dependant Details 3", "Dependant Details 4", "Dependant Details 5"]

@@ -6,7 +6,7 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyProfile } from './comprehensive-types';
+import { IMyDependant, IMyProfile } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -73,13 +73,21 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myProfile;
   }
-
+  getMyDependant() {
+    if (!this.comprehensiveFormData.myDependant) {
+      this.comprehensiveFormData.myDependant = [] as IMyDependant[];
+    }
+    return this.comprehensiveFormData.myDependant;
+  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
     this.commit();
   }
-
+  setMyDependant(dependant: IMyDependant[] ) {
+    this.comprehensiveFormData.myDependant = dependant;
+    this.commit();
+  }
   getStartingPage() {
     return this.comprehensiveFormData.startingPage;
   }
