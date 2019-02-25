@@ -35,32 +35,28 @@
           <!--Form Content-->
           <div class="form-group-with-bg--content">
             <div class="flex-row">
-              <div class="flex-col-7">
+              <div class="flex-col-6">
                 <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">{{'YOUR_INVESTMENT.TOTAL_RETURNS'
                   | translate}}
                   <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
                 </div>
-              </div>
-              <div class="flex-col-5">
-                <div class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%
-                </div>
-              </div>
-            </div>
-            <div class="flex-row">
-              <div class="flex-col-7">
                 <div class="start_investment_label" for="name" id="investment_overview_investment_start_labl">{{'YOUR_INVESTMENT.FROM_START_OF_INVESTMENT'
                   | translate}}
                 </div>
               </div>
+              <div class="flex-col-6">
+                <div class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%
+                </div>
+              </div>
             </div>
             <div class="flex-row mt20">
-              <div class="flex-col-7">
+              <div class="flex-col-6">
                 <div class="total_return_label" for="tota" id="investment_overview_investment_cash_labl">{{'YOUR_INVESTMENT.CASH_ACCOUNT_BALANCE'
                   | translate}}
                   <img (click)="showCashAccountPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
                 </div>
               </div>
-              <div class="flex-col-5">
+              <div class="flex-col-6">
                 <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">
                   {{cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
                 </div>
