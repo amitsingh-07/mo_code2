@@ -54,13 +54,13 @@
               </div>
             </div>
             <div class="flex-row mt20">
-              <div class="flex-col-8">
+              <div class="flex-col-7">
                 <div class="total_return_label" for="tota" id="investment_overview_investment_cash_labl">{{'YOUR_INVESTMENT.CASH_ACCOUNT_BALANCE'
                   | translate}}
                   <img (click)="showCashAccountPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
                 </div>
               </div>
-              <div class="flex-col-4">
+              <div class="flex-col-5">
                 <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">
                   {{cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
                 </div>
