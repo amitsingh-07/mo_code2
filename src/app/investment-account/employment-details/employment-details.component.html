@@ -1,10 +1,10 @@
 <div class="employement-details">
   <div class="step-indicator-container" *ngIf="!isEditProfile">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid" [class.isEditProfile]="isEditProfile">
+  <div class="container-fluid max-width--1024" [class.isEditProfile]="isEditProfile">
     <div class="content">
       <div class="row">
         <div class="col-12" *ngIf="!isEditProfile">
@@ -23,7 +23,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border"
+                      <button [disabled]="isDisabled('employmentStatus')" class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
                         <span *ngIf="!employementDetailsForm.controls.employmentStatus.value">{{'EMPLOYMENT_DETAILS.SELECT' | translate}}</span>
                         <span *ngIf="employementDetailsForm.controls.employmentStatus.value">{{employementDetailsForm.controls.employmentStatus.value}}</span>
@@ -64,7 +64,7 @@
                           <span *ngIf="!employementDetailsForm.controls.industry.value">{{
                             'EMPLOYMENT_DETAILS.SELECT_INDUSTRY' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
-                            | titlecase}}</span>
+                            }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setEmpDropDownValue('industry',option,i)"
@@ -103,12 +103,12 @@
                   <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('occupation').enabled && !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
                     <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
-                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
+                        <button [disabled]="isDisabled('occupation')" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
                           <span *ngIf="!employementDetailsForm.controls.occupation.value">{{
                             'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
                           <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
-                            | titlecase}}</span>
+                            }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setEmpDropDownValue('occupation',option,i)"
@@ -148,7 +148,7 @@
               </div>
               <div>
                 <div *ngIf="employementDetailsForm.get('employeaddress')" formGroupName="employeaddress">
-                  <div class="emp_add_lbl"><label>Your office address:</label></div>
+                  <div class="emp_add_lbl"><label>{{'EMPLOYMENT_DETAILS.YOUR_OFFICE_ADDRESS' | translate}}</label></div>
                   <!-- COUNTRY -->
                   <div class="form-group">
                     <div class="flex-row">
@@ -187,7 +187,7 @@
                             </div>
                             <div class="button">
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
-                                class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                                class="btn btn-secondary right width100">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>
                             </div>
                           </div>
@@ -223,6 +223,20 @@
                       </div>
                     </div>
                   </div>
+                  <!-- FLOOR -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empFloor')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'EMPLOYMENT_DETAILS.FLOOR'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empFloor)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empFloor" id="employeeAddress-floor-txt" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <!-- UNIT NO -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empUnitNo')">
                     <div class="flex-row">
@@ -237,6 +251,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <!-- CITY -->
                   <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empCity')">
                     <div class="flex-row">

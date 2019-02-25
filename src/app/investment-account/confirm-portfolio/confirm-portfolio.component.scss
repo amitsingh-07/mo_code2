@@ -85,6 +85,10 @@ app-confirm-portfolio {
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
+    margin-bottom: 30px;
+    @include allmobiles{
+      margin: 0;
+    }
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;

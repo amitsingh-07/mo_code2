@@ -1,10 +1,10 @@
 <div class="personal-info">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -28,7 +28,7 @@
                           {{'PERSONAL_INFO.SELECT_SALUTATION'  | translate}}
                         </span>
                         <span *ngIf="invPersonalInfoForm.controls.salutation.value">
-                          {{invPersonalInfoForm.controls.salutation.value.name | titlecase}}
+                          {{invPersonalInfoForm.controls.salutation.value.name }}
                         </span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
@@ -69,7 +69,7 @@
                   <label for="name" id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('nricNumber').enabled && !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
-                  <input type="text" placeholder="e.g S9305244F" id="invPersInfoInpt4" class="form-control" #nricNumber
+                  <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control" #nricNumber
                     formControlName="nricNumber">
                 </div>
               </div>

@@ -1,14 +1,12 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
+app-allocation{
 .bond_container {
   border-radius: 6px;
   box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
   background-color: $bond-container-bg;
-
   .bonds_equity_block {
     padding: 15px;
-
     .bond_progress_container {
       font-family: $muli-semi-bold;
       font-size: 16px;
@@ -17,28 +15,25 @@
       letter-spacing: -0.3px;
       color: $teal-color;
       padding: 0px 0 12px;
-
       .equity_bar {
         justify-content: space-between;
         align-items: center;
-
         .flex-col-8 {
-          max-width: 195px;
+          max-width: 60%;
+          @include allmobiles{
+            max-width: 195px;
+          }
         }
       }
-
       .bar-container {
         background-color: $bar-container-bg;
       }
-
       .bar {
         height: 12px;
       }
     }
-
     .bonds_equity {
       margin-top: 10px;
-
       .bonds_equity_title {
         border-radius: 6px;
         background-color: $review-block-bg;
@@ -48,7 +43,6 @@
         font-family: $muli-bold;
         font-size: 18px;
         font-weight: bold;
-
         .arrow {
           border: solid $white-color;
           border-width: 0 3px 3px 0;
@@ -59,7 +53,6 @@
           transform: rotate(45deg);
           -webkit-transform: rotate(45deg);
         }
-
         &.active {
           border-bottom-left-radius: 0px;
           border-bottom-right-radius: 0px;
@@ -71,7 +64,6 @@
           }
         }
       }
-
       .card {
         border: none;
         border-bottom-right-radius: 6px;
@@ -79,19 +71,16 @@
         background-color: $bond-container-bg;
         .card-header {
           display: none;
-
           .btn {
             color: $white-color;
           }
         }
-
         .card-body {
           padding: 0;
           margin-bottom: 20px;
           border-bottom-left-radius: 6px;
           border-bottom-right-radius: 6px;
           border: 1px solid $allocation-card-body-brdr-color;
-
           div {
             &:last-child {
               border-bottom: none;
@@ -99,7 +88,6 @@
           }
         }
       }
-
       .bond_desc {
         color: $black-color;
         border-bottom: 1px solid $teal-color;
@@ -108,7 +96,6 @@
           border-right: 1px solid $teal-color;
           display: flex;
           align-items: center;
-
           &.border-right-none{
             border-right-width:0px;
             padding-right:0px;
@@ -126,7 +113,6 @@
           .flex-row {
             justify-content: space-between;
           }
-
           .rating_value {
             font-weight: bold;
             color: $teal-color;
@@ -137,7 +123,6 @@
       }
     }
   }
-
   .btn-view {
     font-size: 18px;
     font-weight: 600;
@@ -147,4 +132,5 @@
     border-top-right-radius: 0;
     background-color: $bond-container-bg;
   }
+}
 }

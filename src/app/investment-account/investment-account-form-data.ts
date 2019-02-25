@@ -70,6 +70,7 @@ export class InvestmentAccountFormData {
   empPostalCode: number;
   empAddress1: string;
   empAddress2: string;
+  empFloor: string;
   empUnitNo: string;
   empCity: string;
   empState: string;

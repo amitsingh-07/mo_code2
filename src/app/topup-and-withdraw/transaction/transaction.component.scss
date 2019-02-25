@@ -44,12 +44,22 @@ app-transaction {
         font-family: $muli-semi-bold;
         padding: 20px;
         border-bottom: 1px solid $bond-container-bg;
+
+        .history-type-transaction {
+          padding-left:45px;
+          position:relative;
+        }
       }
       &--title--sale {
         font-size: 14px;
         color: $red-color;
         text-transform: uppercase;
         margin-right: 10px;
+
+        position:absolute;
+        display:block;
+        left:0px;
+        top:4px;
         &.buy {
           color: $transaction-panel-buy-color;
         }

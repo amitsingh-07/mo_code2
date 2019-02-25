@@ -89,7 +89,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
         Validators.pattern(RegexConstants.AlphanumericWithSymbol)
       ]),
       pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [
-        Validators.required,
         Validators.pattern(RegexConstants.AlphanumericWithSymbol)
       ])
     });

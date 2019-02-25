@@ -3,8 +3,10 @@
 app-tax-info {
   .app-tax-info {
     .container-fluid {
-      padding-left: 0px !important;
-      padding-right: 0px !important;
+      @include allmobiles{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
     }
     .flex-row {
       align-items: center;
@@ -136,8 +138,11 @@ app-tax-info {
       padding-top: 10px;
     }
     .tax-form {
-      padding: 60px 20px 40px;
+      padding: 60px 0px 40px;
       position: relative;
+      @include allmobiles{
+        padding: 60px 20px 40px; 
+      }
       &:first-child {
         padding-top: 50px;
         .thumb-close-icon {

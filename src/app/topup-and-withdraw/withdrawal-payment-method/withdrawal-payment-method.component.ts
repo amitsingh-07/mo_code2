@@ -10,8 +10,11 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { AddBankModalComponent } from '../add-bank-modal/add-bank-modal.component';
-import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+  ConfirmWithdrawalModalComponent
+} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -43,7 +46,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
   ngOnInit() {
@@ -60,9 +63,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getUserBankList() {
@@ -76,9 +79,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getTitle() {
@@ -97,9 +100,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           : data.objectList.homeAddress;
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setPageTitle(title: string) {
@@ -152,9 +155,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           this.getUserBankList(); // refresh updated bank list
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     });
     this.dismissPopup(ref);
   }
@@ -194,7 +197,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
+  gotoEditProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
   goToNext() {
     this.showConfirmWithdrawModal();
   }
