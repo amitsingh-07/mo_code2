@@ -43,7 +43,7 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">{{totalReturnsPercentage | number : '1.0-2'}}%</div>
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">{{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%</div>
               </div>
             </div>
             <div class="flex-row">
@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">{{yearlyReturns | number : '1.0-2'}}%</div>
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">{{formatReturns(yearlyReturns)}}{{yearlyReturns | number : '1.0-2'}}%</div>
               </div>
             </div>
           </div>

@@ -130,4 +130,7 @@ export class YourPortfolioComponent implements OnInit {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     }
   }
+  formatReturns(value) {
+    return this.investmentAccountService.formatReturns(value);
+  }
 }

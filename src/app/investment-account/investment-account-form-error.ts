@@ -89,13 +89,8 @@ export class InvestmentAccountFormError {
       }
     },
     address2: {
-      required: {
+       pattern: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Address Line 2',
-        // tslint:disable-next-line:no-duplicate-string
-        errorMessage: 'Enter Address Line 2'
-      },
-      pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
           'Address Line 2 should contain  alphanumeric and  Special characters.'
@@ -127,11 +122,7 @@ export class InvestmentAccountFormError {
       }
     },
     mailAddress2: {
-      required: {
-        errorTitle: 'Invalid Address Line 2 in mailing address',
-        errorMessage: 'Enter Address Line 2 in mailing address'
-      },
-      pattern: {
+     pattern: {
         errorTitle: 'Invalid mail Address Line 2',
         errorMessage:
           'Address Line 2 should contain  alphanumeric and  Special characters in mailing address.'
@@ -308,7 +299,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Passport Number',
-        errorMessage: 'Passport Number should not contain special characters.'
+        errorMessage: 'Enter valid Passport Number'
       }
     },
     passportExpiry: {
@@ -426,18 +417,19 @@ export class InvestmentAccountFormError {
       }
     },
     empAddress2: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Address Line 2',
-        errorMessage: 'Enter Address Line 2'
-      },
-      pattern: {
+     pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
           'Address Line 2  should contain  alphanumeric and  Special characters.'
       }
     },
-
+    empFloor: {
+      pattern: {
+        errorTitle: 'Invalid  Floor',
+        // tslint:disable-next-line:no-duplicate-string
+        errorMessage: 'Floor should contain Symbol and Number.'
+      }
+    },
     empUnitNo: {
       pattern: {
         errorTitle: 'Invalid  unitNo',
@@ -625,12 +617,7 @@ export class InvestmentAccountFormError {
       }
     },
     pepAddress2: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Address Line 2',
-        errorMessage: 'Enter Address Line 2'
-      },
-      pattern: {
+     pattern: {
         errorTitle: 'Invalid Address2',
         errorMessage: 'Address2 should contain alphanumeric and Special characters.'
       }

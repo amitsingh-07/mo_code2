@@ -394,6 +394,16 @@
                   empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
                 </div>
               </div>
+              <!-- floor -->
+              <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.FLOOR' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress &&
+                  empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
+                </div>
+              </div>
               <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
                 <div class="update-contact-title">
                   {{'EDIT_PROFILE.UNIT' | translate}}

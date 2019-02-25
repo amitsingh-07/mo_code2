@@ -67,6 +67,10 @@ export class EmploymentDetailsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
+    // Set employment status in MyInfo
+    if (this.formValues.isMyInfoEnabled) {
+      this.setEmploymentStatus();
+    }
     this.isEditProfile =
       this.route.snapshot.queryParams && this.route.snapshot.queryParams.enableEditProfile
         ? true
@@ -90,6 +94,14 @@ export class EmploymentDetailsComponent implements OnInit {
     });
   }
 
+  setEmploymentStatus() {
+    if (this.formValues.companyName) {
+      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.EMPLOYED;
+    } else {
+      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.UNEMPLOYED;
+    }
+  }
+
   addOrRemoveAdditionalControls(empStatus) {
     if (
       empStatus === INVESTMENT_ACCOUNT_CONFIG.EMPLOYEMENT_DETAILS.SELE_EMPLOYED ||
@@ -107,13 +119,7 @@ export class EmploymentDetailsComponent implements OnInit {
       );
       this.employementDetailsForm.addControl(
         'occupation',
-        new FormControl(
-          {
-            value: this.formValues.occupation,
-            disabled: this.investmentAccountService.isDisabled('occupation')
-          },
-          Validators.required
-        )
+        new FormControl(this.formValues.occupation, Validators.required)
       );
       this.employementDetailsForm.addControl(
         'industry',
@@ -208,8 +214,8 @@ export class EmploymentDetailsComponent implements OnInit {
             this.formValues.empCountry
               ? this.formValues.empCountry
               : this.investmentAccountService.getCountryFromNationalityCode(
-                  INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
-                ),
+                INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
+              ),
             Validators.required
           ],
           empAddress1: [
@@ -221,10 +227,7 @@ export class EmploymentDetailsComponent implements OnInit {
           ],
           empAddress2: [
             this.formValues.empAddress2,
-            [
-              Validators.required,
-              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
-            ]
+            [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
           ]
         })
       );
@@ -264,7 +267,12 @@ export class EmploymentDetailsComponent implements OnInit {
     if (value.occupation === INVESTMENT_ACCOUNT_CONFIG.OTHERS) {
       this.employementDetailsForm.addControl(
         'otherOccupation',
-        new FormControl(this.formValues.otherOccupation, Validators.required)
+        new FormControl(
+          {
+            value: this.formValues.otherOccupation,
+            disabled: this.investmentAccountService.isDisabled('otherOccupation')
+          },
+          Validators.required)
       );
     } else {
       this.employementDetailsForm.removeControl('otherOccupation');
@@ -283,6 +291,13 @@ export class EmploymentDetailsComponent implements OnInit {
           Validators.required,
           Validators.pattern(RegexConstants.SixDigitNumber)
         ])
+      );
+      empAddressFormGroup.addControl(
+        'empFloor',
+        new FormControl(
+          this.formValues.empFloor,
+          Validators.pattern(RegexConstants.SymbolNumber)
+        )
       );
       empAddressFormGroup.addControl(
         'empUnitNo',
@@ -319,8 +334,9 @@ export class EmploymentDetailsComponent implements OnInit {
       );
 
       empAddressFormGroup.removeControl('empPostalCode');
+      empAddressFormGroup.removeControl('empFloor');
       empAddressFormGroup.removeControl('empUnitNo');
-    }
+     }
   }
 
   observeEmpAddressCountryChange() {
@@ -417,7 +433,7 @@ export class EmploymentDetailsComponent implements OnInit {
     }
   }
 
-  isDisabled() {
-    return this.investmentAccountService.isDisabled('occupation');
+  isDisabled(fieldName) {
+    return this.investmentAccountService.isDisabled(fieldName);
   }
 }
