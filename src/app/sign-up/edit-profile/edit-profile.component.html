@@ -11,7 +11,7 @@
     <div class="overlap-grass">
       <div class="user-profile-bg">
         <div class="circle"> {{compinedName}} </div>
-        <div class="heading">{{fullName }}</div>
+        <div class="heading">{{fullName|titlecase}}</div>
         <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
         <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
         <div class="flex-row">
