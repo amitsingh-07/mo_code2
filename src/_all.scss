@@ -1567,8 +1567,8 @@ a.link-white {
       border-radius: 6px;
       padding: 20px;
       background: #066360;
-      &__title, &__close {
-        color: #2d8289;
+      &__title {
+        color: #8d9aa8;
       }
       &:before {
         content: '';
@@ -1582,9 +1582,13 @@ a.link-white {
       }
       &__close {
         position: absolute;
-        top: 5px;
-        right: 15px;
+        top: 15px;
+        right: 5px;
         font-size: 20px;
+        background: url(./assets/images/close-icon.svg);
+        background-repeat: no-repeat;
+        height: 20px;
+        width: 20px;
       }
     }
   }
@@ -1599,6 +1603,21 @@ a.link-white {
     line-height: 34px;
     cursor: pointer;
     text-decoration: underline;
+  }
+  .step-indicator-container {
+    background: $white-color;
+    margin: -15px -20px 20px;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    z-index: 1029;
+  }
+  .mo3-close-icon {
+    background: url("./assets/images/delete-icon.svg");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
   }
 }
 
