@@ -1685,10 +1685,10 @@ export class InvestmentAccountService {
   }
 
   formatReturns(value) {
-    if (value >= 0) {
-      return '+' + value;
+    if (value > 0) {
+      return '+';
     } else {
-      return value;
+      return '';
     }
   }
 }
