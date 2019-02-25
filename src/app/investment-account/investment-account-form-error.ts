@@ -299,7 +299,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Passport Number',
-        errorMessage: 'Passport Number should not contain special characters.'
+        errorMessage: 'Enter valid Passport Number'
       }
     },
     passportExpiry: {
