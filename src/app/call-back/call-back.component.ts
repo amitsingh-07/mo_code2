@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvestmentAccountService } from '../investment-account/investment-account-service';
-import { MyInfoService } from '../shared/Services/my-info.service';
+import { Component, OnInit } from '@angular/core';
 
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account/investment-account-service';
+import { MyInfoService } from '../shared/Services/my-info.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-call-back',
@@ -20,7 +20,8 @@ export class CallBackComponent implements OnInit {
     private router: Router, private route: ActivatedRoute, private modal: NgbModal,
     private myInfoService: MyInfoService,
     private investmentAccountService: InvestmentAccountService,
-    private guideMeService: GuideMeService) { }
+    private guideMeService: GuideMeService
+    ) { }
 
   ngOnInit() {
     if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {

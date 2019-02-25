@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -382,7 +382,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
 
-  setDropDownValue(key, value) {
-    this.invPersonalInfoForm.controls[key].setValue(value);
+  setDropDownValue(event, key, value) {
+    setTimeout( () => {
+      this.invPersonalInfoForm.controls[key].setValue(value);
+    }, 100);
   }
 }

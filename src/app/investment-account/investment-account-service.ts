@@ -5,7 +5,7 @@ import {
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
-  ISaveInvestmentAccountRequest,
+  ISaveInvestmentAccountRequest
 } from './investment-account.request';
 
 import { ApiService } from '../shared/http/api.service';
@@ -1440,7 +1440,10 @@ export class InvestmentAccountService {
       identityDetails.customer.nationalityCode
     );
     this.investmentAccountFormData.unitedStatesResident = false; // TODO : VERIFY
-    this.investmentAccountFormData.singaporeanResident = additionalDetails.isSingaporePR;
+    if (additionalDetails) {
+      this.investmentAccountFormData.singaporeanResident =
+        additionalDetails.isSingaporePR;
+    }
     this.commit();
   }
   setPersonalInfoFromApi(identityDetails) {
@@ -1597,10 +1600,13 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.sourceOfIncome = investmentObjective
       ? investmentObjective.investmentSource
       : null;
-    this.investmentAccountFormData.ExistingEmploye =
-      additionalDetails.connectedToInvestmentFirm;
-    this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
-    this.investmentAccountFormData.beneficial = additionalDetails.beneficialOwner;
+    if (additionalDetails) {
+      this.investmentAccountFormData.ExistingEmploye =
+        additionalDetails.connectedToInvestmentFirm;
+      this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
+      this.investmentAccountFormData.beneficial = additionalDetails.beneficialOwner;
+    }
+
     this.commit();
   }
   setDueDiligence1FromApi(pepDetails) {
@@ -1648,7 +1654,8 @@ export class InvestmentAccountService {
         INVESTMENT_ACCOUNT_CONFIG.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
       ) {
         this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
-        this.investmentAccountFormData.earningsGenerated = pepDetails.earningsGeneratedFromId;
+        this.investmentAccountFormData.earningsGenerated =
+          pepDetails.earningsGeneratedFromId;
       } else if (
         pepDetails.investmentSourceId &&
         pepDetails.investmentSourceId.key ===

@@ -187,18 +187,16 @@ export class EmploymentDetailsComponent implements OnInit {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
-  setEmployementStatus(key, value) {
-    this.employementDetailsForm.controls[key].setValue(value);
-  }
-  setIndustryValue(key, value) {
-    this.employementDetailsForm.controls[key].setValue(value);
-  }
-  setOccupationValue(key, value) {
-    this.employementDetailsForm.controls[key].setValue(value);
+  setEmpDropDownValue(key, value) {
+    setTimeout( () => {
+      this.employementDetailsForm.controls[key].setValue(value);
+    }, 100);
   }
 
   setDropDownValue(key, value, nestedKey) {
-    this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
+    setTimeout( () => {
+      this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
+    }, 100);
   }
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;

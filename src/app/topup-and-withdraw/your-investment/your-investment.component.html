@@ -42,7 +42,7 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">+{{totalReturns}}%
+                <div class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{totalReturns | number : '1.0-2'}}%
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
         <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index">
           <!-- ALREADY  FUNDED PORTFOLIO -->
           <div *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'PURCHASED'">
-            <div class="form-group-with-bg--header your_portfolio_value">
+            <div class="form-group-with-bg--header your_portfolio_value" (click)="yourPortfolio(portfolio)">
               <div class="flex-row">
                 <div class="conserve-icon">
                   <img id="investment_overview_growth_icons" src="../../../assets/images/investment-account/growth_icon.svg"
@@ -92,7 +92,7 @@
               </div>
               <div class="forward_img">
                 <img id="investment_overview_forward_icon" src="../../../assets/images/investment-account/forward_portfolio.svg"
-                  alt="" (click)="yourPortfolio(portfolio)" />
+                  alt=""/>
               </div>
             </div>
             <!-- zero portfolio -->
@@ -107,8 +107,7 @@
                 <div class="flex-col-6">
                   <div class="total_return_value txt-bold" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.totalReturns|
                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                  <div class="start_investment_value" for="name" id="investment_overview_portfolio_total_returns_value">+
-                    {{portfolio.totalReturnsPercentage}}% </div>
+                  <div class="start_investment_value" for="name" id="investment_overview_portfolio_total_returns_value">{{portfolio.totalReturnsPercentage | number : '1.0-2'}}%</div>
                 </div>
               </div>
             </div>
@@ -116,7 +115,7 @@
           <!-- NON-FUNDED PORTFOLIO  -->
           <div *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus !== 'PURCHASED'">
             <div class="form-group-with-bg--header your_portfolio_value">
-              <div class="flex-row">
+              <div class="flex-row" (click)="yourPortfolio(portfolio)">
                 <div class="conserve-icon">
                   <img [src]="getImg(i)" alt="" />
                 </div>
@@ -136,12 +135,10 @@
                     <div class="callout-arrow"></div>
                   </div>
                 </div>
-                <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'RECOMMENDED'" -->
                 <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">
                   <img id="close_icon" id="investment_overview_topup_icon" src="../../../assets/images/investment-account/topup-alert.svg"
                     alt="" (click)="alertPopUp(i)" />
                 </div>
-                <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus !== 'EXPIRED'" -->
                 <div class="forward_img" *ngIf="portfolio.portfolioStatus !== 'EXPIRED'">
                   <img id="investment_overview_forward_icon_two" src="../../../assets/images/investment-account/forward_portfolio.svg"
                     alt="" (click)="yourPortfolio(portfolio)" />
@@ -151,7 +148,6 @@
             <div class="form-group-with-bg--content your_portfolio_value_content">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'RECOMMENDED'" -->
                   <div id="investment_recommended" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET'
                     | translate}}</div>
                   <div *ngIf="portfolio.portfolioStatus === 'EXPIRED'" id="investment_expired">{{'YOUR_INVESTMENT.EXPIRED'
@@ -161,7 +157,6 @@
                 </div>
               </div>
               <hr>
-              <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'EXPIRED' ||  portfolio.portfolioStatus === 'RECOMMENDED' "  -->
               <div class="portfolio_footer" *ngIf="portfolio.portfolioStatus === 'EXPIRED' || portfolio.portfolioStatus === 'RECOMMENDED'">
                 <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-primary width100">{{'YOUR_INVESTMENT.DELETE'
                   | translate}}</button>

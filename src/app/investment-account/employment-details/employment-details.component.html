@@ -30,7 +30,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;"
-                          (click)="setEmployementStatus('employmentStatus', empStatus.name)" id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
+                          (click)="setEmpDropDownValue('employmentStatus', empStatus.name)" id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
                       </div>
                     </div>
                   </div>
@@ -67,8 +67,8 @@
                             }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setIndustryValue('industry',option,i)"
-                            id="employement_details-industry-option-{{i}}">{{ option.industry}}</button>
+                          <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setEmpDropDownValue('industry',option,i)"
+                            id="employement_details-industry-option-{{i}}">{{ option.industry| titlecase}}</button>
                         </div>
                       </div>
                     </div>
@@ -111,8 +111,8 @@
                             }}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option,i)"
-                            id="employement_details-occupation-option-{{i}}">{{ option.occupation}}</button>
+                          <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setEmpDropDownValue('occupation',option,i)"
+                            id="employement_details-occupation-option-{{i}}">{{ option.occupation | titlecase}}</button>
                         </div>
                       </div>
                     </div>
