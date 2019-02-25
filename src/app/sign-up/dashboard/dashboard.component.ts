@@ -1,23 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
+import { ApiService } from '../../shared/http/api.service';
 import { AppService } from '../../app.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { Formatter } from '../../shared/utils/formatter.util';
+import { IEnquiryUpdate } from '../signup-types';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
-import { FooterService } from '../../shared/footer/footer.service';
-import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { Formatter } from '../../shared/utils/formatter.util';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { SignUpApiService } from '../sign-up.api.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+import { Router } from '@angular/router';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SignUpService } from '../sign-up.service';
-import { IEnquiryUpdate } from '../signup-types';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -220,5 +220,9 @@ export class DashboardComponent implements OnInit {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
       });
     });
+  }
+
+  formatReturns(value) {
+    return this.investmentAccountService.formatReturns(value);
   }
 }

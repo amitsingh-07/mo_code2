@@ -69,8 +69,14 @@ app-account-setup-pending {
       text-align: center;
       color: $white-color;
     }
+    .btn-primary {
+      width: 275px;
+    }
     .btn__footer--fixed {
       font-family: $muli-bold !important;
+      @include allmobiles{
+        width: 100%;
+      }
     }
   }
 }

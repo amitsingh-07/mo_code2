@@ -70,6 +70,8 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   },
   EMPLOYEMENT_DETAILS: {
     SELE_EMPLOYED: 'Self Employed',
-    EMPLOYED: 'Employed'
-  }
+    EMPLOYED: 'Employed',
+    UNEMPLOYED: 'Unemployed'
+  },
+  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation']
 };

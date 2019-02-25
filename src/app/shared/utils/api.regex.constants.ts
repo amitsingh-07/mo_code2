@@ -1,4 +1,5 @@
 export const RegexConstants = {
+    PassportNumber: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
     OnlyAlpha: /^[a-zA-Z\s]{2,40}$/, // Only alpha values with space
     Alphanumeric: /^[a-zA-Z0-9]*$/,
     AlphanumericSpace: /^[a-zA-Z0-9\s]*$/,

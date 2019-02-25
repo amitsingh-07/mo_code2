@@ -73,7 +73,7 @@
     }
   },
   "TOPUP": {
-    "TITLE": "TOP UP",
+    "TITLE": "Top Up",
     "SELECT_POTODOLIO": "1. Select Portfolio ",
     "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
