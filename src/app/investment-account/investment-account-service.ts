@@ -328,7 +328,7 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.lastName = data.lastName;
     }
     if (data.nricNumber) {
-      this.investmentAccountFormData.nricNumber = data.nricNumber;
+      this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
     }
     if (data.passportNumber) {
       this.investmentAccountFormData.passportNumber = data.passportNumber;
