@@ -33,7 +33,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
                         <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;" (click)="setDropDownValue($event, 'salutation', salutaion, i)"
-                          id="salutation-option-{{i}}">{{salutaion.name | titlecase}}</button>
+                          id="salutation-option-{{i}}">{{salutaion.name}}</button>
                       </div>
                     </div>
                   </div>
