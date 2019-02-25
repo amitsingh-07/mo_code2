@@ -5,7 +5,7 @@ import {
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
-  ISaveInvestmentAccountRequest
+  ISaveInvestmentAccountRequest,
 } from './investment-account.request';
 
 import { ApiService } from '../shared/http/api.service';
@@ -1661,5 +1661,13 @@ export class InvestmentAccountService {
     ref.componentInstance.errorMessage = this.translate.instant(
       'COMMON_ERRORS.API_FAILED.DESC'
     );
+  }
+
+  formatReturns(value) {
+    if (value >= 0) {
+      return '+' + value;
+    } else {
+      return value;
+    }
   }
 }
