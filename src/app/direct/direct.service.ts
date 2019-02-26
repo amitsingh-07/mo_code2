@@ -57,9 +57,7 @@ export class DirectService {
   }
 
   clearData() {
-    if (window.sessionStorage) {
-      sessionStorage.removeItem(SESSION_STORAGE_KEY);
-    }
+    this.directFormData = new DirectFormData();
   }
 
   clearServiceData() {

@@ -75,9 +75,7 @@ export class GuideMeService {
   }
 
   clearData() {
-    if (window.sessionStorage) {
-      sessionStorage.clear();
-    }
+    this.guideMeFormData = new GuideMeFormData();
   }
 
   getProfile(): Profile {

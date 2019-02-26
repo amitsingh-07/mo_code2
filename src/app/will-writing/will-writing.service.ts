@@ -67,9 +67,7 @@ export class WillWritingService {
    * clear session storage data.
    */
   clearData() {
-    if (window.sessionStorage) {
-      sessionStorage.clear();
-    }
+    this.willWritingFormData = new WillWritingFormData();
   }
 
   isUserLoggedIn(): boolean {
