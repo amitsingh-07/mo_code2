@@ -112,7 +112,7 @@ export class WithdrawalTypeComponent implements OnInit {
       value
         ? this.withdrawForm.addControl(
           'withdrawAmount',
-          new FormControl('0.00', [
+          new FormControl('0', [
             Validators.required,
             this.withdrawAmountValidator(
               this.withdrawForm.get('withdrawPortfolio'),
@@ -137,7 +137,7 @@ export class WithdrawalTypeComponent implements OnInit {
       value
         ? this.withdrawForm.addControl(
           'withdrawAmount',
-          new FormControl('0.00', [
+          new FormControl('0', [
             Validators.required,
             this.withdrawAmountValidator(
               this.withdrawForm.get('withdrawPortfolio'),
@@ -155,7 +155,7 @@ export class WithdrawalTypeComponent implements OnInit {
   buildFormForCashToBank() {
     this.withdrawForm.addControl(
       'withdrawAmount',
-      new FormControl('0.00', [
+      new FormControl('0', [
         Validators.required,
         this.withdrawAmountValidator(this.cashBalance, 'VALUE')
       ])
