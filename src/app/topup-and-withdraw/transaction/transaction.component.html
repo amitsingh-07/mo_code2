@@ -27,7 +27,7 @@
                           <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()"
                             >
                             <div class="flex-col-7">{{fund.fund.name}}</div>
-                            <div class="flex-col-5 text-right">{{fund.unitPrice | currency }}</div>
+                            <div class="flex-col-5 text-right">{{fund.splitAmount | currency }}</div>
                           </div>
                         </div>
                       </div>
