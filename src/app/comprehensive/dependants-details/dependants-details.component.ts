@@ -53,12 +53,16 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.loaderService.showLoader({ title: 'Fetching Data' });
-    this.comprehensiveApiService.getDependents().subscribe((data) => {
-      this.dependantDetails = data.objectList;
-      this.loaderService.hideLoader();
-    });
-    this.buildDependantForm();
+    this.dependantDetails = this.comprehensiveService.getMyDependant();
+    if (this.dependantDetails.length === 0) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.comprehensiveApiService.getDependents().subscribe((data) => {
+        this.dependantDetails = data.objectList;
+        this.loaderService.hideLoader();
+        this.buildDependantForm();
+      });
+    }
+
   }
 
   ngOnInit() {
@@ -68,6 +72,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
+    this.buildDependantForm();
   }
 
   ngOnDestroy() {
@@ -88,30 +93,31 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       dependantFormArray.push(this.buildEmptyForm());
     }
     this.myDependantForm = this.formBuilder.group({
-      dependant: this.formBuilder.array(dependantFormArray),
+      dependentMappingList: this.formBuilder.array(dependantFormArray),
     });
   }
 
   getCurrentFormsCount() {
-    return this.myDependantForm.controls['dependant']['controls'].length;
+    return this.myDependantForm.controls['dependentMappingList']['controls'].length;
   }
 
   selectRelationship(status, i) {
     const relationship = status ? status : '';
-    this.myDependantForm.controls['dependant']['controls'][i].controls.relationship.setValue(relationship);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.relationship.setValue(relationship);
 
   }
   selectGender(status, i) {
     const gender = status ? status : '';
-    this.myDependantForm.controls['dependant']['controls'][i].controls.gender.setValue(gender);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.gender.setValue(gender);
   }
   selectNationality(status, i) {
     const nationality = status ? status : '';
-    this.myDependantForm.controls['dependant']['controls'][i].controls.nation.setValue(nationality);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.nation.setValue(nationality);
   }
 
   buildDependantDetailsForm(thisDependant) {
     return this.formBuilder.group({
+      id: [thisDependant.id],
       name: [thisDependant.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)
         , Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: [thisDependant.relationship, [Validators.required]],
@@ -123,6 +129,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
 
   buildEmptyForm() {
     return this.formBuilder.group({
+      id: [0],
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)
         , Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
@@ -133,11 +140,11 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
 
   addDependant() {
-    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
+    const dependantdetails = this.myDependantForm.get('dependentMappingList') as FormArray;
     dependantdetails.push(this.buildEmptyForm());
   }
   removeDependant(i) {
-    const dependantdetails = this.myDependantForm.get('dependant') as FormArray;
+    const dependantdetails = this.myDependantForm.get('dependentMappingList') as FormArray;
     dependantdetails.removeAt(i);
   }
   validateDependantform(form: FormGroup) {
@@ -153,13 +160,14 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
+
     if (this.validateDependantform(form)) {
-      form.value.dependant.forEach((dependant: any, index) => {
-        form.value.dependant[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-        form.value.dependant[index].enquiryId = 1;
+      form.value.dependentMappingList.forEach((dependant: any, index) => {
+        form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+        form.value.dependentMappingList[index].enquiryId = 4850;
       });
-      console.log(form.value);
-      this.comprehensiveApiService.addDependents(form.value.dependant).subscribe((data) => {
+      this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
+      this.comprehensiveApiService.addDependents(form.value).subscribe((data) => {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
       });
 

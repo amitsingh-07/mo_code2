@@ -8,6 +8,7 @@ export interface IMyProfile {
     ngbDob: any;
 }
 export interface IMyDependant {
+    id: number;
     name: string;
     relationship: string;
     gender: string;

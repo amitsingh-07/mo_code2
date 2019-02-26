@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
       { path: 'my-assets', component: MyAssetsComponent },
       { path: 'my-liabilities', component: MyLiabilitiesComponent },
       { path: 'steps/:stepNo', component: ComprehensiveStepsComponent },
-      { path: 'first-report', component: FirstReportDependantComponent}
+      { path: 'first-report', component: FirstReportDependantComponent},
+      { path: 'bad-mood-fund', component: BadMoodFundComponent }
     ]
   }
 ];
