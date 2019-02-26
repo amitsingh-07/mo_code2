@@ -1691,4 +1691,13 @@ export class InvestmentAccountService {
       return '';
     }
   }
+
+  restrictBackNavigation() {
+    if (typeof history.pushState === 'function') {
+      history.pushState('dummystate', null, null);
+      window.onpopstate = () => {
+        history.pushState('dummystate', null, null);
+      };
+    }
+  }
 }

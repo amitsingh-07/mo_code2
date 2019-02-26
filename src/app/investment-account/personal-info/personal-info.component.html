@@ -192,7 +192,7 @@
                         formControlName="passportExpiry" name="passportExpiry" [minDate]=this.passportMinDate [maxDate]=this.passportMaxDate
                         ngbDatepicker #expiryInput="ngbDatepicker" id="invPersInfoInpt6">
                       <div class="input-group-append">
-                        <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                        <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1" [disabled]="!invPersonalInfoForm.get('passportExpiry').enabled">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
                             src="./assets/images/calendar-normal.svg" />
                           <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine"
