@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
-import { PortfolioService } from '../../portfolio/portfolio.service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PortfolioService } from '../../portfolio/portfolio.service';
+import { Router } from '@angular/router';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction',
@@ -73,6 +73,7 @@ export class TransactionComponent implements OnInit {
   getTransactionHistory(from?, to?) {
     this.topupAndWithDrawService.getTransactionHistory(from, to).subscribe((response) => {
       this.transactionHistory = response.objectList;
+      this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
       this.portfolioService.sortByProperty(
         this.transactionHistory,
         'createdDate',
@@ -86,6 +87,15 @@ export class TransactionComponent implements OnInit {
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
     });
+  }
+
+  calculateSplitAmounts(transactionHistory) {
+    transactionHistory.forEach((transaction) => {
+      transaction.fundInvestmentSplits.forEach((breakdown) => {
+        breakdown.splitAmount = breakdown.unit * breakdown.unitPrice;
+      });
+    });
+    return transactionHistory;
   }
 
   getStatementLink(month) {
@@ -104,9 +114,5 @@ export class TransactionComponent implements OnInit {
     } else {
       this.activeTransactionIndex = null;
     }
-  }
-
-  filterTransactionHistory(from = '2018-12-01', to = '2018-12-03') {
-    this.getTransactionHistory(from, to);
   }
 }

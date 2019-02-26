@@ -76,7 +76,7 @@
       id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
       <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
         <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
-          <a class="nav-link txt-capitalize">{{userInfo.firstName}}</a>
+          <a class="nav-link txt-capitalize" (click)="goToDashboard()">{{userInfo.firstName}}</a>
           <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout
             <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
         </li>

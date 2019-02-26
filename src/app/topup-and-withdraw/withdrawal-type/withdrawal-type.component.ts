@@ -111,15 +111,15 @@ export class WithdrawalTypeComponent implements OnInit {
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value
         ? this.withdrawForm.addControl(
-            'withdrawAmount',
-            new FormControl('', [
-              Validators.required,
-              this.withdrawAmountValidator(
-                this.withdrawForm.get('withdrawPortfolio'),
-                'CONTROL'
-              )
-            ])
-          )
+          'withdrawAmount',
+          new FormControl('0', [
+            Validators.required,
+            this.withdrawAmountValidator(
+              this.withdrawForm.get('withdrawPortfolio'),
+              'CONTROL'
+            )
+          ])
+        )
         : this.withdrawForm.removeControl('withdrawAmount');
     });
     this.withdrawForm.controls.withdrawPortfolio.setValue(
@@ -136,15 +136,15 @@ export class WithdrawalTypeComponent implements OnInit {
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value
         ? this.withdrawForm.addControl(
-            'withdrawAmount',
-            new FormControl('', [
-              Validators.required,
-              this.withdrawAmountValidator(
-                this.withdrawForm.get('withdrawPortfolio'),
-                'CONTROL'
-              )
-            ])
-          )
+          'withdrawAmount',
+          new FormControl('0', [
+            Validators.required,
+            this.withdrawAmountValidator(
+              this.withdrawForm.get('withdrawPortfolio'),
+              'CONTROL'
+            )
+          ])
+        )
         : this.withdrawForm.removeControl('withdrawAmount');
     });
     this.withdrawForm.controls.withdrawPortfolio.setValue(
@@ -155,7 +155,7 @@ export class WithdrawalTypeComponent implements OnInit {
   buildFormForCashToBank() {
     this.withdrawForm.addControl(
       'withdrawAmount',
-      new FormControl('', [
+      new FormControl('0', [
         Validators.required,
         this.withdrawAmountValidator(this.cashBalance, 'VALUE')
       ])
@@ -262,9 +262,9 @@ export class WithdrawalTypeComponent implements OnInit {
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
       if (
         form.value.withdrawType.id ===
-          TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID ||
+        TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID ||
         form.value.withdrawType.id ===
-          TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID
+        TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID
       ) {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD]);
       } else {
