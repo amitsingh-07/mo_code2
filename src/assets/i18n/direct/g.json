@@ -60,7 +60,7 @@
         }
       }
     },
-    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C"]
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1"]
     
   },
   "CRITICAL_ILLNESS": {
