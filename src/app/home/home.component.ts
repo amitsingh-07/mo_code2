@@ -16,6 +16,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct/direct.service';
 
+import { APP_ROUTES } from '../app-routes.constants';
+import { GuideMeService } from '../guide-me/guide-me.service';
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
@@ -62,7 +64,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
     private seoService: SeoServiceService, private configService: ConfigService, private stateStoreService: StateStoreService,
-    private directService: DirectService) {
+    private directService: DirectService, private guidemeService: GuideMeService) {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -292,6 +294,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     } else {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
+  }
+
+  startGuidedJourney() {
+    this.stateStoreService.clearAllStates();
+    this.guidemeService.clearServiceData();
+    this.router.navigate([APP_ROUTES.GUIDE_ME]);
   }
 
   startDirectJourney() {
