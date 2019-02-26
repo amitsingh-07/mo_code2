@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import { InvestmentAccountService } from '../investment-account-service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { Router } from '@angular/router';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-setup-pending',
@@ -41,6 +41,7 @@ export class AccountSetupPendingComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentAccountService.restrictBackNavigation();
     console.log(this.status);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -71,4 +72,6 @@ export class AccountSetupPendingComponent implements OnInit {
   redirectToDashboard() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
+  
 }
