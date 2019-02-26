@@ -82,7 +82,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
       hospitalClass: this.hospitalPlanFormValues.hospitalClass,
       hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
       hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
-      isFullRider: false
+      isFullRider: true
     };
     this.guideMeService.setHospitalPlan(selectedPlan);
     return true;

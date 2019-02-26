@@ -41,6 +41,9 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider;
+    if (this.formValues.fullOrPartialRider !== undefined) {
+      this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider ? 'true' : 'false';
+    }
     this.selectedHospitalPlan = this.formValues.selectedPlan;
     if (!this.selectedHospitalPlan) {
       this.selectedHospitalPlan = { hospitalClass: '' } as HospitalPlan;
@@ -94,7 +97,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       return false;
     }
     this.hospitalForm.controls.selectedPlan.setValue(this.selectedHospitalPlan);
-    form.value.fullOrPartialRider = (form.value.fullOrPartialRider === 'true' ||  form.value.fullOrPartialRider === true) ? true : false;
+    form.value.fullOrPartialRider = (form.value.fullOrPartialRider === 'true' || form.value.fullOrPartialRider === true) ? true : false;
     this.directService.setHospitalPlanForm(form.value);
     return true;
   }
