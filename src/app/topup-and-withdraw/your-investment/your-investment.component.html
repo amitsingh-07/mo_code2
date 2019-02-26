@@ -45,7 +45,8 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%
+                <div [class.pValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns
+                  | number : '1.0-2'}}%
                 </div>
               </div>
             </div>
@@ -88,7 +89,7 @@
               </div>
               <div class="forward_img">
                 <img id="investment_overview_forward_icon" src="../../../assets/images/investment-account/forward_portfolio.svg"
-                  alt=""/>
+                  alt="" />
               </div>
             </div>
             <!-- zero portfolio -->
@@ -101,9 +102,8 @@
                     | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div class="total_return_value txt-bold" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.totalReturns|
-                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                  <div class="start_investment_value" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage | number : '1.0-2'}}%</div>
+                  <div class="start_investment_value" [class.pValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage
+                    | number : '1.0-2'}}%</div>
                 </div>
               </div>
             </div>
@@ -120,7 +120,8 @@
               <div class="flex-row">
                 <div *ngIf="selected === i">
                   <div class="callout-content" *ngIf="showAlretPopUp">
-                    <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}} {{portfolio.expiryDate}}.</div>
+                    <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
+                      {{portfolio.expiryDate}}.</div>
                     <div class="Fund_your_account">
                       <u (click)="ViewTransferInst(portfolio.productCode)" id="fund_your_account_link">
                         {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>
