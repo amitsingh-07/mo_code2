@@ -70,6 +70,7 @@ app-dashboard{
             font-size: 14px;
             letter-spacing: -0.14px;
             font-weight: 300;
+            cursor: pointer;
         }
         .user-edit-img{
             margin-right: 11.5px;
@@ -128,9 +129,10 @@ app-dashboard{
                     margin-left: 6px;
                 }   
                 .view_all{
-                        font-family: $muli-regular;
-                        font-size: 16px;
-                        font-weight: normal;
+                    font-family: $muli-regular;
+                    font-size: 16px;
+                    font-weight: normal;
+                    cursor: pointer;
                 }
             }
             .widget-body{
