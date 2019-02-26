@@ -57,11 +57,14 @@ export class DirectService {
   }
 
   clearData() {
-    this.directFormData = new DirectFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
   }
 
   clearServiceData() {
     this.directFormData = {} as DirectFormData;
+    this.clearData();
   }
 
   getDirectFormData(): DirectFormData {
