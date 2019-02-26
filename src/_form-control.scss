@@ -1195,4 +1195,7 @@ input::placeholder {
       margin-bottom: 10px;
     }
   }
+  .form-control {
+    color: $app-backgrnd-color;
+  }
 }
