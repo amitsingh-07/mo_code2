@@ -162,6 +162,9 @@ app-your-portfolio {
     text-align: right;
     color: $transaction-panel-buy-color;
     word-break: break-all;
+    &.pValue {
+      color: $red-color;
+    }
   }
   .your_portfolio_label {
     font-family: $muli-regular;

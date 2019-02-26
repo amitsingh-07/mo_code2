@@ -146,6 +146,9 @@ app-your-investment {
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
+    &.pValue {
+      color: $red-color;
+    }
   }
   .form-group-with-bg .form-group-with-bg--content .flex-row:not(:last-child) {
     margin-bottom: 0px;
