@@ -6,11 +6,18 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyDependant, IMyProfile } from './comprehensive-types';
+
+import { IMyDependant, IMyProfile, IMyLiabilities } from './comprehensive-types';
+
+
+import { RecommendationsModalComponent } from '../shared/modal/recommendations-modal/recommendations-modal.component';
+import { BankDetailsComponent } from '../shared/modal/bank-details/bank-details.component';
+import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ComprehensiveService {
   public static SESSION_KEY_FORM_DATA = 'cmp-form-data';
   private comprehensiveFormData: ComprehensiveFormData = new ComprehensiveFormData();
@@ -88,6 +95,18 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myDependant = dependant;
     this.commit();
   }
+
+   getMyLiabilities() {
+    if (!this.comprehensiveFormData.myLiabilities) {
+      this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
+    }
+    return this.comprehensiveFormData.myLiabilities;
+  }
+  
+  setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
+    this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
+    this.commit();
+  }
   getStartingPage() {
     return this.comprehensiveFormData.startingPage;
   }
@@ -163,6 +182,102 @@ export class ComprehensiveService {
       ref.componentInstance.multipleFormErrors = message;
     }
     return false;
+  }
+
+  
+  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
+
+   /*const ref = this.modal.open(RecommendationsModalComponent, { centered: true ,
+      windowClass: 'custom-full-height'});
+    ref.componentInstance.title = 'Title';
+    ref.componentInstance.message = 'MESSAGE';
+    */
+
+/*
+    const ref = this.modal.open(BankDetailsComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });
+    ref.componentInstance.errorTitle =   'FUND_YOUR_ACCOUNT';
+    ref.componentInstance.errorDescription = 'FUND_YOUR_ACCOUNT';
+    ref.componentInstance.showBankTransctions = true;
+    ref.componentInstance.setBankDetails = {};//this.bankDetails;
+    */
+
+    const ref = this.modal.open(SummaryModalComponent, { centered: true ,
+      windowClass: 'custom-full-height'});
+
+    let setTempleteModel = 2;
+    if(setTempleteModel == 2){
+      //Finance Popup
+      /*ref.componentInstance.setTemplateModal = 2;
+      ref.componentInstance.title = 'Title';
+      ref.componentInstance.contentObj = financeModal;
+      ref.componentInstance.liabilitiesEmergency = false;
+      ref.componentInstance.liabilitiesLiquidCash = 30000;
+      ref.componentInstance.liabilitiesMonthlySpareCash = 200;*/
+
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+
+    } else if(setTempleteModel == 4){    
+      //Retirement Popup
+      //ref.componentInstance.setTemplateModal = 4;
+      //ref.componentInstance.title = 'Title';
+      //ref.componentInstance.contentObj = retireModal;
+
+      summaryModalDetails = { setTemplateModal: 4, titleImage: 'owl.svg', contentObj: retireModal };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+     
+    } else if(setTempleteModel == 3){      
+      //InsurancePlanning Popup
+      let dependantVar = false;
+      /*ref.componentInstance.setTemplateModal = 3;
+      ref.componentInstance.title = 'Title';
+      ref.componentInstance.dependantModelSel = dependantVar;
+      ref.componentInstance.contentObj = (dependantVar)?insurancePlanningDependantModal:insurancePlanningNonDependantModal;
+      ref.componentInstance.estimatedCost = 100000;
+      ref.componentInstance.termInsurance = 90;
+      ref.componentInstance.wholeLife = 10;*/
+
+      summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar)?insurancePlanningDependantModal:insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10  };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+      
+    } else if(setTempleteModel == 1){
+      //CHILDREN_EDUCATION Popup
+      let dependantVar = true;
+     // ref.componentInstance.setTemplateModal = 1;
+     // ref.componentInstance.title = 'Title';
+      //ref.componentInstance.dependantModelSel = dependantVar;
+      //ref.componentInstance.contentObj = (dependantVar)?childrenEducationDependantModal:childrenEducationNonDependantModal;
+      //ref.componentInstance.dependantDetails = [{ username : "Nathan Ng", userage: 19, userEstimatedCost: 300000 } , { username : "Marie Ng", userage: 20, userEstimatedCost: 300000 }];
+      // ref.componentInstance.nondependantDetails = { livingCost : 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 };
+
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar)?childrenEducationDependantModal:childrenEducationNonDependantModal, dependantDetails: [{ username : "Nathan Ng", userage: 19, userEstimatedCost: 300000 } , { username : "Marie Ng", userage: 20, userEstimatedCost: 300000 }], nondependantDetails: { livingCost : 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 }  }
+
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+    }
+
+    return false;    
+  }
+
+  additionOfCurrency(formValues) {
+    let sum: any = 0;
+    for (const i in formValues) {
+      if (formValues[i] !== null && formValues[i] !== '') {
+        const Regexp = new RegExp('[,]', 'g');
+        let thisValue: any = (formValues[i] + '').replace(Regexp, '');
+        thisValue = parseInt(formValues[i], 10);
+        if (!isNaN(thisValue)) {
+          if (i === 'annualBonus') {
+            sum += thisValue !== 0 ? thisValue / 12 : 0;
+          } else {
+            sum += parseInt(thisValue, 10);
+          }
+        }
+      }
+    }
+    return sum.toFixed();
   }
 
 }
