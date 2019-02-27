@@ -44,9 +44,9 @@ export class AppService {
   }
 
   clearServiceData() {
-    this.willWritingService.clearData();
-    this.guideMeService.clearData();
-    this.directService.clearData();
+    this.willWritingService.clearServiceData();
+    this.guideMeService.clearServiceData();
+    this.directService.clearServiceData();
     this.signUpService.clearData();
   }
 
