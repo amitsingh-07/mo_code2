@@ -287,8 +287,10 @@ export class WithdrawalTypeComponent implements OnInit {
 
         if (isValid) {
           return null;
-        } else {
-          return { sufficientBalance: true };
+        } else if (type === 'CONTROL') {
+          return { portfolioToBank: true };
+        } else  {
+          return {PortfolioToCash: true };
         }
       }
     };
