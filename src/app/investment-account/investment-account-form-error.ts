@@ -278,6 +278,10 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Last Name',
         errorMessage: 'Last Name should not contain numbers and special characters.'
+      },
+      nameMatch: {
+        errorTitle: 'Invalid Name',
+        errorMessage: 'Full Name not matched with [First Name and Last Name] or [Last Name].'
       }
     },
     nricNumber: {
