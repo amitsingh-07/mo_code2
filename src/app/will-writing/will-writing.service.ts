@@ -69,12 +69,16 @@ export class WillWritingService {
   clearData() {
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(FROM_CONFIRMATION_PAGE);
+      sessionStorage.removeItem(IS_WILL_CREATED);
     }
   }
 
   clearServiceData() {
     this.clearData();
     this.willWritingFormData = {} as WillWritingFormData;
+    this.fromConfirmationPage = null;
+    this.isWillCreated = null;
   }
 
   isUserLoggedIn(): boolean {
