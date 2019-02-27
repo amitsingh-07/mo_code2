@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { LoaderService } from '../../shared/components/loader/loader.service';
+import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -74,20 +74,22 @@ export class WithdrawalTypeComponent implements OnInit {
       if (value) {
         this.withdrawForm.removeControl('withdrawPortfolio');
         this.withdrawForm.removeControl('withdrawAmount');
-        switch (value.id) {
-          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
-            this.buildFormForPortfolioToCash();
-            this.isFromPortfolio = true;
-            break;
-          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID:
-            this.buildFormForPortfolioToBank();
-            this.isFromPortfolio = true;
-            break;
-          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID:
-            this.buildFormForCashToBank();
-            this.isFromPortfolio = false;
-            break;
-        }
+        setTimeout(() => {
+          switch (value.id) {
+            case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
+              this.buildFormForPortfolioToCash();
+              this.isFromPortfolio = true;
+              break;
+            case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID:
+              this.buildFormForPortfolioToBank();
+              this.isFromPortfolio = true;
+              break;
+            case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID:
+              this.buildFormForCashToBank();
+              this.isFromPortfolio = false;
+              break;
+          }
+        }, 1);
       }
     });
 
@@ -112,7 +114,7 @@ export class WithdrawalTypeComponent implements OnInit {
       value
         ? this.withdrawForm.addControl(
           'withdrawAmount',
-          new FormControl('0', [
+          new FormControl('', [
             Validators.required,
             this.withdrawAmountValidator(
               this.withdrawForm.get('withdrawPortfolio'),
@@ -137,7 +139,7 @@ export class WithdrawalTypeComponent implements OnInit {
       value
         ? this.withdrawForm.addControl(
           'withdrawAmount',
-          new FormControl('0', [
+          new FormControl('', [
             Validators.required,
             this.withdrawAmountValidator(
               this.withdrawForm.get('withdrawPortfolio'),
@@ -155,7 +157,7 @@ export class WithdrawalTypeComponent implements OnInit {
   buildFormForCashToBank() {
     this.withdrawForm.addControl(
       'withdrawAmount',
-      new FormControl('0', [
+      new FormControl('', [
         Validators.required,
         this.withdrawAmountValidator(this.cashBalance, 'VALUE')
       ])
@@ -285,8 +287,10 @@ export class WithdrawalTypeComponent implements OnInit {
 
         if (isValid) {
           return null;
-        } else {
-          return { sufficientBalance: true };
+        } else if (type === 'CONTROL') {
+          return { portfolioToBank: true };
+        } else  {
+          return {PortfolioToCash: true };
         }
       }
     };
