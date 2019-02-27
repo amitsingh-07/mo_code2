@@ -82,6 +82,6 @@ export class EducationPreferenceComponent implements OnInit {
 
   }
   goToNext(form) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
   }
 }

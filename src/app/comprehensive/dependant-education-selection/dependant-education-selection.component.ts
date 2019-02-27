@@ -31,7 +31,7 @@ export class DependantEducationSelectionComponent implements OnInit {
     });
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
-      this.pageTitle = this.translate.instant('DEPENDANT_SELECTION.TITLE');
+      this.pageTitle = this.translate.instant('CMP.DEPENDANT_SELECTION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
     this.dependantSelection();
@@ -75,6 +75,6 @@ export class DependantEducationSelectionComponent implements OnInit {
     });
   }
   goToNext(form) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
   }
 }

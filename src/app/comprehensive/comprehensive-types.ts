@@ -23,6 +23,13 @@ export interface IMyLiabilities {
     otherLoanAmountOustanding: number;
     carLoan: number;
 }
+export class HospitalPlan {
+    hospitalClass: string;
+    hospitalClassDescription: string;
+    hospitalClassId: number;
+    isFullRider = false;
+}
+
 export interface IMySummaryModal {
     setTemplateModal: number,
     title: any,

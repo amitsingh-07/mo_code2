@@ -69,6 +69,6 @@ export class RegularSavingPlanComponent implements OnInit {
     dependantdetails.removeAt(i);
   }
   goToNext(form) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
   }
 }

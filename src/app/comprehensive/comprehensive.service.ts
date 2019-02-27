@@ -2,17 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { BankDetailsComponent } from '../shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { RecommendationsModalComponent } from '../shared/modal/recommendations-modal/recommendations-modal.component';
+import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-
-import { IMyDependant, IMyProfile, IMyLiabilities } from './comprehensive-types';
-
-
-import { RecommendationsModalComponent } from '../shared/modal/recommendations-modal/recommendations-modal.component';
-import { BankDetailsComponent } from '../shared/modal/bank-details/bank-details.component';
-import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
+import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +40,12 @@ export class ComprehensiveService {
     }
     return {};
   }
-
+  getHospitalPlan(): HospitalPlan {
+    if (!this.comprehensiveFormData.hospitalPlanData) {
+      this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
+    }
+    return this.comprehensiveFormData.hospitalPlanData;
+  }
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
@@ -102,7 +104,6 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myLiabilities;
   }
-  
   setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
     this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
     this.commit();
@@ -184,7 +185,7 @@ export class ComprehensiveService {
     return false;
   }
 
-  
+
   openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
 
    /*const ref = this.modal.open(RecommendationsModalComponent, { centered: true ,
@@ -217,10 +218,11 @@ export class ComprehensiveService {
       ref.componentInstance.liabilitiesLiquidCash = 30000;
       ref.componentInstance.liabilitiesMonthlySpareCash = 200;*/
 
-      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
+      liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
 
-    } else if(setTempleteModel == 4){    
+    } else if (setTempleteModel === 4) {
       //Retirement Popup
       //ref.componentInstance.setTemplateModal = 4;
       //ref.componentInstance.title = 'Title';
@@ -228,8 +230,8 @@ export class ComprehensiveService {
 
       summaryModalDetails = { setTemplateModal: 4, titleImage: 'owl.svg', contentObj: retireModal };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
-     
-    } else if(setTempleteModel == 3){      
+
+    } else if (setTempleteModel === 3) {
       //InsurancePlanning Popup
       let dependantVar = false;
       /*ref.componentInstance.setTemplateModal = 3;
