@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -20,7 +21,7 @@ export class MyAssetsComponent implements OnInit {
   RSPForm: any;
   pageTitle: string;
   myAssetsForm: FormGroup;
-  investmentProperties = true;
+  myInvestmentProperties = true;
   investmentTypeList: any;
   investType = '';
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -32,7 +33,7 @@ this.translate.use(config.language);
 this.translate.get('COMMON').subscribe((result: string) => {
 // meta tag and title
 this.pageTitle = this.translate.instant('DEPENDANT_DETAILS.TITLE');
-this.investmentTypeList = this.translate.instant('MY_ASSETS.INVESTMENT_TYPE_LIST');
+this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
 
 this.setPageTitle(this.pageTitle);
 });
@@ -57,8 +58,8 @@ setPageTitle(title: string) {
       otherAssets: ['', [Validators.required]]
     });
   }
-  addOtherInvestment() {
-    this.investmentProperties = !this.investmentProperties;
+  addOtherInvestment() { 
+    this.myInvestmentProperties = !this.myInvestmentProperties;
 
   }
   addInvestment() {
@@ -83,7 +84,7 @@ setPageTitle(title: string) {
     this.myAssetsForm.markAsDirty();
   }
 
-  goToNext() {
-
+  goToNext(form) {
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
   }
 }

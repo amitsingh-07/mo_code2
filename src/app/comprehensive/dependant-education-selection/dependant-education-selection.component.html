@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 ">
-  <header>{{'DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</header>
+  <header>{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</header>
 
 
   <div class="col-lg-5 col-md-6 p-0">
@@ -9,11 +9,11 @@
           <input id="dependant_selection_yes" name="education_plan_selection" formControlName="education_plan_selection"
             type="radio" value="dependant_yes_plan" class="field radio">
           <label for="dependant_selection_yes">
-            <span class="input-label-grey">{{'FORM_LABEL.YES'|translate}}</span>
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
           <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_yes_plan'" class="p-0">
-            <article class="dependant_selection_title">{{'DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
+            <article class="dependant_selection_title">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
             <div formArrayName="dependant_list" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependant_list.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
@@ -36,12 +36,12 @@
           <input id="dependant_selection_no_list" name="education_plan_selection" formControlName="education_plan_selection"
             type="radio" value="dependant_no_plan" class="field radio">
           <label for="dependant_selection_no_list">
-            <span class="input-label-grey">{{'DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
+            <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
           </label>
           <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_no_plan'" class="p-0">
             <article class="dependant_selection_title">
                
-              {{'DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
+              {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
             <div formArrayName="dependant_list" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependant_list.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
@@ -64,7 +64,7 @@
           <input id="dependant_selection_no" name="education_plan_selection" formControlName="education_plan_selection"
             type="radio" value="dependant_no" class="field radio">
           <label for="dependant_selection_no">
-            <span class="input-label-grey">{{'FORM_LABEL.NO'|translate}}</span>
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
 
         </div>

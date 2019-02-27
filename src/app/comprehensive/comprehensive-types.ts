@@ -23,24 +23,33 @@ export interface IMyLiabilities {
     otherLoanAmountOustanding: number;
     carLoan: number;
 }
-export interface IMySummaryModal {
-    setTemplateModal: number,
-    title: any,
-    titleImage: string,
-    dependantModelSel: boolean,
-    contentObj: any,
-    contentImage: string,
-    dependantDetails: Array<SummaryDependantDetails>,
-    nondependantDetails: {
-                           livingCost : number, livingPercent: number, livingEstimatedCost: number, medicalBill: number, medicalYear: number, medicalCost: number
-                         },
-    estimatedCost: number,
-    termInsurance: number,
-    wholeLife: number,   
-    liabilitiesEmergency: boolean,
-    liabilitiesLiquidCash: number,
-    liabilitiesMonthlySpareCash: number
+export class HospitalPlan {
+    hospitalClass: string;
+    hospitalClassDescription: string;
+    hospitalClassId: number;
+    isFullRider = false;
 }
-export interface SummaryDependantDetails {
-    username : string, userage: number, userEstimatedCost: number
+
+export interface IMySummaryModal {
+    setTemplateModal: number;
+    title: any;
+    titleImage: string;
+    dependantModelSel: boolean;
+    contentObj: any;
+    contentImage: string;
+    dependantDetails: ISummaryDependantDetails[];
+    nonDependantDetails: {
+        livingCost: number,
+        livingPercent: number, livingEstimatedCost: number, medicalBill: number, medicalYear: number, medicalCost: number
+    };
+    estimatedCost: number;
+    termInsurance: number;
+    wholeLife: number;
+    liabilitiesEmergency: boolean;
+    liabilitiesLiquidCash: number;
+    liabilitiesMonthlySpareCash: number;
+}
+
+export interface ISummaryDependantDetails {
+    userName: string; userAge: number; userEstimatedCost: number;
 }

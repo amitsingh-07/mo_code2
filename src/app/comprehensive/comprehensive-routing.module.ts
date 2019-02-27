@@ -18,29 +18,30 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [ComprehensiveEnableGuard],
     children: [
-      { path: '', component: ComprehensiveComponent },
-      { path: '', redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
-      { path: 'getting-started', component: MyProfileComponent },
-      { path: 'dependant-selection', component: DependantSelectionComponent },
-      { path: 'dependant-details', component: DependantsDetailsComponent },
-      { path: 'dependant-education', component: DependantEducationComponent },
-      { path: 'dependant-education-list', component: DependantEducationListComponent },
-      { path: 'dependant-education-preference', component: EducationPreferenceComponent },
-      { path: 'dependant-education-selection', component: DependantEducationSelectionComponent },
-      { path: 'my-earnings', component: MyEarningsComponent },
-      { path: 'my-spendings', component: MySpendingsComponent },
-      { path: 'regular-saving-plan', component: RegularSavingPlanComponent },
-      { path: 'my-assets', component: MyAssetsComponent },
-      { path: 'my-liabilities', component: MyLiabilitiesComponent },
-      { path: 'steps/:stepNo', component: ComprehensiveStepsComponent },
-      { path: 'first-report', component: FirstReportDependantComponent},
-      { path: 'bad-mood-fund', component: BadMoodFundComponent }
+      { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
+      { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
+      { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION, component: DependantEducationComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST, component: DependantEducationListComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_PREFERENCE, component: EducationPreferenceComponent },
+      { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION, component: DependantEducationSelectionComponent },
+      { path: COMPREHENSIVE_ROUTES.MY_EARNINGS, component: MyEarningsComponent },
+      { path: COMPREHENSIVE_ROUTES.MY_SPENDINGS, component: MySpendingsComponent },
+      { path: COMPREHENSIVE_ROUTES.REGULAR_SAVING_PLAN, component: RegularSavingPlanComponent },
+      { path: COMPREHENSIVE_ROUTES.MY_ASSETS, component: MyAssetsComponent },
+      { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES, component: MyLiabilitiesComponent },
+      { path: COMPREHENSIVE_ROUTES.STEPS+'/:stepNo', component: ComprehensiveStepsComponent },
+      { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent},
+      { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent }
     ]
   }
 ];

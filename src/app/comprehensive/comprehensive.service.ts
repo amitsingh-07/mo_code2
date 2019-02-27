@@ -3,16 +3,12 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
 
-import { IMyDependant, IMyProfile, IMyLiabilities } from './comprehensive-types';
-
-
-import { RecommendationsModalComponent } from '../shared/modal/recommendations-modal/recommendations-modal.component';
-import { BankDetailsComponent } from '../shared/modal/bank-details/bank-details.component';
-import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +40,12 @@ export class ComprehensiveService {
     return {};
   }
 
+  getHospitalPlan(): HospitalPlan {
+    if (!this.comprehensiveFormData.hospitalPlanData) {
+      this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
+    }
+    return this.comprehensiveFormData.hospitalPlanData;
+  }
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
@@ -185,37 +187,42 @@ export class ComprehensiveService {
   }
 
   
-  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
 
+  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
 
     const ref = this.modal.open(SummaryModalComponent, { centered: true ,
       windowClass: 'custom-full-height'});
 
-    let setTempleteModel = 2;
+    let setTempleteModel = 1;
     if(setTempleteModel == 2){
-      //Finance Popup
-      
+      //Finance Popup    
+
       summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
+      liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
 
     } else if(setTempleteModel == 4){    
-      //Retirement Popup
+    } else if (setTempleteModel === 4) {
+      //Retirement Popup      
 
       summaryModalDetails = { setTemplateModal: 4, titleImage: 'owl.svg', contentObj: retireModal };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
      
     } else if(setTempleteModel == 3){      
+
+    } else if (setTempleteModel === 3) {
       //InsurancePlanning Popup
       let dependantVar = false;
-
+      
       summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar)?insurancePlanningDependantModal:insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10  };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
       
     } else if(setTempleteModel == 1){
       //CHILDREN_EDUCATION Popup
-      let dependantVar = true;
+      let dependantVar = false;     
 
-      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar)?childrenEducationDependantModal:childrenEducationNonDependantModal, dependantDetails: [{ username : "Nathan Ng", userage: 19, userEstimatedCost: 300000 } , { username : "Marie Ng", userage: 20, userEstimatedCost: 300000 }], nondependantDetails: { livingCost : 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 }  }
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar)?childrenEducationDependantModal:childrenEducationNonDependantModal, dependantDetails: [{ userName : "Nathan Ng", userAge: 19, userEstimatedCost: 300000 } , { userName : "Marie Ng", userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost : 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 }  }
 
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
     }

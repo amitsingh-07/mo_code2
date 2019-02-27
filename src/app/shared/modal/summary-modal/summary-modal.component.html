@@ -252,7 +252,7 @@
 
       <li class="flex" *ngFor="let dd of summaryModalDetails.dependantDetails">
         <div class="section">
-          <div class="sub-section step"><div>{{ dd.username }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_ABOUT_AGE_YEAR.replace('AGE_VAL', dd.userage ) }} </div></div>
+          <div class="sub-section step"><div>{{ dd.userName }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_ABOUT_AGE_YEAR.replace('AGE_VAL', dd.userAge ) }} </div></div>
         </div>
         <div class="section">
           <div class="sub-section step"><b>{{ dd.userEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
@@ -297,20 +297,20 @@
 
       <li class="flex">
         <div class="section">
-          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1.replace('LIVING_COST', summaryModalDetails.nondependantDetails.livingCost | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC.replace('PERCENT', summaryModalDetails.nondependantDetails.livingPercent ) }} </div></div>
+          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1.replace('LIVING_COST', summaryModalDetails.nonDependantDetails.livingCost | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC.replace('PERCENT', summaryModalDetails.nonDependantDetails.livingPercent ) }} </div></div>
         </div>
         <div class="section">
-          <div class="sub-section step"><b>{{ summaryModalDetails.nondependantDetails.livingEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
+          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.livingEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
         </div>
       </li>
 
 
       <li class="flex">
         <div class="section">
-          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY2.replace('MEDICAL_BILL', summaryModalDetails.nondependantDetails.medicalBill | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC.replace('AGE_VAL', summaryModalDetails.nondependantDetails.medicalYear ) }}  </div></div>
+          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY2.replace('MEDICAL_BILL', summaryModalDetails.nonDependantDetails.medicalBill | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC.replace('AGE_VAL', summaryModalDetails.nonDependantDetails.medicalYear ) }}  </div></div>
         </div>
         <div class="section">
-          <div class="sub-section step"><b>{{ summaryModalDetails.nondependantDetails.medicalCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
+          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.medicalCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
         </div>
       </li>
 

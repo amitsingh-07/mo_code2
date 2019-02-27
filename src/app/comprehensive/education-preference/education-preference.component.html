@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 ">
-  <header> {{ 'EDUCATION_PREFERENCE.HEADER' | translate}}</header>
+  <header> {{ 'CMP.EDUCATION_PREFERENCE.HEADER' | translate}}</header>
   <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
     <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm.controls.preference.controls; let i = index;">
 
@@ -7,13 +7,13 @@
 
 
         <p> {{preferencePlan.get('name').value}}</p>
-        <p> {{ 'EDUCATION_PREFERENCE.ABOUT' | translate}} {{preferencePlan.get('age').value}}{{
-          'FORM_LABEL.YEARS_LATER' | translate}} </p>
+        <p> {{ 'CMP.EDUCATION_PREFERENCE.ABOUT' | translate}} {{preferencePlan.get('age').value}}{{
+          'CMP.FORM_LABEL.YEARS_LATER' | translate}} </p>
 
         <div class="flex-row">
           <div class="col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.LOCATION' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.LOCATION' | translate}}
               </div>
             </label>
           </div>
@@ -25,7 +25,7 @@
         <div class="flex-row">
           <div class=" col-5">
             <label for="name" id="myDependantFormLb2">
-              <div>{{ 'FORM_LABEL.COURSE_OF_STUDY' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.COURSE_OF_STUDY' | translate}}
               </div>
             </label>
           </div>
@@ -33,7 +33,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
               <div ngbDropdown id="relationshipDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
-                  <span>{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span>{{'CMP.COMMON.LBL_SELECT' | translate}}</span>
                   <span>{{relationship}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownRelation">

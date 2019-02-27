@@ -1,16 +1,16 @@
 <div class="container-fluid max-width--1024 ">
-  <header>{{'MY_ASSETS.TITLE'|translate}}</header>
-  <article class="py-2">{{'MY_ASSETS.HEADER'|translate}}</article>
+  <header>{{'CMP.MY_ASSETS.TITLE'|translate}}</header>
+  <article class="py-2">{{'CMP.MY_ASSETS.HEADER'|translate}}</article>
   <form [formGroup]="myAssetsForm" id="myAssetsForm" name="myAssetsForm" class="myAssetsForm">
     <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'MY_ASSETS.CASH'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_ASSETS.CASH'|translate}}</b></p>
       <div class="earnings-field ">
 
 
         <div class="flex-row p-2 ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_ASSETS.CASH_IN_BANK' | translate}}
+              <div>{{ 'CMP.MY_ASSETS.CASH_IN_BANK' | translate}}
               </div>
             </label>
           </div>
@@ -25,7 +25,7 @@
         <div class="flex-row p-2 ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_ASSETS.SINGAPORE_SAVING_BONDS' | translate}}
+              <div>{{ 'CMP.MY_ASSETS.SINGAPORE_SAVING_BONDS' | translate}}
               </div>
             </label>
           </div>
@@ -40,12 +40,12 @@
       </div>
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_ASSETS.YOUR_CPF'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_ASSETS.YOUR_CPF'|translate}}</b></p>
       <div class="earnings-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_ASSETS.CPF_OA' | translate}}
+              <div>{{ 'CMP.MY_ASSETS.CPF_OA' | translate}}
               </div>
             </label>
           </div>
@@ -61,7 +61,7 @@
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_ASSETS.CPF_SA' | translate}}
+              <div>{{ 'CMP.MY_ASSETS.CPF_SA' | translate}}
               </div>
             </label>
           </div>
@@ -77,7 +77,7 @@
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_ASSETS.CPF_MA' | translate}}
+              <div>{{ 'CMP.MY_ASSETS.CPF_MA' | translate}}
               </div>
             </label>
           </div>
@@ -93,15 +93,15 @@
       </div>
     </section>
     <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'MY_ASSETS.YOUR_HOME'|translate}}</b>
+      <p class="p-2"><b>{{'CMP.MY_ASSETS.YOUR_HOME'|translate}}</b>
         <br>
-        <span>{{'MY_ASSETS.MARKET_VALUE'|translate}}</span>
+        <span>{{'CMP.MY_ASSETS.MARKET_VALUE'|translate}}</span>
       </p>
       <div class="earnings-field ">
         <div class="flex-row p-2 ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -112,18 +112,18 @@
 
             </div>
           </div>
-          <p class="p-2 mt-2" [hidden]="!investmentProperties" (click)="addOtherInvestment()">{{'MY_ASSETS.ADD_INVESTMENT_PROPERTIES'|translate}}
+          <p class="p-2 mt-2" [hidden]="!myInvestmentProperties" (click)="addOtherInvestment()">{{'CMP.MY_ASSETS.ADD_INVESTMENT_PROPERTIES'|translate}} 
           </p>
-          <section [hidden]="investmentProperties" class="pt-2 mb-3">
-            <p class="p-2"><b>{{'MY_ASSETS.INVESTMENT_PROPERTIES'|translate}}</b>
+          <section [hidden]="myInvestmentProperties" class="pt-2 mb-3">
+            <p class="p-2"><b>{{'CMP.MY_ASSETS.INVESTMENT_PROPERTIES'|translate}}</b>
               <br>
-              <span>{{'MY_ASSETS.MARKET_VALUE'|translate}}</span>
+              <span>{{'CMP.MY_ASSETS.MARKET_VALUE'|translate}}</span>
             </p>
             <div class="text-right" (click)="addOtherInvestment()"> <i class="text-right fa fa-trash"></i></div>
             <div class="flex-row">
               <div class="pl0 col-5">
                 <label for="name" id="myDependantFormLb1">
-                  <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+                  <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
                   </div>
                 </label>
               </div>
@@ -144,14 +144,14 @@
 
 
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_ASSETS.OTHER_ASSETS'|translate}}</b>
+      <p class="p-2"><b>{{'CMP.MY_ASSETS.OTHER_ASSETS'|translate}}</b>
         <br>
-        <span>{{'MY_ASSETS.OTHER_ASSETS_HINT'|translate}}</span></p>
+        <span>{{'CMP.MY_ASSETS.OTHER_ASSETS_HINT'|translate}}</span></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{'FORM_LABEL.AMOUNT'|translate}}
+              <div>{{'CMP.FORM_LABEL.AMOUNT'|translate}}
               </div>
             </label>
           </div>
@@ -168,11 +168,11 @@
 
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_ASSETS.INVESTMENTS'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_ASSETS.INVESTMENTS'|translate}}</b></p>
       <div class="earnings-field p-2">
       <div formArrayName="otherinvestment" class="otherinvestment " *ngFor="let otherinvestment of myAssetsForm.controls.otherinvestment.controls; let i = index;">
 
-        <div>{{'MY_ASSETS.INVESTMENTS'|translate}} {{i+1}}</div>
+        <div>{{'CMP.MY_ASSETS.INVESTMENTS'|translate}} {{i+1}}</div>
         <div (click)="removeInvestment(i)" *ngIf="myAssetsForm.controls.otherinvestment.controls.length>1" class="text-right"><i
             class="fa fa-trash"></i>
           </div>
@@ -182,7 +182,7 @@
 
           <div class="flex-row  pb-2">
             <div class="pl0 col-5">
-              <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'MY_ASSETS.INVESTMENT_TYPE' | translate}}</label>
+              <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.MY_ASSETS.INVESTMENT_TYPE' | translate}}</label>
             </div>
             <div class="pr0 flex-col-7">
               <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myAssetsForm.controls.investmentType.invalid}">
@@ -204,7 +204,7 @@
           <div class="flex-row pb-2">
             <div class="pl0 col-5">
               <label for="name" id="myDependantFormLb1">
-                <div>{{'MY_ASSETS.OTHERS'|translate}}
+                <div>{{'CMP.MY_ASSETS.OTHERS'|translate}}
                 </div>
               </label>
             </div>
@@ -220,7 +220,7 @@
 
 
         </div>
-        <p (click)="addInvestment()">{{'MY_ASSETS.ADD_INVESTMENT'|translate}}</p>
+        <p (click)="addInvestment()">{{'CMP.MY_ASSETS.ADD_INVESTMENT'|translate}}</p>
       </div>
       </div>
     </section>
