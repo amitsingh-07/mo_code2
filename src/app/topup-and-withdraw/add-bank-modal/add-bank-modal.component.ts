@@ -13,6 +13,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class AddBankModalComponent implements OnInit {
   @Input() banks;
+  @Input() fullName;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   addBankForm: FormGroup;
 
@@ -23,7 +24,7 @@ export class AddBankModalComponent implements OnInit {
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl('', [
+      accountHolderName: new FormControl(this.fullName, [
         Validators.required,
         Validators.pattern(RegexConstants.SymbolAlphabets)
       ]),
