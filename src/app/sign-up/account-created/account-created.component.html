@@ -1,33 +1,29 @@
 <div class="account-created-success-modal">
-  <div class="custom-modal-backdrop"></div>
-  <div class="custom-modal-wrapper">
-    <div class="custom-modal--icon">
-      <img src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
-      <div class="custom-modal--content">
-        <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_CREATED.TITLE' | translate}}</p>
-        <p *ngIf="!willWritingEnabled" class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}} </p>
-        <div *ngIf="willWritingEnabled">
-        <div class="section">
-          <div class="title">Insurance Users</div>
-          <div>Please verify your email via the verification link sent to your email address.</div>
+    <div class="custom-modal-backdrop"></div>
+    <div class="custom-modal-wrapper">
+      <div class="custom-modal--icon">
+          <img src="assets/images/investment-account/success_small.svg" id="custModalImg1" />
+      </div>
+        <div class="custom-modal--content">
+          <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_CREATED.TITLE' | translate}}</p>
+          <p *ngIf="!willWritingEnabled" class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}}</p>
+          <div *ngIf="willWritingEnabled">
+          <div class="section">
+            <div class="title">Insurance / Investment Users</div>
+            <div class="description">Please verify your email via the verification link sent to your email address.</div>
+          </div>
+          <div class="section">
+              <div class="title">Will Writing Users</div>
+              <div class="sub-title">PLEASE NOTE:</div>
+              <ol>
+                <li class="instruction">Do <span>NOT</span> close this window.</li>
+                <li class="instruction">Return to <span>THIS WINDOW</span> after verifying your email*, to log in and download your will.</li>
+                <li>*Go to your email and click on the verification link.</li>
+              </ol>
+            </div>
+          <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
         </div>
-        <div class="section">
-            <div class="title">Will Writing Users</div>
-            <div>To view your will, follow these steps:</div>
-            <ol>
-              <li class="instruction">Please do not close this window.</li>
-              <li>Verify your email via the verification link sent to your email address.</li>
-              <li>Return to this window and log in to view your will.</li>
-            </ol>
-          </div>
-          </div>
-        <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
-      </div>
-    </div>
-    <div class="custom-modal-content">
-      <div>
-        <img src="../../../assets/images/account-created-bg.svg" id="custModalImg2" />
-      </div>
     </div>
   </div>
-</div>
+  
+  
