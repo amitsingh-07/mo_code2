@@ -1,3 +1,4 @@
+import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { AddBankModalComponent } from '../add-bank-modal/add-bank-modal.component';
 import {
   ConfirmWithdrawalModalComponent
@@ -31,6 +33,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   banks;
   userBankList;
   userAddress;
+  userInfo: any;
+  fullName: string;
   hideAddBankAccount = true;
 
   constructor(
@@ -43,7 +47,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     public navbarService: NavbarService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -57,6 +62,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.getUserBankList();
     this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
+    this.userInfo = this.signUpService.getUserProfileInfo();
+    this.constructFullName(this.userInfo);
   }
 
   getLookupList() {
@@ -148,6 +155,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       centered: true
     });
     ref.componentInstance.banks = this.banks;
+    ref.componentInstance.fullName = this.fullName;
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
@@ -199,6 +207,10 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
   gotoEditProfile() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
+  constructFullName(userObj) {
+    this.fullName = userObj.firstName + '' + userObj.lastName;
+
   }
   goToNext() {
     this.showConfirmWithdrawModal();
