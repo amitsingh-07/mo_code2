@@ -45,7 +45,7 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div [class.pValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns
+                <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns
                   | number : '1.0-2'}}%
                 </div>
               </div>
@@ -102,7 +102,7 @@
                     | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div class="start_investment_value" [class.pValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage
+                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>

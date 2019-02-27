@@ -162,7 +162,7 @@ app-your-portfolio {
     text-align: right;
     color: $transaction-panel-buy-color;
     word-break: break-all;
-    &.pValue {
+    &.negativeValue {
       color: $red-color;
     }
   }
