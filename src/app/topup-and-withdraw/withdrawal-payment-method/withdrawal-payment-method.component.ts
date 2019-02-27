@@ -63,7 +63,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.userInfo = this.signUpService.getUserProfileInfo();
-    this.constructFullName(this.userInfo);
+    this.fullName = this.userInfo.firstName ? this.userInfo.firstName + ' ' + this.userInfo.lastName : this.userInfo.lastName;
   }
 
   getLookupList() {
@@ -207,10 +207,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
   gotoEditProfile() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-  }
-  constructFullName(userObj) {
-    this.fullName = userObj.firstName + '' + userObj.lastName;
-
   }
   goToNext() {
     this.showConfirmWithdrawModal();
