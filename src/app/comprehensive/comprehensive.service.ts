@@ -193,7 +193,7 @@ export class ComprehensiveService {
     const ref = this.modal.open(SummaryModalComponent, { centered: true ,
       windowClass: 'custom-full-height'});
 
-    let setTempleteModel = 1;
+    let setTempleteModel = 2;
     if(setTempleteModel == 2){
       //Finance Popup    
 
