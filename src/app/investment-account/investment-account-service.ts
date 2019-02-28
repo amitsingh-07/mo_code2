@@ -609,8 +609,8 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.gender = 'female';
       this.disableAttributes.push('gender');
     }
-    if (data.birthcountry && data.birthcountry.birthCountryDetails) {
-      this.investmentAccountFormData.birthCountry = data.birthcountry.birthCountryDetails;
+    if (data.birthcountry && data.birthcountry.countryDetails) {
+      this.investmentAccountFormData.birthCountry = data.birthcountry.countryDetails;
       this.disableAttributes.push('birthCountry');
     }
   }
@@ -687,7 +687,7 @@ export class InvestmentAccountService {
       emailAddressExist = true;
     }
     if (emailAddressExist) {
-      this.investmentAccountFormData.isMailingAddressSame = true;
+      this.investmentAccountFormData.isMailingAddressSame = false;
       this.disableAttributes.push('isMailingAddressSame');
     }
   }
