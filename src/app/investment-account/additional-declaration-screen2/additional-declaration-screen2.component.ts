@@ -1,6 +1,3 @@
-import { of as observableOf } from 'rxjs/observable/of';
-import { map } from 'rxjs/operators/map';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
