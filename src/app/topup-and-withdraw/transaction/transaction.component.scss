@@ -2,8 +2,14 @@
 @import '../../../_mixins.scss';
 //Transaction Module Styles
 app-transaction {
+  .container-fluid{
+    @include allmobiles{
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
   .transaction-panel {
-    height: 100vh;
+    min-height: 100vh;
     background: $white-color;
     .nav-item {
       width: 50%;

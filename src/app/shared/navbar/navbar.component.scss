@@ -195,3 +195,14 @@ border-bottom-right-radius: 6px;
         z-index: 3;
     }
 }
+.underline{
+    &:hover{
+        text-decoration: underline !important;
+    }
+    &:active{
+        text-decoration: underline !important;
+    }
+    &.active{
+        text-decoration: underline !important;
+    }
+}

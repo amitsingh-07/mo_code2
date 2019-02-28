@@ -4,6 +4,11 @@ app-fund-your-account {
   .fund-your-account {
     &.clearfix {
       overflow:auto;
+      &.container-fluid{
+        @include allmobiles{
+          padding: 0 !important;
+        }
+      }
     }
     .container-fluid {
       @include allmobiles {
