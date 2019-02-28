@@ -51,7 +51,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
-    this.formValues = this.directService.getCriticalIllnessForm();
+    this.formValues = JSON.parse(JSON.stringify(this.directService.getCriticalIllnessForm()));
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.earlyCI = this.formValues.earlyCI;
