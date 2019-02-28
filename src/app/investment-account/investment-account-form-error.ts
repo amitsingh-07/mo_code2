@@ -505,7 +505,7 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Expected Number Of Transactions',
         errorMessage: 'Enter Expected Number Of Transactions'
       },
-      expectNumberOfTransCheck: {
+      minValueCheck: {
         errorTitle: 'Invalid Expected Number Of Transactions',
         errorMessage: 'Enter Expected Number Of Transactions more than 0.'
       }
@@ -516,7 +516,7 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Expected Amount Per Transaction.',
         errorMessage: 'Enter Expected Amount Per Transaction'
       },
-      expectedAmountPerTranCheck: {
+      minValueCheck: {
         errorTitle: 'Invalid Expected Amount Per Transaction',
         errorMessage: 'Enter Expected Amount Per Transaction more than 0.'
       }
@@ -548,7 +548,7 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Investment Period.',
         errorMessage: 'Enter Duration investment held for'
       },
-      durationCheck: {
+      minValueCheck: {
         errorTitle: 'Invalid Expected Amount Per Transaction',
         errorMessage: 'Enter Duration of investment held for more than 0.'
       }

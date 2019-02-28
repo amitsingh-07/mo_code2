@@ -61,13 +61,13 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       expectedNumberOfTransation: [
         this.formValues.expectedNumberOfTransation,
         [
-          Validators.required, this.expectperTranstionValidation
+          Validators.required, this.minValueValidation
         ]
       ],
       expectedAmountPerTranction: [
         this.formValues.expectedAmountPerTranction,
         [
-          Validators.required, this.expectAmountTransValidation
+          Validators.required, this.minValueValidation
         ]
       ],
       source: [this.formValues.source, Validators.required]
@@ -115,7 +115,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.addControl(
         'investmentEarnings',
         this.formBuilder.group({
-          durationInvestment: [this.formValues.durationInvestment, [Validators.required, this.durationInvestValidation]],
+          durationInvestment: [this.formValues.durationInvestment, [Validators.required, this.minValueValidation]],
           earningsGenerated: [this.formValues.earningsGenerated, Validators.required]
         })
       );
@@ -232,24 +232,10 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     ref.componentInstance.errorMessage = errorMessage;
   }
 
-  private expectperTranstionValidation(control: AbstractControl) {
+  private minValueValidation(control: AbstractControl) {
     const value = control.value;
     if (control.value < 1) {
-      return { expectNumberOfTransCheck: true };
-    }
-    return null;
-  }
-  private expectAmountTransValidation(control: AbstractControl) {
-    const value = control.value;
-    if (control.value < 1) {
-      return { expectedAmountPerTranCheck: true };
-    }
-    return null;
-  }
-  private durationInvestValidation(control: AbstractControl) {
-    const value = control.value;
-    if (control.value < 1) {
-      return { durationCheck: true };
+      return { minValueCheck: true };
     }
     return null;
   }
