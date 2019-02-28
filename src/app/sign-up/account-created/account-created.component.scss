@@ -21,6 +21,7 @@
     z-index: 10000;
     text-align: center;
     padding: 40px 0 80px;
+    overflow: auto;
     @include allmobiles{
       padding-top: 40px;
     }
@@ -64,13 +65,13 @@
     }
   }
   .btn-primary {
-	  width: 275px;
+    width: 275px;
   }
   @include allmobiles {
-	.btn__footer--fixed {
-		width: 100%;
-	}
+  .btn__footer--fixed {
+    width: 100%;
   }
+ }
 }
 
 // will-writing
@@ -89,17 +90,29 @@
     font-weight: normal !important;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: -0.2px;
+    line-height: 22px;
+    letter-spacing: -0.14px;
     color: #e8e8e8;
     margin-bottom: 16px;
     ol {
       padding: 0 18px;
       .instruction {
-        font-family: $muli-bold;
-        line-height: 1.57;
+        span{
+          font-family: $muli-bold;
+          font-weight: bold;
+          color: #ff9600;
+          text-decoration: underline;
+        }
+      }
+      li{
+        &:last-child{
+          padding-top: 18px;
+          padding-bottom: 39px;
+          list-style-type: none;
+        }
       }
     }
+
     @include allmobiles {
       font-size: 14px;
       letter-spacing: -0.1px;
@@ -116,10 +129,19 @@
       color: #ffffff;
       text-decoration: underline;
       font-family: $muli-semi-bold;
+      line-height: 24px;
       @include allmobiles {
         font-size: 14px;
         letter-spacing: -0.1px;
       }
     }
-    
+    .sub-title{
+      font-family: $muli-bold;
+      line-height: 24px;
+      font-weight: bold;
+      color: #e8e8e8;
+    }
+    .description{
+      color: #e8e8e8;
+    }
 }

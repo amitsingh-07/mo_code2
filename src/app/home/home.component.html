@@ -52,7 +52,7 @@
       <div class="home__section--text-container primary">
         <p class="home__section--title">{{'INSURANCE.TITLE' | translate }}</p>
         <p class="home__section--desc">{{'INSURANCE.DESCRIPTION' | translate }}</p>
-        <div class="btn btn-primary-dark home__section--btn" routerLink="/guideme">
+        <div class="btn btn-primary-dark home__section--btn" (click)="startGuidedJourney()">
           <span>{{'INSURANCE.LINK1' | translate}}</span>
         </div>
         <a class="home__section--subtext" href="javascript: void(0);" (click)="startDirectJourney()">{{'INSURANCE.LINK2' | translate}}</a>
