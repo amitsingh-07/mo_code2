@@ -389,4 +389,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.invPersonalInfoForm.controls[key].setValue(value);
     }, 100);
   }
+
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('birthCountry');
+  }
 }

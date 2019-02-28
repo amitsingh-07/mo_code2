@@ -133,40 +133,40 @@ export class CreateAccountFormError {
         oldPassword: {
                 required : {
                         errorTitle: 'Password required',
-                        errorMessage: 'Please enter your old password'
+                        errorMessage: 'Please enter your old password.'
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters.'
                 }
         },
         bank: {
                 required : {
-                        errorTitle: 'bank required',
-                        errorMessage: 'Please select your bank'
+                        errorTitle: 'Bank Name required',
+                        errorMessage: 'Please select your Bank Name.'
                 }
         },
         accountNo: {
                 required : {
-                        errorTitle: 'AccountNO required',
-                        errorMessage: 'Please enter your Account No'
+                        errorTitle: 'Account Number required',
+                        errorMessage: 'Please enter your Account Number.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Account No',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Account Number should be 1 to 15 numeric values'
+                        errorMessage: 'Account Number should be 10 to 15 digit number.'
                 }
         },
         accountHolderName: {
                 required : {
                         errorTitle: 'Account Holder Name required',
-                        errorMessage: 'Please enter your Name'
+                        errorMessage: 'Please enter your Name.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Name',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter your name'
+                        errorMessage: 'Please enter your name.'
                 }
         },
     };

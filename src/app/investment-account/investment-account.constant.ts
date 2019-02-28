@@ -2,6 +2,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   MY_INFO_ATTRIBUTES: [
     'nationality',
     'name',
+    'birthcountry',
     'passportnumber',
     'passportexpirydate',
     'dob',

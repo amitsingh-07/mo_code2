@@ -1,3 +1,4 @@
+<div class="container-fluid max-width--1024">
 <div class="flex-col-12" *ngIf="portfolio">
   <div class="portfolio-bg">
     <img id="edit_profile_bg_img" id="your_portfolio_backgroung_img" class="background_img" src="assets/images/investment_header.svg"
@@ -7,7 +8,7 @@
         <div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
         <div id="your_portfolio_name">{{portfolioValues.riskProfile.type}}</div>
       </div>
-      <div class="flex-col-3">
+      <div class="flex-col-4">
         <div class="dropdown-control ">
           <div ngbDropdown>
             <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
@@ -114,4 +115,5 @@
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>
   </div>
+</div>
 </div>

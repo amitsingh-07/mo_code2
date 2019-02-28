@@ -123,7 +123,7 @@
     "TNC": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Terms of Use" 
+        "MAIN": "Terms of Use"
       },
       "TITLE": "Terms of Use"
     },
@@ -173,7 +173,7 @@
       "ADDRESS": {
         "LABEL": "23 Keong Saik Road Singapore 089130",
         "LINK": "https://goo.gl/maps/T9YkbhYcAgm"
-      }, 
+      },
       "CONTACT_US": {
         "MAIN_ADVISORY": {
           "LABEL": "Advisory Line",
@@ -249,6 +249,7 @@
     "TITLE": "Fund Details",
     "DOWNLOAD_FACTSHEET": "Download Factsheet",
     "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Highlight Sheet"
-  }
+  },
+  "IFAST_ERROR_TITLE": "Error !"
 }
 

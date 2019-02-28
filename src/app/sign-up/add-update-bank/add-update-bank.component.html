@@ -52,7 +52,7 @@
             <label class="form-lbl bank_text"> {{'ADD_BANK.ACCOUNT' | translate}} </label>
           </div>
           <div class="flex-col-6">
-            <div>
+            <div [ngClass]="{'inline-error':getInlineErrorStatus(bankForm.controls.accountNo)}">
               <input type="text" class="form-control input-control " formControlName="accountNo" id="account">
             </div>
           </div>

@@ -159,10 +159,9 @@ app-dashboard{
                         letter-spacing: -0.15px;
                         color: #2d8289;
                         .investment_icon{
-                            width: 85px;
-                            height: 70px;
-                            margin-right: 0;
-                            margin-left: auto; 
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-end;
                             img{
                                 max-width: 100%;
                                 height: auto;
