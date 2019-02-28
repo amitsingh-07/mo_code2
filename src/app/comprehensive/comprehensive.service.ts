@@ -3,14 +3,17 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyDependant, IMyProfile } from './comprehensive-types';
+import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
+import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ComprehensiveService {
   public static SESSION_KEY_FORM_DATA = 'cmp-form-data';
   private comprehensiveFormData: ComprehensiveFormData = new ComprehensiveFormData();
@@ -37,6 +40,12 @@ export class ComprehensiveService {
     return {};
   }
 
+  getHospitalPlan(): HospitalPlan {
+    if (!this.comprehensiveFormData.hospitalPlanData) {
+      this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
+    }
+    return this.comprehensiveFormData.hospitalPlanData;
+  }
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
@@ -84,8 +93,20 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myProfile = profile;
     this.commit();
   }
-  setMyDependant(dependant: IMyDependant[] ) {
+  setMyDependant(dependant: IMyDependant[]) {
     this.comprehensiveFormData.myDependant = dependant;
+    this.commit();
+  }
+
+  getMyLiabilities() {
+    if (!this.comprehensiveFormData.myLiabilities) {
+      this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
+    }
+    return this.comprehensiveFormData.myLiabilities;
+  }
+
+  setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
+    this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
     this.commit();
   }
   getStartingPage() {
@@ -163,6 +184,79 @@ export class ComprehensiveService {
       ref.componentInstance.multipleFormErrors = message;
     }
     return false;
+  }
+
+  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
+                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
+                   childrenEducationNonDependantModal, summaryModalDetails) {
+
+    const ref = this.modal.open(SummaryModalComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });
+
+    let setTempleteModel = 2;
+    if (setTempleteModel == 2) {
+      //Finance Popup    
+
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = {
+        setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
+        liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200
+      };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+
+    } else if (setTempleteModel == 4) {
+    } else if (setTempleteModel === 4) {
+      //Retirement Popup      
+
+      summaryModalDetails = { setTemplateModal: 4, titleImage: 'owl.svg', contentObj: retireModal };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+
+    } else if (setTempleteModel == 3) {
+
+    } else if (setTempleteModel === 3) {
+      //InsurancePlanning Popup
+      const dependantVar = false;
+
+      summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar) ? insurancePlanningDependantModal : insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10 };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+
+    } else if (setTempleteModel == 1) {
+      // CHILDREN_EDUCATION Popup
+      const dependantVar = false;
+
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal : childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19, userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 } };
+
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+    }
+
+    return false;
+  }
+
+  additionOfCurrency(formValues) {
+    let sum: any = 0;
+    for (const i in formValues) {
+      if (formValues[i] !== null && formValues[i] !== '') {
+        const Regexp = new RegExp('[,]', 'g');
+        let thisValue: any = (formValues[i] + '').replace(Regexp, '');
+        thisValue = parseInt(formValues[i], 10);
+        if (!isNaN(thisValue)) {
+          if (i === 'annualBonus') {
+            sum += thisValue !== 0 ? thisValue / 12 : 0;
+          } else {
+            sum += parseInt(thisValue, 10);
+          }
+        }
+      }
+    }
+    return sum.toFixed();
+  }
+
+  openTooltipModal(toolTipParam) {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
+    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
   }
 
 }

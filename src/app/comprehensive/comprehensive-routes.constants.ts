@@ -15,7 +15,8 @@ export const COMPREHENSIVE_ROUTES = {
     REGULAR_SAVING_PLAN: 'regular-saving-plan',
     MY_ASSETS: 'my-assets',
     MY_LIABILITIES: 'my-liabilities',
-    BAD_MOOD_FUND: 'bad-mood-fund'
+    BAD_MOOD_FUND: 'bad-mood-fund',
+    FIRST_REPORT:'first-report'
 
 };
 

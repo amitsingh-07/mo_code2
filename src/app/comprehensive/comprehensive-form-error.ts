@@ -79,4 +79,34 @@ export class ComprehensiveFormError {
 
         }
     };
+     myLiabilitiesForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the following details:',
+            homeLoanOutstanding: {
+                required: {
+                    errorTitle: 'Invalid Home Loan Outstanding',
+                    errorMessage: 'Home Loan Outstanding'
+                }
+            },
+            otherPropertyLoan: {
+                required: {
+                    errorTitle: 'Invalid Other Property Loans',
+                    errorMessage: 'Other Property Loans'
+                }
+            },
+            otherLoanAmountOustanding: {
+                required: {
+                    errorTitle: 'Invalid Other Loans Amount Oustanding',
+                    errorMessage: 'Other Loans Amount Oustanding'
+                }
+            },
+            carLoan: {
+                required: {
+                    errorTitle: 'Invalid Car Loans',
+                    errorMessage: 'Car Loans'
+                }
+            }
+
+        }
+    };
 }

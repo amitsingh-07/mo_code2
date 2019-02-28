@@ -84,6 +84,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { SummaryModalComponent } from './shared/modal/summary-modal/summary-modal.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -129,7 +130,8 @@ export function tokenGetterFn() {
     TestMyInfoComponent,
     TransactionModalComponent,
     FAQComponent,
-    FundDetailsComponent
+    FundDetailsComponent,
+	SummaryModalComponent
   ],
   imports: [
     BrowserModule,
@@ -189,7 +191,7 @@ export function tokenGetterFn() {
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
-    FundDetailsComponent, LoginCreateAccountModelComponent]
+    FundDetailsComponent, LoginCreateAccountModelComponent, SummaryModalComponent]
 })
 
 export class AppModule {

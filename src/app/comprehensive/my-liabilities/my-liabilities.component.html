@@ -1,44 +1,52 @@
 <div class="container-fluid max-width--1024 ">
-  <header>{{'DEPENDANT_DETAILS.ABOUT'|translate}}</header>
-  <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
+  <header>{{'CMP.MY_LIABILITIES.TITLE'|translate}}</header>
+  <article class="py-2">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</article>
+  <div class = 'text-center'> 
+    <p>{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</p> 
+    <p> <b>{{totalOutstanding | currency:'USD':'symbol-narrow':'1.0-2'}} </b> {{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_TOTAL'|translate}}</p>
+  </div>
   <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm" class="myLiabilitiesForm">
     <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'MY_LIABILITIES.HOME_LOAN_OUTSTANDING'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.HOME_LOAN_OUTSTANDING'|translate}}</b></p>     
       <div class="earnings-field ">
 
 
         <div class="flex-row p-2 ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput #homeLoanOutstanding formControlName="homeLoanOutstanding"
-                value="0">
+              <input type="text" class="input-control" maxLength="7" appCurrencyInput #homeLoanOutstanding formControlName="homeLoanOutstanding"
+                value="" placeholder="{{'CMP.MY_LIABILITIES.FORM.LOAN_PLACEHOLDER' | translate}}" (change)="onTotalOutstanding()">
 
             </div>
           </div>
         </div>
-        <div (click)="addPropertyLoan()" [hidden]="!propertyLoan">{{'MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN'|translate}}</div>
-        <div [hidden]="propertyLoan"> {{ 'MY_LIABILITIES.OTHER_PROPERTY_LOAN'| translate }}
-          <i (click)="addPropertyLoan()" class="fa fa-trash"></i>
+        <b (click)="addPropertyLoan()" [hidden]="!propertyLoan">{{'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN'|translate}}</b>
+        <div [hidden]="propertyLoan"> 
+        <p class="p-2">
+          <b>{{'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN'|translate}}</b>
+           <i (click)="addPropertyLoan()" class="fa fa-trash text-right"></i>
+        </p>
+          
 
           <div class="flex-row p-2 ">
             <div class="flex-col-5">
               <label for="name" id="myDependantFormLb1">
-                <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+                <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
                 </div>
               </label>
             </div>
             <div class="pr0 flex-col-7">
               <div class="form-control form-control-right">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput #otherPropertyLoan formControlName="otherPropertyLoan"
-                  value="0">
+                <input type="text" class="input-control"  maxLength="7" appCurrencyInput #otherPropertyLoan formControlName="otherPropertyLoan"
+                  value=""  placeholder="{{'CMP.MY_LIABILITIES.FORM.LOAN_PLACEHOLDER' | translate}}" (change)="onTotalOutstanding()">
 
               </div>
             </div>
@@ -47,12 +55,12 @@
       </div>
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_LIABILITIES.OTHER_LOANS_AMOUNT_OUTSTANDING'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.OTHER_LOANS_AMOUNT_OUTSTANDING'|translate}}</b></p>
       <div class="earnings-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -60,7 +68,7 @@
             <div class="form-control form-control-right">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherLoanAmountOustanding formControlName="otherLoanAmountOustanding"
-                value="0">
+                value="" placeholder="{{'CMP.MY_LIABILITIES.FORM.LOAN_PLACEHOLDER' | translate}}" (change)="onTotalOutstanding()">
 
             </div>
           </div>
@@ -68,12 +76,12 @@
       </div>
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_LIABILITIES.CAR_LOANS'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.CAR_LOANS'|translate}}</b></p>
       <div class="earnings-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -81,7 +89,7 @@
             <div class="form-control form-control-right">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4" #carLoan formControlName="carLoan"
-                value="0">
+                value="" placeholder="{{'CMP.MY_LIABILITIES.FORM.LOAN_PLACEHOLDER' | translate}}" (change)="onTotalOutstanding()">
 
             </div>
           </div>
@@ -95,7 +103,7 @@
 
 
     <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
-      'LABEL.CONTINUE' |
+      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
   </form>
 

@@ -1,0 +1,343 @@
+<div class="modal-body white-bg">
+   <div class = 'text-center'> {{ summaryModalDetails.contentObj.TITLE}}</div>
+  <div class="modal-body-title text-center">{{ summaryModalDetails.contentObj.TITLE_DESC}}</div>
+  <div class="modal-title text-center"><img src="./assets/images/tick-mark-with-app-bg.svg" /></div>
+  <div class="modal-title text-center" *ngIf="summaryModalDetails.titleImage"><img src="./assets/images/{{ summaryModalDetails.titleImage }}" /></div>  
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 2">
+    <div class="instruction-content finance-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>         
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</b></div>
+          <div class="sub-section text-center {{ (!summaryModalDetails.liabilitiesEmergency)?'emergBlock':'' }}" innerHTML="{{ (!summaryModalDetails.liabilitiesEmergency)?'-':'' }} {{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}"></div>          
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</b></div>
+          <div class="sub-section  text-center" innerHTML="{{ summaryModalDetails.liabilitiesMonthlySpareCash | currency:'USD':'symbol-narrow':'1.0-2'}}"></div>             
+        </div>
+      </li>
+
+       <li class="flex" [hidden]="summaryModalDetails.liabilitiesEmergency">
+        <div class="section">         
+          <div class="sub-section  text-center {{ (!summaryModalDetails.liabilitiesEmergency)?'emergBlock':'' }}" innerHTML="{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_DESC }}"></div>             
+        </div>
+      </li>
+      
+       <li class="flex" [hidden]="!calculateCashDesc" >
+        <div class="section">
+          <div class="sub-section step text-center"><b (click)="toogleCalculatePop()" >{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</b></div>          
+                       
+        </div>
+      </li>
+
+       <li class="flex"  [hidden]="calculateCashDesc">
+        <div class="section calculate-cash-desc">
+          <div class="sub-section step text-center">
+            <b>{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</b>  
+            <button type="button" class="closebut" aria-label="Close" (click)="toogleCalculatePop()">
+              <span aria-hidden="true"></span>
+            </button>         
+          </div>    
+           
+          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC1 }}"></div>
+          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC2 }}"></div>      
+                       
+        </div>
+      </li>
+
+      <li class="flex"  [hidden]="summaryModalDetails.liabilitiesEmergency">
+        <div class="section calculate-cash-desc">
+          <div class="sub-section step">
+            <b><u>{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_TITLE }}</u></b>
+          </div>    
+           
+          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_DESC }}"></div>  
+                       
+        </div>
+      </li>
+
+      
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+
+  </div>
+
+  <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 4">
+    <div class="instruction-content retirement-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>         
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><b>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</b></div>                    
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><b>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</b></div>
+          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21 }}"></div>   
+          <div class="sub-section retire-modal-notes" innerHTML="{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21_NOTE }}"></div>
+          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_22 }}"></div>          
+        </div>
+      </li>
+      
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><b>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_3 }}</b> </div>
+          <div class="sub-section retire-modal-notes" innerHTML="{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_3_DESC }}"></div>             
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section text-center">
+          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.SUB_CONTENT_NOTE }}</div>                     
+        </div>
+      </li>
+
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+  <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && summaryModalDetails.dependantModelSel">
+    <div class="instruction-content insurance-planning-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
+        </div>       
+      </li>
+
+      <li>
+         <div class="section">
+           <div class="sub-section sub-section-heading step text-center">            
+                {{ summaryModalDetails.contentObj.SUB_TITLE }}
+          </div>
+        </div>
+      </li>
+
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><p class='modal-black-head'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_1 }}</p></div> 
+                            
+        </div>
+        <div class="section">
+          <div class="sub-section step"><p class='modal-black-head'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_2 }}</p></div>                               
+        </div>
+      </li>
+
+
+      <li class="flex">
+        <div class="section ins-content-box">
+          <div class="sub-section step"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC11 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC12 }}</p></div> 
+                            
+        </div>
+        <div class="section ins-content-box">
+          <div class="sub-section step"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC21 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC22 }}</p></div>                               
+        </div>
+      </li>
+
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+
+   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && !summaryModalDetails.dependantModelSel">
+    <div class="instruction-content insurance-planning-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC.replace('ESTIMATED_COST', summaryModalDetails.estimatedCost | currency:'USD':'symbol-narrow':'1.0-2' ) }}"></div> 
+        </div>       
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC }} </div></div>
+        </div>
+        <div class="section">
+          <div class="sub-section step">{{ summaryModalDetails.termInsurance | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>                               
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step">{{ summaryModalDetails.contentObj.CONTENT_BODY2 }} </div>  
+        </div>
+        <div class="section">
+          <div class="sub-section step">{{ summaryModalDetails.wholeLife | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>                               
+        </div>
+      </li>
+
+      
+
+      <li class="flex">
+        <div class="section ins-content-box">
+          <div class="sub-section step"><p><u>{{ summaryModalDetails.contentObj.SUB_TITLE }}</u></div> 
+          <div class="sub-section step text-center"><p class='sub-padding'>{{ summaryModalDetails.contentObj.SUB_TITLE_DESC }}</div>
+          <div class="sub-section step text-center"  *ngIf="summaryModalDetails.contentImage"><p><img src="./assets/images/{{ summaryModalDetails.contentImage }}" /></div> 
+          <div class="sub-section step retire-modal-notes text-center"><p  class='sub-padding'>{{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div> 
+          <div class="sub-section step modal-black-head"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div> 
+          <div class="sub-section step modal-black-head"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC2 }}</div>                   
+        </div>        
+      </li>    
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+
+  <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && summaryModalDetails.dependantModelSel">
+    <div class="instruction-content insurance-planning-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section sub-padding-top text-center" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
+        </div>       
+      </li>
+
+      <li class="flex" *ngFor="let dd of summaryModalDetails.dependantDetails">
+        <div class="section">
+          <div class="sub-section step"><div>{{ dd.userName }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_ABOUT_AGE_YEAR.replace('AGE_VAL', dd.userAge ) }} </div></div>
+        </div>
+        <div class="section">
+          <div class="sub-section step"><b>{{ dd.userEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section retire-modal-notes">
+          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}</div>                     
+        </div>
+      </li>
+
+     <li class="flex">
+        <div class="section ins-content-box">
+          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_NOTE }}</div>                     
+        </div>
+      </li>
+
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+
+
+  <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && !summaryModalDetails.dependantModelSel">
+    <div class="instruction-content insurance-planning-section">
+    <ul class="list-none">
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
+          <div class="sub-section sub-padding-top text-center" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
+        </div>       
+      </li>
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1.replace('LIVING_COST', summaryModalDetails.nonDependantDetails.livingCost | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC.replace('PERCENT', summaryModalDetails.nonDependantDetails.livingPercent ) }} </div></div>
+        </div>
+        <div class="section">
+          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.livingEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
+        </div>
+      </li>
+
+
+      <li class="flex">
+        <div class="section">
+          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY2.replace('MEDICAL_BILL', summaryModalDetails.nonDependantDetails.medicalBill | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC.replace('AGE_VAL', summaryModalDetails.nonDependantDetails.medicalYear ) }}  </div></div>
+        </div>
+        <div class="section">
+          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.medicalCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
+        </div>
+      </li>
+
+      <li class="flex">
+        <div class="section retire-modal-notes">
+          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}</div>                     
+        </div>
+      </li>
+
+     <li class="flex">
+        <div class="section ins-content-box">
+          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_NOTE }}</div>                     
+        </div>
+      </li>
+
+
+      <li class="flex" >
+        <div class="section">
+            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+                {{ summaryModalDetails.contentObj.NEXT }}
+            </button>
+            </div>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+
+
+</div>

@@ -1,5 +1,14 @@
 <div class="container-fluid max-width--1024 ">
-  <header> {{ 'ENDOWMENT_PLAN.ABOUT' | translate}}</header>
+   <div class="flex-row">
+     <div class="flex-col-12">
+      <div class="form-group-with-bg--content-label with-help-icon" for="name">{{
+        'CMP.ENDOWMENT_PLAN.DESCRIPTION' | translate}}
+        <span class="help-icon" (click)="showToolTipModal()">?</span>
+      </div>
+    </div>
+    </div>
+             
+              
   <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
     <div formArrayName="endowmentPlan" class="education-support-array p-2 pb-0 mb-2" *ngFor="let educationPlan of endowmentListForm.controls.endowmentPlan.controls; let i = index;">
 
@@ -24,35 +33,38 @@
           <div class="flex-row p-2">
             <div class="col-5">
               <label for="name" id="myDependantFormLb1">
-                <div>{{ 'FORM_LABEL.MATRURITY_AMOUNT' | translate}}
+                <div>{{ 'CMP.FORM_LABEL.MATURITY_AMOUNT' | translate}}
                 </div>
               </label>
             </div>
             <div class=" col-7">
               <input type="text" [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityAmount.invalid}"
-                id="myFamilyFormInpt3" class="form-control" #maturityAmount formControlName="maturityAmount">
+                id="myFamilyFormInpt3" class="form-control" #maturityAmount formControlName="maturityAmount" appCurrencyInput maxlength="7">
             </div>
           </div>
           <div class="flex-row p-2">
             <div class=" col-5">
               <label for="name" id="myDependantFormLb2">
-                <div>{{ 'FORM_LABEL.MATURITY_YEAR' | translate}}
+                <div>{{ 'CMP.FORM_LABEL.MATURITY_YEAR' | translate}}
                 </div>
               </label>
             </div>
             <div class="col-7">
               <input type="text" [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
-                id="myFamilyFormInpt4" class="form-control" #maturityYear formControlName="maturityYear">
+                id="myFamilyFormInpt4" class="form-control" #maturityYear formControlName="maturityYear" maxlength="4">
             </div>
           </div>
         </div>
       </div>
 
 
-    </div>
-    <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+    </div> 
+    <button [hidden]="endowmentSkipEnable" type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
       'LABEL.CONTINUE' |
-      translate}}</button>
+      translate}} {{ endowmentSkipEnable }} </button>
+     <button [hidden]="!endowmentSkipEnable" type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+      'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN' |
+      translate}} {{ endowmentSkipEnable }} </button>
   </form>
 
 

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { ComprehensiveRoutingModule } from './comprehensive-routing.module';
@@ -46,6 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
     ComprehensiveRoutingModule,
     NgbModule.forRoot(),
     SharedModule,
+    NouisliderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

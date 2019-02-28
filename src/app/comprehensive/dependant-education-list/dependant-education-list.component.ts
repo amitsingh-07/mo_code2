@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,7 @@ import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -22,8 +23,9 @@ export class DependantEducationListComponent implements OnInit {
   endowmentListForm: FormGroup;
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
+  endowmentSkipEnable = true;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -51,6 +53,7 @@ export class DependantEducationListComponent implements OnInit {
       endowmentplanShow: false
 
     }];
+    
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -86,5 +89,26 @@ export class DependantEducationListComponent implements OnInit {
   goToNext(form) {
 
   }
+  showToolTipModal(){
+    let toolTipParams = { TITLE: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_TITLE'), 
+    DESCRIPTION: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_MESSAGE')};
+    this.comprehensiveService.openTooltipModal(toolTipParams);
+    console.log(this.endowmentSkipEnable);    
+  }
 
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.checkDependantCheck();
+  }
+
+  checkDependantCheck(){
+      this.endowmentListForm.valueChanges.subscribe(form => { 
+        let endowmentSkipEnableFlag = true;
+        form.endowmentPlan.forEach((dependant: any, index) => {                
+          if(dependant.endowmentplanShow == true)
+            endowmentSkipEnableFlag = false;        
+        });
+        this.endowmentSkipEnable = endowmentSkipEnableFlag;
+      });
+  }
 }

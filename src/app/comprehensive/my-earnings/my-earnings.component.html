@@ -1,15 +1,15 @@
 <div class="container-fluid max-width--1024 ">
-  <header>{{'DEPENDANT_DETAILS.ABOUT'|translate}}</header>
-  <article class="py-2">{{'DEPENDANT_DETAILS.DESC'|translate}}</article>
+  <header>{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
+  <article class="py-2">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</article>
   <form [formGroup]="myEarningsForm" id="myEarningsForm" name="myEarningsForm" class="myEarningsForm">
     <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'MY_EARNINGS.MONTHLY_SALARY'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.MONTHLY_SALARY'|translate}}</b></p>
       <div class="earnings-field ">
 
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="employmentType" id="myProfileFormLbl5">
-              <div>{{ 'FORM_LABEL.EMPLOYMENT_TYPE' | translate}}</div>
+              <div>{{ 'CMP.FORM_LABEL.EMPLOYMENT_TYPE' | translate}}</div>
               <!-- <div class="with-help-icon">{{ 'DEPENDANT_DETAILS.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon"
                     (click)="openToolTipModal()"></span></div> -->
             </label>
@@ -35,7 +35,7 @@
         <div class="flex-row p-2 ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.MONTHLY_SALARY' | translate}}
+              <div>{{ 'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}
               </div>
             </label>
           </div>
@@ -50,12 +50,12 @@
       </div>
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
       <div class="earnings-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'MY_EARNINGS.ANNUAL_BONUS' | translate}}
+              <div>{{ 'CMP.MY_EARNINGS.ANNUAL_BONUS' | translate}}
               </div>
             </label>
           </div>
@@ -75,19 +75,19 @@
           <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
               <div ngbDropdown id="employmentTypeDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
-                  <span >  {{'MY_EARNINGS.ADD_MONTHLY_INCOME'|translate}}</span>
+                  <span >  {{'CMP.MY_EARNINGS.ADD_MONTHLY_INCOME'|translate}}</span>
                 
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
                  
                   <button [disabled]="monthlyRentIncome" type="button" class="dropdown-item"  (click)="SelectEarningsType('monthlyRentIncome')">
-                <span  > {{'MY_EARNINGS.RENTAL_INCOME'|translate}} </span> 
+                <span  > {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} </span> 
                   </button>
                   <button  [disabled]="othermonthlyWorkIncome" type="button" class="dropdown-item" (click)="SelectEarningsType('othermonthlyWorkIncome')">
-              <span >  {{'MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</span> 
+              <span >  {{'CMP.MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</span> 
                 </button>
                 <button   [disabled]="otherMonthlyIncome" type="button" class="dropdown-item" (click)="SelectEarningsType('otherMonthlyIncome')">
-            <span >{{'MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</span> 
+            <span >{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</span> 
               </button>
                 </div>
               </div>
@@ -95,7 +95,7 @@
       </aside>
     </article>
     <section [hidden]="!monthlyRentIncome" class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.RENTAL_INCOME'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
@@ -115,12 +115,12 @@
       </div>
     </section>
     <section [hidden]="!othermonthlyWorkIncome" class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -135,12 +135,12 @@
       </div>
     </section>
     <section [hidden]="!otherMonthlyIncome" class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -155,12 +155,12 @@
       </div>
     </section>
     <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.ANNUAL_BONUS'|translate}}</b></p>
       <div class="earnings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{'MY_EARNINGS.ANNUAL_BONUS'|translate}}
+              <div>{{'CMP.MY_EARNINGS.ANNUAL_BONUS'|translate}}
               </div>
             </label>
           </div>
@@ -178,16 +178,16 @@
       <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileForm.controls.relationship.invalid}">
           <div ngbDropdown id="employmentTypeDropDown">
             <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
-              <span >  {{'MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
+              <span >  {{'CMP.MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
             
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownNationality">
              
               <button [disabled]="annualDividends" type="button" class="dropdown-item"  (click)="SelectEarningsType('annualDividends')">
-            <span  > {{'MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} </span> 
+            <span  > {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} </span> 
               </button>
               <button  [disabled]="otherAnnualIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherAnnualIncomeType')">
-          <span >  {{'MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</span> 
+          <span >  {{'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</span> 
             </button>
            
             </div>
@@ -195,12 +195,12 @@
         </div>
   </aside>
     <section [hidden]="!annualDividends" class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}}</b></p>
+      <p class="p-2"><b>{{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}}</b></p>
       <div class="earnings-field p-2 py-0">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
@@ -220,7 +220,7 @@
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
-              <div>{{ 'FORM_LABEL.AMOUNT' | translate}}
+              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>

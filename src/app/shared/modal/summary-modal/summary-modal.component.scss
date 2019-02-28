@@ -1,0 +1,54 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.finance-section,.retirement-section,.insurance-planning-section {
+    background:$white-color;
+    color:$dark-teal-color;    
+}
+.calculate-cash-desc{
+background: $border-grey-color;
+color: $dark-teal-color;
+border-radius: 6px;
+margin:2px;
+}
+.retirement-section .section, .finance-section .section, .insurance-planning-section .section, .calculate-cash-desc .sub-section {
+    padding: 10px;
+    width:100%;
+}
+.finance-section .flex, .retirement-section .flex,.insurance-planning-section .flex{
+padding: 5px;
+}
+.sub-padding-top{
+padding-top: 5px;
+}
+.sub-padding{
+padding: 10px;
+}
+button.closebut {
+      width: 25px !important;
+      height: 25px !important;
+      background: url("../../../../assets/images/close-button-dark.svg") !important;      
+      background-repeat: no-repeat !important;    
+      border: 0; 
+}
+.emergBlock{
+    color:$orange-color;
+}
+.retire-modal-notes{
+    color:$light-grey-color;
+}
+.sub-section-heading{
+    background:$balance-teal-color;
+    color:$white-color;
+    border-radius: 6px;
+    padding:10px;
+}
+.modal-black-head{
+    color:$black-color;
+    font-weight:bolder;
+}
+.ins-content-box{
+    background:$border-grey-color;
+    border-radius: 6px;
+    margin:2px;
+}

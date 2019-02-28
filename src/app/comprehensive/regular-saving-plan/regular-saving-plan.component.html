@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 ">
-  <header>{{'RSP.TITLE'|translate}}</header>
+  <header>{{'CMP.RSP.TITLE'|translate}}</header>
 
 
   <div class="col-lg-5 col-md-6 p-0">
@@ -8,13 +8,13 @@
         <div class="checkbox-button one-label">
           <input id="RSPInpt1" name="RSPSelection" formControlName="RSPSelection" type="radio" value="true" class="field radio">
           <label for="RSPInpt1">
-            <span class="input-label-grey">{{'FORM_LABEL.YES'|translate}}</span>
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
           <section *ngIf="RSPForm.get('RSPSelection').value" class="p-0 rspSelectionList" >
             <div formArrayName="RSPDetails" class="myDependantFormArray" *ngFor="let RSPDetails of RSPForm.controls.RSPDetails.controls; let i = index;">
              
-              <div>{{'RSP.HEADER'|translate}}{{i}}</div>
+              <div>{{'CMP.RSP.HEADER'|translate}}{{i}}</div>
               <div (click)="removeRSP(i)" *ngIf="RSPForm.controls.RSPDetails.controls.length>1" class="text-right"><i
                   class="fa fa-trash"></i></div>
 
@@ -23,7 +23,7 @@
 
                 <div class="flex-row section pb-2">
                   <div class="pl0 col-5">
-                    <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'RSP.UNIT_TRUST_TYPE' | translate}}</label>
+                    <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
                   </div>
                   <div class="pr0 flex-col-7">
                     <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  RSPDetails.controls.relationship.invalid}">
@@ -49,7 +49,7 @@
                 <div class="flex-row pb-2">
                     <div class="pl0 col-5">
                       <label for="name" id="myDependantFormLb1">
-                        <div>{{'RSP.PAID_BY_CASH'|translate}}
+                        <div>{{'CMP.RSP.PAID_BY_CASH'|translate}}
                         </div>
                       </label>
                     </div>
@@ -57,14 +57,14 @@
                       <div class="form-control form-control-right">
                         <i>$</i>
                         <input type="text" class="input-control" appCurrencyInput maxLength="4" #paidByCash formControlName="paidByCash" value="0">
-                        <i class="right">/ {{'RSP.MONTH'|translate}}</i>
+                        <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
                   </div>
                 <div class="flex-row">
                     <div class="pl0 col-5">
                       <label for="name" id="myDependantFormLb1">
-                        <div>{{'RSP.PAID_BY_CPF'|translate}}
+                        <div>{{'CMP.RSP.PAID_BY_CPF'|translate}}
                         </div>
                       </label>
                     </div>
@@ -72,7 +72,7 @@
                       <div class="form-control form-control-right">
                         <i>$</i>
                         <input type="text" class="input-control" appCurrencyInput maxLength="4" #paidByCPF formControlName="paidByCPF" value="0">
-                        <i class="right">/ {{'RSP.MONTH'|translate}}</i>
+                        <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
               </div>
 
             </div>
-            <p (click)="addRSP()">{{'RSP.ADD_RSP'|translate}}</p>
+            <p (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
           </section>
         </div>
 
@@ -90,11 +90,11 @@
         <div class="checkbox-button one-label">
           <input id="RSPInpt2" name="RSPSelection" formControlName="RSPSelection" type="radio" value="false" class="field radio">
           <label for="RSPInpt2">
-            <span class="input-label-grey">{{'FORM_LABEL.NO'|translate}}</span>
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
 
         </div>
-        <button type="button" [disabled]="!RSPForm.valid" (click)="goToNext(RSPForm)" class="btn btn-primary btn__footer--fixed width100"
+        <button type="button"  (click)="goToNext(RSPForm)" class="btn btn-primary btn__footer--fixed width100"
           id="prfBtn1">{{ 'LABEL.CONTINUE' |
           translate}}</button>
       </div>
