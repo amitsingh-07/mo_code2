@@ -609,6 +609,10 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.gender = 'female';
       this.disableAttributes.push('gender');
     }
+    if (data.birthcountry && data.birthcountry.birthCountryDetails) {
+      this.investmentAccountFormData.birthCountry = data.birthcountry.birthCountryDetails;
+      this.disableAttributes.push('birthCountry');
+    }
   }
 
   // MyInfo - Residential Address
