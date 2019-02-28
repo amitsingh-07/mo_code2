@@ -89,7 +89,7 @@ export class InvestmentAccountFormError {
       }
     },
     address2: {
-       pattern: {
+      pattern: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
@@ -122,7 +122,7 @@ export class InvestmentAccountFormError {
       }
     },
     mailAddress2: {
-     pattern: {
+      pattern: {
         errorTitle: 'Invalid mail Address Line 2',
         errorMessage:
           'Address Line 2 should contain  alphanumeric and  Special characters in mailing address.'
@@ -421,7 +421,7 @@ export class InvestmentAccountFormError {
       }
     },
     empAddress2: {
-     pattern: {
+      pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
           'Address Line 2  should contain  alphanumeric and  Special characters.'
@@ -504,6 +504,10 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Expected Number Of Transactions',
         errorMessage: 'Enter Expected Number Of Transactions'
+      },
+      expectNumberOfTransCheck: {
+        errorTitle: 'Invalid Expected Number Of Transactions',
+        errorMessage: 'Enter Expected Number Of Transactions more than 0.'
       }
     },
     expectedAmountPerTranction: {
@@ -511,6 +515,10 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Expected Amount Per Transaction.',
         errorMessage: 'Enter Expected Amount Per Transaction'
+      },
+      expectedAmountPerTranCheck: {
+        errorTitle: 'Invalid Expected Amount Per Transaction',
+        errorMessage: 'Enter Expected Amount Per Transaction more than 0.'
       }
     },
     source: {
@@ -539,6 +547,10 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Investment Period.',
         errorMessage: 'Enter Duration investment held for'
+      },
+      durationCheck: {
+        errorTitle: 'Invalid Expected Amount Per Transaction',
+        errorMessage: 'Enter Duration of investment held for more than 0.'
       }
     },
     otherSources: {
@@ -621,7 +633,7 @@ export class InvestmentAccountFormError {
       }
     },
     pepAddress2: {
-     pattern: {
+      pattern: {
         errorTitle: 'Invalid Address2',
         errorMessage: 'Address2 should contain alphanumeric and Special characters.'
       }
@@ -675,6 +687,6 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid salary range',
         errorMessage: 'Select Salary Range'
       }
-    }
+    },
   };
 }
