@@ -68,7 +68,11 @@
       "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
     },
     "ENDOWMENT_PLAN": {
-      "ABOUT": "Select which child has education endowment plan"
+      "ABOUT": "Select which child has education endowment plan",
+      "DESCRIPTION": "Do have any existing education endowment plan?",
+	    "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
+      "TOOLTIP_TITLE": "Education Endownment",
+      "TOOLTIP_MESSAGE": "An Education endownment plan is typically an insurance policy that matures and pays out around the time of the child's entry into university"
 
     },
     "EDUCATION_PREFERENCE": {

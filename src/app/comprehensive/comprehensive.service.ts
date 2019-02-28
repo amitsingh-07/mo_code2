@@ -8,7 +8,7 @@ import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
-
+import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -247,6 +247,12 @@ export class ComprehensiveService {
       }
     }
     return sum.toFixed();
+  }
+
+  openTooltipModal(toolTipParam) {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
+    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
   }
 
 }
