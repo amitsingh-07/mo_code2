@@ -132,8 +132,12 @@ export class AddUpdateBankComponent implements OnInit {
         this.signUpService.updateBankInfo(form.value.bank,
           form.getRawValue().accountHolderName, accountNum, this.updateId).subscribe((data) => {
           // tslint:disable-next-line:triple-equals
-          if (data.responseMessage.responseCode == 6000) {
-            // tslint:disable-next-line:max-line-length
+          if (data.responseMessage.responseCode < 6000) {
+            // ERROR SCENARIO
+            const errorResponse = data.objectList;
+            const errorList = errorResponse.serverStatus.errors;
+            this.showIfastErrorModal(errorList);
+          } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
         });
