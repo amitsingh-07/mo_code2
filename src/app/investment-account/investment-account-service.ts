@@ -8,19 +8,19 @@ import {
   ISaveInvestmentAccountRequest,
 } from './investment-account.request';
 
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
+import { PortfolioService } from '../portfolio/portfolio.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
-import { HttpClient } from '@angular/common/http';
-import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
-import { Injectable } from '@angular/core';
-import { InvestmentAccountFormData } from './investment-account-form-data';
-import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PersonalInfo } from './personal-info/personal-info';
-import { PortfolioService } from '../portfolio/portfolio.service';
 import { SignUpService } from '../sign-up/sign-up.service';
-import { TranslateService } from '@ngx-translate/core';
+import { InvestmentAccountFormData } from './investment-account-form-data';
+import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
+import { PersonalInfo } from './personal-info/personal-info';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -642,42 +642,49 @@ export class InvestmentAccountService {
         this.disableAttributes.push('postalCode');
       }
     }
-    // Set true for MyInfo flow
-    this.investmentAccountFormData.isMailingAddressSame = true;
-    this.disableAttributes.push('isMailingAddressSame');
-    // Email address details - Deferred now
-    // if (data.mailadd) {
-    //     this.setMyInfoEmailAddress(data);
-    // }
+    if (data.mailadd) {
+        this.setMyInfoEmailAddress(data);
+    }
   }
 
   // MyInfo - Email Address
   setMyInfoEmailAddress(data) {
+    let emailAddressExist = false;
     if (data.mailadd.countryDetails) {
       this.investmentAccountFormData.mailCountry = data.mailadd.countryDetails;
       this.disableAttributes.push('mailCountry');
+      emailAddressExist = true;
     }
     if (data.mailadd.floor) {
       this.investmentAccountFormData.mailFloor = data.mailadd.floor;
       this.disableAttributes.push('mailFloor');
+      emailAddressExist = true;
     }
     if (data.mailadd.unit) {
       this.investmentAccountFormData.mailUnitNo = data.mailadd.unit;
       this.disableAttributes.push('mailUnitNo');
+      emailAddressExist = true;
     }
     if (data.mailadd.block) {
       this.investmentAccountFormData.mailAddress1 = 'Block ' + data.mailadd.block;
       this.disableAttributes.push('mailAddress1');
+      emailAddressExist = true;
     }
     if (data.mailadd.street) {
       this.investmentAccountFormData.mailAddress2 = data.mailadd.street;
       this.disableAttributes.push('mailAddress2');
+      emailAddressExist = true;
     }
     if (data.mailadd.postal) {
       this.investmentAccountFormData.mailPostalCode = data.mailadd.postal;
       this.investmentAccountFormData.mailZipCode = data.mailadd.postal;
       this.disableAttributes.push('mailZipCode');
       this.disableAttributes.push('mailPostalCode');
+      emailAddressExist = true;
+    }
+    if (emailAddressExist) {
+      this.investmentAccountFormData.isMailingAddressSame = true;
+      this.disableAttributes.push('isMailingAddressSame');
     }
   }
 
