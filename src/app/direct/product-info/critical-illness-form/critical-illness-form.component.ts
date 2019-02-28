@@ -51,10 +51,14 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
-    this.formValues = this.directService.getDirectFormData();
+    this.formValues = this.directService.getCriticalIllnessForm();
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.earlyCI = this.formValues.earlyCI;
+    this.formValues.duration = this.formValues.duration;
+    if (this.formValues.earlyCI !== undefined) {
+      this.formValues.earlyCI = this.formValues.earlyCI ? 'yes' : 'no';
+    }
 
     this.criticalIllnessForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
@@ -66,7 +70,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     });
 
     if (this.formValues.duration !== undefined) {
-      this.selectDuration(this.formValues.dependent);
+      this.selectDuration(this.formValues.duration);
     }
     if (this.formValues.coverageAmt !== undefined) {
       this.selectCoverageAmt(this.formValues.coverageAmt);

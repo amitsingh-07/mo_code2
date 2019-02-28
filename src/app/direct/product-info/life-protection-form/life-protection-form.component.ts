@@ -54,6 +54,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.premiumWaiver = this.formValues.premiumWaiver;
+    if (this.formValues.premiumWaiver !== undefined) {
+      this.formValues.premiumWaiver = this.formValues.premiumWaiver === true ? 'yes' : 'no';
+    }
 
     this.lifeProtectionForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
