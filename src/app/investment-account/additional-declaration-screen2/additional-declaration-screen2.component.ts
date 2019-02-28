@@ -118,7 +118,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.addControl(
         'investmentEarnings',
         this.formBuilder.group({
-          durationInvestment: [this.formValues.durationInvestment, Validators.required, this.durationInvestValidation],
+          durationInvestment: [this.formValues.durationInvestment, [Validators.required, this.durationInvestValidation]],
           earningsGenerated: [this.formValues.earningsGenerated, Validators.required]
         })
       );
@@ -251,8 +251,10 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
   private durationInvestValidation(control: AbstractControl) {
     const value = control.value;
-    return observableOf(value < 1).pipe(
-      map((result) => result ? { durationCheck: true } : null)
-    );
+    if (control.value < 1) {
+      return { durationCheck: true };
+    }
+    return null;
   }
+
 }
