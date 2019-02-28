@@ -123,7 +123,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         ],
         firstName: [
           { value: this.formValues.firstName, disabled: false },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         lastName: [
           { value: this.formValues.lastName, disabled: false },
@@ -197,7 +197,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         ],
         firstName: [
           { value: this.formValues.firstName, disabled: false },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         lastName: [
           { value: this.formValues.lastName, disabled: false },
@@ -306,18 +306,22 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   private validateName() {
     return (group: FormGroup) => {
-      const name =
-        group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
-      const name1 =
-        group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
-      const fullName = group.controls['fullName'].value;
-      if (
-        fullName.toUpperCase() === name.toUpperCase() ||
-        fullName.toUpperCase() === name1.toUpperCase()
-      ) {
-        return group.controls['firstName'].setErrors(null);
+      const firstName = group.controls['firstName'].value.toUpperCase();
+      const lastName = group.controls['lastName'].value.toUpperCase();
+      const fullName = group.controls['fullName'].value.toUpperCase();
+      let name = '';
+      let name1 = '';
+      if (firstName === '') {
+        name =  lastName;
+        name1 = lastName;
       } else {
-        return group.controls['firstName'].setErrors({ nameMatch: true });
+        name =  firstName + ' ' + lastName;
+        name1 = lastName + ' ' + firstName;
+      }
+      if (fullName === name || fullName === name1) {
+        return group.controls['lastName'].setErrors(null);
+      } else {
+        return group.controls['lastName'].setErrors({ nameMatch: true });
       }
     };
   }
