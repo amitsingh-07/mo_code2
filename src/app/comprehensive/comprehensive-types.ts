@@ -17,6 +17,14 @@ export interface IMyDependant {
     enquiryId: number;
 
 }
+export interface IChildPlan {
+    dependentId: number;
+    enquiryId: number;
+    location: string;
+    educationCourse: string;
+    endowmentMaturityAmount: string;
+    endowmentMaturityYears: string;
+}
 export interface IMyLiabilities {
     homeLoanOutstanding: number;
     otherPropertyLoan: number;

@@ -155,7 +155,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
       this.comprehensiveService.setMyProfile(form.value);
       this.comprehensiveService.setProgressToolTipShown(true);
       if (!form.pristine) {
-        console.log(form.value);
         this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
         });
 

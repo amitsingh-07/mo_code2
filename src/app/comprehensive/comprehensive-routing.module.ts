@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
+import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
@@ -18,7 +19,6 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
-import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: COMPREHENSIVE_ROUTES.REGULAR_SAVING_PLAN, component: RegularSavingPlanComponent },
       { path: COMPREHENSIVE_ROUTES.MY_ASSETS, component: MyAssetsComponent },
       { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES, component: MyLiabilitiesComponent },
-      { path: COMPREHENSIVE_ROUTES.STEPS+'/:stepNo', component: ComprehensiveStepsComponent },
+      { path: COMPREHENSIVE_ROUTES.STEPS + '/:stepNo', component: ComprehensiveStepsComponent },
       { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent},
       { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent }
     ]

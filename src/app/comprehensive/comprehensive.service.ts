@@ -93,18 +93,18 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myProfile = profile;
     this.commit();
   }
-  setMyDependant(dependant: IMyDependant[] ) {
+  setMyDependant(dependant: IMyDependant[]) {
     this.comprehensiveFormData.myDependant = dependant;
     this.commit();
   }
 
-   getMyLiabilities() {
+  getMyLiabilities() {
     if (!this.comprehensiveFormData.myLiabilities) {
       this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
     }
     return this.comprehensiveFormData.myLiabilities;
   }
-  
+
   setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
     this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
     this.commit();
@@ -186,48 +186,52 @@ export class ComprehensiveService {
     return false;
   }
 
-  
+  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
+                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
+                   childrenEducationNonDependantModal, summaryModalDetails) {
 
-  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
-
-    const ref = this.modal.open(SummaryModalComponent, { centered: true ,
-      windowClass: 'custom-full-height'});
+    const ref = this.modal.open(SummaryModalComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });
 
     let setTempleteModel = 2;
-    if(setTempleteModel == 2){
+    if (setTempleteModel == 2) {
       //Finance Popup    
 
       summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
-      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
-      liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = {
+        setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
+        liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200
+      };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
 
-    } else if(setTempleteModel == 4){    
+    } else if (setTempleteModel == 4) {
     } else if (setTempleteModel === 4) {
       //Retirement Popup      
 
       summaryModalDetails = { setTemplateModal: 4, titleImage: 'owl.svg', contentObj: retireModal };
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
-     
-    } else if(setTempleteModel == 3){      
+
+    } else if (setTempleteModel == 3) {
 
     } else if (setTempleteModel === 3) {
       //InsurancePlanning Popup
-      let dependantVar = false;
-      
-      summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar)?insurancePlanningDependantModal:insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10  };
-      ref.componentInstance.summaryModalDetails = summaryModalDetails;
-      
-    } else if(setTempleteModel == 1){
-      //CHILDREN_EDUCATION Popup
-      let dependantVar = false;     
+      const dependantVar = false;
 
-      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar)?childrenEducationDependantModal:childrenEducationNonDependantModal, dependantDetails: [{ userName : "Nathan Ng", userAge: 19, userEstimatedCost: 300000 } , { userName : "Marie Ng", userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost : 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 }  }
+      summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar) ? insurancePlanningDependantModal : insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10 };
+      ref.componentInstance.summaryModalDetails = summaryModalDetails;
+
+    } else if (setTempleteModel == 1) {
+      // CHILDREN_EDUCATION Popup
+      const dependantVar = false;
+
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal : childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19, userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 } };
 
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
     }
 
-    return false;    
+    return false;
   }
 
   additionOfCurrency(formValues) {

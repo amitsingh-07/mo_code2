@@ -1,7 +1,8 @@
-<div class="container-fluid max-width--1024 ">
-  <header>{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</header>
-
-
+<div class="container-fluid max-width--1024 comprehensive ">
+    <div class="step-indicator-container">
+        <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+    </div>
+  <header class="dependant-title mt40">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</header>
   <div class="col-lg-5 col-md-6 p-0">
     <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
       <div class="form-group-single-column  flex-col">
@@ -12,7 +13,7 @@
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_yes_plan'" class="p-0">
+          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_yes_plan'" class="p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
             <div formArrayName="dependant_list" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependant_list.controls; let i = index;">
 
@@ -29,7 +30,9 @@
                   </div>
                 </div>
               </div>
+            
             </div>
+            <p class="pl-2 error-child-msg" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
@@ -38,7 +41,7 @@
           <label for="dependant_selection_no_list">
             <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_no_plan'" class="p-0">
+          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_no_plan'" class=" p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
@@ -58,6 +61,7 @@
                 </div>
               </div>
             </div>
+            <p class="pl-2 error-child-msg" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
@@ -68,10 +72,12 @@
           </label>
 
         </div>
-        <button type="button" [disabled]="!dependantEducationSelectionForm.valid" (click)="goToNext(dependantSelectionForm)"
-          class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' |
-          translate}}</button>
+       
       </div>
+      <button type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100"
+      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
     </form>
   </div>
+  
 </div>

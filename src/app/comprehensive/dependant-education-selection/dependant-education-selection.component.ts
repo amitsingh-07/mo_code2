@@ -1,9 +1,10 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnDestroy, OnInit, } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -17,30 +18,42 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
   templateUrl: './dependant-education-selection.component.html',
   styleUrls: ['./dependant-education-selection.component.scss']
 })
-export class DependantEducationSelectionComponent implements OnInit {
+export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
+  pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
   dependantsArray: any;
+  menuClickSubscription: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
               private configService: ConfigService) {
-    this.configService.getConfig().subscribe((config) => {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.DEPENDANT_SELECTION.TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and title
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.setPageTitle(this.pageTitle);
+
+      });
     });
     this.dependantSelection();
   }
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
-
+  ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
+    this.menuClickSubscription.unsubscribe();
+  }
   ngOnInit() {
+    this.navbarService.setNavbarComprehensive(true);
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+
+      }
+    });
     this.buildEducationSelectionForm(this.dependantsArray);
   }
 
@@ -70,7 +83,7 @@ export class DependantEducationSelectionComponent implements OnInit {
 
     return this.formBuilder.group({
       name: [value.name, [Validators.required]],
-      dependantSelection: [false, [Validators.required]],
+      dependantSelection: [true, [Validators.required]],
 
     });
   }
