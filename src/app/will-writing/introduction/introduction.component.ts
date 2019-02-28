@@ -102,7 +102,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   openFAQ() {
-    this.router.navigate(['faq']);
+    this.router.navigate(['faq'], {fragment:'will-writing'});
   }
 
   openTermsOfConditions() {
