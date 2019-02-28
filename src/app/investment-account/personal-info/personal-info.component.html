@@ -127,7 +127,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
                     <div ngbDropdown placement="top-right">
-                      <button class="btn btn-dropdown without-border" id="birth-country-drpdown"
+                      <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="birth-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.birthCountry.value">
                             {{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}
