@@ -35,3 +35,22 @@ input[type='checkbox']:checked+label {
   color:#005960 !important;
  
 }
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    font-size: 18px;
+    .help-icon {
+      
+        background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }    
+}
