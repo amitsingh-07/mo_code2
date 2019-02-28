@@ -12,6 +12,9 @@ import { PercentageInputDirective } from '../shared/directives/percentage-input.
 import {
     EditInvestmentModalComponent
 } from '../shared/modal/edit-investment-modal/edit-investment-modal.component';
+import {
+  IfastErrorModalComponent
+} from '../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
@@ -82,10 +85,12 @@ export function createTranslateLoader(http: HttpClient) {
     AllocationComponent,
     AnnualFeesComponent,
     PortfolioInfoComponent,
-    EditInvestmentModalComponent
+    EditInvestmentModalComponent,
+    IfastErrorModalComponent
   ],
   entryComponents: [
-    EditInvestmentModalComponent
+    EditInvestmentModalComponent,
+    IfastErrorModalComponent
   ]
 })
 export class SharedModule { }

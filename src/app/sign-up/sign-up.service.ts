@@ -441,4 +441,39 @@ export class SignUpService {
     }
     return investmentStatus;
   }
+
+  // tslint:disable-next-line:cognitive-complexity
+  getFormErrorList(form) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        // HAS NESTED CONTROLS ?
+        if (controls[name].controls) {
+          const nestedControls = controls[name].controls;
+          for (const nestedControlName in nestedControls) {
+            if (nestedControls[nestedControlName].invalid) {
+              // tslint:disable-next-line
+              errors.errorMessages.push(
+                this.createAccountFormError.formFieldErrors[nestedControlName][
+                  Object.keys(nestedControls[nestedControlName]['errors'])[0]
+                ].errorMessage
+              );
+            }
+          }
+        } else {
+          // NO NESTED CONTROLS
+          // tslint:disable-next-line
+          errors.errorMessages.push(
+            this.createAccountFormError.formFieldErrors[name][
+              Object.keys(controls[name]['errors'])[0]
+            ].errorMessage
+          );
+        }
+      }
+    }
+    return errors;
+  }
 }
