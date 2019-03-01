@@ -30,7 +30,7 @@
     "RANGE_3_7_DESC": "<p>A relatively short investment period means you are more likely to be affected by a market decline as there is a higher chance that your investments are unable to recover in the short term.</p>",
     "RANGE_7_14_DESC": "<p>A moderately long investment period means that in the event of a market decline, your investments have more time and a higher chance of recovery.</p>",
     "RANGE_14_DESC": "<p>A long investment period means that you are less affected by market declines because you are able to hold on to your investment while the market recovers.</p>"
-    
+
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
@@ -142,8 +142,14 @@
     "LOG_IN": "Log In",
     "CREATE_ACCOUNT": "Create Account"
   },
-  "PORTFOLIO_EXIST": {    
+  "PORTFOLIO_EXIST": {
     "DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
     "PROCEED_BTN_TEXT": "Proceed To Portfolio"
+  },
+  "TOPUP": {
+    "TOPUP_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait"
+    }
   }
 }
