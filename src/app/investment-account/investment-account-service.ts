@@ -695,6 +695,9 @@ export class InvestmentAccountService {
     if (emailAddressExist) {
       this.investmentAccountFormData.isMailingAddressSame = false;
       this.disableAttributes.push('isMailingAddressSame');
+    } else {
+      this.investmentAccountFormData.isMailingAddressSame = true;
+      this.disableAttributes.push('isMailingAddressSame');
     }
   }
 
