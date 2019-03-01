@@ -7,6 +7,9 @@ app-transaction {
       padding-right: 0 !important;
       padding-left: 0 !important;
     }
+    @include phablet {
+      padding-top: 80px;
+     }
   }
   .transaction-panel {
     min-height: 100vh;
