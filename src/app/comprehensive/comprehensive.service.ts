@@ -4,11 +4,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
+import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan,IMyEarnings } from './comprehensive-types';
-import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +88,18 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myDependant;
   }
+  getEducationPlan() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
+    }
+    return this.comprehensiveFormData.hasEducationPlan;
+  }
+  getEducationPreference() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.educationPreference = [] as IEPreference[];
+    }
+    return this.comprehensiveFormData.educationPreference;
+  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
@@ -97,7 +109,14 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myDependant = dependant;
     this.commit();
   }
-
+  setEducationPlan(educationPlan: IEducationPlan) {
+    this.comprehensiveFormData.hasEducationPlan = educationPlan;
+    this.commit();
+  }
+  setEducationPreference(educationPreference: IEPreference[]) {
+    this.comprehensiveFormData.educationPreference = educationPreference;
+    this.commit();
+  }
   getMyLiabilities() {
     if (!this.comprehensiveFormData.myLiabilities) {
       this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
@@ -116,7 +135,6 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myEarnings;
   }
-  
   setMyEarnings(myEarningsData: IMyEarnings) {
     this.comprehensiveFormData.myEarnings = myEarningsData;
     this.commit();
@@ -144,7 +162,7 @@ export class ComprehensiveService {
 
     const controls = form.controls;
     const errors: any = {};
-    errors.errorMessages = [];    
+    errors.errorMessages = [];
     errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
     for (const name in controls) {
@@ -255,7 +273,7 @@ export class ComprehensiveService {
         let thisValue: any = (formValues[i] + '').replace(Regexp, '');
         thisValue = parseInt(formValues[i], 10);
         if (!isNaN(thisValue)) {
-          if (inputParams.indexOf(i)>=0) {
+          if (inputParams.indexOf(i) >= 0) {
             sum += thisValue !== 0 ? thisValue * 12 : 0;
           } else {
             sum += parseInt(thisValue, 10);

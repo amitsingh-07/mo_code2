@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -24,10 +25,10 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
   educationPreferenceArray: any;
-  educationPreference = true;
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+              private comprehensiveService: ComprehensiveService ) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -55,6 +56,8 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       nationality: ''
 
     }];
+    this.comprehensiveService.getMyDependant();
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });

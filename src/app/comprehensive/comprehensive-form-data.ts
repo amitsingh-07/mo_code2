@@ -1,6 +1,7 @@
 
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
-import {HospitalPlan, IMyDependant, IMyLiabilities, IMyProfile, IMyEarnings } from './comprehensive-types';
+import {HospitalPlan, IChildPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities
+       , IMyProfile} from './comprehensive-types';
 
 export class ComprehensiveFormData {
     startingPage = SIGN_UP_ROUTE_PATHS.DASHBOARD;
@@ -12,7 +13,10 @@ export class ComprehensiveFormData {
 
     // dependant Details
     myDependant: IMyDependant[];
+    hasEducationPlan: IEducationPlan;
+    educationPreference: IEPreference[];
+    ChildPlan: IChildPlan[];
     hospitalPlanData: HospitalPlan;
-    myLiabilities: IMyLiabilities;    
+    myLiabilities: IMyLiabilities;
     myEarnings: IMyEarnings;
 }

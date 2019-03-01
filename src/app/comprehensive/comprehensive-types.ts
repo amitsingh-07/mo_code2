@@ -16,6 +16,22 @@ export interface IMyDependant {
     enquiryId: number;
 
 }
+export interface IEducationPlan {
+  educationSelection: string;
+  dependantList: IDependant[];
+}
+export interface IDependant {
+  name: string;
+  id: number;
+  dependantSelection: boolean;
+}
+export interface IEPreference {
+    id: number;
+    age: number;
+    location: string;
+    educationCourse: string;
+
+}
 export interface IChildPlan {
     dependentId: number;
     enquiryId: number;
