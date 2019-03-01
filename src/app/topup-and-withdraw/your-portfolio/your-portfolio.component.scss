@@ -15,6 +15,10 @@ app-your-portfolio {
       padding-top: 105px;
       width: 100%;
     }
+    @include phablet{
+      padding-top: 105px;
+      width: 100%;
+    }
   }
   .background_img {
     display: none;
@@ -67,6 +71,11 @@ app-your-portfolio {
       }
       @include iphone6 {
         top: 55px;
+      }
+      @include phablet {
+        top: 40px;
+        max-width: 85px;
+        right: 230px;
       }
       @include tablet {
         top: 80px;
@@ -131,21 +140,9 @@ app-your-portfolio {
     @include iphone5 {
       top: -30px;
     }
-    // @include min360 {
-    //   top: -42px;
-    // }
-    // @include tablet {
-    //   top: -139px;
-    // }
-    // @include iPadLandscape {
-    //   top: -139px;
-    // }
-    // @include iPadProPortrait {
-    //   top: -139px;
-    // }
-    // @include iPadProLandscape {
-    //   top: -139px;
-    // }
+    @include phablet {
+      top: 60px;
+     }
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -158,7 +155,7 @@ app-your-portfolio {
   }
   .total_values {
     font-family: $muli-bold;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;

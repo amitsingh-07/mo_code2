@@ -67,7 +67,7 @@ export class YourPortfolioComponent implements OnInit {
       : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns
-      : 0;
+      : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
   }
   getMoreList() {

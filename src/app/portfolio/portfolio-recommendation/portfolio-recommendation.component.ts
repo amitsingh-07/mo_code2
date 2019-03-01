@@ -10,6 +10,7 @@ import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -61,7 +62,8 @@ export class PortfolioRecommendationComponent implements OnInit {
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
     private portfolioService: PortfolioService,
-    private topupAndWithDrawService: TopupAndWithDrawService
+    private topupAndWithDrawService: TopupAndWithDrawService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     const self = this;
@@ -224,7 +226,8 @@ export class PortfolioRecommendationComponent implements OnInit {
       redirectTo: 'DASHBOARD',
       portfolio: {
         productName: data.portfolioName,
-        riskProfile: data.riskProfile
+        riskProfile: data.riskProfile,
+        productCode: data.portfolioId,
       },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
@@ -243,7 +246,7 @@ export class PortfolioRecommendationComponent implements OnInit {
         if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
           const fundingParams = this.constructFundingParams(this.portfolio);
           this.topupAndWithDrawService.setFundingDetails(fundingParams);
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+          this.topUpOneTime();
         } else {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
         }
@@ -254,6 +257,46 @@ export class PortfolioRecommendationComponent implements OnInit {
     } else {
       this.showLoginOrSignupModal();
     }
+  }
+
+  topUpOneTime() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+    const fundDetails = this.topupAndWithDrawService.getFundingDetails();
+    this.topupAndWithDrawService.buyPortfolio(fundDetails).subscribe(
+      (response) => {
+        this.loaderService.hideLoader();
+        if (response.responseMessage.responseCode < 6000) {
+          if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg
+            );
+          } else {
+            this.loaderService.hideLoader();
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+        }
+      },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    );
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 
   investmentFAQ() {
