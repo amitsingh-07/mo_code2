@@ -131,21 +131,6 @@ app-your-portfolio {
     @include iphone5 {
       top: -30px;
     }
-    // @include min360 {
-    //   top: -42px;
-    // }
-    // @include tablet {
-    //   top: -139px;
-    // }
-    // @include iPadLandscape {
-    //   top: -139px;
-    // }
-    // @include iPadProPortrait {
-    //   top: -139px;
-    // }
-    // @include iPadProLandscape {
-    //   top: -139px;
-    // }
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
