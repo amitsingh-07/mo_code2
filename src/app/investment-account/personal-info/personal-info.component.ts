@@ -272,16 +272,22 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
   populateFullName() {
+    let fullName;
+    let firstName;
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.formValues.firstName = this.formValues.firstName
-      ? this.formValues.firstName
-      : this.userProfileInfo.firstName;
+    firstName = this.formValues.firstName ? this.formValues.firstName : '';
+    this.formValues.firstName = this.formValues.lastName
+      ? firstName : this.userProfileInfo.firstName;
     this.formValues.lastName = this.formValues.lastName
       ? this.formValues.lastName
       : this.userProfileInfo.lastName;
+    if (this.userProfileInfo.firstName) {
+      fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+    } else {
+      fullName = this.userProfileInfo.lastName;
+    }
     this.formValues.fullName = this.formValues.fullName
-      ? this.formValues.fullName
-      : this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+      ? this.formValues.fullName : fullName;
   }
   toggleDate(openEle, closeEle) {
     if (openEle) {

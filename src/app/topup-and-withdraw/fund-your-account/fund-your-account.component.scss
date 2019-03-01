@@ -3,7 +3,6 @@
 app-fund-your-account {
   .fund-your-account {
     &.clearfix {
-      overflow:auto;
       &.container-fluid{
         @include allmobiles{
           padding: 0 !important;
@@ -12,7 +11,7 @@ app-fund-your-account {
     }
     .container-fluid {
       @include allmobiles {
-        padding: 130px 0;
+       padding: 130px 0;
       }
     }
     font-family: $muli;
