@@ -90,11 +90,15 @@ export class TransactionComponent implements OnInit {
   }
 
   calculateSplitAmounts(transactionHistory) {
-    transactionHistory.forEach((transaction) => {
-      transaction.fundInvestmentSplits.forEach((breakdown) => {
-        breakdown.splitAmount = breakdown.unit * breakdown.unitPrice;
+    if (transactionHistory) {
+      transactionHistory.forEach((transaction) => {
+        if (transaction.fundInvestmentSplits) {
+          transaction.fundInvestmentSplits.forEach((breakdown) => {
+            breakdown.splitAmount = breakdown.unit * breakdown.unitPrice;
+          });
+        }
       });
-    });
+    }
     return transactionHistory;
   }
 
