@@ -102,6 +102,8 @@ export let apiConstants = {
             addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
             getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
             addDependents: COMPREHENSIVE_API_BASE_URL + 'saveDependents',
+            getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
+            saveEarnings: COMPREHENSIVE_API_BASE_URL + 'saveEarnings',
         }
     }
 };

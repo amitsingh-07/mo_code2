@@ -7,7 +7,7 @@ import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
+import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan,IMyEarnings } from './comprehensive-types';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 
 @Injectable({
@@ -109,6 +109,19 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
     this.commit();
   }
+
+   getMyEarnings() {
+    if (!this.comprehensiveFormData.myEarnings) {
+      this.comprehensiveFormData.myEarnings = {} as IMyEarnings;
+    }
+    return this.comprehensiveFormData.myEarnings;
+  }
+  
+  setMyEarnings(myEarningsData: IMyEarnings) {
+    this.comprehensiveFormData.myEarnings = myEarningsData;
+    this.commit();
+  }
+
   getStartingPage() {
     return this.comprehensiveFormData.startingPage;
   }
@@ -131,7 +144,7 @@ export class ComprehensiveService {
 
     const controls = form.controls;
     const errors: any = {};
-    errors.errorMessages = [];
+    errors.errorMessages = [];    
     errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
     for (const name in controls) {
@@ -234,7 +247,7 @@ export class ComprehensiveService {
     return false;
   }
 
-  additionOfCurrency(formValues) {
+  additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
     for (const i in formValues) {
       if (formValues[i] !== null && formValues[i] !== '') {
@@ -242,8 +255,8 @@ export class ComprehensiveService {
         let thisValue: any = (formValues[i] + '').replace(Regexp, '');
         thisValue = parseInt(formValues[i], 10);
         if (!isNaN(thisValue)) {
-          if (i === 'annualBonus') {
-            sum += thisValue !== 0 ? thisValue / 12 : 0;
+          if (inputParams.indexOf(i)>=0) {
+            sum += thisValue !== 0 ? thisValue * 12 : 0;
           } else {
             sum += parseInt(thisValue, 10);
           }

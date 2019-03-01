@@ -60,3 +60,16 @@ export interface IMySummaryModal {
 export interface ISummaryDependantDetails {
     userName: string; userAge: number; userEstimatedCost: number;
 }
+
+export interface IMyEarnings {
+   enquiryId: number;
+   employmentType: string;
+   monthlySalary: number;
+   monthlyRentalIncome: number;
+   otherMonthlyWorkIncome: number;
+   otherMonthlyIncome: number;
+   annualBonus: number;
+   annualDividends: number;
+   otherAnnualIncome: number;
+
+}

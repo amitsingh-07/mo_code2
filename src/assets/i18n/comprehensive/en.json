@@ -82,17 +82,22 @@
     },
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
-      "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
+      "ABOUT": "Every month, you fill your bucket as you bring home an income!",
       "BUCKET_TITLE": "Your Annual Income Bucket",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
+      "ANNUAL_BONUS_DESC":"Bonuses, dividends and other income you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
-      "OTHER_WORK_INCOME": "Other Work Income",
+      "OTHER_WORK_INCOME": "Other Monthly Work Income",
+      "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
       "OTHER_MONTHLY_INCOME": "Other Monthly Income",
       "ANNUAL_DIVIDENDS": "Annual Dividends",
       "OTHER_ANNUAL_INCOME": "Other Annual Income",
       "ADD_MONTHLY_INCOME": "Add other monthly income",
+      "ADD_MONTHLY_INCOME_NOTE":"You have added all types of annual income",
       "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+      "ADD_DIVIDENDS_NOTE":"You have added all types of annual income",
+      "BUCKET_NOTE":"Your annual income bucket",
       "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
@@ -101,8 +106,21 @@
           "text": "Self-Employed",
           "value": "selfEmployed"
         }
-      ]
+      ],
+      "EMPTY_BUCKET_IMAGE":"empty-earnings-bucket.png",
+      "FILLED_BUCKET_IMAGE":"filled-earnings-bucket.png",
+      "TOOLTIP":{
+        "MONTHLY_SALARY_TITLE": "Monthly Salary",
+        "MONTHLY_SALARY_MESSAGE": "Message",
+        "ANNUAL_BONUS_TITLE": "Annual Bonus",
+        "ANNUAL_BONUS_MESSAGE": "Message",
+        "ADD_MONTHLY_INCOME_TITLE": "Add other monthly income",
+        "ADD_MONTHLY_INCOME_MESSAGE": "Message",
+        "ADD_DIVIDENDS_TITLE": "Add dividends & other Annual Income",
+        "ADD_DIVIDENDS_MESSAGE": "Message"
 
+
+      }
     },
     "MY_SPENDINGS": {
       "MONTHLY_LIVING_EXPENSES": "Monthly Living Expenses",
@@ -332,7 +350,8 @@
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
       "DEPENDANT_DETAIL": ["Dependant Details 1", "Dependant Details 2", "Dependant Details 3", "Dependant Details 4", "Dependant Details 5"],
-      "MY_LIABILITIES": "MY LIABILITIES"
+      "MY_LIABILITIES": "MY LIABILITIES",
+	  "MY_EARNINGS": "Your Earnings"
     }
   }
 }

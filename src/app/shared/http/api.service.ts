@@ -822,4 +822,16 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getEarnings() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getEarnings)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveEarnings(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.saveEarnings, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

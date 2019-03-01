@@ -9,3 +9,112 @@
 background: $light-aqua-color;
 color: $dark-teal-color;
 }
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .help-icon {
+      
+        background: url("/assets/images/tool-help-icon.png") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }    
+}
+.earn-btn-dropdown{
+    background: none;
+    color: $white-color;
+    border:none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+}
+.dropdown-control .earn-btn-dropdown:after {
+    background-image: url('/assets/images/dropdown_white.svg');
+    width: 16px;
+    height: 10px;
+    border: none;
+    position: absolute;
+    top: 24px;
+    right: 13px;
+    background-repeat: no-repeat;
+    @include iphone5 {
+      top: 24px;
+      right: 5px;
+    }
+  }  
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .dependant-title {
+        font-size: 18px;        
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+}
+.mb-10{
+    margin-bottom:100px;
+}
+.with-delete-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .delete-icon {      
+        background: url("/assets/images/delete-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }    
+}
+.earn-dollar-icon{
+    background: url("/assets/images/money.png") no-repeat;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    top:-8px;
+}
+.earn-dollar-help{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+    position: relative;
+}
+.earn-notes{
+    font-size: 16px;
+    padding-left: 40px;
+}
+.bucket-notes{
+    font-size:16px;
+}
+.bucket-notes-dollar{
+    font-size:20px;
+}
+.earn-monthly-income-dollar{
+    top:8px;
+}
+.earn-monthly-income-help{
+    bottom: 30px!important;
+}
+.income-modal-notes{
+    color:$light-grey-color;
+}

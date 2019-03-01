@@ -109,4 +109,59 @@ export class ComprehensiveFormError {
 
         }
     };
+
+    myEarningsForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the following details:',
+            employmentType: {
+                required: {
+                    errorTitle: 'Invalid Employment Type',
+                    errorMessage: 'Employment Type'
+                }
+            },
+            monthlySalary: {
+                required: {
+                    errorTitle: 'Invalid Monthly Salary',
+                    errorMessage: 'Other Monthly Salary'
+                }
+            },
+            monthlyRentalIncome: {
+                required: {
+                    errorTitle: 'Monthly Rental Income',
+                    errorMessage: 'Monthly Rental Income'
+                }
+            },
+            otherMonthlyWorkIncome: {
+                required: {
+                    errorTitle: 'Invalid Other Monthly Work Income',
+                    errorMessage: 'Other Monthly Work Income'
+                }
+            },
+            otherMonthlyIncome: {
+                required: {
+                    errorTitle: 'Invalid Other Monthly Income',
+                    errorMessage: 'Other Monthly Income'
+                }
+            },
+            annualBonus: {
+                required: {
+                    errorTitle: 'Invalid Annual Bonus',
+                    errorMessage: 'Annual Bonus'
+                }
+            },
+            annualDividends: {
+                required: {
+                    errorTitle: 'Invalid Annual Dividends',
+                    errorMessage: 'Annual Dividends'
+                }
+            },
+            otherAnnualIncome: {
+                required: {
+                    errorTitle: 'Invalid Other Annual Income',
+                    errorMessage: 'Other Annual Income'
+                }
+            }
+
+        }
+    };
 }
