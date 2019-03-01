@@ -3,7 +3,10 @@
 app-add-update-bank{
 .container-fluid{
   @include allmobiles {
-  padding-top: 120px;
+    padding-top: 120px;
+  }
+  @include phablet {
+    padding-top: 120px;
   }
 }
 .dots{

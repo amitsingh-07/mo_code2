@@ -26,7 +26,8 @@
                 <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="showPortffolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED' | translate}}</span>
+                <span class="view_all" *ngIf="showPortffolioPurchased"
+                  (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -40,12 +41,14 @@
                     <div class="portfolio_footer">
                       <div class="flex-col col-5">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div  [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0"
-                          class="portfolio_footer_value">{{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
+                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0"
+                          class="portfolio_footer_value">
+                          {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
                       </div>
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_footer_value">{{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div class="portfolio_footer_value">
+                          {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                     </div>
                   </div>
@@ -73,7 +76,8 @@
                       <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
+                      <button type="button" (click)="goToDocUpload()"
+                        class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
                     </div>
                   </div>
                   <!-- CDD CHECK IS ONGOING EDD ONGOING -->
@@ -122,53 +126,53 @@
                       </div>
                     </div>
                   </div>
+                  <!-- THIS SENARIO IS NOT COVERED  -->
+                  <div class="no_portfolio col-12" *ngIf="false">
+                    <div class="warning-txt">
+                      <div class="flex-col-8">
+                        {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                      <div class="flex-col-4">
+                        <div class="investment_icon">
+                          <img src="assets/images/investment-account/investment-icon.svg" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <button type="button" class="btn btn-primary col-12">
+                        <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
+                        <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                 <!-- THIS SENARIO IS NOT COVERED  -->
-              <div class="no_portfolio col-12" *ngIf="false">
-                  <div class="warning-txt">
-                    <div class="flex-col-8">
-                      {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+              </div>
+            </div>
+            <!-- investmet end -->
+            <div class="widget" *ngIf="false">
+              <div class="widget-title">
+                <span>{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}</span>
+                <span class="view_all">{{'DASHBOARD.WILL_WRITING.VIEW_ALL' | translate}}</span>
+              </div>
+              <div class="widget-body">
+                <div class="scenarios">
+                  <div class="primary flex col-12">
                     <div class="flex-col-4">
-                      <div class="investment_icon">
-                        <img src="assets/images/investment-account/investment-icon.svg" />
-                      </div>
+                      <img src="assets/images/investment-account/investment-portfolio.svg" />
                     </div>
-                  </div>
-                  <div class="flex">
-                    <button type="button" class="btn btn-primary col-12">
-                      <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
-                      <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
-                    </button>
-                  </div>
-                </div>
-                <!-- investmet end -->
-                <div class="widget" *ngIf="false">
-                  <div class="widget-title">
-                    <span>{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}</span>
-                    <span class="view_all">{{'DASHBOARD.WILL_WRITING.VIEW_ALL' | translate}}</span>
-                  </div>
-                  <div class="widget-body">
-                    <div class="scenarios">
-                      <div class="primary flex col-12">
-                        <div class="flex-col-4">
-                          <img src="assets/images/investment-account/investment-portfolio.svg" />
-                        </div>
-                        <div class="flex-col-8">
-                          <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL' | translate}}</div>
-                          <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</div>
-                          <div class="time-lapse">
-                            <div>{{'DASHBOARD.WILL_WRITING.GET_STARTED' | translate}}</div>
-                            <div class="flex-row">
-                              <span>{{'DASHBOARD.WILL_WRITING.TIME' | translate}}</span>
-                              <span class="circle"></span>
-                            </div>
-                          </div>
+                    <div class="flex-col-8">
+                      <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL' | translate}}</div>
+                      <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</div>
+                      <div class="time-lapse">
+                        <div>{{'DASHBOARD.WILL_WRITING.GET_STARTED' | translate}}</div>
+                        <div class="flex-row">
+                          <span>{{'DASHBOARD.WILL_WRITING.TIME' | translate}}</span>
+                          <span class="circle"></span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>            
+              </div>
             </div>
           </div>
         </div>
