@@ -43,4 +43,17 @@ export class ComprehensiveApiService {
   addDependents(payload) {
     return this.apiService.addDependents(payload);
   }
+  getChildEndowment() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getEndowmentPlan)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.helperService.handleError(error))
+    );
+
+  }
+  saveChildEndowment(payload) {
+    return this.http.get(apiConstants.endpoint.comprehensive.saveEndowmentPlan)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.helperService.handleError(error))
+    );
+  }
 }

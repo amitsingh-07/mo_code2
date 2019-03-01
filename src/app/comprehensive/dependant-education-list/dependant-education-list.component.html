@@ -22,8 +22,8 @@
                 <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentplanShow"
                   formControlName="endowmentplanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
                 <label for="educationSupport{{i}}">
-                  <div class="title">{{educationPlan.get('name').value}}</div>
-                  <div class="sub-title"> {{educationPlan.get('age').value}} Years old</div>
+                  <div class="form-group-with-bg--header-label">{{educationPlan.get('name').value}}</div>
+                  <div class="age"> {{educationPlan.get('age').value}} Years old</div>
                 </label>
               </div>
             </div>

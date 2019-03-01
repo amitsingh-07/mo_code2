@@ -8,7 +8,7 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile } from './comprehensive-types';
+import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IChildEndowment } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -100,6 +100,12 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.educationPreference;
   }
+  getChildEndowment() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.childEndowment = [] as IChildEndowment[];
+    }
+    return this.comprehensiveFormData.childEndowment;
+  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
@@ -115,6 +121,10 @@ export class ComprehensiveService {
   }
   setEducationPreference(educationPreference: IEPreference[]) {
     this.comprehensiveFormData.educationPreference = educationPreference;
+    this.commit();
+  }
+  setChildEndowment(childEndowment: IChildEndowment[]) {
+    this.comprehensiveFormData.childEndowment = childEndowment;
     this.commit();
   }
   getMyLiabilities() {

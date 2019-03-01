@@ -23,18 +23,43 @@ input[type='checkbox']:checked+label {
   line-height: 21px;
 }
 }
+.comprehensive {
+  &.container-fluid {
+      padding-top: 120px;
+  }
+  .dependant-title {
+      font-size: 18px;
+  }
 
+}
 
+.form-group-with-bg--header-label {
+
+  background: #fff;
+  color: #313644;
+  font-size: 18px;
+  font-weight: 600;
+
+  
+ 
+}
+.age {
+  color: #8d9aa8!important;
+  font-size: 16px!important;
+}
 .education-support-array{
   background: #fff;
   color:#000;
   border-radius:5px;
 }
 .education-plan{
-  background: #f0ffff!important;
-  color:#005960 !important;
+  font-size: 16px;
+  background-color: #f4fafb;
+  color: #2d8289;
+  border: 1px solid #f4fafb;
  
 }
+
 .with-help-icon{
     display:flex;
     align-items: flex-end;

@@ -32,6 +32,12 @@ export interface IEPreference {
     educationCourse: string;
 
 }
+export interface IChildEndowment {
+  id: number;
+  endowmentMaturityAmount: string;
+  endowmentMaturityYears: string;
+
+}
 export interface IChildPlan {
     dependentId: number;
     enquiryId: number;
