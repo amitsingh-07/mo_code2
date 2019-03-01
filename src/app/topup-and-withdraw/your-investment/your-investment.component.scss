@@ -15,6 +15,10 @@ app-your-investment {
       padding-top: 105px;
       width: 100%;
     }
+    @include phablet{
+      padding-top: 105px;
+      width: 100%;
+    }
   }
   .background_img {
     display: none;
@@ -65,6 +69,11 @@ app-your-investment {
       @include iphone6 {
         top: 55px;
       }
+      @include phablet {
+        top: 40px;
+        max-width: 85px;
+        right: 230px;
+      }
       @include tablet {
         right: 230px;
       }
@@ -104,6 +113,9 @@ app-your-investment {
       padding-bottom: 20px;
       top: -42px;
     }
+    @include phablet {
+      top: 60px;
+     }
   }
   .dropdown-control .dropdown-menu.show {
     left: auto !important;

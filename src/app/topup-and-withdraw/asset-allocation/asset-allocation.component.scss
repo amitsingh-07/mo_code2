@@ -8,6 +8,9 @@ app-asset-allocation {
       padding-bottom: 66px;
       padding-top: 95px;
     }
+    @include phablet {
+      padding-top: 120px;
+     }
   }
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
