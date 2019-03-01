@@ -557,7 +557,7 @@ export class InvestmentAccountFormError {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid others.',
-        errorMessage: 'Eenter Others'
+        errorMessage: 'Enter Others'
       }
     },
     earningsGenerated: {

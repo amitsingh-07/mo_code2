@@ -321,9 +321,7 @@ export class InvestmentAccountService {
     if (data.fullName) {
       this.investmentAccountFormData.fullName = data.fullName;
     }
-    if (data.firstName) {
-      this.investmentAccountFormData.firstName = data.firstName;
-    }
+    this.investmentAccountFormData.firstName = data.firstName ? data.firstName : '';
     if (data.lastName) {
       this.investmentAccountFormData.lastName = data.lastName;
     }

@@ -103,7 +103,7 @@
                     | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage
+                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage * 100)}}{{portfolio.totalReturnsPercentage * 100
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>
