@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -20,10 +20,12 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 })
 export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
+  education_plan_selection = false;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
   dependantsArray: any;
+  educationPreference = true;
   menuClickSubscription: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
@@ -64,6 +66,22 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     {
       name: 'Marie Ng',
     }];
+  }
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.checkDependant();
+  }
+
+  checkDependant() {
+
+    this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
+      let educationPreferenceAlert = true;
+      form.education_plan_selection === 'no' ? this.education_plan_selection = true : this.education_plan_selection = false;
+      form.dependant_list.forEach((dependant: any, index) => {
+        dependant.dependantSelection ? educationPreferenceAlert = false : educationPreferenceAlert = true;
+      });
+      this.educationPreference = educationPreferenceAlert;
+    });
   }
 
   buildEducationSelectionForm(dependantsArray) {

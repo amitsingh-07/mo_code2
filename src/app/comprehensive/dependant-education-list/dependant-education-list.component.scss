@@ -13,13 +13,17 @@ input[type='checkbox']:checked+label {
   
   position: relative;
   top: -6px;
+  color:#313644;
+  font-size: 18px;
+  font-weight: 600;
 }
 .sub-title {
   position: relative;
   top: -4px;
-
+  color:#8d9aa8;
   opacity: 0.7;
   font-size: 16px;
+  font-weight: normal;
   line-height: 21px;
 }
 }
@@ -31,9 +35,23 @@ input[type='checkbox']:checked+label {
   border-radius:5px;
 }
 .education-plan{
-  background: #f0ffff!important;
-  color:#005960 !important;
+  border-radius: 6px;
+  background-color: #f4fafb;
+  color:#2d8289;
+  font-size: 16px;
  
+}
+.comprehensive {
+  &.container-fluid {
+    padding-top: 120px;
+  }
+
+ 
+
+  .dependant-title {
+    font-size: 18px;
+    padding-bottom: 16px;
+  }
 }
 .with-help-icon{
     display:flex;
@@ -50,7 +68,8 @@ input[type='checkbox']:checked+label {
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        right: 0;
-        bottom: 13px;
+        right: -34px;
+        bottom: 49px;
+    
     }    
 }

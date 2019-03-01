@@ -24,6 +24,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
   educationPreferenceArray: any;
+  educationPreference = true;
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
@@ -58,6 +59,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
+
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();

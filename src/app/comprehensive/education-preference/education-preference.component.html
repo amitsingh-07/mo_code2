@@ -1,6 +1,6 @@
 <div class="container-fluid comprehensive max-width--1024 ">
   <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-    <app-step-indicator [count]="5" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
+    <app-step-indicator [count]="5" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
   </div>
   <header class="dependant-title mt40">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</header>
   <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
@@ -73,9 +73,9 @@
 
 
     </div>
-    <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
-      'LABEL.CONTINUE' |
-      translate}}</button>
+    <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary mb50 width100"
+    id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+  </button>
   </form>
 
 

@@ -1,7 +1,6 @@
 export interface IMyProfile {
     id: string;
     firstName: string;
-    lastName: string;
     dateOfBirth: any;
     nation: string;
     gender: string;
