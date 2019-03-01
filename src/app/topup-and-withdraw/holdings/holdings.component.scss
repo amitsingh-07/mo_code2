@@ -5,6 +5,9 @@ app-holdings {
     @include allmobiles{
       padding: 120px 0;
     }
+    @include phablet {
+      padding-top: 120px;
+     }
   }
   .form-group-with-bg {
     border-radius: 6px !important;

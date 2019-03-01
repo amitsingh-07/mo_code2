@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
   <form id="bankForm" name="bankForm" [formGroup]="bankForm">
     <div class="content">
       <!-- Account Holder Name -->
@@ -60,5 +60,5 @@
       </div>
     </div>
   </form>
+  <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
 </div>
-<button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
