@@ -149,7 +149,7 @@
   "TOPUP": {
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
-      "DESC": "Please wait while we submit the topup request"
+      "DESC": "Please wait"
     }
   }
 }
