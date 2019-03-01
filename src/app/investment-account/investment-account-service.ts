@@ -610,7 +610,13 @@ export class InvestmentAccountService {
       this.disableAttributes.push('gender');
     }
     if (data.birthcountry && data.birthcountry.countryDetails) {
-      this.investmentAccountFormData.birthCountry = data.birthcountry.countryDetails;
+      const countryDetails = {
+        id: data.birthcountry.countryDetails.id,
+        countryCode: data.birthcountry.countryDetails.countryCode,
+        name: data.birthcountry.countryDetails.country,
+        phoneCode: data.birthcountry.countryDetails.phoneCode
+      };
+      this.investmentAccountFormData.birthCountry = countryDetails;
       this.disableAttributes.push('birthCountry');
     }
   }
@@ -688,6 +694,9 @@ export class InvestmentAccountService {
     }
     if (emailAddressExist) {
       this.investmentAccountFormData.isMailingAddressSame = false;
+      this.disableAttributes.push('isMailingAddressSame');
+    } else {
+      this.investmentAccountFormData.isMailingAddressSame = true;
       this.disableAttributes.push('isMailingAddressSame');
     }
   }
