@@ -199,7 +199,9 @@
   "TRANSACTIONS": {
     "TITLE": "Transactions",
     "NO_TRANSACTION_HISTORY":"No Transaction History!",
-    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!"
+    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!",
+    "CASH_TOP_UP": "Cash Account Top Up",
+    "CASH_WITHDRAWAL": "Cash Account Withdrawal"
   },
   "HOLDINGS": {
     "TITLE": "Holdings",

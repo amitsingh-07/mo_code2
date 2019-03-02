@@ -72,6 +72,10 @@ app-transaction {
         &.buy {
           color: $transaction-panel-buy-color;
         }
+        &.cash {
+          color: $app-backgrnd-color;
+          text-transform: capitalize;
+        }
       }
       &--title--amount--sale {
         font-size: 16px;
