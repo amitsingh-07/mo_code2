@@ -131,7 +131,7 @@ export function tokenGetterFn() {
     TransactionModalComponent,
     FAQComponent,
     FundDetailsComponent,
-	SummaryModalComponent
+	SummaryModalComponent,
   ],
   imports: [
     BrowserModule,
