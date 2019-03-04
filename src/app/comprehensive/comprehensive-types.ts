@@ -95,3 +95,20 @@ export interface IMyEarnings {
    otherAnnualIncome: number;
 
 }
+
+export interface IMySpendings {
+   enquiryId: number;
+   monthlyLivingExpenses: number;
+   adHocExpenses: number;
+   HLMortgagePaymentUsingCPF: number;
+   HLMortgagePaymentUsingCash: number;
+   HLtypeOfHome: string;
+   homeLoanPayOffUntil: number;
+   mortgagePaymentUsingCPF: number;
+   mortgagePaymentUsingCash: number;
+   mortgageTypeOfHome: string;
+   mortgagePayOffUntil: number;
+   carLoanPayment: number;
+   otherLoanPayment: number;   
+   otherLoanPayoffUntil: number;
+}

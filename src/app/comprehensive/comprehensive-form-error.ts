@@ -127,7 +127,7 @@ export class ComprehensiveFormError {
             },
             monthlyRentalIncome: {
                 required: {
-                    errorTitle: 'Monthly Rental Income',
+                    errorTitle: 'Invalid Monthly Rental Income',
                     errorMessage: 'Monthly Rental Income'
                 }
             },
@@ -159,6 +159,103 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Other Annual Income',
                     errorMessage: 'Other Annual Income'
+                }
+            }
+
+        }
+    };
+    
+    mySpendingsForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the following details:',
+            monthlyLivingExpenses: {
+                required: {
+                    errorTitle: 'Invalid Monthly Living Expenses',
+                    errorMessage: 'Monthly Living Expenses'
+                }
+            },
+            adHocExpenses: {
+                required: {
+                    errorTitle: 'Invalid Yearly or Ad-Hoc Expenses',
+                    errorMessage: 'Other Yearly or Ad-Hoc Expenses'
+                }
+            },
+            HLMortgagePaymentUsingCPF: {
+                required: {
+                    errorTitle: 'Invalid Mortgage Payment using CPF',
+                    errorMessage: 'Mortgage Payment using CPF'
+                }
+            },
+            HLMortgagePaymentUsingCash: {
+                required: {
+                    errorTitle: 'Invalid Other Mortgage Payment using Cash',
+                    errorMessage: 'Other Mortgage Payment using Cash'
+                }
+            },
+            HLtypeOfHome: {
+                required: {
+                    errorTitle: 'Invalid Type of Home',
+                    errorMessage: 'Other Type of Home'
+                }
+            },
+            homeLoanPayOffUntil: {
+                required: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
+                },
+                pattern: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
+                }
+            },
+            mortgagePaymentUsingCPF: {
+                required: {
+                    errorTitle: 'Invalid Mortgage Payment using CPF',
+                    errorMessage: 'Mortgage Payment using CPF'
+                }
+            },
+            mortgagePaymentUsingCash: {
+                required: {
+                    errorTitle: 'Invalid Other Mortgage Payment using Cash',
+                    errorMessage: 'Other Mortgage Payment using Cash'
+                }
+            },
+            mortgageTypeOfHome: {
+                required: {
+                    errorTitle: 'Invalid Type of Home',
+                    errorMessage: 'Other Type of Home'
+                }
+            },
+            mortgagePayOffUntil: {
+                required: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
+                },
+                pattern: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
+                }
+            },
+            carLoanPayment: {
+                required: {
+                    errorTitle: 'Invalid Monthly Car Loan Payment',
+                    errorMessage: 'Monthly Car Loan Payment'
+                }
+            },
+            otherLoanPayment: {
+                required: {
+                    errorTitle: 'Invalid Monthly Other Loan Payment',
+                    errorMessage: 'Monthly Other Loan Payment'
+                }
+            },
+            otherLoanPayoffUntil: {
+                required: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
+                },
+                pattern: {
+                    errorTitle: 'Invalid To Pay Off',
+                    errorMessage: 'To Pay Off'
                 }
             }
 

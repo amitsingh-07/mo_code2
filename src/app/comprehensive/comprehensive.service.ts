@@ -8,7 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IChildEndowment } from './comprehensive-types';
+import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IChildEndowment,IMySpendings } from './comprehensive-types';
+
 
 @Injectable({
   providedIn: 'root'
@@ -115,6 +116,7 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myDependant = dependant;
     this.commit();
   }
+
   setEducationPlan(educationPlan: IEducationPlan) {
     this.comprehensiveFormData.hasEducationPlan = educationPlan;
     this.commit();
@@ -145,8 +147,21 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myEarnings;
   }
+  
   setMyEarnings(myEarningsData: IMyEarnings) {
     this.comprehensiveFormData.myEarnings = myEarningsData;
+    this.commit();
+  }
+
+   getMySpendings() {
+    if (!this.comprehensiveFormData.mySpendings) {
+      this.comprehensiveFormData.mySpendings = {} as IMySpendings;
+    }
+    return this.comprehensiveFormData.mySpendings;
+  }
+  
+  setMySpendings(mySpendingsData: IMySpendings) {
+    this.comprehensiveFormData.mySpendings = mySpendingsData;
     this.commit();
   }
 
@@ -172,6 +187,7 @@ export class ComprehensiveService {
 
     const controls = form.controls;
     const errors: any = {};
+    errors.errorMessages = [];    
     errors.errorMessages = [];
     errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
@@ -274,6 +290,12 @@ export class ComprehensiveService {
 
     return false;
   }
+  
+ openTooltipModal(toolTipParam) {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
+    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
+  }
 
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
@@ -283,6 +305,7 @@ export class ComprehensiveService {
         let thisValue: any = (formValues[i] + '').replace(Regexp, '');
         thisValue = parseInt(formValues[i], 10);
         if (!isNaN(thisValue)) {
+          if (inputParams.indexOf(i)>=0) {
           if (inputParams.indexOf(i) >= 0) {
             sum += thisValue !== 0 ? thisValue * 12 : 0;
           } else {
@@ -294,10 +317,6 @@ export class ComprehensiveService {
     return sum.toFixed();
   }
 
-  openTooltipModal(toolTipParam) {
-    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
-    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
-    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
-  }
+ 
 
 }
