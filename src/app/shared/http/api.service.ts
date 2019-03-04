@@ -834,4 +834,17 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  
+  getSpendings() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getSpendings)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveSpendings(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.saveSpendings, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

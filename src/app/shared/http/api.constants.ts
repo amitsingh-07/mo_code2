@@ -104,6 +104,8 @@ export let apiConstants = {
             addDependents: COMPREHENSIVE_API_BASE_URL + 'saveDependents',
             getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
             saveEarnings: COMPREHENSIVE_API_BASE_URL + 'saveEarnings',
+            getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
+            saveSpendings: COMPREHENSIVE_API_BASE_URL + 'saveExpenses'
         }
     }
 };
