@@ -26,5 +26,5 @@ export const RegexConstants = {
     NumericOnly: /^[0-9]*$/,
     SymbolAlphabets: /^[a-zA-Z\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
     AlphanumericWithSymbol: /^[a-zA-Z0-9\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
-    TenToFifteenNumbers: /^[1-9][0-9]{9,14}$/
+    TenToFifteenNumbers: /^[0-9]{10,15}$/
 };

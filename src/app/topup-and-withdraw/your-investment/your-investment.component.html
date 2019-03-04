@@ -95,14 +95,14 @@
             </div>
             <!-- zero portfolio -->
             <div class="form-group-with-bg--content">
-              <div class="flex-row">
-                <div class="flex-col-6">
+              <div class="flex-row align-items-end">
+                <div class="flex-col-8">
                   <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES'
                     | translate}}</div>
                   <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">{{portfolio.currentValue
                     | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-4">
                   <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage * 100)}}{{portfolio.totalReturnsPercentage * 100
                     | number : '1.0-2'}}%</div>
                 </div>
