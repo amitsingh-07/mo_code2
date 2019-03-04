@@ -16,10 +16,8 @@
                             <div class="history-type-transaction">
                               <span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--sale"
                                 *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW'">{{transaction.transactionType.name}}</span>
-                              <span [class.cash]="transaction.transactionType.name.toUpperCase() === 'FUNDING'" class="transaction-panel__history--details--title--sale"
-                                *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">{{ 'TRANSACTIONS.CASH_TOP_UP' | translate}}</span>
-                              <span [class.cash]="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'"
-                                class="transaction-panel__history--details--title--sale" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">{{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</span>
+                              <span *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">{{ 'TRANSACTIONS.CASH_TOP_UP' | translate}}</span>
+                              <span *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">{{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</span>
                               <span *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</span>
                             </div>
                           </div>
