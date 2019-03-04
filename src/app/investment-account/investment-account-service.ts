@@ -441,7 +441,7 @@ export class InvestmentAccountService {
         : data.empZipCode,
       addressLine1: data.empAddress1,
       addressLine2: data.empAddress2,
-      Floor: data.empFloor,
+      floor: data.empFloor,
       unitNumber: data.empUnitNo,
       townName: null, // todo not available in client
       city: data.empCity
