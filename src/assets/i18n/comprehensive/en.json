@@ -118,24 +118,39 @@
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
         "ADD_DIVIDENDS_TITLE": "Annual Dividends",
         "ADD_DIVIDENDS_MESSAGE": "Add up all the stock dividends you receive every year."
-
-
       }
     },
     "MY_SPENDINGS": {
+      "HEADER": "What You Spend",
+      "ABOUT": "When you spend, you draw from your income bucket.",
       "MONTHLY_LIVING_EXPENSES": "Monthly Living Expenses",
-      "MONTHLY_LIVING_EXPENSES_HINT": "e.g. food,utilites,rent",
+      "MONTHLY_LIVING_EXPENSES_HINT": "(e.g. food, utilities, rent)",
       "YEARLY_AD_HOC_EXPENSES": "Yearly or Ad-Hoc Expenses",
-      "YEARLY_AD_HOC_EXPENSES_HINT": "e.g Holidays",
+      "YEARLY_AD_HOC_EXPENSES_HINT": "(e.g. holidays)",
       "MONTHLY_HOME_LOAN_PAYMENT": "Monthly Home Loan Payment",
-      "MORTAGE_PAYMENT_CPF": "Mortage Payment Using CPF ",
-      "MORTAGE_PAYMENT_CASH": "Mortage Payment Using Cash",
+      "MORTAGE_PAYMENT_CPF": "Mortgage Payment using CPF",
+      "MORTAGE_PAYMENT_CASH": "Mortgage Payment using Cash",
       "HOME_TYPE": "Type of Home",
       "TO_PAY_OFF": "To Pay Off",
-      "ADD_OTHER_MORTAGE": "Add Other Mortage Repayment",
-      "OTHER_MORTAGE_PAYMENT": "Other Mortage Repayment",
-      "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car loan Payment",
-      "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Car Loan Payment"
+      "ADD_OTHER_MORTAGE": "Add Other Mortgage Repayment",
+      "OTHER_MORTAGE_PAYMENT": "Other Mortgage Repayment",
+      "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car Loan Payment",
+      "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Loan Payment",
+      "SPEND_TITLE1": "You spend ",
+      "SPEND_TITLE2": " per year",
+      "SPEND_DESC1": "There is ",      
+      "SPEND_DESC2": " left in your annual bucket",
+      "BUCKET_NOTE":"Your annual income bucket",
+      "TOOLTIP":{
+        "OTHER_LOAN_TITLE": "Other Loan Payments",
+        "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
+        "LIVING_EXPENSES_TITLE": "Living Expenses",
+        "LIVING_EXPENSES_MESSAGE": "These are monthly personal expenses plus your share of household expenses, excluding mortgage and loan repayments.",
+        "MORTAGE_PAYMENT_TITLE": "Mortgage Payment",
+        "MORTAGE_PAYMENT_MESSAGE": "This is your share of the monthly mortgage payment for investment/ other properties.",
+        "HOME_LOAN_TITLE": "Home Loan Payment",
+        "HOME_LOAN_MESSAGE": "This is your share of the monthly mortgage payment for the home you stay in."
+      }
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",
@@ -351,7 +366,8 @@
       "MY_PROFILE": "My Profile",
       "DEPENDANT_DETAIL": ["Dependant Details 1", "Dependant Details 2", "Dependant Details 3", "Dependant Details 4", "Dependant Details 5"],
       "MY_LIABILITIES": "MY LIABILITIES",
-	  "MY_EARNINGS": "Your Earnings"
+	    "MY_EARNINGS": "Your Earnings",
+	    "MY_SPENDINGS": "Your Spendings"
     }
   }
 }
