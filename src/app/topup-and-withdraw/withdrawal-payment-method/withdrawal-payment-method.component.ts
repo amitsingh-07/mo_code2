@@ -161,6 +161,12 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
+        } else {
+          this.showCustomErrorModal(
+            'Error!',
+            response.objectList.serverStatus.errors[0].msg + '('
+            + response.objectList.serverStatus.errors[0].code + ')'
+          );
         }
       },
         (err) => {
