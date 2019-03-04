@@ -35,7 +35,7 @@
         "FORM": {
             "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
             "EDIT_NUMBER": "Edit Number",
-            "DIDNT_RECIEVE": "Didn't Recieve it?",
+            "DIDNT_RECIEVE": "Didn't Receive it?",
             "REQUEST_NEW_CODE": "Request New Code",
             "CODE_SENT": "Code sent!",
             "RETRY_IN": "Retry in",
