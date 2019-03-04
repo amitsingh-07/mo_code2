@@ -31,7 +31,7 @@ export class AddBankModalComponent implements OnInit {
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [
         Validators.required,
-        Validators.pattern(RegexConstants.NumericOnly)
+        Validators.pattern(RegexConstants.TenToFifteenNumbers)
       ])
     });
   }

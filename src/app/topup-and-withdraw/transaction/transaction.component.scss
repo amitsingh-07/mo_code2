@@ -42,7 +42,7 @@ app-transaction {
         font-size: 14px;
         letter-spacing: -0.1px;
         text-align: center;
-        background-color: $transaction-desc-bg-color;
+        background-color: $transaction-date-bg-color;
         padding: 10px;
         color: $app-backgrnd-color;
       }
@@ -53,10 +53,14 @@ app-transaction {
         font-family: $muli-semi-bold;
         padding: 20px;
         border-bottom: 1px solid $bond-container-bg;
-
+        line-height: 23px;
+        letter-spacing: -0.34px;
         .history-type-transaction {
-          padding-left:45px;
-          position:relative;
+          min-width: 235px;
+        }
+        .fa-chevron-down,.fa-chevron-up{
+         font-size: 13px;
+          padding-left:17px;
         }
       }
       &--title--sale {
@@ -64,22 +68,14 @@ app-transaction {
         color: $red-color;
         text-transform: uppercase;
         margin-right: 10px;
-
-        position:absolute;
-        display:block;
-        left:0px;
-        top:4px;
+        line-height: normal;
+        letter-spacing: -0.26px;
         &.buy {
           color: $transaction-panel-buy-color;
-        }
-        &.cash {
-          color: $app-backgrnd-color;
-          text-transform: capitalize;
         }
       }
       &--title--amount--sale {
         font-size: 16px;
-        margin-right: 20px;
         font-family: $muli-regular;
         color: $text-color-secondary;
         &.buy {
