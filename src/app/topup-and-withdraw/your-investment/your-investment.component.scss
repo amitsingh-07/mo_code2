@@ -243,6 +243,9 @@ app-your-investment {
   }
   .form-group-with-bg--content {
     padding: 20px 28px 16px 27px !important;
+    .flex-row {
+      align-items: flex-start;
+    }
     &.your_portfolio_value_content {
       padding: 0 0 10px !important;
       font-family: $muli-regular;
