@@ -63,7 +63,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.userInfo = this.signUpService.getUserProfileInfo();
-    this.fullName = this.userInfo.firstName ? this.userInfo.firstName + ' ' + this.userInfo.lastName : this.userInfo.lastName;
+    this.fullName = this.userInfo.fullName;
   }
 
   getLookupList() {
