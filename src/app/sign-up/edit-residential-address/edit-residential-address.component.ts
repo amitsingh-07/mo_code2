@@ -113,7 +113,7 @@ buildForm(): FormGroup {
       this.addressForm.addControl('postalCode', new FormControl({
         value: this.formValues.postalCode, disabled: this.investmentAccountService.isDisabled('postalCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       this.addressForm.addControl('floor', new FormControl({
         value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')
       }, Validators.required));
@@ -132,7 +132,7 @@ buildForm(): FormGroup {
       this.addressForm.addControl('zipCode', new FormControl({
         value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
 
       this.addressForm.removeControl('postalCode');
       this.addressForm.removeControl('floor');
@@ -175,7 +175,7 @@ buildForm(): FormGroup {
       mailFormGroup.addControl('mailPostalCode', new FormControl({
         value: this.formValues.mailPostalCode,
         disabled: this.investmentAccountService.isDisabled('mailPostalCode')
-      }, Validators.required));
+      },  [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       mailFormGroup.addControl('mailFloor', new FormControl({
         value: this.formValues.mailFloor,
         disabled: this.investmentAccountService.isDisabled('mailFloor')
@@ -200,7 +200,7 @@ buildForm(): FormGroup {
       mailFormGroup.addControl('mailZipCode', new FormControl({
         value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
 
       mailFormGroup.removeControl('mailPostalCode');
       mailFormGroup.removeControl('mailFloor');

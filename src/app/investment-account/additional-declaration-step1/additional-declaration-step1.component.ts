@@ -142,7 +142,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
         'pepZipCode',
         new FormControl(this.addInfoFormValues.pepZipCode, [
           Validators.required,
-          Validators.pattern(RegexConstants.Alphanumeric)
+          Validators.pattern(RegexConstants.NumericOnly)
         ])
       );
 
