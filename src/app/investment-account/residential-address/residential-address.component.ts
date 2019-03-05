@@ -136,7 +136,7 @@ export class ResidentialAddressComponent implements OnInit {
             value: this.formValues.postalCode,
             disabled: this.investmentAccountService.isDisabled('postalCode')
           },
-          [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
         )
       );
       this.addressForm.addControl(
@@ -185,7 +185,7 @@ export class ResidentialAddressComponent implements OnInit {
             value: this.formValues.zipCode,
             disabled: this.investmentAccountService.isDisabled('zipCode')
           },
-          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
         )
       );
 
@@ -283,7 +283,7 @@ export class ResidentialAddressComponent implements OnInit {
             value: this.formValues.mailPostalCode,
             disabled: this.investmentAccountService.isDisabled('mailPostalCode')
           },
-          [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
         )
       );
       mailFormGroup.addControl(
@@ -338,7 +338,7 @@ export class ResidentialAddressComponent implements OnInit {
             value: this.formValues.mailZipCode,
             disabled: this.investmentAccountService.isDisabled('mailZipCode')
           },
-          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
         )
       );
 
