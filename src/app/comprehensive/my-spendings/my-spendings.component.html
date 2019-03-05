@@ -1,14 +1,31 @@
-<div class="container-fluid max-width--1024 ">
-  <header>{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</header>
-  <article class="py-2">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</article>
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="5" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
+    </div> 
+  <div class="dependant-title mt40">{{'CMP.MY_SPENDINGS.HEADER'|translate}}</div>
+  <div class="dependant-desc">{{'CMP.MY_SPENDINGS.ABOUT'|translate}}</div>
+  <div class = 'text-center'> 
+    <span class="{{ (totalSpending > 0)?'filledSpend':'emptySpend' }}"></span> 
+    <p>{{'CMP.MY_SPENDINGS.SPEND_TITLE1'|translate}} <b>{{ totalSpending | currency:'USD':'symbol-narrow':'1.0-2' }} </b>{{'CMP.MY_SPENDINGS.SPEND_TITLE2'|translate}} </p>  
+    <p>{{'CMP.MY_SPENDINGS.SPEND_DESC1'|translate}} {{ calculatedSpending | currency:'USD':'symbol-narrow':'1.0-2' }} {{'CMP.MY_SPENDINGS.SPEND_DESC2'|translate}} </p>
+  </div>
   <form [formGroup]="mySpendingsForm" id="mySpendingsForm" name="mySpendingsForm" class="mySpendingsForm">
-    <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES'|translate}}</b>
-        <br>
-        <span>({{'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES_HINT'|translate}})</span>
-      </p>
-      <div class="earnings-field ">
-        <div class="flex-row p-2 ">
+    <section class="spendings-section  mb-3  pt-2">
+        <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{
+            'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES' | translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('LIVING_EXPENSES_TITLE','LIVING_EXPENSES_MESSAGE')"></span>
+          </div>
+          <p class='income-modal-notes flex-col-12 p-1'>{{
+            'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES_HINT' | translate}}</p>
+        </div>
+        </div>
+
+       
+      <div class="spendings-field p-2">
+        <div class="flex-row ">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
@@ -18,7 +35,7 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary"
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlyLivingExpenses formControlName="monthlyLivingExpenses"
                 value="0">
 
             </div>
@@ -26,13 +43,18 @@
         </div>
       </div>
     </section>
-    <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES'|translate}}</b>
-        <br>
-        <span>({{'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES_HINT'|translate}})</span>
-      </p>
-      <div class="earnings-field ">
-        <div class="flex-row p-2">
+    <section class="spendings-section pt-2 mb-3">      
+       <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{
+            'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES' | translate}}</b>
+          </div>
+          <p class='income-modal-notes flex-col-12 p-1'>{{
+            'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES_HINT' | translate}}</p>
+        </div>
+        </div>
+      <div class="spendings-field p-2">
+        <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
@@ -42,7 +64,7 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualBonus formControlName="annualBonus"
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #adHocExpenses formControlName="adHocExpenses"
                 value="0">
 
             </div>
@@ -51,9 +73,17 @@
       </div>
     </section>
 
-    <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'CMP.MY_SPENDINGS.MONTHLY_HOME_LOAN_PAYMENT'|translate}}</b></p>
-      <div class="earnings-field p-2">
+    <section class="spendings-section pt-2 mb-3">
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{
+            'CMP.MY_SPENDINGS.MONTHLY_HOME_LOAN_PAYMENT' | translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('HOME_LOAN_TITLE','HOME_LOAN_MESSAGE')"></span>
+          </div>         
+        </div>
+        </div>
+      <div class="spendings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
@@ -64,7 +94,7 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome"
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #HLMortgagePaymentUsingCPF formControlName="HLMortgagePaymentUsingCPF"
                 value="0">
 
             </div>
@@ -81,38 +111,35 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome"
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #HLMortgagePaymentUsingCash formControlName="HLMortgagePaymentUsingCash"
                 value="0">
 
             </div>
           </div>
 
-          <div class="flex-row ">
-            <div class="pl0 col-5">
-              <label for="gender" id="myProfileFormLbl2">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}</label>
-            </div>
-            <div class="flex-col-7 profile-form-grp">
-              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="HomeType">
-                <div class="flex-row section pl0 pr0 mb0">
-                  <div class="flex-col-6">
-                    <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfileForm.HomeType.invalid}"
-                      id="myProfileFormLbl3">
-                      <input ngbButton type="radio" value="male" id="myProfileFormInpt3"> {{ 'CMP.FORM_LABEL.HDB' |
-                      translate}}
-                    </label>
-                  </div>
-                  <div class="flex-col-6">
-                    <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfileForm.HomeType.invalid}"
-                      id="myProfileFormLbl4">
-                      <input ngbButton type="radio" value="female" id="myProfileFormInpt4"> {{ 'CMP.FORM_LABEL.PRIVATE' |
-                      translate}}
-                    </label>
-                  </div>
+        </div>
+
+         <div class="flex-row">
+          <div class="pl0 flex-col-5">
+            <label for="gender">{{'CMP.MY_SPENDINGS.HOME_TYPE'|translate}}</label>
+          </div>
+          <div class="pr0  flex-col-7">
+            <div class="btn-group--toggle"  ngbRadioGroup name="HLtypeOfHome" formControlName="HLtypeOfHome">
+              <div class="flex-row mb0">
+                <div class="flex-col-6" style="width: 50% !important;">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" >
+                    <input id="HLtypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
+                  </label>
+                </div>
+                <div class="flex-col-6" style="width: 50% !important;">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" >
+                    <input id="HLtypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
+                    translate}}
+                  </label>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="flex-row">
@@ -123,21 +150,34 @@
             </label>
           </div>
           <div class="p10 flex-col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.controls.name.invalid}" id="myProfileFormInpt3"
-              class="form-control" #name formControlName="annualBonus">
+            <input type="text"  id="myProfileFormInpt3"  appNumberOnly maxLength="4" 
+              class="form-control" #homeLoanPayOffUntil formControlName="homeLoanPayOffUntil">
           </div>
         </div>
-        <p class="p-2 mt-2" [hidden]="!otherMortage" (click)="addOtherMortage()">{{'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE'|translate}} </p>
-        
-        <section [hidden]="otherMortage">
-          <div class="p-2">
-            <div class="text-left float-left"><b>{{'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT'|translate}}</b>
+       
+        <div class="flex-row otherMortage" [hidden]="!otherMortage" >
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><u (click)="addOtherMortage()">{{
+            'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u>
+
+            <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
+          </div>         
+        </div>
+        </div>
+        <section [hidden]="otherMortage" class='otherMortage'>          
+
+          <div class="flex-row" [hidden]="otherMortage" >
+            <div class="flex-col-12">
+              <div class="with-help-icon p-2" for="name"><b>{{
+                'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>
+
+                <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
+                <span class="delete-icon" (click)="addOtherMortage()"> </span>
+              </div>         
             </div>
-           <div class="text-right" (click)="addOtherMortage()">   <i class="text-right fa fa-trash"></i></div>
-            
-          </div>
+            </div>
          
-          <div class="earnings-field p-2">
+          <div class="spendings-field p-2">
             <div class="flex-row">
               <div class="pl0 col-5">
                 <label for="name" id="myDependantFormLb1">
@@ -148,7 +188,7 @@
               <div class="pr0 flex-col-7">
                 <div class="form-control form-control-right">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome"
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #mortgagePaymentUsingCPF formControlName="mortgagePaymentUsingCPF"
                     value="0">
 
                 </div>
@@ -165,40 +205,36 @@
               <div class="pr0 flex-col-7">
                 <div class="form-control form-control-right">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome"
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
                     value="0">
 
                 </div>
               </div>
 
-              <div class="flex-row ">
-                <div class="pl0 col-5">
-                  <label for="gender" id="myProfileFormLbl2">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}</label>
-                </div>
-                <div class="flex-col-7 profile-form-grp">
-                  <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="HomeType">
-                    <div class="flex-row section pl0 pr0 mb0">
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="profile-form-btn--radio btn " [ngClass]="{'inline-error': submitted && myProfileForm.HomeType.invalid}"
-                          id="myProfileFormLbl3">
-                          <input ngbButton type="radio" value="male" id="myProfileFormInpt3"> {{ 'CMP.FORM_LABEL.HDB' |
-                          translate}}
-                        </label>
-                      </div>
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="profile-form-btn--radio btn female" [ngClass]="{'inline-error': submitted && myProfileForm.HomeType.invalid}"
-                          id="myProfileFormLbl4">
-                          <input ngbButton type="radio" value="female" id="myProfileFormInpt4"> {{ 'CMP.FORM_LABEL.PRIVATE'
-                          |
-                          translate}}
-                        </label>
+            </div>
+
+            <div class="flex-row">
+                  <div class="pl0 flex-col-5">
+                    <label for="gender">{{'CMP.MY_SPENDINGS.HOME_TYPE'|translate}}</label>
+                  </div>
+                  <div class="pr0  flex-col-7">
+                    <div class="btn-group--toggle"  ngbRadioGroup name="mortgageTypeOfHome" formControlName="mortgageTypeOfHome">
+                      <div class="flex-row mb0">
+                        <div class="flex-col-6" style="width: 50% !important;">
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" >
+                            <input id="mortgageTypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
+                          </label>
+                        </div>
+                        <div class="flex-col-6" style="width: 50% !important;">
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" >
+                            <input id="mortgageTypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
+                            translate}}
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-            </div>
 
             <div class="flex-row">
               <div class="pl0 col-5">
@@ -208,17 +244,17 @@
                 </label>
               </div>
               <div class="p10 flex-col-7">
-                <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.controls.name.invalid}" id="myProfileFormInpt3"
-                  class="form-control" #name formControlName="annualBonus">
+                <input type="text" [ngClass]="{'inline-error': submitted && mySpendingsForm.controls.mortgagePayOffUntil.invalid}" id="myProfileFormInpt3"
+                  class="form-control"  appNumberOnly maxLength="4" #mortgagePayOffUntil formControlName="mortgagePayOffUntil">
               </div>
             </div>
           </div>
         </section>
       </div>
     </section>
-    <section class="earnings-section pt-2 mb-3">
+    <section class="spendings-section pt-2 mb-3">
       <p class="p-2"><b>{{'CMP.MY_SPENDINGS.MONTHLY_CAR_LOAN_PAYMENT'|translate}}</b></p>
-      <div class="earnings-field p-2">
+      <div class="spendings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
@@ -229,7 +265,7 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome"
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #carLoanPayment formControlName="carLoanPayment"
                 value="0">
 
             </div>
@@ -237,9 +273,17 @@
         </div>
       </div>
     </section>
-    <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'CMP.MY_SPENDINGS.MONTHLY_OTHER_CAR_LOAN_PAYMENT'|translate}}</b></p>
-      <div class="earnings-field p-2">
+    <section class="spendings-section pt-2 mb-3">      
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{
+            'CMP.MY_SPENDINGS.MONTHLY_OTHER_CAR_LOAN_PAYMENT' | translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></span>
+          </div>         
+        </div>
+        </div>
+      <div class="spendings-field p-2">
         <div class="flex-row">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
@@ -250,8 +294,8 @@
           <div class="pr0 flex-col-7">
             <div class="form-control form-control-right">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyIncome
-                formControlName="otherMonthlyIncome" value="0">
+              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherLoanPayment
+                formControlName="otherLoanPayment" value="0">
 
             </div>
           </div>
@@ -264,19 +308,27 @@
             </label>
           </div>
           <div class="pr0 flex-col-7">
-            <input type="text" [ngClass]="{'inline-error': submitted && myProfileForm.controls.name.invalid}" id="myProfileFormInpt3"
-              class="form-control" #name formControlName="annualBonus">
+            <input type="text" [ngClass]="{'inline-error': submitted && mySpendingsForm.controls.otherLoanPayoffUntil.invalid}" id="myProfileFormInpt3"
+              class="form-control" #otherLoanPayoffUntil appNumberOnly maxLength="4" formControlName="otherLoanPayoffUntil">
           </div>
         </div>
       </div>
-
+      
     </section>
-
-
-    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+    <div class="flex-row pt-2 mb-3 mt-3">
+      <div class="flex-col-12">
+      <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">{{
+      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
+      translate}}</button>
+      </div>
+  </div>
+  <div class='p-50'> 
+    <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
       'LABEL.CONTINUE' |
       translate}}</button>
+      </div>
   </form>
+  <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
 
 
 

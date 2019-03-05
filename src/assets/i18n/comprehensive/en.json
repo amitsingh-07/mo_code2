@@ -82,17 +82,22 @@
     },
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
-      "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
+      "ABOUT": "Every month, you fill your bucket as you bring home an income!",
       "BUCKET_TITLE": "Your Annual Income Bucket",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
+      "ANNUAL_BONUS_DESC":"Bonuses, dividends and other income you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
-      "OTHER_WORK_INCOME": "Other Work Income",
+      "OTHER_WORK_INCOME": "Other Monthly Work Income",
+      "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
       "OTHER_MONTHLY_INCOME": "Other Monthly Income",
       "ANNUAL_DIVIDENDS": "Annual Dividends",
       "OTHER_ANNUAL_INCOME": "Other Annual Income",
       "ADD_MONTHLY_INCOME": "Add other monthly income",
+      "ADD_MONTHLY_INCOME_NOTE":"You have added all types of annual income",
       "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+      "ADD_DIVIDENDS_NOTE":"You have added all types of annual income",
+      "BUCKET_NOTE":"Your annual income bucket",
       "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
@@ -101,23 +106,51 @@
           "text": "Self-Employed",
           "value": "selfEmployed"
         }
-      ]
-
+      ],
+      "EMPTY_BUCKET_IMAGE":"empty-earnings-bucket.png",
+      "FILLED_BUCKET_IMAGE":"filled-earnings-bucket.png",
+      "TOOLTIP":{
+        "MONTHLY_SALARY_TITLE": "Monthly Salary",
+        "MONTHLY_SALARY_MESSAGE": "Your total monthly gross salary, including the portion that goes into your CPF.",
+        "ANNUAL_BONUS_TITLE": "Annual Bonuses",
+        "ANNUAL_BONUS_MESSAGE": "Annual bonuses include 13th month payments, performance bonuses and other additional payments you expect to receive from work outside of the regular monthly paycheck.",
+        "ADD_MONTHLY_INCOME_TITLE": "Other Monthly Income",
+        "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
+        "ADD_DIVIDENDS_TITLE": "Annual Dividends",
+        "ADD_DIVIDENDS_MESSAGE": "Add up all the stock dividends you receive every year."
+      }
     },
     "MY_SPENDINGS": {
+      "HEADER": "What You Spend",
+      "ABOUT": "When you spend, you draw from your income bucket.",
       "MONTHLY_LIVING_EXPENSES": "Monthly Living Expenses",
-      "MONTHLY_LIVING_EXPENSES_HINT": "e.g. food,utilites,rent",
+      "MONTHLY_LIVING_EXPENSES_HINT": "(e.g. food, utilities, rent)",
       "YEARLY_AD_HOC_EXPENSES": "Yearly or Ad-Hoc Expenses",
-      "YEARLY_AD_HOC_EXPENSES_HINT": "e.g Holidays",
+      "YEARLY_AD_HOC_EXPENSES_HINT": "(e.g. holidays)",
       "MONTHLY_HOME_LOAN_PAYMENT": "Monthly Home Loan Payment",
-      "MORTAGE_PAYMENT_CPF": "Mortage Payment Using CPF ",
-      "MORTAGE_PAYMENT_CASH": "Mortage Payment Using Cash",
+      "MORTAGE_PAYMENT_CPF": "Mortgage Payment using CPF",
+      "MORTAGE_PAYMENT_CASH": "Mortgage Payment using Cash",
       "HOME_TYPE": "Type of Home",
       "TO_PAY_OFF": "To Pay Off",
-      "ADD_OTHER_MORTAGE": "Add Other Mortage Repayment",
-      "OTHER_MORTAGE_PAYMENT": "Other Mortage Repayment",
-      "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car loan Payment",
-      "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Car Loan Payment"
+      "ADD_OTHER_MORTAGE": "Add Other Mortgage Repayment",
+      "OTHER_MORTAGE_PAYMENT": "Other Mortgage Repayment",
+      "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car Loan Payment",
+      "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Loan Payment",
+      "SPEND_TITLE1": "You spend ",
+      "SPEND_TITLE2": " per year",
+      "SPEND_DESC1": "There is ",      
+      "SPEND_DESC2": " left in your annual bucket",
+      "BUCKET_NOTE":"Your annual income bucket",
+      "TOOLTIP":{
+        "OTHER_LOAN_TITLE": "Other Loan Payments",
+        "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
+        "LIVING_EXPENSES_TITLE": "Living Expenses",
+        "LIVING_EXPENSES_MESSAGE": "These are monthly personal expenses plus your share of household expenses, excluding mortgage and loan repayments.",
+        "MORTAGE_PAYMENT_TITLE": "Mortgage Payment",
+        "MORTAGE_PAYMENT_MESSAGE": "This is your share of the monthly mortgage payment for investment/ other properties.",
+        "HOME_LOAN_TITLE": "Home Loan Payment",
+        "HOME_LOAN_MESSAGE": "This is your share of the monthly mortgage payment for the home you stay in."
+      }
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",
@@ -168,30 +201,7 @@
       "PAID_BY_CPF": "Paid By CPF",
       "MONTH": "mth"
     },
-    "MY_ASSETS": {
-      "TITLE": "What You Own",
-      "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
-      "ASSETS_BUCKETS": "Your Assets Buckets",
-      "TOTAL": "in total",
-      "CASH": "Cash",
-      "CASH_IN_BANK": "Cash in bank",
-      "SINGAPORE_SAVING_BONDS": "Singapore Saving Bonds",
-      "YOUR_CPF": "Your CPF",
-      "CPF_OA": "CPF Ordinary Account (OA)",
-      "CPF_SA": "CPF Special Account (SA)",
-      "CPF_MA": "CPF Medisave Account (MA)",
-      "YOUR_HOME": "Your Home",
-      "MARKET_VALUE": "At Market Value",
-      "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
-      "INVESTMENT_PROPERTIES": "Investment Properties",
-      "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of Investment",
-      "OTHERS": "Others",
-      "OTHER_INVESTMENT": "Other Investments",
-      "ADD_INVESTMENT": "Add other Investment",
-      "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "eg. jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
         },
@@ -215,8 +225,33 @@
           "text": "Others",
           "value": "others"
         }
-      ]
+      ],
+    "MY_ASSETS": {
+      "TITLE": "What You Own",
+      "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
+      "ASSETS_BUCKETS": "Your Assets Buckets",
+      "TOTAL": "in total",
+      "CASH": "Cash",
+      "CASH_IN_BANK": "Cash in bank",
+      "SINGAPORE_SAVING_BONDS": "Singapore Saving Bonds",
+      "YOUR_CPF": "Your CPF",
+      "CPF_OA": "CPF Ordinary Account (OA)",
+      "CPF_SA": "CPF Special Account (SA)",
+      "CPF_MA": "CPF Medisave Account (MA)",
+      "YOUR_HOME": "Your Home",
+      "MARKET_VALUE": "At Market Value",
+      "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
+      "INVESTMENT_PROPERTIES": "Investment Properties",
+      "INVESTMENTS": "Investments",
+      "INVESTMENT_TYPE": "Type of Investment",
+      "OTHERS": "Others",
+      "OTHER_INVESTMENT": "Other Investments",
+      "ADD_INVESTMENT": "Add other Investment",
+      "OTHER_ASSETS": "Other Assets",
+      "OTHER_ASSETS_HINT": "eg. jewellery"
     },
+    "LOCATION_LIST":[ "Singapore","USA", "United Kingdom", "Australia"],
+    "COURSE_LIST":["Medicine","Non-Medicine"],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
@@ -331,8 +366,10 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": ["Dependant Details 1", "Dependant Details 2", "Dependant Details 3", "Dependant Details 4", "Dependant Details 5"],
-      "MY_LIABILITIES": "MY LIABILITIES"
+      "DEPENDANT_DETAIL": [{"name":"Dependant Details 1"}, {"name":"Dependant Details 2"},{"name":"Dependant Details 3"}, {"name":"Dependant Details 4"},{"name":"Dependant Details 5"}],
+      "MY_LIABILITIES": "MY LIABILITIES",
+	    "MY_EARNINGS": "Your Earnings",
+	    "MY_SPENDINGS": "Your Spendings"
     }
   }
 }

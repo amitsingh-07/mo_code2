@@ -16,9 +16,8 @@ export const COMPREHENSIVE_ROUTES = {
     MY_ASSETS: 'my-assets',
     MY_LIABILITIES: 'my-liabilities',
     BAD_MOOD_FUND: 'bad-mood-fund',
-    FIRST_REPORT:'first-report',
-    PROGRESS_TRACKER:'progress-tracker',
-
+    FIRST_REPORT: 'first-report',
+    PROGRESS_TRACKER: 'progress-tracker',
 };
 
 export const COMPREHENSIVE_ROUTE_PATHS = {

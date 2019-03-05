@@ -1,11 +1,81 @@
 @import '../../../variables';
 @import '../../../mixins';
-.earnings-section {
+.spendings-section {
     background:$white-color;
     color:$black-color;
     border-radius: 5px;
 }
-.earnings-field{
-background: $light-aqua-color;
+.spendings-field{
+background: $bond-container-bg;
 color: $dark-teal-color;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .help-icon {
+      
+        background: url("/assets/images/tool-help-icon.png") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }    
+}
+.delete-icon {      
+        background: url("/assets/images/delete-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: -29px;        
+        bottom: 13px;
+    } 
+.otherMortage .help-icon{
+    right: 10px;
+}
+.emptySpend{
+    background: url("../../../assets/images/empty-expenses.png") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.filledSpend{
+    background: url("../../../assets/images/filled-expenses.png") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .dependant-title {
+        font-size: 18px;
+        margin-bottom: 16px;        
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+    .spendings-field .btn-outline-primary{
+        color:$teal-color;
+    }
+}
+.p-50{
+    padding:50px;
+}
+.spendings-section .flex-row{
+    padding:5px!important;
+}
+.otherMortage{
+    border-top:1px solid rgba(134, 205, 206, 0.3);
+    margin-top:10px;
 }

@@ -18,8 +18,8 @@ import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
-import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
+import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 
 const routes: Routes = [
   {

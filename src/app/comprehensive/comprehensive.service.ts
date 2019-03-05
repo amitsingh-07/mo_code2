@@ -4,11 +4,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
+import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { IMyDependant, IMyLiabilities, IMyProfile, HospitalPlan } from './comprehensive-types';
-import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, 
+  IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,24 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myDependant;
   }
+  getEducationPlan() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
+    }
+    return this.comprehensiveFormData.hasEducationPlan;
+  }
+  getEducationPreference() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.educationPreference = [] as IEPreference[];
+    }
+    return this.comprehensiveFormData.educationPreference;
+  }
+  getChildEndowment() {
+    if (!this.comprehensiveFormData.hasEducationPlan) {
+      this.comprehensiveFormData.childEndowment = [] as IChildEndowment[];
+    }
+    return this.comprehensiveFormData.childEndowment;
+  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
@@ -98,6 +117,18 @@ export class ComprehensiveService {
     this.commit();
   }
 
+  setEducationPlan(educationPlan: IEducationPlan) {
+    this.comprehensiveFormData.hasEducationPlan = educationPlan;
+    this.commit();
+  }
+  setEducationPreference(educationPreference: IEPreference[]) {
+    this.comprehensiveFormData.educationPreference = educationPreference;
+    this.commit();
+  }
+  setChildEndowment(childEndowment: IChildEndowment[]) {
+    this.comprehensiveFormData.childEndowment = childEndowment;
+    this.commit();
+  }
   getMyLiabilities() {
     if (!this.comprehensiveFormData.myLiabilities) {
       this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
@@ -109,6 +140,31 @@ export class ComprehensiveService {
     this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
     this.commit();
   }
+
+  getMyEarnings() {
+    if (!this.comprehensiveFormData.myEarnings) {
+      this.comprehensiveFormData.myEarnings = {} as IMyEarnings;
+    }
+    return this.comprehensiveFormData.myEarnings;
+  }
+
+  setMyEarnings(myEarningsData: IMyEarnings) {
+    this.comprehensiveFormData.myEarnings = myEarningsData;
+    this.commit();
+  }
+
+   getMySpendings() {
+    if (!this.comprehensiveFormData.mySpendings) {
+      this.comprehensiveFormData.mySpendings = {} as IMySpendings;
+    }
+    return this.comprehensiveFormData.mySpendings;
+  }
+
+  setMySpendings(mySpendingsData: IMySpendings) {
+    this.comprehensiveFormData.mySpendings = mySpendingsData;
+    this.commit();
+  }
+
   getStartingPage() {
     return this.comprehensiveFormData.startingPage;
   }
@@ -131,6 +187,7 @@ export class ComprehensiveService {
 
     const controls = form.controls;
     const errors: any = {};
+    errors.errorMessages = [];    
     errors.errorMessages = [];
     errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
@@ -174,21 +231,26 @@ export class ComprehensiveService {
     return errors;
   }
 
-  openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
+  openErrorModal(title: string, message: any, isMultipleForm: boolean, formName?: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
       ref.componentInstance.formName = formName;
+
       ref.componentInstance.errorMessageList = message;
     } else {
+      message.forEach((element: any, index) => {
+        message[index]['formName'] = element.formName.name;
+      });
       ref.componentInstance.multipleFormErrors = message;
+
     }
     return false;
   }
 
   openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
-                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
-                   childrenEducationNonDependantModal, summaryModalDetails) {
+    insurancePlanningNonDependantModal, childrenEducationDependantModal,
+    childrenEducationNonDependantModal, summaryModalDetails) {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
@@ -233,30 +295,32 @@ export class ComprehensiveService {
 
     return false;
   }
-
-  additionOfCurrency(formValues) {
-    let sum: any = 0;
-    for (const i in formValues) {
-      if (formValues[i] !== null && formValues[i] !== '') {
-        const Regexp = new RegExp('[,]', 'g');
-        let thisValue: any = (formValues[i] + '').replace(Regexp, '');
-        thisValue = parseInt(formValues[i], 10);
-        if (!isNaN(thisValue)) {
-          if (i === 'annualBonus') {
-            sum += thisValue !== 0 ? thisValue / 12 : 0;
-          } else {
-            sum += parseInt(thisValue, 10);
-          }
-        }
-      }
-    }
-    return sum.toFixed();
-  }
-
-  openTooltipModal(toolTipParam) {
+  
+ openTooltipModal(toolTipParam) {
     const ref = this.modal.open(ToolTipModalComponent, { centered: true });
     ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
     ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
   }
 
+  additionOfCurrency(formValues, inputParams = []) {
+    let sum: any = 0;
+        for (const i in formValues) {
+          if (formValues[i] !== null && formValues[i] !== '') {
+            const Regexp = new RegExp('[,]', 'g');
+            let thisValue: any = (formValues[i] + '').replace(Regexp, '');
+            thisValue = parseInt(formValues[i], 10);
+            if (!isNaN(thisValue)) {
+              if (inputParams.indexOf(i)>=0) {
+              if (inputParams.indexOf(i) >= 0) {
+                sum += thisValue !== 0 ? thisValue * 12 : 0;
+              } else {
+                sum += parseInt(thisValue, 10);
+              }
+            }
+          }
+        }
+        return sum.toFixed();
+      }
+  }
+  
 }

@@ -7,15 +7,15 @@
     <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_yes" name="education_plan_selection" formControlName="education_plan_selection"
+          <input id="dependant_selection_yes" name="educationSelection" formControlName="educationSelection"
             type="radio" value="dependant_yes_plan" class="field radio">
           <label for="dependant_selection_yes">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_yes_plan'" class="p-0 pt-2 mt-2 dependantSection">
+          <section *ngIf="dependantEducationSelectionForm.get('educationSelection').value === 'dependant_yes_plan'" class="p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
-            <div formArrayName="dependant_list" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependant_list.controls; let i = index;">
+            <div formArrayName="dependantList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependantList.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
 
@@ -32,20 +32,20 @@
               </div>
             
             </div>
-            <p class="pl-2 error-child-msg" >Please select at least one child.</p>
+            <p [hidden]="!educationPreference" class="pl-2 error-child-msg" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_no_list" name="education_plan_selection" formControlName="education_plan_selection"
+          <input id="dependant_selection_no_list" name="educationSelection" formControlName="educationSelection"
             type="radio" value="dependant_no_plan" class="field radio">
           <label for="dependant_selection_no_list">
             <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('education_plan_selection').value === 'dependant_no_plan'" class=" p-0 pt-2 mt-2 dependantSection">
+          <section *ngIf="dependantEducationSelectionForm.get('educationSelection').value === 'dependant_no_plan'" class=" p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
-            <div formArrayName="dependant_list" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependant_list.controls; let i = index;">
+            <div formArrayName="dependantList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependantList.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
 
@@ -61,12 +61,12 @@
                 </div>
               </div>
             </div>
-            <p class="pl-2 error-child-msg" >Please select at least one child.</p>
+            <p [hidden]="!educationPreference" class="pl-2 error-child-msg" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_no" name="education_plan_selection" formControlName="education_plan_selection"
-            type="radio" value="dependant_no" class="field radio">
+          <input id="dependant_selection_no" name="educationSelection" formControlName="educationSelection"
+            type="radio" value='no' class="field radio">
           <label for="dependant_selection_no">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
@@ -74,8 +74,8 @@
         </div>
        
       </div>
-      <button type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100"
-      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+      <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100"
+      id="moDpdnt2BtnFooter"> {{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
     </form>
   </div>

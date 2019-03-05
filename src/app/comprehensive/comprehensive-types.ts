@@ -1,7 +1,6 @@
 export interface IMyProfile {
     id: string;
     firstName: string;
-    lastName: string;
     dateOfBirth: any;
     nation: string;
     gender: string;
@@ -15,6 +14,28 @@ export interface IMyDependant {
     dateOfBirth: string;
     nation: string;
     enquiryId: number;
+
+}
+export interface IEducationPlan {
+  educationSelection: string;
+  dependantList: IDependant[];
+}
+export interface IDependant {
+  name: string;
+  id: number;
+  dependantSelection: boolean;
+}
+export interface IEPreference {
+    id: number;
+    age: number;
+    location: string;
+    educationCourse: string;
+
+}
+export interface IChildEndowment {
+  id: number;
+  endowmentMaturityAmount: string;
+  endowmentMaturityYears: string;
 
 }
 export interface IChildPlan {
@@ -60,4 +81,34 @@ export interface IMySummaryModal {
 
 export interface ISummaryDependantDetails {
     userName: string; userAge: number; userEstimatedCost: number;
+}
+
+export interface IMyEarnings {
+   enquiryId: number;
+   employmentType: string;
+   monthlySalary: number;
+   monthlyRentalIncome: number;
+   otherMonthlyWorkIncome: number;
+   otherMonthlyIncome: number;
+   annualBonus: number;
+   annualDividends: number;
+   otherAnnualIncome: number;
+
+}
+
+export interface IMySpendings {
+   enquiryId: number;
+   monthlyLivingExpenses: number;
+   adHocExpenses: number;
+   HLMortgagePaymentUsingCPF: number;
+   HLMortgagePaymentUsingCash: number;
+   HLtypeOfHome: string;
+   homeLoanPayOffUntil: number;
+   mortgagePaymentUsingCPF: number;
+   mortgagePaymentUsingCash: number;
+   mortgageTypeOfHome: string;
+   mortgagePayOffUntil: number;
+   carLoanPayment: number;
+   otherLoanPayment: number;
+   otherLoanPayoffUntil: number;
 }

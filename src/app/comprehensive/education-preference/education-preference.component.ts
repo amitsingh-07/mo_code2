@@ -5,7 +5,9 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -19,6 +21,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 })
 export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
+  submitted = false;
+  courseList: any;
+  locationList: any;
   pageId: string;
   pageTitle: string;
   EducationPreferenceForm: FormGroup;
@@ -26,12 +31,15 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   educationPreferenceArray: any;
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+              private comprehensiveService: ComprehensiveService ) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
+        this.locationList = this.translate.instant('CMP.LOCATION_LIST');
+        this.courseList = this.translate.instant('CMP.COURSE_LIST');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
 
@@ -54,10 +62,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       nationality: ''
 
     }];
+    this.comprehensiveService.getMyDependant();
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
+
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
@@ -87,15 +98,42 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   buildPreferenceDetailsForm(value): FormGroup {
 
     return this.formBuilder.group({
-      name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      age: [value.age, [Validators.required]],
+      name: [value.name],
+      age: [value.age],
       location: ['', [Validators.required]],
-      course_of_study: ['', [Validators.required]]
+      educationCourse: ['', [Validators.required]]
 
     });
 
   }
+  selectLocation(status, i) {
+    const relationship = status ? status : '';
+    this.EducationPreferenceForm.controls['preference']['controls'][i].controls.location.setValue(relationship);
+
+  }
+  selectCourse(status, i) {
+    const gender = status ? status : '';
+    this.EducationPreferenceForm.controls['preference']['controls'][i].controls.educationCourse.setValue(gender);
+  }
+
   goToNext(form) {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+    console.log(form);
+    if (this.validateEducationPreference(form)) {
+
+ this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+
+    }
+
+  }
+  validateEducationPreference(form) {
+    this.submitted = true;
+    if (!form.valid) {
+      const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.educationPreferenceForm,
+        this.educationPreferenceArray);
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+      );
+      return false;
+    }
+    return true;
   }
 }

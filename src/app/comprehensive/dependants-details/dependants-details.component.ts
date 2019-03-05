@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -38,7 +38,11 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private parserFormatter: NgbDateParserFormatter) {
+    private parserFormatter: NgbDateParserFormatter, private configDate: NgbDatepickerConfig) {
+    const today: Date = new Date();
+    configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.outsideDays = 'collapsed';
     this.pageId = this.route.routeConfig.component.name;
     this.dependantDetails = [];
     this.configService.getConfig().subscribe((config: any) => {

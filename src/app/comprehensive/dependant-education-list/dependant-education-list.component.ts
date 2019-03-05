@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -20,21 +21,24 @@ import { ComprehensiveService } from './../comprehensive.service';
 })
 export class DependantEducationListComponent implements OnInit {
   pageTitle: string;
+  pageId: string;
   endowmentListForm: FormGroup;
+  menuClickSubscription: Subscription;
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
-    this.configService.getConfig().subscribe((config) => {
+              private translate: TranslateService, private formBuilder: FormBuilder,
+              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('DEPENDANT_EDUCATION.TITLE');
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and title
 
-      this.setPageTitle(this.pageTitle);
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.setPageTitle(this.pageTitle);
+      });
     });
 
     this.endowmentArrayPlan = [{
@@ -53,12 +57,18 @@ export class DependantEducationListComponent implements OnInit {
       endowmentplanShow: false
 
     }];
-    
+
   }
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   ngOnInit() {
+    this.navbarService.setNavbarComprehensive(true);
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+
+      }
+    });
     this.buildEndowmentListForm(this.endowmentArrayPlan);
 
   }
@@ -89,26 +99,29 @@ export class DependantEducationListComponent implements OnInit {
   goToNext(form) {
 
   }
-  showToolTipModal(){
-    let toolTipParams = { TITLE: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_TITLE'), 
-    DESCRIPTION: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_MESSAGE')};
+  showToolTipModal() {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_TITLE'),
+      DESCRIPTION: this.translate.instant('CMP.ENDOWMENT_PLAN.TOOLTIP_MESSAGE')
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
-    console.log(this.endowmentSkipEnable);    
+
   }
 
   @HostListener('input', ['$event'])
   onChange() {
-    this.checkDependantCheck();
+    this.checkDependant();
   }
 
-  checkDependantCheck(){
-      this.endowmentListForm.valueChanges.subscribe(form => { 
-        let endowmentSkipEnableFlag = true;
-        form.endowmentPlan.forEach((dependant: any, index) => {                
-          if(dependant.endowmentplanShow == true)
-            endowmentSkipEnableFlag = false;        
-        });
-        this.endowmentSkipEnable = endowmentSkipEnableFlag;
+  checkDependant() {
+    this.endowmentListForm.valueChanges.subscribe((form: any) => {
+      let endowmentSkipEnableFlag = true;
+      form.endowmentPlan.forEach((dependant: any, index) => {
+        if (dependant.endowmentplanShow) {
+          endowmentSkipEnableFlag = false;
+        }
       });
+      this.endowmentSkipEnable = endowmentSkipEnableFlag;
+    });
   }
 }

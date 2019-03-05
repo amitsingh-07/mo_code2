@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -20,14 +21,17 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 })
 export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
+  dependantDetails: any;
+  education_plan_selection = false;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
   dependantsArray: any;
+  educationPreference = true;
   menuClickSubscription: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService) {
+              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -47,6 +51,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
+
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -58,23 +63,42 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   dependantSelection() {
-    this.dependantsArray = [{
-      name: 'Nathan Ng',
-    },
-    {
-      name: 'Marie Ng',
-    }];
+    this.dependantsArray = [];
+    const dependantDetails = this.comprehensiveService.getMyDependant();
+    dependantDetails.forEach((details: any) => {
+if (details.relationship === 'Child') {
+  this.dependantsArray.push(details);
+}
+     });
+    // this.dependantsArray  = this.comprehensiveService.getEducationPlan().dependantList;
+  }
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.checkDependant();
+  }
+
+  checkDependant() {
+
+    this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
+      let educationPreferenceAlert = true;
+      form.educationSelection === 'no' ? this.education_plan_selection = true : this.education_plan_selection = false;
+      form.dependantList.forEach((dependant: any, index) => {
+        if ( dependant.dependantSelection) {
+          educationPreferenceAlert = !dependant.dependantSelection;
+        }
+      });
+      this.educationPreference = educationPreferenceAlert;
+    });
   }
 
   buildEducationSelectionForm(dependantsArray) {
     const dependantListArray = [];
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < dependantsArray.length; i++) {
-      dependantListArray.push(this.buildEducationlist(dependantsArray[i]));
-    }
+    dependantsArray.forEach((dependant: any) => {
+      dependantListArray.push(this.buildEducationlist(dependant));
+    });
     this.dependantEducationSelectionForm = this.formBuilder.group({
-      education_plan_selection: ['', Validators.required],
-      dependant_list: this.formBuilder.array(dependantListArray)
+      educationSelection: ['', Validators.required],
+      dependantList: this.formBuilder.array(dependantListArray)
     });
 
   }
@@ -82,12 +106,15 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   buildEducationlist(value) {
 
     return this.formBuilder.group({
-      name: [value.name, [Validators.required]],
-      dependantSelection: [true, [Validators.required]],
+      id: [value.id],
+      name: [value.name],
+      dependantSelection: [value.dependantSelection],
 
     });
   }
   goToNext(form) {
+    console.log(form.value);
+    this.comprehensiveService.setEducationPlan(form.value);
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
   }
 }
