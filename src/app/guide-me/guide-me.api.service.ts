@@ -7,6 +7,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import {
     IEnquiryData,
     IFinancialStatusMapping,
+    IHospitalizationNeedsData,
     ILifeProtection,
     IRecommendationRequest
 } from './../shared/interfaces/recommendations.request';
@@ -71,7 +72,7 @@ export class GuideMeApiService {
         requestObj.financialStatusMapping.liabilities = this.guideMeService.getMyLiabilities();
         requestObj.financialStatusMapping.expenses = this.guideMeService.getMyExpenses();
 
-        requestObj.hospitalizationNeeds = this.guideMeService.getHospitalPlan();
+        requestObj.hospitalizationNeeds = this.getHospitalPlanData();
         requestObj.criticalIllnessNeedsData = this.calculateService.getCriticalIllnessData();
 
         requestObj.occupationalDisabilityNeeds = this.calculateService.getOcpData();
@@ -82,6 +83,14 @@ export class GuideMeApiService {
         requestObj.enquiryData = this.getEnquiryData();
 
         return requestObj;
+    }
+
+    getHospitalPlanData(): IHospitalizationNeedsData {
+        const hospitalPlan = this.guideMeService.getHospitalPlan();
+        return {
+            hospitalClassId: hospitalPlan.hospitalClassId,
+            isPartialRider: hospitalPlan.isFullRider
+        } as IHospitalizationNeedsData;
     }
 
     getEnquiryData() {

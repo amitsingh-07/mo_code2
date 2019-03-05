@@ -52,15 +52,15 @@
   "DIRECT_HOSPITAL_PLAN": {
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
-      "TITLE": "Full / Partial Rider",
+      "TITLE": "Rider",
       "TOOLTIP": {
         "FULL_OR_PARTIAL_RIDER": {
-          "TITLE": "Full/Partial Rider",
-          "MESSAGE": "<p><strong>Full Rider:</strong> This rider provides coverage for both co-insurance and deductible components.</p><p><strong>Partial Rider:</strong> This rider only provides coverage for either co-insurance or deductible.</p>"
+          "TITLE": "Rider",
+          "MESSAGE": "An insurance claim for a hospital bill requires the insured to co-pay a portion of the bill. The hospital plan rider can be added to reduce the co-payment required. The riders also provides additional hospitalization benefits as well."
         }
       }
     },
-    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C"]
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1"]
     
   },
   "CRITICAL_ILLNESS": {

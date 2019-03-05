@@ -1,4 +1,5 @@
 export const APP_ROUTES = {
     ROOT: '',
-    HOME: 'home'
+    HOME: 'home',
+    GUIDE_ME: 'guideme'
 };

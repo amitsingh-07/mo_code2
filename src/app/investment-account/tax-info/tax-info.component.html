@@ -95,7 +95,7 @@
             <div class="flex-col-8">
               <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
                 <input type="text" [placeholder]="getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)"
-                  id="invPersInfoInpt1" class="form-control" formControlName="tinNumber">
+                  id="invPersInfoInpt1" class="form-control" formControlName="tinNumber" maxLength="50">
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -19,10 +20,12 @@ export class AddBankModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private topupAndWithDrawService: TopupAndWithDrawService
+    private topupAndWithDrawService: TopupAndWithDrawService,
+    private signUpService: SignUpService
   ) {}
 
   ngOnInit() {
+    this.banks = this.signUpService.addMaxLengthInfoForAccountNo(this.banks);
     this.addBankForm = new FormGroup({
       accountHolderName: new FormControl(this.fullName, [
         Validators.required,
@@ -31,13 +34,15 @@ export class AddBankModalComponent implements OnInit {
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [
         Validators.required,
-        Validators.pattern(RegexConstants.TenToFifteenNumbers)
+        Validators.pattern(RegexConstants.NumericOnly), 
+        this.signUpService.validateAccNoMaxLength
       ])
     });
   }
 
   setDropDownValue(key, value) {
     this.addBankForm.controls[key].setValue(value);
+    this.addBankForm.get('accountNo').updateValueAndValidity();
   }
 
   markAllFieldsDirty(form) {

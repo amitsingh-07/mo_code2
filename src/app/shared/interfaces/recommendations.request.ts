@@ -84,7 +84,7 @@ export interface IOccupationalDisabilityData {
 
 export interface IHospitalizationNeedsData {
     hospitalClassId: number;
-    isFullRider: boolean;
+    isPartialRider: boolean;
 }
 
 export interface ILongTermCareNeedsData {

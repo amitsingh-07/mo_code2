@@ -289,7 +289,7 @@ export class EmploymentDetailsComponent implements OnInit {
         'empPostalCode',
         new FormControl(this.formValues.empPostalCode, [
           Validators.required,
-          Validators.pattern(RegexConstants.SixDigitNumber)
+          Validators.pattern(RegexConstants.NumericOnly)
         ])
       );
       empAddressFormGroup.addControl(
@@ -329,7 +329,7 @@ export class EmploymentDetailsComponent implements OnInit {
         'empZipCode',
         new FormControl(this.formValues.empZipCode, [
           Validators.required,
-          Validators.pattern(RegexConstants.Alphanumeric)
+          Validators.pattern(RegexConstants.NumericOnly)
         ])
       );
 
