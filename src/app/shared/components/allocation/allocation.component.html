@@ -14,11 +14,11 @@
       <ngb-accordion #acc="ngbAccordion">
         <ngb-panel id="panel-{{i}}" title="Second">
           <ng-template ngbPanelContent>
-            <div class="bond_desc" *ngIf="asset.holdingsCount">
+            <div class="bond_desc" *ngIf="asset.type.holdingsCount">
               <div class="flex-row flex-col-12">
                 <div class="rating_type border-right-none">Number of Holdings</div>
                 <div class="rating">
-                  <div class="flex-row"><span class="rating_value">{{asset.holdingsCount}}</span></div>
+                  <div class="flex-row"><span class="rating_value">{{asset.type.holdingsCount}}</span></div>
                 </div>
               </div>
             </div>
