@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WillWritingFormData } from '../will-writing-form-data';
@@ -20,6 +21,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
   duplicateError: string;
+  existingWill: boolean;
 
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
   willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
@@ -41,6 +43,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       this.duplicateError = this.translate.instant('WILL_WRITING.CONFIRMATION.DUPLICATE_ERROR');
       this.setPageTitle(this.pageTitle);
     });
+
+    this.existingWill = this.willWritingService.getIsWillCreated();
   }
 
   ngOnInit() {
@@ -77,9 +81,16 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   goNext() {
     if (this.willWritingService.checkDuplicateUinAll()) {
       if (this.willWritingService.isUserLoggedIn()) {
-        this.willWritingApiService.createWill().subscribe((data) => {
+        let createUpdateWill;
+        if (!this.willWritingService.getIsWillCreated()) {
+          createUpdateWill = this.willWritingApiService.createWill();
+        } else {
+          createUpdateWill = this.willWritingApiService.updateWill();
+        }
+        createUpdateWill.subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-            this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+            this.willWritingService.setIsWillCreated(true);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
             this.willWritingService.openToolTipModal('', this.duplicateError);
           }

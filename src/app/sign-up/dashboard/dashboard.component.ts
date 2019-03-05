@@ -1,48 +1,115 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpApiService } from '../sign-up.api.service';
+import { SignUpService } from '../sign-up.service';
 
-import { IEnquiryUpdate } from '../signup-types';
-import { AppService } from './../../app.service';
-import { ApiService } from './../../shared/http/api.service';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
-import { Formatter } from './../../shared/utils/formatter.util';
-import { SignUpService } from './../sign-up.service';
-
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
+// Will Writing
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
-  insuranceEnquiry: any;
+
+  // Will Writing
+  showWillWritingSection = false;
+  wills: any = {};
 
   constructor(
-    public readonly translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) { }
+    private router: Router,
+    private signUpApiService: SignUpApiService,
+    public readonly translate: TranslateService,
+    private signUpService: SignUpService,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
+    // #Will Writing
+
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService
+  ) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {});
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
-    this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.translate.use('en');
 
-    this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-    if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
-      const payload: IEnquiryUpdate = {
-        customerId: this.appService.getCustomerId(),
-        enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
-        selectedProducts: this.insuranceEnquiry.plans
-      };
-      this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
-        this.selectedPlansService.clearData();
-      });
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      this.signUpService.setUserProfileInfo(userInfo.objectList);
+      this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    });
+
+    this.willWritingApiService.getWill().subscribe((data) => {
+      this.showWillWritingSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.wills.hasWill = true;
+        this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
+        if (!this.willWritingService.getIsWillCreated()) {
+          this.willWritingService.convertWillFormData(data.objectList[0]);
+          this.willWritingService.setIsWillCreated(true);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
+        this.wills.hasWill = false;
+      }
+    });
+  }
+
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
     }
   }
+
+  downloadWill() {
+    this.willWritingApiService.downloadWill().subscribe((data: any) => {
+      this.saveAs(data);
+    }, (error) => console.log(error));
+  }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else {
+      this.downloadFile(data);
+    }
+  }
+
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
+  }
+
 }

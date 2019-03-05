@@ -46,7 +46,8 @@
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed",
     "TRY_AGAIN":"Try Again",
-    "PROCEED":"Proceed"
+    "PROCEED":"Proceed",
+    "SAVE_CONTINUE": "Save and Continue"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",

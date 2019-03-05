@@ -101,5 +101,22 @@
       "TITLE": "Are you an existing MoneyOwl user?",
       "YES_LOGIN": "Yes, Log In Now",
       "CREATE_ACCOUNT": "No, Create Account"
+    },
+    "DASHBOARD": {
+        "PROFILE": {
+            "WELCOME": "Welcome back,",
+            "EDIT_PROFILE": "Edit Profile",
+            "YOUR_ADVISOR": "Your Advisor"
+        },        
+        "WILL_WRITING": {
+            "TITLE": "Will Writing",
+            "EDIT_WILL": "Edit Will",
+            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+            "Existing_WILL_DESC": "Congratulations on completing your Will!",
+            "START_WRITING": "Start Writing",
+            "ESTIMATED_TIME": "Estimated 10 mins",
+            "DOWNLOAD_WILL": "Download Will",
+            "LAST_UPDATED": "Last Updated"
+        }
     }
 }

@@ -1,13 +1,64 @@
-<div class="post-login-dashboard">
-  <div class="welcome-user">
-      <div>Welcome back,<br/>
-        <span class="txt-capitalize">{{userProfileInfo.firstName + ' ' + userProfileInfo.lastName}}</span>
+<div class="content">
+  <div class="container-fluid max-width--1024 post-login-dashboard">
+    <div class="welcome-user">
+      <div class="flex-row">
+        <div class="flex-col-12" *ngIf="userProfileInfo">
+          <div class="container-fluid widget-block">
+            <div class="overlap-grass">
+              <div class="user-profile-bg flex-col-8">
+                <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
+                <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
+                <div (click)="goToEditProfile()">
+                  <span class="user-edit-img">
+                    <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
+                  </span>
+                  <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
+                </div>
+              </div>
+              <div class="grass_bg">
+                <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
+              </div>
+            </div>
+          </div>
+          <div class="widgets">
+            <div class="widget will-writing" *ngIf="showWillWritingSection">
+              <div class="widget-title">
+                <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
+                  <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
+                </span>
+                <span class="view_all" *ngIf="wills.hasWill" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL' | translate}}</span>
+              </div>
+              <div class="widget-body">
+                <div class="scenarios flex-col-12">
+                  <!-- will-writing -->
+                  <div class="start col-12">
+                    <div class="warning-txt">
+                      <div class="flex-col-8">
+                        <span *ngIf="!wills.hasWill">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
+                        <span *ngIf="wills.hasWill">{{'DASHBOARD.WILL_WRITING.Existing_WILL_DESC' | translate}}</span>
+                      </div>
+                      <div class="flex-col-4">
+                        <div class="investment_icon">
+                          <img src="assets/images/will-writing/will-dash.svg" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWill" (click)="redirectTo('start')">
+                        <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
+                        <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
+                      </button>
+                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.hasWill" (click)="downloadWill()">
+                        <div>{{'DASHBOARD.WILL_WRITING.DOWNLOAD_WILL' | translate}}</div>
+                        <div>{{'DASHBOARD.WILL_WRITING.LAST_UPDATED' | translate}} {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div><img src="./assets/images/owl.svg" /></div>
+    </div>
   </div>
-  <div class="welcome-desc">
-    <div>Coming Soon!</div>
-    <div>Stay tuned for more exciting features launching soon.</div>
-    <div class="mt20">If you had submitted a quote request, we will contact you within 3 working days. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188.</div>
-  </div>
-</div>
