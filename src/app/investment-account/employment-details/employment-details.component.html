@@ -45,7 +45,7 @@
                   </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('companyName').enabled && !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
-                  <input type="text" formControlName="companyName" id="empliyement_status_company_input" class="form-control">
+                  <input type="text" formControlName="companyName"  maxLength="30" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
               <!-- Industry -->
@@ -183,7 +183,7 @@
                         <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode), 'disabled':employementDetailsForm.controls.employeaddress.controls.empPostalCode.disabled}">
                           <div class="postal-code-control">
                             <div class="control">
-                              <input type="text" class="input-control grey" formControlName="empPostalCode" id="employment_details-mailpostalcode-txt" />
+                              <input type="text" class="input-control grey" formControlName="empPostalCode" maxLength="10" id="employment_details-mailpostalcode-txt" />
                             </div>
                             <div class="button">
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
@@ -204,7 +204,7 @@
                       </div>
                       <div class="flex-col-7">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
-                          <input type="text" class="form-control input-control grey" formControlName="empAddress1" id="employment_details-mailaddress1-txt" />
+                          <input type="text" class="form-control input-control grey" formControlName="empAddress1" maxLength="50" id="employment_details-mailaddress1-txt" />
                         </div>
                       </div>
                     </div>
@@ -218,7 +218,7 @@
                       </div>
                       <div class="flex-col-7">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
-                          <input type="text" class="form-control input-control grey" formControlName="empAddress2" id="employment_details-mailaddress2-txt" />
+                          <input type="text" class="form-control input-control grey" formControlName="empAddress2" maxLength="50" id="employment_details-mailaddress2-txt" />
                         </div>
                       </div>
                     </div>
@@ -275,7 +275,7 @@
                       </div>
                       <div class="flex-col-7">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
-                          <input type="text" class="form-control input-control grey" formControlName="empState" id="employment_details-mailstate-txt" />
+                          <input type="text" class="form-control input-control grey" formControlName="empState" maxLength="30" id="employment_details-mailstate-txt" />
                         </div>
                       </div>
                     </div>
@@ -289,7 +289,7 @@
                       </div>
                       <div class="flex-col-7">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
-                          <input type="text" class="form-control input-control grey" formControlName="empZipCode" id="employment_details-mailzipcode-txt" />
+                          <input type="text" class="form-control input-control grey" formControlName="empZipCode" maxLength="10" id="employment_details-mailzipcode-txt" />
                         </div>
                       </div>
                     </div>

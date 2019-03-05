@@ -43,7 +43,7 @@
                   <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.postalCode), 'disabled':addressForm.controls.postalCode.disabled}">
                     <div class="postal-code-control">
                       <div class="control">
-                        <input type="text" class="input-control grey" formControlName="postalCode" id="residentialAddress-postalcode-txt" />
+                        <input type="text" class="input-control grey" formControlName="postalCode" maxLength="10" id="residentialAddress-postalcode-txt" />
                       </div>
                       <div class="button" *ngIf="!isDisabled('postalCode')">
                         <button type="button" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)"
@@ -63,7 +63,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.address1)}">
-                    <input type="text" class="form-control input-control grey" formControlName="address1" id="residentialAddress-address1-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="address1" maxLength="50" id="residentialAddress-address1-txt" />
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.address2)}">
-                    <input type="text" class="form-control input-control grey" formControlName="address2" id="residentialAddress-address2-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="address2"  maxLength="50" id="residentialAddress-address2-txt" />
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.state)}">
-                    <input type="text" class="form-control input-control grey" formControlName="state" id="residentialAddress-state-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="state" maxLength="30"  id="residentialAddress-state-txt" />
                   </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.zipCode)}">
-                    <input type="text" class="form-control input-control grey" formControlName="zipCode" id="residentialAddress-zipcode-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="zipCode" maxLength="10" id="residentialAddress-zipcode-txt" />
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@
                     </div>
                     <div class="flex-col-12">
                       <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="reasonForOthers" id="residentialAddress-mailaddress1-txt" />
+                        <input type="text" class="input-control grey" formControlName="reasonForOthers" maxLength="100" id="residentialAddress-mailaddress1-txt" />
                       </div>
                     </div>
                   </div>
@@ -234,7 +234,7 @@
                     <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailPostalCode), 'disabled':addressForm.controls.mailingAddress.controls.mailPostalCode.disabled}">
                       <div class="postal-code-control">
                         <div class="control">
-                          <input type="text" class="input-control grey" formControlName="mailPostalCode" id="residentialAddress-mailpostalcode-txt"
+                          <input type="text" class="input-control grey" formControlName="mailPostalCode" maxLength="10" id="residentialAddress-mailpostalcode-txt"
                           />
                         </div>
                         <div class="button" *ngIf="!isDisabled('mailPostalCode')">
@@ -255,7 +255,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailAddress1)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailAddress1" id="residentialAddress-mailaddress1-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailAddress1" maxLength="50" id="residentialAddress-mailaddress1-txt" />
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailAddress2)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailAddress2" id="residentialAddress-mailaddress2-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailAddress2"  maxLength="50" id="residentialAddress-mailaddress2-txt" />
                     </div>
                   </div>
                 </div>
@@ -320,7 +320,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailState)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailState" id="residentialAddress-mailstate-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailState" maxLength="30" id="residentialAddress-mailstate-txt" />
                     </div>
                   </div>
                 </div>
@@ -333,7 +333,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailZipCode)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailZipCode" id="residentialAddress-mailzipcode-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailZipCode" maxLength="10"  id="residentialAddress-mailzipcode-txt" />
                     </div>
                   </div>
                 </div>
