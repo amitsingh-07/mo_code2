@@ -36,7 +36,7 @@ const routes: Routes = [
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
       {
-        path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
+        path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
        canActivate: [ComprehensiveEnableGuard],
        canActivateChild: [ComprehensiveChildEnableGuard]
       },

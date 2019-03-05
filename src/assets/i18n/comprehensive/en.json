@@ -201,30 +201,7 @@
       "PAID_BY_CPF": "Paid By CPF",
       "MONTH": "mth"
     },
-    "MY_ASSETS": {
-      "TITLE": "What You Own",
-      "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
-      "ASSETS_BUCKETS": "Your Assets Buckets",
-      "TOTAL": "in total",
-      "CASH": "Cash",
-      "CASH_IN_BANK": "Cash in bank",
-      "SINGAPORE_SAVING_BONDS": "Singapore Saving Bonds",
-      "YOUR_CPF": "Your CPF",
-      "CPF_OA": "CPF Ordinary Account (OA)",
-      "CPF_SA": "CPF Special Account (SA)",
-      "CPF_MA": "CPF Medisave Account (MA)",
-      "YOUR_HOME": "Your Home",
-      "MARKET_VALUE": "At Market Value",
-      "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
-      "INVESTMENT_PROPERTIES": "Investment Properties",
-      "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of Investment",
-      "OTHERS": "Others",
-      "OTHER_INVESTMENT": "Other Investments",
-      "ADD_INVESTMENT": "Add other Investment",
-      "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "eg. jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
         },
@@ -248,8 +225,33 @@
           "text": "Others",
           "value": "others"
         }
-      ]
+      ],
+    "MY_ASSETS": {
+      "TITLE": "What You Own",
+      "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
+      "ASSETS_BUCKETS": "Your Assets Buckets",
+      "TOTAL": "in total",
+      "CASH": "Cash",
+      "CASH_IN_BANK": "Cash in bank",
+      "SINGAPORE_SAVING_BONDS": "Singapore Saving Bonds",
+      "YOUR_CPF": "Your CPF",
+      "CPF_OA": "CPF Ordinary Account (OA)",
+      "CPF_SA": "CPF Special Account (SA)",
+      "CPF_MA": "CPF Medisave Account (MA)",
+      "YOUR_HOME": "Your Home",
+      "MARKET_VALUE": "At Market Value",
+      "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
+      "INVESTMENT_PROPERTIES": "Investment Properties",
+      "INVESTMENTS": "Investments",
+      "INVESTMENT_TYPE": "Type of Investment",
+      "OTHERS": "Others",
+      "OTHER_INVESTMENT": "Other Investments",
+      "ADD_INVESTMENT": "Add other Investment",
+      "OTHER_ASSETS": "Other Assets",
+      "OTHER_ASSETS_HINT": "eg. jewellery"
     },
+    "LOCATION_LIST":[ "Singapore","USA", "United Kingdom", "Australia"],
+    "COURSE_LIST":["Medicine","Non-Medicine"],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
@@ -364,7 +366,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": ["Dependant Details 1", "Dependant Details 2", "Dependant Details 3", "Dependant Details 4", "Dependant Details 5"],
+      "DEPENDANT_DETAIL": [{"name":"Dependant Details 1"}, {"name":"Dependant Details 2"},{"name":"Dependant Details 3"}, {"name":"Dependant Details 4"},{"name":"Dependant Details 5"}],
       "MY_LIABILITIES": "MY LIABILITIES",
 	    "MY_EARNINGS": "Your Earnings",
 	    "MY_SPENDINGS": "Your Spendings"

@@ -8,8 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IChildEndowment,IMySpendings } from './comprehensive-types';
-
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, 
+  IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -141,13 +141,13 @@ export class ComprehensiveService {
     this.commit();
   }
 
-   getMyEarnings() {
+  getMyEarnings() {
     if (!this.comprehensiveFormData.myEarnings) {
       this.comprehensiveFormData.myEarnings = {} as IMyEarnings;
     }
     return this.comprehensiveFormData.myEarnings;
   }
-  
+
   setMyEarnings(myEarningsData: IMyEarnings) {
     this.comprehensiveFormData.myEarnings = myEarningsData;
     this.commit();
@@ -159,7 +159,7 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.mySpendings;
   }
-  
+
   setMySpendings(mySpendingsData: IMySpendings) {
     this.comprehensiveFormData.mySpendings = mySpendingsData;
     this.commit();
@@ -231,21 +231,26 @@ export class ComprehensiveService {
     return errors;
   }
 
-  openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
+  openErrorModal(title: string, message: any, isMultipleForm: boolean, formName?: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
       ref.componentInstance.formName = formName;
+
       ref.componentInstance.errorMessageList = message;
     } else {
+      message.forEach((element: any, index) => {
+        message[index]['formName'] = element.formName.name;
+      });
       ref.componentInstance.multipleFormErrors = message;
+
     }
     return false;
   }
 
   openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
-                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
-                   childrenEducationNonDependantModal, summaryModalDetails) {
+    insurancePlanningNonDependantModal, childrenEducationDependantModal,
+    childrenEducationNonDependantModal, summaryModalDetails) {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,

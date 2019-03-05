@@ -1,8 +1,9 @@
 export class ComprehensiveFormError {
     invalidName = 'Invalid Name';
+    errorTitleDetails = 'Oops! Please enter the following details:';
     moGetStrdForm: object = {
         formFieldErrors: {
-            errorTitle: 'Oops! Please enter the following details:',
+            errorTitle: this.errorTitleDetails,
             gender: {
                 required: {
                     errorTitle: 'Invalid Gender',
@@ -32,7 +33,7 @@ export class ComprehensiveFormError {
     };
     dependantForm: object = {
         formFieldErrors: {
-            errorTitle: 'Oops! Please enter the following details:',
+            errorTitle: this.errorTitleDetails,
             name: {
                 required: {
                         errorTitle: this.invalidName,
@@ -79,9 +80,26 @@ export class ComprehensiveFormError {
 
         }
     };
+    educationPreferenceForm: object = {
+        formFieldErrors: {
+            errorTitle: this.errorTitleDetails,
+            location: {
+                required: {
+                    errorTitle: 'Invalid Location',
+                    errorMessage: 'Location'
+                }
+            },
+            educationCourse: {
+                required: {
+                    errorTitle: 'Invalid Course',
+                    errorMessage: 'Course'
+                }
+            },
+        }
+    };
      myLiabilitiesForm: object = {
         formFieldErrors: {
-            errorTitle: 'Oops! Please enter the following details:',
+            errorTitle: this.errorTitleDetails,
             homeLoanOutstanding: {
                 required: {
                     errorTitle: 'Invalid Home Loan Outstanding',
@@ -112,7 +130,7 @@ export class ComprehensiveFormError {
 
     myEarningsForm: object = {
         formFieldErrors: {
-            errorTitle: 'Oops! Please enter the following details:',
+            errorTitle: this.errorTitleDetails,
             employmentType: {
                 required: {
                     errorTitle: 'Invalid Employment Type',
@@ -164,7 +182,6 @@ export class ComprehensiveFormError {
 
         }
     };
-    
     mySpendingsForm: object = {
         formFieldErrors: {
             errorTitle: 'Oops! Please enter the following details:',

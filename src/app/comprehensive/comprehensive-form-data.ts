@@ -18,7 +18,7 @@ export class ComprehensiveFormData {
     childEndowment: IChildEndowment[];
     ChildPlan: IChildPlan[];
     hospitalPlanData: HospitalPlan;
-    myLiabilities: IMyLiabilities;  
+    myLiabilities: IMyLiabilities;
     myEarnings: IMyEarnings;
     mySpendings: IMySpendings;
 }
