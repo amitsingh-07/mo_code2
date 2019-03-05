@@ -9,6 +9,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { AbstractControl } from '@angular/forms';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -475,5 +476,25 @@ export class SignUpService {
       }
     }
     return errors;
+  }
+
+  addMaxLengthInfoForAccountNo(banks) {
+    banks.forEach((bank) => {
+      let maxlength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[bank.key];
+      bank.accountNoMaxLength = maxlength ? maxlength : null; 
+    });
+    return banks;
+  }
+
+  validateAccNoMaxLength(control: AbstractControl) {
+    const value = control.value;
+    if (control.value) {
+      const validAccountNo =
+        (value.length === control.parent.controls['bank'].value.accountNoMaxLength);
+      if (control.parent.controls['bank'].value.accountNoMaxLength && !validAccountNo) {
+        return { validAccountNo: true };
+      }
+    }
+    return null;
   }
 }
