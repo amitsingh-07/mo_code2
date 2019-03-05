@@ -20,7 +20,7 @@
           <div class="flex-col-6">
             <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
               <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" name="accountHolderName"
-                formControlName="accountHolderName" value="0">
+                formControlName="accountHolderName" value="0" maxLength="30">
             </div>
           </div>
         </div>

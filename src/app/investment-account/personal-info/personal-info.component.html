@@ -45,7 +45,7 @@
                   <label for="name" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
-                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
+                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName" maxLength="30">
                 </div>
               </div>
               <div class="flex-row">
@@ -70,7 +70,7 @@
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('nricNumber').enabled && !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
                   <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control" #nricNumber
-                    formControlName="nricNumber">
+                    formControlName="nricNumber" maxLength="30">
                 </div>
               </div>
               <div class="flex-row">
@@ -150,7 +150,7 @@
                   <label for="name" id="invPersInfoLbl5">{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportNumber').enabled && !invPersonalInfoForm.get('passportNumber').valid && !invPersonalInfoForm.get('passportNumber').pristine}">
-                  <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber">
+                  <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber" maxLength="30">
                 </div>
               </div>
               <!-- Passport issued country start -->

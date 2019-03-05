@@ -157,7 +157,7 @@
               <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepPostalCode),'disabled':addInfoForm.controls.pepPostalCode.disabled}">
                 <div class="postal-code-control">
                   <div class="control">
-                    <input type="text" class="input-control grey" formControlName="pepPostalCode" id="pep_Info_residentialAddress-mailpostalcode-txt" />
+                    <input type="text" class="input-control grey" formControlName="pepPostalCode"  maxLength="10" id="pep_Info_residentialAddress-mailpostalcode-txt" />
                   </div>
                   <div class="button">
                     <button type="button" (click)="retrieveAddress(addInfoForm.controls.pepPostalCode.value, addInfoForm.controls.pepAddress1, addInfoForm.controls.pepAddress2)"
@@ -179,7 +179,7 @@
             </div>
             <div class="flex-col-7">
               <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepAddress1)}">
-                <input type="text" class="input-control grey" formControlName="pepAddress1" id="pep_Info_residentialAddress-mailaddress1-txt" />
+                <input type="text" class="input-control grey" formControlName="pepAddress1" maxLength="50" id="pep_Info_residentialAddress-mailaddress1-txt" />
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@
             </div>
             <div class="flex-col-7">
               <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepAddress2)}">
-                <input type="text" class="input-control grey" formControlName="pepAddress2" id="pep_Info_residentialAddress-mailaddress2-txt" />
+                <input type="text" class="input-control grey" formControlName="pepAddress2" maxLength="50" id="pep_Info_residentialAddress-mailaddress2-txt" />
               </div>
             </div>
           </div>
@@ -249,7 +249,7 @@
             </div>
             <div class="flex-col-7">
               <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepState)}">
-                <input type="text" class="input-control grey" formControlName="pepState" id="addInfoForm-state-txt" />
+                <input type="text" class="input-control grey" formControlName="pepState" maxLength="30" id="addInfoForm-state-txt" />
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@
             </div>
             <div class="flex-col-7">
               <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepZipCode)}">
-                <input type="text" class="input-control grey" formControlName="pepZipCode" id="addInfoForm-zipcode-txt" />
+                <input type="text" class="input-control grey" formControlName="pepZipCode"  maxLength="10" id="addInfoForm-zipcode-txt" />
               </div>
             </div>
           </div>

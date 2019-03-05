@@ -153,9 +153,14 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter your Account Number.'
                 },
                 pattern : {
-                        errorTitle: 'Invalid Account No',
+                        errorTitle: 'Invalid Account Number',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Account Number should be 10 to 15 digit number.'
+                        errorMessage: 'Please enter valid Account Number.'
+                },
+                validAccountNo : {
+                        errorTitle: 'Invalid Account Number',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Please enter valid Account Number.'
                 }
         },
         accountHolderName: {
