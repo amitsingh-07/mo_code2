@@ -19,6 +19,7 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
       { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES, component: MyLiabilitiesComponent },
       { path: COMPREHENSIVE_ROUTES.STEPS + '/:stepNo', component: ComprehensiveStepsComponent },
       { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent},
-      { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent }
+      { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent },
+      { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
     ]
   }
 ];

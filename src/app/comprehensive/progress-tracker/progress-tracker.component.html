@@ -1,0 +1,40 @@
+<div class="progress-tracker-tooltip">
+  <div class="progress-tracker" *ngIf="showProgressTracker">
+    <span class="progress-tracker__close" (click)="onCloseClick()"></span>
+    <div class="progress-tracker__heading">Your Progress Tracker</div>
+    <div class="progress-tracker__duration"><span class="mr10">Time taken: 20 mins</span> <img src="../../../assets/images/timer-icon.svg"></div>
+    <div class="progress-tracker-accordion">
+      <div class="progress-tracker-accordion__heading get-started pointer-cursor" (click)="getstrdExpanded = !getstrdExpanded">
+        Get Started
+        <span class="progress-tracker-accordion__heading__arrow"></span>
+      </div>
+      <div class="progress-tracker-accordion__body" *ngIf="getstrdExpanded">
+        <ul><li class="active"><span class="now"></span>Tell us about you: <b>Kelvin Ng</b></li></ul>
+      </div>
+
+      <div class="progress-tracker-accordion__heading dependant pointer-cursor" (click)="getshldrExpanded = !getshldrExpanded">
+          What's on your shoulders
+          <span class="progress-tracker-accordion__heading__arrow"></span>
+      </div>
+      <div class="progress-tracker-accordion__body" *ngIf="getshldrExpanded">
+        <ul>
+          <li class="complete"><span class="complete"></span>Number of Dependant: <b>2</b></li>
+          <li class="complete"><span class="complete"></span>Plan for children education: <b>Yes</b></li>
+          <li class="complete"><span class="complete"></span>Education Preferences: <br>- Nathan Ng: <b>Local, Medicine</b> <br>- Marie Ng: <b>Overseas, Non-Medicine</b></li>
+        </ul>
+      </div>
+
+      <div class="progress-tracker-accordion__heading finances pointer-cursor" (click)="getfinanceExpanded = !getfinanceExpanded">
+          Your Finances
+          <span class="progress-tracker-accordion__heading__arrow"></span>
+        </div>
+        <div class="progress-tracker-accordion__body" *ngIf="getfinanceExpanded">
+          <ul>
+            <li class="complete"><span class="complete"></span>Number of Dependant: <b>2</b></li>
+            <li class="complete"><span class="complete"></span>Plan for children education: <b>Yes</b></li>
+            <li class="complete"><span class="complete"></span>Education Preferences: <br>- Nathan Ng: <b>Local, Medicine</b> <br>- Marie Ng: <b>Overseas, Non-Medicine</b></li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>

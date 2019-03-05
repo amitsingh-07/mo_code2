@@ -28,6 +28,7 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -68,6 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyAssetsComponent,
     MyLiabilitiesComponent,
     FirstReportDependantComponent,
-    BadMoodFundComponent]
+    BadMoodFundComponent,
+    ProgressTrackerComponent
+    ]
 })
 export class ComprehensiveModule { }
