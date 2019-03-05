@@ -255,14 +255,12 @@ app-your-investment {
       text-align: center;
       color: $text-color-secondary;
       .flex-row {
-        padding: 20px 65px 20px;
-      }
-      hr {
-        background: $top-up-your-portfolio-value-content-bg;
-        margin: 0;
+        // padding: 20px 65px 20px;
+        padding: 15px 20px 5px;
       }
       .portfolio_footer {
-        margin: 10px 13px 0;
+        padding: 10px 13px 0;
+        border-top: 1px solid $top-up-your-portfolio-value-content-bg;
         .btn-primary {
           background-color: $white-color;
           border: 1px solid $top-up-your-portfolio-value-content-bg;
