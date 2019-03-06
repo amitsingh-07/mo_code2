@@ -154,9 +154,9 @@ export class MySpendingsComponent implements OnInit {
   }
   
   onTotalAnnualSpendings(){
-    const inputParams = ['monthlyLivingExpenses'];    
+    const inputParams = ['monthlyLivingExpenses','HLMortgagePaymentUsingCPF','HLMortgagePaymentUsingCash','mortgagePaymentUsingCPF','mortgagePaymentUsingCash','carLoanPayment','otherLoanPayment'];    
     const spendingValues = this.mySpendingsForm.value;
-    const spendingFormObject = { monthlyLivingExpenses: spendingValues.monthlyLivingExpenses, adHocExpenses: spendingValues.adHocExpenses };
+    const spendingFormObject = { monthlyLivingExpenses: spendingValues.monthlyLivingExpenses, adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF, HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF: spendingValues.mortgagePaymentUsingCPF, mortgagePaymentUsingCash: spendingValues.mortgagePaymentUsingCash, carLoanPayment: spendingValues.carLoanPayment, otherLoanPayment: spendingValues.otherLoanPayment };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
     /*this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);   
