@@ -21,6 +21,7 @@ app-add-bank-modal {
       &.input-control {
         text-align: left;
         &.disabled{
+          font-size: 16px;
           cursor: not-allowed;
           font-family: $muli-regular;
           color: $teal-color !important;
