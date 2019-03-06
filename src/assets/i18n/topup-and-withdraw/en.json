@@ -201,7 +201,13 @@
     "NO_TRANSACTION_HISTORY":"No Transaction History!",
     "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!",
     "CASH_TOP_UP": "Cash Account Top Up",
-    "CASH_WITHDRAWAL": "Cash Account Withdrawal"
+    "CASH_WITHDRAWAL": "Cash Account Withdrawal",
+    "MODAL": {
+      "TRANSACTION_FETCH_LOADER": {
+        "TITLE": "Loading transaction history",
+        "MESSAGE": "Please wait while we load your transaction history."
+      }
+    }
   },
   "HOLDINGS": {
     "TITLE": "Holdings",
