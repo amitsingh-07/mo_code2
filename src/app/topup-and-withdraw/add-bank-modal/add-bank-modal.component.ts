@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -34,7 +34,7 @@ export class AddBankModalComponent implements OnInit {
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [
         Validators.required,
-        Validators.pattern(RegexConstants.NumericOnly), 
+        Validators.pattern(RegexConstants.NumericOnly),
         this.signUpService.validateAccNoMaxLength
       ])
     });
@@ -66,6 +66,9 @@ export class AddBankModalComponent implements OnInit {
       // INVALID FORM
       this.markAllFieldsDirty(form);
     } else {
+      if (form.value.bank) {
+        delete form.value.bank.accountNoMaxLength;
+      }
       this.saved.emit(this.addBankForm.getRawValue());
     }
   }
