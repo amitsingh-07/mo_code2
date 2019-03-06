@@ -1,7 +1,101 @@
 {
   "CMP": {
     "MODAL": {
-      "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account."
+      "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account.",
+      "FINANCES_MODAL":{
+        "TITLE": "Step 2",        
+        "TITLE_IMAGE": "owl.svg",
+        "TITLE_DESC": "Completed",
+        "CONTENT_TITLE": "Do you know?",
+        "CONTENT_DESC": "This is the amount you can set aside for protection needs and investing towards education and retirement goals",
+        "CONTENT_BODY1": "Your Liquid Cash",
+        "CONTENT_BODY2": "Your Monthly Spare Cash",
+        "HOW_DO_WE_CALCULATE": "How do we calculate this?",
+        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus a Emergency Cash pool of 6 months of expenses and loan payments",
+        "HOW_DO_WE_CALCULATE_DESC2": "Emergency Cash is important in case you lose your job or incur unexpected expenses. Monthly Spare Cash is your take home income minus your expenses and loan repayments minus yor bad mood fund allocation",
+        "NEXT": "NEXT",
+        "EMERGENCY_BELOW_DESC": "Oh no, seems like your liquid cash is less than 6 months' of expenses. <br/>Save before you invest.",
+        "EMERGENCY_BELOW_NOTE_TITLE": "NEXT STEP",
+        "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement"
+      },
+      "INSURANCE_PLANNING_MODAL":{
+        "NO_DEPENDANTS" : {
+                "TITLE": "Step 3",        
+                "TITLE_IMAGE": "owl.svg",
+                "TITLE_DESC": "Completed",
+                "CONTENT_TITLE": "Do you know?",
+                "CONTENT_DESC": "This is the estimated cost of ESTIMATED_COST life coverage for you, using:",
+                "CONTENT_BODY1": "Term Insurance",
+                "CONTENT_BODY1_DESC":"Till age 65",
+                "CONTENT_BODY2": "Whole Life",
+                "PER_YEAR":"per year",
+                "SUB_TITLE": "Explanation",
+                "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
+                "SUB_TITLE_NOTE": "Actual split depends on companies and age of insured",
+                "SUB_CONTENT_DESC1": "You will never fully cover yourself with expensive whole life policies. With whole life, you are mainly paying for a low-return investment.",
+                "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
+                "NEXT": "NEXT"
+          },
+        "DEPENDANTS" : {
+                "TITLE": "Step 3",        
+                "TITLE_IMAGE": "owl.svg",
+                "TITLE_DESC": "Completed",
+                "CONTENT_TITLE": "Do you know?",
+                "CONTENT_DESC": "Some types of medical insurance are needed for limited years and some are needed for life, for example:",                
+                "SUB_TITLE": "In a Medical Crisis",
+                "SUB_CONTENT_TITLE_1": "Loss of income",
+                "SUB_CONTENT_TITLE_DESC_1": "Until retirement age or when we have no more dependants",
+                "SUB_CONTENT_TITLE_2": "Medical Expenses",
+                "SUB_CONTENT_TITLE_DESC_2": "As long as possible",
+                "SUB_CONTENT_DESC11": "Disability income insurance",
+                "SUB_CONTENT_DESC12": "Critical illness insurance (3-5 years'recuperation)",                
+                "SUB_CONTENT_DESC21": "Hospitalisation (e.g. Shield)",
+                "SUB_CONTENT_DESC22": "Long-Term Care",
+                "NEXT": "NEXT"
+        }              
+      },
+      "RETIREMENT_MODAL" : {
+         "TITLE": "Step 4",        
+          "TITLE_IMAGE": "owl.svg",
+          "TITLE_DESC": "Completed",
+          "CONTENT_TITLE": "Do you know?",
+          "CONTENT_DESC": "The 3 \"must\" haves in retirement",  
+          "SUB_CONTENT_TITLE_1": "A fully paid-up income",          
+          "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
+          "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability.",
+          "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, Eldershield annuities)",
+          "SUB_CONTENT_DESC_22": "2. Additional income for better lifestyle",
+          "SUB_CONTENT_TITLE_3": "Medical Expenses Insurance to Pay Hospital Bills",
+          "SUB_CONTENT_TITLE_3_DESC": "(e.g. Medishield Life, Private Integrated Shield Plans)",
+          "SUB_CONTENT_NOTE": "Let's plan together!",
+          "NEXT": "NEXT"
+      },
+      "CHILDREN_EDUCATION_MODAL":{
+        "NO_DEPENDANTS" : {
+                "TITLE": "Step 1",        
+                "TITLE_IMAGE": "education-without-dependant.svg",
+                "TITLE_DESC": "Completed",
+                "CONTENT_TITLE": "Do you know?",
+                "CONTENT_DESC": "This is how much things may cost in 10 years’ time.",
+                "CONTENT_BODY1": "Monthly living costs of LIVING_COST",
+                "CONTENT_BODY1_DESC": "Includes PERCENT% inflation",
+                "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
+                "CONTENT_BODY2_DESC": "About AGE_VAL years later",              
+                "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
+                "NEXT": "NEXT"
+          },
+        "DEPENDANTS" : {
+                "TITLE": "Step 1",        
+                "TITLE_IMAGE": "education-with-dependant.svg",
+                "TITLE_DESC": "Completed",
+                "CONTENT_TITLE": "Do you know?",
+                "CONTENT_DESC": "This is how much university may cost you in future.",
+                "CONTENT_BODY_DESC": "The amount includes 6% inflation for tuition fee per year and 3% inflation for general living expenses per year.",                
+                "CONTENT_NOTE": "It’s great that you are planning now!",
+                "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
+                "NEXT": "NEXT"
+        }              
+      }
     },
     "COMPREHENSIVE": {
 
@@ -265,94 +359,6 @@
       "LIABILITIES_BUCKETS_TOTAL": "in total",
       "FORM":{
        "LOAN_PLACEHOLDER": "Enter Amount"
-      },
-      "FINANCES_MODAL":{
-        "TITLE": "Step 2",
-        "TITLE_DESC": "Completed",
-        "CONTENT_TITLE": "Do you know?",
-        "CONTENT_DESC": "This is the amount you can set aside for protection needs and investing towards education and retirement goals",
-        "CONTENT_BODY1": "Your Liquid Cash",
-        "CONTENT_BODY2": "Your Monthly Spare Cash",
-        "HOW_DO_WE_CALCULATE": "How do we calculate this?",
-        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus a Emergency Cash pool of 6 months of expenses and loan payments",
-        "HOW_DO_WE_CALCULATE_DESC2": "Emergency Cash is important in case you lose your job or incur unexpected expenses. Monthly Spare Cash is your take home income minus your expenses and loan repayments minus yor bad mood fund allocation",
-        "NEXT": "NEXT",
-        "EMERGENCY_BELOW_DESC": "Oh no, seems like your liquid cash is less than 6 months' of expenses. <br/>Save before you invest.",
-        "EMERGENCY_BELOW_NOTE_TITLE": "NEXT STEP",
-        "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement"
-      },
-      "INSURANCE_PLANNING_MODAL":{
-        "NO_DEPENDANTS" : {
-                "TITLE": "Step 3",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is the estimated cost of ESTIMATED_COST life coverage for you, using:",
-                "CONTENT_BODY1": "Term Insurance",
-                "CONTENT_BODY1_DESC":"Till age 65",
-                "CONTENT_BODY2": "Whole Life",
-                "PER_YEAR":"per year",
-                "SUB_TITLE": "Explanation",
-                "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
-                "SUB_TITLE_NOTE": "Actual split depends on companies and age of insured",
-                "SUB_CONTENT_DESC1": "You will never fully cover yourself with expensive whole life policies. With whole life, you are mainly paying for a low-return investment.",
-                "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
-                "NEXT": "NEXT"
-          },
-        "DEPENDANTS" : {
-                "TITLE": "Step 3",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "Some types of medical insurance are needed for limited years and some are needed for life, for example:",                
-                "SUB_TITLE": "In a Medical Crisis",
-                "SUB_CONTENT_TITLE_1": "Loss of income",
-                "SUB_CONTENT_TITLE_DESC_1": "Until retirement age or when we have no more dependants",
-                "SUB_CONTENT_TITLE_2": "Medical Expenses",
-                "SUB_CONTENT_TITLE_DESC_2": "As long as possible",
-                "SUB_CONTENT_DESC11": "Disability income insurance",
-                "SUB_CONTENT_DESC12": "Critical illness insurance (3-5 years'recuperation)",                
-                "SUB_CONTENT_DESC21": "Hospitalisation (e.g. Shield)",
-                "SUB_CONTENT_DESC22": "Long-Term Care",
-                "NEXT": "NEXT"
-        }              
-      },
-      "RETIREMENT_MODAL" : {
-         "TITLE": "Step 4",
-          "TITLE_DESC": "Completed",
-          "CONTENT_TITLE": "Do you know?",
-          "CONTENT_DESC": "The 3 \"must\" haves in retirement",  
-          "SUB_CONTENT_TITLE_1": "A fully paid-up income",          
-          "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
-          "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability.",
-          "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, Eldershield annuities)",
-          "SUB_CONTENT_DESC_22": "2. Additional income for better lifestyle",
-          "SUB_CONTENT_TITLE_3": "Medical Expenses Insurance to Pay Hospital Bills",
-          "SUB_CONTENT_TITLE_3_DESC": "(e.g. Medishield Life, Private Integrated Shield Plans)",
-          "SUB_CONTENT_NOTE": "Let's plan together!",
-          "NEXT": "NEXT"
-      },
-      "CHILDREN_EDUCATION_MODAL":{
-        "NO_DEPENDANTS" : {
-                "TITLE": "Step 1",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much things may cost in 10' years' time.",
-                "CONTENT_BODY1": "Monthly Living costs of LIVING_COST",
-                "CONTENT_BODY1_DESC": "includes PERCENT% inflation",
-                "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
-                "CONTENT_BODY2_DESC": "About AGE_VAL year later",              
-                "CONTENT_NOTE": "That's why you must save and grow your assets and get proper insurance coverage. Its's great that you are planning now!",
-                "NEXT": "NEXT"
-          },
-        "DEPENDANTS" : {
-                "TITLE": "Step 1",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much university may cost you in future.",
-                "CONTENT_BODY_DESC": "The amount includes 6% inflation for tuition fee per year and 3% inflation for general living expenses per year.",                
-                "CONTENT_NOTE": "It's great that you are planning now!",
-                "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
-                "NEXT": "NEXT"
-        }              
       }
     },
     "YOUR_FINANCES":{
