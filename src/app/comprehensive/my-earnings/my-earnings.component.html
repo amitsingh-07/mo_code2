@@ -210,7 +210,7 @@
                     <div class="with-help-icon" for="name"><button [disabled]="monthlyRentIncome" type="button" class="dropdown-item"  (click)="SelectEarningsType('monthlyRentIncome', true)">
                         <span  > {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} <span [hidden]="!monthlyRentIncome"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span>  </span>  
                     </button>
-                      <span class="help-icon" (click)="showToolTipModal('ADD_MONTHLY_INCOME_TITLE','ADD_MONTHLY_INCOME_MESSAGE')"></span>
+                      <!--span class="help-icon" (click)="showToolTipModal('ADD_MONTHLY_INCOME_TITLE','ADD_MONTHLY_INCOME_MESSAGE')"></span-->
                     </div> 
                     <div class="with-help-icon" for="name">
                     <button  [disabled]="otherMonthlyWorkIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', true)">
@@ -274,6 +274,7 @@
         <div class="flex-col-12">
           <div class="with-delete-icon p-2" for="name"><b>{{
             'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}</b>
+            <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
             <span class="delete-icon" (click)="SelectEarningsType('annualDividendsType', false)"></span>
           </div>
         </div>
@@ -327,7 +328,11 @@
     </section>
     <article >
     <aside>
-      <div class="dropdown-control" [hidden]="otherAnnualIncomeType && annualDividendsType" >
+      <div class="flex-row" [hidden]="(otherAnnualIncomeType && annualDividendsType)">
+          <div class="flex-col-1 earn-dollar-help">
+              <span class="earn-dollar-icon earn-monthly-income-dollar"></span>            
+            </div>
+            <div class="flex-col-11 dropdown-control" [hidden]="otherAnnualIncomeType && annualDividendsType" >
           <div ngbDropdown id="employmentTypeDropDown">
             <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle>
               <span >  {{'CMP.MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
@@ -350,6 +355,8 @@
             </div>
           </div>
         </div>
+          </div>
+      
         <div class="flex-row" [hidden]="!(otherAnnualIncomeType && annualDividendsType)">
           <div class="flex-col-12 earn-dollar-help">
                      

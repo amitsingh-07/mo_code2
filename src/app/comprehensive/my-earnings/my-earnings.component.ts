@@ -124,10 +124,10 @@ export class MyEarningsComponent implements OnInit {
     this.myEarningsForm.markAsDirty();
   }
   goToNext(form: FormGroup) {
-    if (this.validateEarnings(form)) {
+    //if (this.validateEarnings(form)) {
       this.comprehensiveService.setMyEarnings(form.value);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
-    }
+   // }
   }
   validateEarnings(form: FormGroup) {
     this.submitted = true;
