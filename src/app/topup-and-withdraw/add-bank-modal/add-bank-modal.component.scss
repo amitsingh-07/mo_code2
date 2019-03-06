@@ -7,14 +7,29 @@ app-add-bank-modal {
     }
     .modal-body .form-group {
       label {
+        font-family: $muli-semi-bold;
         font-size: 18px;
         font-weight: 600;
         padding-right: 15px;
+        color: #2d8289;
       }
     }
-    .form-control .input-control {
-      text-align: left;
-    }
+    .form-control{
+      .input-control {
+        text-align: left;
+      }
+      &.input-control {
+        text-align: left;
+        &.disabled{
+          cursor: not-allowed;
+          font-family: $muli-regular;
+          color: $teal-color !important;
+          -webkit-text-fill-color: $teal-color !important;
+          background-color: $edit-acnt-disable-bg !important;
+          border: 1px solid $edit-acnt-disable-brdr !important;
+        }
+      }
+    } 
     .dropdown-control .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;

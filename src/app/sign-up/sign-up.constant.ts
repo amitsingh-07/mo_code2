@@ -23,17 +23,17 @@ export let SIGN_UP_CONFIG = {
         ACCOUNT_FUNDED: 'ACCOUNT_FUNDED'
     },
     ACCOUNT_NUMBER_MAX_LENGTH_INFO: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
-        BANK_OF_CHINA: 15,
-        STANDARD_CHARTERED_BANK: 10,
-        DEVELOPMENT_BANK_OF_SINGAPORE_LTD: 10,
-        CITI_BANK: 10,
-        MALAYAN_BANKING_BERHAD: 11,
-        OVERSEAS_CHINESE_CORP: 10,
-        RHP_SINGAPORE: 11,
-        UNITED_OVERSEAS: 10,
-        ANZ: 10,
-        CIMB_BERHAD: 10,
-        HONKONG_BANKING_PERSONAL: 12,
-        POST_OFFICE_BANK: 9
+        'Bank of China': 15,
+        'Standard Chartered Bank': 10,
+        'DBS': 10,
+        'Citibank': 10,
+        'MayBank': 11,
+        'OCBC': 10,
+        'RHB Bank': 11,
+        'UOB': 10,
+        'ANZ Bank': 10,
+        'CIMB': 10,
+        'HSBC': 12,
+        'POSB': 9
     }
 };

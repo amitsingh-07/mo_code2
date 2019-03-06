@@ -219,6 +219,10 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid TIN Number',
         errorMessage: 'TIN Number you entered is invalid.'
+      },
+      tinFormat: {
+        errorTitle: 'Invalid TIN Number',
+        errorMessage: 'TIN Number you entered is invalid.'
       }
     },
     taxCountry: {
