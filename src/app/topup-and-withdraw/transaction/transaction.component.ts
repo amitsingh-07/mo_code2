@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { PortfolioService } from '../../portfolio/portfolio.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { PortfolioService } from '../../portfolio/portfolio.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction',
@@ -32,7 +33,8 @@ export class TransactionComponent implements OnInit {
     private topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
     private portfolioService: PortfolioService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -71,7 +73,14 @@ export class TransactionComponent implements OnInit {
   }
 
   getTransactionHistory(from?, to?) {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.TITLE'),
+        desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE')
+      });
+    });
     this.topupAndWithDrawService.getTransactionHistory(from, to).subscribe((response) => {
+      this.loaderService.hideLoader();
       this.transactionHistory = response.objectList;
       this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
       this.portfolioService.sortByProperty(
@@ -85,6 +94,7 @@ export class TransactionComponent implements OnInit {
       );
     },
     (err) => {
+      this.loaderService.hideLoader();
       this.investmentAccountService.showGenericErrorModal();
     });
   }
