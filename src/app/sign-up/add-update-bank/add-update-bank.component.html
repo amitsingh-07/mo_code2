@@ -4,14 +4,12 @@
       <!-- Account Holder Name -->
       <div class="form-group">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-12">
             <label class="form-lbl"> {{'ADD_BANK.ACCOUNT_NAME' | translate}}</label>
           </div>
-          <div class="flex-col-6">
-            <div>
-              <input type="text" class="form-control input-control " formControlName="accountHolderName" 
-                id="account_holder" maxLength="30">
-            </div>
+          <div class="flex-col-12">
+             <label class="form-control input-control disabled" 
+              id="account_holder">{{bankForm.controls.accountHolderName.value}}</label> 
           </div>
         </div>
       </div>
@@ -34,11 +32,11 @@
                 <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
                   ngbDropdownToggle>
                   <span *ngIf="!bankForm.controls.bank.value"> {{'ADD_BANK.SELECT' | translate}}</span>
-                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.name}}</span>
+                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                   <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank, i)"
-                    id="residentialAddress-country-option-{{i}}">{{bank.name}}</button>
+                    id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
                 </div>
               </div>
             </div>

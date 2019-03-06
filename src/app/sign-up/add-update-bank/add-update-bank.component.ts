@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,10 +12,10 @@ import { IfastErrorModalComponent } from '../../shared/modal/ifast-error-modal/i
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-add-update-bank',
@@ -74,14 +74,16 @@ export class AddUpdateBankComponent implements OnInit {
     this.buildBankForm();
 
     this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
-      this.bankForm.get('accountNo').setValidators([Validators.required, Validators.pattern(RegexConstants.NumericOnly), this.signUpService.validateAccNoMaxLength]);
+      this.bankForm.get('accountNo').setValidators([Validators.required,
+        Validators.pattern(RegexConstants.NumericOnly),
+        this.signUpService.validateAccNoMaxLength]);
       this.bankForm.get('accountNo').updateValueAndValidity();
       this.isAccountEdited = true;
     });
   }
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
-    if(this.formValues.bank) {
+    if (this.formValues.bank) {
       this.formValues.bank.accountNoMaxLength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[this.formValues.bank.key];
     }
     this.updateId = this.formValues.id;
