@@ -335,6 +335,9 @@ export class SignUpService {
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank , fullName , accountNum , id) {
+    if (bank) {
+      delete bank.accountNoMaxLength;
+    }
     const request = {};
     request['id'] = id;
     request['bank'] = bank;

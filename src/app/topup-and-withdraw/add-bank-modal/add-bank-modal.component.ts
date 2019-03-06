@@ -66,6 +66,9 @@ export class AddBankModalComponent implements OnInit {
       // INVALID FORM
       this.markAllFieldsDirty(form);
     } else {
+      if(form.value.bank) {
+        delete form.value.bank.accountNoMaxLength
+      }
       this.saved.emit(this.addBankForm.value);
     }
   }
