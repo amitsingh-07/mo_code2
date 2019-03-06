@@ -319,11 +319,11 @@ export class InvestmentAccountService {
 
   setPersonalInfo(data: PersonalInfo) {
     if (data.fullName) {
-      this.investmentAccountFormData.fullName = data.fullName;
+      this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
     }
-    this.investmentAccountFormData.firstName = data.firstName ? data.firstName : '';
+    this.investmentAccountFormData.firstName = data.firstName ? data.firstName.toUpperCase() : '';
     if (data.lastName) {
-      this.investmentAccountFormData.lastName = data.lastName;
+      this.investmentAccountFormData.lastName = data.lastName.toUpperCase();
     }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
@@ -1216,20 +1216,20 @@ export class InvestmentAccountService {
     }
     this.commit();
   }
-  setEditProfileBankDetail(Fullname, Bank, AccountNumber, id, isAddBank) {
+  setEditProfileBankDetail(fullName, bank, accountNumber, id, isAddBank) {
     if (isAddBank) {
-      this.investmentAccountFormData.accountHolderName = Fullname;
-      this.investmentAccountFormData.bank = Bank;
-      this.investmentAccountFormData.accountNumber = AccountNumber;
+      this.investmentAccountFormData.accountHolderName = fullName;
+      this.investmentAccountFormData.bank = bank;
+      this.investmentAccountFormData.accountNumber = accountNumber;
     } else {
-      if (Fullname) {
-        this.investmentAccountFormData.accountHolderName = Fullname;
+      if (fullName) {
+        this.investmentAccountFormData.accountHolderName = fullName;
       }
-      if (Bank) {
-        this.investmentAccountFormData.bank = Bank;
+      if (bank) {
+        this.investmentAccountFormData.bank = bank;
       }
-      if (AccountNumber) {
-        this.investmentAccountFormData.accountNumber = AccountNumber;
+      if (accountNumber) {
+        this.investmentAccountFormData.accountNumber = accountNumber;
       }
       if (id) {
         this.investmentAccountFormData.bankUpdateId = id;
