@@ -193,7 +193,7 @@
       "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
       "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
       "BANK_NAME": "Bank Name",
-      "ACCOUNT_NO": "Account"
+      "ACCOUNT_NO": "Account No."
     }
   },
   "TRANSACTIONS": {
