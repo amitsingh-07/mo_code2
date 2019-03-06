@@ -219,9 +219,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
           this.state.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
             productList.premium.escalatingBenefit;
         }
-        if (productList.rider && productList.rider.riderName) {
+        /*if (productList.rider && productList.rider.riderName) {
           this.state.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
-        }
+        }*/
         if (productList.insurer && productList.premium.claimFeature) {
           this.state.claimFeature[Formatter.createObjectKey(productList.premium.claimFeature)] = productList.premium.claimFeature;
         }
@@ -251,9 +251,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.state.escalatingBenefit = Object.values(this.state.escalatingBenefit).map((key) => {
       return { value: key, checked: key === 'All' ? true : false };
     });
-    this.state.fullPartialRider = Object.values(this.state.fullPartialRider).map((key) => {
+    /*this.state.fullPartialRider = Object.values(this.state.fullPartialRider).map((key) => {
       return { value: key, checked: key === 'All' ? true : false };
-    });
+    });*/
     this.state.claimCriteria = Object.values(this.state.claimCriteria).map((key) => {
       return { value: key, checked: key === 'All' ? true : false };
     });
@@ -288,12 +288,12 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       name: 'escalatingBenefit',
       filterTypes: this.state.escalatingBenefit, allBtn: true
     };
-    const fullPartialRider = {
+    /*const fullPartialRider = {
       title: this.state.filterTypes.FULL_PARTIAL_RIDER,
       toolTip: { title: this.state.filterTypes.FULL_PARTIAL_RIDER, message: this.state.toolTips.FULL_PARTIAL_RIDER },
       name: 'fullPartialRider',
       filterTypes: this.state.fullPartialRider, allBtn: true
-    };
+    };*/
     const payoutYears = {
       title: this.state.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
       filterTypes: this.state.payoutYears, allBtn: true
@@ -326,7 +326,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         break;
       case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
         delete this.state.filters[0];
-        this.state.filters.push(fullPartialRider);
+        /*this.state.filters.push(fullPartialRider);*/
         this.directService.setPremiumFrequencyFilter('yearly');
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:

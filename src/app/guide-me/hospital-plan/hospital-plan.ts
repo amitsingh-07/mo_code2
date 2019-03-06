@@ -2,5 +2,5 @@ export class HospitalPlan {
     hospitalClass: string;
     hospitalClassDescription: string;
     hospitalClassId: number;
-    isFullRider = false;
+    isFullRider = true;
 }

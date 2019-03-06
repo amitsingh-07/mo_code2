@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import { DirectService } from './direct/direct.service';
+import { GuideMeService } from './guide-me/guide-me.service';
+import { SignUpService } from './sign-up/sign-up.service';
+import { WillWritingService } from './will-writing/will-writing.service';
+
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
 const SESSION_CUSTOMER = 'app_customer_id';
@@ -14,7 +19,12 @@ export class AppService {
     id: ''
   };
 
-  constructor() { }
+  constructor(
+    private directService: DirectService,
+    private guideMeService: GuideMeService,
+    private signUpService: SignUpService,
+    private willWritingService: WillWritingService
+  ) { }
 
   commit(key, data) {
     if (window.sessionStorage) {
@@ -28,7 +38,16 @@ export class AppService {
   clearData() {
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(SESSION_CUSTOMER);
     }
+    this.clearServiceData();
+  }
+
+  clearServiceData() {
+    this.willWritingService.clearServiceData();
+    this.guideMeService.clearServiceData();
+    this.directService.clearServiceData();
+    this.signUpService.clearData();
   }
 
   setJourneyType(type: string) {
