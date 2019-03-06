@@ -208,17 +208,17 @@
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
                     <div class="with-help-icon" for="name"><button [disabled]="monthlyRentIncome" type="button" class="dropdown-item"  (click)="SelectEarningsType('monthlyRentIncome', true)">
-                        <span  > {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} </span>  
+                        <span  > {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} <span [hidden]="!monthlyRentIncome"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span>  </span>  
                     </button>
                       <span class="help-icon" (click)="showToolTipModal('ADD_MONTHLY_INCOME_TITLE','ADD_MONTHLY_INCOME_MESSAGE')"></span>
                     </div> 
                     <div class="with-help-icon" for="name">
                     <button  [disabled]="otherMonthlyWorkIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', true)">
-                <span >  {{'CMP.MY_EARNINGS.OTHER_WORK_INCOME'|translate}}</span> 
+                <span >  {{'CMP.MY_EARNINGS.OTHER_WORK_INCOME'|translate}} <span [hidden]="!otherMonthlyWorkIncomeType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span> </span> 
                   </button></div> 
                   <div class="with-help-icon" for="name">
                   <button   [disabled]="otherMonthlyIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherMonthlyIncomeType', true)">
-                <span >{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}</span> 
+                <span >{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME'|translate}}<span [hidden]="!otherMonthlyIncomeType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span> </span> 
                 </button></div>
                   </div>
                 </div>
@@ -337,14 +337,14 @@
              
              <div class="with-help-icon" for="name">
                   <button [disabled]="annualDividendsType" type="button" class="dropdown-item"  (click)="SelectEarningsType('annualDividendsType', true)">
-                    <span  > {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} </span> 
+                    <span  > {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} <span [hidden]="!annualDividendsType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span></span> 
                       </button>
                     <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
                   </div> 
 
               
               <button  [disabled]="otherAnnualIncomeType" type="button" class="dropdown-item" (click)="SelectEarningsType('otherAnnualIncomeType', true)">
-          <span >  {{'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}}</span> 
+          <span >  {{'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME'|translate}} <span [hidden]="!otherAnnualIncomeType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span> </span> 
             </button>
            
             </div>

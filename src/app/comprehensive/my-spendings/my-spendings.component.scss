@@ -18,7 +18,7 @@ color: $dark-teal-color;
     //font-size: 18px;
     .help-icon {
       
-        background: url("/assets/images/tool-help-icon.png") no-repeat;
+        background: url("/assets/images/tool-help-icon.svg") no-repeat;
         width: 40px;
         height: 20px;
         cursor: pointer;
@@ -42,13 +42,13 @@ color: $dark-teal-color;
     right: 10px;
 }
 .emptySpend{
-    background: url("../../../assets/images/empty-expenses.png") no-repeat;
+    background: url("../../../assets/images/empty-expenses.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .filledSpend{
-    background: url("../../../assets/images/filled-expenses.png") no-repeat;
+    background: url("../../../assets/images/filled-expenses.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;

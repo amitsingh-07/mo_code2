@@ -107,8 +107,8 @@
           "value": "selfEmployed"
         }
       ],
-      "EMPTY_BUCKET_IMAGE":"empty-earnings-bucket.png",
-      "FILLED_BUCKET_IMAGE":"filled-earnings-bucket.png",
+      "EMPTY_BUCKET_IMAGE":"empty-earnings-bucket.svg",
+      "FILLED_BUCKET_IMAGE":"filled-earnings-bucket.svg",
       "TOOLTIP":{
         "MONTHLY_SALARY_TITLE": "Monthly Salary",
         "MONTHLY_SALARY_MESSAGE": "Your total monthly gross salary, including the portion that goes into your CPF.",
@@ -118,7 +118,8 @@
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
         "ADD_DIVIDENDS_TITLE": "Annual Dividends",
         "ADD_DIVIDENDS_MESSAGE": "Add up all the stock dividends you receive every year."
-      }
+      },
+      "SELECTED": "(Selected)"
     },
     "MY_SPENDINGS": {
       "HEADER": "What You Spend",

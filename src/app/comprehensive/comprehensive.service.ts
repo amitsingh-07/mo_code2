@@ -304,23 +304,22 @@ export class ComprehensiveService {
 
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
+   
         for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');
             let thisValue: any = (formValues[i] + '').replace(Regexp, '');
-            thisValue = parseInt(formValues[i], 10);
-            if (!isNaN(thisValue)) {
-              if (inputParams.indexOf(i)>=0) {
+            thisValue = parseInt(formValues[i], 10);           
+            if (!isNaN(thisValue)) {              
               if (inputParams.indexOf(i) >= 0) {
                 sum += thisValue !== 0 ? thisValue * 12 : 0;
               } else {
                 sum += parseInt(thisValue, 10);
               }
-            }
           }
-        }
-        return sum.toFixed();
+        }        
       }
+      return sum.toFixed();
   }
   
 }
