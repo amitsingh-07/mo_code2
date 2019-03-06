@@ -141,7 +141,7 @@
       "SPEND_TITLE2": " per year",
       "SPEND_DESC1": "There is ",      
       "SPEND_DESC2": " left in your annual bucket",
-      "BUCKET_NOTE":"Your annual income bucket",
+      "BUCKET_NOTE":"Your annual expenses",
       "TOOLTIP":{
         "OTHER_LOAN_TITLE": "Other Loan Payments",
         "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",

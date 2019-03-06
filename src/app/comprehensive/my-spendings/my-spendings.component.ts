@@ -123,10 +123,10 @@ export class MySpendingsComponent implements OnInit {
     });
   }
   goToNext(form: FormGroup) {    
-     if (this.validateSpendings(form)) {
+     //if (this.validateSpendings(form)) {
       this.comprehensiveService.setMySpendings(form.value);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
-    }
+    //}
   }
   validateSpendings(form: FormGroup) {
     this.submitted = false;

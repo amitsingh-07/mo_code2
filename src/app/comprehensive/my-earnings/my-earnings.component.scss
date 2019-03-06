@@ -16,7 +16,8 @@ color: $dark-teal-color;
     margin-right: 10px;
     position: relative;
     //font-size: 18px;
-    .help-icon {
+}
+.help-icon {
       
         background: url("/assets/images/tool-help-icon.svg") no-repeat;
         width: 40px;
@@ -26,8 +27,7 @@ color: $dark-teal-color;
         position: absolute;
         right: 0;
         bottom: 13px;
-    }    
-}
+}  
 .earn-btn-dropdown{
     background: none;
     color: $white-color;
@@ -80,7 +80,10 @@ color: $dark-teal-color;
         position: absolute;
         right: 0;
         bottom: 13px;
-    }    
+    } 
+    .help-icon {
+        right:30px;
+    }   
 }
 .earn-dollar-icon{
     background: url("/assets/images/money.svg") no-repeat;
