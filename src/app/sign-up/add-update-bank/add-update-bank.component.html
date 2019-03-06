@@ -34,11 +34,11 @@
                 <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
                   ngbDropdownToggle>
                   <span *ngIf="!bankForm.controls.bank.value"> {{'ADD_BANK.SELECT' | translate}}</span>
-                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.name}}</span>
+                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                   <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank, i)"
-                    id="residentialAddress-country-option-{{i}}">{{bank.name}}</button>
+                    id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
                 </div>
               </div>
             </div>
