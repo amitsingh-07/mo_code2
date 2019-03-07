@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { SignUpService } from '../sign-up/sign-up.service';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import {
@@ -73,4 +74,13 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent],
   providers: [CurrencyPipe]
 })
-export class TopupAndWithdrawModule {}
+export class TopupAndWithdrawModule {
+
+  constructor(private signUpService: SignUpService) {
+    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+    if (!this.signUpService.isMobileDevice() && !isUnsupportedNoteShown) {
+      this.signUpService.showUnsupportedDeviceModal();
+      this.signUpService.setUnsupportedNoteShownFlag();
+    }
+  }
+}
