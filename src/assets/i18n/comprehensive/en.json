@@ -166,7 +166,9 @@
       "DESCRIPTION": "Do have any existing education endowment plan?",
 	    "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
       "TOOLTIP_TITLE": "Education Endownment",
-      "TOOLTIP_MESSAGE": "An Education endownment plan is typically an insurance policy that matures and pays out around the time of the child's entry into university"
+      "TOOLTIP_MESSAGE": "An Education endownment plan is typically an insurance policy that matures and pays out around the time of the child's entry into university",
+      "MALE_ABOUT_YEAR": 20,
+      "FEMALE_ABOUT_YEAR": 18
 
     },
     "EDUCATION_PREFERENCE": {
@@ -369,7 +371,8 @@
          "LABEL_DESC":"Your monthly allocation to your Bad Mood Fund.",
          "MONTHLY_AMOUNT":"Monthly Amount",
          "HOSPITAL_CHOICE":"Hospital Choice",
-         "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?"
+         "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
+         "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg"
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",

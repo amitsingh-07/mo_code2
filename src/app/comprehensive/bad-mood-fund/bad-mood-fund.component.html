@@ -2,8 +2,9 @@
   <div class="step-indicator-container">
     <app-step-indicator [count]="6" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
   </div>
-  <h6>{{'CMP.YOUR_FINANCES.HEADER' | translate}}</h6>
-  <p>{{'CMP.YOUR_FINANCES.DESC' | translate}}</p>
+  <div class="title mt40">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
+  <div class="desc">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
+  <img class="text-center" src="./assets/images/{{ bucketImage }}"/>
   <h6>{{'CMP.YOUR_FINANCES.TITLE' | translate}}</h6>
   <p>{{'CMP.YOUR_FINANCES.DESC' | translate}}</p>
   <div class="col-lg-5 col-md-6 flex--pad-mt-reset">

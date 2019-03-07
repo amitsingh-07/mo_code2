@@ -21,6 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./bad-mood-fund.component.scss']
 })
 export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
+  bucketImage: string;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: any;
   pageId: string;
@@ -56,6 +57,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
+        this.bucketImage = this.translate.instant('CMP.YOUR_FINANCES.BAD_MOOD_FUND_BUCKET');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -84,7 +86,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(50);
+    this.ciMultiplierSlider.writeValue(0);
   }
 
   ngOnDestroy() {
