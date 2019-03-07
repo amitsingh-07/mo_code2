@@ -16,5 +16,9 @@
   "prettier.singleQuote": true,
   "typescriptHero.imports.multiLineTrailingComma": false,
   "window.zoomLevel": 0,
-  "git.showPushSuccessNotification": true
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  }
 }
