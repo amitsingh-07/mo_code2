@@ -251,6 +251,10 @@
     "DOWNLOAD_FACTSHEET": "Download Factsheet",
     "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Highlight Sheet"
   },
-  "IFAST_ERROR_TITLE": "Error !"
+  "IFAST_ERROR_TITLE": "Error !",
+  "UNSUPPORTED_DEVICE_MODAL": {
+      "TITLE": "Note !",
+      "DESC": "Currently Investment feature is supported only for mobile devices."
+  }
 }
 

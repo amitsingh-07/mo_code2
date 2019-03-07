@@ -15,6 +15,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { TranslateService } from '@ngx-translate/core';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -38,7 +39,8 @@ export class SignUpService {
     public authService: AuthenticationService,
     public cryptoService: CryptoService,
     private datePipe: DatePipe,
-    public modal: NgbModal) {
+    public modal: NgbModal,
+    private translate: TranslateService) {
     this.getAccountInfo();
   }
 
@@ -521,10 +523,10 @@ export class SignUpService {
   }
 
   showUnsupportedDeviceModal() {
-    const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Note !';
-    ref.componentInstance.errorMessage = 'Currently Investment feature is supported only for mobile devices.';
-    return false;
+      const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
+      return false;
   }
 
   setUnsupportedNoteShownFlag() {
