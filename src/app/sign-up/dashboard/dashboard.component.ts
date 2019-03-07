@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
   ngOnInit() {
@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.wills.hasWill = true;
+        this.wills.completedWill = data.objectList[0].willProfile.hasWill === 'Y';
         this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
         if (!this.willWritingService.getIsWillCreated()) {
           this.willWritingService.convertWillFormData(data.objectList[0]);
@@ -77,39 +78,7 @@ export class DashboardComponent implements OnInit {
 
   downloadWill() {
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.saveAs(data);
     }, (error) => console.log(error));
-  }
-
-  saveAs(data) {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
-
-    const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else {
-      this.downloadFile(data);
-    }
-  }
-
-  downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    a.download = 'MoneyOwl Will Writing.pdf';
-    a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-
   }
 
 }

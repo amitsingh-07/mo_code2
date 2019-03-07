@@ -26,7 +26,8 @@
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="wills.hasWill" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL' | translate}}</span>
+                <span class="view_all" *ngIf="wills.completedWill"
+                  (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -34,8 +35,12 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span *ngIf="!wills.hasWill">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
-                        <span *ngIf="wills.hasWill">{{'DASHBOARD.WILL_WRITING.Existing_WILL_DESC' | translate}}</span>
+                        <span
+                          *ngIf="!wills.hasWill">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
+                        <span
+                          *ngIf="!wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC' | translate}}</span>
+                        <span
+                          *ngIf="wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC' | translate}}</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
@@ -44,13 +49,20 @@
                       </div>
                     </div>
                     <div class="flex">
-                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWill" (click)="redirectTo('start')">
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWill"
+                        (click)="redirectTo('start')">
                         <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
                         <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
                       </button>
-                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.hasWill" (click)="downloadWill()">
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.completedWill"
+                        (click)="redirectTo('edit')">
+                        <div>{{'DASHBOARD.WILL_WRITING.CONTINUE_WRITING' | translate}}</div>
+                      </button>
+                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.completedWill"
+                        (click)="downloadWill()">
                         <div>{{'DASHBOARD.WILL_WRITING.DOWNLOAD_WILL' | translate}}</div>
-                        <div>{{'DASHBOARD.WILL_WRITING.LAST_UPDATED' | translate}} {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</div>
+                        <div>{{'DASHBOARD.WILL_WRITING.LAST_UPDATED' | translate}}
+                          {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</div>
                       </button>
                     </div>
                   </div>
