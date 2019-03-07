@@ -42,8 +42,7 @@ export class MyLiabilitiesComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
 
-    this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();   
-
+    this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

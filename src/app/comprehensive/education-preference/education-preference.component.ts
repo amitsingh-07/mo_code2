@@ -15,6 +15,7 @@ import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { AboutAge } from './../../shared/utils/about-age.util';
 @Component({
   selector: 'app-education-preference',
   templateUrl: './education-preference.component.html',
@@ -34,7 +35,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService) {
+              private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -65,8 +66,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    this.educationPreferenceArray = this.endowmentDetail.endowmentDetailsList;
-    console.log(this.educationPreferenceArray);
+    this.educationPreferenceArray = this.endowmentDetail.endowmentDetailsList;    
     this.buildEducationPreferenceForm();
   }
 
@@ -82,10 +82,9 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
   }
   buildPreferenceDetailsForm(value): FormGroup {
-
     return this.formBuilder.group({
       name: [value.name],
-      age: [value.age],
+      age: [this.aboutAge.calculateAge(value.dateOfBirth, new Date())],
       location: [value.location, [Validators.required]],
       educationCourse: [value.educationCourse, [Validators.required]]
 

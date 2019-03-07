@@ -42,6 +42,7 @@ export interface IChildEndowment {
     educationCourse: string;
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
+    dateOfBirth:string;
 
 }
 
@@ -60,22 +61,22 @@ export class HospitalPlan {
 
 export interface IMySummaryModal {
     setTemplateModal: number;
-    title: any;
-    titleImage: string;
-    dependantModelSel: boolean;
+    title?: any;
+    dependantModelSel?: boolean;
     contentObj: any;
-    contentImage: string;
-    dependantDetails: ISummaryDependantDetails[];
-    nonDependantDetails: {
+    contentImage?: string;
+    dependantDetails?: ISummaryDependantDetails[];
+    nonDependantDetails?: {
         livingCost: number,
         livingPercent: number, livingEstimatedCost: number, medicalBill: number, medicalYear: number, medicalCost: number
     };
-    estimatedCost: number;
-    termInsurance: number;
-    wholeLife: number;
-    liabilitiesEmergency: boolean;
-    liabilitiesLiquidCash: number;
-    liabilitiesMonthlySpareCash: number;
+    estimatedCost?: number;
+    termInsurance?: number;
+    wholeLife?: number;
+    liabilitiesEmergency?: boolean;
+    liabilitiesLiquidCash?: number;
+    liabilitiesMonthlySpareCash?: number;
+    nextPageURL: any;
 }
 
 export interface ISummaryDependantDetails {
@@ -92,7 +93,7 @@ export interface IMyEarnings {
    annualBonus: number;
    annualDividends: number;
    otherAnnualIncome: number;
-
+   totalAnnualIncomeBucket: number;
 }
 
 export interface IMySpendings {

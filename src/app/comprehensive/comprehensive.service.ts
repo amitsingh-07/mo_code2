@@ -8,9 +8,7 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
-  IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
-
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
 })
@@ -89,17 +87,12 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myDependant;
   }
-  getChildEndowment() {
+  
+   getChildEndowment() {
     if (!this.comprehensiveFormData.hasEducationPlan) {
       this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
     }
     return this.comprehensiveFormData.hasEducationPlan;
-  }
-  getEducationPreference() {
-    if (!this.comprehensiveFormData.hasEducationPlan) {
-      this.comprehensiveFormData.educationPreference = [] as IEPreference[];
-    }
-    return this.comprehensiveFormData.educationPreference;
   }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
@@ -115,8 +108,8 @@ export class ComprehensiveService {
     this.comprehensiveFormData.educationPreference = educationPreference;
     this.commit();
   }
-  setChildEndowment(educationPlan: IEducationPlan) {
-    this.comprehensiveFormData.hasEducationPlan = educationPlan;
+  setChildEndowment(hasEducationPlan: IEducationPlan) {
+    this.comprehensiveFormData.hasEducationPlan = hasEducationPlan;
     this.commit();
   }
   getMyLiabilities() {
@@ -247,7 +240,7 @@ export class ComprehensiveService {
       windowClass: 'custom-full-height'
     });
 
-    let setTempleteModel = 2;
+    let setTempleteModel = 1;
     if (setTempleteModel == 2) {
       //Finance Popup    
 
@@ -278,11 +271,20 @@ export class ComprehensiveService {
       // CHILDREN_EDUCATION Popup
       const dependantVar = false;
 
-      summaryModalDetails = { setTemplateModal: 1, titleImage: 'owl.svg', dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal : childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19, userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 } };
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'education-without-dependant.svg', dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal : childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19, userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 } };
 
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
     }
 
+    return false;
+  }
+
+  openSummaryPopUpModal(summaryModalDetails) {
+    const ref = this.modal.open(SummaryModalComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });    
+    ref.componentInstance.summaryModalDetails = summaryModalDetails;
     return false;
   }
 
@@ -295,7 +297,7 @@ export class ComprehensiveService {
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
    
-    for (const i in formValues) {
+        for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');
             let thisValue: any = (formValues[i] + '').replace(Regexp, '');
@@ -309,7 +311,7 @@ export class ComprehensiveService {
           }
         }        
       }
-    return sum.toFixed();
+      return sum.toFixed();
   }
 
 }
