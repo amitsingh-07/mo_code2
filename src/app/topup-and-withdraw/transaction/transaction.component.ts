@@ -55,13 +55,13 @@ export class TransactionComponent implements OnInit {
       this.userProfileInfo.investementDetails.account.accountCreatedDate
     ) {
       this.accountCreationDate = this.convertStringToDate(
-        this.userProfileInfo.investementDetails.account.accountCreatedDate
+       this.userProfileInfo.investementDetails.account.accountCreatedDate
+      );
+      this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
+        this.accountCreationDate,
+        new Date()
       );
     }
-    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
-      this.accountCreationDate,
-      new Date()
-    );
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);
