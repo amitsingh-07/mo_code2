@@ -345,7 +345,32 @@
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "eg. jewellery"
+      "OTHER_ASSETS_HINT": "eg. jewellery",
+      "INVESTMENT_TYPE_LIST": [{
+          "text": "Equities",
+          "value": "equities"
+        },
+        {
+          "text": "Bonds",
+          "value": "bonds"
+        },
+        {
+          "text": "Balanced",
+          "value": "balanced"
+        },
+        {
+          "text": "Multi Assets",
+          "value": "multiAssets"
+        },
+        {
+          "text": "Alternatives",
+          "value": "alternatives"
+        },
+        {
+          "text": "Others",
+          "value": "others"
+        }
+      ]
     },
     "LOCATION_LIST":[ "Singapore","USA", "United Kingdom", "Australia"],
     "COURSE_LIST":["Medicine","Non-Medicine"],
