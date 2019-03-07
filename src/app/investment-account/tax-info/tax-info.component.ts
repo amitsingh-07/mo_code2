@@ -228,8 +228,7 @@ export class TaxInfoComponent implements OnInit {
     let isValidTin;
     if (value !== undefined) {
       if(control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
-        let countryCode = control.parent.controls['taxCountry'].value.countryCode;
-        debugger;
+        const countryCode = control.parent.controls['taxCountry'].value.countryCode;
         switch(countryCode) {
           case INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE:
             isValidTin = this.investmentAccountCommon.isValidNric(value);

@@ -285,7 +285,7 @@
         "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
         "BANK": "Bank Name",
         "SELECT": "Select Bank",
-        "ACCOUNT": "Account",
+        "ACCOUNT": "Account No.",
         "ADD":"Add Bank Details",
         "EDIT":"Edit Bank Details",
         "ADD_NOW":"Add Now",
