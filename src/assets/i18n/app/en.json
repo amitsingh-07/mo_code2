@@ -21,7 +21,8 @@
     "LBL_PERCENTAGE_PER_ANNUM": " p.a",
     "LBL_PROJECTED_RETURN": "Projected Return",
     "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
-    "LBL_PROJECTED_PAYOUT": "Projected Payout"
+    "LBL_PROJECTED_PAYOUT": "Projected Payout",
+    "OKAY": "Ok"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",

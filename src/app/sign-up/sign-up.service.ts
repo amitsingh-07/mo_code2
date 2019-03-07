@@ -1,15 +1,20 @@
+import { Subject } from 'rxjs';
+
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { AbstractControl } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import {
+    UnsupportedDeviceModalComponent
+} from '../shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
-import { AbstractControl } from '@angular/forms';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -32,7 +37,8 @@ export class SignUpService {
     private apiService: ApiService,
     public authService: AuthenticationService,
     public cryptoService: CryptoService,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    public modal: NgbModal) {
     this.getAccountInfo();
   }
 
@@ -499,5 +505,34 @@ export class SignUpService {
       }
     }
     return null;
+  }
+
+  isMobileDevice() {
+    if ( navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  showUnsupportedDeviceModal() {
+    const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Note !';
+    ref.componentInstance.errorMessage = 'Currently Investment feature is supported only for mobile devices.';
+    return false;
+  }
+
+  setUnsupportedNoteShownFlag() {
+    this.signUpFormData.isUnsupportedNoteShown = true;
+    this.commit();
+  }
+
+  getUnsupportedNoteShownFlag() {
+    return this.signUpFormData.isUnsupportedNoteShown;
   }
 }
