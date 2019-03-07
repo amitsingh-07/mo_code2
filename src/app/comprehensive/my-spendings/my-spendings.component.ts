@@ -15,7 +15,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { IMySpendings } from '../comprehensive-types';
+import { IMySpendings, IMyEarnings } from '../comprehensive-types';
 
 @Component({
   selector: 'app-my-spendings',
@@ -27,11 +27,12 @@ export class MySpendingsComponent implements OnInit {
   mySpendingsForm: FormGroup;
   submitted: boolean;
   spendingDetails: IMySpendings;
+  earningDetails: IMyEarnings;
   otherMortage = true;
   validateFlag = true;
   totalSpending = 0;
   calculatedSpending = 0;
-  totalBucket = 14000;
+  totalBucket = 0;
   spendDesc: string;
   spendTitle: string;
   menuClickSubscription: Subscription;
@@ -75,9 +76,10 @@ export class MySpendingsComponent implements OnInit {
         this.addOtherMortage(); 
       }
     } 
-    this.onTotalAnnualSpendings();
-    
-       
+    this.earningDetails=this.comprehensiveService.getMyEarnings();   
+    if(this.earningDetails.totalAnnualIncomeBucket)
+      this.totalBucket=this.earningDetails.totalAnnualIncomeBucket;
+    this.onTotalAnnualSpendings();       
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
