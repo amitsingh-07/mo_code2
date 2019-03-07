@@ -16,10 +16,7 @@ export interface IMyDependant {
     enquiryId: number;
 
 }
-export interface IEducationPlan {
-  educationSelection: string;
-  dependantList: IDependant[];
-}
+
 export interface IDependant {
   name: string;
   id: number;
@@ -32,20 +29,22 @@ export interface IEPreference {
     educationCourse: string;
 
 }
-export interface IChildEndowment {
-  id: number;
-  endowmentMaturityAmount: string;
-  endowmentMaturityYears: string;
-
+export interface IEducationPlan {
+    hasEndowments: string;
+    endowmentDetailsList: IChildEndowment[];
 }
-export interface IChildPlan {
+export interface IChildEndowment {
+    id: number;
     dependentId: number;
+    name: string;
     enquiryId: number;
     location: string;
     educationCourse: string;
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
+
 }
+
 export interface IMyLiabilities {
     homeLoanOutstanding: number;
     otherPropertyLoan: number;

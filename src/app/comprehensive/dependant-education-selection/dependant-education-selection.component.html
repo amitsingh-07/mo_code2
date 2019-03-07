@@ -7,15 +7,15 @@
     <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_yes" name="educationSelection" formControlName="educationSelection"
-            type="radio" value="dependant_yes_plan" class="field radio">
+          <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
+            type="radio" value="1" class="field radio">
           <label for="dependant_selection_yes">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('educationSelection').value === 'dependant_yes_plan'" class="p-0 pt-2 mt-2 dependantSection">
+          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
-            <div formArrayName="dependantList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependantList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
 
@@ -36,16 +36,16 @@
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_no_list" name="educationSelection" formControlName="educationSelection"
-            type="radio" value="dependant_no_plan" class="field radio">
+          <input id="dependant_selection_no_list" name="hasEndowments" formControlName="hasEndowments"
+            type="radio" value="2" class="field radio">
           <label for="dependant_selection_no_list">
             <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('educationSelection').value === 'dependant_no_plan'" class=" p-0 pt-2 mt-2 dependantSection">
+          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '2'" class=" p-0 pt-2 mt-2 dependantSection">
             <article class="dependant_selection_title">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
-            <div formArrayName="dependantList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.dependantList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
 
               <div class="form-group" [formGroupName]="i">
 
@@ -65,8 +65,8 @@
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input id="dependant_selection_no" name="educationSelection" formControlName="educationSelection"
-            type="radio" value='no' class="field radio">
+          <input id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
+            type="radio" value='0' class="field radio">
           <label for="dependant_selection_no">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>

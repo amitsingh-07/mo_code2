@@ -8,8 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, 
-  IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
+  IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +89,7 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myDependant;
   }
-  getEducationPlan() {
+  getChildEndowment() {
     if (!this.comprehensiveFormData.hasEducationPlan) {
       this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
     }
@@ -101,12 +101,6 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.educationPreference;
   }
-  getChildEndowment() {
-    if (!this.comprehensiveFormData.hasEducationPlan) {
-      this.comprehensiveFormData.childEndowment = [] as IChildEndowment[];
-    }
-    return this.comprehensiveFormData.childEndowment;
-  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
@@ -117,16 +111,12 @@ export class ComprehensiveService {
     this.commit();
   }
 
-  setEducationPlan(educationPlan: IEducationPlan) {
-    this.comprehensiveFormData.hasEducationPlan = educationPlan;
-    this.commit();
-  }
   setEducationPreference(educationPreference: IEPreference[]) {
     this.comprehensiveFormData.educationPreference = educationPreference;
     this.commit();
   }
-  setChildEndowment(childEndowment: IChildEndowment[]) {
-    this.comprehensiveFormData.childEndowment = childEndowment;
+  setChildEndowment(educationPlan: IEducationPlan) {
+    this.comprehensiveFormData.hasEducationPlan = educationPlan;
     this.commit();
   }
   getMyLiabilities() {
@@ -295,7 +285,7 @@ export class ComprehensiveService {
 
     return false;
   }
-  
+
  openTooltipModal(toolTipParam) {
     const ref = this.modal.open(ToolTipModalComponent, { centered: true });
     ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
@@ -305,7 +295,7 @@ export class ComprehensiveService {
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
    
-        for (const i in formValues) {
+    for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');
             let thisValue: any = (formValues[i] + '').replace(Regexp, '');
@@ -319,7 +309,7 @@ export class ComprehensiveService {
           }
         }        
       }
-      return sum.toFixed();
+    return sum.toFixed();
   }
-  
+
 }

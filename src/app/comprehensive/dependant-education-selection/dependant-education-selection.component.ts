@@ -30,8 +30,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   educationPreference = true;
   menuClickSubscription: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+    private translate: TranslateService, private formBuilder: FormBuilder,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -59,18 +59,38 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
       }
     });
-    this.buildEducationSelectionForm(this.dependantsArray);
+    this.dependantsArray = [{
+      id: 10,
+      customerId: 0,
+      enquiryId: 1, name: 'Joshua',
+      relationship: 'Child',
+      gender: 'male',
+      dateOfBirth: '12-05-2007',
+      nation: 'singaporean'
+
+    },
+    {
+      id: 11,
+      customerId: 0,
+      enquiryId: 1, name: 'kelvin',
+      relationship: 'Child',
+      gender: 'male',
+      dateOfBirth: '12-05-2007',
+      nation: 'singaporean'
+
+    }];
+    console.log(this.comprehensiveService.getChildEndowment());
+    this.buildEducationSelectionForm();
   }
 
   dependantSelection() {
     this.dependantsArray = [];
     const dependantDetails = this.comprehensiveService.getMyDependant();
     dependantDetails.forEach((details: any) => {
-if (details.relationship === 'Child') {
-  this.dependantsArray.push(details);
-}
-     });
-    // this.dependantsArray  = this.comprehensiveService.getEducationPlan().dependantList;
+      if (details.relationship === 'Child') {
+        this.dependantsArray.push(details);
+      }
+    });
   }
   @HostListener('input', ['$event'])
   onChange() {
@@ -81,9 +101,9 @@ if (details.relationship === 'Child') {
 
     this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
       let educationPreferenceAlert = true;
-      form.educationSelection === 'no' ? this.education_plan_selection = true : this.education_plan_selection = false;
-      form.dependantList.forEach((dependant: any, index) => {
-        if ( dependant.dependantSelection) {
+      form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
+      form.endowmentDetailsList.forEach((dependant: any, index) => {
+        if (dependant.dependantSelection) {
           educationPreferenceAlert = !dependant.dependantSelection;
         }
       });
@@ -91,14 +111,14 @@ if (details.relationship === 'Child') {
     });
   }
 
-  buildEducationSelectionForm(dependantsArray) {
+  buildEducationSelectionForm() {
     const dependantListArray = [];
-    dependantsArray.forEach((dependant: any) => {
+    this.dependantsArray.forEach((dependant: any) => {
       dependantListArray.push(this.buildEducationlist(dependant));
     });
     this.dependantEducationSelectionForm = this.formBuilder.group({
-      educationSelection: ['', Validators.required],
-      dependantList: this.formBuilder.array(dependantListArray)
+      hasEndowments: ['', Validators.required],
+      endowmentDetailsList: this.formBuilder.array(dependantListArray)
     });
 
   }
@@ -113,8 +133,18 @@ if (details.relationship === 'Child') {
     });
   }
   goToNext(form) {
-    console.log(form.value);
-    this.comprehensiveService.setEducationPlan(form.value);
+    const dependantArray = [];
+    form.value.endowmentDetailsList.forEach((dependantDetail: any) => {
+      if (dependantDetail.dependantSelection) {
+        dependantArray.push({
+          id: 0, dependentId: dependantDetail.id,
+          enquiryId: '', location: '', educationCourse: '', endowmentMaturityAmount: '',
+          endowmentMaturityYears: '', name: dependantDetail.name
+        });
+      }
+    });
+    form.value.endowmentDetailsList = dependantArray;
+    this.comprehensiveService.setChildEndowment(form.value);
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
   }
 }

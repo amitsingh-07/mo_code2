@@ -1,8 +1,8 @@
 <div class="modal-body white-bg">
    <div class = 'text-center'> {{ summaryModalDetails.contentObj.TITLE}}</div>
   <div class="modal-body-title text-center">{{ summaryModalDetails.contentObj.TITLE_DESC}}</div>
-  <div class="modal-title text-center"><img src="./assets/images/tick-mark-with-app-bg.svg" /></div>
-  <div class="modal-title text-center" *ngIf="summaryModalDetails.titleImage"><img src="./assets/images/{{ summaryModalDetails.titleImage }}" /></div>  
+  <div class="modal-title text-center"><img src="./assets/images/summary-page/step-tick.svg" /></div>
+  <div class="modal-title text-center" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img src="./assets/images/summary-page/{{ summaryModalDetails.contentObj.TITLE_IMAGE }}" /></div>  
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
@@ -274,7 +274,7 @@
 
       <li class="flex" >
         <div class="section">
-            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+            <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
                 {{ summaryModalDetails.contentObj.NEXT }}
             </button>
             </div>
@@ -314,12 +314,6 @@
         </div>
       </li>
 
-      <li class="flex">
-        <div class="section retire-modal-notes">
-          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}</div>                     
-        </div>
-      </li>
-
      <li class="flex">
         <div class="section ins-content-box">
           <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_NOTE }}</div>                     
@@ -329,7 +323,7 @@
 
       <li class="flex" >
         <div class="section">
-            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
+            <button type="button" class="btn btn-primary  width100" id="prfBtn1" (click)="goNextPage()">
                 {{ summaryModalDetails.contentObj.NEXT }}
             </button>
             </div>
