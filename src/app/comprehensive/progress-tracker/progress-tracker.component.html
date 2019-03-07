@@ -1,40 +1,32 @@
 <div class="progress-tracker-tooltip">
-  <div class="progress-tracker" *ngIf="showProgressTracker">
+  <div class="progress-tracker" *ngIf="!hideProgressTracker">
     <span class="progress-tracker__close" (click)="onCloseClick()"></span>
-    <div class="progress-tracker__heading">Your Progress Tracker</div>
-    <div class="progress-tracker__duration"><span class="mr10">Time taken: 20 mins</span> <img src="../../../assets/images/timer-icon.svg"></div>
+    <div class="progress-tracker__heading">{{data.title}}</div>
+    <div class="progress-tracker__duration">
+      <span class="mr10">{{data.subTitle}}</span>
+      <img src="../../../assets/images/timer-icon.svg">
+    </div>
     <div class="progress-tracker-accordion">
-      <div class="progress-tracker-accordion__heading get-started pointer-cursor" (click)="getstrdExpanded = !getstrdExpanded">
-        Get Started
-        <span class="progress-tracker-accordion__heading__arrow"></span>
-      </div>
-      <div class="progress-tracker-accordion__body" *ngIf="getstrdExpanded">
-        <ul><li class="active"><span class="now"></span>Tell us about you: <b>Kelvin Ng</b></li></ul>
-      </div>
-
-      <div class="progress-tracker-accordion__heading dependant pointer-cursor" (click)="getshldrExpanded = !getshldrExpanded">
-          What's on your shoulders
-          <span class="progress-tracker-accordion__heading__arrow"></span>
-      </div>
-      <div class="progress-tracker-accordion__body" *ngIf="getshldrExpanded">
-        <ul>
-          <li class="complete"><span class="complete"></span>Number of Dependant: <b>2</b></li>
-          <li class="complete"><span class="complete"></span>Plan for children education: <b>Yes</b></li>
-          <li class="complete"><span class="complete"></span>Education Preferences: <br>- Nathan Ng: <b>Local, Medicine</b> <br>- Marie Ng: <b>Overseas, Non-Medicine</b></li>
-        </ul>
-      </div>
-
-      <div class="progress-tracker-accordion__heading finances pointer-cursor" (click)="getfinanceExpanded = !getfinanceExpanded">
-          Your Finances
-          <span class="progress-tracker-accordion__heading__arrow"></span>
+      <div *ngFor="let item of data.items">
+        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="toggle(item)">
+          {{item.title}}
+          <span class=" progress-tracker-accordion__heading__arrow"></span>
         </div>
-        <div class="progress-tracker-accordion__body" *ngIf="getfinanceExpanded">
+        <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
           <ul>
-            <li class="complete"><span class="complete"></span>Number of Dependant: <b>2</b></li>
-            <li class="complete"><span class="complete"></span>Plan for children education: <b>Yes</b></li>
-            <li class="complete"><span class="complete"></span>Education Preferences: <br>- Nathan Ng: <b>Local, Medicine</b> <br>- Marie Ng: <b>Overseas, Non-Medicine</b></li>
+            <li *ngFor="let subItem of item.subItems" [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPageName == subItem.pageName}">
+              <span [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'now': currentPageName == subItem.pageName}"></span>
+              {{subItem.title}}<span *ngIf="subItem.completed">:
+                <b>{{subItem.value}}</b></span>
+              <ul class="sub-item-list" *ngIf="subItem.list && subItem.list.length > 0">
+                <li *ngFor="let listItem of subItem.list">
+                  <span>- {{listItem.title}}</span><span *ngIf="listItem.value">: </span><span>{{listItem.value}}</span>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
+      </div>
     </div>
   </div>
 </div>
