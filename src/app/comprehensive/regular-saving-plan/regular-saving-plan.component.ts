@@ -71,8 +71,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPDetailsForm() {
     return this.formBuilder.group({
       regularUnitTrust: ['', [Validators.required]],
-      paidByCash: ['', [Validators.required]],
-      paidByCPF: ['', [Validators.required]]
+      regularPaidByCash: ['', [Validators.required]],
+      regularPaidByCPF: ['', [Validators.required]]
 
     });
   }
