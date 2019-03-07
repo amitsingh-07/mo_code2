@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IChildEndowment, IEducationPlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -21,6 +22,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 })
 export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
+  endowmentDetail: IEducationPlan;
   submitted = false;
   courseList: any;
   locationList: any;
@@ -32,7 +34,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService ) {
+              private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -45,24 +47,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
       });
     });
-
-    this.educationPreferenceArray = [{
-      name: 'Nathan Ng',
-      age: '2',
-      location: '',
-      course_of_study: '',
-      nationality: ''
-
-    },
-    {
-      name: 'Marie Ng',
-      age: '2',
-      location: '',
-      course_of_study: '',
-      nationality: ''
-
-    }];
-    this.comprehensiveService.getMyDependant();
 
   }
   setPageTitle(title: string) {
@@ -80,15 +64,17 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
       }
     });
-    this.buildEducationPreferenceForm(this.educationPreferenceArray);
+    this.endowmentDetail = this.comprehensiveService.getChildEndowment();
+    this.educationPreferenceArray = this.endowmentDetail.endowmentDetailsList;
+    console.log(this.educationPreferenceArray);
+    this.buildEducationPreferenceForm();
   }
 
-  buildEducationPreferenceForm(educationPreferenceList) {
+  buildEducationPreferenceForm() {
     const preferenceArray = [];
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < educationPreferenceList.length; i++) {
-      preferenceArray.push(this.buildPreferenceDetailsForm(educationPreferenceList[i]));
-    }
+    this.educationPreferenceArray.forEach((educationDetailsList: any) => {
+      preferenceArray.push(this.buildPreferenceDetailsForm(educationDetailsList));
+    });
     this.EducationPreferenceForm = this.formBuilder.group({
       preference: this.formBuilder.array(preferenceArray),
 
@@ -100,8 +86,8 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
-      location: ['', [Validators.required]],
-      educationCourse: ['', [Validators.required]]
+      location: [value.location, [Validators.required]],
+      educationCourse: [value.educationCourse, [Validators.required]]
 
     });
 
@@ -117,10 +103,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   }
 
   goToNext(form) {
-    console.log(form);
     if (this.validateEducationPreference(form)) {
-
- this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+      form.value.preference.forEach((preferenceDetails: any, index) => {
+        this.educationPreferenceArray[index].location = preferenceDetails.location;
+        this.educationPreferenceArray[index].educationCourse = preferenceDetails.educationCourse;
+      });
+      this.comprehensiveService.setChildEndowment(this.endowmentDetail);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
 
     }
 

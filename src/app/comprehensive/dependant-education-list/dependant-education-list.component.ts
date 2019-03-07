@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IEducationPlan } from '../comprehensive-types';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -24,6 +25,7 @@ export class DependantEducationListComponent implements OnInit {
   pageId: string;
   endowmentListForm: FormGroup;
   menuClickSubscription: Subscription;
+  endowmentDetail: IEducationPlan;
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
@@ -41,23 +43,6 @@ export class DependantEducationListComponent implements OnInit {
       });
     });
 
-    this.endowmentArrayPlan = [{
-      name: 'Nathan Ng',
-      age: '2',
-      maturityAmount: '',
-      maturityYear: '',
-      endowmentplanShow: false
-
-    },
-    {
-      name: 'Marie Ng',
-      age: '2',
-      maturityAmount: '',
-      maturityYear: '',
-      endowmentplanShow: false
-
-    }];
-
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -69,15 +54,17 @@ export class DependantEducationListComponent implements OnInit {
 
       }
     });
-    this.buildEndowmentListForm(this.endowmentArrayPlan);
+    this.endowmentDetail = this.comprehensiveService.getChildEndowment();
+    this.endowmentArrayPlan = this.endowmentDetail.endowmentDetailsList;
+    
+    this.buildEndowmentListForm();
 
   }
-  buildEndowmentListForm(endowmentArrayPlan) {
+  buildEndowmentListForm() {
     const endowmentArray = [];
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < endowmentArrayPlan.length; i++) {
-      endowmentArray.push(this.buildEndowmentDetailsForm(endowmentArrayPlan[i]));
-    }
+    this.endowmentArrayPlan.forEach((endowmentPlan: any) => {
+      endowmentArray.push(this.buildEndowmentDetailsForm(endowmentPlan));
+    });
     this.endowmentListForm = this.formBuilder.group({
       endowmentPlan: this.formBuilder.array(endowmentArray),
 
@@ -89,15 +76,20 @@ export class DependantEducationListComponent implements OnInit {
     return this.formBuilder.group({
       name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       age: [value.age, [Validators.required]],
-      maturityAmount: ['', [Validators.required]],
-      maturityYear: ['', [Validators.required]],
-      endowmentplanShow: [value.endowmentplanShow, [Validators.required]]
+      endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
+      endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required]],
+      endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityYear == null)
+        ? false : true, [Validators.required]]
 
     });
 
   }
   goToNext(form) {
-
+    form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
+      this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
+      this.endowmentArrayPlan[index].endowmentMaturityYear = preferenceDetails.endowmentMaturityYear;
+    });
+    this.comprehensiveService.setChildEndowment(this.endowmentDetail);
   }
   showToolTipModal() {
     const toolTipParams = {

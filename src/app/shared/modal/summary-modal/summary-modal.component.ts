@@ -51,5 +51,9 @@ export class SummaryModalComponent implements OnInit {
 toogleCalculatePop(){
   this.calculateCashDesc = !this.calculateCashDesc;
 }
+goNextPage(){
+  console.log(this.summaryModalDetails.nextPageURL);
+  this.router.navigate([this.summaryModalDetails.nextPageURL]);
+}
 
 }
