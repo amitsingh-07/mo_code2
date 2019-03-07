@@ -60,6 +60,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url = COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION;
         break;
       case 2:
+        this.url = COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS;
         break;
     }
     this.router.navigate([this.url]);
