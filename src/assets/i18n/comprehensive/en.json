@@ -82,7 +82,8 @@
                 "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
                 "CONTENT_BODY2_DESC": "About AGE_VAL years later",              
                 "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
-                "NEXT": "NEXT"
+                "NEXT": "NEXT",
+                "NO_DEPENDANT": { "livingCost": 2000, "livingPercent": 3, "livingEstimatedCost": 2788, "medicalBill": 5000, "medicalYear": 20, "medicalCost": 300000 }
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 1",        
