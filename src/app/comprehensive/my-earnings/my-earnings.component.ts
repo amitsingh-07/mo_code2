@@ -125,6 +125,8 @@ export class MyEarningsComponent implements OnInit {
   }
   goToNext(form: FormGroup) {
     //if (this.validateEarnings(form)) {
+      this.earningDetails = form.value;
+      this.earningDetails.totalAnnualIncomeBucket =this.totalAnnualIncomeBucket;
       this.comprehensiveService.setMyEarnings(form.value);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
    // }

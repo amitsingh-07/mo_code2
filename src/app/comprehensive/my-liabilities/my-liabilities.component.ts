@@ -77,12 +77,12 @@ export class MyLiabilitiesComponent implements OnInit {
    goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
       console.log('Got it');
-      let financeModal = this.translate.instant('CMP.MY_LIABILITIES.FINANCES_MODAL');      
-      let retireModal = this.translate.instant('CMP.MY_LIABILITIES.RETIREMENT_MODAL');      
-      let insurancePlanningDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.DEPENDANTS'); 
-      let insurancePlanningNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
-      let childrenEducationDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.DEPENDANTS'); 
-      let childrenEducationNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+      let financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');      
+      let retireModal = this.translate.instant('CMP.MODAL.RETIREMENT_MODAL');      
+      let insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS'); 
+      let insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
+      let childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS'); 
+      let childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
       
       this.comprehensiveService.openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, this.summaryModalDetails);
     }
