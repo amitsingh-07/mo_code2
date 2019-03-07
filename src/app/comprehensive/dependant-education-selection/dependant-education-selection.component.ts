@@ -115,7 +115,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
   goToNext(form) {
     const dependantArray = [];
-    if (form.value.hasEndowments === 0) {
+    if (form.value.hasEndowments === '0') {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
       this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
         nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788,
