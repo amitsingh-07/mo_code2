@@ -130,7 +130,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.contactDetails = data.objectList.contactDetails;
         }
         if (this.personalData) {
-          this.fullName = this.personalData.fullName;
+          this.fullName = this.personalData.fullName ?
+            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
           this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
           this.setNric(this.personalData.nricNumber);
           if (this.personalData.passportNumber) {

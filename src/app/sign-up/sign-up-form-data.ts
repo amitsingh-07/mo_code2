@@ -30,4 +30,6 @@ export class SignUpFormData {
     editContact: boolean;
     updateMobile: boolean;
     updateEmail: boolean;
+
+    isUnsupportedNoteShown: boolean;
 }
