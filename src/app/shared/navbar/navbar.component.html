@@ -70,7 +70,7 @@
                     <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()"
                         href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
                 </li>
-                <li *ngIf="isLoggedIn" class="nav-item teal-bg hidden-lg" [routerLink]="['/']">
+                <li *ngIf="isLoggedIn" class="nav-item teal-bg hidden-lg" [routerLink]="['/account/edit-profile']">
                     <a class="nav-link">Profile</a>
                 </li>
                 <li class="nav-item" [routerLink]="['/']">
@@ -157,7 +157,7 @@
                             <div class="navbar--sub--text">My Dashboard</div>
                         </button>
                         <hr>
-                        <button class="dropdown-item">
+                        <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
                             <a class="navbar--text" href="javascript: void(0);">Profile</a>
                         </button>
                         <button class="dropdown-item" (click)="logout()">
