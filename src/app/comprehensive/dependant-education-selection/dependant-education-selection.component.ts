@@ -118,8 +118,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     if (form.value.hasEndowments === '0') {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
       this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
-        nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788,
-          medicalBill: 5000, medicalYear: 20, medicalCost: 300000 },
+        nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
           nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     } else {
