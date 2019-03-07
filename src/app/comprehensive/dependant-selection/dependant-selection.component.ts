@@ -72,7 +72,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
       let childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');      
-      this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal, nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 }, nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS)+'/2' };
+      this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal, nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'), nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS)+'/2' };
       this.cmpService.openSummaryPopUpModal(this.summaryModalDetails);
 
     }
