@@ -155,7 +155,7 @@
       "ABOUT": "About your dependants",
       "DESC": "Tell us more about those you need to take care of and we will include their needs in your financial plan.",
       "PLACEHOLDER_NAME": "Enter Name",
-      "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Others"]
+      "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "Sibling", "Others"]
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
