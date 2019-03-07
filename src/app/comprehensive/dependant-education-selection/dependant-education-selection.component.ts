@@ -30,8 +30,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   educationPreference = true;
   menuClickSubscription: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private formBuilder: FormBuilder,
-    private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+              private translate: TranslateService, private formBuilder: FormBuilder,
+              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -59,27 +59,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
       }
     });
-    this.dependantsArray = [{
-      id: 10,
-      customerId: 0,
-      enquiryId: 1, name: 'Joshua',
-      relationship: 'Child',
-      gender: 'male',
-      dateOfBirth: '12-05-2007',
-      nation: 'singaporean'
-
-    },
-    {
-      id: 11,
-      customerId: 0,
-      enquiryId: 1, name: 'kelvin',
-      relationship: 'Child',
-      gender: 'male',
-      dateOfBirth: '12-05-2007',
-      nation: 'singaporean'
-
-    }];
-    console.log(this.comprehensiveService.getChildEndowment());
+  
     this.buildEducationSelectionForm();
   }
 

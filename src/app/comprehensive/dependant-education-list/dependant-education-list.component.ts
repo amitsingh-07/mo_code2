@@ -30,8 +30,8 @@ export class DependantEducationListComponent implements OnInit {
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+    private translate: TranslateService, private formBuilder: FormBuilder,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -56,8 +56,15 @@ export class DependantEducationListComponent implements OnInit {
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     this.endowmentArrayPlan = this.endowmentDetail.endowmentDetailsList;
-    
     this.buildEndowmentListForm();
+    let endowmentSkipEnableFlag = true;
+    this.endowmentArrayPlan.forEach((dependant: any) => {
+   
+      if (dependant.endowmentMaturityAmount !== '') {
+        endowmentSkipEnableFlag = false;
+      }
+    });
+    this.endowmentSkipEnable = endowmentSkipEnableFlag;
 
   }
   buildEndowmentListForm() {
