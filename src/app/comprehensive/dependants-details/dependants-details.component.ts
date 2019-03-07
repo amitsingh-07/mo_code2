@@ -171,10 +171,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].enquiryId = 4850;
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-      this.comprehensiveApiService.addDependents(form.value).subscribe((data) => {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
-      });
-
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
     }
   }
 }

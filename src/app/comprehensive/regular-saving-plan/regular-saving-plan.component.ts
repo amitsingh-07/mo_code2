@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   investmentList: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  RSPSelection = false;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
               private configService: ConfigService) {
@@ -44,7 +45,15 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.rspSelection();
+  }
+  rspSelection() {
+    this.RSPForm.valueChanges.subscribe((form: any) => {
+      this.RSPSelection =  form.RSPSelection === 'true' ? true : false;
+    });
+  }
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -71,8 +80,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPDetailsForm() {
     return this.formBuilder.group({
       regularUnitTrust: ['', [Validators.required]],
-      paidByCash: ['', [Validators.required]],
-      paidByCPF: ['', [Validators.required]]
+      regularPaidByCash: ['', [Validators.required]],
+      regularPaidByCPF: ['', [Validators.required]]
 
     });
   }
@@ -85,7 +94,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     dependantdetails.removeAt(i);
   }
   selectInvest(status, i) {
-
+    const investment = status ? status : '';
+    this.RSPForm.controls['RSPDetails']['controls'][i].controls.regularUnitTrust.setValue(investment);
   }
   goToNext(form) {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
