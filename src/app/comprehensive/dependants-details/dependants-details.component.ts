@@ -12,7 +12,7 @@ import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { IMyDependant } from './../comprehensive-types';
+import { IMyDependant, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -32,6 +32,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   relationship: string;
   submitted = false;
   pageId: string;
+  summaryModalDetails: IMySummaryModal;
   menuClickSubscription: Subscription;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -171,7 +172,26 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].enquiryId = 4850;
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
+      const dependantDetails = [];
+      this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
+        if (dependant.relationship === 'Child' || dependant.relationship === 'Sibling') {
+          dependantDetails.push(dependant);
+        }
+      });
+      if (dependantDetails.length > 0) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
+      } else {
+        const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+        this.summaryModalDetails = {
+          setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
+          nonDependantDetails: {
+            livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788,
+            medicalBill: 5000, medicalYear: 20, medicalCost: 300000
+          },
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+        };
+        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+      }
     }
   }
 }
