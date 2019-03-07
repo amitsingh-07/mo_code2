@@ -1,107 +1,99 @@
-
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-
-.app-additional-declaration{
-    .btn-proceed {
-    width: 179px;
-    height: 60px;
-    border:0px;
-    border-radius: 6px;
-    background-color: $white-color;
-    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-    cursor: pointer;
-    font-family: Muli;
-    font-size: 22px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: #00a7a7;
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-additional-declaration-info {
+  .container-fluid{
     @include allmobiles{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  .app-additional-declaration {
+    .btn-proceed {
+      border: 0px;
+      border-radius: 6px;
+      background-color: $white-color;
+      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
+      cursor: pointer;
+      font-family: $muli-bold;
+      font-size: 22px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $teal-color;
+      @include allmobiles {
         position: fixed;
-        width:100%;
-        bottom:0px;
-        left:0px;
-        border-radius:0px;
+        width: 100%;
+        bottom: 0px;
+        left: 0px;
+        border-radius: 0px;
+      }
     }
-}
-.intro-block__tab-container {
-    @extend .flex;
-    @extend .space-btwn;
-    width: 100%;
-    .intro-block__tab {
+    .intro-block__tab-container {
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+      .intro-block__tab {
         width: calc(50% - 10px);
-        opacity:0.2;
+        opacity: 0.2;
         padding-right: 10px;
-        background-color:$app-backgrnd-secondary-color;
-        min-height:5px;
+        background-color: $app-backgrnd-secondary-color;
+        min-height: 5px;
         &.active {
-           opacity:1; 
+          opacity: 1;
         }
+      }
     }
-}
-.intro-block__content {
-    @include tablet {
+    .intro-block__content {
+      @include tablet {
         .banner-image img {
-            max-width:90%;
+          max-width: 90%;
         }
-    }
-    @include allmobiles {
+      }
+      @include allmobiles {
         .banner-image img {
-            max-width:70%;
-            padding-top: 15vh;
+          max-width: 70%;
+          padding-top: 5vh;
         }
-    }
-    @include iPadProPortrait {
+      }
+      @include iPadProPortrait {
         .banner-image img {
-            max-width:80%;
+          max-width: 80%;
         }
+      }
     }
-}
-.intro-block__content__desc {
-    
-    @include allmobiles {
+    .intro-block__content__desc {
+      @include allmobiles {
         margin-top: 30px;
         text-align: center;
-    }
-    @include tablet {
+      }
+      @include tablet {
         margin-top: 30px;
+      }
     }
-}
-.intro-block__content__heading {
-    font-family: Muli;
-  font-size: 24px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: #ffffff;
-}
-.intro-block__content__title {
-    font-family: Muli;
-    font-size: 18px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.22;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: #ffffff;
-}
-.intro-block__content__sub-title {
-    font-family: Muli;
-    font-size: 18px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.22;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: #ffffff;
-}
+    .intro-block__content__heading {
+      font-family: $muli-semi-bold;
+      font-size: 24px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.25px;
+      text-align: center;
+      color: $white-color;
+    }
+    .intro-block__content__title {
+      font-family: $muli-regular;
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 22px;
+      letter-spacing: -0.18px;
+      text-align: center;
+      color: $white-color;
+    }
+  }
 }

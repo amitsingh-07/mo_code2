@@ -14,6 +14,7 @@ import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 
+
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
@@ -47,9 +48,8 @@ export class PasswordComponent implements OnInit {
   ngOnInit() {
     this.buildPasswordForm();
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(5);
-    this.navbarService.setNavbarMobileVisibility(false);
-    this.navbarService.setNavbarShadowVisibility(false);
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
   }
 

@@ -1,37 +1,40 @@
-<div class="container-fluid">
-  <div class="back-btn hidden-lg" (click)="goBack()"></div>
+<div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
           <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
-          <!--
-          <div class="signup-wrapper__description order2">
-              <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
-            </div>
-            -->
-          <img id="pos_login_img" class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/post-login-icon.svg" />
+          <div class="signup-wrapper__header-icon order3 sm-order1"><img id="pos_login_img" src="assets/images/createAccount-icon.svg" /></div>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <!-- <form id="loginForm" name="loginForm" [formGroup]="loginForm"> -->
-          <div class="flex-row">
-            <div class="flex-col-12 stretch">
-              <div class="col-12 pl0 pr0">
-                  <app-sing-pass [label]="singPassLinkTitle" [position]="'postlogin'"></app-sing-pass>
-             </div>
+        <div class="widgets">
+          <div class="widget" *ngIf="showSingPass && isInvestmentMyInfoEnabled">
+            <div class="widget-title">{{ 'POSTLOGIN.APPLY_USING_MYINFO' | translate}}</div>
+            <div class="widget-body flex-row">
+              <div class="desc">{{ 'POSTLOGIN.AUTOFILL_QUICKLY' | translate}}</div>
+              <div class="flex-col-12 stretch">
+                <div class="flex-col-12">
+                    <app-sing-pass [label]="singPassLinkTitle" [position]="'postlogin'"></app-sing-pass>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="flex-row mb20">
-            <div class="flex-col-12 stretch">
-              
-                <button class="no-login-but" id="without_singpass_btn" (click)="noButClick()">{{ 'POSTLOGIN.PROCEED_WITHOUT' | translate}}</button>
-              
-
-              
+          <div class="widget">
+              <div class="widget-title">{{ 'POSTLOGIN.APPLY_WITHOUT_MYINFO' | translate}}</div>
+              <div class="widget-body flex-row">
+                <div class="desc">{{ 'POSTLOGIN.FILL_MANUALLY' | translate}}</div>
+                <div class="flex-col-12 stretch">
+                  <div class="flex-col-12">
+                      <div class="flex-col autofill-link postlogin" (click)="myInfoManual()">
+                        <div class="autofill-text">{{ 'POSTLOGIN.MANUALLY' | translate}}</div>
+                        <div class="autofill-estimation">{{ 'POSTLOGIN.ESTIMATE_TIME' | translate}}</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>

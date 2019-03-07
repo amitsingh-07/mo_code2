@@ -1,25 +1,23 @@
 import { Location } from '@angular/common';
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Renderer2,
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { DASHBOARD_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import {
+  TransactionModalComponent
+} from '../../shared/modal/transaction-modal/transaction-modal.component';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
-import { SignUpService } from './../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
 
-import { DefaultErrors } from './../modal/error-modal/default-errors';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -33,12 +31,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode: number;
   showNavShadow: boolean;
   showSearchBar = false;
-
+  modalRef: NgbModalRef;
   pageTitle: string;
+  notificationMaxLimit: number;
+  isNotificationHidden = true;
   subTitle = '';
+  pageSuperTitle = '';
   helpIcon = false;
   closeIcon = false;
   settingsIcon = false;
+  filterIcon = false;
   currentUrl: string;
   backListener = '';
   isBackPressSubscribed = false;
@@ -46,6 +48,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   innerWidth: any;
   mobileThreshold = 567;
   isNavbarCollapsed = true;
+  recentMessages: any;
+  count: any;
+  isNotificationEnabled: boolean;
 
   isPromotionEnabled = false;
   isArticleEnabled = false;
@@ -62,7 +67,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    private signUpService: SignUpService, private authService: AuthenticationService, private defaultErrors: DefaultErrors,
+    private signUpService: SignUpService, private authService: AuthenticationService,
+    private modal: NgbModal,
     private appService: AppService) {
     this.browserCheck();
     config.autoClose = true;
@@ -79,7 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.userInfo = this.signUpService.getUserProfileInfo();
-    if (this.userInfo && this.userInfo.firstName) {
+    if (this.authService.isSignedUser()) {
       this.isLoggedIn = true;
     }
 
@@ -90,7 +96,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           this.clearLoginDetails();
         } else {
           this.userInfo = data;
-          if (this.userInfo && this.userInfo.firstName) {
+          if (this.authService.isSignedUser()) {
             this.isLoggedIn = true;
           }
         }
@@ -107,15 +113,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.hideMenu();
+    this.isNotificationEnabled = this.canActivateNotification();
+    this.notificationMaxLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
+    this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
     });
+    this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -133,6 +143,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
+      if (navbarMode !== 2) {
+        this.isNotificationEnabled = this.canActivateNotification();
+      } else {
+        this.isNotificationEnabled = false;
+      }
+      if (this.isNotificationEnabled) {
+        this.getRecentNotifications();
+      }
       this.cdr.detectChanges();
     });
     this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {
@@ -159,9 +177,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   goToLink(fragment) {
     console.log(fragment);
   }
-  goToHome(in_fragment ?: string) {
+  goToHome(in_fragment?: string) {
     if (in_fragment) {
-      const extra = {fragment: in_fragment} as NavigationExtras;
+      const extra = { fragment: in_fragment } as NavigationExtras;
       this.router.navigate([appConstants.homePageUrl], extra);
     } else {
       this.router.navigate([appConstants.homePageUrl]);
@@ -184,6 +202,44 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNavbarCollapsed = true;
   }
 
+  getRecentNotifications() {
+    this.signUpService.getRecentNotifications().subscribe((response) => {
+      this.count = response.objectList[0].unreadCount;
+      this.recentMessages = response.objectList[0].notifications[0].messages;
+      this.recentMessages.map((message) => {
+        message.time = parseInt(message.time, 10);
+    });
+    });
+  }
+
+  toggleRecentNotification() {
+    this.isNotificationHidden = !this.isNotificationHidden;
+    if (!this.isNotificationHidden) { // When Opened
+      if (this.recentMessages && this.recentMessages.length) {
+        this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
+      }
+    } else { // When closed
+      this.getRecentNotifications();
+    }
+  }
+
+  updateNotifications(messages, type) {
+    this.signUpService.updateNotifications(messages, type).subscribe((response) => {
+    });
+  }
+
+  viewAllNotifications() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
+    this.isNotificationHidden = true;
+  }
+
+  canActivateNotification() {
+    return (this.router.url === DASHBOARD_PATH);
+  }
+
+  showFilterModalPopUp(data) {
+    this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
+  }
   logout() {
     this.authService.logout().subscribe((data) => {
       this.clearLoginDetails();
@@ -197,6 +253,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.clearData();
     this.appService.startAppSession();
     this.router.navigate([appConstants.homePageUrl]);
+  }
+
+  goToDashboard() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
   browserCheck() {

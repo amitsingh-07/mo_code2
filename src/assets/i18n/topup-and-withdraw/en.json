@@ -1,0 +1,231 @@
+{
+  "FUND_YOUR_ACCOUNT": {
+    "TITLE": "Fund Your Account",
+    "OK_GOT_IT": "Okay, Got It!",
+    "YOUR_INVESTMENT": "Your Investment",
+    "ONE_TIME": "one-time",
+    "MONTH": "mth",
+    "YOUR_PORTFOLIO": "Your Portfolio",
+    "VIA_BANK": "Via Bank Transfer",
+    "VIA_PAYNOW": "Via PayNow",
+    "LOGIN_TO_NETBANKING_PAYNOW": "Please note that your investment funds must originate from <b>an account in your legal name</b> and a <b>Singapore registered bank</b>. Accounts may be suspended if any suspicious activity is detected.",
+    "LOGIN_TO_NETBANKING_BANK": "Please note that your investment funds must originate from <b>an account in your legal name</b> and a <b>Singapore registered bank</b>. Accounts may be suspended if any suspicious activity is detected.",
+    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
+    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
+    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+    "ENTITY_NAME": "Entity Name",
+    "REFERENCE_CODE": "Reference Code",
+    "ADD_REFERENCE_CODE_INFO": "To credit the funds to your account, please indicate this reference code in your fund transfer.",
+    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
+    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
+    "VIEW_TRANSFER_INST": "View Transfer Instructions",
+    "PROCESS_TIME_INFO": "Fund your account within 21 days to kickstart your investment!",
+    "SUCCESSFUL_TOPUP":"Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "RECIPENTS_NAME": "Recipient's Name",
+    "BANK_NAME": "Bank Name",
+    "BANK_ACC_NO": "Bank Account No.",
+    "TRANSFER_INSTRUCTION": "Transfer Instructions",
+    "VIA_BANK_ONE": "Funding your account via Online Bank Transfer:",
+    "TRANSER_INSTRUCTION": "Transfer Instructions",
+    "VIA_PAYNOW_ONE": "Funding your account via PayNow:",
+    "ONE_TIME_INVESTMENT": "One-time Investment",
+    "MONTHLY_INVESTMENT": "Monthly Investment",
+    "MODAL": {
+      "SHOW_BANK_TRANSCTIONS": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "RECIPENTS_NAME": "Recipient's Name",
+        "BANK_NAME": "Bank Name",
+        "BANK_ACC_NO": "Bank Account No.",
+        "REFERENCE_CODE": "Reference Code",
+        "LBL_STEP_1": "Log in to your online banking account of a Singapore registered bank. (Bank account must be registered under your name)",
+        "LBL_STEP_2": "Send you funds using FAST transfer option available in your online banking system. If other transfer option are selected, the fund transfer may take 1 to 2 days longer.",
+        "LBL_STEP_3": "Enter the following transfer information.",
+        "LBL_STEP_4": "Authenticate the transaction using your internet banking tokens. Verify and confirm the transaction details.",
+        "LBL_STEP_5": "We will notify you once your fund has been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instructions to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOW_PAYNOW": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+        "ENTITY_NAME": "Entity Name",
+        "REFERENCE_CODE": "Reference Code",
+        "LBL_STEP_1": "Log in to your online banking account of a Singapore registered bank. (Bank account must be registered under your name)",
+        "LBL_STEP_2": "Send you funds using FAST transfer option available in your online banking system. If other transfer option are selected, the fund transfer may take 1 to 2 days longer.",
+        "LBL_STEP_3": "Enter the following transfer information.",
+        "LBL_STEP_4": "Authenticate the transaction using your internet banking tokens. Verify and confirm the transaction details.",
+        "LBL_STEP_5": "We will notify you once your fund has been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instructions to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOWPOPUP": {
+        "TITLE": "Recipient’s / Entity Name",
+        "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+      }
+    }
+  },
+  "TOPUP": {
+    "TITLE": "Buy Request",
+    "SELECT_POTODOLIO": "1. Select Portfolio ",
+    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
+    "PLEASE_TOPUP": "Please transfer",
+    "CASH_ACCOUNT": " to your cash account.",
+    "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
+    "SUBMIT": "Submit",
+    "TOPUP_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the topup request"
+    }
+  },
+  "TOPUP_REQUEST": {
+    "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
+    "REQUEST_PROCESSED": "Request will be processed once fund transfer is complete",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
+  },
+  "YOUR_INVESTMENT": {
+    "TITLE": "Your Investment",
+    "PROFILE_DEC": "Here’s a performance summary of your investments.",
+    "TOTAL_VALUE": "Total Value",
+    "TOTAL_RETURNS": "Total Returns ",
+    "FROM_START_OF_INVESTMENT": "From start of investment",
+    "TOTAL_INVESTED": "Total Invested",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
+    "TOTAL_OF": "Total of",
+    "YOUR_PORTFOLIOS": "Your Portfolio",
+    "PORTFOLIO_VALUES": "Portfolio Value",
+    "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
+    "ADD_PORTFOLIO": "Add Portfolio",
+    "MORE": "More",
+    "REMEMBER": "Please transfer your money by",
+    "HOW_TO_FUND_YOUR_ACCOUNT": "View Transfer Instruction",
+    "DELETE": "Delete Portfolio",
+    "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
+    "EXPIRED": "Your portfolio has expired.",
+    "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days"
+    
+  },
+  "YOUR_PORTFOLIO": {
+    "TITLE": "Your Portfolio",
+    "PORTFOLIO": "Portfolio",
+    "TOP_UP": "Top Up",
+    "TOTAL_VALUE": "Total Value",
+    "TOTAL_RETURNS": "Total Returns",
+    "FROM_START_OF_INVESTMENT": "From start of investment",
+    "YEARLY_RETURNS": "Yearly Returns",
+    "ANNUALIZED_RETURNS": "Annualized Returns",
+    "FUND_YOUR_ACCOUNT_MESSAGE": "Please transfer your money by",
+    "FUND_YOUR_ACCOUNT": "View Transfer Instruction",
+    "PERFORMANCE": "Performance",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "HOLDINGS": "Holdings",
+    "MODAL": {
+      "TOTAL_RETURNS": {
+        "TITLE": "Total Returns",
+        "MESSAGE": "The total returns are calculated by geometrically linking the periodic returns between all your transactions. This return is also known as the time-weighted return."
+      },
+      "CASH_ACCOUNT_BALANCE": {
+        "TITLE": "Cash Account",
+        "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
+      }
+    }
+  },
+  "WITHDRAW": {
+    "TITLE": "Withdraw",
+    "WITHDRAW_TYPE": "Withdraw Type",
+    "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
+    "PORTFOLIO": "Portfolio",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
+    "PORTFOLIO_VALUE": "Portfolio Value",
+    "SELECT_PORTFOLIO": "Select Portfolio",
+    "SELECT_TYPE": "Select Type",
+    "MODAL": {
+      "CONFIRM_WITHDRAWAL": {
+        "TITLE": "Confirm Withdrawal",
+        "DESC_PORTFOLIO_TO_CASH": "You are withdrawing the following amount from your portfolio to your cash account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
+        "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
+        "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
+        "PORTFOLIO": "portfolio",
+        "CASH_ACCOUNT": "cash account",
+        "BANK_ACCOUNT": "bank account",
+        "TO_YOUR": "to your",
+        "CASH": "cash",
+        "ACCOUNT": "account",
+        "SUBMIT": "Confirm"
+      }
+    },
+    "WITHDRAW_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the withdraw request"
+    }
+  },
+  "WITHDRAW_SUCCESS": {
+    "TITLE": "Withdrawal Request Submitted",
+    "DESC": "We will update you on the status of your request within 2 working days.",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
+  },
+  "WITHDRAW_PAYMENT_METHOD": {
+    "ADD_BANK_ACCOUNT": "Add Bank Account",
+    "BANK_DETAIL": "Bank Details",
+    "TITLE": "Bank Details",
+    "SELECT": "Select",
+    "BY_BANK_TRANSFER_LBL1": "By Bank",
+    "BY_BANK_TRANSFER_LBL2": "Transfer",
+    "BY_CHEQUE_LBL1": "By",
+    "BY_CHEQUE_LBL2": "Cheque",
+    "REGULATION_MSG":"Due to regulations, you can only withdraw funds to an account under your legal name.",
+    "GO_TO_EDIT_PROFILE":"To change your bank details, please go to “Edit Profile”.",
+    "CHEQUES_WILL_BE_POSTED_ADDRESS": "Cheque will be posted to this address",
+    "CHEQUE_POSTED_ADDRESS_LINE1": "23 Keong Saik Road",
+    "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
+    "IF_WISH_TO_CHANGE_WRITE": "If you wish to change your mailing address, please write to us",
+    "CONTACT_EMAIL": "help@moneyowl.com.sg",
+    "ADD_BANK_MODAL": {
+      "TITLE": "Add Bank Account",
+      "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
+      "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
+      "BANK_NAME": "Bank Name",
+      "ACCOUNT_NO": "Account No."
+    }
+  },
+  "TRANSACTIONS": {
+    "TITLE": "Transactions",
+    "NO_TRANSACTION_HISTORY":"No Transaction History!",
+    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!",
+    "CASH_TOP_UP": "Cash Account Top Up",
+    "CASH_WITHDRAWAL": "Cash Account Withdrawal",
+    "MODAL": {
+      "TRANSACTION_FETCH_LOADER": {
+        "TITLE": "Loading transaction history",
+        "MESSAGE": "Please wait while we load your transaction history."
+      }
+    }
+  },
+  "HOLDINGS": {
+    "TITLE": "Holdings",
+    "TOTAL_VALUE": " Total Value",
+    "NUMBER_OF_VALUE": "Number of Units",
+    "NAV": "NAV"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "VIEW_FUND_DETAILS": "View Fund Details"
+  },
+  "FUND_DETAILS": {
+    "TITLE": "Fund Details"
+  },
+  "ASSET_ALLOCATION": {
+    "TITLE": "Asset Allocation",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "ANNUAL_FEES": "Annual Fees"
+
+  }
+
+}

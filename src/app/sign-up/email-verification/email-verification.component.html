@@ -1,22 +1,14 @@
-<p>
-</p>
 <div class="account-created-success-modal">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
+      <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p *ngIf="emailVerified" class="custom-modal--title" id="custModalTitle">{{'EMAIL_VERIFICATION.LOADING.VERIFIED' | translate}}</p>
         <p *ngIf="!emailVerified" class="custom-modal--title" id="custModalTitle1">{{'EMAIL_VERIFICATION.LOADING.VERIFYING' | translate}}</p>
         <p *ngIf="emailVerified" class="custom-modal--email" id="custModalDesc">{{email}}</p>
-        <button *ngIf="emailVerified && !willWritingEnabled" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
+        <button *ngIf="emailVerified" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
       </div>
     </div>
-    <div class="custom-modal-content">
-      <div>
-        <img src="../../../assets/images/account-created-bg.svg" id="custModalImg2" />
-      </div>
-    </div>    
   </div>
-  
 </div>

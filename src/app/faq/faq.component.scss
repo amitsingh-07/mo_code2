@@ -394,10 +394,33 @@
         }
     }
 }
+
+.table--bordered{
+    position: relative;
+    display:block;
+    overflow:auto;
+    td{
+        padding: 18px;
+        border: 1px solid #cdeae6 !important;
+    }
+}
+
+.cell--teal{
+    background-color:$teal-color;
+    color:$white-color;
+}
 .sub {
     font-family: $muli-regular !important;
     font-size: 15px;
     font-weight: normal;
     letter-spacing: -0.2px;
     color: #4a4a4a;
+}
+
+
+ol.text--normal{
+    li{
+        font-weight:normal !important;
+        font-family:$muli-regular;
+    }
 }

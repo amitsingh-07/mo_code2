@@ -1,34 +1,31 @@
 <div class="personal-declaration">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="5"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <form name="personalDeclarationForm" [formGroup]="personalDeclarationForm">
-      <div class="flex-row">
+      <div class="flex-row mb30">
         <div class="flex-col-4">
           <div class="country_text">
           <label for="name" id="personal-declaration-label"> {{ 'PERSONAL_DECLARATION.SOURCE' | translate}}</label>
           </div>
         </div>
         <div class="flex-col-8">
-
           <div class="dropdown-control">
             <div ngbDropdown>
-
               <button class="btn btn-dropdown" ngbDropdownToggle>
                 <span class="dependent-count dropdown_text" *ngIf="!personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source1">Select Source</span>
+                  id="persoanl_declaration__dropdown_source1">{{ 'PERSONAL_DECLARATION.SELECT_SOURCE' | translate}}</span>
                 <span class="dependent-count dropdown_text" *ngIf="personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name |
-                  titlecase}}</span>
+                  id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name 
+                  }}</span>
               </button>
-
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource(sourceObj)"
                   id="sourceof-income-option-{{i}}">
-                  {{sourceObj.name | titlecase}}
+                  {{sourceObj.name}}
                 </button>
               </div>
             </div>
@@ -41,9 +38,6 @@
           <div class="tin_question_text" id="question-one">{{ 'PERSONAL_DECLARATION.QUESTION1' | translate}}
           </div>
         </div>
-        <!-- <div class="flex-col-1">
-          <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
-        </div> -->
       </div>
       <!-- Button part -->
       <div class="flex-row">
@@ -52,21 +46,19 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_yes" [value]=true (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="empolye_yes" [value]=true > {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_no" [value]=false (click)="noClick()">{{
+                  <input ngbButton type="radio" id="empolye_no" [value]=false >{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- second question -->
       <div class="flex-row mb10">
         <div class="flex-col-11 mt15">
@@ -84,21 +76,19 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_yes" [value]=true (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="pep_yes" [value]=true > {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_no" [value]=false (click)="noClick()">{{
+                  <input ngbButton type="radio" id="pep_no" [value]=false >{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- third question -->
       <div class="flex-row mb10">
         <div class="flex-col-11 mt15">
@@ -116,24 +106,22 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="ben_yes" [value]=true (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="ben_yes" [value]=true > {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="ben_no" [value]=false (click)="noClick()">{{
+                  <input ngbButton type="radio" id="ben_no" [value]=false >{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </form>
+    <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()"
+      class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
+      'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
   </div>
-  <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()"
-    class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
-    'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
 </div>

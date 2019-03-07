@@ -1,6 +1,7 @@
 {
   "COMMON": {
     "LABEL": {
+      "SUBMIT": "Submit",
       "CONTINUE": "Continue",
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
@@ -8,21 +9,35 @@
     }
   },
   "POSTLOGIN": {
-    "TITLE": "You are ready to set up your investment account!",
+    "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
-    "PROCEED_WITHOUT": "Proceed without SingPass"
-  },
+    "PROCEED_WITHOUT": "Proceed without SingPass",
+    "APPLY_USING_MYINFO":"Apply Using MyInfo",
+    "AUTOFILL_QUICKLY":"Autofill your information quickly. Supporting documents are not required.",
+    "APPLY_WITHOUT_MYINFO":"Apply Without MyInfo",
+    "FILL_MANUALLY":"Fill in your information manually. Takes at least 1 working day to get your account approved.",
+    "MANUALLY":"Fill Form Manually",
+    "ESTIMATE_TIME":"Estimate about 10 mins"
+},
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
     "FULL_NAME": "Full Name",
     "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name",
+    "LAST_NAME": "Last Name (Family Name)",
     "NRIC_NUMBER": "NRIC Number",
     "PASSPORT_NUMBER": "Passport Number",
     "PASSPORT_EXPIRY": "Passport Expiry",
     "DOB": "Date of Birth",
-    "GENDER": "Gender"
+    "GENDER": "Gender",
+    "SALUTATION": "Salutation",
+    "BIRTH_COUNTRY": "Country of Birth",
+    "PASSPORT_ISSUED_COUNTRY": "Passport Issued Country",
+    "RACE": "Race",
+    "SELECT_SALUTATION": "Select Salutation",
+    "SELECT_BIRTH_COUNTRY": "Select Country",
+    "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
+    "SELECT_RACE": "Select Race"
   },
   "RESIDENTIAL_ADDRESS": {
     "TITLE": "Residential Address",
@@ -35,6 +50,12 @@
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "REASON": "Reason",
+    "SELECT_REASON": "Select Reason",
+    "MAILING_ADDRESS":"Mailing Address",
+    "SAME_AS_RESIDENTIAL_ADDRESS":"Same as Residential Address",
+    "YOUR_MAILING_ADDRESS": "Your mailing address:",
+    "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
@@ -53,6 +74,11 @@
     "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
+    "SELECT":"Select",
+    "SELECT_INDUSTRY":"Select Industry",
+    "SELECT_OCCUPATION":"Select Occupation",
+    "OTHER_INDUSTRY": "Please enter your industry in the input box provided.",
+    "OTHER_OCCUPATION": "Please enter your occupation in the input box provided.",
     "OCCUPATION": "Occupation",
     "CONTACT_NUMBER": "Contact Number",
     "COUNTRY": "Country",
@@ -61,8 +87,10 @@
     "ADDRESS_2": "Address Line 2",
     "UNIT_NO": "Unit No.",
     "CITY": "City",
+    "FLOOR": "Floor",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "YOUR_OFFICE_ADDRESS":"Your office address:",
     "EMPLOYERS_ADDRESS": "Employer's Address",
     "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
     "CONTINUE": "Continue",
@@ -81,6 +109,7 @@
   },
   "SELECT_NATIONALITY": {
     "SELECT_NATIONALITY_LBL": "Nationality",
+    "SELECT_NATIONALITY":"Select Nationality",
     "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
     "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
     "NATIONALITY_LEB": "Nationality",
@@ -88,67 +117,78 @@
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "CONTINUE": "Continue",
-    "editModalData": {
-      "modalTitle": "Unable To Proceed",
-      "modalMessage": "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance",
-      "ButtonTitle": "Return To Homepage"
+    "blockedNationality": {
+      "blockedNationalityTitle": "Oops, Unable To Proceed",
+      "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
+      "blockedNationalityButtonTitle": "Back To Dashboard"
     },
-    "editModalData1": {
-      "modalTitle1": "Oops, Unable To Proceed",
-      "modalMessage1": "Thank you for your interest in MoneyOwl! Unfortunately, we are currently unable to set up investment accounts for US Citizens, Permanent Residents and Tax Residents. ",
-      "ButtonTitle1": "Return To Homepage"
+    "editModalData": {
+      "modalTitle": "Oops, Unable To Proceed",
+      "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
+      "ButtonTitle": "Back To Dashboard"
     }
   },
   "FINANCIAL_DETAILS": {
     "TITLE": "Financial Details",
     "ANNUAL_HOUSEHOLD_INCOME": "Monthly Household Income",
     "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
-    "ANNUAL_INCOME": "Monthly Income",
-    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
-    "TOTAL_ASSETS": "Total Assets",
-    "TOTAL_LOANS": "Total Loans"
+    "SALARY_RANGE": "Salary Range"
+
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
     "TAX_MODEL_TITLE": "Taxpayer Identification No.",
-    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to www.oecd.org.</p>",
+    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
     "COUNTRY_TEXT": "Country Of Tax Residence",
     "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "REASON_TEXT": "Reason",
     "TIN_TEXT": "TIN Number",
-    "CONTINUE": "Continue"
+    "CONTINUE": "Continue",
+    "COUNTRY_ERROR": "Country can not be same",
+    "COUNTRY_ERROR_MSG": "Please check your selected countries",
+    "SELECT_COUNTRY": "Select Country",
+    "TAX_OTHER_COUNTRY":"Are you paying tax in another country?",
+    "ADD_TAX_RESIDENCE":"Add Tax Residence"
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
+    "PROOF_OF_IDENTITY_BO": "Proof Of Beneficial Owner's Identity",
     "NRIC": "NRIC",
     "PASSPORT": "Passport",
+    "PASSPORT_BO": "Beneficial Owner's Passport",
     "FRONT_NRIC": "Front NRIC",
     "BACK_NRIC": "Back NRIC",
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_MAILING": "Proof Of Mailing Address",
-    "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+    "PROOF_OF_MAILING_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
     "PROOF_OF_RESIDENT": "Proof Of Residential Address",
-    "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
+    "PROOF_OF_RESIDENT_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
+    "SPECIFICATION": "Specifications for documents to be uploaded:",
+    "FILE_LESS-THAN": "File less than",
+    "TEN_MB": "10MB",
+    "FILE_TYPE": "File types:",
+    "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
+    "VERIFICATION_DOC": "Verification Document",
     "MODAL": {
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",
-        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
       },
       "RES_ADDRESS_PROOF": {
         "TITLE": "Proof Of Residential Address",
-        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
       },
       "UPLOAD_LATER": {
         "TITLE": "Upload Documents Later?",
-        "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
-        "CONFIRM_PROCEED": "Yes! Upload Later"
+        "MESSAGE": "<p>You can upload your verification documents later to complete your investment account set up.</p><p>Would you like to continue?</p>",
+        "CONFIRM_PROCEED": "Yes, Upload Later"
       },
       "UPLOADING_LOADER": {
         "TITLE": "Uploading",
@@ -156,7 +196,7 @@
       },
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
-        "MESSAGE": "File of size more than 2 MB is not allowed."
+        "MESSAGE": "File of size more than 10 MB is not allowed."
       },
       "FILE_TYPE_MISMATCH": {
         "TITLE": "Error !",
@@ -168,12 +208,13 @@
     "SOURCE": "Source Of Investment Funds",
     "TITLE": "Personal Declaration",
     "PEP": "Politically Exposed Person",
+    "SELECT_SOURCE":"Select Source",
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
-    "QUESTION1": "Are you a Director, Officer, Trading Representative or employee of a SGX Trading Member other than iFAST Financial Pvt Ltd?",
+    "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Do you have any beneficial owner?",
+    "QUESTION3": "Do you have any beneficial owners of this account?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
@@ -185,7 +226,7 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
-    "TITLE": "Additional Declarations",
+    "TITLE": "Additional Declaration",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard",
@@ -193,29 +234,23 @@
     "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
     "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
     "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
-    "INVESTMENT_PERIOD": "Investment Period",
-    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
-    "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
+    "DURATION_INVESTMENT": "Duration investment held for?",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
+    "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:",
+    "OTHERS": "Please Elaborate:"
   },
-  "CONFIRM_PORTFOLIO": {
-    "TITLE": "Your Portfolio",
-    "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
+  "PORTFOLIO_RECOMMENDATION": {
     "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
     "PROJECTED_RETURNS": "Projected Returns",
-    "WHATS_THE_RISK": "What's the risk?",
     "PROJECTED_VALUE": "Projected Value",
-    "IN": "in",
     "YEAR": "Year",
-    "YEARS": "Years",
-    "CHECK_FEES": "Check out our competitive fees.",
     "ONE_TIME_INVESTMENT": "one-time investment",
     "AND": "&",
     "MONTHLY_INVESTMENT": "monthly investment",
     "FOR": "for",
-    "I_WANT_TO_START_INVEST": "I Want To Start Investing",
+    "CONFIRM": "Confirm",
     "EDIT_INVESTMENT": {
-      "TITLE": "My Investment Portfolio",
-      "INVESTMENT_PERIOD": "Investment Period",
+      "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Investment",
       "MONTHLY_INVESTMENT": "Monthly Investment"
     },
@@ -223,22 +258,41 @@
       "PROJECTED_RETURNS": {
         "TITLE": "Projected Returns",
         "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
-      },
-      "FEES": {
-        "TITLE": "MoneyOwl Fees",
-        "TABLE_HEAD": "Annual Fees Breakdown",
-        "MONEYOWL_FEES": "MoneyOwl Fees",
-        "PLATFORM_FEES": "Platform Fees",
-        "FUND_EXPENSE_RATIO": "Fund Expense Ratio",
-        "TOTAL": "Total"
       }
+    },
+    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "TITLE": "Confirm Portfolio",
+    "PORTFOLIO": "Portfolio",
+    "ERRORS": {
+      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
     }
   },
   "ADDITIONAL_DECLARATION": {
-    "TITLE": "Additional Declarations",
+    "TITLE": "Additional Declaration",
+    "YES": "Yes",
+    "NO": "No",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
-    "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions."
+    "PEP_INFO_NO": "Please provide the following details",
+    "PEP_MORE_DETAILS": "Just a Few More Questions",
+    "YOUR_OFFICE_ADDRESS": "Your office address:"
   },
   "ACKNOWLEDGEMENT": {
     "TITLE": "Acknowledgement",
@@ -249,39 +303,24 @@
     "FUND": "Fund My Portfolio"
   },
   "ADDITIONAL_DECLARATION_SUBMIT": {
-    "TITLE": "Additional Declarations Submitted",
+    "TITLE": "Your form has been submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK" : "Back To Dashboard"
-  },
-  "FUND_YOUR_ACCOUNT": {
-    "TITLE": "Fund Your Account",
-    "OK_GOT_IT": "Okay, Got It!",
-    "YOUR_INVESTMENT": "Your Investment",
-    "ONE_TIME": "one-time",
-    "MONTH": "mth",
-    "YOUR_PORTFOLIO": "Your Portfolio",
-    "VIA_BANK": "Via Bank Transfer",
-    "VIA_PAYNOW": "Via PayNow",
-    "LOGIN_TO_NETBANKING_PAYNOW": "Log in to PayNow via internet banking or mobile banking app to make the fund transfer.",
-    "LOGIN_TO_NETBANKING_BANK": "Log in to your internet banking or mobile banking app to make the fund transfer.",
-    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
-    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
-    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
-    "ENTITY_NAME": "Entity Name",
-    "REFERENCE_CODE": "Reference Code",
-    "ADD_REFERENCE_CODE_INFO": "To credit the funds to your account, please indicate this reference code in your fund transfer.",
-    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
-    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
-    "VIEW_TRANSFER_INST": "View Transfer Instructions",
-    "PROCESS_TIME_INFO": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-    "RECIPENTS_NAME": "Recipent's Name",
-    "BANK_NAME": "Bank Name",
-    "BANK_ACC_NO": "Bank Account No."
+    "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
+    "TAB_BUTTON": {
+      "LABEL": "Autofill Forms Via",
+      "TIME": "Estimate about 5 mins"
+    },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Leave This Page",
-      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
+      "TITLE": "Autofill Forms Via MyInfo",
+      "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
+      "BTN-TEXT": "Yes, Proceed"
+    },
+    "MYINFO_CONFIRM": {
+      "TITLE": "Retrieve Details via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.",
+      "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
@@ -292,9 +331,44 @@
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
     },
     "SING_PASS_CONFIRM": {
-      "TITLE": "The following details have been autofilled into the form.",
+      "TITLE": "Following details will be auto filled Via Myinfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
     }
+  },
+  "INVESTMENT_ACCOUNT_COMMON": {
+    "ACCOUNT_CREATION_ERROR_MODAL": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Please fix the below list of errors and then proceed."
+    },
+    "GENERAL_ERROR": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Sorry, Something went wrong. Please try again."
+    },
+    "CREATING_ACCOUNT_LOADER": {
+      "TITLE": "Submitting your application",
+      "DESCRIPTION": "Please wait while we try to create account."
+    }
+  },
+  "FUND_INTRO": {
+    "TITLE": "Fund Your Account",
+    "DESC": "In the next step, you can select the method to fund your account.",
+    "BACK": "Proceed",
+    "SUCCESS": "Investment Account Setup Successful"
+  },
+  "ACCOUNT_CREATION_STATUS": {
+    "ADDITIONAL_DECLARATION_SUBMITTED": {
+      "TITLE": "Your form has been submitted",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "ACCOUNT_CREATION_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "DOCUMENTS_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "You may upload your verification documents later and your set up will be complete!"
+    }
   }
+
 }

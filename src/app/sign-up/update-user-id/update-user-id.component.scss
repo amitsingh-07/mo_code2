@@ -1,0 +1,57 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-update-user-id{
+  .container-fluid{
+    @include allmobiles {
+    padding-top: 120px;
+    }
+  }
+.checkbox-button a {
+  color: $white-color;
+  text-decoration: underline;
+}
+input[type='checkbox']+label {
+  background-position: left top;
+}
+.dropdown-menu.show {
+  height: 200px;
+  overflow-y: auto;
+}
+.back-btn {
+  background-image: url("../../../assets/images/back-web.svg");
+  width: 43px;
+  height: 43px;
+  cursor: pointer;
+  position: absolute;
+  top: 5%;
+  left: 20px;
+  background-repeat: no-repeat;
+}
+.form-group-captcha-wrapper {
+  display: flex;
+  align-items: center;
+  height: 60%;
+}
+.link-white {
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.dots {
+  padding: 10px;
+  margin: 0 20px;
+}
+.update-user-id-text {
+  font-family: $muli-semi-bold;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: $white-color;
+  border-bottom: 0.5px solid $white-color;
+  margin-bottom: 25px;
+}
+.flex-row{
+  padding: 0 11px;
+}
+}

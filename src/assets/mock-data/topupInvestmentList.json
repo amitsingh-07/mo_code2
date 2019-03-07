@@ -1,0 +1,18 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [
+        {
+            "id": 1,
+            "value": "100",
+            "name": "One-time Investment"
+        },
+        {
+            "id": 2,
+            "value": "50",
+            "name": "Monthly Investment"
+        }
+    ]
+}

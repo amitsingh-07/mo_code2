@@ -1,0 +1,172 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [
+        {
+            "uin": "S9812381D",
+            "name": {
+                "value": "TAN XIAO HUI",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-19T16:00:00.000+0000"
+            },
+            "sex": {
+                "value": "F",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-19T16:00:00.000+0000"
+            },
+            "race": {
+                "value": "CN",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-19T16:00:00.000+0000"
+            },
+            "nationality": {
+                "value": "SG",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-19T16:00:00.000+0000"
+            },
+            "dob": {
+                "value": "1970-05-17",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-19T16:00:00.000+0000"
+            },
+            "passportnumber": {
+                "value": "",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": null
+            },
+            "passportexpirydate": {
+                "value": "",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": null
+            },
+            "regadd": {
+                "block": "102",
+                "building": "PEARL GARDEN",
+                "floor": "09",
+                "unit": "128",
+                "street": "BEDOK NORTH AVENUE 4",
+                "postal": "460102",
+                "country": "SG",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-10-24T16:00:00.000+0000",
+                "formattedAddress": "BLK 102 PEARL GARDEN\r\n09-128\r\nBEDOK NORTH AVENUE 4\r\nSINGAPORE 460102",
+                "countryDetails": {
+                    "id": 225,
+                    "country": "SINGAPORE",
+                    "nationality": null,
+                    "phoneCode": "+65",
+                    "countryCode": "SG",
+                    "nationalityCode": null,
+                    "listOrder": 0,
+                    "blocked": false
+                },
+                "formattedSingleLineAddress": "BLK 102 PEARL GARDEN 09-128 BEDOK NORTH AVENUE 4 S(460102)"
+            },
+            "mailadd": {
+                "block": "",
+                "building": "",
+                "floor": "",
+                "unit": "",
+                "street": "",
+                "postal": "",
+                "country": "SG",
+                "classification": "",
+                "source": "",
+                "lastupdated": null,
+                "formattedAddress": "",
+                "countryDetails": {
+                    "id": 225,
+                    "country": "SINGAPORE",
+                    "nationality": null,
+                    "phoneCode": "+65",
+                    "countryCode": "SG",
+                    "nationalityCode": null,
+                    "listOrder": 0,
+                    "blocked": false
+                },
+                "formattedSingleLineAddress": ""
+            },
+            "email": {
+                "value": "myinfotesting@gmail.com",
+                "classification": "C",
+                "source": "4",
+                "lastupdated": "2018-11-18T16:00:00.000+0000"
+            },
+            "marital": {
+                "value": "1",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-03-20T16:00:00.000+0000"
+            },
+            "edulevel": {
+                "value": "3",
+                "classification": "C",
+                "source": "2",
+                "lastupdated": "2018-06-22T16:00:00.000+0000"
+            },
+            "occupation": {
+                "value": "53201",
+                "classification": "C",
+                "source": "2",
+                "lastupdated": "2017-10-10T16:00:00.000+0000",
+                "occupationDetails": {
+                    "id": 260,
+                    "occupation": "HEALTHCARE ASSISTANT",
+                    "ssocId": "53201"
+                }
+            },
+            "employment": {
+                "value": "ALPHA",
+                "classification": "C",
+                "source": "2",
+                "lastupdated": "2017-10-10T16:00:00.000+0000"
+            },
+            "assessableincome": {
+                "value": "1456789.00",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2017-03-15T16:00:00.000+0000"
+            },
+            "householdincome": {
+                "high": 4999,
+                "low": 4000,
+                "classification": "C",
+                "source": "2",
+                "lastupdated": "2018-04-14T16:00:00.000+0000",
+                "householdRange": "$4,000 to $4,999"
+            },
+            "ownerprivate": {
+                "value": "N",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2017-04-25T16:00:00.000+0000"
+            },
+            "assessyear": {
+                "value": "2018",
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2017-03-15T16:00:00.000+0000"
+            },
+            "cpfbalances": {
+                "oa": 1581.48,
+                "ma": 11470.7,
+                "sa": 21967.09,
+                "ra": null,
+                "classification": "C",
+                "source": "1",
+                "lastupdated": "2018-08-22T16:00:00.000+0000",
+                "total": 35019.27
+            }
+        }
+    ]
+}

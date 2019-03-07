@@ -1,0 +1,34 @@
+<div class="modal-body white-bg" id="erorr_popup">
+  <div class="modal-body-title">Filter By Time Period</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  <div class="modal-body-message pr0">
+      <form id="filterForm" name="transactionFilterForm">
+        <div class="form-group flex space-btwn">
+          <div class="dropdown-control">
+            <div ngbDropdown id="fromDropDown">
+                <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="from_mnth">From</span>
+                  </button>
+                <div ngbDropdownMenu class="dropdown" aria-labelledby="fromDropdown">
+                  <!-- <button class="dropdown-item" (click)="selectMonth('')">month</button> -->
+                  <button type="button" class="dropdown-item" *ngFor="let month of monthNames" (click)="selectMonth(in_month)">{{month}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-control">
+            <div ngbDropdown id="toDropDown">
+                <button type="button" class="btn btn-dropdown" id="dropdownBasic2" ngbDropdownToggle>
+                    <span class="from_yr">To</span>
+                  </button>
+                <div ngbDropdownMenu class="dropdown" aria-labelledby="toDropdown">
+                  <!-- <button class="dropdown-item" (click)="selectMonth('')">month</button> -->
+                  <button type="button" class="dropdown-item" *ngFor="let year of yearNames" (click)="selectYear(in_year)">{{year}}</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

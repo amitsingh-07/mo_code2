@@ -1,0 +1,121 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+//Transaction Module Styles
+app-transaction {
+  .container-fluid{
+    @include allmobiles{
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+    @include phablet {
+      padding-top: 80px;
+     }
+  }
+  .transaction-panel {
+    min-height: 100vh;
+    background: $white-color;
+    .nav-item {
+      width: 50%;
+      text-align: center;
+    }
+    .nav-tabs .nav-link {
+      border: none;
+      color: $fund-account-tab-color;
+      font-size: 18px;
+      font-family: $muli-bold;
+      letter-spacing: -0.2px;
+      &.active {
+        color: $secondary-action-color;
+        border-bottom: 6px solid $secondary-action-color;
+      }
+    }
+    .transaction-group {
+      border-bottom: 1px solid $question-info-brdr-color;
+    }
+    .transaction-group:last-child {
+      border-width: 0px;
+    }
+    .transaction-panel__history,
+    .transaction-panel__statements {
+      color: $app-backgrnd-color;
+      &--date {
+        font-size: 14px;
+        letter-spacing: -0.1px;
+        text-align: center;
+        background-color: $transaction-date-bg-color;
+        padding: 10px;
+        color: $app-backgrnd-color;
+      }
+    }
+    .transaction-panel__history--details {
+      &--title {
+        font-size: 18px;
+        font-family: $muli-semi-bold;
+        padding: 20px;
+        border-bottom: 1px solid $bond-container-bg;
+        line-height: 23px;
+        letter-spacing: -0.34px;
+        .history-type-transaction {
+          min-width: 235px;
+        }
+        .fa-chevron-down,.fa-chevron-up{
+         font-size: 13px;
+          padding-left:17px;
+        }
+      }
+      &--title--sale {
+        font-size: 14px;
+        color: $red-color;
+        text-transform: uppercase;
+        margin-right: 10px;
+        line-height: normal;
+        letter-spacing: -0.26px;
+        &.buy {
+          color: $transaction-panel-buy-color;
+        }
+      }
+      &--title--amount--sale {
+        font-size: 16px;
+        font-family: $muli-regular;
+        color: $text-color-secondary;
+        &.buy {
+          color: $teal-color;
+        }
+      }
+      &--desc {
+        background-color: $transaction-desc-bg-color;
+        padding: 20px;
+        font-size: 16px;
+        display: none;
+        &.show {
+          display: flex;
+        }
+      }
+    }
+    .transaction-panel__statements {
+      &--details {
+        padding: 20px;
+        font-family: $muli-bold;
+        font-size: 18px;
+        border-bottom: 2px solid $bond-container-bg;
+        background: $white-color;
+      }
+      a.download-link {
+        color: $accordion-link-color;
+        font-size: 16px;
+        font-family: $muli-regular;
+      }
+    }
+  }
+  .no-transaction {
+    color: $app-backgrnd-color;
+    text-align: center;
+    font-size: 18px;
+    height: 100vh;
+    .no-content {
+      background-color: $bond-container-bg;
+      height: 100vh;
+      padding-top: 20%;
+    }
+  }
+}

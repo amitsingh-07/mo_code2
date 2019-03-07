@@ -71,6 +71,7 @@ export class SignUpApiService {
       selectedPlanData = { enquiryId: 0, plans: [] };
     }
     const formatDob = userInfo.dob;
+    const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
     const customDob = formatDob ? formatDob.year + '-' + formatDob.month + '-' + formatDob.day : '';
 
     return {
@@ -88,11 +89,25 @@ export class SignUpApiService {
         gender: userInfo.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
-      enquiryId: selectedPlanData.enquiryId,
+      enquiryId: selectedPlanData.enquiryId ? selectedPlanData.enquiryId : investmentEnqId,
       selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
       captcha: captchaValue,
       journeyType: journey
+    };
+  }
+
+  /**
+   * form create user account request.
+   */
+  updateAccountBodyRequest(data) {
+    return {
+        emailId: data.email,
+        mobileNumber: data.mobileNumber,
+        countryCode: data.countryCode,
+        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+        notificationByEmail: true,
+        notificationByPhone: true
     };
   }
 
@@ -110,11 +125,12 @@ export class SignUpApiService {
   /**
    * form verify OTP request.
    */
-  verifyOTPBodyRequest(code): IVerifyRequestOTP {
+  verifyOTPBodyRequest(code, editProf): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
       customerRef: custRef,
-      otp: code
+      otp: code,
+      editProfile: editProf
     };
   }
 
@@ -161,6 +177,15 @@ export class SignUpApiService {
   }
 
   /**
+   * update user account.
+   * @param data - Country code, Mobile number and Email address.
+   */
+  updateAccount(data) {
+    const payload = this.updateAccountBodyRequest(data);
+    return this.apiService.updateAccount(payload);
+  }
+
+  /**
    * request new one time password.
    */
   requestNewOTP() {
@@ -172,8 +197,8 @@ export class SignUpApiService {
    * verify one time password.
    * @param otp - one time password.
    */
-  verifyOTP(otp) {
-    const payload = this.verifyOTPBodyRequest(otp);
+  verifyOTP(otp, editProfile?) {
+    const payload = this.verifyOTPBodyRequest(otp, editProfile);
     return this.apiService.verifyOTP(payload);
   }
 
@@ -220,7 +245,8 @@ export class SignUpApiService {
    */
   verifyLogin(userEmail, userPassword, captcha) {
     const sessionId = this.authService.getSessionId();
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
+    const invEnqId = this.authService.getEnquiryId();
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
   }
 
   logout() {

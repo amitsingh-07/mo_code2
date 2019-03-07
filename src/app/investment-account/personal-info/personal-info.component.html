@@ -1,10 +1,10 @@
 <div class="personal-info">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -13,19 +13,46 @@
         <div class="col-lg-12 col-md-12">
           <form [formGroup]="invPersonalInfoForm" id="invPersonalInfoForm" name="invPersonalInfoForm">
             <div class="form-group">
-              <div class="flex-row">
+              <!-- Salutation start -->
+                <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl1" >{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
+                  <label for="salutation-drpdown" id="salutation-lbl">{{ 'PERSONAL_INFO.SALUTATION'
+                    | translate}}</label>
                 </div>
                 <div class="flex-col-7">
-                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': !invPersonalInfoForm.get('salutation').valid && !invPersonalInfoForm.get('salutation').pristine}">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border" id="salutation-drpdown"
+                        ngbDropdownToggle>
+                        <span *ngIf="!invPersonalInfoForm.controls.salutation.value">
+                          {{'PERSONAL_INFO.SELECT_SALUTATION'  | translate}}
+                        </span>
+                        <span *ngIf="invPersonalInfoForm.controls.salutation.value">
+                          {{invPersonalInfoForm.controls.salutation.value.name }}
+                        </span>
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                        <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;" (click)="setDropDownValue($event, 'salutation', salutaion, i)"
+                          id="salutation-option-{{i}}">{{salutaion.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Salutation end -->
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
+                </div>
+                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
+                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName" maxLength="30">
                 </div>
               </div>
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl2">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('firstName').valid && !invPersonalInfoForm.get('firstName').pristine}">
+                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('firstName').enabled && !invPersonalInfoForm.get('firstName').valid && !invPersonalInfoForm.get('firstName').pristine}">
                   <input type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
                 </div>
               </div>
@@ -33,45 +60,17 @@
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl3">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('lastName').valid && !invPersonalInfoForm.get('lastName').pristine}">
+                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('lastName').enabled && !invPersonalInfoForm.get('lastName').valid && !invPersonalInfoForm.get('lastName').pristine}">
                   <input type="text" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
                 </div>
               </div>
               <div class="flex-row" *ngIf="showNric">
                 <div class="flex-col-5">
-                  <label for="name"  id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
+                  <label for="name" id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
                 </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
-                  <input type="text"  placeholder="e.g S9305244F" id="invPersInfoInpt4" class="form-control" #nricNumber formControlName="nricNumber">
-                </div>
-              </div>
-              <div class="flex-row"   *ngIf="showPassport" >
-                <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl5" >{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
-                </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportNumber').valid && !invPersonalInfoForm.get('passportNumber').pristine}">
-                  <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber">
-                </div>
-              </div>
-              <div class="flex-row"  *ngIf="showPassport" >
-                <div class="flex-col-5">
-                  <label for="passportExpiry" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
-                </div>
-                <div #usrFrmDp class="flex-col-7">
-                  <div class="datepicker-control">
-                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
-                      <input readonly (click)="toggleDate(expiryInput, dobInput)" class="form-control" placeholder="DD / MM / YYYY"
-                        formControlName="passportExpiry" name="passportExpiry" [minDate]= this.passportMinDate  [maxDate] = this.passportMaxDate ngbDatepicker   #expiryInput="ngbDatepicker" id="invPersInfoInpt6">
-                      <div class="input-group-append">
-                        <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1">
-                          <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
-                            src="./assets/images/calendar-normal.svg" />
-                          <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine"
-                            src="./assets/images/calendar-error.svg" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('nricNumber').enabled && !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
+                  <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control" #nricNumber
+                    formControlName="nricNumber" maxLength="30">
                 </div>
               </div>
               <div class="flex-row">
@@ -80,11 +79,11 @@
                 </div>
                 <div #usrFrmDp class="flex-col-7">
                   <div class="datepicker-control">
-                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine}">
+                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': invPersonalInfoForm.get('dob').enabled && !invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine}">
                       <input readonly (click)="toggleDate(dobInput, expiryInput)" class="form-control" placeholder="DD / MM / YYYY"
-                        formControlName="dob" name="dp" ngbDatepicker   #dobInput="ngbDatepicker" id="invPersInfoInpt7">
+                        formControlName="dob" name="dp" ngbDatepicker #dobInput="ngbDatepicker" id="invPersInfoInpt7">
                       <div class="input-group-append">
-                        <button (click)="toggleDate(dobInput, expiryInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                        <button (click)="toggleDate(dobInput, expiryInput)" [disabled]="!invPersonalInfoForm.get('dob').enabled" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('dob').valid || invPersonalInfoForm.get('dob').pristine"
                             src="./assets/images/calendar-normal.svg" />
                           <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine"
@@ -118,10 +117,125 @@
                   </div>
                 </div>
               </div>
+              <!-- Country of Birth start -->
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                    'PERSONAL_INFO.BIRTH_COUNTRY'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
+                    <div ngbDropdown placement="top-right">
+                      <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="birth-country-drpdown"
+                        ngbDropdownToggle>
+                        <span *ngIf="!invPersonalInfoForm.controls.birthCountry.value">
+                            {{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}
+                        </span>
+                        <span *ngIf="invPersonalInfoForm.controls.birthCountry.value">
+                            {{invPersonalInfoForm.controls.birthCountry.value.name | titlecase}}
+                        </span>                        
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="birth-country-drpdown">
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event, 'birthCountry', country, i)"
+                          id="birth-country-option-{{i}}">{{country.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Country of Birth end -->
+              <div class="flex-row" *ngIf="showPassport">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl5">{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                </div>
+                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportNumber').enabled && !invPersonalInfoForm.get('passportNumber').valid && !invPersonalInfoForm.get('passportNumber').pristine}">
+                  <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber" maxLength="30">
+                </div>
+              </div>
+              <!-- Passport issued country start -->
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                    'PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportIssuedCountry').enabled && !invPersonalInfoForm.get('passportIssuedCountry').valid && !invPersonalInfoForm.get('passportIssuedCountry').pristine}">
+                    <div ngbDropdown placement="top-right">
+                      <button class="btn btn-dropdown without-border" id="passport-issued-country-drpdown"
+                        ngbDropdownToggle>
+                        <span *ngIf="!invPersonalInfoForm.controls.passportIssuedCountry.value">
+                            {{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}
+                        </span>
+                        <span *ngIf="invPersonalInfoForm.controls.passportIssuedCountry.value">
+                            {{invPersonalInfoForm.controls.passportIssuedCountry.value.name | titlecase}}
+                        </span>
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="passport-issued-country-drpdown">
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event,'passportIssuedCountry', country, i)"
+                          id="passport-issued-country-option-{{i}}">{{country.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Passport issued country end -->
+              <div class="flex-row" *ngIf="showPassport">
+                <div class="flex-col-5">
+                  <label for="passportExpiry" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
+                </div>
+                <div #usrFrmDp class="flex-col-7">
+                  <div class="datepicker-control">
+                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportExpiry').enabled && !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
+                      <input readonly (click)="toggleDate(expiryInput, dobInput)" class="form-control" placeholder="DD / MM / YYYY"
+                        formControlName="passportExpiry" name="passportExpiry" [minDate]=this.passportMinDate [maxDate]=this.passportMaxDate
+                        ngbDatepicker #expiryInput="ngbDatepicker" id="invPersInfoInpt6">
+                      <div class="input-group-append">
+                        <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1" [disabled]="!invPersonalInfoForm.get('passportExpiry').enabled">
+                          <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
+                            src="./assets/images/calendar-normal.svg" />
+                          <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine"
+                            src="./assets/images/calendar-error.svg" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Race start -->
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                    'PERSONAL_INFO.RACE'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('race').enabled && !invPersonalInfoForm.get('race').valid && !invPersonalInfoForm.get('race').pristine}">
+                    <div ngbDropdown placement="top-right">
+                      <button class="btn btn-dropdown without-border" id="race-drpdown"
+                        ngbDropdownToggle>
+                        <span *ngIf="!invPersonalInfoForm.controls.race.value">
+                            {{ 'PERSONAL_INFO.SELECT_RACE' | translate }}
+                        </span>
+                        <span *ngIf="invPersonalInfoForm.controls.race.value">
+                            {{invPersonalInfoForm.controls.race.value.name | titlecase}}
+                        </span>                        
+                      </button>
+                      <!-- show-up -->
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="race-drpdown">
+                        <button class="dropdown-item" *ngFor="let race of raceList; let i = index;" (click)="setDropDownValue($event, 'race', race, i)"
+                          id="race-option-{{i}}">{{race.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Race end -->
             </div>
             <div>
-              <button type="button"  (click)="goToNext(invPersonalInfoForm)"
-                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="invPersInfoBtn3">{{
+              <button type="button" (click)="goToNext(invPersonalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                id="invPersInfoBtn3">{{
                 'LABEL.CONTINUE' | translate}}</button>
             </div>
           </form>
