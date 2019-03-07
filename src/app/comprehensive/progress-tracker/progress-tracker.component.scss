@@ -31,7 +31,7 @@
     width: 100%;
 
     &__close {
-      background: url('../../../assets/images/close-icon18x18.svg');
+      background: url('../../../assets/images/progress-tracker/close-icon18x18.svg');
       position: absolute;
       width: 18px;
       height: 18px;
@@ -52,7 +52,7 @@
     }
 
     &__timer {
-      background: url('../../../assets/images/timer-icon.svg');
+      background: url('../../../assets/images/progress-tracker/timer-icon.svg');
       width: 20px;
       height: 20px;
     }
@@ -68,19 +68,19 @@
         margin: 15px 0 10px 10px;
 
         &.get-started {
-          background: url('../../../assets/images/get-started-icon.svg');
+          background: url('../../../assets/images/progress-tracker/get-started-icon.svg');
           background-position: 10px 7px;
           background-repeat: no-repeat;
         }
 
         &.dependant {
-          background: url('../../../assets/images/shoulders-icon.svg');
+          background: url('../../../assets/images/progress-tracker/shoulders-icon.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
         }
 
         &.finances {
-          background: url('../../../assets/images/finances-icon.svg');
+          background: url('../../../assets/images/progress-tracker/finances-icon.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
         }
@@ -92,7 +92,7 @@
           position: absolute;
           right: 15px;
           top: 10px;
-          background: url(../../../assets/images/expand-arrow-icon.svg);
+          background: url(../../../assets/images/progress-tracker/expand-arrow-icon.svg);
         }
       }
 
@@ -107,17 +107,17 @@
           &.complete {
             padding-top: 0;
             padding-left: 24px;
-            min-height: 50px;
+            min-height: 30px;
           }
 
           &.incomplete {
             padding-top: 0;
             padding-left: 24px;
-            min-height: 50px;
+            min-height: 30px;
           }
 
           span.complete {
-            background: url(../../../assets/images/checkbox-active.png);
+            background: url(../../../assets/images/progress-tracker/on.svg);
             position: absolute;
             height: 25px;
             width: 85px;
@@ -127,7 +127,7 @@
           }
 
           span.incomplete {
-            background: url(../../../assets/images/timer-icon.svg);
+            background: url(../../../assets/images/progress-tracker/off.svg);
             position: absolute;
             height: 25px;
             width: 85px;
@@ -143,7 +143,7 @@
           }
 
           span.now {
-            background: url(../../../assets/images/you-are-here-icon.svg);
+            background: url(../../../assets/images/progress-tracker/you-are-here-icon.svg);
             position: absolute;
             height: 61px;
             width: 85px;
