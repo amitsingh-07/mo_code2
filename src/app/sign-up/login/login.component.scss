@@ -43,13 +43,25 @@ input::-webkit-credentials-auto-fill-button {
 
   a {
     color: #fff;
-    font-family: 'Muli';
+    font-family: $muli-bold;
     font-size: 16px;
   }
 
   a span {
     font-weight: 400;
     text-decoration: underline;
+  }
+}
+
+.start-link{
+  text-align: center;
+  a{
+    color: $white-color;
+    font-family: $muli-light;
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: 300;
+    letter-spacing: -0.17px;
   }
 }
 

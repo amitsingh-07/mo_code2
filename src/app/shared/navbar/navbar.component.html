@@ -4,8 +4,8 @@
             <span>{{defaultErrors.errorList['browser'].title}}</span>
             <span>{{defaultErrors.errorList['browser'].message}}</span>
             <div class="close-btn" (click)="closeBrowserError()"></div>
-            </div>
         </div>
+    </div>
     <div class="navbar-wrapper space-between">
         <div class="navbar-group space-between" [ngClass]="{'navbar--hidden': !showMobileNavbar}">
             <div class="navbar-brand" [ngClass]="{'top': subTitle}">
@@ -14,127 +14,162 @@
                     <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
                 </li>
                 <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
-                        <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
-                    </li>
+                    <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
+                </li>
                 <li class="navbar__logo--primary hidden-sm-md" (click)="goToHome()">
-                    </li>
-                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg" (click)="goToHome()">
-                    </li>
+                </li>
+                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)"
+                    class="navbar__logo--tertiary hidden-lg" (click)="goToHome()">
+                </li>
                 <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
-                    </li>
+                </li>
                 <li *ngIf="(navbarMode == 2)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
                     <p>Insurance Adviser</p>
                     <p class="secondary">powered by DIYInsurance</p>
-                    </li>
+                </li>
                 <li *ngIf="(navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
-                        <p style="cursor: default">Will Writing</p>
-                      </li>
-                </div>
-            <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
-                </button>
+                    <p style="cursor: default">Will Writing</p>
+                </li>
+            </div>
+            <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg"
+                type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"
+                    [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
+            </button>
             <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
                 <div class="navbar__title--mobile">{{pageTitle}}</div>
                 <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
                 <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
-                    <div class="tooltip-icon"></div> 
-                    </div>
-                <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
-                        <div class="tooltip-icon"></div> 
-                    </div>
+                    <div class="tooltip-icon"></div>
+                </div>
+                <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon"
+                    (click)="showMobilePopUp()">
+                    <div class="tooltip-icon"></div>
+                </div>
                 <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
                     <div class="close-icon"></div>
                 </div>
-                </ul> 
-            </div>
-        <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+            </ul>
+        </div>
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed"
+            class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
-                <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
-                    <a class="nav-link txt-capitalize">{{userInfo.firstName}}</a>
-                    <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
-                    </li>
+                <li *ngIf="!isLoggedIn" class="nav-item hidden-lg teal-bg" [routerLink]="['/account/login']">
+                        <a class="nav-link navbar--text">
+                        <i class="fa fa-user" style="font-size: 20px; padding-right: 18px;"></i>
+                            Login</a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg teal-bg" style="flex-direction: row">
+                    <a class="nav-link" [routerLink]="['/account/dashboard']">
+                        <div class="flex-col">
+                            <span class="navbar--text txt-capitalize user-info">{{userInfo.firstName}}</span>
+                            <span class="navbar--sub--text">My Dashboard</span>
+                        </div>
+                    </a>
+                    <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()"
+                        href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item teal-bg hidden-lg" [routerLink]="['/account/edit-profile']">
+                    <a class="nav-link">Profile</a>
+                </li>
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>
-                    </li>
-                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+                </li>
+                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
+                    (mouseleave)="closeDropdown(id01);">
                     <!--  (mouseleave)="closeDropdown(id01);"-->
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
                         <button class="dropdown-item" (click)="goToHome('insurance')" fragment="invest">
-                        <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
-                        <div class="navbar--text">
-                            <span>Insure</span>
+                            <img src="./../../../assets/images/nav/nav-insure-icon.svg" />
+                            <div class="navbar--text">
+                                <span>Insure</span>
                             </div>
-                            </button>
+                        </button>
                         <button class="dropdown-item" (click)="goToHome('will')" fragment="will">
-                            <img src="./../../../assets/images/nav/nav-will-icon.svg"/>
+                            <img src="./../../../assets/images/nav/nav-will-icon.svg" />
                             <div class="navbar--text">
                                 <span>Wills</span>
                                 <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
-                                </div>
-                            </button>
+                            </div>
+                        </button>
                         <button class="dropdown-item" (click)="goToHome('invest')" fragment="invest">
-                            <img src="./../../../assets/images/nav/nav-invest-icon.svg"/>
+                            <img src="./../../../assets/images/nav/nav-invest-icon.svg" />
                             <div class="navbar--text">
                                 <span>Invest</span>
                                 <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
-                                </div>
-                            </button>
+                            </div>
+                        </button>
                         <button class="dropdown-item" (click)="goToHome('comprehensive')" fragment="comprehensive">
-                            <img src="./../../../assets/images/nav/nav-compre-icon.svg"/>
+                            <img src="./../../../assets/images/nav/nav-compre-icon.svg" />
                             <div class="navbar--text">
                                 <span>Comprehensive (integrating national schemes)</span>
                                 <span *ngIf="!isComprehensiveEnabled" class="sub">(Coming Soon)</span>
-                                </div>
-                            </button>
+                            </div>
+                        </button>
                         <div class="tip"></div>
-                        </div>
-                    </li>
+                    </div>
+                </li>
                 <li *ngIf="isPromotionEnabled" class="nav-item" [routerLink]="['/promotions']">
                     <a class="nav-link">Promotions</a>
-                    </li>
-                <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
+                </li>
+                <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown"
+                    (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
                     <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
-                        <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
+                        <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About
+                            Insurance</button>
                         <button class="dropdown-item" [routerLink]="['/articles/category/all']">All Articles</button>
-                        </div>
-                    </li>
+                    </div>
+                </li>
                 <li class="nav-item" [routerLink]="['/faq']">
                     <a class="nav-link">FAQs</a>
-                    </li>
-                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
+                </li>
+                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);"
+                    (mouseleave)="closeDropdown(id04);">
                     <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
                         <button class="dropdown-item" [routerLink]="['/about-us']">
                             <div class="navbar--text">About Us</div>
-                            </button>
+                        </button>
                         <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
                             <div class="navbar--text">Customer Reviews</div>
-                            </button>
+                        </button>
                         <button class="dropdown-item" [routerLink]="['/about-us/why-moneyowl']">
                             <div class="navbar--text">Why MoneyOwl</div>
-                            </button>
+                        </button>
                         <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
                             <div class="navbar--text">Contact Us</div>
-                            </button> 
-                        </div>
-                    </li>
-                <li *ngIf="isLoggedIn" class="nav-item dropdown hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
-                    <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o" style="font-size: 20px; color: #00a7a7"></i></a>
+                        </button>
+                    </div>
+                </li>
+                <li *ngIf="!isLoggedIn" class="nav-item hidden-sm-md" [routerLink]="['/account/login']">
+                    <a class="nav-link navbar--text label-teal">Login</a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item dropdown hidden-sm-md" ngbDropdown #id05="ngbDropdown"
+                    (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
+                    <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i
+                            class="fa fa-user-circle-o" style="font-size: 20px; color: #00a7a7"></i></a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
-                        <button class="dropdown-item">
-                            <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
-                            </button>
+                        <button class="dropdown-item flex-col" [routerLink]="['/account/dashboard']">
+                            <div class="navbar--text txt-capitalize user-info">{{userInfo.firstName}}</div>
+                            <div class="navbar--sub--text">My Dashboard</div>
+                        </button>
+                        <hr>
+                        <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
+                            <a class="navbar--text" href="javascript: void(0);">Profile</a>
+                        </button>
                         <button class="dropdown-item" (click)="logout()">
                             <a class="navbar--text" href="javascript: void(0);">Logout</a>
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        </button>
+                    </div>
+                </li>
+            </ul>
         </div>
-    </nav>
-<nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2)}"></nav>
-<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
     </div>
+</nav>
+<nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2)}"></nav>
+<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
+</div>
