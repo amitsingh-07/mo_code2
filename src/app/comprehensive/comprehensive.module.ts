@@ -31,46 +31,48 @@ import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving
 import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new MultiTranslateHttpLoader(
-    http,
-    [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/comprehensive/', suffix: '.json' },
-      { prefix: './assets/i18n/error/', suffix: '.json' }
+    return new MultiTranslateHttpLoader(http, [
+        { prefix: './assets/i18n/app/', suffix: '.json' },
+        { prefix: './assets/i18n/comprehensive/', suffix: '.json' },
+        { prefix: './assets/i18n/error/', suffix: '.json' }
     ]);
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgbModule.forRoot(),
-    ComprehensiveRoutingModule,
-    NgbModule.forRoot(),
-    SharedModule,
-    NouisliderModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  declarations: [ComprehensiveComponent, ComprehensiveStepsComponent,
-    DependantSelectionComponent, DependantsDetailsComponent, DependantEducationComponent,
-    DependantEducationListComponent,
-    EducationPreferenceComponent,
-    MyEarningsComponent,
-    MyProfileComponent,
-    DependantEducationSelectionComponent,
-    MySpendingsComponent,
-    RegularSavingPlanComponent,
-    MyAssetsComponent,
-    MyLiabilitiesComponent,
-    FirstReportDependantComponent,
-    BadMoodFundComponent,
-    ProgressTrackerComponent
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgbModule.forRoot(),
+        ComprehensiveRoutingModule,
+        NgbModule.forRoot(),
+        SharedModule,
+        NouisliderModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [ HttpClient ]
+            }
+        })
+    ],
+    declarations: [
+        ComprehensiveComponent,
+        ComprehensiveStepsComponent,
+        DependantSelectionComponent,
+        DependantsDetailsComponent,
+        DependantEducationComponent,
+        DependantEducationListComponent,
+        EducationPreferenceComponent,
+        MyEarningsComponent,
+        MyProfileComponent,
+        DependantEducationSelectionComponent,
+        MySpendingsComponent,
+        RegularSavingPlanComponent,
+        MyAssetsComponent,
+        MyLiabilitiesComponent,
+        FirstReportDependantComponent,
+        BadMoodFundComponent,
+        ProgressTrackerComponent
     ]
 })
-export class ComprehensiveModule { }
+export class ComprehensiveModule {}
