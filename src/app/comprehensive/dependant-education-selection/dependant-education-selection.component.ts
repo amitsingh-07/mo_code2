@@ -14,6 +14,7 @@ import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { AboutAge } from './../../shared/utils/about-age.util';
 
 @Component({
   selector: 'app-dependant-education-selection',
@@ -34,7 +35,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+              private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -115,12 +116,18 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildEducationList(value) {
+    const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());    
+    const aboutAgeCal = this.aboutAge.getAboutAge(ageFind,
+      (value.gender === 'Male') ?
+       this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+
     return this.formBuilder.group({
       id: [value.id],
       name: [value.name],
       dateOfBirth: [value.dateOfBirth],
       dependantSelection: [value.location ? true : false],
-      gender: [value.gender]
+      gender: [value.gender],
+      age: aboutAgeCal
     });
   }
   goToNext(form) {
@@ -139,8 +146,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           dependantArray.push({
             id: 0, dependentId: dependantDetail.id,
             enquiryId: '', location: '', educationCourse: '', endowmentMaturityAmount: '',
-            endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth, gender: dependantDetail.gender
+            endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
+             gender: dependantDetail.gender, age: dependantDetail.age
           });
+
         }
       });
       form.value.endowmentDetailsList = dependantArray;

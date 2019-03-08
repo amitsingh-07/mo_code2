@@ -84,7 +84,7 @@ buildEndowmentDetailsForm(value): FormGroup {
 
   return this.formBuilder.group({
     name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-    age: [this.aboutAge.calculateAge(value.dateOfBirth, new Date()), [Validators.required]],
+    age: [value.age, [Validators.required]],
     endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
     endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required]],
     endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityYear == null)
@@ -106,12 +106,9 @@ goToNext(form) {
     form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
       this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
       this.endowmentArrayPlan[index].endowmentMaturityYear = preferenceDetails.endowmentMaturityYear;
-      if (preferenceDetails.endowmentplanShow === true) {
-        const aboutAgeCal = this.aboutAge.getAboutAge(preferenceDetails.age,
-          (preferenceDetails.gender === 'Male') ?
-           this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+      if (preferenceDetails.endowmentplanShow === true) {        
         dependantArray.push({
-          userName: preferenceDetails.name, userAge: aboutAgeCal, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
+          userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
         });
       }
 

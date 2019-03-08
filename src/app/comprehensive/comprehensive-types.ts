@@ -43,6 +43,7 @@ export interface IChildEndowment {
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
     dateOfBirth: string;
+    age: number;
 
 }
 
