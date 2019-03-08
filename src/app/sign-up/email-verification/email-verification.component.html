@@ -9,7 +9,7 @@
         <p *ngIf="emailVerified" class="custom-modal--title" id="custModalTitle">{{'EMAIL_VERIFICATION.LOADING.VERIFIED' | translate}}</p>
         <p *ngIf="!emailVerified" class="custom-modal--title" id="custModalTitle1">{{'EMAIL_VERIFICATION.LOADING.VERIFYING' | translate}}</p>
         <p *ngIf="emailVerified" class="custom-modal--email" id="custModalDesc">{{email}}</p>
-        <button *ngIf="emailVerified && !willWritingEnabled" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
+        <button *ngIf="emailVerified" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
       </div>
     </div>
     <div class="custom-modal-content">
