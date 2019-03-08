@@ -9,7 +9,6 @@ import { ComprehensiveComponent } from './comprehensive/comprehensive.component'
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
-import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
       { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
       { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
       { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
-      { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
       { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
       { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION, component: DependantEducationComponent },
       { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST, component: DependantEducationListComponent },

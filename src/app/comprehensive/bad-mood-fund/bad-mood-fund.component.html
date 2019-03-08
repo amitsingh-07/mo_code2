@@ -12,7 +12,6 @@
       <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz">
         <div class="form-group-with-bg--header">
           <div class="form-group-with-bg--header-label"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
-          <p> {{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</p>
           <label>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</label>
           <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
             [step]="100" [tooltips]="[ true ]"></nouislider>

@@ -173,12 +173,13 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       const dependantDetails = [];
+      let  dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-        if (dependant.relationship === 'Child' || dependant.relationship === 'Sibling') {
-          dependantDetails.push(dependant);
+        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+          dependantList = false;
         }
       });
-      if (dependantDetails.length > 0) {
+      if (!dependantList) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
       } else {
         const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');

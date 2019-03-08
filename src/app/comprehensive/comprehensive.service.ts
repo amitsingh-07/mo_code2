@@ -8,7 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
+   IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
 })
@@ -87,7 +88,6 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.myDependant;
   }
-  
    getChildEndowment() {
     if (!this.comprehensiveFormData.hasEducationPlan) {
       this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
@@ -170,7 +170,6 @@ export class ComprehensiveService {
 
     const controls = form.controls;
     const errors: any = {};
-    errors.errorMessages = [];    
     errors.errorMessages = [];
     errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
@@ -232,8 +231,8 @@ export class ComprehensiveService {
   }
 
   openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
-    insurancePlanningNonDependantModal, childrenEducationDependantModal,
-    childrenEducationNonDependantModal, summaryModalDetails) {
+                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
+                   childrenEducationNonDependantModal, summaryModalDetails) {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
@@ -283,7 +282,7 @@ export class ComprehensiveService {
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
       windowClass: 'custom-full-height'
-    });    
+    });
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     return false;
   }
@@ -297,21 +296,21 @@ export class ComprehensiveService {
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
    
-        for (const i in formValues) {
+    for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');
             let thisValue: any = (formValues[i] + '').replace(Regexp, '');
-            thisValue = parseInt(formValues[i], 10);           
-            if (!isNaN(thisValue)) {              
+            thisValue = parseInt(formValues[i], 10);
+            if (!isNaN(thisValue)) {
               if (inputParams.indexOf(i) >= 0) {
                 sum += thisValue !== 0 ? thisValue * 12 : 0;
               } else {
                 sum += parseInt(thisValue, 10);
               }
           }
-        }        
+        }
       }
-      return sum.toFixed();
+    return sum.toFixed();
   }
 
 }

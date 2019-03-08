@@ -292,7 +292,7 @@
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans(RSP)?",
       "HEADER": "Regular Saving Plan",
-      "OTHER": "Other Regular Saving Plan",
+      "OTHER": "Other ",
       "ADD_RSP": "Add Other Regular Saving Plan",
       "UNIT_TRUST_TYPE": "Type of Unit Trust",
       "PAID_BY_CASH": "Paid By Cash",

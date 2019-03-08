@@ -98,7 +98,9 @@ goToNext(form) {
   if (this.endowmentSkipEnable) {
     const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
     this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false,
-      contentObj: childrenEducationNonDependantModal, nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'), nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
+      contentObj: childrenEducationNonDependantModal, nonDependantDetails:
+      this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
     this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   } else {
     form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
