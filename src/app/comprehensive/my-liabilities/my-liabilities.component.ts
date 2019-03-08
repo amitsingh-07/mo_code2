@@ -1,7 +1,8 @@
-import { Component, OnInit,HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { appConstants } from './../../app.constants';
@@ -28,24 +29,38 @@ export class MyLiabilitiesComponent implements OnInit {
   liabilitiesDetails: IMyLiabilities;
   summaryModalDetails:IMySummaryModal;
   totalOutstanding = 0;
+  menuClickSubscription: Subscription;
+  pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService, 
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+   this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.MY_LIABILITIES.TITLE');
+      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
 
       this.setPageTitle(this.pageTitle);
     });
 
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
   }
+
+  ngOnInit() {
+    this.navbarService.setNavbarComprehensive(true);
+    this.buildmyLiabilitiesForm();
+  }
+  
+  ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
+    this.menuClickSubscription.unsubscribe();
+  }
+
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   addPropertyLoan() {
      const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoan'];
@@ -69,9 +84,7 @@ export class MyLiabilitiesComponent implements OnInit {
 
     });
   }
-  ngOnInit() {
-    this.buildmyLiabilitiesForm();
-  }
+
 
    goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
@@ -102,6 +115,11 @@ export class MyLiabilitiesComponent implements OnInit {
       return false;
     }
     return true;
+  }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = { TITLE: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipTitle),
+    DESCRIPTION: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipMessage)};
+    this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 
  @HostListener('input', ['$event'])

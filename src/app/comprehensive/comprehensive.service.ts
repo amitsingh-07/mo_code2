@@ -9,7 +9,7 @@ import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
-   IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings } from './comprehensive-types';
+   IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IMyAssets } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
 })
@@ -151,6 +151,18 @@ export class ComprehensiveService {
     this.commit();
   }
 
+  getMyAssets() {
+    if (!this.comprehensiveFormData.myAssets) {
+      this.comprehensiveFormData.myAssets = {} as IMyAssets;
+    }
+    return this.comprehensiveFormData.myAssets;
+  }
+
+  setMyAssets(myAssetsData: IMyAssets) {
+    this.comprehensiveFormData.myAssets = myAssetsData;
+    this.commit();
+  }
+
   getStartingPage() {
     return this.comprehensiveFormData.startingPage;
   }
@@ -242,7 +254,7 @@ export class ComprehensiveService {
       windowClass: 'custom-full-height'
     });
 
-    let setTempleteModel = 1;
+    let setTempleteModel = 2;
     if (setTempleteModel == 2) {
       //Finance Popup    
 

@@ -1,11 +1,74 @@
 @import '../../../variables';
 @import '../../../mixins';
-.earnings-section {
+$grey-color-notes: #9f9f9f;
+.liabilities-section {
     background:$white-color;
     color:$black-color;
     border-radius: 5px;
 }
-.earnings-field{
-background: $light-aqua-color;
-color: $dark-teal-color;
+.liabilities-field{
+    background: $bond-container-bg;
+    color: $dark-teal-color;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .help-icon {
+      
+        background: url("/assets/images/tool-help-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 11px;
+    }    
+}
+.delete-icon {      
+    background: url("/assets/images/delete-icon.svg") no-repeat;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -29px;        
+    bottom: 11px;
+} 
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .dependant-title {
+        font-size: 18px;
+        margin-bottom: 16px;        
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+    .liabilities-field .btn-outline-primary{
+        color:$teal-color;
+    }
+}
+.p-50{
+    padding:75px;
+}
+
+.investmentProperties{
+    border-top:1px solid rgba(134, 205, 206, 0.3);
+    margin-top:10px;
+}
+.filledLiabilities{
+    background: url("../../../assets/images/finance-liabilities.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.income-modal-notes{
+    color:$grey-color-notes;
 }

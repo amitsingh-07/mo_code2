@@ -315,18 +315,14 @@
       </div>
       
     </section>
-    <div class="flex-row pt-2 mb-3 mt-3">
+    <div class="flex-row mb-3 mt-3 p-50">
       <div class="flex-col-12">
       <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">{{
       'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
       </div>
   </div>
-  <div class='p-50'> 
-    <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
-      'LABEL.CONTINUE' |
-      translate}}</button>
-      </div>
+  
   </form>
   <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
 

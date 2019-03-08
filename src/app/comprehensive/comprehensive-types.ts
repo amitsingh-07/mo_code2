@@ -113,3 +113,18 @@ export interface IMySpendings {
    otherLoanPayment: number;
    otherLoanPayoffUntil: number;
 }
+export interface IMyAssets {
+    cashInBank: number;
+    singaporeSavingsBond: number;
+    CPFOA: number;
+    CPFSA: number;
+    CPFMA: number;
+    yourHome: number;
+    investmentProperties: number;
+    otherinvestment: IOtherProperties[];
+    otherAssets: number;
+}
+export interface IOtherProperties {
+    investmentType: string;
+    others: number;
+}
