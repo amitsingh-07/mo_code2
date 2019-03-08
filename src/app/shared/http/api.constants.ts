@@ -5,7 +5,7 @@ const ACCOUNT_API_BASE_URL = 'account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
-const COMPREHENSIVE_API_BASE_URL = 'account-microservice/api/customer/comprehensive/';
+const COMPREHENSIVE_API_BASE_URL = 'api/customer/comprehensive/';
 
 export let apiConstants = {
     endpoint: {
@@ -15,7 +15,7 @@ export let apiConstants = {
         getProfileList: 'account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
-        getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
+        getHospitalPlanList: 'account/insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         createEnquiry: 'recommend/recomm-microservice/api/createEnquiry',
@@ -97,7 +97,7 @@ export let apiConstants = {
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         },
         comprehensive: {
-            getComprehensiveSummary: 'account-microservice/api/getComprehensiveSummary',
+            getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveUserSummary',
             getPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
             addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
             getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',

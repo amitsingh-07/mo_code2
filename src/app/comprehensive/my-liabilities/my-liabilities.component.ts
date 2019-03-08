@@ -1,10 +1,12 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
+import { IMyLiabilities, IMySummaryModal } from '../comprehensive-types';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -13,28 +15,26 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { IMyLiabilities, IMySummaryModal } from '../comprehensive-types';
 
 @Component({
   selector: 'app-my-liabilities',
   templateUrl: './my-liabilities.component.html',
   styleUrls: ['./my-liabilities.component.scss']
 })
-export class MyLiabilitiesComponent implements OnInit {
+export class MyLiabilitiesComponent implements OnInit , OnDestroy {
   pageTitle: string;
   myLiabilitiesForm: FormGroup;
   submitted: boolean;
   propertyLoan = true;
   liabilitiesDetails: IMyLiabilities;
-  summaryModalDetails:IMySummaryModal;
+  summaryModalDetails: IMySummaryModal;
   totalOutstanding = 0;
   menuClickSubscription: Subscription;
   pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService, 
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
-   this.pageId = this.route.routeConfig.component.name;
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -47,13 +47,14 @@ export class MyLiabilitiesComponent implements OnInit {
     });
 
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
+
   }
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
     this.buildmyLiabilitiesForm();
   }
-  
+
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
@@ -63,8 +64,8 @@ export class MyLiabilitiesComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   addPropertyLoan() {
-     const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoan'];
-    if(this.propertyLoan){     
+    const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoan'];
+    if (this.propertyLoan) {
       otherPropertyControl.setValidators([Validators.required]);
       otherPropertyControl.updateValueAndValidity();
     } else {
@@ -85,18 +86,19 @@ export class MyLiabilitiesComponent implements OnInit {
     });
   }
 
-
-   goToNext(form: FormGroup) {
+  goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
       console.log('Got it');
-      let financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');      
-      let retireModal = this.translate.instant('CMP.MODAL.RETIREMENT_MODAL');      
-      let insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS'); 
-      let insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
-      let childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS'); 
-      let childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-      
-      this.comprehensiveService.openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal, this.summaryModalDetails);
+      const financeModal = this.translate.instant('CMP.MY_LIABILITIES.FINANCES_MODAL');
+      const retireModal = this.translate.instant('CMP.MY_LIABILITIES.RETIREMENT_MODAL');
+      const insurancePlanningDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.DEPENDANTS');
+      const insurancePlanningNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
+      const childrenEducationDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
+      const childrenEducationNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+
+      this.comprehensiveService.openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
+        insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal,
+        this.summaryModalDetails);
     }
 
   }
@@ -117,17 +119,19 @@ export class MyLiabilitiesComponent implements OnInit {
     return true;
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = { TITLE: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipTitle),
-    DESCRIPTION: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipMessage)};
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.MY_LIABILITIES.TOOLTIP.' + toolTipMessage)
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 
- @HostListener('input', ['$event'])
+  @HostListener('input', ['$event'])
   onChange() {
     this.onTotalOutstanding();
   }
 
-  onTotalOutstanding(){
-    this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);   
+  onTotalOutstanding() {
+    this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);
   }
 }

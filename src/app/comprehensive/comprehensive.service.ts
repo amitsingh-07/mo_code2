@@ -8,8 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
-   IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IMyAssets } from './comprehensive-types';
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyAssets,
+  IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
 })
@@ -97,6 +97,12 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.hasEducationPlan;
   }
+  getRSP() {
+    if (!this.comprehensiveFormData.regularSavingsPlan) {
+      this.comprehensiveFormData.regularSavingsPlan = {} as IRegularSavePlan;
+    }
+    return this.comprehensiveFormData.regularSavingsPlan;
+  }
   /* Product Category drop down Handler */
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.myProfile = profile;
@@ -160,6 +166,10 @@ export class ComprehensiveService {
 
   setMyAssets(myAssetsData: IMyAssets) {
     this.comprehensiveFormData.myAssets = myAssetsData;
+    this.commit();
+  }
+  setRSP(regularSavingsPlan: IRegularSavePlan) {
+    this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
     this.commit();
   }
 
@@ -258,7 +268,8 @@ export class ComprehensiveService {
     if (setTempleteModel == 2) {
       //Finance Popup    
 
-      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj:
+       financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
       summaryModalDetails = {
         setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
         liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200
@@ -285,7 +296,12 @@ export class ComprehensiveService {
       // CHILDREN_EDUCATION Popup
       const dependantVar = false;
 
-      summaryModalDetails = { setTemplateModal: 1, titleImage: 'education-without-dependant.svg', dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal : childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19, userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }], nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20, medicalCost: 300000 } };
+      summaryModalDetails = { setTemplateModal: 1, titleImage: 'education-without-dependant.svg',
+      dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal :
+      childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19,
+       userEstimatedCost: 300000 }, { userName: 'Marie Ng', userAge: 20, userEstimatedCost: 300000 }],
+       nonDependantDetails: { livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788, medicalBill:
+        5000, medicalYear: 20, medicalCost: 300000 } };
 
       ref.componentInstance.summaryModalDetails = summaryModalDetails;
     }
@@ -329,3 +345,4 @@ export class ComprehensiveService {
   }
 
 }
+

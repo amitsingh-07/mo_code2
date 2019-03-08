@@ -87,7 +87,7 @@ buildEndowmentDetailsForm(value): FormGroup {
     age: [value.age, [Validators.required]],
     endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
     endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required]],
-    endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityAmount == null)
+    endowmentPlanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityAmount == null)
       ? false : true, [Validators.required]],
     gender: [value.gender, [Validators.required]]
   });

@@ -19,8 +19,8 @@
 
           <div class="p-2 pl-3 education-support">
               <div class="checkbox-button one-label">
-                <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentplanShow"
-                  formControlName="endowmentplanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
+                  formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
                 <label for="educationSupport{{i}}">
                   <div class="form-group-with-bg--header-label">{{educationPlan.get('name').value}}</div>
                   <div class="age"> {{educationPlan.get('age').value}} Years old</div>
@@ -32,7 +32,7 @@
         
         
         
-        <div class="education-plan" [hidden]="!educationPlan.get('endowmentplanShow').value">
+        <div class="education-plan" [hidden]="!educationPlan.get('endowmentPlanShow').value">
          
           <div class="flex-row p-2 px-4">
               <div class="flex-col-5">

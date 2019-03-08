@@ -58,6 +58,7 @@ export class HospitalPlan {
     hospitalClassDescription: string;
     hospitalClassId: number;
     isFullRider = false;
+    badMoodMonthlyAmount: string;
 }
 
 export interface IMySummaryModal {
@@ -127,4 +128,13 @@ export interface IMyAssets {
 export interface IOtherProperties {
     investmentType: string;
     others: number;
+}
+export interface IRegularSavePlan {
+    hasRegularSavings: boolean;
+    comprehensiveRegularSavingsList: IRegularSavings[];
+}
+export interface IRegularSavings {
+    regularUnitTrust: string;
+    regularPaidByCash: string;
+    regularPaidByCPF: string;
 }
