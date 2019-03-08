@@ -87,7 +87,7 @@ buildEndowmentDetailsForm(value): FormGroup {
     age: [value.age, [Validators.required]],
     endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
     endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required]],
-    endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityYear == null)
+    endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityAmount == null)
       ? false : true, [Validators.required]],
     gender: [value.gender, [Validators.required]]
   });
@@ -106,7 +106,7 @@ goToNext(form) {
     form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
       this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
       this.endowmentArrayPlan[index].endowmentMaturityYear = preferenceDetails.endowmentMaturityYear;
-      if (preferenceDetails.endowmentplanShow === true) {        
+      if (preferenceDetails.endowmentplanShow === true) {
         dependantArray.push({
           userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
         });

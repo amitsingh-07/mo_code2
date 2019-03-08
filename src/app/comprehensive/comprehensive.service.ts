@@ -50,7 +50,10 @@ export class ComprehensiveService {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
   }
-
+  clearEndowmentPlan() {
+    this.comprehensiveFormData.hasEducationPlan = {} as IEducationPlan;
+    this.commit();
+  }
   // Return the entire Comprehensive Form Data
   getComprehensiveFormData(): ComprehensiveFormData {
     if (window.sessionStorage && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)) {

@@ -165,7 +165,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-
+    if (!form.pristine) {
+      this.comprehensiveService.clearEndowmentPlan();
+    }
     if (this.validateDependantform(form)) {
       form.value.dependentMappingList.forEach((dependant: any, index) => {
         form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
@@ -173,7 +175,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       const dependantDetails = [];
-      let  dependantList = true;
+      let dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
           dependantList = false;
@@ -190,6 +192,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         };
         this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
       }
+
     }
   }
 }

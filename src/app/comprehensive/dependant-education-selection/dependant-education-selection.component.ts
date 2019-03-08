@@ -116,7 +116,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildEducationList(value) {
-    const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());    
+    const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());
     const aboutAgeCal = this.aboutAge.getAboutAge(ageFind,
       (value.gender === 'Male') ?
        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));

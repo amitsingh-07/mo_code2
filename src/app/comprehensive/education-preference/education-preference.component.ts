@@ -82,7 +82,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
   }
   buildPreferenceDetailsForm(value): FormGroup {
-    console.log(value);
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
