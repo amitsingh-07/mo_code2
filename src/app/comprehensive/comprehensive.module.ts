@@ -18,6 +18,7 @@ import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
+import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyLiabilitiesComponent,
     FirstReportDependantComponent,
     BadMoodFundComponent,
-    ProgressTrackerComponent
+    ProgressTrackerComponent,
+    DependantSelectionComponent
     ]
 })
 export class ComprehensiveModule { }

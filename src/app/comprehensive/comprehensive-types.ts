@@ -42,7 +42,7 @@ export interface IChildEndowment {
     educationCourse: string;
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
-    dateOfBirth:string;
+    dateOfBirth: string;
 
 }
 
