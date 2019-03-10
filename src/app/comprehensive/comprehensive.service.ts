@@ -237,7 +237,7 @@ export class ComprehensiveService {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
+      windowClass: 'full-height-comprehensive'
     });
 
     let setTempleteModel = 1;
@@ -282,7 +282,7 @@ export class ComprehensiveService {
   openSummaryPopUpModal(summaryModalDetails) {
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
+      windowClass: 'full-height-comprehensive'
     });    
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     return false;
