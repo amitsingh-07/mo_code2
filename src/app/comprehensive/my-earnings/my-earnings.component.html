@@ -4,11 +4,11 @@
     </div> 
     
   <div class="dependant-title mt40">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div>
-  <div class = 'text-center'> 
-    <span class="{{ (totalAnnualIncomeBucket > 0)?'filledEarn':'emptyEarn' }}"></span> 
-    <p>{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</p> 
-    <p> <b>{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </b></p>
+  <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div> 
+  <div class = 'income-bucket-panel'>     
+    <div class="income-bucket-panel__img {{ (totalAnnualIncomeBucket > 0)?'filledEarn':'emptyEarn' }}"></div> 
+    <div class="income-bucket-panel__desc">{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</div> 
+    <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
   </div>
   <form [formGroup]="myEarningsForm" id="myEarningsForm" name="myEarningsForm" class="myEarningsForm">
     <section class="earnings-section  mb-3  pt-2">      
