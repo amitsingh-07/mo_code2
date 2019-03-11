@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -14,14 +14,11 @@ import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { IMyDependant, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 @Component({
   selector: 'app-dependants-details',
   templateUrl: './dependants-details.component.html',
-  styleUrls: ['./dependants-details.component.scss'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./dependants-details.component.scss']
 })
 export class DependantsDetailsComponent implements OnInit, OnDestroy {
   genderList: any;
@@ -42,7 +39,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig) {
+    private parserFormatter: NgbDateParserFormatter, private configDate: NgbDatepickerConfig) {
     const today: Date = new Date();
     configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -80,7 +77,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
-    this.buildDependantForm();
   }
 
   ngOnDestroy() {
@@ -168,7 +164,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-
+    if (!form.pristine) {
+      this.comprehensiveService.clearEndowmentPlan();
+    }
     if (this.validateDependantform(form)) {
       form.value.dependentMappingList.forEach((dependant: any, index) => {
         form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
@@ -176,25 +174,24 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       const dependantDetails = [];
+      let dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-        if (dependant.relationship === 'Child' || dependant.relationship === 'Sibling') {
-          dependantDetails.push(dependant);
+        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+          dependantList = false;
         }
       });
-      if (dependantDetails.length > 0) {
+      if (!dependantList) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
       } else {
         const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         this.summaryModalDetails = {
           setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
-          nonDependantDetails: {
-            livingCost: 2000, livingPercent: 3, livingEstimatedCost: 2788,
-            medicalBill: 5000, medicalYear: 20, medicalCost: 300000
-          },
+          nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
           nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
         };
         this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
       }
+
     }
   }
 }

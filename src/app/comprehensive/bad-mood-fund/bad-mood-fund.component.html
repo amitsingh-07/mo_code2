@@ -12,8 +12,8 @@
       <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz">
         <div class="form-group-with-bg--header">
           <div class="form-group-with-bg--header-label"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
-          <p> {{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</p>
           <label>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</label>
+          <input type="text" name="badMoodMonthlyAmount" class="form-control offset-7 col-5" formControlName="badMoodMonthlyAmount" [value]="SliderValue"/>
           <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
             [step]="100" [tooltips]="[ true ]"></nouislider>
           <span>$0</span>
@@ -31,8 +31,9 @@
         </div>
       </div>
       <div>
-        <button type="button"  (click)="goToNext(hospitalPlanForm)" class="btn btn-primary btn__footer--fixed width100">{{
-          'LABEL.CONTINUE' | translate}}</button>
+        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mb50 width100"
+      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
       </div>
     </form>
   </div>

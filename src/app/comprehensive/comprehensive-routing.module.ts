@@ -29,7 +29,6 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
             { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION, component: DependantEducationComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST, component: DependantEducationListComponent },
@@ -46,7 +45,8 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.STEPS + '/:stepNo', component: ComprehensiveStepsComponent },
             { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent },
             { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent },
-            { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent }
+            { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent }
         ]
     }
 ];

@@ -9,7 +9,7 @@
     <form name="RSPForm" [formGroup]="RSPForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="RSPInpt1" name="RSPSelection" formControlName="RSPSelection" type="radio" value=true class="field radio">
+          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=true class="field radio">
           <label for="RSPInpt1">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}
 
@@ -17,17 +17,17 @@
 
           </label>
           <section [hidden]="!RSPSelection" class="p-0 rspSelectionList" >
-            <div formArrayName="RSPDetails" class="myDependantFormArray" class="form-group-with-bg" *ngFor="let RSPDetails of RSPForm.controls.RSPDetails.controls; let i = index;">
+            <div formArrayName="comprehensiveRegularSavingsList" class="myDependantFormArray" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm.controls.comprehensiveRegularSavingsList.controls; let i = index;">
              
              
                   <div class="form-group-with-bg--header">
                       <div class="flex-row">
-                        <div class="flex-col-7">
-                          <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1">{{'CMP.RSP.HEADER'|translate}}{{i}}</div>
+                        <div class="flex-col-11">
+                          <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1"><span *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span *ngIf="i > 0">{{i}}</span></div>
                           </div>
             
-                        <div class="flex-col-5">
-                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm.controls.RSPDetails.controls.length>1"><span class="mo3-close-icon"></span></div>
+                        <div class="flex-col-1">
+                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm.controls.comprehensiveRegularSavingsList.controls.length>1"><span class="mo3-close-icon"></span></div>
                         </div>
                       </div>
                     </div>  
@@ -40,11 +40,11 @@
                     <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
                   </div>
                   <div class="pr0 flex-col-7">
-                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  RSPDetails.controls.relationship.invalid}">
+                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularUnitTrust.invalid}">
                       <div ngbDropdown id="relationshipDropDown">
                         <button type="button" class="btn btn-dropdown" id="dropdowninvestMent" ngbDropdownToggle>
-                          <span>{{'COMMON.LBL_SELECT' | translate}}</span>
-                          <span>{{investment}}</span>
+                          <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==''">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownRelation">
                           <button class="dropdown-item" (click)="selectInvest('',i)">Select</button>
@@ -102,13 +102,13 @@
 
 
         <div class="checkbox-button one-label">
-          <input id="RSPInpt2" name="RSPSelection" formControlName="RSPSelection" type="radio" value=false class="field radio">
+          <input id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=false class="field radio">
           <label for="RSPInpt2">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
 
         </div>
-        <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary mb50 width100"
+        <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary mb50 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
       </div>

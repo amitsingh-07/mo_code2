@@ -1,14 +1,25 @@
-<div class="container-fluid max-width--1024 ">
-  <header>{{'CMP.MY_LIABILITIES.TITLE'|translate}}</header>
-  <article class="py-2">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</article>
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
+    </div> 
+  <div class="dependant-title mt40">{{'CMP.MY_LIABILITIES.TITLE'|translate}}</div>
+  <div class="dependant-desc">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
   <div class = 'text-center'> 
+    <span class="filledLiabilities"></span> 
     <p>{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</p> 
     <p> <b>{{totalOutstanding | currency:'USD':'symbol-narrow':'1.0-2'}} </b> {{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_TOTAL'|translate}}</p>
   </div>
-  <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm" class="myLiabilitiesForm">
-    <section class="earnings-section  mb-3  pt-2">
-      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.HOME_LOAN_OUTSTANDING'|translate}}</b></p>     
-      <div class="earnings-field ">
+  <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm" class="myLiabilitiesForm form-group">
+    <section class="liabilities-section  mb-3  pt-2"> 
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{'CMP.MY_LIABILITIES.HOME_LOAN_OUTSTANDING'|translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('HOME_LOAN_OUTSTANDING_TITLE','HOME_LOAN_OUTSTANDING_MESSAGE')"></span>
+          </div>         
+        </div>
+      </div>    
+      <div class="liabilities-field ">
 
 
         <div class="flex-row p-2 ">
@@ -27,12 +38,27 @@
             </div>
           </div>
         </div>
-        <b (click)="addPropertyLoan()" [hidden]="!propertyLoan">{{'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN'|translate}}</b>
-        <div [hidden]="propertyLoan"> 
-        <p class="p-2">
-          <b>{{'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN'|translate}}</b>
-           <i (click)="addPropertyLoan()" class="fa fa-trash text-right"></i>
-        </p>
+
+        <div class="flex-row investmentProperties" [hidden]="!propertyLoan" >
+            <div class="flex-col-12">
+              <div class="with-help-icon p-2" for="name"><u (click)="addPropertyLoan()">{{
+                'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN' | translate}}</u>
+
+                <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
+              </div>         
+            </div>
+          </div>
+        
+        <div [hidden]="propertyLoan" class="liabilities p-2 investmentProperties"> 
+        <div class="flex-row">
+            <div class="flex-col-12">
+              <div class="with-help-icon p-2" for="name"><b>{{
+                'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN' | translate}}</b>  
+                <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
+                <span class="delete-icon" (click)="addPropertyLoan()"> </span>
+              </div> 
+            </div>
+            </div>
           
 
           <div class="flex-row p-2 ">
@@ -54,9 +80,16 @@
         </div>
       </div>
     </section>
-    <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.OTHER_LOANS_AMOUNT_OUTSTANDING'|translate}}</b></p>
-      <div class="earnings-field ">
+    <section class="liabilities-section pt-2 mb-3">      
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{'CMP.MY_LIABILITIES.OTHER_LOANS_AMOUNT_OUTSTANDING'|translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></span>
+          </div>         
+        </div>
+      </div>
+      <div class="liabilities-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
@@ -75,9 +108,16 @@
         </div>
       </div>
     </section>
-    <section class="earnings-section pt-2 mb-3">
-      <p class="p-2"><b>{{'CMP.MY_LIABILITIES.CAR_LOANS'|translate}}</b></p>
-      <div class="earnings-field ">
+    <section class="liabilities-section pt-2 mb-3">
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="with-help-icon p-2" for="name"><b>{{'CMP.MY_LIABILITIES.CAR_LOANS'|translate}}</b>
+
+            <span class="help-icon" (click)="showToolTipModal('CAR_LOANS_TITLE','CAR_LOANS_MESSAGE')"></span>
+          </div>         
+        </div>
+      </div>
+      <div class="liabilities-field ">
         <div class="flex-row p-2">
           <div class="pl0 col-5">
             <label for="name" id="myDependantFormLb1">
@@ -101,12 +141,14 @@
 
    
 
-
-    <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+    <div class='p-50'> 
+    <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary width100" id="prfBtn1">{{
       'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
-  </form>
+      </div>
 
+  </form>
+<div class="flex-row btn btn-primary btn__footer--fixed width100 p-3" id="prfBtn1"><div class="flex-col-9 left bucket-notes  align-left">{{ 'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalOutstanding | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
 
 
 </div>
