@@ -1,25 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
-
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IChildEndowment,
     IEducationPlan,
     IEPreference,
+    IMyAssets,
     IMyDependant,
     IMyEarnings,
     IMyLiabilities,
     IMyProfile,
     IMySpendings,
-    IProgressTrackerWrapper
+    IProgressTrackerWrapper,
+    IRegularSavePlan
 } from './comprehensive-types';
 import {
     IProgressTrackerData,
@@ -190,7 +191,33 @@ export class ComprehensiveService {
         this.comprehensiveFormData.hasDependant = selection;
         this.commit();
     }
+    clearEndowmentPlan() {
+        this.comprehensiveFormData.educationPlan = {} as IEducationPlan;
+        this.commit();
 
+    }
+    getMyAssets() {
+        if (!this.comprehensiveFormData.myAssets) {
+            this.comprehensiveFormData.myAssets = {} as IMyAssets;
+        }
+        return this.comprehensiveFormData.myAssets;
+
+    }
+    setMyAssets(myAssets: IMyAssets) {
+        this.comprehensiveFormData.myAssets = myAssets;
+        this.commit();
+    }
+    getRSP() {
+        if (!this.comprehensiveFormData.regularSavingsPlan) {
+            this.comprehensiveFormData.regularSavingsPlan = {} as IRegularSavePlan;
+        }
+        return this.comprehensiveFormData.regularSavingsPlan;
+    }
+    setRSP(regularSavingsPlan: IRegularSavePlan) {
+        this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
+        this.commit();
+
+    }
     getFormError(form, formName) {
         const controls = form.controls;
         const errors: any = {};

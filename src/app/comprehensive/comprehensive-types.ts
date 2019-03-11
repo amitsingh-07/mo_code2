@@ -134,6 +134,7 @@ export interface IMyAssets {
     investmentProperties: number;
     otherinvestment: IOtherProperties[];
     otherAssets: number;
+
 }
 export interface IOtherProperties {
     investmentType: string;

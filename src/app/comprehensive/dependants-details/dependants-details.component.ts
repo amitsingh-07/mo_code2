@@ -77,7 +77,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
-    this.buildDependantForm();
   }
 
   ngOnDestroy() {
