@@ -124,3 +124,15 @@ color: $dark-teal-color;
 .align-left{
     text-align: left;
 }
+.emptyEarn{
+    background: url("../../../assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
+.filledEarn{
+    background: url("../../../assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
