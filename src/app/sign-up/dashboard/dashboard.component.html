@@ -21,18 +21,18 @@
             </div>
           </div>
           <div class="widgets">
-            <div class="widget">
+            <div class="widget" *ngIf="isInvestmentEnabled">
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="showPortffolioPurchased"
+                <span class="view_all" *ngIf="showPortfolioPurchased"
                   (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
                   <!-- parchased portfolio -->
-                  <div class="portfolio" *ngIf="showPortffolioPurchased">
+                  <div class="portfolio" *ngIf="showPortfolioPurchased">
                     <div class="portfolio_value">
                       <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
                       <div class="value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>

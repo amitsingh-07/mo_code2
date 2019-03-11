@@ -7,14 +7,14 @@ import { ConfigService, IConfig } from '../config/config.service';
 
 @Injectable()
 export class InvestmentChildEnableGuard implements CanActivateChild {
-  isInvestmentEnabled = false;
+  isInvestmentEngagementEnabled = false;
   constructor(private configService: ConfigService, private router: Router) {
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentEnabled = config.investmentEnabled;
+      this.isInvestmentEngagementEnabled = config.investmentEngagementEnabled;
     });
   }
   canActivateChild(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.isInvestmentEnabled) {
+    if (this.isInvestmentEngagementEnabled) {
       return true;
     } else {
       this.router.navigate([appConstants.homePageUrl]);

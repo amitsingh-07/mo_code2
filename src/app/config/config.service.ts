@@ -14,6 +14,8 @@ export interface IConfig {
   articleEnabled: boolean;
   willWritingEnabled: boolean;
   investmentEnabled: boolean;
+  investmentEngagementEnabled: boolean;
+  investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];

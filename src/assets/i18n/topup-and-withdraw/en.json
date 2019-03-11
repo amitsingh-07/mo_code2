@@ -206,6 +206,10 @@
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",
         "MESSAGE": "Please wait while we load your transaction history."
+      },
+      "STATEMENT_FETCH_LOADER": {
+        "TITLE": "Downloading Statement",
+        "MESSAGE": "Please wait while the statement is downloaded."
       }
     }
   },

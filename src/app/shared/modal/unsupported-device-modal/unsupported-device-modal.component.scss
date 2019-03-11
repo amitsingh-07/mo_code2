@@ -1,9 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-.toggle-btn{
-  width: 49%;
-}
+
 .action-button {
   width: 100%;
   border-radius: 6px;
@@ -21,41 +19,17 @@
   text-align: center;
   color: $white-color;
   padding: 10px;
-  &.secondary-button {
-    background-color:$white-color;
-    color:$teal-color !important;
-    -webkit-text-fill-color: $teal-color !important;
-    box-shadow: none !important;
+  &:active {
+    background-color: $action-btn-active-bg;
+    color: $white-color;
   }
 }
 .popup-header-icon {
-  &.glass {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: -15px;
-
     img {
       height: 100%;
       width: 100%;
     }
-  }
 }
 .modal-body-message {
   margin-bottom: 15px;
-}
-.action-button:active {
-  background-color: $action-btn-active-bg;
-  color: $white-color;
-}
-.warning-icon {
-  width: 24px;
-  height: 24px;
-  padding-left: 7px;
-  img{
-    max-width: 100%;
-    height: auto;
-    margin: 0;
-  }
 }
