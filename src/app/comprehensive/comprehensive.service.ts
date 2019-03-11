@@ -8,8 +8,9 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyAssets,
-  IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
+
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyAssets, 
+IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
 })
@@ -255,21 +256,20 @@ export class ComprehensiveService {
     return false;
   }
 
-  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
-                   insurancePlanningNonDependantModal, childrenEducationDependantModal,
-                   childrenEducationNonDependantModal, summaryModalDetails) {
+  openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal, insurancePlanningNonDependantModal, 
+  childrenEducationDependantModal, childrenEducationNonDependantModal, summaryModalDetails) {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
+      windowClass: 'full-height-comprehensive'
     });
 
-    let setTempleteModel = 2;
+    let setTempleteModel = 1;
     if (setTempleteModel == 2) {
       //Finance Popup    
 
-      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj:
-       financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
+      summaryModalDetails = { setTemplateModal: 2, titleImage: 'owl.svg', contentObj: 
+	  financeModal, liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200 };
       summaryModalDetails = {
         setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
         liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200
@@ -294,8 +294,9 @@ export class ComprehensiveService {
 
     } else if (setTempleteModel == 1) {
       // CHILDREN_EDUCATION Popup
-      const dependantVar = false;
+      const dependantVar = true;
 
+      
       summaryModalDetails = { setTemplateModal: 1, titleImage: 'education-without-dependant.svg',
       dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal :
       childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19,
@@ -312,8 +313,9 @@ export class ComprehensiveService {
   openSummaryPopUpModal(summaryModalDetails) {
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
-    });
+      windowClass: 'full-height-comprehensive'
+	});    
+
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     return false;
   }
@@ -327,6 +329,7 @@ export class ComprehensiveService {
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
    
+        
     for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');

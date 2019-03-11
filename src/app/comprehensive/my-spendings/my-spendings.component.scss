@@ -30,7 +30,7 @@ color: $dark-teal-color;
     }    
 }
 .delete-icon {      
-        background: url("/assets/images/delete-icon.svg") no-repeat;
+        background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
         width: 40px;
         height: 20px;
         cursor: pointer;
@@ -43,13 +43,13 @@ color: $dark-teal-color;
     right: 10px;
 }
 .emptySpend{
-    background: url("../../../assets/images/empty-expenses.svg") no-repeat;
+    background: url("../../../assets/images/comprehensive/empty-expenses.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .filledSpend{
-    background: url("../../../assets/images/filled-expenses.svg") no-repeat;
+    background: url("../../../assets/images/comprehensive/filled-expenses.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
