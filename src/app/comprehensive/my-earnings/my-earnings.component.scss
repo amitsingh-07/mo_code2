@@ -135,4 +135,16 @@ color: $dark-teal-color;
     display: inline-block;
     width: 117px;
     height: 112px;
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+    }
+    &__value {
+        padding-bottom: 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+    }
 }

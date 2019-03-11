@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -14,14 +14,11 @@ import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { IMyDependant, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 @Component({
   selector: 'app-dependants-details',
   templateUrl: './dependants-details.component.html',
-  styleUrls: ['./dependants-details.component.scss'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./dependants-details.component.scss']
 })
 export class DependantsDetailsComponent implements OnInit, OnDestroy {
   genderList: any;
@@ -42,7 +39,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig) {
+    private parserFormatter: NgbDateParserFormatter, private configDate: NgbDatepickerConfig) {
     const today: Date = new Date();
     configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
