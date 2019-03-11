@@ -60,7 +60,7 @@ export class SingPassComponent implements OnInit {
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentMyInfoEnabled = config.investmentEnabled;
+      this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
     });
   }
 
