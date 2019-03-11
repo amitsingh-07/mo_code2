@@ -1,20 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { SharedModule } from '../shared/shared.module';
+import { NgbDateCustomParserFormatter } from '../shared/utils/ngb-date-custom-parser-formatter';
+import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { ComprehensiveRoutingModule } from './comprehensive-routing.module';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
-
-import { SharedModule } from '../shared/shared.module';
-import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
@@ -27,8 +25,8 @@ import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
-import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
+import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(http, [
@@ -58,6 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [
         ComprehensiveComponent,
         ComprehensiveStepsComponent,
+        ComprehensiveComponent,
+        ComprehensiveStepsComponent,
         DependantSelectionComponent,
         DependantsDetailsComponent,
         DependantEducationComponent,
@@ -73,6 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
         FirstReportDependantComponent,
         BadMoodFundComponent,
         ProgressTrackerComponent
-    ]
+    ],
+    providers: [ NgbDateCustomParserFormatter ]
 })
 export class ComprehensiveModule {}
