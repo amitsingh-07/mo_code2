@@ -1,14 +1,15 @@
-<div class="modal-body white-bg">
+<div class="summary-modal">
+<div class="modal-body white-bg text-center">
    <div class = 'text-center'> {{ summaryModalDetails.contentObj.TITLE}}</div>
   <div class="modal-body-title text-center">{{ summaryModalDetails.contentObj.TITLE_DESC}}</div>
-  <div class="modal-title text-center"><img src="./assets/images/summary-page/step-tick.svg" /></div>
-  <div class="modal-title text-center" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img src="./assets/images/summary-page/{{ summaryModalDetails.contentObj.TITLE_IMAGE }}" /></div>  
+  <div class="modal-title text-center mt20 mb20"><img src="./assets/images/summary-page/step-tick.svg" /></div>
+  <div class="modal-title text-center mt20 mb20" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img src="./assets/images/summary-page/{{ summaryModalDetails.contentObj.TITLE_IMAGE }}" /></div>  
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 2">
     <div class="instruction-content finance-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -78,14 +79,14 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
     </div>
 
   </div>
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 4">
     <div class="instruction-content retirement-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -130,13 +131,13 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
     </div>
     
   </div>
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -182,14 +183,14 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
     </div>
     
   </div>
 
    <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && !summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -235,14 +236,14 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
     </div>
     
   </div>
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -279,7 +280,7 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
     </div>
     
   </div>
@@ -287,7 +288,7 @@
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && !summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <ul class="list-none">
+    <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
           <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
@@ -328,10 +329,27 @@
             </button>
             </div>
       </li>
-    </ul>
+    </ul> -->
+    <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+    <div class="mb30" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
+    <div class="summary-modal__details mb30">
+      <div class="summary-modal__details--label">Nathan Ng <br> <span class="summary-modal__details--label-grey">About 19 years later</span></div>
+      <div class="summary-modal__details--value">$300,000</div>
     </div>
+    <div class="summary-modal__details mb30">
+      <div class="summary-modal__details--label">Nathan Ng <br> <span class="summary-modal__details--label-grey">About 19 years later</span></div>
+      <div class="summary-modal__details--value">$300,000</div>
+    </div>
+    <div class="summary-modal__box-content">
+        That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!
+    </div>
+    <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+        {{ summaryModalDetails.contentObj.NEXT }}
+    </button>  
+  </div>
     
   </div>
 
 
+</div>
 </div>

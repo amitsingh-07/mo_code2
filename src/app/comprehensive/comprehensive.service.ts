@@ -8,8 +8,10 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+
 import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyAssets,
-  IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
+   IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -261,7 +263,7 @@ export class ComprehensiveService {
 
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
+      windowClass: 'full-height-comprehensive'
     });
 
     let setTempleteModel = 2;
@@ -312,7 +314,7 @@ export class ComprehensiveService {
   openSummaryPopUpModal(summaryModalDetails) {
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
-      windowClass: 'custom-full-height'
+      windowClass: 'full-height-comprehensive'
     });
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     return false;
@@ -345,4 +347,6 @@ export class ComprehensiveService {
   }
 
 }
+
+
 

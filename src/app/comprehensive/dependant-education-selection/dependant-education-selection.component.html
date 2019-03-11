@@ -2,11 +2,11 @@
     <div class="step-indicator-container">
         <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
     </div>
-  <header class="dependant-title mt40">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</header>
+  <div class="dependant-title mt40">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</div>
   <div class="col-lg-5 col-md-6 p-0">
     <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
       <div class="form-group-single-column  flex-col">
-        <div class="checkbox-button one-label">
+        <div class="checkbox-button one-label mt20">
           <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
             type="radio" value="1" class="field radio">
           <label for="dependant_selection_yes">
@@ -74,7 +74,7 @@
         </div>
        
       </div>
-      <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100"
+      <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100 mt30"
       id="moDpdnt2BtnFooter"> {{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
     </form>
