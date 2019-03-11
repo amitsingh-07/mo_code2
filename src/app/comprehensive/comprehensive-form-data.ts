@@ -22,4 +22,3 @@ export class ComprehensiveFormData {
     myAssets: IMyAssets;
     regularSavingsPlan: IRegularSavePlan;
 }
-
