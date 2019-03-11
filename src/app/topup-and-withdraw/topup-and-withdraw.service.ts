@@ -377,4 +377,8 @@ export class TopupAndWithDrawService {
     }
     return durationMonths;
   }
+
+  downloadStatement(data) {
+  return this.apiService.downloadStatement(data);
+  }
 }
