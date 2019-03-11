@@ -1,12 +1,13 @@
-import { ApiService } from '../shared/http/api.service';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
+
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
-import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
+import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -376,5 +377,17 @@ export class TopupAndWithDrawService {
       // tslint:disable-next-line
     }
     return durationMonths;
+  }
+
+  clearFormData() {
+    this.topUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
+    this.commit();
+  }
+
+  clearData() {
+    this.clearFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
   }
 }

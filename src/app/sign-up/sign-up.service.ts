@@ -4,8 +4,9 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import {
@@ -15,7 +16,6 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
-import { TranslateService } from '@ngx-translate/core';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -491,8 +491,8 @@ export class SignUpService {
 
   addMaxLengthInfoForAccountNo(banks) {
     banks.forEach((bank) => {
-      let maxlength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[bank.key];
-      bank.accountNoMaxLength = maxlength ? maxlength : null; 
+      const maxLength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[bank.key];
+      bank.accountNoMaxLength = maxLength ? maxLength : null;
     });
     return banks;
   }
