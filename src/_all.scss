@@ -263,6 +263,53 @@ h6 {
             flex-basis: unset;
           }
         }
+        li{
+          &.nav-item{
+            &.teal-bg{
+              background: #00a7a7 !important;
+              a{
+                color: $white-color !important;
+                .flex-col{
+                  .navbar--text {
+                    &.user-info{
+                      color: $white-color;
+                      font-size: 18px;
+                      font-family: $muli-bold;
+                      letter-spacing: -0.19px;
+                    }
+                  }
+                  .navbar--sub--text{
+                    font-family: $muli-regular;
+                    font-size: 11px;
+                    color: $white-color;
+                    letter-spacing: -0.11px;
+                    margin-left: 10px;
+                    @include allmobiles{
+                      margin: 0;
+                    }
+                  }
+                }
+                i{
+                  color: $white-color !important;
+                }
+              }
+            }
+            
+            
+            // &:hover, &:active{
+            //   a{
+            //     .navbar--text {
+            //       &.user-info{
+            //         color: $white-color;
+            //       }
+            //     }
+            //     .navbar--sub--text{
+            //       color: $white-color;
+            //     }
+            //   }
+            // }
+          }
+        }
       }
 
       &.search-wrapper {
@@ -602,7 +649,15 @@ h6 {
           left: 0px !important;
         }
       }
-
+      .navbar--text {
+        &.user-info{
+          color: $teal-color;
+          font-size: 18px;
+          font-family: $muli-bold;
+          letter-spacing: -0.19px;
+          line-height: 35px;
+        }
+      }
       .dropdown-item {
         display: flex;
         cursor: pointer;
@@ -626,7 +681,13 @@ h6 {
           margin-left: 10px;
           min-width: 170px;
         }
-
+        .navbar--sub--text{
+          font-family: $muli-regular;
+          font-size: 11px;
+          color: $black-color;
+          letter-spacing: -0.11px;
+          margin-left: 10px;
+        }
         span {
           font-family: $muli-regular;
           font-size: 16px;

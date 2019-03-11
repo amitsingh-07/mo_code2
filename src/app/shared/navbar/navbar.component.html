@@ -6,7 +6,8 @@
       <div class="close-btn" (click)="closeBrowserError()"></div>
     </div>
   </div>
-  <div class="navbar-wrapper space-between" *ngIf="(navbarMode == 1 || navbarMode == 3 ||  navbarMode == 4 || navbarMode == 5 || navbarMode == 6)">
+  <div class="navbar-wrapper space-between"
+    *ngIf="(navbarMode == 1 || navbarMode == 3 ||  navbarMode == 4 || navbarMode == 5 || navbarMode == 6)">
     <div class="navbar-group space-between" [ngClass]="{'navbar--hidden': !showMobileNavbar}">
       <div class="navbar-brand" [ngClass]="{'top': subTitle}">
         <li *ngIf="(navbarMode == 2 || navbarMode == 6)" class="nav-item">
@@ -17,8 +18,8 @@
         </li>
         <li class="navbar__logo--primary hidden-sm-md" (click)="goToHome()">
         </li>
-        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5 || navbarMode == 6)" class="navbar__logo--tertiary hidden-lg"
-          (click)="goToHome()">
+        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5 || navbarMode == 6)"
+          class="navbar__logo--tertiary hidden-lg" (click)="goToHome()">
         </li>
         <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
         </li>
@@ -51,7 +52,8 @@
               <div *ngIf="recentMessages && recentMessages.length">
                 <div class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                   {{message.message}}
-                  <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}</div>
+                  <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}
+                  </div>
                 </div>
               </div>
               <div class="no-notification" *ngIf="!recentMessages || !recentMessages.length">
@@ -64,26 +66,41 @@
       </div>
 
 
-      <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 6)" class="navbar-toggler hidden-lg"
-        type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
+      <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 6)"
+        class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+        data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" class="navbar__menu-icon"
+          [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
       </button>
     </div>
 
 
-    <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
-      id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+    <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 6)" [ngbCollapse]="isNavbarCollapsed"
+      class="collapse navbar-collapse mobile-menu" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
       <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
-        <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
-          <a class="nav-link txt-capitalize underline" (click)="goToDashboard()">{{userInfo.firstName}}</a>
-          <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout
-            <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
+        <li *ngIf="!isLoggedIn" class="nav-item hidden-lg teal-bg" [routerLink]="['/account/login']">
+          <a class="nav-link navbar--text">
+            <i class="fa fa-user" style="font-size: 20px; padding-right: 18px;"></i>
+            Login</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg teal-bg" style="flex-direction: row">
+          <a class="nav-link" [routerLink]="['/account/dashboard']">
+            <div class="flex-col">
+              <span class="navbar--text txt-capitalize user-info">{{userInfo.firstName}}</span>
+              <span class="navbar--sub--text">My Dashboard</span>
+            </div>
+          </a>
+          <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()"
+            href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item teal-bg hidden-lg" [routerLink]="['/account/edit-profile']">
+          <a class="nav-link">Profile</a>
         </li>
         <li class="nav-item" [routerLink]="['/']">
           <a class="nav-link">Home</a>
         </li>
-        <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+        <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
+          (mouseleave)="closeDropdown(id01);">
           <!--  (mouseleave)="closeDropdown(id01);"-->
           <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
@@ -120,18 +137,20 @@
         <li *ngIf="isPromotionEnabled" class="nav-item" [routerLink]="['/promotions']">
           <a class="nav-link">Promotions</a>
         </li>
-        <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);"
-          (mouseleave)="closeDropdown(id02);">
+        <li *ngIf="isArticleEnabled" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown"
+          (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
           <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
-            <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
+            <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About
+              Insurance</button>
             <button class="dropdown-item" [routerLink]="['/articles/category/all']">All Articles</button>
           </div>
         </li>
         <li class="nav-item" [routerLink]="['/faq']">
           <a class="nav-link">FAQs</a>
         </li>
-        <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
+        <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);"
+          (mouseleave)="closeDropdown(id04);">
           <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
             <button class="dropdown-item" [routerLink]="['/about-us']">
@@ -148,13 +167,21 @@
             </button>
           </div>
         </li>
-        <li *ngIf="isLoggedIn" class="nav-item dropdown hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
-          (mouseleave)="closeDropdown(id05);">
-          <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o"
-              style="font-size: 20px; color: #00a7a7"></i></a>
+        <li *ngIf="!isLoggedIn" class="nav-item hidden-sm-md" [routerLink]="['/account/login']">
+          <a class="nav-link navbar--text label-teal">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item dropdown hidden-sm-md" ngbDropdown #id05="ngbDropdown"
+          (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
+          <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i
+              class="fa fa-user-circle-o" style="font-size: 20px; color: #00a7a7"></i></a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
-            <button class="dropdown-item" (click)="goToDashboard()">
-              <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
+            <button class="dropdown-item flex-col" [routerLink]="['/account/dashboard']">
+              <div class="navbar--text txt-capitalize user-info">{{userInfo.firstName}}</div>
+              <div class="navbar--sub--text">My Dashboard</div>
+            </button>
+            <hr>
+            <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
+              <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
             <button class="dropdown-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout</a>
@@ -179,7 +206,8 @@
         <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
         </div>
-        <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
+        <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon"
+          (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
         </div>
         <!--
@@ -195,6 +223,6 @@
   </div>
 </nav>
 <nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2 || navbarMode == 6)}"></nav>
-<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop"
-  id="navbarsDefault">
+<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed"
+  class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
 </div>
