@@ -6,7 +6,7 @@
   <div class="dependant-title mt40">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div>
   <div class = 'text-center'> 
-    <img *ngIf="bucketImage" src="./assets/images/{{ bucketImage }}" />
+    <img *ngIf="bucketImage" src="./assets/images/comprehensive/{{ bucketImage }}" />
     <p>{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</p> 
     <p> <b>{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </b></p>
   </div>

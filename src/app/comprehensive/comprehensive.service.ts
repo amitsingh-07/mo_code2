@@ -362,21 +362,20 @@ export class ComprehensiveService {
         return false;
     }
 
-    openSummaryPopUpModal(summaryModalDetails) {
-        const ref = this.modal.open(SummaryModalComponent, {
-            centered: true,
-            windowClass: 'custom-full-height'
-        });
-        ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        return false;
-    }
-
     openTooltipModal(toolTipParam) {
         const ref = this.modal.open(ToolTipModalComponent, {
             centered: true
         });
         ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
         ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
+    }
+    openSummaryPopUpModal(summaryModalDetails) {
+        const ref = this.modal.open(SummaryModalComponent, {
+            centered: true,
+            windowClass: 'full-height-comprehensive'
+        });
+        ref.componentInstance.summaryModalDetails = summaryModalDetails;
+        return false;
     }
 
     additionOfCurrency(formValues, inputParams = []) {
