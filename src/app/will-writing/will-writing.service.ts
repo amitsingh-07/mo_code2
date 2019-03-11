@@ -598,7 +598,7 @@ export class WillWritingService {
       for (const target of targets) {
         if (this.checkUinNameRelationship(source, target)) {
           errors.push(`The ${source.name}/${source.relationship} for ${source.uin} in ${section1} section
-          does not match the ${target.name}/${target.relationship} defined for the same profile in ${section2} section.`);
+              does not match the ${target.name}/${target.relationship} defined for the same profile in ${section2} section.`);
         }
       }
     }

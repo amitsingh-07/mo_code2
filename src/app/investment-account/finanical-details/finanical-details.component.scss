@@ -1,155 +1,99 @@
 @import '../../../variables';
-
-.financial-details {
-
-  .inline-error-inv {
-    color: $inline-error-border-color;
-    border: 1px solid $inline-error-border-color !important;
-    color: $inline-error-border-color;
-
-    input {
-      color: $inline-error-border-color !important;
-    }
-  }
-
-  .inline-error{
-    .btn{
-      &.btn-secondary{
-        background-color:#ff872f !important;
-      }  
-    }    
-  }
-
-
-  label {
-    font-size: 18px;
-    font-family: $muli-semi-bold;
-  }
-
-  .input-control {
-    text-align: right;
-    color: #5e5e5e;
-  }
-
-  .step-indicator-container {
-    background-color: #fff;
-    padding: 10px 0px;
-    position: relative;
-    top: 60px;
-    margin-bottom: 15px;
-
+app-finanical-details {
+  .financial-details {
     .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
+      padding-top: 110px;
     }
-  }
-
-  @media (min-width: 768px) {
-    .step-indicator-container {
-      top: 0px;
-    }
-  }
-
-
-  .form-control {
-    &.with-button {
-      padding: 0.50rem;
-      padding-left: 0.8rem;
-
+    .inline-error-inv {
+      color: $inline-error-border-color;
+      border: 1px solid $inline-error-border-color !important;
+      color: $inline-error-border-color;
       input {
-        margin-top: 6px;
+        color: $inline-error-border-color !important;
       }
     }
-
-
-  }
-
-  .btn {
-    &.btn-secondary {
-      padding: 0.50rem;
-      font-size: 16px;
-      background-color: #ff872f;
-      color: #fff;
-      border: none;
-      font-family: $muli;
-
-      &.right {
-        float: right;
-      }
-
-      &:focus {
-        background-color: #ff730c !important;
-        color:#fff !important;
-      }
-
-      &:active {
-        background-color: #ff730c !important;
-        color:#fff !important;
-      }
-
-    }
-  }
-
-
-  .white-bg-checkbox {
-    background-color: #fff;
-    padding: 10px 18px 10px 18px;
-    border-radius: 6px;
-    font-family: $muli;
-
     label {
-
-      padding: 0px 0 0px 35px;
-    }
-
-    .option-row {
-      margin-left: 0px;
-    }
-
-    .option-title {
-      color: #000;
       font-size: 18px;
-    }
-
-    .option-desc {
-      color: #4a4a4a;
       font-family: $muli-semi-bold;
-      font-size: 16px;
+      padding-right: 10px;
+    }
+    .input-control {
+      text-align: right;
+      color: $text-color-secondary;
+    }
+    .step-indicator-container {
+      background-color: $white-color;
+      padding: 10px 0px;
+      position: relative;
+      top: 106px;
+      margin-bottom: 15px;
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+    @media (min-width: 768px) {
+      .step-indicator-container {
+        top: 0px;
+      }
+    }
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+        input {
+          margin-top: 6px;
+        }
+      }
+    }
+    .btn {
+      &:disabled {
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
+        opacity: 1 !important;
+      }
+    }
+    .white-bg-checkbox {
+      background-color: $white-color;
+      padding: 10px 18px 10px 18px;
+      border-radius: 6px;
+      font-family: $muli;
+      label {
+        padding: 0px 0 0px 35px;
+      }
+      .option-row {
+        margin-left: 0px;
+      }
+      .option-title {
+        color: $black-color;
+        font-size: 18px;
+      }
+      .option-desc {
+        color: $dark-grey-color;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+      }
+    }
+    .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 190px;
+    }
+    .dropdown-item {
+      white-space: normal;
+      word-break: break-word;
+    }
+    .dropdown-control .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
     }
   }
-
-
-  .autofill-link{
-    border:1px solid $secondary-action-color;
-    padding:23px 34px;
-    background-color:#fff;
-    border-radius:6px;
-    margin-bottom:20px;
-    cursor: pointer;
-    display: flex;
-
-    .autofill-text, .autofill-logo{
-        
-        
-    }
-
-    .autofill-logo{
-      
-      width:35%;
-  }
-
-    .autofill-text{
-      width:65%;
-      font-family: Muli;
-      font-size: 18px;
-      font-weight: bold;
-      color: #e57300;
-    }
-    
-   
-  }
-}
-.form-group-with-bg--content-label{
-    font-size: 18px;
-font-family: "Muli Semi Bold", sans-serif;
 }

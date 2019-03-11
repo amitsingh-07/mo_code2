@@ -1,0 +1,61 @@
+<div class="edit-investment-modal">
+
+<form id="editInvestmentForm" name="editInvestmentForm" [formGroup]="editInvestmentForm" autocomplete="off">
+  <div class="modal-header">
+    <div class="modal-title popup-header-icon">
+      <img src="./assets/images/owl.svg" />
+    </div>
+  </div>
+  <div class="modal-body white-bg">
+    <div class="modal-body-title">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.TITLE' | translate}}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="form-group">
+      <div class="flex-row">
+        <div class="flex-col-6">
+          <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.ONE_TIME_INVESTMENT' | translate}}</label>
+          <div class="input-label-normal">Min. $100</div>
+        </div>
+        <div class="flex-col-6">
+          <div class="form-control">
+            <i>$</i>
+            <div name="cpf">
+              <input id="editInvestment-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" maxLength="10" name="oneTimeInvestment"
+                appCurrencyInput formControlName="oneTimeInvestment" value="0">
+            </div>
+           
+          </div>
+        </div>
+        <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.oneTimeInvestment.hasError('minInitialAmount')">
+            <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.MINIMUM_INITIAL_AMOUNT' | translate}}</span>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="flex-col-6">
+          <label id="editInvestment-monthlyTimeInv-lbl" for="editInvestment-monthlyTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.MONTHLY_INVESTMENT' | translate}}</label>
+          <div class="input-label-normal">Min. $50</div>
+        </div>
+        <div class="flex-col-6">
+          <div class="form-control">
+            <i>$</i>
+            <div name="cpf">
+              <input   id="editInvestment-monthlyTimeInv-txt" autocomplete="off" class="input-control monthly-input" type="text" maxLength="10" name="monthlyInvestment"
+                appCurrencyInput formControlName="monthlyInvestment" value="0">
+                <i class="right">/mth</i>
+            </div>          
+          </div>
+        </div>
+        <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.monthlyInvestment.hasError('minMonthlyAmount')">
+            <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.MINIMUM_MONTHLY_AMOUNT' | translate}}</span>
+        </div>
+        <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.monthlyInvestment.hasError('atleastOne') || editInvestmentForm.controls.oneTimeInvestment.hasError('atleastOne')">
+            <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.ATLEAST_ONE_SHOULD_INVEST' | translate}}</span>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="dataUpdated(editInvestmentForm)" class="btn btn-primary width100 mt5" id="incomeBtn">{{
+      'LABEL.SAVE' | translate}}</button>
+  </div>
+</form>
+</div>

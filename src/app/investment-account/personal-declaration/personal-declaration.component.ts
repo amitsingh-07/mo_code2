@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
-import { IPageComponent } from './../../shared/interfaces/page-component.interface';
 
 @Component({
   selector: 'app-personal-declaration',
   templateUrl: './personal-declaration.component.html',
-  styleUrls: ['./personal-declaration.component.scss']
+  styleUrls: ['./personal-declaration.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PersonalDeclarationComponent implements OnInit {
   sourceOfIncomeList: any;
@@ -27,12 +27,14 @@ export class PersonalDeclarationComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('PERSONAL_DECLARATION.TITLE');
@@ -49,10 +51,15 @@ export class PersonalDeclarationComponent implements OnInit {
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   ngOnInit() {
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
 
     this.getSourceList();
     this.personalDeclarationFormValues = this.investmentAccountService.getPersonalDeclaration();
@@ -60,12 +67,11 @@ export class PersonalDeclarationComponent implements OnInit {
       radioEmploye: new FormControl(this.personalDeclarationFormValues.ExistingEmploye),
       radioBeneficial: new FormControl(this.personalDeclarationFormValues.beneficial),
       radioPEP: new FormControl(this.personalDeclarationFormValues.pep),
-      sourceOfIncome: new FormControl(this.personalDeclarationFormValues.sourceOfIncome, Validators.required)
+      sourceOfIncome: new FormControl(
+        this.personalDeclarationFormValues.sourceOfIncome,
+        Validators.required
+      )
     });
-  }
-  yesClick() {
-  }
-  noClick() {
   }
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -90,11 +96,30 @@ export class PersonalDeclarationComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
-      this.investmentAccountService.setPersonalDeclarationData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    } else if (this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())) {
+      this.saveInvestmentAccount();
     }
   }
+
+  saveInvestmentAccount() {
+    this.investmentAccountService.saveInvestmentAccount().subscribe(
+      (data) => {
+        if (this.investmentAccountService.getMyInfoStatus()) {
+          if (this.personalDeclarationForm.controls.radioBeneficial.value) {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+          } else {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          }
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+        }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    );
+  }
+
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
@@ -108,7 +133,11 @@ export class PersonalDeclarationComponent implements OnInit {
   }
   disableButton() {
     // tslint:disable-next-line:max-line-length
-    if (this.personalDeclarationForm.controls.radioEmploye.value == null || this.personalDeclarationForm.controls.radioBeneficial.value == null || this.personalDeclarationForm.controls.radioPEP.value == null) {
+    if (
+      this.personalDeclarationForm.controls.radioEmploye.value == null ||
+      this.personalDeclarationForm.controls.radioBeneficial.value == null ||
+      this.personalDeclarationForm.controls.radioPEP.value == null
+    ) {
       return true;
     }
   }

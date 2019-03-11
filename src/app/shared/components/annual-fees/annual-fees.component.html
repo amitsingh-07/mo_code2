@@ -1,0 +1,6 @@
+<div class="annual-fee-desc">
+    <div class="flex-row" *ngFor="let fee of feeDetails; let i = index">
+      <div class="flex-col"><span>{{fee.feeName}}</span><span class="text-lyt" *ngIf="fee.comments">({{fee.comments}})</span></div>
+      <div class="fee_value">{{fee.percentage}}</div>
+    </div>
+  </div>

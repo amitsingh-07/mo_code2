@@ -1,0 +1,34 @@
+// .dropdown.dropdown-menu.show {
+//     top: -440px !important;
+// }
+// .modal-body {
+//     .show.dropdown {
+//         margin-top: 235px;
+//     }
+// }
+// .dropdown-control .dropdown-menu.show {
+//     height: 200px;
+//     overflow: auto;
+// }
+.dropdown-control{
+    width: 43%;
+    position: absolute;
+}
+.dropdown-control:first-child() {
+    left: 0;
+}
+.dropdown-control:nth-child(2) {
+    right: 20px;
+}
+.dropdown-control .dropdown-menu.show {
+    overflow: auto;
+    top: -206px !important;
+    height: 200px;
+}
+.form-group {
+    height: 140px;
+}
+
+.modal-content {
+    padding-top: 200px;
+}
