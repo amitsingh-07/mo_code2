@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
-    "dependants"
+    "dependants",
+    "edu",
+    "prefs"
   ],
   "files.autoSave": "off",
   "workbench.colorTheme": "Default Light+",
@@ -14,6 +16,7 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "prettier.singleQuote": true,
+  "prettier.useTabs": false,
   "typescriptHero.imports.multiLineTrailingComma": false,
   "window.zoomLevel": 0,
   "files.watcherExclude": {

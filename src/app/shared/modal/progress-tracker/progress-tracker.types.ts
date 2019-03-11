@@ -18,7 +18,7 @@ export class IProgressTrackerItem {
 }
 
 export interface IProgressTrackerSubItem {
-    pageName: string;
+    path: string;
     title: string;
     value: string;
     completed: boolean;

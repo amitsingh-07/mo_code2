@@ -1,3 +1,5 @@
+import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
+
 export interface IMyProfile {
     id: string;
     firstName: string;
@@ -14,20 +16,18 @@ export interface IMyDependant {
     dateOfBirth: string;
     nation: string;
     enquiryId: number;
-
 }
 
 export interface IDependant {
-  name: string;
-  id: number;
-  dependantSelection: boolean;
+    name: string;
+    id: number;
+    dependantSelection: boolean;
 }
 export interface IEPreference {
     id: number;
     age: number;
     location: string;
     educationCourse: string;
-
 }
 export interface IEducationPlan {
     hasEndowments: string;
@@ -42,8 +42,8 @@ export interface IChildEndowment {
     educationCourse: string;
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
-    dateOfBirth:string;
-
+    dateOfBirth: string;
+    age: number;
 }
 
 export interface IMyLiabilities {
@@ -57,6 +57,7 @@ export class HospitalPlan {
     hospitalClassDescription: string;
     hospitalClassId: number;
     isFullRider = false;
+    badMoodMonthlyAmount: string;
 }
 
 export interface IMySummaryModal {
@@ -67,8 +68,12 @@ export interface IMySummaryModal {
     contentImage?: string;
     dependantDetails?: ISummaryDependantDetails[];
     nonDependantDetails?: {
-        livingCost: number,
-        livingPercent: number, livingEstimatedCost: number, medicalBill: number, medicalYear: number, medicalCost: number
+        livingCost: number;
+        livingPercent: number;
+        livingEstimatedCost: number;
+        medicalBill: number;
+        medicalYear: number;
+        medicalCost: number;
     };
     estimatedCost?: number;
     termInsurance?: number;
@@ -80,35 +85,69 @@ export interface IMySummaryModal {
 }
 
 export interface ISummaryDependantDetails {
-    userName: string; userAge: number; userEstimatedCost: number;
+    userName: string;
+    userAge: number;
+    userEstimatedCost: number;
 }
 
 export interface IMyEarnings {
-   enquiryId: number;
-   employmentType: string;
-   monthlySalary: number;
-   monthlyRentalIncome: number;
-   otherMonthlyWorkIncome: number;
-   otherMonthlyIncome: number;
-   annualBonus: number;
-   annualDividends: number;
-   otherAnnualIncome: number;
-   totalAnnualIncomeBucket: number;
+    enquiryId: number;
+    employmentType: string;
+    monthlySalary: number;
+    monthlyRentalIncome: number;
+    otherMonthlyWorkIncome: number;
+    otherMonthlyIncome: number;
+    annualBonus: number;
+    annualDividends: number;
+    otherAnnualIncome: number;
+    totalAnnualIncomeBucket: number;
 }
 
 export interface IMySpendings {
-   enquiryId: number;
-   monthlyLivingExpenses: number;
-   adHocExpenses: number;
-   HLMortgagePaymentUsingCPF: number;
-   HLMortgagePaymentUsingCash: number;
-   HLtypeOfHome: string;
-   homeLoanPayOffUntil: number;
-   mortgagePaymentUsingCPF: number;
-   mortgagePaymentUsingCash: number;
-   mortgageTypeOfHome: string;
-   mortgagePayOffUntil: number;
-   carLoanPayment: number;
-   otherLoanPayment: number;
-   otherLoanPayoffUntil: number;
+    enquiryId: number;
+    monthlyLivingExpenses: number;
+    adHocExpenses: number;
+    HLMortgagePaymentUsingCPF: number;
+    HLMortgagePaymentUsingCash: number;
+    HLtypeOfHome: string;
+    homeLoanPayOffUntil: number;
+    mortgagePaymentUsingCPF: number;
+    mortgagePaymentUsingCash: number;
+    mortgageTypeOfHome: string;
+    mortgagePayOffUntil: number;
+    carLoanPayment: number;
+    otherLoanPayment: number;
+    otherLoanPayoffUntil: number;
+}
+
+export interface IProgressTrackerWrapper {
+    getStarted: IProgressTrackerItem;
+    dependants: IProgressTrackerItem;
+    finances: IProgressTrackerItem;
+    insurancePlans: IProgressTrackerItem;
+    retirementPlan: IProgressTrackerItem;
+}
+export interface IMyAssets {
+    cashInBank: number;
+    singaporeSavingsBond: number;
+    CPFOA: number;
+    CPFSA: number;
+    CPFMA: number;
+    yourHome: number;
+    investmentProperties: number;
+    otherinvestment: IOtherProperties[];
+    otherAssets: number;
+}
+export interface IOtherProperties {
+    investmentType: string;
+    others: number;
+}
+export interface IRegularSavePlan {
+    hasRegularSavings: boolean;
+    comprehensiveRegularSavingsList: IRegularSavings[];
+}
+export interface IRegularSavings {
+    regularUnitTrust: string;
+    regularPaidByCash: string;
+    regularPaidByCPF: string;
 }
