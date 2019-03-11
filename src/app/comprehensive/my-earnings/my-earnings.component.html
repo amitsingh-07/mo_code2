@@ -11,150 +11,150 @@
     <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
   </div>
   <form [formGroup]="myEarningsForm" id="myEarningsForm" name="myEarningsForm" class="myEarningsForm">
-    <section class="earnings-section  mb-3  pt-2">      
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-help-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}</b>
-            <span class="help-icon" (click)="showToolTipModal('MONTHLY_SALARY_TITLE','MONTHLY_SALARY_MESSAGE')"></span>
-          </div>
-        </div>
-        </div>
+     
 
-      <div class="earnings-field ">
+      <div  class="form-group-with-bg">
+                <!--Form Header-->
+                <div class="form-group-with-bg--header">
+                    <div class="flex-row ">
+                      <div class="flex-col-12 with-help-icon">
+                      <div class="form-group-with-bg--header-label">{{
+            'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
+                      <span class="help-icon" (click)="showToolTipModal('MONTHLY_SALARY_TITLE','MONTHLY_SALARY_MESSAGE')"></span>
+                        
+                      </div>  
+                    </div>
+                  </div>
+                  <!--Form Content-->
+                  <div class="form-group-with-bg--content">
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.EMPLOYMENT_TYPE' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+                      </div>
+                      <div class="flex-col-6">
+                        <div class="dropdown-control" >
+                          <div ngbDropdown id="employmentTypeDropDown">
+                            <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+                              <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="employmentType !== ''">{{employmentType}}</span>                  
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
+                              <button class="dropdown-item" (click)="selectEmploymentType('','')">Select</button>
+                              <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
+                                (click)="selectEmploymentType(employmentType, 'html')">
+                                {{employmentType.text}}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-        <div class="flex-row p-2">
-          <div class="pl0 col-5">
-            <label for="employmentType" id="myProfileFormLbl5">
-              <div>{{ 'CMP.FORM_LABEL.EMPLOYMENT_TYPE' | translate}}</div>              
-            </label>
-          </div>  
-          <div class=" pr0 flex-col-7">
-            <div class="dropdown-control" >
-              <div ngbDropdown id="employmentTypeDropDown">
-                <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
-                  <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                  <span *ngIf="employmentType !== ''">{{employmentType}}</span>                  
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
-                  <button class="dropdown-item" (click)="selectEmploymentType('','')">Select</button>
-                  <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
-                    (click)="selectEmploymentType(employmentType, 'html')">
-                    {{employmentType.text}}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-row p-2 ">
-          <div class="flex-col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}
-              </div>
-            </label>
-          </div>
-          <div class="pr0 flex-col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary" value="0">
-              
-            </div>
-          </div>
-        </div>
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+                      </div>
+                      <div class="flex-col-6">
+                      <div class="form-control">
+                        <i>$</i>
+                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary" value="0">
+                      </div>
+                      </div>  
+                    </div>
+
+
+                  </div>
       </div>
-    </section>
-    <section [hidden]="!monthlyRentIncome" class="earnings-section pt-2 mb-3">
-      
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-delete-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.RENTAL_INCOME' | translate}}</b>
-            <span class="delete-icon" (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
-          </div>
-        </div>
-        </div>
 
-      <div class="earnings-field p-2">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
-              </div>
-            </label>
-          </div>
-          <div class="pr0 col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlyRentalIncome formControlName="monthlyRentalIncome" value="0">
-              
+      <div  class="form-group-with-bg" [hidden]="!monthlyRentIncome" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-delete-icon">
+              <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_EARNINGS.RENTAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
+              <span class="delete-icon" (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
+              </div>  
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section [hidden]="!otherMonthlyWorkIncomeType" class="earnings-section pt-2 mb-3">
-      
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-delete-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.OTHER_WORK_INCOME' | translate}}</b> 
-            <!--p class='income-modal-notes flex-col-12'>{{
-            'CMP.MY_EARNINGS.OTHER_WORK_INCOME_DESC' | translate}}</p-->
-            <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
-          </div>
-           <p class='income-modal-notes flex-col-12 p-1'>{{
-            'CMP.MY_EARNINGS.OTHER_WORK_INCOME_DESC' | translate}}</p>
-        </div>
-        </div>
-
-      <div class="earnings-field p-2">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
-            </label>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlyRentalIncome formControlName="monthlyRentalIncome" value="0">
+              </div>
+              </div>  
+            </div>
+
+
           </div>
-          <div class="pr0 col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyWorkIncome formControlName="otherMonthlyWorkIncome" value="0">
-              
+      </div>
+
+      <div  class="form-group-with-bg" [hidden]="!otherMonthlyWorkIncomeType" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-delete-icon">
+              <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_EARNINGS.OTHER_WORK_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label">{{
+            'CMP.MY_EARNINGS.OTHER_WORK_INCOME_DESC' | translate}}</div></div>                      
+              <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
+              </div>  
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section [hidden]="!otherMonthlyIncomeType" class="earnings-section pt-2 mb-3">
-      
-       <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-delete-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME' | translate}}</b>
-            <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
-          </div>
-        </div>
-        </div>
-
-      <div class="earnings-field p-2">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
-            </label>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyWorkIncome formControlName="otherMonthlyWorkIncome" value="0">
+              </div>
+              </div>  
+            </div>
+
+
           </div>
-          <div class="pr0 col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
-              
+      </div>
+
+      <div  class="form-group-with-bg" [hidden]="!otherMonthlyIncomeType" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-delete-icon">
+              <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
+              <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
+              </div>  
             </div>
           </div>
-        </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+              </div>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
+              </div>
+              </div>  
+            </div>
+
+
+          </div>
       </div>
-    </section>
+    
+    
     <article>
       <aside>
           <!--div class="dropdown-control" [hidden]="(otherMonthlyIncomeType && otherMonthlyWorkIncomeType && monthlyRentIncome)">
@@ -231,101 +231,117 @@
               </div>
               </div>
 
+               <div class="flex-row" [hidden]="!(otherMonthlyIncomeType && otherMonthlyWorkIncomeType && monthlyRentIncome)">
+              <div class="flex-col-12 earn-dollar-help">
+                        
+                  <span class="earn-dollar-icon"></span>
+                              
+                  <span class='earn-notes'>{{ 'CMP.MY_EARNINGS.ADD_MONTHLY_INCOME_NOTE' | translate }}</span>            
+                
+                </div>
+              </div>
+
       </aside>
     </article>
     
+
     <div class="flex-row pt-2 mb-3">
         <div class="flex-col-12">
           {{  'CMP.MY_EARNINGS.ANNUAL_BONUS_DESC' | translate }}
         </div>
     </div>
-    <section class="earnings-section pt-2 mb-3">
-      <div class="flex-row">       
-        <div class="flex-col-12">
-          <div class="with-help-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.ANNUAL_BONUS' | translate}}</b>
-            <span class="help-icon" (click)="showToolTipModal('ANNUAL_BONUS_TITLE','ANNUAL_BONUS_MESSAGE')"></span>
-          </div>
-        </div>
-      </div>
-      <div class="earnings-field ">
-        <div class="flex-row p-2">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.MY_EARNINGS.ANNUAL_BONUS' | translate}}
-              </div>
-            </label>
-          </div>
-          <div class="pr0 flex-col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualBonus formControlName="annualBonus" value="0">
-              
+
+    
+    <div  class="form-group-with-bg" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-help-icon">
+              <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_EARNINGS.ANNUAL_BONUS' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
+              <span class="help-icon" (click)="showToolTipModal('ANNUAL_BONUS_TITLE','ANNUAL_BONUS_MESSAGE')"></span>
+              </div>  
             </div>
-          </div> 
-        </div>
+          </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+              </div>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualBonus formControlName="annualBonus" value="0">
+              </div>
+              </div>  
+            </div>
+
+
+          </div>
       </div>
-    </section>
+   
     <div class='mb-10'> 
     
-    <section [hidden]="!annualDividendsType" class="earnings-section pt-2 mb-3">
-      
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-delete-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}</b>
-            <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
-            <span class="delete-icon" (click)="SelectEarningsType('annualDividendsType', false)"></span>
-          </div>
-        </div>
-        </div>
-      <div class="earnings-field p-2 py-0">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
-              </div>
-            </label>
-          </div>
-          <div class="pr0 col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualDividends formControlName="annualDividends" value="0">
-              
+    <div  class="form-group-with-bg" [hidden]="!annualDividendsType" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-delete-icon  both-icon">
+              <div class="form-group-with-bg--header-label">{{
+            'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>
+              <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>                      
+              <span class="delete-icon" (click)="SelectEarningsType('annualDividendsType', false)"></span>
+              </div>  
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section [hidden]="!otherAnnualIncomeType" class="earnings-section pt-2 mb-3">
-      
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="with-delete-icon p-2" for="name"><b>{{
-            'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}</b>
-            <span class="delete-icon" (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
-          </div>
-        </div>
-        </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+              </div>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualDividends formControlName="annualDividends" value="0">
+              </div>
+              </div>  
+            </div>
 
-      <div class="earnings-field p-2">
-        <div class="flex-row">
-          <div class="pl0 col-5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
-              </div>
-            </label>
+
           </div>
-          <div class="pr0 col-7">
-            <div class="form-control form-control-right">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
-              
+      </div>
+
+      <div  class="form-group-with-bg" [hidden]="!otherAnnualIncomeType" >
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12 with-delete-icon">
+              <div class="form-group-with-bg--header-label">{{
+            'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
+              <span class="delete-icon" (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
+              </div>  
             </div>
           </div>
-        </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"> 
+            <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
+              </div>
+              <div class="flex-col-6">
+              <div class="form-control">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
+              </div>
+              </div>  
+            </div>
+
+
+          </div>
       </div>
-    </section>
+    
     <article >
     <aside>
       <div class="flex-row" [hidden]="(otherAnnualIncomeType && annualDividendsType)">
@@ -340,7 +356,7 @@
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
              
-             <div class="with-help-icon" for="name">
+             <div class="with-help-icon dividend-icon" for="name">
                   <button [disabled]="annualDividendsType" type="button" class="dropdown-item"  (click)="SelectEarningsType('annualDividendsType', true)">
                     <span  > {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} <span [hidden]="!annualDividendsType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span></span> 
                       </button>
@@ -378,7 +394,7 @@
     </div>
     
 
-    <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes align-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
+    <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
     <!--div class=" btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div-->
   </form>
 
