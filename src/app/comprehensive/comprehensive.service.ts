@@ -8,8 +8,8 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyDependant,
-   IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IMyAssets, IRegularSavePlan } from './comprehensive-types';
+import { HospitalPlan, IChildEndowment, IEducationPlan, IEPreference, IMyAssets,
+   IMyDependant, IMyEarnings, IMyLiabilities, IMyProfile, IMySpendings, IRegularSavePlan } from './comprehensive-types';
 
 @Injectable({
   providedIn: 'root'
@@ -266,7 +266,7 @@ export class ComprehensiveService {
 
     let setTempleteModel = 1;
     if (setTempleteModel == 2) {
-      //Finance Popup    
+      // Finance Popup    
       summaryModalDetails = {
         setTemplateModal: 2, titleImage: 'owl.svg', contentObj: financeModal,
         liabilitiesEmergency: false, liabilitiesLiquidCash: 30000, liabilitiesMonthlySpareCash: 200
@@ -283,7 +283,7 @@ export class ComprehensiveService {
     } else if (setTempleteModel == 3) {
 
     } else if (setTempleteModel === 3) {
-      //InsurancePlanning Popup
+      // InsurancePlanning Popup
       const dependantVar = false;
 
       summaryModalDetails = { setTemplateModal: 3, titleImage: 'owl.svg', contentImage: 'owl.svg', contentObj: (dependantVar) ? insurancePlanningDependantModal : insurancePlanningNonDependantModal, dependantModelSel: dependantVar, estimatedCost: 100000, termInsurance: 90, wholeLife: 10 };
@@ -292,7 +292,7 @@ export class ComprehensiveService {
     } else if (setTempleteModel == 1) {
       // CHILDREN_EDUCATION Popup
       const dependantVar = false;
-      
+
       summaryModalDetails = { setTemplateModal: 1, titleImage: 'education-without-dependant.svg',
       dependantModelSel: dependantVar, contentObj: (dependantVar) ? childrenEducationDependantModal :
       childrenEducationNonDependantModal, dependantDetails: [{ userName: 'Nathan Ng', userAge: 19,
@@ -322,8 +322,7 @@ export class ComprehensiveService {
 
   additionOfCurrency(formValues, inputParams = []) {
     let sum: any = 0;
-   
-        
+
     for (const i in formValues) {
           if (formValues[i] !== null && formValues[i] !== '') {
             const Regexp = new RegExp('[,]', 'g');
@@ -342,6 +341,3 @@ export class ComprehensiveService {
   }
 
 }
-
-
-

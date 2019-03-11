@@ -29,6 +29,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { NgbDateCustomParserFormatter } from '../shared/utils/ngb-date-custom-parser-formatter';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -71,6 +72,7 @@ export function createTranslateLoader(http: HttpClient) {
     BadMoodFundComponent,
     ProgressTrackerComponent,
     DependantSelectionComponent
-    ]
+    ],
+    providers: [NgbDateCustomParserFormatter]
 })
 export class ComprehensiveModule { }
