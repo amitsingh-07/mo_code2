@@ -38,9 +38,9 @@
                         <span
                           *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
                         <span
-                          *ngIf="!wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC' | translate}}</span>
+                          *ngIf="wills.hasWills && !wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC' | translate}}</span>
                         <span
-                          *ngIf="wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC' | translate}}</span>
+                          *ngIf="wills.hasWills && wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC' | translate}}</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
@@ -54,11 +54,11 @@
                         <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
                         <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
                       </button>
-                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.completedWill"
+                      <button type="button" class="btn btn-primary col-12" *ngIf="wills.hasWills && !wills.completedWill"
                         (click)="redirectTo('edit')">
                         <div>{{'DASHBOARD.WILL_WRITING.CONTINUE_WRITING' | translate}}</div>
                       </button>
-                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.completedWill"
+                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.hasWills && wills.completedWill"
                         (click)="downloadWill()">
                         <div>{{'DASHBOARD.WILL_WRITING.DOWNLOAD_WILL' | translate}}</div>
                         <div>{{'DASHBOARD.WILL_WRITING.LAST_UPDATED' | translate}}
