@@ -21,6 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./bad-mood-fund.component.scss']
 })
 export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
+  SliderValue = 0;
   bucketImage: string;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: any;
@@ -66,6 +67,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   onSliderChange(value): void {
+    this.SliderValue = value;
   }
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
@@ -75,7 +77,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.hospitalPlanFormValues = this.comprehensiveService .getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required)
+      hospitalPlanId: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required),
+      badMoodMonthlyAmount: new FormControl(this.SliderValue, Validators.required)
     });
     if (this.hospitalPlanFormValues.hospitalClassId) {
       this.isFormValid = true;
@@ -87,6 +90,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.ciMultiplierSlider.writeValue(0);
+    this.SliderValue = 0;
   }
 
   ngOnDestroy() {

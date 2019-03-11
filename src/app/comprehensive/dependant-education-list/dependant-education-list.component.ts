@@ -84,10 +84,10 @@ buildEndowmentDetailsForm(value): FormGroup {
 
   return this.formBuilder.group({
     name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-    age: [this.aboutAge.calculateAge(value.dateOfBirth, new Date()), [Validators.required]],
+    age: [value.age, [Validators.required]],
     endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
-    endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required, Validators.pattern('^(19|20)\d{2}$')]],
-    endowmentplanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityYear == null)
+    endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required]],
+    endowmentPlanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityAmount == null)
       ? false : true, [Validators.required]],
     gender: [value.gender, [Validators.required]]
   });
@@ -98,20 +98,17 @@ goToNext(form) {
   if (this.endowmentSkipEnable) {
     const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
     this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false,
-      contentObj: childrenEducationNonDependantModal, nonDependantDetails: { livingCost: 2000,
-         livingPercent: 3, livingEstimatedCost: 2788, medicalBill: 5000, medicalYear: 20,
-          medicalCost: 300000 }, nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
+      contentObj: childrenEducationNonDependantModal, nonDependantDetails:
+      this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
     this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   } else {
     form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
       this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
       this.endowmentArrayPlan[index].endowmentMaturityYear = preferenceDetails.endowmentMaturityYear;
-      if (preferenceDetails.endowmentplanShow === true) {
-        const aboutAgeCal = this.aboutAge.getAboutAge(preferenceDetails.age,
-          (preferenceDetails.gender === 'Male') ?
-           this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+      if (preferenceDetails.endowmentPlanShow === true) {
         dependantArray.push({
-          userName: preferenceDetails.name, userAge: aboutAgeCal, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
+          userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
         });
       }
 
@@ -142,7 +139,7 @@ checkDependant() {
   this.endowmentListForm.valueChanges.subscribe((form: any) => {
     let endowmentSkipEnableFlag = true;
     form.endowmentPlan.forEach((dependant: any, index) => {
-      if (dependant.endowmentplanShow) {
+      if (dependant.endowmentPlanShow) {
         endowmentSkipEnableFlag = false;
       }
     });
@@ -150,3 +147,4 @@ checkDependant() {
   });
 }
 }
+

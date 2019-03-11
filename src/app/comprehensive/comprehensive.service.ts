@@ -1,25 +1,26 @@
-import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
+    IChildEndowment,
     IEducationPlan,
     IEPreference,
+    IMyAssets,
     IMyDependant,
     IMyEarnings,
     IMyLiabilities,
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
-    IChildEndowment
+    IRegularSavePlan
 } from './comprehensive-types';
 import {
     IProgressTrackerData,
@@ -190,7 +191,33 @@ export class ComprehensiveService {
         this.comprehensiveFormData.hasDependant = selection;
         this.commit();
     }
+    clearEndowmentPlan() {
+        this.comprehensiveFormData.educationPlan = {} as IEducationPlan;
+        this.commit();
 
+    }
+    getMyAssets() {
+        if (!this.comprehensiveFormData.myAssets) {
+            this.comprehensiveFormData.myAssets = {} as IMyAssets;
+        }
+        return this.comprehensiveFormData.myAssets;
+
+    }
+    setMyAssets(myAssets: IMyAssets) {
+        this.comprehensiveFormData.myAssets = myAssets;
+        this.commit();
+    }
+    getRSP() {
+        if (!this.comprehensiveFormData.regularSavingsPlan) {
+            this.comprehensiveFormData.regularSavingsPlan = {} as IRegularSavePlan;
+        }
+        return this.comprehensiveFormData.regularSavingsPlan;
+    }
+    setRSP(regularSavingsPlan: IRegularSavePlan) {
+        this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
+        this.commit();
+
+    }
     getFormError(form, formName) {
         const controls = form.controls;
         const errors: any = {};
@@ -280,7 +307,7 @@ export class ComprehensiveService {
 
         let setTempleteModel = 1;
         if (setTempleteModel == 2) {
-            //Finance Popup
+            // Finance Popup
 
             summaryModalDetails = {
                 setTemplateModal: 2,
@@ -301,7 +328,7 @@ export class ComprehensiveService {
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
         } else if (setTempleteModel == 4) {
         } else if (setTempleteModel === 4) {
-            //Retirement Popup
+            // Retirement Popup
 
             summaryModalDetails = {
                 setTemplateModal: 4,
@@ -311,7 +338,7 @@ export class ComprehensiveService {
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
         } else if (setTempleteModel == 3) {
         } else if (setTempleteModel === 3) {
-            //InsurancePlanning Popup
+            // InsurancePlanning Popup
             const dependantVar = false;
 
             summaryModalDetails = {
@@ -378,6 +405,7 @@ export class ComprehensiveService {
         return false;
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     additionOfCurrency(formValues, inputParams = []) {
         let sum: any = 0;
 
@@ -464,7 +492,7 @@ export class ComprehensiveService {
         }
 
         return {
-            title: "What's on your shoulders",
+            title: 'What\'s on your shoulders',
             expanded: true,
             completed: true,
             customStyle: 'dependant',
@@ -533,3 +561,4 @@ export class ComprehensiveService {
         };
     }
 }
+

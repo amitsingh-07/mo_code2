@@ -1,4 +1,4 @@
-import { IProgressTrackerItem } from "./progress-tracker/progress-tracker.types";
+import { IProgressTrackerItem } from './progress-tracker/progress-tracker.types';
 
 export interface IMyProfile {
     id: string;
@@ -45,6 +45,7 @@ export interface IChildEndowment {
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
     dateOfBirth: string;
+    age: number;
 
 }
 
@@ -59,6 +60,7 @@ export class HospitalPlan {
     hospitalClassDescription: string;
     hospitalClassId: number;
     isFullRider = false;
+    badMoodMonthlyAmount: string;
 }
 
 export interface IMySummaryModal {
@@ -121,4 +123,29 @@ export interface IProgressTrackerWrapper {
     finances: IProgressTrackerItem;
     insurancePlans: IProgressTrackerItem;
     retirementPlan: IProgressTrackerItem;
+}
+export interface IMyAssets {
+    cashInBank: number;
+    singaporeSavingsBond: number;
+    CPFOA: number;
+    CPFSA: number;
+    CPFMA: number;
+    yourHome: number;
+    investmentProperties: number;
+    otherinvestment: IOtherProperties[];
+    otherAssets: number;
+
+}
+export interface IOtherProperties {
+    investmentType: string;
+    others: number;
+}
+export interface IRegularSavePlan {
+    hasRegularSavings: boolean;
+    comprehensiveRegularSavingsList: IRegularSavings[];
+}
+export interface IRegularSavings {
+    regularUnitTrust: string;
+    regularPaidByCash: string;
+    regularPaidByCPF: string;
 }

@@ -4,14 +4,14 @@
     </div> 
     
   <div class="dependant-title mt40">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div>
-  <div class = 'income-bucket-panel'> 
-    <div class="income-bucket-panel__img"><img *ngIf="bucketImage" src="./assets/images/comprehensive/{{ bucketImage }}" /></div>
+  <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div> 
+  <div class = 'income-bucket-panel'>     
+    <div class="income-bucket-panel__img {{ (totalAnnualIncomeBucket > 0)?'filledEarn':'emptyEarn' }}"></div> 
     <div class="income-bucket-panel__desc">{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</div> 
     <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
   </div>
   <form [formGroup]="myEarningsForm" id="myEarningsForm" name="myEarningsForm" class="myEarningsForm">
-    <!-- <section class="earnings-section  mb-3  pt-2">      
+    <section class="earnings-section  mb-3  pt-2">      
       <div class="flex-row">
         <div class="flex-col-12">
           <div class="with-help-icon p-2" for="name"><b>{{
@@ -63,49 +63,7 @@
           </div>
         </div>
       </div>
-    </section> -->
-    <div class="form-group-with-bg">
-      <div class="form-group-with-bg--header">
-        <div class="flex-row">
-          <div class="form-group-with-bg--header-single-label">{{ 'LABEL.DEPENDANT' | translate}} {{ !isFormControlDisabled ? i+1 : 0}}</div>
-        </div>
-      </div>
-      <!--Form Content-->
-      <div class="form-group-with-bg--content">
-      <div class="flex-row">
-          <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.GENDER' | translate}}</div>
-          </div>
-          <div class="flex-col-6">
-            <div class="dropdown-control">
-              <div ngbDropdown id="RetirementAgeDropDown">
-                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.gender.value}}
-                </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="flex-row">
-            <div class="flex-col-6">
-          <div class="form-group-with-bg--content-label" for="name">
-            <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
-            <span class="help-icon" (click)="showLifeProtectionSupportAmountModal()"></span>
-          </div>
-          </div>
-          <div class="flex-col-6">
-          <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
-              <i class="fixed-currency">$</i>
-              <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
-              maxLength="5" #otherIncome formControlName="otherIncome" value="0">
-              <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
-            </div>
-          </div>
-        </div>
-    </div>
+    </section>
     <section [hidden]="!monthlyRentIncome" class="earnings-section pt-2 mb-3">
       
       <div class="flex-row">
@@ -420,7 +378,7 @@
     </div>
     
 
-    <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
+    <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left bucket-notes align-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
     <!--div class=" btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div-->
   </form>
 

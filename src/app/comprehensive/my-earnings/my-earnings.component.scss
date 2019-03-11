@@ -121,8 +121,20 @@ color: $dark-teal-color;
 .income-modal-notes{
     color:$light-grey-color;
 }
-
-.income-bucket-panel {
+.align-left{
+    text-align: left;
+}
+.emptyEarn{
+    background: url("../../../assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
+.filledEarn{
+    background: url("../../../assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
     text-align: center;
     &__img {
         padding: 14px 0 20px 0;

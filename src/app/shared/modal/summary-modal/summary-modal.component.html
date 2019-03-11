@@ -242,106 +242,42 @@
   </div>
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && summaryModalDetails.dependantModelSel">
-    <div class="instruction-content insurance-planning-section">
-    <!-- <ul class="list-none">
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
-          <div class="sub-section sub-padding-top text-center" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
-        </div>       
-      </li>
+    <div class="instruction-content insurance-planning-section">    
+    <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+    <div class="mb30" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
+    <div class="summary-modal__details mb30"  *ngFor="let dd of summaryModalDetails.dependantDetails" >
+      <div class="summary-modal__details--label">{{ dd.userName }} <br> <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.CONTENT_ABOUT_AGE_YEAR.replace('AGE_VAL', dd.userAge ) }}</span></div>
+      <div class="summary-modal__details--value">{{ dd.userEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+    </div>
+    <div class="mb30 text-center summary-modal__details--label-grey">
+        {{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}
+    </div>
+    <div class="summary-modal__box-content">
+        {{ summaryModalDetails.contentObj.CONTENT_NOTE }}
+    </div>
+    <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+        {{ summaryModalDetails.contentObj.NEXT }}
+    </button>
 
-      <li class="flex" *ngFor="let dd of summaryModalDetails.dependantDetails">
-        <div class="section">
-          <div class="sub-section step"><div>{{ dd.userName }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_ABOUT_AGE_YEAR.replace('AGE_VAL', dd.userAge ) }} </div></div>
-        </div>
-        <div class="section">
-          <div class="sub-section step"><b>{{ dd.userEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
-        </div>
-      </li>
-
-      <li class="flex">
-        <div class="section retire-modal-notes">
-          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}</div>                     
-        </div>
-      </li>
-
-     <li class="flex">
-        <div class="section ins-content-box">
-          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_NOTE }}</div>                     
-        </div>
-      </li>
-
-
-      <li class="flex" >
-        <div class="section">
-            <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
-                {{ summaryModalDetails.contentObj.NEXT }}
-            </button>
-            </div>
-      </li>
-    </ul> -->
     </div>
     
   </div>
 
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 1 && !summaryModalDetails.dependantModelSel">
-    <div class="instruction-content insurance-planning-section">
-    <!-- <ul class="list-none">
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
-          <div class="sub-section sub-padding-top text-center" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
-        </div>       
-      </li>
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1.replace('LIVING_COST', summaryModalDetails.nonDependantDetails.livingCost | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC.replace('PERCENT', summaryModalDetails.nonDependantDetails.livingPercent ) }} </div></div>
-        </div>
-        <div class="section">
-          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.livingEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
-        </div>
-      </li>
-
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY2.replace('MEDICAL_BILL', summaryModalDetails.nonDependantDetails.medicalBill | currency:'USD':'symbol-narrow':'1.0-2') }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC.replace('AGE_VAL', summaryModalDetails.nonDependantDetails.medicalYear ) }}  </div></div>
-        </div>
-        <div class="section">
-          <div class="sub-section step"><b>{{ summaryModalDetails.nonDependantDetails.medicalCost | currency:'USD':'symbol-narrow':'1.0-2'}}</b></div>                               
-        </div>
-      </li>
-
-     <li class="flex">
-        <div class="section ins-content-box">
-          <div class="sub-section step text-center">{{ summaryModalDetails.contentObj.CONTENT_NOTE }}</div>                     
-        </div>
-      </li>
-
-
-      <li class="flex" >
-        <div class="section">
-            <button type="button" class="btn btn-primary  width100" id="prfBtn1" (click)="goNextPage()">
-                {{ summaryModalDetails.contentObj.NEXT }}
-            </button>
-            </div>
-      </li>
-    </ul> -->
+    <div class="instruction-content insurance-planning-section">    
     <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
     <div class="mb30" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
     <div class="summary-modal__details mb30">
-      <div class="summary-modal__details--label">Nathan Ng <br> <span class="summary-modal__details--label-grey">About 19 years later</span></div>
-      <div class="summary-modal__details--value">$300,000</div>
+      <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY1.replace('LIVING_COST', summaryModalDetails.nonDependantDetails.livingCost | currency:'USD':'symbol-narrow':'1.0-2') }} <br> <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC.replace('PERCENT', summaryModalDetails.nonDependantDetails.livingPercent ) }}</span></div>
+      <div class="summary-modal__details--value">{{ summaryModalDetails.nonDependantDetails.livingEstimatedCost | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
     </div>
     <div class="summary-modal__details mb30">
-      <div class="summary-modal__details--label">Nathan Ng <br> <span class="summary-modal__details--label-grey">About 19 years later</span></div>
-      <div class="summary-modal__details--value">$300,000</div>
+      <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY2.replace('MEDICAL_BILL', summaryModalDetails.nonDependantDetails.medicalBill | currency:'USD':'symbol-narrow':'1.0-2') }} <br> <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC.replace('AGE_VAL', summaryModalDetails.nonDependantDetails.medicalYear ) }}</span></div>
+      <div class="summary-modal__details--value">{{ summaryModalDetails.nonDependantDetails.medicalCost | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
     </div>
     <div class="summary-modal__box-content">
-        That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!
+        {{ summaryModalDetails.contentObj.CONTENT_NOTE }}
     </div>
     <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
         {{ summaryModalDetails.contentObj.NEXT }}

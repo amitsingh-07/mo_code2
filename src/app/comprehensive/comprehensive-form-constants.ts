@@ -5,5 +5,6 @@ dependantForm: 'dependantForm',
 educationPreferenceForm: 'educationPreferenceForm',
 MY_LIABILITIES: 'myLiabilitiesForm',
 MY_EARNINGS: 'myEarningsForm',
-MY_SPENDINGS: 'mySpendingsForm'
+MY_SPENDINGS: 'mySpendingsForm',
+MY_ASSETS: 'myAssetsForm'
 };

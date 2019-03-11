@@ -82,7 +82,8 @@
                 "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
                 "CONTENT_BODY2_DESC": "About AGE_VAL years later",              
                 "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
-                "NEXT": "NEXT"
+                "NEXT": "NEXT",
+                "NO_DEPENDANT": { "livingCost": 2000, "livingPercent": 3, "livingEstimatedCost": 2788, "medicalBill": 5000, "medicalYear": 20, "medicalCost": 300000 }
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 1",        
@@ -291,7 +292,7 @@
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans(RSP)?",
       "HEADER": "Regular Saving Plan",
-      "OTHER": "Other Regular Saving Plan",
+      "OTHER": "Other ",
       "ADD_RSP": "Add Other Regular Saving Plan",
       "UNIT_TRUST_TYPE": "Type of Unit Trust",
       "PAID_BY_CASH": "Paid By Cash",
@@ -325,8 +326,9 @@
       ],
     "MY_ASSETS": {
       "TITLE": "What You Own",
-      "HEADER": "You may have already strored up some buckets over time.some of these can grow and help fund your future goals.",
+      "HEADER": "You may have already stored up some buckets over time. Some of these assets can grow and help fund your future goals.",
       "ASSETS_BUCKETS": "Your Assets Buckets",
+      "ASSETS_BUCKETS_NOTE": "Your assets bucket",      
       "TOTAL": "in total",
       "CASH": "Cash",
       "CASH_IN_BANK": "Cash in bank",
@@ -336,16 +338,16 @@
       "CPF_SA": "CPF Special Account (SA)",
       "CPF_MA": "CPF Medisave Account (MA)",
       "YOUR_HOME": "Your Home",
-      "MARKET_VALUE": "At Market Value",
+      "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
       "INVESTMENT_PROPERTIES": "Investment Properties",
       "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of Investment",
+      "INVESTMENT_TYPE": "Type of investment",
       "OTHERS": "Others",
       "OTHER_INVESTMENT": "Other Investments",
-      "ADD_INVESTMENT": "Add other Investment",
+      "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "eg. jewellery",
+      "OTHER_ASSETS_HINT": "e.g. Jewellary",
       "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
@@ -370,7 +372,17 @@
           "text": "Others",
           "value": "others"
         }
-      ]
+      ],
+      "TOOLTIP":{
+        "CASH_TITLE": "Cash",
+        "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",
+        "YOUR_HOME_TITLE": "Your Home",
+        "YOUR_HOME_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
+        "INVESTMENT_PROPERTIES_TITLE": "Investment Properties",
+        "INVESTMENT_PROPERTIES_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
+        "OTHER_PROPERTIES_TITLE": "Other Properties",
+        "OTHER_PROPERTIES_MESSAGE": "This is the gross value of the property. Do not deduct any outstanding mortgages."        
+      }
     },
     "LOCATION_LIST":[ "Singapore","USA", "United Kingdom", "Australia"],
     "COURSE_LIST":["Medicine","Non-Medicine"],
@@ -384,8 +396,19 @@
       "OTHER_LOANS_AMOUNT_OUTSTANDING": "Other Loans Amount OutStanding",
       "CAR_LOANS": "Car Loans",
       "LIABILITIES_BUCKETS_TOTAL": "in total",
+      "LIABILITIES_BUCKETS_NOTE":"Your monthly income bucket",
       "FORM":{
        "LOAN_PLACEHOLDER": "Enter Amount"
+      },
+      "TOOLTIP":{
+        "HOME_LOAN_OUTSTANDING_TITLE": "Home Loan Outstanding",
+        "HOME_LOAN_OUTSTANDING_MESSAGE": "This is the total outstanding loan for the home you live in that has yet to be paid off, not the monthly instalment.",
+        "OTHER_LOAN_TITLE": "Other Loans",
+        "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, car loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
+        "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
+        "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
+        "CAR_LOANS_TITLE": "Car Loans",
+        "CAR_LOANS_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments."
       }
     },
     "YOUR_FINANCES":{

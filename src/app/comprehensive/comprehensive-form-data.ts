@@ -4,11 +4,13 @@ import {
     IChildEndowment,
     IEducationPlan,
     IEPreference,
+    IMyAssets,
     IMyDependant,
     IMyEarnings,
     IMyLiabilities,
     IMyProfile,
-    IMySpendings
+    IMySpendings,
+    IRegularSavePlan
 } from './comprehensive-types';
 
 export class ComprehensiveFormData {
@@ -27,4 +29,6 @@ export class ComprehensiveFormData {
     myLiabilities: IMyLiabilities;
     myEarnings: IMyEarnings;
     mySpendings: IMySpendings;
+    myAssets: IMyAssets;
+    regularSavingsPlan: IRegularSavePlan;
 }
