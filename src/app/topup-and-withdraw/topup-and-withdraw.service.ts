@@ -390,4 +390,8 @@ export class TopupAndWithDrawService {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
     }
   }
+
+  downloadStatement(data) {
+    return this.apiService.downloadStatement(data);
+  }
 }

@@ -63,7 +63,9 @@
                       <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
                       <div class="flex-row transaction-panel__statements--details" *ngFor="let month of statementMonth.months">
                         <div class="flex-col-6">{{month.monthName}}</div>
-                        <div class="flex-col-6 text-right"><a class="download-link" target="_blank" download [href]="getStatementLink(month)">Download</a></div>
+                        <div class="flex-col-6 text-right">
+                          <a class="download-link" target="_blank" download (click)="downloadStatement(month)">Download</a>
+                        </div>
                       </div>
                     </div>
                   </div>
