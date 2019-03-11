@@ -62,7 +62,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       });
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
-    if (this.dependantDetails.length === 0) {
+    if (this.dependantDetails) {
       this.loaderService.showLoader({ title: 'Fetching Data' });
       this.comprehensiveApiService.getDependents().subscribe((data) => {
         this.dependantDetails = data.objectList;
@@ -80,6 +80,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
+    this.buildDependantForm();
   }
 
   ngOnDestroy() {
@@ -92,7 +93,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   buildDependantForm() {
     const dependantFormArray = [];
-    if (this.dependantDetails.length > 0) {
+    if (this.dependantDetails) {
       this.dependantDetails.forEach((dependant) => {
         dependantFormArray.push(this.buildDependantDetailsForm(dependant));
       });
@@ -176,6 +177,10 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].enquiryId = 4850;
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
+      console.log("sajs")
+      this.comprehensiveApiService.addDependents(form.value.dependentMappingList).subscribe(((data: any) => {
+console.log(data);
+      }));
       const dependantDetails = [];
       let dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {

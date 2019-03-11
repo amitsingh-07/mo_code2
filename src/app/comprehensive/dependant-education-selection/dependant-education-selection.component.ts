@@ -125,7 +125,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       id: [value.id],
       name: [value.name],
       dateOfBirth: [value.dateOfBirth],
-      dependantSelection: [value.location ? true : false],
+      dependantSelection: [value.location || true ? true : false],
       gender: [value.gender],
       age: aboutAgeCal
     });
@@ -153,7 +153,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         }
       });
       form.value.endowmentDetailsList = dependantArray;
+      console.log(form.pristine);
       if (!form.pristine) {
+      
         this.comprehensiveService.setChildEndowment(form.value);
       }
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);

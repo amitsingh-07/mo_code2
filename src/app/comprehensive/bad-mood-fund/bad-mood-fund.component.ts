@@ -98,6 +98,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
+    console.log(form);
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
   }
 }
