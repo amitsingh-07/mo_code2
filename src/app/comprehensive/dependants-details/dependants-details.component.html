@@ -143,9 +143,9 @@
           </div>
         </div>
       </div>
-      <div *ngIf="myDependantForm.controls.dependentMappingList.controls.length < 5" class="my-3" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
+      <div *ngIf="myDependantForm.controls.dependentMappingList.controls.length < 5" class="mb30 mt20" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
         Dependant</div></div>
-    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary mb50 width100"
+    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary mt10 mb50 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
   </form>

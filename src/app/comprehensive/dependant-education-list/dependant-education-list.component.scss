@@ -101,4 +101,9 @@ input[type='checkbox']:checked+label {
     position: absolute;
     right: 0;
     bottom: 13px;
+}
+.border-all8 {
+  &.form-group-with-bg--header {
+    padding: 15px 20px 15px !important;
+  }
 }    

@@ -9,30 +9,29 @@
         <div class="checkbox-button one-label mt20">
           <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
             type="radio" value="1" class="field radio">
-          <label for="dependant_selection_yes">
+          <label for="dependant_selection_yes" class="mb10 mt10">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="p-0 pt-2 mt-2 dependantSection">
-            <article class="dependant_selection_title">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</article>
+          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="mb15 dependantSection">
+            <div class="dependant_selection_title mt15">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</div>
             <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
 
-              <div class="form-group" [formGroupName]="i">
+              <div class="form-group mb0" [formGroupName]="i">
 
                 <div class="education-support">
-                  <div class="checkbox-button one-label">
+                  <div class="checkbox-button one-label mb0 pl0 pb0">
                     <input [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
                       formControlName="dependantSelection" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
                     <label for="educationSupportYes{{i}}">
                       <div class="title">{{educationPlan.get('name').value}}</div>
-
                     </label>
                   </div>
                 </div>
               </div>
             
             </div>
-            <p [hidden]="!educationPreference" class="pl-2 error-child-msg" >Please select at least one child.</p>
+            <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
@@ -41,16 +40,16 @@
           <label for="dependant_selection_no_list">
             <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
           </label>
-          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '2'" class=" p-0 pt-2 mt-2 dependantSection">
-            <article class="dependant_selection_title">
+          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '2'" class="mb15 dependantSection">
+            <div class="dependant_selection_title mt15">
                
-              {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</article>
+              {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
             <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
 
-              <div class="form-group" [formGroupName]="i">
+              <div class="form-group mb0" [formGroupName]="i" >
 
                 <div class="education-support">
-                  <div class="checkbox-button one-label">
+                  <div class="checkbox-button one-label mb0 pl0 pb0">
                     <input [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
                       formControlName="dependantSelection" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
                     <label for="educationSupportNo{{i}}">
@@ -61,7 +60,7 @@
                 </div>
               </div>
             </div>
-            <p [hidden]="!educationPreference" class="pl-2 error-child-msg" >Please select at least one child.</p>
+            <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
