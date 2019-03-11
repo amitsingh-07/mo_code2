@@ -106,7 +106,7 @@ goToNext(form) {
     form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
       this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
       this.endowmentArrayPlan[index].endowmentMaturityYear = preferenceDetails.endowmentMaturityYear;
-      if (preferenceDetails.endowmentplanShow === true) {
+      if (preferenceDetails.endowmentPlanShow === true) {
         dependantArray.push({
           userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
         });
@@ -139,7 +139,7 @@ checkDependant() {
   this.endowmentListForm.valueChanges.subscribe((form: any) => {
     let endowmentSkipEnableFlag = true;
     form.endowmentPlan.forEach((dependant: any, index) => {
-      if (dependant.endowmentplanShow) {
+      if (dependant.endowmentPlanShow) {
         endowmentSkipEnableFlag = false;
       }
     });
