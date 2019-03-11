@@ -1,3 +1,5 @@
+import { IProgressTrackerItem } from './progress-tracker/progress-tracker.types';
+
 export interface IMyProfile {
     id: string;
     firstName: string;
@@ -18,9 +20,9 @@ export interface IMyDependant {
 }
 
 export interface IDependant {
-  name: string;
-  id: number;
-  dependantSelection: boolean;
+    name: string;
+    id: number;
+    dependantSelection: boolean;
 }
 export interface IEPreference {
     id: number;
@@ -86,33 +88,41 @@ export interface ISummaryDependantDetails {
 }
 
 export interface IMyEarnings {
-   enquiryId: number;
-   employmentType: string;
-   monthlySalary: number;
-   monthlyRentalIncome: number;
-   otherMonthlyWorkIncome: number;
-   otherMonthlyIncome: number;
-   annualBonus: number;
-   annualDividends: number;
-   otherAnnualIncome: number;
-   totalAnnualIncomeBucket: number;
+    enquiryId: number;
+    employmentType: string;
+    monthlySalary: number;
+    monthlyRentalIncome: number;
+    otherMonthlyWorkIncome: number;
+    otherMonthlyIncome: number;
+    annualBonus: number;
+    annualDividends: number;
+    otherAnnualIncome: number;
+    totalAnnualIncomeBucket: number;
 }
 
 export interface IMySpendings {
-   enquiryId: number;
-   monthlyLivingExpenses: number;
-   adHocExpenses: number;
-   HLMortgagePaymentUsingCPF: number;
-   HLMortgagePaymentUsingCash: number;
-   HLtypeOfHome: string;
-   homeLoanPayOffUntil: number;
-   mortgagePaymentUsingCPF: number;
-   mortgagePaymentUsingCash: number;
-   mortgageTypeOfHome: string;
-   mortgagePayOffUntil: number;
-   carLoanPayment: number;
-   otherLoanPayment: number;
-   otherLoanPayoffUntil: number;
+    enquiryId: number;
+    monthlyLivingExpenses: number;
+    adHocExpenses: number;
+    HLMortgagePaymentUsingCPF: number;
+    HLMortgagePaymentUsingCash: number;
+    HLtypeOfHome: string;
+    homeLoanPayOffUntil: number;
+    mortgagePaymentUsingCPF: number;
+    mortgagePaymentUsingCash: number;
+    mortgageTypeOfHome: string;
+    mortgagePayOffUntil: number;
+    carLoanPayment: number;
+    otherLoanPayment: number;
+    otherLoanPayoffUntil: number;
+}
+
+export interface IProgressTrackerWrapper {
+    getStarted: IProgressTrackerItem;
+    dependants: IProgressTrackerItem;
+    finances: IProgressTrackerItem;
+    insurancePlans: IProgressTrackerItem;
+    retirementPlan: IProgressTrackerItem;
 }
 export interface IMyAssets {
     cashInBank: number;
