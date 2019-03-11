@@ -1,4 +1,4 @@
-import { IProgressTrackerItem } from "./progress-tracker/progress-tracker.types";
+import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
 
 export interface IMyProfile {
     id: string;
@@ -16,7 +16,6 @@ export interface IMyDependant {
     dateOfBirth: string;
     nation: string;
     enquiryId: number;
-
 }
 
 export interface IDependant {
@@ -29,7 +28,6 @@ export interface IEPreference {
     age: number;
     location: string;
     educationCourse: string;
-
 }
 export interface IEducationPlan {
     hasEndowments: string;
@@ -45,7 +43,6 @@ export interface IChildEndowment {
     endowmentMaturityAmount: string;
     endowmentMaturityYears: string;
     dateOfBirth: string;
-
 }
 
 export interface IMyLiabilities {
@@ -69,8 +66,12 @@ export interface IMySummaryModal {
     contentImage?: string;
     dependantDetails?: ISummaryDependantDetails[];
     nonDependantDetails?: {
-        livingCost: number,
-        livingPercent: number, livingEstimatedCost: number, medicalBill: number, medicalYear: number, medicalCost: number
+        livingCost: number;
+        livingPercent: number;
+        livingEstimatedCost: number;
+        medicalBill: number;
+        medicalYear: number;
+        medicalCost: number;
     };
     estimatedCost?: number;
     termInsurance?: number;
@@ -82,7 +83,9 @@ export interface IMySummaryModal {
 }
 
 export interface ISummaryDependantDetails {
-    userName: string; userAge: number; userEstimatedCost: number;
+    userName: string;
+    userAge: number;
+    userEstimatedCost: number;
 }
 
 export interface IMyEarnings {

@@ -1,4 +1,3 @@
-import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,8 +6,14 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
+import {
+    IProgressTrackerData,
+    IProgressTrackerItem,
+    IProgressTrackerSubItemList
+} from './../shared/modal/progress-tracker/progress-tracker.types';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
+import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IEducationPlan,
@@ -18,14 +23,8 @@ import {
     IMyLiabilities,
     IMyProfile,
     IMySpendings,
-    IProgressTrackerWrapper,
-    IChildEndowment
+    IProgressTrackerWrapper
 } from './comprehensive-types';
-import {
-    IProgressTrackerData,
-    IProgressTrackerItem,
-    IProgressTrackerSubItemList
-} from './progress-tracker/progress-tracker.types';
 
 @Injectable({
     providedIn: 'root'

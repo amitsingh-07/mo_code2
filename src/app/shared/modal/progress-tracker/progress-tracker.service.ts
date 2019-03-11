@@ -1,40 +1,44 @@
-import { ComprehensiveService } from './../comprehensive.service';
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { BehaviorSubject, Subject } from 'rxjs';
 
-import { COMPREHENSIVE_ROUTE_PATHS } from './../comprehensive-routes.constants';
-import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.types';
+import { ProgressTrackerModalComponent } from './progress-tracker-modal.component';
+import { IProgressTrackerData } from './progress-tracker.types';
 
-@Component({
-    selector: 'app-progress-tracker',
-    templateUrl: './progress-tracker.component.html',
-    styleUrls: [ './progress-tracker.component.scss' ]
+@Injectable({
+    providedIn: 'root'
 })
-export class ProgressTrackerComponent implements OnInit {
-    public hideProgressTracker = false;
-    private currentPageName = 'GetStartedComponent';
+export class ProgressTrackerService {
     private data: IProgressTrackerData;
-    pathRegex = /../;
+    private subject: BehaviorSubject<IProgressTrackerData> = new BehaviorSubject<
+        IProgressTrackerData
+    >({} as IProgressTrackerData);
+    private changeListener = new Subject();
+    private modelRef: NgbModalRef;
 
-    public onCloseClick(): void {
-        this.hideProgressTracker = true;
+    constructor(private modal: NgbModal, private router: Router) {}
+
+    public show() {
+        this.modelRef = this.modal.open(ProgressTrackerModalComponent, {
+            windowClass: 'progress-tracker-modal',
+            backdropClass: 'progress-tracker-backdrop'
+        });
     }
-    constructor(private router: Router, private cmpService: ComprehensiveService) {
-        this.data = this.cmpService.generateProgressTrackerData();
-    }
 
-    ngOnInit() {}
-
-    public setCurrentPageName(pageName: string) {
-        this.currentPageName = pageName;
-    }
-
-    public toggle(item: IProgressTrackerItem) {
-        item.expanded = !item.expanded;
+    public hide() {
+        if (this.modelRef) {
+            this.modelRef.dismiss();
+        }
     }
 
     public setProgressTrackerData(data: IProgressTrackerData) {
         this.data = data;
+        this.subject.next(this.data);
+    }
+
+    public getProgressTrackerData() {
+        return this.subject.asObservable();
     }
 
     navigate(path: string): void {
