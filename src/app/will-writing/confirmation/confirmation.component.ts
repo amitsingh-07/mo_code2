@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WillWritingFormData } from '../will-writing-form-data';
@@ -90,7 +89,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
         createUpdateWill.subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.willWritingService.setIsWillCreated(true);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+            this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
           } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
             this.willWritingService.openToolTipModal('', this.duplicateError);
           }

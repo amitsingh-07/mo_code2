@@ -36,7 +36,7 @@
                     <div class="warning-txt">
                       <div class="flex-col-8">
                         <span
-                          *ngIf="!wills.hasWill">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
+                          *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
                         <span
                           *ngIf="!wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC' | translate}}</span>
                         <span
@@ -49,7 +49,7 @@
                       </div>
                     </div>
                     <div class="flex">
-                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWill"
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWills"
                         (click)="redirectTo('start')">
                         <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
                         <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
