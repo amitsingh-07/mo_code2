@@ -167,7 +167,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
       const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
       if (this.fromConfirmationPage && this.isFormAltered) {
         this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
-          this.willWritingService.isUserLoggedIn());
+          this.willWritingService.getIsWillCreated());
       } else if (this.fromConfirmationPage) {
         this.save(url);
       } else {
