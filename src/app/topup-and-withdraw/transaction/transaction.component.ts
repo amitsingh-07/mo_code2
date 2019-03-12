@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -55,13 +56,13 @@ export class TransactionComponent implements OnInit {
       this.userProfileInfo.investementDetails.account.accountCreatedDate
     ) {
       this.accountCreationDate = this.convertStringToDate(
-        this.userProfileInfo.investementDetails.account.accountCreatedDate
+       this.userProfileInfo.investementDetails.account.accountCreatedDate
+      );
+      this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
+        this.accountCreationDate,
+        new Date()
       );
     }
-    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
-      this.accountCreationDate,
-      new Date()
-    );
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);
@@ -110,6 +111,49 @@ export class TransactionComponent implements OnInit {
       });
     }
     return transactionHistory;
+  }
+
+  downloadStatement(month) {
+    const params = this.constructDownloadStatementParams(month);
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.TITLE'),
+        desc: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.MESSAGE')
+      });
+    });
+    this.topupAndWithDrawService.downloadStatement(params).subscribe((response) => {
+      this.loaderService.hideLoader();
+      this.downloadFile(response, month);
+    },
+    (err) => {
+      this.loaderService.hideLoader();
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  constructDownloadStatementParams(data) {
+    let params = new HttpParams();
+    params = params.append('month', data.monthName.substring(0, 3).toUpperCase());
+    params = params.append('year', data.year);
+    return params;
+  }
+
+  downloadFile(data, month) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = month.monthName + '_' + month.year + '_' + '.pdf';
+    a.click();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
   }
 
   getStatementLink(month) {

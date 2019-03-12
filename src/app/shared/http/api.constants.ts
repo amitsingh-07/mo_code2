@@ -80,7 +80,8 @@ export let apiConstants = {
             getUserAddress: 'account/account-microservice/api/customer/address',
             getUserBankList: 'account/account-microservice/api/customer/banks',
             addNewBank: INVESTMENT_API_BASE_URL + '/api/customer/bank?handleError=true',
-            getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions'
+            getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
+            getStatement: INVESTMENT_API_BASE_URL + '/getStatements'
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent',

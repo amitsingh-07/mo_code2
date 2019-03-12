@@ -1718,4 +1718,12 @@ export class InvestmentAccountService {
       };
     }
   }
+
+  clearData() {
+    this.clearInvestmentAccountFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(ACCOUNT_SUCCESS_COUNTER_KEY);
+    }
+  }
 }

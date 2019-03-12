@@ -1,23 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { ApiService } from '../../shared/http/api.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { FooterService } from '../../shared/footer/footer.service';
-import { Formatter } from '../../shared/utils/formatter.util';
-import { IEnquiryUpdate } from '../signup-types';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
+import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
-import { Router } from '@angular/router';
+import { FooterService } from '../../shared/footer/footer.service';
+import { ApiService } from '../../shared/http/api.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { Formatter } from '../../shared/utils/formatter.util';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { SignUpApiService } from '../sign-up.api.service';
 import { SignUpService } from '../sign-up.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TranslateService } from '@ngx-translate/core';
+import { IEnquiryUpdate } from '../signup-types';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,29 +28,35 @@ import { TranslateService } from '@ngx-translate/core';
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
-  showPortffolioPurchased = false;
+  showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
   showNoInvestmentAccount = false;
-  showAddportfolio = false;
+  showAddPortfolio = false;
   showCddCheckOngoing = false;
   showSuspendedAccount = false;
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
   showEddCheckFailStatus = false;
+  isInvestmentEnabled = false;
+  isInvestmentConfigEnabled = false;
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
 
   constructor(
     private router: Router,
+    private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
     public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
     this.translate.use('en');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isInvestmentConfigEnabled = config.investmentEnabled;
+    });
   }
 
   ngOnInit() {
@@ -144,68 +150,59 @@ export class DashboardComponent implements OnInit {
 
   setInvestmentDashboardStatus(investmentStatus) {
     switch (investmentStatus) {
-      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {
-        this.showSetupAccount = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY: {
         this.showBlockedNationalityStatus = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
-        this.showInvestmentDetailsSaved = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING: {
-        this.showCddCheckOngoing = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
       case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
         this.showInvestmentDetailsSaved = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED: {
-        this.showCddCheckOngoing = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED: {
         this.showEddCheckFailStatus = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
         this.showCddCheckFail = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED: {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED: {
-        this.showPortffolioPurchased = true;
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
+        this.showPortfolioPurchased = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
         this.showSuspendedAccount = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.START_INVESTING: {
-        this.showStartInvesting = true;
+        this.enableInvestment();
         break;
       }
       default: {
-        this.showStartInvesting = true;
+        if (this.isInvestmentConfigEnabled) {
+          this.showStartInvesting = true;
+          this.enableInvestment();
+        } else {
+          this.showStartInvesting = false;
+        }
         break;
       }
     }
@@ -226,4 +223,9 @@ export class DashboardComponent implements OnInit {
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
+
+  enableInvestment() {
+    this.isInvestmentEnabled = true;
+  }
+
 }

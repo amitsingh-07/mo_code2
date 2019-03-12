@@ -21,7 +21,8 @@
     "LBL_PERCENTAGE_PER_ANNUM": " p.a",
     "LBL_PROJECTED_RETURN": "Projected Return",
     "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
-    "LBL_PROJECTED_PAYOUT": "Projected Payout"
+    "LBL_PROJECTED_PAYOUT": "Projected Payout",
+    "OKAY": "Ok"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
@@ -250,6 +251,10 @@
     "DOWNLOAD_FACTSHEET": "Download Factsheet",
     "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Highlight Sheet"
   },
-  "IFAST_ERROR_TITLE": "Error !"
+  "IFAST_ERROR_TITLE": "Error !",
+  "UNSUPPORTED_DEVICE_MODAL": {
+      "TITLE": "Note !",
+      "DESC": "This is mobile optimized webpage and recommended to view in mobile browsers such as Safari, Chrome, etc."
+  }
 }
 

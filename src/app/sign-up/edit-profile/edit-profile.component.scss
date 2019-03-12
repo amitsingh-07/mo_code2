@@ -83,7 +83,6 @@ app-edit-profile{
   }
   .grid-wrapper{
     @extend .flex;
-    @extend .align-center;
     @include allmobiles{
       flex-direction: column;
       align-items: flex-start;
