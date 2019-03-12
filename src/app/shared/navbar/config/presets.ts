@@ -12,7 +12,7 @@ export class NavbarConfig {
       showHeaderNavbar: false
     } as INavbarConfig;
 
-    '0': object = {
+    '100': object = {
       showNavBackBtn: false,
       showHeaderBackBtn: false,
       showMenu: true,

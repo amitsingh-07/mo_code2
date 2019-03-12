@@ -78,8 +78,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(0);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(100);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {

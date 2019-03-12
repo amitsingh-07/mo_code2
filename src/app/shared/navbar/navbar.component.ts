@@ -165,7 +165,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
       // Enabling Notifications
-      if (navbarMode !== 2) {
+      if (navbarMode === 100) {
         this.isNotificationEnabled = this.canActivateNotification();
       }
       if (this.isNotificationEnabled) {
@@ -183,7 +183,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   matrixResolver(navbarMode?: any) {
     const matrix = new NavbarConfig();
     let nc: INavbarConfig;
-    if (navbarMode && navbarMode !== 'default') {
+    if (navbarMode ? true : false && (navbarMode !== 'default')) {
       this.navbarMode = navbarMode;
       nc = matrix[navbarMode];
       console.log('NavBar Mode: ' + navbarMode);
