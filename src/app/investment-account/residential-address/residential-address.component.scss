@@ -37,9 +37,6 @@ app-residential-address {
       .dropdown-toggle {
         &:disabled {
           cursor: not-allowed;
-          &:hover {
-            background-color: transparent !important;
-          }
         }
       }
     }
