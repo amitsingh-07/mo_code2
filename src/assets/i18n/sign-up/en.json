@@ -300,7 +300,6 @@
         "APPLY":"Apply Changes"
     },
     "NOTIFICATIONS": {
-<<<<<<< HEAD
         "EMPTY": "No New Notifications!",
         "WILL_WRITING": {
             "TITLE": "Will Writing",
@@ -314,8 +313,5 @@
             "CONTINUE_WRITING": "Continue Writing",
             "LAST_UPDATED": "Last Updated"
         }
-=======
-        "EMPTY": "No New Notifications!"
->>>>>>> 46666e2f66be8759de69d6f72f1c6142d9bb8ce0
     }
 }

@@ -155,9 +155,6 @@
                       <div class="flex-col-4">
                         <div class="investment_icon">
                           <img src="assets/images/investment-account/investment-icon.svg" />
-<<<<<<< HEAD
-            
-=======
                         </div>
                       </div>
                     </div>
@@ -196,12 +193,10 @@
                       <div class="flex-col-4">
                         <div class="investment_icon">
                           <img src="assets/images/will-writing/will-dash.svg" />
->>>>>>> 46666e2f66be8759de69d6f72f1c6142d9bb8ce0
                         </div>
                       </div>
                     </div>
                     <div class="flex">
-<<<<<<< HEAD
                       <button type="button" class="btn btn-primary col-12">
                         <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
                         <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
@@ -252,24 +247,6 @@
                               </div>
                             </div>
                           </div>
-=======
-                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWills"
-                        (click)="redirectTo('start')">
-                        <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
-                        <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
-                      </button>
-                      <button type="button" class="btn btn-primary col-12"
-                        *ngIf="wills.hasWills && !wills.completedWill" (click)="redirectTo('edit')">
-                        <div>{{'DASHBOARD.WILL_WRITING.CONTINUE_WRITING' | translate}}</div>
-                      </button>
-                      <button type="button" class="btn btn-ghost col-12" *ngIf="wills.hasWills && wills.completedWill"
-                        (click)="downloadWill()">
-                        <div>{{'DASHBOARD.WILL_WRITING.DOWNLOAD_WILL' | translate}}</div>
-                        <div>{{'DASHBOARD.WILL_WRITING.LAST_UPDATED' | translate}}
-                          {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</div>
-                      </button>
-                    </div>
->>>>>>> 46666e2f66be8759de69d6f72f1c6142d9bb8ce0
                   </div>
                 </div>
               </div>
