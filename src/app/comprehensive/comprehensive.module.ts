@@ -28,7 +28,6 @@ import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
-
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -70,7 +69,6 @@ export function createTranslateLoader(http: HttpClient) {
     MyLiabilitiesComponent,
     FirstReportDependantComponent,
     BadMoodFundComponent,
-    ProgressTrackerComponent
     ],
     providers: [NgbDateCustomParserFormatter]
 
