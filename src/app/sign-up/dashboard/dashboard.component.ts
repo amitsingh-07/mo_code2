@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
@@ -20,7 +19,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 
-// Will Writing
+  // Will Writing
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
@@ -44,14 +43,16 @@ export class DashboardComponent implements OnInit {
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
-  showWillWritingSection = false;
   showEddCheckFailStatus = false;
   isInvestmentEnabled = false;
   isInvestmentConfigEnabled = false;
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
-  wills: any;
+
+  // Will Writing
+  showWillWritingSection = false;
+  wills: any = {};
 
   constructor(
     private router: Router,
@@ -184,14 +185,6 @@ export class DashboardComponent implements OnInit {
     this.setInvestmentDashboardStatus(investmentStatus);
   }
 
-  redirectTo(page: string) {
-    if (page === 'edit') {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
-    } else {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
-    }
-  }
-
   setInvestmentDashboardStatus(investmentStatus) {
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
@@ -272,6 +265,14 @@ export class DashboardComponent implements OnInit {
     this.isInvestmentEnabled = true;
   }
 
+  // Will-writing
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
+    }
+  }
   downloadWill() {
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
       this.saveAs(data);
