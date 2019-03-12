@@ -427,7 +427,8 @@
       "DEPENDANT_DETAIL": [{"name":"Dependant Details 1"}, {"name":"Dependant Details 2"},{"name":"Dependant Details 3"}, {"name":"Dependant Details 4"},{"name":"Dependant Details 5"}],
       "MY_LIABILITIES": "MY LIABILITIES",
 	    "MY_EARNINGS": "Your Earnings",
-	    "MY_SPENDINGS": "Your Spendings"
+      "MY_SPENDINGS": "Your Spendings",
+      "REGULAR_SAVINGS": "Regular Savings Plan"
     }
   }
 }

@@ -17,7 +17,7 @@
 
           </label>
           <section [hidden]="!RSPSelection" class="p-0 rspSelectionList" >
-            <div formArrayName="comprehensiveRegularSavingsList" class="myDependantFormArray" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm.controls.comprehensiveRegularSavingsList.controls; let i = index;">
+            <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm.controls.comprehensiveRegularSavingsList.controls; let i = index;">
              
              
                   <div class="form-group-with-bg--header">
@@ -42,7 +42,7 @@
                   <div class="pr0 flex-col-7">
                     <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularUnitTrust.invalid}">
                       <div ngbDropdown id="relationshipDropDown">
-                        <button type="button" class="btn btn-dropdown" id="dropdowninvestMent" ngbDropdownToggle>
+                        <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle>
                           <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                           <span *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==''">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
                         </button>
@@ -68,9 +68,9 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control form-control-right">
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularPaidByCash.invalid}" >
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash" value="0">
+                        <input type="text" class="input-control" appCurrencyInput   #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
@@ -83,9 +83,9 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control form-control-right">
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularPaidByCPF.invalid}">
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCPF formControlName="regularPaidByCPF" value="0">
+                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF"   >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>

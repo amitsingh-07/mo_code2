@@ -41,22 +41,23 @@
                     </div>
                   </label>
               </div>
-              <div class="flex-col-6">
-                  <div class="form-control">
-                      <i>$</i>
-                      <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0">
-                  </div>
+              <div class="pr0 flex-col-7">
+                <div class="form-control">
+                  <i>$</i>
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0">
+                  
+                </div>
               </div>
             </div>
-            <div class="flex-row">
-              <div class="flex-col-6">
-                  <label for="name" id="myDependantFormLb2">
-                    <div>{{ 'CMP.FORM_LABEL.MATURITY_YEAR' | translate}}
-                    </div>
-                  </label>
-              </div>
-              <div class="flex-col-6">
-                  <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
+          <div class="flex-row p-2 px-4">
+            <div class=" flex-col-5">
+              <label for="name" id="myDependantFormLb2">
+                <div>{{ 'CMP.FORM_LABEL.MATURITY_YEAR' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class="flex-col-7">
+              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
                 id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYear formControlName="endowmentMaturityYear" maxlength="4">
               </div>
             </div>

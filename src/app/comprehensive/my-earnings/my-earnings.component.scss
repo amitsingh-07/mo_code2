@@ -141,6 +141,7 @@ color: $dark-teal-color;
     width: 117px;
     height: 112px;
 }
+
 .income-bucket-panel {
     text-align: center;
     &__img {
@@ -154,16 +155,4 @@ color: $dark-teal-color;
         font-family: $muli-bold;
         font-size: 24px;
     }
-}
-.both-icon{
-    .help-icon {
-        right: 10px;
-        top: 5px;
-    }
-    .delete-icon {
-        right:-25px!important;
-    }
-}
-.dividend-icon .help-icon {
-     top: 12px!important;
 }

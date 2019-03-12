@@ -278,4 +278,28 @@ export class ComprehensiveFormError {
 
         }
     };
+
+    RSPForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the Regular Savings Plan  details:',
+            regularUnitTrust: {
+                required: {
+                    errorTitle: 'Invalid Unit Trust Type',
+                    errorMessage: 'Unit Trust Type'
+                }
+            },
+            regularPaidByCash: {
+                required: {
+                    errorTitle: 'Invalid Paid By Cash',
+                    errorMessage: 'Paid By Cash'
+                }
+            },
+            regularPaidByCPF: {
+                required: {
+                    errorTitle: 'Invalid Payment using CPF',
+                    errorMessage: 'Regular Paid By CPF'
+                }
+            },
+        }
+    };
 }
