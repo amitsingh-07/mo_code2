@@ -130,19 +130,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.hideMenu();
-    console.log('On Init');
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => {
         this.pageTitle = title;
-        console.log(title);
       });
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => {
       this.subTitle = subTitle;
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
-      console.log(this.showHelpIcon);
       });
     this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
@@ -167,7 +164,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
-      console.log(this.navbarMode);
       // Enabling Notifications
       if (navbarMode !== 2) {
         this.isNotificationEnabled = this.canActivateNotification();
@@ -259,7 +255,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleMenu() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
-      console.log('Notification is not hidden and on mobile');
       this.isNotificationHidden = true;
       }
     }
