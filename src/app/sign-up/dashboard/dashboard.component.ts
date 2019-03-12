@@ -255,6 +255,15 @@ export class DashboardComponent implements OnInit {
     this.isInvestmentEnabled = true;
   }
 
+  // Will Writing
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
+    }
+  }
+
   downloadWill() {
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
       this.saveAs(data);
