@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
@@ -18,6 +19,11 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+
+// Will Writing
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,22 +44,32 @@ export class DashboardComponent implements OnInit {
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
+  showWillWritingSection = false;
   showEddCheckFailStatus = false;
   isInvestmentEnabled = false;
   isInvestmentConfigEnabled = false;
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
+  wills: any;
 
   constructor(
     private router: Router,
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
+    public readonly translate: TranslateService,
+    private appService: AppService,
+    private signUpService: SignUpService,
+    private apiService: ApiService,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
+    private selectedPlansService: SelectedPlansService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService
+    ) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => { });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
     });
@@ -79,6 +95,26 @@ export class DashboardComponent implements OnInit {
         this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
           this.selectedPlansService.clearData();
         });
+      }
+    });
+
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      this.signUpService.setUserProfileInfo(userInfo.objectList);
+      this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    });
+
+    this.willWritingApiService.getWill().subscribe((data) => {
+      this.showWillWritingSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.wills.hasWills = true;
+        this.wills.completedWill = data.objectList[0].willProfile.hasWills === 'Y';
+        this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
+        if (!this.willWritingService.getIsWillCreated()) {
+          this.willWritingService.convertWillFormData(data.objectList[0]);
+          this.willWritingService.setIsWillCreated(true);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
+        this.wills.hasWills = false;
       }
     });
   }
@@ -146,6 +182,14 @@ export class DashboardComponent implements OnInit {
         this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
     }
     this.setInvestmentDashboardStatus(investmentStatus);
+  }
+
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
+    }
   }
 
   setInvestmentDashboardStatus(investmentStatus) {
@@ -226,6 +270,40 @@ export class DashboardComponent implements OnInit {
 
   enableInvestment() {
     this.isInvestmentEnabled = true;
+  }
+
+  downloadWill() {
+    this.willWritingApiService.downloadWill().subscribe((data: any) => {
+      this.saveAs(data);
+    }, (error) => console.log(error));
+  }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else {
+      this.downloadFile(data);
+    }
+  }
+
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
 
 }

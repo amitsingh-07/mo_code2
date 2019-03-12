@@ -169,6 +169,9 @@
                 <div class="name">{{userInfo.firstName}}</div>
                 <div class="sub-text">My Dashboard</div>
                 </button>
+              <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
+                <a class="navbar--text" href="javascript: void(0);">Profile</a>
+                </button>
               <button class="dropdown-item" (click)="logout()">
                 <a class="navbar--text" href="javascript: void(0);">Logout</a>
                 </button>
