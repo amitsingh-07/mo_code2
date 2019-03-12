@@ -300,18 +300,6 @@
         "APPLY":"Apply Changes"
     },
     "NOTIFICATIONS": {
-        "EMPTY": "No New Notifications!",
-        "WILL_WRITING": {
-            "TITLE": "Will Writing",
-            "EDIT_WILL": "Edit Will",
-            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
-            "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
-            "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
-            "START_WRITING": "Start Writing",
-            "ESTIMATED_TIME": "Estimated 10 mins",
-            "DOWNLOAD_WILL": "Download Will",
-            "CONTINUE_WRITING": "Continue Writing",
-            "LAST_UPDATED": "Last Updated"
-        }
+        "EMPTY": "No New Notifications!"
     }
 }

@@ -99,11 +99,6 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-      this.signUpService.setUserProfileInfo(userInfo.objectList);
-      this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    });
-
     this.willWritingApiService.getWill().subscribe((data) => {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
