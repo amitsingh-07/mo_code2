@@ -53,7 +53,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     constructor(
         private loaderService: LoaderService,
         private signUpService: SignUpService,
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private router: Router,
         public navbarService: NavbarService,
         private translate: TranslateService,
@@ -69,7 +69,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         configDate.minDate = { year: today.getFullYear() - 100, month: today.getMonth() + 1, day: today.getDate() };
         configDate.maxDate = { year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate() };
         configDate.outsideDays = 'collapsed';
-        this.pageId = this.route.routeConfig.component.name;
+        this.pageId = this.activatedRoute.routeConfig.component.name;
         this.configService.getConfig().subscribe((config: any) => {
             this.translate.setDefaultLang(config.language);
             this.translate.use(config.language);
@@ -170,6 +170,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (!form.pristine) {
                 this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {});
             }
+            this.progressService.updateValue(this.router.url, this.userDetails.firstName);
             this.router.navigate([ COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1' ]);
         }
     }

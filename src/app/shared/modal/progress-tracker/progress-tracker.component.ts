@@ -1,10 +1,10 @@
-import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 import { ProgressTrackerService } from './progress-tracker.service';
 import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.types';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-progress-tracker',
