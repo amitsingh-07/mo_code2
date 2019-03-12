@@ -91,7 +91,7 @@ export class NavbarService {
   setProdButtonVisibility(isVisible: boolean) {
     this.pageProdInfoIcon.next(isVisible);
   }
-
+  
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {

@@ -7,6 +7,4 @@ export interface INavbarConfig {
     showSearchBar: false;
     showNotifications: false;
     showHeaderNavbar: false;
-    showHelpIcon?: boolean;
-    showSettingsIcon?: boolean;
-}
+    }

@@ -130,11 +130,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.hideMenu();
+    console.log('On Init');
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
-    this.navbarService.currentPageTitle.subscribe((title) => this.pageTitle = title);
-    this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
-    this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => this.showHelpIcon = showHelpIcon);
+    this.navbarService.currentPageTitle.subscribe((title) => {
+        this.pageTitle = title;
+        console.log(title);
+      });
+    this.navbarService.currentPageSubTitle.subscribe((subTitle) => {
+      this.subTitle = subTitle;
+    });
+    this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
+      this.showHelpIcon = showHelpIcon;
+      console.log(this.showHelpIcon);
+      });
     this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
@@ -154,15 +163,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.navbarService.currentNavbarMobileVisibility.subscribe((showHeaderNavbar) => {
       this.showHeaderNavbar = showHeaderNavbar;
-      console.log('Header Shown: ' + showHeaderNavbar);
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
+      console.log(this.navbarMode);
       // Enabling Notifications
       if (navbarMode !== 2) {
         this.isNotificationEnabled = this.canActivateNotification();
-        this.isNotificationEnabled = true; // To Be removed
       }
       if (this.isNotificationEnabled) {
         this.getRecentNotifications();
@@ -197,7 +205,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     // Implement Matrix
     const config = this.navbarConfig as INavbarConfig;
-    console.log(config);
     this.showNavBackBtn = config.showNavBackBtn;
     this.showHeaderBackBtn = config.showHeaderBackBtn;
     this.showMenu = config.showMenu;
@@ -206,9 +213,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
-    console.log(this.showHeaderNavbar);
-    this.showHelpIcon = config.showHelpIcon ? config.showHelpIcon : false;
-    this.showSettingsIcon  = config.showSettingsIcon ? config.showSettingsIcon : false;
   }
 
   openSearchBar(toggle: boolean) {

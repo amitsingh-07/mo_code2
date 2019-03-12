@@ -9,9 +9,7 @@ export class NavbarConfig {
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
-      showHeaderNavbar: false,
-      showHelpIcon: false,
-      showSettingsIcon: false,
+      showHeaderNavbar: false
     } as INavbarConfig;
 
     '0': object = {
