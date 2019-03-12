@@ -15,7 +15,7 @@ export let apiConstants = {
         getProfileList: 'account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
-        getHospitalPlanList: 'account/insurance/insurance-needs-microservice/api/getHospitalClassList',
+        getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         createEnquiry: 'recommend/recomm-microservice/api/createEnquiry',
