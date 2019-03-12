@@ -256,7 +256,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
   addOrRemoveOtherControl(value) {
     const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
-    if (value.name === 'Others, please specify') {
+    if ( value && value.name === 'Others, please specify') {
       mailFormGroup.addControl(
         'reasonForOthers',
         new FormControl(
