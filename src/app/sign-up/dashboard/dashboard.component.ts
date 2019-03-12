@@ -19,6 +19,11 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 
+  // Will Writing
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -45,6 +50,10 @@ export class DashboardComponent implements OnInit {
   totalReturns: any;
   availableBalance: any;
 
+  // Will Writing
+  showWillWritingSection = false;
+  wills: any = {};
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -52,7 +61,9 @@ export class DashboardComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
+    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService) {
     this.translate.use('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
@@ -79,6 +90,22 @@ export class DashboardComponent implements OnInit {
         this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
           this.selectedPlansService.clearData();
         });
+      }
+    });
+
+    // Will Writing
+    this.willWritingApiService.getWill().subscribe((data) => {
+      this.showWillWritingSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.wills.hasWills = true;
+        this.wills.completedWill = data.objectList[0].willProfile.hasWills === 'Y';
+        this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
+        if (!this.willWritingService.getIsWillCreated()) {
+          this.willWritingService.convertWillFormData(data.objectList[0]);
+          this.willWritingService.setIsWillCreated(true);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
+        this.wills.hasWills = false;
       }
     });
   }
@@ -226,6 +253,49 @@ export class DashboardComponent implements OnInit {
 
   enableInvestment() {
     this.isInvestmentEnabled = true;
+  }
+
+  // Will Writing
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
+    }
+  }
+
+  downloadWill() {
+    this.willWritingApiService.downloadWill().subscribe((data: any) => {
+      this.saveAs(data);
+    }, (error) => console.log(error));
+  }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else {
+      this.downloadFile(data);
+    }
+  }
+
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
 
 }

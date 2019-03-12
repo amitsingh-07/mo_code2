@@ -230,11 +230,19 @@
         },
         "WILL_WRITING": {
             "TITLE": "Will Writing",
-            "VIEW_ALL": "View all",
-            "CREATE_YOUR_WILL": "Create Your Will",
-            "CREATE_YOUR_WILL_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
-            "GET_STARTED": "Get Started!",
-            "TIME": "8mins"
+            "EDIT_WILL": "Edit Will",
+            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+            "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
+            "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
+            "START_WRITING": "Start Writing",
+            "ESTIMATED_TIME": "Estimated 10 mins",
+            "DOWNLOAD_WILL": "Download Will",
+            "CONTINUE_WRITING": "Continue Writing",
+            "LAST_UPDATED": "Last Updated"
+        },
+        "INSURANCE":{
+            "TITLE": "Insurance",
+            "DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188."
         }
     },
     "EDIT_PROFILE": {

@@ -204,12 +204,12 @@ export class AboutMeComponent implements OnInit, OnDestroy {
           let isChildChanged;
           let isMaritalStatusChanged;
           if (this.formValues.noOfChildren !== form.value.noOfChildren) {
-            isUserLogged = this.willWritingService.isUserLoggedIn();
+            isUserLogged = this.willWritingService.getIsWillCreated();
             isChildChanged = true;
           }
           if (this.formValues.maritalStatus !== form.value.maritalStatus) {
             if (this.formValues.maritalStatus === WILL_WRITING_CONFIG.MARRIED || form.value.maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
-              isUserLogged = this.willWritingService.isUserLoggedIn();
+              isUserLogged = this.willWritingService.getIsWillCreated();
               isMaritalStatusChanged = true;
             }
           }

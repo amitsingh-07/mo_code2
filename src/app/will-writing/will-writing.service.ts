@@ -33,6 +33,29 @@ export class WillWritingService {
   fromConfirmationPage;
   isWillCreated;
   clearExecTrustee = false;
+
+  private relationship: any = new Map([
+    ['P', 'parent'],
+    ['SBL', 'sibling'],
+    ['PIL', 'parent-in-law'],
+    ['F', 'friend'],
+    ['R', 'relative'],
+    ['S', 'spouse'],
+    ['C', 'child'],
+  ]);
+
+  private maritalStatus: any = new Map([
+    ['S', 'single'],
+    ['M', 'married'],
+    ['D', 'divorced'],
+    ['W', 'widowed']
+  ]);
+
+  private gender: any = new Map([
+    ['M', 'male'],
+    ['F', 'female']
+  ]);
+
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -637,6 +660,64 @@ export class WillWritingService {
     errorMsg.errors = errorMsg.errors.slice(0, 2);
     errors.errorMessages.push(errorMsg);
     return this.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+  }
+
+  convertWillFormData(data) {
+    const will: WillWritingFormData = new WillWritingFormData();
+    will.aboutMe = {
+      name: data.willProfile.name,
+      uin: data.willProfile.uin,
+      gender: this.gender.get(data.willProfile.genderCode),
+      maritalStatus: this.maritalStatus.get(data.willProfile.maritalStatusCode),
+      noOfChildren: data.willProfile.noOfChildren
+    };
+    will.spouse = [];
+    will.children = [];
+    will.guardian = [];
+    will.beneficiary = [];
+    will.execTrustee = [];
+    for (const profileMembers of data.willProfileMembers) {
+      const members: any = {
+        name: profileMembers.name,
+        relationship: this.relationship.get(profileMembers.relationshipCode),
+        uin: profileMembers.uin
+      };
+      if (profileMembers.isFamily === 'Y') {
+        let pos = 0;
+        if (profileMembers.relationshipCode === 'S') {
+          will.spouse.push(JSON.parse(JSON.stringify(members)));
+        } else if (profileMembers.relationshipCode === 'C') {
+          members['dob'] = {
+            year: Number(profileMembers.dob.substr(0, 4)),
+            month: Number(profileMembers.dob.substr(4, 2)),
+            day: Number(profileMembers.dob.substr(6, 2))
+          };
+          members['formatedDob'] = profileMembers.dob.substr(6, 2) + '/' +
+            profileMembers.dob.substr(4, 2) + '/' +
+            profileMembers.dob.substr(0, 4);
+          members['pos'] = ++pos;
+          will.children.push(JSON.parse(JSON.stringify(members)));
+        }
+      }
+      if (profileMembers.isGuardian === 'Y' || profileMembers.isAltGuardian === 'Y') {
+        members['isAlt'] = profileMembers.isAltGuardian === 'Y';
+        will.guardian.push(JSON.parse(JSON.stringify(members)));
+      }
+      if (profileMembers.isTrusteee === 'Y' || profileMembers.isAltTrusteee === 'Y') {
+        members['isAlt'] = profileMembers.isAltTrusteee === 'Y';
+        will.execTrustee.push(JSON.parse(JSON.stringify(members)));
+      }
+      if (profileMembers.isBeneficiary === 'Y') {
+        if (members.hasOwnProperty('isAlt')) {
+          delete members['isAlt'];
+        }
+        members['selected'] = true;
+        members['distPercentage'] = profileMembers.distribution;
+        will.beneficiary.push(JSON.parse(JSON.stringify(members)));
+      }
+    }
+    this.willWritingFormData = will;
+    this.commit();
   }
 
 }
