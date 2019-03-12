@@ -156,3 +156,14 @@ color: $dark-teal-color;
         font-size: 24px;
     }
 }
+.footer-notes{
+    background: $btn-primary-backgrnd-color;
+}
+.both-icon{
+    .delete-icon { 
+        right:-12px!important;
+    }
+}
+.dividend-icon .help-icon{
+    top:10px!important;
+}

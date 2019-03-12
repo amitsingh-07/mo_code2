@@ -73,8 +73,8 @@ export class MyAssetsComponent implements OnInit {
   }
   buildMyAssetsForm() {
     const otherInvestFormArray = []; var inc = 0;
-    if(this.assetDetails.otherinvestment && this.assetDetails.otherinvestment.length>0){
-      this.assetDetails.otherinvestment.forEach((otherInvest,i) => {       
+    if(this.assetDetails.otherInvestment && this.assetDetails.otherInvestment.length>0){
+      this.assetDetails.otherInvestment.forEach((otherInvest,i) => {       
         if(otherInvest.investmentType !== '' || otherInvest.others > 0) {           
           otherInvestFormArray.push(this.buildInvestmentForm(otherInvest));
           this.investType[inc] = otherInvest.investmentType;
@@ -93,7 +93,7 @@ export class MyAssetsComponent implements OnInit {
       CPFMA: [this.assetDetails ? this.assetDetails.CPFMA : '', [Validators.required]],
       yourHome: [this.assetDetails ? this.assetDetails.yourHome : '', [Validators.required]],
       investmentProperties: [this.assetDetails ? this.assetDetails.investmentProperties : '', [Validators.required]],
-      otherinvestment: this.formBuilder.array(otherInvestFormArray),
+      otherInvestment: this.formBuilder.array(otherInvestFormArray),
       otherAssets: [this.assetDetails ? this.assetDetails.otherAssets : '', [Validators.required]]
     });
   }
@@ -102,7 +102,7 @@ export class MyAssetsComponent implements OnInit {
 
   }
   addInvestment() {
-    const investments = this.myAssetsForm.get('otherinvestment') as FormArray;
+    const investments = this.myAssetsForm.get('otherInvestment') as FormArray;
     investments.push(this.buildInvestmentForm(''));
   }
   buildInvestmentForm(inputParams) {
@@ -112,13 +112,14 @@ export class MyAssetsComponent implements OnInit {
     });
   }
   removeInvestment(i) {
-    const investments = this.myAssetsForm.get('otherinvestment') as FormArray;
+    const investments = this.myAssetsForm.get('otherInvestment') as FormArray;
+    this.investType[i] = '';
     investments.removeAt(i);
   }
   selectInvestType(investType, i) {
     investType = investType ? investType : { text: '', value: '' };
     this.investType[i] = investType.text;   
-    this.myAssetsForm.controls['otherinvestment']['controls'][i].controls.investmentType.setValue(investType.text);
+    this.myAssetsForm.controls['otherInvestment']['controls'][i].controls.investmentType.setValue(investType.text);
     this.myAssetsForm.markAsDirty();
   }
 
@@ -138,8 +139,8 @@ export class MyAssetsComponent implements OnInit {
 
   onTotalAssetsBucket() {
     const assetFormObject = this.myAssetsForm.value;
-    this.myAssetsForm.value.otherinvestment.forEach((investDetails: any, index) => {      
-      assetFormObject['otherInvestment'+index] = investDetails.others;
+    this.myAssetsForm.value.otherInvestment.forEach((investDetails: any, index) => {
+      assetFormObject['otherInvestment' + index] = investDetails.others;
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
   }

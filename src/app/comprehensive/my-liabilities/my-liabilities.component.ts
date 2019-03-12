@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './my-liabilities.component.html',
   styleUrls: ['./my-liabilities.component.scss']
 })
-export class MyLiabilitiesComponent implements OnInit , OnDestroy {
+export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   pageTitle: string;
   myLiabilitiesForm: FormGroup;
   submitted: boolean;
@@ -32,8 +32,8 @@ export class MyLiabilitiesComponent implements OnInit , OnDestroy {
   menuClickSubscription: Subscription;
   pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -57,7 +57,7 @@ export class MyLiabilitiesComponent implements OnInit , OnDestroy {
         alert('Menu Clicked');
       }
     });
-    this.buildmyLiabilitiesForm();
+    this.buildMyLiabilitiesForm();
   }
 
   ngOnDestroy() {
@@ -81,11 +81,11 @@ export class MyLiabilitiesComponent implements OnInit , OnDestroy {
     this.onTotalOutstanding();
     this.propertyLoan = !this.propertyLoan;
   }
-  buildmyLiabilitiesForm() {
+  buildMyLiabilitiesForm() {
     this.myLiabilitiesForm = this.formBuilder.group({
       homeLoanOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstanding : '', [Validators.required]],
       otherPropertyLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoan : ''],
-      otherLoanAmountOustanding: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanAmountOustanding : '', [Validators.required]],
+      otherLoanAmountOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanAmountOutstanding :'', [Validators.required]],
       carLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoan : '', [Validators.required]],
 
     });
@@ -93,6 +93,7 @@ export class MyLiabilitiesComponent implements OnInit , OnDestroy {
 
   goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
+      this.comprehensiveService.setMyLiabilities(form.value);
       console.log('Got it');
       const financeModal = this.translate.instant('CMP.MY_LIABILITIES.FINANCES_MODAL');
       const retireModal = this.translate.instant('CMP.MY_LIABILITIES.RETIREMENT_MODAL');

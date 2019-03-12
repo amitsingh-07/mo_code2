@@ -112,10 +112,10 @@ export class ComprehensiveFormError {
                     errorMessage: 'Other Property Loans'
                 }
             },
-            otherLoanAmountOustanding: {
+            otherLoanAmountOutstanding: {
                 required: {
-                    errorTitle: 'Invalid Other Loans Amount Oustanding',
-                    errorMessage: 'Other Loans Amount Oustanding'
+                    errorTitle: 'Invalid Other Loans Amount Outstanding',
+                    errorMessage: 'Other Loans Amount Outstanding'
                 }
             },
             carLoan: {
