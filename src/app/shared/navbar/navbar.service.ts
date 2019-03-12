@@ -128,10 +128,6 @@ export class NavbarService {
   }
 
   // Hiding Product Info Modal Trigger
-  hideProdInfo(event) {
-    this.closeProdInfo.next(event);
-  }
-
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
   }
