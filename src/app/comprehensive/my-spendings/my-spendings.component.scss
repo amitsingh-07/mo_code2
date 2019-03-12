@@ -17,16 +17,15 @@ color: $dark-teal-color;
     margin-right: 10px;
     position: relative;
     //font-size: 18px;
-    .help-icon {
-      
+    .help-icon {      
         background: url("/assets/images/tool-help-icon.svg") no-repeat;
         width: 40px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        right: 0;
-        bottom: 13px;
+        right: 10px;
+        top: 5px;
     }    
 }
 .delete-icon {      
@@ -59,8 +58,7 @@ color: $dark-teal-color;
         padding-top: 120px;
     }
     .dependant-title {
-        font-size: 18px;
-        margin-bottom: 16px;        
+        font-size: 18px;      
     }
     .dependant-desc {
         font-size: 16px;
@@ -68,6 +66,15 @@ color: $dark-teal-color;
     }
     .spendings-field .btn-outline-primary{
         color:$teal-color;
+    }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:16px;
+    }
+    .form-group-with-bg{
+        padding:0px;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
     }
 }
 .p-50{
@@ -83,12 +90,42 @@ color: $dark-teal-color;
 .income-modal-notes{
     color:$grey-color-notes;
 }
-.align-left{
-    text-align: left;
-}
 .bucket-notes{
     font-size:16px;
 }
 .bucket-notes-dollar{
     font-size:20px;
+}
+.income-bucket-panel {
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+        font-size: 14px;
+    }
+    &__value {
+        padding-bottom: 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+    }
+    &__content {
+        font-family: $muli-bold;
+        font-size: 16px;
+    }
+}
+.both-icon{    
+    .delete-icon {
+        right:-25px!important;
+    }
+    .with-help-icon{
+        color:$black-color;
+    }
+}
+.otherMortage .help-icon {
+    top:8px!important;
+}
+u{
+    color:$post-login-widget-title;
 }

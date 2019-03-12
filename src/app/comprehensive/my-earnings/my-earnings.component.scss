@@ -17,16 +17,15 @@ color: $dark-teal-color;
     position: relative;
     //font-size: 18px;
 }
-.help-icon {
-      
-        background: url("/assets/images/tool-help-icon.svg") no-repeat;
-        width: 40px;
-        height: 20px;
-        cursor: pointer;
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 0;
-        bottom: 13px;
+.help-icon {      
+    background: url("/assets/images/tool-help-icon.svg") no-repeat;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }  
 .earn-btn-dropdown{
     background: none;
@@ -60,6 +59,15 @@ color: $dark-teal-color;
         font-size: 16px;
         padding-bottom: 16px;
     }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:16px;
+    }
+    .form-group-with-bg{
+        padding:0px;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
 }
 .mb-10{
     margin-bottom:100px;
@@ -78,8 +86,8 @@ color: $dark-teal-color;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        right: 0;
-        bottom: 13px;
+        right: 10px;
+        top: 5px;
     } 
     .help-icon {
         right:30px;
@@ -116,13 +124,10 @@ color: $dark-teal-color;
     top:8px;
 }
 .earn-monthly-income-help{
-    bottom: 30px!important;
+    top: 17px!important;
 }
 .income-modal-notes{
     color:$light-grey-color;
-}
-.align-left{
-    text-align: left;
 }
 .emptyEarn{
     background: url("../../../assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
@@ -135,6 +140,8 @@ color: $dark-teal-color;
     display: inline-block;
     width: 117px;
     height: 112px;
+}
+.income-bucket-panel {
     text-align: center;
     &__img {
         padding: 14px 0 20px 0;
@@ -147,4 +154,16 @@ color: $dark-teal-color;
         font-family: $muli-bold;
         font-size: 24px;
     }
+}
+.both-icon{
+    .help-icon {
+        right: 10px;
+        top: 5px;
+    }
+    .delete-icon {
+        right:-25px!important;
+    }
+}
+.dividend-icon .help-icon {
+     top: 12px!important;
 }
