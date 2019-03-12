@@ -1,13 +1,12 @@
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -15,6 +14,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 

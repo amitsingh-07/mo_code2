@@ -7,53 +7,47 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { BaseService } from '../shared/http/base.service';
 import { HelperService } from '../shared/http/helper.service';
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ComprehensiveApiService {
+    constructor(
+        private apiService: ApiService,
+        private authService: AuthenticationService,
+        private http: BaseService,
+        private helperService: HelperService
+    ) {}
 
-  constructor(
-    private apiService: ApiService, private authService: AuthenticationService,
-    private http: BaseService, private helperService: HelperService
-  ) { }
+    getComprehensiveSummary() {
+        const sessionId = this.authService.getSessionId();
 
-  getComprehensiveSummary() {
-    const payload = {
-      requestType: 'comprehensive',
-      sessionId: this.authService.getSessionId()
-    };
-    return this.http.get(apiConstants.endpoint.comprehensive.getComprehensiveSummary)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.helperService.handleError(error))
-      );
-  }
+        return this.http
+            .get(`${apiConstants.endpoint.comprehensive.getComprehensiveSummary}?sessionId=${sessionId}`)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 
-  getPersonalDetails() {
-    return this.apiService.getPersonalDetails();
-  }
+    getPersonalDetails() {
+        return this.apiService.getPersonalDetails();
+    }
 
-  savePersonalDetails(payload) {
+    savePersonalDetails(payload) {
+        return this.apiService.addPersonalDetails(payload);
+    }
 
-    return this.apiService.addPersonalDetails(payload);
-  }
+    getDependents() {
+        return this.apiService.getDependents();
+    }
 
-  getDependents() {
-    return this.apiService.getDependents();
-  }
-
-  addDependents(payload) {
-    return this.apiService.addDependents(payload);
-  }
-  getChildEndowment() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getEndowmentPlan)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.helperService.handleError(error))
-    );
-
-  }
-  saveChildEndowment(payload) {
-    return this.http.get(apiConstants.endpoint.comprehensive.saveEndowmentPlan)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.helperService.handleError(error))
-    );
-  }
+    addDependents(payload) {
+        return this.apiService.addDependents(payload);
+    }
+    getChildEndowment() {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.getEndowmentPlan)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    saveChildEndowment(payload) {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.saveEndowmentPlan)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 }
