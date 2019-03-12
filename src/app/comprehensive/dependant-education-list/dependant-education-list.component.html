@@ -11,65 +11,60 @@
     </div>
     </div>
              
-              
   <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
-    <div formArrayName="endowmentPlan" class="education-support-array  mb-2" *ngFor="let educationPlan of endowmentListForm.controls.endowmentPlan.controls; let i = index;">
-
-      <div class="form-group" [formGroupName]="i">
-
-          <div class="p-2 pl-3 education-support">
-              <div class="checkbox-button one-label">
-                <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
-                  formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
-                <label for="educationSupport{{i}}">
-                  <div class="form-group-with-bg--header-label">{{educationPlan.get('name').value}}</div>
-                  <div class="age"> {{educationPlan.get('age').value}} Years old</div>
-                </label>
-              </div>
-            </div>
+      <div formArrayName="endowmentPlan" class="education-support-array  mb-2" *ngFor="let educationPlan of endowmentListForm.controls.endowmentPlan.controls; let i = index;">
+  
+        <div class="form-group-with-bg mt20" [formGroupName]="i">
         
-      
-        
-        
-        
-        <div class="education-plan" [hidden]="!educationPlan.get('endowmentPlanShow').value">
-         
-          <div class="flex-row p-2 px-4">
-              <div class="flex-col-5">
-                <label for="name" id="myDependantFormLb1">
-                  <div>{{ 'CMP.FORM_LABEL.MATURITY_AMOUNT' | translate}}
-                  </div>
-                </label>
-              </div>
-              <div class="pr0 flex-col-7">
-                <div class="form-control form-control-right">
-                  <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0">
-                  
-                </div>
-              </div>
-            </div>
-          <div class="flex-row p-2 px-4">
-            <div class=" flex-col-5">
-              <label for="name" id="myDependantFormLb2">
-                <div>{{ 'CMP.FORM_LABEL.MATURITY_YEAR' | translate}}
-                </div>
-              </label>
-            </div>
-            <div class="flex-col-7">
-              <input type="text" [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
-                id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYear formControlName="endowmentMaturityYear" maxlength="4">
+        <!--Form Header-->
+          <div class="form-group-with-bg--header" [ngClass]="{' border-all8': !educationPlan.get('endowmentplanShow').value}">
+            <div class="flex-row">
+              <div class="flex-col-12">
+                  <div class="checkbox-button one-label">
+                      <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentplanShow"
+                        formControlName="endowmentplanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                      <label for="educationSupport{{i}}">
+                        <div class="form-group-with-bg--header-label pb0">{{educationPlan.get('name').value}}</div>
+                        <div class="age"> {{educationPlan.get('age').value}} Years old</div>
+                      </label>
+                    </div>
+              </div> 
             </div>
           </div>
-        </div>
+  
+          <!--Form Content-->
+          <div class="form-group-with-bg--content"  [hidden]="!educationPlan.get('endowmentplanShow').value">
+            <div class="flex-row">
+              <div class="flex-col-6">
+                  <label for="name" id="myDependantFormLb1">
+                    <div>{{ 'CMP.FORM_LABEL.MATURITY_AMOUNT' | translate}}
+                    </div>
+                  </label>
+              </div>
+              <div class="flex-col-6">
+                  <div class="form-control">
+                      <i>$</i>
+                      <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0">
+                  </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                  <label for="name" id="myDependantFormLb2">
+                    <div>{{ 'CMP.FORM_LABEL.MATURITY_YEAR' | translate}}
+                    </div>
+                  </label>
+              </div>
+              <div class="flex-col-6">
+                  <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
+                id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYear formControlName="endowmentMaturityYear" maxlength="4">
+              </div>
+            </div>
+          </div>
       </div>
-
-
-    </div> 
-   
-   
-        <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 width100"
-        id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'LABEL.CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>    
+      </div>
+      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt50 width100"
+      id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'LABEL.CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
   </form>
 
 

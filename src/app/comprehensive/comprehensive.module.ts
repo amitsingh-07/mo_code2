@@ -25,7 +25,6 @@ import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
-import { ProgressTrackerComponent } from './progress-tracker/progress-tracker.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -43,7 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
         NgbModule.forRoot(),
         ComprehensiveRoutingModule,
         NgbModule.forRoot(),
-        SharedModule,
+        SharedModule.forRoot(),
         NouisliderModule,
         TranslateModule.forRoot({
             loader: {
@@ -71,8 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
         MyAssetsComponent,
         MyLiabilitiesComponent,
         FirstReportDependantComponent,
-        BadMoodFundComponent,
-        ProgressTrackerComponent
+        BadMoodFundComponent
     ],
     providers: [ NgbDateCustomParserFormatter ]
 })

@@ -5,6 +5,11 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { appConstants } from './../app.constants';
+import {
+    IProgressTrackerData,
+    IProgressTrackerItem,
+    IProgressTrackerSubItemList
+} from './../shared/modal/progress-tracker/progress-tracker.types';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
@@ -22,11 +27,6 @@ import {
     IProgressTrackerWrapper,
     IRegularSavePlan
 } from './comprehensive-types';
-import {
-    IProgressTrackerData,
-    IProgressTrackerItem,
-    IProgressTrackerSubItemList
-} from './progress-tracker/progress-tracker.types';
 
 @Injectable({
     providedIn: 'root'
@@ -194,14 +194,12 @@ export class ComprehensiveService {
     clearEndowmentPlan() {
         this.comprehensiveFormData.educationPlan = {} as IEducationPlan;
         this.commit();
-
     }
     getMyAssets() {
         if (!this.comprehensiveFormData.myAssets) {
             this.comprehensiveFormData.myAssets = {} as IMyAssets;
         }
         return this.comprehensiveFormData.myAssets;
-
     }
     setMyAssets(myAssets: IMyAssets) {
         this.comprehensiveFormData.myAssets = myAssets;
@@ -216,7 +214,6 @@ export class ComprehensiveService {
     setRSP(regularSavingsPlan: IRegularSavePlan) {
         this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
         this.commit();
-
     }
     getFormError(form, formName) {
         const controls = form.controls;
@@ -492,7 +489,7 @@ export class ComprehensiveService {
         }
 
         return {
-            title: 'What\'s on your shoulders',
+            title: "What's on your shoulders",
             expanded: true,
             completed: true,
             customStyle: 'dependant',
@@ -561,4 +558,3 @@ export class ComprehensiveService {
         };
     }
 }
-

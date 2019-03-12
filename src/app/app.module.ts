@@ -26,18 +26,10 @@ import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-chi
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
-import {
-  ExistingCoverageModalComponent
-} from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
-import {
-  RestrictAlphabetsDirective
-} from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
-import {
-  InsuranceResultModalComponent
-} from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
-import {
-  LifeProtectionModalComponent
-} from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
+import { InsuranceResultModalComponent } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
+import { LifeProtectionModalComponent } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
@@ -62,9 +54,7 @@ import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/co
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
-import {
-  LoginCreateAccountModelComponent
-} from './shared/modal/login-create-account-model/login-create-account-model.component';
+import { LoginCreateAccountModelComponent } from './shared/modal/login-create-account-model/login-create-account-model.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
@@ -87,119 +77,144 @@ import { SummaryModalComponent } from './shared/modal/summary-modal/summary-moda
 import { AboutAge } from './shared/utils/about-age.util';
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
-  return new MultiTranslateHttpLoader(
-    http,
-    [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' },
-      { prefix: './assets/i18n/faq/', suffix: '.json' }
+    return new MultiTranslateHttpLoader(http, [
+        { prefix: './assets/i18n/app/', suffix: '.json' },
+        { prefix: './assets/i18n/home/', suffix: '.json' },
+        { prefix: './assets/i18n/faq/', suffix: '.json' }
     ]);
 }
 
 export function tokenGetterFn() {
-  return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
+    return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HelpModalComponent,
-    MobileModalComponent,
-    LoaderComponent,
-    ErrorModalComponent,
-    BankDetailsComponent,
-    ToolTipModalComponent,
-    ModelWithButtonComponent,
-    LifeProtectionModalComponent,
-    InsuranceResultModalComponent,
-    CreateAccountModelComponent,
-    LoginCreateAccountModelComponent,
-    ExistingCoverageModalComponent,
-    PopupModalComponent,
-    SuccessModalComponent,
-    RestrictAlphabetsDirective,
-    jqxSliderComponent,
-    HeaderComponent,
-    NavbarComponent,
-    FooterComponent,
-    CallBackComponent,
-    HomeComponent,
-    UrlRedirectComponent,
-    TestMyInfoComponent,
-    TransactionModalComponent,
-    FAQComponent,
-    FundDetailsComponent,
-	SummaryModalComponent,
-  ],
-  imports: [
-    BrowserModule,
-    NgbModule.forRoot(),
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    HttpModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
-    SharedModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetterFn
-      }
-    }),
-  ],
-  providers: [
-    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
-    ArticleService,
-    { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: HammerConfig
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
-    }, Formatter, CurrencyPipe, RoutingService,
-    StateStoreService, Util,
-    InvestmentEnableGuard,
-    InvestmentChildEnableGuard,
-    WillWritingEnableGuard,
-    WillWritingChildEnableGuard,
-    PromotionEnableGuard,
-    PromotionChildEnableGuard,
-    ArticleEnableGuard,
-    ArticleChildEnableGuard,
-    SignUpService,
-    ComprehensiveEnableGuard, ComprehensiveChildEnableGuard, AboutAge
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
-    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
-    FundDetailsComponent, LoginCreateAccountModelComponent, SummaryModalComponent]
+    declarations: [
+        AppComponent,
+        HelpModalComponent,
+        MobileModalComponent,
+        LoaderComponent,
+        ErrorModalComponent,
+        BankDetailsComponent,
+        ToolTipModalComponent,
+        ModelWithButtonComponent,
+        LifeProtectionModalComponent,
+        InsuranceResultModalComponent,
+        CreateAccountModelComponent,
+        LoginCreateAccountModelComponent,
+        ExistingCoverageModalComponent,
+        PopupModalComponent,
+        SuccessModalComponent,
+        RestrictAlphabetsDirective,
+        jqxSliderComponent,
+        HeaderComponent,
+        NavbarComponent,
+        FooterComponent,
+        CallBackComponent,
+        HomeComponent,
+        UrlRedirectComponent,
+        TestMyInfoComponent,
+        TransactionModalComponent,
+        FAQComponent,
+        FundDetailsComponent,
+        SummaryModalComponent
+    ],
+    imports: [
+        BrowserModule,
+        NgbModule.forRoot(),
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+        HttpModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [ HttpClient ]
+            }
+        }),
+        SharedModule.forRoot(),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetterFn
+            }
+        })
+    ],
+    providers: [
+        NgbActiveModal,
+        AuthenticationService,
+        CustomErrorHandlerService,
+        RequestCache,
+        AppService,
+        TitleCasePipe,
+        PendingChangesGuard,
+        DefaultErrors,
+        ArticleService,
+        { provide: LoggerService, useClass: ConsoleLoggerService },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: HammerConfig
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true,
+            deps: [ AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService ]
+        },
+        Formatter,
+        CurrencyPipe,
+        RoutingService,
+        StateStoreService,
+        Util,
+        InvestmentEnableGuard,
+        InvestmentChildEnableGuard,
+        WillWritingEnableGuard,
+        WillWritingChildEnableGuard,
+        PromotionEnableGuard,
+        PromotionChildEnableGuard,
+        ArticleEnableGuard,
+        ArticleChildEnableGuard,
+        SignUpService,
+        ComprehensiveEnableGuard,
+        ComprehensiveChildEnableGuard,
+        AboutAge
+    ],
+    bootstrap: [ AppComponent ],
+    entryComponents: [
+        HelpModalComponent,
+        LoaderComponent,
+        ErrorModalComponent,
+        BankDetailsComponent,
+        ToolTipModalComponent,
+        ModelWithButtonComponent,
+        LifeProtectionModalComponent,
+        MobileModalComponent,
+        InsuranceResultModalComponent,
+        PopupModalComponent,
+        CreateAccountModelComponent,
+        ExistingCoverageModalComponent,
+        RecommendationsModalComponent,
+        SettingsWidgetComponent,
+        ConfirmationModalComponent,
+        TermsComponent,
+        WillDisclaimerComponent,
+        TransactionModalComponent,
+        FundDetailsComponent,
+        LoginCreateAccountModelComponent,
+        SummaryModalComponent
+    ]
 })
-
 export class AppModule {
-  /**
+    /**
    * Allows for retrieving singletons using `AppModule.injector.get(MyService)`
    * This is good to prevent injecting the service as constructor parameter.
    */
-  static injector: Injector;
-  constructor(injector: Injector) {
-    AppModule.injector = injector;
-
-  }
+    static injector: Injector;
+    constructor(injector: Injector) {
+        AppModule.injector = injector;
+    }
 }

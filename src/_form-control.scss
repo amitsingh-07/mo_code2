@@ -1173,11 +1173,14 @@ input::placeholder {
 //Comprehensive form styles
 .comprehensive {
   .form-group-with-bg {
-    padding: 10px 0;
+    //padding: 10px 0;
     color:$app-backgrnd-color;
     label {
       color: $dark-teal-color;
       margin-bottom: 0;
+    }
+    &--header-sub-label {
+      font-weight: normal;
     }
   }
   .datepicker-control {
