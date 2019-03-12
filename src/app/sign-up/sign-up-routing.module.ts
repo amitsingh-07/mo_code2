@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AccountUpdatedComponent } from './account-updated/account-updated.component';
+import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {
+    EditResidentialAddressComponent
+} from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -19,7 +25,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import {
+    ViewAllNotificationsComponent
+} from './view-all-notifications/view-all-notifications.component';
 
 const routes: Routes = [
   {
@@ -33,11 +43,11 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT,
-    component: CreateAccountComponent
+    component: CreateAccountComponent,
+    canActivate: [LoggedUserGuard]
   },
   { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
-    component: VerifyMobileComponent,
-    canActivate: [SignUpAccessGuard]
+    component: VerifyMobileComponent
   },
   { path: SIGN_UP_ROUTES.PASSWORD,
     component: PasswordComponent,
@@ -50,7 +60,8 @@ const routes: Routes = [
     component: EmailVerificationComponent
   },
   { path: SIGN_UP_ROUTES.LOGIN,
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoggedUserGuard]
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
@@ -78,6 +89,27 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
     component: EditPasswordComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.EDIT_RESIDENTIAL,
+    component: EditResidentialAddressComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.UPDATE_USER_ID,
+    component: UpdateUserIdComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
+    component: AccountUpdatedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.VIEW_ALL_NOTIFICATIONS,
+    component: ViewAllNotificationsComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.UPDATE_BANK,
+    component: AddUpdateBankComponent,
     canActivate: [AuthGuard]
   }
 ];

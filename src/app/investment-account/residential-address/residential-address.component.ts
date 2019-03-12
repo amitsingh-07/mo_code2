@@ -1,11 +1,10 @@
-import { catchError } from 'rxjs/operators';
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -17,14 +16,17 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-residential-address',
   templateUrl: './residential-address.component.html',
-  styleUrls: ['./residential-address.component.scss']
+  styleUrls: ['./residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResidentialAddressComponent implements OnInit {
   addressForm: FormGroup;
   pageTitle: string;
-  formValues;
-  countries;
-  isUserNationalitySingapore;
+  formValues: any;
+  countries: any;
+  isUserNationalitySingapore: any;
+  reasonList: any;
+  showOtherTex = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -32,8 +34,10 @@ export class ResidentialAddressComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private modal: NgbModal,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
@@ -47,104 +51,341 @@ export class ResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
+    this.getReasoneList(); // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     if (this.formValues.isMyInfoEnabled) {
       if (this.formValues.countryCode) {
-        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(
+          this.formValues.countryCode
+        );
       }
       if (this.formValues.mailCountryCode) {
-        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(
+          this.formValues.mailCountryCode
+        );
       }
     }
     this.countries = this.investmentAccountService.getCountriesFormData();
-    this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+    this.addressForm = this.buildForm();
+    this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
+    this.observeCountryChange();
     this.addOrRemoveMailingAddress();
+    if (this.addressForm.get('mailingAddress')) {
+      this.observeMailCountryChange();
+    }
+    if (this.addressForm.get('mailingAddress')) {
+      this.observeReasonChange();
+    }
+    if (this.addressForm.get('mailingAddress')) {
+      this.addOrRemoveOtherControl(
+        this.addressForm.get('mailingAddress').get('reason').value
+      );
+    }
   }
-
-  buildFormForSingapore(): FormGroup {
-    return this.formBuilder.group({
-      country: [{value: this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
-        disabled: this.investmentAccountService.isDisabled('country')},
-        Validators.required],
-      postalCode: [{value: this.formValues.postalCode, disabled: this.investmentAccountService.isDisabled('postalCode')},
-        [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
-      address1: [{value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1')},
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [{value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2')},
-        [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      floor: [{value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')}, Validators.required],
-      unitNo: [{value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')}, Validators.required],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+  getReasoneList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.reasonList = data.objectList.differentAddressReason;
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
-  buildFormForOtherCountry(): FormGroup {
+  buildForm(): FormGroup {
     return this.formBuilder.group({
-      country: [{value: this.formValues.country ? this.formValues.country :
-        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-        disabled: this.investmentAccountService.isDisabled('country')}, Validators.required],
-      address1: [{value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1')},
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [{value: this.formValues.address2,
-        disabled: this.investmentAccountService.isDisabled('address2')}, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      zipCode: [{value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')},
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      country: [
+        {
+          value: this.getDefaultCountry(),
+          disabled: this.investmentAccountService.isDisabled('country')
+        },
+        Validators.required
+      ],
+      address1: [
+        {
+          value: this.formValues.address1,
+          disabled: this.investmentAccountService.isDisabled('address1')
+        },
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+      ],
+      address2: [
+        {
+          value: this.formValues.address2,
+          disabled: this.investmentAccountService.isDisabled('address2')
+        },
+        [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+      ],
+      isMailingAddressSame: [
+        {
+          value: this.formValues.isMailingAddressSame,
+          disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')
+        }
+      ]
+    });
+  }
+
+  addOrRemoveAdditionalControls(country) {
+    const isSingapore = this.investmentAccountService.isCountrySingapore(country);
+    if (isSingapore) {
+      this.addressForm.addControl(
+        'postalCode',
+        new FormControl(
+          {
+            value: this.formValues.postalCode,
+            disabled: this.investmentAccountService.isDisabled('postalCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
+        )
+      );
+      this.addressForm.addControl(
+        'floor',
+        new FormControl(
+          {
+            value: this.formValues.floor,
+            disabled: this.investmentAccountService.isDisabled('floor')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+      this.addressForm.addControl(
+        'unitNo',
+        new FormControl(
+          {
+            value: this.formValues.unitNo,
+            disabled: this.investmentAccountService.isDisabled('unitNo')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+
+      this.addressForm.removeControl('city');
+      this.addressForm.removeControl('state');
+      this.addressForm.removeControl('zipCode');
+    } else {
+      this.addressForm.addControl(
+        'city',
+        new FormControl(this.formValues.city, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addressForm.addControl(
+        'state',
+        new FormControl(this.formValues.state, [
+          Validators.required,
+          Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)
+        ])
+      );
+      this.addressForm.addControl(
+        'zipCode',
+        new FormControl(
+          {
+            value: this.formValues.zipCode,
+            disabled: this.investmentAccountService.isDisabled('zipCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
+        )
+      );
+
+      this.addressForm.removeControl('postalCode');
+      this.addressForm.removeControl('floor');
+      this.addressForm.removeControl('unitNo');
+    }
+  }
+
+  observeCountryChange() {
+    this.addressForm.get('country').valueChanges.subscribe((value) => {
+      this.addOrRemoveAdditionalControls(value);
     });
   }
 
   addOrRemoveMailingAddress() {
-    if (this.addressForm.controls.isMailingAddressSame.value !== true) {
-      if (this.isUserNationalitySingapore) { // Singapore
-        this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [{value:
-            this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
-            disabled: this.investmentAccountService.isDisabled('mailCountry')}, Validators.required],
-          mailPostalCode: [{value: this.formValues.mailPostalCode,
-            disabled: this.investmentAccountService.isDisabled('mailPostalCode')}, Validators.required],
-          mailAddress1: [{value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1')},
-            [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [{value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2')},
-            [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailFloor: [{value: this.formValues.mailFloor,
-            disabled: this.investmentAccountService.isDisabled('mailFloor')}, Validators.required],
-          mailUnitNo: [{value: this.formValues.mailUnitNo,
-            disabled: this.investmentAccountService.isDisabled('mailUnitNo')}, Validators.required]
-        }));
-      } else { // Other Countries
-        this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [{value: this.formValues.mailCountry ? this.formValues.mailCountry :
-            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-            disabled: this.investmentAccountService.isDisabled('mailCountry')}, Validators.required],
-          mailAddress1: [{value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1')},
-            [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [{value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2')},
-            [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailCity: [{value: this.formValues.mailCity, disabled: this.investmentAccountService.isDisabled('mailCity')},
-            [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-          mailState: [{value: this.formValues.mailState, disabled: this.investmentAccountService.isDisabled('mailState')},
-            [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-          mailZipCode: [{value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')},
-            [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-        }));
-      }
+    if (!this.addressForm.controls.isMailingAddressSame.value) {
+      this.addressForm.addControl(
+        'mailingAddress',
+        this.formBuilder.group({
+          reason: [this.formValues.reason, Validators.required],
+          mailCountry: [
+            {
+              value: this.formValues.mailCountry
+                ? this.formValues.mailCountry
+                : this.investmentAccountService.getCountryFromNationalityCode(
+                    this.formValues.nationalityCode
+                  ),
+              disabled: this.investmentAccountService.isDisabled('mailCountry')
+            },
+            Validators.required
+          ],
+          mailAddress1: [
+            {
+              value: this.formValues.mailAddress1,
+              disabled: this.investmentAccountService.isDisabled('mailAddress1')
+            },
+            [
+              Validators.required,
+              Validators.pattern(RegexConstants.AlphanumericWithSymbol)
+            ]
+          ],
+          mailAddress2: [
+            {
+              value: this.formValues.mailAddress2,
+              disabled: this.investmentAccountService.isDisabled('mailAddress2')
+            },
+            [Validators.pattern(RegexConstants.AlphanumericWithSymbol)]
+          ]
+        })
+      );
+      this.addOrRemoveAdditionalControlsMailing(
+        this.addressForm.get('mailingAddress').get('mailCountry').value
+      );
+      this.observeMailCountryChange();
+      this.observeReasonChange();
     } else {
       this.addressForm.removeControl('mailingAddress');
     }
   }
+  observeReasonChange() {
+    this.addressForm
+      .get('mailingAddress')
+      .get('reason')
+      .valueChanges.subscribe((value) => {
+        this.addOrRemoveOtherControl(value);
+      });
+  }
+  addOrRemoveOtherControl(value) {
+    const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
+    if (value.name === 'Others, please specify') {
+      mailFormGroup.addControl(
+        'reasonForOthers',
+        new FormControl(
+          {
+            value: this.formValues.reasonForOthers,
+            disabled: this.investmentAccountService.isDisabled('reasonForOthers')
+          },
+          Validators.required
+        )
+      );
+    } else {
+      mailFormGroup.removeControl('reasonForOthers');
+    }
+  }
+
+  addOrRemoveAdditionalControlsMailing(country) {
+    const isSingapore = this.investmentAccountService.isCountrySingapore(country);
+    const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
+    if (isSingapore) {
+      mailFormGroup.addControl(
+        'mailPostalCode',
+        new FormControl(
+          {
+            value: this.formValues.mailPostalCode,
+            disabled: this.investmentAccountService.isDisabled('mailPostalCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailFloor',
+        new FormControl(
+          {
+            value: this.formValues.mailFloor,
+            disabled: this.investmentAccountService.isDisabled('mailFloor')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailUnitNo',
+        new FormControl(
+          {
+            value: this.formValues.mailUnitNo,
+            disabled: this.investmentAccountService.isDisabled('mailUnitNo')
+          },
+          [Validators.pattern(RegexConstants.SymbolNumber)]
+        )
+      );
+
+      mailFormGroup.removeControl('mailCity');
+      mailFormGroup.removeControl('mailState');
+      mailFormGroup.removeControl('mailZipCode');
+    } else {
+      mailFormGroup.addControl(
+        'mailCity',
+        new FormControl(
+          {
+            value: this.formValues.mailCity,
+            disabled: this.investmentAccountService.isDisabled('mailCity')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailState',
+        new FormControl(
+          {
+            value: this.formValues.mailState,
+            disabled: this.investmentAccountService.isDisabled('mailState')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+        )
+      );
+      mailFormGroup.addControl(
+        'mailZipCode',
+        new FormControl(
+          {
+            value: this.formValues.mailZipCode,
+            disabled: this.investmentAccountService.isDisabled('mailZipCode')
+          },
+          [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]
+        )
+      );
+
+      mailFormGroup.removeControl('mailPostalCode');
+      mailFormGroup.removeControl('mailFloor');
+      mailFormGroup.removeControl('mailUnitNo');
+    }
+  }
+
+  observeMailCountryChange() {
+    this.addressForm
+      .get('mailingAddress')
+      .get('mailCountry')
+      .valueChanges.subscribe((value) => {
+        this.addOrRemoveAdditionalControlsMailing(value);
+      });
+  }
+
+  getDefaultCountry() {
+    let defaultCountry;
+    if (this.isUserNationalitySingapore) {
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
+      );
+    } else {
+      if (this.formValues.country) {
+        defaultCountry = this.formValues.country;
+      } else {
+        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+          this.formValues.nationalityCode
+        );
+      }
+    }
+    return defaultCountry;
+  }
 
   getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
+    return !control.pristine && !control.valid;
   }
 
   setDropDownValue(key, value) {
     this.addressForm.controls[key].setValue(value);
   }
   setNestedDropDownValue(key, value, nestedKey) {
+    this.addressForm.controls[nestedKey]['controls'][key].setValue(value);
+  }
+  setReason(key, value, nestedKey) {
     this.addressForm.controls[nestedKey]['controls'][key].setValue(value);
   }
 
@@ -162,37 +403,54 @@ export class ResidentialAddressComponent implements OnInit {
 
   retrieveAddress(postalCode, address1Control, address2Control) {
     if (postalCode) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
-      (response: any) => {
-        if (response) {
-          if (response.Status.code === 200) {
-            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-            address1Control.setValue(address1);
-            address2Control.setValue(address2);
-          } else {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
-            address1Control.setValue('');
-            address2Control.setValue('');
+      this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+        (response: any) => {
+          if (response) {
+            if (response.Status.code === 200) {
+              const address1 =
+                response.Placemark[0].AddressDetails.Country.Thoroughfare
+                  .ThoroughfareName;
+              const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+              address1Control.setValue(address1);
+              address2Control.setValue(address2);
+            } else {
+              const ref = this.modal.open(ErrorModalComponent, { centered: true });
+              ref.componentInstance.errorTitle = this.translate.instant(
+                'RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE'
+              );
+              ref.componentInstance.errorMessage = this.translate.instant(
+                'RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE'
+              );
+              address1Control.setValue('');
+              address2Control.setValue('');
+            }
           }
+        },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC'
+          );
         }
-      },
-      (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-      });
+      );
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+      ref.componentInstance.errorTitle = this.translate.instant(
+        'RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE'
+      );
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE'
+      );
     }
   }
 
   goToNext(form) {
-    if (!form.valid) {
+    if (form.status === 'DISABLED') {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+    } else if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -200,9 +458,12 @@ export class ResidentialAddressComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setResidentialAddressFormData(form.value);
+      this.investmentAccountService.setResidentialAddressFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
     }
   }
 
+  isDisabled(field) {
+    return this.investmentAccountService.isDisabled(field);
+  }
 }

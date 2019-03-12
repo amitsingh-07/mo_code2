@@ -1,205 +1,111 @@
 @import '../../../variables';
 @import '../../../mixins';
-
-.confirm-portfolio {
-  .strong {
-    font-weight: bold;
-  }
-  
-  .step-indicator-container {
-    background-color: #fff;
-    padding: 10px 0px;
-    position: relative;
-    top: 60px;
-    margin-bottom: 15px;
-
-    .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-
-    .page-caption {
-      color: $text-color-secondary;
-      font-size: 16px;
-      font-family: $muli;
-      margin-bottom: 10px;
-      text-align: center;
+app-confirm-portfolio {
+  .container-fluid {
+    @include allmobiles {
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+      padding-bottom: 66px;
+      padding-top: 125px;
     }
   }
-
-  @media (min-width: 768px) {
-    .step-indicator-container {
-      top: 0px;
+  .portfolio-allocation-details {
+    .portfolio-allocation-details__container {
+      color: $white-color;
+      border-radius: 6px;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      background-color: $portfolio-allocation-details-bg;
+      .portfolio-allocation-details__content {
+        padding: 20px 0px;
+        .portfolio-allocation-details__content__desc {
+          padding: 0 15px;
+          .portfolio-allocation-details__content__block {
+            font-size: 14px;
+            line-height: 1.5;
+            letter-spacing: -0.14px;
+            text-align: center;
+            border-radius: 3px;
+            background-color: $portfolio-allocation-details-content-color;
+            padding: 20px 15px;
+            strong {
+              font-family: $muli-bold;
+            }
+          }
+        }
+      }
+      .review-edit {
+        justify-content: center;
+        align-items: center;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        color: $review-text-color;
+        .edit_button {
+          background: url('../../../assets/images/edit_button.svg') no-repeat;
+          cursor: pointer;
+          display: inline-flex;
+          margin-left: 12px;
+          width: 18px;
+          height: 18px;
+        }
+      }
     }
   }
-
-  .portfolio-short-desc {
-    text-align: center;
-    font-size: 18px;
-    font-family: $muli;
-  }
-
-  .portfolio-detail {
-
-    font-family: $muli;
-    margin: 15px 0px 0px 0px;
-    background-color: #2d8289;
-    border-radius: 6px 6px 0px 0px;
-
-    .portfolio-head {
-      padding: 15px 20px;
-      border-bottom: 1px solid #00a7a7;
+  .asset-allocation {
+    margin-top: 33px;
+    .title {
+      font-family: $muli-bold;
       font-size: 21px;
       font-weight: bold;
-    }
-
-    .portfolio-content {
-      padding: 15px 20px;
-
-      .projection {
-
-        .graph {
-          position: relative;
-          padding-right: 30px;
-
-          img {
-            width: 100%;
-          }
-
-          .graph-caption {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            font-size: 15px;
-          }
-
-          .growth-icon {
-            position: absolute;
-            right: 0px;
-            top: -5px;
-            width: 24%;
-
-            img {}
-          }
-        }
-
-        .values {
-          display: flex;
-          flex-direction: row;
-          margin: 10px 0px;
-
-          .amount {
-            flex: 6;
-            font-weight: bold;
-            flex-direction: column;
-
-            div {
-              font-size: 32px;
-            }
-
-            .editLink {
-              color: #98dfdf;
-              font-size: 16px;
-              padding-right: 30px;
-              background: url('../../../assets/images/investment-account/edit_pencil.svg') no-repeat right;
-            }
-          }
-
-
-          .year {
-            display: flex;
-            flex: 2;
-            flex-direction: column;
-            align-items: flex-end;
-            color: #98dfdf;
-            font-size: 14px;
-          }
-        }
-
-
-
-
-
-      }
+      letter-spacing: -0.4px;
+      color: $white-color;
+      padding-bottom: 14px;
     }
   }
-
-  .projected-returns {
-    font-family: $muli;
-    display: flex;
-    background-color: #fff;
-    padding: 15px 20px;
-    margin-top: -5px;
-    border-radius: 6px;
-
-    .caption {
-      font-size: 16px;
-      display: flex;
-      flex-direction: column;
-      flex: 4;
-
-      .title {
-        color: #2d8289;
-        font-weight: bold;
-        font-size: 16px;
-
-        img {
-          margin: 0px 5px;
-        }
-      }
-
-      .whatsrisk {
-        color: #00a7a7;
-        text-decoration: underline;
-        font-size: 15px;
-      }
-    }
-
-    .percentage {
-      color: #11b600;
-      font-weight: bold;
-      font-size: 24px;
-      flex: 3;
-      justify-content: center;
-      display: flex;
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 50px;
+    a {
+      color: $white-color;
+      text-decoration: underline;
     }
   }
-
-
-  .breakdown {
-    font-family: $muli;
-    margin: 30px 0px;
-
-    .title {
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 5px;
-      margin-left:20px;
+  .review-block {
+    padding: 20px 35px;
+    background-color: $review-block-bg;
+    font-family: $muli-bold;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.44;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $white-color;
+    margin-bottom: 30px;
+    @include allmobiles{
+      margin: 0;
     }
-
-    .allocation-content {
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      color: #333;
+    .review-italic {
+      font-family: $muli-italic;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.36;
+      letter-spacing: -0.1px;
+      color: $review-text-color;
+      padding-top: 10px;
     }
   }
-
-  .fees-promo{
-    display:flex;
-    padding:25px 15px;
-    background-color:#2d8289;
-    border-radius:6px;
-    align-items:center;
-    margin-bottom:65px;
-
-    img{
-      width:50px;
-    }
-    div{
-      font-size: 16px;
-      font-weight: bold;
-      margin-left:15px;
-    }
+  .btn__footer--fixed {
+    margin-top: 0 !important;
+    font-family: $muli-bold !important;
+    font-size: 24px;
+  }
+  hr {
+    border-color: $teal-color;
+    margin: 0;
   }
 }

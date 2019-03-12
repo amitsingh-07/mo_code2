@@ -1,0 +1,32 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-portfolio-exist {
+  .container-fluid {
+    @include allmobiles {
+      padding: 110px 0;
+    }
+    &.full-height {
+      min-height: 100vh;
+    }
+  }
+  .journey-wrapper {
+    width: 175px;
+    height: 165px;
+    margin: 66px auto 0;
+  }
+  .journey-content {
+    margin-top: 13px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $white-color;
+    text-align: center;
+    padding: 0 30px;
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    letter-spacing: -0.25px;
+    font-size: 24px;
+  }
+}

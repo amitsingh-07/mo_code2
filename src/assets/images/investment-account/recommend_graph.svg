@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="317px" height="207px" viewBox="0 0 317 207" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 23</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-23" transform="translate(1.000000, 0.000000)">
+            <g id="Group-8-Copy" transform="translate(-0.000000, 0.000000)">
+                <path d="M315,102 C281.459246,120.093567 251.654387,134.994152 225.585421,146.701754 C174.756401,169.529126 101.565757,188.961875 6.01348783,205.000002 L0,205 C66.772401,179.389713 126.987455,149.529769 180.645161,115.420168 C233.284019,81.9582378 278.068966,43.4848485 315,4.40536496e-13 L315,102 Z" id="Combined-Shape" fill="#31FF8B"></path>
+                <path d="M238.965517,116.409318 C274.477772,95.9396349 299.8226,79.1365288 315,66 L315,205.168 L0,205.168 C98.9491525,180.78845 178.604325,151.202223 238.965517,116.409318 Z" id="Rectangle-8-Copy-6" fill="#00E232"></path>
+                <path d="M238.965517,150.849483 C274.477772,138.322451 299.8226,128.03929 315,120 L315,205.168 L0,205.168 C98.9491525,190.248209 178.604325,172.142036 238.965517,150.849483 Z" id="Rectangle-8-Copy-7" fill="#015168"></path>
+                <path d="M314.424391,161.98703 L1.06779661,205.168" id="Line-7-Copy-2" stroke="#FF9600" stroke-width="3" stroke-linecap="round" stroke-dasharray="0,7" fill-rule="nonzero"></path>
+                <g id="Group-22" transform="translate(155.364407, 190.268000) scale(1, -1) translate(-155.364407, -190.268000) translate(1.067797, 175.024000)"></g>
+            </g>
+            <path d="M315,64.5 L0,64.5" id="Line-7-Copy-6" stroke="#1FA0A0" stroke-linecap="square" stroke-dasharray="3,6" fill-rule="nonzero"></path>
+            <path d="M315,1.5 L0,1.5" id="Line-7-Copy-5" stroke="#1FA0A0" stroke-linecap="square" stroke-dasharray="3,6" fill-rule="nonzero"></path>
+            <path d="M315,119.5 L0,119.5" id="Line-7-Copy-4" stroke="#1FA0A0" stroke-linecap="square" stroke-dasharray="3,6" fill-rule="nonzero"></path>
+            <path d="M315,159.5 L0,159.5" id="Line-7-Copy-3" stroke="#1FA0A0" stroke-linecap="square" stroke-dasharray="3,6" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

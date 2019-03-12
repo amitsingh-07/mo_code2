@@ -1,0 +1,55 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-holdings {
+  .container-fluid{
+    @include allmobiles{
+      padding: 120px 0;
+    }
+    @include phablet {
+      padding-top: 120px;
+     }
+  }
+  .form-group-with-bg {
+    border-radius: 6px !important;
+    .form-group-with-bg--header {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      background-color: $review-block-bg;
+      padding: 16px 26px 26px 26px;
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .form-group-with-bg--content {
+      border-radius: 6px;
+      background-color: $bond-container-bg;
+      margin-bottom: 22px;
+    }
+    .flex-row {
+      margin-bottom: 14px;
+    }
+    .value_lab {
+      font-family: $muli-regular;
+      font-size: 14px;
+      line-height: 1.64;
+      letter-spacing: -0.1px;
+      color: $black-color;
+    }
+    .text_bold {
+      font-family: $muli-bold;
+      font-weight: bold;
+    }
+    .value {
+      font-family: $muli-bold;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.64;
+      letter-spacing: -0.1px;
+      color: $teal-color;
+      text-align: right;
+    }
+    .flex-row:not(:last-child) {
+      margin-bottom: 14px !important;
+    }
+  }
+}

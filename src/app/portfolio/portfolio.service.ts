@@ -7,7 +7,8 @@ import { IMyFinancials } from './my-financials/my-financials.interface';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
-import { RiskProfile } from './risk-profile/riskprofile';
+import { PORTFOLIO_CONFIG } from './portfolio.constants';
+
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
 
@@ -15,10 +16,13 @@ const SESSION_STORAGE_KEY = 'app_engage_journey_session';
   providedIn: 'root'
 })
 export class PortfolioService {
-
   private portfolioFormData: PortfolioFormData = new PortfolioFormData();
   private personalFormError: any = new PersonalFormError();
-  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService,
+    public authService: AuthenticationService
+  ) {
     this.getPortfolioFormData();
   }
 
@@ -38,7 +42,7 @@ export class PortfolioService {
   // GET PERSONAL INFO
   getPersonalInfo() {
     return {
-      dob: this.portfolioFormData.dob,
+      // dob: this.portfolioFormData.dob,
       investmentPeriod: this.portfolioFormData.investmentPeriod
     };
   }
@@ -53,9 +57,9 @@ export class PortfolioService {
   }
 
   setRiskProfile(data) {
-    this.portfolioFormData.riskProfileId = data.id;
-    this.portfolioFormData.riskProfileName = data.type;
-    this.portfolioFormData.htmlDescription = data.htmlDesc;
+    this.portfolioFormData.riskProfileId = data.primaryRiskProfileId;
+    this.portfolioFormData.riskProfileName = data.primaryRiskProfileType;
+    this.portfolioFormData.htmlDescription = data.htmlDescObject;
     this.commit();
   }
 
@@ -75,44 +79,99 @@ export class PortfolioService {
     return this.personalFormError.formFieldErrors[formCtrlName][validation];
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   doFinancialValidations(form) {
-    const invalid = [];
+    if (form.value.firstChkBox && form.value.secondChkBox) {
+      // tslint:disable-next-line:max-line-length
+      if (
+        Number(this.removeCommas(form.value.initialInvestment)) <
+          PORTFOLIO_CONFIG.my_financials.min_initial_amount &&
+        Number(this.removeCommas(form.value.monthlyInvestment)) <
+          PORTFOLIO_CONFIG.my_financials.min_monthly_amount
+      ) {
+        return this.personalFormError.formFieldErrors['financialValidations']['one'];
+      } else if (
+        Number(this.removeCommas(form.value.monthlyInvestment)) <
+        PORTFOLIO_CONFIG.my_financials.min_monthly_amount
+      ) {
+        return this.personalFormError.formFieldErrors['financialValidations']['two'];
+      } else if (
+        Number(this.removeCommas(form.value.initialInvestment)) <
+        PORTFOLIO_CONFIG.my_financials.min_initial_amount
+      ) {
+        return this.personalFormError.formFieldErrors['financialValidations']['three'];
+      }
+    } else if (form.value.firstChkBox) {
+      if (
+        Number(this.removeCommas(form.value.initialInvestment)) <
+        PORTFOLIO_CONFIG.my_financials.min_initial_amount
+      ) {
+        return this.personalFormError.formFieldErrors['financialValidations']['three'];
+      }
+    } else if (form.value.secondChkBox) {
+      if (
+        Number(this.removeCommas(form.value.monthlyInvestment)) <
+        PORTFOLIO_CONFIG.my_financials.min_monthly_amount
+      ) {
+        return this.personalFormError.formFieldErrors['financialValidations']['two'];
+      }
+    } else {
+      return this.personalFormError.formFieldErrors['financialValidations']['four'];
+    }
     // tslint:disable-next-line:triple-equals
-    if (Number(this.removeCommas(form.value.initialInvestment)) == 0 && Number(this.removeCommas(form.value.monthlyInvestment)) == 0) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
+    if (
+      Number(this.removeCommas(form.value.initialInvestment)) === 0 &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) === 0
+    ) {
       return this.personalFormError.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) <= 100 && Number(this.removeCommas(form.value.monthlyInvestment)) <= 50) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
+    } else if (
+      Number(this.removeCommas(form.value.initialInvestment)) < 100 &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) < 50
+    ) {
       return this.personalFormError.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets)) && Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving)) * Number(this.removeCommas(form.value.monthlyIncome))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment']);
-      return this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment'];
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
+    } else if (
+      Number(this.removeCommas(form.value.initialInvestment)) >
+        Number(this.removeCommas(form.value.totalAssets)) &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) >
+        (Number(this.removeCommas(form.value.percentageOfSaving)) *
+          Number(this.removeCommas(form.value.monthlyIncome)) / 100)
+    ) {
+      return this.personalFormError.formFieldErrors['financialValidations'][
+        'moreassetandinvestment'
+      ];
+    } else if (
+      Number(this.removeCommas(form.value.initialInvestment)) >
+      Number(this.removeCommas(form.value.totalAssets))
+    ) {
       return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
       // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving)) * Number(this.removeCommas(form.value.monthlyIncome))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
-      return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
+    } else if (
+      Number(this.removeCommas(form.value.monthlyInvestment)) >
+      (Number(this.removeCommas(form.value.percentageOfSaving)) *
+        Number(this.removeCommas(form.value.monthlyIncome)) / 100)
+    ) {
+      return this.personalFormError.formFieldErrors['financialValidations'][
+        'moreinvestment'
+      ];
     } else {
       return false;
     }
   }
-
+  // tslint:disable-next-line:cognitive-complexity
   removeCommas(str) {
-  if(str.lenght>3)
-  {
-    while (str.search(',') >= 0) {
-      str = (str + '').replace(',', '');
+    if (str) {
+      if (str.length > 3) {
+        while (str.search(',') >= 0) {
+          str = (str + '').replace(',', '');
+        }
+      }
     }
-  }
     return str;
   }
 
   setPersonalInfo(data: PersonalInfo) {
-    this.portfolioFormData.dob = data.dob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;
     this.commit();
   }
@@ -121,8 +180,7 @@ export class PortfolioService {
   getQuestionsList() {
     return this.apiService.getQuestionsList();
   }
-  constructGetQuestionsRequest() {
-  }
+  constructGetQuestionsRequest() {}
 
   getSelectedOptionByIndex(index) {
     return this.portfolioFormData['riskAssessQuest' + index];
@@ -139,21 +197,20 @@ export class PortfolioService {
   }
   constructRiskAssessmentSaveRequest() {
     const formData = this.getPortfolioFormData();
-    const selAnswers = [{
-      questionOptionId: formData.riskAssessQuest1
-    },
-    {
-      questionOptionId: formData.riskAssessQuest2
-    },
-    {
-      questionOptionId: formData.riskAssessQuest3
-    },
-    {
-      questionOptionId: formData.riskAssessQuest4
-    },
-    {
-      questionOptionId: formData.riskAssessQuest5
-    }];
+    const selAnswers = [
+      {
+        questionOptionId: formData.riskAssessQuest1
+      },
+      {
+        questionOptionId: formData.riskAssessQuest2
+      },
+      {
+        questionOptionId: formData.riskAssessQuest3
+      },
+      {
+        questionOptionId: formData.riskAssessQuest4
+      }
+    ];
     return {
       enquiryId: this.authService.getEnquiryId(),
       answers: selAnswers
@@ -169,7 +226,9 @@ export class PortfolioService {
       totalLiabilities: this.portfolioFormData.totalLiabilities,
       initialInvestment: this.portfolioFormData.initialInvestment,
       monthlyInvestment: this.portfolioFormData.monthlyInvestment,
-      suffEmergencyFund: this.portfolioFormData.suffEmergencyFund
+      suffEmergencyFund: this.portfolioFormData.suffEmergencyFund,
+      oneTimeInvestmentChkBox: this.portfolioFormData.oneTimeInvestmentChkBox,
+      monthlyInvestmentChkBox: this.portfolioFormData.monthlyInvestmentChkBox
     };
   }
   setMyFinancials(formData) {
@@ -180,6 +239,8 @@ export class PortfolioService {
     this.portfolioFormData.initialInvestment = formData.initialInvestment;
     this.portfolioFormData.monthlyInvestment = formData.monthlyInvestment;
     this.portfolioFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.portfolioFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
+    this.portfolioFormData.monthlyInvestmentChkBox = formData.secondChkBox;
     this.commit();
   }
 
@@ -195,7 +256,7 @@ export class PortfolioService {
       monthlyIncome: formData.monthlyIncome,
       initialInvestment: formData.initialInvestment,
       monthlyInvestment: formData.monthlyInvestment,
-      dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
+      // dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities
@@ -219,17 +280,55 @@ export class PortfolioService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map((e) => {
+    Object.keys(objectKeys).forEach((e) => {
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();
   }
 
-  setFund(fund) {
-    this.portfolioFormData.selectedFund = fund;
+  getFundDetails() {
+    return this.portfolioFormData.fundDetails;
+  }
+
+  setFundDetails(fundDetails) {
+    this.portfolioFormData.fundDetails = fundDetails;
     this.commit();
   }
-  getSelectedFund() {
-    return this.portfolioFormData.selectedFund;
+
+  // tslint:disable-next-line:cognitive-complexity
+  sortByProperty(list, prop, order) {
+    list.sort((a, b) => {
+      const itemA = typeof a[prop] === 'string' ? a[prop].toLowerCase() : a[prop];
+      const itemB = typeof b[prop] === 'string' ? b[prop].toLowerCase() : b[prop];
+      if (order === 'asc') {
+        if (itemA < itemB) {
+          return -1;
+        }
+        if (itemA > itemB) {
+          return 1;
+        }
+      } else {
+        if (itemA > itemB) {
+          return -1;
+        }
+        if (itemA < itemB) {
+          return 1;
+        }
+      }
+      return 0;
+    });
+  }
+
+  clearFormData() {
+    this.portfolioFormData = new PortfolioFormData();
+    this.commit();
+  }
+
+  clearData() {
+    this.clearFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY);
+    }
   }
 }

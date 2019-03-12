@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" id="errorModelImage" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title" id="errorModeltitle" [innerHTML]="errorTitle"> 
+  </div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
+  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"  [innerHTML]="errorMessage"></div>
+  <div class="modal-body-message" *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="action-button" (click)="activeModal.dismiss('Cross click')" id="errorModeButton">
+        {{ 'COMMON.OKAY' | translate}}
+      </button>
+    </div>
+  </div>
+</div>
