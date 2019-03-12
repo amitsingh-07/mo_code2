@@ -450,6 +450,12 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   isDisabled(field) {
-    return this.investmentAccountService.isDisabled(field);
+    let isDisabled = false;
+    if (field === 'country' && this.isUserNationalitySingapore) {
+      isDisabled = true;
+    } else {
+      isDisabled = this.investmentAccountService.isDisabled(field);
+    }
+    return isDisabled;
   }
 }
