@@ -2,7 +2,12 @@
 @import '../../../mixins';
 
 app-compare-plans {
-
+  position: absolute;
+  z-index:1029;
+  background-color:$teal-color;
+  .container-fluid{
+    padding-top:40px;
+  }
   .best-value-icon {
     position: absolute;
     top: 5px;
