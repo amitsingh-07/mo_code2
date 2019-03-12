@@ -57,12 +57,18 @@
       <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
         id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" id="navbarDefault" #navbar>
         <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar, 'noMenu': !showMenu}">
-          <li *ngIf="isLoggedIn" class="nav-item flex space-between hidden-lg" style="flex-direction: row">
-            <a class="nav-link txt-capitalize underline" (click)="goToDashboard()">{{userInfo.firstName}}</a>
-            <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout
-              <i class="fa fa-sign-out" style="padding-left: 10px"></i>
+          <li *ngIf="isLoggedIn" class="nav-item flex space-between link-mob-profile hidden-lg" style="flex-direction: row">
+            <div class="dashboard-btn" (click)="goToDashboard()">
+              <div class="name">{{userInfo.firstName}}</div>
+              <div class="sub-text">My Dashboard</div>
+            </div>
+            <a class="nav-link logout-btn" (click)="logout()" href="javascript: void(0);">Logout
+              <i class="fa fa-sign-out"></i>
               </a>
             </li>
+          <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" [routerLink]="['/account/edit-profile']">
+            <a class="navbar--text" href="javascript: void(0);">Profile</a>
+          </li>
           <!--
           <li class="nav-item" [routerLink]="['/home']">
             <a class="nav-link">Home</a>
@@ -158,10 +164,10 @@
               <div *ngIf="recentMessages && recentMessages.length" class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
             </div>
             </li>
-          <li *ngIf="!isLoggedIn" class="nav-item link-login">
-            <a class="nav-link" [routerLink]="['/account/login']">Login</a>
+          <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
+            <a class="nav-link" [routerLink]="['/account/login']"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
             </li>
-          <li *ngIf="isLoggedIn" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
+          <li *ngIf="isLoggedIn && showLogin" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
           (mouseleave)="closeDropdown(id05);">
             <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle></a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">

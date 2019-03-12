@@ -567,18 +567,28 @@ h6 {
         }
       }
       &.link-login {
+        @include minMobilemaxPhablet{
+          order:-1;
+          background-color:$teal-color;
+          }
         a {
           font-family: $muli-semi-bold;
           font-size: 16px;
           color: $teal-color;
-
+          img{
+            display:none;
+          }
           @include minMobilemaxPhablet {
             font-family: $muli-semi-bold;
             font-size: 16px;
-
+            color:$white-color;
             &:hover {
               background-color: $dark-aqua-color;
               color: $white-color;
+            }
+            img{
+              display:inline-block;
+              margin-right:10px;
             }
           }
 
@@ -587,7 +597,48 @@ h6 {
           }
         }
       }
-      
+      &.link-mob-profile{
+        padding:8px 0px;
+        background-color:$teal-color;
+        cursor: pointer;
+        .dashboard-btn{
+          padding-left:20px;
+          .name{
+            color:$white-color;
+            font-size:18px;
+            font-family:$muli-bold;
+          }
+          .sub-text{
+            font-family:$muli-regular;
+            color:$white-color;
+            font-size:13px;
+          }
+        }
+        .logout-btn{
+          width:auto;
+          padding-right:20px;
+          color:$white-color;
+          i{
+            padding-left:10px;
+            color:$white-color;
+          }
+        }
+        
+        &:hover{
+          color:$white-color;
+          background-color:$teal-color;
+        }
+        &:active{
+          color:$white-color;
+          background-color:$teal-color;
+        }
+      }
+      &.profile-btn{
+        background-color:$teal-color;
+        a{
+          color:$white-color;
+        }
+      }
       &.profile {
         margin-right:0px;
         .dropdown-toggle{

@@ -39,7 +39,7 @@ export class NavbarConfig {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
-      showLogin: true,
+      showLogin: false,
       showNavShadow: true,
       showSearchBar: false,
     };
@@ -48,18 +48,18 @@ export class NavbarConfig {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
-      showLogin: true,
+      showLogin: false,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
-      showHeaderNavbar: true
+      showHeaderNavbar: false
     };
 
     '6': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
-      showLogin: true,
+      showLogin: false,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,

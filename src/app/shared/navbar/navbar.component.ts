@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showLogin = true; // Show Login Feature
   showNavShadow = true; // Navbar Show Shadow
   showSearchBar = false; // Navbar Show Search
-  showNotifications = true; // Show Notifications Feature
+  showNotifications = false; // Show Notifications Feature
   showHeaderNavbar = false; // Navbar Show on Mobile
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
@@ -119,14 +119,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         }
       }
     });
-
-    // To Be Deleted
-    this.isLoggedIn = true;
-    this.userInfo = {
-      firstName: 'Teng',
-    };
-    console.log(this.userInfo);
-    }
+  }
 
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:resize', [])
@@ -261,7 +254,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   toggleMenu() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
-    console.log(this.isNavbarCollapsed);
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
       console.log('Notification is not hidden and on mobile');
       this.isNotificationHidden = true;
@@ -270,7 +262,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Notification Methods
   getRecentNotifications() {
-    /*
     this.signUpService.getRecentNotifications().subscribe((response) => {
       this.notificationCount = response.objectList[0].unreadCount;
       this.recentMessages = response.objectList[0].notifications[0].messages;
@@ -278,14 +269,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         message.time = parseInt(message.time, 10);
       });
     });
-    */
-    // To be deleted
-    this.notificationLimit = 9;
-    this.notificationCount = 10;
   }
 
   toggleRecentNotification() {
-    console.log('NotificationHidden' + this.isNotificationHidden);
     this.isNotificationHidden = !this.isNotificationHidden;
     if (!this.isNotificationHidden) { // When Opened
       if (this.recentMessages && this.recentMessages.length) {
