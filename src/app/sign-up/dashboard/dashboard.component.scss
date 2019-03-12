@@ -48,7 +48,7 @@ app-dashboard{
     }
     .user-profile-bg{
         padding-left: 15px;
-        //font-family: $muli-extra-light;
+        font-family: $muli-extra-light;
         font-size: 22px; 
         font-weight: 200;
         line-height: 34PX;
@@ -162,10 +162,6 @@ app-dashboard{
                             display: flex;
                             justify-content: flex-end;
                             align-items: flex-end;
-                            // width: 85px;
-                            // height: 70px;
-                            // margin-right: 0;
-                            // margin-left: auto; 
                             img{
                                 max-width: 100%;
                                 height: auto;
@@ -226,14 +222,6 @@ app-dashboard{
                         background-color: #ffffff !important;
                         margin: 18px 0 0;
                         color: #00a7a7;
-                        div{
-                            &:last-child{
-                                font-family: $muli-regular;
-                                font-size: 13px;
-                                font-weight: normal;
-                                color: #9b9b9b;
-                            }
-                        }
                     }
                     .btn-primary{
                         font-family: $muli-bold;

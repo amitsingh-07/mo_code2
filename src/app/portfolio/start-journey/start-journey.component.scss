@@ -1,0 +1,30 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+app-start-journey {
+  .container-fluid {
+    @include allmobiles {
+      padding: 110px 0;
+    }
+    &.full-height {
+      min-height: 100vh;
+    }
+  }
+  .journey-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 60px auto 0;
+  }
+  .journey-content {
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.16px;
+    color: $dark-grey-color;
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    letter-spacing: -0.25px;
+    font-size: 24px;
+  }
+}

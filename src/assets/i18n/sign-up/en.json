@@ -1,5 +1,6 @@
 {
     "COMMON": {
+        "APPLY_CHANGES": "Apply Changes",
         "CONTINUE": "Continue",
         "VERIFY": "Verify",
         "LOGIN": "Log In",
@@ -8,6 +9,12 @@
         "CAPTCHA": "Enter image text",
         "CAPTCHA_TITLE": "Enter the characters shown in the image",
         "TRY_ANOTHER_TEXT": "Try another text",
+        "LABEL": {
+            "CONTINUE": "Continue",
+            "RETRIEVE": "Retrieve",
+            "VIEW_DETAILS": "View Details",
+            "SAVE_AND_CONTINUE": "Save and Continue"
+        },
         "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "CREATE_ACCOUNT": {
@@ -28,7 +35,7 @@
         "FORM": {
             "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
             "EDIT_NUMBER": "Edit Number",
-            "DIDNT_RECIEVE": "Didn't Recieve it?",
+            "DIDNT_RECIEVE": "Didn't Receive it?",
             "REQUEST_NEW_CODE": "Request New Code",
             "CODE_SENT": "Code sent!",
             "RETRY_IN": "Retry in",
@@ -73,6 +80,12 @@
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."
     },
+    "ACCOUNT_UPDATED": {
+        "TITLE": "Account Updated!",
+        "SUB_TITLE1": "Mobile number updated successfully",
+        "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
+        "EDIT_PROFILE": "Back to Edit Profile"
+    },
     "LOGIN": {
         "WELCOME_LBL": "Welcome to MoneyOwl!",
         "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
@@ -100,11 +113,120 @@
         "YES_LOGIN": "Yes, Log In Now",
         "CREATE_ACCOUNT": "No, Create Account"
     },
+    "RESIDENTIAL_ADDRESS": {
+        "TITLE": "Residential Address",
+        "COUNTRY": "Country",
+        "POSTAL_CODE": "Postal Code",
+        "ADDRESS_1": "Address Line 1",
+        "ADDRESS_2": "Address Line 2",
+        "FLOOR": "Floor",
+        "UNIT_NO": "Unit No.",
+        "CITY": "City",
+        "STATE": "State / Province / Region",
+        "ZIPCODE": "Zip Code",
+        "APPLY": "Apply Changes",
+        "ERROR": {
+            "POSTAL_CODE_TITLE": "Error !",
+            "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+        },
+        "POSTALCODE_EMPTY_ERROR": {
+            "TITLE": "Invalid Postal Code",
+            "MESSAGE": "Please enter your postal code."
+        },
+        "POSTALCODE_NOT_FOUND_ERROR": {
+            "TITLE": "Invalid Postal Code",
+            "MESSAGE": "Please enter valid postal code."
+        }
+    },
+    "UPLOAD_DOCUMENTS": {
+        "TITLE": "Upload Documents",
+        "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+        "PROOF_OF_IDENTITY": "Proof Of Identity",
+        "NRIC": "NRIC",
+        "PASSPORT": "Passport",
+        "FRONT_NRIC": "Front NRIC",
+        "BACK_NRIC": "Back NRIC",
+        "TAP_TO_UPLOAD": "Tap to Upload",
+        "PROOF_OF_MAILING": "Proof Of Mailing Address",
+        "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+        "PROOF_OF_RESIDENT": "Proof Of Residential Address",
+        "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
+        "CHOOSE_FILE": "Choose File",
+        "UPLOADED": "Uploaded",
+        "NO_FILE_SELECTED": "no file selected",
+        "SPECIFICATION":"Specifications for documents to be uploaded:",
+        "FILE_LESS-THAN":"File less than",
+        "TEN_MB":"10MB",
+        "FILE_TYPE":"File types:",
+        "SUPPORTED_FILES":"pdf, jpg, jpeg, png, gif, bmp",
+        "VERIFICATION_DOC":"Verification Document",
+        "MODAL": {
+            "MAILING_ADDRESS_PROOF": {
+                "TITLE": "Proof Of Mailing Address",
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
+            },
+            "RES_ADDRESS_PROOF": {
+                "TITLE": "Proof Of Residential Address",
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>"
+            },
+            "UPLOAD_LATER": {
+                "TITLE": "Upload Documents Later?",
+                "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
+                "CONFIRM_PROCEED": "Yes! Upload Later"
+            },
+            "UPLOADING_LOADER": {
+                "TITLE": "Uploading",
+                "MESSAGE": "Please be patient, upload may take a few minutes."
+            },
+            "FILE_SIZE_EXCEEDED": {
+                "TITLE": "Error !",
+                "MESSAGE": "File of size more than 10 MB is not allowed."
+            },
+            "FILE_TYPE_MISMATCH": {
+                "TITLE": "Error !",
+                "MESSAGE": "The selected file type is not allowed."
+            }
+        }
+    },
+    "UPDATE_USER_ID": {
+        "TITLE": "Update User ID",
+        "YOUR_USER_ID": "Your User ID",
+        "MOBILE_NUMBER": "Mobile Number",
+        "EMAIL": "Email Address",
+        "APPLY_CHANGES": "Apply Changes"
+    },
     "DASHBOARD": {
         "PROFILE": {
             "WELCOME": "Welcome back,",
             "EDIT_PROFILE": "Edit Profile",
             "YOUR_ADVISOR": "Your Advisor"
+        },
+        "INVESTMENT": {
+            "TITLE_MY_INVESTMENT": "My Investment",
+            "TITLE_INVESTMENT": "Investment",
+            "VIEW_ALL": "View all",
+            "PROCEED": "Proceed",
+            "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
+            "CREATE_YOUR_PORTFOLIO_DESC": "Answer a few questions to determine the portfolio most suited to you!",
+            "GET_STARTED": "Get Started!",
+            "TIME": "8mins",
+            "TOTAL_PORTFOLIO": "Total Portfolio Value",
+            "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
+            "CASH_ACCOUNT_BALANCE":"Cash Account Balance",
+            "TOTAL_RETURNS": "Total Returns",
+            "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
+            "UPDATE": "Upload Documents",
+            "START_INVESTING": "Start Investing",
+            "ESTIMATED_MINS": "Estimated 5-15 mins",
+            "ADD_PORTFOLIO": " Add Portfolio",
+            "ESTIMATED_THREE_MINS": "Estimated 3 mins",
+            "CDD_CHECK_ONGOING": "Verification of investment account details in progress.",
+            "CDD_CHECK_FAIL_DESC": "Investment account set up unsuccessful. Please verify your details.",
+            "VERIFY_DETAILS": "Verify Now",
+            "SETUP_YOUR_ACCOUNT_DESC": "To proceed, please set up your investment account.",
+            "SET_UP_ACCOUNT": "Set-Up Account",
+            "SUSPENDED_INVESTMENT_ACCOUNT": "Your account has been suspended. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
+            "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance."
         },
         "WILL_WRITING": {
             "TITLE": "Will Writing",
@@ -122,5 +244,62 @@
             "TITLE": "Insurance",
             "DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188."
         }
+    },
+    "EDIT_PROFILE": {
+        "TITLE": "Create Your Account",
+        "GENDER": "Gender",
+        "NATIONALITY": "Nationality",
+        "DOB": "Date of Birth",
+        "UPDATE_USER_ID": "Update User ID",
+        "MOB": "Mobile Number",
+        "EMAIL": "Email Address",
+        "EDIT": "Edit",
+        "CHANGE_PASS": "Change Password",
+        "PASSWORD": "Password",
+        "UPDATE_CONTACT": "Update Contact Details",
+        "RES_ADDRESS": "Residential Address",
+        "COUNTRY": "Country",
+        "POSTAL": "Postal Code",
+        "ADDRESS_1": "Address Line 1",
+        "ADDRESS_2": "Address Line 2",
+        "FLOOR": "Floor",
+        "UNIT": "Unit Number",
+        "CITY": "City",
+        "STATE": "State",
+        "ZIP": "Zip Code",
+        "MAILING": "Mailing Address",
+        "MAILING_SAME": "Same as Residential Address",
+        "UPDATE_EMP": " Update Employment Details",
+        "EMP_STATUS": "Employer Status",
+        "EMP_NAME": "Employer Name",
+        "INDUSTRY": "Industry",
+        "EMP_CONTRACT": "Employer Contact",
+        "OCCUPATUION": "Occupation",
+        "UPDATE_BANK": "Update Bank Details",
+        "BANK": "Bank Name",
+        "BANK_ACC": " Bank Account",
+        "NO_BANK": "No bank added",
+        "ADD_BANK": " Add Bank",
+        "CONFIRMATION": "Confirmation",
+        "EDIT_PASSWORD_TITLE":"Your Password",
+        "OLD_PASSWORD":"Old Password",
+        "NEW_PASSWORD":"New Password",
+        "CONFIRM_PASSWORD":"Confirm Password",
+        "FORGET_PASSWORD":"Forgot your password?",
+        "APPLY_CHANGES":"Apply Changes"
+    },
+    "ADD_BANK": {
+        "ACCOUNT_NAME": "Account Holders Name",
+        "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
+        "BANK": "Bank Name",
+        "SELECT": "Select Bank",
+        "ACCOUNT": "Account No.",
+        "ADD":"Add Bank Details",
+        "EDIT":"Edit Bank Details",
+        "ADD_NOW":"Add Now",
+        "APPLY":"Apply Changes"
+    },
+    "NOTIFICATIONS": {
+        "EMPTY": "No New Notifications!"
     }
 }

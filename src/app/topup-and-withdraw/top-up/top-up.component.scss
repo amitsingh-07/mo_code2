@@ -1,0 +1,195 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-top-up {
+  .container-fluid {
+    @include allmobiles{
+      padding-bottom: 0 !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      padding-top: 125px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+    .content {
+      &:first-child {
+        margin: 0 18px;
+      }
+    }
+  }
+  .form-group-with-bg .form-group-with-bg--content {
+    padding: 20px 20px 30px 20px;
+  }
+  .request_txt {
+    background-color: $review-block-bg;
+    font-family: $muli-bold;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.18px;
+    text-align: center;
+    color: $white-color;
+    padding: 30px 20px;
+    position: relative;
+    @include allmobiles{
+      bottom: 66px;
+    }
+  }
+  .balance-amount {
+    font-family: $muli-italic;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    color: $text-color-secondary;
+    margin: 0px !important;
+  }
+  .topupportfolio-amount {
+    font-family: $muli-italic;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    color: $top-up-portfolio-amount-color;
+    margin: 0px !important;
+    padding-top: 8px;
+  }
+  .btn {
+    white-space: normal;
+  }
+  .input-label-white {
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    text-align: center;
+  }
+  .form-group-with-bg--header-label {
+    color: $dark-teal-color !important;
+    font-family: $muli-regular !important;
+  }
+  .form-control .input-control {
+    font-size: 18px;
+    font-family: $muli-bold;
+    text-align: right !important;
+  }
+  .topup-radio-button {
+    padding: 0px;
+    @include allmobiles {
+      display: inline-grid;
+      width: 50%;
+      min-height: 140px;
+      &:nth-child(1) input[type='radio'] + label,
+      &:nth-child(2) input[type='radio'] + label {
+        margin-top: 10px;
+      }
+      &:nth-child(2n + 1) input[type='radio'] + label {
+        margin-left: auto;
+        margin-right: 8.5px;
+      }
+      &:nth-child(2n) input[type='radio'] + label {
+        margin-left: auto;
+        margin-right: 5.5px;
+      }
+    }
+    &.one-label {
+      padding: 0.7rem 0.8rem;
+    }
+    &.two-label {
+      padding: 0.4rem 0.8rem;
+    }
+    input[type='radio'] + label,
+    input[type='checkbox'] + label {
+      width: 100%;
+      padding: 17px 15px;
+      background: $white-color;
+      color: $teal-color;
+      font-family: $muli-bold;
+      font-size: 16px;
+      position: relative;
+      border: none;
+      border: solid 1px $light-teal-color;
+      border-radius: 6px;
+      @include allmobiles {
+        width: calc(100% - 17px);
+        height: 104px;
+        text-align: center;
+        padding: 20px 19px;
+        max-width: 163px;
+        position: relative;
+        &.ltc {
+          padding: 25px 21px;
+        }
+      }
+      @include min300max350 {
+        padding: 20px 11px;
+      }
+      .input-label-white {
+        color: $teal-color;
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 1.3;
+        @include allmobiles {
+          margin-bottom: 20px;
+        }
+        @include min300max350 {
+          @include fontSize(12px);
+        }
+      }
+      .input-label-normal {
+        font-family: $muli-regular;
+        @include fontSize(10px);
+        color: $text-color-secondary;
+        opacity: 0.8;
+        letter-spacing: -0.3px;
+        line-height: 1.1;
+        padding-left: 10px;
+        @include allmobiles {
+          position: absolute;
+          font-family: $muli-regular;
+          display: inline-flex;
+          width: 100%;
+          left: 0px;
+          padding: 0 10px;
+          letter-spacing: -0.3px;
+          bottom: 20px;
+          line-height: 1.3;
+          font-size: 12px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
+        @include min300max350 {
+          padding: 0 13px;
+        }
+      }
+      .input-label-top20 {
+        font-family: $muli;
+        @include fontSize(10px);
+        color: $white-color;
+        opacity: 0.8;
+        letter-spacing: -0.3px;
+        line-height: 1.1;
+        @include allmobiles {
+          padding: 0;
+          line-height: 1.3;
+          @include fontSize(8.5px);
+        }
+      }
+    }
+    input[type='radio']:checked + label,
+    input[type='checkbox']:checked + label {
+      background-image: none;
+      background-color: $teal-color;
+      .input-label-white,
+      .input-label-normal,
+      .input-label-top20 {
+        color: $white-color;
+      }
+    }
+  }
+  .second-section {
+    padding-bottom: 80px;
+    .btn__footer--fixed {
+      font-family: $muli-bold;
+      font-size: 24px;
+    }
+  }
+  .form-control.form-control-right input {
+    padding-right: 46px;
+  }
+}

@@ -1,0 +1,145 @@
+{
+    "objectList": {
+        "amlVerificationStatus": null,
+        "serverStatus": null,
+        "data": {
+            "totalValue": 76286,
+            "totalReturns": 56286,
+            "investmentReturns": 8.98,
+            "cashAccountBalance": 94586,
+            "portfolios": [
+                {
+                    "productName": "DPMS BFA Balanced (BFA)",
+                    "productCode": "PORTFOLIO0001",
+                    "paymentMethod": "cheque",
+                    "productType": "DPMS",
+                    "currency": "SGD",
+                    "currentValue": 211015.39,
+                    "investmentAmount": 5000,
+                    "profitAndLoss": 206015.39,
+                    "profitAndLossPercentage": 4120.3078,
+                    "dpmsDetailsDisplay": [
+                        {
+                            "productName": "United Japan Small and Mid Cap SGD",
+                            "productCode": "UOB064",
+                            "productType": "UT",
+                            "availableUnits": 150.17,
+                            "investmentAmount": 307.72,
+                            "indicativePrice": 2.03,
+                            "currentValue": 304.39,
+                            "profit": -3.33,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "PineBridge Asia Ex Japan Sm Cap Eq A5CP SGD",
+                            "productCode": "PIN015",
+                            "productType": "UT",
+                            "availableUnits": 15.47,
+                            "investmentAmount": 244.87,
+                            "indicativePrice": 16.4,
+                            "currentValue": 253.63,
+                            "profit": 8.76,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "Vanguard Emerging Markets Stock Index USD",
+                            "productCode": "VAN007",
+                            "productType": "UT",
+                            "availableUnits": 0.95,
+                            "investmentAmount": 250.32,
+                            "indicativePrice": 261.9,
+                            "currentValue": 248.8,
+                           "profit": -1.52,
+                            "additionalProperties": {}
+                        }
+                    ],
+                    "additionalProperties": {}
+                },
+                {
+                    "productName": "DPMS BFA Accumulator (BFA)",
+                    "productCode": "PORTFOLIO00091",
+                    "paymentMethod": "cheque",
+                    "productType": "DPMS",
+                    "currency": "SGD",
+                    "currentValue": 7536.26,
+                    "investmentAmount": 6000,
+                    "profitAndLoss": 1536.26,
+                    "profitAndLossPercentage": 25.6043,
+                    "dpmsDetailsDisplay": [
+                        {
+                            "productName": "Neuberger Berman US Multicap Opp A USD1 Acc",
+                            "productCode": "NBB006",
+                            "productType": "UT",
+                            "availableUnits": 13.01,
+                            "investmentAmount": 376.64,
+                            "indicativePrice": 31.18,
+                            "currentValue": 405.6,
+                            "profit": 28.96,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "PineBridge India Equity A5CP SGD",
+                            "productCode": "PIN007",
+                            "productType": "UT",
+                            "availableUnits": 5.88,
+                            "investmentAmount": 158.99,
+                            "indicativePrice": 27.52,
+                            "currentValue": 161.79,
+                            "profit": 2.8,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "Fidelity EmEur MidEast and Africa A USD",
+                            "productCode": "FID008",
+                            "productType": "UT",
+                            "availableUnits": 18.96,
+                            "investmentAmount": 377.48,
+                            "indicativePrice": 19.51,
+                            "currentValue": 369.91,
+                            "profit": -7.57,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "HGIF Glb High Income Bond AM3H SGD",
+                            "productCode": "HSB125",
+                            "productType": "UT",
+                            "availableUnits": 7.98,
+                            "investmentAmount": 85.89,
+                            "indicativePrice": 10.52,
+                            "currentValue": 83.96,
+                            "profit": -1.93,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "Fidelity Emerging Market Fund A SGD",
+                            "productCode": "FI3014",
+                            "productType": "UT",
+                            "availableUnits": 292.15,
+                            "investmentAmount": 439.98,
+                            "indicativePrice": 1.46,
+                            "currentValue": 426.54,
+                            "profit": -13.44,
+                            "additionalProperties": {}
+                        },
+                        {
+                            "productName": "Fullerton Asian Bond Fd Cl B SGD",
+                            "productCode": "FUL004",
+                            "productType": "UT",
+                            "availableUnits": 153.87,
+                            "investmentAmount": 252.81,
+                            "indicativePrice": 1.64,
+                            "currentValue": 252.82,
+                            "profit": 0.01,
+                            "additionalProperties": {}
+                        }
+                    ],
+                    "additionalProperties": {}
+                }
+            ]
+        }
+    },
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

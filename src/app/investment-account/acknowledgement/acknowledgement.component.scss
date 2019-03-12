@@ -1,36 +1,104 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-
-.app-acknowledgement{
-    background-color:white;
-        background: white;
-    .step-indicator-container {
-        background-color: #fff;
-        padding: 10px 0px;
-        position: relative;
-        top: 60px;
-        margin-bottom: 15px;
-    
-        .container-fluid {
-          padding-top: 0px;
-          padding-bottom: 0px;
-        }
-      }
-    
-      @media (min-width: 768px) {
-        .step-indicator-container {
-          top: 0px;
-        }
-      }
-    .acknowledgement_text{
-            font-family: Muli;
-            font-size: 16px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.31;
-            letter-spacing: -0.2px;
-            color: #848484;
-          
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-acknowledgement {
+  .app-acknowledgement {
+    background-color: $white-color;
+    .container-fluid {
+      padding-top: 110px;
     }
+    .step-indicator-container {
+      background-color: $white-color;
+      padding: 10px 0px;
+      position: relative;
+      top: 106px;
+      margin-bottom: 15px;
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+    @media (min-width: 768px) {
+      .step-indicator-container {
+        top: 0px;
+      }
+    }
+    .acknowledgement_text {
+      font-family: $muli-regular;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.31;
+      letter-spacing: -0.2px;
+      color: $acknowledgement-text-color;
+    }
+    .text-bold {
+      font-weight: bold;
+      color: $black-color;
+    }
+   ol {
+      padding: 0;
+      margin: 0;
+      padding-left: 18px;
+      ul.list-none {
+        padding: 10px 0;
+        font-weight: normal;
+        color: $acknowledgement-text-color;
+        li{
+          padding: 5px 0;
+        }
+        .flex {
+          span {
+            &:first-child {
+              padding-right: 5px;
+            }
+          }
+        }
+        strong {
+          font-family: $muli-bold;
+          color: $black-color;
+        }
+      }
+      .inner-list {
+        li {
+          padding-left: 20px !important;
+        }
+      }
+      .list-style {
+        padding-left: 10px !important;
+        .flex {
+          align-items: center;
+          justify-content: space-between;
+        }
+        .disc {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: $acknowledgement-text-color;
+          padding: 0 !important;
+        }
+      }
+      li{
+        &:last-child{
+          ul.list-none {
+            .flex {
+              span {
+                &.text-bold {
+                  padding-top: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .list-none {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
 }
