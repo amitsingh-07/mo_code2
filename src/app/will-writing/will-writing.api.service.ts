@@ -76,6 +76,10 @@ export class WillWritingApiService {
             promoCode: will.promoCode
         };
 
+        if (this.willWritingService.getIsWillCreated()) {
+            delete willProfile.promoCode;
+        }
+
         const willProfileMembers: IWillProfileMembers[] = [];
 
         if (will.aboutMe.maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
