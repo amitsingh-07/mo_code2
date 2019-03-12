@@ -259,7 +259,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData() && this.isFormAltered) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
-          const hasImpact = this.willWritingService.isUserLoggedIn();
+          const hasImpact = this.willWritingService.getIsWillCreated();
           this.openConfirmationModal(url, hasImpact);
         } else if (this.isFormAltered) {
           this.openConfirmationModal(url, false);

@@ -14,7 +14,7 @@ export class WillWritingAccessGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const promoCode = this.willWritingService.getPromoCode();
-    if (Object.keys(promoCode).length === 0 && promoCode.constructor === Object) {
+    if (Object.keys(promoCode).length === 0 && promoCode.constructor === Object && !this.willWritingService.getIsWillCreated()) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
       return false;
     }
