@@ -9,7 +9,12 @@
 }
 
 .modal-backdrop.fade.show.progress-tracker-backdrop {
-    opacity: 0 !important;
+    opacity: 0.5 !important;
+    background: #ffffff;
+    top: 131px;
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 5px 5px 0 0;
 }
 
 .progress-tracker-tooltip {
