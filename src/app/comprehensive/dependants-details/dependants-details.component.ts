@@ -13,7 +13,7 @@ import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { IMyDependant, IMySummaryModal } from './../comprehensive-types';
+import { IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   dependant: any = [];
   relationShipList: any;
   nationalityList: any;
-  dependantDetails: IMyDependant[];
+  dependantDetails: IDependantDetail[];
   relationship: string;
   submitted = false;
   pageId: string;
@@ -63,14 +63,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       });
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
-    if (this.dependantDetails) {
-      this.loaderService.showLoader({ title: 'Fetching Data' });
-      this.comprehensiveApiService.getDependents().subscribe((data) => {
-        this.dependantDetails = data.objectList;
-        this.loaderService.hideLoader();
-        this.buildDependantForm();
-      });
-    }
+    this.buildDependantForm();
 
   }
 
@@ -81,7 +74,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
-    this.buildDependantForm();
   }
 
   ngOnDestroy() {
@@ -94,7 +86,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   buildDependantForm() {
     const dependantFormArray = [];
-    if (this.dependantDetails) {
+    if (this.dependantDetails.length > 0) {
       this.dependantDetails.forEach((dependant) => {
         dependantFormArray.push(this.buildDependantDetailsForm(dependant));
       });
@@ -175,15 +167,15 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (this.validateDependantform(form)) {
       form.value.dependentMappingList.forEach((dependant: any, index) => {
         form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-        form.value.dependentMappingList[index].enquiryId = 4850;
+        form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
       });
+      console.log(form.value.dependentMappingList);
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       this.hasDependant = this.comprehensiveService.hasDependant();
       form.value.hasDependents = this.hasDependant;
-      // tslint:disable-next-line:this should be added once Service is ready;
-      // this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
-      //   console.log(data);
-      // }));
+      this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
+        this.comprehensiveService.setMyDependant(data.objectList);
+      }));
       const dependantDetails = [];
       let dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {

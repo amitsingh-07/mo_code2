@@ -6,8 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IEducationPlan } from '../comprehensive-types';
-import { IMySummaryModal } from '../comprehensive-types';
+import { IChildEndowment, IMySummaryModal } from '../comprehensive-types';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
@@ -27,7 +26,7 @@ export class DependantEducationListComponent implements OnInit {
   pageId: string;
   endowmentListForm: FormGroup;
   menuClickSubscription: Subscription;
-  endowmentDetail: IEducationPlan;
+  endowmentDetail: IChildEndowment[];
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
@@ -58,7 +57,7 @@ ngOnInit() {
     }
   });
   this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-  this.endowmentArrayPlan = this.endowmentDetail.endowmentDetailsList;
+  this.endowmentArrayPlan = this.endowmentDetail;
   this.buildEndowmentListForm();
   let endowmentSkipEnableFlag = true;
   this.endowmentArrayPlan.forEach((dependant: any) => {

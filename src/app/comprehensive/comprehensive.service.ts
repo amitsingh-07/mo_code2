@@ -16,10 +16,10 @@ import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IChildEndowment,
-    IEducationPlan,
-    IEPreference,
+    IComprehensiveDetails,
+    IComprehensiveEnquiry,
+    IDependantDetail,
     IMyAssets,
-    IMyDependant,
     IMyEarnings,
     IMyLiabilities,
     IMyProfile,
@@ -66,6 +66,7 @@ export class ComprehensiveService {
     clearFormData() {
         this.comprehensiveFormData = {} as ComprehensiveFormData;
         this.commit();
+        this.getComprehensiveFormData();
     }
 
     // Return the entire Comprehensive Form Data
@@ -76,6 +77,10 @@ export class ComprehensiveService {
                 this.comprehensiveFormData = cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA];
             } else {
                 this.comprehensiveFormData = {} as ComprehensiveFormData;
+            }
+
+            if (!this.comprehensiveFormData.comprehensiveDetails) {
+                this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
             }
         }
         return this.comprehensiveFormData;
@@ -94,48 +99,46 @@ export class ComprehensiveService {
     }
 
     getMyProfile() {
-        if (!this.comprehensiveFormData.myProfile) {
-            this.comprehensiveFormData.myProfile = {} as IMyProfile;
+        if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
+            this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
         }
-        return this.comprehensiveFormData.myProfile;
+        return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
     }
     getMyDependant() {
-        /* #if (!this.comprehensiveFormData.myDependant) {
-            this.comprehensiveFormData.myDependant = [] as IMyDependant[];
-        } */
-        return this.comprehensiveFormData.myDependant;
+        if (!this.comprehensiveFormData.comprehensiveDetails.dependentsList) {
+            this.comprehensiveFormData.comprehensiveDetails.dependentsList = [] as IDependantDetail[];
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.dependentsList;
     }
 
     getChildEndowment() {
-        if (!this.comprehensiveFormData.educationPlan) {
-            this.comprehensiveFormData.educationPlan = {} as IEducationPlan;
+        if (!this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList) {
+            this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = [] as IChildEndowment[];
         }
-        return this.comprehensiveFormData.educationPlan;
+        return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
+    }
+    getComprehensiveSummary() {
+        if (!this.comprehensiveFormData.comprehensiveDetails) {
+            this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails;
     }
     /* Product Category drop down Handler */
+    setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
+        this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+        this.commit();
+    }
     setMyProfile(profile: IMyProfile) {
-        this.comprehensiveFormData.myProfile = profile;
+        this.comprehensiveFormData.comprehensiveDetails.baseProfile = profile;
         this.commit();
     }
-    setMyDependant(dependant: IMyDependant[]) {
-        this.comprehensiveFormData.myDependant = dependant;
-        this.commit();
-    }
-
-    setEducationPreference(educationPreference: IEPreference[]) {
-        this.comprehensiveFormData.educationPreference = educationPreference;
+    setMyDependant(dependant: IDependantDetail[]) {
+        this.comprehensiveFormData.comprehensiveDetails.dependentsList = dependant;
         this.commit();
     }
 
-    getEducationPreference(): IEPreference[] {
-        /* #if (!this.comprehensiveFormData.educationPreference) {
-            this.comprehensiveFormData.educationPreference = [] as IEPreference[];
-        } */
-        return this.comprehensiveFormData.educationPreference;
-    }
-
-    setChildEndowment(hasEducationPlan: IEducationPlan) {
-        this.comprehensiveFormData.educationPlan = hasEducationPlan;
+    setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
+        this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.commit();
     }
     getMyLiabilities() {
@@ -168,7 +171,9 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.mySpendings;
     }
-
+    getEnquiryId() {
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.enquiryId;
+    }
     setMySpendings(mySpendingsData: IMySpendings) {
         this.comprehensiveFormData.mySpendings = mySpendingsData;
         this.commit();
@@ -184,15 +189,25 @@ export class ComprehensiveService {
     }
 
     hasDependant() {
-        return this.comprehensiveFormData.hasDependant;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
     }
 
     setDependantSelection(selection: boolean) {
-        this.comprehensiveFormData.hasDependant = selection;
+
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = selection;
+        this.commit();
+    }
+    hasEndowment() {
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasEndowments;
+    }
+
+    setEndowment(selection: string) {
+
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasEndowments = selection;
         this.commit();
     }
     clearEndowmentPlan() {
-        this.comprehensiveFormData.educationPlan = {} as IEducationPlan;
+        this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = [] as IChildEndowment[];
         this.commit();
     }
     getMyAssets() {
@@ -303,7 +318,7 @@ export class ComprehensiveService {
         });
 
         let setTempleteModel = 1;
-        if (setTempleteModel == 2) {
+        if (setTempleteModel === 2) {
             // Finance Popup
 
             summaryModalDetails = {
@@ -323,7 +338,6 @@ export class ComprehensiveService {
                 liabilitiesMonthlySpareCash: 200
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel == 4) {
         } else if (setTempleteModel === 4) {
             // Retirement Popup
 
@@ -333,7 +347,6 @@ export class ComprehensiveService {
                 contentObj: retireModal
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel == 3) {
         } else if (setTempleteModel === 3) {
             // InsurancePlanning Popup
             const dependantVar = false;
@@ -349,7 +362,7 @@ export class ComprehensiveService {
                 wholeLife: 10
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel == 1) {
+        } else if (setTempleteModel === 1) {
             // CHILDREN_EDUCATION Popup
             const dependantVar = false;
 
@@ -460,9 +473,9 @@ export class ComprehensiveService {
     }
 
     getDependantsProgressData(): IProgressTrackerItem {
-        const dependantDetails: IMyDependant[] = this.getMyDependant();
-        const eduPrefs: IEPreference[] = this.getEducationPreference();
-        const eduPlan: IEducationPlan = this.getChildEndowment();
+        const dependantDetails: IDependantDetail[] = this.getMyDependant();
+        const eduPrefs: IChildEndowment[] = this.getChildEndowment();
+        const eduPlan: IComprehensiveEnquiry = this.hasEndowment();
 
         let noOfDependants = '';
         if (dependantDetails) {
@@ -489,7 +502,7 @@ export class ComprehensiveService {
         }
 
         return {
-            title: "What's on your shoulders",
+            title: 'What\'s on your shoulders',
             expanded: true,
             completed: true,
             customStyle: 'dependant',

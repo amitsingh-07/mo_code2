@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IChildEndowment, IEducationPlan } from '../comprehensive-types';
+import { IChildEndowment } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -23,7 +23,7 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 })
 export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
-  endowmentDetail: IEducationPlan;
+  endowmentDetail: IChildEndowment[];
   submitted = false;
   courseList: any;
   locationList: any;
@@ -31,7 +31,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   pageTitle: string;
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
-  educationPreferenceArray: any;
   educationPreferencePlan: any = [];
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -66,13 +65,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    this.educationPreferenceArray = this.endowmentDetail.endowmentDetailsList;
+    console.log(this.endowmentDetail);
     this.buildEducationPreferenceForm();
   }
 
   buildEducationPreferenceForm() {
     const preferenceArray = [];
-    this.educationPreferenceArray.forEach((educationDetailsList: any) => {
+    this.endowmentDetail.forEach((educationDetailsList: any) => {
       preferenceArray.push(this.buildPreferenceDetailsForm(educationDetailsList));
     });
     this.EducationPreferenceForm = this.formBuilder.group({
@@ -104,8 +103,8 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   goToNext(form) {
     if (this.validateEducationPreference(form)) {
       form.value.preference.forEach((preferenceDetails: any, index) => {
-        this.educationPreferenceArray[index].location = preferenceDetails.location;
-        this.educationPreferenceArray[index].educationCourse = preferenceDetails.educationCourse;
+        this.endowmentDetail[index].location = preferenceDetails.location;
+        this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
       });
       this.comprehensiveService.setChildEndowment(this.endowmentDetail);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
@@ -117,7 +116,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     this.submitted = true;
     if (!form.valid) {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.educationPreferenceForm,
-        this.educationPreferenceArray);
+        this.endowmentDetail);
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
       );
       return false;
