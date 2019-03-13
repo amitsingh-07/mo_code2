@@ -55,7 +55,7 @@
         </div>
       <!-- Navigation Menu -->
       <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
-        id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" id="navbarDefault" #navbar>
+        id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar, 'notificationOpen': showNotifications}" id="navbarDefault" #navbar>
         <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar, 'noMenu': !showMenu}">
           <li *ngIf="isLoggedIn" class="nav-item flex space-between link-mob-profile hidden-lg" style="flex-direction: row">
             <div class="dashboard-btn" (click)="goToDashboard()">
@@ -69,11 +69,9 @@
           <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" [routerLink]="['/account/edit-profile']">
             <a class="navbar--text" href="javascript: void(0);">Profile</a>
           </li>
-          <!--
-          <li class="nav-item" [routerLink]="['/home']">
+          <li class="nav-item home-btn" [routerLink]="['/home']">
             <a class="nav-link">Home</a>
           </li>
-          -->
           <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
             <!--  (mouseleave)="closeDropdown(id01);"-->
             <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>

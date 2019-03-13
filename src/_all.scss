@@ -233,8 +233,18 @@ h6 {
     flex-direction: row;
     justify-content: space-between;
     max-width: 525px;
+    @include minPhabletmaxTablet{
+      max-width: 465px;
+    }
+
     &.searchOpen {
       max-width: 600px;
+    }
+    &.notificationOpen{
+      max-width: 585px;
+      @include minPhabletmaxTablet{
+        max-width:515px;
+      }
     }
     
 
@@ -637,6 +647,11 @@ h6 {
         background-color:$teal-color;
         a{
           color:$white-color;
+        }
+      }
+      &.home-btn{ 
+        @include minPhabletmaxTablet{
+          display:none;
         }
       }
       &.profile {
