@@ -388,10 +388,15 @@ h6 {
       &.show{
         @include minMobilemaxPhablet{
           .dropdown-toggle{
-            background-color:$teal-color;
-            color:$white-color;
+            background-color:$white-color;
+            color:$teal-color;
             &:after{
-              background-image:url("/assets/images/nav-dropdown-icon--white.svg");
+              background-image:url("/assets/images/nav-dropdown-icon.svg");
+            }
+            &:hover{
+                color:$teal-color;
+                background-color:$white-color;
+                border-bottom: 1px solid $border-grey-color;
             }
           }
         }
@@ -414,11 +419,11 @@ h6 {
         border-bottom: 1px solid #e1e1e1;
         &:hover {
           a {
-            color: $white-color;
-            background-color: $teal-color;
+            color: $teal-color;
+            background-color: $white-color;
             
             &::after {
-              background-image: url('/assets/images/nav-dropdown-icon--white.svg');
+              background-image: url('/assets/images/nav-dropdown-icon.svg');
               top: 27px;
             }
           }
@@ -569,7 +574,7 @@ h6 {
             background-color:$dark-teal-color;
             }
           &.right{
-            right:-5px;
+            right:-10px;
           }
           &.show{
             top: 40px !important;
@@ -637,6 +642,10 @@ h6 {
         &:hover{
           color:$white-color;
           background-color:$teal-color;
+          a{
+            color:$white-color;
+            background-color:$teal-color;
+          }
         }
         &:active{
           color:$white-color;
@@ -696,7 +705,13 @@ h6 {
 
     .dropdown-toggle {
       padding: 15px 20px 15px 0px;
-
+      @include minMobilemaxPhablet{
+        &:hover{
+          color:$teal-color;
+          background-color:$white-color;
+          border-bottom: 1px solid $border-grey-color;
+        }
+      }
       &::after {
         background-image: url('/assets/images/nav-dropdown-icon.svg');
         background-size: 12px 8px;

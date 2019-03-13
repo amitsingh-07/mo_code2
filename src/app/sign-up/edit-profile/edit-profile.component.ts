@@ -72,8 +72,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
-    this.navbarService.setNavbarMode(100);
+    this.navbarService.setNavbarMode(102);
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();

@@ -301,5 +301,9 @@
     },
     "NOTIFICATIONS": {
         "EMPTY": "No New Notifications!"
+    },
+    "GENERAL_LOADER": {
+        "TITLE": "Submitting",
+        "DESC": "Please wait while we submit the request."
     }
 }

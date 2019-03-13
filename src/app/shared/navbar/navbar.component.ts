@@ -166,7 +166,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.matrixResolver(navbarMode);
       // Enabling Notifications
       if (navbarMode === 100) {
-        this.isNotificationEnabled = this.canActivateNotification();
+        this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
       if (this.isNotificationEnabled) {
         this.getRecentNotifications();
@@ -209,6 +209,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
+    console.log(this.showHeaderNavbar);
   }
 
   openSearchBar(toggle: boolean) {

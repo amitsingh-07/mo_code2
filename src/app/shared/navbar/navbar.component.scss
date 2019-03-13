@@ -12,9 +12,11 @@
     border: none;
     width:19px; 
     height:22px;
-    margin-right:5px;
+    margin-right:0px;
     cursor: pointer;
-
+    @include minMobilemaxPhablet{
+        margin-right:10px;
+    }
     &.notify{
         top:2px;
     }
@@ -54,7 +56,7 @@
             width:20px;
             height: 20px;
             top:-5px;
-            right:40px;
+            right:45px;
             transform: rotate(45deg);
             background-color:$dark-teal-color;
             border:0px;
@@ -88,13 +90,17 @@
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
         border-bottom: none;
-        background: $white-color;  
+        background: $white-color; 
+        ul{
+           padding-inline-start:0px; 
+        }
         ul li {
             font-family: $muli-bold;
             font-size: 16px;
             line-height: 1.31;
             letter-spacing: -0.2px;
-            padding: 15px 0;
+            padding:15px 30px 15px  ;
+            border-bottom: 1px solid #f4fafb;
             }
         }
 
@@ -116,8 +122,8 @@
         background: #f4fafb;
         padding: 18px;
         text-align: center;
-        color: #ec681c;
-        font-family: $muli-regular;
+        color: #ff872f;
+        font-family: $muli-semi-bold;
         font-size: 16px;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
@@ -141,11 +147,11 @@
 }
 
 .no-notification {
-    padding: 10px 20px;
+    padding: 18px 20px;
     text-align: center;
     font-family: $muli;
     color:$teal-color;
-    font-size:18px;
+    font-size:16px;
     @include minMobilemaxPhablet{
     }
 }
