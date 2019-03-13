@@ -2,6 +2,9 @@
 @import '../../../mixins';
 app-fund-your-account {
   .fund-your-account {
+    &.clearfix {
+      overflow: auto;
+    }
     font-family: $muli;
     .strong {
       font-weight: bold;
