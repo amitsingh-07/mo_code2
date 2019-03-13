@@ -14,6 +14,11 @@ color: $dark-teal-color;
     align-items: flex-end;
     position: relative;        
     margin-right: 10px;
+    &.dividend-icon {
+        .help-icon {
+            top: 12px;
+        }
+    }
 }
 .help-icon {      
     background: url("/assets/images/comprehensive/tool-tip-white.svg") no-repeat;
@@ -84,11 +89,19 @@ color: $dark-teal-color;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        right: 10px;
+        left: 95%;
         top: 5px;
     } 
     .help-icon {
         right:30px;
+    }
+    &.both-icon{
+        .delete-icon { 
+            left: 95% !important;
+        }
+        .help-icon {
+            left: 80% !important;
+        }
     }   
 }
 .earn-dollar-icon{
@@ -122,10 +135,6 @@ color: $dark-teal-color;
 .earn-notes{
     font-size: 16px;
     padding-left: 40px;
-    .dropdown-menu {
-        border-radius: 6px;
-        border: 1px solid #99cfce;
-    }
 }
 .bucket-notes{
     font-size:16px;
@@ -174,12 +183,37 @@ color: $dark-teal-color;
 .footer-notes{
     background: $btn-primary-backgrnd-color;
 }
-.both-icon{
-    .delete-icon { 
-        right:-12px!important;
-    }
-}
 .dividend-icon .help-icon{
     top:10px!important;
 }
+}
+.custom-dd {
+    border-radius: 6px;
+    border: 1px solid #99cfce;
+    &.dropdown-menu.show {
+        overflow: visible !important;
+    }
+    &:after, &:before {
+        bottom: 100%;
+        left: 90%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    
+    &:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-bottom-color: $white-color;
+        border-width: 12px;
+        margin-left: -12px;
+    }
+    &:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-bottom-color: #99cfce;
+        border-width: 14px;
+        margin-left: -14px;
+    }
 }
