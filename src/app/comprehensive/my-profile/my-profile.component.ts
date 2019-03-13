@@ -1,13 +1,12 @@
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -15,6 +14,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -53,7 +53,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     constructor(
         private loaderService: LoaderService,
         private signUpService: SignUpService,
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private router: Router,
         public navbarService: NavbarService,
         private translate: TranslateService,
@@ -69,7 +69,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         configDate.minDate = { year: today.getFullYear() - 100, month: today.getMonth() + 1, day: today.getDate() };
         configDate.maxDate = { year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate() };
         configDate.outsideDays = 'collapsed';
-        this.pageId = this.route.routeConfig.component.name;
+        this.pageId = this.activatedRoute.routeConfig.component.name;
         this.configService.getConfig().subscribe((config: any) => {
             this.translate.setDefaultLang(config.language);
             this.translate.use(config.language);
@@ -170,6 +170,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (!form.pristine) {
                 this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {});
             }
+            this.progressService.updateValue(this.router.url, this.userDetails.firstName);
             this.router.navigate([ COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1' ]);
         }
     }
