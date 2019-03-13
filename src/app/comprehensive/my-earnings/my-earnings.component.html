@@ -206,7 +206,8 @@
                       <span >  {{'CMP.MY_EARNINGS.ADD_MONTHLY_INCOME'|translate}}</span>
   
                     </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
+                    
+                    <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType" class="custom-dd">
                       <div class="with-help-icon" for="name"><button [disabled]="monthlyRentIncome" type="button" class="dropdown-item"  (click)="SelectEarningsType('monthlyRentIncome', true)">
                           <span  > {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} <span [hidden]="!monthlyRentIncome"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span>  </span>  
                       </button>
@@ -354,9 +355,9 @@
                 <span >  {{'CMP.MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
               
               </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
+              <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType" class="custom-dd">
                
-               <div class="with-help-icon dividend-icon" for="name">
+               <div class="with-help-icon dividend-icon" for="name" >
                     <button [disabled]="annualDividendsType" type="button" class="dropdown-item"  (click)="SelectEarningsType('annualDividendsType', true)">
                       <span  > {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} <span [hidden]="!annualDividendsType"> {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span></span> 
                         </button>
