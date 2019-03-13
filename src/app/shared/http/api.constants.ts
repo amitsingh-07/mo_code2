@@ -5,7 +5,7 @@ const ACCOUNT_API_BASE_URL = 'account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
-const COMPREHENSIVE_API_BASE_URL = 'api/customer/comprehensive/';
+const COMPREHENSIVE_API_BASE_URL = 'recommendations-microservice/api/customer/comprehensive/';
 
 export let apiConstants = {
     endpoint: {
@@ -98,12 +98,12 @@ export let apiConstants = {
         },
         comprehensive: {
             getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveUserSummary',
-            getPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'getPersonalDetails',
-            addPersonalDetails: COMPREHENSIVE_API_BASE_URL + 'addPersonalDetails',
-            getDependents: COMPREHENSIVE_API_BASE_URL + 'getDependents',
-            addDependents: COMPREHENSIVE_API_BASE_URL + 'saveDependents',
-            getEndowmentPlan: COMPREHENSIVE_API_BASE_URL + 'getChildEndowmentPlans',
-            saveEndowmentPlan: COMPREHENSIVE_API_BASE_URL + 'saveChildEndowmentPlans',
+            getPersonalDetails: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/getPersonalDetails',
+            addPersonalDetails: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/addPersonalDetails',
+            getDependents: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/getDependents',
+            addDependents: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/saveDependents',
+            getEndowmentPlan: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/getChildEndowmentPlans',
+            saveEndowmentPlan: ACCOUNT_API_BASE_URL + '/api/customer/comprehensive/saveChildEndowmentPlans',
             getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
             saveEarnings: COMPREHENSIVE_API_BASE_URL + 'saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',

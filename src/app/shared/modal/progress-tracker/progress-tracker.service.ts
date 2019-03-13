@@ -4,6 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { ProgressTrackerModalComponent } from './progress-tracker-modal.component';
+import { ProgressTrackerUtil } from './progress-tracker-util';
 import { IProgressTrackerData } from './progress-tracker.types';
 
 @Injectable({
@@ -39,6 +40,30 @@ export class ProgressTrackerService {
 
     public getProgressTrackerData() {
         return this.subject.asObservable();
+    }
+
+    public updateValue(path: string, value: any): void {
+        this.data.items.forEach((item) => {
+            item.subItems.forEach((subItem) => {
+                if (ProgressTrackerUtil.compare(path, subItem.path)) {
+                    subItem.value = value;
+                    subItem.completed = true;
+                }
+            });
+        });
+        this.subject.next(this.data);
+    }
+
+    public updateList(path: string, list: any): void {
+        this.data.items.forEach((item) => {
+            item.subItems.forEach((subItem) => {
+                if (ProgressTrackerUtil.compare(path, subItem.path)) {
+                    subItem.list = list;
+                    subItem.completed = true;
+                }
+            });
+        });
+        this.subject.next(this.data);
     }
 
     navigate(path: string): void {
