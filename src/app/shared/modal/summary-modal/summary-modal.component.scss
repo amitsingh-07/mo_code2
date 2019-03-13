@@ -1,5 +1,77 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+$finance-pop-title:#035e5e;
+$minus-content-color:#ff872f;
+.summary-modal{
+    &__box-content-head {
+        margin-bottom:10px;
+    }
+    &__pop-content-head{
+       margin-bottom:10px;
+       font-size:16px;
+       color:$finance-pop-title;
+       font-weight: bold;
+       position: relative;
+    }
+    &__pop-content-body{
+       margin-bottom:10px;
+       font-size:14px;
+    }
+    &__pop-button{
+        width: 25px !important;
+        height: 25px !important;
+        background: url("../../../../assets/images/close-button-dark.svg") !important;      
+        background-repeat: no-repeat !important;    
+        border: 0; 
+        position: absolute;
+        right:-5px;
+    }
+    &__minus-content{
+        color: $minus-content-color!important;
+        font-size:14px;
+    }
+    &__main-content{
+        position: relative;
+        padding: 0px 0px 0px 25%;
+        text-align: left;
+        font-size: 14px;
+    }
+    &__main-content_dollar{
+        font-size: 16px;
+        font-weight: bold;
+        color: $finance-pop-title;
+    }
+}
+.spare-cash{
+    width: 34px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/spare-cash.svg");      
+    background-repeat: no-repeat;    
+    border: 0; 
+    position: absolute;
+    left:8%;
+    top:5px;
+}
+.liquid-cash{
+    width: 34px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/liquid-cash.svg");      
+    background-repeat: no-repeat;    
+    border: 0; 
+    position: absolute;
+    left:8%;
+    top:5px;
+}
+.liquid-alert{
+    width: 34px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/topup-alert.svg");      
+    background-repeat: no-repeat;    
+    border: 0; 
+    position: absolute;
+    right:8%;
+    top:5px;
+}
 // $summary-notes-color:#9f9f9f;
 // $summary-notes-backcolor:#f5f5f5;
 // .finance-section,.retirement-section,.insurance-planning-section {

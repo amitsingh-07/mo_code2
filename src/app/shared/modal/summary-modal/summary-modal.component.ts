@@ -48,7 +48,7 @@ export class SummaryModalComponent implements OnInit {
       console.log(this.summaryModalDetails);
   }
 
-toogleCalculatePop(){
+toggleCalculatePop(){
   this.calculateCashDesc = !this.calculateCashDesc;
 }
 goNextPage(){

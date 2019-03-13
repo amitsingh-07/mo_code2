@@ -15,6 +15,7 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 
 @Component({
   selector: 'app-my-liabilities',
@@ -94,17 +95,16 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
       this.comprehensiveService.setMyLiabilities(form.value);
-      console.log('Got it');
-      const financeModal = this.translate.instant('CMP.MY_LIABILITIES.FINANCES_MODAL');
-      const retireModal = this.translate.instant('CMP.MY_LIABILITIES.RETIREMENT_MODAL');
-      const insurancePlanningDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.DEPENDANTS');
-      const insurancePlanningNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
-      const childrenEducationDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
-      const childrenEducationNonDependantModal = this.translate.instant('CMP.MY_LIABILITIES.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-
-      this.comprehensiveService.openSummaryModal(financeModal, retireModal, insurancePlanningDependantModal,
-        insurancePlanningNonDependantModal, childrenEducationDependantModal, childrenEducationNonDependantModal,
-        this.summaryModalDetails);
+      const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
+      this.summaryModalDetails = {
+          setTemplateModal: 2,
+          contentObj: financeModal,
+          liabilitiesEmergency: false,
+          liabilitiesLiquidCash: 30000,
+          liabilitiesMonthlySpareCash: 200,
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
+      };
+      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     }
 
   }

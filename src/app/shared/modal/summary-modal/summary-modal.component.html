@@ -9,6 +9,43 @@
     </button>
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 2">
     <div class="instruction-content finance-section">
+        <div class="instruction-content insurance-planning-section">    
+            <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+            <div class="mb30" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
+        </div>
+        <div class="summary-modal__main-content mb20 {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">
+          <span class='liquid-cash'></span>
+          <div>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</div>
+          <div class="summary-modal__main-content_dollar {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">{{ (!summaryModalDetails.liabilitiesEmergency)?'-':'' }} {{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+          <span class='liquid-alert' [hidden]="summaryModalDetails.liabilitiesEmergency"></span>
+        </div>
+        <div class="summary-modal__main-content mb30 ">
+            <span class='spare-cash'></span>
+            <div>{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</div>
+            <div class='summary-modal__main-content_dollar'>{{ summaryModalDetails.liabilitiesMonthlySpareCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+          </div>
+        <div class="summary-modal__details summary-modal__minus-content mb30"  [hidden]="summaryModalDetails.liabilitiesEmergency">
+            {{ summaryModalDetails.contentObj.EMERGENCY_BELOW_DESC }}
+        </div>
+        <div class="summary-modal__details mb30" [hidden]="!calculateCashDesc" >
+            <div class="summary-modal__details--label-grey text-center width100"><u (click)="toggleCalculatePop()" >{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</u></div>
+        </div>
+        <div class="summary-modal__box-content" [hidden]="calculateCashDesc">
+            <div class='summary-modal__pop-content-head'>
+                {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}
+              <button type="button" class="summary-modal__pop-button" aria-label="Close" (click)="toggleCalculatePop()">
+                <span aria-hidden="true"></span></button>
+            </div>
+            <div class='summary-modal__pop-content-body'> {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC1 }}</div>
+            <div class='summary-modal__pop-content-body'> {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC2 }}</div>
+          </div>
+        <div class="summary-modal__box-content text-left" [hidden]="summaryModalDetails.liabilitiesEmergency">
+          <div class='summary-modal__box-content-head'><u>{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_TITLE }}</u></div>
+          <div class='summary-modal__box-content-body'> {{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_DESC }}</div>
+        </div>
+        <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+            {{ summaryModalDetails.contentObj.NEXT }}
+        </button> 
     <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">

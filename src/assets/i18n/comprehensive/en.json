@@ -4,19 +4,19 @@
       "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account.",
       "FINANCES_MODAL":{
         "TITLE": "Step 2",        
-        "TITLE_IMAGE": "owl.svg",
+        "TITLE_IMAGE": "finances.svg",
         "TITLE_DESC": "Completed",
         "CONTENT_TITLE": "Do you know?",
-        "CONTENT_DESC": "This is the amount you can set aside for protection needs and investing towards education and retirement goals",
+        "CONTENT_DESC": "This is the amount you can set aside for protection needs and investing towards education and retirement goals.",
         "CONTENT_BODY1": "Your Liquid Cash",
         "CONTENT_BODY2": "Your Monthly Spare Cash",
         "HOW_DO_WE_CALCULATE": "How do we calculate this?",
-        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus a Emergency Cash pool of 6 months of expenses and loan payments",
-        "HOW_DO_WE_CALCULATE_DESC2": "Emergency Cash is important in case you lose your job or incur unexpected expenses. Monthly Spare Cash is your take home income minus your expenses and loan repayments minus yor bad mood fund allocation",
+        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus a Emergency Cash pool of 6 months’ of expenses and loan payments.",
+        "HOW_DO_WE_CALCULATE_DESC2": "Emergency Cash is important in case you lose your job or incur unexpected expenses. Monthly Spare Cash is your take home income minus your expenses and loan repayments minus your bad mood fund allocation",
         "NEXT": "NEXT",
-        "EMERGENCY_BELOW_DESC": "Oh no, seems like your liquid cash is less than 6 months' of expenses. <br/>Save before you invest.",
-        "EMERGENCY_BELOW_NOTE_TITLE": "NEXT STEP",
-        "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement"
+        "EMERGENCY_BELOW_DESC": "Oh no, seems like your liquid cash is less than 6 months' of expenses. Save before you invest.",
+        "EMERGENCY_BELOW_NOTE_TITLE": "Next Step",
+        "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement."
       },
       "INSURANCE_PLANNING_MODAL":{
         "NO_DEPENDANTS" : {
@@ -108,7 +108,8 @@
       "RESULT_TITLE": "What will you get?",
       "RESULT_SUB_TITLE": "At the end of the session ,you will get:",
       "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
-      "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help"
+      "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help",
+      "VIDEO_LINK": "https://www.youtube.com/watch?v=1ozGKlOzEVc"
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
