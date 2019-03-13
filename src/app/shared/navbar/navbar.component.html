@@ -69,7 +69,7 @@
           <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" [routerLink]="['/account/edit-profile']">
             <a class="navbar--text" href="javascript: void(0);">Profile</a>
           </li>
-          <li class="nav-item home-btn" [routerLink]="['/home']">
+          <li *ngIf="showMenu" class="nav-item home-btn" [routerLink]="['/home']">
             <a class="nav-link">Home</a>
           </li>
           <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
