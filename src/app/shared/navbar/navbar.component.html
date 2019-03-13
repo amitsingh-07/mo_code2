@@ -41,7 +41,7 @@
       <div *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="notification-tooltip mobile hidden-lg" [hidden]="isNotificationHidden">
           <div class="notification-tooltip__header">Notifications</div>
           <div class="notification-tooltip__container">
-            <ul class="notification-tooltip__container-desc" *ngIf="recentMessages && recentMessages.length">
+            <ul class="notification-tooltip__container--desc" *ngIf="recentMessages && recentMessages.length">
               <li class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                   <span>{{message.message}}</span>
                 <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}</div>
@@ -51,7 +51,7 @@
               You have no new notifications.
               </div>
           </div>
-          <div *ngIf="recentMessages && recentMessages.length" class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
+          <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
         </div>
       <!-- Navigation Menu -->
       <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
@@ -149,7 +149,7 @@
             <div  class="dropdown-menu right notification-tooltip" ngbDropdownMenu aria-labelledby="id00">
               <div class="notification-tooltip__header">Notifications</div>
               <div class="notification-tooltip__container">
-                <ul class="notification-tooltip__container-desc" *ngIf="recentMessages && recentMessages.length">
+                <ul class="notification-tooltip__container--desc" *ngIf="recentMessages && recentMessages.length">
                   <li class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                       <span>{{message.message}}</span>
                     <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}</div>
@@ -159,7 +159,7 @@
                   You have no new notifications.
                   </div>
               </div>
-              <div *ngIf="recentMessages && recentMessages.length" class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
+              <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
             </div>
             </li>
           <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
