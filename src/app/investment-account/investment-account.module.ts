@@ -15,9 +15,6 @@ import {
     AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
 import {
-    AccountSetupCompletedComponent
-} from './account-setup-completed/account-setup-completed.component';
-import {
     AccountSetupPendingComponent
 } from './account-setup-pending/account-setup-pending.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
@@ -89,7 +86,6 @@ export function createTranslateLoader(http: HttpClient) {
     AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
     AdditionalDeclarationStep1Component,
-    AccountSetupCompletedComponent,
     AccountSetupPendingComponent,
     UploadDocumentBOComponent,
     AccountCreationErrorModalComponent,

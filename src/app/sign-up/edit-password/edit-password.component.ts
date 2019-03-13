@@ -45,8 +45,7 @@ export class EditPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
   }

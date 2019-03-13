@@ -3,16 +3,7 @@
 app-fund-your-account {
   .fund-your-account {
     &.clearfix {
-      &.container-fluid{
-        @include allmobiles{
-          padding: 0 !important;
-        }
-      }
-    }
-    .container-fluid {
-      @include allmobiles {
-       padding: 130px 0;
-      }
+      overflow: auto;
     }
     font-family: $muli;
     .strong {

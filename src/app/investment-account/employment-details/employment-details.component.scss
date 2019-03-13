@@ -1,12 +1,7 @@
 @import '../../../variables';
+@import '../../../_mixins.scss';
 app-employment-details {
   .employement-details {
-    .container-fluid {
-      padding-top: 110px;
-      &.isEditProfile{
-        padding-top: 150px;
-      }
-    }
     .postal-code-control {
       display: flex;
       div.control {
@@ -61,6 +56,9 @@ app-employment-details {
       font-size: 18px;
       font-family: $muli-semi-bold;
       padding-right: 10px;
+      @include max360{
+        padding-right: 8px;
+      }
     }
     .input-control {
       text-align: left;
@@ -69,8 +67,7 @@ app-employment-details {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
