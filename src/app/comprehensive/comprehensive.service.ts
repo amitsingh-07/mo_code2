@@ -187,7 +187,7 @@ export class ComprehensiveService {
         return this.comprehensiveFormData.hasDependant;
     }
 
-    setDependantSelection(selection: string) {
+    setDependantSelection(selection: boolean) {
         this.comprehensiveFormData.hasDependant = selection;
         this.commit();
     }

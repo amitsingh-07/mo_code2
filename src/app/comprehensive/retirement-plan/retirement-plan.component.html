@@ -1,0 +1,22 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+
+  </div>
+  <div class="title mt40">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE'|translate}}</div>
+  <div class="sub-title">{{'CMP.RETIREMENT_PLAN.SUB_TITLE'|translate}} </div>
+  <div class="income-bucket-panel pt-4">
+    <div class="income-bucket-panel__img retirementImg"></div>
+    <div class="income-bucket-panel__desc">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} {{SliderValue}}</div>
+  </div>
+  <div class="row">
+    <span class="col-2">45</span> <span class="col-2 ml-4">50</span> <span class="col-2">55</span> <span class="col-2">60</span>
+    <span class="col-2">62 </span>
+  </div>
+  <nouislider id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="62"
+    [step]="1" [tooltips]="[ true ]"></nouislider>
+    <button type="button" (click)="goToNext(SliderValue)" class="btn btn-primary mt10 mb50 width100"
+    id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+  </button>
+
+</div>

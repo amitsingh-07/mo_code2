@@ -19,7 +19,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   pageTitle: string;
   dependantSelectionForm: FormGroup;
   pageId: string;
-  hasDependant: string;
+  hasDependant: boolean;
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
   constructor(
@@ -67,8 +67,9 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(dependantSelectionForm) {
+    console.log(dependantSelectionForm.value);
     this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
-    if (dependantSelectionForm.value.dependantSelection === 'yes') {
+    if (dependantSelectionForm.value.dependantSelection === 'true') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');

@@ -149,8 +149,8 @@
             </div>
 
             <div class="flex-row otherMortage" [hidden]="!otherMortage" >
-              <div class="flex-col-12">
-                <div class="with-help-icon p-2" for="name"><u (click)="addOtherMortage()">{{
+              <div class="flex-col-12 mt-2">
+                <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
                   'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u>
 
                   <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
@@ -158,11 +158,11 @@
               </div>
             </div>
 
-            <div class='otherMortage both-icon' [hidden]="otherMortage">
+            <div class='otherMortage' [hidden]="otherMortage">
                 
-                <div class="flex-row">
-                  <div class="flex-col-12">
-                    <div class="with-help-icon p-2" for="name"><b>{{
+                <div class="flex-row mt-2 both-icon">
+                  <div class="flex-col-12 form-group-with-bg--content-label">
+                    <div class="with-help-icon" for="name"><b>{{
                       'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>
 
                       <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
@@ -320,7 +320,7 @@
   </div>
   
   </form>
-  <div class="flex-row btn btn-primary btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 left text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
+  <div class="flex-row footer-notes btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
 
 
 

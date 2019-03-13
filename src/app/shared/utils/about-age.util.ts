@@ -3,22 +3,24 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable()
 export class AboutAge {
-    getAboutAge(valueString: number, ageConstant: number): number {
+	getAboutAge(valueString: number, ageConstant: number): number {
 		valueString = ageConstant - valueString;
-        return valueString;
-    }
-	calculateAge(date, dateToCalculate): number{
-		const dateParts = date.split("-");
-		const dateOfBirth = new Date(dateParts[0], (dateParts[1] - 1), dateParts[1]);
+		return valueString;
+	}
+	calculateAge(date, dateToCalculate): number {
+		console.log(date);
+		const dateParts = date.split('/');
+		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+		console.log(dateOfBirth);
 		const calculateYear = dateToCalculate.getFullYear();
 		const calculateMonth = dateToCalculate.getMonth();
 		const calculateDay = dateToCalculate.getDate();
-		
-		const birthYear = dateOfBirth.getFullYear();	
+
+		const birthYear = dateOfBirth.getFullYear();
 		const birthMonth = dateOfBirth.getMonth();
 		const birthDay = dateOfBirth.getDate();
-		
-		var age = calculateYear - birthYear;
+
+		let age = calculateYear - birthYear;
 		const ageMonth = calculateMonth - birthMonth;
 		const ageDay = calculateDay - birthDay;
 
