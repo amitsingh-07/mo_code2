@@ -24,6 +24,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   encapsulation: ViewEncapsulation.None
 })
 export class DependantsDetailsComponent implements OnInit, OnDestroy {
+  hasDependant: boolean;
   genderList: any;
   myDependantForm: FormGroup;
   formName: string[] = [];
@@ -177,8 +178,12 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].enquiryId = 4850;
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-      this.comprehensiveApiService.addDependents(form.value.dependentMappingList).subscribe(((data: any) => {
-      }));
+      this.hasDependant = this.comprehensiveService.hasDependant();
+      form.value.hasDependents = this.hasDependant;
+      // tslint:disable-next-line:this should be added once Service is ready;
+      // this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
+      //   console.log(data);
+      // }));
       const dependantDetails = [];
       let dependantList = true;
       this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
