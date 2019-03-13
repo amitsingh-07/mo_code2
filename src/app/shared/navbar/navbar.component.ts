@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isPromotionEnabled = false;
   isArticleEnabled = false;
   isWillWritingEnabled = false;
-  isInvestmentEnabled = true;
+  isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
 
