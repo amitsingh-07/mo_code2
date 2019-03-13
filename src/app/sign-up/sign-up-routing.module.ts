@@ -51,7 +51,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.PASSWORD,
     component: PasswordComponent,
-    // canActivate: [SignUpAccessGuard]
+    canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
