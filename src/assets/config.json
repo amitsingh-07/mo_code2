@@ -2,7 +2,7 @@
   "language": "en",
   "useMyInfo": true,
   "willWritingEnabled": true,
-  "investmentEnabled": true,
+  "investmentEnabled": false,
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": false,

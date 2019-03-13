@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // Navbar Service
       this.navbarService.setNavbarVisibility(true);
       this.navbarService.setNavbarMode(1);
-      this.navbarService.setNavbarMobileVisibility(true);
+      this.navbarService.setNavbarMobileVisibility(false);
       this.navbarService.setNavbarShadowVisibility(true);
       this.footerService.setFooterVisibility(true);
     });

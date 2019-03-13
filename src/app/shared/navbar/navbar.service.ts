@@ -91,7 +91,7 @@ export class NavbarService {
   setProdButtonVisibility(isVisible: boolean) {
     this.pageProdInfoIcon.next(isVisible);
   }
-
+  
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
@@ -128,10 +128,6 @@ export class NavbarService {
   }
 
   // Hiding Product Info Modal Trigger
-  hideProdInfo(event) {
-    this.closeProdInfo.next(event);
-  }
-
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
   }

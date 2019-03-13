@@ -265,8 +265,11 @@ app-life-protection-form {
     @extend .align-center;
   }
   .with-help-icon {
+    position: relative;
     width: 100px;
     .help-icon {
+      bottom:unset;
+      right:unset;
       margin-left: 0 !important;
     }
   }

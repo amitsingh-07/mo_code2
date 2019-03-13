@@ -70,6 +70,7 @@ h6 {
   padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
   transition:0.5s;
+  z-index:1029;
   &.browser-error{
     height: calc(84px + 34px);
     align-items:flex-start;
@@ -97,7 +98,6 @@ h6 {
     @include minMobilemaxPhablet {
       height: auto;
       min-height: 65.5px;
-      border-bottom: 1px solid #e1e1e1;
     }
   }
 
@@ -114,6 +114,7 @@ h6 {
     display: inline-flex;
     z-index: 0;
     flex-basis: 100%;
+    width:100%;
     height: 100%;
     min-height: 60px;
     padding: 0px;
@@ -121,15 +122,26 @@ h6 {
     justify-content: center;
     align-items: center;
     margin-bottom: 0px;
+    border-bottom:1px solid $border-grey-color;
 
-    &.top {
-      padding: 8px 15px;
+    .navbar__back-btn--mobile {
+      position: absolute;
+      display:block; 
+      top:calc(50% + 4px);
+      left:20px;
+      transform:translateY(-50%);
+      &.subMode{
+        top:20px;
+        transform: none;
+      }
     }
-
     .navbar__title--mobile {
       text-align: center;
       padding-left: 20px;
       padding-right: 20px;
+      &.subMode{
+        padding-top:12px;
+      }
     }
 
     .navbar__subtitle--mobile {
@@ -139,7 +151,7 @@ h6 {
       letter-spacing: -0.2px;
       line-height: 1.25;
       font-size: 16px;
-      margin-top: 10px;
+      margin-top: 5px;
       margin-bottom: 12px;
     }
   }
@@ -220,11 +232,21 @@ h6 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 525px;
+    @include minPhabletmaxTablet{
+      max-width: 465px;
+    }
 
     &.searchOpen {
       max-width: 600px;
     }
+    &.notificationOpen{
+      max-width: 585px;
+      @include minPhabletmaxTablet{
+        max-width:515px;
+      }
+    }
+    
 
     @include minMobilemaxPhablet {
       flex-direction: column;
@@ -241,7 +263,7 @@ h6 {
 
     .navbar-nav {
       transition: 0.5s;
-
+      
       &.primary {
         justify-content: space-between;
         flex-basis: 100%;
@@ -345,6 +367,10 @@ h6 {
         @include minMobilemaxPhablet {
           order: 1;
         }
+      }
+      
+      &.noMenu {
+        justify-content:flex-end;
       }
 
       @include minMobilemaxPhablet {
@@ -524,26 +550,142 @@ h6 {
           }
         }
       }
-
+      &.notification {
+        width:auto;
+        margin:0px 25px 0px 10px;
+        padding:15px 0px;
+        .dropdown-toggle{
+          padding:0px;
+          &:after{
+            display:none;
+          }  
+        }
+        .dropdown-menu{
+          padding:0px;
+          &::before{
+            background-color:$dark-teal-color;
+            }
+          &::after{
+            background-color:$dark-teal-color;
+            }
+          &.right{
+            right:-5px;
+          }
+          &.show{
+            top: 40px !important;
+          }
+        }
+      }
       &.link-login {
+        @include minMobilemaxPhablet{
+          order:-1;
+          background-color:$teal-color;
+          }
         a {
-          font-family: $muli-bold;
-          font-size: 18px;
+          font-family: $muli-semi-bold;
+          font-size: 16px;
           color: $teal-color;
-
+          img{
+            display:none;
+          }
           @include minMobilemaxPhablet {
             font-family: $muli-semi-bold;
             font-size: 16px;
-
+            color:$white-color;
             &:hover {
               background-color: $dark-aqua-color;
               color: $white-color;
+            }
+            img{
+              display:inline-block;
+              margin-right:10px;
             }
           }
 
           i {
             transform: translateX(-5px);
           }
+        }
+      }
+      &.link-mob-profile{
+        padding:8px 0px;
+        background-color:$teal-color;
+        cursor: pointer;
+        .dashboard-btn{
+          padding-left:20px;
+          .name{
+            color:$white-color;
+            font-size:18px;
+            font-family:$muli-bold;
+          }
+          .sub-text{
+            font-family:$muli-regular;
+            color:$white-color;
+            font-size:13px;
+          }
+        }
+        .logout-btn{
+          width:auto;
+          padding-right:20px;
+          color:$white-color;
+          i{
+            padding-left:10px;
+            color:$white-color;
+          }
+        }
+        
+        &:hover{
+          color:$white-color;
+          background-color:$teal-color;
+        }
+        &:active{
+          color:$white-color;
+          background-color:$teal-color;
+        }
+      }
+      &.profile-btn{
+        background-color:$teal-color;
+        a{
+          color:$white-color;
+        }
+      }
+      &.home-btn{ 
+        @include minPhabletmaxTablet{
+          display:none;
+        }
+      }
+      &.profile {
+        margin-right:0px;
+        .dropdown-toggle{
+          position: relative;
+          display:block;
+          width:35px;
+          height:60px;
+          background-image: url('/assets/images/nav/profile-icon.svg');
+          background-position-y:14px;
+          background-repeat: no-repeat;
+        }
+        .dropdown-menu{
+          right:-4px;
+          top: 45px !important;
+          padding:5px 0px;
+          .profile-btn{
+            position: relative;
+            display: block;
+            padding: 16px 25px 16px 25px;
+            border-bottom:1px solid $border-grey-color;
+            .name{
+              color:$teal-color;
+              font-size:18px;
+              font-family: $muli-bold;
+            }
+            .sub-text{
+              font-family:$muli-regular;
+              color:$black-color;
+              font-size:11px;
+            }  
+          }
+          
         }
       }
     }
@@ -581,7 +723,11 @@ h6 {
     .dropdown-menu {
       margin-top: 14px;
       border-radius: 5px;
-      border: 1px solid #e1e1e1;
+      border: 0px;
+      box-shadow: 0 5px 14px 1px rgba(0, 0, 0, 0.2);
+      @include minMobilemaxPhablet{
+        box-shadow: none;
+      }
       padding: 15px 0px;
 
       &::before {
@@ -594,7 +740,7 @@ h6 {
         right: 15px;
         transform: rotate(45deg);
         background-color: $white-color;
-        border: 1px solid #e1e1e1;
+        border: 0px solid #e1e1e1;
         z-index: 2;
       }
 
@@ -702,6 +848,15 @@ h6 {
             letter-spacing: -0.1px;
           }
         }
+        &:hover,:focus{
+          background-color:#f9f9f9f9;
+          outline:none;
+        }
+        &:active{
+          background-color:#f9f9f9;
+          color:$teal-color;
+          outline:none;
+        }
 
       }
     }
@@ -721,7 +876,6 @@ h6 {
 
   &.headerMode {
     @include minMobilemaxPhablet {
-      height: 0px;
     }
   }
 }
@@ -734,24 +888,6 @@ h6 {
   }
 }
 
-.navbar-toggler {
-  position: absolute;
-  display: block;
-  right: 0px;
-
-  .navbar__menu-icon {
-    background-image: url("/assets/images/menu-icon.svg");
-    display: block;
-    width: 24px;
-    height: 24px;
-  }
-
-  .navbar__menu-icon-close {
-    background-image: url("/assets/images/close.svg") !important;
-    opacity: 0.5;
-  }
-}
-
 .navbar-brand {
   position: relative;
   display: inline-flex;
@@ -761,7 +897,7 @@ h6 {
   cursor: pointer;
 
   @include minMobilemaxPhablet {
-    position: absolute;
+    position: relative;;
     display: flex;
     left: 0px;
     max-height: 45.5px;
@@ -791,17 +927,12 @@ h6 {
 }
 
 .navbar__logo--secondary {
-  background-image: url("/assets/images/logo--secondary.png");
-  width: 130px;
-  margin-top: 20px;
-}
-
-.navbar__logo--tertiary {
   background-image: url("/assets/images/logo--secondary.svg");
   width: 72px;
   height: 15px;
   margin-top: 18px;
   margin-bottom: 12px;
+  margin-left: 0px;
 }
 
 .navbar__separator {
@@ -812,6 +943,44 @@ h6 {
   opacity: 0.2;
   margin-left: 15px;
 }
+
+.navbar-btn-group {
+  position: relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width:auto;
+}
+
+.navbar-toggler {
+  position: relative;
+  display: block;
+  right: 0px;
+  cursor: pointer;
+
+  .navbar__menu-icon {
+    background-image: url("/assets/images/menu-icon.svg");
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .navbar__menu-icon-close {
+    background-image: url("/assets/images/close.svg") !important;
+    opacity: 0.5;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 .navbar__back-btn--web {
   background-image: url("/assets/images/back-web.svg");
