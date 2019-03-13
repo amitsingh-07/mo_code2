@@ -35,8 +35,8 @@ color: $dark-teal-color;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        right: -29px;        
-        bottom: 13px;
+        right: -29px; 
+        top: 3px!important;
     } 
 .otherMortageBlock .help-icon{
     right: 10px;
@@ -119,13 +119,19 @@ color: $dark-teal-color;
     .delete-icon {
         right:-25px!important;
     }
-    .with-help-icon{
+    .form-group-with-bg--content-label{
         color:$black-color;
+    }
+    .form-group-with-bg--content-sub-label{
+        color:$text-grey-color;
     }
 }
 .otherMortage .help-icon {
-    top:8px!important;
+    top:3px!important;
 }
 u{
     color:$post-login-widget-title;
+}
+.footer-notes{
+    background: $btn-primary-backgrnd-color;
 }

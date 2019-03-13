@@ -49,7 +49,7 @@ export interface IChildEndowment {
 export interface IMyLiabilities {
     homeLoanOutstanding: number;
     otherPropertyLoan: number;
-    otherLoanAmountOustanding: number;
+    otherLoanAmountOutstanding: number;
     carLoan: number;
 }
 export class HospitalPlan {
@@ -135,7 +135,7 @@ export interface IMyAssets {
     CPFMA: number;
     yourHome: number;
     investmentProperties: number;
-    otherinvestment: IOtherProperties[];
+    otherInvestment: IOtherProperties[];
     otherAssets: number;
 }
 export interface IOtherProperties {

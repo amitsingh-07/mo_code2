@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IRegularSavePlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
@@ -29,6 +30,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   RSPSelection: boolean;
   regularSavingsArray: IRegularSavePlan;
+  submitted = false;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
               private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
@@ -54,7 +56,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   rspSelection() {
     this.RSPForm.valueChanges.subscribe((form: any) => {
-      this.RSPSelection =  form.hasRegularSavings === 'true'  ? true : false;
+      this.RSPSelection = form.hasRegularSavings === 'true' ? true : false;
     });
   }
   ngOnInit() {
@@ -117,7 +119,26 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.regularUnitTrust.setValue(investment);
   }
   goToNext(form) {
-  this.comprehensiveService.setRSP(form.value);
-  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+    if (this.validateRegularSavings(form)) {
+      this.comprehensiveService.setRSP(form.value);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+    }
   }
+
+  validateRegularSavings(form: FormGroup) {
+
+    this.submitted = true;
+    if (form.value.hasRegularSavings === 'true') {
+      if (!form.valid) {
+        const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
+          this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
+        this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+        );
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 }

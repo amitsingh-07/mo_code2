@@ -117,10 +117,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   buildEducationList(value) {
     const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());
+    console.log(ageFind);
     const aboutAgeCal = this.aboutAge.getAboutAge(ageFind,
       (value.gender === 'Male') ?
        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
-
+    console.log(aboutAgeCal);
     return this.formBuilder.group({
       id: [value.id],
       name: [value.name],
@@ -153,7 +154,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         }
       });
       form.value.endowmentDetailsList = dependantArray;
-      console.log(form.pristine);
+      console.log(dependantArray);
       if (!form.pristine) {
       
         this.comprehensiveService.setChildEndowment(form.value);

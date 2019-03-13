@@ -1,6 +1,6 @@
-import { ProgressTrackerComponent } from './../shared/modal/progress-tracker/progress-tracker.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProgressTrackerComponent } from './../shared/modal/progress-tracker/progress-tracker.component';
 
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
@@ -14,12 +14,14 @@ import { DependantSelectionComponent } from './dependant-selection/dependant-sel
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
+import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 
 const routes: Routes = [
     {
@@ -46,7 +48,9 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent },
             { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent },
             { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent }
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
+            { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN, component: RetirementPlanComponent },
+            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent }
         ]
     }
 ];

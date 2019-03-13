@@ -1,0 +1,55 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+
+  </div>
+  <div class="title mt40">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE'|translate}}</div>
+  <div class="sub-title">{{'CMP.INSURANCE_PLAN.SUB_TITLE'|translate}} </div>
+  <form [formGroup]="insurancePlanForm" id="insurancePlanForm" name="insurancePlanForm" class="insurancePlanForm">
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{
+              'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('MONTHLY_SALARY_TITLE','MONTHLY_SALARY_MESSAGE')"></span>
+
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.EMPLOYMENT_TYPE' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="dropdown-control">
+              <div ngbDropdown id="employmentTypeDropDown">
+                <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+                  <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="employmentType !== ''">{{employmentType}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
+                  <button class="dropdown-item" (click)="selectEmploymentType('','')">Select</button>
+                  <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
+                    (click)="selectEmploymentType(employmentType, 'html')">
+                    {{employmentType.text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+
+      </div>
+    </div>
+  </form>
+</div>
