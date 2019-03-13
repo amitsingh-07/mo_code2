@@ -3,9 +3,6 @@
 
 app-start-journey {
   .container-fluid {
-    @include allmobiles {
-      padding: 110px 0;
-    }
     &.full-height {
       min-height: 100vh;
     }
@@ -13,7 +10,7 @@ app-start-journey {
   .journey-wrapper {
     width: 120px;
     height: 120px;
-    margin: 60px auto 0;
+    margin: 0 auto;
   }
   .journey-content {
     margin-top: 30px;

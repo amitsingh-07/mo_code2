@@ -89,6 +89,11 @@ app-funding-intro {
       padding: 0 10%;
     }
   }
+  .container-fluid{
+    @include allmobiles{
+      padding-top: 10px;
+    }
+  }
   .app-additional-declaration {
     .btn-proceed {
       border: 0px;
@@ -137,7 +142,7 @@ app-funding-intro {
       @include allmobiles {
         .banner-image img {
           max-width: 70%;
-          padding-top: 15vh;
+          padding-top: 5vh;
         }
       }
       @include iPadProPortrait {

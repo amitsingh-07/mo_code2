@@ -57,9 +57,6 @@ app-tax-info {
     .fixed-btn--sm {
       color: $white-color;
     }
-    .mr16 {
-      margin-right: 5px !important;
-    }
     .text {
       font-family: $muli-regular;
       font-size: 18px;
@@ -73,8 +70,7 @@ app-tax-info {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
@@ -85,9 +81,6 @@ app-tax-info {
         top: 0px;
       }
     }
-    // .QuestionLabel{
-    //     width: 83%;
-    // }
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
@@ -138,13 +131,13 @@ app-tax-info {
       padding-top: 10px;
     }
     .tax-form {
-      padding: 60px 0px 40px;
+      padding: 60px 0px 25px;
       position: relative;
       @include allmobiles{
-        padding: 60px 20px 40px; 
+        padding: 60px 20px 25px; 
       }
       &:first-child {
-        padding-top: 50px;
+        padding-top: 30px;
         .thumb-close-icon {
           display: none;
         }

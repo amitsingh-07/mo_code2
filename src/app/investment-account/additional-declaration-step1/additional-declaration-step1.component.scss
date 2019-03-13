@@ -2,9 +2,6 @@
 @import '../../../_mixins.scss';
 app-additional-declaration-step1 {
   .app-add-step1 {
-    .container-fluid {
-      padding-top: 110px;
-    }
     .dropdown-control {
       .dependent-count {
         color: $text-color-secondary;
@@ -49,8 +46,7 @@ app-additional-declaration-step1 {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
