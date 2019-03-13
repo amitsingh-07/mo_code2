@@ -21,8 +21,8 @@ import { ComprehensiveService } from './../comprehensive.service';
 @Component({
     selector: 'app-cmp-my-profile',
     templateUrl: './my-profile.component.html',
-    styleUrls: [ './my-profile.component.scss' ],
-    providers: [ { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
+    styleUrls: ['./my-profile.component.scss'],
+    providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
     encapsulation: ViewEncapsulation.None
 })
 export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
@@ -80,8 +80,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.setPageTitle(this.pageTitle);
             });
         });
-        // TODO: Remove the below line after 'getComprehensiveSummary()' API is implemented
-        this.getUserProfileData();
 
         this.buildProfileForm();
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -89,19 +87,22 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     ngOnInit() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        if (!this.userDetails.dateOfBirth) {
-            //this.loaderService.showLoader({ title: 'Fetching Data' });
-            // #this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
+        if (!this.userDetails || !this.userDetails.firstName) {
+            this.loaderService.showLoader({ title: 'Fetching Data' });
             this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                this.loaderService.hideLoader();
                 const redirectUrl = this.signUpService.getRedirectUrl();
                 if (redirectUrl) {
                     this.signUpService.clearRedirectUrl();
                     this.loaderService.hideLoader();
-                    this.router.navigate([ redirectUrl ]);
+                    this.router.navigate([redirectUrl]);
                 } else {
                     this.getUserProfileData();
                 }
             });
+        } else {
+            this.getUserProfileData();
         }
 
         this.navbarService.setNavbarComprehensive(true);
@@ -128,17 +129,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        if (!this.userDetails.dateOfBirth) {
-            this.comprehensiveApiService.getPersonalDetails().subscribe((data: any) => {
-                this.loaderService.hideLoader();
-                this.userDetails = data.objectList[0];
-                this.setUserProfileData();
-                this.buildProfileForm();
-                this.loaderService.hideLoader();
-            });
-        } else {
-            this.setUserProfileData();
-        }
+
+        this.setUserProfileData();
+        this.buildProfileForm();
+        this.progressService.updateValue(this.router.url, this.userDetails.firstName);
     }
 
     setUserProfileData() {
@@ -152,11 +146,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     buildProfileForm() {
         this.moGetStrdForm = this.formBuilder.group({
-            firstName: [ this.userDetails ? this.userDetails.firstName : '' ],
-            gender: [ this.userDetails ? this.userDetails.gender : '', [ Validators.required ] ],
-            nation: [ this.userDetails ? this.userDetails.nation : '', [ Validators.required ] ],
-            dateOfBirth: [ this.userDetails ? this.userDetails.dateOfBirth : '' ],
-            ngbDob: [ this.userDetails ? this.userDetails.ngbDob : '', [ Validators.required ] ]
+            firstName: [this.userDetails ? this.userDetails.firstName : ''],
+            gender: [this.userDetails ? this.userDetails.gender : '', [Validators.required]],
+            nation: [this.userDetails ? this.userDetails.nation : '', [Validators.required]],
+            dateOfBirth: [this.userDetails ? this.userDetails.dateOfBirth : ''],
+            ngbDob: [this.userDetails ? this.userDetails.ngbDob : '', [Validators.required]]
         });
         this.myProfileShow = false;
     }
@@ -168,10 +162,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setMyProfile(form.value);
             this.comprehensiveService.setProgressToolTipShown(true);
             if (!form.pristine) {
-                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {});
+                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => { });
             }
-            this.progressService.updateValue(this.router.url, this.userDetails.firstName);
-            this.router.navigate([ COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1' ]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
         }
     }
     selectNationality(nationality: any) {

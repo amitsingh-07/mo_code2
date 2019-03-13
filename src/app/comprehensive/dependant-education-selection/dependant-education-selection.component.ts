@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IEducationPlan, IMySummaryModal } from '../comprehensive-types';
+import {  IChildEndowment, IMySummaryModal } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -23,7 +23,8 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 })
 export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
-  endowmentDetail: IEducationPlan;
+  hasEndowments: string;
+  endowmentDetail: IChildEndowment[];
   dependantDetails: any;
   education_plan_selection = false;
   pageId: string;
@@ -69,8 +70,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   dependantSelection() {
 
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    if ( this.endowmentDetail.endowmentDetailsList) {
-      this.dependantsArray = this.endowmentDetail.endowmentDetailsList;
+    this.hasEndowments = this.comprehensiveService.hasEndowment();
+    if ( this.endowmentDetail.length > 0) {
+      this.dependantsArray = this.endowmentDetail;
     } else {
       this.dependantsArray = [];
       const dependantDetails = this.comprehensiveService.getMyDependant();
@@ -100,7 +102,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       dependantListArray.push(this.buildEducationList(dependant));
     });
     this.dependantEducationSelectionForm = this.formBuilder.group({
-      hasEndowments: [this.endowmentDetail ? this.endowmentDetail.hasEndowments : '', Validators.required],
+      hasEndowments: [this.hasEndowments , Validators.required],
       endowmentDetailsList: this.formBuilder.array(dependantListArray)
     });
     this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
@@ -154,10 +156,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         }
       });
       form.value.endowmentDetailsList = dependantArray;
-      console.log(dependantArray);
       if (!form.pristine) {
-      
-        this.comprehensiveService.setChildEndowment(form.value);
+        this.comprehensiveService.setEndowment(form.value.hasEndowments );
+        this.comprehensiveService.setChildEndowment(form.value.endowmentDetailsList);
       }
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
     }

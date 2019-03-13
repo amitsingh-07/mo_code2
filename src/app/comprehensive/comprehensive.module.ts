@@ -23,6 +23,7 @@ import { DependantSelectionComponent } from './dependant-selection/dependant-sel
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
+import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.component';
@@ -30,7 +31,6 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
-import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(

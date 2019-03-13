@@ -9,83 +9,82 @@
     </button>
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 2">
     <div class="instruction-content finance-section">
-    <!-- <ul class="list-none">
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
-          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>         
+        <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+        <div class="mb30" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
+        
+        <div class="summary-modal__main-content mb20 {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">
+          <span class='liquid-cash'></span>
+          <div>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</div>
+          <div class="summary-modal__main-content_dollar {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">{{ (!summaryModalDetails.liabilitiesEmergency)?'-':'' }} {{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+          <span class='liquid-alert' [hidden]="summaryModalDetails.liabilitiesEmergency"></span>
         </div>
-      </li>
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</b></div>
-          <div class="sub-section text-center {{ (!summaryModalDetails.liabilitiesEmergency)?'emergBlock':'' }}" innerHTML="{{ (!summaryModalDetails.liabilitiesEmergency)?'-':'' }} {{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}"></div>          
+        <div class="summary-modal__main-content mb30 ">
+            <span class='spare-cash'></span>
+            <div>{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</div>
+            <div class='summary-modal__main-content_dollar'>{{ summaryModalDetails.liabilitiesMonthlySpareCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+          </div>
+        <div class="summary-modal__details summary-modal__minus-content mb30"  [hidden]="summaryModalDetails.liabilitiesEmergency">
+            {{ summaryModalDetails.contentObj.EMERGENCY_BELOW_DESC }}
         </div>
-      </li>
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</b></div>
-          <div class="sub-section  text-center" innerHTML="{{ summaryModalDetails.liabilitiesMonthlySpareCash | currency:'USD':'symbol-narrow':'1.0-2'}}"></div>             
+        <div class="summary-modal__details mb30" [hidden]="!calculateCashDesc" >
+            <div class="summary-modal__details--label-grey text-center width100"><u (click)="toggleCalculatePop()" >{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</u></div>
         </div>
-      </li>
-
-       <li class="flex" [hidden]="summaryModalDetails.liabilitiesEmergency">
-        <div class="section">         
-          <div class="sub-section  text-center {{ (!summaryModalDetails.liabilitiesEmergency)?'emergBlock':'' }}" innerHTML="{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_DESC }}"></div>             
-        </div>
-      </li>
-      
-       <li class="flex" [hidden]="!calculateCashDesc" >
-        <div class="section">
-          <div class="sub-section step text-center"><b (click)="toogleCalculatePop()" >{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</b></div>          
-                       
-        </div>
-      </li>
-
-       <li class="flex"  [hidden]="calculateCashDesc">
-        <div class="section calculate-cash-desc">
-          <div class="sub-section step text-center">
-            <b>{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}</b>  
-            <button type="button" class="closebut" aria-label="Close" (click)="toogleCalculatePop()">
-              <span aria-hidden="true"></span>
-            </button>         
-          </div>    
-           
-          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC1 }}"></div>
-          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC2 }}"></div>      
-                       
-        </div>
-      </li>
-
-      <li class="flex"  [hidden]="summaryModalDetails.liabilitiesEmergency">
-        <div class="section calculate-cash-desc">
-          <div class="sub-section step">
-            <b><u>{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_TITLE }}</u></b>
-          </div>    
-           
-          <div class="sub-section" innerHTML="{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_DESC }}"></div>  
-                       
-        </div>
-      </li>
-
-      
-
-      <li class="flex" >
-        <div class="section">
-            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
-                {{ summaryModalDetails.contentObj.NEXT }}
-            </button>
+        <div class="summary-modal__box-content" [hidden]="calculateCashDesc">
+            <div class='summary-modal__pop-content-head'>
+                {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE }}
+              <button type="button" class="summary-modal__pop-button" aria-label="Close" (click)="toggleCalculatePop()">
+                <span aria-hidden="true"></span></button>
             </div>
-      </li>
-    </ul> -->
+            <div class='summary-modal__pop-content-body'> {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC1 }}</div>
+            <div class='summary-modal__pop-content-body'> {{ summaryModalDetails.contentObj.HOW_DO_WE_CALCULATE_DESC2 }}</div>
+          </div>
+        <div class="summary-modal__box-content text-left" [hidden]="summaryModalDetails.liabilitiesEmergency">
+          <div class='summary-modal__box-content-head'><u>{{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_TITLE }}</u></div>
+          <div class='summary-modal__box-content-body'> {{ summaryModalDetails.contentObj.EMERGENCY_BELOW_NOTE_DESC }}</div>
+        </div>
+        <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+            {{ summaryModalDetails.contentObj.NEXT }}
+        </button> 
     </div>
 
   </div>
 
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 4">
     <div class="instruction-content retirement-section">
+        <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>        
+        <div class="mb30 description" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div>
+        <div class="summary-modal__details mb20 retire-bd text-left retire-content">
+            <span class='retire-house'></span>
+            <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}
+              </div>
+        </div>
+        
+        <div class="summary-modal__details mb20 retire-bd text-left retire-content">
+            <span class='retire-money'></span>
+            <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}
+              </div>
+        </div>
+        <div class="summary-modal__details mb20 retire-sub-content text-left">            
+            <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21 }}<br/>
+              <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21_NOTE }}</span>
+              </div>
+        </div>        
+        <div class="summary-modal__details mb20 retire-sub-content text-left">            
+            <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_22 }}
+              </div>
+        </div>        
+        <div class="summary-modal__details mb20 retire-bd text-left retire-content">
+            <span class='retire-medical-expenses'></span>
+            <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_3 }} <br> 
+            <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_3_DESC }}</span>
+            </div>
+        </div>
+
+        <div class="mb30 retire-bd" innerHTML="{{ summaryModalDetails.contentObj.SUB_CONTENT_NOTE }}"></div>
+
+        <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+            {{ summaryModalDetails.contentObj.NEXT }}
+        </button>
     <!-- <ul class="list-none">
       <li class="flex">
         <div class="section">
@@ -137,106 +136,79 @@
   </div>
   <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <!-- <ul class="list-none">
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
-          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC }}"></div> 
-        </div>       
-      </li>
-
-      <li>
-         <div class="section">
-           <div class="sub-section sub-section-heading step text-center">            
-                {{ summaryModalDetails.contentObj.SUB_TITLE }}
-          </div>
+        <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+        <div class="mb30">
+            {{ summaryModalDetails.contentObj.CONTENT_DESC }}
         </div>
-      </li>
-
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step"><p class='modal-black-head'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_1 }}</p></div> 
-                            
-        </div>
-        <div class="section">
-          <div class="sub-section step"><p class='modal-black-head'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_2 }}</p></div>                               
-        </div>
-      </li>
-
-
-      <li class="flex">
-        <div class="section ins-content-box">
-          <div class="sub-section step"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC11 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC12 }}</p></div> 
-                            
-        </div>
-        <div class="section ins-content-box">
-          <div class="sub-section step"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC21 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC22 }}</p></div>                               
-        </div>
-      </li>
-
-
-      <li class="flex" >
-        <div class="section">
-            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
-                {{ summaryModalDetails.contentObj.NEXT }}
-            </button>
+        <button type="button" class="btn width100 mb20" id="prfBtn1">
+            {{ summaryModalDetails.contentObj.SUB_TITLE }}
+        </button>
+      
+        <div class="flex-row mb10">
+            <div class="flex-col-6">
+                <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_1}}">
             </div>
-      </li>
-    </ul> -->
+            <div class="flex-col-6">
+                <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_2}}">
+            </div>
+          </div>
+        <div class="flex-row">
+            <div class="flex-col-6">              
+                <p class='summary-modal__details--label-black'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</p> 
+                <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_1 }}</p>
+                                
+            </div>
+            <div class="flex-col-6">                
+                <p class='summary-modal__details--label-black'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</p>
+                <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_2 }}</p>                             
+            </div>
+        </div>
+    
+    
+          <div class="flex-row text-left  mb20 ">
+            <div class="flex-col-6 loss-of-income">
+              <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC11 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC12 }}</p>
+                                
+            </div>
+            <div class="flex-col-5 loss-of-income ml10">
+              <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC21 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC22 }}</p>
+            </div>
+          </div>
+          
+        <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+            {{ summaryModalDetails.contentObj.NEXT }}
+        </button>
     </div>
     
   </div>
 
    <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 3 && !summaryModalDetails.dependantModelSel">
     <div class="instruction-content insurance-planning-section">
-    <!-- <ul class="list-none">
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step text-center"><b>{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</b></div>
-          <div class="sub-section sub-padding-top" innerHTML="{{ summaryModalDetails.contentObj.CONTENT_DESC.replace('ESTIMATED_COST', summaryModalDetails.estimatedCost | currency:'USD':'symbol-narrow':'1.0-2' ) }}"></div> 
-        </div>       
-      </li>
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step"><div>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</div><div class='retire-modal-notes'>{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC }} </div></div>
+        <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+        <div class="mb30">
+            {{ summaryModalDetails.contentObj.CONTENT_DESC }}
+            <span class='summary-modal__details--value'>{{ summaryModalDetails.contentObj.CONTENT_DESC1.replace('ESTIMATED_COST', summaryModalDetails.estimatedCost | currency:'USD':'symbol-narrow':'1.0-2' ) }}</span>
+            {{ summaryModalDetails.contentObj.CONTENT_DESC2 }}
         </div>
-        <div class="section">
-          <div class="sub-section step">{{ summaryModalDetails.termInsurance | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>                               
+        <div class="summary-modal__details mb30">
+          <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY1 }} <br> <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.CONTENT_BODY1_DESC }}</span></div>
+          <div class="summary-modal__details--value">{{ summaryModalDetails.termInsurance | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>
         </div>
-      </li>
-
-      <li class="flex">
-        <div class="section">
-          <div class="sub-section step">{{ summaryModalDetails.contentObj.CONTENT_BODY2 }} </div>  
+        <div class="summary-modal__details mb30">
+          <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</div>
+          <div class="summary-modal__details--value">{{ summaryModalDetails.wholeLife | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>
         </div>
-        <div class="section">
-          <div class="sub-section step">{{ summaryModalDetails.wholeLife | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>                               
+        <div class="summary-modal__box-content">
+            <div class='summary-modal__box-content-head text-left'><u>{{ summaryModalDetails.contentObj.SUB_TITLE }}</u></div>
+            <div class='summary-modal__box-content-body mb20'> {{ summaryModalDetails.contentObj.SUB_TITLE_DESC }}</div>
+            <div class='summary-modal__box-content-body mb20'> <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE}}" /></div>
+            <div class='summary-modal__box-content-body mb20 summary-modal__details--label-grey text-center'> {{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div>
+            <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div>
+            <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC2 }}</div>
         </div>
-      </li>
-
-      
-
-      <li class="flex">
-        <div class="section ins-content-box">
-          <div class="sub-section step"><p><u>{{ summaryModalDetails.contentObj.SUB_TITLE }}</u></div> 
-          <div class="sub-section step text-center"><p class='sub-padding'>{{ summaryModalDetails.contentObj.SUB_TITLE_DESC }}</div>
-          <div class="sub-section step text-center"  *ngIf="summaryModalDetails.contentImage"><p><img src="./assets/images/{{ summaryModalDetails.contentImage }}" /></div> 
-          <div class="sub-section step retire-modal-notes text-center"><p  class='sub-padding'>{{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div> 
-          <div class="sub-section step modal-black-head"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div> 
-          <div class="sub-section step modal-black-head"><p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC2 }}</div>                   
-        </div>        
-      </li>    
-
-      <li class="flex" >
-        <div class="section">
-            <button type="button" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">
-                {{ summaryModalDetails.contentObj.NEXT }}
-            </button>
-            </div>
-      </li>
-    </ul> -->
+        <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
+            {{ summaryModalDetails.contentObj.NEXT }}
+        </button> 
     </div>
     
   </div>

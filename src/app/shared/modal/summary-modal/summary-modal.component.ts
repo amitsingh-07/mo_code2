@@ -12,31 +12,16 @@ import { ConfigService } from '../../../config/config.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SummaryModalComponent implements OnInit {
-  /*@Input() setTemplateModal: any;
-  @Input() title: any;
-  @Input() message: any;
-  @Input() contentObj: any;
-  @Input() liabilitiesLiquidCash: any;
-  @Input() liabilitiesMonthlySpareCash: any;
-  @Input() liabilitiesEmergency: Boolean;
-  @Input() dependantModelSel: Boolean;
-  
-  @Input() estimatedCost: any;
-  @Input() termInsurance: any;
-  @Input() wholeLife: any;
-  */
-  //@Input() dependantDetails: any;
-  //@Input() nondependantDetails: any;
-
   @Input() summaryModalDetails: any;
   calculateCashDesc = true;
-  constructor(public activeModal: NgbActiveModal, private router: Router,private translate: TranslateService, private configService: ConfigService) { }
+  constructor(public activeModal: NgbActiveModal, private router: Router, private translate: TranslateService,
+              private configService: ConfigService) { }
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    }); 
+    });
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -45,15 +30,14 @@ export class SummaryModalComponent implements OnInit {
         this.activeModal.dismiss();
       });
 
-      console.log(this.summaryModalDetails);
+    console.log(this.summaryModalDetails);
   }
 
-toogleCalculatePop(){
-  this.calculateCashDesc = !this.calculateCashDesc;
-}
-goNextPage(){
-  console.log(this.summaryModalDetails.nextPageURL);
-  this.router.navigate([this.summaryModalDetails.nextPageURL]);
-}
+  toggleCalculatePop() {
+    this.calculateCashDesc = !this.calculateCashDesc;
+  }
+  goNextPage() {
+    this.router.navigate([this.summaryModalDetails.nextPageURL]);
+  }
 
 }
