@@ -118,6 +118,7 @@
       "STEP_2_DESC": "The information help us to estimate what you can save and invest, your protection need and your financial health.",
       "STEP_3_TITLE": "Your Current Fire Proofing",
       "STEP_3_DESC": "Let's find out how protected you are in face unexpected events",
+      "STEP_4_TITLE_NAV":"Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
       "STEP_5_TITLE": "Congratulations!",
@@ -429,6 +430,14 @@
 	    "MY_EARNINGS": "Your Earnings",
       "MY_SPENDINGS": "Your Spendings",
       "REGULAR_SAVINGS": "Regular Savings Plan"
+    },
+    "RETIREMENT_PLAN":{
+    "SUB_TITLE":"Finally, at what age would you retire?",
+    "ABOUT":"I want to retire by age "
+    },
+    "INSURANCE_PLAN":{
+     "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing."
+
     }
   }
 }

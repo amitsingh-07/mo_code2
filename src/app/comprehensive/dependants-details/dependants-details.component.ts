@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -14,7 +15,6 @@ import { ConfigService } from './../../config/config.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { IMyDependant, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 @Component({
   selector: 'app-dependants-details',
@@ -177,9 +177,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].enquiryId = 4850;
       });
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-      console.log("sajs")
       this.comprehensiveApiService.addDependents(form.value.dependentMappingList).subscribe(((data: any) => {
-console.log(data);
       }));
       const dependantDetails = [];
       let dependantList = true;

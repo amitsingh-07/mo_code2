@@ -32,8 +32,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   regularSavingsArray: IRegularSavePlan;
   submitted = false;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private formBuilder: FormBuilder,
-    private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+              private translate: TranslateService, private formBuilder: FormBuilder,
+              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
