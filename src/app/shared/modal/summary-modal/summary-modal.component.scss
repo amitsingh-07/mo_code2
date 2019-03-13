@@ -41,6 +41,16 @@ $minus-content-color:#ff872f;
         font-weight: bold;
         color: $finance-pop-title;
     }
+    &__details--label-black{
+        color:$black-color;
+    }
+}
+.summary-modal .btn {
+    box-shadow: none !important;
+    border: none!important;
+    background: $dark-teal-color!important;
+    color: $white-color!important;
+    font-size: 16px;
 }
 .spare-cash{
     width: 34px;
@@ -72,6 +82,61 @@ $minus-content-color:#ff872f;
     right:8%;
     top:5px;
 }
+.loss-of-income{
+    background: $light-grey-color;    
+    border-radius: 6px;
+    padding:8px 3px 3px 5px;
+ }
+ .ml10{
+     margin-left:10px;
+ }
+ .retirement-section{
+     .description{
+        font-size: 18px;
+     }
+     .retire-content{
+         position: relative;
+     }
+     .retire-bd{
+         font-weight: bold;
+         letter-spacing: -0.1px;
+         margin-left: 30px;
+     }
+     
+     .retire-sub-content{
+        font-size:14px;
+        font-weight: bold;
+        letter-spacing: -0.1px;
+        margin-left: 30px;
+    }
+     .retire-house{
+        width: 25px;
+        height: 34px;
+        background: url("../../../../assets/images/comprehensive/summary-page/retire-house.svg");      
+        background-repeat: no-repeat; 
+        position: absolute;
+        left: -24px;
+        top: -3px;
+     }     
+     .retire-money{
+        width: 25px;
+        height: 34px;
+        background: url("../../../../assets/images/comprehensive/summary-page/retire-money.svg");      
+        background-repeat: no-repeat; 
+        position: absolute;
+        left: -24px;
+        top: -3px;
+     }     
+     .retire-medical-expenses{
+        width: 34px;
+        height: 34px;
+        background: url("../../../../assets/images/comprehensive/summary-page/retire-medical-expenses.svg");      
+        background-repeat: no-repeat; 
+        position: absolute;
+        left: -24px;
+        top: 0px;
+     }
+ }
 // $summary-notes-color:#9f9f9f;
 // $summary-notes-backcolor:#f5f5f5;
 // .finance-section,.retirement-section,.insurance-planning-section {
