@@ -1,14 +1,6 @@
 @import '../../../variables';
 @import "../../../_mixins.scss";
 app-add-update-bank{
-.container-fluid{
-  @include allmobiles {
-    padding-top: 120px;
-  }
-  @include phablet {
-    padding-top: 120px;
-  }
-}
 .dots{
      padding: 10px;
      margin: 0 20px;
