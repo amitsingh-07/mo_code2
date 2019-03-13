@@ -5,7 +5,7 @@
     
   <div class="dependant-title mt40">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div> 
-  <div class = 'income-bucket-panel'>     
+  <div class = 'income-bucket-panel mt15'>     
     <div class="income-bucket-panel__img {{ (totalAnnualIncomeBucket > 0)?'filledEarn':'emptyEarn' }}"></div> 
     <div class="income-bucket-panel__desc">{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</div> 
     <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
@@ -348,7 +348,7 @@
           <div class="flex-col-1 earn-dollar-help">
               <span class="earn-dollar-icon earn-monthly-income-dollar"></span>            
             </div>
-            <div class="flex-col-11 dropdown-control" [hidden]="otherAnnualIncomeType && annualDividendsType" >
+            <div class="flex-col-11 dropdown-control dollar-help" [hidden]="otherAnnualIncomeType && annualDividendsType" >
           <div ngbDropdown id="employmentTypeDropDown">
             <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle>
               <span >  {{'CMP.MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
