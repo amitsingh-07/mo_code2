@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMode(101);
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
