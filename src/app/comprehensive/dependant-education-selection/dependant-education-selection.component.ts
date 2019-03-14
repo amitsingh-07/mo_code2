@@ -34,7 +34,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   educationPreference = true;
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
-  enquiryId = this.comprehensiveService.getEnquiryId();
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder,
               private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
@@ -145,8 +144,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       form.value.endowmentDetailsList.forEach((dependantDetail: any) => {
           dependantArray.push({
-            id: 0, dependentId: dependantDetail.id,
-            enquiryId: this.enquiryId , location: '', educationCourse: '', endowmentMaturityAmount: '',
+            id: 0, dependentId: dependantDetail.id, location: '', educationCourse: '', endowmentMaturityAmount: '',
             endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
              gender: dependantDetail.gender, age: dependantDetail.age, preferenceSelection : dependantDetail.dependantSelection
           });
