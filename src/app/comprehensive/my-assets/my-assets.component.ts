@@ -33,22 +33,22 @@ export class MyAssetsComponent implements OnInit {
   menuClickSubscription: Subscription;
   pageId: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService, 
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
-  this.pageId = this.route.routeConfig.component.name;
-  this.configService.getConfig().subscribe((config) => {
-  this.translate.setDefaultLang(config.language);
-  this.translate.use(config.language);
-  });
-  this.translate.get('COMMON').subscribe((result: string) => {
-  // meta tag and title
-  this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
-  this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+    this.pageId = this.route.routeConfig.component.name;
+    this.configService.getConfig().subscribe((config) => {
+      this.translate.setDefaultLang(config.language);
+      this.translate.use(config.language);
+    });
+    this.translate.get('COMMON').subscribe((result: string) => {
+      // meta tag and title
+      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
+      this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
 
-  this.setPageTitle(this.pageTitle);
-  });
-  this.assetDetails = this.comprehensiveService.getMyAssets();
-  console.log(this.comprehensiveService.getMyAssets());
+      this.setPageTitle(this.pageTitle);
+    });
+    this.assetDetails = this.comprehensiveService.getMyAssets();
+    console.log(this.comprehensiveService.getMyAssets());
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -61,11 +61,11 @@ export class MyAssetsComponent implements OnInit {
       }
     });
     this.buildMyAssetsForm();
-    if(this.assetDetails && this.assetDetails.investmentProperties > 0){      
+    if (this.assetDetails && this.assetDetails.investmentProperties > 0) {
       this.myInvestmentProperties = false;
     }
     this.onTotalAssetsBucket();
-    
+
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
@@ -73,9 +73,9 @@ export class MyAssetsComponent implements OnInit {
   }
   buildMyAssetsForm() {
     const otherInvestFormArray = []; var inc = 0;
-    if(this.assetDetails.otherInvestment && this.assetDetails.otherInvestment.length>0){
-      this.assetDetails.otherInvestment.forEach((otherInvest,i) => {       
-        if(otherInvest.investmentType !== '' || otherInvest.others > 0) {           
+    if (this.assetDetails.otherInvestment && this.assetDetails.otherInvestment.length > 0) {
+      this.assetDetails.otherInvestment.forEach((otherInvest, i) => {
+        if (otherInvest.investmentType !== '' || otherInvest.others > 0) {
           otherInvestFormArray.push(this.buildInvestmentForm(otherInvest));
           this.investType[inc] = otherInvest.investmentType;
           inc++;
@@ -97,7 +97,7 @@ export class MyAssetsComponent implements OnInit {
       otherAssets: [this.assetDetails ? this.assetDetails.otherAssets : '', [Validators.required]]
     });
   }
-  addOtherInvestment() { 
+  addOtherInvestment() {
     this.myInvestmentProperties = !this.myInvestmentProperties;
 
   }
@@ -108,7 +108,7 @@ export class MyAssetsComponent implements OnInit {
   buildInvestmentForm(inputParams) {
     return this.formBuilder.group({
       investmentType: [inputParams.investmentType, [Validators.required]],
-      others: [(inputParams && inputParams.others)?inputParams.others:'', [Validators.required]]
+      others: [(inputParams && inputParams.others) ? inputParams.others : '', [Validators.required]]
     });
   }
   removeInvestment(i) {
@@ -118,7 +118,7 @@ export class MyAssetsComponent implements OnInit {
   }
   selectInvestType(investType, i) {
     investType = investType ? investType : { text: '', value: '' };
-    this.investType[i] = investType.text;   
+    this.investType[i] = investType.text;
     this.myAssetsForm.controls['otherInvestment']['controls'][i].controls.investmentType.setValue(investType.text);
     this.myAssetsForm.markAsDirty();
   }
@@ -128,8 +128,10 @@ export class MyAssetsComponent implements OnInit {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = { TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
-    DESCRIPTION: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipMessage)};
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipMessage)
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
   @HostListener('input', ['$event'])
