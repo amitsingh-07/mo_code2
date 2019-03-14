@@ -7,4 +7,8 @@ export interface INavbarConfig {
     showSearchBar: false;
     showNotifications: boolean;
     showHeaderNavbar: false;
+    showLabel ?: {
+        'primary': string;
+        'secondary' ?: string;
+        };
     }

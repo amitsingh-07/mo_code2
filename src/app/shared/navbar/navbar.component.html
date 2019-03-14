@@ -20,6 +20,12 @@
           <!-- Logo -->
           <li class="navbar__logo--primary hidden-sm-md" (click)="goToHome()"></li>
           <li class="navbar__logo--secondary hidden-lg" (click)="goToHome()"></li> 
+          <li *ngIf="showLabel" class="navbar__separator hidden-sm-md">
+          </li>
+          <li *ngIf="showLabel" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+            <p>{{showLabel.primary}}</p>
+            <p *ngIf="showLabel.secondary" class="secondary">{{showLabel.secondary}}</p>
+          </li>
         </div>
         <div class="navbar-btn-group hidden-lg">
           <!-- Notifications -->

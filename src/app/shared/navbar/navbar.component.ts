@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
+  showLabel: any;
 
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
@@ -172,7 +173,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       if (navbarMode === 100 || navbarMode === 1) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
-      if (this.isNotificationEnabled) {
+      if (this.isNotificationEnabled && this.isLoggedIn) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
@@ -203,6 +204,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     Object.keys(nc).forEach((key) => {
       this.navbarConfig[key] = nc[key];
     });
+    // Resetting Items to default
+    if (!nc['showLabel']) {
+      this.navbarConfig.showLabel = undefined;
+    }
     // Implement Matrix
     const config = this.navbarConfig as INavbarConfig;
     this.showNavBackBtn = config.showNavBackBtn;
@@ -214,6 +219,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
     this.showNotificationClear = false;
+    this.showLabel = config.showLabel ? config.showLabel : false;
   }
 
   // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
