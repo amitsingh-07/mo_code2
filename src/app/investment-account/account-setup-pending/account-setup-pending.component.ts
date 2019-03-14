@@ -37,7 +37,7 @@ export class AccountSetupPendingComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
