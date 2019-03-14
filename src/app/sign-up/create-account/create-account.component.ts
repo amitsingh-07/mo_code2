@@ -4,10 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
-import { environment } from '../../../environments/environment';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
-import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
@@ -48,6 +48,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private _location: Location,
     private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -59,10 +60,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
-    }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
@@ -71,7 +68,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.refreshCaptcha();
+    if (!this.authService.isAuthenticated()) {
+      this.loaderService.showLoader({title: 'Loading'});
+      this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
+        this.loaderService.hideLoader();
+      });
+    } else {
+      this.refreshCaptcha();
+      this.loaderService.hideLoader();
+    }
   }
 
   /**
