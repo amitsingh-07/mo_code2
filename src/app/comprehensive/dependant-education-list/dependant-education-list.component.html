@@ -12,7 +12,7 @@
     </div>
              
   <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
-      <div formArrayName="endowmentPlan" class="education-support-array  mb-2" *ngFor="let educationPlan of endowmentListForm.controls.endowmentPlan.controls; let i = index;">
+      <div formArrayName="endowmentPlan" class="education-support-array  mb-2" *ngFor="let educationPlan of endowmentListForm['controls'].endowmentPlan['controls']; let i = index;">
   
         <div class="form-group-with-bg mt20" [formGroupName]="i">
         
@@ -57,7 +57,7 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
+              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan['controls'].maturityYear.invalid}"
                 id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYear formControlName="endowmentMaturityYear" maxlength="4">
               </div>
             </div>

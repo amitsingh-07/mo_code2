@@ -199,7 +199,7 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
 
-        <div formArrayName="otherInvestment" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment " *ngFor="let otherInvestment of myAssetsForm.controls.otherInvestment.controls; let i = index;">
+        <div formArrayName="otherInvestment" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment " *ngFor="let otherInvestment of myAssetsForm['controls'].otherInvestment['controls']; let i = index;">
 
           <div class="flex-row both-icon mt-2" *ngIf="i>0">
             <div class="flex-col-12 form-group-with-bg--content-label">
