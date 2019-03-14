@@ -1,3 +1,4 @@
+import { IComprehensiveEnquiry } from './../comprehensive-types';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -162,9 +163,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setMyProfile(form.value);
             this.comprehensiveService.setProgressToolTipShown(true);
             if (!form.pristine) {
-                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => { });
+                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+                    this.comprehensiveService.startComprehensiveEnquiry();
+                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                });
+            } else {
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
             }
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
         }
     }
     selectNationality(nationality: any) {

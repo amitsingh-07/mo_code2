@@ -5,7 +5,7 @@ const ACCOUNT_API_BASE_URL = 'account/account-microservice/api/';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
-const COMPREHENSIVE_API_BASE_URL = 'recommendations-microservice/api/customer/comprehensive/';
+const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
 
 export let apiConstants = {
     endpoint: {

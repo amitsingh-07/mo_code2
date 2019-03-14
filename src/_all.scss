@@ -1744,6 +1744,7 @@ a.link-white {
 .comprehensive {
   &.container-fluid {
     height: 100vh;
+    padding-top: $cmp-padding-top;
   }
   &__page-heading {
     padding: 16px 0;

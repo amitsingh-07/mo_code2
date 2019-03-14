@@ -25,7 +25,7 @@ input[type='checkbox']:checked+label {
 }
 .comprehensive {
   &.container-fluid {
-      padding-top: 120px;
+      padding-top: $cmp-padding-top;
   }
   .dependant-title {
       font-size: 18px;
