@@ -442,8 +442,10 @@
     "ABOUT":"I want to retire by age "
     },
     "INSURANCE_PLAN":{
-     "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing."
-
+     "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing.",
+     "HOSPITAL_PLAN":"Hospital Plan",
+     "HOSPITAL_PLAN_DESC":"You want to stay in a ",
+     "HOSPITAL_PLAN_DESC_END":"Private Hospital when down-on-luck and hospitalised."
     }
   }
 }

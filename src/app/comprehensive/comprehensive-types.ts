@@ -1,5 +1,20 @@
 import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
 
+export interface  IComprehensiveDetails {
+    baseProfile: IMyProfile;
+    dependentsList: IDependantDetail[];
+    comprehensiveEnquiry: IComprehensiveEnquiry;
+    dependentEducationPreferencesList: IChildEndowment[];
+}
+export interface IComprehensiveEnquiry {
+    customerId: number;
+    enquiryId: number;
+    hasComprehensive: boolean;
+    hasDependents: boolean;
+    hasEndowments: string;
+    hasRegularSavingsPlans: boolean;
+    type: string;
+}
 export interface IMyProfile {
     id: string;
     firstName: string;
@@ -8,7 +23,8 @@ export interface IMyProfile {
     gender: string;
     ngbDob: any;
 }
-export interface IMyDependant {
+
+export interface IDependantDetail {
     id: number;
     name: string;
     relationship: string;
@@ -18,21 +34,6 @@ export interface IMyDependant {
     enquiryId: number;
 }
 
-export interface IDependant {
-    name: string;
-    id: number;
-    dependantSelection: boolean;
-}
-export interface IEPreference {
-    id: number;
-    age: number;
-    location: string;
-    educationCourse: string;
-}
-export interface IEducationPlan {
-    hasEndowments: string;
-    endowmentDetailsList: IChildEndowment[];
-}
 export interface IChildEndowment {
     id: number;
     dependentId: number;

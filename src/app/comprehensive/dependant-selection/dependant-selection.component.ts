@@ -67,7 +67,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(dependantSelectionForm) {
-    console.log(dependantSelectionForm.value);
     this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
     if (dependantSelectionForm.value.dependantSelection === 'true') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
