@@ -169,7 +169,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
         form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
       });
-      console.log(form.value.dependentMappingList);
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       this.hasDependant = this.comprehensiveService.hasDependant();
       form.value.hasDependents = this.hasDependant;
