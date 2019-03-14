@@ -1,11 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-withdrawal-payment-method {
-  .container-fluid {
-    @include allmobiles {
-      padding: 120px 0;
-    }
-  }
   .withdraw {
     .btn-group--toggle {
       &.tabs {

@@ -3,9 +3,6 @@
 
 app-portfolio-exist {
   .container-fluid {
-    @include allmobiles {
-      padding: 110px 0;
-    }
     &.full-height {
       min-height: 100vh;
     }
@@ -13,7 +10,7 @@ app-portfolio-exist {
   .journey-wrapper {
     width: 175px;
     height: 165px;
-    margin: 66px auto 0;
+    margin: 46px auto 0;
   }
   .journey-content {
     margin-top: 13px;

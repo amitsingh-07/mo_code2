@@ -59,12 +59,18 @@ export class DashboardComponent implements OnInit {
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService,
+    public readonly translate: TranslateService,
+    private appService: AppService,
+    private signUpService: SignUpService,
+    private apiService: ApiService,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
+    private selectedPlansService: SelectedPlansService,
     private willWritingApiService: WillWritingApiService,
-    private willWritingService: WillWritingService) {
+    private willWritingService: WillWritingService
+    ) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => { });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
     });
@@ -72,8 +78,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(100);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
@@ -93,7 +99,6 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
@@ -255,7 +260,7 @@ export class DashboardComponent implements OnInit {
     this.isInvestmentEnabled = true;
   }
 
-  // Will Writing
+  // Will-writing
   redirectTo(page: string) {
     if (page === 'edit') {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
@@ -263,7 +268,6 @@ export class DashboardComponent implements OnInit {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
     }
   }
-
   downloadWill() {
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
       this.saveAs(data);

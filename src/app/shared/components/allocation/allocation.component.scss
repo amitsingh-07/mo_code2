@@ -16,13 +16,9 @@ app-allocation{
       color: $teal-color;
       padding: 0px 0 12px;
       .equity_bar {
-        justify-content: space-between;
         align-items: center;
-        .flex-col-8 {
-          max-width: 60%;
-          @include allmobiles{
-            max-width: 195px;
-          }
+        .flex-col{
+          padding-left: 5px;
         }
       }
       .bar-container {

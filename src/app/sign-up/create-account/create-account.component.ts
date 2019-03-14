@@ -64,7 +64,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       });
     }
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
