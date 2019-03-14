@@ -28,8 +28,8 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {});
   }
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
   }
   goNext() {

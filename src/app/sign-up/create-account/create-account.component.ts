@@ -61,6 +61,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
       });
     }
     this.navbarService.setNavbarVisibility(true);

@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { InvestmentAccountService } from '../investment-account-service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { Router } from '@angular/router';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TranslateService } from '@ngx-translate/core';
+import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-funding-intro',
@@ -32,8 +32,8 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.translate.get('COMMON').subscribe((result: string) => {});
   }
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentAccountService.restrictBackNavigation();
