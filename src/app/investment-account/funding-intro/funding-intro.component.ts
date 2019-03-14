@@ -33,7 +33,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentAccountService.restrictBackNavigation();

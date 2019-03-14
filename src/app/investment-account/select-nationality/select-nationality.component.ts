@@ -47,7 +47,7 @@ export class SelectNationalityComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(6);
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
