@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="125px" height="120px" viewBox="0 0 125 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 5</title>
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 10</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <ellipse id="path-1" cx="59.2895439" cy="59.5278548" rx="59.2895439" ry="59.5278548"></ellipse>
         <polygon id="path-3" points="0.0162890625 0.0369665706 138.999527 0.0369665706 138.999527 138.152439 0.0162890625 138.152439"></polygon>
         <polygon id="path-5" points="0 0 63.264485 0 63.264485 83.1422104 0 83.1422104"></polygon>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="account-opening-assets" transform="translate(-128.000000, -153.000000)">
-            <g id="Group-5" transform="translate(128.000000, 153.000000)">
+    <g id="investment-journey" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.0-Nationality-Selected" transform="translate(-128.000000, -238.000000)">
+            <g id="Group-10" transform="translate(128.000000, 238.000000)">
                 <g id="Group-15">
                     <g id="Group-12">
                         <g id="Group-2">
@@ -36,9 +36,10 @@
                                                 </g>
                                             </g>
                                             <g mask="url(#mask-2)" id="Group-8">
-                                                <g transform="translate(30.000000, 51.000000)">
+                                                <g transform="translate(-7.000000, 51.000000)">
                                                     <g>
-                                                        <g id="Group-7" transform="translate(0.762522, 0.000000)">
+                                                        <path d="M3.4580255,69.3671696 L114.733764,69.3671696 C113.842035,99.9525546 89.2734323,124.467333 59.0958949,124.467333 C28.9183576,124.467333 4.349755,99.9525546 3.45802572,69.367177 Z" id="Combined-Shape-Copy-2" fill="#008181" transform="translate(59.095895, 96.917251) rotate(-315.000000) translate(-59.095895, -96.917251) "></path>
+                                                        <g id="Group-7" transform="translate(37.762522, 0.000000)">
                                                             <g id="Group-6">
                                                                 <path d="M24.9611971,48.5008404 L78.2897672,48.5008404 C77.8786662,63.0604979 66.0980203,74.7354788 51.6254822,74.7354788 C37.152944,74.7354788 25.3722982,63.0604979 24.9611971,48.5008404 Z" id="Combined-Shape-Copy" fill="#FF9445" transform="translate(51.625482, 61.618160) rotate(-9.000000) translate(-51.625482, -61.618160) "></path>
                                                                 <g id="Group">

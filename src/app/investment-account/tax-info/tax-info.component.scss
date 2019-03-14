@@ -1,131 +1,174 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-body{
-    background-color: #00a7a7;
-}
-.app-select-nationality{
-    // .container-fluid {
-    //     padding-top: 0px;
-    //     padding-bottom: 0px;
-    // }
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-tax-info {
+  .app-tax-info {
+    .container-fluid {
+      @include allmobiles{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+    }
     .flex-row {
-    align-items: center;
+      align-items: center;
     }
     .dropdown-control {
-        .dependent-count {
-        color: #5e5e5e;
+      .dependent-count {
         margin-left: 4px;
-      font-size: 16px;
-      line-height: 1.25;
-      letter-spacing: -0.2px;
-      font-family: $muli;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-}
-}
-
-label {
-font-size: 18px;
-letter-spacing: -0.3px;
-}
-.form-group {
-    @include allmobiles {
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+      }
+    }
+    label {
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      padding-right: 10px;
+    }
+    .form-group {
+      @include allmobiles {
         padding-bottom: 30px;
       }
-}
-.dropdown-control .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    // height: calc(70vh);
     }
-.dropdown-item {
-    white-space: normal;
-    
-}
-.btn{
-    
-}
-.fixed-btn--sm {
-    color:#FFF;
-    // flex-wrap: initial;
-   
-}
-.mr16{
-    margin-right: 5px !important;
-}
-.text{
-   font-family: $muli-regular;
-  font-size: 18px;
-   line-height: 1.17;
-  letter-spacing: -0.2px;
-  text-align: center;
-  padding-left: 17px;
-  padding-right: 14px;
-}
-.step-indicator-container {
-    background-color: #fff;
-    padding: 10px 0px;
-    position: relative;
-    top: 60px;
-    margin-bottom: 15px;
-
-    .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
+    .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
     }
-  }
-
-  @media (min-width: 768px) {
+    .dropdown-item {
+      white-space: normal;
+      word-break: break-word;
+    }
+    .dropdown-control .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn {
+      &.btn-dropdown {
+        padding-right: 41px;
+      }
+    }
+    .fixed-btn--sm {
+      color: $white-color;
+    }
+    .text {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.17;
+      letter-spacing: -0.2px;
+      text-align: center;
+      padding-left: 17px;
+      padding-right: 14px;
+    }
     .step-indicator-container {
-      top: 0px;
+      background-color: $white-color;
+      padding: 10px 0px;
+      position: relative;
+      top: 60px;
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+    @media (min-width: 768px) {
+      .step-indicator-container {
+        top: 0px;
+      }
+    }
+    .tooltip-icon {
+      background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      display: block;
+    }
+    .country_text {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-weight: 600;
+      color: $white-color;
+      margin: 0px 10px 0px 0px;
+    }
+    .tin_question_text {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    input::placeholder {
+      color: $teal-grey-color !important;
+    }
+    .add-tax-box {
+      padding: 30px 20px;
+      border-radius: 6px;
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
+      background-color: $white-color;
+      font-family: $muli-regular;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+      text-align: center;
+      color: $black-color;
+      margin-top: 33px !important;
+      margin: 20px;
+    }
+    .add-tax-text {
+      font-family: $muli-bold;
+      font-size: 18px;
+      font-weight: bold;
+      color: $inline-error-border-color;
+      padding-top: 10px;
+    }
+    .tax-form {
+      padding: 60px 0px 25px;
+      position: relative;
+      @include allmobiles{
+        padding: 60px 20px 25px; 
+      }
+      &:first-child {
+        padding-top: 30px;
+        .thumb-close-icon {
+          display: none;
+        }
+      }
+      &.brdr-btm {
+        border-bottom: 1px solid $white-color;
+      }
+      .thumb-close-icon {
+        position: absolute;
+        border-radius: 100%;
+        background-color: $white-color;
+        bottom: -12px;
+        width: 30px;
+        height: 30px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          left: 0;
+          right: 0;
+          position: relative;
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
     }
   }
-// .QuestionLabel{
-//     width: 83%;
-// }
-
-.tooltip-icon {
-    background: url("../../../assets/images/investment-account/tin-info.svg") no-repeat;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-    display: block;
-  }
-  .country_text {
-    font-family: $muli-semi-bold;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    color: #ffffff;
-    margin: 0px 10px 0px 0px;
-  }
-  .tin_question_text {
-    font-family: $muli-semi-bold;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    color: #ffffff;
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
-
-  input::placeholder {
-    color: #8d9aa8 !important;
-  }
-
-  .inline-error{
-    border-radius:6px;
-    .btn{
-      &.btn-secondary{
-        background-color:#ff872f !important;
-      }  
-    }    
-  }
-
 }

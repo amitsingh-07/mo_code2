@@ -1,189 +1,110 @@
 @import '../../../variables';
 @import '../../../mixins';
-
 app-portfolio-recommendation {
-  
-
-  //  iadd for reference//
+  .container-fluid {
+    @include allmobiles {
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+      padding-bottom: 66px;
+    }
+  }
   .portfolio-allocation-details {
-    padding-top:80px;
-    // margin-top:70px;
-    .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-
-    .fin-accessment-block__tab-container {
-      @extend .flex;
-      @extend .space-btwn;
-      width: 100%;
-
-      .fin-accessment-block__tab {
-        width: calc(50% - 10px);
-        opacity: 0.2;
-        padding-right: 10px;
-        background-color: $app-backgrnd-secondary-color;
-        min-height: 5px;
-
-        &.active {
-          opacity: 1;
-        }
-      }
-    }
-
-    .portfolio-allocation-details__content {
-      @include tablet {
-        .banner-image img {
-          max-width: 90%;
-          margin: 20px
-        }
-      }
-
-      @include allmobiles {
-        .banner-image img {
-          max-width: 70%;
-          margin: 20px
-        }
-      }
-
-      @include iPadProPortrait {
-        .banner-image img {
-          max-width: 80%;
-          margin: 20px
-        }
-      }
-    }
-
-    .portfolio-allocation-details__content__desc {
-
-      // margin-top: 100px;
-      // text-align: left;
-      @include allmobiles {
-        margin-top: 16px;
-      }
-
-      @include tablet {
-        margin-top: 30px;
-      }
-    }
-
-    .portfolio-allocation-details__content__title {
-      font-family: $muli-bold;
-      font-size: 24px;
-      letter-spacing: -0.3px;
+    .portfolio-allocation-details__container {
       color: $white-color;
-      font-weight: bold;
-    }
-
-    .btn-proceed {
-      width: 179px;
-      height: 60px;
-      border: 0px;
       border-radius: 6px;
-      background-color: $white-color;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-      font-size: 22px;
-      text-align: center;
-      color: $app-backgrnd-color;
-      cursor: pointer;
-
-      @include allmobiles {
-        position: fixed;
-        width: 100%;
-        bottom: 0px;
-        left: 0px;
-        border-radius: 0px;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      background-color: $portfolio-allocation-details-bg;
+      .portfolio-allocation-details__content {
+        padding: 20px 0px;
+        .portfolio-allocation-details__content__desc {
+          padding: 0 15px;
+          .portfolio-allocation-details__content__block {
+            font-size: 14px;
+            line-height: 1.5;
+            letter-spacing: -0.14px;
+            text-align: center;
+            border-radius: 3px;
+            background-color: $portfolio-allocation-details-content-color;
+            padding: 20px 15px;
+            strong {
+              font-family: $muli-bold;
+            }
+          }
+        }
+      }
+      .review-edit {
+        justify-content: center;
+        align-items: center;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        color: $review-text-color;
+        .edit_button {
+          background: url('../../../assets/images/edit-icon.svg') no-repeat;
+          cursor: pointer;
+          display: inline-flex;
+          margin-left: 12px;
+          width: 23px;
+          height: 23px;
+        }
       }
     }
   }
-
-  // i added for reference//
-  .edit_button {
-    background: url("../../../assets/images/edit_button.svg") no-repeat;
-    cursor: pointer;
-    display: inline-flex;
-    margin-left: 12px;
-    width: 18px;
-    height: 18px;
-  }
-
-  .amount {
-    font-family: $muli-light;
-    font-size: 48px;
-    text-align: center;
-    color: #ffffff;
-  }
-
-  .years {
-    font-family: $muli-regular;
-    font-size: 18px;
-    text-align: center;
-    color: #ffffff;
-  }
-
-  .project_returns {
-    background-color: #25898f;
-    padding: 12px;
-
-    .Projected_title {
-      font-size: 16px;
-      line-height: 1.31;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #98dfdf;
-    }
-
-    .Projected_money {
+  .asset-allocation {
+    margin-top: 33px;
+    .title {
       font-family: $muli-bold;
-      font-size: 24px;
+      font-size: 21px;
       font-weight: bold;
-      letter-spacing: -0.3px;
-      text-align: center;
-      color: #ffffff;
+      letter-spacing: -0.4px;
+      color: $white-color;
+      padding-bottom: 14px;
     }
-
-    .tooltip-icon {
-      background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .whats_risk {
-      font-family: $muli-regular;
-      font-size: 14px;
-      text-align: center;
-      color: #98dfdf;
+  }
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 50px;
+    a {
+      color: $white-color;
       text-decoration: underline;
     }
   }
-
-
-  .allocation-container {
-    width: 100%;
-    background-color: #2d8289;
-    padding-top:30px;
-    padding-bottom:100px;
-    height: 100vh;
-
+  .review-block {
+    padding: 20px 35px;
+    background-color: $review-block-bg;
+    font-family: $muli-bold;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.44;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $white-color;
+    margin-bottom: 30px;
+    @include allmobiles{
+      margin-bottom: 0;
+    }
+    .review-italic {
+      font-family: $muli-italic;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.36;
+      letter-spacing: -0.1px;
+      color: $review-text-color;
+      padding-top: 10px;
+    }
   }
-
-  .allocation-content {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    color: #333;
+  .btn__footer--fixed {
+    margin-top: 0 !important;
+    font-family: $muli-bold !important;
+    font-size: 24px;
   }
-
-  .breakdown-title{
-    font-size:15px;
-    color:$text-color-secondary;
-    margin-bottom:5px;
+  hr {
+    border-color: $teal-color;
+    margin: 0;
   }
-  a.link-white {
-  
-    text-decoration: underline;
-}
-
 }

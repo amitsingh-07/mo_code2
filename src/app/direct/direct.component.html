@@ -1,8 +1,5 @@
 <div [ngClass]="{'modal--freeze': state.modalFreeze}">
   <div>
-    <div class="btn-close-edit hidden-sm-md" [hidden]="!state.modalFreeze">
-      <span class="btn-close" (click)="closeEditMode()"></span>
-    </div>
     <app-product-info [hideForm]="state.hideForm" (formSubmitCallback)="formSubmitCallback()" (backPressed)="backPressed()"></app-product-info>
   </div>
   <div>

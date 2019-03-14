@@ -1,145 +1,116 @@
 @import '../../../variables';
+@import '../../../mixins';
 
-
-.question-info {
-  position: relative;
-  top: 60px;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 35px;
-  line-height: 35px;
-  font-size: 14px;
-  font-weight: bold;
-  border-top: 1px solid #ccc;
-  color: #00a7a7;
-}
-
-
-
-@media (min-width: 768px) {
+app-risk-assessment {
   .question-info {
-    top: 0px;
+    position: relative;
+    top: 60px;
+    background-color: $white-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 35px;
+    line-height: 35px;
+    font-family: $muli-bold;
+    font-size: 14px;
+    font-weight: bold;
+    border-top: 1px solid $question-info-brdr-color;
+    color: $teal-color;
   }
-  .risk-assessment {
-    padding-top: 50px;
+
+  @media (min-width: 768px) {
+    .question-info {
+      top: 0px;
+    }
+    .risk-assessment {
+    }
   }
-}
 
-@media (max-width: 767px) {
-  .risk-assessment {
-    padding-top: 75px;
+  @media (max-width: 767px) {
+    .risk-assessment {
+    }
   }
-}
-
-.question-title {
-  font-family: $muli;
-  margin-bottom: 20px;
-  font-size: 18px;
-  line-height:1.3;
-}
-
-.option-title{
-  font-size:18px;
-}
-
-
-input[type='radio']+label {
-  //background: url("../../../assets/images/edit_button.svg") no-repeat;
-  background: url("../../../assets/images/radio-normal.svg") left center no-repeat;
-
-}
-input[type='radio']:checked+label {
-  background-image: url("../../../assets/images/radio-select.svg");
-}
-
-.form-group-single-column .checkbox-button .input-label-grey {
-  color:#313644;
-  font-family: $muli;
-  font-weight: 600;
-  font-size:18px;
-}
-
-
-.chart-mode{
-   background-color:#fff;
 
   .question-title {
-    color:$text-color-secondary;
-  }
-  .option-title{
-    font-size:18px;
-    color:$black-color;
-    
-  }
-  .option-desc{
-    font-size:16px;
-    color:$text-color-secondary;
-    font-family: "Muli Regular", sans-serif;
+    font-family: $muli-regular;
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.3;
   }
 
-  .legend-img-container{
-    margin-bottom:20px;
+  .option-title {
+    font-size: 18px;
   }
 
-  .form-group-single-column .checkbox-button.one-label{
-    padding:0px;
+  input[type='radio'] + label {
+    background: url('../../../assets/images/radio-normal.svg') left center no-repeat;
+  }
+  input[type='radio']:checked + label {
+    background-image: url('../../../assets/images/radio-select.svg');
   }
 
-  input[type='radio'] + label, input[type='checkbox'] + label{
-    background-position:15px center;
-    width: 100%;
+  .form-group-single-column .checkbox-button .input-label-grey {
+    color: $form-block-title-color;
+    font-family: $muli-semi-bold;
+    font-weight: 600;
+    font-size: 18px;
   }
 
-  label.vhfvhr, label.hfhr, label.mfmr, label.lflr{
-    padding:15px 25px 15px 55px;
+  .table-view {
+    display: table;
+    .table-row {
+      display: table-row;
+      .table-cell {
+        display: table-cell;
+        border-right: 1px solid $teal-color;
+        border-bottom: 1px solid $teal-color;
+        background-color: $risk-table-cell-bg-color;
+        color: $risk-table-cell-color;
+        padding: 12px;
+        vertical-align: middle;
+        text-align: center;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        .col-head {
+          font-family: $muli-bold;
+          line-height: 23px;
+        }
+        label {
+          color: $form-block-title-color;
+          font-size: 18px;
+        }
+      }
+      &.table-head {
+        .table-cell {
+          background-color: $white-color;
+          font-size: 16px;
+          color: $form-block-title-color;
+          font-family: $muli-regular;
+          line-height: 15px;
+        }
+        .table-cell:first-child {
+          border-radius: 6px 0px 0px 0px;
+        }
+        .table-cell:last-child {
+          border-radius: 0px 6px 0px 0px;
+        }
+      }
+    }
+    .table-row:last-child {
+      .table-cell:first-child {
+        border-radius: 0px 0px 0px 6px;
+      }
+      .table-cell:last-child {
+        border-radius: 0px 0px 6px 0px;
+      }
+    }
   }
-
-  .vhfvhr{
-    border:2px solid #76328e;
-    background-color:#f3edf5;
-    border-radius:5px;
-  }
-  .hfhr{
-    border:2px solid #ec681c;
-    background-color:#fbe1d2;
-    border-radius:5px;
-  }
-  .mfmr{
-    border:2px solid #00b0d9;
-    background-color:#cceff7;
-    border-radius:5px;
-  }
-  .lflr{
-    border:2px solid #00a451;
-    background-color:#cceddc;
-    border-radius:5px;
-  }
-
-  .legend-indicator{
-    float: right;
-    height:32px;
-    width:32px;
-    margin-top:15px;
-    font-size:22px;
-    background-position:right;
-    background-repeat: no-repeat;
-  }
-
-
-  .vhfvhr .legend-indicator{
-    background-image:url("../../../assets/images/portfolio/legend-1.svg");
-  }
-  .hfhr .legend-indicator{
-    background-image:url("../../../assets/images/portfolio/legend-2.svg");
-  }
-  .mfmr .legend-indicator{
-    background-image:url("../../../assets/images/portfolio/legend-3.svg");
-  }
-  .lflr .legend-indicator{
-    background-image:url("../../../assets/images/portfolio/legend-4.svg");
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    font-size: 24px;
+    &:disabled{
+      background-color: $btn-disabled-light-bg;
+      color: $disabled-teal-color;
+    }
   }
 }
-
-

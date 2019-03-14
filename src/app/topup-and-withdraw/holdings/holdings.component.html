@@ -1,0 +1,54 @@
+<div class="app-holdings">
+  <div class="container-fluid max-width--1024">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="form-group-with-bg" *ngFor="let holding of holidings; let i = index">
+          <!--Form Header-->
+          <div class="form-group-with-bg--header" *ngIf="holding.productName !== 'Discretionary Cash Account(SGD)'">
+            <div id="holdings_head_label">{{holding.productName}}</div>
+          </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content" *ngIf="holding.productName !== 'Discretionary Cash Account(SGD)'">
+            <div class="flex-row">
+              <div class="flex-col-5">
+                <div class="value_lab text_bold" for="total return" id="investment_overview_total_returns_labl">{{
+                  'HOLDINGS.TOTAL_VALUE' | translate}}
+                </div>
+              </div>
+              <div class="flex-col-7">
+                <div class="value" for="total value" id="investment_overview_total_returns_value">{{holding.currentValue
+                  | currency:'USD':'symbol-narrow':'1.0-2'}}
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-5">
+                <div class="value_lab " for="name" id="investment_overview_investment_start_labl">{{
+                  'HOLDINGS.NUMBER_OF_VALUE' | translate}}
+                </div>
+              </div>
+              <div class="flex-col-7">
+                <div *ngIf="holding.availableUnits" class="value" for="name" id="investment_overview_investment_start_value">{{holding.availableUnits}}
+                </div>
+                <div *ngIf="!holding.availableUnits" class="value" for="name" id="investment_overview_investment_start_value">0</div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-5">
+                <div class="value_lab" for="total" id="investment_overview_total_invested_lbl">{{ 'HOLDINGS.NAV' |
+                  translate}}
+                </div>
+              </div>
+              <div class="flex-col-7">
+                <div *ngIf="holding.indicativePrice" class="value" for="name" id="investment_overview_total_invested__value">{{holding.indicativePrice
+                  | currency:'USD':'symbol-narrow':'1.0-7'}}
+                </div>
+                <div *ngIf="!holding.indicativePrice" class="value" for="name" id="investment_overview_total_invested__value">$0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

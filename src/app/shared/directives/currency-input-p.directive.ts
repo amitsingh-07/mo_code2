@@ -15,6 +15,7 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
         private el: ElementRef, private currencyPipe: CurrencyPipe,
         private control: NgControl,
         private decimalPipe: DecimalPipe) {
+            this.el.nativeElement.type = 'tel'; // workaround for predictive text keyboard issue in samsung devices
     }
     ngAfterViewInit() {
         this.formatCurrency();

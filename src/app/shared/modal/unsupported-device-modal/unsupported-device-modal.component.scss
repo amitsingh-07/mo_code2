@@ -1,0 +1,35 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+
+.action-button {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow !important;
+  background-color: $teal-color;
+  border: 1px solid  $fixed-btn-brdr-color;
+  margin-top: 15px;
+  font-family: $muli-bold;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: $white-color;
+  padding: 10px;
+  &:active {
+    background-color: $action-btn-active-bg;
+    color: $white-color;
+  }
+}
+.popup-header-icon {
+    img {
+      height: 100%;
+      width: 100%;
+    }
+}
+.modal-body-message {
+  margin-bottom: 15px;
+}

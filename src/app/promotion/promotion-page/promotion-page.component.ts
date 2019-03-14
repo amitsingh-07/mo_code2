@@ -37,7 +37,7 @@ export class PromotionPageComponent implements OnInit {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);

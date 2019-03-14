@@ -1,75 +1,82 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
-body{
-    background-color: #00a7a7;
-}
-app-select-nationality{
-
-    .banner-image {
-        img {
-            padding-top: 1vh;
-        }
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+app-select-nationality {
+  .banner-image {
+    img {
+      padding-top: 1vh;
     }
-
-    .container-fluid {
-        padding-top: 0px !important;
+  }
+  .container-fluid {
+    @include allmobiles{
+      padding-top: 20px !important;
     }
-    .flex-row {
+  }
+  .flex-row {
     align-items: center;
-    }
-    .dropdown-control {
-        .dependent-count {
-        color: #5e5e5e;
-        margin-right: 4px;
+  }
+  .dropdown-control {
+    .dependent-count {
+      margin-right: 4px;
       font-size: 16px;
       line-height: 1.25;
       letter-spacing: -0.2px;
-}
-}
-
-label {
-font-size: 18px;
-letter-spacing: -0.3px;
-}
-.form-group {
+    }
+  }
+  label {
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    padding-right: 10px;
+  }
+  .form-group {
     @include allmobiles {
-        padding-bottom: 30px;
-      }
-}
-.dropdown-control .dropdown-menu.show {
+      padding-bottom: 30px;
+    }
+  }
+  .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    height: calc(70vh);
-    }
-.dropdown-item {
+    height: auto;
+    max-height: 264px;
+  }
+  .dropdown-item {
     white-space: normal;
-    
-}
-.btn{
-    // z-index: 1001;
-}
-.fixed-btn--sm {
-    color:#FFF;
-    // flex-wrap: initial;
-   
-}
-.mr16{
+    word-break: break-word;
+  }
+  .dropdown-control .btn-dropdown {
+    padding-right: 27px;
+    max-height: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dropdown-control{
+    .btn {
+      &:disabled {
+        color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
+        opacity: 1 !important;
+        &:hover{
+          background-color: $inv-btn-disabled-bg !important;
+        }
+      }
+    }
+  }
+  .fixed-btn--sm {
+    color: $white-color;
+  }
+  .mr16 {
     margin-right: 5px !important;
+  }
+  .text {
+    font-family: $muli-regular;
+    font-size: 18px;
+    line-height: 1.17;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding-left: 17px;
+    padding-right: 14px;
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+  }
 }
-.text{
-   font-family: $muli-regular;
-  font-size: 18px;
-   line-height: 1.17;
-  letter-spacing: -0.2px;
-  text-align: center;
-  padding-left: 17px;
-  padding-right: 14px;
-}
-
-// .QuestionLabel{
-//     width: 83%;
-// }
-}
-
-
-

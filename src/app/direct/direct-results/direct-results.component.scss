@@ -140,9 +140,6 @@ app-direct-results {
   }
 
 .results-mobile {
-  .flex-col-6 {
-    padding: 20px;
-  }
 }
 .results-mobile__compare-plan {
   @extend .flex;
@@ -185,6 +182,13 @@ app-direct-results {
     top: 20px !important;
     border: none;
     line-height: 65px;
+}
+.compare-plan__container{
+  position: relative;
+  margin-top:0px;
+  background-color:$teal-color;
+  padding-top:30px !important;
+  z-index:1029;
 }
 
 @include allmobiles {

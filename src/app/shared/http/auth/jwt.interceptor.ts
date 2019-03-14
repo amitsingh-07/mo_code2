@@ -47,6 +47,12 @@ export class JwtInterceptor implements HttpInterceptor {
                     'Authorization': `${this.auth.getToken()}`
                 })
             });
+        } else if (request.url.indexOf('saveDocuments') > -1) { // for upload documents
+            request = request.clone({
+                headers: new HttpHeaders({
+                    Authorization: `${this.auth.getToken()}`
+                })
+            });
         } else {
             request = request.clone({
                 headers: new HttpHeaders({

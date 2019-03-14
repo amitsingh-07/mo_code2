@@ -1,0 +1,263 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-fund-your-account {
+  .fund-your-account {
+    &.clearfix {
+      overflow: auto;
+    }
+    font-family: $muli;
+    .strong {
+      font-weight: bold;
+    }
+    .container-fluid {
+      padding-bottom: 20px;
+    }
+    /* FUND SUMMARY */
+    .fund-summary {
+      display: flex;
+      margin-bottom: 35px;
+      .from-account {
+        display: flex;
+        flex-direction: column;
+        flex: 4;
+        align-items: center;
+        font-family: $muli-regular;
+        img {
+          max-width: 80px;
+          margin-bottom: 10px;
+        }
+        .strong {
+          font-family: $muli-bold;
+        }
+        div {
+          align-self: center;
+          text-align: center;
+          word-break: break-all;
+          letter-spacing: -0.2px;
+        }
+      }
+      .right-arrow {
+        display: flex;
+        flex: 1;
+        align-self: center;
+        justify-content: center;
+        img {
+          width: 26px;
+        }
+      }
+      .to-account {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 4;
+        font-family: $muli-regular;
+        letter-spacing: -0.2px;
+        img {
+          max-width: 55px;
+          margin-bottom: 10px;
+        }
+        .strong {
+          font-family: $muli-bold;
+        }
+        div {
+          align-self: center;
+          text-align: center;
+        }
+      }
+    }
+    .fund-instruction {
+      font-family: $muli-regular;
+      padding: 0 5px;
+      line-height: 21px;
+      letter-spacing: -0.15px;
+    }
+    /* TRANSFER DETAILS */
+    .transfer-details {
+      margin: 25px 0px;
+      color: $teal-color;
+      .tab-links {
+        display: flex;
+        width: 100%;
+        background-color: $white-color;
+        border-radius: 6px 6px 0px 0px;
+        letter-spacing: -0.2px;
+        .tab-link-item {
+          display: flex;
+          flex-grow: 1;
+          flex-basis: 0;
+          color: $fund-account-tab-color;
+          font-size: 18px;
+          font-weight: bold;
+          font-family: $muli-bold;
+          padding: 15px 20px;
+          border-bottom: 3px solid $white-color;
+          text-align: center;
+          align-items: center;
+          &.active {
+            color: $secondary-action-color;
+            border-bottom: 3px solid $secondary-action-color;
+          }
+        }
+      }
+      .tab-content-container {
+        background-color: $bond-container-bg;
+        border-radius: 0px 0px 6px 6px;
+        .tab-content {
+          padding: 30px;
+          display: none;
+          &.active {
+            display: block;
+          }
+        }
+      }
+      .instruction-txt {
+        font-size: 15px;
+        margin-bottom: 15px;
+        font-family: $muli-regular;
+        color: $text-color-secondary;
+        strong {
+          font-family: $muli-bold;
+        }
+      }
+      .btn-bordered {
+        border: 1px solid $teal-color;
+        border-radius: 28px;
+        background-color: transparent;
+        font-size: 14px;
+        font-family: $muli;
+        text-align: center;
+        color: $teal-color;
+        display: flex;
+        padding: 6px 30px;
+      }
+      .account-detail {
+        margin-top: 20px;
+        font-family: $muli-semi-bold;
+        letter-spacing: -0.3px;
+        label {
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          font-weight: 600;
+          color: $dark-teal-color;
+          margin-bottom: 0px;
+        }
+        .value {
+          color: $black-color;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 10px;
+          .investment-values {
+            display: flex;
+            flex-direction: row;
+            div {
+              display: flex;
+              color: $dark-teal-color;
+              font-family: $muli-regular;
+              &:first-child {
+                margin-right: 20px;
+              }
+              span {
+                color: $secondary-action-color;
+                font-family: $muli-semi-bold;
+              }
+            }
+          }
+        }
+      }
+      .sub-text {
+        color: $text-color-secondary;
+        font-size: 13px;
+        line-height: 1.38;
+        font-family: $muli-regular;
+        letter-spacing: -0.1px;
+      }
+      .setup-auto-deposit {
+        border: 1.5px solid $dark-teal-color;
+        border-radius: 6px;
+        padding: 25px;
+        position: relative;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        font-family: $muli-regular;
+        .head {
+          font-family: $muli-bold;
+          font-size: 16px;
+          text-align: center;
+          color: $teal-color;
+          position: absolute;
+          top: -18px;
+          padding: 5px 15px 5px 55px;
+          background-color: $bond-container-bg;
+          display: flex;
+          flex: 1;
+          background: url('../../../assets/images/investment-account/subcard_owl.svg') no-repeat;
+          background-color: $bond-container-bg;
+          background-position: 15px 4px;
+        }
+        p {
+          color: $black-color;
+        }
+      }
+    }
+    .btn-with-icon {
+      border-radius: 6px;
+      box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
+      background-color: $teal-color;
+      border: solid 1px $fixed-btn-brdr-color;
+      font-size: 18px;
+      font-family: $muli-bold;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      text-align: center;
+      color: $white-color;
+      width: 100%;
+      padding: 21px 0px;
+      box-shadow: 0px 7px 15px 0px $mailing-address-text-brdr-color !important;
+      &:active {
+        outline: none;
+        background-color: $action-btn-active-bg;
+        color: $white-color;
+      }
+      &:hover {
+        outline: none;
+      }
+      &:focus {
+        outline: none;
+        background-color: $action-btn-active-bg;
+        color: $white-color;
+      }
+      img {
+        margin-left: 8px;
+        margin-top: -1px;
+      }
+    }
+    .process-time-info {
+      font-family: $muli-regular;
+      font-size: 16px;
+      color: $white-color;
+      text-align: center;
+      margin: 15px 0px;
+      padding: 30px 18px;
+      background: $review-block-bg;
+      @include allmobiles {
+        margin-bottom: 66px;
+      }
+    }
+    .topup_success {
+      font-family: $muli-regular;
+      padding: 17px 42px;
+      line-height: 21px;
+      letter-spacing:  -0.2px;
+      text-align: center;
+      @include allmobiles {
+        margin-bottom: 66px;
+      }
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold;
+      font-size: 24px;
+    }
+  }
+}

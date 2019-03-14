@@ -1,0 +1,46 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-asset-allocation {
+  .container-fluid {
+    @include allmobiles {
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+      padding-bottom: 66px;
+      padding-top: 50px;
+    }
+    @include phablet {
+      padding-top: 120px;
+     }
+  }
+  .portfolio-allocation-details {
+    .portfolio-allocation-details__container {
+      color: $white-color;
+      border-radius: 6px;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      background-color: $portfolio-allocation-details-bg;
+    }
+  }
+  .asset-allocation {
+    margin-top: 33px;
+    .title {
+      font-family: $muli-bold;
+      font-size: 21px;
+      font-weight: bold;
+      letter-spacing: -0.4px;
+      color: $white-color;
+      padding-bottom: 14px;
+    }
+  }
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 19px;
+    a {
+      color: $white-color;
+      text-decoration: underline;
+    }
+  }
+}
