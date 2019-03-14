@@ -61,7 +61,7 @@ export class AddUpdateBankComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.queryParams = this.route.snapshot.queryParams;
     this.addBank = this.queryParams.addBank;
     this.translate.get('COMMON').subscribe(() => {

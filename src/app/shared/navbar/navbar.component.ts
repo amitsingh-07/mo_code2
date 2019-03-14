@@ -165,7 +165,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
       // Enabling Notifications
-      if (navbarMode === 100) {
+      if (navbarMode === 100 || navbarMode === 1) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
       if (this.isNotificationEnabled) {
@@ -209,8 +209,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
-    console.log(this.showHeaderNavbar);
   }
+
+  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -302,6 +303,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.router.url === EDIT_PROFILE_PATH
       );
   }
+  // End of Notifications
 
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
