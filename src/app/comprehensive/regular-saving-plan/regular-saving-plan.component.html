@@ -17,7 +17,7 @@
 
           </label>
           <section [hidden]="!RSPSelection" class="p-0 rspSelectionList" >
-            <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm.controls.comprehensiveRegularSavingsList.controls; let i = index;">
+            <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
              
              
                   <div class="form-group-with-bg--header">
@@ -27,7 +27,7 @@
                           </div>
             
                         <div class="flex-col-1">
-                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm.controls.comprehensiveRegularSavingsList.controls.length>1"><span class="mo3-close-icon"></span></div>
+                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"><span class="mo3-close-icon"></span></div>
                         </div>
                       </div>
                     </div>  
@@ -40,7 +40,7 @@
                     <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
                   </div>
                   <div class="pr0 flex-col-7">
-                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularUnitTrust.invalid}">
+                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularUnitTrust.invalid}">
                       <div ngbDropdown id="relationshipDropDown">
                         <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle>
                           <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -68,7 +68,7 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularPaidByCash.invalid}" >
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
                         <i>$</i>
                         <input type="text" class="input-control" appCurrencyInput   #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
@@ -83,7 +83,7 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList.controls.regularPaidByCPF.invalid}">
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
                         <i>$</i>
                         <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF"   >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
