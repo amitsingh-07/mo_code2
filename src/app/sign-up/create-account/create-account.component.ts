@@ -59,10 +59,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
-    }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
@@ -71,8 +67,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.refreshCaptcha();
-    this.loaderService.hideLoader();
+    if (!this.authService.isAuthenticated()) {
+      this.loaderService.showLoader({title: 'Loading'});
+      this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
+        this.loaderService.hideLoader();
+      });
+    } else {
+      this.refreshCaptcha();
+      this.loaderService.hideLoader();
+    }
   }
 
   /**
