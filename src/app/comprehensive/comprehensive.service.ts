@@ -101,6 +101,11 @@ export class ComprehensiveService {
         this.commit();
     }
 
+    startComprehensiveEnquiry(): void {
+        this.getComprehensiveSummary().comprehensiveEnquiry.hasComprehensive = true;
+        this.commit();
+    }
+
     getMyProfile() {
         if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
             this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
