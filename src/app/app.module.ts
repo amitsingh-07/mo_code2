@@ -188,8 +188,8 @@ export function tokenGetterFn() {
         PromotionChildEnableGuard,
         ArticleEnableGuard,
         ArticleChildEnableGuard,
-        SignUpService
-     ComprehensiveEnableGuard,
+        SignUpService,
+        ComprehensiveEnableGuard,
         ComprehensiveChildEnableGuard,
         AboutAge
     ],
@@ -203,7 +203,7 @@ export function tokenGetterFn() {
         RecommendationsModalComponent,
         SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent,
         WillDisclaimerComponent, TransactionModalComponent,
-        LoginCreateAccountModelComponent, SummaryModalComponent
+        LoginCreateAccountModelComponent, SummaryModalComponent,
         FundDetailsComponent, UnsupportedDeviceModalComponent]
 })
 export class AppModule {
