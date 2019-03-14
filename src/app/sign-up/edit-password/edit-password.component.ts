@@ -45,8 +45,7 @@ export class EditPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
   }
@@ -91,7 +90,7 @@ export class EditPasswordComponent implements OnInit {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode === 6000) {
           // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
         }
       });
     }

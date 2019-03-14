@@ -44,7 +44,7 @@ export class PromotionLandingComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);

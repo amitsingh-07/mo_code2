@@ -1,19 +1,31 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 app-edit-profile{
- .content{
+ .container-fluid{
+  padding-top: 0px;
   @include allmobiles {
-   padding-top: 100px;
+   padding-top: 60px;
+   padding-left: 0 !important;
+   padding-right: 0 !important;
   }
+  @include phablet{
+    padding-top: 100px;
+   }
+ }
+ .grass_bg_container{
+   width: 600px;
+   margin: 0 auto;
+   @include allmobiles{
+     width: 100%;
+   }
+   @include phablet{
+    width: 100%;
+   }
  }
 .grass_bg {
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-  .white-bg
-  {
-    background:$white-color;
   }
   .user-profile-bg{
     background:$white-color;
@@ -32,8 +44,13 @@ app-edit-profile{
     border-right: 0.5px solid $dark-teal-color;
     height: 28px;
     width: 2px;
-    margin-top: 10px;
     margin-left: 10px;
+    @include allmobiles{
+      margin-top: 10px;
+    }
+    @include tablet{
+      margin-top: 10px;
+    }
   }
 }
   .edit-profile-section-bg{
@@ -55,38 +72,44 @@ app-edit-profile{
       }
   }
   .heading{
-    object-fit: contain;
     font-family: $muli-bold;
     font-size: 22px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
     line-height: 1.36;
     letter-spacing: -0.2px;
     text-align: center;
     color: $post-login-widget-title;
     margin-top: 9px;
   }
+  .grid-wrapper{
+    @extend .flex;
+    @include allmobiles{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    @include phablet{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
   .content-text{
-    object-fit: contain;
     opacity: 0.95;
     font-family: $muli-light;
     font-size: 14px;
     font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
     line-height: 1.71;
     letter-spacing: -0.3px;
     color: $post-login-widget-title;
+    padding-right: 5px;
+    @include allmobiles{
+      padding-right: 0;
+    }
   }
   .nric-text{
-    object-fit: contain;
     opacity: 0.95;
     font-family: $muli-light;
     font-size: 14px;
     font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
     line-height: 1.71;
     letter-spacing: -0.3px;
     text-align: center;
@@ -94,16 +117,12 @@ app-edit-profile{
     padding-bottom: 14px;
   }
   .grid-content-text{
-    object-fit: contain;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
     line-height: 1.33;
     letter-spacing: -0.2px;
     color: $dark-teal-color;
-    word-break: break-all;
     @include iphone6{
       font-size: 16px;
     }
@@ -120,31 +139,10 @@ app-edit-profile{
     height: 10px;
     border: none;
   }
-  .confirm-button {
-    width: 100%;
-    height: 57px;
-    border-radius: 6px;
-    box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
-    background-color: $teal-color;
-    border: solid 1px rgba(0, 135, 134, 0.4);
-    margin-top: 15px;
-    font-family: Muli;
-    font-size: 24px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    text-align: center;
-    color: $white-color;
-  }
   .update-contact-title{
       opacity: 0.95;
       font-family: $muli-regular;
       font-size: 16px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
       line-height: 1.5;
       letter-spacing: -0.3px;
       color: $review-block-bg;
@@ -184,7 +182,7 @@ app-edit-profile{
     border-radius: 6px;
     box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
     background-color:$white-color;
-    border: solid 1px $teal-color;
+    border: 1px solid $teal-color;
     margin-top: 15px;
     font-family: $muli-bold;
     font-size: 22px;
@@ -195,49 +193,26 @@ app-edit-profile{
     margin-bottom: 21px;
   }
   .bank-details-heading{
-    object-fit: contain;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     color: $form-block-title-color;
   }
   .bank-account{
     font-family: $muli-light;
-  font-size: 16px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  color: $dark-teal-color;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+    color: $dark-teal-color;
   }
   .bank-account-num{
     font-family:$muli-semi-bold;
-  font-size: 16px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  text-align: right;
-  color: $teal-color;
-  }
-  .banking-details-text{
-    object-fit: contain;
-    font-family: $muli-regular;
     font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: $dark-teal-color;
-    margin: 10px 5px 10px 10px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    text-align: right;
+    color: $teal-color;
   }
   .bank_details{
     .dots{
@@ -245,9 +220,6 @@ app-edit-profile{
         padding: 16px 0 0;
       }
     }
-  }
-  .user-img{
-    margin-top: -100px;
   }
   .circle{
     height: 86px;
@@ -265,11 +237,6 @@ app-edit-profile{
     font-weight: 600;
     letter-spacing: -0.25px;
   }
-  .user-edit-img{
-    position: absolute;
-    top:5px;
-    right: 20px;
-  }
   .chk-box-img{
     margin: 18px 15px;
   }
@@ -277,9 +244,6 @@ app-edit-profile{
     font-family:  $muli-bold;
     font-size: 18px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     color: $mailing-address-text-color;
     border-bottom: 0.5px solid $mailing-address-text-brdr-color;
@@ -312,10 +276,7 @@ app-edit-profile{
 .no-bank-account{
   font-family: $muli-italic;
   font-size: 16px;
-  font-weight: normal;
   font-style: italic;
-  font-stretch: normal;
-  line-height: normal;
   letter-spacing: -0.3px;
   text-align: center;
   color: $no-bank-account-color;

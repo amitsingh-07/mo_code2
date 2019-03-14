@@ -15,7 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { APP_ROUTES } from '../app-routes.constants';
 import { appConstants } from '../app.constants';
+import { GuideMeService } from '../guide-me/guide-me.service';
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
@@ -29,7 +31,6 @@ import { NavbarService } from './../shared/navbar/navbar.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { StateStoreService } from './../shared/Services/state-store.service';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
-import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 import { SignUpService } from './../sign-up/sign-up.service';
 
 @Component({
@@ -66,7 +67,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
     private seoService: SeoServiceService, private configService: ConfigService, private stateStoreService: StateStoreService,
-    private directService: DirectService, private signUpService: SignUpService) {
+    private directService: DirectService, private signUpService: SignUpService, private guidemeService: GuideMeService) {
+
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -87,7 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // Navbar Service
       this.navbarService.setNavbarVisibility(true);
       this.navbarService.setNavbarMode(1);
-      this.navbarService.setNavbarMobileVisibility(true);
+      this.navbarService.setNavbarMobileVisibility(false);
       this.navbarService.setNavbarShadowVisibility(true);
       this.footerService.setFooterVisibility(true);
     });
@@ -298,6 +300,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  startGuidedJourney() {
+    this.stateStoreService.clearAllStates();
+    this.guidemeService.clearServiceData();
+    this.router.navigate([APP_ROUTES.GUIDE_ME]);
+  }
+
   startDirectJourney() {
     this.stateStoreService.clearAllStates();
     this.directService.clearServiceData();
@@ -318,3 +326,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.router.navigate([COMPREHENSIVE_BASE_ROUTE]);
   }
 }
+

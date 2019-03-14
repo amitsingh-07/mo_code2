@@ -63,19 +63,11 @@ export class EditResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(100);
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    if (this.formValues.isMyInfoEnabled) {
-      if (this.formValues.countryCode) {
-        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
-      }
-      if (this.formValues.mailCountryCode) {
-        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
-      }
-    }
     this.addressForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
     this.observeCountryChange();
@@ -113,7 +105,7 @@ buildForm(): FormGroup {
       this.addressForm.addControl('postalCode', new FormControl({
         value: this.formValues.postalCode, disabled: this.investmentAccountService.isDisabled('postalCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       this.addressForm.addControl('floor', new FormControl({
         value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')
       }, Validators.required));
@@ -132,7 +124,7 @@ buildForm(): FormGroup {
       this.addressForm.addControl('zipCode', new FormControl({
         value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
 
       this.addressForm.removeControl('postalCode');
       this.addressForm.removeControl('floor');
@@ -175,7 +167,7 @@ buildForm(): FormGroup {
       mailFormGroup.addControl('mailPostalCode', new FormControl({
         value: this.formValues.mailPostalCode,
         disabled: this.investmentAccountService.isDisabled('mailPostalCode')
-      }, Validators.required));
+      },  [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       mailFormGroup.addControl('mailFloor', new FormControl({
         value: this.formValues.mailFloor,
         disabled: this.investmentAccountService.isDisabled('mailFloor')
@@ -200,7 +192,7 @@ buildForm(): FormGroup {
       mailFormGroup.addControl('mailZipCode', new FormControl({
         value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')
       },
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+        [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
 
       mailFormGroup.removeControl('mailPostalCode');
       mailFormGroup.removeControl('mailFloor');
@@ -216,14 +208,12 @@ buildForm(): FormGroup {
 
   getDefaultCountry() {
     let defaultCountry;
-    if (this.isUserNationalitySingapore) {
+    if (this.formValues.country) {
+      defaultCountry = this.formValues.country;
+    } else if (this.isUserNationalitySingapore) {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
     } else {
-      if (this.formValues.country) {
-        defaultCountry = this.formValues.country;
-      } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
-      }
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
     }
     return defaultCountry;
   }

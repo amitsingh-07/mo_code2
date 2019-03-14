@@ -1,15 +1,11 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-additional-declaration-screen2 {
-  .container-fluid {
-    padding-top: 110px;
-  }
   .step-indicator-container {
     background-color: $white-color;
     padding: 10px 0px;
     position: relative;
-    top: 106px;
-    margin-bottom: 15px;
+    top: 60px;
     .container-fluid {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -46,7 +42,8 @@ app-additional-declaration-screen2 {
   }
   .dropdown-control .btn-dropdown {
     padding-right: 28px;
-  }
+    
+}
   .form-control-right {
     padding-left: 0;
     padding-right: 18px;
@@ -60,5 +57,8 @@ app-additional-declaration-screen2 {
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
+  }
+  .text-right{
+    text-align: left !important;
   }
 }

@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs';
 import { Component,
          ElementRef,
          OnInit,
@@ -57,7 +56,7 @@ export class FAQComponent implements OnInit{
                                             this.translate.instant('FAQ_GENERAL.KEYWORDS'));
     });
     this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(true);
   }
 

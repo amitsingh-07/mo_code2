@@ -1,11 +1,18 @@
 @import '../../../variables';
 @import '../../../mixins';
 .container-fluid {
-    padding: 0 !important;
+    @include allmobiles{
+        padding: 0 !important;
+    }
     background: $white-color;
 }
+.notifications-block{
+    min-height: calc(100vh - 197px);
+    @include allmobiles{
+        min-height: calc(100vh - 108px);
+    }
+}
 .notifications-container {
-    min-height: calc(100vh - 107px);
     &__header {
         background-color: #f4fafb;
         padding: 10px;
@@ -57,6 +64,9 @@
         font-family: $muli-bold;
         text-align: center;
         color: #00a7a7;
-        height: 100vh;
+        height: calc(100vh - 45px);
+        .pt50{
+            padding-top:80px!important;
+        }
     }
 }

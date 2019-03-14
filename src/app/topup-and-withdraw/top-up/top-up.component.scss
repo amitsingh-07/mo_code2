@@ -2,14 +2,15 @@
 @import '../../../mixins';
 app-top-up {
   .container-fluid {
-    padding-bottom: 0 !important;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    padding-top: 125px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
+    @include allmobiles{
+      padding-bottom: 0 !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
     .content {
       &:first-child {
         margin: 0 18px;
@@ -29,7 +30,9 @@ app-top-up {
     color: $white-color;
     padding: 30px 20px;
     position: relative;
-    bottom: 66px;
+    @include allmobiles{
+      bottom: 66px;
+    }
   }
   .balance-amount {
     font-family: $muli-italic;

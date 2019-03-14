@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
   }
@@ -279,3 +279,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }
+

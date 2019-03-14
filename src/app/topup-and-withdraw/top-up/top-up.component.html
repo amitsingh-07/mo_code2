@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
   <div class="content">
     <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
       <div class="row">
@@ -58,12 +58,12 @@
                 </label>
               </div>
               <!-- Onetimeinvestment -->
-              <div class="flex-row" *ngIf="showOnetimeInvestmentAmount">
+              <div class="flex-row mb10" *ngIf="showOnetimeInvestmentAmount">
                 <div class="flex-col-12">
                   <div class="form-control">
                     <i id="myFinancialDollerSymbThree">$</i>
                     <div name="totalLiabilities">
-                      <input class="input-control" type="text" appCurrencyInput maxLength="7" #oneTimeInvestmentAmount
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #oneTimeInvestmentAmount
                         value="0" formControlName="oneTimeInvestmentAmount" (keyup)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)"
                         id="onetime_investment">
                     </div>
@@ -75,7 +75,7 @@
                 <div class="flex-col-12">
                   <div class="form-control form-control-right">
                     <i id="topup_symb">$</i>
-                    <input type="text" class="input-control" appCurrencyInput maxLength="7 " #MonthlyInvestmentAmount
+                    <input type="text" class="input-control" appCurrencyInput maxLength="6" #MonthlyInvestmentAmount
                       value="0" formControlName="MonthlyInvestmentAmount" id="Monthlyinvestment" (keyup)="validateAmonut(topForm.controls.MonthlyInvestmentAmount.value)">
                     <i class="right year">/ mth</i>
                   </div>

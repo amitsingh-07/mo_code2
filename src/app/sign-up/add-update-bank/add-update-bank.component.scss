@@ -1,11 +1,6 @@
 @import '../../../variables';
 @import "../../../_mixins.scss";
 app-add-update-bank{
-.container-fluid{
-  @include allmobiles {
-  padding-top: 120px;
-  }
-}
 .dots{
      padding: 10px;
      margin: 0 20px;
@@ -120,12 +115,14 @@ app-add-update-bank{
         margin-top: 6px;
       }
     }
-    &:disabled{
+    &:disabled, &.disabled{
+      cursor: not-allowed;
       color: $teal-color !important;
       -webkit-text-fill-color: $teal-color !important;
-      background-color: $inv-btn-disabled-bg !important;
       opacity: 1 !important;
-  }
+      background-color: $edit-acnt-disable-bg !important;
+      border: 1px solid $edit-acnt-disable-brdr !important;
+    }
   }
   .white-bg-checkbox {
     background-color: $white-color;

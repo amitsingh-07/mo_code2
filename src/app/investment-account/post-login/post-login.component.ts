@@ -43,7 +43,7 @@ export class PostLoginComponent implements OnInit {
       this.singPassLinkTitle = this.translate.instant('POSTLOGIN.PROCEED');
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentMyInfoEnabled = config.investmentEnabled;
+      this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
     });
   }
 

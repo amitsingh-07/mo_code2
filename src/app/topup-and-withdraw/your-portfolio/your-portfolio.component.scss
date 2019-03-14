@@ -1,17 +1,41 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-your-portfolio {
+  .container-fluid{
+    &.max-width--1024{
+      top: 0 !important;
+      @include allmobiles{
+        padding: 0 !important;
+        margin-top: 0 !important
+      }
+    }
+  }
   .portfolio-bg {
-    padding-top: 105px;
+    @include allmobiles{
+      padding-top: 60px;
+      width: 100%;
+    }
+    @include phablet{
+      padding-top: 105px;
+      width: 100%;
+    }
   }
   .background_img {
-    object-fit: contain;
-    position: relative;
-    width: 100%;
+    display: none;
+    @include allmobiles{
+      object-fit: contain;
+      position: relative;
+      width: 100%;
+      display: block;
+    }
   }
   .user_content {
     position: absolute;
-    top: 158px;
+    padding: 0 75px;
+    @include allmobiles{
+      top: 100px;
+      padding: 0;
+    }
     .user_portfolio {
       font-family: $muli-regular;
       font-size: 30px;
@@ -26,12 +50,15 @@ app-your-portfolio {
         }
       }
     }
-    .flex-col-3 {
+    .flex-col-4 {
       position: absolute;
       right: 29px;
       top: 60px;
+      right: 230px;
       @include allmobiles {
         top: 60px;
+        max-width: 85px;
+        right: 29px;
       }
       @include iphone5 {
         top: 40px;
@@ -42,11 +69,16 @@ app-your-portfolio {
       @include iphone6 {
         top: 55px;
       }
+      @include phablet {
+        top: 40px;
+        max-width: 85px;
+        right: 230px;
+      }
       @include tablet {
-        top: 129px;
+        top: 80px;
       }
       @include iPadLandscape {
-        top: 129px;
+        top: 80px;
       }
     }
   }
@@ -90,35 +122,24 @@ app-your-portfolio {
     background-color: $top-up-your-portfolio-your-total-value-bg;
   }
   .container-fluid {
+    position: relative;
+    top: 100px;
     @include allmobiles {
-      position: relative;
       padding-left: 20px !important;
       padding-right: 20px !important;
       padding: 0px;
-      margin-top: -42px;
+      top: -42px;
       height: auto;
     }
     @include iphone6plus {
-      margin-top: -42px;
+     top: -42px;
     }
     @include iphone5 {
-      margin-top: -30px;
+      top: -30px;
     }
-    @include min360 {
-      margin-top: -42px;
-    }
-    @include tablet {
-      margin-top: -139px;
-    }
-    @include iPadLandscape {
-      margin-top: -139px;
-    }
-    @include iPadProPortrait {
-      margin-top: -139px;
-    }
-    @include iPadProLandscape {
-      margin-top: -139px;
-    }
+    @include phablet {
+      top: 60px;
+     }
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -131,7 +152,7 @@ app-your-portfolio {
   }
   .total_values {
     font-family: $muli-bold;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
@@ -162,6 +183,9 @@ app-your-portfolio {
     text-align: right;
     color: $transaction-panel-buy-color;
     word-break: break-all;
+    &.negativeValue {
+      color: $red-color;
+    }
   }
   .your_portfolio_label {
     font-family: $muli-regular;

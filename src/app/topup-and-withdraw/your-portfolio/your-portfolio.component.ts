@@ -63,11 +63,11 @@ export class YourPortfolioComponent implements OnInit {
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
     this.totalReturnsPercentage = this.portfolioValues.totalReturnsPercentage
-      ? this.portfolioValues.totalReturnsPercentage
+      ? this.portfolioValues.totalReturnsPercentage * 100
       : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns
-      : 0;
+      : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
   }
   getMoreList() {
@@ -129,5 +129,8 @@ export class YourPortfolioComponent implements OnInit {
     } else {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     }
+  }
+  formatReturns(value) {
+    return this.investmentAccountService.formatReturns(value);
   }
 }

@@ -1,7 +1,14 @@
 import 'hammerjs';
 
-import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+
+import {
+    CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe
+} from '@angular/common';
+import {
+    HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
+} from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -10,8 +17,6 @@ import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +36,9 @@ import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existin
 import { InsuranceResultModalComponent } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
 import { LifeProtectionModalComponent } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
-import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
+import {
+    CreateAccountModelComponent
+} from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
 import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
@@ -41,6 +48,7 @@ import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-gu
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
 import { WillDisclaimerComponent } from './shared/components/will-disclaimer/will-disclaimer.component';
+import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
@@ -57,17 +65,26 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { LoginCreateAccountModelComponent } from './shared/modal/login-create-account-model/login-create-account-model.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
-import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
+import {
+    RecommendationsModalComponent
+} from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
-import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
+import {
+    TransactionModalComponent
+} from './shared/modal/transaction-modal/transaction-modal.component';
+import {
+    UnsupportedDeviceModalComponent
+} from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { Util } from './shared/utils/util';
-import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
+import {
+    SettingsWidgetComponent
+} from './shared/widgets/settings-widget/settings-widget.component';
 import { SignUpService } from './sign-up/sign-up.service';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
@@ -110,6 +127,7 @@ export function tokenGetterFn() {
         HeaderComponent,
         NavbarComponent,
         FooterComponent,
+        NumberOnlyDirective,
         CallBackComponent,
         HomeComponent,
         UrlRedirectComponent,
@@ -117,6 +135,7 @@ export function tokenGetterFn() {
         TransactionModalComponent,
         FAQComponent,
         FundDetailsComponent,
+        UnsupportedDeviceModalComponent,
         SummaryModalComponent
     ],
     imports: [
@@ -133,7 +152,7 @@ export function tokenGetterFn() {
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
-                deps: [ HttpClient ]
+                deps: [HttpClient]
             }
         }),
         SharedModule.forRoot(),
@@ -141,17 +160,12 @@ export function tokenGetterFn() {
             config: {
                 tokenGetter: tokenGetterFn
             }
-        })
+        }),
     ],
     providers: [
         NgbActiveModal,
-        AuthenticationService,
-        CustomErrorHandlerService,
-        RequestCache,
-        AppService,
-        TitleCasePipe,
-        PendingChangesGuard,
-        DefaultErrors,
+        AuthenticationService, CustomErrorHandlerService, RequestCache,
+        AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
         ArticleService,
         { provide: LoggerService, useClass: ConsoleLoggerService },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -163,13 +177,9 @@ export function tokenGetterFn() {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,
             multi: true,
-            deps: [ AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService ]
-        },
-        Formatter,
-        CurrencyPipe,
-        RoutingService,
-        StateStoreService,
-        Util,
+            deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
+        }, Formatter, CurrencyPipe, RoutingService,
+        StateStoreService, Util,
         InvestmentEnableGuard,
         InvestmentChildEnableGuard,
         WillWritingEnableGuard,
@@ -178,35 +188,23 @@ export function tokenGetterFn() {
         PromotionChildEnableGuard,
         ArticleEnableGuard,
         ArticleChildEnableGuard,
-        SignUpService,
-        ComprehensiveEnableGuard,
+        SignUpService
+     ComprehensiveEnableGuard,
         ComprehensiveChildEnableGuard,
         AboutAge
     ],
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     entryComponents: [
-        HelpModalComponent,
-        LoaderComponent,
-        ErrorModalComponent,
-        BankDetailsComponent,
-        ToolTipModalComponent,
-        ModelWithButtonComponent,
-        LifeProtectionModalComponent,
-        MobileModalComponent,
-        InsuranceResultModalComponent,
-        PopupModalComponent,
-        CreateAccountModelComponent,
-        ExistingCoverageModalComponent,
+        HelpModalComponent, LoaderComponent, ErrorModalComponent,
+        BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
+        LifeProtectionModalComponent, MobileModalComponent,
+        InsuranceResultModalComponent, PopupModalComponent,
+        CreateAccountModelComponent, ExistingCoverageModalComponent,
         RecommendationsModalComponent,
-        SettingsWidgetComponent,
-        ConfirmationModalComponent,
-        TermsComponent,
-        WillDisclaimerComponent,
-        TransactionModalComponent,
-        FundDetailsComponent,
-        LoginCreateAccountModelComponent,
-        SummaryModalComponent
-    ]
+        SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent,
+        WillDisclaimerComponent, TransactionModalComponent,
+        LoginCreateAccountModelComponent, SummaryModalComponent
+        FundDetailsComponent, UnsupportedDeviceModalComponent]
 })
 export class AppModule {
     /**

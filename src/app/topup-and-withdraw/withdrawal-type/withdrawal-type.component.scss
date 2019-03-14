@@ -1,11 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-withdrawal-type {
-  .container-fluid {
-    @include allmobiles {
-      padding: 120px 0;
-    }
-  }
   .withdraw {
     .dropdown-control .btn-dropdown {
       padding-right: 26px !important ;

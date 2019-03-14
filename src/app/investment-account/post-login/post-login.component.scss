@@ -1,7 +1,13 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
+
 app-post-login {
-  .back-btn {
+  .container-fluid {
+    @include allmobiles {
+      padding: 45px 0;
+    }
+  }
+.back-btn {
     background-image: url('../../../assets/images/back-web.svg');
     width: 43px;
     height: 43px;
@@ -11,6 +17,7 @@ app-post-login {
     left: 20px;
     background-repeat: no-repeat;
   }
+
   .yes-login-but {
     border-radius: 6px;
     background-color: $white-color;
@@ -24,6 +31,7 @@ app-post-login {
     text-align: center;
     color: $teal-color;
   }
+
   .no-login-but {
     font-size: 18px;
     font-family: $muli;
@@ -36,25 +44,32 @@ app-post-login {
     background-color: $teal-color;
     border: none;
   }
+
   .prelogin-wrapper__title {
     font-family: $muli-bold;
     font-size: 21px;
     font-weight: bold;
     width: 327px;
     letter-spacing: -0.3px;
-    text-align: center;
     color: $white-color;
+
+    @include allmobiles {
+      text-align: center;
+    }
   }
+
   .signup-wrapper__header-icon {
     @include allmobiles {
       width: 99px !important;
       height: 100px !important;
     }
+
     img {
       width: 100%;
       height: auto;
     }
   }
+
   .autofill-link {
     &.postlogin {
       border: 1px solid $secondary-action-color;
@@ -67,6 +82,7 @@ app-post-login {
       justify-content: center;
       align-items: center;
       margin-bottom: 0px;
+
       .autofill-text {
         font-family: $muli-bold;
         font-size: 18px;
@@ -75,10 +91,12 @@ app-post-login {
         font-size: 21px;
         padding: 0;
       }
+
       .autofill-logo {
         width: 107px;
         height: 40px;
       }
+
       .autofill-estimation {
         display: flex;
         font-family: $muli-semi-bold;
@@ -91,15 +109,18 @@ app-post-login {
       }
     }
   }
+
   .widgets {
     .widget {
       background: $bond-container-bg;
       padding-bottom: 28px;
       border-radius: 6px;
       margin-bottom: 11px;
+
       &:last-child {
         margin-bottom: 0;
       }
+
       .widget-title {
         font-family: $muli-bold;
         font-size: 21px;
@@ -110,6 +131,7 @@ app-post-login {
         padding: 16px 25px 13px;
         border-radius: 6px;
       }
+
       .widget-body {
         font-family: $muli-regular;
         font-size: 15px;
@@ -117,6 +139,7 @@ app-post-login {
         letter-spacing: -0.2px;
         color: $dark-teal-color;
         padding: 0 21px;
+
         .desc {
           padding: 19px 0;
         }

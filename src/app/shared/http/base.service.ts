@@ -47,6 +47,18 @@ export class BaseService {
       );
   }
 
+  getBlob(url) {
+    this.helperService.showLoader();
+    return this.httpClient
+      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob' })
+      .finally(() => {
+        this.helperService.hideLoader();
+      })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   getMock(url) {
     return this.httpClient
       .get<IServerResponse>(url)

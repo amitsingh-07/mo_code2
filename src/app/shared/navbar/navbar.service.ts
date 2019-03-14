@@ -32,8 +32,10 @@ export class NavbarService {
   private pageSubTitle = new BehaviorSubject('');
   private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
+  private pageClearNotify = new BehaviorSubject(false);
 
   private mobileModal = new BehaviorSubject('');
+  private clearNotificationEvent = new BehaviorSubject('');
   private closeProdInfo = new BehaviorSubject('');
   private pageSettingsIcon = new BehaviorSubject(true);
   private pageFilterIcon = new BehaviorSubject(true);
@@ -46,6 +48,9 @@ export class NavbarService {
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
+  currentPageClearNotify = this.pageClearNotify.asObservable();
+  currentClearNotificationEvent = this.clearNotificationEvent.asObservable();
+
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
   currentPageFilterIcon = this.pageFilterIcon.asObservable();
   currentPageSuperTitle = this.pageSuperTitle.asObservable();
@@ -115,6 +120,10 @@ export class NavbarService {
     this.pageSettingsIcon.next(false);
     this.pageFilterIcon.next(false);
   }
+  
+  setClearAllNotify(isVisible: boolean) {
+    this.pageClearNotify.next(isVisible);
+  }
 
   /* Header Functions*/
   // Setting Page Title
@@ -159,12 +168,13 @@ export class NavbarService {
   }
 
   // Hiding Product Info Modal Trigger
-  hideProdInfo(event) {
-    this.closeProdInfo.next(event);
-  }
-
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
+  }
+
+  // Clearing Notification
+  clearNotification() {
+    this.clearNotificationEvent.next('');
   }
 
   subscribeBackPress() {

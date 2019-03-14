@@ -98,7 +98,7 @@ export class YourInvestmentComponent implements OnInit {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
       this.totalReturns = this.investmentoverviewlist.data.totalReturns
-        ? this.investmentoverviewlist.data.totalReturns
+        ? this.investmentoverviewlist.data.totalReturns * 100
         : 0;
       this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
         ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
@@ -216,5 +216,8 @@ export class YourInvestmentComponent implements OnInit {
     } else {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     }
+  }
+  formatReturns(value) {
+    return this.investmentAccountService.formatReturns(value);
   }
 }

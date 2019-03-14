@@ -6,8 +6,11 @@ app-asset-allocation {
       padding-right: 15px !important;
       padding-left: 15px !important;
       padding-bottom: 66px;
-      padding-top: 95px;
+      padding-top: 50px;
     }
+    @include phablet {
+      padding-top: 120px;
+     }
   }
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {

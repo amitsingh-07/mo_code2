@@ -1,3 +1,4 @@
+import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -10,8 +11,12 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { AddBankModalComponent } from '../add-bank-modal/add-bank-modal.component';
-import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+  ConfirmWithdrawalModalComponent
+} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -28,6 +33,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   banks;
   userBankList;
   userAddress;
+  userInfo: any;
+  fullName: string;
   hideAddBankAccount = true;
 
   constructor(
@@ -40,10 +47,11 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     public navbarService: NavbarService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
   ngOnInit() {
@@ -54,15 +62,17 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.getUserBankList();
     this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
+    this.userInfo = this.signUpService.getUserProfileInfo();
+    this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
   }
 
   getLookupList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getUserBankList() {
@@ -76,9 +86,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getTitle() {
@@ -97,9 +107,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           : data.objectList.homeAddress;
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setPageTitle(title: string) {
@@ -145,16 +155,23 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       centered: true
     });
     ref.componentInstance.banks = this.banks;
+    ref.componentInstance.fullName = this.fullName;
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
+        } else {
+          this.showCustomErrorModal(
+            'Error!',
+            response.objectList.serverStatus.errors[0].msg + '('
+            + response.objectList.serverStatus.errors[0].code + ')'
+          );
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     });
     this.dismissPopup(ref);
   }
@@ -177,6 +194,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
@@ -194,7 +213,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
+  gotoEditProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
   goToNext() {
     this.showConfirmWithdrawModal();
   }

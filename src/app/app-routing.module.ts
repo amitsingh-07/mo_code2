@@ -37,8 +37,8 @@ const routes: Routes = [
       { path: 'faq', component: FAQComponent },
       {
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
-       canActivate: [ComprehensiveEnableGuard],
-       canActivateChild: [ComprehensiveChildEnableGuard]
+        canActivate: [ComprehensiveEnableGuard],
+        canActivateChild: [ComprehensiveChildEnableGuard]
       },
 
       {

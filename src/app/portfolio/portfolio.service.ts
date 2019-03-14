@@ -319,4 +319,16 @@ export class PortfolioService {
     });
   }
 
+  clearFormData() {
+    this.portfolioFormData = new PortfolioFormData();
+    this.commit();
+  }
+
+  clearData() {
+    this.clearFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY);
+    }
+  }
 }

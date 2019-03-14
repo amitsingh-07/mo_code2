@@ -55,7 +55,7 @@
     "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
     "OTHERS": "Others",
     "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)",
-    "FILL_VIA_SINGPASS":"Fill Via SingPass"
+    "FILL_VIA_SINGPASS":"Fill via MyInfo"
   },
   "MY_LIABILITIES": {
     "TITLE": "My Liabilities",

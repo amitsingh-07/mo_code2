@@ -72,8 +72,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
@@ -130,7 +129,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.contactDetails = data.objectList.contactDetails;
         }
         if (this.personalData) {
-          this.setFullName(this.personalData.firstName, this.personalData.lastName);
+          this.fullName = this.personalData.fullName ?
+            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
           this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
           this.setNric(this.personalData.nricNumber);
           if (this.personalData.passportNumber) {
@@ -165,9 +165,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     return maskedStr;
   }
-  setFullName(firstName, LastName) {
-    this.fullName = firstName + ' ' + LastName;
-  }
+
   setTwoLetterProfileName(firstName, LastName) {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);

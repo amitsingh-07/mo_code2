@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
-import { AccountSetupCompletedComponent } from './account-setup-completed/account-setup-completed.component';
 import { AccountSetupPendingComponent } from './account-setup-pending/account-setup-pending.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
@@ -105,11 +104,6 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclarationStep1Component,
-    canActivate: [InvestmentGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
-    component: AccountSetupCompletedComponent,
     canActivate: [InvestmentGuard]
   },
   {

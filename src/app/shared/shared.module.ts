@@ -28,6 +28,7 @@ import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { DistributePercentDirective } from './directives/distribute-percent.directive';
 import { NumberOnlyDirective } from './directives/number-only.directive';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { IfastErrorModalComponent } from './modal/ifast-error-modal/ifast-error-modal.component';
 import { ProgressTrackerModalComponent } from './modal/progress-tracker/progress-tracker-modal.component';
 import { ProgressTrackerComponent } from './modal/progress-tracker/progress-tracker.component';
 import { ProgressTrackerService } from './modal/progress-tracker/progress-tracker.service';
@@ -42,89 +43,93 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 export function createTranslateLoader(http: HttpClient) {
-    return new MultiTranslateHttpLoader(http, [ { prefix: './assets/i18n/app/', suffix: '.json' } ]);
+  return new MultiTranslateHttpLoader(http, [{ prefix: './assets/i18n/app/', suffix: '.json' }]);
 }
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NgbModule.forRoot(),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [ HttpClient ]
-            }
-        }),
-        FormsModule,
-        ReactiveFormsModule
-    ],
-    exports: [
-        CurrencyInputDirective,
-        PercentageInputDirective,
-        PlanWidgetComponent,
-        StepIndicatorComponent,
-        SettingsWidgetComponent,
-        PlanFilterPipe,
-        OrderByPipe,
-        ProductDetailComponent,
-        PlanDetailsWidgetComponent,
-        LoaderComponent,
-        BreakdownBarComponent,
-        BreakdownAccordionComponent,
-        TruncatePipe,
-        TimeAgoPipe,
-        FormatDatePipe,
-        DistributePercentDirective,
-        GroupByPipe,
-        AllocationComponent,
-        AnnualFeesComponent,
-        PortfolioInfoComponent,
-        NumberOnlyDirective,
-        ProgressTrackerModalComponent
-    ],
-    declarations: [
-        CurrencyInputDirective,
-        PlanWidgetComponent,
-        StepIndicatorComponent,
-        SettingsWidgetComponent,
-        PlanFilterPipe,
-        OrderByPipe,
-        GroupByPipe,
-        FormatDatePipe,
-        RecommendationsModalComponent,
-        ProductDetailComponent,
-        PlanDetailsWidgetComponent,
-        LoaderComponent,
-        ConfirmationModalComponent,
-        PrivacyPolicyComponent,
-        FairDealingComponent,
-        DisclosuresComponent,
-        TermsComponent,
-        WillDisclaimerComponent,
-        TermsOfUseComponent,
-        BreakdownBarComponent,
-        BreakdownAccordionComponent,
-        PercentageInputDirective,
-        TruncatePipe,
-        TimeAgoPipe,
-        DistributePercentDirective,
-        AllocationComponent,
-        AnnualFeesComponent,
-        PortfolioInfoComponent,
-        EditInvestmentModalComponent,
-        NumberOnlyDirective,
-        ProgressTrackerComponent,
-        ProgressTrackerModalComponent
-    ],
-    entryComponents: [ EditInvestmentModalComponent, ProgressTrackerModalComponent ],
-    providers: [ ProgressTrackerService ]
+  imports: [
+    CommonModule,
+    NgbModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    CurrencyInputDirective,
+    PercentageInputDirective,
+    PlanWidgetComponent,
+    StepIndicatorComponent,
+    SettingsWidgetComponent,
+    PlanFilterPipe,
+    OrderByPipe,
+    ProductDetailComponent,
+    PlanDetailsWidgetComponent,
+    LoaderComponent,
+    BreakdownBarComponent,
+    BreakdownAccordionComponent,
+    TruncatePipe,
+    TimeAgoPipe,
+    FormatDatePipe,
+    DistributePercentDirective,
+    GroupByPipe,
+    AllocationComponent,
+    AnnualFeesComponent,
+    PortfolioInfoComponent,
+    NumberOnlyDirective,
+    ProgressTrackerModalComponent
+  ],
+  declarations: [
+    CurrencyInputDirective,
+    PlanWidgetComponent,
+    StepIndicatorComponent,
+    SettingsWidgetComponent,
+    PlanFilterPipe,
+    OrderByPipe,
+    GroupByPipe,
+    FormatDatePipe,
+    RecommendationsModalComponent,
+    ProductDetailComponent,
+    PlanDetailsWidgetComponent,
+    LoaderComponent,
+    ConfirmationModalComponent,
+    PrivacyPolicyComponent,
+    FairDealingComponent,
+    DisclosuresComponent,
+    TermsComponent,
+    WillDisclaimerComponent,
+    TermsOfUseComponent,
+    BreakdownBarComponent,
+    BreakdownAccordionComponent,
+    PercentageInputDirective,
+    TruncatePipe,
+    TimeAgoPipe,
+    DistributePercentDirective,
+    AllocationComponent,
+    AnnualFeesComponent,
+    PortfolioInfoComponent,
+    EditInvestmentModalComponent,
+    NumberOnlyDirective,
+    ProgressTrackerComponent,
+    ProgressTrackerModalComponent,
+    IfastErrorModalComponent
+  ],
+  entryComponents: [
+    EditInvestmentModalComponent,
+    ProgressTrackerModalComponent,
+    IfastErrorModalComponent],
+  providers: [ProgressTrackerService]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [ ProgressTrackerService ]
-        };
-    }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [ProgressTrackerService]
+    };
+  }
 }

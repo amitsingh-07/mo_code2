@@ -1,10 +1,17 @@
+import { Subject } from 'rxjs';
+
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { AbstractControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import {
+    UnsupportedDeviceModalComponent
+} from '../shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
@@ -31,7 +38,9 @@ export class SignUpService {
     private apiService: ApiService,
     public authService: AuthenticationService,
     public cryptoService: CryptoService,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    public modal: NgbModal,
+    private translate: TranslateService) {
     this.getAccountInfo();
   }
 
@@ -334,6 +343,9 @@ export class SignUpService {
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank , fullName , accountNum , id) {
+    if (bank) {
+      delete bank.accountNoMaxLength;
+    }
     const request = {};
     request['id'] = id;
     request['bank'] = bank;
@@ -367,8 +379,6 @@ export class SignUpService {
 
   updateNotifications(messages, type) {
     const payload = this.constructPayloadUpdateNotifications(messages, type);
-    console.log('payload');
-    console.log(payload);
     return this.apiService.updateNotifications(payload);
   }
 
@@ -440,5 +450,89 @@ export class SignUpService {
       investmentStatus = SIGN_UP_CONFIG.INVESTMENT.START_INVESTING.toUpperCase();
     }
     return investmentStatus;
+  }
+
+  // tslint:disable-next-line:cognitive-complexity
+  getFormErrorList(form) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        // HAS NESTED CONTROLS ?
+        if (controls[name].controls) {
+          const nestedControls = controls[name].controls;
+          for (const nestedControlName in nestedControls) {
+            if (nestedControls[nestedControlName].invalid) {
+              // tslint:disable-next-line
+              errors.errorMessages.push(
+                this.createAccountFormError.formFieldErrors[nestedControlName][
+                  Object.keys(nestedControls[nestedControlName]['errors'])[0]
+                ].errorMessage
+              );
+            }
+          }
+        } else {
+          // NO NESTED CONTROLS
+          // tslint:disable-next-line
+          errors.errorMessages.push(
+            this.createAccountFormError.formFieldErrors[name][
+              Object.keys(controls[name]['errors'])[0]
+            ].errorMessage
+          );
+        }
+      }
+    }
+    return errors;
+  }
+
+  addMaxLengthInfoForAccountNo(banks) {
+    banks.forEach((bank) => {
+      const maxLength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[bank.key];
+      bank.accountNoMaxLength = maxLength ? maxLength : null;
+    });
+    return banks;
+  }
+
+  validateAccNoMaxLength(control: AbstractControl) {
+    const value = control.value;
+    if (control.value) {
+      const validAccountNo =
+        (value.length === control.parent.controls['bank'].value.accountNoMaxLength);
+      if (control.parent.controls['bank'].value.accountNoMaxLength && !validAccountNo) {
+        return { validAccountNo: true };
+      }
+    }
+    return null;
+  }
+
+  isMobileDevice() {
+    if ( navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  showUnsupportedDeviceModal() {
+      const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
+      return false;
+  }
+
+  setUnsupportedNoteShownFlag() {
+    this.signUpFormData.isUnsupportedNoteShown = true;
+    this.commit();
+  }
+
+  getUnsupportedNoteShownFlag() {
+    return this.signUpFormData.isUnsupportedNoteShown;
   }
 }

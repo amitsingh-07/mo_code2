@@ -69,8 +69,7 @@ export class UpdateUserIdComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.buildUpdateAccountForm();
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);

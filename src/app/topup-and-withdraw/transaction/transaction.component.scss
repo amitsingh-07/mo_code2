@@ -2,8 +2,17 @@
 @import '../../../_mixins.scss';
 //Transaction Module Styles
 app-transaction {
+  .container-fluid{
+    @include allmobiles{
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+    @include phablet {
+      padding-top: 80px;
+     }
+  }
   .transaction-panel {
-    height: 100vh;
+    min-height: 100vh;
     background: $white-color;
     .nav-item {
       width: 50%;
@@ -33,7 +42,7 @@ app-transaction {
         font-size: 14px;
         letter-spacing: -0.1px;
         text-align: center;
-        background-color: $transaction-desc-bg-color;
+        background-color: $transaction-date-bg-color;
         padding: 10px;
         color: $app-backgrnd-color;
       }
@@ -44,19 +53,29 @@ app-transaction {
         font-family: $muli-semi-bold;
         padding: 20px;
         border-bottom: 1px solid $bond-container-bg;
+        line-height: 23px;
+        letter-spacing: -0.34px;
+        .history-type-transaction {
+          min-width: 235px;
+        }
+        .fa-chevron-down,.fa-chevron-up{
+         font-size: 13px;
+          padding-left:17px;
+        }
       }
       &--title--sale {
         font-size: 14px;
         color: $red-color;
         text-transform: uppercase;
         margin-right: 10px;
+        line-height: normal;
+        letter-spacing: -0.26px;
         &.buy {
           color: $transaction-panel-buy-color;
         }
       }
       &--title--amount--sale {
         font-size: 16px;
-        margin-right: 20px;
         font-family: $muli-regular;
         color: $text-color-secondary;
         &.buy {
@@ -85,6 +104,7 @@ app-transaction {
         color: $accordion-link-color;
         font-size: 16px;
         font-family: $muli-regular;
+        cursor: pointer;
       }
     }
   }

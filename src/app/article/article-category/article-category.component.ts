@@ -62,7 +62,7 @@ export class ArticleCategoryComponent implements OnInit {
 
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(true);
   }
 

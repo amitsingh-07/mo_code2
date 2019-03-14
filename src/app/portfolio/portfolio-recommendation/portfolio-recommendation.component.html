@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="portfolio">
+<div class="container-fluid max-width--1024" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content">
@@ -32,5 +32,5 @@
       <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
-  <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary">Proceed</button>
+  <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
 </div>

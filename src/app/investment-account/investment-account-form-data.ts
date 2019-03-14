@@ -15,7 +15,7 @@ export class InvestmentAccountFormData {
   race: any;
 
   // Residential Address
-  country: string;
+  country: any;
   countryCode: string;
   postalCode: number;
   address1: string;
@@ -29,7 +29,7 @@ export class InvestmentAccountFormData {
   reasonForOthers: string;
   reason: string;
   reasonId: string;
-  mailCountry: string;
+  mailCountry: any;
   mailCountryCode: string;
   mailPostalCode: number;
   mailAddress1: string;
@@ -70,6 +70,7 @@ export class InvestmentAccountFormData {
   empPostalCode: number;
   empAddress1: string;
   empAddress2: string;
+  empFloor: string;
   empUnitNo: string;
   empCity: string;
   empState: string;

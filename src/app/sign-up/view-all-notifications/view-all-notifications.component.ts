@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,10 +16,11 @@ import { SignUpService } from '../sign-up.service';
   templateUrl: './view-all-notifications.component.html',
   styleUrls: ['./view-all-notifications.component.scss']
 })
-export class ViewAllNotificationsComponent implements OnInit {
+export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   ref;
   allMessages;
+  private initLoad = true;
 
   constructor(
     public navbarService: NavbarService,
@@ -38,12 +39,24 @@ export class ViewAllNotificationsComponent implements OnInit {
     });
   }
 
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
-
   ngOnInit() {
     this.getAllNotifications();
+    this.navbarService.setNavbarMode(102);
+    this.navbarService.setClearAllNotify(true);
+  }
+
+  ngAfterViewInit() {
+    this.navbarService.currentClearNotificationEvent.subscribe(() => {
+      if (this.initLoad) {
+        this.initLoad = false;
+      } else {
+        this.clearAllNotifications();
+      }
+    });
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   getAllNotifications() {

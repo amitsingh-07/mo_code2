@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -13,30 +14,35 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class AddBankModalComponent implements OnInit {
   @Input() banks;
+  @Input() fullName;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   addBankForm: FormGroup;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private topupAndWithDrawService: TopupAndWithDrawService
+    private topupAndWithDrawService: TopupAndWithDrawService,
+    private signUpService: SignUpService
   ) {}
 
   ngOnInit() {
+    this.banks = this.signUpService.addMaxLengthInfoForAccountNo(this.banks);
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl('', [
+      accountHolderName: new FormControl({value: this.fullName, disabled: true}, [
         Validators.required,
         Validators.pattern(RegexConstants.SymbolAlphabets)
       ]),
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [
         Validators.required,
-        Validators.pattern(RegexConstants.NumericOnly)
+        Validators.pattern(RegexConstants.NumericOnly),
+        this.signUpService.validateAccNoMaxLength
       ])
     });
   }
 
   setDropDownValue(key, value) {
     this.addBankForm.controls[key].setValue(value);
+    this.addBankForm.get('accountNo').updateValueAndValidity();
   }
 
   markAllFieldsDirty(form) {
@@ -60,7 +66,10 @@ export class AddBankModalComponent implements OnInit {
       // INVALID FORM
       this.markAllFieldsDirty(form);
     } else {
-      this.saved.emit(this.addBankForm.value);
+      if (form.value.bank) {
+        delete form.value.bank.accountNoMaxLength;
+      }
+      this.saved.emit(this.addBankForm.getRawValue());
     }
   }
 }

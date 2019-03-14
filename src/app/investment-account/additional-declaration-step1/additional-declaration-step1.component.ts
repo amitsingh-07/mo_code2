@@ -89,7 +89,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
         Validators.pattern(RegexConstants.AlphanumericWithSymbol)
       ]),
       pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [
-        Validators.required,
         Validators.pattern(RegexConstants.AlphanumericWithSymbol)
       ])
     });
@@ -143,7 +142,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
         'pepZipCode',
         new FormControl(this.addInfoFormValues.pepZipCode, [
           Validators.required,
-          Validators.pattern(RegexConstants.Alphanumeric)
+          Validators.pattern(RegexConstants.NumericOnly)
         ])
       );
 
@@ -155,18 +154,16 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   getDefaultCountry() {
     let defaultCountry;
-    if (this.isUserNationalitySingapore) {
+    if (this.addInfoFormValues.pepCountry) {
+      defaultCountry = this.addInfoFormValues.pepCountry;
+    } else if (this.isUserNationalitySingapore) {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
         INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      if (this.addInfoFormValues.pepCountry) {
-        defaultCountry = this.addInfoFormValues.pepCountry;
-      } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
-          this.addInfoFormValues.nationalityCode
-        );
-      }
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        this.addInfoFormValues.nationalityCode
+      );
     }
     return defaultCountry;
   }
