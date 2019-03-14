@@ -2,17 +2,10 @@
 @import '../../../mixins';
 .container-fluid {
     @include allmobiles{
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        padding-top: 60px;
+        padding: 60px 0 0 !important;
+        min-height: calc(100vh - 45px);
     }
     background: $white-color;
-}
-.notifications-block{
-    min-height: calc(100vh - 197px);
-    @include allmobiles{
-        min-height: calc(100vh - 108px);
-    }
 }
 .notifications-container {
     &__header {
