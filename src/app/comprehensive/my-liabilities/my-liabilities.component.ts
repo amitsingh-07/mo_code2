@@ -141,3 +141,4 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);
   }
 }
+
