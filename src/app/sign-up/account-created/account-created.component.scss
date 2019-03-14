@@ -36,6 +36,11 @@
   }
   .custom-modal--icon {
     margin: 0 auto;
+    img{
+      @include allmobiles{
+        width: 80%;
+      }
+    }
   }
   .custom-modal--title {
     color: $white-color;
