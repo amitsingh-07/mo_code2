@@ -197,6 +197,9 @@
         <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="showSettingsIcon" (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
           </div>
+        <div *ngIf="showNotificationClear" class="navbar-notification-clear" (click)="clearNotifications()">
+          <button>Clear All</button>
+          </div>
         </div>
       </div>
   </nav>

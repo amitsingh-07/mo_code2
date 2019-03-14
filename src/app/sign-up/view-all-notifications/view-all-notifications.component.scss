@@ -64,6 +64,9 @@
         font-family: $muli-bold;
         text-align: center;
         color: #00a7a7;
-        height: 100vh;
+        height: calc(100vh - 45px);
+        .pt50{
+            padding-top:80px!important;
+        }
     }
 }
