@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
@@ -30,6 +31,7 @@ export class SelectNationalityComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public activeModal: NgbActiveModal,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -46,8 +48,9 @@ export class SelectNationalityComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.footerService.setFooterVisibility(false);
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
