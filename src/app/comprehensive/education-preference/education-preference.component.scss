@@ -1,0 +1,40 @@
+.comprehensive {
+  &.container-fluid {
+    padding-top: 120px;
+  }
+
+  .dependant-title {
+    font-size: 18px;
+  }
+
+  .dependant-desc {
+    font-size: 16px;
+    padding-bottom: 16px;
+  }
+
+  .form-group-with-bg--header-label {
+
+    background: #fff;
+    color: #313644;
+    font-size: 18px;
+    font-weight: 600;
+
+    .age {
+      color: #8d9aa8;
+      font-size: 16px;
+    }
+   
+  }
+ .EducationPreferenceForm{
+     border-radius: 6px;
+     
+ }
+  .form-content{
+    font-size: 16px;
+      background-color: #f4fafb;
+      color: #2d8289;
+      border: 1px solid #f4fafb;
+      }
+      
+
+}

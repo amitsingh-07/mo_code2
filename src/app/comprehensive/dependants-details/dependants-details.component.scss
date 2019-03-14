@@ -1,0 +1,27 @@
+@import '../../../variables';
+@import '../../../mixins';
+.myDependant {
+    .myDependantFormArray {
+    background: #f0ffff!important;
+    color:#005960 !important;
+    border-radius:10px;
+    h5{
+        color:#000!important;
+    }
+  }
+}
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .dependant-title {
+        font-size: 18px;
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+}
+.comprehensive .form-group-with-bg {
+    padding: 0;
+}

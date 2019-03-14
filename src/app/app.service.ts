@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { appConstants } from './app.constants';
+import { ComprehensiveService } from './comprehensive/comprehensive.service';
 import { DirectService } from './direct/direct.service';
 import { GuideMeService } from './guide-me/guide-me.service';
 import { InvestmentAccountService } from './investment-account/investment-account-service';
@@ -83,6 +85,8 @@ export class AppService {
       sessionStorage.removeItem('app_guided_session');
       // Insurance results
       sessionStorage.removeItem('insurance_results_counter');
+      // Comprehensive Journey
+      sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
     }
   }
 

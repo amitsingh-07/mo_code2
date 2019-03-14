@@ -1,2 +1,27 @@
 {
+  "cSpell.words": [
+    "dependants",
+    "edu",
+    "prefs"
+  ],
+  "files.autoSave": "off",
+  "workbench.colorTheme": "Default Light+",
+  "git.enableSmartCommit": true,
+  "team.showWelcomeMessage": false,
+  "files.exclude": {
+    "**/node_modules/": true
+  },
+  "search.exclude": {
+    "**/node_modules/": true
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "prettier.singleQuote": true,
+  "prettier.useTabs": false,
+  "typescriptHero.imports.multiLineTrailingComma": false,
+  "window.zoomLevel": 0,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  }
 }

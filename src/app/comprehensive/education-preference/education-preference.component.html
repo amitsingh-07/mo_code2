@@ -1,0 +1,70 @@
+<div class="container-fluid comprehensive max-width--1024 ">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="5" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
+  </div>
+  <header class="dependant-title mt40">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</header>
+  <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
+      <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm.controls.preference.controls; let i = index;">
+      <div  class="form-group-with-bg mt20 mb50" [formGroupName]="i">
+        
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="form-group-with-bg--header-label">{{preferencePlan.get('name').value}}<div class="form-group-with-bg--header-sub-label">{{ 'CMP.EDUCATION_PREFERENCE.ABOUT' | translate}} {{preferencePlan.get('age').value}} {{
+                    'CMP.FORM_LABEL.YEARS_LATER' | translate}} </div></div>
+              </div> 
+            </div>
+          </div>
+  
+          <!--Form Content-->
+          <div class="form-group-with-bg--content">
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label">{{ 'CMP.FORM_LABEL.LOCATION' | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  preferencePlan.controls.location.invalid}">
+                      <div ngbDropdown id="locationDropDown">
+                          <button type="button" class="btn btn-dropdown" id="dropdownLocation" ngbDropdownToggle>
+                              <span class="grey-text" *ngIf="preferencePlan.get('location'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="preferencePlan.get('location'). value !==''">{{preferencePlan.get('location').value}}</span>
+                            </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownLocation">
+                          <button class="dropdown-item" (click)="selectLocation('',i)">Select</button>
+                          <button type="button" class="dropdown-item" *ngFor="let location of locationList;" (click)="selectLocation(location, i)">
+                            {{location}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label">{{ 'CMP.FORM_LABEL.COURSE_OF_STUDY' | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+                  <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  preferencePlan.controls.educationCourse.invalid}">
+                      <div ngbDropdown id="EducationDropDown">
+                          <button type="button" class="btn btn-dropdown" id="dropdownEducationCourse" ngbDropdownToggle>
+                              <span class="grey-text" *ngIf="preferencePlan.get('educationCourse'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="preferencePlan.get('educationCourse'). value !==''">{{preferencePlan.get('educationCourse').value}}</span>
+                            </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                          <button class="dropdown-item" (click)="selectCourse('',i)">Select</button>
+                          <button type="button" class="dropdown-item" *ngFor="let course of courseList;" (click)="selectCourse(course, i)">
+                            {{course}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            </div>
+          </div>
+      </div>
+      </div>
+        <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100"
+        >{{ 'LABEL.CONTINUE' | translate}}</button>
+  </form>
+</div>

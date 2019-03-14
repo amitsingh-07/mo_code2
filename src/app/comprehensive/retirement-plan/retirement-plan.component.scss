@@ -1,0 +1,30 @@
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .title {
+        font-size: 18px;
+    }
+   .form-group-with-bg--header{
+    padding: 15px 0px 5px!important;
+   }
+   .retirementImg{
+    background: url("../../../assets/images/comprehensive/retirement.svg") no-repeat;
+    display: inline-block;
+    width: 218px;
+    height: 150px;
+}
+.income-bucket-panel {
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+    }
+  
+}
+
+
+
+}

@@ -27,20 +27,14 @@ import { ArticleEnableGuard } from './article/article-enable-guard';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
+import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
-import {
-    ExistingCoverageModalComponent
-} from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
-import {
-    RestrictAlphabetsDirective
-} from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
-import {
-    InsuranceResultModalComponent
-} from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
-import {
-    LifeProtectionModalComponent
-} from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
+import { InsuranceResultModalComponent } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
+import { LifeProtectionModalComponent } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import {
     CreateAccountModelComponent
@@ -53,9 +47,7 @@ import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
-import {
-    WillDisclaimerComponent
-} from './shared/components/will-disclaimer/will-disclaimer.component';
+import { WillDisclaimerComponent } from './shared/components/will-disclaimer/will-disclaimer.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -66,15 +58,12 @@ import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
-import {
-    ConfirmationModalComponent
-} from './shared/modal/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
-import {
-    ModelWithButtonComponent
-} from './shared/modal/model-with-button/model-with-button.component';
+import { LoginCreateAccountModelComponent } from './shared/modal/login-create-account-model/login-create-account-model.component';
+import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import {
     RecommendationsModalComponent
@@ -101,121 +90,129 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-
+import { SummaryModalComponent } from './shared/modal/summary-modal/summary-modal.component';
+import { AboutAge } from './shared/utils/about-age.util';
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
-  return new MultiTranslateHttpLoader(
-    http,
-    [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' },
-      { prefix: './assets/i18n/faq/', suffix: '.json' }
+    return new MultiTranslateHttpLoader(http, [
+        { prefix: './assets/i18n/app/', suffix: '.json' },
+        { prefix: './assets/i18n/home/', suffix: '.json' },
+        { prefix: './assets/i18n/faq/', suffix: '.json' }
     ]);
 }
 
 export function tokenGetterFn() {
-  return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
+    return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HelpModalComponent,
-    MobileModalComponent,
-    LoaderComponent,
-    ErrorModalComponent,
-    BankDetailsComponent,
-    ToolTipModalComponent,
-    ModelWithButtonComponent,
-    LifeProtectionModalComponent,
-    InsuranceResultModalComponent,
-    CreateAccountModelComponent,
-    ExistingCoverageModalComponent,
-    PopupModalComponent,
-    SuccessModalComponent,
-    RestrictAlphabetsDirective,
-    jqxSliderComponent,
-    HeaderComponent,
-    NavbarComponent,
-    FooterComponent,
-    NumberOnlyDirective,
-    CallBackComponent,
-    HomeComponent,
-    UrlRedirectComponent,
-    TestMyInfoComponent,
-    TransactionModalComponent,
-    FAQComponent,
-    FundDetailsComponent,
-    UnsupportedDeviceModalComponent
-  ],
-  imports: [
-    BrowserModule,
-    NgbModule.forRoot(),
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    HttpModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
-    SharedModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetterFn
-      }
-    }),
-  ],
-  providers: [
-    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
-    ArticleService,
-    { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: HammerConfig
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
-    }, Formatter, CurrencyPipe, RoutingService,
-    StateStoreService, Util,
-    InvestmentEnableGuard,
-    InvestmentChildEnableGuard,
-    WillWritingEnableGuard,
-    WillWritingChildEnableGuard,
-    PromotionEnableGuard,
-    PromotionChildEnableGuard,
-    ArticleEnableGuard,
-    ArticleChildEnableGuard,
-    SignUpService
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
-    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
-    FundDetailsComponent, UnsupportedDeviceModalComponent]
+    declarations: [
+        AppComponent,
+        HelpModalComponent,
+        MobileModalComponent,
+        LoaderComponent,
+        ErrorModalComponent,
+        BankDetailsComponent,
+        ToolTipModalComponent,
+        ModelWithButtonComponent,
+        LifeProtectionModalComponent,
+        InsuranceResultModalComponent,
+        CreateAccountModelComponent,
+        LoginCreateAccountModelComponent,
+        ExistingCoverageModalComponent,
+        PopupModalComponent,
+        SuccessModalComponent,
+        RestrictAlphabetsDirective,
+        jqxSliderComponent,
+        HeaderComponent,
+        NavbarComponent,
+        FooterComponent,
+        NumberOnlyDirective,
+        CallBackComponent,
+        HomeComponent,
+        UrlRedirectComponent,
+        TestMyInfoComponent,
+        TransactionModalComponent,
+        FAQComponent,
+        FundDetailsComponent,
+        UnsupportedDeviceModalComponent,
+        SummaryModalComponent
+    ],
+    imports: [
+        BrowserModule,
+        NgbModule.forRoot(),
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+        HttpModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        SharedModule.forRoot(),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetterFn
+            }
+        }),
+    ],
+    providers: [
+        NgbActiveModal,
+        AuthenticationService, CustomErrorHandlerService, RequestCache,
+        AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
+        ArticleService,
+        { provide: LoggerService, useClass: ConsoleLoggerService },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: HammerConfig
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true,
+            deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
+        }, Formatter, CurrencyPipe, RoutingService,
+        StateStoreService, Util,
+        InvestmentEnableGuard,
+        InvestmentChildEnableGuard,
+        WillWritingEnableGuard,
+        WillWritingChildEnableGuard,
+        PromotionEnableGuard,
+        PromotionChildEnableGuard,
+        ArticleEnableGuard,
+        ArticleChildEnableGuard,
+        SignUpService,
+        ComprehensiveEnableGuard,
+        ComprehensiveChildEnableGuard,
+        AboutAge
+    ],
+    bootstrap: [AppComponent],
+    entryComponents: [
+        HelpModalComponent, LoaderComponent, ErrorModalComponent,
+        BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
+        LifeProtectionModalComponent, MobileModalComponent,
+        InsuranceResultModalComponent, PopupModalComponent,
+        CreateAccountModelComponent, ExistingCoverageModalComponent,
+        RecommendationsModalComponent,
+        SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent,
+        WillDisclaimerComponent, TransactionModalComponent,
+        LoginCreateAccountModelComponent, SummaryModalComponent,
+        FundDetailsComponent, UnsupportedDeviceModalComponent]
 })
-
 export class AppModule {
-  /**
+    /**
    * Allows for retrieving singletons using `AppModule.injector.get(MyService)`
    * This is good to prevent injecting the service as constructor parameter.
    */
-  static injector: Injector;
-  constructor(injector: Injector) {
-    AppModule.injector = injector;
-
-  }
+    static injector: Injector;
+    constructor(injector: Injector) {
+        AppModule.injector = injector;
+    }
 }

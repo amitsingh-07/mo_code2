@@ -1,0 +1,19 @@
+
+@import '../../../variables';
+@import '../../../mixins';
+
+
+.rspSelectionList{
+    color:$dark-teal-color!important;
+}
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .title {
+        font-size: 18px;
+    }
+   .form-group-with-bg--header{
+    padding: 15px 0px 5px!important;
+   }
+}

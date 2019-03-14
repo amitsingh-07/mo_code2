@@ -1,0 +1,130 @@
+@import '../../../variables';
+@import '../../../mixins';
+$grey-color-notes: #9f9f9f;
+.assets-section {
+    background:$white-color;
+    color:$black-color;
+    border-radius: 5px;
+}
+.assets-field{
+    background: $bond-container-bg;
+    color: $dark-teal-color;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .help-icon {
+      
+        background: url("/assets/images/tool-help-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute; 
+        left: 93%;
+        top: 5px;
+    }    
+}
+.delete-icon {      
+    background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 95%;  
+    top: 5px;
+} 
+.comprehensive {
+    &.container-fluid {
+        padding-top: 120px;
+    }
+    .dependant-title {
+        font-size: 18px;        
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:16px;
+    }
+    .form-group-with-bg{
+        padding:0px;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
+    .assets-field .btn-outline-primary{
+        color:$teal-color;
+    }
+}
+.p-50{
+    padding:75px;
+}
+.assets-section .flex-row{
+    padding:5px!important;
+}
+.investmentProperties{
+    border-top:1px solid rgba(134, 205, 206, 0.3);
+    margin-top:10px;
+}
+.filledAssets{
+    background: url("../../../assets/images/comprehensive/finance-assets.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.income-modal-notes{
+    color:$grey-color-notes;
+}
+.bucket-notes{
+    font-size:16px;
+}
+.bucket-notes-dollar{
+    font-size:20px;
+}
+.income-bucket-panel {
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+    }
+    &__value {
+        padding-bottom: 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+    }
+}
+.footer-notes{
+    background: $btn-primary-backgrnd-color;
+}
+.add-invest .help-icon {
+    top:3px!important;
+}
+.add-invest u{
+    color:$post-login-widget-title;
+}
+.both-icon{ 
+    .help-icon {
+        left: 80% !important;
+    }
+    .delete-icon {        
+        left: 95% !important;
+    }
+    .form-group-with-bg--content-label{
+        color:$black-color;
+    }
+    .form-group-with-bg--content-sub-label{
+        color:$text-grey-color;
+    }
+}
+.mb-10{
+    margin-bottom:100px;
+}

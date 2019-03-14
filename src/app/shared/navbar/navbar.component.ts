@@ -79,6 +79,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   userInfo: any;
 
+  showMenuItem = false;
+  menuItemClass = '';
+  pageId: any;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -154,6 +158,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
+
+    this.navbarService.currentMenuItem.subscribe((menuItem) => {
+      if (menuItem && typeof menuItem.iconClass !== 'undefined') {
+        this.showMenuItem = true;
+        this.menuItemClass = menuItem.iconClass;
+        this.pageId = menuItem.id;
+      } else {
+        this.showMenuItem = false;
+      }
+    });
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url !== this.currentUrl) {
@@ -232,6 +247,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showMobilePopUp() {
     this.navbarService.showMobilePopUp(this.pageTitle);
+  }
+
+  onMenuItemClicked() {
+    this.navbarService.menuItemClicked(this.pageId);
   }
 
   goBack() {

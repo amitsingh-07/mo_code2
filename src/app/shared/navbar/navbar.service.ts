@@ -1,6 +1,8 @@
-import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+
+import { IHeaderMenuItem } from './navbar.types';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class NavbarService {
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
   private pageSubTitle = new BehaviorSubject('');
-  private pageHelpIcon = new BehaviorSubject(true);
+  private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
 
@@ -38,6 +40,8 @@ export class NavbarService {
   private pageSettingsIcon = new BehaviorSubject(true);
   private pageFilterIcon = new BehaviorSubject(true);
   private pageSuperTitle = new BehaviorSubject('');
+  private menuItem = new BehaviorSubject({} as IHeaderMenuItem);
+  private $menuItemClick = new BehaviorSubject('');
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -50,6 +54,9 @@ export class NavbarService {
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
   currentPageFilterIcon = this.pageFilterIcon.asObservable();
   currentPageSuperTitle = this.pageSuperTitle.asObservable();
+  currentMenuItem = this.menuItem.asObservable();
+
+  onMenuItemClicked = this.$menuItemClick.asObservable();
 
   constructor() { }
 
@@ -61,7 +68,16 @@ export class NavbarService {
   getNavbarDetails() {
     this.getNavEvent.next(true);
   }
+
+  setNavbarComprehensive(secondaryVisible: boolean) {
+    this.setNavbarVisibility(true);
+    this.setNavbarMode(6);
+    this.setNavbarMobileVisibility(secondaryVisible);
+    this.setNavbarShadowVisibility(false);
+  }
+
   /* Visibility Functions */
+  // tslint:disable-next-line:no-identical-functions
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
     this.setNavbarMode(2);
@@ -97,6 +113,14 @@ export class NavbarService {
     this.pageProdInfoIcon.next(isVisible);
   }
 
+  setPageTitleWithIcon(title: string, menuItem: IHeaderMenuItem) {
+    this.pageTitle.next(title);
+    this.menuItem.next(menuItem);
+    this.pageHelpIcon.next(false);
+    this.pageSettingsIcon.next(false);
+    this.pageFilterIcon.next(false);
+  }
+  
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
   }
@@ -130,10 +154,17 @@ export class NavbarService {
     } else {
       this.pageSuperTitle.next('');
     }
+
+    // Reset/Hide menuItem
+    this.menuItem.next({} as IHeaderMenuItem);
   }
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
     this.mobileModal.next(event);
+  }
+
+  menuItemClicked(pageId) {
+    this.$menuItemClick.next(pageId);
   }
 
   // Hiding Product Info Modal Trigger
@@ -154,5 +185,10 @@ export class NavbarService {
   unsubscribeBackPress() {
     this.isBackPressSubscribed.next(false);
     this.backListener.next('');
+  }
+
+  unsubscribeMenuItemClick() {
+    this.menuItem.next(null);
+    this.$menuItemClick.next('');
   }
 }

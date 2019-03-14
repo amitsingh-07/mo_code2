@@ -1,0 +1,105 @@
+<div class="container-fluid--comprehensive max-width--1024 comprehensive" style="padding-top: 136px !important">
+  <div class="tooltip-container" *ngIf="showToolTip">
+    <div class="tooltip-container__inner">
+      <!-- <span class="tooltip-container__inner__arrow"></span> -->
+      <div class="tooltip-container__inner__title">{{'CMP.GETTING_STARTED.TOOL_TIP_TITLE'|translate}}</div>
+      <div class="tooltip-container__inner__desc">{{'CMP.GETTING_STARTED.TOOL_TIP_DESC'|translate}}</div>
+      <span class="tooltip-container__inner__close" (click)="onCloseClick()"></span>
+    </div>
+  </div>
+  <div class="text-center">
+    <img class="owl-img" src="/assets/images/comprehensive/createAccount-icon.svg" id="moGetStrdOwlImg" />
+  </div>
+  <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
+    {{userDetails ?userDetails.firstName : ''}} </div>
+  <div  class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg" [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
+  <div class="comprehensive__page-content" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
+  <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
+    <div class="form-group-with-bg">
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row ">
+          <div class="pl0 col-5">
+            <label for="name" id="myProfileNameLabel">
+              <div>{{ 'CMP.FORM_LABEL.NAME' | translate}}
+              </div>
+            </label>
+          </div>
+          <div class="flex-col-7">
+              {{userDetails ? userDetails.firstName : ''}}    
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
+          </div>
+          <div class="flex-col-7">
+            <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
+              <div class="flex-row mb0">
+                <div class="flex-col-6" style="width: 50% !important;">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
+                    <input id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
+                  </label>
+                </div>
+                <div class="flex-col-6" style="width: 50% !important;">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
+                    <input id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
+                    translate}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="nationality">{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</label>
+          </div>
+          <div class="flex-col-7">
+            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
+              <div  ngbDropdown id="nationalityDropDown" placement="top-right">
+                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+                  <span class="grey-text" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="nationality !== ''">{{nationality}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownNationality">
+                  <button   class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                  <button  type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
+                    (click)="selectNationality(nationality)">
+                    {{nationality.text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="dob">{{ 'CMP.FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
+          </div>
+          <div #usrFrmDp class="flex-col-7">
+            <div class="datepicker-control datepicker-upside">
+              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted}">
+                <input readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
+                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
+                <div class="input-group-append">
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" >
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid || !submitted"
+                      src="./assets/images/calendar-normal.svg" />
+                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted"
+                      src="./assets/images/calendar-error.svg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="!DOBAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
+      </div>
+    </div>
+    <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary mt-4 width100" id="prfBtn1">{{
+      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
+  </form>
+</div>
