@@ -657,6 +657,12 @@ h6 {
         a{
           color:$white-color;
         }
+        &:hover{
+          a{
+            color:$white-color;
+            background-color:$teal-color;
+          }
+        }
       }
       &.home-btn{ 
         @include minPhabletmaxTablet{
@@ -1061,6 +1067,30 @@ h6 {
 .navbar__helpIcon--mobile-settings {
   background-image: url("/assets/images/settings-icon.png");
   background-repeat: no-repeat;
+}
+
+.navbar-notification-clear{
+  position: absolute;
+  display:block;
+  right:10px;
+  top:calc(50%);
+  transform:translateY(-50%);
+  
+  button{
+    font-family:$muli;
+    font-size:14px;
+    border:1px solid $teal-color;
+    border-radius:5px;
+    background-color:$white-color;
+    cursor: pointer;
+    line-height:1.1;
+    color:#8cd7d7;
+    padding:8px 10px;
+    outline:none;
+    &:hover{
+      color:$teal-color;
+    }
+  }
 }
 
 .navbar__closeIcon {
