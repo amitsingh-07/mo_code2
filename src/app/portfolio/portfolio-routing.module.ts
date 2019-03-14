@@ -12,7 +12,6 @@ import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { StartJourneyComponent } from './start-journey/start-journey.component';
-import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 
 const routes: Routes = [
   {
@@ -61,11 +60,6 @@ const routes: Routes = [
   {
     path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION,
     component: PortfolioRecommendationComponent,
-    canActivate: [EngagementGuard]
-  },
-  {
-    path: PORTFOLIO_ROUTES.WHATS_THE_RISK,
-    component: WhatsTheRiskComponent,
     canActivate: [EngagementGuard]
   },
   {

@@ -2,9 +2,6 @@
 @import '../../../_mixins.scss';
 app-personal-declaration {
   .personal-declaration {
-    .container-fluid {
-      padding-top: 120px;
-    }
     .flex-row {
       align-items: center;
     }
@@ -56,9 +53,6 @@ app-personal-declaration {
     .fixed-btn--sm {
       color: $white-color;
     }
-    .mr16 {
-      margin-right: 5px !important;
-    }
     .text {
       font-family: $muli-regular;
       font-size: 18px;
@@ -72,8 +66,7 @@ app-personal-declaration {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
