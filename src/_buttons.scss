@@ -1013,6 +1013,7 @@ button:active:focus {
   @extend .justify-center;
   height: 50px;
   margin: 0;
+  background: $white-color;
   //margin-bottom: 5px;
   &.active {
     border: 1px solid $app-backgrnd-color !important;
