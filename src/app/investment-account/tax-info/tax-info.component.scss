@@ -2,12 +2,6 @@
 @import '../../../_mixins.scss';
 app-tax-info {
   .app-tax-info {
-    .container-fluid {
-      @include allmobiles{
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-      }
-    }
     .flex-row {
       align-items: center;
     }
@@ -121,7 +115,7 @@ app-tax-info {
       text-align: center;
       color: $black-color;
       margin-top: 33px !important;
-      margin: 20px;
+      margin: 20px 0;
     }
     .add-tax-text {
       font-family: $muli-bold;
@@ -134,7 +128,7 @@ app-tax-info {
       padding: 60px 0px 25px;
       position: relative;
       @include allmobiles{
-        padding: 60px 20px 25px; 
+        padding: 60px 0px 25px; 
       }
       &:first-child {
         padding-top: 30px;

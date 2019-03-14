@@ -170,7 +170,7 @@
             <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle></a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
               <button class="dropdown-item profile-btn" (click)="goToDashboard()">
-                <div class="name">{{userInfo.firstName}}</div>
+                <div class="name">{{userInfo.firstName | titlecase}}</div>
                 <div class="sub-text">My Dashboard</div>
                 </button>
               <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
@@ -196,6 +196,9 @@
           </div>
         <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="showSettingsIcon" (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
+          </div>
+        <div *ngIf="showNotificationClear" class="navbar-notification-clear" (click)="clearNotifications()">
+          <button>Clear All</button>
           </div>
         </div>
       </div>

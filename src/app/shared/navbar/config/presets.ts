@@ -10,7 +10,7 @@ export class NavbarConfig {
       showSearchBar: false,
       showNotifications: false,
       showHeaderNavbar: false
-    } as INavbarConfig;
+    };
 
     // ----- Core Function Profiles -----
     // DashBoard
@@ -54,9 +54,9 @@ export class NavbarConfig {
       showLogin: true,
       showNavShadow: true,
       showSearchBar: false,
-      showNotifications: false,
+      showNotifications: true,
       showHeaderNavbar: false
-    } as INavbarConfig;
+    };
     // Direct/ Guide Me Journey (Robo1)
     '2': object = {
       showNavBackBtn: true,

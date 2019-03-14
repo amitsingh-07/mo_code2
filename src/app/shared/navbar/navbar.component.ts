@@ -43,6 +43,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHeaderNavbar = false; // Navbar Show on Mobile
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
+  showNotificationClear = false; // Notification Clear all Button
 
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
@@ -141,6 +142,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
       });
+    this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
+      this.showNotificationClear = showClearNotify;
+    });
     this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
@@ -165,7 +169,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
       // Enabling Notifications
-      if (navbarMode === 100) {
+      if (navbarMode === 100 || navbarMode === 1) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
       if (this.isNotificationEnabled) {
@@ -209,8 +213,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
-    console.log(this.showHeaderNavbar);
+    this.showNotificationClear = false;
   }
+
+  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -302,6 +308,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.router.url === EDIT_PROFILE_PATH
       );
   }
+  clearNotifications() {
+    this.navbarService.clearNotification();
+  }
+  // End of Notifications
 
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
