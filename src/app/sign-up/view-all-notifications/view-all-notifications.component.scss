@@ -2,7 +2,9 @@
 @import '../../../mixins';
 .container-fluid {
     @include allmobiles{
-        padding: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 60px;
     }
     background: $white-color;
 }
@@ -14,14 +16,13 @@
 }
 .notifications-container {
     &__header {
-        background-color: #f4fafb;
+        background-color: #e3f5f5;
         padding: 10px;
         text-align: center;
         color: #00a7a7;
         font-size: 14px;
         letter-spacing: -0.1px;
         font-family: $muli-regular;
-        margin-top: -2px;
     }
     &__lists {
         padding: 23px 20px;
@@ -49,6 +50,7 @@
         line-height: 1.17;
         letter-spacing: -0.2px;
         color: #00a7a7;
+        padding-right: 55px;
     }
     &__lists--duration {
         font-family: $muli-regular;
