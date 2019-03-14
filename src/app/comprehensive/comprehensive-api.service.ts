@@ -46,8 +46,9 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     saveChildEndowment(payload) {
+        console.log(payload);
         return this.http
-            .get(apiConstants.endpoint.comprehensive.saveEndowmentPlan)
+            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 }

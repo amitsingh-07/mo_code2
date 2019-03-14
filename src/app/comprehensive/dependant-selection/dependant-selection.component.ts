@@ -28,7 +28,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private configService: ConfigService) {
     this.pageId = this.route.routeConfig.component.name;
 
-    this.hasDependant = this.cmpService.hasDependant();
+  
 
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -48,6 +48,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         alert('Menu Clicked');
       }
     });
+
     this.buildMyDependantSelectionForm();
   }
 
@@ -61,9 +62,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildMyDependantSelectionForm() {
+    this.hasDependant = this.cmpService.hasDependant();
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant, Validators.required)
+      dependantSelection: new FormControl(this.hasDependant ? 'true' : 'false', Validators.required)
     });
+
   }
 
   goToNext(dependantSelectionForm) {

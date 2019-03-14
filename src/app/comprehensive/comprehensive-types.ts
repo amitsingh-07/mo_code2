@@ -45,6 +45,7 @@ export interface IChildEndowment {
     endowmentMaturityYears: string;
     dateOfBirth: string;
     age: number;
+    preferenceSelection: boolean;
 }
 
 export interface IMyLiabilities {

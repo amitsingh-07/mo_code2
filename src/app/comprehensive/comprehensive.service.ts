@@ -38,6 +38,8 @@ export class ComprehensiveService {
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
 
+    setTempleteModel: number;
+
     constructor(private http: HttpClient, private modal: NgbModal) {
         this.getComprehensiveFormData();
     }
@@ -317,8 +319,8 @@ export class ComprehensiveService {
             windowClass: 'custom-full-height'
         });
 
-        let setTempleteModel = 1;
-        if (setTempleteModel === 2) {
+        this.setTempleteModel = 1;
+        if (this.setTempleteModel === 2) {
             // Finance Popup
 
             summaryModalDetails = {
@@ -338,7 +340,7 @@ export class ComprehensiveService {
                 liabilitiesMonthlySpareCash: 200
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel === 4) {
+        } else if (this.setTempleteModel === 4) {
             // Retirement Popup
 
             summaryModalDetails = {
@@ -347,7 +349,7 @@ export class ComprehensiveService {
                 contentObj: retireModal
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel === 3) {
+        } else if (this.setTempleteModel === 3) {
             // InsurancePlanning Popup
             const dependantVar = false;
 
@@ -362,7 +364,7 @@ export class ComprehensiveService {
                 wholeLife: 10
             };
             ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (setTempleteModel === 1) {
+        } else if (this.setTempleteModel === 1) {
             // CHILDREN_EDUCATION Popup
             const dependantVar = false;
 
@@ -475,7 +477,7 @@ export class ComprehensiveService {
     getDependantsProgressData(): IProgressTrackerItem {
         const dependantDetails: IDependantDetail[] = this.getMyDependant();
         const eduPrefs: IChildEndowment[] = this.getChildEndowment();
-        const eduPlan: IComprehensiveEnquiry = this.hasEndowment();
+        const eduPlan: string = this.hasEndowment();
 
         let noOfDependants = '';
         if (dependantDetails) {
@@ -492,8 +494,10 @@ export class ComprehensiveService {
         }
 
         let hasEndowmentPlans = '';
-        if (eduPlan) {
-            hasEndowmentPlans = eduPlan.hasEndowments ? 'Yes' : 'No';
+        if (eduPlan === '1') {
+            hasEndowmentPlans = 'Yes';
+        } else if (eduPlan === '2') {
+            hasEndowmentPlans = 'No';
         }
 
         let hasEduPlans = '';
@@ -530,7 +534,7 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Do you have education endowment plan',
                     value: hasEndowmentPlans,
-                    completed: typeof eduPlan !== 'undefined' && typeof eduPlan.hasEndowments !== 'undefined'
+                    completed: typeof eduPlan !== 'undefined' || eduPlan !== '0'
                 }
             ]
         };
