@@ -35,8 +35,6 @@
     }
   }
   .custom-modal--icon {
-    width: 306px;
-    height: 185px;
     margin: 0 auto;
   }
   .custom-modal--title {
@@ -45,8 +43,8 @@
     font-size: 24px;
     letter-spacing: -0.18px;
     line-height: 0.56;
-    margin-top: 12px;
-    margin-bottom: 14px;
+    margin: 0;
+    padding: 12px 0 14px;
     @include allmobiles {
       font-size: 20px;
       letter-spacing: -0.2px;
@@ -61,7 +59,7 @@
     max-width: 476px;
     margin: 0 auto;
     @include allmobiles {
-      padding: 0 30px 70px;
+      padding: 0 30px;
     }
   }
   .btn-primary {
