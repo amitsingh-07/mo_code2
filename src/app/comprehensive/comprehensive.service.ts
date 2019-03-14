@@ -83,6 +83,7 @@ export class ComprehensiveService {
 
             if (!this.comprehensiveFormData.comprehensiveDetails) {
                 this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
+                this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
             }
         }
         return this.comprehensiveFormData;
@@ -128,6 +129,21 @@ export class ComprehensiveService {
     /* Product Category drop down Handler */
     setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+
+        const enquiry: IComprehensiveEnquiry = comprehensiveDetails.comprehensiveEnquiry;
+        if (enquiry.hasDependents && (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')) {
+            if (comprehensiveDetails.dependentsList && comprehensiveDetails.dependentEducationPreferencesList) {
+                comprehensiveDetails.dependentEducationPreferencesList.forEach((eduPref) => {
+                    comprehensiveDetails.dependentsList.forEach((dependant) => {
+                        if (dependant.id === eduPref.dependentId) {
+                            eduPref.dateOfBirth = dependant.dateOfBirth;
+                            eduPref.name = dependant.name;
+                        }
+                    });
+                });
+            }
+        }
+
         this.commit();
     }
     setMyProfile(profile: IMyProfile) {
