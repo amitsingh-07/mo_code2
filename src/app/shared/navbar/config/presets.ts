@@ -65,6 +65,10 @@ export class NavbarConfig {
       showLogin: false,
       showNavShadow: true,
       showSearchBar: false,
+      showLabel: {
+        primary: 'Insurance Adviser',
+        secondary: 'powered by DIYInsurance'
+      }
     };
     // Will-Writing (Robo1.5)
     '4': object = {
@@ -75,7 +79,10 @@ export class NavbarConfig {
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
-      showHeaderNavbar: false
+      showHeaderNavbar: false,
+      showLabel: {
+        primary: 'Will Writing'
+      }
     };
     // Investment (Robo2)
     '6': object = {
@@ -86,6 +93,9 @@ export class NavbarConfig {
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
-      showHeaderNavbar: true
+      showHeaderNavbar: true,
+      showLabel: {
+        primary: 'Investment'
+      }
     };
 }
