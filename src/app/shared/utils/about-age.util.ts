@@ -24,7 +24,7 @@ export class AboutAge {
 		const ageMonth = calculateMonth - birthMonth;
 		const ageDay = calculateDay - birthDay;
 
-		if (ageMonth < 0 || (ageMonth == 0 && ageDay < 0)) {
+		if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
 			age = toInteger(age) - 1;
 		}
 		return age;
