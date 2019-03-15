@@ -1,0 +1,93 @@
+@import '../../../variables';
+@import '../../../mixins';
+.comprehensive {
+    &.container-fluid {
+        padding-top: 20px;
+    }
+    .welcome-title {
+        font-size: 20px;        
+    }
+    .welcome-user {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .edit-profile{        
+        background-image: url('/assets/images/edit-icon.svg');
+        height: 22px;
+        border: none;
+        background-repeat: no-repeat; 
+    }
+    .form-group-with-bg .form-group-with-bg--header-label{
+        font-size:20px;
+        color:$teal-color;
+        font-weight: bold;
+    }
+    .plan-view-icon{
+        font-size:16px!important;
+        font-weight: normal!important;
+        margin:1px 0 2px 0;
+    }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:15px;
+        color:$dark-teal-color;
+    }
+    .form-group-with-bg .form-group-with-bg--content{
+        padding:10px 20px 20px 20px!important;
+    }
+    .form-group-with-bg{
+        padding:0px;
+        background: $white-color;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
+    .disabled-plan-report{
+        color:$btn-disabled;
+        border-radius: 6px;
+        border:1px solid $btn-disabled;
+        padding: 10px;
+    }
+    .btn.btn-primary{
+        background: $teal-color!important;
+    }
+    .btn.btn-primary:hover{
+        background: $teal-color!important;
+    }
+    .btn-view{
+        background: $white-color!important;
+        border:1px solid $btn-primary-backgrnd-color;
+        color:$teal-color;
+    }
+    .label-grey{
+        color:$text-grey-color;
+        font-size: 13px;
+    }
+    .ft-18{
+        font-size: 18px!important;
+    }
+    .ft-13{
+        font-size: 13px!important;
+    }
+    .ml25{
+        margin-left:25px;
+    }
+    .grass_bg {
+        width: 157px;
+        height: 113px;
+        object-fit: contain;
+        position: relative;
+        top: 50px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .overlap-grass{
+        position: relative;
+        display: flex;
+        justify-content: space-between;    
+    }    
+    .overlay-bg{
+        position: relative;
+    }
+}

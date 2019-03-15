@@ -97,7 +97,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       otherEarningsControl.setValidators([]);
       otherEarningsControl.updateValueAndValidity();
     } else {
-      otherEarningsControl.setValidators([Validators.required]);
+      otherEarningsControl.setValidators([ Validators.required, Validators.pattern('^0*[1-9]\d*$')]);
       otherEarningsControl.updateValueAndValidity();
     }
     this.onTotalAnnualIncomeBucket();
@@ -107,12 +107,12 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   buildMyEarningsForm() {
     this.myEarningsForm = this.formBuilder.group({
-      employmentType: [this.earningDetails ? this.earningDetails.employmentType : '', [Validators.required]],
-      monthlySalary: [this.earningDetails ? this.earningDetails.monthlySalary : '', [Validators.required]],
+      employmentType: [this.earningDetails ? this.earningDetails.employmentType : '', []],
+      monthlySalary: [this.earningDetails ? this.earningDetails.monthlySalary : '', []],
       monthlyRentalIncome: [this.earningDetails ? this.earningDetails.monthlyRentalIncome : ''],
       otherMonthlyWorkIncome: [this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : ''],
       otherMonthlyIncome: [this.earningDetails ? this.earningDetails.otherMonthlyIncome : ''],
-      annualBonus: [this.earningDetails ? this.earningDetails.annualBonus : '', [Validators.required]],
+      annualBonus: [this.earningDetails ? this.earningDetails.annualBonus : '', []],
       annualDividends: [this.earningDetails ? this.earningDetails.annualDividends : ''],
       otherAnnualIncome: [this.earningDetails ? this.earningDetails.otherAnnualIncome : '']
     });
@@ -124,11 +124,12 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.myEarningsForm.markAsDirty();
   }
   goToNext(form: FormGroup) {
-    this.earningDetails = form.value;
-    this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
-    this.comprehensiveService.setMyEarnings(form.value);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
-
+    if (this.validateEarnings(form)) {
+      this.earningDetails = form.value;
+      this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
+      this.comprehensiveService.setMyEarnings(form.value);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+    }
   }
   validateEarnings(form: FormGroup) {
     this.submitted = true;
@@ -145,7 +146,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     }
     return true;
   }
-
+  get addEarnValid() { return this.myEarningsForm.controls; }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
       TITLE: this.translate.instant('CMP.MY_EARNINGS.TOOLTIP.' + toolTipTitle),

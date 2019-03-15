@@ -57,7 +57,7 @@
                       <div class="flex-col-6">
                       <div class="form-control">
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlySalary formControlName="monthlySalary" value="0">
+                        <input type="text" class="input-control" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0">
                       </div>
                       </div>  
                     </div>
@@ -84,9 +84,9 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.monthlyRentalIncome.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #monthlyRentalIncome formControlName="monthlyRentalIncome" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="5" #monthlyRentalIncome formControlName="monthlyRentalIncome" value="0">
               </div>
               </div>  
             </div>
@@ -114,9 +114,9 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherMonthlyWorkIncome.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyWorkIncome formControlName="otherMonthlyWorkIncome" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="5" #otherMonthlyWorkIncome formControlName="otherMonthlyWorkIncome" value="0">
               </div>
               </div>  
             </div>
@@ -143,9 +143,9 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherMonthlyIncome.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="5" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
               </div>
               </div>  
             </div>
@@ -273,7 +273,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualBonus formControlName="annualBonus" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="6" #annualBonus formControlName="annualBonus" value="0">
               </div>
               </div>  
             </div>
@@ -303,9 +303,9 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addEarnValid.annualDividends.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #annualDividends formControlName="annualDividends" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="6" #annualDividends formControlName="annualDividends" value="0">
               </div>
               </div>  
             </div>
@@ -332,9 +332,9 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherAnnualIncome.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="6" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
               </div>
               </div>  
             </div>

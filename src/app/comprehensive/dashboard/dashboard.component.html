@@ -1,0 +1,204 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="flex-row overlap-grass">
+    <div class="flex-col-8">
+      <div class="welcome-title"> {{'CMP.DASHBOARD.WELCOME_TITLE'|translate}} </div>
+      <div class="welcome-user">{{ userName }}</div>
+      <div class='mb20 edit-profile'><span class='ml25'>{{'CMP.DASHBOARD.EDIT_PROFILE'|translate}}</span></div>
+    </div>
+    <div class="flex-col-4 grass_bg">
+      <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
+    </div>
+  </div>  
+    <div class="form-group-with-bg overlay-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row">
+          <div class="flex-col-11">
+            <div class="form-group-with-bg--header-label">{{
+              'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
+            </div>
+          </div>
+          <div class="flex-col-1">
+              <div class="form-group-with-bg--header-label plan-view-icon" [hidden]="comprehensivePlanning !== 0">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
+              <div class="form-group-with-bg--header-label plan-view-icon" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row"  [hidden]="comprehensivePlanning === 3" >
+          <div class="flex-col-11">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_COMPLETED_DESC' | translate}}
+            </div>
+          </div>
+        </div>        
+        <div class="flex-row"  [hidden]="comprehensivePlanning !== 3" >
+          <div class="flex-col-12">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_PENDING_DESC' | translate}}
+            </div>
+          </div>
+        </div>
+        <div class="flex-row" [hidden]="comprehensivePlanning !== 2">
+            <div class="flex-col-12">
+              <div class="form-group-with-bg--content-label" for="name"><u>{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP' | translate}}</u>
+              </div>
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP_DESC' | translate}}
+                </div>
+            </div>
+          </div>
+
+        <div class="flex-row" [hidden]="comprehensivePlanning !== 0">
+            <div class="flex-col-12 text-center disabled-plan-report" >
+              <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_CALCULATE_REPORT' | translate}}
+                  <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_ESTIMATE' | translate}}
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row" [hidden]="comprehensivePlanning !== 2">
+              <div class="flex-col-12">
+                  <button type="button"  class="btn btn-primary width100" id="prfBtn1">
+                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_ADVISOR' | translate}}                  
+                      </div>
+                  </button>
+              </div>
+          </div>
+          <div class="flex-row"  [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
+              <div class="flex-col-12">
+                  <button type="button" class="btn btn-view width100" id="prfBtn1">
+                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
+                          <div class="label-grey ft-13" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate}}
+                            </div>
+                      </div>
+                  </button>
+              </div>
+          </div>
+          <div class="flex-row"  [hidden]="comprehensivePlanning !== 3">
+              <div class="flex-col-12">
+                  <button type="button"  class="btn btn-primary width100" id="prfBtn1">
+                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_CONTINUE' | translate}}                  
+                          <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_STEPS_PENDING' | translate}}
+                            </div>
+                      </div>
+                  </button>
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div class="form-group-with-bg">
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+          <div class="flex-row">
+            <div class="flex-col-12">
+              <div class="form-group-with-bg--header-label">{{
+                'CMP.DASHBOARD.INSURANCE' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Form Content-->
+        <div class="form-group-with-bg--content">
+          <div class="flex-row" >
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.INSURANCE_DESC' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+                <img src='../../../assets/images/comprehensive/dashboard-insurance.svg'>
+            </div>
+          </div>  
+          <div class="flex-row">
+              <div class="flex-col-12">
+                  <button type="button"  class="btn btn-primary width100" id="prfBtn1">
+                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.INSURANCE_ACCESS_MY_NEEDS' | translate}}                  
+                      <div class="ft-13" for="name" [hidden]="comprehensivePlanning === 0 || comprehensivePlanning === 1">{{ 'CMP.DASHBOARD.INSURANCE_ACCESS_MY_NEEDS_ESTIMATE' | translate}}
+                            </div>
+                      </div>
+                  </button>
+              </div>
+          </div>
+           
+          <div class="flex-row text-center" [hidden]="comprehensivePlanning === 0 || comprehensivePlanning === 1">
+              <div class="flex-col-12">
+                <u>{{ 'CMP.DASHBOARD.INSURANCE_NEED_MY_PLAN' | translate }}</u>
+              </div>
+          </div> 
+  
+        </div>
+      </div>
+
+      <div class="form-group-with-bg">
+          <!--Form Header-->
+          <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="form-group-with-bg--header-label">{{
+                  'CMP.DASHBOARD.INVESTMENT' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content">
+            <div class="flex-row" >
+              <div class="flex-col-8">
+                <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.INVESTMENT_DESC' | translate}}
+                </div>
+              </div>
+              <div class="flex-col-4 text-right">
+                  <img src='../../../assets/images/comprehensive/dashboard-investments.svg'>
+              </div>
+            </div>  
+            <div class="flex-row">
+                <div class="flex-col-12">
+                    <button type="button"  class="btn btn-primary width100" id="prfBtn1">
+                        <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.INVESTMENT_PORTFOLIO' | translate}}                  
+                        <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.INVESTMENT_PORTFOLIO_ESTIMATED' | translate}}
+                              </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+    
+          </div>
+        </div>
+
+        <div class="form-group-with-bg">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="form-group-with-bg--header-label">{{
+                    'CMP.DASHBOARD.WILL_WRITING' | translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="flex-row" >
+                <div class="flex-col-8">
+                  <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.WILL_WRITING_DESC' | translate}}
+                  </div>
+                </div>
+                <div class="flex-col-4 text-right">
+                    <img src='../../../assets/images/comprehensive/dashboard-will-writing.svg'>
+                </div>
+              </div>  
+              <div class="flex-row">
+                  <div class="flex-col-12">
+                      <button type="button"  class="btn btn-primary width100" id="prfBtn1">
+                          <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.WILL_WRITING_START' | translate}}                  
+                          <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.WILL_WRITING_ESTIMATED' | translate}}
+                                </div>
+                          </div>
+                      </button>
+                  </div>
+              </div>
+      
+            </div>
+          </div>
+    
+</div>
