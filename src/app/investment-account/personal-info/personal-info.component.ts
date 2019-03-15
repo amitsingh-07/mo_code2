@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,7 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class PersonalInfoComponent implements OnInit {
+export class PersonalInfoComponent implements OnInit, AfterViewInit {
   @ViewChild('expiryInput') expiryInput;
   @ViewChild('dobInput') dobInput;
   pageTitle: string;
@@ -44,6 +44,7 @@ export class PersonalInfoComponent implements OnInit {
   raceList: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
+    private cdr: ChangeDetectorRef,
     private router: Router,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -81,19 +82,24 @@ export class PersonalInfoComponent implements OnInit {
         day: today.getDate()
       };
     });
-    this.init();
+    this.buildForm();
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  ngOnInit() {
-  }
 
-  init() {
+  ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
+  }
+
+  ngAfterViewInit() {
+    if (this.formValues.isMyInfoEnabled) {
+      this.cdr.detectChanges();
+    }
   }
 
   buildForm() {
