@@ -15,7 +15,7 @@
           </label>
           <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="mb15 dependantSection">
             <div class="dependant_selection_title mt15">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
 
               <div class="form-group mb0" [formGroupName]="i">
 
@@ -44,7 +44,7 @@
             <div class="dependant_selection_title mt15">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
 
               <div class="form-group mb0" [formGroupName]="i" >
 

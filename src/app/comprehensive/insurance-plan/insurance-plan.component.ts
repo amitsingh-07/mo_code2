@@ -18,6 +18,7 @@ export class InsurancePlanComponent implements OnInit {
   pageId: string;
   menuClickSubscription: Subscription;
   insurancePlanForm: FormGroup;
+  submitted = false;
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
