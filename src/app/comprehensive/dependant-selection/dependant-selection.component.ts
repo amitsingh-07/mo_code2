@@ -28,8 +28,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private configService: ConfigService) {
     this.pageId = this.route.routeConfig.component.name;
 
-  
-
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);

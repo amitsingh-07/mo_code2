@@ -221,7 +221,9 @@ export class ComprehensiveService {
         this.commit();
     }
     hasEndowment() {
-        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasEndowments;
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasEndowments;
+        }
     }
 
     setEndowment(selection: string) {

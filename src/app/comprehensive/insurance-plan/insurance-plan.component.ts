@@ -31,6 +31,7 @@ export class InsurancePlanComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
+   //this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
    }
 

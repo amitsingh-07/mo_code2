@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import {  IChildEndowment, IMySummaryModal, IComprehensiveEnquiry } from '../comprehensive-types';
+import {  IChildEndowment, IComprehensiveEnquiry, IMySummaryModal } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -118,7 +118,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildEducationList(value) {
-    console.log(value);
     const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());
     const aboutAgeCal = this.aboutAge.getAboutAge(ageFind,
       (value.gender === 'Male') ?
@@ -127,7 +126,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       id: [value.id],
       name: [value.name],
       dateOfBirth: [value.dateOfBirth],
-      dependantSelection: [!value.dependantSelection === true ? 'true' : 'false' ],
+      dependantSelection: [value.preferenceSelection],
       gender: [value.gender],
       age: aboutAgeCal
     });
@@ -145,15 +144,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       form.value.endowmentDetailsList.forEach((dependantDetail: any) => {
           dependantArray.push({
-            id: 0, dependentId: dependantDetail.id,
-            enquiryId: '', location: '', educationCourse: '', endowmentMaturityAmount: '',
+            id: 0, dependentId: dependantDetail.id, location: '', educationCourse: '', endowmentMaturityAmount: '',
             endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
              gender: dependantDetail.gender, age: dependantDetail.age, preferenceSelection : dependantDetail.dependantSelection
           });
 
       });
       form.value.endowmentDetailsList = dependantArray;
-      console.log(form.value);
       if (!form.pristine) {
         this.comprehensiveService.setEndowment(form.value.hasEndowments );
         this.comprehensiveService.setChildEndowment(form.value.endowmentDetailsList);
