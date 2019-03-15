@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -23,12 +24,10 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
   constructor(
-    private cmpService: ComprehensiveService,
+    private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService) {
     this.pageId = this.route.routeConfig.component.name;
-
-  
 
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -42,10 +41,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
 
@@ -63,8 +63,9 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
+    console.log(this.hasDependant)
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant ? 'true' : 'false', Validators.required)
+      dependantSelection: new FormControl(this.hasDependant?'true':'false', Validators.required)
     });
 
   }

@@ -286,7 +286,11 @@
       "PRIVATE": "Private",
       "SAVE_AND_CONTINUE": "Save and Continue",
       "YES": "Yes, I do",
-      "NO": "No, I don't"
+      "NO": "No, I don't",
+      "COVERAGE_AMOUNT": "Coverage Amount",
+      "NOT_SURE":"Not Sure",
+      "YES_LABEL":"Yes",
+      "NO_LABEL":"No"
     },
 
     "DEPENDANT_EDUCATION_SELECTION": {
@@ -445,7 +449,19 @@
      "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing.",
      "HOSPITAL_PLAN":"Hospital Plan",
      "HOSPITAL_PLAN_DESC":"You want to stay in a ",
-     "HOSPITAL_PLAN_DESC_END":"Private Hospital when down-on-luck and hospitalised."
+     "HOSPITAL_PLAN_DESC_END":"when down-on-luck and hospitalised.",
+     "HOSPITAL_PLAN_LABEL":"Do you have a hospitalisation plan that pays for this?",
+     "LIFE_PROTECTION":"Life Protection (Death)",
+     "LIFE_PROTECTION_LABEL_1":"Do you have CPF Dependants’ Protection Scheme?",
+     "LIFE_PROTECTION_LABEL_2": "Other life insurance coverage",
+     "CRITICAL_ILLNESS":"Critical Illness Insurance",
+     "DISABILITY_INSURANCE":"Disability Income Insurance",
+     "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
+     "LONG_TERM_INSURANCE_LABEL":"Do you have Eldershield?",
+     "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
+     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",
+     "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
+     "LONG_TERM_INSURANCE_VALUE_4":"I am not sure"
     }
   }
 }

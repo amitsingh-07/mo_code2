@@ -65,7 +65,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    console.log(this.endowmentDetail);
+
     this.buildEducationPreferenceForm();
   }
 
@@ -81,14 +81,18 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
 
   }
   buildPreferenceDetailsForm(value): FormGroup {
+    const selectionDetails = [];
+    if ( value.preferenceSelection) {
+      selectionDetails.push(Validators.required);
+    }
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
-      location: [value.location, [Validators.required]],
-      educationCourse: [value.educationCourse, [Validators.required]]
+      location: [value.location, selectionDetails],
+      educationCourse: [value.educationCourse, selectionDetails],
+      educationPreference: [value.preferenceSelection],
 
     });
-
   }
   selectLocation(status, i) {
     const relationship = status ? status : '';

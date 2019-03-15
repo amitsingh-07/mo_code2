@@ -87,8 +87,8 @@ export class DependantEducationListComponent implements OnInit {
       name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       age: [value.age, [Validators.required]],
       endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
-      endowmentMaturityYear: [value.endowmentMaturityYear, [Validators.required, Validators.pattern('^(19|20)\d{2}$')]],
-      endowmentPlanShow: [(value.endowmentMaturityAmount === '') || (value.endowmentMaturityAmount == null)
+      endowmentMaturityYears: [value.endowmentMaturityYears, [Validators.required, Validators.pattern('^(19|20)\d{2}$')]],
+      endowmentPlanShow: [value.endowmentMaturityAmount === ''
         ? false : true, [Validators.required]],
       gender: [value.gender, [Validators.required]]
     });
@@ -97,6 +97,13 @@ export class DependantEducationListComponent implements OnInit {
   goToNext(form) {
     const dependantArray = [];
     if (this.endowmentSkipEnable) {
+      form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
+
+        if (preferenceDetails.endowmentPlanShow === false) {
+          this.endowmentArrayPlan[index].endowmentMaturityAmount = '';
+          this.endowmentArrayPlan[index].endowmentMaturityYears = '';
+        }
+      });
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
       this.summaryModalDetails = {
         setTemplateModal: 1, dependantModelSel: false,
@@ -107,12 +114,16 @@ export class DependantEducationListComponent implements OnInit {
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     } else {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
-        this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
-        this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYear;
+
         if (preferenceDetails.endowmentPlanShow === true) {
+          this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
+          this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
           dependantArray.push({
             userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
           });
+        } else {
+          this.endowmentArrayPlan[index].endowmentMaturityAmount = '';
+          this.endowmentArrayPlan[index].endowmentMaturityYears = '';
         }
 
       });
@@ -121,10 +132,12 @@ export class DependantEducationListComponent implements OnInit {
       this.endowmentDetail.forEach((details: any) => {
         educationPreferenceList.push({
           dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
-          endowmentMaturityAmount: details.endowmentMaturityAmount, endowmentMaturityYears: details.endowmentMaturityYears
+          endowmentMaturityAmount: details.endowmentMaturityAmount, endowmentMaturityYears: details.endowmentMaturityYears,
+          enquiryId: details.enquiryId
         }
         );
       });
+      console.log(educationPreferenceList);
 
       this.comprehensiveApiService.saveChildEndowment({
         hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
