@@ -38,7 +38,7 @@ export class AccountCreatedComponent implements OnInit {
       this.willWritingEnabled = config.willWritingEnabled;
     });
   }
-
+  // constonts
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     this.router.navigate(['/']);
