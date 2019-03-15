@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import {  IChildEndowment, IComprehensiveEnquiry, IMySummaryModal } from '../comprehensive-types';
+import { IChildEndowment, IComprehensiveEnquiry, IMySummaryModal } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
@@ -71,7 +71,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
     this.hasEndowments = this.comprehensiveService.hasEndowment();
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    if ( this.endowmentDetail.length > 0) {
+    console.log( this.endowmentDetail );
+    if (this.endowmentDetail.length > 0) {
       this.dependantsArray = this.endowmentDetail;
     } else {
       this.dependantsArray = [];
@@ -102,7 +103,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       dependantListArray.push(this.buildEducationList(dependant));
     });
     this.dependantEducationSelectionForm = this.formBuilder.group({
-      hasEndowments: [this.hasEndowments , Validators.required],
+      hasEndowments: [this.hasEndowments, Validators.required],
       endowmentDetailsList: this.formBuilder.array(dependantListArray)
     });
     this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
@@ -121,14 +122,15 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const ageFind = this.aboutAge.calculateAge(value.dateOfBirth, new Date());
     const aboutAgeCal = this.aboutAge.getAboutAge(ageFind,
       (value.gender === 'Male') ?
-       this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
     return this.formBuilder.group({
       id: [value.id],
       name: [value.name],
       dateOfBirth: [value.dateOfBirth],
       dependantSelection: [value.preferenceSelection],
       gender: [value.gender],
-      age: aboutAgeCal
+      age: aboutAgeCal,
+      enquiryId: [value.enquiryId]
     });
   }
   goToNext(form) {
@@ -143,16 +145,19 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     } else {
       form.value.endowmentDetailsList.forEach((dependantDetail: any) => {
-          dependantArray.push({
-            id: 0, dependentId: dependantDetail.id, location: '', educationCourse: '', endowmentMaturityAmount: '',
-            endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
-             gender: dependantDetail.gender, age: dependantDetail.age, preferenceSelection : dependantDetail.dependantSelection
-          });
+        console.log(dependantDetail);
+        dependantArray.push({
+          id: 0, dependentId: dependantDetail.id, location: '', educationCourse: '', endowmentMaturityAmount: '',
+          endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
+          gender: dependantDetail.gender, age: dependantDetail.age, preferenceSelection: dependantDetail.dependantSelection,
+          enquiryId: dependantDetail.enquiryId
+        });
 
       });
+      console.log(dependantArray);
       form.value.endowmentDetailsList = dependantArray;
       if (!form.pristine) {
-        this.comprehensiveService.setEndowment(form.value.hasEndowments );
+        this.comprehensiveService.setEndowment(form.value.hasEndowments);
         this.comprehensiveService.setChildEndowment(form.value.endowmentDetailsList);
       }
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
@@ -17,7 +17,8 @@ export class InsurancePlanComponent implements OnInit {
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
-  constructor(private navbarService: NavbarService,  private progressService: ProgressTrackerService,
+  insurancePlanForm: FormGroup;
+  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService, ) {
@@ -31,16 +32,26 @@ export class InsurancePlanComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-   //this.buildInsuranceForm();
+    this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-   }
-
+  }
+  buildInsuranceForm() {
+    this.insurancePlanForm = this.formBuilder.group({
+      cashInBank: [ '', [Validators.required]],
+      singaporeSavingsBond: [ '', [Validators.required]],
+      CPFOA: [ '', [Validators.required]],
+      CPFSA: ['', [Validators.required]],
+      CPFMA: ['', [Validators.required]],
+      yourHome: [ '', [Validators.required]],
+      investmentProperties: [ '', [Validators.required]],
+    });
+  }
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
-        if (this.pageId === pageId) {
-            this.progressService.show();
-        }
+      if (this.pageId === pageId) {
+        this.progressService.show();
+      }
     });
   }
   setPageTitle(title: string) {
