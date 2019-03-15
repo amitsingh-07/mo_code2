@@ -1,20 +1,15 @@
-import { Component, HostListener, OnDestroy, OnInit, } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { Subscription } from 'rxjs';
+
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IChildEndowment, IComprehensiveEnquiry, IMySummaryModal } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
+import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 
 @Component({
   selector: 'app-dependant-education-selection',
@@ -24,19 +19,20 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   hasEndowments: string;
-  endowmentDetail: IChildEndowment[];
-  dependantDetails: any;
+  dependantDetailsArray: IDependantDetail[];
   education_plan_selection = false;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
-  dependantsArray: any;
+  childEndowmentFormGroupArray: FormGroup[];
+  childEndowmentArray: IChildEndowment[];
   educationPreference = true;
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -64,22 +60,35 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
       }
     });
-    this.buildEducationSelectionForm();
   }
 
   dependantSelection() {
 
+    this.childEndowmentArray = [];
+    this.childEndowmentFormGroupArray = [];
+
+    this.comprehensiveService.updateComprehensiveSummary();
     this.hasEndowments = this.comprehensiveService.hasEndowment();
-    this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    console.log( this.endowmentDetail );
-    if (this.endowmentDetail.length > 0) {
-      this.dependantsArray = this.endowmentDetail;
+    this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
+    this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
+
+    console.log(this.childEndowmentArray);
+    if (this.childEndowmentArray.length > 0) {
+      this.buildChildEndowmentFormArray();
+      this.buildEducationSelectionForm();
     } else {
-      this.dependantsArray = [];
-      const dependantDetails = this.comprehensiveService.getMyDependant();
-      dependantDetails.forEach((dependant: any) => {
+      this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
-          this.dependantsArray.push(dependant);
+          const newEndowment = {
+            id: 0,
+            dependentId: dependant.id,
+            name: dependant.name,
+            dateOfBirth: dependant.dateOfBirth,
+            preferenceSelection: true
+          } as IChildEndowment;
+          this.childEndowmentArray.push(newEndowment);
+          this.childEndowmentFormGroupArray.push(this.formBuilder.group(newEndowment));
+          this.buildEducationSelectionForm();
         }
       });
     }
@@ -97,22 +106,46 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  buildEducationSelectionForm() {
-    const dependantListArray = [];
-    this.dependantsArray.forEach((dependant: any) => {
-      dependantListArray.push(this.buildEducationList(dependant));
+  buildChildEndowmentFormArray() {
+    const tempChildEndowmentArray: IChildEndowment[] = [];
+    this.childEndowmentArray.forEach((childEndowment: IChildEndowment) => {
+      this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
+        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+          const thisEndowment = {
+            id: childEndowment.id,
+            dependentId: dependant.id,
+            name: dependant.name,
+            dateOfBirth: dependant.dateOfBirth,
+            gender: dependant.gender,
+            enquiryId: dependant.enquiryId,
+            location: childEndowment.location,
+            educationCourse: childEndowment.educationCourse,
+            endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
+            endowmentMaturityYears: childEndowment.endowmentMaturityYears,
+            age: this.aboutAge.calculateAge(dependant.dateOfBirth, new Date()),
+            preferenceSelection: (childEndowment.location && childEndowment.location !== '')
+          } as IChildEndowment;
+          tempChildEndowmentArray.push(thisEndowment);
+          this.childEndowmentFormGroupArray.push(this.formBuilder.group(thisEndowment));
+        }
+      });
     });
+
+    this.childEndowmentArray = tempChildEndowmentArray;
+  }
+
+  buildEducationSelectionForm() {
     this.dependantEducationSelectionForm = this.formBuilder.group({
       hasEndowments: [this.hasEndowments, Validators.required],
-      endowmentDetailsList: this.formBuilder.array(dependantListArray)
+      endowmentDetailsList: this.formBuilder.array(this.childEndowmentFormGroupArray)
     });
     this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
   }
   educationSelection(form) {
     let educationPreferenceAlert = true;
-    form.forEach((dependant: any, index) => {
-      if (dependant.dependantSelection) {
-        educationPreferenceAlert = !dependant.dependantSelection;
+    form.forEach((dependant: IChildEndowment, index) => {
+      if (dependant.preferenceSelection) {
+        educationPreferenceAlert = !dependant.preferenceSelection;
       }
     });
     this.educationPreference = educationPreferenceAlert;
@@ -144,18 +177,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     } else {
-      form.value.endowmentDetailsList.forEach((dependantDetail: any) => {
-        console.log(dependantDetail);
-        dependantArray.push({
-          id: 0, dependentId: dependantDetail.id, location: '', educationCourse: '', endowmentMaturityAmount: '',
-          endowmentMaturityYears: '', name: dependantDetail.name, dateOfBirth: dependantDetail.dateOfBirth,
-          gender: dependantDetail.gender, age: dependantDetail.age, preferenceSelection: dependantDetail.dependantSelection,
-          enquiryId: dependantDetail.enquiryId
-        });
-
-      });
-      console.log(dependantArray);
-      form.value.endowmentDetailsList = dependantArray;
       if (!form.pristine) {
         this.comprehensiveService.setEndowment(form.value.hasEndowments);
         this.comprehensiveService.setChildEndowment(form.value.endowmentDetailsList);

@@ -1,14 +1,14 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { LoaderService } from './../components/loader/loader.service';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
@@ -34,9 +34,11 @@ export class ApiService {
     private modal: NgbModal,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private loaderService: LoaderService) { }
 
   private handleError(error: HttpErrorResponse) {
+    this.loaderService.hideLoader();
     if (error) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.

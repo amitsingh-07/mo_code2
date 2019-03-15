@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
@@ -172,28 +172,29 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
       this.hasDependant = this.comprehensiveService.hasDependant();
       form.value.hasDependents = this.hasDependant;
+      this.loaderService.showLoader({title: 'Saving Details'});
       this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
+        this.loaderService.hideLoader();
         this.comprehensiveService.setMyDependant(data.objectList);
-      }));
-      const dependantDetails = [];
-      let dependantList = true;
-      this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
-          dependantList = false;
+        let hasChildDependant = false;
+        this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
+          if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+            hasChildDependant = true;
+            return;
+          }
+        });
+        if (hasChildDependant) {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
+        } else {
+          const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+          this.summaryModalDetails = {
+            setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
+            nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
+            nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+          };
+          this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
         }
-      });
-      if (!dependantList) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
-      } else {
-        const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-        this.summaryModalDetails = {
-          setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
-          nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
-          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
-        };
-        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-      }
-
+      }));
     }
   }
 }
