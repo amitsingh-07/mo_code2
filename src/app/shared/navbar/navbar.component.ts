@@ -174,7 +174,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
+      } else {
+        this.isNotificationEnabled = false;
       }
+
       if (this.isNotificationEnabled && this.isLoggedIn) {
         this.getRecentNotifications();
       }
