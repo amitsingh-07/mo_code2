@@ -6,10 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MyInfoService } from '../../shared/Services/my-info.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -27,7 +25,7 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class PersonalInfoComponent implements IPageComponent, OnInit {
+export class PersonalInfoComponent implements OnInit {
   @ViewChild('expiryInput') expiryInput;
   @ViewChild('dobInput') dobInput;
   pageTitle: string;
@@ -47,7 +45,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     private router: Router,
-    private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -84,16 +81,19 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         day: today.getDate()
       };
     });
+    this.init();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+  }
+
+  init() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
-    // get profile
   }
 
   buildForm() {
