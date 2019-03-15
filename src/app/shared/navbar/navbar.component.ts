@@ -172,7 +172,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
       // Enabling Notifications
-      if (navbarMode === 100 || navbarMode === 1) {
+      if (this.navbarConfig.showNotifications) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
       if (this.isNotificationEnabled && this.isLoggedIn) {
