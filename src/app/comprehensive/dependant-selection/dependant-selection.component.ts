@@ -64,7 +64,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant ? true : false, Validators.required)
+      dependantSelection: new FormControl(this.hasDependant, Validators.required)
     });
 
   }

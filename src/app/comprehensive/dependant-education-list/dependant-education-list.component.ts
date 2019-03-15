@@ -137,6 +137,7 @@ export class DependantEducationListComponent implements OnInit {
         }
         );
       });
+      console.log(educationPreferenceList);
 
       this.comprehensiveApiService.saveChildEndowment({
         hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:

@@ -1,10 +1,10 @@
-import { IComprehensiveEnquiry } from './../comprehensive-types';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { IComprehensiveEnquiry } from './../comprehensive-types';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';

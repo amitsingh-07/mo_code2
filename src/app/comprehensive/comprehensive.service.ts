@@ -174,6 +174,7 @@ export class ComprehensiveService {
                         if (dependant.id === eduPref.dependentId) {
                             eduPref.dateOfBirth = dependant.dateOfBirth;
                             eduPref.name = dependant.name;
+                            eduPref.enquiryId = this.getEnquiryId();
                         }
                     });
                 });
@@ -192,6 +193,7 @@ export class ComprehensiveService {
     }
 
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
+        console.log(dependentEducationPreferencesList);
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.updateComprehensiveSummary();
     }
@@ -232,7 +234,6 @@ export class ComprehensiveService {
         this.comprehensiveFormData.mySpendings = mySpendingsData;
         this.commit();
     }
-
 
     /**
      * Get the starting page route for the comprehensive module.
