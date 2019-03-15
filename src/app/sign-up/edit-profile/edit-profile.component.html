@@ -1,7 +1,8 @@
 <div class="content">
+  <div class="container-fluid max-width--1024">
   <div class="flex-row">
     <div class="flex-col-12">
-      <div class="white-bg">
+      <div class="grass_bg_container white-bg">
         <img id="edit_profile_bg_img" class="grass_bg" src="assets/images/edit-profile-bg.svg" />
       </div>
     </div>
@@ -11,31 +12,29 @@
     <div class="overlap-grass">
       <div class="user-profile-bg">
         <div class="circle"> {{compinedName}} </div>
-        <div class="heading">{{fullName }}</div>
+        <div class="heading">{{fullName|titlecase}}</div>
         <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
         <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
         <div class="flex-row">
           <div class="flex-col-3 flex-row">
-            <div>
+            <div class="grid-wrapper">
               <div class="content-text">{{'EDIT_PROFILE.GENDER' | translate}}</div>
               <div class="grid-content-text">{{personalData.gender | titlecase}}</div>
             </div>
             <div class="seperator"></div>
           </div>
-          <!-- <div class="flex-col-1">
-        </div> -->
           <div class="flex-col-5 flex-row">
-            <div>
+            <div class="grid-wrapper">
               <div class="content-text">{{'EDIT_PROFILE.NATIONALITY' | translate}}</div>
               <div class="grid-content-text">{{personalData.nationality | titlecase}}</div>
             </div>
             <div class="seperator"></div>
           </div>
-          <!-- <div class="flex-col-1">
-        </div> -->
           <div class="flex-col-4 flex-row">
-            <div class="content-text">{{'EDIT_PROFILE.DOB' | translate}}</div>
-            <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
+            <div class="grid-wrapper">
+              <div class="content-text">{{'EDIT_PROFILE.DOB' | translate}}</div>
+              <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -394,6 +393,16 @@
                   empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
                 </div>
               </div>
+              <!-- floor -->
+              <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.FLOOR' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress &&
+                  empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
+                </div>
+              </div>
               <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
                 <div class="update-contact-title">
                   {{'EDIT_PROFILE.UNIT' | translate}}
@@ -498,4 +507,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

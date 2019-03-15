@@ -6,7 +6,7 @@
   <div class="dependant-desc" id="moDpdnt2Desc">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</div>
 
   <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant">
-    <div formArrayName="dependentMappingList" class="myDependantFormArray  form-group-with-bg" *ngFor="let dependentMappingList of myDependantForm.controls.dependentMappingList.controls; let i = index;">
+    <div formArrayName="dependentMappingList" class="myDependantFormArray  form-group-with-bg" *ngFor="let dependentMappingList of myDependantForm['controls'].dependentMappingList['controls']; let i = index;">
       <!--Form Header-->
         <div class="form-group-with-bg--header">
           <div class="flex-row">
@@ -15,7 +15,7 @@
               </div>
 
             <div class="flex-col-5">
-              <div class="total" (click)="removeDependant(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="myDependantForm.controls.dependentMappingList.controls.length>1"><span class="mo3-close-icon"></span></div>
+              <div class="total" (click)="removeDependant(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length>1"><span class="mo3-close-icon"></span></div>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
               </label>
             </div>
             <div class=" flex-col-7">
-              <input type="text" [ngClass]="{'inline-error': submitted && dependentMappingList.controls.name.invalid}" id="moDpdnt2InptName"
+              <input type="text" [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}" id="moDpdnt2InptName"
                 class="form-control" #name formControlName="name" placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}">
             </div>
           </div>
@@ -40,7 +40,7 @@
               <label for="relationship" id="moDpdnt2LblRelationship">{{ 'CMP.FORM_LABEL.RELATIONSHIP' | translate}}</label>
             </div>
             <div class="pr0 flex-col-7">
-              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList.controls.relationship.invalid}">
+              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].relationship.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnRelationship">
                   <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
                     <span class="grey-text" *ngIf="dependentMappingList.get('relationship'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -63,7 +63,7 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList.controls.gender.invalid}">
+              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].gender.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnGender" placement="top-right">
                   <button type="button" class="btn btn-dropdown" id="dropdownGender" ngbDropdownToggle>
                     <span class="grey-text" *ngIf="dependentMappingList.get('gender').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -125,7 +125,7 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList.controls.nation.invalid}">
+              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].nation.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnNationality" placement="top-right">
                   <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
                     <span class="grey-text" *ngIf="dependentMappingList.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -143,7 +143,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="myDependantForm.controls.dependentMappingList.controls.length < 5" class="mb30 mt20" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
+      <div *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length < 5" class="mb30 mt20" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
         Dependant</div></div>
     <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary mt10 mb50 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}

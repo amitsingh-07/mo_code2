@@ -13,16 +13,14 @@
       <div class="form-group">
         <!-- Account holder name -->
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-12 mb10">
             <label for="addBank-investmentYear-drpdown" id="addBank-investmentYear-lbl">{{
               'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.ACCOUNT_HOLDER_NAME' | translate}}</label>
           </div>
-          <div class="flex-col-6">
-            <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
-              <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" name="accountHolderName"
-                formControlName="accountHolderName" value="0">
-            </div>
-          </div>
+          <div class="flex-col-12">
+            <label class="form-control input-control disabled" 
+             id="account_holder">{{addBankForm.controls.accountHolderName.value}}</label> 
+         </div>
         </div>
         <!-- Content -->
         <div class="flex-row regulations">
@@ -39,12 +37,12 @@
               <div ngbDropdown>
                 <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
                   <span *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' | translate}}</span>
-                  <span *ngIf="addBankForm.controls.bank.value">{{addBankForm.controls.bank.value.name | titlecase}}</span>
+                  <span *ngIf="addBankForm.controls.bank.value">{{addBankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="courseDropdown">
                   <button class="dropdown-item" id="residentialAddress-country-drpdown" (click)="setDropDownValue('bank',null)">Select</button>
                   <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank)"
-                    id="residentialAddress-country-option-{{i}}">{{bank.name | titlecase}}</button>
+                    id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
                 </div>
               </div>
             </div>
@@ -59,7 +57,7 @@
           <div class="flex-col-6">
             <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountNo)}">
               <input id="addBank-monthlyTimeInv-txt" autocomplete="off" class="input-control" type="text" name="monthlyInvestment"
-                formControlName="accountNo" maxlength="12" value="0">
+                formControlName="accountNo" value="0">
             </div>
           </div>
         </div>

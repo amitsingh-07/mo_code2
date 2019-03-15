@@ -21,7 +21,7 @@
     "VIEW_TRANSFER_INST": "View Transfer Instructions",
     "PROCESS_TIME_INFO": "Fund your account within 21 days to kickstart your investment!",
     "SUCCESSFUL_TOPUP":"Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-    "RECIPENTS_NAME": "Recipent's Name",
+    "RECIPENTS_NAME": "Recipient's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
     "TRANSFER_INSTRUCTION": "Transfer Instructions",
@@ -37,7 +37,7 @@
         "STEP_3": "STEP 3",
         "STEP_4": "STEP 4",
         "STEP_5": "STEP 5",
-        "RECIPENTS_NAME": "Recipent's Name",
+        "RECIPENTS_NAME": "Recipient's Name",
         "BANK_NAME": "Bank Name",
         "BANK_ACC_NO": "Bank Account No.",
         "REFERENCE_CODE": "Reference Code",
@@ -73,7 +73,7 @@
     }
   },
   "TOPUP": {
-    "TITLE": "TOP UP",
+    "TITLE": "Buy Request",
     "SELECT_POTODOLIO": "1. Select Portfolio ",
     "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
@@ -193,13 +193,25 @@
       "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
       "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
       "BANK_NAME": "Bank Name",
-      "ACCOUNT_NO": "Account"
+      "ACCOUNT_NO": "Account No."
     }
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
     "NO_TRANSACTION_HISTORY":"No Transaction History!",
-    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!"
+    "NO_TRANSACTION_STATEMENTS":"No Transaction Statements!",
+    "CASH_TOP_UP": "Cash Account Top Up",
+    "CASH_WITHDRAWAL": "Cash Account Withdrawal",
+    "MODAL": {
+      "TRANSACTION_FETCH_LOADER": {
+        "TITLE": "Loading transaction history",
+        "MESSAGE": "Please wait while we load your transaction history."
+      },
+      "STATEMENT_FETCH_LOADER": {
+        "TITLE": "Downloading Statement",
+        "MESSAGE": "Please wait while the statement is downloaded."
+      }
+    }
   },
   "HOLDINGS": {
     "TITLE": "Holdings",

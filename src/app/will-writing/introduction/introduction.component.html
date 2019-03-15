@@ -1,50 +1,100 @@
 <app-page-title [pageTitle]="pageTitle"></app-page-title>
 <div class="container-fluid">
   <div class="container-fluid max-width--1024">
-  <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
-    <div class="content">
-      <div class="flex-row">
-        <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
-          <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
-          <div class="banner-image">
-            <img src="assets/images/will-start.svg" id="intro-img" />
+    <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
+      <div class="content">
+        <div class="flex-row">
+          <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
+            <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
+            <div class="banner-image">
+              <img src="assets/images/will-start.svg" id="intro-img" />
+            </div>
           </div>
-        </div>
-        <div class="col-lg-6 col-md-6  col-sm-12 promocode">
-          <div name="promocodeForm">
-            <div class="instructions">
-              <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL' | translate}}</div>
-              <div class="instruction-content">
-                <div id="intro-why-will_lbl-1">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1' | translate}}</div>
-                <div id="intro-why-will_lbl-2">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2' | translate}}</div>
-                <div id="intro-why-will_lbl-3">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_3' | translate}}</div>
-                <div>
-                  <span id="intro-why-will_lbl-4">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4' | translate}}</span>
-                  <span id="intro-why-will_lbl-4a">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4A' | translate}}</span>
-                  <span id="intro-why-will_lbl-4b">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4B' | translate}}</span>
+          <div class="col-lg-6 col-md-6  col-sm-12 promocode">
+            <div name="promocodeForm">
+              <div class="instructions">
+                <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL' | translate}}</div>
+                <div class="instruction-content">
+                  <ul class="list-none">
+                    <li>
+                      <div class="instruction_step">
+                        <span class="circle"></span>
+                        <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1A' | translate}} <span
+                            class="under-line">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1B' | translate}}</span>
+                          {{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1C' | translate}} <span
+                            class="under-line">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1D' | translate}}</span>
+                          {{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1E' | translate}}</span>
+                      </div>
+                      <ul class="list-none inner-list">
+                        <li>
+                          <div class="instruction_step">
+                            <span><img src="assets/images/will-writing/step-tick.svg" /></span>
+                            <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2A' | translate}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="instruction_step">
+                            <span><img src="assets/images/will-writing/step-tick.svg" /></span>
+                            <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2B' | translate}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="instruction_step">
+                            <span><img src="assets/images/will-writing/step-tick.svg" /></span>
+                            <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2C' | translate}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="instruction_step">
+                            <span><img src="assets/images/will-writing/step-tick.svg" /></span>
+                            <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2D' | translate}}</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div class="instruction_step">
+                        <span class="circle"></span>
+                        <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_3' | translate}}</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="instruction_step">
+                        <span class="circle"></span>
+                        <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4' | translate}}</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="instruction_step">
+                        <span class="circle"></span>
+                        <span>{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_5' | translate}}</span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <div id="intro-why-will_lbl-5">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_5' | translate}}</div>
-                <div id="intro-why-will_lbl-6">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_6' | translate}}</div>
               </div>
-            </div>
-            <div class="FAQ" (click)="openFAQ()" id="intro-faq-link">{{ 'WILL_WRITING.INTRODUCTION.FAQ_LINK_TITLE' |
+              <div class="FAQ" (click)="openFAQ()" id="intro-faq-link">{{ 'WILL_WRITING.INTRODUCTION.FAQ_LINK_TITLE' |
               translate}}</div>
-            <div class="offer-code">
-              <div class="time-period" id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' |
+              <div class="offer-code">
+                <div class="time-period" id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' |
                 translate}}</div>
-              <div class="brdr-btm mb25 hidden-sm-md"></div>
-              <div>
-                <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
+                <div class="brdr-btm mb25 hidden-sm-md"></div>
+                <div>
+                  <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code"
+                    id="intro-promo-text-field" />
+                </div>
+                <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}</div>
+                <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}<span id="intro-get-now"
+                    (click)="getOneNow()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span>
+                </div>
               </div>
-              <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}</div>
-              <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}<span id="intro-get-now" (click)="getOneNow()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
+              <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)"
+                class="btn btn__footer--fixed btn-primary width100"
+                id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
             </div>
-            <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
-              id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+    AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +10,9 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { AccountCreationErrorModalComponent } from '../account-creation-error-modal/account-creation-error-modal.component';
+import {
+    AccountCreationErrorModalComponent
+} from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -46,6 +50,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
@@ -55,14 +60,19 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.additionDeclarationtwo = this.formBuilder.group({
       expectedNumberOfTransation: [
         this.formValues.expectedNumberOfTransation,
-        Validators.required
+        [
+          Validators.required, this.minValueValidation
+        ]
       ],
       expectedAmountPerTranction: [
         this.formValues.expectedAmountPerTranction,
-        Validators.required
+        [
+          Validators.required, this.minValueValidation
+        ]
       ],
       source: [this.formValues.source, Validators.required]
-    });
+    },
+    );
     this.addAndRemoveSourseFields();
   }
 
@@ -105,7 +115,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.addControl(
         'investmentEarnings',
         this.formBuilder.group({
-          durationInvestment: [this.formValues.durationInvestment, Validators.required],
+          durationInvestment: [this.formValues.durationInvestment, [Validators.required, this.minValueValidation]],
           earningsGenerated: [this.formValues.earningsGenerated, Validators.required]
         })
       );
@@ -134,18 +144,18 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getGeneratedFrom() {
     this.investmentAccountService.getGeneratedFrom().subscribe((data) => {
       this.generatedList = data.objectList.earningsGenerated;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectInvestmentPeriod(key, value, nestedKey) {
@@ -221,4 +231,13 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorMessage = errorMessage;
   }
+
+  private minValueValidation(control: AbstractControl) {
+    const value = control.value;
+    if (control.value < 1) {
+      return { minValueCheck: true };
+    }
+    return null;
+  }
+
 }

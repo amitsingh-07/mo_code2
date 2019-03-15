@@ -2,7 +2,7 @@
 @import '../../../mixins';
 .comprehensive {
     &.container-fluid {
-        padding-top: 120px;
+        padding-top: $cmp-padding-top;
         .step-indicator-container {
             background: $white-color;
             margin: -15px -20px 20px;

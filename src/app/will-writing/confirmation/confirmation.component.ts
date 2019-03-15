@@ -20,6 +20,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
   duplicateError: string;
+  existingWill: boolean;
 
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
   willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
@@ -41,6 +42,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       this.duplicateError = this.translate.instant('WILL_WRITING.CONFIRMATION.DUPLICATE_ERROR');
       this.setPageTitle(this.pageTitle);
     });
+
+    this.existingWill = this.willWritingService.getIsWillCreated();
   }
 
   ngOnInit() {
@@ -77,8 +80,15 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   goNext() {
     if (this.willWritingService.checkDuplicateUinAll()) {
       if (this.willWritingService.isUserLoggedIn()) {
-        this.willWritingApiService.updateWill().subscribe((data) => {
+        let createUpdateWill;
+        if (!this.willWritingService.getIsWillCreated()) {
+          createUpdateWill = this.willWritingApiService.createWill();
+        } else {
+          createUpdateWill = this.willWritingApiService.updateWill();
+        }
+        createUpdateWill.subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.willWritingService.setIsWillCreated(true);
             this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
           } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
             this.willWritingService.openToolTipModal('', this.duplicateError);

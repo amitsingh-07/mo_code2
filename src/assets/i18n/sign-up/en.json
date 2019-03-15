@@ -35,7 +35,7 @@
         "FORM": {
             "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
             "EDIT_NUMBER": "Edit Number",
-            "DIDNT_RECIEVE": "Didn't Recieve it?",
+            "DIDNT_RECIEVE": "Didn't Receive it?",
             "REQUEST_NEW_CODE": "Request New Code",
             "CODE_SENT": "Code sent!",
             "RETRY_IN": "Retry in",
@@ -215,7 +215,7 @@
             "CASH_ACCOUNT_BALANCE":"Cash Account Balance",
             "TOTAL_RETURNS": "Total Returns",
             "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
-            "UPDATE": "Update",
+            "UPDATE": "Upload Documents",
             "START_INVESTING": "Start Investing",
             "ESTIMATED_MINS": "Estimated 5-15 mins",
             "ADD_PORTFOLIO": " Add Portfolio",
@@ -230,11 +230,19 @@
         },
         "WILL_WRITING": {
             "TITLE": "Will Writing",
-            "VIEW_ALL": "View all",
-            "CREATE_YOUR_WILL": "Create Your Will",
-            "CREATE_YOUR_WILL_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
-            "GET_STARTED": "Get Started!",
-            "TIME": "8mins"
+            "EDIT_WILL": "Edit Will",
+            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+            "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
+            "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
+            "START_WRITING": "Start Writing",
+            "ESTIMATED_TIME": "Estimated 10 mins",
+            "DOWNLOAD_WILL": "Download Will",
+            "CONTINUE_WRITING": "Continue Writing",
+            "LAST_UPDATED": "Last Updated"
+        },
+        "INSURANCE":{
+            "TITLE": "Insurance",
+            "DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188."
         }
     },
     "EDIT_PROFILE": {
@@ -285,7 +293,7 @@
         "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
         "BANK": "Bank Name",
         "SELECT": "Select Bank",
-        "ACCOUNT": "Account",
+        "ACCOUNT": "Account No.",
         "ADD":"Add Bank Details",
         "EDIT":"Edit Bank Details",
         "ADD_NOW":"Add Now",
@@ -293,5 +301,9 @@
     },
     "NOTIFICATIONS": {
         "EMPTY": "No New Notifications!"
+    },
+    "GENERAL_LOADER": {
+        "TITLE": "Submitting",
+        "DESC": "Please wait while we submit the request."
     }
 }

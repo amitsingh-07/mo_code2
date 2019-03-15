@@ -12,7 +12,7 @@ import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.t
     styleUrls: [ './progress-tracker.component.scss' ]
 })
 export class ProgressTrackerComponent implements OnInit {
-    private data: IProgressTrackerData;
+    data: IProgressTrackerData;
     private subscription: Subscription;
 
     currentPath = '';

@@ -1,3 +1,4 @@
+<div class="container-fluid max-width--1024">
 <div class="flex-col-12" *ngIf="portfolio">
   <div class="portfolio-bg">
     <img id="edit_profile_bg_img" id="your_portfolio_backgroung_img" class="background_img" src="assets/images/investment_header.svg"
@@ -7,7 +8,7 @@
         <div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
         <div id="your_portfolio_name">{{portfolioValues.riskProfile.type}}</div>
       </div>
-      <div class="flex-col-3">
+      <div class="flex-col-4">
         <div class="dropdown-control ">
           <div ngbDropdown>
             <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
@@ -23,7 +24,7 @@
   <div class="container-fluid">
     <!--  ALREADY FUNDED PORTFOLIO-->
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.currentValue">
+      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
         <div class="flex-row">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
             <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
@@ -43,9 +44,7 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">
-                  +{{totalReturnsPercentage | currency:'USD':'symbol-narrow':'1.0-2'}}%
-                </div>
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">{{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%</div>
               </div>
             </div>
             <div class="flex-row">
@@ -54,15 +53,13 @@
                 </div>
               </div>
             </div>
-            <div class="flex-row mt20">
+            <div class="flex-row mt20" *ngIf="yearlyReturns">
               <div class="flex-col-7">
                 <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return ">{{'YOUR_PORTFOLIO.ANNUALIZED_RETURNS' | translate}}
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">
-                  +{{yearlyReturns | currency:'USD':'symbol-narrow':'1.0-2'}}%
-                </div>
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="yearlyReturns < 0" for="total value">{{formatReturns(yearlyReturns)}}{{yearlyReturns | number : '1.0-2'}}%</div>
               </div>
             </div>
           </div>
@@ -71,9 +68,9 @@
     </div>
     <!-- NOT FUNDED PORTFOLIO  -->
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="!portfolioValues.currentValue">
+      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus !== 'PURCHASED'">
         <div class="flex-row mb20">
-          <div class="fund-account">
+          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus !== 'FUNDED'">
             <div class="fund-account-information" id="errorModeButton">
               {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT_MESSAGE' | translate}} {{portfolioValues.expiryDate}}.
               <div class="fund-account-btn mt20" (click)="goToFundYourAccount()">
@@ -109,7 +106,7 @@
         </div>
       </div>
     </div>
-    <button *ngIf="portfolioValues.currentValue" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+    <button *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>
@@ -118,4 +115,5 @@
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>
   </div>
+</div>
 </div>

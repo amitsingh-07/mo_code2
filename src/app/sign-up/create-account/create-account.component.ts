@@ -60,15 +60,23 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }
 
   ngAfterViewInit() {
-    this.refreshCaptcha();
-    this.loaderService.hideLoader();
+    if (!this.authService.isAuthenticated()) {
+      this.loaderService.showLoader({title: 'Loading'});
+      this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
+        this.loaderService.hideLoader();
+      });
+    } else {
+      this.refreshCaptcha();
+      this.loaderService.hideLoader();
+    }
   }
 
   /**

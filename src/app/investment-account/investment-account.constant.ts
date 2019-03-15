@@ -2,6 +2,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   MY_INFO_ATTRIBUTES: [
     'nationality',
     'name',
+    'birthcountry',
     'passportnumber',
     'passportexpirydate',
     'dob',
@@ -24,6 +25,11 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   ],
   SINGAPORE_NATIONALITY_CODE: 'SG',
   SINGAPORE_COUNTRY_CODE: 'SG',
+  MALAYSIA_COUNTRY_CODE: 'MY',
+  INDONESIA_COUNTRY_CODE: 'ID',
+  INDIA_COUNTRY_CODE: 'IN',
+  CHINA_COUNTRY_CODE: 'CN',
+  PHILLIPINES_COUNTRY_CODE: 'PH',
   PRIORITIZED_COUNTRY_LIST_CODES: ['SG', 'MY'],
   OTHERS: 'Others',
   personal_info: {
@@ -70,6 +76,8 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   },
   EMPLOYEMENT_DETAILS: {
     SELE_EMPLOYED: 'Self Employed',
-    EMPLOYED: 'Employed'
-  }
+    EMPLOYED: 'Employed',
+    UNEMPLOYED: 'Unemployed'
+  },
+  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation']
 };

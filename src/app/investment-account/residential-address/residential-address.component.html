@@ -1,10 +1,10 @@
 <div class="residential-address">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="1"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -21,7 +21,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.country)}">
                     <div ngbDropdown>
-                      <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border" id="residentialAddress-country-drpdown"
+                      <button [disabled]="isDisabled('country')" class="btn btn-dropdown without-border" id="residentialAddress-country-drpdown"
                         ngbDropdownToggle>{{addressForm.controls.country.value.name | titlecase}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -43,11 +43,11 @@
                   <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.postalCode), 'disabled':addressForm.controls.postalCode.disabled}">
                     <div class="postal-code-control">
                       <div class="control">
-                        <input type="text" class="input-control grey" formControlName="postalCode" id="residentialAddress-postalcode-txt" />
+                        <input type="text" class="input-control grey" formControlName="postalCode" maxLength="10" id="residentialAddress-postalcode-txt" />
                       </div>
                       <div class="button" *ngIf="!isDisabled('postalCode')">
                         <button type="button" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)"
-                          class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                          class="btn btn-secondary right width100">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                         </button>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.address1)}">
-                    <input type="text" class="form-control input-control grey" formControlName="address1" id="residentialAddress-address1-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="address1" maxLength="50" id="residentialAddress-address1-txt" />
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.address2)}">
-                    <input type="text" class="form-control input-control grey" formControlName="address2" id="residentialAddress-address2-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="address2"  maxLength="50" id="residentialAddress-address2-txt" />
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.state)}">
-                    <input type="text" class="form-control input-control grey" formControlName="state" id="residentialAddress-state-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="state" maxLength="30"  id="residentialAddress-state-txt" />
                   </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.zipCode)}">
-                    <input type="text" class="form-control input-control grey" formControlName="zipCode" id="residentialAddress-zipcode-txt" />
+                    <input type="text" class="form-control input-control grey" formControlName="zipCode" maxLength="10" id="residentialAddress-zipcode-txt" />
                   </div>
                 </div>
               </div>
@@ -180,7 +180,7 @@
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let reason of reasonList; let i = index;" (click)="setReason('reason',reason, 'mailingAddress')"
-                            id="residentialAddress-reason-option-{{i}}">{{reason.name | titlecase}}</button>
+                            id="residentialAddress-reason-option-{{i}}">{{reason.name}}</button>
                         </div>
                       </div>
                     </div>
@@ -198,7 +198,7 @@
                     </div>
                     <div class="flex-col-12">
                       <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="reasonForOthers" id="residentialAddress-mailaddress1-txt" />
+                        <input type="text" class="input-control grey" formControlName="reasonForOthers" maxLength="100" id="residentialAddress-mailaddress1-txt" />
                       </div>
                     </div>
                   </div>
@@ -213,7 +213,7 @@
                   <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
-                        <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown" ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value.name | titlecase}}
+                        <button [disabled]="isDisabled('mailCountry')" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown" ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value.name | titlecase}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',country, 'mailingAddress')"
@@ -234,12 +234,12 @@
                     <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailPostalCode), 'disabled':addressForm.controls.mailingAddress.controls.mailPostalCode.disabled}">
                       <div class="postal-code-control">
                         <div class="control">
-                          <input type="text" class="input-control grey" formControlName="mailPostalCode" id="residentialAddress-mailpostalcode-txt"
+                          <input type="text" class="input-control grey" formControlName="mailPostalCode" maxLength="10" id="residentialAddress-mailpostalcode-txt"
                           />
                         </div>
                         <div class="button" *ngIf="!isDisabled('mailPostalCode')">
                           <button type="button" (click)="retrieveAddress(addressForm.controls.mailingAddress.controls.mailPostalCode.value, addressForm.controls.mailingAddress.controls.mailAddress1, addressForm.controls.mailingAddress.controls.mailAddress2)"
-                            class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                            class="btn btn-secondary right width100">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                           </button>
                         </div>
                       </div>
@@ -255,7 +255,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailAddress1)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailAddress1" id="residentialAddress-mailaddress1-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailAddress1" maxLength="50" id="residentialAddress-mailaddress1-txt" />
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailAddress2)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailAddress2" id="residentialAddress-mailaddress2-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailAddress2"  maxLength="50" id="residentialAddress-mailaddress2-txt" />
                     </div>
                   </div>
                 </div>
@@ -320,7 +320,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailState)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailState" id="residentialAddress-mailstate-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailState" maxLength="30" id="residentialAddress-mailstate-txt" />
                     </div>
                   </div>
                 </div>
@@ -333,7 +333,7 @@
                   </div>
                   <div class="flex-col-7">
                     <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailZipCode)}">
-                      <input type="text" class="form-control input-control grey" formControlName="mailZipCode" id="residentialAddress-mailzipcode-txt" />
+                      <input type="text" class="form-control input-control grey" formControlName="mailZipCode" maxLength="10"  id="residentialAddress-mailzipcode-txt" />
                     </div>
                   </div>
                 </div>

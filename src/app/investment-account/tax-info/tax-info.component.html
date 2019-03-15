@@ -1,10 +1,10 @@
 <div class="app-tax-info">
   <div class="step-indicator-container">
-    <div class="container-fluid">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="4"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
       <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}" *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
         <div [formGroupName]="x">
@@ -48,13 +48,13 @@
               <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
                 <div class="flex-row">
                   <div class="flex-col-6">
-                    <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                    <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
                       <input ngbButton type="radio" id="tin_yes" [value]=true (change)="isTinNumberAvailChanged(true , taxInfoItem, null)">
                       {{ 'TAX_INFO.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6">
-                    <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                    <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                       <input ngbButton type="radio" id="tin_no" [value]=false (change)="isTinNumberAvailChanged(false , taxInfoItem, null)">{{
                       'TAX_INFO.NO_LABEL' | translate}}</label>
                   </div>
@@ -95,7 +95,7 @@
             <div class="flex-col-8">
               <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
                 <input type="text" [placeholder]="getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)"
-                  id="invPersInfoInpt1" class="form-control" formControlName="tinNumber">
+                  id="invPersInfoInpt1" class="form-control" formControlName="tinNumber" maxLength="50">
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
         <div class="add-tax-text">{{ 'TAX_INFO.ADD_TAX_RESIDENCE' | translate}}</div>
       </div>
     </form>
-  </div>
-  <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+    <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
     id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
+  </div>
 </div>

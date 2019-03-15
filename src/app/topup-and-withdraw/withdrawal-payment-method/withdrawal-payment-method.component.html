@@ -1,5 +1,5 @@
 <div class="withdraw">
-  <div class="container-fluid">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
         <div class="col-md-12">
@@ -14,10 +14,10 @@
                     <div class="bank-icon"><img class="bank_img" src="../../../assets/images/bank_icon.svg" /></div>
                     <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
                     <div class="user_account">{{userBank.accountNumber}}</div>
-                    <div class="user_name">{{userBank.accountName}}</div>
+                    <div class="user_name">{{userBank.accountName |titlecase}}</div>
                   </div>
                 </div>
-                <label class="label"  *ngIf="!hideAddBankAccount">{{ 'WITHDRAW_PAYMENT_METHOD.GO_TO_EDIT_PROFILE' | translate}}</label>
+                <label class="label" (click)="gotoEditProfile()" *ngIf="!hideAddBankAccount">{{ 'WITHDRAW_PAYMENT_METHOD.GO_TO_EDIT_PROFILE' | translate}}</label>
           <!-- <div class="flex-row">
             <div class="flex-col-12 mb20">
               <div class="btn-group--toggle tabs">

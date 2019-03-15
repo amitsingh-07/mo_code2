@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -112,8 +112,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           {
             value: this.formValues.salutation,
             disabled: this.investmentAccountService.isDisabled('salutation')
-          },
-          [Validators.required]
+          }
         ],
         fullName: [
           {
@@ -124,7 +123,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         ],
         firstName: [
           { value: this.formValues.firstName, disabled: false },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         lastName: [
           { value: this.formValues.lastName, disabled: false },
@@ -187,8 +186,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           {
             value: this.formValues.salutation,
             disabled: this.investmentAccountService.isDisabled('salutation')
-          },
-          [Validators.required]
+          }
         ],
         fullName: [
           {
@@ -199,7 +197,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         ],
         firstName: [
           { value: this.formValues.firstName, disabled: false },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         lastName: [
           { value: this.formValues.lastName, disabled: false },
@@ -231,7 +229,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
             value: this.formValues.passportNumber,
             disabled: this.investmentAccountService.isDisabled('passportNumber')
           },
-          [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]
+          [Validators.required, Validators.pattern(RegexConstants.PassportNumber)]
         ],
         passportIssuedCountry: [
           {
@@ -274,16 +272,22 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
   populateFullName() {
+    let fullName;
+    let firstName;
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.formValues.firstName = this.formValues.firstName
-      ? this.formValues.firstName
-      : this.userProfileInfo.firstName;
+    firstName = this.formValues.firstName ? this.formValues.firstName : '';
+    this.formValues.firstName = this.formValues.lastName
+      ? firstName : this.userProfileInfo.firstName;
     this.formValues.lastName = this.formValues.lastName
       ? this.formValues.lastName
       : this.userProfileInfo.lastName;
+    if (this.userProfileInfo.firstName) {
+      fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+    } else {
+      fullName = this.userProfileInfo.lastName;
+    }
     this.formValues.fullName = this.formValues.fullName
-      ? this.formValues.fullName
-      : this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+      ? this.formValues.fullName : fullName;
   }
   toggleDate(openEle, closeEle) {
     if (openEle) {
@@ -308,18 +312,22 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   private validateName() {
     return (group: FormGroup) => {
-      const name =
-        group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
-      const name1 =
-        group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
-      const fullName = group.controls['fullName'].value;
-      if (
-        fullName.toUpperCase() === name.toUpperCase() ||
-        fullName.toUpperCase() === name1.toUpperCase()
-      ) {
-        return group.controls['firstName'].setErrors(null);
+      const firstName = group.controls['firstName'].value.toUpperCase();
+      const lastName = group.controls['lastName'].value.toUpperCase();
+      const fullName = group.controls['fullName'].value.toUpperCase();
+      let name = '';
+      let name1 = '';
+      if (firstName === '') {
+        name =  lastName;
+        name1 = lastName;
       } else {
-        return group.controls['firstName'].setErrors({ nameMatch: true });
+        name =  firstName + ' ' + lastName;
+        name1 = lastName + ' ' + firstName;
+      }
+      if (fullName === name || fullName === name1) {
+        return group.controls['lastName'].setErrors(null);
+      } else {
+        return group.controls['lastName'].setErrors({ nameMatch: true });
       }
     };
   }
@@ -382,7 +390,13 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
 
-  setDropDownValue(key, value) {
-    this.invPersonalInfoForm.controls[key].setValue(value);
+  setDropDownValue(event, key, value) {
+    setTimeout( () => {
+      this.invPersonalInfoForm.controls[key].setValue(value);
+    }, 100);
+  }
+
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('birthCountry');
   }
 }

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
@@ -259,6 +259,9 @@ export class TopupAndWithDrawService {
 
   constructSaveNewBankRequest(data) {
     const request = {};
+    if (data.bank) {
+      delete data.bank.accountNoMaxLength;
+    }
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
@@ -348,7 +351,11 @@ export class TopupAndWithDrawService {
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
     const diffYear = 12 * (toYear - fromYear) + to.getMonth();
-    for (let i = from.getMonth(); i <= diffYear; i++) {
+    const initMonth = (from.getDate() <= TOPUPANDWITHDRAW_CONFIG.STATEMENT_CUT_OFF_DAY
+                       && from < new Date())
+                        ? from.getMonth()
+                        : from.getMonth() + 1;
+    for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({
         monthName: monthNames[i % 12],
         year: Math.floor(fromYear + i / 12)
@@ -370,5 +377,21 @@ export class TopupAndWithDrawService {
       // tslint:disable-next-line
     }
     return durationMonths;
+  }
+
+  clearFormData() {
+    this.topUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
+    this.commit();
+  }
+
+  clearData() {
+    this.clearFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
+  }
+
+  downloadStatement(data) {
+    return this.apiService.downloadStatement(data);
   }
 }

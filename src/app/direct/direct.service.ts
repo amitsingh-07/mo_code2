@@ -64,6 +64,7 @@ export class DirectService {
 
   clearServiceData() {
     this.directFormData = {} as DirectFormData;
+    this.clearData();
   }
 
   getDirectFormData(): DirectFormData {

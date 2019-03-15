@@ -1,19 +1,40 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-your-investment {
+  .container-fluid{
+    &.max-width--1024{
+      top: 0 !important;
+      @include allmobiles{
+        padding: 0 !important;
+        margin-top: 0 !important
+      }
+    }
+  }
   .investment-bg {
-    padding-top: 105px;
+    @include allmobiles{
+      padding-top: 60px;
+      width: 100%;
+    }
+    @include phablet{
+      padding-top: 105px;
+      width: 100%;
+    }
   }
   .background_img {
-    object-fit: contain;
-    position: relative;
-    width: 100%;
+    display: none;
+    @include allmobiles{
+      object-fit: contain;
+      position: relative;
+      width: 100%;
+      display: block;
+    }
   }
   .user_content {
     position: absolute;
-    top: 156px;
-    @include iphone5 {
-      top: 125px;
+    padding: 0 75px;
+    @include allmobiles{
+      top: 100px;
+      padding: 0;
     }
     .user_summary {
       font-family: $muli-regular;
@@ -23,16 +44,18 @@ app-your-investment {
       position: relative;
       padding: 0 29px 0 28px;
     }
-    .flex-col-3 {
+    .flex-col-4 {
       position: absolute;
       right: 29px;
       top: 45px;
-      max-width: 85px;
+      right: 230px;
       @include iphone5 {
         top: 28px;
       }
       @include allmobiles {
         top: 60px;
+        max-width: 85px;
+        right: 29px;
       }
       @include iphone5 {
         top: 40px;
@@ -43,11 +66,13 @@ app-your-investment {
       @include iphone6 {
         top: 55px;
       }
-      @include tablet {
-        top: 129px;
+      @include phablet {
+        top: 40px;
+        max-width: 85px;
+        right: 230px;
       }
-      @include iPadLandscape {
-        top: 129px;
+      @include tablet {
+        right: 230px;
       }
     }
   }
@@ -75,15 +100,19 @@ app-your-investment {
     background-color: $withdrawal-amount-panel-bg-color;
   }
   .container-fluid {
+    position: relative;
+    top: 100px;
     @include allmobiles {
       padding-left: 20px !important;
       padding-right: 20px !important;
-      position: relative;
       height: 100%;
       padding: 0px;
       padding-bottom: 20px;
-      margin-top: -42px;
+      top: -42px;
     }
+    @include phablet {
+      top: 60px;
+     }
   }
   .dropdown-control .dropdown-menu.show {
     left: auto !important;
@@ -117,7 +146,7 @@ app-your-investment {
   }
   .total_values {
     font-family: $muli-bold;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: -0.4px;
     text-align: center;
@@ -146,6 +175,9 @@ app-your-investment {
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
+    &.negativeValue {
+      color: $red-color;
+    }
   }
   .form-group-with-bg .form-group-with-bg--content .flex-row:not(:last-child) {
     margin-bottom: 0px;
@@ -208,6 +240,9 @@ app-your-investment {
   }
   .form-group-with-bg--content {
     padding: 20px 28px 16px 27px !important;
+    .flex-row {
+      align-items: flex-start;
+    }
     &.your_portfolio_value_content {
       padding: 0 0 10px !important;
       font-family: $muli-regular;
@@ -217,14 +252,11 @@ app-your-investment {
       text-align: center;
       color: $text-color-secondary;
       .flex-row {
-        padding: 20px 65px 20px;
-      }
-      hr {
-        background: $top-up-your-portfolio-value-content-bg;
-        margin: 0;
+        padding: 15px 20px;
       }
       .portfolio_footer {
-        margin: 10px 13px 0;
+        padding: 10px 13px 0;
+        border-top: 1px solid $top-up-your-portfolio-value-content-bg;
         .btn-primary {
           background-color: $white-color;
           border: 1px solid $top-up-your-portfolio-value-content-bg;
@@ -260,7 +292,7 @@ app-your-investment {
   }
   .portfolio_value {
     font-family: $muli-bold;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: -0.3px;
     color: $teal-color;

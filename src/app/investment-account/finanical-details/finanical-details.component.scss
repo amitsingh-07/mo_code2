@@ -1,9 +1,6 @@
 @import '../../../variables';
 app-finanical-details {
   .financial-details {
-    .container-fluid {
-      padding-top: 110px;
-    }
     .inline-error-inv {
       color: $inline-error-border-color;
       border: 1px solid $inline-error-border-color !important;
@@ -25,8 +22,7 @@ app-finanical-details {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;

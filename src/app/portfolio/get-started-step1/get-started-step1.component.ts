@@ -46,7 +46,8 @@ export class GetStartedStep1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {

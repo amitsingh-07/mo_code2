@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
   }
@@ -163,19 +163,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           } catch (e) {
             console.log(e);
           }
-
-          // TODO: Remove this IF block after getUserProfileInfo() API is available
-          /** START - IF block */
-          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-            const redirect_url = this.signUpService.getRedirectUrl();
-            if (redirect_url) {
-              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: true });
-            } else {
-              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-            }
-            return;
-          }
-          /** END - IF block */
 
           this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
             this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -279,3 +266,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }
+
