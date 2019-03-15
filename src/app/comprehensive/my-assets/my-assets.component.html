@@ -173,7 +173,7 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addAssetsValid.investmentProperties.invalid}">
                 <i>$</i>
                 <input type="text" class="input-control" appCurrencyInput maxLength="4" #investmentProperties
                   formControlName="investmentProperties" value="0">
@@ -220,7 +220,7 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div class="dropdown-control">
+                <div class="dropdown-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].investmentType.invalid}">
                   <div ngbDropdown id="investTypeDropDown">
                     <button type="button" class="btn btn-dropdown" id="dropdownsInvestType" ngbDropdownToggle>
                       <span *ngIf="!investType[i] || investType[i] === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -245,7 +245,7 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div class="form-control">
+                <div class="form-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].others.invalid}">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="4" #others formControlName="others"
                     value="0">

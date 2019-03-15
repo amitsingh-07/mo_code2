@@ -97,7 +97,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       otherEarningsControl.setValidators([]);
       otherEarningsControl.updateValueAndValidity();
     } else {
-      otherEarningsControl.setValidators([ Validators.required, Validators.pattern('^0*[1-9]\d*$')]);
+      otherEarningsControl.setValidators([ Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherEarningsControl.updateValueAndValidity();
     }
     this.onTotalAnnualIncomeBucket();

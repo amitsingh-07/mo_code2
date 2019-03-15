@@ -435,7 +435,8 @@
       "MY_LIABILITIES": "MY LIABILITIES",
 	    "MY_EARNINGS": "Your Earnings",
       "MY_SPENDINGS": "Your Spendings",
-      "REGULAR_SAVINGS": "Regular Savings Plan"
+      "REGULAR_SAVINGS": "Regular Savings Plan",
+      "MY_ASSETS": "Assets"
     },
     "RETIREMENT_PLAN":{
     "SUB_TITLE":"Finally, at what age would you retire?",

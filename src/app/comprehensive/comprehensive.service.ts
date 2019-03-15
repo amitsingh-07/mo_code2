@@ -261,12 +261,28 @@ export class ComprehensiveService {
         errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
         for (const name in controls) {
-            if (controls[name].invalid) {
+            if (!controls[name].hasOwnProperty('controls') && controls[name].invalid) {
                 errors.errorMessages.push(
                     this.comprehensiveFormError[formName].formFieldErrors[name][
                         Object.keys(controls[name]['errors'])[0]
                     ].errorMessage
                 );
+            } else {
+                const formGroup = {
+                        formName: '',
+                        errors: [],
+                        errorStatus: false
+                };
+                for (const subFormName in controls[name].controls) {
+                    if (controls[name].controls[subFormName].invalid) {
+                        formGroup.errorStatus = true;
+                    }
+                }
+                if (formGroup.errorStatus === true) {
+                    errors.errorMessages.push(
+                        this.comprehensiveFormError[formName].formFieldErrors[name]['required'].errorMessage
+                    );
+                }
             }
         }
         return errors;

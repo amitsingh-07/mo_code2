@@ -101,7 +101,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           otherPropertyControl.setValidators([Validators.required]);
           otherPropertyControl.updateValueAndValidity();
         } else {
-          otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\d*$')]);
+          otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl.updateValueAndValidity();
         }
       } else {

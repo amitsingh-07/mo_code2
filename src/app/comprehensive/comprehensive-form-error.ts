@@ -110,6 +110,10 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Other Property Loans',
                     errorMessage: 'Other Property Loans'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Other Property Loans'
                 }
             },
             otherLoanAmountOutstanding: {
@@ -328,6 +332,43 @@ export class ComprehensiveFormError {
                     errorMessage: 'Regular Paid By CPF'
                 }
             },
+        }
+    };
+    myAssetsForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the following details:',
+            investmentProperties: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Investment Properties'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Investment Properties'
+                }
+            },
+            investmentType: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Select Investment Type'
+                },
+            },
+            others: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'others'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Others'
+                }
+            },
+            otherInvestment: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Other Investment'
+                },
+            }
         }
     };
 }
