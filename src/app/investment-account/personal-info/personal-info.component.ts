@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,7 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class PersonalInfoComponent implements OnInit, AfterViewInit {
+export class PersonalInfoComponent implements OnInit {
   @ViewChild('expiryInput') expiryInput;
   @ViewChild('dobInput') dobInput;
   pageTitle: string;
@@ -83,9 +83,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
       };
     });
     this.buildForm();
-    setTimeout(() => {
-      this.setOptionList();
-    }, 500);
   }
 
   setPageTitle(title: string) {
@@ -96,13 +93,9 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    //this.setOptionList();
-  }
-
-  ngAfterViewInit() {
-    if (this.formValues.isMyInfoEnabled) {
-      this.cdr.detectChanges();
-    }
+    setTimeout(() => {
+      this.setOptionList();
+    }, 100);
   }
 
   buildForm() {
