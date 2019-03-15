@@ -1,3 +1,4 @@
+import { ComprehensiveService } from './../comprehensive.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -5,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
@@ -20,7 +22,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
-    private translate: TranslateService, private configService: ConfigService) {
+    private translate: TranslateService, private configService: ConfigService,
+    private progressService: ProgressTrackerService, private comprehensiveService: ComprehensiveService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -37,10 +40,11 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Road Map 1 Menu Clicked');
+        this.progressService.show();
       }
     });
   }

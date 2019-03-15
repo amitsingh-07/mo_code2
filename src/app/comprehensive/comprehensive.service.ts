@@ -73,7 +73,7 @@ export class ComprehensiveService {
 
     // Return the entire Comprehensive Form Data
     getComprehensiveFormData(): ComprehensiveFormData {
-        if (window.sessionStorage && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)) {
+        if (window.sessionStorage) {
             const cmpSessionData = this.getComprehensiveSessionData();
             if (cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA]) {
                 this.comprehensiveFormData = cmpSessionData[ComprehensiveService.SESSION_KEY_FORM_DATA];
@@ -82,8 +82,7 @@ export class ComprehensiveService {
             }
 
             if (!this.comprehensiveFormData.comprehensiveDetails) {
-                this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
-                this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
+                this.comprehensiveFormData.comprehensiveDetails = this.getComprehensiveSummary();
             }
         }
         return this.comprehensiveFormData;
@@ -101,12 +100,11 @@ export class ComprehensiveService {
         this.commit();
     }
 
-    startComprehensiveEnquiry(): void {
-        this.getComprehensiveSummary().comprehensiveEnquiry.hasComprehensive = true;
-        this.commit();
-    }
-
     getMyProfile() {
+        if (!this.comprehensiveFormData.comprehensiveDetails) {
+
+        }
+
         if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
             this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
         }
@@ -125,16 +123,49 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
     }
+
+    /**
+     * Get the comprehensive summary object.
+     *
+     * @returns
+     * @memberof ComprehensiveService
+     */
     getComprehensiveSummary() {
         if (!this.comprehensiveFormData.comprehensiveDetails) {
             this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
         }
         return this.comprehensiveFormData.comprehensiveDetails;
     }
-    /* Product Category drop down Handler */
+
+    /**
+     * Set the comprehensive summary object.
+     *
+     * @param {IComprehensiveDetails} comprehensiveDetails
+     * @memberof ComprehensiveService
+     */
     setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+        this.reloadDependantDetails();
+        this.commit();
+    }
 
+    /**
+     * Wrapper method to update the comprehensive details object
+     *
+     * @memberof ComprehensiveService
+     */
+    updateComprehensiveSummary() {
+        this.setComprehensiveSummary(this.comprehensiveFormData.comprehensiveDetails);
+    }
+
+    /**
+     * Reload and update the dependant education preference details with dependant name and date of birth.
+     *
+     * @memberof ComprehensiveService
+     */
+    reloadDependantDetails() {
+        const comprehensiveDetails = this.comprehensiveFormData.comprehensiveDetails;
         const enquiry: IComprehensiveEnquiry = comprehensiveDetails.comprehensiveEnquiry;
         if (enquiry.hasDependents && (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')) {
             if (comprehensiveDetails.dependentsList && comprehensiveDetails.dependentEducationPreferencesList) {
@@ -148,21 +179,21 @@ export class ComprehensiveService {
                 });
             }
         }
-
-        this.commit();
+        this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
     }
+
     setMyProfile(profile: IMyProfile) {
         this.comprehensiveFormData.comprehensiveDetails.baseProfile = profile;
         this.commit();
     }
     setMyDependant(dependant: IDependantDetail[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentsList = dependant;
-        this.commit();
+        this.updateComprehensiveSummary();
     }
 
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
-        this.commit();
+        this.updateComprehensiveSummary();
     }
     getMyLiabilities() {
         if (!this.comprehensiveFormData.myLiabilities) {
@@ -202,10 +233,23 @@ export class ComprehensiveService {
         this.commit();
     }
 
+
+    /**
+     * Get the starting page route for the comprehensive module.
+     *
+     * @returns
+     * @memberof ComprehensiveService
+     */
     getStartingPage() {
         return this.comprehensiveFormData.startingPage;
     }
 
+    /**
+     * Set the starting page for the comprehensive module.
+     *
+     * @param {string} pageRoute
+     * @memberof ComprehensiveService
+     */
     setStartingPage(pageRoute: string) {
         this.comprehensiveFormData.startingPage = pageRoute;
         this.commit();
@@ -484,7 +528,7 @@ export class ComprehensiveService {
         return {
             title: 'Get Started',
             expanded: true,
-            completed: true,
+            completed: typeof myProfile.gender !== 'undefined',
             customStyle: 'get-started',
             subItems: [
                 {
@@ -498,6 +542,15 @@ export class ComprehensiveService {
     }
 
     getDependantsProgressData(): IProgressTrackerItem {
+        let hasDependants = false;
+        let hasEndowments = false;
+        const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
+        if (enquiry && enquiry.hasDependents !== null) {
+            hasDependants = true;
+        }
+        if (enquiry && enquiry.hasEndowments !== null) {
+            hasEndowments = true;
+        }
         const dependantDetails: IDependantDetail[] = this.getMyDependant();
         const eduPrefs: IChildEndowment[] = this.getChildEndowment();
         const eduPlan: string = this.hasEndowment();
@@ -524,40 +577,40 @@ export class ComprehensiveService {
         }
 
         let hasEduPlans = '';
-        if (eduPrefs) {
+        if (hasDependants && eduPrefs) {
             hasEduPlans = eduPrefs.length > 0 ? 'Yes' : 'No';
         }
 
         return {
             title: 'What\'s on your shoulders',
             expanded: true,
-            completed: true,
+            completed: hasDependants,
             customStyle: 'dependant',
             subItems: [
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
                     title: 'Number of Dependant',
                     value: noOfDependants,
-                    completed: typeof dependantDetails !== 'undefined'
-                },
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-                    title: 'Plan for children education',
-                    value: hasEduPlans,
-                    completed: typeof eduPrefs !== 'undefined'
-                },
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION,
-                    title: 'Education Preferences',
-                    value: '',
-                    completed: typeof eduPrefs !== 'undefined',
-                    list: prefsList
+                    completed: hasDependants && typeof dependantDetails !== 'undefined'
                 },
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
+                    title: 'Plan for children education',
+                    value: hasEduPlans,
+                    completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
+                },
+                {
+                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
+                    title: 'Education Preferences',
+                    value: '',
+                    completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined',
+                    list: prefsList
+                },
+                {
+                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                     title: 'Do you have education endowment plan',
                     value: hasEndowmentPlans,
-                    completed: typeof eduPlan !== 'undefined' || eduPlan !== '0'
+                    completed: (hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
                 }
             ]
         };

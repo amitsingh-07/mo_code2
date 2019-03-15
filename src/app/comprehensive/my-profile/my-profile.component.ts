@@ -83,10 +83,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.buildProfileForm();
-        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     }
 
     ngOnInit() {
+        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.userDetails = this.comprehensiveService.getMyProfile();
         if (!this.userDetails || !this.userDetails.firstName) {
             this.loaderService.showLoader({ title: 'Fetching Data' });
@@ -134,6 +134,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.setUserProfileData();
         this.buildProfileForm();
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);
+        this.progressService.refresh();
     }
 
     setUserProfileData() {
@@ -164,7 +165,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setProgressToolTipShown(true);
             if (!form.pristine) {
                 this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-                    this.comprehensiveService.startComprehensiveEnquiry();
+                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                    cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
+                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                 });
             } else {

@@ -21,6 +21,7 @@ export class ProgressTrackerService {
     constructor(private modal: NgbModal, private router: Router) {}
 
     public show() {
+        this.refresh();
         this.modelRef = this.modal.open(ProgressTrackerModalComponent, {
             windowClass: 'progress-tracker-modal',
             backdropClass: 'progress-tracker-backdrop'
@@ -29,7 +30,7 @@ export class ProgressTrackerService {
 
     public hide() {
         if (this.modelRef) {
-            this.modelRef.dismiss();
+            this.modelRef.close();
         }
     }
 
@@ -63,6 +64,15 @@ export class ProgressTrackerService {
                 }
             });
         });
+        this.subject.next(this.data);
+    }
+
+    /**
+     * Refresh the progress tracker UI.
+     *
+     * @memberof ProgressTrackerService
+     */
+    refresh(): void {
         this.subject.next(this.data);
     }
 
