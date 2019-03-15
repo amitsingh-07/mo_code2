@@ -83,6 +83,9 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
       };
     });
     this.buildForm();
+    setTimeout(() => {
+      this.setOptionList();
+    }, 500);
   }
 
   setPageTitle(title: string) {
@@ -93,7 +96,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.setOptionList();
+    //this.setOptionList();
   }
 
   ngAfterViewInit() {
