@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PortfolioService } from '../../portfolio/portfolio.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,7 +32,8 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     private modal: NgbModal,
     public authService: AuthenticationService,
     public portfolioService: PortfolioService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService,
+    private investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = 'Notifications';
@@ -66,11 +68,17 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       this.portfolioService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
   updateNotifications(messages, type) {
     this.signUpService.updateNotifications(messages, type).subscribe((response) => {
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -93,7 +101,9 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   deleteNotification(messageList) {
     const payload = this.constructDeleteNotificationRequest(messageList);
     this.signUpService.deleteNotifications(payload).subscribe((response) => {
-
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
