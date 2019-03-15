@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -54,7 +55,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private modal: NgbModal,
     private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -92,6 +94,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
     // get profile
+  }
+
+  buildForm() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.populateFullName();
     if (this.investmentAccountService.isSingaporeResident()) {
@@ -162,8 +167,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
             value: this.formValues.passportIssuedCountry
               ? this.formValues.passportIssuedCountry
               : this.investmentAccountService.getCountryFromNationalityCode(
-                  this.formValues.nationalityCode
-                ),
+                this.formValues.nationalityCode
+              ),
             disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
           },
           Validators.required
@@ -236,8 +241,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
             value: this.formValues.passportIssuedCountry
               ? this.formValues.passportIssuedCountry
               : this.investmentAccountService.getCountryFromNationalityCode(
-                  this.formValues.nationalityCode
-                ),
+                this.formValues.nationalityCode
+              ),
             disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
           },
           Validators.required
@@ -318,10 +323,10 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       let name = '';
       let name1 = '';
       if (firstName === '') {
-        name =  lastName;
+        name = lastName;
         name1 = lastName;
       } else {
-        name =  firstName + ' ' + lastName;
+        name = firstName + ' ' + lastName;
         name1 = lastName + ' ' + firstName;
       }
       if (fullName === name || fullName === name1) {
@@ -378,20 +383,31 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
 
   setOptionList() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'COMMON_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'COMMON_LOADER.DESC'
+      )
+    });
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.loaderService.hideLoader();
       this.investmentAccountService.setOptionList(data.objectList);
       this.optionList = this.investmentAccountService.getOptionList();
       this.salutaionList = this.optionList.salutation;
       this.raceList = this.optionList.race;
       this.countries = this.investmentAccountService.getCountriesFormData();
+      this.buildForm();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setDropDownValue(event, key, value) {
-    setTimeout( () => {
+    setTimeout(() => {
       this.invPersonalInfoForm.controls[key].setValue(value);
     }, 100);
   }
