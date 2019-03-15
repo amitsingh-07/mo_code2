@@ -19,6 +19,7 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-navbar',
@@ -43,6 +44,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHeaderNavbar = false; // Navbar Show on Mobile
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
+  showNotificationClear = false; // Notification Clear all Button
+  showLabel: any;
 
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
@@ -84,7 +87,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
-    private appService: AppService) {
+    private appService: AppService,
+    private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -141,6 +145,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
       });
+    this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
+      this.showNotificationClear = showClearNotify;
+    });
     this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
@@ -165,10 +172,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarMode = navbarMode;
       this.matrixResolver(navbarMode);
       // Enabling Notifications
-      if (navbarMode === 100) {
+      if (navbarMode === 100 || navbarMode === 1) {
         this.isNotificationEnabled = true; // = this.canActivateNotification();
       }
-      if (this.isNotificationEnabled) {
+      if (this.isNotificationEnabled && this.isLoggedIn) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
@@ -199,6 +206,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     Object.keys(nc).forEach((key) => {
       this.navbarConfig[key] = nc[key];
     });
+    // Resetting Items to default
+    if (!nc['showLabel']) {
+      this.navbarConfig.showLabel = undefined;
+    }
     // Implement Matrix
     const config = this.navbarConfig as INavbarConfig;
     this.showNavBackBtn = config.showNavBackBtn;
@@ -209,8 +220,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
-    console.log(this.showHeaderNavbar);
+    this.showNotificationClear = false;
+    this.showLabel = config.showLabel ? config.showLabel : false;
   }
+
+  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -268,6 +282,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.recentMessages.map((message) => {
         message.time = parseInt(message.time, 10);
       });
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -302,6 +319,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.router.url === EDIT_PROFILE_PATH
       );
   }
+  clearNotifications() {
+    this.navbarService.clearNotification();
+  }
+  // End of Notifications
 
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });

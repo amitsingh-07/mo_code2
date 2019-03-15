@@ -379,8 +379,6 @@ export class SignUpService {
 
   updateNotifications(messages, type) {
     const payload = this.constructPayloadUpdateNotifications(messages, type);
-    console.log('payload');
-    console.log(payload);
     return this.apiService.updateNotifications(payload);
   }
 

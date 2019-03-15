@@ -5,6 +5,10 @@ export interface INavbarConfig {
     showLogin: true;
     showNavShadow: true;
     showSearchBar: false;
-    showNotifications: false;
+    showNotifications: boolean;
     showHeaderNavbar: false;
+    showLabel ?: {
+        'primary': string;
+        'secondary' ?: string;
+        };
     }
