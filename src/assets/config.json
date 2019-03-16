@@ -1,8 +1,9 @@
 {
   "language": "en",
   "useMyInfo": true,
-  "willWritingEnabled": false,
-  "investmentEnabled": true,
+  "willWritingEnabled": true,
+  "investmentEnabled": false,
+  "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": false,
   "promotionEnabled": true,
