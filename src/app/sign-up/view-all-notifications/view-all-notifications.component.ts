@@ -44,18 +44,18 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getAllNotifications();
     this.navbarService.setNavbarMode(102);
-    this.navbarService.setClearAllNotify(true);
+    //this.navbarService.setClearAllNotify(true);
   }
 
-  ngAfterViewInit() {
-    this.navbarService.currentClearNotificationEvent.subscribe(() => {
-      if (this.initLoad) {
-        this.initLoad = false;
-      } else {
-        this.clearAllNotifications();
-      }
-    });
-  }
+  // ngAfterViewInit() {
+  //   this.navbarService.currentClearNotificationEvent.subscribe(() => {
+  //     if (this.initLoad) {
+  //       this.initLoad = false;
+  //     } else {
+  //       this.clearAllNotifications();
+  //     }
+  //   });
+  // }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
