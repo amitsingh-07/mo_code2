@@ -214,9 +214,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.navbarConfig.showLabel = undefined;
     }
     // Implement Matrix
-    const config = this.navbarConfig as I
-    
-    NavbarConfig;
+    const config = this.navbarConfig as INavbarConfig;
     this.showNavBackBtn = config.showNavBackBtn;
     this.showHeaderBackBtn = config.showHeaderBackBtn;
     this.showMenu = config.showMenu;
