@@ -796,4 +796,11 @@ export class ApiService {
       );
   }
 
+  downloadStatement(data) {
+    return this.http.getBlob(apiConstants.endpoint.investment.getStatement + '?' + data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
