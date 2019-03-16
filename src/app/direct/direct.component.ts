@@ -182,8 +182,4 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       }
     }
   }
-
-  closeEditMode() {
-    this.directService.setModalFreeze(false);
-  }
 }

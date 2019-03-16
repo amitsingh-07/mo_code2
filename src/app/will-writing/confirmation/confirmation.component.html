@@ -10,7 +10,7 @@
               <div class="autofill-link">
                 <div class="autofill-text hidden-sm-md" id="myFamily-title">{{ 'WILL_WRITING.CONFIRMATION.TITLE' |
                   translate}}</div>
-                <div class="sub-title mb20" id="myFamily-sub-title" innerHTML ="{{ 'WILL_WRITING.CONFIRMATION.SUB_TITLE' |
+                <div class="sub-title mb20" id="myFamily-sub-title" innerHTML="{{ 'WILL_WRITING.CONFIRMATION.SUB_TITLE' |
                 translate}}"></div>
                 <div class="heading hidden-lg mb10">{{ 'Almost there!'}}</div>
                 <div class="autofill-logo mobile-logo hidden-lg mb5" id="myFamily-mobile-img"><img class="img-fluid"
@@ -27,7 +27,8 @@
                   <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
                   <div class="col-lg-3 col-md-3 col-sm-3">
                     <div class="edit" (click)="edit(willWritingRoutePaths.ABOUT_ME)">
-                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                      <span class="edit-dark hidden-sm-md"><img
+                          src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                     </div>
                   </div>
                 </div>
@@ -68,24 +69,28 @@
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12">
-              <div class="autofill-logo hidden-sm-md" id="myFamily-img"><img class="img-fluid" src="assets/images/will-writing/confirmation.svg" /></div>
+              <div class="autofill-logo hidden-sm-md" id="myFamily-img"><img class="img-fluid"
+                  src="assets/images/will-writing/confirmation.svg" /></div>
             </div>
           </div>
 
           <!-- My Family -->
-          <div class="col-lg-12 col-md-12 col-12 mb20" *ngIf="(willWritingFormData.spouse && willWritingFormData.spouse.length > 0) || (willWritingFormData.children && willWritingFormData.children.length > 0)">
+          <div class="col-lg-12 col-md-12 col-12 mb20"
+            *ngIf="(willWritingFormData.spouse && willWritingFormData.spouse.length > 0) || (willWritingFormData.children && willWritingFormData.children.length > 0)">
             <div class="section-container">
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div (click)="edit(willWritingRoutePaths.MY_FAMILY)" class="edit">
-                    <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                    <span class="edit-dark hidden-sm-md"><img
+                        src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                   </div>
                 </div>
               </div>
               <div class="section-body">
                 <!-- Loop Start-->
-                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willWritingFormData.spouse && willWritingFormData.spouse.length > 0">
+                <div class="col-lg-6 col-md-6 col-sm-12"
+                  *ngIf="willWritingFormData.spouse && willWritingFormData.spouse.length > 0">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     {{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}
                   </div>
@@ -105,7 +110,8 @@
                 <!-- Loop End-->
 
                 <!--Removable code-->
-                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let children of willWritingFormData.children; let i = index">
+                <div class="col-lg-6 col-md-6 col-sm-12"
+                  *ngFor="let children of willWritingFormData.children; let i = index">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     {{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{i+1}}
                   </div>
@@ -135,7 +141,8 @@
           </div>
 
           <!-- My Children's Guardian -->
-          <div class="col-lg-12 col-md-12 col-12 mb20" *ngIf="willWritingFormData.guardian && willWritingFormData.guardian.length > 0">
+          <div class="col-lg-12 col-md-12 col-12 mb20"
+            *ngIf="willWritingFormData.guardian && willWritingFormData.guardian.length > 0">
             <div class="section-container">
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">
@@ -148,7 +155,8 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">
-                    <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                    <span class="edit-dark hidden-sm-md"><img
+                        src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                   </div>
                 </div>
               </div>
@@ -188,7 +196,8 @@
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div (click)="edit(willWritingRoutePaths.MY_BENEFICIARIES)" class="edit">
-                    <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                    <span class="edit-dark hidden-sm-md"><img
+                        src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                   </div>
                 </div>
               </div>
@@ -200,7 +209,8 @@
                       | translate}}</span>
                     <span *ngIf="beneficiary.relationship === willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.MY_CHILD'
                       | translate}} {{beneficiary.pos}}</span>
-                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">
+                    <span
+                      *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">
                       {{'WILL_WRITING.COMMON.MY' | translate}} {{beneficiary.relationship | titlecase}}
                     </span>
                   </div>
@@ -226,10 +236,12 @@
           <div class="col-lg-12 col-md-12 col-12 mb20">
             <div class="section-container">
               <div class="header col-lg-12 col-md-12 col-12">
-                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE' | translate}}</div>
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE' | translate}}
+                </div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div (click)="edit(willWritingRoutePaths.MY_ESTATE_DISTRIBUTION)" class="edit">
-                    <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                    <span class="edit-dark hidden-sm-md"><img
+                        src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                   </div>
                 </div>
               </div>
@@ -243,7 +255,8 @@
                     <div class="label-header col-6">
                       {{willEstateDistribution.spouse[0].name | titlecase}}
                     </div>
-                    <div class="label-value col-md-6 col-sm-6">{{willEstateDistribution.spouse[0].distPercentage}}%</div>
+                    <div class="label-value col-md-6 col-sm-6">{{willEstateDistribution.spouse[0].distPercentage}}%
+                    </div>
                   </div>
                 </div>
                 <!-- Loop End-->
@@ -284,7 +297,8 @@
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div (click)="edit(willWritingRoutePaths.MY_EXECUTOR_TRUSTEE)" class="edit">
-                    <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
+                    <span class="edit-dark hidden-sm-md"><img
+                        src="assets/images/will-writing/edit-dark.svg" /></span><span>Edit</span>
                   </div>
                 </div>
               </div>
@@ -292,7 +306,8 @@
                 <!-- Loop Start-->
                 <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let execTrustee of willWritingFormData.execTrustee">
                   <div class="section-row-header col-lg-12 col-md-12 col-sm-12 mb10">
-                    <span *ngIf="execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}</span>
+                    <span
+                      *ngIf="execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}</span>
                     <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' |
                       translate}}</span>
                   </div>
@@ -318,10 +333,14 @@
             </div>
           </div>
         </div>
-        <div class="reminder mb20" innerHTML ="{{'WILL_WRITING.CONFIRMATION.REMINDER' | translate}}"></div>
+        <div class="reminder mb20" innerHTML="{{'WILL_WRITING.CONFIRMATION.REMINDER' | translate}}"></div>
         <div class="stamp-block">
-          <div class="col-lg-5 col-sm-12 col-md-5"><button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary">{{
-              'LABEL.CONTINUE' | translate}}</button></div>
+          <div class="col-lg-5 col-sm-12 col-md-5">
+            <button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary">
+              <span *ngIf="!existingWill">{{'LABEL.CONTINUE' | translate}}</span>
+              <span *ngIf="existingWill">{{'LABEL.SAVE_CONTINUE' | translate}}</span>
+            </button>
+          </div>
           <img class="hidden-sm-md" src="assets/images/will-writing/owl-stamp.svg" />
         </div>
       </div>
