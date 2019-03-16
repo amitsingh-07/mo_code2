@@ -608,15 +608,18 @@ export class InvestmentAccountService {
       this.disableAttributes.push('gender');
     }
     if (data.birthcountry && data.birthcountry.countryDetails) {
-      const countryDetails = {
-        id: data.birthcountry.countryDetails.id,
-        countryCode: data.birthcountry.countryDetails.countryCode,
-        name: data.birthcountry.countryDetails.country,
-        phoneCode: data.birthcountry.countryDetails.phoneCode
-      };
-      this.investmentAccountFormData.birthCountry = countryDetails;
+      this.investmentAccountFormData.birthCountry = this.getCountryObject(data.birthcountry.countryDetails);
       this.disableAttributes.push('birthCountry');
     }
+  }
+
+  getCountryObject(countryDetails) {
+    return {
+      id: countryDetails.id,
+      countryCode: countryDetails.countryCode,
+      name: countryDetails.country,
+      phoneCode: countryDetails.phoneCode
+    };
   }
 
   // MyInfo - Residential Address
@@ -624,7 +627,7 @@ export class InvestmentAccountService {
     // Register address
     if (data.regadd) {
       if (data.regadd.countryDetails) {
-        this.investmentAccountFormData.country = data.regadd.countryDetails;
+        this.investmentAccountFormData.country = this.getCountryObject(data.regadd.countryDetails);
         this.disableAttributes.push('country');
       }
       if (data.regadd.floor) {
@@ -659,7 +662,7 @@ export class InvestmentAccountService {
   setMyInfoEmailAddress(data) {
     let emailAddressExist = false;
     if (data.mailadd.countryDetails) {
-      this.investmentAccountFormData.mailCountry = data.mailadd.countryDetails;
+      this.investmentAccountFormData.mailCountry = this.getCountryObject(data.mailadd.countryDetails);
       this.disableAttributes.push('mailCountry');
       emailAddressExist = true;
     }
@@ -1716,6 +1719,14 @@ export class InvestmentAccountService {
       window.onpopstate = () => {
         history.pushState('dummystate', null, null);
       };
+    }
+  }
+
+  clearData() {
+    this.clearInvestmentAccountFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(ACCOUNT_SUCCESS_COUNTER_KEY);
     }
   }
 }

@@ -43,13 +43,14 @@ export class PostLoginComponent implements OnInit {
       this.singPassLinkTitle = this.translate.instant('POSTLOGIN.PROCEED');
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentMyInfoEnabled = config.investmentEnabled;
+      this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
     });
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.footerService.setFooterVisibility(false);
     this.formData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.formData.isMyInfoEnabled ? false : true;
   }
