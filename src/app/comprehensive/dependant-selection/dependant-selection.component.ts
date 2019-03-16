@@ -81,7 +81,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
         nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
       this.cmpService.openSummaryPopUpModal(this.summaryModalDetails);
-
     }
 
   }

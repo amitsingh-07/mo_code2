@@ -1,10 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { throwError } from 'rxjs';
 
+import { LoaderService } from '../components/loader/loader.service';
 import { ErrorModalComponent } from './../modal/error-modal/error-modal.component';
 import { IError } from './interfaces/error.interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { throwError } from 'rxjs';
 export class HelperService {
   loadingModalRef: NgbModalRef;
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modal: NgbModal, private loaderService: LoaderService) { }
 
   /**
    * Add content type to HTTP header
@@ -25,9 +26,11 @@ export class HelperService {
 
   hideLoader() {
     // this.loadingModalRef.close();
+    this.loaderService.hideLoader();
   }
 
   handleError(error: HttpErrorResponse) {
+    this.hideLoader();
     if (error) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.
@@ -47,6 +50,7 @@ export class HelperService {
   }
 
   showHttpErrorModal(error: IError) {
+    this.hideLoader();
     if (error && error.error && error.message) {
       this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
       this.loadingModalRef.componentInstance.errorTitle = error.error;
@@ -55,6 +59,7 @@ export class HelperService {
   }
 
   showCustomErrorModal(error: IError) {
+    this.hideLoader();
     let title = '';
     let message = '';
     if (error.message.indexOf(':') > -1) {

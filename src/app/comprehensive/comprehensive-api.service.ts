@@ -10,6 +10,7 @@ import { HelperService } from '../shared/http/helper.service';
     providedIn: 'root'
 })
 export class ComprehensiveApiService {
+    private handleErrorFlag = '?handleError=true';
     constructor(
         private apiService: ApiService,
         private authService: AuthenticationService,
@@ -48,7 +49,6 @@ export class ComprehensiveApiService {
     saveChildEndowment(payload) {
         console.log(payload);
         return this.http
-            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
-            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload);
     }
 }
