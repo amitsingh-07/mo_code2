@@ -1,5 +1,6 @@
 export const SIGN_UP_BASE_ROUTE = '../account/';
 export const DASHBOARD_PATH = '/account/dashboard';
+export const EDIT_PROFILE_PATH = '/account/edit-profile';
 
 export const SIGN_UP_ROUTES = {
   ROOT: '',
