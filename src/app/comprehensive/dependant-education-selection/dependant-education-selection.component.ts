@@ -193,7 +193,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const dependantArray = [];
     if (form.value.hasEndowments === '0') {
       this.loaderService.showLoader({ title: 'Saving' });
-
+      this.comprehensiveService.setEndowment(form.value.hasEndowments);
+      this.comprehensiveService.setChildEndowment([]);
       this.comprehensiveApiService.saveChildEndowment({
         hasEndowments: form.value.hasEndowments,
         endowmentDetailsList: [{
@@ -202,8 +203,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           enquiryId: this.comprehensiveService.getEnquiryId(),
           location: null,
           educationCourse: null,
-          endowmentMaturityAmount: 0,
-          endowmentMaturityYears: 0
+          endowmentMaturityAmount: null,
+          endowmentMaturityYears: null
         } as IChildEndowment]
       }).subscribe((data: any) => {
         this.loaderService.hideLoader();
