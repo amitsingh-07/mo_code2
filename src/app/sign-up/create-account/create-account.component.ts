@@ -59,8 +59,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * Initialize tasks.
    */
   ngOnInit() {
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
+      });
+    }
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();

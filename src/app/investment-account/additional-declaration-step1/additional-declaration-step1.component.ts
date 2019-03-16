@@ -154,18 +154,16 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   getDefaultCountry() {
     let defaultCountry;
-    if (this.isUserNationalitySingapore) {
+    if (this.addInfoFormValues.pepCountry) {
+      defaultCountry = this.addInfoFormValues.pepCountry;
+    } else if (this.isUserNationalitySingapore) {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
         INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      if (this.addInfoFormValues.pepCountry) {
-        defaultCountry = this.addInfoFormValues.pepCountry;
-      } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
-          this.addInfoFormValues.nationalityCode
-        );
-      }
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        this.addInfoFormValues.nationalityCode
+      );
     }
     return defaultCountry;
   }

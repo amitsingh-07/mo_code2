@@ -234,6 +234,8 @@ export class WithdrawalTypeComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);

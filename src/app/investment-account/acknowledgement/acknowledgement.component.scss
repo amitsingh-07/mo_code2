@@ -3,15 +3,11 @@
 app-acknowledgement {
   .app-acknowledgement {
     background-color: $white-color;
-    .container-fluid {
-      padding-top: 110px;
-    }
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;

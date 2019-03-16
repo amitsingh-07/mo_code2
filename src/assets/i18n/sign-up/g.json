@@ -1,7 +1,7 @@
 {
     "COMMON": {
         "CONTINUE": "Continue",
-        "VERIFY": "Verify", 
+        "VERIFY": "Verify",
         "LOGIN": "Log In",
         "CREATE_ACCOUNT": "Create Account",
         "TRY_AGAIN": "Try Again",
@@ -42,7 +42,7 @@
             "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
         },
         "LOADING": {
-            "VERIFYING" : "Verifying...",
+            "VERIFYING": "Verifying...",
             "VERIFIED": "Mobile Verified!",
             "SENDING": "Sending New OTP"
         }
@@ -52,7 +52,7 @@
         "SUB_TITLE": "You may use Mobile Number / Email Address as your Login ID.",
         "FORM": {
             "PASSWORD": "Password",
-            "CONFIRM_PASSWORD": "Confirm Password"            
+            "CONFIRM_PASSWORD": "Confirm Password"
         },
         "ERROR_MESSAGE": {
             "TITLE": "Password Criteria",
@@ -60,18 +60,18 @@
             "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
             "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
             "MATCH": "Passwords do not match"
-        }     
+        }
     },
     "EMAIL_VERIFICATION": {
         "LOADING": {
-            "VERIFYING" : "Verifying...",
+            "VERIFYING": "Verifying...",
             "VERIFIED": "Email Verified!"
         }
     },
     "ACCOUNT_CREATED": {
         "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
-        "SUB_TITLE2": "Please verify your email address before logging in."    
+        "SUB_TITLE2": "Please verify your email address before logging in."
     },
     "LOGIN": {
         "WELCOME_LBL": "Welcome to MoneyOwl!",
@@ -86,20 +86,37 @@
     },
     "FORGOTPASSWORD": {
         "SUBMIT": "Submit",
-        "EMAIL":"Email Address",
-        "BACK_TO":"Back To Login",
-        "EMAIL_SENT":"Email Sent!",
-        "CHECK_EMAIL":"Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
-        "DESCRIPTION":"Enter your email to receive your password reset instructions.",
-        "TITLE":"Forgot Password",
-        "EMAIL_NOT_FOUND":"Email Not Found",
-        "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
-
-
+        "EMAIL": "Email Address",
+        "BACK_TO": "Back To Login",
+        "EMAIL_SENT": "Email Sent!",
+        "CHECK_EMAIL": "Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
+        "DESCRIPTION": "Enter your email to receive your password reset instructions.",
+        "TITLE": "Forgot Password",
+        "EMAIL_NOT_FOUND": "Email Not Found",
+        "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again."
     },
     "PRELOGIN": {
-      "TITLE": "Are you an existing MoneyOwl user?",
-      "YES_LOGIN": "Yes, Log In Now",
-      "CREATE_ACCOUNT": "No, Create Account"
+        "TITLE": "Are you an existing MoneyOwl user?",
+        "YES_LOGIN": "Yes, Log In Now",
+        "CREATE_ACCOUNT": "No, Create Account"
+    },
+    "DASHBOARD": {
+        "PROFILE": {
+            "WELCOME": "Welcome back,",
+            "EDIT_PROFILE": "Edit Profile",
+            "YOUR_ADVISOR": "Your Advisor"
+        },
+        "WILL_WRITING": {
+            "TITLE": "Will Writing",
+            "EDIT_WILL": "Edit Will",
+            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+            "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
+            "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
+            "START_WRITING": "Start Writing",
+            "ESTIMATED_TIME": "Estimated 10 mins",
+            "DOWNLOAD_WILL": "Download Will",
+            "CONTINUE_WRITING": "Continue Writing",
+            "LAST_UPDATED": "Last Updated"
+        }
     }
 }

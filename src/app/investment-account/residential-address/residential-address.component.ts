@@ -56,18 +56,6 @@ export class ResidentialAddressComponent implements OnInit {
     this.getReasoneList(); // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    if (this.formValues.isMyInfoEnabled) {
-      if (this.formValues.countryCode) {
-        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(
-          this.formValues.countryCode
-        );
-      }
-      if (this.formValues.mailCountryCode) {
-        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(
-          this.formValues.mailCountryCode
-        );
-      }
-    }
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
@@ -256,7 +244,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
   addOrRemoveOtherControl(value) {
     const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
-    if (value.name === 'Others, please specify') {
+    if ( value && value.name === 'Others, please specify') {
       mailFormGroup.addControl(
         'reasonForOthers',
         new FormControl(
@@ -359,18 +347,16 @@ export class ResidentialAddressComponent implements OnInit {
 
   getDefaultCountry() {
     let defaultCountry;
-    if (this.isUserNationalitySingapore) {
+    if (this.formValues.country) {
+      defaultCountry = this.formValues.country;
+    } else if (this.isUserNationalitySingapore) {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
         INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      if (this.formValues.country) {
-        defaultCountry = this.formValues.country;
-      } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
-          this.formValues.nationalityCode
-        );
-      }
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+        this.formValues.nationalityCode
+      );
     }
     return defaultCountry;
   }
@@ -464,6 +450,12 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   isDisabled(field) {
-    return this.investmentAccountService.isDisabled(field);
+    let isDisabled = false;
+    if (field === 'country' && this.isUserNationalitySingapore) {
+      isDisabled = true;
+    } else {
+      isDisabled = this.investmentAccountService.isDisabled(field);
+    }
+    return isDisabled;
   }
 }

@@ -47,7 +47,8 @@
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed",
     "TRY_AGAIN":"Try Again",
-    "PROCEED":"Proceed"
+    "PROCEED":"Proceed",
+    "SAVE_CONTINUE": "Save and Continue"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",
@@ -255,6 +256,10 @@
   "UNSUPPORTED_DEVICE_MODAL": {
       "TITLE": "Note !",
       "DESC": "This is mobile optimized webpage and recommended to view in mobile browsers such as Safari, Chrome, etc."
+  },
+  "COMMON_LOADER": {
+    "TITLE": "Loading",
+    "DESC": "Please wait while we load the data"
   }
 }
 

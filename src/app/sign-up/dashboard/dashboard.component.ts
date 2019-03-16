@@ -1,23 +1,28 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { ApiService } from '../../shared/http/api.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { FooterService } from '../../shared/footer/footer.service';
-import { Formatter } from '../../shared/utils/formatter.util';
-import { IEnquiryUpdate } from '../signup-types';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
+import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
-import { Router } from '@angular/router';
+import { FooterService } from '../../shared/footer/footer.service';
+import { ApiService } from '../../shared/http/api.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { Formatter } from '../../shared/utils/formatter.util';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { SignUpApiService } from '../sign-up.api.service';
 import { SignUpService } from '../sign-up.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TranslateService } from '@ngx-translate/core';
+import { IEnquiryUpdate } from '../signup-types';
+
+  // Will Writing
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,35 +33,53 @@ import { TranslateService } from '@ngx-translate/core';
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
-  showPortffolioPurchased = false;
+  showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
   showNoInvestmentAccount = false;
-  showAddportfolio = false;
+  showAddPortfolio = false;
   showCddCheckOngoing = false;
   showSuspendedAccount = false;
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
   showEddCheckFailStatus = false;
+  isInvestmentEnabled = false;
+  isInvestmentConfigEnabled = false;
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
 
+  // Will Writing
+  showWillWritingSection = false;
+  wills: any = {};
+
   constructor(
     private router: Router,
+    private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) {
+    public readonly translate: TranslateService,
+    private appService: AppService,
+    private signUpService: SignUpService,
+    private apiService: ApiService,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
+    private selectedPlansService: SelectedPlansService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService
+    ) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isInvestmentConfigEnabled = config.investmentEnabled;
+    });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(100);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
@@ -73,6 +96,21 @@ export class DashboardComponent implements OnInit {
         this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
           this.selectedPlansService.clearData();
         });
+      }
+    });
+
+    this.willWritingApiService.getWill().subscribe((data) => {
+      this.showWillWritingSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.wills.hasWills = true;
+        this.wills.completedWill = data.objectList[0].willProfile.hasWills === 'Y';
+        this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
+        if (!this.willWritingService.getIsWillCreated()) {
+          this.willWritingService.convertWillFormData(data.objectList[0]);
+          this.willWritingService.setIsWillCreated(true);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
+        this.wills.hasWills = false;
       }
     });
   }
@@ -144,68 +182,59 @@ export class DashboardComponent implements OnInit {
 
   setInvestmentDashboardStatus(investmentStatus) {
     switch (investmentStatus) {
-      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED: {
-        this.showSetupAccount = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY: {
         this.showBlockedNationalityStatus = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED: {
-        this.showInvestmentDetailsSaved = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING: {
-        this.showCddCheckOngoing = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
       case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
         this.showInvestmentDetailsSaved = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED: {
-        this.showCddCheckOngoing = true;
-        break;
-      }
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
         this.showCddCheckOngoing = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED: {
         this.showEddCheckFailStatus = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
         this.showCddCheckFail = true;
+        this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED: {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED: {
-        this.showPortffolioPurchased = true;
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
+        this.showPortfolioPurchased = true;
+        this.enableInvestment();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
         this.showSuspendedAccount = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
-        this.showPortffolioPurchased = true;
-        break;
-      }
-      case SIGN_UP_CONFIG.INVESTMENT.START_INVESTING: {
-        this.showStartInvesting = true;
+        this.enableInvestment();
         break;
       }
       default: {
-        this.showStartInvesting = true;
+        if (this.isInvestmentConfigEnabled) {
+          this.showStartInvesting = true;
+          this.enableInvestment();
+        } else {
+          this.showStartInvesting = false;
+        }
         break;
       }
     }
@@ -226,4 +255,51 @@ export class DashboardComponent implements OnInit {
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
+
+  enableInvestment() {
+    this.isInvestmentEnabled = true;
+  }
+
+  // Will-writing
+  redirectTo(page: string) {
+    if (page === 'edit') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    } else {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
+    }
+  }
+  downloadWill() {
+    this.willWritingApiService.downloadWill().subscribe((data: any) => {
+      this.saveAs(data);
+    }, (error) => console.log(error));
+  }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else {
+      this.downloadFile(data);
+    }
+  }
+
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+  }
+
 }

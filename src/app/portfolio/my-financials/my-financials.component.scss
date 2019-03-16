@@ -2,11 +2,6 @@
 @import '../../../mixins';
 
 app-my-financials {
-  .container-fluid {
-    @include allmobiles {
-      padding: 120px 0 80px 0;
-    }
-  }
   .fixed-btn--sm {
     border: 1px solid $fixed-btn-brdr-color;
     color: $teal-color;
@@ -37,7 +32,6 @@ app-my-financials {
   }
 
   .second-section {
-    margin-top: 4px;
     .form-group-with-bg--content {
       .checkbox_instruction {
         font-family: $muli-italic;

@@ -2,10 +2,10 @@
   <div class="bonds_equity_block">
     <div class="bond_progress_container">
       <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index">
-        <div class="flex-row flex-col-8 bar-container">
+        <div class="flex-row flex-col-6 bar-container">
           <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }" class="bar"></span>
         </div>
-        <div class="flex-col-4">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
+        <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
     <div class="bonds_equity" *ngFor="let asset of assets; let i = index">

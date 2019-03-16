@@ -1,9 +1,7 @@
 @import '../../../variables';
+@import '../../../_mixins.scss';
 app-residential-address {
   .residential-address {
-    .container-fluid {
-      padding-top: 110px;
-    }
     .postal-code-control {
       display: flex;
       div.control {
@@ -37,9 +35,6 @@ app-residential-address {
       .dropdown-toggle {
         &:disabled {
           cursor: not-allowed;
-          &:hover {
-            background-color: transparent !important;
-          }
         }
       }
     }
@@ -47,6 +42,9 @@ app-residential-address {
       font-size: 18px;
       font-family: $muli-semi-bold;
       padding-right: 10px;
+      @include max360{
+        padding-right: 8px;
+      }
     }
     .input-control {
       text-align: left;
@@ -55,8 +53,7 @@ app-residential-address {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 106px;
-      margin-bottom: 15px;
+      top: 60px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;

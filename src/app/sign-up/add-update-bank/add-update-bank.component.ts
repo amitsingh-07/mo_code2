@@ -1,21 +1,25 @@
+import { distinctUntilChanged } from 'rxjs/operators';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { IfastErrorModalComponent } from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
+import {
+    IfastErrorModalComponent
+} from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { FooterService } from './../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-add-update-bank',
@@ -44,7 +48,8 @@ export class AddUpdateBankComponent implements OnInit {
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
     });
@@ -56,7 +61,7 @@ export class AddUpdateBankComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(102);
     this.queryParams = this.route.snapshot.queryParams;
     this.addBank = this.queryParams.addBank;
     this.translate.get('COMMON').subscribe(() => {
@@ -120,7 +125,12 @@ export class AddUpdateBankComponent implements OnInit {
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
         // Add Bank API Here
+        this.loaderService.showLoader({
+          title: this.translate.instant('GENERAL_LOADER.TITLE'),
+          desc: this.translate.instant('GENERAL_LOADER.DESC')
+        });
         this.topupAndWithDrawService.saveNewBank(form.getRawValue()).subscribe((response) => {
+          this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             // ERROR SCENARIO
             const errorResponse = response.objectList;
@@ -129,6 +139,10 @@ export class AddUpdateBankComponent implements OnInit {
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
+        },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
         });
       } else {
         // tslint:disable-next-line:max-line-length
@@ -136,8 +150,13 @@ export class AddUpdateBankComponent implements OnInit {
         if (this.isAccountEdited) {
           accountNum = form.value.accountNo;
         }
+        this.loaderService.showLoader({
+          title: this.translate.instant('GENERAL_LOADER.TITLE'),
+          desc: this.translate.instant('GENERAL_LOADER.DESC')
+        });
         this.signUpService.updateBankInfo(form.value.bank,
           form.getRawValue().accountHolderName, accountNum, this.updateId).subscribe((data) => {
+          this.loaderService.hideLoader();
           // tslint:disable-next-line:triple-equals
           if (data.responseMessage.responseCode < 6000) {
             // ERROR SCENARIO
@@ -147,6 +166,10 @@ export class AddUpdateBankComponent implements OnInit {
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
+        },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
         });
         // Edit Bank APi here
       }

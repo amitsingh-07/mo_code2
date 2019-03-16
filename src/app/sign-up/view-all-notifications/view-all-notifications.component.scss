@@ -2,26 +2,20 @@
 @import '../../../mixins';
 .container-fluid {
     @include allmobiles{
-        padding: 0 !important;
+        padding: 60px 0 0 !important;
+        min-height: calc(100vh - 45px);
     }
     background: $white-color;
 }
-.notifications-block{
-    min-height: calc(100vh - 197px);
-    @include allmobiles{
-        min-height: calc(100vh - 108px);
-    }
-}
 .notifications-container {
     &__header {
-        background-color: #f4fafb;
+        background-color: #e3f5f5;
         padding: 10px;
         text-align: center;
         color: #00a7a7;
         font-size: 14px;
         letter-spacing: -0.1px;
         font-family: $muli-regular;
-        margin-top: -2px;
     }
     &__lists {
         padding: 23px 20px;
@@ -49,6 +43,7 @@
         line-height: 1.17;
         letter-spacing: -0.2px;
         color: #00a7a7;
+        padding-right: 55px;
     }
     &__lists--duration {
         font-family: $muli-regular;
@@ -64,6 +59,9 @@
         font-family: $muli-bold;
         text-align: center;
         color: #00a7a7;
-        height: 100vh;
+        height: calc(100vh - 45px);
+        .pt50{
+            padding-top:80px!important;
+        }
     }
 }

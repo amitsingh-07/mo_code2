@@ -63,19 +63,11 @@ export class EditResidentialAddressComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(100);
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    if (this.formValues.isMyInfoEnabled) {
-      if (this.formValues.countryCode) {
-        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
-      }
-      if (this.formValues.mailCountryCode) {
-        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
-      }
-    }
     this.addressForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
     this.observeCountryChange();
@@ -216,14 +208,12 @@ buildForm(): FormGroup {
 
   getDefaultCountry() {
     let defaultCountry;
-    if (this.isUserNationalitySingapore) {
+    if (this.formValues.country) {
+      defaultCountry = this.formValues.country;
+    } else if (this.isUserNationalitySingapore) {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
     } else {
-      if (this.formValues.country) {
-        defaultCountry = this.formValues.country;
-      } else {
-        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
-      }
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
     }
     return defaultCountry;
   }
