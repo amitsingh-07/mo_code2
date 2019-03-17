@@ -1901,15 +1901,19 @@ a.link-white {
     width: 100%;
     z-index: 1028;
   }
-  .mo3-close-icon {
+  .delete-icon {
     background: url("./assets/images/comprehensive/delete-icon.svg");
     background-repeat: no-repeat;
     height: 20px;
     width: 20px;
     display: inline-block;
   }
-  .form-group-single-column .checkbox-button {
-    margin-bottom: 20px;
+  .help-icon {
+    background: url("./assets/images/comprehensive/tool-tip-white.svg");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
   }
   .custom-full-height {
     max-height: 100% !important;

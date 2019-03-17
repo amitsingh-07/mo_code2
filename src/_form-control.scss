@@ -1202,3 +1202,22 @@ input::placeholder {
     color: $app-backgrnd-color;
   }
 }
+
+//Comprehensive form control styles
+.comprehensive {
+  .form-group-single-column {
+    .checkbox-button {
+      .input-label-grey {
+        font-size: 16px;
+        font-family: $muli-semi-bold;
+      }
+    }
+  }
+  .dependant_selection_title {
+    font-size: 16px;
+    font-family: $muli-semi-bold;
+  }
+  .form-group-single-column .checkbox-button {
+    margin-bottom: 20px;
+  }
+}

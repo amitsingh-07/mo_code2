@@ -17,7 +17,7 @@
         <div class="form-group-with-bg mt20" [formGroupName]="i">
         
         <!--Form Header-->
-          <div class="form-group-with-bg--header" [ngClass]="{' border-all8': !educationPlan.get('endowmentPlanShow').value}">
+          <div class="form-group-with-bg--header pb15" [ngClass]="{' border-all8': !educationPlan.get('endowmentPlanShow').value}">
             <div class="flex-row">
               <div class="flex-col-12">
                   <div class="checkbox-button one-label">
@@ -64,7 +64,7 @@
           </div>
       </div>
       </div>
-      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt50 width100"
+      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt30 width100"
       id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'LABEL.CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
   </form>
 

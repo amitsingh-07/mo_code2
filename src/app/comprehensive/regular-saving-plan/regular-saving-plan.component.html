@@ -11,31 +11,27 @@
         <div class="checkbox-button one-label">
           <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=true class="field radio">
           <label for="RSPInpt1">
-            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}
-
-            </span>
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
-          <section [hidden]="!RSPSelection" class="p-0 rspSelectionList" >
+          <section [hidden]="!RSPSelection" class="rspSelectionList" >
             <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
-             
-             
-                  <div class="form-group-with-bg--header">
-                      <div class="flex-row">
-                        <div class="flex-col-11">
+                  <div class="form-group-with-bg--header pr0 pt0">
+                      <div class="rsp-header">
+                        <div class="">
                           <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1"><span *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span *ngIf="i > 0">{{i}}</span></div>
                           </div>
             
-                        <div class="flex-col-1">
-                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"><span class="mo3-close-icon"></span></div>
+                        <div class="">
+                          <div class="total" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"><span class="help-icon mr10"></span><span class="delete-icon"></span></div>
                         </div>
                       </div>
                     </div>  
 
-              <div class="form-group" [formGroupName]="i">
+              <div class="form-group form-group-with-bg--content" [formGroupName]="i">
 
 
-                <div class="flex-row section pb-2">
+                <div class="flex-row">
                   <div class="pl0 col-5">
                     <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
                   </div>
@@ -95,7 +91,7 @@
               </div>
 
             </div>
-            <p (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
+            <p class="add-rsp" (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
           </section>
         </div>
 
