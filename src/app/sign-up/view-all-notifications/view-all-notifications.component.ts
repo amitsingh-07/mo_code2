@@ -48,10 +48,8 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.navbarService.currentClearNotificationEvent.subscribe(() => {
-      if (this.initLoad) {
-        this.initLoad = false;
-      } else {
+    this.navbarService.currentClearNotificationEvent.subscribe((clearAll) => {
+      if (clearAll) {
         this.clearAllNotifications();
       }
     });
