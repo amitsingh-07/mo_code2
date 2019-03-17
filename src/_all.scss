@@ -1915,6 +1915,17 @@ a.link-white {
     max-height: 100% !important;
     padding: 5% !important;
   }
+  .page-title {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    .help-icon {
+      background: url("./assets/images/comprehensive/tool-tip-white.svg");
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+    }
+  }
 }
 
 .grey-text {

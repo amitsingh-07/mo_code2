@@ -2,7 +2,7 @@
     <div class="step-indicator-container" id="moDpdnt2StepIndctr">
         <app-step-indicator [count]="6" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
     </div>
-  <header class="title mt40">{{'CMP.RSP.TITLE'|translate}}</header>
+  <div class="page-title mt40 mb20">{{'CMP.RSP.TITLE'|translate}}<span class="help-icon"></span></div>
 
 
   <div class="col-lg-5 col-md-6 p-0">
@@ -108,7 +108,7 @@
           </label>
 
         </div>
-        <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary mb50 width100"
+        <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary mb50 mt30 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
       </div>
