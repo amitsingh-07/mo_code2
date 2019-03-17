@@ -45,6 +45,7 @@ export interface IChildEndowment {
     endowmentMaturityYears: string;
     dateOfBirth: string;
     age: number;
+    gender: string;
     preferenceSelection: boolean;
 }
 
