@@ -30,12 +30,26 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 
 export class NavbarComponent implements OnInit, AfterViewInit {
   browserError: boolean;
-  showMobileNavbar = false;
-  navbarMode: number;
-  showNavShadow: boolean;
-  showSearchBar = false;
-  modalRef: NgbModalRef;
-  pageTitle: string;
+  navbarMode = 1; // Main Navbar Mode
+  // Navbar Configuration (New)
+  navbarConfig: any;
+
+  showNavBackBtn = false; // Show Navbar1 Backbtn
+  showHeaderBackBtn = true; // Show Navbar2 Backbtn
+  showMenu = true;  // Show Menu Feature
+  showLogin = true; // Show Login Feature
+  showNavShadow = true; // Navbar Show Shadow
+  showSearchBar = false; // Navbar Show Search
+  showNotifications = false; // Show Notifications Feature
+  showHeaderNavbar = false; // Navbar Show on Mobile
+  showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
+  showSettingsIcon = false; // Settings Icon for Mobile (Direct)
+  showNotificationClear = false; // Notification Clear all Button
+  showLabel: any;
+
+  // Navbar Configurations
+  modalRef: NgbModalRef; // Modal Ref
+  pageTitle: string; // Page Title
   notificationMaxLimit: number;
   isNotificationHidden = true;
   subTitle = '';
@@ -48,21 +62,26 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   backListener = '';
   isBackPressSubscribed = false;
 
+  // Mobile Presets
   innerWidth: any;
   mobileThreshold = 567;
   isNavbarCollapsed = true;
+
+  // Notifications Variables
   recentMessages: any;
-  count: any;
-  isNotificationEnabled: boolean;
+  notificationCount: any;
+  notificationLimit: number;
 
   isPromotionEnabled = false;
   isArticleEnabled = false;
   isWillWritingEnabled = false;
   isInvestmentEnabled = false;
-  isComprehensiveEnabled = true;
+  isNotificationEnabled = false;
+  isComprehensiveEnabled = false;
 
+  // Signed In
   isLoggedIn = false;
-  userInfo;
+  userInfo: any;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -117,14 +136,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.hideMenu();
-    this.isNotificationEnabled = this.canActivateNotification();
-    this.notificationMaxLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
+    this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
-    this.navbarService.currentPageTitle.subscribe((title) => this.pageTitle = title);
-    this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
-    this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
+    this.navbarService.currentPageTitle.subscribe((title) => {
+        this.pageTitle = title;
+      });
+    this.navbarService.currentPageSubTitle.subscribe((subTitle) => {
+      this.subTitle = subTitle;
+    });
+    this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
+      this.showHelpIcon = showHelpIcon;
+      });
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
-    this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
+    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
@@ -142,8 +166,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.navbarService.currentNavbarMobileVisibility.subscribe((showMobileNavbar) => {
-      this.showMobileNavbar = showMobileNavbar;
+    this.navbarService.currentNavbarMobileVisibility.subscribe((showHeaderNavbar) => {
+      this.showHeaderNavbar = showHeaderNavbar;
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
@@ -152,7 +176,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       } else {
         this.isNotificationEnabled = false;
       }
-      if (this.isNotificationEnabled) {
+
+      if (this.isNotificationEnabled && this.isLoggedIn) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
@@ -208,7 +233,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   getRecentNotifications() {
     this.signUpService.getRecentNotifications().subscribe((response) => {
-      this.count = response.objectList[0].unreadCount;
+      this.notificationCount = response.objectList[0].unreadCount;
       this.recentMessages = response.objectList[0].notifications[0].messages;
       this.recentMessages.map((message) => {
         message.time = parseInt(message.time, 10);
@@ -224,10 +249,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (!this.isNotificationHidden) { // When Opened
       if (this.recentMessages && this.recentMessages.length) {
         this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
-      }
+        }
     } else { // When closed
       this.getRecentNotifications();
     }
+    // Checking navbar collapsed
+    if (!this.isNavbarCollapsed && innerWidth < this.mobileThreshold) {
+      this.isNavbarCollapsed = true;
+      }
   }
 
   updateNotifications(messages, type) {
@@ -241,7 +270,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    return (this.router.url === DASHBOARD_PATH);
+    return (
+      this.router.url === DASHBOARD_PATH ||
+      this.router.url === EDIT_PROFILE_PATH
+      );
   }
   clearNotifications() {
     this.navbarService.clearNotification();
@@ -251,6 +283,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
   }
+
+  // Logout Method
   logout() {
     this.authService.logout().subscribe((data) => {
       this.clearLoginDetails();
@@ -266,10 +300,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.router.navigate([appConstants.homePageUrl]);
   }
 
+  // Route to Dashboard
   goToDashboard() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
+  // Browser Error Core Methods
   browserCheck() {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/
