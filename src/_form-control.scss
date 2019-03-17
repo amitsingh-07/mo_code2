@@ -1201,10 +1201,6 @@ input::placeholder {
   .form-control {
     color: $app-backgrnd-color;
   }
-}
-
-//Comprehensive form control styles
-.comprehensive {
   .form-group-single-column {
     .checkbox-button {
       .input-label-grey {
@@ -1219,5 +1215,12 @@ input::placeholder {
   }
   .form-group-single-column .checkbox-button {
     margin-bottom: 20px;
+  }
+  .form-group-with-bg--header-label {
+    &.with-tooltip {
+      @extend .flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }
