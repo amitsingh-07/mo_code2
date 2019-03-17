@@ -50,13 +50,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
   pageTitle: string; // Page Title
-  notificationMaxLimit: number;
   isNotificationHidden = true;
   subTitle = '';
   pageSuperTitle = '';
-  helpIcon = false;
-  closeIcon = false;
-  settingsIcon = false;
   filterIcon = false;
   currentUrl: string;
   backListener = '';
@@ -94,6 +90,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
+    this.matrixResolver();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -107,11 +104,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
     });
 
+    // User Information Check Authentication
     this.userInfo = this.signUpService.getUserProfileInfo();
     if (this.authService.isSignedUser()) {
       this.isLoggedIn = true;
     }
-
+    // User Information Logging Out
     this.signUpService.userObservable$.subscribe((data) => {
       if (data) {
         if (data === 'LOGGED_OUT') {
@@ -147,14 +145,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
       });
-    this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
+    this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
+      this.showNotificationClear = showClearNotify;
+    });
     this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
-
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url !== this.currentUrl) {
@@ -171,8 +170,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      if (navbarMode !== 2) {
-        this.isNotificationEnabled = this.canActivateNotification();
+      this.matrixResolver(navbarMode);
+      // Enabling Notifications
+      if (this.navbarConfig.showNotifications) {
+        this.isNotificationEnabled = true; // = this.canActivateNotification();
       } else {
         this.isNotificationEnabled = false;
       }
@@ -187,6 +188,46 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.cdr.detectChanges();
     });
   }
+
+  // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
+  matrixResolver(navbarMode?: any) {
+    const matrix = new NavbarConfig();
+    let nc: INavbarConfig;
+    if (navbarMode ? true : false && (navbarMode !== 'default')) {
+      this.navbarMode = navbarMode;
+      nc = matrix[navbarMode];
+      console.log('NavBar Mode: ' + navbarMode);
+      // Just cos there is no automapper. FK
+      this.processMatrix(nc);
+    } else {
+      this.navbarConfig = matrix['default'];
+    }
+  }
+
+  processMatrix(nc: INavbarConfig) {
+    // Buffer for Matrix
+    Object.keys(nc).forEach((key) => {
+      this.navbarConfig[key] = nc[key];
+    });
+    // Resetting Items to default
+    if (!nc['showLabel']) {
+      this.navbarConfig.showLabel = undefined;
+    }
+    // Implement Matrix
+    const config = this.navbarConfig as INavbarConfig;
+    this.showNavBackBtn = config.showNavBackBtn;
+    this.showHeaderBackBtn = config.showHeaderBackBtn;
+    this.showMenu = config.showMenu;
+    this.showLogin = config.showLogin;
+    this.showNavShadow = config.showNavShadow;
+    this.showSearchBar = config.showSearchBar;
+    this.showNotifications = config.showNotifications;
+    this.showHeaderNavbar = config.showHeaderNavbar;
+    this.showNotificationClear = false;
+    this.showLabel = config.showLabel ? config.showLabel : false;
+  }
+
+  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -203,9 +244,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this._location.back();
     }
   }
-  goToLink(fragment) {
-    console.log(fragment);
-  }
+
   goToHome(in_fragment?: string) {
     if (in_fragment) {
       const extra = { fragment: in_fragment } as NavigationExtras;
@@ -231,6 +270,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNavbarCollapsed = true;
   }
 
+  toggleMenu() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
+      this.isNotificationHidden = true;
+      }
+    }
+
+  // Notification Methods
   getRecentNotifications() {
     this.signUpService.getRecentNotifications().subscribe((response) => {
       this.notificationCount = response.objectList[0].unreadCount;
