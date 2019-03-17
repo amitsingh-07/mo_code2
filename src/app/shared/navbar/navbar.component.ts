@@ -7,7 +7,7 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { DASHBOARD_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import {
   TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
@@ -16,7 +16,10 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
+import { INavbarConfig } from './config/navbar.config.interface';
+import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-navbar',
@@ -69,7 +72,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
-    private appService: AppService) {
+    private appService: AppService,
+    private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
@@ -208,7 +212,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.recentMessages = response.objectList[0].notifications[0].messages;
       this.recentMessages.map((message) => {
         message.time = parseInt(message.time, 10);
-    });
+      });
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -236,6 +243,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   canActivateNotification() {
     return (this.router.url === DASHBOARD_PATH);
   }
+  clearNotifications() {
+    this.navbarService.clearNotification();
+  }
+  // End of Notifications
 
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
