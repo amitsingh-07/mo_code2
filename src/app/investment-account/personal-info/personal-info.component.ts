@@ -82,7 +82,6 @@ export class PersonalInfoComponent implements OnInit {
         day: today.getDate()
       };
     });
-    this.buildForm();
   }
 
   setPageTitle(title: string) {
@@ -93,9 +92,7 @@ export class PersonalInfoComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    setTimeout(() => {
-      this.setOptionList();
-    }, 100);
+    this.setOptionList();
   }
 
   buildForm() {
