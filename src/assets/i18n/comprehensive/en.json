@@ -457,6 +457,7 @@
      "CRITICAL_ILLNESS":"Critical Illness Insurance",
      "DISABILITY_INSURANCE":"Disability Income Insurance",
      "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
+     "LONG_TERM_INSURANCE":"Long-Term Care Insurance",
      "LONG_TERM_INSURANCE_LABEL":"Do you have Eldershield?",
      "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
      "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",

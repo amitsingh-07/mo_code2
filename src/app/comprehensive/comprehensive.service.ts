@@ -300,6 +300,15 @@ export class ComprehensiveService {
         this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
         this.commit();
     }
+    getDownOnLuck() {
+        if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
+            this.comprehensiveFormData.comprehensiveDetails.downOnLuck = {} as HospitalPlan;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.downOnLuck;
+    }
+    setDownOnLuck(downOnLuck: HospitalPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.downOnLuck = downOnLuck;
+    }
     getFormError(form, formName) {
         const controls = form.controls;
         const errors: any = {};

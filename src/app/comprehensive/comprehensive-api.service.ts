@@ -16,7 +16,7 @@ export class ComprehensiveApiService {
         private authService: AuthenticationService,
         private http: BaseService,
         private helperService: HelperService
-    ) {}
+    ) { }
 
     getComprehensiveSummary() {
         const sessionId = this.authService.getSessionId();
@@ -47,8 +47,13 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     saveChildEndowment(payload) {
-        console.log(payload);
         return this.http
-            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload);
+            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    saveDownOnLuck(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveDownOnLuck, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 }

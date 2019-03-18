@@ -62,8 +62,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-   }
-   setPageTitle(title: string) {
+  }
+  setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   onSliderChange(value): void {
@@ -75,7 +75,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.pageId === pageId) {
       }
     });
-    this.hospitalPlanFormValues = this.comprehensiveService .getHospitalPlan();
+    this.hospitalPlanFormValues = this.comprehensiveService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
       hospitalPlanId: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.SliderValue, Validators.required)
@@ -90,15 +90,29 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.ciMultiplierSlider.writeValue(0);
-    this.SliderValue = 0;
-  }
 
+  }
+  validateForm(hospitalPlan) {
+    this.hospitalPlanFormValues = {
+      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalClassDescription: hospitalPlan.hospitalClassDescription,
+      hospitalClassId: hospitalPlan.id
+    } as HospitalPlan;
+    this.isFormValid = true;
+  }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
+    form.value.badMoodMonthlyAmount = this.SliderValue;
+    form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+    console.log(form.value);
+    this.comprehensiveService.setDownOnLuck(form.value);
+    this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
+      any) => {
 
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+    });
+    // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
   }
 }

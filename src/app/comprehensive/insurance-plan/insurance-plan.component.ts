@@ -58,4 +58,7 @@ export class InsurancePlanComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
+  goToNext(form) {
+
+  }
 }
