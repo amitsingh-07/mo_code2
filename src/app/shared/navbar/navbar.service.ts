@@ -90,7 +90,7 @@ export class NavbarService {
 
   /* Header Mode*/
   setNavbarMode(mode: number) {
-    this.navbarMode.next(mode);
+    //this.navbarMode.next(mode);
   }
 
   setProdButtonVisibility(isVisible: boolean) {
@@ -98,13 +98,13 @@ export class NavbarService {
   }
 
   setClearAllNotify(isVisible: boolean) {
-    this.pageClearNotify.next(isVisible);
+    //this.pageClearNotify.next(isVisible);
   }
 
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
-    // this.pageTitle.next(title);
+    //this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);
     } else {
@@ -143,7 +143,7 @@ export class NavbarService {
 
   // Clearing Notification
   clearNotification() {
-    this.clearNotificationEvent.next(true);
+    //this.clearNotificationEvent.next(true);
   }
 
   subscribeBackPress() {
