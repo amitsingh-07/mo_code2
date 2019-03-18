@@ -240,6 +240,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           this.loaderService.hideLoader();
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
         });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
       }
     }
   }

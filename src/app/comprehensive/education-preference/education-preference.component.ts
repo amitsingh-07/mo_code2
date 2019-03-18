@@ -1,3 +1,4 @@
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -32,9 +33,11 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
   educationPreferencePlan: any = [];
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
+    private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -82,7 +85,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   }
   buildPreferenceDetailsForm(value): FormGroup {
     const selectionDetails = [];
-    if ( value.preferenceSelection) {
+    if (value.preferenceSelection) {
       selectionDetails.push(Validators.required);
     }
     return this.formBuilder.group({
@@ -97,11 +100,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   selectLocation(status, i) {
     const relationship = status ? status : '';
     this.EducationPreferenceForm.controls['preference']['controls'][i].controls.location.setValue(relationship);
+    this.EducationPreferenceForm.controls['preference']['controls'][i].markAsDirty();
 
   }
   selectCourse(status, i) {
     const gender = status ? status : '';
     this.EducationPreferenceForm.controls['preference']['controls'][i].controls.educationCourse.setValue(gender);
+    this.EducationPreferenceForm.controls['preference']['controls'][i].markAsDirty();
   }
 
   goToNext(form) {
@@ -111,8 +116,16 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
         this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
       });
       this.comprehensiveService.setChildEndowment(this.endowmentDetail);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
-
+      if (!form.pristine) {
+        this.comprehensiveApiService.saveChildEndowment({
+          hasEndowments: form.value.hasEndowments,
+          endowmentDetailsList: this.endowmentDetail
+        }).subscribe((data) => {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+        });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+      }
     }
 
   }
