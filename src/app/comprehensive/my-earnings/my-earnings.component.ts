@@ -45,9 +45,10 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     annualDividendsType: 'annualDividends',
     otherAnnualIncomeType: 'otherAnnualIncome'
   };
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -127,6 +128,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.earningDetails = form.value;
     this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
     this.comprehensiveService.setMyEarnings(form.value);
+    this.comprehensiveApiService.saveEarnings(form.value).subscribe((data) => {
+      
+    })
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
 
   }

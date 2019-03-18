@@ -16,7 +16,7 @@ export class ComprehensiveApiService {
         private authService: AuthenticationService,
         private http: BaseService,
         private helperService: HelperService
-    ) {}
+    ) { }
 
     getComprehensiveSummary() {
         const sessionId = this.authService.getSessionId();
@@ -51,4 +51,10 @@ export class ComprehensiveApiService {
         return this.http
             .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload);
     }
+
+    saveEarnings(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveEarnings, payload);
+    }
+
 }
