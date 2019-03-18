@@ -91,6 +91,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
+    this.setNavbarConfig(this.navbarMode);
     //this.matrixResolver();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
@@ -195,14 +196,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   setNavbarConfig(navbarMode) {
     this.navbarConfig = NAV_BAR_CONFIG[navbarMode] ? NAV_BAR_CONFIG[navbarMode] : NAV_BAR_CONFIG['default'];
     // Implement Matrix
-    this.showNavBackBtn = this.navbarConfig.showNavBackBtn;
-    this.showHeaderBackBtn = this.navbarConfig.showHeaderBackBtn;
-    this.showMenu = this.navbarConfig.showMenu;
-    this.showLogin = this.navbarConfig.showLogin;
-    this.showNavShadow = this.navbarConfig.showNavShadow;
-    this.showSearchBar = this.navbarConfig.showSearchBar;
-    this.showNotifications = this.navbarConfig.showNotifications;
-    this.showHeaderNavbar = this.navbarConfig.showHeaderNavbar;
+    this.showNavBackBtn = this.navbarConfig.showNavBackBtn ? this.navbarConfig.showNavBackBtn : false;
+    this.showHeaderBackBtn = this.navbarConfig.showHeaderBackBtn ? this.navbarConfig.showHeaderBackBtn : false;
+    this.showMenu = this.navbarConfig.showMenu ? this.navbarConfig.showMenu : false;
+    this.showLogin = this.navbarConfig.showLogin ? this.navbarConfig.showLogin : false;
+    this.showNavShadow = this.navbarConfig.showNavShadow ? this.navbarConfig.showNavShadow : false;
+    this.showSearchBar = this.navbarConfig.showSearchBar ? this.navbarConfig.showSearchBar : false;
+    this.showNotifications = this.navbarConfig.showNotifications ? this.navbarConfig.showNotifications : false;
+    this.showHeaderNavbar = this.navbarConfig.showHeaderNavbar ? this.navbarConfig.showHeaderNavbar : false;
     this.showNotificationClear = false;
     this.showLabel = this.navbarConfig.showLabel ? this.navbarConfig.showLabel : false;
   }
