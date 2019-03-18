@@ -90,7 +90,7 @@ export class NavbarService {
 
   /* Header Mode*/
   setNavbarMode(mode: number) {
-    //this.navbarMode.next(mode);
+    this.navbarMode.next(mode);
   }
 
   setProdButtonVisibility(isVisible: boolean) {
