@@ -1,3 +1,4 @@
+import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
 import { map } from 'rxjs/operators';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -218,7 +219,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       });
     } else {
       if (!form.pristine) {
-        const selectedChildArray = form.value.endowmentDetailsList.filter((item: IChildEndowment) => item.preferenceSelection);
+        const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
+          .filter((item: IChildEndowment) => item.preferenceSelection);
         this.comprehensiveService.setEndowment(form.value.hasEndowments);
         this.comprehensiveService.setChildEndowment(selectedChildArray);
         this.loaderService.showLoader({ title: 'Saving' });
@@ -226,11 +228,19 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: form.value.hasEndowments,
           endowmentDetailsList: selectedChildArray
-        }).subscribe((data: any) => {
+        }).subscribe((data: IServerResponse) => {
+          data.objectList.forEach((item) => {
+            selectedChildArray.forEach((childItem: IChildEndowment) => {
+              if (childItem.dependentId === item.dependentId) {
+                childItem.id = item.id;
+              }
+            });
+          });
+          this.comprehensiveService.setChildEndowment(selectedChildArray);
           this.loaderService.hideLoader();
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
         });
-        // TODO : Remove this line after saveChildEndowment API is working
+      } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
       }
     }

@@ -33,9 +33,9 @@ export class DependantEducationListComponent implements OnInit {
   endowmentSkipEnable = true;
   summaryModalDetails: IMySummaryModal;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-              private comprehensiveApiService: ComprehensiveApiService) {
+    private translate: TranslateService, private formBuilder: FormBuilder,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
+    private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -144,15 +144,15 @@ export class DependantEducationListComponent implements OnInit {
           educationPreferenceList
       }).subscribe((data: any) => {
         console.log(data);
-      });
 
-      const childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
-      this.summaryModalDetails = {
-        setTemplateModal: 1, dependantModelSel: true,
-        contentObj: childrenEducationDependantModal, dependantDetails: dependantArray,
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+        const childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
+        this.summaryModalDetails = {
+          setTemplateModal: 1, dependantModelSel: true,
+          contentObj: childrenEducationDependantModal, dependantDetails: dependantArray,
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+        };
+        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+      });
     }
   }
   showToolTipModal() {
