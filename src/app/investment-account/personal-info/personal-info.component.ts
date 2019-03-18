@@ -59,7 +59,7 @@ export class PersonalInfoComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
-      this.setPageTitle(this.pageTitle);
+      //this.setPageTitle(this.pageTitle);
       const today: Date = new Date();
       config.minDate = {
         year: today.getFullYear() - 100,
@@ -89,6 +89,7 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setPageTitle(this.pageTitle);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
