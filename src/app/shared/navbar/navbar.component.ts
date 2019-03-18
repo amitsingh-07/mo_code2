@@ -17,7 +17,6 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
-import { INavbarConfig } from './config/navbar.config.interface';
 import { NAV_BAR_CONFIG } from './config/presets';
 import { NavbarService } from './navbar.service';
 
@@ -92,7 +91,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     this.setNavbarConfig(this.navbarMode);
-    //this.matrixResolver();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -173,11 +171,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      // this.matrixResolver(navbarMode);
       this.setNavbarConfig(navbarMode);
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
-        this.isNotificationEnabled = true; // = this.canActivateNotification();
+        this.isNotificationEnabled = true;
       } else {
         this.isNotificationEnabled = false;
       }
@@ -193,9 +190,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Navbar Configuration --- DO NOT DELETE IT'S IMPORTANT
   setNavbarConfig(navbarMode) {
     this.navbarConfig = NAV_BAR_CONFIG[navbarMode] ? NAV_BAR_CONFIG[navbarMode] : NAV_BAR_CONFIG['default'];
-    // Implement Matrix
     this.showNavBackBtn = this.navbarConfig.showNavBackBtn ? this.navbarConfig.showNavBackBtn : false;
     this.showHeaderBackBtn = this.navbarConfig.showHeaderBackBtn ? this.navbarConfig.showHeaderBackBtn : false;
     this.showMenu = this.navbarConfig.showMenu ? this.navbarConfig.showMenu : false;
@@ -207,46 +204,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotificationClear = false;
     this.showLabel = this.navbarConfig.showLabel ? this.navbarConfig.showLabel : false;
   }
-
-  // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
-  // matrixResolver(navbarMode?: any) {
-  //   const matrix = new NavbarConfig();
-  //   let nc: INavbarConfig;
-  //   if (navbarMode ? true : false && (navbarMode !== 'default')) {
-  //     this.navbarMode = navbarMode;
-  //     nc = matrix[navbarMode];
-  //     console.log('NavBar Mode: ' + navbarMode);
-  //     // Just cos there is no automapper. FK
-  //     this.processMatrix(nc);
-  //   } else {
-  //     this.navbarConfig = matrix['default'];
-  //   }
-  // }
-
-  // processMatrix(nc: INavbarConfig) {
-  //   // Buffer for Matrix
-  //   Object.keys(nc).forEach((key) => {
-  //     this.navbarConfig[key] = nc[key];
-  //   });
-  //   // Resetting Items to default
-  //   if (!nc['showLabel']) {
-  //     this.navbarConfig.showLabel = undefined;
-  //   }
-  //   // Implement Matrix
-  //   const config = this.navbarConfig as INavbarConfig;
-  //   this.showNavBackBtn = config.showNavBackBtn;
-  //   this.showHeaderBackBtn = config.showHeaderBackBtn;
-  //   this.showMenu = config.showMenu;
-  //   this.showLogin = config.showLogin;
-  //   this.showNavShadow = config.showNavShadow;
-  //   this.showSearchBar = config.showSearchBar;
-  //   this.showNotifications = config.showNotifications;
-  //   this.showHeaderNavbar = config.showHeaderNavbar;
-  //   this.showNotificationClear = false;
-  //   this.showLabel = config.showLabel ? config.showLabel : false;
-  // }
-
-  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -335,12 +292,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNotificationHidden = true;
   }
 
-  canActivateNotification() {
-    return (
-      this.router.url === DASHBOARD_PATH ||
-      this.router.url === EDIT_PROFILE_PATH
-      );
-  }
   clearNotifications() {
     this.navbarService.clearNotification();
   }
