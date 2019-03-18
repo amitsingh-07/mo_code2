@@ -98,7 +98,7 @@ export class NavbarService {
   }
 
   setClearAllNotify(isVisible: boolean) {
-    this.pageClearNotify.next(isVisible);
+    // this.pageClearNotify.next(isVisible);
   }
 
   /* Header Functions*/
@@ -143,7 +143,7 @@ export class NavbarService {
 
   // Clearing Notification
   clearNotification() {
-    this.clearNotificationEvent.next(true);
+    // this.clearNotificationEvent.next(true);
   }
 
   subscribeBackPress() {
