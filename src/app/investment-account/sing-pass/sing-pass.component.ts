@@ -114,7 +114,8 @@ export class SingPassComponent implements OnInit {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
         this.myInfoService.closeMyInfoPopup(false);
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+        //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+        window.location.href = window.location.origin + '/#/invest/account/select-nationality';
       } else {
         this.myInfoService.closeMyInfoPopup(true);
       }
