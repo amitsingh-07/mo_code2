@@ -7,7 +7,7 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import {
   TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
@@ -16,6 +16,7 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
+import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
@@ -89,7 +90,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
-    // this.matrixResolver();
+    this.matrixResolver();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -169,11 +170,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      //this.matrixResolver(navbarMode);
-      this.setNavbarConfig(navbarMode);
+      this.matrixResolver(navbarMode);
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
-        this.isNotificationEnabled = true;
+        this.isNotificationEnabled = true; // = this.canActivateNotification();
       } else {
         this.isNotificationEnabled = false;
       }
@@ -189,58 +189,43 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  setNavbarConfig(navbarMode) {
-    this.navbarConfig =  NavbarConfig[navbarMode];
-     // Implement Matrix
-     this.showNavBackBtn = this.navbarConfig.showNavBackBtn;
-     this.showHeaderBackBtn = this.navbarConfig.showHeaderBackBtn;
-     this.showMenu = this.navbarConfig.showMenu;
-     this.showLogin = this.navbarConfig.showLogin;
-     this.showNavShadow = this.navbarConfig.showNavShadow;
-     this.showSearchBar = this.navbarConfig.showSearchBar;
-     this.showNotifications = this.navbarConfig.showNotifications;
-     this.showHeaderNavbar = this.navbarConfig.showHeaderNavbar;
-     this.showNotificationClear = false;
-     this.showLabel = this.navbarConfig.showLabel ? this.navbarConfig.showLabel : false;
+  // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
+  matrixResolver(navbarMode?: any) {
+    const matrix = new NavbarConfig();
+    let nc: INavbarConfig;
+    if (navbarMode ? true : false && (navbarMode !== 'default')) {
+      this.navbarMode = navbarMode;
+      nc = matrix[navbarMode];
+      console.log('NavBar Mode: ' + navbarMode);
+      // Just cos there is no automapper. FK
+      this.processMatrix(nc);
+    } else {
+      this.navbarConfig = matrix['default'];
+    }
   }
 
-  // // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
-  // matrixResolver(navbarMode?: any) {
-  //   const matrix = new NavbarConfig();
-  //   let nc: INavbarConfig;
-  //   if (navbarMode ? true : false && (navbarMode !== 'default')) {
-  //     this.navbarMode = navbarMode;
-  //     nc = matrix[navbarMode];
-  //     // console.log('NavBar Mode: ' + navbarMode);
-  //     // Just cos there is no automapper. FK
-  //     this.processMatrix(nc);
-  //   } else {
-  //     this.navbarConfig = matrix['default'];
-  //   }
-  // }
-
-  // processMatrix(nc: INavbarConfig) {
-  //   // Buffer for Matrix
-  //   Object.keys(nc).forEach((key) => {
-  //     this.navbarConfig[key] = nc[key];
-  //   });
-  //   // Resetting Items to default
-  //   if (!nc['showLabel']) {
-  //     this.navbarConfig.showLabel = undefined;
-  //   }
-  //   // Implement Matrix
-  //   const config = this.navbarConfig as INavbarConfig;
-  //   this.showNavBackBtn = config.showNavBackBtn;
-  //   this.showHeaderBackBtn = config.showHeaderBackBtn;
-  //   this.showMenu = config.showMenu;
-  //   this.showLogin = config.showLogin;
-  //   this.showNavShadow = config.showNavShadow;
-  //   this.showSearchBar = config.showSearchBar;
-  //   this.showNotifications = config.showNotifications;
-  //   this.showHeaderNavbar = config.showHeaderNavbar;
-  //   this.showNotificationClear = false;
-  //   this.showLabel = config.showLabel ? config.showLabel : false;
-  // }
+  processMatrix(nc: INavbarConfig) {
+    // Buffer for Matrix
+    Object.keys(nc).forEach((key) => {
+      this.navbarConfig[key] = nc[key];
+    });
+    // Resetting Items to default
+    if (!nc['showLabel']) {
+      this.navbarConfig.showLabel = undefined;
+    }
+    // Implement Matrix
+    const config = this.navbarConfig as INavbarConfig;
+    this.showNavBackBtn = config.showNavBackBtn;
+    this.showHeaderBackBtn = config.showHeaderBackBtn;
+    this.showMenu = config.showMenu;
+    this.showLogin = config.showLogin;
+    this.showNavShadow = config.showNavShadow;
+    this.showSearchBar = config.showSearchBar;
+    this.showNotifications = config.showNotifications;
+    this.showHeaderNavbar = config.showHeaderNavbar;
+    this.showNotificationClear = false;
+    this.showLabel = config.showLabel ? config.showLabel : false;
+  }
 
   // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
@@ -331,12 +316,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNotificationHidden = true;
   }
 
-  // canActivateNotification() {
-  //   return (
-  //     this.router.url === DASHBOARD_PATH ||
-  //     this.router.url === EDIT_PROFILE_PATH
-  //     );
-  // }
+  canActivateNotification() {
+    return (
+      this.router.url === DASHBOARD_PATH ||
+      this.router.url === EDIT_PROFILE_PATH
+      );
+  }
   clearNotifications() {
     this.navbarService.clearNotification();
   }

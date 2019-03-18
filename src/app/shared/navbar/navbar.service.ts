@@ -33,7 +33,7 @@ export class NavbarService {
   private pageClearNotify = new BehaviorSubject(false);
 
   private mobileModal = new BehaviorSubject('');
-  private clearNotificationEvent = new BehaviorSubject('');
+  private clearNotificationEvent = new BehaviorSubject(false);
   private closeProdInfo = new BehaviorSubject('');
   private pageSettingsIcon = new BehaviorSubject(true);
   private pageFilterIcon = new BehaviorSubject(true);
@@ -143,7 +143,7 @@ export class NavbarService {
 
   // Clearing Notification
   clearNotification() {
-    this.clearNotificationEvent.next('');
+    //this.clearNotificationEvent.next(true);
   }
 
   subscribeBackPress() {

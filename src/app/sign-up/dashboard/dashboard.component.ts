@@ -99,20 +99,20 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // this.willWritingApiService.getWill().subscribe((data) => {
-    //   this.showWillWritingSection = true;
-    //   if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-    //     this.wills.hasWills = true;
-    //     this.wills.completedWill = data.objectList[0].willProfile.hasWills === 'Y';
-    //     this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
-    //     if (!this.willWritingService.getIsWillCreated()) {
-    //       this.willWritingService.convertWillFormData(data.objectList[0]);
-    //       this.willWritingService.setIsWillCreated(true);
-    //     }
-    //   } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
-    //     this.wills.hasWills = false;
-    //   }
-    // });
+    this.willWritingApiService.getWill().subscribe((data) => {
+      this.showWillWritingSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.wills.hasWills = true;
+        this.wills.completedWill = data.objectList[0].willProfile.hasWills === 'Y';
+        this.wills.lastUpdated = data.objectList[0].willProfile.profileLastUpdatedDate;
+        if (!this.willWritingService.getIsWillCreated()) {
+          this.willWritingService.convertWillFormData(data.objectList[0]);
+          this.willWritingService.setIsWillCreated(true);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
+        this.wills.hasWills = false;
+      }
+    });
   }
 
   loadOptionListCollection() {
