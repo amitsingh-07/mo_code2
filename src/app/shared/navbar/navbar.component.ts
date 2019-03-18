@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
+  closeIcon = false;
   showLabel: any;
 
   // Navbar Configurations
@@ -145,6 +146,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
       });
+    this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });

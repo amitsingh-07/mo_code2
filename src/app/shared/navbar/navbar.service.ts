@@ -143,7 +143,7 @@ export class NavbarService {
 
   // Clearing Notification
   clearNotification() {
-    //this.clearNotificationEvent.next(true);
+    this.clearNotificationEvent.next(true);
   }
 
   subscribeBackPress() {
