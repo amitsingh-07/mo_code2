@@ -18,7 +18,7 @@ export class ProgressTrackerService {
     private changeListener = new Subject();
     private modelRef: NgbModalRef;
 
-    constructor(private modal: NgbModal, private router: Router) {}
+    constructor(private modal: NgbModal, private router: Router) { }
 
     public show() {
         this.refresh();
@@ -77,7 +77,7 @@ export class ProgressTrackerService {
     }
 
     navigate(path: string): void {
-        this.router.navigate([ path ]);
+        this.router.navigate([path]);
     }
 }
 

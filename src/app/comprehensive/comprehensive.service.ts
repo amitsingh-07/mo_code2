@@ -627,8 +627,8 @@ export class ComprehensiveService {
                 {
                     path: 'GetStartedComponent',
                     title: 'Your Earnings',
-                    value: '$38,000',
-                    completed: true
+                    value: '',
+                    completed: false
                 },
                 {
                     path: 'GetStartedComponent1',
