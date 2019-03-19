@@ -30,8 +30,9 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span *ngIf="!hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
-                        <span *ngIf="hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</span>
+                        <span *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span *ngIf="insurance.hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{
+                          insurance.lastTransactionDate| date: 'dd MMM yyyy'}}</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
