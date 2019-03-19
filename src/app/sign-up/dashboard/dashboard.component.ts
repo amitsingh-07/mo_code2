@@ -54,6 +54,10 @@ export class DashboardComponent implements OnInit {
   showWillWritingSection = false;
   wills: any = {};
 
+  // Insurance
+  showInsuranceSection = false;
+  hasInsurance: boolean;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -99,6 +103,7 @@ export class DashboardComponent implements OnInit {
       }
     });
 
+     // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
@@ -113,6 +118,9 @@ export class DashboardComponent implements OnInit {
         this.wills.hasWills = false;
       }
     });
+
+    // Insurance
+    
   }
 
   loadOptionListCollection() {

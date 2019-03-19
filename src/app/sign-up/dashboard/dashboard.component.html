@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="widgets">
-            <div class="widget insurance">
+            <div class="widget insurance" *ngIf="showInsuranceSection">
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>
@@ -30,7 +30,8 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span>{{'DASHBOARD.INSURANCE.DESC' | translate}}</span>
+                        <span *ngIf="!hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span *ngIf="hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{ wills.lastUpdated| date: 'dd MMM yyyy'}}</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
