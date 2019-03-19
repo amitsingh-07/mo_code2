@@ -130,7 +130,7 @@ export class ComprehensiveService {
      * @returns
      * @memberof ComprehensiveService
      */
-    getComprehensiveSummary() {
+    getComprehensiveSummary(): IComprehensiveDetails {
         if (!this.comprehensiveFormData.comprehensiveDetails) {
             this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
@@ -627,8 +627,8 @@ export class ComprehensiveService {
                 {
                     path: 'GetStartedComponent',
                     title: 'Your Earnings',
-                    value: '$38,000',
-                    completed: true
+                    value: '',
+                    completed: false
                 },
                 {
                     path: 'GetStartedComponent1',

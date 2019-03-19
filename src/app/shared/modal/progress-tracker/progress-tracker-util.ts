@@ -1,5 +1,5 @@
 export class ProgressTrackerUtil {
-    private static pathPattern = /../;
+    private static pathPattern = /\../;
 
     static trimPath(path): string {
         return path.replace(this.pathPattern, '');
