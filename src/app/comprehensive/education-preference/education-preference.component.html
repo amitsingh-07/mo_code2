@@ -5,7 +5,7 @@
   <header class="dependant-title mt40">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</header>
   <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
       <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm['controls'].preference['controls']; let i = index;">
-      <div [hidden]="!preferencePlan.get('educationPreference').value"  class="form-group-with-bg mt20" [formGroupName]="i">
+      <div   class="form-group-with-bg mt20" [formGroupName]="i">
         
         <!--Form Header-->
         <div class="form-group-with-bg--header" >
@@ -65,6 +65,6 @@
       </div>
       </div>
         <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100  mt30 mb50"
-        >{{ 'LABEL.CONTINUE' | translate}}</button>
+        >{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}</button>
   </form>
 </div>
