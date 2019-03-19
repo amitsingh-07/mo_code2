@@ -94,7 +94,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       captcha: ['', [Validators.required]]
-    }, { validator: this.validateMatchPassword('password', 'confirmPassword') });
+    }, { validator: this.validateMatchPassword() });
   }
 
   /**
@@ -151,14 +151,29 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.signUpApiService.createAccount(this.createAccountForm.value.captcha).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        //sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      } else if (data.responseMessage.responseCode === 6000) {
+        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+          this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'));
+      } else if (data.responseMessage.responseCode === 6000) {
+        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+          this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'));
+      } else if (data.responseMessage.responseCode === 6000) {
+        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+          this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'));
       } else {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-        this.refreshCaptcha();
+        this.showErrorMessage('', data.responseMessage.responseDescription);
       }
     });
+  }
+
+  showErrorMessage(title: string, message: string) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    if (title) {
+      ref.componentInstance.errorTitle = title;
+    }
+    ref.componentInstance.errorMessage = message;
+    this.refreshCaptcha();
   }
 
   onlyNumber(el) {
@@ -197,10 +212,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   /**
    * validate confirm password.
-   * @param password - password field.
-   * @param confirmPassword - confirm password field.
    */
-  private validateMatchPassword(password: string, confirmPassword: string) {
+  private validateMatchPassword() {
     return (group: FormGroup) => {
       const passwordInput = group.controls['password'];
       const passwordConfirmationInput = group.controls['confirmPassword'];
