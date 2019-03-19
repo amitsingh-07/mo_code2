@@ -93,8 +93,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       age: [value.age],
       location: [value.location, selectionDetails],
       educationCourse: [value.educationCourse, selectionDetails],
-      educationPreference: [value.preferenceSelection],
-
+      educationPreference: [value.preferenceSelection]
     });
   }
   selectLocation(status, i) {
