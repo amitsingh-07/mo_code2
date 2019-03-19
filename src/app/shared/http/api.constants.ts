@@ -6,6 +6,7 @@ const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
+const FINANCE_API_BASE_URL = 'finance/finhealth/api/';
 
 export let apiConstants = {
     endpoint: {
@@ -105,7 +106,7 @@ export let apiConstants = {
             getEndowmentPlan: ACCOUNT_API_BASE_URL + 'customer/comprehensive/getChildEndowmentPlans',
             saveEndowmentPlan: ACCOUNT_API_BASE_URL + 'customer/comprehensive/saveChildEndowmentPlans',
             getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
-            saveEarnings: COMPREHENSIVE_API_BASE_URL + 'saveEarnings',
+            saveEarnings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: COMPREHENSIVE_API_BASE_URL + 'saveExpenses',
             saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck'
