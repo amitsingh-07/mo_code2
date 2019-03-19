@@ -129,7 +129,8 @@
       "STEP_4_DESC": "Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
       "STEP_5_TITLE": "Congratulations!",
       "STEP_5_DESC": "Report Generation",
-      "STEP_5_DESC2": "Your data is submitted."
+      "STEP_5_DESC2": "Your data is submitted.",
+      "STEP_5_TITLE_NAV":"Result"
 
     },
     "MY_PROFILE": {
@@ -463,6 +464,18 @@
      "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",
      "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
      "LONG_TERM_INSURANCE_VALUE_4":"I am not sure"
+    },
+    "RESULT":{
+      "READY":"Your report is ready soon!",
+      "DESC":"We are analysing your needs using proprietary models now…",
+      "ABOUT":"Your report will be ready in a few mins. Once the report is ready, we will inform you via your email ",
+      "STEP_TITLE":"What’s Next?",
+      "STEP_1":"Keep a lookout of your mail box! You will be notified once your report is ready!",
+      "STEP_2":"Choose if you want MoneyOwl advisor to explain your report",
+      "STEP_3":"Meet your advisor to customise and implement  financial plan.",
+      "DASHBOARD":"Dashboard"
+
     }
   }
 }
+

@@ -30,7 +30,9 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -73,6 +75,8 @@ export function createTranslateLoader(http: HttpClient) {
     BadMoodFundComponent,
     RetirementPlanComponent,
     InsurancePlanComponent,
+    ResultComponent,
+    EnquiryComponent,
     ],
     providers: [NgbDateCustomParserFormatter]
 
