@@ -117,7 +117,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     return {
-      id: childEndowment.id,
+      id: 0, // #childEndowment.id,
       dependentId: dependant.id,
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
@@ -230,11 +230,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           endowmentDetailsList: selectedChildArray
         }).subscribe((data: IServerResponse) => {
           data.objectList.forEach((item) => {
+            /*
             selectedChildArray.forEach((childItem: IChildEndowment) => {
               if (childItem.dependentId === item.dependentId) {
                 childItem.id = item.id;
               }
             });
+            */
           });
           this.comprehensiveService.setChildEndowment(selectedChildArray);
           this.loaderService.hideLoader();

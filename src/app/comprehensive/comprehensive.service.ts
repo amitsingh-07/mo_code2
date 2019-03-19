@@ -130,7 +130,7 @@ export class ComprehensiveService {
      * @returns
      * @memberof ComprehensiveService
      */
-    getComprehensiveSummary() {
+    getComprehensiveSummary(): IComprehensiveDetails {
         if (!this.comprehensiveFormData.comprehensiveDetails) {
             this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;

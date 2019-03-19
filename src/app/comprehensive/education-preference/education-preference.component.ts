@@ -118,7 +118,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setChildEndowment(this.endowmentDetail);
       if (!form.pristine) {
         this.comprehensiveApiService.saveChildEndowment({
-          hasEndowments: form.value.hasEndowments,
+          hasEndowments: this.comprehensiveService.hasEndowment(),
           endowmentDetailsList: this.endowmentDetail
         }).subscribe((data) => {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
