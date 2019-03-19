@@ -1,10 +1,10 @@
-import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
-import { map } from 'rxjs/operators';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
 
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -77,7 +77,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.hasEndowments = this.comprehensiveService.hasEndowment();
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-
     console.log(this.childEndowmentArray);
     if (this.childEndowmentArray.length > 0) {
       this.buildChildEndowmentFormArray();
@@ -145,10 +144,12 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildChildEndowmentFormArray() {
+
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       for (const childEndowment of this.childEndowmentArray) {
+        console.log(dependant);
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
           if (childEndowment.dependentId === dependant.id) {
             const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
@@ -163,11 +164,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       }
 
       // Filter the array to avoid duplicates
+      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
       if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
         const thisNewEndowment = this.getNewEndowmentItem(dependant);
         tempChildEndowmentArray.push(thisNewEndowment);
         this.childEndowmentFormGroupArray.push(this.formBuilder.group(thisNewEndowment));
       }
+    }
     });
 
     this.childEndowmentArray = tempChildEndowmentArray;
