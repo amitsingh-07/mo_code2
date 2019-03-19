@@ -6,7 +6,7 @@
   <div class="dependant-title mt40">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_EARNINGS.ABOUT'|translate}}</div> 
   <div class = 'income-bucket-panel'>     
-    <div class="income-bucket-panel__img {{ (totalAnnualIncomeBucket > 0)?'filledEarn':'emptyEarn' }}"></div> 
+    <div class="income-bucket-panel__img {{ bucketImage }}"></div> 
     <div class="income-bucket-panel__desc">{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</div> 
     <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
   </div>

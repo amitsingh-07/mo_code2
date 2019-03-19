@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ɵConsole } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -37,6 +37,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   spendTitle: string;
   menuClickSubscription: Subscription;
   pageId: string;
+  bucketImage: string;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
     constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
                 private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -189,6 +190,12 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         otherLoanPayment: spendingValues.otherLoanPayment };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-
+    if (this.totalSpending == 0) {
+      this.bucketImage = 'filledSpend';
+    } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
+      this.bucketImage = 'middleSpend';
+    } else {
+      this.bucketImage = 'emptySpend';
+    }
   }
 }

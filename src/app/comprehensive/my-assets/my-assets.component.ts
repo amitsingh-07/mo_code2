@@ -35,6 +35,7 @@ export class MyAssetsComponent implements OnInit {
   menuClickSubscription: Subscription;
   pageId: string;
   submitted: boolean;
+  bucketImage: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
@@ -198,6 +199,28 @@ export class MyAssetsComponent implements OnInit {
       assetFormObject['otherInvestment' + index] = investDetails.others;
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
+    const bucketParams = ['cashInBank', 'singaporeSavingsBond', 'CPFOA', 'CPFSA', 'CPFMA', 'yourHome', 'otherInvestment0', 'otherAssets'];
+    //this.setBucketImage(bucketParams, assetFormObject);    
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject);
   }
-
+  setBucketImage(bucketParams: any, formValues: any) {
+    const bucketFlag = [];
+    for (const i in bucketParams) {
+      if (formValues[bucketParams[i]] > 0) {
+        bucketFlag.push(true);
+      } else {
+        bucketFlag.push(false);
+      }
+    }
+    if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
+      console.log('Filled');
+      this.bucketImage = 'filledBucket';
+    } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
+      console.log('Middle');
+      this.bucketImage = 'middleBucket';
+    } else {
+      console.log('Empty');
+      this.bucketImage = 'emptyBucket';
+    }
+  }
 }

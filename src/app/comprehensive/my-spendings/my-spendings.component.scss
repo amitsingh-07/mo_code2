@@ -53,6 +53,18 @@ color: $dark-teal-color;
     width: 243px;
     height: 150px;
 }
+.emptySpend{
+    background: url("../../../assets/images/comprehensive/filled-expenses.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.middleSpend{
+    background: url("../../../assets/images/comprehensive/filled-expenses.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
 .comprehensive {
     .dependant-title {
         font-size: 18px;      

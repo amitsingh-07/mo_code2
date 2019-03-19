@@ -58,7 +58,6 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
       this.employmentTypeList = this.translate.instant('CMP.MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
       this.setPageTitle(this.pageTitle);
-      this.bucketImage = this.translate.instant('CMP.MY_EARNINGS.EMPTY_BUCKET_IMAGE');
     });
     this.earningDetails = this.comprehensiveService.getMyEarnings();
     if (this.earningDetails.employmentType) {
@@ -162,10 +161,29 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   onTotalAnnualIncomeBucket() {
     const inputParams = ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'];
     this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
-    if (this.totalAnnualIncomeBucket > 0) {
-      this.bucketImage = this.translate.instant('CMP.MY_EARNINGS.FILLED_BUCKET_IMAGE');
+    const bucketParams = ['monthlySalary', 'annualBonus'];
+    const earningInput = this.myEarningsForm.value;
+    //this.setBucketImage(bucketParams, earningInput);
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput);
+  }
+  setBucketImage(bucketParams: any, formValues: any) {
+    const bucketFlag = [];
+    for (const i in bucketParams) {
+      if (formValues[bucketParams[i]] > 0) {
+        bucketFlag.push(true);
+      } else {
+        bucketFlag.push(false);
+      }
+    }
+    if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
+      console.log('Filled');
+      this.bucketImage = 'filledBucket';
+    } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
+      console.log('Middle');
+      this.bucketImage = 'middleBucket';
     } else {
-      this.bucketImage = this.translate.instant('CMP.MY_EARNINGS.EMPTY_BUCKET_IMAGE');
+      console.log('Empty');
+      this.bucketImage = 'emptyBucket';
     }
   }
 }

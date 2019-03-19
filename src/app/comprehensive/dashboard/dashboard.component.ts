@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   advisorStatus: boolean;
   reportDate: any;
   currentStep = 1;
+  stepDetails = {hasDependents: 1, hasEndowments: 2};
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService,
               private configService: ConfigService, private comprehensiveService: ComprehensiveService,
               private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe) {
@@ -41,8 +42,10 @@ export class DashboardComponent implements OnInit {
     // tslint:disable-next-line: no-commented-code
     if (!this.userDetails || !this.userDetails.firstName) {
       this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+        if (data) {
           this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
           this.userDetails = this.comprehensiveService.getMyProfile();
+        }
       });
     } else {
       this.userName = this.userDetails.firstName;
@@ -53,7 +56,7 @@ export class DashboardComponent implements OnInit {
      * 2 - Completed & View Report with advisor
      * 3 - Not Completed
      */
-    this.comprehensivePlanning = 2;
+    this.comprehensivePlanning = 3;
     this.reportStatus = 1;
     this.advisorStatus = true;
     const reportDateAPI = new Date();
@@ -73,6 +76,12 @@ export class DashboardComponent implements OnInit {
           this.comprehensivePlanning = 3;
         }
     }
+    Object.keys(this.stepDetails).forEach((key) => {
+      console.log(key + ' - ' + this.stepDetails[key]);
+      this.currentStep = this.stepDetails[key];
+    });
+    console.log(this.currentStep);
+    this.getCurrentComprehensiveStep();
   }
 
   goToEditProfile() {
@@ -84,5 +93,16 @@ export class DashboardComponent implements OnInit {
   }
   goToEditComprehensivePlan() {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+  }
+  getCurrentComprehensiveStep() {
+    if (this.getComprehensiveSummaryEnquiry) {
+    for ( const i in this.stepDetails ) {
+      if (this.getComprehensiveSummaryEnquiry[i] !== true) {
+        break;
+      } else {
+        this.currentStep = this.stepDetails[i];
+      }
+    }
+    }
   }
 }

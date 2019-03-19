@@ -5,7 +5,7 @@
   <div class="dependant-title mt40">{{'CMP.MY_SPENDINGS.HEADER'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_SPENDINGS.ABOUT'|translate}}</div>
   <div class = 'income-bucket-panel'>     
-    <div class="income-bucket-panel__img {{ (totalSpending > 0)?'filledSpend':'emptySpend' }}"></div> 
+    <div class="income-bucket-panel__img {{ bucketImage }}"></div> 
     <div class="income-bucket-panel__content">{{'CMP.MY_SPENDINGS.SPEND_TITLE1'|translate}} <span class='income-bucket-panel__value'>{{ totalSpending | currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_SPENDINGS.SPEND_TITLE2'|translate}} </div> 
     <div class="income-bucket-panel__desc"> {{'CMP.MY_SPENDINGS.SPEND_DESC1'|translate}} {{ calculatedSpending | currency:'USD':'symbol-narrow':'1.0-2' }} {{'CMP.MY_SPENDINGS.SPEND_DESC2'|translate}}</div>
   </div>

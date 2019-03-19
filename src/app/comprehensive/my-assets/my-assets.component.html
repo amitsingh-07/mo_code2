@@ -5,7 +5,7 @@
   <div class="dependant-title mt40">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
-    <div class="income-bucket-panel__img filledAssets"></div>
+    <div class="income-bucket-panel__img {{ bucketImage }}"></div>
     <div class="income-bucket-panel__content">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
     <div class="income-bucket-panel__desc"><span class='income-bucket-panel__value'>{{ totalAssets |
         currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_ASSETS.TOTAL'|translate}} </div>
@@ -76,7 +76,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #CPFOA formControlName="CPFOA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFOA formControlName="CPFOA"
                 value="0">
             </div>
           </div>
@@ -90,7 +90,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #CPFSA formControlName="CPFSA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFSA formControlName="CPFSA"
                 value="0">
             </div>
           </div>
@@ -104,7 +104,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #CPFMA formControlName="CPFMA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFMA formControlName="CPFMA"
                 value="0">
             </div>
           </div>
@@ -175,7 +175,7 @@
             <div class="flex-col-6">
               <div class="form-control"  [ngClass]="{'inline-error': submitted && addAssetsValid.investmentProperties.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="4" #investmentProperties
+                <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentProperties
                   formControlName="investmentProperties" value="0">
               </div>
             </div>
@@ -247,7 +247,7 @@
               <div class="flex-col-6">
                 <div class="form-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].others.invalid}">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #others formControlName="others"
+                  <input type="text" class="input-control" appCurrencyInput maxLength="8" #others formControlName="others"
                     value="0">
                 </div>
               </div>
@@ -293,7 +293,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherAssets formControlName="otherAssets"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssets formControlName="otherAssets"
                 value="0">
             </div>
           </div>
