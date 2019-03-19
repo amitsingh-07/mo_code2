@@ -5,9 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
-import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
@@ -16,6 +15,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
+import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 
 @Component({
@@ -89,10 +89,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
+      password: ['', [ValidatePassword]],
+      confirmPassword: [''],
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       captcha: ['', [Validators.required]]
-    });
+    }, { validator: this.validateMatchPassword('password', 'confirmPassword') });
   }
 
   /**
@@ -179,5 +181,34 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   refreshCaptcha() {
     this.createAccountForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
+  }
+
+  /**
+   * show / hide password field.
+   * @param el - selected element.
+   */
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
+
+  /**
+   * validate confirm password.
+   * @param password - password field.
+   * @param confirmPassword - confirm password field.
+   */
+  private validateMatchPassword(password: string, confirmPassword: string) {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls['password'];
+      const passwordConfirmationInput = group.controls['confirmPassword'];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
   }
 }
