@@ -12,6 +12,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveService } from './../comprehensive.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -28,6 +29,7 @@ export class DependantEducationListComponent implements OnInit {
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
   summaryModalDetails: IMySummaryModal;
+  submitted: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
@@ -82,13 +84,13 @@ export class DependantEducationListComponent implements OnInit {
   buildEndowmentDetailsForm(value): FormGroup {
 
     return this.formBuilder.group({
-      name: [value.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      age: [value.age, [Validators.required]],
-      endowmentMaturityAmount: [value.endowmentMaturityAmount, [Validators.required]],
-      endowmentMaturityYears: [value.endowmentMaturityYears, [Validators.required, Validators.pattern('^(19|20)\d{2}$')]],
+      name: [value.name, []],
+      age: [value.age, []],
+      endowmentMaturityAmount: [value.endowmentMaturityAmount, []],
+      endowmentMaturityYears: [value.endowmentMaturityYears, []],
       endowmentPlanShow: [value.endowmentMaturityAmount === ''
-        ? false : true, [Validators.required]],
-      gender: [value.gender, [Validators.required]]
+        ? false : true, []],
+      gender: [value.gender, []]
     });
 
   }
@@ -112,45 +114,54 @@ export class DependantEducationListComponent implements OnInit {
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     } else {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
-
-        if (preferenceDetails.endowmentPlanShow === true) {
+        const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
+        if (preferenceDetails.endowmentPlanShow) {
+          otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
+          otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
+          otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
+          otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
           this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
           this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
           dependantArray.push({
             userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
           });
         } else {
+          otherPropertyControl['endowmentMaturityAmount'].setValidators([]);
+          otherPropertyControl['endowmentMaturityYears'].setValidators([]);
+          otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
+          otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
           this.endowmentArrayPlan[index].endowmentMaturityAmount = '';
           this.endowmentArrayPlan[index].endowmentMaturityYears = '';
         }
-
       });
-      this.comprehensiveService.setChildEndowment(this.endowmentDetail);
-      const educationPreferenceList = [];
-      this.endowmentDetail.forEach((details: any) => {
-        educationPreferenceList.push({
-          dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
-          endowmentMaturityAmount: details.endowmentMaturityAmount, endowmentMaturityYears: details.endowmentMaturityYears,
-          enquiryId: details.enquiryId
-        }
-        );
-      });
-      console.log(educationPreferenceList);
+      if (this.validateDependantList(form)) {
+        this.comprehensiveService.setChildEndowment(this.endowmentDetail);
+        const educationPreferenceList = [];
+        this.endowmentDetail.forEach((details: any) => {
+          educationPreferenceList.push({
+            dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
+            endowmentMaturityAmount: details.endowmentMaturityAmount, endowmentMaturityYears: details.endowmentMaturityYears,
+            enquiryId: details.enquiryId
+          }
+          );
+        });
+        console.log(educationPreferenceList);
 
-      this.comprehensiveApiService.saveChildEndowment({
-        hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
-          educationPreferenceList
-      }).subscribe((data: any) => {
-        console.log(data);
+        this.comprehensiveApiService.saveChildEndowment({
+          hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
+            educationPreferenceList
+        }).subscribe((data: any) => {
+          console.log(data);
 
-        const childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
-        this.summaryModalDetails = {
-          setTemplateModal: 1, dependantModelSel: true,
-          contentObj: childrenEducationDependantModal, dependantDetails: dependantArray,
-          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
-        };
-        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-      });
+          const childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
+          this.summaryModalDetails = {
+            setTemplateModal: 1, dependantModelSel: true,
+            contentObj: childrenEducationDependantModal, dependantDetails: dependantArray,
+            nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+          };
+          this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+        });
+      }
     }
   }
   showToolTipModal() {
@@ -177,5 +188,31 @@ export class DependantEducationListComponent implements OnInit {
       });
       this.endowmentSkipEnable = endowmentSkipEnableFlag;
     });
+  }
+  validateDependantList(form: FormGroup) {
+    this.submitted = true;
+    if (!form.valid) {
+      const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_DEPENDANT_EDUCATION,
+        this.endowmentArrayPlan);
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  payOffYearValid(payOffYearVal) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    let validCheck: boolean;
+    if (payOffYearVal.value === null || payOffYearVal.value === '') {
+      validCheck = true;
+    } else {
+      validCheck = ( payOffYearVal.value >= currentYear ) ? true : false;
+    }
+    if (validCheck) {
+        return null;
+    }
+    return { pattern: true };
   }
 }
