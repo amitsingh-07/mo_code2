@@ -33,6 +33,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   educationPreference = true;
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
+  endowmentDetail: IChildEndowment[];
+  dependantsArray: IChildEndowment[];
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -76,13 +78,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
     this.comprehensiveService.updateComprehensiveSummary();
     this.hasEndowments = this.comprehensiveService.hasEndowment();
-    this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
-    this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
-    this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-    console.log(this.childEndowmentArray);
-    if (this.childEndowmentArray.length > 0) {
-      this.buildChildEndowmentFormArray();
-      this.buildEducationSelectionForm();
+    this.endowmentDetail = this.comprehensiveService.getChildEndowment();
+    console.log(this.endowmentDetail);
+    if (this.endowmentDetail.length > 0) {
+      this.dependantsArray = this.endowmentDetail;
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
