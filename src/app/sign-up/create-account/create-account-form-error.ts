@@ -20,6 +20,10 @@ export class CreateAccountFormError {
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
                         errorMessage: 'Invalid Mobile Number'
+                },
+                notChanged : {
+                        errorTitle: 'Not Changed',
+                        errorMessage: 'Update Mobile Number / Email address'
                 }
         },
         firstName: {
@@ -103,6 +107,72 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid captcha',
                         errorMessage: 'Please enter valid captcha'
                 }
-        }
+        },
+        confirmPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your confirm password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        newPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your new password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        oldPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your old password.'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters.'
+                }
+        },
+        bank: {
+                required : {
+                        errorTitle: 'Bank Name required',
+                        errorMessage: 'Please select your Bank Name.'
+                }
+        },
+        accountNo: {
+                required : {
+                        errorTitle: 'Account Number required',
+                        errorMessage: 'Please enter your Account Number.'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Account Number',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Please enter valid Account Number.'
+                },
+                validAccountNo : {
+                        errorTitle: 'Invalid Account Number',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Please enter valid Account Number.'
+                }
+        },
+        accountHolderName: {
+                required : {
+                        errorTitle: 'Account Holder Name required',
+                        errorMessage: 'Please enter your Name.'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Name',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Please enter your name.'
+                }
+        },
     };
 }

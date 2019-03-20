@@ -1,93 +1,39 @@
-<div class="confirm-portfolio">
-  <div class="step-indicator-container">
-    <div class="container-fluid">
-      <app-step-indicator [count]="9" [activeStepIndex]="8"></app-step-indicator>
+<div class="container-fluid max-width--1024" *ngIf="portfolio">
+  <div class="portfolio-allocation-details">
+    <div class="flex-col-12 portfolio-allocation-details__container">
+      <div class="portfolio-allocation-details__content">
+        <div class="flex-col-12 portfolio-allocation-details__content__desc">
+          <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+        </div>
+      </div>
+      <hr>
+      <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
+      <hr>
+      <div class="portfolio-allocation-details__content">
+        <div class="flex-col-12 portfolio-allocation-details__content__desc">
+          <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{
+              'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col-12 asset-allocation">
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+      <!-- bonds -->
+      <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+    </div>
+    <div class="flex-col-12 annual-fees mt20">
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
+      <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+    </div>
+    <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
+        'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
+  </div>
+  <div class="row">
+    <div class="flex-col-12 review-block">
+      <div>{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
+      <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
-  <div class="container-fluid">
-    <div class="content" *ngIf="portfolio">
-
-      <div class="portfolio-short-desc">
-        <span>
-          <span id="portfolio_portfolioValue_lbl">{{ 'CONFIRM_PORTFOLIO.PORTFOLIO_VALUE_FOR' | translate }} </span>
-          <span class="strong" id="portfolio_oneTimeInvValue_lbl">$120,000</span>&nbsp;<span class="strong" id="portfolio_oneTimeInv_lbl">{{ 'CONFIRM_PORTFOLIO.ONE_TIME_INVESTMENT' |
-            translate }}</span> {{ 'CONFIRM_PORTFOLIO.AND' | translate }} <span class="strong" id="portfolio_monthInvValue_lbl">$800</span>
-          <span class="strong" id="portfolio_monthInv_lbl"> {{ 'CONFIRM_PORTFOLIO.MONTHLY_INVESTMENT' | translate }}</span> {{
-          'CONFIRM_PORTFOLIO.FOR' | translate }} <span class="strong" id="portfolio_tenureValue_lbl">{{ portfolio.tenure}}</span> {{
-          'CONFIRM_PORTFOLIO.YEARS' | translate }}
-        </span>
-      </div>
-
-      <div class="portfolio-detail">
-        <div class="portfolio-head">
-          <span id="portfolio_riskProfile_lbl">Conservative</span>
-        </div>
-
-        <div class="portfolio-content">
-          <div class="projection">
-            <div class="graph">
-              <img src="../../../assets/images/investment-account/projection_graph.svg" alt="" />
-              <div class="graph-caption">
-                <span id="portfolio_projectedValueCaption_lbl">{{ 'CONFIRM_PORTFOLIO.PROJECTED_VALUE' | translate }}</span> <br />
-                {{ 'CONFIRM_PORTFOLIO.IN' | translate }} <span class="strong"><span id="portfolio_tenureYearValue_lbl">{{ portfolio.tenure}}</span> {{
-                  'CONFIRM_PORTFOLIO.YEARS' | translate}}</span>
-              </div>
-              <div class="growth-icon">
-                <img src="{{riskProfileImage}}" alt="" />
-              </div>
-            </div>
-            <div class="values">
-              <div class="amount">
-                <div>$<span id="portfolio_projectedValueValue_lbl">{{portfolio.projectedValue}}</span></div>
-                <span class="editLink" (click)="openEditInvestmentModal()">Edit</span>
-              </div>
-              <div class="year">
-                <span>{{ 'CONFIRM_PORTFOLIO.YEAR' | translate }}</span>
-                <span id="portfolio_projectedYearValue_lbl">2048</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="projected-returns">
-        <div class="caption">
-          <span class="title">
-            {{ 'CONFIRM_PORTFOLIO.PROJECTED_RETURNS' | translate}}
-            <img (click)="showPortfolioAssetModal()" src="../../../assets/images/help-icon.png" alt="" />
-          </span>
-          <div class="whatsrisk" (click)="goToWhatsTheRisk()">{{ 'CONFIRM_PORTFOLIO.WHATS_THE_RISK' | translate}}</div>
-        </div>
-        <div class="percentage" id="portfolio_projectedReturnsValue_lbl">{{portfolio.projectedReturns}}</div>
-      </div>
-
-      <!-- ALLOCATION -->
-      <div class="breakdown">
-        <div class="title">
-          {{'CONFIRM_PORTFOLIO.ASSET_ALLOCATION_BREAKDOWN' | translate}}
-        </div>
-        <div class="flex-col-12">
-          <div class="allocation-content">
-            <div *ngIf="portfolio">
-              <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex" [colors]="legendColors"
-                (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
-              <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
-                [colors]="legendColors" (selectAllocationAccordion)="selectAllocation($event)" (selectFundDetails)="viewFundDetails($event)"></app-breakdown-accordion>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / ALLOCATION -->
-
-      <div class="fees-promo" (click)="showFeesModal()">
-        <img src="../../../assets/images/investment-account/glassesowl.svg" alt="" />
-        <div>{{ 'CONFIRM_PORTFOLIO.CHECK_FEES' | translate}}</div>
-      </div>
-
-      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-        id="portfolioRecommendationNextBtn">{{ 'CONFIRM_PORTFOLIO.I_WANT_TO_START_INVEST' | translate}}</button>
-
-    </div>
-  </div>
+  <button type="button" (click)="verifyAML()" class="btn btn__footer--fixed btn-primary width100">{{
+    'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
 </div>

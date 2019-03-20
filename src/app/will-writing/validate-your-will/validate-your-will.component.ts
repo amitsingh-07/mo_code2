@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { AppService } from './../../app.service';
 
@@ -15,7 +15,6 @@ import { AppService } from './../../app.service';
 })
 export class ValidateYourWillComponent implements OnInit, OnDestroy {
   pageTitle: string;
-  customerId: string;
   constructor(
     private translate: TranslateService,
     public footerService: FooterService, private appService: AppService,
@@ -25,7 +24,6 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
-    this.customerId = this.appService.getCustomerId();
   }
 
   ngOnInit() {
@@ -39,7 +37,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   }
 
   editWill() {
-    this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
   ngOnDestroy() {
@@ -83,4 +81,4 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
 
   }
 
-  }
+}

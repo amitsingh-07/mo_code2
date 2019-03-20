@@ -1,6 +1,6 @@
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
-export class InvestmentAccountCommon {
 
+export class InvestmentAccountCommon {
   getPayloadKey(controlname) {
     let payloadKey;
     switch (controlname) {
@@ -22,6 +22,10 @@ export class InvestmentAccountCommon {
       }
       case 'PASSPORT': {
         payloadKey = 'passport';
+        break;
+      }
+      case 'PASSPORT_BO': {
+        payloadKey = 'supportingDocument';
         break;
       }
     }
@@ -53,16 +57,22 @@ export class InvestmentAccountCommon {
   fileSelected(formData, control, controlname, fileElem, thumbElem?) {
     const selectedFile: File = fileElem.target.files[0];
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
-    const fileType = selectedFile.name.split('.')[1].toUpperCase();
-    const isValidFileSize = fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
-    const isValidFileType = thumbElem ? INVESTMENT_ACCOUNT_CONFIG.upload_documents.image_file_types.includes(fileType)
-      : INVESTMENT_ACCOUNT_CONFIG.upload_documents.doc_file_types.includes(fileType);
+    const fileType = selectedFile.name
+      .split('.')
+      [selectedFile.name.split('.').length - 1].toUpperCase();
+    const isValidFileSize =
+      fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
+    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.includes(
+      fileType
+    );
     if (isValidFileSize && isValidFileType) {
       const payloadKey = this.getPayloadKey(controlname);
       formData.append(payloadKey, selectedFile);
-      if (thumbElem) {
+      if (fileType !== 'PDF') {
         this.setThumbnail(thumbElem, selectedFile);
       }
+    } else {
+      fileElem.currentTarget.value = '';
     }
     return {
       validFileSize: isValidFileSize,
@@ -70,13 +80,47 @@ export class InvestmentAccountCommon {
     };
   }
 
-  clearFileSelection(control, event, thumbElem?) {
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
     const defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
     event.stopPropagation();
     control.setValue('');
+    fileElem.value = '';
     if (thumbElem) {
       thumbElem.src = window.location.origin + '/assets/images/' + defaultThumb;
     }
   }
 
+  isValidNric(str) {
+    if (str.length !== 9) {
+      return false;
+    }
+    str = str.toUpperCase();
+    let i;
+    const icArray = [];
+    for (i = 0; i < 9; i++) {
+      icArray[i] = str.charAt(i);
+    }
+    icArray[1] = parseInt(icArray[1], 10) * 2;
+    icArray[2] = parseInt(icArray[2], 10) * 7;
+    icArray[3] = parseInt(icArray[3], 10) * 6;
+    icArray[4] = parseInt(icArray[4], 10) * 5;
+    icArray[5] = parseInt(icArray[5], 10) * 4;
+    icArray[6] = parseInt(icArray[6], 10) * 3;
+    icArray[7] = parseInt(icArray[7], 10) * 2;
+    let weight = 0;
+    for (i = 1; i < 8; i++) {
+      weight += icArray[i];
+    }
+    const offset = icArray[0] === 'T' || icArray[0] === 'G' ? 4 : 0;
+    const temp = (offset + weight) % 11;
+    const st = ['J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
+    const fg = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'];
+    let theAlpha;
+    if (icArray[0] === 'S' || icArray[0] === 'T') {
+      theAlpha = st[temp];
+    } else if (icArray[0] === 'F' || icArray[0] === 'G') {
+      theAlpha = fg[temp];
+    }
+    return icArray[8] === theAlpha;
+  }
 }

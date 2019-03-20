@@ -1,73 +1,40 @@
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
-          <div class="form-group">
-            <div class="flex-row">
-              <div class="flex-col-5">
-                <label for="name" class="I-was-born-on" id="personalInfoBornOnLabl">{{ 'PERSONAL_INFO.BORN_ON' | translate}}</label>
-              </div>
-              <div class="flex-col-7">
-                <div class="datepicker-control">
-                  <div class="input-group date-picker" id="personalInfoDate" [ngClass]="{'inline-error': !personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine}">
-                    <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"  id="personalInfoDateInput" ngbDatepicker #dobDp="ngbDatepicker"
-                      required>
-                    <div class="input-group-append">
-                      <button (click)="dobDp.toggle()" class="btn btn-primary" type="button">
-                        <img class="date-picker-image--valid" id="personalInfoDateValidImg" *ngIf="personalInfoForm.get('dob').valid || personalInfoForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
-                        />
-                        <img class="date-picker-image--invalid" *ngIf="!personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine" id="personalInfoDateInValidImg"
-                          src="./assets/images/calendar-error.svg" />
-                      </button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-          <hr/>
-
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
-                <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
-                  [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" id="personalInfoSlider" data-placement="bottom"></nouislider>
+                <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
+                <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false"
+                  [min]="sliderMinValue" [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip"
+                  id="personalInfoSlider" data-placement="bottom"></nouislider>
               </div>
             </div>
             <div class="pointer-container" id="personalInfoPointer">
-                <div class="pointer"></div>
-              </div>
-          </div>
-
-
-          <div class="callout">
-            
-
-            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-                <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
-                  <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+              <div class="pointer"></div>
             </div>
-
+          </div>
+          <div class="callout">
+            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
+              <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
+              <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{
+                'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+            </div>
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
-                <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
+                <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
               <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
           </div>
           <div>
-            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue"
-              id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue" id="getStrdBtn3">{{
+              'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
-
-
       </div>
     </div>
   </div>

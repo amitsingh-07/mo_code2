@@ -156,7 +156,7 @@
       },
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
-        "MESSAGE": "File of size more than 2 MB is not allowed."
+        "MESSAGE": "File of size more than 10 MB is not allowed."
       },
       "FILE_TYPE_MISMATCH": {
         "TITLE": "Error !",

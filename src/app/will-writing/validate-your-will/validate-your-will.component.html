@@ -1,56 +1,60 @@
 <div class="intro-block">
-    <div class="container-fluid pl0 pr0">
+  <div class="container-fluid pl0 pr0">
     <div class="container-fluid max-width--1024">
       <div class="flex-row">
-          <div class="back-btn col-12 hidden-lg hidden-sm-md" id="appoint-your-executor-back"></div>
-        </div>
-  
+        <div class="back-btn col-12 hidden-lg hidden-sm-md" id="appoint-your-executor-back"></div>
+      </div>
       <div class="intro-block__content">
         <div class="row text-center">
-  
           <div class="col-lg-6 col-md-7 col-sm-12 intro-block__content__desc">
             <div class="header">
-              <p class="intro-block__content__heading">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.HERE_YOUR_WILL' | translate}}</p>
-              <p class="owl"><img src="assets/images/will-writing/owl-mobile.svg"/></p>
+              <p class="intro-block__content__heading">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.HERE_YOUR_WILL' | translate}}
+              </p>
+              <p class="owl"><img src="assets/images/will-writing/owl-mobile.svg" /></p>
             </div>
             <p class="sub-title">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.SUB_TITLE' | translate}}</p>
             <div class="instructions">
-                <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.TITLE' | translate}}</div>
-                <div class="instruction-content">
-                  <ul class="mt20 pb20">
-                    <li class="flex">
-                      <div class="circle"></div>
-                      <div class="section">
-                          <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
-                          <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.PRINT_YOUR_WILL' | translate}}</div>
-                      </div>
-                    </li>
-                    <li class="flex">
-                        <div class="circle"></div>
-                      <div class="section">
+              <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.TITLE' | translate}}</div>
+              <div class="instruction-content">
+                <ul class="mt20 pb20">
+                  <li class="flex">
+                    <div class="circle"></div>
+                    <div class="section">
+                      <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
+                      <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.PRINT_YOUR_WILL' | translate}}</div>
+                    </div>
+                  </li>
+                  <li class="flex">
+                    <div class="circle"></div>
+                    <div class="section">
                       <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_2' | translate}}</div>
                       <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.FIND_2_WITNESSES' | translate}}</div>
-                    </div></li>
-                    <li class="flex">
-                        <div class="circle"></div>
-                      <div class="section">
-                        <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
-                        <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.SIGN_YOUR_WILL' | translate}}</div>
-                    </div></li>
-                    <li class="flex">
-                        <div class="circle"></div>
-                      <div class="section">
-                        <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_4' | translate}}</div>
-                        <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.KEEP_IT_SAFE' | translate}}</div>
-                  </div></li>
-                  </ul>
-                </div>
+                    </div>
+                  </li>
+                  <li class="flex">
+                    <div class="circle"></div>
+                    <div class="section">
+                      <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
+                      <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.SIGN_YOUR_WILL' | translate}}</div>
+                    </div>
+                  </li>
+                  <li class="flex">
+                    <div class="circle"></div>
+                    <div class="section">
+                      <div class="step sub-section">{{ 'WILL_WRITING.COMMON.STEP_4' | translate}}</div>
+                      <div class="sub-section">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.KEEP_IT_SAFE' | translate}}</div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <div (click)="editWill()" class="edit-will"><span class="edit-icon mr5"><img class="hidden-sm-md" src="assets/images/will-writing/edit-dark.svg" /><img class="hidden-lg" src="assets/images/will-writing/edit-white.svg" /></span>{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.EDIT_YOUR_WILL' | translate}}</div>
-            <button type="button" (click)="downloadWill()" class="btn btn__footer--fixed width100 btn-primary" id="appoint-your-executor-continue">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.DOWNLOAD_WILL' | translate}}</button>
-            <!-- <a routerLink="/will-writing/download" [queryParams]="{id:customerId}" target="_blank"><button type="button" class="btn btn__footer--fixed width100 btn-primary hidden-lg" id="appoint-your-executor-continue">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.DOWNLOAD_WILL' | translate}}</button></a> -->
+            </div>
+            <div (click)="editWill()" class="edit-will hidden-lg">
+              {{ 'WILL_WRITING.VALIDATE_YOUR_WILL.EDIT_YOUR_WILL' | translate}}</div>
+            <button type="button" (click)="downloadWill()" class="btn btn__footer--fixed width100 btn-primary"
+              id="appoint-your-executor-continue">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.DOWNLOAD_WILL' | translate}}</button>
+            <div (click)="editWill()" class="edit-will hidden-sm-md" style="padding-top:19px">
+              {{ 'WILL_WRITING.VALIDATE_YOUR_WILL.EDIT_YOUR_WILL' | translate}}</div>
           </div>
-          
         </div>
       </div>
     </div>

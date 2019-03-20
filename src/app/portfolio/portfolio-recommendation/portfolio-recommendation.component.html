@@ -1,65 +1,36 @@
-<!-- om -->
-<!-- risk-profile-block -->
-<!-- portfolio-allocation-details -->
-<div class="portfolio-allocation-details">
-
-  <div class="portfolio-allocation-details__content" *ngIf="portfolio">
-    <div class="flex-row">
-
-      <div class="flex-col-12 portfolio-allocation-details__content__desc">
-
-        <div class="portfolio-allocation-details__content__title mb10 text-center" id="portfolioRecommenadtionTitle">{{selectedRiskProfile.riskProfileName}}
-           {{'PORTFOLIO_RECOMMENDATION.PORTFOLIO' | translate}}
-          <div id="portfolioRecommenationEditBtn"  class="edit_button " (click)="showEditModal()"></div>
+<div class="container-fluid max-width--1024" *ngIf="portfolio">
+  <div class="portfolio-allocation-details">
+    <div class="flex-col-12 portfolio-allocation-details__container">
+      <div class="portfolio-allocation-details__content">
+        <div class="flex-col-12 portfolio-allocation-details__content__desc">
+          <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
         </div>
-
-        <div class="amount flex-col-12  text-center" id="portfolioRecommenadtionProjtValue">{{portfolio.projectedValue |
-          currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-        <div class="years flex-col-12 mb10  text-center" id="portfolioRecommenadtionYearsValue">{{'PORTFOLIO_RECOMMENDATION.PROJECTED_PORTF_VALUE'
-          | translate}}
-          <u>{{portfolio.tenure}}</u> {{'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</div>
-
-        <div class="project_returns  text-center">
-          <div class="container-fluid">
-            <div class="flex-col-12">
-              <div class="Projected_title" id="portfolioRecommenadtionProjectRetrsContent">
-                {{'PORTFOLIO_RECOMMENDATION.PROJECTED_RETURNS' | translate}}
-              </div>
-            </div>
-            <div class="flex-col-12">
-              <div class="Projected_money" id="portfolioRecommedationProjectRetrsValue">{{portfolio.projectedReturns}}
-                <div class="tooltip-icon"  id="portfoliorecommedationHelpIcon" (click)="showHelpModal()"></div>
-
-              </div>
-             
-              <a  class="whats_risk"  id="portfolioRecommeationWhatsRiskLink" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
-                translate}}</a>
-                <!-- <a href="#" class="link-white" (click)="requestNewCode($event)">Request New Code</a> -->
-            </div>
-          </div>
+      </div>
+      <hr>
+      <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
+      <hr>
+      <div class="portfolio-allocation-details__content">
+        <div class="flex-col-12 portfolio-allocation-details__content__desc">
+          <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
         </div>
-
-        <div class="allocation-container">
-          <div class="container-fluid">
-            <div class="flex-col-12">
-              <div class="allocation-content">
-                <div *ngIf="portfolio">
-                  <div class="breakdown-title" id="portfolioRecommenationAccordtionTitle"> {{'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION_BREAKDOWN' | translate}}</div>
-                  <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
-                    [colors]="legendColors" (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
-                  <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
-                    [colors]="legendColors" (selectAllocationAccordion)="selectAllocation($event)" (selectFundDetails)="viewFundDetails($event)"></app-breakdown-accordion>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <button type="button"  (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-          id="portfolioRecommendationNextBtn">{{ 'LABEL.SET_UP_INVESTMENT_ACCOUNT' | translate}}</button>
       </div>
     </div>
+    <div class="flex-col-12 asset-allocation">
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+      <!-- bonds -->
+      <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+    </div>
+    <div class="flex-col-12 annual-fees mt0">
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
+      <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+    </div>
+    <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>
+  <div class="row">
+    <div class="flex-col-12 review-block">
+      <div>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
+      <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
+    </div>
+  </div>
+  <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
 </div>

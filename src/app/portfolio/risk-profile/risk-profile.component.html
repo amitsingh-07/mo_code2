@@ -1,37 +1,39 @@
 <!-- popup -->
 <div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
-
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/custom-modal-icon.svg" id="portfolioRecommenadtionCustModalImg1" />
+      <img src="../../../assets/images/investment-account/successtickowl.svg" id="portfolioRecommenadtionCustModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
         <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
       </div>
     </div>
-    <div class="custom-modal-content">
-      <div>
-        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="portfolioRecommendationCustModalImg2" />
-      </div>
-    </div>
   </div>
 </div>
 <!-- popUp -->
-
 <div class="risk-profile-block">
-  <div class="container-fluid">
-
+  <div class="container-fluid max-width--1024">
     <div class="risk-profile-block__content">
-      <div class="row text-center">
-        <div class="col-12">
+      <div class="text-center">
+        <div class="risk-profile-title-block" [class.invert]="!canProceed()">
           <div class="banner-image"><img src={{iconImage}} id="riskProfileImg" /></div>
+          <p class="risk-profile-block__content__title" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
         </div>
-        <div class="col-12 risk-profile-block__content__desc">
-          <p class="risk-profile-block__content__title mb30" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
-          <div class="risk-profile-block__content__sub-title mb40" id="riskProfileSubTitle" [innerHTML]=selectedRiskProfile.htmlDescription></div>
-          <button type="button" [disabled]="!canProceed()" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
+        <div class="risk-profile-block__content__desc">
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.desc" *ngIf="selectedRiskProfile.htmlDescription.desc"></div>
+          <div class="risk-head" *ngIf="selectedRiskProfile.htmlDescription.riskAppetiteDesc && canProceed()">
+            {{ 'RISK_PROFILE.YOUR_RISK_APPETITE' | translate}}
+          </div>
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.riskAppetiteDesc" *ngIf="selectedRiskProfile.htmlDescription.riskAppetiteDesc"></div>
+          <div class="risk-head" *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc">
+            {{ 'RISK_PROFILE.YOUR_PORTFOLIO_RECOMMENDATION' | translate}}
+          </div>
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc" *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
+          <button type="button" *ngIf="canProceed()" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
+            <button type="button" *ngIf="!canProceed()" (click)="goToHomepage()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
+            id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
         </div>
       </div>
     </div>

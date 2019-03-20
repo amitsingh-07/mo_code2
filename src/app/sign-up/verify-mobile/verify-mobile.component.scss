@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-verify-mobile{
 .verify-mobile-block {
   .verify-mobile-block__otp__title {
     font-size: 18px;
@@ -55,10 +56,6 @@
       margin-bottom: 0 !important;
     }
   }
-
-  // p {
-  //   margin-bottom: -10px;
-  // }
 }
 
 /*Modal styles*/
@@ -107,13 +104,6 @@
       width: 185px;
       height: 185px;
     }
-
-    // @include allmobiles {
-    //   img {
-    //     width: 150px;
-    //     height: 150px;
-    //   }
-    // }
   }
 
   .custom-modal--title {
@@ -148,7 +138,7 @@
     }
   }
   .btn-primary {
-    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
   }
 }
 
@@ -161,9 +151,9 @@
 
   .loader {
     position: absolute;
-    border: 10px solid #099c9c;
+    border: 10px solid $brdr-teal-color;
     border-radius: 50%;
-    border-top: 12px solid #ff9600;
+    border-top: 12px solid $brdr-dark-color;
     width: 205px;
     height: 205px;
 
@@ -203,6 +193,7 @@
 .link-white {
   text-decoration: underline;
   cursor: pointer;
+  float: none;
 }
 
 .info-text{
@@ -229,14 +220,14 @@
     left:0px;
     right:0px;
     font-family: $muli-bold;
-    color:#00a7a7;
+    color:$teal-color;
     font-size:19px;
   }
 
   .spinner {
     width: 50px;
     height: 50px;
-    background: #4dc1c1;
+    background: $spinner-bg;
     margin: 0 auto;
     position: relative;
   }
@@ -247,13 +238,13 @@
     width: 70%;
     height: 70%;
     border-radius: 100%;
-    background: #fff;
+    background: $white-color;
     top: 15%;
     left: 15%;
   }
 
   .spinner span em {
-    background: #ff9600;
+    background: $brdr-dark-color;
     animation-duration: 30s;
   }
 
@@ -335,4 +326,5 @@
     animation-name: rotate-rt;
     transform-origin: 100% 50%;
   }
+}
 }

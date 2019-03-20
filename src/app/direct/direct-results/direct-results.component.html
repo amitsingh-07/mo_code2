@@ -33,11 +33,11 @@
   </div>
   <div class="disclaimer">{{ 'RECOMMENDATIONS.DISCLAIMER' | translate}}</div>
 </div>
-<div id="results-mobile" *ngIf="state.isMobileView" [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length > 0" class="hidden-lg">
-
+<div id="results-mobile" *ngIf="state.isMobileView" [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length > 0" class="results-mobile hidden-lg">
   <div class="compare-plan-header" *ngIf="state.isComparePlanEnabled">{{ 'DIRECT_RESULTS.COMPARE' | translate}}<button
       aria-label="Close" class="compare-plan-header--close" id="modalBtn" type="button" (click)="toggleComparePlans()"><span
-        aria-hidden="true"></span></button></div>
+        aria-hidden="true"></span></button>
+      </div>
   <div class="results-mobile__compare-plan" [ngClass]="{'is-hidden' : state.isComparePlanEnabled}">
     <div class="results-mobile__compare-plan--lbl">{{filteredResult.length}}
         <span [hidden]="filteredResult.length > 1">{{ 'DIRECT_RESULTS.PLAN_FOUND' | translate}}</span>
@@ -48,7 +48,7 @@
         [disabled]="filteredResult.length < 2">{{
         'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
   </div>
-  <div class="flex-row" [ngClass]="{'mt60' : state.isComparePlanEnabled}" *ngFor="let category of state.searchResult; let i = index"
+  <div class="flex-row" [ngClass]="{'compare-plan__container' : state.isComparePlanEnabled}" *ngFor="let category of state.searchResult; let i = index"
     style="padding: 10px; justify-content: center;">
     <div class="text-center mt15">
       <div [hidden]="!state.isResultsLoaded || (filteredResult?.length > 0 || state.resultsEmptyMessage?.length > 0)">{{

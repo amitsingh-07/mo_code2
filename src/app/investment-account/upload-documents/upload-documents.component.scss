@@ -1,189 +1,180 @@
 @import '../../../variables';
 @import '../../../mixins';
-
-.upload-doc-nric {
-  .step-indicator-container {
-    background-color: #fff;
-    padding: 10px 0px;
-    position: relative;
-    top: 60px;
-    margin-bottom: 15px;
-
-    .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-
-    .page-caption {
-      color: $text-color-secondary;
-      font-size: 16px;
-      font-family: $muli;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-  }
-
-  @media (min-width: 768px) {
+app-upload-documents {
+  .upload-doc-nric {
     .step-indicator-container {
-      top: 0px;
-    }
-  }
-
-  .sub-title-block {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-
-    .sub-title {
-      font-family: $muli-bold;
-      font-size: 18px;
-      line-height: 23px;
-      letter-spacing: -0.3px;
-      color: #ffffff;
-      margin-bottom: 7px;
-      display: flex;
-      justify-content: space-between;
-
-      img {
-        display: inline-flex;
+      background-color: $white-color;
+      padding: 10px 0px;
+      position: relative;
+      top: 60px;
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
       }
-    }
-
-    .sub-title-desc {
-      font-family: $muli-semi-bold;
-      color: #bfe9e9;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-    }
-
-    .upload-file {
-      font-family: $muli-semi-bold;
-      font-size: 16px;
-      background: #ffffff;
-      border-radius: 6px;
-      margin-top: 15px;
-      padding:6px;
-      display: flex;
-
-      .selected-state{
-          display:none;
-      }
-      .unselected-state {
-        display: inline-block;
-      }
-
-      &.selected {
-        .selected-state {
-          display: inline-block;
-        }
-        .unselected-state {
-          display: none;
-        }
-        button{
-            background-color:$btn-primary-backgrnd-color;
-        }
-      }
-
-      .btn {
+      .page-caption {
+        color: $text-color-secondary;
         font-size: 16px;
-        background-color: #ff872f;
-        color: #ffffff;
-        display:flex;
-      flex:2;
-      }
-
-      label {
-        color: rgba(133, 133, 133, 0.67);
-        display:flex;
-        flex:5;
-        padding-left:10px;
-        align-self: center;
-        word-break: break-all;
-      }
-      div{
-        display:flex;
-        align-self: center;
-        padding-right:10px;
-        cursor: pointer;
+        font-family: $muli;
+        margin-bottom: 10px;
+        text-align: center;
       }
     }
-
-
-  }
-
-  .upload-doc {
-    display: flex;
-    // align-items: center;
-    justify-content: space-evenly;
-    flex: 1;
-    padding: 0 15px;
-
-    .upload-desc {
+    @media (min-width: 768px) {
+      .step-indicator-container {
+        top: 0px;
+      }
+    }
+    .doc-upload-instructions {
+      background: $review-block-bg;
+      padding: 11px 17px 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 21px;
+      font-family: $muli-bold;
+      line-height: 18px;
+      .sub-title {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        margin-bottom: 3px;
+      }
+      .file-logs {
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: $upload-file-log-color;
+        span {
+          &:first-child {
+            font-family: $muli-semi-bold;
+            padding-right: 4px;
+          }
+        }
+      }
+    }
+    .sub-title-block {
       display: flex;
       flex-direction: column;
-      //   justify-content: space-around;
-      align-items: center;
-      border-radius: 14px;
-      border: 1px solid #66caca;
-      padding: 20px;
-      text-align: center;
-      //   height: 185px;
-      flex: 1;
-      margin-right: 10px;
-      margin-bottom: 38px;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      .upload-content {
-        div {
-          font-size: 16px;
-          letter-spacing: -0.3px;
-
-          &.title {
-            font-family: $muli-semi-bold;
-            font-size: 18px;
-            font-weight: 600;
-          }
-
-          &.sub-text {
-            color: #bfe9e9;
-            word-break: break-all;
-          }
-        }
-      }
-
-      .thumb-container {
-        position: relative;
-        width: 100px;
-        height: 100px;
+      margin-bottom: 16px;
+      .sub-title {
+        font-family: $muli-bold;
+        font-size: 18px;
+        line-height: 23px;
+        letter-spacing: -0.3px;
+        color: $white-color;
+        margin-bottom: 7px;
         display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        cursor:pointer;
-
-        .thumbnail {
-          margin: 0 auto;
-          max-width: 100px;
-          max-height: 100px;
+        justify-content: space-between;
+        img {
+          display: inline-flex;
         }
-
-        .thumb-close-icon {
-          position: absolute;
-          padding: 1px 7px;
-          border-radius: 100%;
-          background-color: #fff;
-          right: -10px;
-          top: -10px;
-
-          img {
-            width: 12px;
-            height: 12px;
+      }
+      .sub-title-desc {
+        font-family: $muli-semi-bold;
+        color: $upload-sub-title-desc-color;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+      }
+      .upload-file {
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        background: $white-color;
+        border-radius: 6px;
+        margin-top: 15px;
+        padding: 6px;
+        display: flex;
+        .selected-state {
+          display: none;
+        }
+        .unselected-state {
+          display: inline-block;
+        }
+        &.selected {
+          .selected-state {
+            display: inline-block;
+          }
+          .unselected-state {
+            display: none;
+          }
+          button {
+            background-color: $btn-primary-backgrnd-color;
+          }
+        }
+        .btn {
+          font-size: 16px;
+          background-color: $secondary-action-color;
+          color: $white-color;
+          display: flex;
+          flex: 2;
+        }
+        div {
+          display: flex;
+          align-self: center;
+          padding-right: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+    .upload-doc {
+      display: flex;
+      justify-content: space-evenly;
+      flex: 1;
+      padding: 0 15px;
+      .upload-desc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 14px;
+        border: 1px solid $upload-desc-brdr-color;
+        padding: 20px;
+        text-align: center;
+        flex: 1;
+        margin-right: 10px;
+        margin-bottom: 38px;
+        &:last-child {
+          margin-right: 0;
+        }
+        .upload-content {
+          div {
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            &.title {
+              font-family: $muli-semi-bold;
+              font-size: 18px;
+              font-weight: 600;
+            }
+            &.sub-text {
+              color: $upload-sub-title-desc-color;
+              word-break: break-all;
+            }
+          }
+        }
+        .thumb-container {
+          position: relative;
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          cursor: pointer;
+          .thumbnail {
+            margin: 0 auto;
+            max-width: 100px;
+            max-height: 100px;
+          }
+          .thumb-close-icon {
+            position: absolute;
+            padding: 1px 7px;
+            border-radius: 100%;
+            background-color: $white-color;
+            right: -10px;
+            top: -10px;
+            img {
+              width: 12px;
+              height: 12px;
+            }
           }
         }
       }
     }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
   }
-
 }

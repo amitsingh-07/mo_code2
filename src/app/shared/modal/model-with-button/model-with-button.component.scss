@@ -1,22 +1,33 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.toggle-btn{
+  width: 49%;
+}
 .action-button {
   width: 100%;
-  height: 57px;
   border-radius: 6px;
-  box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
-  background-color: #00a7a7;
-  border: solid 1px rgba(0, 135, 134, 0.4);
+  box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow !important;
+  background-color: $teal-color;
+  border: 1px solid  $fixed-btn-brdr-color;
   margin-top: 15px;
-  font-family: Muli;
-  font-size: 24px;
+  font-family: $muli-bold;
+  font-size: 22px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: -0.3px;
   text-align: center;
-  color: #ffffff;
+  color: $white-color;
+  padding: 10px;
+  &.secondary-button {
+    background-color:$white-color;
+    color:$teal-color !important;
+    -webkit-text-fill-color: $teal-color !important;
+    box-shadow: none !important;
+  }
 }
-
 .popup-header-icon {
   &.glass {
     width: 100%;
@@ -31,12 +42,20 @@
     }
   }
 }
-
 .modal-body-message {
   margin-bottom: 15px;
 }
-
 .action-button:active {
-  background-color: #0de0de;
-  color: #fff;
+  background-color: $action-btn-active-bg;
+  color: $white-color;
+}
+.warning-icon {
+  width: 24px;
+  height: 24px;
+  padding-left: 7px;
+  img{
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+  }
 }

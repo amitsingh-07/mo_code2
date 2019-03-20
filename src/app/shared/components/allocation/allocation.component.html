@@ -1,0 +1,45 @@
+<div class="bond_container">
+  <div class="bonds_equity_block">
+    <div class="bond_progress_container">
+      <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index">
+        <div class="flex-row flex-col-6 bar-container">
+          <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }" class="bar"></span>
+        </div>
+        <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
+      </div>
+    </div>
+    <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
+      <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">{{asset.type.type}}<i
+          class='arrow'></i></div>
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel id="panel-{{i}}" title="Second">
+          <ng-template ngbPanelContent>
+            <div class="bond_desc" *ngIf="asset.type.holdingsCount">
+              <div class="flex-row flex-col-12">
+                <div class="rating_type border-right-none">Number of Holdings</div>
+                <div class="rating">
+                  <div class="flex-row"><span class="rating_value">{{asset.type.holdingsCount}}</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="bond_desc" *ngFor="let allocation of asset.groupedAllocationDetails;">
+              <div class="flex-row flex-col-12">
+                <div class="flex-col-5 rating_type">{{allocation.name}}</div>
+                <div class="flex-col-7 rating">
+                  <div class="flex-row" *ngFor="let detail of allocation.value;">
+                    <span class="flex-col-8">{{detail.sectorRegion}}</span>
+                    <span class="rating_value flex-col-4">{{detail.percentage | number : '1.1-1'}}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+  <hr>
+
+  <button type="button" class="btn btn-view width100" (click)="showFundDetails()">{{
+    'PORTFOLIO_RECOMMENDATION.VIEW_FUND_DETAILS' | translate}}</button>
+</div>

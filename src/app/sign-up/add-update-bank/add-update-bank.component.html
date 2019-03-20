@@ -1,0 +1,62 @@
+<div class="container-fluid max-width--1024">
+  <form id="bankForm" name="bankForm" [formGroup]="bankForm">
+    <div class="content">
+      <!-- Account Holder Name -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-12">
+            <label class="form-lbl"> {{'ADD_BANK.ACCOUNT_NAME' | translate}}</label>
+          </div>
+          <div class="flex-col-12">
+             <label class="form-control input-control disabled" 
+              id="account_holder">{{bankForm.controls.accountHolderName.value}}</label> 
+          </div>
+        </div>
+      </div>
+      <!-- text description -->
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <label class="desc-lbl">{{'ADD_BANK.DESC' | translate}}</label>
+        </div>
+      </div>
+      <!-- Bank name  -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <label for="residentialAddress-country-drpdown" class="form-lbl bank_text" id="residentialAddress-country-lbl">
+              {{'ADD_BANK.BANK' | translate}}</label>
+          </div>
+          <div class="flex-col-6">
+            <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(bankForm.controls.bank)}">
+              <div ngbDropdown>
+                <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
+                  ngbDropdownToggle>
+                  <span *ngIf="!bankForm.controls.bank.value"> {{'ADD_BANK.SELECT' | translate}}</span>
+                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.key}}</span>
+                </button>
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank, i)"
+                    id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Account  -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <label class="form-lbl bank_text"> {{'ADD_BANK.ACCOUNT' | translate}} </label>
+          </div>
+          <div class="flex-col-6">
+            <div [ngClass]="{'inline-error':getInlineErrorStatus(bankForm.controls.accountNo)}">
+              <input type="text" class="form-control input-control " formControlName="accountNo" id="account">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
+</div>

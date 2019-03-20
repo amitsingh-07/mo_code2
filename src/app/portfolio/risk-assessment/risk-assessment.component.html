@@ -1,11 +1,8 @@
-<div [ngClass]="isChartAvailable ? 'chart-mode' : ''">
+<div>
   <div class="question-info" id="risk-assessment_question-info_lbl">
     {{QuestionLabel}} {{questionIndex}} {{ofLabel}} {{questionsList.length}}
   </div>
-
-
-  <div class="container-fluid risk-assessment">
-
+  <div class="container-fluid max-width--1024 risk-assessment">
     <div class="row">
       <div class="col-lg-12 col-md-12" *ngIf="currentQuestion">
         <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
@@ -13,35 +10,45 @@
             <div class="question-title" id="risk-assessment_question_lbl">
               {{currentQuestion.description}}
             </div>
-  
-            <div *ngIf="isChartAvailable" class="legend-img-container">
-              <img class="img-fluid chart-img" src="../assets/images/portfolio/breakdown-chart.png" alt="Breakdown Chart" />
-            </div>
-
-            <div class="row">
+            <!-- NORMAL CASE -->
+            <div class="row" *ngIf="!isSpecialCase">
               <div class="col-xs-12 col-sm-6" *ngFor="let option of currentQuestion.options; let i = index">
                 <div class="checkbox-button one-label">
-                  <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption" type="radio" class="field radio"
-                    value="{{option.questionOptionId}}" tabindex="{{i+1}}">
-                  <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}" [ngClass]="setLegend(option.listingOrder)">
-                    <div *ngIf="!isChartAvailable"><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span></div>
-
-                    <div *ngIf="isChartAvailable" class="row">
-                      <div class="col-9">
-                        <div class="option-title" id="risk-assessment_option-text{{i+1}}_lbl">{{option.text}}</div>
-                        <div class="option-desc" id="risk-assessment_option-desc{{i+1}}_lbl">{{option.description}}</div>
-                      </div>
-                      <div class="col-3">
-                        <div class="legend-indicator"></div>
-                      </div>
-
-                    </div>
+                  <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
+                    type="radio" class="field radio" value="{{option.questionOptionId}}" tabindex="{{i+1}}">
+                  <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                    <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span></div>
                   </label>
-
                 </div>
               </div>
             </div>
-
+            <!-- SPECIAL CASE -->
+            <div class="table-view" *ngIf="isSpecialCase">
+              <div class="table-row table-head">
+                <div class="table-cell">
+                  <div class="col-head">Portfolio</div>
+                </div>
+                <div class="table-cell">
+                  <div class="col-head">Optimistic</div>
+                  <div> Return Projection (per annum)</div>
+                </div>
+                <div class="table-cell">
+                  <div class="col-head">Pessimistic</div>
+                  <div>Return Projection (per annum)</div>
+                </div>
+              </div>
+              <div class="table-row" *ngFor="let option of currentQuestion.options; let i = index">
+                <div class="table-cell">
+                  <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
+                    type="radio" class="field radio" value="{{option.questionOptionId}}" tabindex="{{i+1}}">
+                  <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                    <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span></div>
+                  </label>
+                </div>
+                <div class="table-cell">{{option.additionalInfo.optimisticProjection}}</div>
+                <div class="table-cell">{{option.additionalInfo.pessimisticProjection}}</div>
+              </div>
+            </div>
             <button type="button" [disabled]="!riskAssessmentForm.valid" (click)="goToNext(riskAssessmentForm)" class="btn btn-primary btn__footer--fixed width100"
               id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
@@ -49,5 +56,4 @@
       </div>
     </div>
   </div>
-
 </div>

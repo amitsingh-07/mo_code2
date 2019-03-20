@@ -30,17 +30,26 @@ export class NavbarService {
   private pageSubTitle = new BehaviorSubject('');
   private pageHelpIcon = new BehaviorSubject(true);
   private pageProdInfoIcon = new BehaviorSubject(false);
+  private pageClearNotify = new BehaviorSubject(false);
 
   private mobileModal = new BehaviorSubject('');
+  private clearNotificationEvent = new BehaviorSubject(false);
   private closeProdInfo = new BehaviorSubject('');
   private pageSettingsIcon = new BehaviorSubject(true);
+  private pageFilterIcon = new BehaviorSubject(true);
+  private pageSuperTitle = new BehaviorSubject('');
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
+  currentPageClearNotify = this.pageClearNotify.asObservable();
+  currentClearNotificationEvent = this.clearNotificationEvent.asObservable();
+
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
+  currentPageFilterIcon = this.pageFilterIcon.asObservable();
+  currentPageSuperTitle = this.pageSuperTitle.asObservable();
 
   constructor() { }
 
@@ -88,9 +97,13 @@ export class NavbarService {
     this.pageProdInfoIcon.next(isVisible);
   }
 
+  setClearAllNotify(isVisible: boolean) {
+    this.pageClearNotify.next(isVisible);
+  }
+
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
     this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);
@@ -107,6 +120,16 @@ export class NavbarService {
     } else {
       this.pageSettingsIcon.next(false);
     }
+    if (filterIcon) {
+      this.pageFilterIcon.next(true);
+    } else {
+      this.pageFilterIcon.next(false);
+    }
+    if (superTitle) {
+      this.pageSuperTitle.next(superTitle);
+    } else {
+      this.pageSuperTitle.next('');
+    }
   }
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
@@ -114,12 +137,13 @@ export class NavbarService {
   }
 
   // Hiding Product Info Modal Trigger
-  hideProdInfo(event) {
-    this.closeProdInfo.next(event);
-  }
-
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
+  }
+
+  // Clearing Notification
+  clearNotification() {
+    this.clearNotificationEvent.next(true);
   }
 
   subscribeBackPress() {

@@ -17,149 +17,180 @@ app-ci-assessment {
     min-width: 100% !important;
   }
 }
-
-#userInfoForm .col-sm-7 {
-  opacity: 1 !important;
-}
-
-strong {
-  font-family: $muli-semi-bold;
-  font-size: 17px;
-}
-
-.input-group {
-  &.inline-error {
-    .btn-primary {
-      background: transparent !important;
-      border: transparent;
-    }
-  }
-}
-
-.dropdown-control {
-  .btn-dropdown {
-    span.dependent-count {
-      color: $app-backgrnd-color;
-      margin-right: 4px;
-    }
-  }
-  .dropdown-item {
-    font-family: $muli-light;
-  }
-}
-
-#userInfoForm {
-  @include allmobiles {
-    //margin-top: 50px;
-  }
-  .flex-col-6 {
-    label {
-      white-space: normal;
-      line-height: normal;
-    }
-  }
-}
-
-.input-group.date-picker {
-  .dropdown-menu.show {
+app-personal-info {
+  .container-fluid {
     @include allmobiles {
-      left: inherit !important;
-      right: 0px;
+      padding-top: 68px;
+    }
+    padding-right: 15px !important;
+    padding-left: 23px !important;
+  }
+
+  #userInfoForm .col-sm-7 {
+    opacity: 1 !important;
+  }
+
+  strong {
+    font-family: $muli-semi-bold;
+    font-size: 17px;
+  }
+
+  .input-group {
+    &.inline-error {
+      .btn-primary {
+        background: transparent !important;
+        border: transparent;
+      }
     }
   }
-}
 
-.get-started-image {
-  @include tablet {
-    width: 300px;
-    height: 250px;
+  .dropdown-control {
+    .btn-dropdown {
+      span.dependent-count {
+        color: $app-backgrnd-color;
+        margin-right: 4px;
+      }
+    }
+    .dropdown-item {
+      font-family: $muli-light;
+    }
   }
-  background-repeat: no-repeat;
-  display: block;
-  height: 350px;
-  width: 480px;
-  margin-top: 50px;
-}
 
-.personal {
-  border: solid 1px rgba(255, 255, 255, 0.15);
-}
+  #userInfoForm {
+    .flex-col-6 {
+      label {
+        white-space: normal;
+        line-height: normal;
+      }
+    }
+  }
+  .form-group {
+    &.date-picker-group {
+      margin: 0;
+      padding-bottom: 10px;
+      .flex-row {
+        margin-bottom: 0;
+      }
+      .input-group.date-picker {
+        max-height: 52px;
+        margin: 0;
+        .dropdown-menu.show {
+          @include allmobiles {
+            left: inherit !important;
+            right: 0px;
+          }
+        }
+      }
+      .input-group-append {
+        .btn-primary {
+          max-height: 52px;
+        }
+      }
+    }
+  }
+  hr {
+    margin-top: 0;
+  }
+  .get-started-image {
+    @include tablet {
+      width: 300px;
+      height: 250px;
+    }
+    background-repeat: no-repeat;
+    display: block;
+    height: 350px;
+    width: 480px;
+    margin-top: 50px;
+  }
 
-.callout {
-  padding: 15px;
-  background-color: #fff;
-  color: #000;
-  border-radius: 6px;
-  margin-top: 30px;
-  position: relative;
-  font-family: $muli;
-  font-size:18px;
-  font-weight: normal;
-}
+  .callout {
+    padding: 15px;
+    background-color: $white-color;
+    color: $black-color;
+    border-radius: 6px;
+    margin-top: 30px;
+    position: relative;
+    font-family: $muli;
+    font-size: 18px;
+    font-weight: normal;
+  }
 
-.pointer-container{
-  position: absolute;
-  bottom: -14px;
-  left: 30px;
-  left:34px;
-  right:0px;
-  transform: translate(-100%, 0px);
+  .pointer-container {
+    position: absolute;
+    bottom: -14px;
+    left: 30px;
+    left: 34px;
+    right: 0px;
+    transform: translate(-100%, 0px);
+  }
+  .I-was-born-on {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $white-color;
+    width: 74px;
+  }
+  .personalInfoInvestmentDesc,
+  .personalInfoSliderDesc {
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 24px;
+    letter-spacing: -0.18px;
+    color: $text-color-secondary;
+  }
 
-}
-.I-was-born-on {
-  font-family: Muli;
-  font-size: 18px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  color: #ffffff;
-}
-.personalInfoInvestmentDesc, .personalInfoSliderDesc {
-  font-family: Muli;
-  font-size: 18px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 24px;
-  letter-spacing: -0.2px;
-  color: #5e5e5e;
-}
-.Continue {
-  font-family: Muli;
-  font-size: 22px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: #ffffff;
-}
+  .personalInfoSliderDesc b {
+    font-family: $muli-bold;
+  }
 
+  .Continue {
+    font-family: $muli-bold !important;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: $white-color;
+  }
 
-.pointer {
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 18px solid transparent;
-  border-bottom: 18px solid #fff;
-  right:0px;
-  left:auto;
-  position: absolute;
+  .pointer {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 18px solid $white-color;
+    right: 0px;
+    left: auto;
+    position: absolute;
+  }
+
+  .callout h5 {
+    color: $teal-color;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    font-family: $muli-bold;
+  }
+
+  .callout h5 .period-count {
+    color: $slider-selection-color;
+    text-decoration: underline;
+  }
 }
-
-.callout h5 {
-  color: $teal-color;
-  font-weight:bold;
+.btn {
+  &:disabled {
+    background-color: $btn-disabled-light-bg;
+    color: $disabled-teal-color;
+  }
 }
-
-.callout h5 .period-count{
-  color:$slider-selection-color;
-  text-decoration: underline;
-}
-
 .investmentSlider {
   .noUi-target {
     height: 50px !important;
@@ -169,7 +200,7 @@ strong {
     border-radius: 25px !important;
   }
   .noUi-base {
-    background-color: #007474 !important;
+    background-color: $investment-slider-noui-base-bg !important;
   }
   .noUi-connects {
     border-radius: 25px !important;
@@ -180,18 +211,17 @@ strong {
   .noUi-horizontal .noUi-handle {
     width: 63px !important;
     height: 64px !important;
-    background: url("../../../assets/images/owl-icon.png") no-repeat center;
+    background: url('../../../assets/images/owl-icon.png') no-repeat center;
     border: none !important;
     right: 0px;
   }
-  .noUi-origin{
-    width:93%;
-    margin:  0 auto;
+  .noUi-origin {
+    width: 93%;
+    margin: 0 auto;
   }
   @media (min-width: 768px) {
-    .noUi-origin{
-      width:96%;
+    .noUi-origin {
+      width: 96%;
     }
   }
-
 }
