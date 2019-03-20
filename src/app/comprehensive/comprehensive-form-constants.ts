@@ -7,5 +7,6 @@ MY_LIABILITIES: 'myLiabilitiesForm',
 MY_EARNINGS: 'myEarningsForm',
 MY_SPENDINGS: 'mySpendingsForm',
 MY_ASSETS: 'myAssetsForm',
-REGULAR_SAVINGS: 'RSPForm'
+REGULAR_SAVINGS: 'RSPForm',
+MY_DEPENDANT_EDUCATION: 'endowmentListForm'
 };

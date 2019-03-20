@@ -371,4 +371,29 @@ export class ComprehensiveFormError {
             }
         }
     };
+    endowmentListForm: object = {
+        formFieldErrors: {
+            errorTitle: this.errorTitleDetails,
+            endowmentMaturityAmount: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Maturity Amount'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Maturity Amount'
+                }
+            },
+            endowmentMaturityYears: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Maturity Year'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Maturity Year'
+                }
+            },
+        }
+    };
 }
