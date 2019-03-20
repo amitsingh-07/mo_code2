@@ -309,7 +309,11 @@
       "UNIT_TRUST_TYPE": "Type of Unit Trust",
       "PAID_BY_CASH": "Paid By Cash",
       "PAID_BY_CPF": "Paid By CPF",
-      "MONTH": "mth"
+      "MONTH": "mth",
+      "TOOLTIP":{
+        "RSP_TITLE": "Regular Saving Plan",
+        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."       
+      }
     },
     "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
