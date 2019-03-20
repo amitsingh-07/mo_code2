@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-step-indicator',
@@ -7,20 +7,10 @@ import { Component, Input, OnInit, Optional } from '@angular/core';
 })
 export class StepIndicatorComponent implements OnInit {
 
-  static STEPPER_MODE = {
-    FILL_CURRENT: 0,
-    FILL_PREVIOUS: 1
-  };
-
   @Input('count') count;
   @Input('activeStepIndex') activeStepIndex;
-  @Input('mode') mode?: number;
 
-  constructor() {
-    if (!this.mode) {
-      this.mode = StepIndicatorComponent.STEPPER_MODE.FILL_CURRENT;
-    }
-  }
+  constructor() { }
 
   ngOnInit() {
   }

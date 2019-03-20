@@ -13,25 +13,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { DirectService } from './../direct/direct.service';
 
 import { APP_ROUTES } from '../app-routes.constants';
-import { appConstants } from '../app.constants';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
-import { COMPREHENSIVE_BASE_ROUTE } from './../comprehensive/comprehensive-routes.constants';
 import { ConfigService, IConfig } from './../config/config.service';
 import { DIRECT_BASE_ROUTE } from './../direct/direct-routes.constants';
-import { DirectService } from './../direct/direct.service';
 import { FooterService } from './../shared/footer/footer.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { StateStoreService } from './../shared/Services/state-store.service';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
-import { SignUpService } from './../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-home',
@@ -67,8 +64,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
     private seoService: SeoServiceService, private configService: ConfigService, private stateStoreService: StateStoreService,
-    private directService: DirectService, private signUpService: SignUpService, private guidemeService: GuideMeService) {
-
+    private directService: DirectService, private guidemeService: GuideMeService) {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -157,7 +153,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
-    // #this.authService.clearSession();
+    //this.authService.clearSession();
     this.appService.clearJourneys();
     this.appService.startAppSession();
   }
@@ -320,10 +316,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
     }
   }
-
-  startComprehensiveJourney() {
-    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    this.router.navigate([COMPREHENSIVE_BASE_ROUTE]);
-  }
 }
-

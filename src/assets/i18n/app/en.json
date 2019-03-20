@@ -22,8 +22,6 @@
     "LBL_PROJECTED_RETURN": "Projected Return",
     "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
     "LBL_PROJECTED_PAYOUT": "Projected Payout",
-    "CREATE_ACCOUNT": "Create Account",
-    "LOGIN": "Log In",
     "OKAY": "Ok"
   },
   "SUFFIX": {
@@ -264,5 +262,4 @@
     "DESC": "Please wait while we load the data"
   }
 }
-
 

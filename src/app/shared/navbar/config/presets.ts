@@ -98,18 +98,4 @@ export class NavbarConfig {
         primary: 'Investment'
       }
     };
-    // Comprehensive (Robo3)
-    '7': object = {
-      showNavBackBtn: true,
-      showHeaderBackBtn: true,
-      showMenu: true,
-      showLogin: false,
-      showNavShadow: true,
-      showSearchBar: false,
-      showNotifications: false,
-      showHeaderNavbar: true,
-      showLabel: {
-        primary: ''
-      }
-    };
 }
