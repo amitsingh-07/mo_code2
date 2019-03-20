@@ -1,5 +1,6 @@
 
-    
+@import '../../../variables';
+@import '../../../mixins';
 .education-support-array{
     .title{
         color:#000;
@@ -14,21 +15,18 @@
 }
 
 .comprehensive {
-    .dependant-title {
-        font-size: 18px;
-    }
     .dependant-desc {
         font-size: 16px;
         padding-bottom: 16px;
     }
     .dependant_selection_title{
         font-size: 16px!important;
-        font-weight: 600!important;
+        font-family: $muli-semi-bold;
         color: #5e5e5e;
     }
     .title{
         font-size: 16px!important;
-        font-weight: 600!important;
+        font-family: $muli-semi-bold;
         color: #5e5e5e;
     }
 .dependantSection{

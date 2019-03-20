@@ -70,7 +70,7 @@ h6 {
   padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
   transition:0.5s;
-  z-index:1029;
+  z-index:1060;
   &.browser-error{
     height: calc(84px + 34px);
     align-items:flex-start;
@@ -622,6 +622,7 @@ h6 {
             color:$white-color;
             font-size:18px;
             font-family:$muli-bold;
+            text-transform: capitalize;
           }
           .sub-text{
             font-family:$muli-regular;
@@ -1899,21 +1900,36 @@ a.link-white {
     padding: 15px;
     position: fixed;
     width: 100%;
-    z-index: 1029;
+    z-index: 1028;
   }
-  .mo3-close-icon {
+  .delete-icon {
     background: url("./assets/images/comprehensive/delete-icon.svg");
     background-repeat: no-repeat;
     height: 20px;
     width: 20px;
     display: inline-block;
   }
-  .form-group-single-column .checkbox-button {
-    margin-bottom: 20px;
+  .help-icon {
+    background: url("./assets/images/comprehensive/tool-tip-white.svg");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
   }
   .custom-full-height {
     max-height: 100% !important;
     padding: 5% !important;
+  }
+  .page-title {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    .help-icon {
+      background: url("./assets/images/comprehensive/tool-tip-white.svg");
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+    }
   }
 }
 

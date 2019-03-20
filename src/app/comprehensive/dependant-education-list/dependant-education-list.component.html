@@ -17,15 +17,16 @@
         <div class="form-group-with-bg mt20" [formGroupName]="i">
         
         <!--Form Header-->
-          <div class="form-group-with-bg--header" [ngClass]="{' border-all8': !educationPlan.get('endowmentPlanShow').value}">
+          <div class="form-group-with-bg--header pb15" [ngClass]="{' border-all8': !educationPlan.get('endowmentPlanShow').value}">
             <div class="flex-row">
               <div class="flex-col-12">
                   <div class="checkbox-button one-label">
                       <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
-                        formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                        formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="">
                       <label for="educationSupport{{i}}">
                         <div class="form-group-with-bg--header-label pb0">{{educationPlan.get('name').value}}</div>
-                        <div class="age"> {{educationPlan.get('age').value}} Years old</div>
+                        <div class="age"> {{ 'CMP.EDUCATION_PREFERENCE.ABOUT' | translate}} {{educationPlan.get('age').value}} {{
+                            'CMP.FORM_LABEL.YEARS_LATER' | translate}} </div>
                       </label>
                     </div>
               </div> 
@@ -57,14 +58,14 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan['controls'].maturityYear.invalid}"
-                id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYear formControlName="endowmentMaturityYear" maxlength="4">
+              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan['controls'].endowmentMaturityYears.invalid}"
+                id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
               </div>
             </div>
           </div>
       </div>
       </div>
-      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt50 width100"
+      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt30 width100"
       id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'LABEL.CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
   </form>
 

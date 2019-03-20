@@ -4,13 +4,36 @@
 
 
 .rspSelectionList{
-    color:$dark-teal-color!important;
+    margin-top: 15px;
 }
 .comprehensive {
-    .title {
-        font-size: 18px;
+    .form-group-with-bg {
+        background: $white-color;
+        label {
+            font-family: normal;
+            font-family: $muli-regular;
+            font-size: 16px;
+        }
+        .form-group-with-bg--header {
+            padding-left: 0;
+        }
+        .form-group-with-bg--content {
+            padding: 0;
+        }
     }
-   .form-group-with-bg--header{
-    padding: 15px 0px 5px!important;
-   }
+    .add-rsp {
+        border-top: 1px solid #cee5e4;
+        margin: 20px 0 10px 0;
+        color: #066360;
+        text-decoration: underline;
+        padding-top: 15px;
+        font-family: $muli-regular;
+        font-size: 16px;
+    }
+    .rsp-header {
+        @extend .flex;
+        justify-content: space-between;
+        border-top: 1px solid #cee5e4;
+        padding-top: 15px;
+    }
 }

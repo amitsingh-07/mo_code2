@@ -10,12 +10,13 @@ import { HelperService } from '../shared/http/helper.service';
     providedIn: 'root'
 })
 export class ComprehensiveApiService {
+    private handleErrorFlag = '?handleError=true';
     constructor(
         private apiService: ApiService,
         private authService: AuthenticationService,
         private http: BaseService,
         private helperService: HelperService
-    ) {}
+    ) { }
 
     getComprehensiveSummary() {
         const sessionId = this.authService.getSessionId();
@@ -48,7 +49,12 @@ export class ComprehensiveApiService {
     saveChildEndowment(payload) {
         console.log(payload);
         return this.http
-            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
-            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload);
     }
+
+    saveEarnings(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveEarnings, payload);
+    }
+
 }

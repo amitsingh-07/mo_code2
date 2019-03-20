@@ -9,20 +9,20 @@
         <div class="checkbox-button one-label mt20">
           <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
             type="radio" value="1" class="field radio">
-          <label for="dependant_selection_yes" class="mb10 mt10">
+          <label for="dependant_selection_yes">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
           <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="mb15 dependantSection">
             <div class="dependant_selection_title mt15">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
 
               <div class="form-group mb0" [formGroupName]="i">
 
                 <div class="education-support">
                   <div class="checkbox-button one-label mb0 pl0 pb0">
                     <input [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
-                      formControlName="dependantSelection" type="checkbox" class="field checkbox" value="">
+                      formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
                     <label for="educationSupportYes{{i}}">
                       <div class="title">{{educationPlan.get('name').value}}</div>
                     </label>
@@ -44,14 +44,14 @@
             <div class="dependant_selection_title mt15">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
 
               <div class="form-group mb0" [formGroupName]="i" >
 
                 <div class="education-support">
                   <div class="checkbox-button one-label mb0 pl0 pb0">
                     <input [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
-                      formControlName="dependantSelection" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                      formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
                     <label for="educationSupportNo{{i}}">
                       <div class="title">{{educationPlan.get('name').value}}</div>
 

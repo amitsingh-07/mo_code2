@@ -1,10 +1,10 @@
-import { IComprehensiveEnquiry } from './../comprehensive-types';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { IComprehensiveEnquiry } from './../comprehensive-types';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -83,27 +83,20 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.buildProfileForm();
-        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     }
 
     ngOnInit() {
+        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.userDetails = this.comprehensiveService.getMyProfile();
         if (!this.userDetails || !this.userDetails.firstName) {
             this.loaderService.showLoader({ title: 'Fetching Data' });
             this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.loaderService.hideLoader();
-                const redirectUrl = this.signUpService.getRedirectUrl();
-                if (redirectUrl) {
-                    this.signUpService.clearRedirectUrl();
-                    this.loaderService.hideLoader();
-                    this.router.navigate([redirectUrl]);
-                } else {
-                    this.getUserProfileData();
-                }
+                this.checkRedirect();
             });
         } else {
-            this.getUserProfileData();
+            this.checkRedirect();
         }
 
         this.navbarService.setNavbarComprehensive(true);
@@ -116,6 +109,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             setTimeout(() => {
                 this.showToolTip = true;
             }, 1000);
+        }
+    }
+
+    checkRedirect() {
+        const redirectUrl = this.signUpService.getRedirectUrl();
+        if (redirectUrl) {
+            this.signUpService.clearRedirectUrl();
+            this.loaderService.hideLoader();
+            this.router.navigate([redirectUrl]);
+        } else {
+            this.getUserProfileData();
         }
     }
 
@@ -134,6 +138,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.setUserProfileData();
         this.buildProfileForm();
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);
+        this.progressService.refresh();
     }
 
     setUserProfileData() {
@@ -164,7 +169,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setProgressToolTipShown(true);
             if (!form.pristine) {
                 this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-                    this.comprehensiveService.startComprehensiveEnquiry();
+                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                    cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
+                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                 });
             } else {

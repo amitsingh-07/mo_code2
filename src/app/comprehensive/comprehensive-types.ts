@@ -41,10 +41,11 @@ export interface IChildEndowment {
     enquiryId: number;
     location: string;
     educationCourse: string;
-    endowmentMaturityAmount: string;
-    endowmentMaturityYears: string;
+    endowmentMaturityAmount: number;
+    endowmentMaturityYears: number;
     dateOfBirth: string;
     age: number;
+    gender: string;
     preferenceSelection: boolean;
 }
 

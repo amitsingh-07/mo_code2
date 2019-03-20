@@ -19,6 +19,7 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-navbar',
@@ -90,7 +91,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
-    private appService: AppService) {
+    private appService: AppService,
+    private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -299,6 +301,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.recentMessages.map((message) => {
         message.time = parseInt(message.time, 10);
       });
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
