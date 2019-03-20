@@ -1,3 +1,4 @@
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -48,7 +49,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -67,10 +69,11 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
     this.buildMyEarningsForm();

@@ -1,4 +1,5 @@
-import { Component, HostListener, OnDestroy, OnInit, ɵConsole } from '@angular/core';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -39,9 +40,11 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   pageId: string;
   bucketImage: string;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
-    constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-                private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-                private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -58,19 +61,20 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     console.log(this.spendingDetails);
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
     this.buildMySpendingForm();
     if (this.spendingDetails) {
       for (const value of this.mortageFieldSet) {
-        if (this.spendingDetails[value] !== null && this.spendingDetails[value] !== ''  &&
-         (this.spendingDetails[value] > 0 || (value === 'mortgageTypeOfHome' &&
-         this.spendingDetails[value] !== undefined )  )) {
-            this.validateFlag = false;
+        if (this.spendingDetails[value] !== null && this.spendingDetails[value] !== '' &&
+          (this.spendingDetails[value] > 0 || (value === 'mortgageTypeOfHome' &&
+            this.spendingDetails[value] !== undefined))) {
+          this.validateFlag = false;
         }
       }
       if (!this.validateFlag) {
@@ -92,7 +96,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   addOtherMortage() {
-   for (const value of this.mortageFieldSet) {
+    for (const value of this.mortageFieldSet) {
       const otherPropertyControl = this.mySpendingsForm.controls[value];
       if (this.otherMortage) {
         if (value === 'mortgagePayOffUntil') {
@@ -111,7 +115,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         otherPropertyControl.updateValueAndValidity();
       }
     }
-   this.otherMortage = !this.otherMortage;
+    this.otherMortage = !this.otherMortage;
   }
   buildMySpendingForm() {
     this.mySpendingsForm = this.formBuilder.group({
@@ -169,8 +173,10 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     return { pattern: true };
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = { TITLE: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipTitle),
-    DESCRIPTION: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipMessage)};
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipMessage)
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
   @HostListener('input', ['$event'])
@@ -180,14 +186,16 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
 
   onTotalAnnualSpendings() {
     const inputParams = ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
-    'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'];
+      'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'];
     const spendingValues = this.mySpendingsForm.value;
-    const spendingFormObject = { monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
-       adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF,
-        HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF:
+    const spendingFormObject = {
+      monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
+      adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF,
+      HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF:
         spendingValues.mortgagePaymentUsingCPF, mortgagePaymentUsingCash:
         spendingValues.mortgagePaymentUsingCash, carLoanPayment: spendingValues.carLoanPayment,
-        otherLoanPayment: spendingValues.otherLoanPayment };
+      otherLoanPayment: spendingValues.otherLoanPayment
+    };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
     if (this.totalSpending == 0) {
@@ -199,3 +207,4 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     }
   }
 }
+

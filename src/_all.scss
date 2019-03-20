@@ -1744,8 +1744,9 @@ a.link-white {
 //Comprehensive Styles
 .comprehensive {
   &.container-fluid {
-    height: 100vh;
+    height: 100%;
     padding-top: $cmp-padding-top;
+    padding-bottom: 0;
   }
   &__page-heading {
     padding: 16px 0;
@@ -1851,7 +1852,7 @@ a.link-white {
     width: 92%;
     right: 4%;
     left: 4%;
-    z-index: 1039;
+    z-index: 1069;
     &__inner {
       position: relative;
       border-radius: 6px;

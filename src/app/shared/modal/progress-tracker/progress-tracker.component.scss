@@ -2,7 +2,7 @@
 @import '../../../../mixins';
 
 .modal-open .modal.fade.show.progress-tracker-modal {
-    top: 115px !important;
+    top: 110px !important;
     position: fixed !important;
     width: 100% !important;
     overflow-y: hidden !important;
@@ -32,8 +32,8 @@
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         right: 10px;
-        top: -4px;
-        z-index: 1040;
+        top: -10px;
+        z-index: 1069;
     }
 
     .progress-tracker {
@@ -41,7 +41,7 @@
         border-bottom: 20px transparent solid;
         border-radius: 6px;
         position: relative;
-        margin: 15px 15px 0;
+        margin: 10px 15px 0;
         padding: 35px 15px 15px;
         overflow-y: scroll;
         max-height: 77vh;

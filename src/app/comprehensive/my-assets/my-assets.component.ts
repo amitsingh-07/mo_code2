@@ -1,22 +1,17 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { IMyAssets } from '../comprehensive-types';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { IMyAssets } from '../comprehensive-types';
 
 @Component({
   selector: 'app-my-assets',
@@ -38,7 +33,8 @@ export class MyAssetsComponent implements OnInit {
   bucketImage: string;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -58,10 +54,11 @@ export class MyAssetsComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
     this.buildMyAssetsForm();
