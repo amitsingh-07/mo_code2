@@ -479,6 +479,13 @@
       "STEP_3":"Meet your advisor to customise and implement  financial plan.",
       "DASHBOARD":"Dashboard"
 
+    },
+    "ENQUIRY":{
+      "TITLE":"Wait for our call!",
+      "DESC":"We seek for your understanding and patience for our advisors will be contacting you within 2-3 working days.",
+      "SUB_DESC":"For further enquries, feel free to contact us!",
+       "PHONE_NO":"(65) 6329 9188",
+       "EMAIL":"enquiries@moneyowl.com.sg"
     }
   }
 }

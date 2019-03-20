@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="117px" height="112px" viewBox="0 0 117 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>Bucket/Income/100%</title>
+    <title>Bucket/Income/50%</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <filter x="-41.4%" y="-40.0%" width="182.8%" height="180.0%" filterUnits="objectBoundingBox" id="filter-1">
@@ -16,12 +16,12 @@
         <ellipse id="path-2" cx="14.4939516" cy="14.1951945" rx="14.4939516" ry="14.1951945"></ellipse>
         <polygon id="path-4" points="0 0 20.546371 0 20.546371 26.362504 0 26.362504"></polygon>
     </defs>
-    <g id="Bucket/Income/100%" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Bucket/Income/50%" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect fill="#00A7A7" x="0" y="0" width="117" height="112"></rect>
         <g id="Group-2" transform="translate(5.000000, 0.000000)">
             <path d="M8,3 L99,3 L90.5845327,101.510702 C90.3193303,104.615137 87.7220495,107 84.6063069,107 L21.5569872,107 C18.421788,107 15.8151481,104.58619 15.574664,101.460227 L8,3 Z" id="Path-4" fill="#FFFFFF" opacity="0.83"></path>
-            <path d="M16,13 L91.5356235,13 L84.511702,92.5840275 C84.2383467,95.6812604 81.6442072,98.0565304 78.5349348,98.0565304 L28.0889431,98.0565304 C24.9534353,98.0565304 22.3466479,95.6422598 22.1065584,92.5159575 L16,13 Z" id="Path-4" fill="#1174B6"></path>
-            <path d="M75,17 L87.1923077,17 L80.6966743,93.1561657 C80.5653602,94.69572 79.2773818,95.8785186 77.7322375,95.8785186 L77.7322375,95.8785186 C76.2232644,95.8785186 75,94.6552542 75,93.146281 L75,17 Z" id="Path-4" fill="#2386C8"></path>
+            <path d="M19.6746037,55.0732116 L87.5178766,55.0732116 L84.4763531,92.541983 C84.2234749,95.6572093 81.6214971,98.0565304 78.496024,98.0565304 L28.1464302,98.0565304 C24.9872131,98.0565304 22.3692009,95.6067803 22.1596445,92.4545209 L19.6746037,55.0732116 Z" id="Path-4" fill="#1174B6"></path>
+            <path d="M75,59 L83,59.0520471 L80.652147,93.1527341 C80.5464763,94.6875156 79.2706525,95.8785186 77.7322375,95.8785186 L77.7322375,95.8785186 C76.2232644,95.8785186 75,94.6552542 75,93.146281 L75,59 Z" id="Path-4" fill="#2386C8"></path>
             <rect id="Rectangle" fill="#004472" x="0" y="0" width="107" height="8" rx="4"></rect>
             <g id="Group-5-Copy" filter="url(#filter-1)" transform="translate(39.000000, 36.000000)">
                 <g id="Group-12">

@@ -16,12 +16,14 @@ import { ComprehensiveComponent } from './comprehensive/comprehensive.component'
 import { SharedModule } from '../shared/shared.module';
 import { NgbDateCustomParserFormatter } from '../shared/utils/ngb-date-custom-parser-formatter';
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
@@ -32,7 +34,6 @@ import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
 import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
-import { EnquiryComponent } from './enquiry/enquiry.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -77,8 +78,10 @@ export function createTranslateLoader(http: HttpClient) {
     InsurancePlanComponent,
     ResultComponent,
     EnquiryComponent,
+    DashboardComponent
     ],
     providers: [NgbDateCustomParserFormatter]
 
 })
 export class ComprehensiveModule { }
+

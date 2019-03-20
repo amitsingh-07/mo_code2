@@ -5,12 +5,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IMyAssets } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
+import { IMyAssets } from '../comprehensive-types';
 
 @Component({
   selector: 'app-my-assets',
@@ -28,8 +29,9 @@ export class MyAssetsComponent implements OnInit {
   assetDetails: IMyAssets;
   menuClickSubscription: Subscription;
   pageId: string;
-  constructor(
-    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+  submitted: boolean;
+  bucketImage: string;
+  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService) {
@@ -46,7 +48,7 @@ export class MyAssetsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
     this.assetDetails = this.comprehensiveService.getMyAssets();
-    console.log(this.comprehensiveService.getMyAssets());
+    //console.log(this.comprehensiveService.getMyAssets());
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -71,49 +73,69 @@ export class MyAssetsComponent implements OnInit {
     this.menuClickSubscription.unsubscribe();
   }
   buildMyAssetsForm() {
-    const otherInvestFormArray = []; var inc = 0;
+    const otherInvestFormArray = [];
+    let inc = 0;
     if (this.assetDetails.otherInvestment && this.assetDetails.otherInvestment.length > 0) {
       this.assetDetails.otherInvestment.forEach((otherInvest, i) => {
         if (otherInvest.investmentType !== '' || otherInvest.others > 0) {
-          otherInvestFormArray.push(this.buildInvestmentForm(otherInvest));
+          otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
           this.investType[inc] = otherInvest.investmentType;
           inc++;
         }
       });
     } else {
-      otherInvestFormArray.push(this.buildInvestmentForm(''));
+      otherInvestFormArray.push(this.buildInvestmentForm('', 0));
     }
 
     this.myAssetsForm = this.formBuilder.group({
-      cashInBank: [this.assetDetails ? this.assetDetails.cashInBank : '', [Validators.required]],
-      singaporeSavingsBond: [this.assetDetails ? this.assetDetails.singaporeSavingsBond : '', [Validators.required]],
-      CPFOA: [this.assetDetails ? this.assetDetails.CPFOA : '', [Validators.required]],
-      CPFSA: [this.assetDetails ? this.assetDetails.CPFSA : '', [Validators.required]],
-      CPFMA: [this.assetDetails ? this.assetDetails.CPFMA : '', [Validators.required]],
-      yourHome: [this.assetDetails ? this.assetDetails.yourHome : '', [Validators.required]],
-      investmentProperties: [this.assetDetails ? this.assetDetails.investmentProperties : '', [Validators.required]],
+      cashInBank: [this.assetDetails ? this.assetDetails.cashInBank : '', []],
+      singaporeSavingsBond: [this.assetDetails ? this.assetDetails.singaporeSavingsBond : '', []],
+      CPFOA: [this.assetDetails ? this.assetDetails.CPFOA : '', []],
+      CPFSA: [this.assetDetails ? this.assetDetails.CPFSA : '', []],
+      CPFMA: [this.assetDetails ? this.assetDetails.CPFMA : '', []],
+      yourHome: [this.assetDetails ? this.assetDetails.yourHome : '', []],
+      investmentProperties: [this.assetDetails ? this.assetDetails.investmentProperties : '', []],
       otherInvestment: this.formBuilder.array(otherInvestFormArray),
-      otherAssets: [this.assetDetails ? this.assetDetails.otherAssets : '', [Validators.required]]
+      otherAssets: [this.assetDetails ? this.assetDetails.otherAssets : '', []]
     });
   }
   addOtherInvestment() {
+    const otherPropertyControl = this.myAssetsForm.controls['investmentProperties'];
+    if (this.myInvestmentProperties) {
+      otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+      otherPropertyControl.updateValueAndValidity();
+    } else {
+      otherPropertyControl.setValue('');
+      otherPropertyControl.setValidators([]);
+      otherPropertyControl.updateValueAndValidity();
+    }
+    this.onTotalAssetsBucket();
     this.myInvestmentProperties = !this.myInvestmentProperties;
 
   }
   addInvestment() {
     const investments = this.myAssetsForm.get('otherInvestment') as FormArray;
-    investments.push(this.buildInvestmentForm(''));
+    investments.push(this.buildInvestmentForm('', investments.length));
+    this.setInvestValidation(investments.length);
   }
-  buildInvestmentForm(inputParams) {
+  buildInvestmentForm(inputParams, totalLength) {
+    if (totalLength > 0) {
     return this.formBuilder.group({
       investmentType: [inputParams.investmentType, [Validators.required]],
-      others: [(inputParams && inputParams.others) ? inputParams.others : '', [Validators.required]]
+      others: [(inputParams && inputParams.others) ? inputParams.others : '', [Validators.required, Validators.pattern('^0*[1-9]\\d*$')]]
     });
+    } else {
+      return this.formBuilder.group({
+        investmentType: [inputParams.investmentType, []],
+        others: [(inputParams && inputParams.others) ? inputParams.others : '', []]
+      });
+    }
   }
   removeInvestment(i) {
     const investments = this.myAssetsForm.get('otherInvestment') as FormArray;
     this.investType[i] = '';
     investments.removeAt(i);
+    this.setInvestValidation(investments.length);
   }
   selectInvestType(investType, i) {
     investType = investType ? investType : { text: '', value: '' };
@@ -121,10 +143,40 @@ export class MyAssetsComponent implements OnInit {
     this.myAssetsForm.controls['otherInvestment']['controls'][i].controls.investmentType.setValue(investType.text);
     this.myAssetsForm.markAsDirty();
   }
+  setInvestValidation(totalLength) {
+    const otherInvestmentControl = this.myAssetsForm.controls['otherInvestment']['controls'][0].controls;
+    if (totalLength === 1) {
+      otherInvestmentControl['investmentType'].setValidators([]);
+      otherInvestmentControl['investmentType'].updateValueAndValidity();
+      otherInvestmentControl['others'].setValidators([]);
+      otherInvestmentControl['others'].updateValueAndValidity();
+    } else {
+      otherInvestmentControl['investmentType'].setValidators([Validators.required]);
+      otherInvestmentControl['investmentType'].updateValueAndValidity();
+      otherInvestmentControl['others'].setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+      otherInvestmentControl['others'].updateValueAndValidity();
+    }
+  }
+  get addAssetsValid() { return this.myAssetsForm.controls; }
+  validateAssets(form: FormGroup) {
+    this.submitted = true;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
 
-  goToNext(form) {
-    this.comprehensiveService.setMyAssets(form.value);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        form.get(key).markAsDirty();
+      });
+      const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_ASSETS);
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
+      this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
+      return false;
+    }
+    return true;
+  }
+  goToNext(form: FormGroup) {
+    if (this.validateAssets(form)) {
+      this.comprehensiveService.setMyAssets(form.value);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+    }
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
@@ -144,6 +196,7 @@ export class MyAssetsComponent implements OnInit {
       assetFormObject['otherInvestment' + index] = investDetails.others;
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
+    const bucketParams = ['cashInBank', 'singaporeSavingsBond', 'CPFOA', 'CPFSA', 'CPFMA', 'yourHome', 'otherInvestment0', 'otherAssets'];
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject);
   }
-
 }

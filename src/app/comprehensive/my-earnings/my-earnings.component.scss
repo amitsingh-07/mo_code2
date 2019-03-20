@@ -151,19 +151,24 @@ color: $dark-teal-color;
 .income-modal-notes{
     color:$light-grey-color;
 }
-.emptyEarn{
+.emptyBucket{
     background: url("../../../assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
     display: inline-block;
     width: 117px;
     height: 112px;
 }
-.filledEarn{
+.filledBucket{
     background: url("../../../assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
     display: inline-block;
     width: 117px;
     height: 112px;
 }
-
+.middleBucket{
+    background: url("../../../assets/images/comprehensive/middle-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
 .income-bucket-panel {
     text-align: center;
     &__img {
