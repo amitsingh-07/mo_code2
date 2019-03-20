@@ -76,6 +76,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
     this.comprehensiveService.updateComprehensiveSummary();
     this.hasEndowments = this.comprehensiveService.hasEndowment();
+    this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
     console.log(this.childEndowmentArray);
@@ -144,6 +145,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     });
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   buildChildEndowmentFormArray() {
 
     const tempChildEndowmentArray: IChildEndowment[] = [];
@@ -252,5 +254,3 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-
