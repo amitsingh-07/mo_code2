@@ -1,0 +1,109 @@
+@import '../../../variables';
+@import '../../../mixins';
+.education-support{
+
+
+input[type='checkbox']+label {
+  background: url("../../../assets/images/check-box-normal.svg") left top no-repeat;
+}
+input[type='checkbox']:checked+label {
+  background-image: url("../../../assets/images/check-box-select.svg");
+}
+.title {
+  
+  position: relative;
+  top: -6px;
+}
+.sub-title {
+  position: relative;
+  top: -4px;
+
+  opacity: 0.7;
+  font-size: 16px;
+  line-height: 21px;
+}
+}
+.comprehensive {
+  &.container-fluid {
+      padding-top: $cmp-padding-top;
+  }
+  .dependant-title {
+      font-size: 18px;
+  }
+
+}
+
+.form-group-with-bg--header-label {
+
+  background: #fff;
+  color: #313644;
+  font-size: 18px;
+  font-weight: 600;
+
+  
+ 
+}
+.age {
+  color: #8d9aa8!important;
+  font-size: 16px!important;
+}
+.education-support-array{
+  background: #fff;
+  color:#000;
+  border-radius:5px;
+}
+.education-plan{
+  font-size: 16px;
+  background-color: #f4fafb;
+  color: #2d8289;
+  border: 1px solid #f4fafb;
+ 
+}
+
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    font-size: 18px;
+    .help-icon {
+      
+        background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }    
+    font-size: 18px;    
+
+
+
+
+
+
+
+
+
+
+
+
+}
+.help-icon {      
+    background: url("../../../assets/images/tooltip-icon-white.svg") no-repeat;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    bottom: 13px;
+}
+.border-all8 {
+  &.form-group-with-bg--header {
+    padding: 15px 20px 15px !important;
+  }
+}    

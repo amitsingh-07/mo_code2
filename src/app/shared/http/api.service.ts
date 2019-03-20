@@ -1,14 +1,14 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { LoaderService } from './../components/loader/loader.service';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
@@ -23,6 +23,9 @@ const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
 export class ApiService {
   private errorMessage = new BehaviorSubject({});
   public newErrorMessage = this.errorMessage.asObservable();
+  private handleErrorFlag = '?handleError=true';
+  private errorTag = 'An error occurred:';
+  private errorTryAgain = 'Something bad happened; please try again later.';
 
   constructor(
     private configService: ConfigService,
@@ -31,13 +34,15 @@ export class ApiService {
     private modal: NgbModal,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private loaderService: LoaderService) { }
 
   private handleError(error: HttpErrorResponse) {
+    this.loaderService.hideLoader();
     if (error) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.
-        console.error('An error occurred:', error.error.message);
+        console.error(this.errorTag, error.error.message);
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
@@ -49,7 +54,7 @@ export class ApiService {
     }
     // return an observable with a user-facing error message
     return throwError(
-      'Something bad happened; please try again later.');
+      this.errorTryAgain);
   }
 
   getProfileList() {
@@ -197,7 +202,7 @@ export class ApiService {
   /* Subscribe Newsletter */
   subscribeNewsletter(data) {
     const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.subscription.base + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
       );
@@ -246,13 +251,13 @@ export class ApiService {
   }
 
   createAccount(payload: ISignUp) {
-    return this.http.post(apiConstants.endpoint.signUp + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.signUp + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -261,7 +266,7 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -280,7 +285,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -289,19 +294,19 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.verifyOTP + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -310,13 +315,13 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
 
   emailValidityCheck(payload) {
-    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + this.handleErrorFlag, payload);
   }
 
   setPassword(payload: ISetPassword) {
@@ -326,7 +331,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -335,7 +340,7 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -347,7 +352,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -356,7 +361,7 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -448,9 +453,7 @@ export class ApiService {
       );
   }
 
-
   getInvestmentOverview() {
-    //  const url = '../assets/mock-data/investment-overview.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -465,13 +468,12 @@ export class ApiService {
 
   getGeneratedFrom() {
     const url = '../assets/mock-data/generatedFrom.json';
-    // return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
     return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -481,7 +483,7 @@ export class ApiService {
             return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -493,7 +495,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -503,7 +505,7 @@ export class ApiService {
             return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -545,8 +547,6 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   getDirectSearch(payload) {
-    // const url = '../assets/mock-data/directResults.json';
-    // return this.httpClient.get<IServerResponse>(url);
     return this.http.post(apiConstants.endpoint.getRecommendations, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => {
@@ -592,7 +592,7 @@ export class ApiService {
   }
 
   createInvestmentAccount() {
-    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + '?handleError=true')
+    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + this.handleErrorFlag)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -682,9 +682,9 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
+  // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + this.handleErrorFlag, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -692,22 +692,22 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   deletePortfolio(data) {
     // need to change the correct endpoint
-    return this.http.delete(apiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + '?handleError=true', data)
+    return this.http.delete(apiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + this.handleErrorFlag, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
   monthlyInvestment(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + this.handleErrorFlag, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + this.handleErrorFlag, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -796,6 +796,13 @@ export class ApiService {
       );
   }
 
+  // Comprehensive Module
+  getPersonalDetails() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getPersonalDetails)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
   downloadStatement(data) {
     return this.http.getBlob(apiConstants.endpoint.investment.getStatement + '?' + data)
       .pipe(
@@ -803,4 +810,47 @@ export class ApiService {
       );
   }
 
+  addPersonalDetails(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getDependents() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getDependents)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  addDependents(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getEarnings() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getEarnings)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveEarnings(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.saveEarnings, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getSpendings() {
+    return this.http.get(apiConstants.endpoint.comprehensive.getSpendings)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveSpendings(payload) {
+    return this.http.post(apiConstants.endpoint.comprehensive.saveSpendings, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

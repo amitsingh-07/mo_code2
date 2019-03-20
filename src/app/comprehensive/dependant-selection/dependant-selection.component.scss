@@ -1,0 +1,19 @@
+@import '../../../variables';
+@import '../../../mixins';
+.comprehensive {
+    &.container-fluid {
+        padding-top: $cmp-padding-top;
+        .step-indicator-container {
+            background: $white-color;
+            margin: -15px -20px 20px;
+            padding: 15px;
+        }
+    }
+    .dependant-title {
+        font-size: 18px;
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+}

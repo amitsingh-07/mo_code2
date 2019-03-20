@@ -1,11 +1,12 @@
 {
   "language": "en",
+  "common":"COMMON",
   "useMyInfo": true,
   "willWritingEnabled": true,
   "investmentEnabled": false,
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
-  "comprehensiveEnabled": false,
+  "comprehensiveEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": true,
@@ -88,3 +89,5 @@
     }
   ]
 }
+
+

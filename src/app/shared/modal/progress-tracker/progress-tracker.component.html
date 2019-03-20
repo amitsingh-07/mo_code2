@@ -1,0 +1,32 @@
+<div class="progress-tracker-tooltip">
+  <div class="progress-tracker">
+    <span class="progress-tracker__close" (click)="onCloseClick()"></span>
+    <div class="progress-tracker__heading">{{data.title}}</div>
+    <div class="progress-tracker__duration">
+      <span class="mr10">{{data.subTitle}}</span>
+      <img src="../../../assets/images/comprehensive/progress-tracker/timer-icon.svg" alt="">
+    </div>
+    <div *ngIf="data.items" class="progress-tracker-accordion">
+      <div *ngFor="let item of data.items">
+        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="toggle(item)">
+          {{item.title}}
+          <span class=" progress-tracker-accordion__heading__arrow"></span>
+        </div>
+        <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
+          <ul>
+            <li (click)="navigate(subItem.path)" *ngFor="let subItem of item.subItems" [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.path.replace(pathRegex, '')}">
+              <span [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'now': currentPath == subItem.path.replace(pathRegex, '')}"></span>
+              {{subItem.title}}<span *ngIf="subItem.completed">:
+                <strong style="text-transform: capitalize;">{{subItem.value}}</strong></span>
+              <ul class="sub-item-list" *ngIf="subItem.list && subItem.list.length > 0">
+                <li *ngFor="let listItem of subItem.list">
+                  <span>- {{listItem.title}}</span><span *ngIf="listItem.value">: </span><span>{{listItem.value}}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

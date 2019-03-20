@@ -1169,3 +1169,58 @@ input::placeholder {
     text-align: center;
   }
 }
+
+//Comprehensive form styles
+.comprehensive {
+  .form-group-with-bg {
+    //padding: 10px 0;
+    color:$app-backgrnd-color;
+    label {
+      color: $dark-teal-color;
+      margin-bottom: 0;
+    }
+    &--header-sub-label {
+      font-weight: normal;
+    }
+  }
+  .datepicker-control {
+    border:1px solid rgba(0, 135, 134, 0.4);
+    border-radius: 6px;
+  }
+  input::placeholder {
+    color: #888888 !important;
+  }
+  .form-group-with-bg--content {
+    .flex-row:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    .flex-row:last-child {
+      margin-bottom: 10px;
+    }
+  }
+  .form-control {
+    color: $app-backgrnd-color;
+  }
+  .form-group-single-column {
+    .checkbox-button {
+      .input-label-grey {
+        font-size: 16px;
+        font-family: $muli-semi-bold;
+      }
+    }
+  }
+  .dependant_selection_title {
+    font-size: 16px;
+    font-family: $muli-semi-bold;
+  }
+  .form-group-single-column .checkbox-button {
+    margin-bottom: 20px;
+  }
+  .form-group-with-bg--header-label {
+    &.with-tooltip {
+      @extend .flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

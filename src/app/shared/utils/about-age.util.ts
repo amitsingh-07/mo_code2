@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+
+@Injectable()
+export class AboutAge {
+	getAboutAge(valueString: number, ageConstant: number): number {
+		valueString = ageConstant - valueString;
+		return valueString;
+	}
+	calculateAge(date, dateToCalculate): number {
+		console.log(date);
+		const dateParts = date.split('/');
+		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+		console.log(dateOfBirth);
+		const calculateYear = dateToCalculate.getFullYear();
+		const calculateMonth = dateToCalculate.getMonth();
+		const calculateDay = dateToCalculate.getDate();
+
+		const birthYear = dateOfBirth.getFullYear();
+		const birthMonth = dateOfBirth.getMonth();
+		const birthDay = dateOfBirth.getDate();
+
+		let age = calculateYear - birthYear;
+		const ageMonth = calculateMonth - birthMonth;
+		const ageDay = calculateDay - birthDay;
+
+		if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
+			age = toInteger(age) - 1;
+		}
+		return age;
+	}
+}

@@ -110,6 +110,14 @@
   margin-top: 30px !important;
 }
 
+.mt40 {
+  margin-top: 40px !important;
+}
+
+.mt50 {
+  margin-top: 50px !important;
+}
+
 .mt60 {
   margin-top: 60px !important;
 }
@@ -237,6 +245,10 @@
   padding-right: 68px
 }
 
+.pt0 {
+  padding-top: 0 !important;
+}
+
 .pt5 {
   padding-top: 5px !important;
 }
@@ -257,13 +269,19 @@
   padding-bottom: 10px !important;
 }
 
+.pb15 {
+  padding-bottom: 15px !important;
+}
+
 .pb30 {
   padding-bottom: 30px !important;
 }
 .pb60 {
   padding-bottom: 60px !important;
 }
-
+.pb0 {
+  padding-bottom: 0 !important;
+}
 .absolute-top {
   top: 0 !important
 }
@@ -466,4 +484,11 @@ input::-ms-clear {
 
 .txt-capitalize {
   text-transform: capitalize !important;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.border-all8 {
+  border-radius: 8px;
 }

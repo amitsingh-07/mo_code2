@@ -1,0 +1,44 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container">
+    <app-step-indicator [count]="6" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
+  </div>
+  <div class="title mt40">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
+  <div class="desc">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
+  <div class="text-center mt20 mb20"><img  src="./assets/images/{{ bucketImage }}"/></div>
+  <h6>{{'CMP.YOUR_FINANCES.TITLE' | translate}}</h6>
+  <p>{{'CMP.YOUR_FINANCES.DESC' | translate}}</p>
+  <div class="col-lg-5 col-md-6 flex--pad-mt-reset">
+    <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
+        <div class="form-group-with-bg">
+
+        <div class="form-group-with-bg--header">
+          <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span class="help-icon"></span></div>
+        </div>
+        <div class="form-group form-group-with-bg--content">
+          <label>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</label>
+          <input type="text" name="badMoodMonthlyAmount" class="form-control offset-7 col-5" formControlName="badMoodMonthlyAmount" [value]="SliderValue"/>
+          <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
+            [step]="100" [tooltips]="[ true ]"></nouislider>
+          <span>$0</span>
+          <p class="float-right">$2000</p>
+        </div>
+       
+    </div>
+    <h6> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</h6>
+    <p>{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</p>
+    <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
+        <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlan"
+          formControlName="hospitalPlan" type="radio" class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
+        <label for="hospitalPlan_{{i+1}}">
+          <div class="input-label-white">{{hospitalPlanData.hospitalClass}}</div>
+          <div class="input-label-normal">{{hospitalPlanData.hospitalClassDescription}}</div>
+        </label>
+      </div>
+      <div>
+        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mb50 mt30 width100"
+      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
+      </div>
+    </form>
+  </div>
+</div>

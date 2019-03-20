@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
-
+import { APP_ROUTES } from './app-routes.constants';
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
+import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
@@ -33,28 +35,38 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
+      {
+        path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
+        canActivate: [ComprehensiveEnableGuard],
+        canActivateChild: [ComprehensiveChildEnableGuard]
+      },
 
-      { path: 'articles',
+      {
+        path: 'articles',
         loadChildren: './article/article.module#ArticleModule',
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleChildEnableGuard]
       },
-      { path: 'learn',
+      {
+        path: 'learn',
         loadChildren: './article/article.module#ArticleModule',
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: '20190316invest',
+      {
+        path: 'invest',
         loadChildren: './portfolio/portfolio.module#PortfolioModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'invest/account',
+      {
+        path: 'invest/account',
         loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'investment',
+      {
+        path: 'investment',
         loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
@@ -65,7 +77,8 @@ const routes: Routes = [
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingChildEnableGuard]
       },
-      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
+      {
+        path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
         canActivate: [PromotionEnableGuard],
         canActivateChild: [PromotionChildEnableGuard]
       },
