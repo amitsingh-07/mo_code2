@@ -17,7 +17,7 @@
             <li (click)="navigate(subItem.path)" *ngFor="let subItem of item.subItems" [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.path.replace(pathRegex, '')}">
               <span [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'now': currentPath == subItem.path.replace(pathRegex, '')}"></span>
               {{subItem.title}}<span *ngIf="subItem.completed">:
-                <strong>{{subItem.value}}</strong></span>
+                <strong style="text-transform: capitalize;">{{subItem.value}}</strong></span>
               <ul class="sub-item-list" *ngIf="subItem.list && subItem.list.length > 0">
                 <li *ngFor="let listItem of subItem.list">
                   <span>- {{listItem.title}}</span><span *ngIf="listItem.value">: </span><span>{{listItem.value}}</span>

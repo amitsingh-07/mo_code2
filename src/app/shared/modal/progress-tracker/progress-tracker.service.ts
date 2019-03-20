@@ -11,6 +11,7 @@ import { IProgressTrackerData } from './progress-tracker.types';
     providedIn: 'root'
 })
 export class ProgressTrackerService {
+    isModalOpen = false;
     private data: IProgressTrackerData;
     private subject: BehaviorSubject<IProgressTrackerData> = new BehaviorSubject<
         IProgressTrackerData
@@ -18,19 +19,23 @@ export class ProgressTrackerService {
     private changeListener = new Subject();
     private modelRef: NgbModalRef;
 
-    constructor(private modal: NgbModal, private router: Router) {}
+    constructor(private modal: NgbModal, private router: Router) { }
 
     public show() {
-        this.refresh();
-        this.modelRef = this.modal.open(ProgressTrackerModalComponent, {
-            windowClass: 'progress-tracker-modal',
-            backdropClass: 'progress-tracker-backdrop'
-        });
+        if (!this.isModalOpen) {
+            this.refresh();
+            this.modelRef = this.modal.open(ProgressTrackerModalComponent, {
+                windowClass: 'progress-tracker-modal',
+                backdropClass: 'progress-tracker-backdrop'
+            });
+            this.isModalOpen = true;
+        }
     }
 
     public hide() {
         if (this.modelRef) {
             this.modelRef.close();
+            this.isModalOpen = false;
         }
     }
 
@@ -77,7 +82,7 @@ export class ProgressTrackerService {
     }
 
     navigate(path: string): void {
-        this.router.navigate([ path ]);
+        this.router.navigate([path]);
     }
 }
 

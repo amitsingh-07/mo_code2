@@ -70,7 +70,7 @@ h6 {
   padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
   transition:0.5s;
-  z-index:1029;
+  z-index:1060;
   &.browser-error{
     height: calc(84px + 34px);
     align-items:flex-start;
@@ -622,6 +622,7 @@ h6 {
             color:$white-color;
             font-size:18px;
             font-family:$muli-bold;
+            text-transform: capitalize;
           }
           .sub-text{
             font-family:$muli-regular;
@@ -1850,7 +1851,7 @@ a.link-white {
     width: 92%;
     right: 4%;
     left: 4%;
-    z-index: 1039;
+    z-index: 1069;
     &__inner {
       position: relative;
       border-radius: 6px;

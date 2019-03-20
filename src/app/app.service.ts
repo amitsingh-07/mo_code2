@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { appConstants } from './app.constants';
 import { ComprehensiveService } from './comprehensive/comprehensive.service';
 import { DirectService } from './direct/direct.service';
@@ -31,7 +32,8 @@ export class AppService {
     private portfolioService: PortfolioService,
     private investmentAccountService: InvestmentAccountService,
     private topupAndWithDrawService: TopupAndWithDrawService,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private comprehensiveService: ComprehensiveService
   ) { }
 
   commit(key, data) {
@@ -59,6 +61,7 @@ export class AppService {
     this.portfolioService.clearData();
     this.investmentAccountService.clearData();
     this.topupAndWithDrawService.clearData();
+    this.comprehensiveService.clearFormData();
   }
 
   setJourneyType(type: string) {

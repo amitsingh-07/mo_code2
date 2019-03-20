@@ -1,22 +1,19 @@
-import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { Subscription } from 'rxjs';
+
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IChildEndowment } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
+
 @Component({
   selector: 'app-education-preference',
   templateUrl: './education-preference.component.html',
@@ -37,7 +34,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveApiService: ComprehensiveApiService, private progressService: ProgressTrackerService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -61,14 +58,14 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     this.menuClickSubscription.unsubscribe();
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-
+        this.progressService.show();
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-
     this.buildEducationPreferenceForm();
   }
 
@@ -88,13 +85,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     if (value.preferenceSelection) {
       selectionDetails.push(Validators.required);
     }
+
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
       location: [value.location, selectionDetails],
       educationCourse: [value.educationCourse, selectionDetails],
-      educationPreference: [value.preferenceSelection],
-
+      educationPreference: [value.preferenceSelection]
     });
   }
   selectLocation(status, i) {
@@ -118,7 +115,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setChildEndowment(this.endowmentDetail);
       if (!form.pristine) {
         this.comprehensiveApiService.saveChildEndowment({
-          hasEndowments: form.value.hasEndowments,
+          hasEndowments: this.comprehensiveService.hasEndowment(),
           endowmentDetailsList: this.endowmentDetail
         }).subscribe((data) => {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);

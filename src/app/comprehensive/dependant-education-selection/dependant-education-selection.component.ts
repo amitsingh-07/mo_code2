@@ -1,5 +1,3 @@
-import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
-import { map } from 'rxjs/operators';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +9,8 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
+import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
@@ -38,7 +38,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private formBuilder: FormBuilder,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService,
     private aboutAge: AboutAge, private comprehensiveApiService: ComprehensiveApiService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService, private progressService: ProgressTrackerService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -60,10 +60,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-
+        this.progressService.show();
       }
     });
   }
@@ -77,7 +78,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.hasEndowments = this.comprehensiveService.hasEndowment();
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-
     console.log(this.childEndowmentArray);
     if (this.childEndowmentArray.length > 0) {
       this.buildChildEndowmentFormArray();
@@ -117,7 +117,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     return {
-      id: childEndowment.id,
+      id: 0, // #childEndowment.id,
       dependentId: dependant.id,
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
@@ -145,10 +145,12 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildChildEndowmentFormArray() {
+
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       for (const childEndowment of this.childEndowmentArray) {
+        console.log(dependant);
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
           if (childEndowment.dependentId === dependant.id) {
             const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
@@ -163,11 +165,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       }
 
       // Filter the array to avoid duplicates
+      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
       if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
         const thisNewEndowment = this.getNewEndowmentItem(dependant);
         tempChildEndowmentArray.push(thisNewEndowment);
         this.childEndowmentFormGroupArray.push(this.formBuilder.group(thisNewEndowment));
       }
+    }
     });
 
     this.childEndowmentArray = tempChildEndowmentArray;
@@ -230,11 +234,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           endowmentDetailsList: selectedChildArray
         }).subscribe((data: IServerResponse) => {
           data.objectList.forEach((item) => {
+            /*
             selectedChildArray.forEach((childItem: IChildEndowment) => {
               if (childItem.dependentId === item.dependentId) {
                 childItem.id = item.id;
               }
             });
+            */
           });
           this.comprehensiveService.setChildEndowment(selectedChildArray);
           this.loaderService.hideLoader();

@@ -1,3 +1,4 @@
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -38,9 +39,11 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   pageId: string;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
-    constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-                private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-                private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -57,19 +60,20 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     console.log(this.spendingDetails);
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
     this.buildMySpendingForm();
     if (this.spendingDetails) {
       for (const value of this.mortageFieldSet) {
-        if (this.spendingDetails[value] !== null && this.spendingDetails[value] !== ''  &&
-         (this.spendingDetails[value] > 0 || (value === 'mortgageTypeOfHome' &&
-         this.spendingDetails[value] !== undefined )  )) {
-            this.validateFlag = false;
+        if (this.spendingDetails[value] !== null && this.spendingDetails[value] !== '' &&
+          (this.spendingDetails[value] > 0 || (value === 'mortgageTypeOfHome' &&
+            this.spendingDetails[value] !== undefined))) {
+          this.validateFlag = false;
         }
       }
       if (!this.validateFlag) {
@@ -91,7 +95,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   addOtherMortage() {
-   for (const value of this.mortageFieldSet) {
+    for (const value of this.mortageFieldSet) {
       const otherPropertyControl = this.mySpendingsForm.controls[value];
       if (this.otherMortage) {
         if (value === 'mortgagePayOffUntil') {
@@ -106,7 +110,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         otherPropertyControl.updateValueAndValidity();
       }
     }
-   this.otherMortage = !this.otherMortage;
+    this.otherMortage = !this.otherMortage;
   }
   buildMySpendingForm() {
     this.mySpendingsForm = this.formBuilder.group({
@@ -118,18 +122,18 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       homeLoanPayOffUntil: [this.spendingDetails ? this.spendingDetails.homeLoanPayOffUntil : '',
       [Validators.required, Validators.pattern('\\d{4,4}')]],
       mortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
-      mortgagePaymentUsingCash: [ this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
-      mortgageTypeOfHome: [ this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
-      mortgagePayOffUntil: [ this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : ''],
-      carLoanPayment: [ this.spendingDetails ? this.spendingDetails.carLoanPayment : '', [Validators.required]],
-      otherLoanPayment: [ this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', [Validators.required]],
-      otherLoanPayoffUntil: [ this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
-       [Validators.required, Validators.pattern('\\d{4,4}')]]
+      mortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
+      mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
+      mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : ''],
+      carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', [Validators.required]],
+      otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', [Validators.required]],
+      otherLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
+      [Validators.required, Validators.pattern('\\d{4,4}')]]
     });
   }
   goToNext(form: FormGroup) {
-      this.comprehensiveService.setMySpendings(form.value);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+    this.comprehensiveService.setMySpendings(form.value);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
   }
   validateSpendings(form: FormGroup) {
     this.submitted = false;
@@ -147,8 +151,10 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     return true;
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = { TITLE: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipTitle),
-    DESCRIPTION: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipMessage)};
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.MY_SPENDINGS.TOOLTIP.' + toolTipMessage)
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
   @HostListener('input', ['$event'])
@@ -158,14 +164,16 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
 
   onTotalAnnualSpendings() {
     const inputParams = ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
-    'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'];
+      'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'];
     const spendingValues = this.mySpendingsForm.value;
-    const spendingFormObject = { monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
-       adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF,
-        HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF:
+    const spendingFormObject = {
+      monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
+      adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF,
+      HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF:
         spendingValues.mortgagePaymentUsingCPF, mortgagePaymentUsingCash:
         spendingValues.mortgagePaymentUsingCash, carLoanPayment: spendingValues.carLoanPayment,
-        otherLoanPayment: spendingValues.otherLoanPayment };
+      otherLoanPayment: spendingValues.otherLoanPayment
+    };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
 
