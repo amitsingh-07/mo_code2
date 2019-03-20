@@ -200,27 +200,6 @@ export class MyAssetsComponent implements OnInit {
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     const bucketParams = ['cashInBank', 'singaporeSavingsBond', 'CPFOA', 'CPFSA', 'CPFMA', 'yourHome', 'otherInvestment0', 'otherAssets'];
-    //this.setBucketImage(bucketParams, assetFormObject);    
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject);
-  }
-  setBucketImage(bucketParams: any, formValues: any) {
-    const bucketFlag = [];
-    for (const i in bucketParams) {
-      if (formValues[bucketParams[i]] > 0) {
-        bucketFlag.push(true);
-      } else {
-        bucketFlag.push(false);
-      }
-    }
-    if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
-      console.log('Filled');
-      this.bucketImage = 'filledBucket';
-    } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
-      console.log('Middle');
-      this.bucketImage = 'middleBucket';
-    } else {
-      console.log('Empty');
-      this.bucketImage = 'emptyBucket';
-    }
   }
 }

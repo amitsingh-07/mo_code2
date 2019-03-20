@@ -624,13 +624,10 @@ export class ComprehensiveService {
         }
         }
         if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
-        console.log('Filled');
         return 'filledBucket';
         } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
-        console.log('Middle');
         return 'middleBucket';
         } else {
-        console.log('Empty');
         return 'emptyBucket';
         }
     }
