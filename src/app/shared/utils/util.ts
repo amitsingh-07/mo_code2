@@ -26,4 +26,12 @@ export class Util {
         }
         return JSON.stringify(obj);
     }
+
+    public static getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+
+    public static sortDescending(list): any[] {
+       return list.sort((a, b) => b - a);
+    }
 }

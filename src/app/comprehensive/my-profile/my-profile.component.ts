@@ -93,17 +93,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.loaderService.hideLoader();
-                const redirectUrl = this.signUpService.getRedirectUrl();
-                if (redirectUrl) {
-                    this.signUpService.clearRedirectUrl();
-                    this.loaderService.hideLoader();
-                    this.router.navigate([redirectUrl]);
-                } else {
-                    this.getUserProfileData();
-                }
+                this.checkRedirect();
             });
         } else {
-            this.getUserProfileData();
+            this.checkRedirect();
         }
 
         this.navbarService.setNavbarComprehensive(true);
@@ -116,6 +109,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             setTimeout(() => {
                 this.showToolTip = true;
             }, 1000);
+        }
+    }
+
+    checkRedirect() {
+        const redirectUrl = this.signUpService.getRedirectUrl();
+        if (redirectUrl) {
+            this.signUpService.clearRedirectUrl();
+            this.loaderService.hideLoader();
+            this.router.navigate([redirectUrl]);
+        } else {
+            this.getUserProfileData();
         }
     }
 

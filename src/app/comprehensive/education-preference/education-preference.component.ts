@@ -1,9 +1,9 @@
-import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 import { Subscription } from 'rxjs';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -68,7 +68,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-
     this.buildEducationPreferenceForm();
   }
 
@@ -88,13 +87,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     if (value.preferenceSelection) {
       selectionDetails.push(Validators.required);
     }
+
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
       location: [value.location, selectionDetails],
       educationCourse: [value.educationCourse, selectionDetails],
-      educationPreference: [value.preferenceSelection],
-
+      educationPreference: [value.preferenceSelection]
     });
   }
   selectLocation(status, i) {
@@ -118,7 +117,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setChildEndowment(this.endowmentDetail);
       if (!form.pristine) {
         this.comprehensiveApiService.saveChildEndowment({
-          hasEndowments: form.value.hasEndowments,
+          hasEndowments: this.comprehensiveService.hasEndowment(),
           endowmentDetailsList: this.endowmentDetail
         }).subscribe((data) => {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
