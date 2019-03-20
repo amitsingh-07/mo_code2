@@ -22,6 +22,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() unSaved: boolean;
   @Input() hasImpact: any;
   @Input() formName: any;
+  @Input() buttonLabel: string;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 

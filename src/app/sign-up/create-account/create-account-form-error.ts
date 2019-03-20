@@ -72,12 +72,6 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter your password'
                 }
         },
-        confirmPassword: {
-                required : {
-                        errorTitle: 'Invalid Confirm Password',
-                        errorMessage: 'Please enter your confirm password'
-                }
-        },
         termsOfConditions: {
                 required : {
                         errorTitle: '',

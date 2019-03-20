@@ -4,6 +4,8 @@
     "CONTINUE": "Continue",
     "VERIFY": "Verify",
     "LOGIN": "Log In",
+    "LOG_IN": "Login",
+    "VERIFY_NOW": "Verify Now",
     "CREATE_ACCOUNT": "Create Account",
     "TRY_AGAIN": "Try Again",
     "CAPTCHA": "Enter image text",
