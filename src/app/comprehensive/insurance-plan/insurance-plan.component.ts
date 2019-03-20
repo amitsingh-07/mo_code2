@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup , Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
-import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { ComprehensiveService } from '../comprehensive.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -19,10 +20,11 @@ export class InsurancePlanComponent implements OnInit {
   menuClickSubscription: Subscription;
   insurancePlanForm: FormGroup;
   submitted = false;
-  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService, ) {
+  constructor(
+    private navbarService: NavbarService, private progressService: ProgressTrackerService,
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
 
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -38,16 +40,17 @@ export class InsurancePlanComponent implements OnInit {
   }
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      cashInBank: [ '', [Validators.required]],
-      singaporeSavingsBond: [ '', [Validators.required]],
-      CPFOA: [ '', [Validators.required]],
+      cashInBank: ['', [Validators.required]],
+      singaporeSavingsBond: ['', [Validators.required]],
+      CPFOA: ['', [Validators.required]],
       CPFSA: ['', [Validators.required]],
       CPFMA: ['', [Validators.required]],
-      yourHome: [ '', [Validators.required]],
-      investmentProperties: [ '', [Validators.required]],
+      yourHome: ['', [Validators.required]],
+      investmentProperties: ['', [Validators.required]],
     });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {

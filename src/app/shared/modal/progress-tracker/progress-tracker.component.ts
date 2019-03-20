@@ -9,7 +9,7 @@ import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.t
 @Component({
     selector: 'app-progress-tracker',
     templateUrl: './progress-tracker.component.html',
-    styleUrls: [ './progress-tracker.component.scss' ]
+    styleUrls: ['./progress-tracker.component.scss']
 })
 export class ProgressTrackerComponent implements OnInit {
     data: IProgressTrackerData;
@@ -18,12 +18,8 @@ export class ProgressTrackerComponent implements OnInit {
     currentPath = '';
     pathRegex = /../;
 
-    public onCloseClick(): void {
-        this.activeModal.dismiss();
-    }
     constructor(
         private progressService: ProgressTrackerService,
-        private activeModal: NgbActiveModal,
         private route: Router
     ) {
         this.currentPath = this.route.url;
@@ -36,7 +32,11 @@ export class ProgressTrackerComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
+
+    public onCloseClick(): void {
+        this.progressService.hide();
+    }
 
     public toggle(item: IProgressTrackerItem) {
         item.expanded = !item.expanded;

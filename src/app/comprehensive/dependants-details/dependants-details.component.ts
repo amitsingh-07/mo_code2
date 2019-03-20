@@ -12,6 +12,7 @@ import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
@@ -40,7 +41,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private loaderService: LoaderService,
+    private loaderService: LoaderService, private progressService: ProgressTrackerService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig) {
@@ -68,10 +69,11 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
   }
