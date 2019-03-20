@@ -1,14 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
-
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
-import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
-import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import {
     IProgressTrackerData,
     IProgressTrackerItem,
@@ -69,40 +65,10 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.hospitalPlanData;
     }
-
     clearFormData() {
         this.comprehensiveFormData = {} as ComprehensiveFormData;
         this.commit();
         this.getComprehensiveFormData();
-    }
-
-    getComprehensiveUrlList() {
-        const urlList = {
-            0: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
-            1: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1',
-            2: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-            3: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-            4: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
-            5: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
-            6: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
-            7: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2',
-            8: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
-            9: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
-            10: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
-            11: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
-            12: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
-            13: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
-            14: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3',
-            15: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
-            16: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
-            17: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN
-        };
-
-        Object.keys(urlList).forEach(key => {
-            urlList[key] = ProgressTrackerUtil.trimPath(urlList[key]);
-        });
-
-        return urlList;
     }
 
     // Return the entire Comprehensive Form Data
@@ -164,7 +130,7 @@ export class ComprehensiveService {
      * @returns
      * @memberof ComprehensiveService
      */
-    getComprehensiveSummary(): IComprehensiveDetails {
+    getComprehensiveSummary() {
         if (!this.comprehensiveFormData.comprehensiveDetails) {
             this.comprehensiveFormData.comprehensiveDetails = {} as IComprehensiveDetails;
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
@@ -549,42 +515,6 @@ export class ComprehensiveService {
         return sum.toFixed();
     }
 
-    getAccessibleUrl(url: string): string {
-        const urlList = this.getComprehensiveUrlList();
-        this.generateProgressTrackerData();
-
-        const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
-        let accessibleUrl = '';
-        const profileData = this.getMyProfile();
-        const dependantProgressData = this.getDependantsProgressData();
-        for (let index = currentUrlIndex; index >= 0; index--) {
-            if (accessibleUrl !== '') {
-                break;
-            } else {
-                switch (index) {
-                    case 0:
-                        accessibleUrl = urlList[index];
-                        break;
-                    case 1:
-                        if (profileData.nation) {
-                            accessibleUrl = urlList[index];
-                        }
-                        break;
-                    case 2:
-                        if (dependantProgressData.subItems[0].completed) {
-                            accessibleUrl = urlList[index];
-                        }
-                        break;
-                }
-            }
-        }
-
-        if (accessibleUrl !== '') {
-            accessibleUrl = urlList[0];
-        }
-        return accessibleUrl;
-    }
-
     generateProgressTrackerData(): IProgressTrackerData {
         this.progressData = {} as IProgressTrackerData;
         this.progressData = {
@@ -706,8 +636,8 @@ export class ComprehensiveService {
                 {
                     path: 'GetStartedComponent',
                     title: 'Your Earnings',
-                    value: '',
-                    completed: false
+                    value: '$38,000',
+                    completed: true
                 },
                 {
                     path: 'GetStartedComponent1',
