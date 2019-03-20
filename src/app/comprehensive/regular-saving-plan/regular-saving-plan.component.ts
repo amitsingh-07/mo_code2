@@ -1,19 +1,15 @@
-import { Component, HostListener, OnDestroy, OnInit, } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { Subscription } from 'rxjs';
+
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IRegularSavePlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
@@ -31,9 +27,11 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   RSPSelection: boolean;
   regularSavingsArray: IRegularSavePlan;
   submitted = false;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService,
+    private progressService: ProgressTrackerService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -48,7 +46,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
   }
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   @HostListener('input', ['$event'])
   onChange() {
@@ -60,10 +58,11 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-        alert('Menu Clicked');
+        this.progressService.show();
       }
     });
     this.regularSavingsArray = this.comprehensiveService.getRSP();

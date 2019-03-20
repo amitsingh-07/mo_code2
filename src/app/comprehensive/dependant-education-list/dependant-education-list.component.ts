@@ -1,18 +1,14 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { Subscription } from 'rxjs';
+
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IChildEndowment, IMySummaryModal } from '../comprehensive-types';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveService } from './../comprehensive.service';
@@ -32,8 +28,9 @@ export class DependantEducationListComponent implements OnInit {
   endowmentPlan: any = [];
   endowmentSkipEnable = true;
   summaryModalDetails: IMySummaryModal;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private formBuilder: FormBuilder,
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
     private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
@@ -52,10 +49,11 @@ export class DependantEducationListComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-
+        this.progressService.show();
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();

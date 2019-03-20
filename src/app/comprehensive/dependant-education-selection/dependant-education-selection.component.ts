@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
 
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
+import { IServerResponse } from './../../shared/http/interfaces/server-response.interface';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
@@ -38,7 +38,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private formBuilder: FormBuilder,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService,
     private aboutAge: AboutAge, private comprehensiveApiService: ComprehensiveApiService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService, private progressService: ProgressTrackerService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -60,10 +60,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
-
+        this.progressService.show();
       }
     });
   }

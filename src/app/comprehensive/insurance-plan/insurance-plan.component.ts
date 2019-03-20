@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
-import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -51,6 +52,7 @@ export class InsurancePlanComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
@@ -65,3 +67,4 @@ export class InsurancePlanComponent implements OnInit {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
   }
 }
+

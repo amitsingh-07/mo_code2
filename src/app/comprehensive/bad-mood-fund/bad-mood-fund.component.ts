@@ -1,17 +1,17 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
-import { NouisliderComponent } from 'ng2-nouislider';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { HospitalPlan } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -46,10 +46,12 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
   };
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private loaderService: LoaderService, private apiService: ApiService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private loaderService: LoaderService, private apiService: ApiService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService
   ) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
@@ -70,9 +72,11 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.SliderValue = value;
   }
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
+        this.progressService.show();
       }
     });
     this.hospitalPlanFormValues = this.comprehensiveService.getHospitalPlan();
