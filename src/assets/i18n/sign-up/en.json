@@ -31,6 +31,7 @@
       "FIRST_NAME": "First Name",
       "LAST_NAME": "Last Name",
       "EMAIL": "Email Address",
+      "CONFIRM_EMAIL": "Confirm Email Address",
       "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
       "MARKETING_ACCEPTANCE": "I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same."
     }
@@ -42,7 +43,7 @@
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
       "DIDNT_RECIEVE": "Didn't Receive it?",
-      "REQUEST_NEW_CODE": "Request New Code",
+      "REQUEST_NEW_CODE": "Resend OTP",
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
       "SECONDS_SUFFIX": "s"

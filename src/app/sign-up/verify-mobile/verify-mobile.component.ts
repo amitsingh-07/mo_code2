@@ -26,13 +26,9 @@ export class VerifyMobileComponent implements OnInit {
   verifyMobileForm: FormGroup;
   mobileNumber: any;
   mobileNumberVerifiedMessage: string;
-  showCodeSentText: boolean;
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
-  isRetryEnabled: boolean;
-  retryDuration = 30; // in seconds
-  retrySecondsLeft;
   editProfile: boolean;
 
   constructor(
@@ -57,7 +53,6 @@ export class VerifyMobileComponent implements OnInit {
 
   ngOnInit() {
     this.progressModal = false;
-    this.showCodeSentText = false;
     this.mobileNumberVerified = false;
     this.editProfile = this.signUpService.getAccountInfo().editContact;
     this.mobileNumber = this.signUpService.getMobileNumber();
@@ -65,7 +60,6 @@ export class VerifyMobileComponent implements OnInit {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
-    this.startRetryCounter();
   }
 
   /**
@@ -118,7 +112,6 @@ export class VerifyMobileComponent implements OnInit {
       } else {
         this.progressModal = false;
         this.errorHandler.handleCustomError(data, true);
-        this.startRetryCounter();
       }
     });
   }
@@ -132,8 +125,6 @@ export class VerifyMobileComponent implements OnInit {
     this.signUpApiService.requestNewOTP().subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
-      this.showCodeSentText = true;
-      this.startRetryCounter();
     });
   }
 
@@ -199,22 +190,6 @@ export class VerifyMobileComponent implements OnInit {
     }).catch((e) => {
       this.verifyMobileForm.reset();
     });
-  }
-
-  /**
-   * Run Animated counter for 30s.
-   */
-  startRetryCounter() {
-    this.isRetryEnabled = false;
-    this.retrySecondsLeft = this.retryDuration;
-    const self = this;
-    const downloadTimer = setInterval(() => {
-      --self.retrySecondsLeft;
-      if (self.retrySecondsLeft <= 0) {
-        clearInterval(downloadTimer);
-        this.isRetryEnabled = true;
-      }
-    }, 1000);
   }
 
 }

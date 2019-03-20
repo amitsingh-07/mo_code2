@@ -35,7 +35,7 @@
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
       "DIDNT_RECIEVE": "Didn't Recieve it?",
-      "REQUEST_NEW_CODE": "Request New Code",
+      "REQUEST_NEW_CODE": "Resend OTP",
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
       "SECONDS_SUFFIX": "s"

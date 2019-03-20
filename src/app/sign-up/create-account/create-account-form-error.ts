@@ -56,6 +56,28 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
+        confirmEmail: {
+                required : {
+                        errorTitle: 'Invalid Confirm E-mail',
+                        errorMessage: 'Please enter your confirm email address'
+                },
+                email : {
+                        errorTitle: 'Invalid E-mail',
+                        errorMessage: 'Please enter a valid confirm email address in the format yourname@example.com'
+                }
+        },
+        password: {
+                required : {
+                        errorTitle: 'Invalid Password',
+                        errorMessage: 'Please enter your password'
+                }
+        },
+        confirmPassword: {
+                required : {
+                        errorTitle: 'Invalid Confirm Password',
+                        errorMessage: 'Please enter your confirm password'
+                }
+        },
         termsOfConditions: {
                 required : {
                         errorTitle: '',

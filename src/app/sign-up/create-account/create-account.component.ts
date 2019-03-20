@@ -9,7 +9,6 @@ import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -46,7 +45,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
-    private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService,
   ) {
     this.translate.use('en');
@@ -83,12 +81,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
     this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
     this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
+    let confirmEmail = this.formValues.email || '';
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
+      confirmEmail: [confirmEmail, [Validators.required, Validators.email]],
       password: ['', [ValidatePassword]],
       confirmPassword: [''],
       termsOfConditions: [this.formValues.termsOfConditions],
