@@ -43,9 +43,10 @@
                   </label>
               </div>
               <div class="pr0 flex-col-7">
-                <div class="form-control">
+                <div class="form-control" [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityAmount.invalid}">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0">
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0"
+                  >
                   
                 </div>
               </div>
@@ -58,7 +59,7 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && endowmentPlan['controls'].endowmentMaturityYears.invalid}"
+              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
                 id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
               </div>
             </div>

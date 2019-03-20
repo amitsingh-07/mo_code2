@@ -41,14 +41,20 @@ color: $dark-teal-color;
 .otherMortageBlock .help-icon{
     right: 10px;
 }
-.emptySpend{
-    background: url("../../../assets/images/comprehensive/empty-expenses.svg") no-repeat;
+.filledSpend{
+    background: url("../../../assets/images/comprehensive/empty-expenses-bucket.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
-.filledSpend{
-    background: url("../../../assets/images/comprehensive/filled-expenses.svg") no-repeat;
+.emptySpend{
+    background: url("../../../assets/images/comprehensive/filled-expenses-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.middleSpend{
+    background: url("../../../assets/images/comprehensive/middle-expenses-bucket.svg") no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;

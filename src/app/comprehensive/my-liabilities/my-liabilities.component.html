@@ -70,7 +70,7 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addLiabilitiesValid.otherPropertyLoan.invalid}">
                 <i>$</i>
                 <input type="text" class="input-control" maxLength="7" appCurrencyInput #otherPropertyLoan
                   formControlName="otherPropertyLoan" value="">
@@ -105,7 +105,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherLoanAmountOutstanding
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherLoanAmountOutstanding
                 formControlName="otherLoanAmountOutstanding" value="">
             </div>
           </div>
@@ -136,7 +136,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4" #carLoan formControlName="carLoan"
+              <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoan formControlName="carLoan"
                 value="">
             </div>
           </div>
