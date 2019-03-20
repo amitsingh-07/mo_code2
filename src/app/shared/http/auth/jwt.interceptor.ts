@@ -1,19 +1,17 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
+import { Observable } from 'rxjs/Observable';
+
 import {
-    HttpErrorResponse,
-    HttpEvent,
-    HttpHandler,
-    HttpHeaders,
-    HttpInterceptor,
-    HttpRequest,
+    HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
     HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
+import { environment } from '../../../../environments/environment.dev';
+import { appConstants } from '../../../app.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { apiConstants } from '../api.constants';
 import { CustomErrorHandlerService } from '../custom-error-handler.service';
@@ -63,7 +61,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 })
             });
         }
-
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want
@@ -95,12 +92,12 @@ export class JwtInterceptor implements HttpInterceptor {
                     this.errorHandler.handleAuthError(err);
                     this.signUpService.logoutUser();
                 } else
-                    if (err.message.match('I/O error on PUT request')) {
-                        this.errorHandler.handleSubscribeError(err);
+                if (err.message.match('I/O error on PUT request')) {
+                    this.errorHandler.handleSubscribeError(err);
                     }
-            } else {
-                this.errorHandler.handleError(err);
-            }
+                } else {
+                    this.errorHandler.handleError(err);
+                }
         });
     }
 
