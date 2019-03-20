@@ -63,9 +63,8 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
-    console.log(this.hasDependant)
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant?'true':'false', Validators.required)
+      dependantSelection: new FormControl(this.hasDependant ? 'true' : 'false', Validators.required)
     });
 
   }
@@ -76,10 +75,12 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-      this.summaryModalDetails = { setTemplateModal: 1, dependantModelSel: false,
+      this.summaryModalDetails = {
+        setTemplateModal: 1, dependantModelSel: false,
         contentObj: childrenEducationNonDependantModal, nonDependantDetails:
-        this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2' };
+          this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+      };
       this.cmpService.openSummaryPopUpModal(this.summaryModalDetails);
     }
 

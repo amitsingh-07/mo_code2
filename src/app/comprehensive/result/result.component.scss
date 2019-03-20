@@ -1,0 +1,60 @@
+.comprehensive {
+  background: #fff;
+  height: 100%!important;
+
+  .header {
+    color: #066360;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Muli;
+
+
+  }
+
+  .resultImg {
+    background: url("../../../assets/images/comprehensive/result.svg") no-repeat;
+    display: inline-block;
+    width: 218px;
+    height: 150px;
+  }
+
+  .result-panel {
+    &__about {
+      font-size: 14px;
+      color: #9f9f9f;
+      font-weight: 300;
+      font-style: italic;
+
+    }
+  }
+
+  .about {
+    font-size: 16px;
+    color: #066360;
+    font-family: Muli;
+
+    .email {
+      font-weight: bold;
+      color: #00aaa8;
+    }
+  }
+
+  .steps {
+    border-radius: 6px;
+    background-color: #00a7a7;
+    width: 100%;
+
+    li {
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+
+  u {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+
+  }
+}

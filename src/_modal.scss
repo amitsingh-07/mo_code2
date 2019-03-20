@@ -19,7 +19,9 @@ body.modal-open::-webkit-scrollbar {
 .modal-backdrop.show {
   opacity: 0.8 !important;
 }
-
+.modal-backdrop {
+  z-index: 1060;
+}
 .position-bottom {
   .modal-content {
     position: absolute !important;
@@ -154,7 +156,7 @@ body.modal-open::-webkit-scrollbar {
 
 .modal {
   width: 100%;
-
+  z-index: 1061;
   &.hide-close {
     .close {
       display: none;

@@ -110,6 +110,10 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Other Property Loans',
                     errorMessage: 'Other Property Loans'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Other Property Loans'
                 }
             },
             otherLoanAmountOutstanding: {
@@ -139,7 +143,7 @@ export class ComprehensiveFormError {
             },
             monthlySalary: {
                 required: {
-                    errorTitle: 'Invalid Monthly Salary',
+                    errorTitle: this.invalidName,
                     errorMessage: 'Other Monthly Salary'
                 }
             },
@@ -147,18 +151,30 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Monthly Rental Income',
                     errorMessage: 'Monthly Rental Income'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Monthly Rental Income'
                 }
             },
             otherMonthlyWorkIncome: {
                 required: {
                     errorTitle: 'Invalid Other Monthly Work Income',
                     errorMessage: 'Other Monthly Work Income'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Other Monthly Work Income'
                 }
             },
             otherMonthlyIncome: {
                 required: {
                     errorTitle: 'Invalid Other Monthly Income',
                     errorMessage: 'Other Monthly Income'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Other Monthly Income'
                 }
             },
             annualBonus: {
@@ -171,12 +187,20 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Annual Dividends',
                     errorMessage: 'Annual Dividends'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Annual Dividends'
                 }
             },
             otherAnnualIncome: {
                 required: {
                     errorTitle: 'Invalid Other Annual Income',
                     errorMessage: 'Other Annual Income'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Other Annual Income'
                 }
             }
 
@@ -218,23 +242,31 @@ export class ComprehensiveFormError {
             homeLoanPayOffUntil: {
                 required: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Mortgage Payment - To Pay Off'
                 },
                 pattern: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Mortgage Payment - Invalid To Pay Off'
                 }
             },
             mortgagePaymentUsingCPF: {
                 required: {
                     errorTitle: 'Invalid Mortgage Payment using CPF',
                     errorMessage: 'Mortgage Payment using CPF'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Mortgage Payment using CPF'
                 }
             },
             mortgagePaymentUsingCash: {
                 required: {
                     errorTitle: 'Invalid Other Mortgage Payment using Cash',
                     errorMessage: 'Other Mortgage Payment using Cash'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Invalid Mortgage Payment using Cash'
                 }
             },
             mortgageTypeOfHome: {
@@ -246,11 +278,11 @@ export class ComprehensiveFormError {
             mortgagePayOffUntil: {
                 required: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Other Mortgage Payment - Invalid To Pay Off'
                 },
                 pattern: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Other Mortgage Payment - Invalid To Pay Off'
                 }
             },
             carLoanPayment: {
@@ -268,11 +300,11 @@ export class ComprehensiveFormError {
             otherLoanPayoffUntil: {
                 required: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Monthly Other Loan Payment - Invalid To Pay Off'
                 },
                 pattern: {
                     errorTitle: 'Invalid To Pay Off',
-                    errorMessage: 'To Pay Off'
+                    errorMessage: 'Monthly Other Loan Payment - Invalid To Pay Off'
                 }
             }
 
@@ -298,6 +330,68 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Payment using CPF',
                     errorMessage: 'Regular Paid By CPF'
+                }
+            },
+        }
+    };
+    myAssetsForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Oops! Please enter the following details:',
+            investmentProperties: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Investment Properties'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Investment Properties'
+                }
+            },
+            investmentType: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Select Investment Type'
+                },
+            },
+            others: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'others'
+                },
+                pattern: {
+                        errorTitle:  this.invalidName,
+                        errorMessage: 'Others'
+                }
+            },
+            otherInvestment: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Other Investment'
+                },
+            }
+        }
+    };
+    endowmentListForm: object = {
+        formFieldErrors: {
+            errorTitle: this.errorTitleDetails,
+            endowmentMaturityAmount: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Maturity Amount'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Maturity Amount'
+                }
+            },
+            endowmentMaturityYears: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Maturity Year'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Maturity Year'
                 }
             },
         }

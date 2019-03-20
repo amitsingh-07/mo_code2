@@ -139,5 +139,10 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
     return true;
   }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = { TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
+    DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)};
+    this.comprehensiveService.openTooltipModal(toolTipParams);
+  }
 
 }

@@ -38,6 +38,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   spendTitle: string;
   menuClickSubscription: Subscription;
   pageId: string;
+  bucketImage: string;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -99,9 +100,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       const otherPropertyControl = this.mySpendingsForm.controls[value];
       if (this.otherMortage) {
         if (value === 'mortgagePayOffUntil') {
-          otherPropertyControl.setValidators([Validators.required, Validators.pattern('\\d{4,4}')]);
-        } else {
+          otherPropertyControl.setValidators([Validators.required, this.payOffYearValid]);
+          otherPropertyControl.updateValueAndValidity();
+        } else if (value === 'mortgageTypeOfHome') {
           otherPropertyControl.setValidators([Validators.required]);
+          otherPropertyControl.updateValueAndValidity();
+        } else {
+          otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl.updateValueAndValidity();
         }
       } else {
@@ -114,29 +119,31 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   }
   buildMySpendingForm() {
     this.mySpendingsForm = this.formBuilder.group({
-      monthlyLivingExpenses: [this.spendingDetails ? this.spendingDetails.monthlyLivingExpenses : '', [Validators.required]],
-      adHocExpenses: [this.spendingDetails ? this.spendingDetails.adHocExpenses : '', [Validators.required]],
-      HLMortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCPF : '', [Validators.required]],
-      HLMortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCash : '', [Validators.required]],
-      HLtypeOfHome: [this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '', [Validators.required]],
+      monthlyLivingExpenses: [this.spendingDetails ? this.spendingDetails.monthlyLivingExpenses : '', []],
+      adHocExpenses: [this.spendingDetails ? this.spendingDetails.adHocExpenses : '', []],
+      HLMortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCPF : '', []],
+      HLMortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCash : '', []],
+      HLtypeOfHome: [this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '', []],
       homeLoanPayOffUntil: [this.spendingDetails ? this.spendingDetails.homeLoanPayOffUntil : '',
-      [Validators.required, Validators.pattern('\\d{4,4}')]],
+      [this.payOffYearValid]],
       mortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
-      mortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
-      mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
-      mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : ''],
-      carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', [Validators.required]],
-      otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', [Validators.required]],
-      otherLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
-      [Validators.required, Validators.pattern('\\d{4,4}')]]
+      mortgagePaymentUsingCash: [ this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
+      mortgageTypeOfHome: [ this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
+      mortgagePayOffUntil: [ this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
+      carLoanPayment: [ this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
+      otherLoanPayment: [ this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
+      otherLoanPayoffUntil: [ this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
+       [this.payOffYearValid]]
     });
   }
   goToNext(form: FormGroup) {
-    this.comprehensiveService.setMySpendings(form.value);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+    if (this.validateSpendings(form)) {
+      this.comprehensiveService.setMySpendings(form.value);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+    }
   }
   validateSpendings(form: FormGroup) {
-    this.submitted = false;
+    this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
@@ -149,6 +156,21 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       return false;
     }
     return true;
+  }
+  get addSpendValid() { return this.mySpendingsForm.controls; }
+  payOffYearValid(payOffYearVal) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    let validCheck: boolean;
+    if (payOffYearVal.value === null || payOffYearVal.value === '') {
+      validCheck = true;
+    } else {
+      validCheck = ( payOffYearVal.value >= currentYear ) ? true : false;
+    }
+    if (validCheck) {
+        return null;
+    }
+    return { pattern: true };
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
@@ -176,6 +198,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-
+    if (this.totalSpending == 0) {
+      this.bucketImage = 'filledSpend';
+    } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
+      this.bucketImage = 'middleSpend';
+    } else {
+      this.bucketImage = 'emptySpend';
+    }
   }
 }
+

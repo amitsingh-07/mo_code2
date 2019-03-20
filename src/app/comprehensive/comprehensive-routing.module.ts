@@ -7,6 +7,7 @@ import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
 import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantEducationComponent } from './dependant-education/dependant-education.component';
@@ -21,6 +22,7 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 
 const routes: Routes = [
@@ -50,7 +52,9 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
             { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN, component: RetirementPlanComponent },
-            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent }
+            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent },
+            { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
+            { path: COMPREHENSIVE_ROUTES.DASHBOARD , component: DashboardComponent }
         ]
     }
 ];
@@ -60,3 +64,4 @@ const routes: Routes = [
     exports: [ RouterModule ]
 })
 export class ComprehensiveRoutingModule {}
+

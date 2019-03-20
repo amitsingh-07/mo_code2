@@ -76,7 +76,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   addPropertyLoan() {
     const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoan'];
     if (this.propertyLoan) {
-      otherPropertyControl.setValidators([Validators.required]);
+      otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherPropertyControl.updateValueAndValidity();
     } else {
       otherPropertyControl.setValue('');
@@ -88,14 +88,13 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   buildMyLiabilitiesForm() {
     this.myLiabilitiesForm = this.formBuilder.group({
-      homeLoanOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstanding : '', [Validators.required]],
+      homeLoanOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstanding : '', []],
       otherPropertyLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoan : ''],
-      otherLoanAmountOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanAmountOutstanding :'', [Validators.required]],
-      carLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoan : '', [Validators.required]],
+      otherLoanAmountOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanAmountOutstanding :'', []],
+      carLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoan : '', []],
 
     });
   }
-
   goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
       this.comprehensiveService.setMyLiabilities(form.value);
@@ -112,7 +111,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
 
   }
-
+  get addLiabilitiesValid() { return this.myLiabilitiesForm.controls; }
   validateLiabilities(form: FormGroup) {
     this.submitted = true;
     if (!form.valid) {

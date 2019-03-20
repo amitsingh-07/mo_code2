@@ -293,7 +293,15 @@ export class ComprehensiveService {
     hasDependant() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
     }
-
+    getDownOnLuck() {
+        if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
+            this.comprehensiveFormData.comprehensiveDetails.downOnLuck = {} as HospitalPlan;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.downOnLuck;
+    }
+    setDownOnLuck(downOnLuck: HospitalPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.downOnLuck = downOnLuck;
+    }
     setDependantSelection(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = selection;
@@ -342,12 +350,28 @@ export class ComprehensiveService {
         errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
         for (const name in controls) {
-            if (controls[name].invalid) {
+            if (!controls[name].hasOwnProperty('controls') && controls[name].invalid) {
                 errors.errorMessages.push(
                     this.comprehensiveFormError[formName].formFieldErrors[name][
                         Object.keys(controls[name]['errors'])[0]
                     ].errorMessage
                 );
+            } else {
+                const formGroup = {
+                        formName: '',
+                        errors: [],
+                        errorStatus: false
+                };
+                for (const subFormName in controls[name].controls) {
+                    if (controls[name].controls[subFormName].invalid) {
+                        formGroup.errorStatus = true;
+                    }
+                }
+                if (formGroup.errorStatus === true) {
+                    errors.errorMessages.push(
+                        this.comprehensiveFormError[formName].formFieldErrors[name]['required'].errorMessage
+                    );
+                }
             }
         }
         return errors;
@@ -721,4 +745,25 @@ export class ComprehensiveService {
             ]
         };
     }
+    /*
+    *Bucket Calculation for Earnings and Assets
+    */
+    setBucketImage(bucketParams: any, formValues: any) {
+        const bucketFlag = [];
+        for (const i in bucketParams) {
+        if (formValues[bucketParams[i]] > 0) {
+            bucketFlag.push(true);
+        } else {
+            bucketFlag.push(false);
+        }
+        }
+        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
+        return 'filledBucket';
+        } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
+        return 'middleBucket';
+        } else {
+        return 'emptyBucket';
+        }
+    }
 }
+
