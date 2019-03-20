@@ -5,7 +5,7 @@
   <header class="dependant-title mt40">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</header>
   <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
       <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm['controls'].preference['controls']; let i = index;">
-      <div   class="form-group-with-bg mt20" [formGroupName]="i">
+      <div class="form-group-with-bg mt20" [formGroupName]="i">
         
         <!--Form Header-->
         <div class="form-group-with-bg--header" >

@@ -1,3 +1,4 @@
+import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +11,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { SignUpService } from '../sign-up/sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 import { ComprehensiveApiService } from './comprehensive-api.service';
-import { COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
+import { COMPREHENSIVE_BASE_ROUTE, COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import { ComprehensiveService } from './comprehensive.service';
 
 @Injectable()
@@ -29,9 +30,12 @@ export class ComprehensiveEnableGuard implements CanActivate {
     if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
+    } else if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
+      this.signUpService.clearRedirectUrl();
+      return true;
     } else if (!this.authService.isSignedUser()) {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-      this.signUpService.setRedirectUrl(COMPREHENSIVE_BASE_ROUTE);
+      this.signUpService.setRedirectUrl(state.url);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     }
