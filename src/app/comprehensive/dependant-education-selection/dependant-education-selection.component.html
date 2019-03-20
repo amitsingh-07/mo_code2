@@ -9,7 +9,7 @@
         <div class="checkbox-button one-label mt20">
           <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
             type="radio" value="1" class="field radio">
-          <label for="dependant_selection_yes">
+          <label for="dependant_selection_yes" class="mb10 mt10">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
           </label>
@@ -44,7 +44,7 @@
             <div class="dependant_selection_title mt15">
                
               {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
+            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
 
               <div class="form-group mb0" [formGroupName]="i" >
 

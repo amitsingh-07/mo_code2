@@ -5,6 +5,7 @@ export interface  IComprehensiveDetails {
     dependentsList: IDependantDetail[];
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
+    downOnLuck: HospitalPlan;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -61,6 +62,7 @@ export class HospitalPlan {
     hospitalClassId: number;
     isFullRider = false;
     badMoodMonthlyAmount: string;
+    enquiryId: number;
 }
 
 export interface IMySummaryModal {

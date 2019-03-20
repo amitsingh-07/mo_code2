@@ -94,15 +94,29 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.ciMultiplierSlider.writeValue(0);
-    this.SliderValue = 0;
-  }
 
+  }
+  validateForm(hospitalPlan) {
+    this.hospitalPlanFormValues = {
+      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalClassDescription: hospitalPlan.hospitalClassDescription,
+      hospitalClassId: hospitalPlan.id
+    } as HospitalPlan;
+    this.isFormValid = true;
+  }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
+    form.value.badMoodMonthlyAmount = this.SliderValue;
+    form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+    console.log(form.value);
+    this.comprehensiveService.setDownOnLuck(form.value);
+    this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
+      any) => {
 
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+    });
+    // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
   }
 }

@@ -22,6 +22,7 @@ import { MyLiabilitiesComponent } from './my-liabilities/my-liabilities.componen
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MySpendingsComponent } from './my-spendings/my-spendings.component';
 import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving-plan.component';
+import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
             { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN, component: RetirementPlanComponent },
             { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent },
+            { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.DASHBOARD , component: DashboardComponent }
         ]
     }
@@ -62,3 +64,4 @@ const routes: Routes = [
     exports: [ RouterModule ]
 })
 export class ComprehensiveRoutingModule {}
+

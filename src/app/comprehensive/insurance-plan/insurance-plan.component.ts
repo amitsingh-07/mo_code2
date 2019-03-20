@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ConfigService } from '../../config/config.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
@@ -20,11 +22,11 @@ export class InsurancePlanComponent implements OnInit {
   menuClickSubscription: Subscription;
   insurancePlanForm: FormGroup;
   submitted = false;
-  constructor(
-    private navbarService: NavbarService, private progressService: ProgressTrackerService,
-    private translate: TranslateService,
-    private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService) {
+
+  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
+              private translate: TranslateService,
+              private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService, ) {
 
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -61,4 +63,8 @@ export class InsurancePlanComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
+  goToNext(form) {
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
+  }
 }
+

@@ -293,7 +293,15 @@ export class ComprehensiveService {
     hasDependant() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
     }
-
+    getDownOnLuck() {
+        if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
+            this.comprehensiveFormData.comprehensiveDetails.downOnLuck = {} as HospitalPlan;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.downOnLuck;
+    }
+    setDownOnLuck(downOnLuck: HospitalPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.downOnLuck = downOnLuck;
+    }
     setDependantSelection(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = selection;
@@ -758,3 +766,4 @@ export class ComprehensiveService {
         }
     }
 }
+

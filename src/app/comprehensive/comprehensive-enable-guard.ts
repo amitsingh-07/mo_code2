@@ -1,7 +1,7 @@
-import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 
 import { appConstants } from '../app.constants';
 import { AppService } from '../app.service';
