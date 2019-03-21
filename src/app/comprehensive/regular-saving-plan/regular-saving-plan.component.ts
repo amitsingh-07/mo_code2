@@ -27,6 +27,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   RSPSelection: boolean;
   regularSavingsArray: IRegularSavePlan;
   submitted = false;
+  validationFlag: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -41,6 +42,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.investmentList = this.translate.instant('CMP.INVESTMENT_TYPE_LIST');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.setPageTitle(this.pageTitle);
+        this.validationFlag = this.translate.instant('CMP.RSP.OPTIONAL_VALIDATION_FLAG');
       });
     });
 
@@ -127,7 +129,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   validateRegularSavings(form: FormGroup) {
 
     this.submitted = true;
-    if (form.value.hasRegularSavings === 'true') {
+    if (this.validationFlag === true && form.value.hasRegularSavings === 'true') {
       if (!form.valid) {
         const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
           this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
@@ -135,6 +137,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         );
         return false;
       }
+    } else {
+      this.submitted = false;
     }
 
     return true;
