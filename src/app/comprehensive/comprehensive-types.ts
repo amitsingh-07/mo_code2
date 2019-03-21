@@ -6,6 +6,7 @@ export interface  IComprehensiveDetails {
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     downOnLuck: HospitalPlan;
+    comprehensiveIncome: IMyEarnings;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
