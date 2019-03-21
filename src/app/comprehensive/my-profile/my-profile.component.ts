@@ -162,11 +162,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
 
     goToNext(form: FormGroup) {
+
         if (this.validateMoGetStrdForm(form)) {
             form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
             form.value.firstName = this.userDetails.firstName;
             this.comprehensiveService.setMyProfile(form.value);
-            this.comprehensiveService.setProgressToolTipShown(true);
             if (!form.pristine) {
                 this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
                     const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
@@ -176,6 +176,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                 });
             } else {
+                this.comprehensiveService.setProgressToolTipShown(true);
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
             }
         }

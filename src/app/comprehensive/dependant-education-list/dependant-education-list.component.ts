@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IChildEndowment, IMySummaryModal } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
@@ -12,7 +13,6 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -88,7 +88,7 @@ export class DependantEducationListComponent implements OnInit {
       age: [value.age, []],
       endowmentMaturityAmount: [value.endowmentMaturityAmount, []],
       endowmentMaturityYears: [value.endowmentMaturityYears, []],
-      endowmentPlanShow: [value.endowmentMaturityAmount === ''
+      endowmentPlanShow: [value.endowmentMaturityAmount === 0.0
         ? false : true, []],
       gender: [value.gender, []]
     });
@@ -100,7 +100,7 @@ export class DependantEducationListComponent implements OnInit {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
 
         if (preferenceDetails.endowmentPlanShow === false) {
-          this.endowmentArrayPlan[index].endowmentMaturityAmount = '';
+          this.endowmentArrayPlan[index].endowmentMaturityAmount = 0.0;
           this.endowmentArrayPlan[index].endowmentMaturityYears = '';
         }
       });
@@ -130,7 +130,7 @@ export class DependantEducationListComponent implements OnInit {
           otherPropertyControl['endowmentMaturityYears'].setValidators([]);
           otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
           otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
-          this.endowmentArrayPlan[index].endowmentMaturityAmount = '';
+          this.endowmentArrayPlan[index].endowmentMaturityAmount = 0.0;
           this.endowmentArrayPlan[index].endowmentMaturityYears = '';
         }
       });

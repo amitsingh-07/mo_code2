@@ -68,6 +68,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       }
     });
     this.regularSavingsArray = this.comprehensiveService.getRSP();
+    this.RSPSelection = !this.regularSavingsArray.hasRegularSavings;
     this.buildRSPForm();
   }
   ngOnDestroy() {
@@ -77,9 +78,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
   buildRSPForm() {
     const regularSavings = [];
-    if (this.regularSavingsArray.comprehensiveRegularSavingsList) {
+    if (this.regularSavingsArray.comprehensiveRegularSavingsList.length) {
 
-      this.RSPSelection = this.regularSavingsArray.hasRegularSavings;
       this.regularSavingsArray.comprehensiveRegularSavingsList.forEach((regularSavePlan: any) => {
         regularSavings.push(this.buildRSPDetailsForm(regularSavePlan));
       });
@@ -144,8 +144,10 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     return true;
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = { TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
-    DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)};
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
+    };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 
