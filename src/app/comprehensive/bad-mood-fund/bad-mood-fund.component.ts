@@ -117,6 +117,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       any) => {
 
     });
-    // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
   }
 }

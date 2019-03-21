@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { DomSanitizer } from '@angular/platform-browser';
-
 
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
@@ -33,7 +32,8 @@ export class ComprehensiveComponent implements OnInit {
     private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
     public navbarService: NavbarService, private configService: ConfigService,
-    private authService: AuthenticationService, public modal: NgbModal, public footerService: FooterService, private sanitizer: DomSanitizer) {
+    private authService: AuthenticationService, public modal: NgbModal,
+    public footerService: FooterService, private sanitizer: DomSanitizer) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
