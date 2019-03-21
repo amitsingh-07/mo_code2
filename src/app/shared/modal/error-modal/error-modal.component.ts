@@ -25,27 +25,34 @@ export class ErrorModalComponent implements OnInit {
   @Input() buttonLabel: string;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
+  @Output() resendEmail: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
   ngOnInit() {
     this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
-            .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-                // dismiss all bootstrap modal dialog
-                this.activeModal.dismiss();
-            });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
   }
 
   goBack() {
     this.selected.emit();
     this.activeModal.close();
   }
+  
   tryAgain() {
     this.retry.emit();
     this.activeModal.close();
   }
+
   goToHome() {
     this.activeModal.close();
+  }
+
+  resendEmailVerification() {
+    this.resendEmail.emit();
   }
 }

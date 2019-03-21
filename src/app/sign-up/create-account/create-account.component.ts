@@ -153,37 +153,40 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else if (data.responseMessage.responseCode === 6001) {
-        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
           this.translate.instant('COMMON.LOG_IN'),
           SIGN_UP_ROUTE_PATHS.LOGIN);
       } else if (data.responseMessage.responseCode === 6002) {
-        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
           this.translate.instant('COMMON.LOG_IN'),
           SIGN_UP_ROUTE_PATHS.LOGIN);
       } else if (data.responseMessage.responseCode === 6003) {
-        this.showErrorMessage(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
           this.translate.instant('COMMON.VERIFY_NOW'),
           SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE);
       } else {
-        this.showErrorMessage('', data.responseMessage.responseDescription, '', '');
+        this.showErrorModal('', data.responseMessage.responseDescription, '', '');
       }
     });
   }
 
-  showErrorMessage(title: string, message: string, buttonLabel: string, redirect: string) {
+  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     if (title) {
       ref.componentInstance.errorTitle = title;
-    }
-    if (buttonLabel) {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.resendEmail.subscribe(($e) => {
+      console.log($e);
+    });
     ref.result.then(() => {
-      this.router.navigate([redirect]);
+      if (redirect) {
+        this.router.navigate([redirect]);
+      }
     });
     this.refreshCaptcha();
   }

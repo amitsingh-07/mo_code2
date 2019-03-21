@@ -104,7 +104,11 @@
       "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
     },
     "FORGOT_PASSWORD": "Forgot your password?",
-    "CLICK_HERE": "Click Here"
+    "CLICK_HERE": "Click Here",
+    "ERRORS": {
+      "TITLE":"Oops, verify your email to login!",
+      "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
+    }
   },
   "FORGOTPASSWORD": {
     "SUBMIT": "Submit",
