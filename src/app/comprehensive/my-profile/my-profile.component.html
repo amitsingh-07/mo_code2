@@ -63,7 +63,7 @@
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
-                  <button   class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                  <!-- <button   class="dropdown-item" (click)="selectNationality('')">{{'COMMON.LBL_SELECT' | translate}}</button> -->
                   <button  type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
                     (click)="selectNationality(nationality)">
                     {{nationality.text}}

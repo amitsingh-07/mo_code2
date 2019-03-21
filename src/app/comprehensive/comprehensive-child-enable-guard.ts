@@ -31,22 +31,32 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
     if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
-    } else if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
-      this.signUpService.clearRedirectUrl();
-      return true;
-    } else if (!this.authService.isSignedUser()) {
-      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-      this.signUpService.setRedirectUrl(state.url);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-      return false;
-    } else if (!this.cmpService.getComprehensiveSummary().comprehensiveEnquiry
-      || !this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId) {
-      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-      return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
-        this.cmpService.setComprehensiveSummary(data.objectList[0]);
+    } else {
+      const accessibleUrl = this.cmpService.getAccessibleUrl(state.url);
+      if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
+        this.signUpService.clearRedirectUrl();
         return true;
-      }));
+      } else if (!this.authService.isSignedUser()) {
+        this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+        this.signUpService.setRedirectUrl(state.url);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+        return false;
+      } else if (!this.cmpService.getComprehensiveSummary().comprehensiveEnquiry
+        || !this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId) {
+        this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+        return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
+          this.cmpService.setComprehensiveSummary(data.objectList[0]);
+          if (!ProgressTrackerUtil.compare(accessibleUrl, state.url)) {
+            this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+            this.router.navigate([accessibleUrl]);
+            return false;
+          } else {
+            return true;
+          }
+        }));
+      } else {
+        return true;
+      }
     }
-    return true;
   }
 }
