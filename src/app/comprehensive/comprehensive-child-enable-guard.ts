@@ -55,7 +55,13 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
           }
         }));
       } else {
-        return true;
+        if (!ProgressTrackerUtil.compare(accessibleUrl, state.url)) {
+          this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+          this.router.navigate([accessibleUrl]);
+          return false;
+        } else {
+          return true;
+        }
       }
     }
   }
