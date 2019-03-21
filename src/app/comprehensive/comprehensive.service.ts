@@ -201,7 +201,7 @@ export class ComprehensiveService {
     reloadDependantDetails() {
         const comprehensiveDetails = this.comprehensiveFormData.comprehensiveDetails;
         const enquiry: IComprehensiveEnquiry = comprehensiveDetails.comprehensiveEnquiry;
-        if (enquiry.hasDependents && (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')) {
+        if (enquiry !== null && enquiry.hasDependents && (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')) {
             if (comprehensiveDetails.dependentsList && comprehensiveDetails.dependentEducationPreferencesList) {
                 comprehensiveDetails.dependentEducationPreferencesList.forEach((eduPref) => {
                     comprehensiveDetails.dependentsList.forEach((dependant) => {
