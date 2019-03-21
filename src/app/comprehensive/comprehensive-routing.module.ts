@@ -14,6 +14,7 @@ import { DependantEducationComponent } from './dependant-education/dependant-edu
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
@@ -54,7 +55,8 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN, component: RetirementPlanComponent },
             { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent },
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
-            { path: COMPREHENSIVE_ROUTES.DASHBOARD , component: DashboardComponent }
+            { path: COMPREHENSIVE_ROUTES.DASHBOARD , component: DashboardComponent },
+            { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent}
         ]
     }
 ];
@@ -64,4 +66,3 @@ const routes: Routes = [
     exports: [ RouterModule ]
 })
 export class ComprehensiveRoutingModule {}
-
