@@ -120,7 +120,6 @@ export class NavbarService {
     this.pageSettingsIcon.next(false);
     this.pageFilterIcon.next(false);
   }
-  
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
   }

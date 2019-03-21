@@ -98,7 +98,7 @@ export class ComprehensiveService {
             17: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN
         };
 
-        Object.keys(urlList).forEach(key => {
+        Object.keys(urlList).forEach((key) => {
             urlList[key] = ProgressTrackerUtil.trimPath(urlList[key]);
         });
 
@@ -564,6 +564,7 @@ export class ComprehensiveService {
         return sum.toFixed();
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     getAccessibleUrl(url: string): string {
         const urlList = this.getComprehensiveUrlList();
         this.generateProgressTrackerData();
@@ -636,6 +637,7 @@ export class ComprehensiveService {
         };
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     getDependantsProgressData(): IProgressTrackerItem {
         let hasDependants = false;
         let hasEndowments = false;
@@ -766,4 +768,3 @@ export class ComprehensiveService {
         }
     }
 }
-

@@ -1,9 +1,9 @@
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -132,7 +132,6 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
       this.comprehensiveService.setMyEarnings(form.value);
       this.comprehensiveApiService.saveEarnings(form.value).subscribe((data) => {
-        
       });
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
     }
