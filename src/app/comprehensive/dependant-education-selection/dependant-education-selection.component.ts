@@ -236,6 +236,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           endowmentDetailsList: selectedChildArray
         }).subscribe((data: IServerResponse) => {
           data.objectList.forEach((item) => {
+            // tslint:disable-next-line:no-commented-code
             /*
             selectedChildArray.forEach((childItem: IChildEndowment) => {
               if (childItem.dependentId === item.dependentId) {
