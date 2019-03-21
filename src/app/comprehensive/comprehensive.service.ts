@@ -660,7 +660,7 @@ export class ComprehensiveService {
         if (eduPrefs) {
             eduPrefs.forEach((item) => {
                 prefsList.push({
-                    title: item.id + '',
+                    title: item.name,
                     value: item.location + ', ' + item.educationCourse
                 });
             });
