@@ -23,6 +23,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() hasImpact: any;
   @Input() formName: any;
   @Input() buttonLabel: string;
+  @Input() enableResendEmail: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
@@ -42,7 +43,7 @@ export class ErrorModalComponent implements OnInit {
     this.selected.emit();
     this.activeModal.close();
   }
-  
+
   tryAgain() {
     this.retry.emit();
     this.activeModal.close();
@@ -54,5 +55,6 @@ export class ErrorModalComponent implements OnInit {
 
   resendEmailVerification() {
     this.resendEmail.emit();
+    this.activeModal.close('resend');
   }
 }

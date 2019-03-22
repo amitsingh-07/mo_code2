@@ -157,19 +157,19 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
           this.translate.instant('COMMON.LOG_IN'),
-          SIGN_UP_ROUTE_PATHS.LOGIN);
+          SIGN_UP_ROUTE_PATHS.LOGIN, false);
       } else if (data.responseMessage.responseCode === 6002) {
         this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
           this.translate.instant('COMMON.LOG_IN'),
-          SIGN_UP_ROUTE_PATHS.LOGIN);
+          SIGN_UP_ROUTE_PATHS.LOGIN, true);
       } else if (data.responseMessage.responseCode === 6003) {
         this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
           this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
           this.translate.instant('COMMON.VERIFY_NOW'),
-          SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE);
+          SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
       } else {
-        this.showErrorModal('', data.responseMessage.responseDescription, '', '');
+        this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
       }
     });
   }
@@ -185,26 +185,29 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string) {
+  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorMessage = message;
+    ref.result.then((data) => {
+      if (!data && redirect) {
+        this.router.navigate([redirect]);
+      }
+    });
     if (title) {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.buttonLabel = buttonLabel;
     }
-    ref.componentInstance.errorMessage = message;
-    ref.componentInstance.resendEmail.subscribe(($e) => {
-      this.resendEmailVerification();
-    });
-    ref.result.then(() => {
-      if (redirect) {
-        this.router.navigate([redirect]);
-      }
-    });
+    if (emailResend) {
+      ref.componentInstance.enableResendEmail = true;
+      ref.componentInstance.resendEmail.subscribe(($e) => {
+        this.resendEmailVerification();
+      });
+    }
     this.refreshCaptcha();
   }
 
   resendEmailVerification() {
-
+    this.signUpApiService.resendEmailVerification();
   }
 
   onlyNumber(el) {

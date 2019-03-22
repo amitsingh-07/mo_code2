@@ -260,4 +260,8 @@ export class SignUpApiService {
   checkEmailValidity(payload) {
     return this.apiService.emailValidityCheck(payload);
   }
+
+  resendEmailVerification(){
+    return this.apiService.resendEmailVerification();
+  }
 }

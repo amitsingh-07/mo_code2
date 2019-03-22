@@ -803,4 +803,9 @@ export class ApiService {
       );
   }
 
+  // Resend Email Verification Link
+  resendEmailVerification() {
+
+  }
+
 }

@@ -31,5 +31,6 @@
       <button *ngIf="unSaved" type="button" id="error_yes" class="btn btn-primary width100 mt10 col-5" (click)="activeModal.close('yes')">Yes</button>
     </div>
     <button *ngIf="buttonLabel" type="button" id="error_button" class="btn btn-primary width100 mt10" (click)="activeModal.close()">{{buttonLabel}}</button> 
+    <div *ngIf="enableResendEmail" (click)="resendEmailVerification()" class="login-mail"><a>Didn’t receive? Resend email verification</a></div>
   </div>
   
