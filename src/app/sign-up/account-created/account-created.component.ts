@@ -8,7 +8,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up.service';
-import { ConfigService, IConfig } from './../../config/config.service';
+import { appConstants } from './../../app.constants';
+import { AppService } from './../../app.service';
+import { ConfigService } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 
@@ -19,7 +21,6 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 })
 export class AccountCreatedComponent implements OnInit {
 
-  willWritingEnabled = false;
   duplicateError: string;
 
   constructor(
@@ -29,13 +30,11 @@ export class AccountCreatedComponent implements OnInit {
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
     private signUpService: SignUpService, private configService: ConfigService,
-    private router: Router) {
+    private router: Router,
+    private appService: AppService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-    this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-    });
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      this.willWritingEnabled = config.willWritingEnabled;
+      this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
     });
   }
   // constonts
@@ -46,8 +45,8 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
-    if (this.willWritingEnabled && this.willWritingService.getWillWritingFormData().enquiryId
-      && !this.willWritingService.getIsWillCreated()) {
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getExecTrusteeInfo().length > 0 && !this.willWritingService.getIsWillCreated()) {
       this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
         if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
           this.willWritingService.setIsWillCreated(true);

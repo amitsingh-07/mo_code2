@@ -61,9 +61,9 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid Confirm E-mail',
                         errorMessage: 'Please enter your confirm email address'
                 },
-                email : {
-                        errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter a valid confirm email address in the format yourname@example.com'
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
                 }
         },
         password: {

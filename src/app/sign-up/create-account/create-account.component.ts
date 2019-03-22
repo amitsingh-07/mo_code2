@@ -33,6 +33,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   editNumber;
   captchaSrc: any = '';
+  isPasswordValid = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,13 +89,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
-      confirmEmail: [confirmEmail, [Validators.required, Validators.email]],
+      confirmEmail: [confirmEmail, [Validators.required]],
       password: ['', [ValidatePassword]],
-      confirmPassword: [''],
+      confirmPassword: ['',],
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       captcha: ['', [Validators.required]]
-    }, { validator: this.validateMatchPassword() });
+    }, { validator: this.validateMatchPasswordEmail() });
   }
 
   /**
@@ -173,6 +174,17 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     });
   }
 
+  onPasswordInputChange() {
+    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty) {
+      this.isPasswordValid = false;
+    } else {
+      const _self = this;
+      setTimeout(() => {
+        _self.isPasswordValid = true;
+      }, 500);
+    }
+  }
+
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     if (title) {
@@ -181,7 +193,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
     ref.componentInstance.errorMessage = message;
     ref.componentInstance.resendEmail.subscribe(($e) => {
-      console.log($e);
+      this.resendEmailVerification();
     });
     ref.result.then(() => {
       if (redirect) {
@@ -189,6 +201,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
     this.refreshCaptcha();
+  }
+
+  resendEmailVerification() {
+
   }
 
   onlyNumber(el) {
@@ -228,14 +244,21 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   /**
    * validate confirm password.
    */
-  private validateMatchPassword() {
+  private validateMatchPasswordEmail() {
     return (group: FormGroup) => {
       const passwordInput = group.controls['password'];
       const passwordConfirmationInput = group.controls['confirmPassword'];
+      const emailInput = group.controls['email'];
+      const emailConfirmationInput = group.controls['confirmEmail'];
       if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({ notEquivalent: true });
+        passwordConfirmationInput.setErrors({ notEquivalent: true });
       } else {
-        return passwordConfirmationInput.setErrors(null);
+        passwordConfirmationInput.setErrors({ notEquivalent: false });
+      }
+      if (emailInput.value !== emailConfirmationInput.value) {
+        emailConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        emailConfirmationInput.setErrors({ notEquivalent: false });
       }
     };
   }

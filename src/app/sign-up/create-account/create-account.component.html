@@ -17,20 +17,23 @@
             <div class="flex-col-4 stretch mr15">
               <div class="dropdown-control form-control-left" style="pointer-events:none;">
                 <div ngbDropdown id="countryCode">
-                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle
+                    aria-expanded="false">
                     <span>{{defaultCountryCode}}</span>
                   </button>
                   <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
+                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
+                      (click)="setCountryCode(option.code)">{{option.code}}</button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="flex-col-7 stretch" [formGroup]="createAccountForm">
               <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
-                  (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
+                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
+                  class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
+                <label class="form-control-placeholder"
+                  for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
               </div>
             </div>
 
@@ -47,7 +50,8 @@
             <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
                 <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
+                <label class="form-control-placeholder"
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
               </div>
             </div>
           </div>
@@ -55,37 +59,24 @@
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
                 <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
+                <label class="form-control-placeholder"
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
               </div>
             </div>
           </div>
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt5" class="form-control" #confirmEmail formControlName="confirmEmail" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL' | translate}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb20">
-            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-              <div class="form-group-floating-label">
-                <input id="crtAccInpt6" type="password" class="form-control" formControlName="password" #password required>
-                <label class="form-control-placeholder" for="password">{{ 'PASSWORD.FORM.PASSWORD' | translate}}</label>
-                <span [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'" (click)="showHidePassword(password)"></span>
-                <div class="error-tooltip" *ngIf="createAccountForm.controls.password.errors && createAccountForm.controls.password.dirty">
+                <input type="text" id="crtAccInpt5" class="form-control" #confirmEmail formControlName="confirmEmail"
+                  required>
+                <label class="form-control-placeholder"
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL' | translate}}</label>
+                  <div class="error-tooltip"
+                  *ngIf="!createAccountForm.controls.email.errors && createAccountForm.controls.confirmEmail.dirty && createAccountForm.controls.confirmEmail.errors && confirmEmail.value.length">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
-                      'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
-                    <p [ngClass]="!createAccountForm.controls.password.errors.length ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
-                      'PASSWORD.ERROR_MESSAGE.LENGTH' | translate}}<span *ngIf="!createAccountForm.controls.password.errors.length"
-                        class="tick-mark"></span></p>
-                    <p [ngClass]="!createAccountForm.controls.password.errors.upperLower ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
-                      'PASSWORD.ERROR_MESSAGE.UPPER_LOWER' | translate}}<span *ngIf="!createAccountForm.controls.password.errors.upperLower"
-                        class="tick-mark"></span></p>
-                    <p [ngClass]="!createAccountForm.controls.password.errors.numberSymbol ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
-                      'PASSWORD.ERROR_MESSAGE.NUMBER_SYMBOL' | translate}}<span *ngIf="!createAccountForm.controls.password.errors.numberSymbol"
-                        class="tick-mark"></span></p>
+                      'CREATE_ACCOUNT.ERROR_MESSAGE.TITLE' | translate}}</p>
+                    <p class="error-tooltip__desc-one">{{ 'CREATE_ACCOUNT.ERROR_MESSAGE.MATCH' | translate}}</p>
                     <span class="error-tooltip__arrow"></span>
                   </div>
                 </div>
@@ -95,11 +86,45 @@
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input id="crtAccInpt7" type="password" class="form-control" formControlName="confirmPassword" #confirmPassword required>
+                <input id="crtAccInpt6" type="password" (keyup)="onPasswordInputChange()" class="form-control"
+                  formControlName="password" #password required>
+                <label class="form-control-placeholder" for="password">{{ 'PASSWORD.FORM.PASSWORD' | translate}}</label>
+                <span [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'"
+                  (click)="showHidePassword(password)"></span>
+                <div class="error-tooltip"
+                  *ngIf="!isPasswordValid">
+                  <div class="error-tooltip__desc">
+                    <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
+                      'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
+                    <p
+                      [ngClass]="!createAccountForm.controls.password.errors?.length ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      'PASSWORD.ERROR_MESSAGE.LENGTH' | translate}}<span
+                        *ngIf="!createAccountForm.controls.password.errors?.length" class="tick-mark"></span></p>
+                    <p
+                      [ngClass]="!createAccountForm.controls.password.errors?.upperLower ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      'PASSWORD.ERROR_MESSAGE.UPPER_LOWER' | translate}}<span
+                        *ngIf="!createAccountForm.controls.password.errors?.upperLower" class="tick-mark"></span></p>
+                    <p
+                      [ngClass]="!createAccountForm.controls.password.errors?.numberSymbol ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      'PASSWORD.ERROR_MESSAGE.NUMBER_SYMBOL' | translate}}<span
+                        *ngIf="!createAccountForm.controls.password.errors?.numberSymbol" class="tick-mark"></span></p>
+                    <span class="error-tooltip__arrow"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row mb20">
+            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
+              <div class="form-group-floating-label">
+                <input id="crtAccInpt7" type="password" class="form-control" formControlName="confirmPassword"
+                  #confirmPassword required>
                 <label class="form-control-placeholder" for="confirmPassword">{{ 'PASSWORD.FORM.CONFIRM_PASSWORD' |
                   translate}}</label>
-                <span [ngClass]="(confirmPassword.type === 'text') ? 'show-password' : 'hide-password'" (click)="showHidePassword(confirmPassword)"></span>
-                <div class="error-tooltip" *ngIf="!createAccountForm.controls.password.errors && createAccountForm.controls.confirmPassword.dirty && createAccountForm.controls.confirmPassword.errors && confirmPassword.value.length">
+                <span [ngClass]="(confirmPassword.type === 'text') ? 'show-password' : 'hide-password'"
+                  (click)="showHidePassword(confirmPassword)"></span>
+                <div class="error-tooltip"
+                  *ngIf="!createAccountForm.controls.password.errors && createAccountForm.controls.confirmPassword.dirty && createAccountForm.controls.confirmPassword.errors && confirmPassword.value.length">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
@@ -134,13 +159,15 @@
             </label>
           </div>
           <div class="checkbox-button one-label">
-            <input id="marketingAcceptance" name="marketingAcceptance" formControlName="marketingAcceptance" type="checkbox"
-              class="field checkbox" value="I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same.">
+            <input id="marketingAcceptance" name="marketingAcceptance" formControlName="marketingAcceptance"
+              type="checkbox" class="field checkbox"
+              value="I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same.">
             <label for="marketingAcceptance">
               <div class="title">{{ 'CREATE_ACCOUNT.FORM.MARKETING_ACCEPTANCE' | translate }}</div>
             </label>
           </div>
-          <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+          <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button"
+            class="btn btn__footer--fixed btn-primary width100">{{
             'COMMON.CONTINUE' | translate }}</button>
         </form>
       </div>

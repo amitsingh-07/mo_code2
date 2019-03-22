@@ -36,6 +36,10 @@
       "CONFIRM_EMAIL": "Confirm Email Address",
       "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
       "MARKETING_ACCEPTANCE": "I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same."
+    },
+    "ERROR_MESSAGE": {
+      "TITLE": "Email address Criteria",
+      "MATCH": "Email address do not match"
     }
   },
   "VERIFY_MOBILE": {
