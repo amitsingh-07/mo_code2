@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IRegularSavePlan } from '../comprehensive-types';
+import { IRegularSavings } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
@@ -24,10 +24,11 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   investmentList: any;
   pageId: string;
   menuClickSubscription: Subscription;
-  RSPSelection: boolean;
-  regularSavingsArray: IRegularSavePlan;
+  RSPSelection = false;
+  regularSavingsArray: IRegularSavings[];
   submitted = false;
   validationFlag: boolean;
+  hasRegularSavings: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -56,7 +57,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   rspSelection() {
     this.RSPForm.valueChanges.subscribe((form: any) => {
-      this.RSPSelection = form.hasRegularSavings === 'true' ? true : false;
+      this.hasRegularSavings = form.hasRegularSavings === 'true' ? true : false;
     });
   }
   ngOnInit() {
@@ -67,8 +68,10 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
-    this.regularSavingsArray = this.comprehensiveService.getRSP();
-    this.RSPSelection = !this.regularSavingsArray.hasRegularSavings;
+    this.regularSavingsArray = this.comprehensiveService.getRegularSavingsList();
+    if (this.comprehensiveService.hasRegularSavings() === 'true') {
+      this.hasRegularSavings = true;
+    }
     this.buildRSPForm();
   }
   ngOnDestroy() {
@@ -78,16 +81,16 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
   buildRSPForm() {
     const regularSavings = [];
-    if (this.regularSavingsArray.comprehensiveRegularSavingsList.length) {
+    if (this.regularSavingsArray.length > 0) {
 
-      this.regularSavingsArray.comprehensiveRegularSavingsList.forEach((regularSavePlan: any) => {
+      this.regularSavingsArray.forEach((regularSavePlan: any) => {
         regularSavings.push(this.buildRSPDetailsForm(regularSavePlan));
       });
     } else {
       regularSavings.push(this.buildEmptyRSPForm());
     }
     this.RSPForm = this.formBuilder.group({
-      hasRegularSavings: [this.regularSavingsArray.hasRegularSavings, Validators.required],
+      hasRegularSavings: [ this.hasRegularSavings === true ?  'true' : 'false', Validators.required],
       comprehensiveRegularSavingsList: this.formBuilder.array(regularSavings),
     });
   }
@@ -121,7 +124,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   goToNext(form) {
     if (this.validateRegularSavings(form)) {
-      this.comprehensiveService.setRSP(form.value);
+      this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
+      this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     }
   }
@@ -129,7 +133,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   validateRegularSavings(form: FormGroup) {
 
     this.submitted = true;
-    if (this.validationFlag === true && form.value.hasRegularSavings === 'true') {
+    if (this.validationFlag && form.value.hasRegularSavings === 'true') {
       if (!form.valid) {
         const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
           this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));

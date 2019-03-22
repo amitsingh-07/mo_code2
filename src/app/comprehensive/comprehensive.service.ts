@@ -23,13 +23,14 @@ import {
     IComprehensiveDetails,
     IComprehensiveEnquiry,
     IDependantDetail,
+    IInsurancePlan,
     IMyAssets,
     IMyEarnings,
     IMyLiabilities,
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
-    IRegularSavePlan
+    IRegularSavings
 } from './comprehensive-types';
 
 @Injectable({
@@ -332,14 +333,35 @@ export class ComprehensiveService {
         this.comprehensiveFormData.myAssets = myAssets;
         this.commit();
     }
-    getRSP() {
-        if (!this.comprehensiveFormData.regularSavingsPlan) {
-            this.comprehensiveFormData.regularSavingsPlan = {} as IRegularSavePlan;
+    getRegularSavingsList() {
+        if (!this.comprehensiveFormData.comprehensiveDetails) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveRegularSavingsList = [] as IRegularSavings[];
         }
-        return this.comprehensiveFormData.regularSavingsPlan;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRegularSavingsList;
     }
-    setRSP(regularSavingsPlan: IRegularSavePlan) {
-        this.comprehensiveFormData.regularSavingsPlan = regularSavingsPlan;
+    setRegularSavingsList(regularSavingsPlan: IRegularSavings[]) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveRegularSavingsList = regularSavingsPlan;
+        this.commit();
+    }
+    hasRegularSavings() {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans;
+        }
+    }
+    setRegularSavings(selection: string) {
+
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans = selection;
+        this.commit();
+    }
+    getInsurancePlanningList() {
+        if (!this.comprehensiveFormData.comprehensiveDetails) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = {}as IInsurancePlan;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning;
+    }
+    setInsurancePlanningList(comprehensiveInsurancePlanning: IInsurancePlan ) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning
+        = comprehensiveInsurancePlanning;
         this.commit();
     }
     getFormError(form, formName) {
@@ -641,12 +663,16 @@ export class ComprehensiveService {
     getDependantsProgressData(): IProgressTrackerItem {
         let hasDependants = false;
         let hasEndowments = false;
+        let hasRegularSavings = false;
         const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
         if (enquiry && enquiry.hasDependents !== null) {
             hasDependants = true;
         }
         if (enquiry && enquiry.hasEndowments !== null) {
             hasEndowments = true;
+        }
+        if (enquiry && enquiry.hasRegularSavingsPlans !== null) {
+            hasRegularSavings = true;
         }
         const dependantDetails: IDependantDetail[] = this.getMyDependant();
         const eduPrefs: IChildEndowment[] = this.getChildEndowment();

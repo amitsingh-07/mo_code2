@@ -66,7 +66,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    console.log(this.endowmentDetail)
     this.buildEducationPreferenceForm();
   }
 

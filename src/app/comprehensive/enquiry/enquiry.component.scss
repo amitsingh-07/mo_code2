@@ -1,0 +1,28 @@
+.enquiry {
+  box-shadow: 0 8px 16px 2px rgba(0, 0, 0, 0.14);
+  background-color: #ffffff;
+  border-radius: 6px;
+
+  .header {
+    font-size: 36px;
+    font-family: Muli bold;
+    color: #066360;
+  }
+  .desc{
+   font-size: 14px;
+   color: #066360;
+
+  }
+  .contact{
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f7f5f5;
+    .sub-desc{
+        color: #066360;
+
+    }
+    .phone_no,.email{
+        color:#00a6a6;
+    }
+  }
+}
