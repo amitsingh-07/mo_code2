@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
@@ -114,7 +114,13 @@ export class SingPassComponent implements OnInit {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
         this.myInfoService.closeMyInfoPopup(false);
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+        if (window.location.href === window.location.origin + MY_INFO_START_PATH) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN], { skipLocationChange: true }).then(() => {
+            window.location.href = window.location.origin + MY_INFO_START_PATH;
+          });
+        } else {
+          window.location.href = window.location.origin + MY_INFO_START_PATH;
+        }
       } else {
         this.myInfoService.closeMyInfoPopup(true);
       }

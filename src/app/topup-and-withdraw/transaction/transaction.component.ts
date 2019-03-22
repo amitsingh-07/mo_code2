@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PortfolioService } from '../../portfolio/portfolio.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -29,6 +30,7 @@ export class TransactionComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private translate: TranslateService,
     private topupAndWithDrawService: TopupAndWithDrawService,
@@ -45,7 +47,8 @@ export class TransactionComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.getTransactionHistory();
 
     // Statement
@@ -154,15 +157,6 @@ export class TransactionComponent implements OnInit {
       window.URL.revokeObjectURL(url);
     }, 1000);
 
-  }
-
-  getStatementLink(month) {
-    const base_url = TOPUPANDWITHDRAW_CONFIG.STATEMENT.STATEMENT_BASE_PATH;
-    const customerId = this.userProfileInfo.id;
-    const sub_path = 'statements/' + customerId + '/';
-    const fileName =
-      month.monthName.substring(0, 3).toLowerCase() + '_' + month.year + '.pdf';
-    return base_url + sub_path + fileName;
   }
 
   expandCollapseAccordion(groupIndex, transactionIndex) {
