@@ -17,7 +17,7 @@ export class LoaderComponent implements OnInit, OnChanges {
   constructor(
     private loaderService: LoaderService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.loaderService.loaderParamChange.subscribe((param) => {
@@ -51,10 +51,12 @@ export class LoaderComponent implements OnInit, OnChanges {
 
   animate() {
     this.interval = setInterval(() => {
-      if (this.anim.nativeElement.innerHTML.length < 3) {
-        this.anim.nativeElement.innerHTML += '.';
-      } else {
-        this.anim.nativeElement.innerHTML = '';
+      if (this.anim) {
+        if (this.anim.nativeElement.innerHTML.length < 3) {
+          this.anim.nativeElement.innerHTML += '.';
+        } else {
+          this.anim.nativeElement.innerHTML = '';
+        }
       }
     }, 500);
   }

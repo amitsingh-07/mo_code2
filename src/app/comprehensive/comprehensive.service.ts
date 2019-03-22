@@ -358,9 +358,9 @@ export class ComprehensiveService {
                 );
             } else {
                 const formGroup = {
-                        formName: '',
-                        errors: [],
-                        errorStatus: false
+                    formName: '',
+                    errors: [],
+                    errorStatus: false
                 };
                 for (const subFormName in controls[name].controls) {
                     if (controls[name].controls[subFormName].invalid) {
@@ -595,7 +595,7 @@ export class ComprehensiveService {
             }
         }
 
-        if (accessibleUrl !== '') {
+        if (accessibleUrl === '') {
             accessibleUrl = urlList[0];
         }
         return accessibleUrl;
@@ -753,18 +753,18 @@ export class ComprehensiveService {
     setBucketImage(bucketParams: any, formValues: any) {
         const bucketFlag = [];
         for (const i in bucketParams) {
-        if (formValues[bucketParams[i]] > 0) {
-            bucketFlag.push(true);
-        } else {
-            bucketFlag.push(false);
+            if (formValues[bucketParams[i]] > 0) {
+                bucketFlag.push(true);
+            } else {
+                bucketFlag.push(false);
+            }
         }
-        }
-        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
-        return 'filledBucket';
-        } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
-        return 'middleBucket';
+        if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0) {
+            return 'filledBucket';
+        } else if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) {
+            return 'middleBucket';
         } else {
-        return 'emptyBucket';
+            return 'emptyBucket';
         }
     }
 }
