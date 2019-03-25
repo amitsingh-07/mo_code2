@@ -9,6 +9,7 @@ export interface  IComprehensiveDetails {
     comprehensiveRegularSavingsList: IRegularSavings[];
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveIncome: IMyEarnings;
+    comprehensiveSpending: IMySpendings;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -126,6 +127,7 @@ export interface IMySpendings {
     carLoanPayment: number;
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
+    totalAnnualExpenses: number;
 }
 
 export interface IProgressTrackerWrapper {

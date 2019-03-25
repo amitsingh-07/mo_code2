@@ -18,6 +18,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-my-earnings',
@@ -179,10 +180,10 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
 
   onTotalAnnualIncomeBucket() {
-    const inputParams = ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'];
+    const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
     this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
-    const bucketParams = ['monthlySalary', 'annualBonus'];
+    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
     const earningInput = this.myEarningsForm.value;
-    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput);
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);
   }
 }

@@ -108,7 +108,7 @@ export let apiConstants = {
             getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
             saveEarnings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
-            saveSpendings: COMPREHENSIVE_API_BASE_URL + 'saveExpenses',
+            saveSpendings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveExpenses',
             saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck'
         }
     }

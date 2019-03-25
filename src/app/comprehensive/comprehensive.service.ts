@@ -32,6 +32,7 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
+import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -252,16 +253,16 @@ export class ComprehensiveService {
     }
 
     getMySpendings() {
-        if (!this.comprehensiveFormData.mySpendings) {
-            this.comprehensiveFormData.mySpendings = {} as IMySpendings;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending = {} as IMySpendings;
         }
-        return this.comprehensiveFormData.mySpendings;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending;
     }
     getEnquiryId() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.enquiryId;
     }
     setMySpendings(mySpendingsData: IMySpendings) {
-        this.comprehensiveFormData.mySpendings = mySpendingsData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending = mySpendingsData;
         this.commit();
     }
 
@@ -773,22 +774,52 @@ export class ComprehensiveService {
     /*
     *Bucket Calculation for Earnings and Assets
     */
-    setBucketImage(bucketParams: any, formValues: any) {
+    setBucketImage(bucketParams: any, formValues: any, totalBucket) {
         const bucketFlag = [];
         for (const i in bucketParams) {
-            if (formValues[bucketParams[i]] > 0) {
-                bucketFlag.push(true);
-            } else {
-                bucketFlag.push(false);
-            }
-        }
-        if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0) {
-            return 'filledBucket';
-        } else if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) {
-            return 'middleBucket';
+        if (formValues[bucketParams[i]] > 0) {
+            bucketFlag.push(true);
         } else {
-            return 'emptyBucket';
+            bucketFlag.push(false);
         }
+        }
+        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
+        return 'filledBucket';
+        } else if ( (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) || totalBucket > 0 ) {
+        return 'middleBucket';
+        } else {
+        return 'emptyBucket';
+        }
+    }
+     /*
+    *Set Total Bucket Income For Earnings
+    */
+   setBucketAmountByCal() {
+    Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
+        const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
+        const inputBucket = this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY];
+        if (inputBucket) {
+            const popInputBucket = financeData.POP_FORM_INPUT;
+            const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
+            const inputParams = financeData.MONTHLY_INPUT_CALC;
+            this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+            = this.additionOfCurrency(filterInput, inputParams);
+        }
+    });
+   }
+   /*
+   *Remove key from Object
+   * First Parameter is Object and Second Parameter is array with key need to pop
+   */
+    unSetObjectByKey(inputObject: any, removeKey: any) {
+        if (removeKey) {
+            Object.keys(removeKey).forEach((key) => {
+                if ( key !== '') {
+                delete inputObject[removeKey[key]];
+                }
+            });
+        }
+        return inputObject;
     }
 }
 

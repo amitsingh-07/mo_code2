@@ -201,6 +201,6 @@ export class MyAssetsComponent implements OnInit {
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     const bucketParams = ['cashInBank', 'singaporeSavingsBond', 'CPFOA', 'CPFSA', 'CPFMA', 'yourHome', 'otherInvestment0', 'otherAssets'];
-    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject);
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
   }
 }
