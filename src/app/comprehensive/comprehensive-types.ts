@@ -6,6 +6,9 @@ export interface  IComprehensiveDetails {
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     downOnLuck: HospitalPlan;
+    comprehensiveRegularSavingsList: IRegularSavings[];
+    comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveIncome: IMyEarnings;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -13,7 +16,7 @@ export interface IComprehensiveEnquiry {
     hasComprehensive: boolean;
     hasDependents: boolean;
     hasEndowments: string;
-    hasRegularSavingsPlans: boolean;
+    hasRegularSavingsPlans: string;
     type: string;
 }
 export interface IMyProfile {
@@ -147,6 +150,7 @@ export interface IOtherProperties {
     investmentType: string;
     others: number;
 }
+
 export interface IRegularSavePlan {
     hasRegularSavings: boolean;
     comprehensiveRegularSavingsList: IRegularSavings[];
@@ -156,3 +160,14 @@ export interface IRegularSavings {
     regularPaidByCash: string;
     regularPaidByCPF: string;
 }
+export interface IInsurancePlan {
+    haveHospitalPlan: boolean;
+    haveCPFDependentsProtectionScheme: string;
+    life_protection_amount: number;
+    other_life_protection_amount: number;
+    criticalIllnessCoverageAmount: number;
+    disabilityIncomeCoverageAmount: number;
+    haveLongTermElderShield: string;
+    longTermElderShieldAmount: number;
+}
+

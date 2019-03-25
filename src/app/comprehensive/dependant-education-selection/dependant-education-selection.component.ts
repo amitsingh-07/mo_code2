@@ -100,6 +100,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments) {
       preferenceSelected = false;
     }
+    const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+    const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
+    this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR')  : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR') );
     return {
       id: 0,
       dependentId: dependant.id,
@@ -111,12 +114,15 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       educationCourse: null,
       endowmentMaturityAmount: 0,
       endowmentMaturityYears: 0,
-      age: this.aboutAge.calculateAge(dependant.dateOfBirth, new Date()),
+      age: maturityAge,
       preferenceSelection: preferenceSelected
     } as IChildEndowment;
   }
 
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
+    const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+    const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
+    this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR')  : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR') );
     return {
       id: 0, // #childEndowment.id,
       dependentId: dependant.id,
@@ -128,7 +134,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       educationCourse: childEndowment.educationCourse,
       endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
       endowmentMaturityYears: childEndowment.endowmentMaturityYears,
-      age: this.aboutAge.calculateAge(dependant.dateOfBirth, new Date()),
+      age: maturityAge,
       preferenceSelection: true
     } as IChildEndowment;
   }
@@ -152,7 +158,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       for (const childEndowment of this.childEndowmentArray) {
-        console.log(dependant);
         if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
           if (childEndowment.dependentId === dependant.id) {
             const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
@@ -168,12 +173,12 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
       // Filter the array to avoid duplicates
       if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
-      if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
-        const thisNewEndowment = this.getNewEndowmentItem(dependant);
-        tempChildEndowmentArray.push(thisNewEndowment);
-        this.childEndowmentFormGroupArray.push(this.formBuilder.group(thisNewEndowment));
+        if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
+          const thisNewEndowment = this.getNewEndowmentItem(dependant);
+          tempChildEndowmentArray.push(thisNewEndowment);
+          this.childEndowmentFormGroupArray.push(this.formBuilder.group(thisNewEndowment));
+        }
       }
-    }
     });
 
     this.childEndowmentArray = tempChildEndowmentArray;
@@ -224,11 +229,12 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
       });
     } else {
+      const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
+        .filter((item: IChildEndowment) => item.preferenceSelection);
+      this.comprehensiveService.setEndowment(form.value.hasEndowments);
+      this.comprehensiveService.setChildEndowment(selectedChildArray);
       if (!form.pristine) {
-        const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
-          .filter((item: IChildEndowment) => item.preferenceSelection);
-        this.comprehensiveService.setEndowment(form.value.hasEndowments);
-        this.comprehensiveService.setChildEndowment(selectedChildArray);
+
         this.loaderService.showLoader({ title: 'Saving' });
 
         this.comprehensiveApiService.saveChildEndowment({
