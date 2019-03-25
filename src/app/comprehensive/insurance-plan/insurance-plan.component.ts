@@ -8,6 +8,7 @@ import { ConfigService } from '../../config/config.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IInsurancePlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
@@ -21,6 +22,7 @@ export class InsurancePlanComponent implements OnInit {
   pageId: string;
   menuClickSubscription: Subscription;
   insurancePlanForm: FormGroup;
+  insurancePlanFormValues: IInsurancePlan;
   submitted = false;
 
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
@@ -37,19 +39,33 @@ export class InsurancePlanComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.comprehensiveApiService.getInsurancePlanning().subscribe((data: IInsurancePlan) => {
+      this.insurancePlanFormValues = data;
+      this.buildInsuranceForm();
+    });
+    // Above Service Will be deleted once API is Ready
+    // this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      haveHospitalPlan: ['', [Validators.required]],
-      haveCPFDependentsProtectionScheme: ['', [Validators.required]],
-      life_protection_amount: ['', [Validators.required]],
-      other_life_protection_amount: ['', [Validators.required]],
-      criticalIllnessCoverageAmount: ['', [Validators.required]],
-      disabilityIncomeCoverageAmount: ['', [Validators.required]],
-      haveLongTermElderShield: ['', [Validators.required]],
-      longTermElderShieldAmount: ['', [Validators.required]],
+      haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan ? 'true' : 'false'
+       : '' , [Validators.required]],
+      haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
+         : '', [Validators.required]],
+      life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
+        life_protection_amount : '', [Validators.required]],
+      other_life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.other_life_protection_amount : '',
+       [Validators.required]],
+      criticalIllnessCoverageAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.criticalIllnessCoverageAmount :
+         '', [Validators.required]],
+      disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '' ,
+       [Validators.required]],
+      haveLongTermElderShield: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.haveLongTermElderShield :
+        '', [Validators.required]],
+      longTermElderShieldAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.longTermElderShieldAmount
+        : '', [Validators.required]],
     });
   }
   ngOnInit() {
@@ -65,6 +81,8 @@ export class InsurancePlanComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form) {
+    form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+    this.comprehensiveService.setInsurancePlanningList(form.value);
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
   }
 }
