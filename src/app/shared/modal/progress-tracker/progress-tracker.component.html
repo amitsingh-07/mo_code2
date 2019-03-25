@@ -6,11 +6,11 @@
       <span class="mr10">{{data.subTitle}}</span>
       <img src="../../../assets/images/comprehensive/progress-tracker/timer-icon.svg" alt="">
     </div>
-    <div *ngIf="data.items" class="progress-tracker-accordion">
+    <div *ngIf="data.items" class="progress-tracker-accordion mt30">
       <div *ngFor="let item of data.items">
         <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="toggle(item)">
           {{item.title}}
-          <span class=" progress-tracker-accordion__heading__arrow"></span>
+          <span class=" progress-tracker-accordion__heading__arrow" [ngClass]="{'active': !item.expanded}"></span>
         </div>
         <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
           <ul>

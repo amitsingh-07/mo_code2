@@ -110,6 +110,12 @@
                     right: 15px;
                     top: 10px;
                     background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
+                    &.active {
+                        background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
+                        height: 10px;
+                        width: 16px; 
+                        transform: rotate(180deg);
+                    }
                 }
             }
 
@@ -131,6 +137,7 @@
                         padding-top: 0;
                         padding-left: 24px;
                         min-height: 30px;
+                        color: $incomplete-list;
                     }
 
                     span.complete {
@@ -169,6 +176,7 @@
                     }
 
                     ul.sub-item-list {
+                        padding-left: 0;
                         li {
                             border-left: none;
                         }
