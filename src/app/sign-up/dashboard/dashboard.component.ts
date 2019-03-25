@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit {
 
     // Insurance
     this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
-      this.showInsuranceSection = false;
+      this.showInsuranceSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
         this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
