@@ -39,6 +39,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   pageId: string;
   bucketImage: string;
+  validationFlag: boolean;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -56,6 +57,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       this.spendDesc = this.translate.instant('CMP.MY_SPENDINGS.SPEND_DESC');
       this.spendTitle = this.translate.instant('CMP.MY_SPENDINGS.SPEND_TITLE');
       this.setPageTitle(this.pageTitle);
+      this.validationFlag = this.translate.instant('CMP.MY_SPENDINGS.OPTIONAL_VALIDATION_FLAG');
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
     console.log(this.spendingDetails);
@@ -99,13 +101,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     for (const value of this.mortageFieldSet) {
       const otherPropertyControl = this.mySpendingsForm.controls[value];
       if (this.otherMortage) {
-        if (value === 'mortgagePayOffUntil') {
+        if (value === 'mortgagePayOffUntil' && this.validationFlag === true ) {
           otherPropertyControl.setValidators([Validators.required, this.payOffYearValid]);
           otherPropertyControl.updateValueAndValidity();
-        } else if (value === 'mortgageTypeOfHome') {
+        } else if (value === 'mortgageTypeOfHome' && this.validationFlag === true ) {
           otherPropertyControl.setValidators([Validators.required]);
           otherPropertyControl.updateValueAndValidity();
-        } else {
+        } else if ( this.validationFlag === true ) {
           otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl.updateValueAndValidity();
         }
@@ -154,6 +156,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_SPENDINGS'));
       return false;
+    } else {
+      this.submitted = false;
     }
     return true;
   }
@@ -207,4 +211,3 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     }
   }
 }
-

@@ -33,6 +33,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   totalOutstanding = 0;
   menuClickSubscription: Subscription;
   pageId: string;
+  validationFlag: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -48,6 +49,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
 
       this.setPageTitle(this.pageTitle);
+      this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
     });
 
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
@@ -114,7 +116,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   get addLiabilitiesValid() { return this.myLiabilitiesForm.controls; }
   validateLiabilities(form: FormGroup) {
     this.submitted = true;
-    if (!form.valid) {
+    if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
         form.get(key).markAsDirty();
@@ -124,6 +126,8 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_LIABILITIES'));
       return false;
+    } else {
+      this.submitted = false;
     }
     return true;
   }

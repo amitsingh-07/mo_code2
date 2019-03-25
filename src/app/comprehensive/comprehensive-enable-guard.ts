@@ -30,15 +30,18 @@ export class ComprehensiveEnableGuard implements CanActivate {
     if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
-    } else if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
-      this.signUpService.clearRedirectUrl();
+    } else {
+      if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
+        this.signUpService.clearRedirectUrl();
+        return true;
+      } else if (!this.authService.isSignedUser()) {
+        this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+        this.signUpService.setRedirectUrl(state.url);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+        return false;
+      }
       return true;
-    } else if (!this.authService.isSignedUser()) {
-      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-      this.signUpService.setRedirectUrl(state.url);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-      return false;
     }
-    return true;
+
   }
 }

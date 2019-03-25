@@ -31,6 +31,7 @@ export class MyAssetsComponent implements OnInit {
   pageId: string;
   submitted: boolean;
   bucketImage: string;
+  validationFlag: boolean;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
@@ -46,6 +47,7 @@ export class MyAssetsComponent implements OnInit {
       this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
 
       this.setPageTitle(this.pageTitle);
+      this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
     });
     this.assetDetails = this.comprehensiveService.getMyAssets();
     //console.log(this.comprehensiveService.getMyAssets());
@@ -160,7 +162,7 @@ export class MyAssetsComponent implements OnInit {
   get addAssetsValid() { return this.myAssetsForm.controls; }
   validateAssets(form: FormGroup) {
     this.submitted = true;
-    if (!form.valid) {
+    if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
         form.get(key).markAsDirty();
@@ -169,6 +171,8 @@ export class MyAssetsComponent implements OnInit {
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
       this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
       return false;
+    } else {
+      this.submitted = false;
     }
     return true;
   }

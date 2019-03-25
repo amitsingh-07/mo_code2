@@ -46,6 +46,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     annualDividendsType: 'annualDividends',
     otherAnnualIncomeType: 'otherAnnualIncome'
   };
+  validationFlag: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -61,6 +62,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
       this.employmentTypeList = this.translate.instant('CMP.MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
       this.setPageTitle(this.pageTitle);
+      this.validationFlag = this.translate.instant('CMP.MY_EARNINGS.OPTIONAL_VALIDATION_FLAG');
     });
     this.earningDetails = this.comprehensiveService.getMyEarnings();
     if (this.earningDetails.employmentType) {
@@ -127,18 +129,19 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.myEarningsForm.markAsDirty();
   }
   goToNext(form: FormGroup) {
-    if (this.validateEarnings(form)) {
+    if (this.validateEarnings(form)) { 
       this.earningDetails = form.value;
       this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
       this.comprehensiveService.setMyEarnings(form.value);
       this.comprehensiveApiService.saveEarnings(form.value).subscribe((data) => {
+        
       });
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
     }
   }
   validateEarnings(form: FormGroup) {
     this.submitted = true;
-    if (!form.valid) {
+    if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
         form.get(key).markAsDirty();
@@ -148,6 +151,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_EARNINGS'));
       return false;
+    } else {
+      this.submitted = false;
     }
     return true;
   }
