@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   // Insurance
   showInsuranceSection = false;
-  insurance: any;
+  insurance: any = {};
 
   constructor(
     private router: Router,
