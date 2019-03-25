@@ -10,6 +10,7 @@ export interface  IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveIncome: IMyEarnings;
     comprehensiveSpending: IMySpendings;
+    comprehensiveAssets: IMyAssets;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -138,19 +139,22 @@ export interface IProgressTrackerWrapper {
     retirementPlan: IProgressTrackerItem;
 }
 export interface IMyAssets {
+    enquiryId: number;
     cashInBank: number;
-    singaporeSavingsBond: number;
-    CPFOA: number;
-    CPFSA: number;
-    CPFMA: number;
-    yourHome: number;
-    investmentProperties: number;
-    otherInvestment: IOtherProperties[];
-    otherAssets: number;
+    savingsBonds: number;
+    cpfOrdinaryAccount: number;
+    cpfSpecialAccount: number;
+    cpfMediSaveAccount: number;
+    homeMarketValue: number;
+    investmentPropertiesValue: number;
+    assetsInvestmentSet: IOtherProperties[];
+    otherAssetsValue: number;
+    totalAnnualAssets: number;
 }
 export interface IOtherProperties {
-    investmentType: string;
-    others: number;
+    enquiryId: number;
+    typeOfInvestment: string;
+    investmentAmount: number;
 }
 
 export interface IRegularSavePlan {

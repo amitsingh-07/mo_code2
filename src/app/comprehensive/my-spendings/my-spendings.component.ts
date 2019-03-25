@@ -203,7 +203,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   }
 
   onTotalAnnualSpendings() {
-    const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
+    const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.MONTHLY_INPUT_CALC;
     const spendingValues = this.mySpendingsForm.value;
     const spendingFormObject = {
       monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,

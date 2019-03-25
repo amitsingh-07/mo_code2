@@ -47,7 +47,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput #singaporeSavingsBond formControlName="singaporeSavingsBond">
+              <input type="text" class="input-control" appCurrencyInput #savingsBonds formControlName="savingsBonds">
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFOA formControlName="CPFOA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfOrdinaryAccount formControlName="cpfOrdinaryAccount"
                 value="0">
             </div>
           </div>
@@ -90,7 +90,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFSA formControlName="CPFSA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfSpecialAccount formControlName="cpfSpecialAccount"
                 value="0">
             </div>
           </div>
@@ -104,7 +104,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFMA formControlName="CPFMA"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfMediSaveAccount formControlName="cpfMediSaveAccount"
                 value="0">
             </div>
           </div>
@@ -136,7 +136,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput #yourHome formControlName="yourHome">
+              <input type="text" class="input-control" appCurrencyInput #homeMarketValue formControlName="homeMarketValue">
             </div>
           </div>
         </div>
@@ -173,10 +173,10 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control"  [ngClass]="{'inline-error': submitted && addAssetsValid.investmentProperties.invalid}">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addAssetsValid.investmentPropertiesValue.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentProperties
-                  formControlName="investmentProperties" value="0">
+                <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentPropertiesValue
+                  formControlName="investmentPropertiesValue" value="0">
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
 
-        <div formArrayName="otherInvestment" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment " *ngFor="let otherInvestment of myAssetsForm['controls'].otherInvestment['controls']; let i = index;">
+        <div formArrayName="assetsInvestmentSet" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment " *ngFor="let otherInvestment of myAssetsForm['controls'].assetsInvestmentSet['controls']; let i = index;">
 
           <div class="flex-row both-icon mt-2" *ngIf="i>0">
             <div class="flex-col-12 form-group-with-bg--content-label">
@@ -220,7 +220,7 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div class="dropdown-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].investmentType.invalid}">
+                <div class="dropdown-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].typeOfInvestment.invalid}">
                   <div ngbDropdown id="investTypeDropDown">
                     <button type="button" class="btn btn-dropdown" id="dropdownsInvestType" ngbDropdownToggle>
                       <span *ngIf="!investType[i] || investType[i] === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
@@ -245,9 +245,9 @@
                 </div>
               </div>
               <div class="flex-col-6">
-                <div class="form-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].others.invalid}">
+                <div class="form-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].investmentAmount.invalid}">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="8" #others formControlName="others"
+                  <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentAmount formControlName="investmentAmount"
                     value="0">
                 </div>
               </div>
@@ -293,7 +293,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssets formControlName="otherAssets"
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssetsValue formControlName="otherAssetsValue"
                 value="0">
             </div>
           </div>

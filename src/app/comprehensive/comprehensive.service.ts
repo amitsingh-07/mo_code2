@@ -320,13 +320,13 @@ export class ComprehensiveService {
         this.commit();
     }
     getMyAssets() {
-        if (!this.comprehensiveFormData.myAssets) {
-            this.comprehensiveFormData.myAssets = {} as IMyAssets;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets = {} as IMyAssets;
         }
-        return this.comprehensiveFormData.myAssets;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets;
     }
     setMyAssets(myAssets: IMyAssets) {
-        this.comprehensiveFormData.myAssets = myAssets;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets = myAssets;
         this.commit();
     }
     getRegularSavingsList() {

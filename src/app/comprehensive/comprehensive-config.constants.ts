@@ -10,18 +10,17 @@ export const COMPREHENSIVE_CONST = {
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
             API_TOTAL_BUCKET_KEY: 'totalAnnualExpenses',
-            MONTHLY_INPUT_CALC : ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
-            'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
+            MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
             'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil']
         },
         YOUR_ASSETS: {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
-            MONTHLY_INPUT_CALC : [''],
+            MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets'],
-            BUCKET_INPUT_CALC: ['cashInBank', 'singaporeSavingsBond', 'CPFOA', 'CPFSA', 'CPFMA', 'yourHome',
-            'otherInvestment0', 'otherAssets']
+            BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
+            'homeMarketValue', 'assetsInvestmentSet0', 'otherAssetsValue']
         }
     }
 };
