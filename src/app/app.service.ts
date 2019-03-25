@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+
+import { appConstants } from './app.constants';
+import { ComprehensiveService } from './comprehensive/comprehensive.service';
 import { DirectService } from './direct/direct.service';
 import { GuideMeService } from './guide-me/guide-me.service';
 import { InvestmentAccountService } from './investment-account/investment-account-service';
@@ -29,7 +32,8 @@ export class AppService {
     private portfolioService: PortfolioService,
     private investmentAccountService: InvestmentAccountService,
     private topupAndWithDrawService: TopupAndWithDrawService,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private comprehensiveService: ComprehensiveService
   ) { }
 
   commit(key, data) {
@@ -57,6 +61,7 @@ export class AppService {
     this.portfolioService.clearData();
     this.investmentAccountService.clearData();
     this.topupAndWithDrawService.clearData();
+    this.comprehensiveService.clearFormData();
   }
 
   setJourneyType(type: string) {
@@ -83,6 +88,8 @@ export class AppService {
       sessionStorage.removeItem('app_guided_session');
       // Insurance results
       sessionStorage.removeItem('insurance_results_counter');
+      // Comprehensive Journey
+      sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
     }
   }
 
@@ -124,3 +131,4 @@ export class AppService {
     return this.getCustomer().id;
   }
 }
+

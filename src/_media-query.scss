@@ -73,6 +73,9 @@
     box-shadow: none;
     font-size: 24px !important;
     font-family: $muli-semi-bold;
+    &.comprehensive {
+      font-size: 18px !important;
+    }
   }
   @include min568max767 {
     position: fixed !important;
@@ -80,6 +83,7 @@
     font-size: 24px !important;
     font-family: $muli-semi-bold;
   }
+
 }
 
 .navbar {
@@ -138,6 +142,9 @@
     &.bottom-none {
       bottom: 0px;
       top: 0px;
+    }
+    &--comprehensive {
+      padding: 0px 16px 50px 16px;
     }
   }
 }

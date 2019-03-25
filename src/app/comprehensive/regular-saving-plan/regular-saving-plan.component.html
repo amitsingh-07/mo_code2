@@ -1,0 +1,113 @@
+<div class="container-fluid max-width--1024 comprehensive">
+    <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="6" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+    </div>
+  <div class="page-title mt40 mb20">{{'CMP.RSP.TITLE'|translate}}<span class="help-icon" (click)="showToolTipModal('RSP_TITLE','RSP_MESSAGE')"></span></div>
+
+
+  <div class="col-lg-5 col-md-6 p-0">
+    <form name="RSPForm" [formGroup]="RSPForm">
+      <div class="form-group-single-column  flex-col">
+        <div class="checkbox-button one-label">
+          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=true class="field radio">
+          <label for="RSPInpt1">
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
+
+          </label>
+          <section [hidden]="!hasRegularSavings" class="rspSelectionList" >
+            <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg" *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
+                  <div class="form-group-with-bg--header pr0 pt0">
+                      <div class="rsp-header">
+                        <div class="">
+                          <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1"><span *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span *ngIf="i > 0">{{i}}</span></div>
+                          </div>
+            
+                        <div class="">
+                          <div class="total" ><span class="help-icon mr10" (click)="showToolTipModal('RSP_TITLE','RSP_MESSAGE')"></span><span class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></span></div>
+                        </div>
+                      </div>
+                    </div>  
+
+              <div class="form-group form-group-with-bg--content" [formGroupName]="i">
+
+
+                <div class="flex-row">
+                  <div class="pl0 col-5">
+                    <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
+                  </div>
+                  <div class="pr0 flex-col-7">
+                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularUnitTrust.invalid}">
+                      <div ngbDropdown id="relationshipDropDown">
+                        <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle>
+                          <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==''">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                          <button class="dropdown-item" (click)="selectInvest('',i)">Select</button>
+                          <button type="button" class="dropdown-item" *ngFor="let invest of investmentList;"
+                            (click)="selectInvest(invest.text, i)">
+                            {{invest.text}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="flex-row pb-2">
+                    <div class="pl0 col-5">
+                      <label for="name" id="myDependantFormLb1">
+                        <div>{{'CMP.RSP.PAID_BY_CASH'|translate}}
+                        </div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
+                        <i>$</i>
+                        <input type="text" class="input-control" appCurrencyInput  placeholder="Amount"  #regularPaidByCash formControlName="regularPaidByCash"  >
+                        <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
+                      </div>
+                    </div>
+                  </div>
+                <div class="flex-row">
+                    <div class="pl0 col-5">
+                      <label for="name" id="myDependantFormLb1">
+                        <div>{{'CMP.RSP.PAID_BY_CPF'|translate}}
+                        </div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
+                        <i>$</i>
+                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF"  placeholder="Amount" >
+                        <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+
+            </div>
+            <p class="add-rsp" (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
+          </section>
+        </div>
+
+
+
+        <div class="checkbox-button one-label">
+          <input id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=false class="field radio">
+          <label for="RSPInpt2">
+            <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
+          </label>
+
+        </div>
+        <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary mb50 mt30 width100"
+      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
+      </div>
+    </form>
+  </div>
+</div>

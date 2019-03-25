@@ -1,0 +1,322 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+  </div>
+  <div class="dependant-title mt40">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
+  <div class="dependant-desc">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
+  <div class='income-bucket-panel'>
+    <div class="income-bucket-panel__img {{ bucketImage }}"></div>
+    <div class="income-bucket-panel__content">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
+    <div class="income-bucket-panel__desc"><span class='income-bucket-panel__value'>{{ totalAssets |
+        currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_ASSETS.TOTAL'|translate}} </div>
+  </div>
+  <form [formGroup]="myAssetsForm" id="myAssetsForm" name="myAssetsForm" class="myAssetsForm form-group">
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.CASH' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('CASH_TITLE','CASH_MESSAGE')"></span>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.CASH_IN_BANK'|translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #cashInBank formControlName="cashInBank">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SINGAPORE_SAVING_BONDS' |
+              translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #singaporeSavingsBond formControlName="singaporeSavingsBond">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.YOUR_CPF' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.CPF_OA'|translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFOA formControlName="CPFOA"
+                value="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_SA' | translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFSA formControlName="CPFSA"
+                value="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_MA' | translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #CPFMA formControlName="CPFMA"
+                value="0">
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{'CMP.MY_ASSETS.YOUR_HOME' | translate}}<div class="form-group-with-bg--header-sub-label">{{
+                'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('YOUR_HOME_TITLE','YOUR_HOME_MESSAGE')"></span>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #yourHome formControlName="yourHome">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-row investmentProperties add-invest" [hidden]="!myInvestmentProperties">
+          <div class="flex-col-12 mt-2">
+            <div class="with-help-icon" for="name"><u (click)="addOtherInvestment()">{{
+                'CMP.MY_ASSETS.ADD_INVESTMENT_PROPERTIES' | translate}}</u>
+
+              <span class="help-icon" (click)="showToolTipModal('INVESTMENT_PROPERTIES_TITLE','INVESTMENT_PROPERTIES_MESSAGE')"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class='investmentProperties' [hidden]="myInvestmentProperties">
+
+          <div class="flex-row mt-2">
+            <div class="flex-col-12 both-icon with-help-icon">
+              <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
+                'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
+                  'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
+
+                <span class="help-icon" (click)="showToolTipModal('INVESTMENT_PROPERTIES_TITLE','INVESTMENT_PROPERTIES_MESSAGE')"></span>
+                <span class="delete-icon" (click)="addOtherInvestment()"> </span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-row">
+            <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
+                  class="form-group-with-bg--content-sub-label"></div>
+              </div>
+            </div>
+            <div class="flex-col-6">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addAssetsValid.investmentProperties.invalid}">
+                <i>$</i>
+                <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentProperties
+                  formControlName="investmentProperties" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{'CMP.MY_ASSETS.INVESTMENTS'|translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+
+        <div formArrayName="otherInvestment" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment " *ngFor="let otherInvestment of myAssetsForm['controls'].otherInvestment['controls']; let i = index;">
+
+          <div class="flex-row both-icon mt-2" *ngIf="i>0">
+            <div class="flex-col-12 form-group-with-bg--content-label">
+              <div class="with-help-icon" for="name">{{
+                'CMP.MY_ASSETS.OTHER_INVESTMENT' | translate}} {{i}}
+                <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTIES_TITLE','OTHER_PROPERTIES_MESSAGE')"></span>
+                <span class="delete-icon" (click)="removeInvestment(i)"> </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [formGroupName]="i">
+
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.INVESTMENT_TYPE'|translate}}<div
+                    class="form-group-with-bg--content-sub-label"></div>
+                </div>
+              </div>
+              <div class="flex-col-6">
+                <div class="dropdown-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].investmentType.invalid}">
+                  <div ngbDropdown id="investTypeDropDown">
+                    <button type="button" class="btn btn-dropdown" id="dropdownsInvestType" ngbDropdownToggle>
+                      <span *ngIf="!investType[i] || investType[i] === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                      <span *ngIf=" investType[i] !==''">{{investType[i]}}</span>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownsInvestType">
+                      <button class="dropdown-item" (click)="selectInvestType('',i)">Select</button>
+                      <button type="button" class="dropdown-item" *ngFor="let investType of investmentTypeList;"
+                        (click)="selectInvestType(investType, i)">
+                        {{investType.text}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.OTHERS' | translate}}<div
+                    class="form-group-with-bg--content-sub-label"></div>
+                </div>
+              </div>
+              <div class="flex-col-6">
+                <div class="form-control" [ngClass]="{'inline-error': submitted && otherInvestment['controls'].others.invalid}">
+                  <i>$</i>
+                  <input type="text" class="input-control" appCurrencyInput maxLength="8" #others formControlName="others"
+                    value="0">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="flex-row investmentProperties add-invest">
+          <div class="flex-col-12 mt-2">
+            <div class="with-help-icon" for="name"><u (click)="addInvestment()">{{
+                'CMP.MY_ASSETS.ADD_INVESTMENT' | translate}}</u>
+
+              <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTIES_TITLE','OTHER_PROPERTIES_MESSAGE')"></span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row ">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.OTHER_ASSETS' | translate}}<div class="form-group-with-bg--header-sub-label">{{'CMP.MY_ASSETS.OTHER_ASSETS_HINT'
+                | translate}}</div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('CASH_TITLE','CASH_MESSAGE')"></span>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssets formControlName="otherAssets"
+                value="0">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='mb-10'>
+        <div class="flex-row mb-3 mt-3 ">
+          <div class="flex-col-12">
+              <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100" id="prfBtn1">{{
+          'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
+          translate}}</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="flex-row footer-notes btn__footer--fixed width100 p-3 " id="prfBtn1">
+    <div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_ASSETS.ASSETS_BUCKETS_NOTE'|translate}}</div>
+    <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalAssets | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+  </div>
+
+</div>

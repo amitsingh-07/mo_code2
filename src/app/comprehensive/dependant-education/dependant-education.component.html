@@ -1,0 +1,24 @@
+<div class="container-fluid max-width--1024 ">
+  <header>{{'CMP.DEPENDANT_EDUCATION.ABOUT'|translate}}</header>
+
+
+
+  <div class="col-lg-5 col-md-6">
+    <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
+      <div class="form-group-single-column  flex-col">
+        <div class="checkbox-button one-label" *ngFor="let dependantSelection of educationPlanOption let i=index;">
+          <input id="dependantSelection_{{i+1}}" name="dependant_selection" formControlName="dependant_selection" type="radio"
+            value="dependantSelection_{{i+1}}" class="field radio">
+          <label for="dependantSelection_{{i+1}}">
+            <span class="input-label-grey">{{dependantSelection}}</span>
+          </label>
+
+        </div>
+       
+        <button type="button" [disabled]="!dependantEducationSelectionForm.valid" (click)="goToNext()"
+          class="btn  btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' |
+          translate}}</button>
+      </div>
+    </form>
+  </div>
+</div>

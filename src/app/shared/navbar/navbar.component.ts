@@ -17,7 +17,8 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
-import { NAV_BAR_CONFIG } from './config/presets';
+import { INavbarConfig } from './config/navbar.config.interface';
+import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -79,6 +80,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   userInfo: any;
 
+  showMenuItem = false;
+  menuItemClass = '';
+  pageId: any;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -90,7 +95,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
-    this.setNavbarConfig(this.navbarMode);
+    this.matrixResolver();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -155,6 +160,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
+
+    this.navbarService.currentMenuItem.subscribe((menuItem) => {
+      if (menuItem && typeof menuItem.iconClass !== 'undefined') {
+        this.showMenuItem = true;
+        this.menuItemClass = menuItem.iconClass;
+        this.pageId = menuItem.id;
+      } else {
+        this.showMenuItem = false;
+      }
+    });
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url !== this.currentUrl) {
@@ -171,10 +187,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      this.setNavbarConfig(navbarMode);
+      this.matrixResolver(navbarMode);
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
-        this.isNotificationEnabled = true;
+        this.isNotificationEnabled = true; // = this.canActivateNotification();
       } else {
         this.isNotificationEnabled = false;
       }
@@ -190,20 +206,45 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // Navbar Configuration --- DO NOT DELETE IT'S IMPORTANT
-  setNavbarConfig(navbarMode) {
-    this.navbarConfig = NAV_BAR_CONFIG[navbarMode] ? NAV_BAR_CONFIG[navbarMode] : NAV_BAR_CONFIG['default'];
-    this.showNavBackBtn = this.navbarConfig.showNavBackBtn ? this.navbarConfig.showNavBackBtn : false;
-    this.showHeaderBackBtn = this.navbarConfig.showHeaderBackBtn ? this.navbarConfig.showHeaderBackBtn : false;
-    this.showMenu = this.navbarConfig.showMenu ? this.navbarConfig.showMenu : false;
-    this.showLogin = this.navbarConfig.showLogin ? this.navbarConfig.showLogin : false;
-    this.showNavShadow = this.navbarConfig.showNavShadow ? this.navbarConfig.showNavShadow : false;
-    this.showSearchBar = this.navbarConfig.showSearchBar ? this.navbarConfig.showSearchBar : false;
-    this.showNotifications = this.navbarConfig.showNotifications ? this.navbarConfig.showNotifications : false;
-    this.showHeaderNavbar = this.navbarConfig.showHeaderNavbar ? this.navbarConfig.showHeaderNavbar : false;
-    this.showNotificationClear = false;
-    this.showLabel = this.navbarConfig.showLabel ? this.navbarConfig.showLabel : false;
+  // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
+  matrixResolver(navbarMode?: any) {
+    const matrix = new NavbarConfig();
+    let nc: INavbarConfig;
+    if (navbarMode ? true : false && (navbarMode !== 'default')) {
+      this.navbarMode = navbarMode;
+      nc = matrix[navbarMode];
+      console.log('NavBar Mode: ' + navbarMode);
+      // Just cos there is no automapper. FK
+      this.processMatrix(nc);
+    } else {
+      this.navbarConfig = matrix['default'];
+    }
   }
+
+  processMatrix(nc: INavbarConfig) {
+    // Buffer for Matrix
+    Object.keys(nc).forEach((key) => {
+      this.navbarConfig[key] = nc[key];
+    });
+    // Resetting Items to default
+    if (!nc['showLabel']) {
+      this.navbarConfig.showLabel = undefined;
+    }
+    // Implement Matrix
+    const config = this.navbarConfig as INavbarConfig;
+    this.showNavBackBtn = config.showNavBackBtn;
+    this.showHeaderBackBtn = config.showHeaderBackBtn;
+    this.showMenu = config.showMenu;
+    this.showLogin = config.showLogin;
+    this.showNavShadow = config.showNavShadow;
+    this.showSearchBar = config.showSearchBar;
+    this.showNotifications = config.showNotifications;
+    this.showHeaderNavbar = config.showHeaderNavbar;
+    this.showNotificationClear = false;
+    this.showLabel = config.showLabel ? config.showLabel : false;
+  }
+
+  // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
     this.showSearchBar = toggle;
@@ -211,6 +252,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showMobilePopUp() {
     this.navbarService.showMobilePopUp(this.pageTitle);
+  }
+
+  onMenuItemClicked() {
+    this.navbarService.menuItemClicked(this.pageId);
   }
 
   goBack() {
@@ -292,6 +337,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNotificationHidden = true;
   }
 
+  canActivateNotification() {
+    return (
+      this.router.url === DASHBOARD_PATH ||
+      this.router.url === EDIT_PROFILE_PATH
+      );
+  }
+
   clearNotifications() {
     this.navbarService.clearNotification();
   }
@@ -338,3 +390,4 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.browserError = false;
   }
 }
+

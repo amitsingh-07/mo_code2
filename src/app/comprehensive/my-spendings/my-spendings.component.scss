@@ -1,0 +1,147 @@
+@import '../../../variables';
+@import '../../../mixins';
+$grey-color-notes: #9f9f9f;
+.spendings-section {
+    background:$white-color;
+    color:$black-color;
+    border-radius: 5px;
+}
+.spendings-field{
+background: $bond-container-bg;
+color: $dark-teal-color;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .help-icon {      
+        background: url("/assets/images/tool-help-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 93%;
+        top: 5px;
+    }    
+}
+.delete-icon {      
+        background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 95%;
+        top: 3px!important;
+    } 
+.otherMortageBlock .help-icon{
+    right: 10px;
+}
+.filledSpend{
+    background: url("../../../assets/images/comprehensive/empty-expenses-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.emptySpend{
+    background: url("../../../assets/images/comprehensive/filled-expenses-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.middleSpend{
+    background: url("../../../assets/images/comprehensive/middle-expenses-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.comprehensive {
+    .dependant-title {
+        font-size: 18px;      
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+    .spendings-field .btn-outline-primary{
+        color:$teal-color;
+    }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:16px;
+    }
+    .form-group-with-bg{
+        padding:0px;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
+}
+.p-50{
+    padding:75px;
+}
+.spendings-section .flex-row{
+    padding:5px!important;
+}
+.otherMortage{
+    border-top:1px solid rgba(134, 205, 206, 0.3);
+    margin-top: 20px;
+    margin-bottom: 5px !important;
+}
+.income-modal-notes{
+    color:$grey-color-notes;
+}
+.bucket-notes{
+    font-size:16px;
+}
+.bucket-notes-dollar{
+    font-size:20px;
+}
+.income-bucket-panel {
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+        font-size: 14px;
+    }
+    &__value {
+        padding-bottom: 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+    }
+    &__content {
+        font-family: $muli-bold;
+        font-size: 16px;
+    }
+}
+.both-icon{  
+    .delete-icon { 
+        left: 95% !important;
+    }
+    .help-icon {
+        left: 80% !important;
+    }
+    .form-group-with-bg--content-label{
+        color:$black-color;
+    }
+    .form-group-with-bg--content-sub-label{
+        color:$text-grey-color;
+    }
+}
+.otherMortage .help-icon {
+    top:3px!important;
+}
+u{
+    color:$post-login-widget-title;
+}
+.footer-notes{
+    background: $btn-primary-backgrnd-color;
+}
+.mb-10{
+    margin-bottom:100px;
+}

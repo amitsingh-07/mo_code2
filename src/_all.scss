@@ -70,7 +70,7 @@ h6 {
   padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
   transition:0.5s;
-  z-index:1029;
+  z-index:1063;
   &.browser-error{
     height: calc(84px + 34px);
     align-items:flex-start;
@@ -622,6 +622,7 @@ h6 {
             color:$white-color;
             font-size:18px;
             font-family:$muli-bold;
+            text-transform: capitalize;
           }
           .sub-text{
             font-family:$muli-regular;
@@ -1067,6 +1068,13 @@ h6 {
 .navbar__helpIcon--mobile-settings {
   background-image: url("/assets/images/settings-icon.png");
   background-repeat: no-repeat;
+}
+
+.navbar__menuItem--journey-map {
+  background-image: url("/assets/images/road-map-icon.svg");
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
 }
 
 .navbar-notification-clear{
@@ -1730,4 +1738,203 @@ a.link-white {
 
 .dropdown-toggle.last::after {
   background-image: none !important;
+}
+
+
+//Comprehensive Styles
+.comprehensive {
+  &.container-fluid {
+    height: 100%;
+    padding-top: $cmp-padding-top;
+    padding-bottom: 0;
+  }
+  &__page-heading {
+    padding: 16px 0;
+    font-size: 22px;
+    font-family: $muli-bold;
+    @extend .text-center;
+  }
+  &__page-sub-heading {
+    padding-bottom: 20px;
+    font-size: 17px;
+    @extend .text-center;
+  }
+  &__page-content {
+    font-size: 16px;
+    @extend .text-center;
+    margin-bottom: 30px;
+  }
+  .owl-img {
+    width: 83px;
+    height: 82px;
+  }
+  .datepicker-upside {
+    .dropdown-menu.show {
+      top: -240px !important;
+    }
+  }
+  .road-map {
+    border-left: 3px solid $screen-separator-bar-color;
+    padding-left: 52px;
+    margin-left: 20px;
+    margin-top: 100px;
+    &__step-number {
+      font-size: 18px;
+      font-family: $muli-bold;
+    }
+    &__step-title {
+      font-size: 18px;
+      font-family: $muli-regular;
+    }
+    &__step-desc {
+      font-size: 14px;
+      font-family: $muli-regular;
+      margin-top: 16px;
+    }
+    li{
+      position: relative;
+      margin-bottom: 30px;
+      color: #9fd4d4;
+      span {
+        height: 15px;
+        width: 15px;
+        background-color: $app-backgrnd-color;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: -61px;
+        border: 3px solid $screen-separator-bar-color;
+        top: 8px;
+      }
+      &.active {
+        .road-map__step-number, .road-map__step-title, .road-map__step-desc {
+          color: $white-color;
+        }
+        span {
+          background-image: url(/assets/images/comprehensive/createAccount-icon.svg);
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: -68px;
+          background-color: transparent;
+          border: 2px solid $screen-separator-bar-color;
+          background-size: 100%;
+          top: 0;
+        }
+      }
+      &.success {
+        span {
+          background-image: url(/assets/images/comprehensive/screen-sep-sucess.svg);
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: -68px;
+          background-color: transparent;
+          border: 2px solid $screen-separator-bar-color;
+          background-size: 100%;
+          top: 0;
+        }
+      }
+
+    }
+  }
+  .info-msg {
+    color: $dark-teal-color;
+    font-size: 14px;
+  }
+  //Tooltip container
+  .tooltip-container {
+    color: $white-color;
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    position: fixed;
+    top: 107px;
+    width: 92%;
+    right: 4%;
+    left: 4%;
+    z-index: 1069;
+    &__inner {
+      position: relative;
+      border-radius: 6px;
+      padding: 20px;
+      background: #066360;
+      &__title {
+        color: #8d9aa8;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        top: -19px;
+        right: 10px;
+        border-top: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #066360;
+      }
+      &__close {
+        position: absolute;
+        top: 15px;
+        right: 5px;
+        font-size: 20px;
+        background: url(./assets/images/close-icon.svg);
+        background-repeat: no-repeat;
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+  .add-dependant-icon {
+    background: url(./assets/images/oval-mask.svg);
+    height: 34px;
+    margin-right: 15px;
+    display: inline-block;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding-left: 45px;
+    line-height: 34px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .step-indicator-container {
+    background: $white-color;
+    margin: -15px -20px 20px;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    z-index: 1028;
+  }
+  .delete-icon {
+    background: url("./assets/images/comprehensive/delete-icon.svg");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+  }
+  .help-icon {
+    background: url("./assets/images/comprehensive/tool-tip-white.svg");
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+  }
+  .custom-full-height {
+    max-height: 100% !important;
+    padding: 5% !important;
+  }
+  .page-title {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    .help-icon {
+      background: url("./assets/images/comprehensive/tool-tip-white.svg");
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.grey-text {
+  color: #888888;
 }
