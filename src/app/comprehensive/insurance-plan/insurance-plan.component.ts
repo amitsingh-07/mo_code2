@@ -42,13 +42,14 @@ export class InsurancePlanComponent implements OnInit {
   }
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      cashInBank: ['', [Validators.required]],
-      singaporeSavingsBond: ['', [Validators.required]],
-      CPFOA: ['', [Validators.required]],
-      CPFSA: ['', [Validators.required]],
-      CPFMA: ['', [Validators.required]],
-      yourHome: ['', [Validators.required]],
-      investmentProperties: ['', [Validators.required]],
+      haveHospitalPlan: ['', [Validators.required]],
+      haveCPFDependentsProtectionScheme: ['', [Validators.required]],
+      life_protection_amount: ['', [Validators.required]],
+      other_life_protection_amount: ['', [Validators.required]],
+      criticalIllnessCoverageAmount: ['', [Validators.required]],
+      disabilityIncomeCoverageAmount: ['', [Validators.required]],
+      haveLongTermElderShield: ['', [Validators.required]],
+      longTermElderShieldAmount: ['', [Validators.required]],
     });
   }
   ngOnInit() {
