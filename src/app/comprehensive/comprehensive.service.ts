@@ -28,8 +28,7 @@ import {
     IMyLiabilities,
     IMyProfile,
     IMySpendings,
-    IProgressTrackerWrapper,
-    IRegularSavePlan
+    IProgressTrackerWrapper
 } from './comprehensive-types';
 
 @Injectable({
@@ -135,10 +134,6 @@ export class ComprehensiveService {
     }
 
     getMyProfile() {
-        if (!this.comprehensiveFormData.comprehensiveDetails) {
-
-        }
-
         if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
             this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
         }
@@ -227,7 +222,6 @@ export class ComprehensiveService {
     }
 
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
-        console.log(dependentEducationPreferencesList);
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.updateComprehensiveSummary();
     }
@@ -244,14 +238,14 @@ export class ComprehensiveService {
     }
 
     getMyEarnings() {
-        if (!this.comprehensiveFormData.myEarnings) {
-            this.comprehensiveFormData.myEarnings = {} as IMyEarnings;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome = {} as IMyEarnings;
         }
-        return this.comprehensiveFormData.myEarnings;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome;
     }
 
     setMyEarnings(myEarningsData: IMyEarnings) {
-        this.comprehensiveFormData.myEarnings = myEarningsData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome = myEarningsData;
         this.commit();
     }
 
@@ -345,7 +339,6 @@ export class ComprehensiveService {
     getFormError(form, formName) {
         const controls = form.controls;
         const errors: any = {};
-        errors.errorMessages = [];
         errors.errorMessages = [];
         errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
