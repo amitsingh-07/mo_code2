@@ -582,11 +582,12 @@ export class ComprehensiveService {
                         accessibleUrl = urlList[index];
                         break;
                     case 1:
+                    case 2:
                         if (profileData.nation) {
                             accessibleUrl = urlList[index];
                         }
                         break;
-                    case 2:
+                    case 3:
                         if (dependantProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
@@ -597,6 +598,8 @@ export class ComprehensiveService {
 
         if (accessibleUrl === '') {
             accessibleUrl = urlList[0];
+            // TODO : remove the below line after above routing switch cases are updated correctly
+            accessibleUrl = url;
         }
         return accessibleUrl;
     }
