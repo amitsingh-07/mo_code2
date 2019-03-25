@@ -28,45 +28,45 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
     });
   }
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isComprehensiveEnabled) {
-      this.router.navigate([appConstants.homePageUrl]);
-      return false;
-    } else {
-      if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
-        this.signUpService.clearRedirectUrl();
-        return true;
-      } else if (!this.authService.isSignedUser()) {
-        this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-        this.signUpService.setRedirectUrl(state.url);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-        return false;
-      } else if (!this.cmpService.getComprehensiveSummary().comprehensiveEnquiry
-        || !this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId) {
-        this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-        this.loaderService.showLoader({title: 'Loading'});
-        return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
-          this.cmpService.setComprehensiveSummary(data.objectList[0]);
-          const accessibleUrl1 = this.cmpService.getAccessibleUrl(state.url);
-          if (!ProgressTrackerUtil.compare(accessibleUrl1, state.url)) {
-            this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-            const accessibleUrl3 = this.cmpService.getAccessibleUrl(state.url);
-            this.router.navigate([accessibleUrl3]);
-            return false;
-          } else {
-            return true;
-          }
-        }));
-      } else {
-        const accessibleUrl2 = this.cmpService.getAccessibleUrl(state.url);
-        if (!ProgressTrackerUtil.compare(accessibleUrl2, state.url)) {
-          this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-          this.router.navigate([accessibleUrl2]);
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }
-
+    // if (!this.isComprehensiveEnabled) {
+    //   this.router.navigate([appConstants.homePageUrl]);
+    //   return false;
+    // } else {
+    //   if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
+    //     this.signUpService.clearRedirectUrl();
+    //     return true;
+    //   } else if (!this.authService.isSignedUser()) {
+    //     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    //     this.signUpService.setRedirectUrl(state.url);
+    //     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    //     return false;
+    //   } else if (!this.cmpService.getComprehensiveSummary().comprehensiveEnquiry
+    //     || !this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId) {
+    //     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    //     this.loaderService.showLoader({title: 'Loading'});
+    //     return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
+    //       this.cmpService.setComprehensiveSummary(data.objectList[0]);
+    //       const accessibleUrl1 = this.cmpService.getAccessibleUrl(state.url);
+    //       if (!ProgressTrackerUtil.compare(accessibleUrl1, state.url)) {
+    //         this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    //         const accessibleUrl3 = this.cmpService.getAccessibleUrl(state.url);
+    //         this.router.navigate([accessibleUrl3]);
+    //         return false;
+    //       } else {
+    //         return true;
+    //       }
+    //     }));
+    //   } else {
+    //     const accessibleUrl2 = this.cmpService.getAccessibleUrl(state.url);
+    //     if (!ProgressTrackerUtil.compare(accessibleUrl2, state.url)) {
+    //       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    //       this.router.navigate([accessibleUrl2]);
+    //       return false;
+    //     } else {
+    //       return true;
+    //     }
+    //   }
+    // }
+    return true;
   }
 }

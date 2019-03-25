@@ -1,0 +1,11 @@
+{  
+   "enquiryId":200,
+   "haveHospitalPlan":true,
+   "haveCPFDependentsProtectionScheme":"1",
+   "life_protection_amount":120.0,
+   "other_life_protection_amount":300.0,
+   "criticalIllnessCoverageAmount":400.0,
+   "disabilityIncomeCoverageAmount":450.0,
+   "haveLongTermElderShield":"1",
+   "longTermElderShieldAmount":"300"
+}
