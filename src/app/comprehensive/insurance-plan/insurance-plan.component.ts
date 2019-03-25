@@ -68,4 +68,3 @@ export class InsurancePlanComponent implements OnInit {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
   }
 }
-

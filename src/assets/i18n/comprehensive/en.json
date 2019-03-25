@@ -464,7 +464,8 @@
      "HOSPITAL_PLAN_LABEL":"Do you have a hospitalisation plan that pays for this?",
      "LIFE_PROTECTION":"Life Protection (Death)",
      "LIFE_PROTECTION_LABEL_1":"Do you have CPF Dependants’ Protection Scheme?",
-     "LIFE_PROTECTION_LABEL_2": "Other life insurance coverage",
+     "LIFE_PROTECTION_LABEL_2":"Do you have HDB Home Protection Scheme (HPS) coverage?",
+     "LIFE_PROTECTION_LABEL_3": "Other life insurance coverage",
      "CRITICAL_ILLNESS":"Critical Illness Insurance",
      "DISABILITY_INSURANCE":"Disability Income Insurance",
      "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
@@ -491,7 +492,9 @@
       "DESC":"We seek for your understanding and patience for our advisors will be contacting you within 2-3 working days.",
       "SUB_DESC":"For further enquries, feel free to contact us!",
        "PHONE_NO":"(65) 6329 9188",
-       "EMAIL":"enquiries@moneyowl.com.sg"
+       "EMAIL":"enquiries@moneyowl.com.sg",
+       "BACK_DASHBOARD":"Back To DashBoard"
+       
     }
   }
 }
