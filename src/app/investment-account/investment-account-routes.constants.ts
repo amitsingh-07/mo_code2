@@ -1,4 +1,5 @@
 export const INVESTMENT_ACCOUNT_BASE_ROUTE = '../invest/account/';
+export const MY_INFO_START_PATH = '/#/invest/account/select-nationality';
 
 export const INVESTMENT_ACCOUNT_ROUTES = {
   ROOT: '',

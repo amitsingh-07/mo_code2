@@ -7,6 +7,7 @@ import {
     IMyEarnings,
     IMyLiabilities,
     IMySpendings,
+    IRegularSavings
 } from './comprehensive-types';
 
 export class ComprehensiveFormData {
@@ -18,4 +19,6 @@ export class ComprehensiveFormData {
     myEarnings: IMyEarnings;
     mySpendings: IMySpendings;
     myAssets: IMyAssets;
+    regularSavingsPlan: IRegularSavings;
 }
+

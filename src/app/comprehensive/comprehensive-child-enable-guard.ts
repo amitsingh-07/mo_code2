@@ -32,7 +32,6 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
     } else {
-      const accessibleUrl = this.cmpService.getAccessibleUrl(state.url);
       if (ProgressTrackerUtil.compare(state.url, COMPREHENSIVE_BASE_ROUTE)) {
         this.signUpService.clearRedirectUrl();
         return true;
@@ -47,18 +46,21 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
         this.loaderService.showLoader({title: 'Loading'});
         return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
-          if (!ProgressTrackerUtil.compare(accessibleUrl, state.url)) {
+          const accessibleUrl1 = this.cmpService.getAccessibleUrl(state.url);
+          if (!ProgressTrackerUtil.compare(accessibleUrl1, state.url)) {
             this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-            this.router.navigate([accessibleUrl]);
+            const accessibleUrl3 = this.cmpService.getAccessibleUrl(state.url);
+            this.router.navigate([accessibleUrl3]);
             return false;
           } else {
             return true;
           }
         }));
       } else {
-        if (!ProgressTrackerUtil.compare(accessibleUrl, state.url)) {
+        const accessibleUrl2 = this.cmpService.getAccessibleUrl(state.url);
+        if (!ProgressTrackerUtil.compare(accessibleUrl2, state.url)) {
           this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-          this.router.navigate([accessibleUrl]);
+          this.router.navigate([accessibleUrl2]);
           return false;
         } else {
           return true;

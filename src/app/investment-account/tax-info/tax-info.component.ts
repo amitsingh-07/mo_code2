@@ -110,8 +110,8 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
-    taxInfoItem.controls.tinNumber.updateValueAndValidity();
     if (taxInfoItem.controls.tinNumber) {
+      taxInfoItem.controls.tinNumber.updateValueAndValidity();
       if (country.countryCode === 'SG') {
         this.singPlaceHolder = 'e.g S****5678C';
       } else {

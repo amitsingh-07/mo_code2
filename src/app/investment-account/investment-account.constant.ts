@@ -30,7 +30,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
   INDIA_COUNTRY_CODE: 'IN',
   CHINA_COUNTRY_CODE: 'CN',
   PHILLIPINES_COUNTRY_CODE: 'PH',
-  PRIORITIZED_COUNTRY_LIST_CODES: ['SG', 'MY'],
+  PRIORITIZED_COUNTRY_LIST_CODES: ['SG', 'MY', 'ID', 'IN', 'CN', 'PH', 'HK', 'TH', 'UK', 'VN'],
   OTHERS: 'Others',
   personal_info: {
     min_age: 18,

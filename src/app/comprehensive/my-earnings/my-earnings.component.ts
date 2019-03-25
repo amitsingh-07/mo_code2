@@ -17,6 +17,7 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-my-earnings',
@@ -51,7 +52,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -129,14 +130,22 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.myEarningsForm.markAsDirty();
   }
   goToNext(form: FormGroup) {
-    if (this.validateEarnings(form)) { 
-      this.earningDetails = form.value;
-      this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
-      this.comprehensiveService.setMyEarnings(form.value);
-      this.comprehensiveApiService.saveEarnings(form.value).subscribe((data) => {
-        
-      });
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+    if (this.validateEarnings(form)) {
+
+      if (!form.pristine) {
+        this.earningDetails = form.value;
+        this.earningDetails.totalAnnualIncomeBucket = this.totalAnnualIncomeBucket;
+        this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.comprehensiveService.setMyEarnings(this.earningDetails);
+        this.loaderService.showLoader({ title: 'Saving' });
+        this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
+          this.loaderService.hideLoader();
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+        });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+      }
+
     }
   }
   validateEarnings(form: FormGroup) {

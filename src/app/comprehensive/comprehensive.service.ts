@@ -136,10 +136,6 @@ export class ComprehensiveService {
     }
 
     getMyProfile() {
-        if (!this.comprehensiveFormData.comprehensiveDetails) {
-
-        }
-
         if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
             this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
         }
@@ -228,7 +224,6 @@ export class ComprehensiveService {
     }
 
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
-        console.log(dependentEducationPreferencesList);
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.updateComprehensiveSummary();
     }
@@ -245,14 +240,14 @@ export class ComprehensiveService {
     }
 
     getMyEarnings() {
-        if (!this.comprehensiveFormData.myEarnings) {
-            this.comprehensiveFormData.myEarnings = {} as IMyEarnings;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome = {} as IMyEarnings;
         }
-        return this.comprehensiveFormData.myEarnings;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome;
     }
 
     setMyEarnings(myEarningsData: IMyEarnings) {
-        this.comprehensiveFormData.myEarnings = myEarningsData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome = myEarningsData;
         this.commit();
     }
 
@@ -368,7 +363,6 @@ export class ComprehensiveService {
         const controls = form.controls;
         const errors: any = {};
         errors.errorMessages = [];
-        errors.errorMessages = [];
         errors.title = this.comprehensiveFormError[formName].formFieldErrors.errorTitle;
 
         for (const name in controls) {
@@ -380,9 +374,9 @@ export class ComprehensiveService {
                 );
             } else {
                 const formGroup = {
-                        formName: '',
-                        errors: [],
-                        errorStatus: false
+                    formName: '',
+                    errors: [],
+                    errorStatus: false
                 };
                 for (const subFormName in controls[name].controls) {
                     if (controls[name].controls[subFormName].invalid) {
@@ -604,11 +598,12 @@ export class ComprehensiveService {
                         accessibleUrl = urlList[index];
                         break;
                     case 1:
+                    case 2:
                         if (profileData.nation) {
                             accessibleUrl = urlList[index];
                         }
                         break;
-                    case 2:
+                    case 3:
                         if (dependantProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
@@ -617,8 +612,10 @@ export class ComprehensiveService {
             }
         }
 
-        if (accessibleUrl !== '') {
+        if (accessibleUrl === '') {
             accessibleUrl = urlList[0];
+            // TODO : remove the below line after above routing switch cases are updated correctly
+            accessibleUrl = url;
         }
         return accessibleUrl;
     }
@@ -779,18 +776,19 @@ export class ComprehensiveService {
     setBucketImage(bucketParams: any, formValues: any) {
         const bucketFlag = [];
         for (const i in bucketParams) {
-        if (formValues[bucketParams[i]] > 0) {
-            bucketFlag.push(true);
-        } else {
-            bucketFlag.push(false);
+            if (formValues[bucketParams[i]] > 0) {
+                bucketFlag.push(true);
+            } else {
+                bucketFlag.push(false);
+            }
         }
-        }
-        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
-        return 'filledBucket';
-        } else if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0 ) {
-        return 'middleBucket';
+        if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0) {
+            return 'filledBucket';
+        } else if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) {
+            return 'middleBucket';
         } else {
-        return 'emptyBucket';
+            return 'emptyBucket';
         }
     }
 }
+

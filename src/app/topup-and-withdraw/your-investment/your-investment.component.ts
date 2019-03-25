@@ -87,13 +87,14 @@ export class YourInvestmentComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   yourPortfolio(portfolio) {
-    this.topupAndWithDrawService.setPortfolioValues(portfolio);
-    if (portfolio.currentValue) {
-      this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
+    if (portfolio.portfolioStatus !== 'EXPIRED') {
+      this.topupAndWithDrawService.setPortfolioValues(portfolio);
+      if (portfolio.currentValue) {
+        this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
+      }
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
   }
-  selectSource(option) { }
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
