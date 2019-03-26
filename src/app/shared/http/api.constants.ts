@@ -109,7 +109,9 @@ export let apiConstants = {
             saveEarnings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: COMPREHENSIVE_API_BASE_URL + 'saveExpenses',
-            saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck'
+            saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck',
+            saveInsurancePlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveInsurancePlanning',
+            saveRetirementPlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveRetirementPlanning'
         }
     }
 };

@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { apiConstants } from '../shared/http/api.constants';
@@ -15,6 +15,7 @@ export class ComprehensiveApiService {
         private apiService: ApiService,
         private authService: AuthenticationService,
         private http: BaseService,
+        private httpClient: HttpClient,
         private helperService: HelperService
     ) { }
 
@@ -62,5 +63,17 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.saveEarnings, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-
+    saveInsurancePlanning(payload) {
+        return this.http
+        .post(apiConstants.endpoint.comprehensive.saveInsurancePlan, payload)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    saveRetirementPlanning(payload) {
+        return this.http
+        .post(apiConstants.endpoint.comprehensive.saveRetirementPlan, payload)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    getInsurancePlanning() {
+        return this.httpClient.get('../../assets/comprehensive/insurancePlan.json');
+    }
 }
