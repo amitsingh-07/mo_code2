@@ -257,9 +257,10 @@
       "CONTINUE_WRITING": "Continue Writing",
       "LAST_UPDATED": "Last Updated"
     },
-    "INSURANCE": {
+    "INSURANCE":{
       "TITLE": "Insurance",
-      "DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188."
+      "NO_INSURANCE_DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188.",
+      "INSURANCE_DESC": "We received your quote request on "
     }
   },
   "EDIT_PROFILE": {
