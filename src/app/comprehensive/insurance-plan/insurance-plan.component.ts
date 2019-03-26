@@ -11,6 +11,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IInsurancePlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
+import { AboutAge } from './../../shared/utils/about-age.util';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -23,12 +24,14 @@ export class InsurancePlanComponent implements OnInit {
   menuClickSubscription: Subscription;
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
+  longTermInsurance = true;
   submitted = false;
 
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService, ) {
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+              private age: AboutAge ) {
 
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -39,6 +42,9 @@ export class InsurancePlanComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
+    if (this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
+      this.longTermInsurance = false;
+    }
     this.comprehensiveApiService.getInsurancePlanning().subscribe((data: IInsurancePlan) => {
       this.insurancePlanFormValues = data;
       this.buildInsuranceForm();
@@ -83,6 +89,9 @@ export class InsurancePlanComponent implements OnInit {
   goToNext(form) {
     form.value.enquiryId = this.comprehensiveService.getEnquiryId();
     this.comprehensiveService.setInsurancePlanningList(form.value);
+    this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+
+    });
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
   }
 }

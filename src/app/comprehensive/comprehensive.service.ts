@@ -287,7 +287,9 @@ export class ComprehensiveService {
     }
 
     hasDependant() {
-        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        }
     }
     getDownOnLuck() {
         if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
