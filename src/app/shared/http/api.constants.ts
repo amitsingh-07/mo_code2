@@ -111,6 +111,8 @@ export let apiConstants = {
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveExpenses',
             saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck',
+            saveInsurancePlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveInsurancePlanning',
+            saveRetirementPlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveRetirementPlanning',
             saveAssets: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveAssets',
             saveLiabilities: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveLiabilities'
         }
