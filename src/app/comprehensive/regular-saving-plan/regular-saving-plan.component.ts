@@ -82,7 +82,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPForm() {
     const regularSavings = [];
 
-    if (this.regularSavingsArray.length  && this.regularSavingsArray.length > 0) {
+    if (this.regularSavingsArray  && this.regularSavingsArray.length > 0) {
 
       this.regularSavingsArray.forEach((regularSavePlan: any) => {
         regularSavings.push(this.buildRSPDetailsForm(regularSavePlan));
