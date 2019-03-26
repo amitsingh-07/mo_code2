@@ -20,7 +20,14 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-            'homeMarketValue', 'assetsInvestmentSet0', 'otherAssetsValue']
+            'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue']
+        },
+        YOUR_LIABILITIES: {
+            API_KEY: 'comprehensiveLiabilities',
+            API_TOTAL_BUCKET_KEY: 'totalAnnualLiabilities',
+            MONTHLY_INPUT_CALC : [],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
+            BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount']
         }
     }
 };

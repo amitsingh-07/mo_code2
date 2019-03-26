@@ -67,5 +67,15 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.saveSpendings, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    saveAssets(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveAssets, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    saveLiabilities(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveLiabilities, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 
 }

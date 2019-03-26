@@ -229,14 +229,14 @@ export class ComprehensiveService {
         this.updateComprehensiveSummary();
     }
     getMyLiabilities() {
-        if (!this.comprehensiveFormData.myLiabilities) {
-            this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities = {} as IMyLiabilities;
         }
-        return this.comprehensiveFormData.myLiabilities;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities;
     }
 
     setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
-        this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities = myLiabilitiesData;
         this.commit();
     }
 
@@ -811,7 +811,24 @@ export class ComprehensiveService {
    *Remove key from Object
    * First Parameter is Object and Second Parameter is array with key need to pop
    */
+// tslint:disable-next-line: cognitive-complexity
     unSetObjectByKey(inputObject: any, removeKey: any) {
+        Object.keys(inputObject).forEach((key) => {
+            if (Array.isArray(inputObject[key])) {
+                inputObject[key].forEach((objDetails: any, index) => {
+                    Object.keys(objDetails).forEach((innerKey) => {
+                        if (innerKey !== 'enquiryId' ) {
+                            const Regexp = new RegExp('[,]', 'g');
+                            let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
+                            thisValue = parseInt(objDetails[innerKey], 10);
+                            if (!isNaN(thisValue)) {
+                                inputObject[innerKey + '_' + index] = thisValue;
+                            }
+                        }
+                    });
+                  });
+            }
+          });
         if (removeKey) {
             Object.keys(removeKey).forEach((key) => {
                 if ( key !== '') {

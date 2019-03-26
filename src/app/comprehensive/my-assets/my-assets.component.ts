@@ -13,6 +13,7 @@ import { ComprehensiveService } from './../comprehensive.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { IMyAssets } from '../comprehensive-types';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-my-assets',
@@ -36,7 +37,7 @@ export class MyAssetsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -179,8 +180,23 @@ export class MyAssetsComponent implements OnInit {
   }
   goToNext(form: FormGroup) {
     if (this.validateAssets(form)) {
-      this.comprehensiveService.setMyAssets(form.value);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+      if (!form.pristine) {
+        this.assetDetails = form.value;
+        this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
+        this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
+          this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
+          delete this.assetDetails['investmentAmount_' + index];
+        });
+        this.comprehensiveService.setMyAssets(this.assetDetails);
+        // this.loaderService.showLoader({ title: 'Saving' });
+        // this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
+        //   this.loaderService.hideLoader();
+             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        // });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+      }
     }
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
@@ -198,8 +214,8 @@ export class MyAssetsComponent implements OnInit {
   onTotalAssetsBucket() {
     const assetFormObject = this.myAssetsForm.value;
     this.myAssetsForm.value.assetsInvestmentSet.forEach((investDetails: any, index) => {
-      assetFormObject['assetsInvestmentSet' + index] = investDetails.investmentAmount;
-    });
+       assetFormObject['investmentAmount_' + index] = investDetails.investmentAmount;
+     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.BUCKET_INPUT_CALC;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);

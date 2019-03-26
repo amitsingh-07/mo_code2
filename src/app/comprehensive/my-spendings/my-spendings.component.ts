@@ -86,8 +86,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       }
     }
     this.earningDetails = this.comprehensiveService.getMyEarnings();
-    if (this.earningDetails.totalAnnualIncomeBucket) {
-      this.totalBucket = this.earningDetails.totalAnnualIncomeBucket;
+    if (this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY]) {
+      this.totalBucket = this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY];
     }
 
     this.onTotalAnnualSpendings();
@@ -144,7 +144,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (this.validateSpendings(form)) {
       if (!form.pristine) {
         this.spendingDetails = form.value;
-        this.spendingDetails.totalAnnualExpenses = this.totalSpending;
+        this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
         this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveService.setMySpendings(this.spendingDetails);
         this.loaderService.showLoader({ title: 'Saving' });
@@ -215,7 +215,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-    if (this.totalSpending == 0) {
+    if (this.totalSpending == 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
     } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
       this.bucketImage = 'middleSpend';

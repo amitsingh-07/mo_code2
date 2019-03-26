@@ -11,6 +11,7 @@ export interface  IComprehensiveDetails {
     comprehensiveIncome: IMyEarnings;
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
+    comprehensiveLiabilities: IMyLiabilities;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -56,10 +57,12 @@ export interface IChildEndowment {
 }
 
 export interface IMyLiabilities {
-    homeLoanOutstanding: number;
-    otherPropertyLoan: number;
-    otherLoanAmountOutstanding: number;
-    carLoan: number;
+    enquiryId: number;
+    homeLoanOutstandingAmount: number;
+    otherPropertyLoanOutstandingAmount: number;
+    otherLoanOutstandingAmount: number;
+    carLoansAmount: number;
+    totalAnnualLiabilities: number;
 }
 export class HospitalPlan {
     hospitalClass: string;
