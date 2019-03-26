@@ -5,7 +5,8 @@ export const COMPREHENSIVE_CONST = {
             API_TOTAL_BUCKET_KEY: 'totalAnnualIncomeBucket',
             MONTHLY_INPUT_CALC : ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket'],
-            BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus']
+            BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 
+            'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
         },
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
@@ -20,7 +21,7 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-            'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue']
+            'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
         },
         YOUR_LIABILITIES: {
             API_KEY: 'comprehensiveLiabilities',

@@ -121,6 +121,7 @@ export class MyAssetsComponent implements OnInit {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
     investments.push(this.buildInvestmentForm('', investments.length));
     this.setInvestValidation(investments.length);
+    this.onTotalAssetsBucket();
   }
   buildInvestmentForm(inputParams, totalLength) {
     if (totalLength > 0) {
@@ -140,6 +141,7 @@ export class MyAssetsComponent implements OnInit {
     this.investType[i] = '';
     investments.removeAt(i);
     this.setInvestValidation(investments.length);
+    this.onTotalAssetsBucket();
   }
   selectInvestType(investType, i) {
     investType = investType ? investType : { text: '', value: '' };
@@ -213,11 +215,13 @@ export class MyAssetsComponent implements OnInit {
 
   onTotalAssetsBucket() {
     const assetFormObject = this.myAssetsForm.value;
+    let bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.BUCKET_INPUT_CALC;
+    bucketParams = bucketParams.slice(0);
     this.myAssetsForm.value.assetsInvestmentSet.forEach((investDetails: any, index) => {
        assetFormObject['investmentAmount_' + index] = investDetails.investmentAmount;
+       bucketParams.push('investmentAmount_' + index);
      });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
-    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.BUCKET_INPUT_CALC;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
   }
 }
