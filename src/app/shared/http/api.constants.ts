@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
@@ -109,7 +110,9 @@ export let apiConstants = {
             saveEarnings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveExpenses',
-            saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck'
+            saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck',
+            saveAssets: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveAssets',
+            saveLiabilities: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveLiabilities'
         }
     }
 };
