@@ -49,4 +49,11 @@ app-create-account {
       }
     }
   }
+
+  .form-group-floating-label .error-tooltip {
+    position: absolute;
+    bottom: 56px;
+    z-index: 1060;
+    width: 100%;
+  }
 }

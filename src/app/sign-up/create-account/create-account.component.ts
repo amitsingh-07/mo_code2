@@ -82,16 +82,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
     this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
     this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
-    let confirmEmail = this.formValues.email || '';
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
-      confirmEmail: [confirmEmail, [Validators.required]],
-      password: ['', [ValidatePassword]],
-      confirmPassword: ['',],
+      confirmEmail: [this.formValues.email],
+      password: ['', [Validators.required, ValidatePassword]],
+      confirmPassword: [''],
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       captcha: ['', [Validators.required]]
@@ -253,15 +252,23 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       const passwordConfirmationInput = group.controls['confirmPassword'];
       const emailInput = group.controls['email'];
       const emailConfirmationInput = group.controls['confirmEmail'];
-      if (passwordInput.value !== passwordConfirmationInput.value) {
+
+      // Confirm Password
+      if (!passwordConfirmationInput.value) {
+        passwordConfirmationInput.setErrors({ required: true });
+      } else if (passwordInput.value !== passwordConfirmationInput.value) {
         passwordConfirmationInput.setErrors({ notEquivalent: true });
       } else {
-        passwordConfirmationInput.setErrors({ notEquivalent: false });
+        passwordConfirmationInput.setErrors(null);
       }
-      if (emailInput.value !== emailConfirmationInput.value) {
+
+      // Confirm E-mail
+      if (!emailConfirmationInput.value) {
+        emailConfirmationInput.setErrors({ required: true });
+      } else if (emailInput.value !== emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
-        emailConfirmationInput.setErrors({ notEquivalent: false });
+        emailConfirmationInput.setErrors(null);
       }
     };
   }
