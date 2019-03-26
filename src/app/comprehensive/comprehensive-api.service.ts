@@ -68,7 +68,7 @@ export class ComprehensiveApiService {
         .post(apiConstants.endpoint.comprehensive.saveInsurancePlan, payload)
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-    saveRetirementPlanning(payload){
+    saveRetirementPlanning(payload) {
         return this.http
         .post(apiConstants.endpoint.comprehensive.saveRetirementPlan, payload)
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
