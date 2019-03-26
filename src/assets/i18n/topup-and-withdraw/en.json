@@ -45,9 +45,9 @@
         "LBL_STEP_2": "Send you funds using FAST transfer option available in your online banking system. If other transfer option are selected, the fund transfer may take 1 to 2 days longer.",
         "LBL_STEP_3": "Enter the following transfer information.",
         "LBL_STEP_4": "Authenticate the transaction using your internet banking tokens. Verify and confirm the transaction details.",
-        "LBL_STEP_5": "We will notify you once your fund has been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
+        "LBL_STEP_5": "We will notify you once your funds have been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
         "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
-        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instructions to automate the transfer of investment funds on a monthly basis."
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
       },
       "SHOW_PAYNOW": {
         "STEP_1": "STEP 1",
@@ -62,9 +62,9 @@
         "LBL_STEP_2": "Send you funds using FAST transfer option available in your online banking system. If other transfer option are selected, the fund transfer may take 1 to 2 days longer.",
         "LBL_STEP_3": "Enter the following transfer information.",
         "LBL_STEP_4": "Authenticate the transaction using your internet banking tokens. Verify and confirm the transaction details.",
-        "LBL_STEP_5": "We will notify you once your fund has been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
+        "LBL_STEP_5": "We will notify you once your funds have been received and process your portfolio top-up request in 2 business days upon successful fund transfer.",
         "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
-        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instructions to automate the transfer of investment funds on a monthly basis."
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
       },
       "SHOWPOPUP": {
         "TITLE": "Recipient’s / Entity Name",
@@ -154,6 +154,8 @@
         "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "PORTFOLIO": "portfolio",
+        "GUIDELINE_HEADING":"Important note on balance amount:",
+        "GUIDELINE_FOR_PORTFOLIO_MIN":"As a guideline, you should maintain a minimum portfolio value of $50. You accept, should your portfolio balance be below that, that we might not re-balance your portfolio to its strategic asset allocation upon re-balancing events.",
         "CASH_ACCOUNT": "cash account",
         "BANK_ACCOUNT": "bank account",
         "TO_YOUR": "to your",
