@@ -29,5 +29,59 @@ export const COMPREHENSIVE_CONST = {
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
             BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount']
         }
+    },
+    SUMMARY_CALC_CONST: {
+        EDUCATION_ENDOWMENT: {
+            DEPENDANT: {
+                UNIVERSITY_FEE: {
+                    'Medicine': {
+                        'Singapore': 160000,
+                        'Singapore PR': 220000,
+                        'USA': 676800,
+                        'United Kingdom': 482400,
+                        'Australia': 489600
+                    },
+                    'Non-Medicine': {
+                        'Singapore': 44000,
+                        'Singapore PR': 64000,
+                        'USA': 252800,
+                        'United Kingdom': 210800,
+                        'Australia': 163600
+                    },
+                    'PERCENT': 6
+                },
+                LIVING_EXPENSES: {
+                    'Medicine': {
+                        'Singapore': 60000,
+                        'Singapore PR': 60000,
+                        'USA': 96400,
+                        'United Kingdom': 92000,
+                        'Australia': 96400
+                    },
+                    'Non-Medicine': {
+                        'Singapore': 48000,
+                        'Singapore PR': 48000,
+                        'USA': 96400,
+                        'United Kingdom': 92000,
+                        'Australia': 116800
+                    },
+                    'PERCENT': 3
+                }
+            },
+            NON_DEPENDANT: {
+                LIVING_EXPENSES: {
+                    EXPENSE: 2000,
+                    PERCENT: 3,
+                    ABOUT_AGE: 10,
+                    COMPUTED_EXPENSE: 2688
+                },
+                MEDICAL_BILL: {
+                    EXPENSE: 2000,
+                    PERCENT: 3,
+                    ABOUT_AGE: 10,
+                    COMPUTED_EXPENSE: 10795
+                }
+            }
+        }
     }
 };

@@ -838,5 +838,33 @@ export class ComprehensiveService {
         }
         return inputObject;
     }
+    /*
+    *Compute Expense Calculation for Summary Page
+    *PV x (1+r)^n
+    */
+   getComputedExpense(amount: number, percent: any, aboutAge: number) {
+        let percentCal: any;
+        let computedVal: any;
+        let finalResult = 0;
+        if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
+            percentCal = percent / 100;
+            computedVal = Math.pow((1 + percentCal), aboutAge);
+            finalResult =  Math.round(computedVal * amount);
+        }
+        return finalResult;
+    }
+    /*
+    *Dependant Summary Page Compute
+    */
+    setDependantExpense(location: any, univ: any, aboutAge: number) {
+        let totalExpense: any = 0;
+        const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
+        Object.keys(summaryConst).forEach((expenseInput) => {
+            const expenseConfig = summaryConst[expenseInput];
+            totalExpense += this.getComputedExpense(expenseConfig[univ][location], expenseConfig.PERCENT, aboutAge);
+            console.log(totalExpense);
+        });
+        return totalExpense;
+    }
 }
 
