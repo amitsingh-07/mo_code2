@@ -17,6 +17,8 @@ import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-my-spendings',
@@ -45,7 +47,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -84,8 +86,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       }
     }
     this.earningDetails = this.comprehensiveService.getMyEarnings();
-    if (this.earningDetails.totalAnnualIncomeBucket) {
-      this.totalBucket = this.earningDetails.totalAnnualIncomeBucket;
+    if (this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY]) {
+      this.totalBucket = this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY];
     }
 
     this.onTotalAnnualSpendings();
@@ -140,8 +142,20 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.validateSpendings(form)) {
-      this.comprehensiveService.setMySpendings(form.value);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+      if (!form.pristine) {
+        this.spendingDetails = form.value;
+        this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
+        this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.comprehensiveService.setMySpendings(this.spendingDetails);
+        this.loaderService.showLoader({ title: 'Saving' });
+        this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
+          this.loaderService.hideLoader();
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+        });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+      }
+
     }
   }
   validateSpendings(form: FormGroup) {
@@ -189,8 +203,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   }
 
   onTotalAnnualSpendings() {
-    const inputParams = ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
-      'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'];
+    const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.MONTHLY_INPUT_CALC;
     const spendingValues = this.mySpendingsForm.value;
     const spendingFormObject = {
       monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
@@ -202,7 +215,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-    if (this.totalSpending == 0) {
+    if (this.totalSpending == 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
     } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
       this.bucketImage = 'middleSpend';
