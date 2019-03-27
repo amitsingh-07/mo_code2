@@ -13,6 +13,15 @@ export class Util {
         return apiBaseUrl;
     }
 
+    public static getCurrentServerBaseUrl(): string {
+        let apiBaseUrl = window.location.protocol + '//' + window.location.host;
+        if (window.location.href.indexOf('localhost') >= 0 || window.location.port === '4200') {
+            apiBaseUrl = environment.apiBaseUrl;
+        }
+
+        return apiBaseUrl;
+    }
+
     public static sortAsString(objectValue: any): string {
         let oldObj = objectValue;
         let obj = (oldObj.length || oldObj.length === 0) ? [] : {};
