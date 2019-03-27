@@ -28,6 +28,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
   durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Whole Life', 'Whole life w/Multiplier'];
+  minDate;
+  maxDate
 
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
@@ -37,8 +39,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
     private router: Router) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
 
