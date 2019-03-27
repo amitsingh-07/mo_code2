@@ -151,7 +151,7 @@ export class SignUpApiService {
     return {
       customerRef: custRef,
       password: this.cryptoService.encrypt(pwd),
-      callbackUrl: Util.getApiBaseUrl() + '/#/account/email-verification',
+      callbackUrl: Util.getCurrentServerBaseUrl() + '/#/account/email-verification',
       resetType: 'New',
       selectedProducts: selectedPlanData.plans,
       resetCode: resCode,
