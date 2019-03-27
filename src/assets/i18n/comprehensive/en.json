@@ -415,7 +415,7 @@
       "OTHER_LOANS_AMOUNT_OUTSTANDING": "Other Loans Amount OutStanding",
       "CAR_LOANS": "Car Loans",
       "LIABILITIES_BUCKETS_TOTAL": "in total",
-      "LIABILITIES_BUCKETS_NOTE":"Your monthly income bucket",
+      "LIABILITIES_BUCKETS_NOTE":"Your liabilities bucket",
       "FORM":{
        "LOAN_PLACEHOLDER": "Enter Amount"
       },
