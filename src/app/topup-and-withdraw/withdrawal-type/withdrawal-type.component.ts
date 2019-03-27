@@ -288,7 +288,7 @@ export class WithdrawalTypeComponent implements OnInit {
           isValid = c.value <= amount;
         }
         if (c.value <= 0) {
-          return { MinValuve: true };
+          return { MinValue: true };
         }
 
         if (isValid) {

@@ -19,7 +19,6 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class AdditionalDeclarationInfoComponent implements OnInit {
   pageTitle: string;
-  amlStatus: string;
   addInfoFormValues;
   constructor(
     public readonly translate: TranslateService,
