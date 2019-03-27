@@ -15,6 +15,7 @@ import { DirectService } from './../direct/direct.service';
 import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
+import { Util } from '../shared/utils/util';
 
 @Injectable({
   providedIn: 'root'
@@ -150,7 +151,7 @@ export class SignUpApiService {
     return {
       customerRef: custRef,
       password: this.cryptoService.encrypt(pwd),
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      callbackUrl: Util.getApiBaseUrl() + '/#/account/email-verification',
       resetType: 'New',
       selectedProducts: selectedPlanData.plans,
       resetCode: resCode,
