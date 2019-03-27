@@ -41,30 +41,10 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
     this.addInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
 
   }
-
-  setAdditionalScreenOneValues() {
-    const data = {
-      fName: '',
-      lName: '',
-      cName: '',
-      pepoccupation: '',
-      pepPostalCode: '',
-      pepAddress1: '',
-      pepAddress2: '',
-      pepFloor: '',
-      pepUnitNo: '',
-      pepCity: '',
-      pepState: '',
-      pepZipCode: '',
-    };
-    this.investmentAccountService.setAdditionalInfoFormData(data);
-  }
-
   goNext() {
     if (this.addInfoFormValues.pep) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
     } else {
-      this.setAdditionalScreenOneValues();
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
     }
 
