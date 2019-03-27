@@ -11,6 +11,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IInsurancePlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
+import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -83,6 +84,19 @@ export class InsurancePlanComponent implements OnInit {
   goToNext(form) {
     form.value.enquiryId = this.comprehensiveService.getEnquiryId();
     this.comprehensiveService.setInsurancePlanningList(form.value);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
+    //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
+    const insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
+    const insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
+    const dependantVar = false; // Dependant Boolean
+    const summaryModalDetails = {
+        setTemplateModal: 3,
+        contentObj: dependantVar ? insurancePlanningDependantModal : insurancePlanningNonDependantModal,
+        dependantModelSel: dependantVar,
+        estimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.ESTIMATED_COST,
+        termInsurance: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.TERM_INSURANCE,
+        wholeLife: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.WHOLE_LIFE,
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4'
+    };
+    this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
   }
 }

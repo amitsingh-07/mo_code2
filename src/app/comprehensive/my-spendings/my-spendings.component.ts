@@ -115,7 +115,9 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         }
       } else {
         otherPropertyControl.setValue('');
-        otherPropertyControl.setValidators([]);
+        if (this.validationFlag === true) {
+          otherPropertyControl.setValidators([]);
+        }
         otherPropertyControl.updateValueAndValidity();
       }
     }
