@@ -5,4 +5,14 @@
     .desc{
         font-size:16px;
     }
+    .min-max-val {
+      display: flex;
+      justify-content: space-between;
+    }
+    .min-val, .max-val {
+      color: #aeaeae;
+    }
+    .max-val {
+      text-align: right;
+    }
 }
