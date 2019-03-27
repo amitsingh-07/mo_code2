@@ -103,13 +103,13 @@ educationPreferenceForm: object = {
 myLiabilitiesForm: object = {
     formFieldErrors: {
         errorTitle: this.errorTitleDetails,
-        homeLoanOutstanding: {
+        homeLoanOutstandingAmount: {
             required: {
                 errorTitle: 'Invalid Home Loan Outstanding',
                 errorMessage: 'Home Loan Outstanding'
             }
         },
-        otherPropertyLoan: {
+        otherPropertyLoanOutstandingAmount: {
             required: {
                 errorTitle: 'Invalid Other Property Loans',
                 errorMessage: 'Other Property Loans'
@@ -119,13 +119,13 @@ myLiabilitiesForm: object = {
                 errorMessage: 'Invalid Other Property Loans'
             }
         },
-        otherLoanAmountOutstanding: {
+        otherLoanOutstandingAmount: {
             required: {
                 errorTitle: 'Invalid Other Loans Amount Outstanding',
                 errorMessage: 'Other Loans Amount Outstanding'
             }
         },
-        carLoan: {
+        carLoansAmount: {
             required: {
                 errorTitle: 'Invalid Car Loans',
                 errorMessage: 'Car Loans'
@@ -340,7 +340,7 @@ RSPForm: object = {
 myAssetsForm: object = {
     formFieldErrors: {
         errorTitle: 'Oops! Please enter the following details:',
-        investmentProperties: {
+        investmentPropertiesValue: {
             required: {
                 errorTitle: this.invalidName,
                 errorMessage: 'Investment Properties'
@@ -350,13 +350,13 @@ myAssetsForm: object = {
                 errorMessage: 'Investment Properties'
             }
         },
-        investmentType: {
+        typeOfInvestment: {
             required: {
                 errorTitle: this.invalidName,
                 errorMessage: 'Select Investment Type'
             },
         },
-        others: {
+        investmentAmount: {
             required: {
                 errorTitle: this.invalidName,
                 errorMessage: 'others'
@@ -366,7 +366,7 @@ myAssetsForm: object = {
                 errorMessage: 'Others'
             }
         },
-        otherInvestment: {
+        assetsInvestmentSet: {
             required: {
                 errorTitle: this.invalidName,
                 errorMessage: 'Other Investment'

@@ -35,8 +35,8 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" maxLength="7" appCurrencyInput #homeLoanOutstanding
-                formControlName="homeLoanOutstanding" value="">
+              <input type="text" class="input-control" maxLength="7" appCurrencyInput #homeLoanOutstandingAmount
+                formControlName="homeLoanOutstandingAmount" value="">
             </div>
           </div>
         </div>
@@ -70,10 +70,10 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control"  [ngClass]="{'inline-error': submitted && addLiabilitiesValid.otherPropertyLoan.invalid}">
+              <div class="form-control"  [ngClass]="{'inline-error': submitted && addLiabilitiesValid.otherPropertyLoanOutstandingAmount.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" maxLength="7" appCurrencyInput #otherPropertyLoan
-                  formControlName="otherPropertyLoan" value="">
+                <input type="text" class="input-control" maxLength="7" appCurrencyInput #otherPropertyLoanOutstandingAmount
+                  formControlName="otherPropertyLoanOutstandingAmount" value="">
               </div>
             </div>
           </div>
@@ -105,8 +105,8 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherLoanAmountOutstanding
-                formControlName="otherLoanAmountOutstanding" value="">
+              <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherLoanOutstandingAmount
+                formControlName="otherLoanOutstandingAmount" value="">
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@
           <div class="flex-col-6">
             <div class="form-control">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoan formControlName="carLoan"
+              <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoansAmount formControlName="carLoansAmount"
                 value="">
             </div>
           </div>

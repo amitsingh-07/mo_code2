@@ -17,6 +17,8 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-my-liabilities',
@@ -38,7 +40,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -76,7 +78,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   addPropertyLoan() {
-    const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoan'];
+    const otherPropertyControl = this.myLiabilitiesForm.controls['otherPropertyLoanOutstandingAmount'];
     if (this.propertyLoan) {
       otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherPropertyControl.updateValueAndValidity();
@@ -90,28 +92,47 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   buildMyLiabilitiesForm() {
     this.myLiabilitiesForm = this.formBuilder.group({
-      homeLoanOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstanding : '', []],
-      otherPropertyLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoan : ''],
-      otherLoanAmountOutstanding: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanAmountOutstanding :'', []],
-      carLoan: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoan : '', []],
+      homeLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '', []],
+      otherPropertyLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount : ''],
+      otherLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount :'', []],
+      carLoansAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '', []],
 
     });
   }
   goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
-      this.comprehensiveService.setMyLiabilities(form.value);
-      const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
-      this.summaryModalDetails = {
-          setTemplateModal: 2,
-          contentObj: financeModal,
-          liabilitiesEmergency: false,
-          liabilitiesLiquidCash: 30000,
-          liabilitiesMonthlySpareCash: 200,
-          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+      if (!form.pristine) {
+        this.liabilitiesDetails = form.value;
+        this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
+        this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
+        // this.loaderService.showLoader({ title: 'Saving' });
+        // this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
+        //   this.loaderService.hideLoader();
+          const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
+          this.summaryModalDetails = {
+              setTemplateModal: 2,
+              contentObj: financeModal,
+              liabilitiesEmergency: false,
+              liabilitiesLiquidCash: 30000,
+              liabilitiesMonthlySpareCash: 200,
+              nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
+          };
+          this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+        //});
+      } else {
+        const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
+        this.summaryModalDetails = {
+            setTemplateModal: 2,
+            contentObj: financeModal,
+            liabilitiesEmergency: false,
+            liabilitiesLiquidCash: 30000,
+            liabilitiesMonthlySpareCash: 200,
+            nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
+        };
+        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+      }
     }
-
   }
   get addLiabilitiesValid() { return this.myLiabilitiesForm.controls; }
   validateLiabilities(form: FormGroup) {
