@@ -162,7 +162,7 @@ body.modal-open::-webkit-scrollbar {
 
 .modal {
   width: 100%;
-
+  z-index: 1060 !important;
   &.hide-close {
     .close {
       display: none;
