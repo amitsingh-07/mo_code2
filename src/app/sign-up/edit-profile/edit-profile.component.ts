@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -48,6 +49,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   mailNationality: any;
   employerNationality: any;
   pageTitle: any;
+  investmentStatus: string;
+  showAddbank = false;
   private subscription: Subscription;
   constructor(
     // tslint:disable-next-line
@@ -79,11 +82,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
+    this.investmentStatus = this.signUpService.getInvestmentStatus();
+    this.showAddBankDetails(this.investmentStatus);
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-
+  showAddBankDetails(investmentStatus) {
+    if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.includes(investmentStatus)) {
+      this.showAddbank = true;
+    }
+  }
   showHidePassword(el) {
     if (el.type === 'password') {
       el.type = 'text';

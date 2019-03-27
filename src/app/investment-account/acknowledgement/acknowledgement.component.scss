@@ -1,23 +1,28 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
+
 app-acknowledgement {
   .app-acknowledgement {
     background-color: $white-color;
+
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
       top: 60px;
+
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
     }
+
     @media (min-width: 768px) {
       .step-indicator-container {
         top: 0px;
       }
     }
+
     .acknowledgement_text {
       font-family: $muli-regular;
       font-size: 16px;
@@ -28,44 +33,56 @@ app-acknowledgement {
       letter-spacing: -0.2px;
       color: $acknowledgement-text-color;
     }
+
     .text-bold {
       font-weight: bold;
       color: $black-color;
     }
-   ol {
+
+    ol {
       padding: 0;
       margin: 0;
       padding-left: 18px;
+
       ul.list-none {
         padding: 10px 0;
         font-weight: normal;
         color: $acknowledgement-text-color;
-        li{
+
+        li {
           padding: 5px 0;
         }
+
         .flex {
           span {
             &:first-child {
               padding-right: 5px;
             }
           }
+
+
         }
+
         strong {
           font-family: $muli-bold;
           color: $black-color;
         }
       }
+
       .inner-list {
         li {
           padding-left: 20px !important;
         }
       }
+
       .list-style {
         padding-left: 10px !important;
+
         .flex {
           align-items: center;
           justify-content: space-between;
         }
+
         .disc {
           width: 5px;
           height: 5px;
@@ -74,8 +91,9 @@ app-acknowledgement {
           padding: 0 !important;
         }
       }
-      li{
-        &:last-child{
+
+      li {
+        &:last-child {
           ul.list-none {
             .flex {
               span {
@@ -88,13 +106,56 @@ app-acknowledgement {
         }
       }
     }
+
     .list-none {
       padding: 0;
       margin: 0;
       list-style-type: none;
     }
+
     .btn__footer--fixed {
       font-family: $muli-bold !important;
     }
+
+    .transaction-table {
+      color: #000000;
+      border: 1px solid #848484;
+      margin-top: 10px;
+      font-family: $muli-regular;
+      .heading{
+        font-family: $muli-bold;
+      }
+      .tansaction_label {
+        border-right: 1px solid #848484;
+        padding: 5px;
+      }
+      .flex-col-8 {
+        border-right: 1px solid #848484;
+        div{
+          padding: 5px;
+        }
+        hr {
+          margin-top: 5px;
+          margin-bottom: 0px;
+          border: 0;
+          border-top: 1px solid #848484;
+        }
+      }
+    }
+    .italic{
+      font-style: italic;
+      color: $acknowledgement-text-color;
+    }
+
+    .flex-row {
+      border-bottom: 1px solid #848484;
+     
+
+      &:nth-child(even) {
+        background-color: #bdb7b7;
+      }
+    }
+
+
   }
 }
