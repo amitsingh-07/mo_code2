@@ -43,6 +43,10 @@ export class TopUpAndWithdrawFormError {
       PortfolioToCash: {
         errorTitle: 'Invalid Withdraw Type Amount',
         errorMessage: 'Withdrawal amount should not be more than the Cash Account Value.'
+      },
+      MinValuve: {
+        errorTitle: 'Invalid Withdraw Type Amount',
+        errorMessage: 'Withdrawal amount should more than 0.'
       }
     },
     withdrawPortfolio: {
