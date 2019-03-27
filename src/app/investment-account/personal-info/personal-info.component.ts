@@ -125,14 +125,6 @@ export class PersonalInfoComponent implements OnInit {
           },
           [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
-        firstName: [
-          { value: this.formValues.firstName, disabled: false },
-          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        lastName: [
-          { value: this.formValues.lastName, disabled: false },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
         nricNumber: [
           {
             value: this.formValues.nricNumber,
@@ -179,8 +171,7 @@ export class PersonalInfoComponent implements OnInit {
           },
           [Validators.required]
         ]
-      },
-      { validator: this.validateName() }
+      }
     );
   }
   buildFormForPassportDetails(): FormGroup {
@@ -197,14 +188,6 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.fullName,
             disabled: this.investmentAccountService.isDisabled('fullName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        firstName: [
-          { value: this.formValues.firstName, disabled: false },
-          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        lastName: [
-          { value: this.formValues.lastName, disabled: false },
           [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         dob: [
@@ -260,8 +243,7 @@ export class PersonalInfoComponent implements OnInit {
           },
           [Validators.required]
         ]
-      },
-      { validator: this.validateName() }
+      }
     );
   }
   markAllFieldsDirty(form) {
@@ -277,14 +259,7 @@ export class PersonalInfoComponent implements OnInit {
   }
   populateFullName() {
     let fullName;
-    let firstName;
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    firstName = this.formValues.firstName ? this.formValues.firstName : '';
-    this.formValues.firstName = this.formValues.lastName
-      ? firstName : this.userProfileInfo.firstName;
-    this.formValues.lastName = this.formValues.lastName
-      ? this.formValues.lastName
-      : this.userProfileInfo.lastName;
     if (this.userProfileInfo.firstName) {
       fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
     } else {
@@ -313,27 +288,6 @@ export class PersonalInfoComponent implements OnInit {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
-  }
-  private validateName() {
-    return (group: FormGroup) => {
-      const firstName = group.controls['firstName'].value.toUpperCase();
-      const lastName = group.controls['lastName'].value.toUpperCase();
-      const fullName = group.controls['fullName'].value.toUpperCase();
-      let name = '';
-      let name1 = '';
-      if (firstName === '') {
-        name = lastName;
-        name1 = lastName;
-      } else {
-        name = firstName + ' ' + lastName;
-        name1 = lastName + ' ' + firstName;
-      }
-      if (fullName === name || fullName === name1) {
-        return group.controls['lastName'].setErrors(null);
-      } else {
-        return group.controls['lastName'].setErrors({ nameMatch: true });
-      }
-    };
   }
 
   private validateMinimumAge(control: AbstractControl) {
