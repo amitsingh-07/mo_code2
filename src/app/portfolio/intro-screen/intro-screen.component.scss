@@ -5,6 +5,7 @@ app-intro-screen {
   .intro-block {
     .container-fluid {
       padding-top: 30px !important;
+      padding-bottom: 0 !important;
       @include allmobiles {
         padding-top: 10px !important;
       }
@@ -71,27 +72,6 @@ app-intro-screen {
       letter-spacing: -0.2px;
       text-align: center;
       color: $white-color;
-    }
-    .btn-proceed {
-      width: 179px;
-      height: 60px;
-      border: 0px;
-      border-radius: 6px;
-      background-color: $white-color;
-      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
-      font-family: $muli-semi-bold !important;
-      font-size: 22px;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: $app-backgrnd-color;
-      cursor: pointer;
-      @include allmobiles {
-        position: fixed;
-        width: 100%;
-        bottom: 0px;
-        left: 0px;
-        border-radius: 0px;
-      }
     }
   }
 }

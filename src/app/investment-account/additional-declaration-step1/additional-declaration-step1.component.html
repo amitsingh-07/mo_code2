@@ -1,10 +1,11 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="app-add-step1">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024">
+    <div class="container-fluid max-width--1024 invest-web-width">
       <app-step-indicator [count]="2" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-width">
     <form name="addInfoForm" [formGroup]="addInfoForm">
       <!-- PEP question -->
       <div class="flex-row mb10" *ngIf="addInfoFormValues.pep">

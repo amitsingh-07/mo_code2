@@ -54,6 +54,16 @@ h6 {
   &.max-width--1024 {
     max-width: 1024px;
   }
+  &.invest-web-width{
+    @include LargeDevice {
+      max-width: 550px;
+      padding-top: 90px;
+    }
+    @include MediumDevice {
+      max-width: 550px;
+      padding-top: 90px;
+    }
+  }
 }
 
 .navbar {
