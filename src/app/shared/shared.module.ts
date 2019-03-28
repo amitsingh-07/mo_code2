@@ -37,6 +37,7 @@ import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
+import { RoundPipe } from './Pipes/round.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
@@ -66,7 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, RoundPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -86,11 +87,13 @@ export function createTranslateLoader(http: HttpClient) {
     AnnualFeesComponent,
     PortfolioInfoComponent,
     EditInvestmentModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    RoundPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     IfastErrorModalComponent
-  ]
+  ],
+  providers: [ RoundPipe ]
 })
 export class SharedModule { }
