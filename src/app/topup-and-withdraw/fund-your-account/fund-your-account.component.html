@@ -31,7 +31,7 @@
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
         <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
         <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_PORTFOLIO' | translate }}</div>
-        <div class="strong">{{fundDetails.portfolio.productName}}</div>
+        <div class="strong">{{fundDetails.portfolio.riskProfile.type}}</div>
       </div>
     </div>
     <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">Please transfer the following amount using your
