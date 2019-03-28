@@ -7,9 +7,9 @@ import { ConfigService } from '../../config/config.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
-import { ComprehensiveService } from '../comprehensive.service';
-import { IMySummaryModal } from '../comprehensive-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IMySummaryModal } from '../comprehensive-types';
+import { ComprehensiveService } from '../comprehensive.service';
 
 @Component({
   selector: 'app-retirement-plan',

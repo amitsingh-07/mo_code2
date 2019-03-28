@@ -27,6 +27,7 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
   }
+  // tslint:disable-next-line:cognitive-complexity
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);

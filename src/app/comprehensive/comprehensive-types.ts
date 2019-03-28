@@ -1,17 +1,17 @@
 import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
 
-export interface  IComprehensiveDetails {
+export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
     dependentsList: IDependantDetail[];
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     downOnLuck: HospitalPlan;
     comprehensiveRegularSavingsList: IRegularSavings[];
-    comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveLiabilities: IMyLiabilities;
     comprehensiveIncome: IMyEarnings;
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
-    comprehensiveLiabilities: IMyLiabilities;
+    comprehensiveInsurancePlanning: IInsurancePlan;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -132,6 +132,7 @@ export interface IMySpendings {
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
     totalAnnualExpenses: number;
+
 }
 
 export interface IProgressTrackerWrapper {
@@ -159,17 +160,13 @@ export interface IOtherProperties {
     typeOfInvestment: string;
     investmentAmount: number;
 }
-
-export interface IRegularSavePlan {
-    hasRegularSavings: boolean;
-    comprehensiveRegularSavingsList: IRegularSavings[];
-}
 export interface IRegularSavings {
     regularUnitTrust: string;
     regularPaidByCash: string;
     regularPaidByCPF: string;
 }
 export interface IInsurancePlan {
+    enquiryId: number;
     haveHospitalPlan: boolean;
     haveCPFDependentsProtectionScheme: string;
     life_protection_amount: number;
@@ -179,4 +176,3 @@ export interface IInsurancePlan {
     haveLongTermElderShield: string;
     longTermElderShieldAmount: number;
 }
-

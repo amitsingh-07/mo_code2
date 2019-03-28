@@ -14,6 +14,7 @@ import {
     IProgressTrackerItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
+import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
@@ -32,7 +33,6 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
-import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -288,7 +288,9 @@ export class ComprehensiveService {
     }
 
     hasDependant() {
-        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        }
     }
     getDownOnLuck() {
         if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
@@ -867,4 +869,3 @@ export class ComprehensiveService {
         return totalExpense;
     }
 }
-
