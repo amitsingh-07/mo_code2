@@ -391,6 +391,7 @@
           "value": "others"
         }
       ],
+      "AUTO_FILL":"Autofill Your CPF via ",
       "TOOLTIP":{
         "CASH_TITLE": "Cash",
         "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",

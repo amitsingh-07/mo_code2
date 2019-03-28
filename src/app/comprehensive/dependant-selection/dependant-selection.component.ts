@@ -9,8 +9,8 @@ import { IMySummaryModal } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { ComprehensiveService } from './../comprehensive.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-dependant-selection',
