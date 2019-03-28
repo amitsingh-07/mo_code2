@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { sha512 } from 'js-sha512';
+import * as CryptoJS from 'crypto-js';
+import { AuthenticationService } from '../http/auth/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoService {
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
-  encrypt(value: any) {
-    return sha512(value);
+  encrypt(password: any) {
+    const secret = this.authService.getSessionId();
+    const encrypted = CryptoJS.AES.encrypt(password, secret);
+    return encrypted.toString();
   }
 }
