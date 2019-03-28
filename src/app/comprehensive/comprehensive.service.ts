@@ -32,6 +32,7 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
+import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -228,14 +229,14 @@ export class ComprehensiveService {
         this.updateComprehensiveSummary();
     }
     getMyLiabilities() {
-        if (!this.comprehensiveFormData.myLiabilities) {
-            this.comprehensiveFormData.myLiabilities = {} as IMyLiabilities;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities = {} as IMyLiabilities;
         }
-        return this.comprehensiveFormData.myLiabilities;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities;
     }
 
     setMyLiabilities(myLiabilitiesData: IMyLiabilities) {
-        this.comprehensiveFormData.myLiabilities = myLiabilitiesData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities = myLiabilitiesData;
         this.commit();
     }
 
@@ -252,16 +253,16 @@ export class ComprehensiveService {
     }
 
     getMySpendings() {
-        if (!this.comprehensiveFormData.mySpendings) {
-            this.comprehensiveFormData.mySpendings = {} as IMySpendings;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending = {} as IMySpendings;
         }
-        return this.comprehensiveFormData.mySpendings;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending;
     }
     getEnquiryId() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.enquiryId;
     }
     setMySpendings(mySpendingsData: IMySpendings) {
-        this.comprehensiveFormData.mySpendings = mySpendingsData;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveSpending = mySpendingsData;
         this.commit();
     }
 
@@ -321,13 +322,13 @@ export class ComprehensiveService {
         this.commit();
     }
     getMyAssets() {
-        if (!this.comprehensiveFormData.myAssets) {
-            this.comprehensiveFormData.myAssets = {} as IMyAssets;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets = {} as IMyAssets;
         }
-        return this.comprehensiveFormData.myAssets;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets;
     }
     setMyAssets(myAssets: IMyAssets) {
-        this.comprehensiveFormData.myAssets = myAssets;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveAssets = myAssets;
         this.commit();
     }
     getRegularSavingsList() {
@@ -775,22 +776,97 @@ export class ComprehensiveService {
     /*
     *Bucket Calculation for Earnings and Assets
     */
-    setBucketImage(bucketParams: any, formValues: any) {
+    setBucketImage(bucketParams: any, formValues: any, totalBucket) {
         const bucketFlag = [];
         for (const i in bucketParams) {
-            if (formValues[bucketParams[i]] > 0) {
-                bucketFlag.push(true);
-            } else {
-                bucketFlag.push(false);
-            }
-        }
-        if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0) {
-            return 'filledBucket';
-        } else if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) {
-            return 'middleBucket';
+        if (formValues[bucketParams[i]] > 0) {
+            bucketFlag.push(true);
         } else {
-            return 'emptyBucket';
+            bucketFlag.push(false);
         }
+        }
+        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
+        return 'filledBucket';
+        } else if ( (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) || totalBucket > 0 ) {
+        return 'middleBucket';
+        } else {
+        return 'emptyBucket';
+        }
+    }
+     /*
+    *Set Total Bucket Income For Earnings
+    */
+   setBucketAmountByCal() {
+    Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
+        const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
+        const inputBucket = this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY];
+        if (inputBucket) {
+            const popInputBucket = financeData.POP_FORM_INPUT;
+            const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
+            const inputParams = financeData.MONTHLY_INPUT_CALC;
+            this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+            = this.additionOfCurrency(filterInput, inputParams);
+        }
+    });
+   }
+   /*
+   *Remove key from Object
+   * First Parameter is Object and Second Parameter is array with key need to pop
+   */
+// tslint:disable-next-line: cognitive-complexity
+    unSetObjectByKey(inputObject: any, removeKey: any) {
+        Object.keys(inputObject).forEach((key) => {
+            if (Array.isArray(inputObject[key])) {
+                inputObject[key].forEach((objDetails: any, index) => {
+                    Object.keys(objDetails).forEach((innerKey) => {
+                        if (innerKey !== 'enquiryId' ) {
+                            const Regexp = new RegExp('[,]', 'g');
+                            let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
+                            thisValue = parseInt(objDetails[innerKey], 10);
+                            if (!isNaN(thisValue)) {
+                                inputObject[innerKey + '_' + index] = thisValue;
+                            }
+                        }
+                    });
+                  });
+            }
+          });
+        if (removeKey) {
+            Object.keys(removeKey).forEach((key) => {
+                if ( key !== '') {
+                delete inputObject[removeKey[key]];
+                }
+            });
+        }
+        return inputObject;
+    }
+    /*
+    *Compute Expense Calculation for Summary Page
+    *PV x (1+r)^n
+    */
+   getComputedExpense(amount: number, percent: any, aboutAge: number) {
+        let percentCal: any;
+        let computedVal: any;
+        let finalResult = 0;
+        if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
+            percentCal = percent / 100;
+            computedVal = Math.pow((1 + percentCal), aboutAge);
+            finalResult =  Math.round(computedVal * amount);
+        }
+        return finalResult;
+    }
+    /*
+    *Dependant Summary Page Compute
+    */
+    setDependantExpense(location: any, univ: any, aboutAge: number) {
+        let totalExpense: any = 0;
+        const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
+        Object.keys(summaryConst).forEach((expenseInput) => {
+            const expenseConfig = summaryConst[expenseInput];
+            totalExpense += this.getComputedExpense(expenseConfig[univ][location], expenseConfig.PERCENT, aboutAge);
+            console.log(totalExpense);
+        });
+        return totalExpense;
     }
 }
 

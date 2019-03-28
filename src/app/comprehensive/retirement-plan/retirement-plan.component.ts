@@ -8,6 +8,8 @@ import { ProgressTrackerService } from '../../shared/modal/progress-tracker/prog
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { ComprehensiveService } from '../comprehensive.service';
+import { IMySummaryModal } from '../comprehensive-types';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 
 @Component({
   selector: 'app-retirement-plan',
@@ -19,6 +21,7 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  summaryModalDetails: IMySummaryModal;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -69,6 +72,12 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(SliderValue) {
-
+    const retireModal = this.translate.instant('CMP.MODAL.RETIREMENT_MODAL');
+    this.summaryModalDetails = {
+            setTemplateModal: 4,
+            contentObj: retireModal,
+            nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.RESULT)
+        };
+    this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   }
 }

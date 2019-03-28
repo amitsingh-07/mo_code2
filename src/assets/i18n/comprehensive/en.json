@@ -85,10 +85,9 @@
                 "CONTENT_BODY1": "Monthly living costs of LIVING_COST",
                 "CONTENT_BODY1_DESC": "Includes PERCENT% inflation",
                 "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
-                "CONTENT_BODY2_DESC": "About AGE_VAL years later",              
+                "CONTENT_BODY2_DESC": "Includes AGE_VAL% inflation",              
                 "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
-                "NEXT": "Next",
-                "NO_DEPENDANT": { "livingCost": 2000, "livingPercent": 3, "livingEstimatedCost": 2788, "medicalBill": 5000, "medicalYear": 20, "medicalCost": 300000 }
+                "NEXT": "Next"
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 1",        
@@ -495,6 +494,37 @@
        "EMAIL":"enquiries@moneyowl.com.sg",
        "BACK_DASHBOARD":"Back To DashBoard"
        
+    },
+    "DASHBOARD":{
+      "WELCOME_TITLE": "Welcome back,",
+      "EDIT_PROFILE" : "Edit Profile",
+      "COMPREHENSIVE_PLANNING_TITLE": "Comprehensive Planning",
+      "COMPREHENSIVE_PLANNING_VIEW": "View",
+      "COMPREHENSIVE_PLANNING_EDIT": "Edit",
+      "COMPREHENSIVE_PLANNING_COMPLETED_DESC": "Your comprehensive planning is completed!",
+      "COMPREHENSIVE_PLANNING_CALCULATE_REPORT": "We are calculating your report!",
+      "COMPREHENSIVE_PLANNING_ESTIMATE":"Estimated time: 1 working day",
+      "COMPREHENSIVE_PLANNING_VIEW_REPORT": "View Report",
+      "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated 28 Jan' 18",
+      "COMPREHENSIVE_PLANNING_NEXT_STEP": "Next step:",
+      "COMPREHENSIVE_PLANNING_NEXT_STEP_DESC":"Our advisors will be going through your report and providing recommendations to meet your financial goals.",
+      "COMPREHENSIVE_PLANNING_ADVISOR": "I want my advisor to contact me",
+      "COMPREHENSIVE_PLANNING_PENDING_DESC":"You are almost there! Complete your journey and get your financial report!",
+      "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
+      "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed 2 out of 4 steps",
+      "INSURANCE": "Insurance",
+      "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
+      "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
+      "INSURANCE_ACCESS_MY_NEEDS_ESTIMATE": "Estimated 5 mins",
+      "INSURANCE_NEED_MY_PLAN": "I know my needs, find my plan.",
+      "INVESTMENT": "Investment",
+      "INVESTMENT_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
+      "INVESTMENT_PORTFOLIO": "Add Portfolio",
+      "INVESTMENT_PORTFOLIO_ESTIMATED": "Estimated 3 mins",
+      "WILL_WRITING": "Will Writing",
+      "WILL_WRITING_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+      "WILL_WRITING_START": "Start Writing",
+      "WILL_WRITING_ESTIMATED": "Estimated 10 mins"
     }
   }
 }

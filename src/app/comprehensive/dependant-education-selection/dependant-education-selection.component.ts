@@ -14,6 +14,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
+import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 
 @Component({
   selector: 'app-dependant-education-selection',
@@ -223,7 +224,14 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         this.summaryModalDetails = {
           setTemplateModal: 1, dependantModelSel: false, contentObj: childrenEducationNonDependantModal,
-          nonDependantDetails: this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS.NO_DEPENDANT'),
+          nonDependantDetails: {
+            livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+            livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+            livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+            medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+            medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+            medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+          },
           nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
         };
         this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
