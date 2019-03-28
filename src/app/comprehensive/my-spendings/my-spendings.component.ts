@@ -1,24 +1,24 @@
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyEarnings, IMySpendings } from '../comprehensive-types';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { LoaderService } from './../../shared/components/loader/loader.service';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-my-spendings',
@@ -217,7 +217,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-    if (this.totalSpending == 0 && this.totalBucket > 0) {
+    if (this.totalSpending === 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
     } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
       this.bucketImage = 'middleSpend';

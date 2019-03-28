@@ -7,11 +7,11 @@ export interface  IComprehensiveDetails {
     dependentEducationPreferencesList: IChildEndowment[];
     downOnLuck: HospitalPlan;
     comprehensiveRegularSavingsList: IRegularSavings[];
-    comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveLiabilities: IMyLiabilities;
     comprehensiveIncome: IMyEarnings;
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
-    comprehensiveLiabilities: IMyLiabilities;
+    comprehensiveInsurancePlanning: IInsurancePlan;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -57,12 +57,10 @@ export interface IChildEndowment {
 }
 
 export interface IMyLiabilities {
-    enquiryId: number;
-    homeLoanOutstandingAmount: number;
-    otherPropertyLoanOutstandingAmount: number;
-    otherLoanOutstandingAmount: number;
-    carLoansAmount: number;
-    totalAnnualLiabilities: number;
+    homeLoanOutstanding: number;
+    otherPropertyLoan: number;
+    otherLoanAmountOutstanding: number;
+    carLoan: number;
 }
 export class HospitalPlan {
     hospitalClass: string;
@@ -131,7 +129,6 @@ export interface IMySpendings {
     carLoanPayment: number;
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
-    totalAnnualExpenses: number;
 }
 
 export interface IProgressTrackerWrapper {
@@ -142,27 +139,19 @@ export interface IProgressTrackerWrapper {
     retirementPlan: IProgressTrackerItem;
 }
 export interface IMyAssets {
-    enquiryId: number;
     cashInBank: number;
-    savingsBonds: number;
-    cpfOrdinaryAccount: number;
-    cpfSpecialAccount: number;
-    cpfMediSaveAccount: number;
-    homeMarketValue: number;
-    investmentPropertiesValue: number;
-    assetsInvestmentSet: IOtherProperties[];
-    otherAssetsValue: number;
-    totalAnnualAssets: number;
+    singaporeSavingsBond: number;
+    CPFOA: number;
+    CPFSA: number;
+    CPFMA: number;
+    yourHome: number;
+    investmentProperties: number;
+    otherInvestment: IOtherProperties[];
+    otherAssets: number;
 }
 export interface IOtherProperties {
-    enquiryId: number;
-    typeOfInvestment: string;
-    investmentAmount: number;
-}
-
-export interface IRegularSavePlan {
-    hasRegularSavings: boolean;
-    comprehensiveRegularSavingsList: IRegularSavings[];
+    investmentType: string;
+    others: number;
 }
 export interface IRegularSavings {
     regularUnitTrust: string;
@@ -170,6 +159,7 @@ export interface IRegularSavings {
     regularPaidByCPF: string;
 }
 export interface IInsurancePlan {
+    enquiryId: number;
     haveHospitalPlan: boolean;
     haveCPFDependentsProtectionScheme: string;
     life_protection_amount: number;
@@ -179,4 +169,3 @@ export interface IInsurancePlan {
     haveLongTermElderShield: string;
     longTermElderShieldAmount: number;
 }
-
