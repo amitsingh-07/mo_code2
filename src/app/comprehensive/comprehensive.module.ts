@@ -19,12 +19,10 @@ import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
-import { DependantEducationComponent } from './dependant-education/dependant-education.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
-import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
@@ -62,7 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ], declarations: [ComprehensiveComponent, ComprehensiveStepsComponent,
-    DependantSelectionComponent, DependantsDetailsComponent, DependantEducationComponent,
+    DependantSelectionComponent, DependantsDetailsComponent,
     DependantEducationListComponent,
     EducationPreferenceComponent,
     MyEarningsComponent,
@@ -72,7 +70,6 @@ export function createTranslateLoader(http: HttpClient) {
     RegularSavingPlanComponent,
     MyAssetsComponent,
     MyLiabilitiesComponent,
-    FirstReportDependantComponent,
     BadMoodFundComponent,
     RetirementPlanComponent,
     InsurancePlanComponent,

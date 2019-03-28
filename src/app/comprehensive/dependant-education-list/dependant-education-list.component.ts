@@ -12,8 +12,8 @@ import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
-import { ComprehensiveService } from './../comprehensive.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -108,7 +108,7 @@ export class DependantEducationListComponent implements OnInit {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
       this.summaryModalDetails = {
         setTemplateModal: 1, dependantModelSel: false,
-        contentObj: childrenEducationNonDependantModal, 
+        contentObj: childrenEducationNonDependantModal,
         nonDependantDetails: {
           livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
           livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
