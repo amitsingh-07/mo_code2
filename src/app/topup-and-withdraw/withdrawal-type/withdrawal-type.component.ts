@@ -187,6 +187,7 @@ export class WithdrawalTypeComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
+    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
@@ -286,13 +287,16 @@ export class WithdrawalTypeComponent implements OnInit {
         } else {
           isValid = c.value <= amount;
         }
+        if (c.value <= 0) {
+          return { MinValue: true };
+        }
 
         if (isValid) {
           return null;
         } else if (type === 'CONTROL') {
           return { portfolioToBank: true };
-        } else  {
-          return {PortfolioToCash: true };
+        } else {
+          return { PortfolioToCash: true };
         }
       }
     };
