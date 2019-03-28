@@ -49,17 +49,17 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
-    this.configService.getConfig().subscribe((config) => {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
-      this.spendDesc = this.translate.instant('CMP.MY_SPENDINGS.SPEND_DESC');
-      this.spendTitle = this.translate.instant('CMP.MY_SPENDINGS.SPEND_TITLE');
-      this.setPageTitle(this.pageTitle);
-      this.validationFlag = this.translate.instant('CMP.MY_SPENDINGS.OPTIONAL_VALIDATION_FLAG');
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and title
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
+        this.spendDesc = this.translate.instant('CMP.MY_SPENDINGS.SPEND_DESC');
+        this.spendTitle = this.translate.instant('CMP.MY_SPENDINGS.SPEND_TITLE');
+        this.setPageTitle(this.pageTitle);
+        this.validationFlag = this.translate.instant('CMP.MY_SPENDINGS.OPTIONAL_VALIDATION_FLAG');
+      });
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
     console.log(this.spendingDetails);
@@ -103,13 +103,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     for (const value of this.mortageFieldSet) {
       const otherPropertyControl = this.mySpendingsForm.controls[value];
       if (this.otherMortage) {
-        if (value === 'mortgagePayOffUntil' && this.validationFlag === true ) {
+        if (value === 'mortgagePayOffUntil' && this.validationFlag === true) {
           otherPropertyControl.setValidators([Validators.required, this.payOffYearValid]);
           otherPropertyControl.updateValueAndValidity();
-        } else if (value === 'mortgageTypeOfHome' && this.validationFlag === true ) {
+        } else if (value === 'mortgageTypeOfHome' && this.validationFlag === true) {
           otherPropertyControl.setValidators([Validators.required]);
           otherPropertyControl.updateValueAndValidity();
-        } else if ( this.validationFlag === true ) {
+        } else if (this.validationFlag === true) {
           otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl.updateValueAndValidity();
         }
@@ -133,13 +133,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       homeLoanPayOffUntil: [this.spendingDetails ? this.spendingDetails.homeLoanPayOffUntil : '',
       [this.payOffYearValid]],
       mortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
-      mortgagePaymentUsingCash: [ this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
-      mortgageTypeOfHome: [ this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
-      mortgagePayOffUntil: [ this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
-      carLoanPayment: [ this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
-      otherLoanPayment: [ this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
-      otherLoanPayoffUntil: [ this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
-       [this.payOffYearValid]]
+      mortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
+      mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
+      mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
+      carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
+      otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
+      otherLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
+      [this.payOffYearValid]]
     });
   }
   goToNext(form: FormGroup) {
@@ -185,10 +185,10 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      validCheck = ( payOffYearVal.value >= currentYear ) ? true : false;
+      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
     }
     if (validCheck) {
-        return null;
+      return null;
     }
     return { pattern: true };
   }
@@ -219,7 +219,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.calculatedSpending = this.totalBucket - this.totalSpending;
     if (this.totalSpending === 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
-    } else if (this.totalSpending > 0 && this.calculatedSpending > 0 ) {
+    } else if (this.totalSpending > 0 && this.calculatedSpending > 0) {
       this.bucketImage = 'middleSpend';
     } else {
       this.bucketImage = 'emptySpend';
