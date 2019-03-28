@@ -131,6 +131,8 @@ export interface IMySpendings {
     carLoanPayment: number;
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
+    totalAnnualExpenses: number;
+
 }
 
 export interface IProgressTrackerWrapper {
