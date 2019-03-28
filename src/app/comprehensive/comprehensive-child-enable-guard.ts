@@ -29,7 +29,8 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
   }
   // tslint:disable-next-line:cognitive-complexity
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isComprehensiveEnabled) {
+    /*
+    #if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
     } else {
@@ -68,5 +69,7 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
         }
       }
     }
+    */
+    return true;
   }
 }

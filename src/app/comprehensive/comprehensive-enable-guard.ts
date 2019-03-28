@@ -27,7 +27,8 @@ export class ComprehensiveEnableGuard implements CanActivate {
     });
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.isComprehensiveEnabled) {
+    /*
+    #if (!this.isComprehensiveEnabled) {
       this.router.navigate([appConstants.homePageUrl]);
       return false;
     } else {
@@ -42,5 +43,7 @@ export class ComprehensiveEnableGuard implements CanActivate {
       }
       return true;
     }
+    */
+    return true;
   }
 }
