@@ -1200,6 +1200,9 @@ input::placeholder {
   }
   .form-control {
     color: $app-backgrnd-color;
+    &.with-bg {
+      background: $form-title-backgrnd-color !important;
+    }
   }
   .form-group-single-column {
     .checkbox-button {
