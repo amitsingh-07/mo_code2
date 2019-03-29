@@ -11,7 +11,8 @@ export const COMPREHENSIVE_CONST = {
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
             API_TOTAL_BUCKET_KEY: 'totalAnnualExpenses',
-            MONTHLY_INPUT_CALC : [],
+            MONTHLY_INPUT_CALC : ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
+            'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
             'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil']
         },

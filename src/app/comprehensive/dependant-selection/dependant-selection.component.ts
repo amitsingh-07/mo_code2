@@ -24,12 +24,15 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   hasDependant: boolean;
   menuClickSubscription: Subscription;
   summaryModalDetails: IMySummaryModal;
+  childrenEducationNonDependantModal: any;
+  summaryRouterFlag: boolean;
+  routerEnabled =  false;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService) {
     this.pageId = this.route.routeConfig.component.name;
-
+    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -37,7 +40,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
-
+        this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
+          this.routerEnabled =  !this.summaryRouterFlag;
+          this.showSummaryModal();
+        }
       });
     });
   }
@@ -75,10 +82,17 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     if (dependantSelectionForm.value.dependantSelection === 'true') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
-      const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+      this.showSummaryModal();
+    }
+
+  }
+  showSummaryModal() {
+    if (this.routerEnabled) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION + '/summary']);
+    } else {
       this.summaryModalDetails = {
         setTemplateModal: 1, dependantModelSel: false,
-        contentObj: childrenEducationNonDependantModal,
+        contentObj: this.childrenEducationNonDependantModal,
         nonDependantDetails: {
           livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
           livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
@@ -87,11 +101,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
           medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
           medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
         },
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+        routerEnabled: this.summaryRouterFlag
       };
       this.cmpService.openSummaryPopUpModal(this.summaryModalDetails);
     }
-
   }
 
 }
