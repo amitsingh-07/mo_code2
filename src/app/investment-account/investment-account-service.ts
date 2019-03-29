@@ -1,7 +1,6 @@
 import {
   IAddress,
   IEmployment,
-  IFinancial,
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
