@@ -80,7 +80,6 @@ export class DependantEducationListComponent implements OnInit {
       }
     });
     this.endowmentSkipEnable = endowmentSkipEnableFlag;
-    console.log(this.endowmentSkipEnable);
   }
   buildEndowmentListForm() {
     const endowmentArray = [];
@@ -101,7 +100,9 @@ export class DependantEducationListComponent implements OnInit {
       endowmentMaturityAmount: [value.endowmentMaturityAmount, []],
       endowmentMaturityYears: [value.endowmentMaturityYears, []],
       endowmentPlanShow: [value.endowmentMaturityAmount > 0 ? true : false, []],
-      gender: [value.gender, []]
+      gender: [value.gender, []],
+      location: [value.location, []],
+      course: [value.educationCourse, []]
     });
 
   }
@@ -120,6 +121,7 @@ export class DependantEducationListComponent implements OnInit {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
         const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
         if (preferenceDetails.endowmentPlanShow) {
+          console.log(preferenceDetails);
           otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
           otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
@@ -127,7 +129,11 @@ export class DependantEducationListComponent implements OnInit {
           this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
           this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
           dependantArray.push({
-            userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
+            userName: preferenceDetails.name,
+            userAge: preferenceDetails.age,
+            // tslint:disable-next-line: max-line-length
+            //userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course, preferenceDetails.age)
+            userEstimatedCost: preferenceDetails.endowmentMaturityAmount
           });
         } else {
           otherPropertyControl['endowmentMaturityAmount'].setValidators([]);
