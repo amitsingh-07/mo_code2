@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,10 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MyInfoService } from '../../shared/Services/my-info.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -27,7 +25,7 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class PersonalInfoComponent implements IPageComponent, OnInit {
+export class PersonalInfoComponent implements OnInit {
   @ViewChild('expiryInput') expiryInput;
   @ViewChild('dobInput') dobInput;
   pageTitle: string;
@@ -46,8 +44,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   raceList: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
+    private cdr: ChangeDetectorRef,
     private router: Router,
-    private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -85,15 +83,16 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       };
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
-    // get profile
   }
 
   buildForm() {
@@ -124,14 +123,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
             value: this.formValues.fullName,
             disabled: this.investmentAccountService.isDisabled('fullName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        firstName: [
-          { value: this.formValues.firstName, disabled: false },
-          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        lastName: [
-          { value: this.formValues.lastName, disabled: false },
           [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         nricNumber: [
@@ -180,8 +171,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           },
           [Validators.required]
         ]
-      },
-      { validator: this.validateName() }
+      }
     );
   }
   buildFormForPassportDetails(): FormGroup {
@@ -198,14 +188,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
             value: this.formValues.fullName,
             disabled: this.investmentAccountService.isDisabled('fullName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        firstName: [
-          { value: this.formValues.firstName, disabled: false },
-          [Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
-        ],
-        lastName: [
-          { value: this.formValues.lastName, disabled: false },
           [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
         ],
         dob: [
@@ -261,8 +243,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
           },
           [Validators.required]
         ]
-      },
-      { validator: this.validateName() }
+      }
     );
   }
   markAllFieldsDirty(form) {
@@ -278,14 +259,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   populateFullName() {
     let fullName;
-    let firstName;
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    firstName = this.formValues.firstName ? this.formValues.firstName : '';
-    this.formValues.firstName = this.formValues.lastName
-      ? firstName : this.userProfileInfo.firstName;
-    this.formValues.lastName = this.formValues.lastName
-      ? this.formValues.lastName
-      : this.userProfileInfo.lastName;
     if (this.userProfileInfo.firstName) {
       fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
     } else {
@@ -314,27 +288,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
-  }
-  private validateName() {
-    return (group: FormGroup) => {
-      const firstName = group.controls['firstName'].value.toUpperCase();
-      const lastName = group.controls['lastName'].value.toUpperCase();
-      const fullName = group.controls['fullName'].value.toUpperCase();
-      let name = '';
-      let name1 = '';
-      if (firstName === '') {
-        name = lastName;
-        name1 = lastName;
-      } else {
-        name = firstName + ' ' + lastName;
-        name1 = lastName + ' ' + firstName;
-      }
-      if (fullName === name || fullName === name1) {
-        return group.controls['lastName'].setErrors(null);
-      } else {
-        return group.controls['lastName'].setErrors({ nameMatch: true });
-      }
-    };
   }
 
   private validateMinimumAge(control: AbstractControl) {

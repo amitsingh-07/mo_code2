@@ -257,37 +257,6 @@ export class InvestmentAccountFormError {
         errorMessage: 'Full Name should not contain numbers and special characters.'
       }
     },
-    firstName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid First Name',
-        errorMessage: 'Enter First Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid First Name',
-        errorMessage: 'First Name should not contain numbers and special characters.'
-      },
-      nameMatch: {
-        errorTitle: 'Invalid Name',
-        errorMessage: 'First Name and Last Name are not matched with Full Name.'
-      }
-    },
-
-    lastName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Enter Last Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Last Name should not contain numbers and special characters.'
-      },
-      nameMatch: {
-        errorTitle: 'Invalid Name',
-        errorMessage: 'Full Name not matched with [First Name and Last Name] or [Last Name].'
-      }
-    },
     nricNumber: {
       required: {
         // tslint:disable-next-line:no-duplicate-string

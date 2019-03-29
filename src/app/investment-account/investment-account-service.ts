@@ -321,10 +321,6 @@ export class InvestmentAccountService {
     if (data.fullName) {
       this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
     }
-    this.investmentAccountFormData.firstName = data.firstName ? data.firstName.toUpperCase() : '';
-    if (data.lastName) {
-      this.investmentAccountFormData.lastName = data.lastName.toUpperCase();
-    }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
     }
@@ -349,8 +345,6 @@ export class InvestmentAccountService {
   getPersonalInfo() {
     return {
       fullName: this.investmentAccountFormData.fullName,
-      firstName: this.investmentAccountFormData.firstName,
-      lastName: this.investmentAccountFormData.lastName,
       nricNumber: this.investmentAccountFormData.nricNumber,
       passportNumber: this.investmentAccountFormData.passportNumber,
       passportExpiry: this.investmentAccountFormData.passportExpiry,
@@ -695,10 +689,10 @@ export class InvestmentAccountService {
     }
     if (emailAddressExist) {
       this.investmentAccountFormData.isMailingAddressSame = false;
-      this.disableAttributes.push('isMailingAddressSame');
+      // this.disableAttributes.push('isMailingAddressSame');
     } else {
       this.investmentAccountFormData.isMailingAddressSame = true;
-      this.disableAttributes.push('isMailingAddressSame');
+      // this.disableAttributes.push('isMailingAddressSame');
     }
   }
 
@@ -848,8 +842,6 @@ export class InvestmentAccountService {
     return {
       nationalityCode: data.nationalityCode,
       fullName: data.fullName,
-      firstName: data.firstName,
-      lastName: data.lastName,
       nricNumber: data.nricNumber ? data.nricNumber : null,
       passportNumber: data.passportNumber ? data.passportNumber : null,
       passportExpiryDate: data.passportExpiry
