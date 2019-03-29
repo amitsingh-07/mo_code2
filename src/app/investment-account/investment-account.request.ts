@@ -60,10 +60,6 @@ export interface IHousehold {
   houseHoldIncomeId: number;
 }
 
-export interface IFinancial {
-  incomeRange: string;
-}
-
 export interface ITax {
   taxCountryId: number;
   tinNumber: string;

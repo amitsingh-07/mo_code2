@@ -510,15 +510,13 @@ export class InvestmentAccountService {
     }
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       data.numberOfHouseHoldMembers;
-    this.investmentAccountFormData.salaryRange = data.salaryRange;
     this.commit();
   }
   getFinancialFormData() {
     return {
       annualHouseHoldIncomeRange: this.investmentAccountFormData
         .annualHouseHoldIncomeRange,
-      numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
-      salaryRange: this.investmentAccountFormData.salaryRange
+      numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers
     };
   }
 
@@ -689,10 +687,8 @@ export class InvestmentAccountService {
     }
     if (emailAddressExist) {
       this.investmentAccountFormData.isMailingAddressSame = false;
-      // this.disableAttributes.push('isMailingAddressSame');
     } else {
       this.investmentAccountFormData.isMailingAddressSame = true;
-      // this.disableAttributes.push('isMailingAddressSame');
     }
   }
 
@@ -827,7 +823,6 @@ export class InvestmentAccountService {
     request.mailingAddress = this.getMailingAddressReqData(payload);
     request.employmentDetails = this.getEmploymentDetailsReqData(payload);
     request.householdDetails = this.getHouseholdDetailsReqData(payload);
-    request.financialDetails = this.getFinancialDetailsReqData(payload);
     request.taxDetails = this.getTaxDetailsReqData(payload);
     request.personalDeclarations = this.getPersonalDecReqData(payload);
     return request;
@@ -934,12 +929,6 @@ export class InvestmentAccountService {
       houseHoldIncomeId: data.annualHouseHoldIncomeRange
         ? data.annualHouseHoldIncomeRange.id
         : null
-    };
-  }
-
-  getFinancialDetailsReqData(data): IFinancial {
-    return {
-      incomeRange: data.salaryRange ? data.salaryRange.value : null
     };
   }
 
@@ -1584,10 +1573,6 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       customer && customer.houseHoldDetail && customer.houseHoldDetail.numberOfMembers
         ? customer.houseHoldDetail.numberOfMembers
-        : null;
-    this.investmentAccountFormData.salaryRange =
-      income && income.incomeRange
-        ? this.getPropertyFromValue(income.incomeRange, 'salaryRange')
         : null;
     this.commit();
   }
