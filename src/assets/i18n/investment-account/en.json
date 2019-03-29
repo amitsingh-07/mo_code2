@@ -289,6 +289,7 @@
     "YES": "Yes",
     "NO": "No",
     "PEP_FULL_NAME":"Full Name",
+    "AS_PER_NRIC_PASSPORT":"(as per NRIC/ Passport)",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please complete this page only if you or any of your family member is a Politically Exposed Person (\"PEP\")",
