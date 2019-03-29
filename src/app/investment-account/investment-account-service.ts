@@ -443,8 +443,7 @@ export class InvestmentAccountService {
   }
   // Additional info pep data
   setAdditionalInfoFormData(data) {
-    this.investmentAccountFormData.fName = data.fName;
-    this.investmentAccountFormData.lName = data.lName;
+    this.investmentAccountFormData.pepFullName = data.pepFullName;
     this.investmentAccountFormData.cName = data.cName;
     this.investmentAccountFormData.pepoccupation = data.pepoccupation;
     this.investmentAccountFormData.pepOtherOccupation = data.pepOtherOccupation;
@@ -645,7 +644,7 @@ export class InvestmentAccountService {
       }
     }
     if (data.mailadd) {
-        this.setMyInfoEmailAddress(data);
+      this.setMyInfoEmailAddress(data);
     }
   }
 
@@ -952,8 +951,7 @@ export class InvestmentAccountService {
       politicallyExposed: data.pep,
       connectedToInvestmentFirm: data.ExistingEmploye,
       pepDeclaration: {
-        firstName: data.fName,
-        lastName: data.lName,
+        firstName: data.pepFullName,
         companyName: data.cName,
         occupationId: data.pepoccupation ? data.pepoccupation.id : null,
         otherOccupation: data.pepOtherOccupation ? data.pepOtherOccupation : null,
@@ -1607,9 +1605,8 @@ export class InvestmentAccountService {
   }
   setDueDiligence1FromApi(pepDetails) {
     if (pepDetails) {
-      this.investmentAccountFormData.fName = pepDetails.firstName;
-      this.investmentAccountFormData.lName = pepDetails.lastName;
-      this.investmentAccountFormData.cName = pepDetails.companyName;
+      this.investmentAccountFormData.pepFullName = pepDetails.pepFullName;
+     this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
       this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
