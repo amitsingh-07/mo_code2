@@ -21,7 +21,9 @@ app-asset-allocation {
     }
   }
   .asset-allocation {
-    margin-top: 33px;
+    @include allmobiles{
+      margin-top: 33px;
+    }
     .title {
       font-family: $muli-bold;
       font-size: 21px;

@@ -4,13 +4,15 @@ app-your-investment {
   .container-fluid{
     &.max-width--1024{
       top: 0 !important;
+      padding-top: 0 !important; 
       @include allmobiles{
         padding: 0 !important;
         margin-top: 0 !important
       }
     }
   }
-  .investment-bg {
+  .investment-bg {   
+    padding-top: 76px;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
@@ -19,19 +21,22 @@ app-your-investment {
       padding-top: 105px;
       width: 100%;
     }
-  }
-  .background_img {
-    display: none;
-    @include allmobiles{
-      object-fit: contain;
-      position: relative;
+    img{
       width: 100%;
-      display: block;
+      height: 100%;
+    }
+    .background_img {
+      @include allmobiles{
+        object-fit: contain;
+        position: relative;
+        width: 100%;
+      }
     }
   }
+  
   .user_content {
     position: absolute;
-    padding: 0 75px;
+    top: 150px;
     @include allmobiles{
       top: 100px;
       padding: 0;
@@ -42,13 +47,15 @@ app-your-investment {
       line-height: 1.28;
       letter-spacing: -0.2px;
       position: relative;
-      padding: 0 29px 0 28px;
+      padding: 0 60px 0 28px;
+      @include allmobiles{
+        padding: 0 29px 0 28px;
+      }
     }
     .flex-col-4 {
       position: absolute;
-      right: 29px;
-      top: 45px;
-      right: 230px;
+      top: 70px;
+      right: 85px;
       @include iphone5 {
         top: 28px;
       }
@@ -101,7 +108,8 @@ app-your-investment {
   }
   .container-fluid {
     position: relative;
-    top: 100px;
+    top: -60px;
+    padding: 0 20px;
     @include allmobiles {
       padding-left: 20px !important;
       padding-right: 20px !important;
