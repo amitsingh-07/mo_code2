@@ -7,7 +7,7 @@ const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
-const FINANCE_API_BASE_URL = 'finance/finhealth/api/';
+const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 
 export let apiConstants = {
     endpoint: {
@@ -110,12 +110,12 @@ export let apiConstants = {
             saveEarnings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: FINANCE_API_BASE_URL + 'customer/comprehensive/saveExpenses',
-            saveDownOnLuck: COMPREHENSIVE_API_BASE_URL + 'saveDownOnLuck',
+            saveDownOnLuck: FINANCE_API_BASE_URL + 'saveDownOnLuck',
+            saveRegularSavings: FINANCE_API_BASE_URL + 'saveRegularSavings',
             saveInsurancePlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveInsurancePlanning',
             saveRetirementPlan: 'insurance/insurance-needs-microservice/api/customer/comprehensive/saveRetirementPlanning',
-            saveAssets: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveAssets',
-            saveLiabilities: FINANCE_API_BASE_URL + 'customer/comprehensive/saveComprehensiveLiabilities'
+            saveAssets: FINANCE_API_BASE_URL + 'saveComprehensiveAssets',
+            saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities'
         }
     }
 };
-

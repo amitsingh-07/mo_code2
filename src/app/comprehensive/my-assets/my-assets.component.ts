@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -35,24 +38,69 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   bucketImage: string;
   validationFlag: boolean;
   patternValidator = '^0*[1-9]\\d*$';
+  myInfoSubscription: any;
+  modelTitle: string;
+  modelMessage: string;
+  modelBtnText: string;
+  showConfirmation: boolean;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
               private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private progressService: ProgressTrackerService, private loaderService: LoaderService) {
+              private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
+              private modal: NgbModal) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
-        // meta tag and title
+        // meta tag and
+        this.modelTitle = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
+        );
+        this.modelMessage = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
+        );
+        this.modelBtnText = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
+        );
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
     });
-
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoData();
+        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
+          this.cancelMyInfo();
+        } else {
+          this.myInfoService.closeMyInfoPopup(false);
+        }
+      }
+    });
     this.assetDetails = this.comprehensiveService.getMyAssets();
+  }
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+  }
+
+  openModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.modelTitle;
+    ref.componentInstance.errorMessageHTML = this.modelMessage;
+    ref.componentInstance.primaryActionLabel = this.modelBtnText;
+    ref.componentInstance.warningIcon = true;
+    ref.result
+      .then(() => {
+        this.showConfirmation = true;
+      })
+      .catch((e) => { });
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -202,7 +250,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     }
   }
-  autoFillCPFData() {
+  getMyInfoData() {
+    this.myInfoService.getMyInfoData().subscribe((data) => {
+      console.log(data);
+    });
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {

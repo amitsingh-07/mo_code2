@@ -65,14 +65,14 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant ? 'true' : 'false', Validators.required)
+      dependantSelection: new FormControl(this.hasDependant, Validators.required)
     });
 
   }
 
   goToNext(dependantSelectionForm) {
     this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
-    if (dependantSelectionForm.value.dependantSelection === 'true') {
+    if (dependantSelectionForm.value.dependantSelection) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
       const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');

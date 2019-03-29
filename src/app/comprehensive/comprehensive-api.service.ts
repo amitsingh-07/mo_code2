@@ -52,6 +52,11 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    saveRegularSavings(payload) {
+        return this.http
+        .post(apiConstants.endpoint.comprehensive.saveRegularSavings, payload)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
     saveDownOnLuck(payload) {
         return this.http
             .post(apiConstants.endpoint.comprehensive.saveDownOnLuck, payload)
