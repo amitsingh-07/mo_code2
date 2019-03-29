@@ -15,7 +15,7 @@ export class SummaryModalComponent implements OnInit {
   @Input() summaryModalDetails: any;
   calculateCashDesc = true;
   constructor(public activeModal: NgbActiveModal, private router: Router, private translate: TranslateService,
-              private configService: ConfigService) { }
+    private configService: ConfigService) { }
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => {
@@ -29,8 +29,6 @@ export class SummaryModalComponent implements OnInit {
         // dismiss all bootstrap modal dialog
         this.activeModal.dismiss();
       });
-
-    console.log(this.summaryModalDetails);
   }
 
   toggleCalculatePop() {
@@ -39,5 +37,4 @@ export class SummaryModalComponent implements OnInit {
   goNextPage() {
     this.router.navigate([this.summaryModalDetails.nextPageURL]);
   }
-
 }

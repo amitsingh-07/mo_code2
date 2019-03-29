@@ -6,6 +6,7 @@
     position: fixed !important;
     width: 100% !important;
     overflow-y: hidden !important;
+    z-index: 1061 !important;
 }
 
 .modal-backdrop.fade.show.progress-tracker-backdrop {
@@ -15,6 +16,7 @@
     margin-right: 15px;
     margin-left: 15px;
     border-radius: 5px 5px 0 0;
+    z-index: 1061 !important;
 }
 
 .progress-tracker-tooltip {

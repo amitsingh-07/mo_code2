@@ -31,11 +31,15 @@ export class DependantEducationListComponent implements OnInit {
   endowmentSkipEnable = true;
   summaryModalDetails: IMySummaryModal;
   submitted: boolean;
+  childrenEducationNonDependantModal: any;
+  summaryRouterFlag: boolean;
+  routerEnabled =  false;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
     private comprehensiveApiService: ComprehensiveApiService) {
+    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -44,6 +48,12 @@ export class DependantEducationListComponent implements OnInit {
 
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
+        this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
+
+        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
+          this.routerEnabled =  !this.summaryRouterFlag;
+          this.showSummaryModal();
+        }
       });
     });
 
@@ -60,16 +70,16 @@ export class DependantEducationListComponent implements OnInit {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
+    console.log(this.endowmentDetail);
     this.endowmentArrayPlan = this.endowmentDetail;
     this.buildEndowmentListForm();
     let endowmentSkipEnableFlag = true;
     this.endowmentArrayPlan.forEach((dependant: any) => {
-      if (dependant.endowmentMaturityAmount !== '') {
+      if (dependant.endowmentMaturityAmount > 0) {
         endowmentSkipEnableFlag = false;
       }
     });
     this.endowmentSkipEnable = endowmentSkipEnableFlag;
-
   }
   buildEndowmentListForm() {
     const endowmentArray = [];
@@ -89,9 +99,10 @@ export class DependantEducationListComponent implements OnInit {
       age: [value.age, []],
       endowmentMaturityAmount: [value.endowmentMaturityAmount, []],
       endowmentMaturityYears: [value.endowmentMaturityYears, []],
-      endowmentPlanShow: [value.endowmentMaturityAmount === 0.0
-        ? false : true, []],
-      gender: [value.gender, []]
+      endowmentPlanShow: [value.endowmentMaturityAmount > 0 ? true : false, []],
+      gender: [value.gender, []],
+      location: [value.location, []],
+      course: [value.educationCourse, []]
     });
 
   }
@@ -105,25 +116,12 @@ export class DependantEducationListComponent implements OnInit {
           this.endowmentArrayPlan[index].endowmentMaturityYears = '';
         }
       });
-      const childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-      this.summaryModalDetails = {
-        setTemplateModal: 1, dependantModelSel: false,
-        contentObj: childrenEducationNonDependantModal,
-        nonDependantDetails: {
-          livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
-          livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
-          livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
-          medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
-          medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
-          medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
-        },
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2'
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+      this.showSummaryModal();
     } else {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
         const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
         if (preferenceDetails.endowmentPlanShow) {
+          console.log(preferenceDetails);
           otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
           otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
@@ -131,7 +129,11 @@ export class DependantEducationListComponent implements OnInit {
           this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
           this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
           dependantArray.push({
-            userName: preferenceDetails.name, userAge: preferenceDetails.age, userEstimatedCost: preferenceDetails.endowmentMaturityAmount
+            userName: preferenceDetails.name,
+            userAge: preferenceDetails.age,
+            // tslint:disable-next-line: max-line-length
+            //userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course, preferenceDetails.age)
+            userEstimatedCost: preferenceDetails.endowmentMaturityAmount
           });
         } else {
           otherPropertyControl['endowmentMaturityAmount'].setValidators([]);
@@ -222,5 +224,26 @@ export class DependantEducationListComponent implements OnInit {
         return null;
     }
     return { pattern: true };
+  }
+  showSummaryModal() {
+    if (this.routerEnabled) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST + '/summary']);
+    } else {
+      this.summaryModalDetails = {
+        setTemplateModal: 1, dependantModelSel: false,
+        contentObj: this.childrenEducationNonDependantModal,
+        nonDependantDetails: {
+          livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+          livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+          livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+          medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+          medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+          medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+        },
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+        routerEnabled: this.summaryRouterFlag
+      };
+      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+    }
   }
 }
