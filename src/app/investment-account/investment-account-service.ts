@@ -804,7 +804,6 @@ export class InvestmentAccountService {
     request.mailingAddress = null;
     request.employmentDetails = null;
     request.householdDetails = null;
-    request.financialDetails = null;
     request.taxDetails = null;
     request.sameAsMailingAddress = null;
     request.personalDeclarations = this.getPersonalDecReqData(payload);
