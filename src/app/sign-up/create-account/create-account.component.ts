@@ -114,9 +114,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         form.get(key).markAsDirty();
       });
       const error = this.signUpService.getSignupFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
+      if (error.errorMessages.length > 0) {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.title;
+        ref.componentInstance.errorMessageList = error.errorMessages;
+      }
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
