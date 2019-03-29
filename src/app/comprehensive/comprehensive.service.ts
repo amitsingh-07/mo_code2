@@ -580,7 +580,7 @@ export class ComprehensiveService {
         if (enquiry && enquiry.hasDependents !== null) {
             hasDependants = true;
         }
-        if (enquiry && enquiry.hasEndowments !== null) {
+        if (enquiry && enquiry.hasEndowments === '1') {
             hasEndowments = true;
         }
         if (enquiry && enquiry.hasRegularSavingsPlans !== null) {
@@ -599,7 +599,8 @@ export class ComprehensiveService {
             eduPrefs.forEach((item) => {
                 prefsList.push({
                     title: item.name,
-                    value: item.location + ', ' + item.educationCourse
+                    value: (item.location === null ? '' : item.location)
+                        + (item.educationCourse === null ? '' : ', ' + item.educationCourse)
                 });
             });
         }
@@ -611,10 +612,7 @@ export class ComprehensiveService {
             hasEndowmentPlans = 'No';
         }
 
-        let hasEduPlans = '';
-        if (hasDependants && eduPrefs) {
-            hasEduPlans = eduPrefs.length > 0 ? 'Yes' : 'No';
-        }
+        const hasEduPlans = hasEndowments ? 'Yes' : 'No';
 
         return {
             title: 'What\'s on your shoulders',
@@ -638,7 +636,7 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                     title: 'Education Preferences',
                     value: '',
-                    completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined',
+                    completed: hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
                     list: prefsList
                 },
                 {
@@ -711,7 +709,7 @@ export class ComprehensiveService {
     setBucketAmountByCal() {
         Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
             const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
-            const inputBucket = Object.assign({}, this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY]);         
+            const inputBucket = Object.assign({}, this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY]);
             if (Object.keys(inputBucket).length > 0 && inputBucket.constructor === Object) {
                 const popInputBucket = financeData.POP_FORM_INPUT;
                 const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);

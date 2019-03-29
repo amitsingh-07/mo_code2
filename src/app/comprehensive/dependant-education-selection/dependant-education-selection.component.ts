@@ -13,8 +13,8 @@ import { IServerResponse } from './../../shared/http/interfaces/server-response.
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
-import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 
 @Component({
   selector: 'app-dependant-education-selection',
@@ -36,7 +36,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -53,7 +53,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled =  !this.summaryRouterFlag;
+          this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
         }
       });
@@ -111,7 +111,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     }
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-    this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR')  : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR') );
+      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
     return {
       id: 0,
       dependentId: dependant.id,
@@ -131,7 +131,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-    this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR')  : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR') );
+      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
     return {
       id: 0, // #childEndowment.id,
       dependentId: dependant.id,
@@ -256,13 +256,22 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           });
           this.comprehensiveService.setChildEndowment(selectedChildArray);
           this.loaderService.hideLoader();
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+          this.gotoNextPage(form);
         });
       } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+        this.gotoNextPage(form);
       }
     }
   }
+
+  gotoNextPage(form) {
+    if (form.value.hasEndowments === '1') {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+    } else if (form.value.hasEndowments === '2') {
+      this.showSummaryModal();
+    }
+  }
+
   showSummaryModal() {
     if (this.routerEnabled) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION + '/summary']);

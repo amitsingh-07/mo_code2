@@ -1,3 +1,5 @@
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,11 +28,12 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private configService: ConfigService) {
+    private translate: TranslateService, private configService: ConfigService,
+    private cmpApiService: ComprehensiveApiService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
@@ -42,7 +45,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled =  !this.summaryRouterFlag;
+          this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
         }
       });
@@ -82,7 +85,26 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     if (dependantSelectionForm.value.dependantSelection) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
-      this.showSummaryModal();
+      const payload = {
+        hasDependents: false,
+        dependentMappingList: [{
+          id: 0,
+          customerId: 0,
+          enquiryId: this.cmpService.getEnquiryId(),
+          name: '',
+          relationship: '',
+          gender: '',
+          dateOfBirth: '',
+          nation: ''
+        }]
+      };
+
+      this.cmpApiService.addDependents(payload).subscribe(((data: any) => {
+        this.loaderService.hideLoader();
+        this.cmpService.setMyDependant([]);
+        this.cmpService.clearEndowmentPlan();
+        this.showSummaryModal();
+      }));
     }
 
   }

@@ -42,7 +42,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
@@ -68,7 +68,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled =  !this.summaryRouterFlag;
+          this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
         }
       });
@@ -160,7 +160,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     const dependantdetails = this.myDependantForm.get('dependentMappingList') as FormArray;
     dependantdetails.removeAt(i);
   }
-  validateDependantform(form: FormGroup) {
+  validateDependantForm(form: FormGroup) {
 
     this.submitted = true;
     if (!form.valid) {
@@ -175,34 +175,42 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   goToNext(form: FormGroup) {
     if (!form.pristine) {
       this.comprehensiveService.clearEndowmentPlan();
-    }
-    if (this.validateDependantform(form)) {
-      form.value.dependentMappingList.forEach((dependant: any, index) => {
-        form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-        form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
-      });
-      this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-      this.hasDependant = this.comprehensiveService.hasDependant();
-      form.value.hasDependents = this.hasDependant;
-      this.loaderService.showLoader({title: 'Saving Details'});
-      this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
-        this.loaderService.hideLoader();
-        this.comprehensiveService.setMyDependant(data.objectList);
-        let hasChildDependant = false;
-        this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-          if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
-            hasChildDependant = true;
-            return;
-          }
+
+      if (this.validateDependantForm(form)) {
+        form.value.dependentMappingList.forEach((dependant: any, index) => {
+          form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+          form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
-        if (hasChildDependant) {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
-        } else {
-          this.showSummaryModal();
-        }
-      }));
+        this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
+        this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
+        form.value.hasDependents = this.hasDependant;
+        this.loaderService.showLoader({ title: 'Saving Details' });
+        this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
+          this.loaderService.hideLoader();
+          this.comprehensiveService.setMyDependant(data.objectList);
+          this.goToNextPage();
+        }));
+      }
+    } else {
+      this.goToNextPage();
     }
   }
+
+  goToNextPage() {
+    let hasChildDependant = false;
+    this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
+      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+        hasChildDependant = true;
+        return;
+      }
+    });
+    if (hasChildDependant) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
+    } else {
+      this.showSummaryModal();
+    }
+  }
+
   showSummaryModal() {
     if (this.routerEnabled) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS + '/summary']);
