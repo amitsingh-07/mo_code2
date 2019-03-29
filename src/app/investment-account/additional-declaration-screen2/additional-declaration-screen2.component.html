@@ -1,6 +1,6 @@
 <app-investment-title-bar></app-investment-title-bar>
 <div class="additional_declaration-screen">
-  <div class="step-indicator-container">
+  <div *ngIf="formValues.pep" class="step-indicator-container">
     <div class="container-fluid max-width--1024 invest-web-width">
       <app-step-indicator [count]="2" [activeStepIndex]="1"></app-step-indicator>
     </div>
