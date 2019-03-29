@@ -11,7 +11,8 @@ export const COMPREHENSIVE_CONST = {
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
             API_TOTAL_BUCKET_KEY: 'totalAnnualExpenses',
-            MONTHLY_INPUT_CALC : [],
+            MONTHLY_INPUT_CALC : ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
+            'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
             'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil']
         },
@@ -88,6 +89,12 @@ export const COMPREHENSIVE_CONST = {
             ESTIMATED_COST: 100000,
             TERM_INSURANCE: 90,
             WHOLE_LIFE: 450
+        },
+        ROUTER_CONFIG: {
+            STEP1: true,
+            STEP2: true,
+            STEP3: true,
+            STEP4: true,
         }
     }
 };
