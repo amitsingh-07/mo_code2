@@ -52,12 +52,15 @@
           <div class="flex-row">
             <div class="flex-col-5">
               <div class="full_name">
-              <span for="pepFullName" id="pep_Info_invPersInfoLbl1">{{ 'ADDITIONAL_DECLARATION.PEP_FULL_NAME' | translate}}</span>
-              <div class="full_name_sub" for="nric_passport_name" id="pep_Info_as_per_nric_passport">{{ 'ADDITIONAL_DECLARATION.AS_PER_NRIC_PASSPORT' | translate}}</div>
+                <div for="pepFullName" id="pep_Info_invPersInfoLbl1">
+                  {{ 'ADDITIONAL_DECLARATION.PEP_FULL_NAME' | translate}}</div>
+                <div class="full_name_sub" for="nric_passport_name" id="pep_Info_as_per_nric_passport">
+                  {{ 'ADDITIONAL_DECLARATION.AS_PER_NRIC_PASSPORT' | translate}}</div>
+              </div>
             </div>
-          </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
-              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #pepFullName formControlName="pepFullName">
+              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #pepFullName
+                formControlName="pepFullName">
             </div>
           </div>
         </div>
