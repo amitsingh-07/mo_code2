@@ -92,7 +92,6 @@ export class InvestmentAccountFormData {
   // financial details
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: any;
-  salaryRange: any;
 
   source: string;
   expectedNumberOfTransation: number;

@@ -8,7 +8,6 @@ export interface ISaveInvestmentAccountRequest {
   mailingAddress: IAddress;
   employmentDetails: IEmployment;
   householdDetails: IHousehold;
-  financialDetails: IFinancial;
   nationalityList: INationality;
   taxDetails: ITax[];
   personalDeclarations: IPersonalDeclaration;
@@ -58,10 +57,6 @@ export interface IEmployment {
 export interface IHousehold {
   numberOfMembers: number;
   houseHoldIncomeId: number;
-}
-
-export interface IFinancial {
-  incomeRange: string;
 }
 
 export interface ITax {
