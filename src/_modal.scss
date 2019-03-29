@@ -20,7 +20,7 @@ body.modal-open::-webkit-scrollbar {
   opacity: 0.8 !important;
 }
 .modal-backdrop {
-  z-index: 1060;
+  //z-index: 1060;
 }
 .position-bottom {
   .modal-content {
@@ -156,7 +156,7 @@ body.modal-open::-webkit-scrollbar {
 
 .modal {
   width: 100%;
-  z-index: 1061;
+  //z-index: 1061;
   &.hide-close {
     .close {
       display: none;
@@ -755,6 +755,8 @@ body.modal-open::-webkit-scrollbar {
     max-height: 100vh !important;
     top: 0 !important;
     bottom: 0 !important;
+    z-index: 1062;
+    background: $black-color;
   }
   .modal-body-message {
     padding: 0 !important
