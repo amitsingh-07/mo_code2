@@ -41,4 +41,8 @@ export class ProgressTrackerComponent implements OnInit {
     public toggle(item: IProgressTrackerItem) {
         item.expanded = !item.expanded;
     }
+
+    public navigate(path: string) {
+        // TODO : Navigate to the 'path'
+    }
 }
