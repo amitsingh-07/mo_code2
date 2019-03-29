@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -28,13 +28,17 @@ export class InsurancePlanComponent implements OnInit {
   longTermInsurance = true;
   haveHDB = true;
   submitted = false;
+  insurancePlanningDependantModal: any;
+  insurancePlanningNonDependantModal: any;
+  summaryRouterFlag: boolean;
+  routerEnabled =  false;
 
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private age: AboutAge ) {
-
+              private age: AboutAge, private route: ActivatedRoute ) {
+    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -42,6 +46,12 @@ export class InsurancePlanComponent implements OnInit {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE');
         this.setPageTitle(this.pageTitle);
+        this.insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
+        this.insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
+        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
+          this.routerEnabled =  !this.summaryRouterFlag;
+          this.showSummaryModal();
+        }
       });
     });
     if (this.comprehensiveService.getMyProfile() &&
@@ -95,19 +105,25 @@ export class InsurancePlanComponent implements OnInit {
     this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
 
     });
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN]);
-    const insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
-    const insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
-    const dependantVar = false; // Dependant Boolean
-    const summaryModalDetails = {
+    this.showSummaryModal();
+  }
+  showSummaryModal() {
+    const dependantVar = true; // Dependant Boolean
+    if (this.routerEnabled) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '/summary']);
+    } else {
+      const summaryModalDetails = {
         setTemplateModal: 3,
-        contentObj: dependantVar ? insurancePlanningDependantModal : insurancePlanningNonDependantModal,
+        contentObj: dependantVar ? this.insurancePlanningDependantModal : this.insurancePlanningNonDependantModal,
         dependantModelSel: dependantVar,
         estimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.ESTIMATED_COST,
         termInsurance: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.TERM_INSURANCE,
         wholeLife: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.WHOLE_LIFE,
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4'
-    };
-    this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
+        routerEnabled: this.summaryRouterFlag
+      };
+      this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
+    }
   }
 }
+
