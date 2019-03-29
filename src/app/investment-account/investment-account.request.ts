@@ -82,7 +82,6 @@ export interface IPersonalDeclaration {
 
 export interface IPep {
   firstName: string;
-  lastName: string;
   companyName: string;
   occupationId: number;
   otherOccupation: string;
