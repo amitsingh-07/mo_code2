@@ -7,7 +7,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP, ISelectedProducts } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -42,58 +42,50 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  createAccountBodyRequest(captchaValue): ISignUp {
-    const selectedPlan: IPlan[] = [];
-    let userInfo: UserInfo;
-    let journey = 'insurance';
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
-      userInfo = this.directService.getUserInfo();
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      userInfo = this.guideMeService.getUserInfo();
-    } else {
-      journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
-      userInfo = {
-        gender: 'male',
-        dob: '',
-        customDob: '',
-        smoker: '',
-        dependent: 0,
-      };
-    }
+  createAccountBodyRequest(captchaValue: string, pwd: string): ISignUp {
     const getAccountInfo = this.signUpService.getAccountInfo();
-    let selectedPlanData;
+    let journey = 'signup';
+    let enquiryId = -1;
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      selectedPlanData = this.selectedPlansService.getSelectedPlan();
+        this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      journey = 'insurance';
+      enquiryId = this.selectedPlansService.getSelectedPlan().enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-      selectedPlanData = { enquiryId: this.willWritingService.getEnquiryId(), plans: [] };
-    } else {
-      selectedPlanData = { enquiryId: 0, plans: [] };
+      journey = 'will-writing';
+      enquiryId = this.willWritingService.getEnquiryId();
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_INVESTMENT) {
+      journey = 'investment';
+      enquiryId = Number(this.authService.getEnquiryId());
     }
-    const formatDob = userInfo.dob;
-    const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
-    const customDob = formatDob ? formatDob.year + '-' + formatDob.month + '-' + formatDob.day : '';
 
     return {
       customer: {
-        id: 0,
-        isSmoker: (userInfo.smoker === 'non-smoker') ? false : true,
-        givenName: getAccountInfo.firstName,
-        surName: getAccountInfo.lastName,
-        email: getAccountInfo.email,
-        mobileNumber: getAccountInfo.mobileNumber,
-        notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
-        notificationByPhone: true,
-        dateOfBirth: customDob,
-        gender: userInfo.gender,
-        acceptMarketEmails: getAccountInfo.marketingAcceptance
+        mobileNumber: getAccountInfo.mobileNumber,
+        firstName: getAccountInfo.firstName,
+        lastName: getAccountInfo.lastName,
+        emailAddress: getAccountInfo.email,
+        password: this.cryptoService.encrypt(pwd),
+        acceptMarketingNotifications: getAccountInfo.marketingAcceptance
       },
-      enquiryId: selectedPlanData.enquiryId ? selectedPlanData.enquiryId : investmentEnqId,
-      selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
       captcha: captchaValue,
-      journeyType: journey
+      journeyType: journey,
+      enquiryId: enquiryId,
+      callbackUrl: environment.apiBaseUrl,
+    };
+  }
+
+  /**
+   * set insurance selected products request.
+   */
+  setSelectedProductsBodyRequest(isNewCustomer: boolean): ISelectedProducts {
+    const custRef = this.signUpService.getCustomerRef();
+    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    return {
+      customerRef: custRef,
+      isNewCustomer,
+      selectedProducts: selectedPlanData.plans
     };
   }
 
@@ -102,12 +94,12 @@ export class SignUpApiService {
    */
   updateAccountBodyRequest(data) {
     return {
-        emailId: data.email,
-        mobileNumber: data.mobileNumber,
-        countryCode: data.countryCode,
-        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
-        notificationByEmail: true,
-        notificationByPhone: true
+      emailId: data.email,
+      mobileNumber: data.mobileNumber,
+      countryCode: data.countryCode,
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      notificationByEmail: true,
+      notificationByPhone: true
     };
   }
 
@@ -143,7 +135,7 @@ export class SignUpApiService {
     let selectedPlanData = { enquiryId: 0, plans: [] };
     let journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-    this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       journey = 'insurance';
       selectedPlanData = this.selectedPlansService.getSelectedPlan();
     }
@@ -171,9 +163,18 @@ export class SignUpApiService {
    * create user account.
    * @param code - verification code.
    */
-  createAccount(captcha) {
-    const payload = this.createAccountBodyRequest(captcha);
+  createAccount(captcha:string, pwd: string) {
+    const payload = this.createAccountBodyRequest(captcha, pwd);
     return this.apiService.createAccount(payload);
+  }
+
+  /**
+   * insurance selected plans.
+   * @param isNewCustomer - is customer new.
+   */
+  selectedProducts(isNewCustomer: boolean) {
+    const payload = this.setSelectedProductsBodyRequest(isNewCustomer);
+    return this.apiService.updateSelectedProducts(payload);
   }
 
   /**
@@ -261,7 +262,7 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
-  resendEmailVerification(){
+  resendEmailVerification() {
     return this.apiService.resendEmailVerification();
   }
 }

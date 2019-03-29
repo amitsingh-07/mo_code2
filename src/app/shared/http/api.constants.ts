@@ -19,7 +19,7 @@ export let apiConstants = {
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
-        signUp: 'account/account-microservice/api/signup',
+        signUp: 'account/account-microservice/api/signupV2',
         updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
@@ -34,7 +34,8 @@ export let apiConstants = {
         editEmployerAddress: 'account/account-microservice/api/updateEmployment',
         emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
         detailCustomerSummary: 'account/account-microservice/api/getDetailedCustomerSummary',
-        getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails', 
+        getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails',
+        updateSelectedProducts: 'account/account-microservice/api/updateSelectedProducts',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',

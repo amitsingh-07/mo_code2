@@ -16,6 +16,10 @@ import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { appConstants } from '../../app.constants';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-create-account',
@@ -47,6 +51,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private translate: TranslateService,
     private _location: Location,
     private authService: AuthenticationService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService,
+    private appService: AppService
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -148,27 +155,57 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    this.signUpApiService.createAccount(this.createAccountForm.value.captcha).subscribe((data: any) => {
-      if (data.responseMessage.responseCode === 6000) {
-        this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      } else if (data.responseMessage.responseCode === 6001) {
-        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-          this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
-          this.translate.instant('COMMON.LOG_IN'),
-          SIGN_UP_ROUTE_PATHS.LOGIN, false);
-      } else if (data.responseMessage.responseCode === 6002) {
-        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-          this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
-          this.translate.instant('COMMON.LOG_IN'),
-          SIGN_UP_ROUTE_PATHS.LOGIN, true);
-      } else if (data.responseMessage.responseCode === 6003) {
-        this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-          this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
-          this.translate.instant('COMMON.VERIFY_NOW'),
-          SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
-      } else {
-        this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+    this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
+      .subscribe((data: any) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+            this.updatedSelectedProducts(true, true);
+          } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+            this.createWill(true);
+          }
+        } else if (data.responseMessage.responseCode === 6001) {
+          this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+            this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
+            this.translate.instant('COMMON.LOG_IN'),
+            SIGN_UP_ROUTE_PATHS.LOGIN, false);
+        } else if (data.responseMessage.responseCode === 6002) {
+          this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+            this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
+            this.translate.instant('COMMON.LOG_IN'),
+            SIGN_UP_ROUTE_PATHS.LOGIN, true);
+        } else if (data.responseMessage.responseCode === 6003) {
+          this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+            this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+            this.translate.instant('COMMON.VERIFY_NOW'),
+            SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        } else {
+          this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+        }
+      });
+  }
+
+  updatedSelectedProducts(isNewCustomer: boolean, redirect: boolean) {
+    this.signUpApiService.selectedProducts(isNewCustomer)
+      .subscribe((data: any) => {
+        if (redirect) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        }
+      });
+  }
+
+  createWill(redirect: boolean) {
+    this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
+      if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+        this.willWritingService.setIsWillCreated(true);
+        if (redirect) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = '';
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON.DUPLICATE_ERROR');
       }
     });
   }
