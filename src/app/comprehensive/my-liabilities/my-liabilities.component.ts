@@ -1,24 +1,24 @@
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyLiabilities, IMySummaryModal } from '../comprehensive-types';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { apiConstants } from './../../shared/http/api.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { LoaderService } from './../../shared/components/loader/loader.service';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-my-liabilities',
@@ -42,18 +42,17 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.pageId = this.route.routeConfig.component.name;
-    this.configService.getConfig().subscribe((config) => {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and title
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
 
-      this.setPageTitle(this.pageTitle);
-      this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
+        this.setPageTitle(this.pageTitle);
+        this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
+      });
     });
-
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
 
   }
@@ -94,7 +93,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.myLiabilitiesForm = this.formBuilder.group({
       homeLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '', []],
       otherPropertyLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount : ''],
-      otherLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount :'', []],
+      otherLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount : '', []],
       carLoansAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '', []],
 
     });
@@ -109,26 +108,26 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         // this.loaderService.showLoader({ title: 'Saving' });
         // this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
         //   this.loaderService.hideLoader();
-          const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
-          this.summaryModalDetails = {
-              setTemplateModal: 2,
-              contentObj: financeModal,
-              liabilitiesEmergency: false,
-              liabilitiesLiquidCash: 30000,
-              liabilitiesMonthlySpareCash: 200,
-              nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
-          };
-          this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-        //});
+        const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
+        this.summaryModalDetails = {
+          setTemplateModal: 2,
+          contentObj: financeModal,
+          liabilitiesEmergency: false,
+          liabilitiesLiquidCash: 30000,
+          liabilitiesMonthlySpareCash: 200,
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
+        };
+        this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+        // });
       } else {
         const financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
         this.summaryModalDetails = {
-            setTemplateModal: 2,
-            contentObj: financeModal,
-            liabilitiesEmergency: false,
-            liabilitiesLiquidCash: 30000,
-            liabilitiesMonthlySpareCash: 200,
-            nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
+          setTemplateModal: 2,
+          contentObj: financeModal,
+          liabilitiesEmergency: false,
+          liabilitiesLiquidCash: 30000,
+          liabilitiesMonthlySpareCash: 200,
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3'
         };
         this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
       }
@@ -169,4 +168,3 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);
   }
 }
-

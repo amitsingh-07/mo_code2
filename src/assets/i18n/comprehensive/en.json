@@ -85,10 +85,9 @@
                 "CONTENT_BODY1": "Monthly living costs of LIVING_COST",
                 "CONTENT_BODY1_DESC": "Includes PERCENT% inflation",
                 "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
-                "CONTENT_BODY2_DESC": "About AGE_VAL years later",              
+                "CONTENT_BODY2_DESC": "Includes AGE_VAL% inflation",              
                 "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
-                "NEXT": "Next",
-                "NO_DEPENDANT": { "livingCost": 2000, "livingPercent": 3, "livingEstimatedCost": 2788, "medicalBill": 5000, "medicalYear": 20, "medicalCost": 300000 }
+                "NEXT": "Next"
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 1",        
@@ -392,6 +391,7 @@
           "value": "others"
         }
       ],
+      "AUTO_FILL":"Autofill Your CPF via ",
       "TOOLTIP":{
         "CASH_TITLE": "Cash",
         "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",

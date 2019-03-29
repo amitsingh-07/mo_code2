@@ -9,7 +9,7 @@
     <form name="RSPForm" [formGroup]="RSPForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=true class="field radio">
+          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='true' class="field radio">
           <label for="RSPInpt1">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
 
@@ -66,7 +66,7 @@
                     <div class="pr0 flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput  placeholder="Amount"  #regularPaidByCash formControlName="regularPaidByCash"  >
+                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="pr0 flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF"  placeholder="Amount" >
+                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF" >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
@@ -98,7 +98,7 @@
 
 
         <div class="checkbox-button one-label">
-          <input id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" value=false class="field radio">
+          <input id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='false' class="field radio">
           <label for="RSPInpt2">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>

@@ -77,12 +77,17 @@ export const COMPREHENSIVE_CONST = {
                     COMPUTED_EXPENSE: 2688
                 },
                 MEDICAL_BILL: {
-                    EXPENSE: 2000,
-                    PERCENT: 3,
+                    EXPENSE: 5000,
+                    PERCENT: 8,
                     ABOUT_AGE: 10,
                     COMPUTED_EXPENSE: 10795
                 }
             }
+        },
+        INSURANCE_PLAN: {
+            ESTIMATED_COST: 100000,
+            TERM_INSURANCE: 90,
+            WHOLE_LIFE: 450
         }
     }
 };

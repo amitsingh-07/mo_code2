@@ -1,17 +1,17 @@
 import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
 
-export interface  IComprehensiveDetails {
+export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
     dependentsList: IDependantDetail[];
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
-    downOnLuck: HospitalPlan;
+    comprehensiveDownOnLuck: HospitalPlan;
     comprehensiveRegularSavingsList: IRegularSavings[];
-    comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveLiabilities: IMyLiabilities;
     comprehensiveIncome: IMyEarnings;
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
-    comprehensiveLiabilities: IMyLiabilities;
+    comprehensiveInsurancePlanning: IInsurancePlan;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -19,7 +19,7 @@ export interface IComprehensiveEnquiry {
     hasComprehensive: boolean;
     hasDependents: boolean;
     hasEndowments: string;
-    hasRegularSavingsPlans: string;
+    hasRegularSavingsPlans: boolean;
     type: string;
 }
 export interface IMyProfile {
@@ -68,8 +68,9 @@ export class HospitalPlan {
     hospitalClass: string;
     hospitalClassDescription: string;
     hospitalClassId: number;
+    hospitalPlanId: number;
     isFullRider = false;
-    badMoodMonthlyAmount: string;
+    badMoodMonthlyAmount: number;
     enquiryId: number;
 }
 
@@ -132,6 +133,7 @@ export interface IMySpendings {
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
     totalAnnualExpenses: number;
+
 }
 
 export interface IProgressTrackerWrapper {
@@ -159,17 +161,14 @@ export interface IOtherProperties {
     typeOfInvestment: string;
     investmentAmount: number;
 }
-
-export interface IRegularSavePlan {
-    hasRegularSavings: boolean;
-    comprehensiveRegularSavingsList: IRegularSavings[];
-}
 export interface IRegularSavings {
     regularUnitTrust: string;
     regularPaidByCash: string;
     regularPaidByCPF: string;
+    enquiryId: number;
 }
 export interface IInsurancePlan {
+    enquiryId: number;
     haveHospitalPlan: boolean;
     haveCPFDependentsProtectionScheme: string;
     life_protection_amount: number;
@@ -179,4 +178,3 @@ export interface IInsurancePlan {
     haveLongTermElderShield: string;
     longTermElderShieldAmount: number;
 }
-

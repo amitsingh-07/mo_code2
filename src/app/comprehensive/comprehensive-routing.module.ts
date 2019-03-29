@@ -10,12 +10,10 @@ import { ComprehensiveComponent } from './comprehensive/comprehensive.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
-import { DependantEducationComponent } from './dependant-education/dependant-education.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
 import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
 import { EducationPreferenceComponent } from './education-preference/education-preference.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
-import { FirstReportDependantComponent } from './first-report-dependant/first-report-dependant.component';
 import { InsurancePlanComponent } from './insurance-plan/insurance-plan.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { MyEarningsComponent } from './my-earnings/my-earnings.component';
@@ -35,20 +33,15 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION, component: DependantEducationComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST, component: DependantEducationListComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_PREFERENCE, component: EducationPreferenceComponent },
-            {
-                path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION,
-                component: DependantEducationSelectionComponent
-            },
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION, component: DependantEducationSelectionComponent},
             { path: COMPREHENSIVE_ROUTES.MY_EARNINGS, component: MyEarningsComponent },
             { path: COMPREHENSIVE_ROUTES.MY_SPENDINGS, component: MySpendingsComponent },
             { path: COMPREHENSIVE_ROUTES.REGULAR_SAVING_PLAN, component: RegularSavingPlanComponent },
             { path: COMPREHENSIVE_ROUTES.MY_ASSETS, component: MyAssetsComponent },
             { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES, component: MyLiabilitiesComponent },
             { path: COMPREHENSIVE_ROUTES.STEPS + '/:stepNo', component: ComprehensiveStepsComponent },
-            { path: COMPREHENSIVE_ROUTES.FIRST_REPORT, component: FirstReportDependantComponent },
             { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent },
             { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
