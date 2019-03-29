@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -43,10 +44,8 @@ export class ComprehensiveService {
     private comprehensiveFormError: any = new ComprehensiveFormError();
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
-
-    setTempleteModel: number;
-
-    constructor(private http: HttpClient, private modal: NgbModal) {
+    constructor(
+        private http: HttpClient, private modal: NgbModal, private location: Location) {
         this.getComprehensiveFormData();
     }
 
@@ -179,6 +178,7 @@ export class ComprehensiveService {
     setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
         this.reloadDependantDetails();
+        this.setBucketAmountByCal();
         this.commit();
     }
 
@@ -353,13 +353,13 @@ export class ComprehensiveService {
     }
     getInsurancePlanningList() {
         if (!this.comprehensiveFormData.comprehensiveDetails) {
-            this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = {}as IInsurancePlan;
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = {} as IInsurancePlan;
         }
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning;
     }
-    setInsurancePlanningList(comprehensiveInsurancePlanning: IInsurancePlan ) {
+    setInsurancePlanningList(comprehensiveInsurancePlanning: IInsurancePlan) {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning
-        = comprehensiveInsurancePlanning;
+            = comprehensiveInsurancePlanning;
         this.commit();
     }
     getFormError(form, formName) {
@@ -450,102 +450,6 @@ export class ComprehensiveService {
         return false;
     }
 
-    openSummaryModal(
-        financeModal,
-        retireModal,
-        insurancePlanningDependantModal,
-        insurancePlanningNonDependantModal,
-        childrenEducationDependantModal,
-        childrenEducationNonDependantModal,
-        summaryModalDetails
-    ) {
-        const ref = this.modal.open(SummaryModalComponent, {
-            centered: true,
-            windowClass: 'custom-full-height'
-        });
-
-        this.setTempleteModel = 1;
-        if (this.setTempleteModel === 2) {
-            // Finance Popup
-
-            summaryModalDetails = {
-                setTemplateModal: 2,
-                titleImage: 'owl.svg',
-                contentObj: financeModal,
-                liabilitiesEmergency: false,
-                liabilitiesLiquidCash: 30000,
-                liabilitiesMonthlySpareCash: 200
-            };
-            summaryModalDetails = {
-                setTemplateModal: 2,
-                titleImage: 'owl.svg',
-                contentObj: financeModal,
-                liabilitiesEmergency: false,
-                liabilitiesLiquidCash: 30000,
-                liabilitiesMonthlySpareCash: 200
-            };
-            ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (this.setTempleteModel === 4) {
-            // Retirement Popup
-
-            summaryModalDetails = {
-                setTemplateModal: 4,
-                titleImage: 'owl.svg',
-                contentObj: retireModal
-            };
-            ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (this.setTempleteModel === 3) {
-            // InsurancePlanning Popup
-            const dependantVar = false;
-
-            summaryModalDetails = {
-                setTemplateModal: 3,
-                titleImage: 'owl.svg',
-                contentImage: 'owl.svg',
-                contentObj: dependantVar ? insurancePlanningDependantModal : insurancePlanningNonDependantModal,
-                dependantModelSel: dependantVar,
-                estimatedCost: 100000,
-                termInsurance: 90,
-                wholeLife: 10
-            };
-            ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        } else if (this.setTempleteModel === 1) {
-            // CHILDREN_EDUCATION Popup
-            const dependantVar = false;
-
-            summaryModalDetails = {
-                setTemplateModal: 1,
-                titleImage: 'education-without-dependant.svg',
-                dependantModelSel: dependantVar,
-                contentObj: dependantVar ? childrenEducationDependantModal : childrenEducationNonDependantModal,
-                dependantDetails: [
-                    {
-                        userName: 'Nathan Ng',
-                        userAge: 19,
-                        userEstimatedCost: 300000
-                    },
-                    {
-                        userName: 'Marie Ng',
-                        userAge: 20,
-                        userEstimatedCost: 300000
-                    }
-                ],
-                nonDependantDetails: {
-                    livingCost: 2000,
-                    livingPercent: 3,
-                    livingEstimatedCost: 2788,
-                    medicalBill: 5000,
-                    medicalYear: 20,
-                    medicalCost: 300000
-                }
-            };
-
-            ref.componentInstance.summaryModalDetails = summaryModalDetails;
-        }
-
-        return false;
-    }
-
     openTooltipModal(toolTipParam) {
         const ref = this.modal.open(ToolTipModalComponent, {
             centered: true
@@ -556,9 +460,17 @@ export class ComprehensiveService {
     openSummaryPopUpModal(summaryModalDetails) {
         const ref = this.modal.open(SummaryModalComponent, {
             centered: true,
-            windowClass: 'full-height-comprehensive'
+            windowClass: 'full-height-comprehensive',
+            backdrop: 'static',
+            keyboard: false
         });
         ref.componentInstance.summaryModalDetails = summaryModalDetails;
+        ref.result.then((result) => {
+        }, (reason) => {
+            if (reason === 'dismiss' && summaryModalDetails.routerEnabled) {
+                this.location.back();
+            }
+        });
         return false;
     }
 
@@ -779,47 +691,47 @@ export class ComprehensiveService {
     setBucketImage(bucketParams: any, formValues: any, totalBucket) {
         const bucketFlag = [];
         for (const i in bucketParams) {
-        if (formValues[bucketParams[i]] > 0) {
-            bucketFlag.push(true);
-        } else {
-            bucketFlag.push(false);
+            if (formValues[bucketParams[i]] > 0) {
+                bucketFlag.push(true);
+            } else {
+                bucketFlag.push(false);
+            }
         }
-        }
-        if ( bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0 ) {
-        return 'filledBucket';
-        } else if ( (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) || totalBucket > 0 ) {
-        return 'middleBucket';
+        if (bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) < 0) {
+            return 'filledBucket';
+        } else if ((bucketFlag.indexOf(true) >= 0 && bucketFlag.indexOf(false) >= 0) || totalBucket > 0) {
+            return 'middleBucket';
         } else {
-        return 'emptyBucket';
+            return 'emptyBucket';
         }
     }
-     /*
-    *Set Total Bucket Income For Earnings
-    */
-   setBucketAmountByCal() {
-    Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
-        const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
-        const inputBucket = this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY];
-        if (inputBucket) {
-            const popInputBucket = financeData.POP_FORM_INPUT;
-            const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
-            const inputParams = financeData.MONTHLY_INPUT_CALC;
-            this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
-            = this.additionOfCurrency(filterInput, inputParams);
-        }
-    });
-   }
-   /*
-   *Remove key from Object
-   * First Parameter is Object and Second Parameter is array with key need to pop
+    /*
+   *Set Total Bucket Income For Earnings
    */
-// tslint:disable-next-line: cognitive-complexity
+    setBucketAmountByCal() {
+        Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
+            const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
+            const inputBucket = this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY];
+            if (inputBucket) {
+                const popInputBucket = financeData.POP_FORM_INPUT;
+                const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
+                const inputParams = financeData.MONTHLY_INPUT_CALC;
+                this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+                    = this.additionOfCurrency(filterInput, inputParams);
+            }
+        });
+    }
+    /*
+    *Remove key from Object
+    * First Parameter is Object and Second Parameter is array with key need to pop
+    */
+    // tslint:disable-next-line: cognitive-complexity
     unSetObjectByKey(inputObject: any, removeKey: any) {
         Object.keys(inputObject).forEach((key) => {
             if (Array.isArray(inputObject[key])) {
                 inputObject[key].forEach((objDetails: any, index) => {
                     Object.keys(objDetails).forEach((innerKey) => {
-                        if (innerKey !== 'enquiryId' ) {
+                        if (innerKey !== 'enquiryId') {
                             const Regexp = new RegExp('[,]', 'g');
                             let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
                             thisValue = parseInt(objDetails[innerKey], 10);
@@ -828,13 +740,13 @@ export class ComprehensiveService {
                             }
                         }
                     });
-                  });
+                });
             }
-          });
+        });
         if (removeKey) {
             Object.keys(removeKey).forEach((key) => {
-                if ( key !== '') {
-                delete inputObject[removeKey[key]];
+                if (key !== '') {
+                    delete inputObject[removeKey[key]];
                 }
             });
         }
@@ -844,14 +756,14 @@ export class ComprehensiveService {
     *Compute Expense Calculation for Summary Page
     *PV x (1+r)^n
     */
-   getComputedExpense(amount: number, percent: any, aboutAge: number) {
+    getComputedExpense(amount: number, percent: any, aboutAge: number) {
         let percentCal: any;
         let computedVal: any;
         let finalResult = 0;
         if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
             percentCal = percent / 100;
             computedVal = Math.pow((1 + percentCal), aboutAge);
-            finalResult =  Math.round(computedVal * amount);
+            finalResult = Math.round(computedVal * amount);
         }
         return finalResult;
     }

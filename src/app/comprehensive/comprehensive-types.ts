@@ -95,6 +95,7 @@ export interface IMySummaryModal {
     liabilitiesLiquidCash?: number;
     liabilitiesMonthlySpareCash?: number;
     nextPageURL: any;
+    routerEnabled?: boolean;
 }
 
 export interface ISummaryDependantDetails {

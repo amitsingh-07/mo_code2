@@ -88,6 +88,12 @@ export const COMPREHENSIVE_CONST = {
             ESTIMATED_COST: 100000,
             TERM_INSURANCE: 90,
             WHOLE_LIFE: 450
+        },
+        ROUTER_CONFIG: {
+            STEP1: true,
+            STEP2: true,
+            STEP3: true,
+            STEP4: true,
         }
     }
 };
