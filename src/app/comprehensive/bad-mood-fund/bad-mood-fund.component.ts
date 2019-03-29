@@ -30,7 +30,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   pageSubTitle: string;
 
   hospitalPlanForm: FormGroup;
-  hospitalPlanFormValues: HospitalPlan;
+  downOnLuck: HospitalPlan;
   hospitalPlanList: any[];
   isFormValid = false;
   ciSliderConfig: any = {
@@ -64,6 +64,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.downOnLuck = this.comprehensiveService.getDownOnLuck();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -79,28 +80,28 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.progressService.show();
       }
     });
-    this.hospitalPlanFormValues = this.comprehensiveService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlanId: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required),
-      badMoodMonthlyAmount: new FormControl(this.SliderValue, Validators.required)
+      hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
+      badMoodMonthlyAmount: new FormControl(this.downOnLuck.badMoodMonthlyAmount, Validators.required)
     });
-    if (this.hospitalPlanFormValues.hospitalClassId) {
+    if (this.downOnLuck.hospitalClassId) {
       this.isFormValid = true;
     }
     this.apiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
+    this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(0);
+    this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
 
   }
   validateForm(hospitalPlan) {
-    this.hospitalPlanFormValues = {
+    this.downOnLuck = {
       hospitalClass: hospitalPlan.hospitalClass,
       hospitalClassDescription: hospitalPlan.hospitalClassDescription,
-      hospitalClassId: hospitalPlan.id
+      hospitalPlanId: hospitalPlan.id
     } as HospitalPlan;
     this.isFormValid = true;
   }

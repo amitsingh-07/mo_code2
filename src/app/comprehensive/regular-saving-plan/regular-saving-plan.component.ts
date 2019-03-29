@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IRegularSavings } from '../comprehensive-types';
@@ -29,11 +30,12 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   submitted = false;
   validationFlag: boolean;
   hasRegularSavings: boolean;
+  enquiryId: number;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private comprehensiveApiService: ComprehensiveApiService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -46,6 +48,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.RSP.OPTIONAL_VALIDATION_FLAG');
       });
     });
+    this.enquiryId = this.comprehensiveService.getEnquiryId();
 
   }
   setPageTitle(title: string) {
@@ -57,7 +60,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   rspSelection() {
     this.RSPForm.valueChanges.subscribe((form: any) => {
-      this.hasRegularSavings = form.hasRegularSavings === 'true' ? true : false;
+      this.hasRegularSavings = form.hasRegularSavings;
     });
   }
   ngOnInit() {
@@ -69,9 +72,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       }
     });
     this.regularSavingsArray = this.comprehensiveService.getRegularSavingsList();
-    if (this.comprehensiveService.hasRegularSavings() === 'true') {
-      this.hasRegularSavings = true;
-    }
+    this.hasRegularSavings = this.comprehensiveService.hasRegularSavings();
     this.buildRSPForm();
   }
   ngOnDestroy() {
@@ -82,7 +83,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPForm() {
     const regularSavings = [];
 
-    if (this.regularSavingsArray  && this.regularSavingsArray.length > 0) {
+    if (this.regularSavingsArray && this.regularSavingsArray.length > 0) {
 
       this.regularSavingsArray.forEach((regularSavePlan: any) => {
         regularSavings.push(this.buildRSPDetailsForm(regularSavePlan));
@@ -92,7 +93,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       regularSavings.push(this.buildEmptyRSPForm());
     }
     this.RSPForm = this.formBuilder.group({
-      hasRegularSavings: [this.hasRegularSavings === true ? 'true' : 'false', Validators.required],
+      hasRegularSavings: [this.comprehensiveService.hasRegularSavings(), Validators.required],
       comprehensiveRegularSavingsList: this.formBuilder.array(regularSavings),
     });
   }
@@ -100,7 +101,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       regularUnitTrust: [value.regularUnitTrust, [Validators.required]],
       regularPaidByCash: [value.regularPaidByCash, [Validators.required]],
-      regularPaidByCPF: [value.regularPaidByCash, [Validators.required]]
+      regularPaidByCPF: [value.regularPaidByCash, [Validators.required]],
+      enquiryId: this.enquiryId
 
     });
   }
@@ -108,7 +110,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       regularUnitTrust: ['', [Validators.required]],
       regularPaidByCash: ['', [Validators.required]],
-      regularPaidByCPF: ['', [Validators.required]]
+      regularPaidByCPF: ['', [Validators.required]],
+      enquiryId: this.enquiryId
 
     });
   }
@@ -126,8 +129,12 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   goToNext(form) {
     if (this.validateRegularSavings(form)) {
+      console.log(form.value);
       this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
       this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
+      this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+        console.log(data);
+      });
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     }
   }
