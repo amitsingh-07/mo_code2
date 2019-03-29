@@ -64,13 +64,6 @@ export class ComprehensiveService {
         return {};
     }
 
-    getHospitalPlan(): HospitalPlan {
-        if (!this.comprehensiveFormData.hospitalPlanData) {
-            this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
-        }
-        return this.comprehensiveFormData.hospitalPlanData;
-    }
-
     clearFormData() {
         this.comprehensiveFormData = {} as ComprehensiveFormData;
         this.commit();
@@ -293,13 +286,13 @@ export class ComprehensiveService {
         }
     }
     getDownOnLuck() {
-        if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
-            this.comprehensiveFormData.comprehensiveDetails.downOnLuck = {} as HospitalPlan;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = {} as HospitalPlan;
         }
-        return this.comprehensiveFormData.comprehensiveDetails.downOnLuck;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck;
     }
-    setDownOnLuck(downOnLuck: HospitalPlan) {
-        this.comprehensiveFormData.comprehensiveDetails.downOnLuck = downOnLuck;
+    setDownOnLuck(comprehensiveDownOnLuck: HospitalPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
     }
     setDependantSelection(selection: boolean) {
 
@@ -346,7 +339,7 @@ export class ComprehensiveService {
             return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans;
         }
     }
-    setRegularSavings(selection: string) {
+    setRegularSavings(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans = selection;
         this.commit();

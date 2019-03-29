@@ -5,7 +5,7 @@ export interface IComprehensiveDetails {
     dependentsList: IDependantDetail[];
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
-    downOnLuck: HospitalPlan;
+    comprehensiveDownOnLuck: HospitalPlan;
     comprehensiveRegularSavingsList: IRegularSavings[];
     comprehensiveLiabilities: IMyLiabilities;
     comprehensiveIncome: IMyEarnings;
@@ -19,7 +19,7 @@ export interface IComprehensiveEnquiry {
     hasComprehensive: boolean;
     hasDependents: boolean;
     hasEndowments: string;
-    hasRegularSavingsPlans: string;
+    hasRegularSavingsPlans: boolean;
     type: string;
 }
 export interface IMyProfile {
@@ -68,8 +68,9 @@ export class HospitalPlan {
     hospitalClass: string;
     hospitalClassDescription: string;
     hospitalClassId: number;
+    hospitalPlanId: number;
     isFullRider = false;
-    badMoodMonthlyAmount: string;
+    badMoodMonthlyAmount: number;
     enquiryId: number;
 }
 
@@ -165,6 +166,7 @@ export interface IRegularSavings {
     regularUnitTrust: string;
     regularPaidByCash: string;
     regularPaidByCPF: string;
+    enquiryId: number;
 }
 export interface IInsurancePlan {
     enquiryId: number;

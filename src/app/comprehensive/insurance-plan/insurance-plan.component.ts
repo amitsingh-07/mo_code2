@@ -26,6 +26,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
+  haveHDB = true;
   submitted = false;
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
@@ -53,7 +54,8 @@ export class InsurancePlanComponent implements OnInit {
         }
       });
     });
-    if (this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
+    if (this.comprehensiveService.getMyProfile() &&
+    this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
       this.longTermInsurance = false;
     }
     this.comprehensiveApiService.getInsurancePlanning().subscribe((data: IInsurancePlan) => {

@@ -14,9 +14,9 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 
 @Component({
   selector: 'app-dependants-details',
