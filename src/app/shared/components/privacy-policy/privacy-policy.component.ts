@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router} from '@angular/router';
 import { FooterService } from './../../footer/footer.service';
 import { NavbarService } from './../../navbar/navbar.service';
 
@@ -10,11 +11,14 @@ import { NavbarService } from './../../navbar/navbar.service';
 })
 export class PrivacyPolicyComponent implements OnInit {
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService) { }
+  constructor(
+    public router: Router,
+    public navbarService: NavbarService,
+    public footerService: FooterService) { }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(true);
   }
 

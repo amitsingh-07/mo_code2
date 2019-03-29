@@ -23,8 +23,8 @@
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
     "FULL_NAME": "Full Name",
-    "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name (Family Name)",
+    "FULL_NAME_NRIC": "(as per NRIC)",
+    "FULL_NAME_PASSPORT": "(as per Passport)",
     "NRIC_NUMBER": "NRIC Number",
     "PASSPORT_NUMBER": "Passport Number",
     "PASSPORT_EXPIRY": "Passport Expiry",
@@ -295,7 +295,7 @@
     "YOUR_OFFICE_ADDRESS": "Your office address:"
   },
   "ACKNOWLEDGEMENT": {
-    "TITLE": "Acknowledgement",
+    "TITLE": "IMPORTANT NOTICE",
     "AGREE": "I Agree"
   },
   "ACCOUNT_SETUP_COMPLETE": {
