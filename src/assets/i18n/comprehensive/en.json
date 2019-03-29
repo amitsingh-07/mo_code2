@@ -175,8 +175,8 @@
 	    "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
       "TOOLTIP_TITLE": "Education Endownment",
       "TOOLTIP_MESSAGE": "An Education endownment plan is typically an insurance policy that matures and pays out around the time of the child's entry into university",
-      "MALE_ABOUT_YEAR": 20,
-      "FEMALE_ABOUT_YEAR": 18
+      "MALE_ABOUT_YEAR": 21,
+      "FEMALE_ABOUT_YEAR": 19
 
     },
     "EDUCATION_PREFERENCE": {
@@ -416,7 +416,7 @@
       "OTHER_LOANS_AMOUNT_OUTSTANDING": "Other Loans Amount OutStanding",
       "CAR_LOANS": "Car Loans",
       "LIABILITIES_BUCKETS_TOTAL": "in total",
-      "LIABILITIES_BUCKETS_NOTE":"Your monthly income bucket",
+      "LIABILITIES_BUCKETS_NOTE":"Your liabilities bucket",
       "FORM":{
        "LOAN_PLACEHOLDER": "Enter Amount"
       },

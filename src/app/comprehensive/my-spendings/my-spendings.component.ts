@@ -62,7 +62,6 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       });
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
-    console.log(this.spendingDetails);
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
