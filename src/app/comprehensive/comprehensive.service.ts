@@ -711,13 +711,14 @@ export class ComprehensiveService {
     setBucketAmountByCal() {
         Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
             const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
-            const inputBucket = this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY];
-            if (inputBucket) {
+            const inputBucket = Object.assign({}, this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY]);         
+            if (Object.keys(inputBucket).length > 0 && inputBucket.constructor === Object) {
                 const popInputBucket = financeData.POP_FORM_INPUT;
                 const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
                 const inputParams = financeData.MONTHLY_INPUT_CALC;
+                const inputTotal = this.additionOfCurrency(filterInput, inputParams);
                 this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
-                    = this.additionOfCurrency(filterInput, inputParams);
+                    = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
             }
         });
     }
