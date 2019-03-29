@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
@@ -53,6 +54,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     NgbModule.forRoot(),
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
