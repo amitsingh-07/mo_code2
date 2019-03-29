@@ -28,7 +28,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   pageId: string;
   menuClickSubscription: Subscription;
   pageSubTitle: string;
-
+  totalAnnualIncomeBucket = 0;
   hospitalPlanForm: FormGroup;
   downOnLuck: HospitalPlan;
   hospitalPlanList: any[];
@@ -65,12 +65,14 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
+    this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   onSliderChange(value): void {
     this.SliderValue = value;
+    this.totalAnnualIncomeBucket = this.SliderValue * 12;
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

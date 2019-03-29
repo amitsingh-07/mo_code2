@@ -38,11 +38,12 @@
         </label>
       </div>
      </div>
-      <div>
+      <div class="mb-3">
         <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mb50 mt30 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
       </div>
+      <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1"><div class="flex-col-9 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
     </form>
   </div>
 </div>
