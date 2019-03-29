@@ -17,8 +17,6 @@ export interface ISaveInvestmentAccountRequest {
 export interface IPersonalInfo {
   nationalityCode: string;
   fullName: string;
-  firstName: string;
-  lastName: string;
   nricNumber: string;
   passportNumber: string;
   passportExpiryDate: string;

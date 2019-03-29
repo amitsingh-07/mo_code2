@@ -13,8 +13,8 @@ export class FairDealingComponent implements OnInit {
   constructor(public navbarService: NavbarService, public footerService: FooterService) { }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(true);
   }
 
