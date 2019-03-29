@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
@@ -36,6 +37,7 @@ import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
@@ -53,6 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     NgbModule.forRoot(),
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
