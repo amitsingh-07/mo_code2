@@ -13,8 +13,8 @@ import { IServerResponse } from './../../shared/http/interfaces/server-response.
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
-import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { IChildEndowment, IDependantDetail, IMySummaryModal } from './../comprehensive-types';
 
 @Component({
   selector: 'app-dependant-education-selection',
