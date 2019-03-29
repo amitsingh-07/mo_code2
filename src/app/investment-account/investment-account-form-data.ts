@@ -105,8 +105,7 @@ export class InvestmentAccountFormData {
   durationInvestment: number;
 
   // Additional declaration PEP
-  fName: string;
-  lName: string;
+  pepFullName: string;
   cName: string;
   pepoccupation: string;
   pepOtherOccupation: string;
