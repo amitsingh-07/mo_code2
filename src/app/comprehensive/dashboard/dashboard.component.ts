@@ -1,13 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { IMyProfile } from '../comprehensive-types';
 
 @Component({
   selector: 'app-dashboard',
