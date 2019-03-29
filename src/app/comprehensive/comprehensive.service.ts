@@ -14,6 +14,7 @@ import {
     IProgressTrackerItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
+import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
@@ -32,7 +33,6 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
-import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -63,13 +63,6 @@ export class ComprehensiveService {
             return JSON.parse(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE));
         }
         return {};
-    }
-
-    getHospitalPlan(): HospitalPlan {
-        if (!this.comprehensiveFormData.hospitalPlanData) {
-            this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
-        }
-        return this.comprehensiveFormData.hospitalPlanData;
     }
 
     clearFormData() {
@@ -288,16 +281,18 @@ export class ComprehensiveService {
     }
 
     hasDependant() {
-        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents;
+        }
     }
     getDownOnLuck() {
-        if (!this.comprehensiveFormData.comprehensiveDetails.downOnLuck) {
-            this.comprehensiveFormData.comprehensiveDetails.downOnLuck = {} as HospitalPlan;
+        if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = {} as HospitalPlan;
         }
-        return this.comprehensiveFormData.comprehensiveDetails.downOnLuck;
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck;
     }
-    setDownOnLuck(downOnLuck: HospitalPlan) {
-        this.comprehensiveFormData.comprehensiveDetails.downOnLuck = downOnLuck;
+    setDownOnLuck(comprehensiveDownOnLuck: HospitalPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
     }
     setDependantSelection(selection: boolean) {
 
@@ -344,7 +339,7 @@ export class ComprehensiveService {
             return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans;
         }
     }
-    setRegularSavings(selection: string) {
+    setRegularSavings(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasRegularSavingsPlans = selection;
         this.commit();
@@ -867,4 +862,3 @@ export class ComprehensiveService {
         return totalExpense;
     }
 }
-

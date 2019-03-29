@@ -1,26 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { IMyAssets } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { IMyAssets } from '../comprehensive-types';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-my-assets',
   templateUrl: './my-assets.component.html',
   styleUrls: ['./my-assets.component.scss']
 })
-export class MyAssetsComponent implements OnInit {
+export class MyAssetsComponent implements OnInit, OnDestroy {
   RSPForm: any;
   pageTitle: string;
   myAssetsForm: FormGroup;
@@ -34,25 +37,70 @@ export class MyAssetsComponent implements OnInit {
   submitted: boolean;
   bucketImage: string;
   validationFlag: boolean;
+  patternValidator = '^0*[1-9]\\d*$';
+  myInfoSubscription: any;
+  modelTitle: string;
+  modelMessage: string;
+  modelBtnText: string;
+  showConfirmation: boolean;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
+              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+              private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
+              private modal: NgbModal) {
     this.pageId = this.route.routeConfig.component.name;
-    this.configService.getConfig().subscribe((config) => {
+    this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.translate.get(config.common).subscribe((result: string) => {
+        // meta tag and
+        this.modelTitle = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
+        );
+        this.modelMessage = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
+        );
+        this.modelBtnText = this.translate.instant(
+          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
+        );
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
+        this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
+        this.setPageTitle(this.pageTitle);
+        this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
+      });
     });
-    this.translate.get('COMMON').subscribe((result: string) => {
-      // meta tag and title
-      this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
-      this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
-
-      this.setPageTitle(this.pageTitle);
-      this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoData();
+        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
+          this.cancelMyInfo();
+        } else {
+          this.myInfoService.closeMyInfoPopup(false);
+        }
+      }
     });
     this.assetDetails = this.comprehensiveService.getMyAssets();
-    //console.log(this.comprehensiveService.getMyAssets());
+  }
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+  }
+
+  openModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.modelTitle;
+    ref.componentInstance.errorMessageHTML = this.modelMessage;
+    ref.componentInstance.primaryActionLabel = this.modelBtnText;
+    ref.componentInstance.warningIcon = true;
+    ref.result
+      .then(() => {
+        this.showConfirmation = true;
+      })
+      .catch((e) => { });
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -106,7 +154,7 @@ export class MyAssetsComponent implements OnInit {
   addOtherInvestment() {
     const otherPropertyControl = this.myAssetsForm.controls['investmentPropertiesValue'];
     if (this.myInvestmentProperties) {
-      otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+      otherPropertyControl.setValidators([Validators.required, Validators.pattern(this.patternValidator)]);
       otherPropertyControl.updateValueAndValidity();
     } else {
       otherPropertyControl.setValue('');
@@ -125,10 +173,11 @@ export class MyAssetsComponent implements OnInit {
   }
   buildInvestmentForm(inputParams, totalLength) {
     if (totalLength > 0) {
-    return this.formBuilder.group({
-      typeOfInvestment: [inputParams.typeOfInvestment, [Validators.required]],
-      investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '', [Validators.required, Validators.pattern('^0*[1-9]\\d*$')]]
-    });
+      return this.formBuilder.group({
+        typeOfInvestment: [inputParams.typeOfInvestment, [Validators.required]],
+        investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+        [Validators.required, Validators.pattern(this.patternValidator)]]
+      });
     } else {
       return this.formBuilder.group({
         typeOfInvestment: [inputParams.typeOfInvestment, []],
@@ -159,7 +208,7 @@ export class MyAssetsComponent implements OnInit {
     } else {
       otherInvestmentControl['typeOfInvestment'].setValidators([Validators.required]);
       otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
-      otherInvestmentControl['investmentAmount'].setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+      otherInvestmentControl['investmentAmount'].setValidators([Validators.required, Validators.pattern(this.patternValidator)]);
       otherInvestmentControl['investmentAmount'].updateValueAndValidity();
     }
   }
@@ -173,7 +222,7 @@ export class MyAssetsComponent implements OnInit {
       });
       const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_ASSETS);
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
-      this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
+        this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
       return false;
     } else {
       this.submitted = false;
@@ -194,12 +243,17 @@ export class MyAssetsComponent implements OnInit {
         // this.loaderService.showLoader({ title: 'Saving' });
         // this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
         //   this.loaderService.hideLoader();
-             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
         // });
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
       }
     }
+  }
+  getMyInfoData() {
+    this.myInfoService.getMyInfoData().subscribe((data) => {
+      console.log(data);
+    });
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
@@ -218,9 +272,9 @@ export class MyAssetsComponent implements OnInit {
     let bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.BUCKET_INPUT_CALC;
     bucketParams = bucketParams.slice(0);
     this.myAssetsForm.value.assetsInvestmentSet.forEach((investDetails: any, index) => {
-       assetFormObject['investmentAmount_' + index] = investDetails.investmentAmount;
-       bucketParams.push('investmentAmount_' + index);
-     });
+      assetFormObject['investmentAmount_' + index] = investDetails.investmentAmount;
+      bucketParams.push('investmentAmount_' + index);
+    });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
   }

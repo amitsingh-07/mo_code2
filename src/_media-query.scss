@@ -75,6 +75,7 @@
     font-family: $muli-semi-bold;
     &.comprehensive {
       font-size: 18px !important;
+      z-index: 1062;
     }
   }
   @include min568max767 {
