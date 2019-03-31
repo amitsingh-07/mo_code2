@@ -7,22 +7,22 @@
     </li>
     <li [ngClass]="{'active': step===2, 'success': step === 3 || step=== 4}"><span></span>
       <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 2</div>
-      <div class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE' | translate}} </div>
+      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE' | translate}} </div>
       <div *ngIf="step===2" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_2_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{'active': step===3, 'success': step===4}"><span></span>
       <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 3</div>
-      <div class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
+      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
       <div *ngIf="step===3" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{'active': step===4, 'success': step===5}"><span></span>
       <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 4</div>
-      <div class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
+      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
     </li>
     <li [ngClass]="{ 'success': step===5}"><span></span>
       <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE' | translate}}</div>
-      <div *ngIf="step!==4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
+      <div *ngIf="step!==4" class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC2' | translate}}</div>
     </li>
   </ul>

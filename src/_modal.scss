@@ -890,8 +890,10 @@ body.modal-open::-webkit-scrollbar {
   &__box-content {
     margin-bottom: 30px;
     background: $light-grey-color;
-    padding: 20px 10px;
+    padding: 20px;
     font-size: 14px;
+    text-align: left;
+    border-radius: 6px;
   }
   .btn.btn-primary {
     box-shadow: none !important;
