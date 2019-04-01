@@ -739,8 +739,7 @@ input::placeholder {
   }
 
   .form-control:focus+.form-control-placeholder,
-  .form-control:valid+.form-control-placeholder,
-  .form-control:read-only+.form-control-placeholder {
+  .form-control:valid+.form-control-placeholder {
     font-size: 10px;
     transform: translate3d(0, -50%, 0);
     opacity: 1;
