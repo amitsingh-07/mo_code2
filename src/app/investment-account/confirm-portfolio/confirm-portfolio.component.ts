@@ -242,7 +242,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   verifyCustomer() {
     const investStatus = this.signUpService.getInvestmentStatus();
-    if (investStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
+    if (investStatus && investStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
       const pepData = this.investmentAccountService.getPepData();
       const OldPepData = this.investmentAccountService.getOldPepData();
       if (pepData && !OldPepData) {
