@@ -36,7 +36,6 @@ export class PersonalInfoComponent implements OnInit {
   unitedStatesResident: string;
   showPassport = false;
   showNric = true;
-  disabledFullName: true;
   userProfileInfo;
   optionList: any;
   salutaionList: any;
@@ -97,7 +96,6 @@ export class PersonalInfoComponent implements OnInit {
 
   buildForm() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.populateFullName();
     if (this.investmentAccountService.isSingaporeResident()) {
       this.invPersonalInfoForm = this.buildFormForNricNumber();
       this.showPassport = false;
@@ -256,17 +254,6 @@ export class PersonalInfoComponent implements OnInit {
         form.get(key).markAsDirty();
       }
     });
-  }
-  populateFullName() {
-    let fullName;
-    this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    if (this.userProfileInfo.firstName) {
-      fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
-    } else {
-      fullName = this.userProfileInfo.lastName;
-    }
-    this.formValues.fullName = this.formValues.fullName
-      ? this.formValues.fullName : fullName;
   }
   toggleDate(openEle, closeEle) {
     if (openEle) {
