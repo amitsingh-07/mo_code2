@@ -326,7 +326,7 @@ export class PersonalInfoComponent implements OnInit {
 
   validateNric(control: AbstractControl) {
     const value = control.value;
-    if (value !== undefined) {
+    if (value && value !== undefined) {
       const isValidNric = this.investmentAccountCommon.isValidNric(value);
       if (!isValidNric) {
         return { nric: true };

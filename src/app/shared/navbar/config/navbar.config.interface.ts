@@ -3,6 +3,7 @@ export interface INavbarConfig {
     showHeaderBackBtn: boolean;
     showMenu: true;
     showLogin: true;
+    showLogout: false;
     showNavShadow: true;
     showSearchBar: false;
     showNotifications: boolean;
