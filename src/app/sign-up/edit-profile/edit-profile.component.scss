@@ -2,18 +2,18 @@
 @import "../../../_mixins.scss";
 app-edit-profile{
  .container-fluid{
-  padding-top: 0px;
+  padding-top: 76px !important;
   @include allmobiles {
-   padding-top: 60px;
+   padding-top: 60px !important;
    padding-left: 0 !important;
    padding-right: 0 !important;
   }
   @include phablet{
-    padding-top: 100px;
+    padding-top: 60px !important;
    }
  }
  .grass_bg_container{
-   width: 600px;
+   //width: 600px;
    margin: 0 auto;
    @include allmobiles{
      width: 100%;
@@ -45,6 +45,7 @@ app-edit-profile{
     height: 28px;
     width: 2px;
     margin-left: 10px;
+    margin-top: 10px;
     @include allmobiles{
       margin-top: 10px;
     }
@@ -83,6 +84,8 @@ app-edit-profile{
   }
   .grid-wrapper{
     @extend .flex;
+    flex-direction: column;
+      align-items: flex-start;
     @include allmobiles{
       flex-direction: column;
       align-items: flex-start;
