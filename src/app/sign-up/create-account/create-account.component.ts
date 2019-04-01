@@ -166,6 +166,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.updatedSelectedProducts(true, true);
           } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
             this.createWill(true);
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
           }
         } else if (data.responseMessage.responseCode === 6001) {
           this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),

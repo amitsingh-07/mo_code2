@@ -42,19 +42,20 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  createAccountBodyRequest(captchaValue: string, pwd: string): ISignUp {
+  createAccountBodyRequest(captcha: string, pwd: string): ISignUp {
     const getAccountInfo = this.signUpService.getAccountInfo();
-    let journey = 'signup';
+    let journeyType = 'signup';
     let enquiryId = -1;
+
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-        this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      journey = 'insurance';
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      journeyType = 'insurance';
       enquiryId = this.selectedPlansService.getSelectedPlan().enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-      journey = 'will-writing';
+      journeyType = 'will-writing';
       enquiryId = this.willWritingService.getEnquiryId();
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_INVESTMENT) {
-      journey = 'investment';
+      journeyType = 'investment';
       enquiryId = Number(this.authService.getEnquiryId());
     }
 
@@ -69,9 +70,9 @@ export class SignUpApiService {
         acceptMarketingNotifications: getAccountInfo.marketingAcceptance
       },
       sessionId: this.authService.getSessionId(),
-      captcha: captchaValue,
-      journeyType: journey,
-      enquiryId: enquiryId,
+      captcha,
+      journeyType,
+      enquiryId,
       callbackUrl: environment.apiBaseUrl,
     };
   }
@@ -163,7 +164,7 @@ export class SignUpApiService {
    * create user account.
    * @param code - verification code.
    */
-  createAccount(captcha:string, pwd: string) {
+  createAccount(captcha: string, pwd: string) {
     const payload = this.createAccountBodyRequest(captcha, pwd);
     return this.apiService.createAccount(payload);
   }

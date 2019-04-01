@@ -137,7 +137,7 @@ export class VerifyMobileComponent implements OnInit {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
     }
   }
 
