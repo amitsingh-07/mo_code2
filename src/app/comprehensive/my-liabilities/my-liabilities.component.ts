@@ -89,6 +89,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherPropertyControl.updateValueAndValidity();
     } else {
+      otherPropertyControl.markAsDirty();
       otherPropertyControl.setValue('');
       otherPropertyControl.setValidators([]);
       otherPropertyControl.updateValueAndValidity();

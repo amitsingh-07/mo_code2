@@ -158,7 +158,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       otherPropertyControl.updateValueAndValidity();
     } else {
       otherPropertyControl.setValue('');
-      otherPropertyControl.setValidators([]);
+      otherPropertyControl.setValidators([]);      
+      otherPropertyControl.markAsDirty();
       otherPropertyControl.updateValueAndValidity();
     }
     this.onTotalAssetsBucket();
@@ -187,7 +188,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   removeInvestment(i) {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
-    this.investType[i] = '';
+    this.investType[i] = '';    
+    investments.markAsDirty();
     investments.removeAt(i);
     this.setInvestValidation(investments.length);
     this.onTotalAssetsBucket();
@@ -240,11 +242,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           delete this.assetDetails['investmentAmount_' + index];
         });
         this.comprehensiveService.setMyAssets(this.assetDetails);
-        // this.loaderService.showLoader({ title: 'Saving' });
-        // this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
-        //   this.loaderService.hideLoader();
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
-        // });
+        this.loaderService.showLoader({ title: 'Saving' });
+        this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
+          this.loaderService.hideLoader();
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        });
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
       }
