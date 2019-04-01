@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
@@ -44,7 +44,7 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
   constructor(private navbarService: NavbarService,  private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService, 
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
               private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.configService.getConfig().subscribe((config: any) => {
@@ -99,4 +99,3 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
     }
   }
 }
-

@@ -94,7 +94,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       this.buildEducationSelectionForm();
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+        const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+        if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
           this.childEndowmentFormGroupArray.push(this.formBuilder.group(newEndowment));
@@ -131,7 +133,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') :
+      this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
     return {
       id: 0, // #childEndowment.id,
       dependentId: dependant.id,
@@ -166,8 +169,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-      for (const childEndowment of this.childEndowmentArray) {
-        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+      const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+      if (getAge < maxAge) {
+        for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
             const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
             // Filter the array to avoid duplicates
@@ -177,11 +182,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             }
             break;
           }
-        }
-      }
 
-      // Filter the array to avoid duplicates
-      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+        }
+
+        // Filter the array to avoid duplicates
+
         if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
           const thisNewEndowment = this.getNewEndowmentItem(dependant);
           tempChildEndowmentArray.push(thisNewEndowment);

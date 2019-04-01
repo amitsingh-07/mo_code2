@@ -26,7 +26,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
-  haveHDB = true;
+  haveHDB = false;
   submitted = false;
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
@@ -53,6 +53,9 @@ export class InsurancePlanComponent implements OnInit {
           this.showSummaryModal();
         }
       });
+      if (this.comprehensiveService.getMySpendings().HLtypeOfHome === 'HDB') {
+        this.haveHDB = true;
+      }
     });
     if (this.comprehensiveService.getMyProfile() &&
     this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
@@ -65,6 +68,7 @@ export class InsurancePlanComponent implements OnInit {
     // Above Service Will be deleted once API is Ready
     // this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
+    console.log(this.comprehensiveService.getMySpendings().HLtypeOfHome);
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
   buildInsuranceForm() {
@@ -126,4 +130,3 @@ export class InsurancePlanComponent implements OnInit {
     }
   }
 }
-
