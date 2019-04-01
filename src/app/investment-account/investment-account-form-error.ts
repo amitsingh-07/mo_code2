@@ -547,26 +547,15 @@ export class InvestmentAccountFormError {
         errorMessage: 'Select Occupation'
       }
     },
-    fName: {
+    pepFullName: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid First Name',
-        errorMessage: 'Enter First Name'
+        errorMessage: 'Enter Full Name'
       },
       pattern: {
         errorTitle: 'Invalid First Name',
-        errorMessage: 'First Name should not contain numbers and special characters.'
-      }
-    },
-    lName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Enter Last Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Last Name should not contain numbers and special characters.'
+        errorMessage: 'Full Name should not contain numbers and special characters.'
       }
     },
     cName: {
@@ -653,13 +642,6 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Zip Code',
         errorMessage: 'Zip Code you entered is invalid.'
       }
-    },
-    salaryRange: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid salary range',
-        errorMessage: 'Select Salary Range'
-      }
-    },
+    }
   };
 }
