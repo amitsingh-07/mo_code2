@@ -1,10 +1,10 @@
-import { LoaderService } from './../../shared/components/loader/loader.service';
-import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal } from '../comprehensive-types';
