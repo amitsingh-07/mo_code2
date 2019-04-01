@@ -171,7 +171,7 @@
           <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
             <a class="nav-link" [routerLink]="['/account/login']"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
             </li>
-          <li *ngIf="isLoggedIn && showLogin" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
+          <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
           (mouseleave)="closeDropdown(id05);">
             <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle></a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
