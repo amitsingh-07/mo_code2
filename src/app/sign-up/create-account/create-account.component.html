@@ -41,15 +41,16 @@
           <div class="flex-row mb10">
             <div class="flex-col-5 stretch mr15" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName"
-                  required>
+                <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required
+                  [readonly]="editNumber">
                 <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' |
                   translate}}</label>
               </div>
             </div>
             <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
+                <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required
+                  [readonly]="editNumber">
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
               </div>
@@ -58,7 +59,8 @@
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required
+                  [readonly]="editNumber">
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
               </div>
@@ -68,10 +70,10 @@
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
                 <input type="text" id="crtAccInpt5" class="form-control" #confirmEmail formControlName="confirmEmail"
-                  required>
+                  required [readonly]="editNumber">
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL' | translate}}</label>
-                  <div class="error-tooltip"
+                <div class="error-tooltip"
                   *ngIf="!createAccountForm.controls.email.errors && createAccountForm.controls.confirmEmail.dirty && createAccountForm.controls.confirmEmail.errors && confirmEmail.value.length">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
@@ -91,8 +93,7 @@
                 <label class="form-control-placeholder" for="password">{{ 'PASSWORD.FORM.PASSWORD' | translate}}</label>
                 <span [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'"
                   (click)="showHidePassword(password)"></span>
-                <div class="error-tooltip"
-                  *ngIf="!isPasswordValid">
+                <div class="error-tooltip" *ngIf="!isPasswordValid">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
