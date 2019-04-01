@@ -36,7 +36,7 @@ export class NavbarConfig {
     };
     // Edit Profile
     '102': object = {
-      showNavBackBtn: false,
+      showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: true,
       showLogin: true,
