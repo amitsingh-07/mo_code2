@@ -87,6 +87,7 @@ export class InvestmentAccountFormData {
   sourceOfIncome: any;
   ExistingEmploye: any;
   pep: any;
+  oldPep: boolean;
   beneficial: any;
 
   // financial details

@@ -275,6 +275,9 @@ export class InvestmentAccountService {
   getPepData() {
     return this.investmentAccountFormData.pep;
   }
+  getOldPepData() {
+    return this.investmentAccountFormData.oldPep;
+  }
   getBOStatus() {
     return this.investmentAccountFormData.beneficial;
   }
@@ -1617,6 +1620,7 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.ExistingEmploye =
         additionalDetails.connectedToInvestmentFirm;
       this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
+      this.investmentAccountFormData.oldPep = additionalDetails.politicallyExposed;
       this.investmentAccountFormData.beneficial = additionalDetails.beneficialOwner;
     }
 
