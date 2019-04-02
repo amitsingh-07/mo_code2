@@ -18,8 +18,10 @@
               'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.ACCOUNT_HOLDER_NAME' | translate}}</label>
           </div>
           <div class="flex-col-12">
-            <label class="form-control input-control disabled" 
-             id="account_holder">{{addBankForm.controls.accountHolderName.value}}</label> 
+              <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
+                  <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" name="accountHolderName"
+                    formControlName="accountHolderName" value="0" maxLength="30">
+              </div> 
          </div>
         </div>
         <!-- Content -->
