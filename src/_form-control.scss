@@ -322,9 +322,6 @@
       color: #00a7a7;
     }
   }
-
-  input[type='radio']:checked,
-  input[type='checkBox']:checked {}
 }
 
 /*Input placeholder styles*/
@@ -419,10 +416,6 @@ input::placeholder {
 .datepicker-control {
   .input-group {
     margin-bottom: 8px;
-
-    //width: 267px;
-    input {}
-
     .form-control {
       border: transparent;
       color: $app-backgrnd-color;
@@ -626,6 +619,7 @@ input::placeholder {
     position: absolute;
     right: 10px;
     top: 17px;
+    z-index: 1040;
   }
 
   .hide-password {
@@ -724,8 +718,7 @@ input::placeholder {
   select:-webkit-autofill:focus {
     color: #00a7a7;
     -webkit-text-fill-color: #00a7a7;
-    -webkit-box-shadow: none;
-    -webkit-box-shadow: inset 0 0 0px 9999px white;
+    box-shadow: inset 0 0 0px 9999px white;
   }
 
   .form-control-placeholder {

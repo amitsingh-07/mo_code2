@@ -129,4 +129,11 @@ export class InsurancePlanComponent implements OnInit {
       this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
     }
   }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.' + toolTipMessage)
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
+  }
 }
