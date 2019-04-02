@@ -235,13 +235,6 @@ export class ApiService {
       );
   }
 
-  getCustomerInsuranceDetails(){
-    return this.http.get(apiConstants.endpoint.getCustomerInsuranceDetails)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
   /* SignUp API */
   requestVerifyMobile(): string {
     return '000000';
