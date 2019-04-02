@@ -99,7 +99,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   SelectEarningsType(earningsType, earningFlag) {
     this[earningsType] = earningFlag;
     const otherEarningsControl = this.myEarningsForm.controls[this.incomeDetailsDyn[earningsType]];
-    if (!earningFlag) {
+    if (!earningFlag) {      
+      otherEarningsControl.markAsDirty();
       otherEarningsControl.setValue(0);
       otherEarningsControl.setValidators([]);
       otherEarningsControl.updateValueAndValidity();

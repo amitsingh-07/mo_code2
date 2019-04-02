@@ -175,6 +175,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     } else {
       otherPropertyControl.setValue('');
       otherPropertyControl.setValidators([]);
+      otherPropertyControl.markAsDirty();
       otherPropertyControl.updateValueAndValidity();
     }
     this.onTotalAssetsBucket();
@@ -203,7 +204,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   removeInvestment(i) {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
-    this.investType[i] = '';
+    this.investType[i] = '';    
+    investments.markAsDirty();
     investments.removeAt(i);
     this.setInvestValidation(investments.length);
     this.onTotalAssetsBucket();
