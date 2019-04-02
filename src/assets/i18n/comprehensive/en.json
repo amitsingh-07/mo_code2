@@ -474,7 +474,13 @@
      "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
      "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",
      "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
-     "LONG_TERM_INSURANCE_VALUE_4":"I am not sure"
+     "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
+      "TOOLTIP":{
+        "CPF_TITLE": "CPF Dependants’ Protection Scheme",
+        "CPF_MESSAGE": "A basic term insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It provides a maximum sum assured of $46,000 up to 60 years old. Premiums can be paid from the CPF Ordinary Account.",
+        "OTHER_LIFE_INSURANCE_TITLE": "Other Life Insurance Coverage",
+        "OTHER_LIFE_INSURANCE_MESSAGE": "The total benefit payable to you or your loved ones from all your insurance policies in the event of death, Terminal Illness or Total Permanent Disability."
+      }
     },
     "RESULT":{
       "READY":"Your report is ready soon!",
