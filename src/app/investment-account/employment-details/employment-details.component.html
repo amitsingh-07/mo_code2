@@ -5,7 +5,7 @@
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024 invest-web-width">
+  <div class="container-fluid max-width--1024" [class.invest-web-width]="!isEditProfile" [class.invest-web-pt-90]="isEditProfile">
     <div class="content">
       <div class="row">
         <div class="col-12" *ngIf="!isEditProfile">
