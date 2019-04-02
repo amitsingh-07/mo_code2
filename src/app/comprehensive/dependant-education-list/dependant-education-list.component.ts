@@ -70,7 +70,6 @@ export class DependantEducationListComponent implements OnInit {
       }
     });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
-    console.log(this.endowmentDetail);
     this.endowmentArrayPlan = this.endowmentDetail;
     this.buildEndowmentListForm();
     let endowmentSkipEnableFlag = true;
@@ -161,8 +160,6 @@ export class DependantEducationListComponent implements OnInit {
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
             educationPreferenceList
         }).subscribe((data: any) => {
-          console.log(data);
-
           const childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
           this.summaryModalDetails = {
             setTemplateModal: 1, dependantModelSel: true,
@@ -193,6 +190,7 @@ export class DependantEducationListComponent implements OnInit {
       let endowmentSkipEnableFlag = true;
       form.endowmentPlan.forEach((dependant: any, index) => {
         if (dependant.endowmentPlanShow) {
+          console.log(dependant);
           endowmentSkipEnableFlag = false;
         }
       });
