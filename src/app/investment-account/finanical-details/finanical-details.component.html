@@ -58,32 +58,6 @@
                 </div>
               </div>
             </div>
-            <!-- Salary Range -->
-            <div class="form-group">
-              <div class="flex-row">
-                <div class="flex-col-5">
-                  <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.SALARY_RANGE'
-                    | translate}}
-                  </label>
-                </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('salaryRange').valid && !financialDetails.get('salaryRange').pristine}">
-                  <div class="dropdown-control">
-                    <div ngbDropdown placement="top-right">
-                      <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown"
-                        ngbDropdownToggle>
-                        {{(financialDetails.controls.salaryRange.value == '' ||
-                        financialDetails.controls.salaryRange.value) ? financialDetails.controls.salaryRange.value.name
-                        :'Select Range'}}
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let range of salaryRanges; let i = index;" (click)="setSalaryRange(range)"
-                          id="residentialAddress-country-option-{{i}}">{{range.name}}</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <button type="button" id="finacial_details_btn" (click)="goToNext(financialDetails)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
           </form>

@@ -142,6 +142,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.formValues.withdrawAmount;
     ref.componentInstance.withdrawType = this.formValues.withdrawType;
+    ref.componentInstance.portfolioValue = this.currentPortfolioValue();
     ref.componentInstance.confirmed.subscribe((data) => {
       ref.close();
       this.saveWithdrawal();
@@ -149,6 +150,12 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     this.dismissPopup(ref);
   }
+  currentPortfolioValue() {
+    if (this.formValues.withdrawPortfolio) {
+      const portfolioValue = this.formValues.withdrawPortfolio.currentValue;
+      return portfolioValue;
+    }
+   }
 
   showNewBankFormModal() {
     const ref = this.modal.open(AddBankModalComponent, {

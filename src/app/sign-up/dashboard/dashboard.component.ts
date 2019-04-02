@@ -211,7 +211,8 @@ export class DashboardComponent implements OnInit {
         this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
         this.showCddCheckFail = true;
         this.enableInvestment();
         break;
