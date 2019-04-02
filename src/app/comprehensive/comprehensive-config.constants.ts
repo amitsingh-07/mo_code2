@@ -29,7 +29,8 @@ export const COMPREHENSIVE_CONST = {
             API_TOTAL_BUCKET_KEY: 'totalAnnualLiabilities',
             MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
-            BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount']
+            BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount',
+            'otherPropertyLoanOutstandingAmount']
         }
     },
     SUMMARY_CALC_CONST: {

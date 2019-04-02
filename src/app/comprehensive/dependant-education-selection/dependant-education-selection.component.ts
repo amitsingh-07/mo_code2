@@ -25,7 +25,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   hasEndowments: string;
   dependantDetailsArray: IDependantDetail[];
-  education_plan_selection = false;
+  education_plan_selection = true;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
@@ -88,7 +88,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-    console.log(this.childEndowmentArray);
     if (this.childEndowmentArray.length > 0) {
       this.buildChildEndowmentFormArray();
       this.buildEducationSelectionForm();
@@ -152,14 +151,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('input', ['$event'])
-  onChange() {
-    this.checkDependant();
-  }
-
   checkDependant() {
     this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
       form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
-      this.educationSelection(form.endowmentDetailsList);
+      this.educationSelection(form);
     });
   }
 
@@ -203,16 +198,17 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       hasEndowments: [this.hasEndowments, Validators.required],
       endowmentDetailsList: this.formBuilder.array(this.childEndowmentFormGroupArray)
     });
-    this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
+    this.educationSelection(this.dependantEducationSelectionForm.value);
   }
   educationSelection(form) {
     let educationPreferenceAlert = true;
-    form.forEach((dependant: IChildEndowment, index) => {
+    form.endowmentDetailsList.forEach((dependant: IChildEndowment, index) => {
       if (dependant.preferenceSelection) {
         educationPreferenceAlert = !dependant.preferenceSelection;
       }
     });
-    this.educationPreference = educationPreferenceAlert;
+    form.hasEndowments == null ? this.educationPreference = true : this.educationPreference = educationPreferenceAlert;
+    console.log(this.educationPreference);
   }
 
   goToNext(form) {
@@ -270,10 +266,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   gotoNextPage(form) {
-    if (form.value.hasEndowments === '1') {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
-    } else if (form.value.hasEndowments === '2') {
+    if (form.value.hasEndowments === '0') {
       this.showSummaryModal();
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
     }
   }
 

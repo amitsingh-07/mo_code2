@@ -8,8 +8,8 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-uat2.ntucbfa.com',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://localhost:3001',
+  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
+  myInfoCallbackBaseUrl: 'https://bfa-uat2.ntucbfa.com/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
   gaPropertyId: 'UA-125256446-1'
 };
