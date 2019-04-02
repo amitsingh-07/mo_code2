@@ -113,7 +113,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
         this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
-        //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
+        // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
         // this.loaderService.showLoader({ title: 'Saving' });
         // this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
         //   this.loaderService.hideLoader();
@@ -175,4 +175,3 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
   }
 }
-

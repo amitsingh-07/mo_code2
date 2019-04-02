@@ -84,7 +84,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.hospitalPlanForm = new FormGroup({
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
-      badMoodMonthlyAmount: new FormControl(this.downOnLuck.badMoodMonthlyAmount, Validators.required)
+      badMoodMonthlyAmount: new FormControl(this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0 , Validators.required)
     });
     if (this.downOnLuck.hospitalClassId) {
       this.isFormValid = true;
