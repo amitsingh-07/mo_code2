@@ -17,11 +17,11 @@
         <div class="form-group form-group-with-bg--content">
           <label>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</label>
           <input type="text" name="badMoodMonthlyAmount" class="form-control with-bg offset-7 col-5" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
-          <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
+          <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="maxBadMoodFund"
             [step]="100"></nouislider>
             <div class="min-max-val">
           <span class="min-val">$0<br>Min</span>
-          <span class="max-val">$2000<br>Max.</span>
+          <span class="max-val">${{maxBadMoodFund}}<br>Max.</span>
             </div>
         </div>
        

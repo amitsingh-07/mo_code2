@@ -25,7 +25,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   hasEndowments: string;
   dependantDetailsArray: IDependantDetail[];
-  education_plan_selection = false;
+  education_plan_selection = true;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
@@ -88,7 +88,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-    console.log(this.childEndowmentArray);
     if (this.childEndowmentArray.length > 0) {
       this.buildChildEndowmentFormArray();
       this.buildEducationSelectionForm();
@@ -151,11 +150,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } as IChildEndowment;
   }
 
-@HostListener('input', ['$event'])
+  @HostListener('input', ['$event'])
   checkDependant() {
     this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
       form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
-      this.educationSelection(form.endowmentDetailsList);
+      this.educationSelection(form);
     });
   }
 
@@ -199,16 +198,17 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       hasEndowments: [this.hasEndowments, Validators.required],
       endowmentDetailsList: this.formBuilder.array(this.childEndowmentFormGroupArray)
     });
-    this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
+    this.educationSelection(this.dependantEducationSelectionForm.value);
   }
   educationSelection(form) {
     let educationPreferenceAlert = true;
-    form.forEach((dependant: IChildEndowment, index) => {
+    form.endowmentDetailsList.forEach((dependant: IChildEndowment, index) => {
       if (dependant.preferenceSelection) {
         educationPreferenceAlert = !dependant.preferenceSelection;
       }
     });
-    this.educationPreference = educationPreferenceAlert;
+    form.hasEndowments == null ? this.educationPreference = true : this.educationPreference = educationPreferenceAlert;
+    console.log(this.educationPreference);
   }
 
   goToNext(form) {

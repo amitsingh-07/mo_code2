@@ -227,6 +227,7 @@ export class ComprehensiveService {
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.updateComprehensiveSummary();
+        this.commit();
     }
     getMyLiabilities() {
         if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
@@ -300,6 +301,7 @@ export class ComprehensiveService {
     }
     setDownOnLuck(comprehensiveDownOnLuck: HospitalPlan) {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
+        this.commit();
     }
     setDependantSelection(selection: boolean) {
 
