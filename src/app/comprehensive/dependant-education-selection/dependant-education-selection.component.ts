@@ -25,7 +25,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   hasEndowments: string;
   dependantDetailsArray: IDependantDetail[];
-  education_plan_selection = false;
+  education_plan_selection = true;
   pageId: string;
   pageTitle: string;
   dependantEducationSelectionForm: FormGroup;
@@ -88,13 +88,14 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
     this.childEndowmentArray = this.comprehensiveService.getChildEndowment();
     this.dependantDetailsArray = this.comprehensiveService.getMyDependant();
-    console.log(this.childEndowmentArray);
     if (this.childEndowmentArray.length > 0) {
       this.buildChildEndowmentFormArray();
       this.buildEducationSelectionForm();
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+        const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+        if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
           this.childEndowmentFormGroupArray.push(this.formBuilder.group(newEndowment));
@@ -131,7 +132,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
+      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') :
+      this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR'));
     return {
       id: 0, // #childEndowment.id,
       dependentId: dependant.id,
@@ -149,14 +151,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('input', ['$event'])
-  onChange() {
-    this.checkDependant();
-  }
-
   checkDependant() {
     this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
       form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
-      this.educationSelection(form.endowmentDetailsList);
+      this.educationSelection(form);
     });
   }
 
@@ -166,8 +164,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-      for (const childEndowment of this.childEndowmentArray) {
-        if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+      const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+      if (getAge < maxAge) {
+        for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
             const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
             // Filter the array to avoid duplicates
@@ -177,11 +177,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             }
             break;
           }
-        }
-      }
 
-      // Filter the array to avoid duplicates
-      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+        }
+
+        // Filter the array to avoid duplicates
+
         if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === dependant.id).length === 0) {
           const thisNewEndowment = this.getNewEndowmentItem(dependant);
           tempChildEndowmentArray.push(thisNewEndowment);
@@ -198,16 +198,17 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       hasEndowments: [this.hasEndowments, Validators.required],
       endowmentDetailsList: this.formBuilder.array(this.childEndowmentFormGroupArray)
     });
-    this.educationSelection(this.dependantEducationSelectionForm.value.endowmentDetailsList);
+    this.educationSelection(this.dependantEducationSelectionForm.value);
   }
   educationSelection(form) {
     let educationPreferenceAlert = true;
-    form.forEach((dependant: IChildEndowment, index) => {
+    form.endowmentDetailsList.forEach((dependant: IChildEndowment, index) => {
       if (dependant.preferenceSelection) {
         educationPreferenceAlert = !dependant.preferenceSelection;
       }
     });
-    this.educationPreference = educationPreferenceAlert;
+    form.hasEndowments == null ? this.educationPreference = true : this.educationPreference = educationPreferenceAlert;
+    console.log(this.educationPreference);
   }
 
   goToNext(form) {
@@ -265,10 +266,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   gotoNextPage(form) {
-    if (form.value.hasEndowments === '1') {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
-    } else if (form.value.hasEndowments === '2') {
+    if (form.value.hasEndowments === '0') {
       this.showSummaryModal();
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
     }
   }
 

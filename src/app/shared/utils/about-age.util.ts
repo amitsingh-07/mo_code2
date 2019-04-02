@@ -8,10 +8,10 @@ export class AboutAge {
 		return valueString;
 	}
 	calculateAge(date, dateToCalculate): number {
-		console.log(date);
+
 		const dateParts = date.split('/');
 		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
-		console.log(dateOfBirth);
+	
 		const calculateYear = dateToCalculate.getFullYear();
 		const calculateMonth = dateToCalculate.getMonth();
 		const calculateDay = dateToCalculate.getDate();

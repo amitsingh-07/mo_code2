@@ -31,6 +31,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   totalAnnualIncomeBucket = 0;
   hospitalPlanForm: FormGroup;
   downOnLuck: HospitalPlan;
+  maxBadMoodFund: number;
   hospitalPlanList: any[];
   isFormValid = false;
   ciSliderConfig: any = {
@@ -65,6 +66,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
+    console.log(this.downOnLuck);
     this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
   }
   setPageTitle(title: string) {
@@ -84,7 +86,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.hospitalPlanForm = new FormGroup({
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
-      badMoodMonthlyAmount: new FormControl(this.downOnLuck.badMoodMonthlyAmount, Validators.required)
+      badMoodMonthlyAmount: new FormControl(this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0, Validators.required)
     });
     if (this.downOnLuck.hospitalClassId) {
       this.isFormValid = true;
@@ -92,6 +94,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.apiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
+    this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
+      - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 

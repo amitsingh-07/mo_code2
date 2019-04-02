@@ -104,9 +104,11 @@
     },
     "COMPREHENSIVE": {
 
-      "GET_STARTED": "A step-by-step guide to help you plan your finances!",
-      "START": "Start Now",
-      "PHILOSOPHY_TITLE": " Our Philosophy",
+      "HEADER": "Our Bionic Journey Together",
+      "START": "Let’s Go",
+      "SUB_HEADER_1": "3-in-1 Analysis Report",
+      "SUB_HEADER_2":" ",
+      "SUB_HEADER_3":" ",
       "PHILOSOPHY_DESC": "when planning for your future, we show you the 'good enough' concept of what children education and retirement could like.(pls edit text)",
       "PHOLOSOPHY_DESC_SUB": "your money will be used to first fund children education and later support your retirement. Let's see how it turns out",
       "RESULT_TITLE": "What will you get?",
@@ -257,7 +259,8 @@
         "HOME_LOAN_TITLE": "Home Loan Payment",
         "HOME_LOAN_MESSAGE": "This is your share of the monthly mortgage payment for the home you stay in."
       },
-      "OPTIONAL_VALIDATION_FLAG": false
+      "OPTIONAL_VALIDATION_FLAG": false,
+      "ENTER_YEAR":"Enter Year"
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",

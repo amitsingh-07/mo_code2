@@ -227,6 +227,7 @@ export class ComprehensiveService {
     setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = dependentEducationPreferencesList;
         this.updateComprehensiveSummary();
+        this.commit();
     }
     getMyLiabilities() {
         if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
@@ -300,6 +301,7 @@ export class ComprehensiveService {
     }
     setDownOnLuck(comprehensiveDownOnLuck: HospitalPlan) {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
+        this.commit();
     }
     setDependantSelection(selection: boolean) {
 
@@ -717,7 +719,6 @@ export class ComprehensiveService {
                 const inputTotal = this.additionOfCurrency(filterInput, inputParams);
                 this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
                     = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
-                console.log(this.comprehensiveFormData);
             }
         });
     }
