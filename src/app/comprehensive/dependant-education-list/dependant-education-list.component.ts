@@ -33,7 +33,7 @@ export class DependantEducationListComponent implements OnInit {
   submitted: boolean;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
@@ -51,7 +51,7 @@ export class DependantEducationListComponent implements OnInit {
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
 
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled =  !this.summaryRouterFlag;
+          this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
         }
       });
@@ -120,7 +120,6 @@ export class DependantEducationListComponent implements OnInit {
       form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
         const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
         if (preferenceDetails.endowmentPlanShow) {
-          console.log(preferenceDetails);
           otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
           otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
           otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
@@ -154,7 +153,6 @@ export class DependantEducationListComponent implements OnInit {
           }
           );
         });
-        console.log(educationPreferenceList);
 
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
@@ -179,18 +177,12 @@ export class DependantEducationListComponent implements OnInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
 
   }
-
   @HostListener('input', ['$event'])
-  onChange() {
-    this.checkDependant();
-  }
-
   checkDependant() {
     this.endowmentListForm.valueChanges.subscribe((form: any) => {
       let endowmentSkipEnableFlag = true;
       form.endowmentPlan.forEach((dependant: any, index) => {
         if (dependant.endowmentPlanShow) {
-          console.log(dependant);
           endowmentSkipEnableFlag = false;
         }
       });
@@ -216,10 +208,10 @@ export class DependantEducationListComponent implements OnInit {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      validCheck = ( payOffYearVal.value >= currentYear ) ? true : false;
+      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
     }
     if (validCheck) {
-        return null;
+      return null;
     }
     return { pattern: true };
   }

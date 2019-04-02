@@ -151,11 +151,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } as IChildEndowment;
   }
 
-  @HostListener('input', ['$event'])
-  onChange() {
-    this.checkDependant();
-  }
-
+@HostListener('input', ['$event'])
   checkDependant() {
     this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
       form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
