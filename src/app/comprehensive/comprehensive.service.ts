@@ -717,7 +717,6 @@ export class ComprehensiveService {
                 const inputTotal = this.additionOfCurrency(filterInput, inputParams);
                 this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
                     = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
-                console.log(this.comprehensiveFormData);
             }
         });
     }
