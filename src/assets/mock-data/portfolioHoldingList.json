@@ -1,0 +1,324 @@
+{
+    "exception": null,
+    "objectList": {
+        "additionalErrorInfo": null,
+        "amlVerificationStatus": null,
+        "serverStatus": null,
+        "totalReturns": "2323",
+        "annualizedreturns": "+434",
+        "data": {
+            "totalValue": 14400.0,
+            "totalReturns": 56286.0,
+            "investmentReturns": 8.98,
+            "cashAccountDetails": {
+                "cashAccountId": "TAC1901080003",
+                "refno": "G0005291",
+                "currency": "SGD",
+                "availableBalance": 86600.0
+            },
+            "totalInvested": 12400.0,
+            "portfolio": {
+                "productName": "Portfolio Testing 1 - Low Risk",
+                "productCode": "PORTFOLIO00053",
+                "paymentMethod": "cheque",
+                "productType": "DPMS",
+                "currency": "SGD",
+                "currentValue": 14400.0,
+                "investmentAmount": 12400,
+                "profitAndLoss": 2000.0,
+                "riskProfile": null,
+                "profitAndLossPercentage": 16.129,
+                "totalReturns": 6286.0,
+                "totalReturnsPercentage": 8.98,
+                "yearlyReturns": 3.5,
+                "totalInvested": null,
+                "dpmsDetailsDisplay": [
+                    {
+                        "productName": "Discretionary Cash Account(SGD)",
+                        "productCode": null,
+                        "productType": "CA",
+                        "availableUnits": null,
+                        "investmentAmount": null,
+                        "indicativePrice": null,
+                        "currentValue": 2000.0,
+                        "profit": null,
+                        "nav": "2323",
+                        "additionalProperties": {}
+                    },
+                    {
+                        "productName": "Dimensional Global Core Equity Acc SGD",
+                        "productCode": "DIM034",
+                        "productType": "UT",
+                        "availableUnits": 140.15,
+                        "investmentAmount": 200.0,
+                        "indicativePrice": 1.43,
+                        "currentValue": 200.0,
+                        "profit": 0.0,
+                        "additionalProperties": {}
+                    },
+                    {
+                        "productName": "Dimensional Global Short-Term Investment Grade Fixed Income Acc SGD-H",
+                        "productCode": "DIM036",
+                        "productType": "UT",
+                        "availableUnits": 280.31,
+                        "investmentAmount": 400.0,
+                        "indicativePrice": 1.43,
+                        "currentValue": 400.0,
+                        "profit": 0.0,
+                        "additionalProperties": {}
+                    },
+                    {
+                        "productName": "Dimensional Global Short Fixed Income Acc SGD-H",
+                        "productCode": "DIM035",
+                        "productType": "UT",
+                        "availableUnits": 280.31,
+                        "investmentAmount": 400.0,
+                        "indicativePrice": 1.43,
+                        "currentValue": 400.0,
+                        "profit": 0.0,
+                        "additionalProperties": {}
+                    },
+                    {
+                        "productName": "Transaction In Transition",
+                        "productCode": null,
+                        "productType": "-",
+                        "availableUnits": null,
+                        "investmentAmount": 0.0,
+                        "indicativePrice": null,
+                        "currentValue": 11400.0,
+                        "profit": null,
+                        "additionalProperties": {}
+                    }
+                ],
+                "feeDetails": [
+                    {
+                        "id": 4,
+                        "feeName": "Advisory Fees",
+                        "percentage": "0.65%",
+                        "comments": null,
+                        "listing_order": 1
+                    },
+                    {
+                        "id": 5,
+                        "feeName": "Platform Fees",
+                        "percentage": "0.15%",
+                        "comments": "Paid to iFast",
+                        "listing_order": 2
+                    },
+                    {
+                        "id": 6,
+                        "feeName": "Fund Expense Ratio",
+                        "percentage": "0.2% to 0.4%",
+                        "comments": "Paid to DFA",
+                        "listing_order": 3
+                    },
+                    {
+                        "id": 7,
+                        "feeName": "Total",
+                        "percentage": "1% to 1.2%",
+                        "comments": null,
+                        "listing_order": 4
+                    }
+                ],
+                "sectorAllocations": [
+                    {
+                        "id": 1,
+                        "name": "Emerging Markets Equity",
+                        "allocationPercentage": 50,
+                        "sectorId": "SECTOR00012",
+                        "type": {
+                            "id": 1,
+                            "type": "Equities"
+                        },
+                        "riskRating": 9,
+                        "groupedAllocationDetails": {
+                            "Class Allocation": [
+                                {
+                                    "id": 5,
+                                    "sectorTitle": "Class Allocation",
+                                    "sectorRegion": "Emerging Markets",
+                                    "percentage": 11.5
+                                },
+                                {
+                                    "id": 4,
+                                    "sectorTitle": "Class Allocation",
+                                    "sectorRegion": "Developed Markets",
+                                    "percentage": 88.5
+                                }
+                            ],
+                            "Sector Allocation": [
+                                {
+                                    "id": 18,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Energy",
+                                    "percentage": 7
+                                },
+                                {
+                                    "id": 12,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Financials",
+                                    "percentage": 17.8
+                                },
+                                {
+                                    "id": 21,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Other",
+                                    "percentage": 6
+                                },
+                                {
+                                    "id": 15,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Info Technology",
+                                    "percentage": 12.9
+                                },
+                                {
+                                    "id": 14,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Consumer Disc",
+                                    "percentage": 13.3
+                                },
+                                {
+                                    "id": 16,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Health Care",
+                                    "percentage": 9.6
+                                },
+                                {
+                                    "id": 17,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Materials",
+                                    "percentage": 7
+                                },
+                                {
+                                    "id": 13,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Industrials",
+                                    "percentage": 16.4
+                                },
+                                {
+                                    "id": 19,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "Consumer Staples",
+                                    "percentage": 6.7
+                                },
+                                {
+                                    "id": 20,
+                                    "sectorTitle": "Sector Allocation",
+                                    "sectorRegion": "REITs",
+                                    "percentage": 3.4
+                                }
+                            ],
+                            "Regional Allocation": [
+                                {
+                                    "id": 9,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "Latin America",
+                                    "percentage": 1.5
+                                },
+                                {
+                                    "id": 11,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "Middle East",
+                                    "percentage": 0.3
+                                },
+                                {
+                                    "id": 7,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "Asia Pacific",
+                                    "percentage": 21.3
+                                },
+                                {
+                                    "id": 10,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "Africa",
+                                    "percentage": 0.7
+                                },
+                                {
+                                    "id": 6,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "North America",
+                                    "percentage": 57.4
+                                },
+                                {
+                                    "id": 8,
+                                    "sectorTitle": "Regional Allocation",
+                                    "sectorRegion": "Europe",
+                                    "percentage": 18.8
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "name": "Global Bonds",
+                        "allocationPercentage": 50,
+                        "sectorId": "SECTOR00013",
+                        "type": {
+                            "id": 2,
+                            "type": "Bonds"
+                        },
+                        "riskRating": 9,
+                        "groupedAllocationDetails": {
+                            "Credit Rating Allocation": [
+                                {
+                                    "id": 24,
+                                    "sectorTitle": "Credit Rating Allocation",
+                                    "sectorRegion": "A",
+                                    "percentage": 21.7
+                                },
+                                {
+                                    "id": 22,
+                                    "sectorTitle": "Credit Rating Allocation",
+                                    "sectorRegion": "AAA",
+                                    "percentage": 21
+                                },
+                                {
+                                    "id": 23,
+                                    "sectorTitle": "Credit Rating Allocation",
+                                    "sectorRegion": "AA",
+                                    "percentage": 57.3
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "funds": [
+                    {
+                        "id": "FI3018",
+                        "name": "Fidelity ASEAN A SGD",
+                        "type": "UT",
+                        "sectorName": "Emerging Markets Equity",
+                        "prospectusLink": null,
+                        "percentage": 60,
+                        "factSheetLink": "http://",
+                        "htmlDesc": null
+                    },
+                    {
+                        "id": "FI3018",
+                        "name": "Fidelity ASEAN A SGD",
+                        "type": "UT",
+                        "sectorName": "Global Bonds",
+                        "prospectusLink": null,
+                        "percentage": 20,
+                        "factSheetLink": "http://",
+                        "htmlDesc": null
+                    },
+                    {
+                        "id": "FI3018",
+                        "name": "Fidelity ASEAN A SGD",
+                        "type": "UT",
+                        "sectorName": "Global Bonds",
+                        "prospectusLink": null,
+                        "percentage": 20,
+                        "factSheetLink": "http://",
+                        "htmlDesc": null
+                    }
+                ]
+            }
+        }
+    },
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

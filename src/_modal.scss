@@ -247,7 +247,7 @@ body.modal-open::-webkit-scrollbar {
 
   &.show {
     display: flex;
-    z-index: 1029;
+    z-index: 1027;
     min-height: 150px;
     max-height: none;
 
@@ -259,15 +259,16 @@ body.modal-open::-webkit-scrollbar {
   @include allmobiles {
     position: fixed;
     bottom: 0px;
-    z-index: 1043;
+    z-index: 1028;
 
     &.show {
-      z-index: 1040;
+      z-index: 1031;
       justify-content: flex-start;
     }
 
     &.full {
-      height: calc(100% - 60px);
+      height: calc(100% - 105px);
+      z-index:1028;
     }
   }
 
@@ -460,7 +461,7 @@ body.modal-open::-webkit-scrollbar {
   z-index: -2;
 
   &.show {
-    z-index: 1028;
+    z-index: 1026;
     opacity: 0.8;
   }
 
@@ -468,7 +469,7 @@ body.modal-open::-webkit-scrollbar {
     z-index: -2;
 
     &.show {
-      z-index: 1032;
+      z-index: 1030;
     }
   }
 }
@@ -634,6 +635,12 @@ body.modal-open::-webkit-scrollbar {
         right: 20px !important;
       }
     }
+  }
+}
+
+.custom-full-height{
+  @include allmobiles {
+    max-height: calc(100vh - 56px) !important;
   }
 }
 

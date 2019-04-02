@@ -1,80 +1,304 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+app-dashboard{
 .post-login-dashboard{
-   .welcome-user{
-        position: absolute;
+    @include allmobiles{
+        padding: 0 !important;
+    }
+    .widget-block{
         width: 100%;
-        left: 0;
-        @extend .flex;
-        @extend .align-center;
-        font-family: $muli-light;
-        font-size: 22px;
-        font-weight: 300;
-        line-height: 1.36;
-        letter-spacing: -0.2px;
-        color: $welcome-user-txt-color;
-        background: $white-color;
-        padding: 16px 26% 0;
-        top: 84px;
-        box-shadow: 0 0px 14px 0 rgba(0, 0, 0, 0.25);
+        background: #00a7a7;
+        min-height: 230px;
+        overflow: hidden;
+        padding: 0  0 10px;
         @include allmobiles{
-            padding: 16px 20px 0;
-            top: 49px;
-            justify-content: space-between;
-        }
-        @include iphone5{
-            top: 50px;
-        }
-        @include min768max768{
-            padding: 0 24%;
-        }
-        @include phablet{
-            top: 50px;
-            padding: 0 20px;
-        }
-        @include iPadProPortrait{
-            padding: 0 18%;
-        }
-        span{
-            font-family: $muli-bold;
-        }
-        img{
-            width: 112px;
-            height: 94px;
-            margin-left: 30px;
+            padding: 0 0px 0 20px !important;
+            top: 0;
+            min-height: 200px;
+            max-height: 200px;
         }
     }
-    .welcome-desc{
+    .grass_bg {
+        width: 157px;
+        height: 113px;
+        object-fit: contain;
         position: relative;
-        top:199px;
-        font-family: $muli-regular;
-        font-size: 21px;
-        line-height: 1.19;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: $white-color;
-        margin: 0 auto;
-        width: 50%;
-        padding: 10px 30px;
-        min-height: 416px;
+        top: 50px;
         @include allmobiles{
-            margin: 0 auto;
+            top: 65px;
+        }
+        img{
             width: 100%;
+            height: 100%;
         }
-        @include phablet{
-            margin: 0 auto;
-        } 
-        @include min768max768{
-            margin: 0 auto;
-            width: 60%;
+    }
+    .overlap-grass{
+        display: flex;
+        justify-content: space-between;
+        @include allmobiles{
+            padding: 0;
+            padding-top: 35px;
         }
-        div:first-child{
+        @include iPadLandscape{
+            padding-left: 15px;
+        }
+        @include iPadProPortrait{
+            padding-left: 15px;
+        }
+    }
+    .user-profile-bg{
+        padding-left: 15px;
+        font-family: $muli-extra-light;
+        font-size: 22px; 
+        font-weight: 200;
+        line-height: 34PX;
+        letter-spacing: -0.22px;
+        @include allmobiles{
+            padding-left: 3px;
+        }
+        @include iPadLandscape{
+            padding-left: 3px;
+        }
+        .user_name{
             font-family: $muli-semi-bold;
-            font-size: 36px;
             font-weight: 600;
-            line-height: normal;
-            letter-spacing: -0.4px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            letter-spacing: -0.2px;
+        }
+        .txt-lyt{
+            font-family: $muli-light;
+            font-size: 14px;
+            letter-spacing: -0.14px;
+            font-weight: 300;
+            cursor: pointer;
+        }
+        .user-edit-img{
+            margin-right: 11.5px;
+            width: 5px;
+            height: 21px;
+            cursor: pointer;
+        }
+    }
+   .advisor-profile-bg{
+         border-radius: 6px;
+        padding: 15px 4px 13px;
+        font-family: $muli-regular;
+        letter-spacing: -0.1px;
+        color: #004864;
+        background: $white-color;
+        display: flex;
+        align-items: center;
+        .advisor-details{
+            margin-left: 10px;
+            @include min300max325{
+                margin-left: 4px;
+            }
+            div{
+                &:last-child{
+                    font-family: $muli-semi-bold;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: -0.3px;
+                    color: #004865;
+                }
+            }
+        }
+   }
+    .widgets{
+        position: relative;
+        top: -100px;
+        @include allmobiles{
+            top: -30px;
+        }
+        .widget{
+            background: $white-color;
+            margin: 0px 15px 20px;
+            border-radius: 6px;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+            .widget-title{
+                font-family: $muli-bold;
+                font-size: 22px;
+                font-weight: bold;
+                letter-spacing: -0.2px;
+                color: #00a7a7;
+                padding: 20px 18px 11px;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                img{
+                    margin-top: 5px;
+                    margin-left: 6px;
+                }   
+                .view_all{
+                    font-family: $muli-regular;
+                    font-size: 16px;
+                    font-weight: normal;
+                    cursor: pointer;
+                }
+            }
+            .widget-body{
+                display: flex;
+                align-items: center;
+                font-family: $muli;
+                font-size: 14px;
+                font-weight: normal;
+                letter-spacing: -0.1px;
+                padding: 0 0 30px;
+                .scenarios{
+                    padding: 0 5px;
+                    .primary{
+                        align-items: center;
+                    }
+                    .warning-txt{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        font-family: $muli-regular;
+                        font-size: 15px;
+                        line-height: 1.5;
+                        letter-spacing: -0.15px;
+                        color: #2d8289;
+                        .investment_icon{
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-end;
+                            // width: 85px;
+                            // height: 70px;
+                            // margin-right: 0;
+                            // margin-left: auto; 
+                            img{
+                                max-width: 100%;
+                                height: auto;
+                                margin: 0;
+                            }
+                        }
+                        a{
+                            color: #ff9c39;
+                        }
+                    }
+                    .portfolio{
+                        font-family: $muli-regular;
+                        font-size: 16px;
+                        line-height: 1.31;
+                        letter-spacing: -0.1px;
+                        color: #8a9ba9;
+                        padding: 0 12px;
+                        .portfolio_value{
+                            color: #2d8289;
+                            .value{
+                                font-size: 24px;
+                                letter-spacing: -0.3px;
+                                color: #00a7a7;
+                                margin-bottom: 11px;
+                            }
+                        }
+                        .portfolio_footer{
+                            display: flex;
+                            justify-content: space-between;
+                            border-top: 1px solid #c0c0c0;
+                            padding-top: 11px;
+                            color: #2d8289;
+                            .flex-col{
+                                justify-content: space-between;
+                                &.col-5{
+                                    .portfolio_footer_value{
+                                        color: #11b600;
+                                    }
+                                    .negativeValue {
+                                        color: $red-color;
+                                      }
+                                }
+                                .portfolio_footer_value{
+                                    font-size: 16px;
+                                    letter-spacing: -0.2px;
+                                    color: #00a7a7;
+                                    padding-top: 3px;
+                                }
+                            }
+                        }
+                    }
+                    .btn-ghost{
+                        font-family: $muli-bold;
+                        font-size: 18px;
+                        font-weight: bold;
+                        letter-spacing: -0.1px;
+                        border: 1px solid #00c5c4;
+                        background-color: #ffffff !important;
+                        margin: 18px 0 0;
+                        color: #00a7a7;
+                        div{
+                            &:last-child{
+                                font-family: $muli-regular;
+                                font-size: 13px;
+                                font-weight: normal;
+                                color: #9b9b9b;
+                            }
+                        }
+                    }
+                    .btn-primary{
+                        font-family: $muli-bold;
+                        font-size: 18px;
+                        font-weight: bold;
+                        letter-spacing: -0.1px;
+                        text-align: center;
+                        color: #ffffff;
+                        margin: 18px 0 0;
+                        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+                        background-color: #00a7a7;
+                        border: none;
+                        div{
+                            &:last-child{
+                                font-family: $muli-regular;
+                                font-size: 13px;
+                                font-weight: normal;
+                            }
+                        }
+                    }
+                }
+                .flex-col-8{
+                    div{
+                        color: #5e5e5e;
+                        &:first-child{
+                            font-family: $muli-bold;
+                            font-size: 18px;
+                            font-weight: bold;
+                            letter-spacing: -0.3px;
+                            color: #00a7a7;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .time-lapse{
+                        font-family: Muli;
+                        font-size: 18px;
+                        font-weight: normal;
+                        letter-spacing: -0.2px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 10px;
+                        div{
+                            color: #00a7a7;
+                            &:first-child{
+                                color: #ec681c;
+                                margin-bottom: 0;
+                            }
+                        }
+                        .flex-row{
+                            justify-content: space-between;
+                            align-items: center; 
+                        }
+                    }
+                }
+            }
+        }
+        .circle{
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: solid 1px #00a7a7;
+            margin-left: 10px;
+            background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
+            }
         }
     }
 }

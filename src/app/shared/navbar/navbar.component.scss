@@ -1,3 +1,176 @@
-app-navbar {
-    
+@import '../../../variables';
+
+@import '../../../mixins';
+
+
+.notification-icon {
+    position: relative;
+    background-image: url("/assets/images/nav/notification-icon.svg");
+    background-repeat: no-repeat;
+    background-color:$white-color;
+    background-size: 19px 22px;
+    border: none;
+    width:19px; 
+    height:22px;
+    margin-right:0px;
+    cursor: pointer;
+    @include minMobilemaxPhablet{
+        margin-right:10px;
+    }
+    &.notify{
+        top:2px;
+    }
+    .notification-number {
+        position: absolute;
+        top: -7px;
+        border: 2px solid #FFF;
+        background: #ff872f;
+        //height: 23px;
+        color: #FFF;
+        font-size: 10px;
+        padding: 3px 5px;
+        line-height: 100%;
+        border-radius: 2em;
+        left: 10px;
+    }
+}
+
+.notification-tooltip {
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    width:345px;
+    box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.2);
+    @include minMobilemaxPhablet{
+        position: absolute;
+        width:calc(100% - 30px);
+        margin:5px 0px 0px 0px;
+        display:block; 
+        top:45px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:5;
+        &::before{
+            content: '';
+            position: absolute;
+            display: block;
+            width:20px;
+            height: 20px;
+            top:-5px;
+            right:45px;
+            transform: rotate(45deg);
+            background-color:$dark-teal-color;
+            border:0px;
+            z-index:2;
+        }
+    }
+    &__arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 15px solid $dark-teal-color;
+        top: 35px;
+        right: 58px;
+        }
+
+    &__header {
+        background-color: $dark-teal-color;
+        padding: 16px 20px;
+        font-family: $muli-regular;
+        font-size: 18px;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        color: $white-color;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        }
+
+    &__container {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom: none;
+        background: $white-color; 
+        ul{
+           padding-inline-start:0px; 
+        }
+        ul li {
+            font-family: $muli-bold;
+            font-size: 16px;
+            line-height: 1.31;
+            letter-spacing: -0.2px;
+            padding:15px 30px 15px  ;
+            border-bottom: 1px solid #f4fafb;
+            }
+        }
+
+    &__container--desc {
+    color: #00a7a7;
+    border-bottom: none;
+        }
+    &__container--message {
+        padding: 10px 18px 10px 25px;
+        border-bottom: 1px solid #f4fafb;
+        }
+    &__container--time {
+        color: #5e5e5e;
+        font-size: 14px;
+        margin-top: 10px;
+        }
+
+    &__footer {
+        background: #f4fafb;
+        padding: 18px;
+        text-align: center;
+        color: #ff872f;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        }
+    }
+.navbar__helpIcon--mobile-filter {
+    position: absolute;
+    display: inline-block;
+    background-image: url(/assets/images/filter_icon.svg);
+    width: 20px;
+    height: 20px;
+    top: 22px;
+    right: 13px;
+    z-index: 1;
+    background-repeat: no-repeat;
+}
+
+.superTitle{
+    font-size:18px;
+    margin-bottom:-8px;
+}
+
+.no-notification {
+    padding: 18px 20px;
+    text-align: center;
+    font-family: $muli;
+    color:$teal-color;
+    font-size:16px;
+    @include minMobilemaxPhablet{
+    }
+}
+.mobile-menu {
+    @include allmobiles {
+        position: absolute;
+        top: 45px;
+        background-color: #fff;
+        z-index: 3;
+    }
+}
+.underline{
+    &:hover{
+        text-decoration: underline !important;
+    }
+    &:active{
+        text-decoration: underline !important;
+    }
+    &.active{
+        text-decoration: underline !important;
+    }
 }

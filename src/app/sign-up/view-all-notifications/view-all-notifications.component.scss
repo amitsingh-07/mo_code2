@@ -1,0 +1,67 @@
+@import '../../../variables';
+@import '../../../mixins';
+.container-fluid {
+    @include allmobiles{
+        padding: 60px 0 0 !important;
+        min-height: calc(100vh - 45px);
+    }
+    background: $white-color;
+}
+.notifications-container {
+    &__header {
+        background-color: #e3f5f5;
+        padding: 10px;
+        text-align: center;
+        color: #00a7a7;
+        font-size: 14px;
+        letter-spacing: -0.1px;
+        font-family: $muli-regular;
+    }
+    &__lists {
+        padding: 23px 20px;
+        border-bottom: 2px solid #f4fafb;
+        position: relative;
+    }
+    &__lists--close {
+        position: absolute;
+        right: 20px;
+        color: #dbdbdb;
+        font-size: 18px;
+        font-family: $muli-regular;
+        top: 45%;
+        img {
+            left: 0;
+            right: 0;
+            position: relative;
+            width: 12px;
+            height: 12px;
+        }
+    }
+    &__lists--desc {
+        font-family: $muli-regular;
+        font-size: 18px;
+        line-height: 1.17;
+        letter-spacing: -0.2px;
+        color: #00a7a7;
+        padding-right: 55px;
+    }
+    &__lists--duration {
+        font-family: $muli-regular;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        color: #5e5e5e;
+        margin-top: 10px;
+    }
+    &__no-notification {
+        background: #f4fafb;
+        font-size: 18px;
+        font-family: $muli-bold;
+        text-align: center;
+        color: #00a7a7;
+        height: calc(100vh - 45px);
+        .pt50{
+            padding-top:80px!important;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{
+  "objectList": {
+    "transactionGroups": [{
+        "groupName": "22 August 2018",
+        "transactions": [{
+                "transactionType": {
+                    "id": 1,
+                    "name": "Buy"
+                },
+                "portfolio": {
+                    "id": 1,
+                    "name": "Growth",
+                    "portfolioId": "PID01234"
+                },
+                "fundInvestmentSplit": [{
+                    "id": 1,
+                    "fund": {
+                        "id": 1,
+                        "name": "Dimentional Global Shot"
+                    },
+                    "unitPrice": 100,
+                    "unit": 10
+                }],
+                "amount": 500,
+                "currency": {
+                    "id": 1,
+                    "name": "SGD"
+                }
+        },
+        {
+                "transactionType": {
+                    "id": 1,
+                    "name": "Sell"
+                },
+                "portfolio": {
+                    "id": 1,
+                    "name": "Growth",
+                    "portfolioId": "PID01234"
+                },
+                "fundInvestmentSplit": [{
+                    "id": 1,
+                    "fund": {
+                    "id": 1,
+                    "name": "Dimentional Global Shot"
+                    },
+                    "unitPrice": 100,
+                    "unit": 10
+                }],
+                "amount": 500,
+                "currency": {
+                    "id": 1,
+                    "name": "SGD"
+                }
+        }
+        ]
+    }]
+  },
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  }
+}
+
+
+

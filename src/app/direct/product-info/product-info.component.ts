@@ -117,7 +117,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       if (freezeCheck) {
         this.editProdInfo();
       } else if (this.isEditMode) {
-        this.closeEditMode();
+        this.closeModal();
         this.isEditMode = false;
       }
     });
@@ -290,7 +290,11 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  closeEditMode() {
+  minProdInfo() {
+    this.directService.setModalFreeze(false);
+    }
+
+  closeModal() {
     this.toggleVisibility = false;
     this.toggleBackdropVisibility = false;
   }

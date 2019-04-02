@@ -1,0 +1,408 @@
+{
+    "exception": null,
+    "objectList": {
+        "personalInformation": {
+            "firstName": "Hao Yu",
+            "lastName": "Seah",
+            "nricNumber": null,
+            "gender": "male",
+            "nationality": "MALAYSIAN",
+            "dateOfBirth": "12-06-2018",
+            "mobileNumber": "80000443",
+            "countryCode": "+65",
+            "password": "[B@82c8e70",
+            "email": "sakthi.m@hcl.com",
+            "isSingaporeResident": false
+        },
+        "contactDetails": {
+            "homeAddress": {
+                "id": 19,
+                "country": {
+                    "id": 225,
+                    "name": "SINGAPORE",
+                    "nationality": "SINGAPOREAN",
+                    "isBlocked": false,
+                    "phoneCode": "+65",
+                    "countryCode": "SG",
+                    "nationalityCode": "SG",
+                    "listOrder": 1
+                },
+                "addressLine1": "sat2",
+                "addressLine2": "sat3",
+                "unitNumber": "333333",
+                "postalCode": "408600",
+                "townName": null,
+                "state": null,
+                "floor": "67",
+                "city": null
+            },
+            "mailingAddress": {
+                "id": 132,
+                "country": {
+                    "id": 225,
+                    "name": "SINGAPORE",
+                    "nationality": "SINGAPOREAN",
+                    "isBlocked": false,
+                    "phoneCode": "+65",
+                    "countryCode": "SG",
+                    "nationalityCode": "SG",
+                    "listOrder": 1
+                },
+                "addressLine1": "sat36",
+                "addressLine2": "sat69",
+                "unitNumber": "12345",
+                "postalCode": null,
+                "townName": null,
+                "state": null,
+                "floor": "55",
+                "city": null
+            }
+        },
+        "employmentDetails": {
+            "employmentStatus": {
+                "id": 18,
+                "name": "Employed"
+            },
+            "occupation": {
+                "id": 246,
+                "occupation": "Accountant (excluding tax accountant",
+                "ssocId": "24111"
+            },
+            "employerDetails": {
+                "detailedEmployerDetails": {
+                    "id": 28,
+                    "employerName": "dasdasd",
+                    "industry": {
+                        "id": 888,
+                        "industry": "Academic tutoring services (e.g. tuition centres, private tutoring services)",
+                        "ssicId": "85494"
+                    },
+                    "createdDate": null,
+                    "lastModifiedDate": "2018-12-06T06:59:32.000+0000"
+                },
+                "detailedemployerAddress": null,
+                "employerContact": "8297961211"
+            }
+        },
+        "documentDetails": [
+            {
+                "id": 6,
+                "customer": null,
+                "fileName": "https://s3.ap-southeast-1.amazonaws.com/mo-ifast-bucket/investment/documents/262_MAILING_ADDRESS_PROOF.pdf",
+                "docType": "MAILING_ADDRESS_PROOF",
+                "reviewComments": "Success",
+                "createdDate": "2018-11-12T02:57:48.000+0000",
+                "lastUpdatedTimeStamp": "2018-12-06T15:08:41.000+0000",
+                "documentStatusId": {
+                    "id": 1,
+                    "status": "TO-BE-REVIEWED"
+                }
+            },
+            {
+                "id": 7,
+                "customer": null,
+                "fileName": "https://s3.ap-southeast-1.amazonaws.com/mo-ifast-bucket/investment/documents/262_RESIDENTIAL_ADDRESS_PROOF.pdf",
+                "docType": "RESIDENTIAL_ADDRESS_PROOF",
+                "reviewComments": "Success",
+                "createdDate": "2018-11-12T03:02:34.000+0000",
+                "lastUpdatedTimeStamp": "2018-12-06T15:08:41.000+0000",
+                "documentStatusId": {
+                    "id": 1,
+                    "status": "TO-BE-REVIEWED"
+                }
+            }
+        ],
+        "customerBankDetail": [
+            {
+                "id": 11,
+                "customerId": 262,
+                "bank": {
+                    "id": 57,
+                    "name": "CIMB Bank Berhad",
+                    "value": "7986"
+                },
+                "accountName": "Venkatesh",
+                "accountNumber": "XXXXXXX9090",
+                "createdDate": "2018-11-23T08:09:08.000+0000",
+                "lastModifiedDate": "2018-12-05T03:52:00.000+0000"
+            },
+            {
+                "id": 12,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Sakthi M",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-23T08:09:08.000+0000",
+                "lastModifiedDate": "2018-11-23T08:14:27.000+0000"
+            },
+            {
+                "id": 13,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "SakthiM",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-23T08:09:08.000+0000",
+                "lastModifiedDate": "2018-11-23T08:47:01.000+0000"
+            },
+            {
+                "id": 14,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Sakthi M",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-23T08:18:45.000+0000",
+                "lastModifiedDate": "2018-11-23T08:18:45.000+0000"
+            },
+            {
+                "id": 15,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "SakthiM",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-23T08:19:01.000+0000",
+                "lastModifiedDate": "2018-11-23T08:19:01.000+0000"
+            },
+            {
+                "id": 16,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Sakthi",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-24T10:05:20.000+0000",
+                "lastModifiedDate": "2018-11-24T10:05:20.000+0000"
+            },
+            {
+                "id": 17,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Rajasekar",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-24T10:05:39.000+0000",
+                "lastModifiedDate": "2018-11-24T10:05:39.000+0000"
+            },
+            {
+                "id": 18,
+                "customerId": 262,
+                "bank": {
+                    "id": 57,
+                    "name": "CIMB Bank Berhad",
+                    "value": "7986"
+                },
+                "accountName": "HPUser",
+                "accountNumber": "XXXX3472",
+                "createdDate": "2018-11-24T10:17:22.000+0000",
+                "lastModifiedDate": "2018-11-24T10:17:22.000+0000"
+            },
+            {
+                "id": 19,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "TestforAnz",
+                "accountNumber": "XXXXX3423",
+                "createdDate": "2018-11-24T10:18:55.000+0000",
+                "lastModifiedDate": "2018-11-24T10:18:55.000+0000"
+            },
+            {
+                "id": 20,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "ANZmo",
+                "accountNumber": "X4321",
+                "createdDate": "2018-11-24T10:20:07.000+0000",
+                "lastModifiedDate": "2018-11-24T10:20:07.000+0000"
+            },
+            {
+                "id": 21,
+                "customerId": 262,
+                "bank": {
+                    "id": 47,
+                    "name": "Development Bank of Singapore Ltd",
+                    "value": "7171"
+                },
+                "accountName": "DBS",
+                "accountNumber": "XXXX3434",
+                "createdDate": "2018-11-24T10:42:13.000+0000",
+                "lastModifiedDate": "2018-11-24T10:42:13.000+0000"
+            },
+            {
+                "id": 22,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Sat test",
+                "accountNumber": "XXXXXXXXX0112",
+                "createdDate": "2018-11-27T05:45:28.000+0000",
+                "lastModifiedDate": "2018-11-27T05:45:28.000+0000"
+            },
+            {
+                "id": 23,
+                "customerId": 262,
+                "bank": {
+                    "id": 44,
+                    "name": "Bangkok Bank Public Company Ltd",
+                    "value": "7047"
+                },
+                "accountName": "Znzn",
+                "accountNumber": "XXXXX0954",
+                "createdDate": "2018-11-27T08:04:01.000+0000",
+                "lastModifiedDate": "2018-11-27T08:04:01.000+0000"
+            },
+            {
+                "id": 24,
+                "customerId": 262,
+                "bank": {
+                    "id": 44,
+                    "name": "Bangkok Bank Public Company Ltd",
+                    "value": "7047"
+                },
+                "accountName": "We hjb",
+                "accountNumber": "XXX8898",
+                "createdDate": "2018-11-28T01:11:26.000+0000",
+                "lastModifiedDate": "2018-11-28T01:11:26.000+0000"
+            },
+            {
+                "id": 25,
+                "customerId": 262,
+                "bank": {
+                    "id": 50,
+                    "name": "Hongkong & Shanghai Banking Corp Ltd Corporate",
+                    "value": "7232"
+                },
+                "accountName": "Chirra",
+                "accountNumber": "XXXXX0435",
+                "createdDate": "2018-11-28T01:38:49.000+0000",
+                "lastModifiedDate": "2018-11-28T01:38:49.000+0000"
+            },
+            {
+                "id": 26,
+                "customerId": 262,
+                "bank": {
+                    "id": 51,
+                    "name": "Malayan Banking Berhad",
+                    "value": "7302"
+                },
+                "accountName": "Venkatesh",
+                "accountNumber": "XXXX8658",
+                "createdDate": "2018-11-28T01:39:51.000+0000",
+                "lastModifiedDate": "2018-11-28T01:39:51.000+0000"
+            },
+            {
+                "id": 28,
+                "customerId": 262,
+                "bank": {
+                    "id": 44,
+                    "name": "Bangkok Bank Public Company Ltd",
+                    "value": "7047"
+                },
+                "accountName": "Aba",
+                "accountNumber": "XXX8829",
+                "createdDate": "2018-11-29T03:34:26.000+0000",
+                "lastModifiedDate": "2018-11-29T03:34:26.000+0000"
+            },
+            {
+                "id": 29,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Satheesan",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-29T06:07:18.000+0000",
+                "lastModifiedDate": "2018-11-29T06:07:18.000+0000"
+            },
+            {
+                "id": 30,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Sat",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-29T06:07:52.000+0000",
+                "lastModifiedDate": "2018-11-29T06:07:52.000+0000"
+            },
+            {
+                "id": 31,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Satheesan op",
+                "accountNumber": "XXXXXXXX0000",
+                "createdDate": "2018-11-29T06:13:23.000+0000",
+                "lastModifiedDate": "2018-11-29T06:13:23.000+0000"
+            },
+            {
+                "id": 32,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Ram Kumar",
+                "accountNumber": "100",
+                "createdDate": "2018-11-29T11:01:25.000+0000",
+                "lastModifiedDate": "2018-11-29T11:01:25.000+0000"
+            },
+            {
+                "id": 34,
+                "customerId": 262,
+                "bank": {
+                    "id": 56,
+                    "name": "ANZ Bank",
+                    "value": "7931"
+                },
+                "accountName": "Yaseen",
+                "accountNumber": "XXXXXXXX2323",
+                "createdDate": "2018-11-30T02:43:26.000+0000",
+                "lastModifiedDate": "2018-11-30T02:43:26.000+0000"
+            }
+        ]
+    },
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

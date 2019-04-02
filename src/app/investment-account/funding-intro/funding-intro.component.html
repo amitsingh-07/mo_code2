@@ -1,0 +1,31 @@
+<!-- popup -->
+<div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper">
+    <div class="custom-modal--icon">
+      <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="portfolioRecommenadtionCustModalImg1" />
+      <div class="custom-modal--content">
+        <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">{{ 'FUND_INTRO.SUCCESS' | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- popUp -->
+<div class="container-fluid max-width--1024 app-additional-declaration">
+  <div class="intro-block__content">
+      <div class="row text-center">
+        <div class="col-12">
+          <div class="banner-image">
+            <img src='assets/images/investment-account/funding-intro.svg' id="fund-introImg" />
+          </div>
+        </div>
+        <div class="col-12 intro-block__content__desc">
+          <p class="intro-block__content__heading" id="fund-introHeading">{{ 'FUND_INTRO.TITLE' | translate}}</p>
+          <p class="intro-block__content__title mb10" id="fund-introTitle">{{ 'FUND_INTRO.DESC' | translate}}</p>
+        </div>
+      </div>
+    </div>
+        <button class="btn btn-proceed width100" (click)="goNext()"  id="fund-getStartedStep1Btn">
+          {{ 'FUND_INTRO.BACK' | translate}}
+        </button>
+</div>

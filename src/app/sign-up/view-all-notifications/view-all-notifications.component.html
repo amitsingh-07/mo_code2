@@ -1,0 +1,35 @@
+<!-- <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button> -->
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div>
+      <div class="flex-col-12 notifications-block">
+        <!--Notifications container-->
+        <div class="notifications-container" *ngFor="let group of allMessages">
+          <!--Notifications Header-->
+
+          <div class="notifications-container__header">
+            {{group.groupName}}
+          </div>
+          <!--Notifications Header //-->
+          <!--Notifications lists-->
+          <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of group.value">
+            <div class="notifications-container__lists--close" (click)="clearNotification(message, group)"><img src="../../../assets/images/close-button.svg" alt="x" /></div>
+            <div class="notifications-container__lists--desc">
+              {{message.message}}
+              <div class="notifications-container__lists--duration" *ngIf="message.time">
+                {{message.time | timeAgo}}
+              </div>
+            </div>
+          </div>
+
+          <!--Notifications lists //-->
+        </div>
+        <div *ngIf="allMessages && allMessages.length <= 0" class="notifications-container__no-notification">
+          <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
+          <p>{{ 'NOTIFICATIONS.EMPTY' | translate}}</p>
+        </div>
+        <!--Notifications container //-->
+      </div>
+    </div>
+  </div>
+</div>

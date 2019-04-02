@@ -7,11 +7,13 @@
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title" id="errorModeltitle">{{errorTitle}}</div>
+  <div class="modal-body-title" id="errorModeltitle" [innerHTML]="errorTitle"> <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="../../../assets/images/investment-account/topup-alert.svg"
+    alt="" /></span>
+  </div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
-  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage">{{errorMessage}}</div>
+  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"  [innerHTML]="errorMessage"></div>
   <div class="modal-body-message" *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
   <div class="row">
     <div class="col-12" *ngIf="primaryActionLabel">
@@ -21,7 +23,7 @@
     </div>
 
     <div class="col-12" *ngIf="secondaryActionLabel">
-        <button type="button" class="action-button" (click)="secondaryActionSelected()" id="errorModeButton">
+        <button type="button" class="action-button" [class.secondary-button]="secondaryActionDim" (click)="secondaryActionSelected()" id="errorModeButton">
           {{secondaryActionLabel}}
         </button>
       </div>
@@ -30,6 +32,17 @@
   <!-- <button type="button"  *ngIf="forgotPassword" class="action-button"   id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
     {{ 'LABEL.TRY_AGAIN' | translate}} 
   </button> -->
-
-
+  <!-- yes - or - no -->
+  <div class="flex-row flex-col-12 space-btwn" *ngIf="yesOrNoButton">
+    <div class="toggle-btn">
+        <button type="button" class="action-button " (click)="yesButtonClick()" id="errorModeButton">
+            Yes
+          </button>
+    </div>
+    <div class="toggle-btn">
+        <button type="button" class="action-button secondary-button" (click)="noButtonClick()" id="errorModeButton">
+            No
+          </button>
+    </div>
+  </div>
 </div>
