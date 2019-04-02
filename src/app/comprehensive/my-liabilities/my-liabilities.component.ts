@@ -39,6 +39,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   financeModal: any;
   summaryRouterFlag: boolean;
   routerEnabled =  false;
+  bucketImage: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -73,6 +74,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       }
     });
     this.buildMyLiabilitiesForm();
+    this.onTotalOutstanding();
   }
 
   ngOnDestroy() {
@@ -157,6 +159,8 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
 
   onTotalOutstanding() {
     this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);
+    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.BUCKET_INPUT_CALC;
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, this.myLiabilitiesForm.value, this.totalOutstanding);
   }
   showSummaryModal() {
     if (this.routerEnabled) {

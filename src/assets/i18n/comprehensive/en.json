@@ -257,7 +257,8 @@
         "HOME_LOAN_TITLE": "Home Loan Payment",
         "HOME_LOAN_MESSAGE": "This is your share of the monthly mortgage payment for the home you stay in."
       },
-      "OPTIONAL_VALIDATION_FLAG": false
+      "OPTIONAL_VALIDATION_FLAG": false,
+      "ENTER_YEAR":"Enter Year"
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",

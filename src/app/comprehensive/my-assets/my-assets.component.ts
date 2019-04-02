@@ -158,7 +158,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       otherPropertyControl.updateValueAndValidity();
     } else {
       otherPropertyControl.setValue('');
-      otherPropertyControl.setValidators([]);      
+      otherPropertyControl.setValidators([]);
       otherPropertyControl.markAsDirty();
       otherPropertyControl.updateValueAndValidity();
     }
