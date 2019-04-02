@@ -716,11 +716,6 @@ export class WillWritingService {
         will.beneficiary.push(JSON.parse(JSON.stringify(members)));
       }
     }
-    if (will.execTrustee[0].isAlt) {
-      const [altExecutor, mainExecutor] = will.execTrustee;
-      will.execTrustee[0] = mainExecutor;
-      will.execTrustee[1] = altExecutor;
-    }
     this.willWritingFormData = will;
     this.commit();
   }
