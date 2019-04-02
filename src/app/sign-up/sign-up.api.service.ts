@@ -73,7 +73,7 @@ export class SignUpApiService {
       captcha,
       journeyType,
       enquiryId,
-      callbackUrl: environment.apiBaseUrl,
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
     };
   }
 
