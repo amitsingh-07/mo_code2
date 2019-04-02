@@ -163,6 +163,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   removeDependant(i) {
     const dependantdetails = this.myDependantForm.get('dependentMappingList') as FormArray;
     dependantdetails.removeAt(i);
+    this.myDependantForm.get('dependentMappingList').markAsDirty();
   }
   validateDependantForm(form: FormGroup) {
 
@@ -177,13 +178,13 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-    if (!form.pristine) {
-      this.comprehensiveService.clearEndowmentPlan();
-      if (this.validateDependantForm(form)) {
-        form.value.dependentMappingList.forEach((dependant: any, index) => {
-          form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-          form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
-        });
+
+    if (this.validateDependantForm(form)) {
+      form.value.dependentMappingList.forEach((dependant: any, index) => {
+        form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+        form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
+      });
+      if (!form.pristine) {
         this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
         this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
         form.value.hasDependents = this.hasDependant;
@@ -191,12 +192,16 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
           this.loaderService.hideLoader();
           this.comprehensiveService.setMyDependant(data.objectList);
+          this.comprehensiveService.clearEndowmentPlan();
+          this.comprehensiveService.setEndowment(null);
           this.goToNextPage();
         }));
+      } else {
+        this.goToNextPage();
       }
-    } else {
-      this.goToNextPage();
+
     }
+
   }
 
   goToNextPage() {
@@ -204,7 +209,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
       const maxAge = (dependant.gender.toLowerCase() === 'male') ?
-      this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR');
+        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR');
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;

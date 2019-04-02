@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
@@ -54,15 +55,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and
-        this.modelTitle = this.translate.instant(
-          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
-        );
-        this.modelMessage = this.translate.instant(
-          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
-        );
-        this.modelBtnText = this.translate.instant(
-          'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
-        );
+
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
@@ -72,11 +65,19 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
-          this.getMyInfoData();
-        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
-          this.cancelMyInfo();
+          this.myInfoService.getMyInfoData().subscribe((data) => {
+            if (data && data['objectList']) {
+              this.myInfoService.isMyInfoEnabled = false;
+              this.closeMyInfoPopup();
+            } else {
+              this.closeMyInfoPopup();
+            }
+          }, (error) => {
+            this.closeMyInfoPopup();
+          });
         } else {
-          this.myInfoService.closeMyInfoPopup(false);
+          this.myInfoService.isMyInfoEnabled = false;
+          this.closeMyInfoPopup();
         }
       }
     });
@@ -89,18 +90,33 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.myInfoSubscription.unsubscribe();
     }
   }
+  closeMyInfoPopup() {
+    this.myInfoService.closeFetchPopup();
+    this.myInfoService.changeListener.next('');
+    if (this.myInfoService.isMyInfoEnabled) {
+      this.myInfoService.isMyInfoEnabled = false;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Oops, Error!';
+      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
+      ref.componentInstance.isError = true;
+      ref.result.then(() => {
+        this.myInfoService.goToMyInfo();
+      }).catch((e) => {
+      });
+    }
+  }
 
   openModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.modelTitle;
-    ref.componentInstance.errorMessageHTML = this.modelMessage;
-    ref.componentInstance.primaryActionLabel = this.modelBtnText;
-    ref.componentInstance.warningIcon = true;
-    ref.result
-      .then(() => {
-        this.showConfirmation = true;
-      })
-      .catch((e) => { });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+    ref.componentInstance.isButtonEnabled = true;
+    ref.result.then(() => {
+      this.myInfoService.setMyInfoAttributes('cpfbalances');
+      this.myInfoService.goToMyInfo();
+    }).catch((e) => {
+    });
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -250,11 +266,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     }
   }
-  getMyInfoData() {
-    this.myInfoService.getMyInfoData().subscribe((data) => {
-      console.log(data);
-    });
-  }
+
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
       TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
@@ -266,7 +278,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   onChange() {
     this.onTotalAssetsBucket();
   }
-
+  getMyInfoData() {
+    this.myInfoService.getMyInfoData().subscribe((data: any) => {
+      console.log(data);
+    });
+  }
   onTotalAssetsBucket() {
     const assetFormObject = this.myAssetsForm.value;
     let bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.BUCKET_INPUT_CALC;

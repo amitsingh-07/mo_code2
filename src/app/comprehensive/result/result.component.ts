@@ -3,8 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
+import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTES } from '../../sign-up/sign-up.routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
+import { ComprehensiveService } from '../comprehensive.service';
 
 @Component({
   selector: 'app-result',
@@ -15,9 +18,12 @@ export class ResultComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
   menuClickSubscription: Subscription;
+  emailID: string;
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
               private translate: TranslateService,
-              private configService: ConfigService, private router: Router) {
+              private configService: ConfigService, private router: Router,
+              private progressService: ProgressTrackerService,
+              private comprehensiveService: ComprehensiveService, private signUpService: SignUpService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -28,10 +34,17 @@ export class ResultComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.emailID = this.signUpService.getUserProfileInfo().emailAddress;
   }
 
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        this.progressService.show();
+      }
+    });
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();

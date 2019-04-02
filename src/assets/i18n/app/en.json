@@ -262,6 +262,20 @@
   "COMMON_LOADER": {
     "TITLE": "Loading",
     "DESC": "Please wait while we load the data"
+  },
+  "MYINFO": {
+    "OPEN_MODAL_DATA": {
+      "TITLE": "Login via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+    },
+    "ERROR_MODAL_DATA": {
+      "TITLE": "Oops, Error!",
+      "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
+    },
+    "FETCH_MODAL_DATA": {
+      "TITLE": "Fetching Data...",
+      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    }
   }
 }
 
