@@ -254,7 +254,8 @@ export class SignUpService {
   constructResetPasswordInfo(pass, key) {
     return {
       password: pass,
-      resetKey: key
+      resetKey: key,
+      sessionId: this.authService.getSessionId()
     };
   }
 
@@ -328,7 +329,8 @@ export class SignUpService {
   constructEditPassword(oldpassword, newpassword) {
     return {
       oldPassword: oldpassword,
-      newPassword: newpassword
+      newPassword: newpassword,
+      sessionId: this.authService.getSessionId(),
     };
   }
   setEditPasswordInfo(oldPassword, newPassword) {
@@ -535,4 +537,6 @@ export class SignUpService {
   getUnsupportedNoteShownFlag() {
     return this.signUpFormData.isUnsupportedNoteShown;
   }
+
+
 }

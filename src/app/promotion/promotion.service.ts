@@ -49,11 +49,13 @@ export class PromotionService {
   }
 
   checkPromoIdList(promoList, promoId): boolean {
-    let is_exist: boolean;
+    let is_exist = false;
     promoId = +promoId;
     promoList.forEach((element) => {
       if (promoId === +element.promoId) {
-        is_exist = true;
+        if (!element.external) {
+          is_exist = true;
+        }
         return;
       }
     });

@@ -19,13 +19,10 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 
-// Will Writing
+  // Will Writing
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-
-// Insurance
-import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,10 +54,6 @@ export class DashboardComponent implements OnInit {
   showWillWritingSection = false;
   wills: any = {};
 
-  // Insurance
-  showInsuranceSection = false;
-  insurance: any = {};
-
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -74,9 +67,8 @@ export class DashboardComponent implements OnInit {
     public footerService: FooterService,
     private selectedPlansService: SelectedPlansService,
     private willWritingApiService: WillWritingApiService,
-    private willWritingService: WillWritingService,
-    private guideMeApiService: GuideMeApiService
-  ) {
+    private willWritingService: WillWritingService
+    ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -107,7 +99,6 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
@@ -122,15 +113,6 @@ export class DashboardComponent implements OnInit {
         this.wills.hasWills = false;
       }
     });
-
-    // Insurance
-    this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
-      this.showInsuranceSection = true;
-      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-        this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
-        this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
-      }
-    })
   }
 
   loadOptionListCollection() {
@@ -229,7 +211,8 @@ export class DashboardComponent implements OnInit {
         this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
         this.showCddCheckFail = true;
         this.enableInvestment();
         break;
