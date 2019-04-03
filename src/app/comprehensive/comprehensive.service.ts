@@ -781,4 +781,116 @@ export class ComprehensiveService {
         });
         return totalExpense;
     }
+    /*
+    *Summary Page Finance - Compute Liquid Cash
+    * (Cash + SavingBond) - (Expense/2)
+    */
+    getLiquidCash() {
+        const assetDetails = this.getMyAssets();
+        const expenseDetails = this.getMySpendings();
+        let sumLiquidCash = 0;
+        if (assetDetails && assetDetails.cashInBank) {
+            sumLiquidCash += assetDetails.cashInBank;
+        }
+        if (assetDetails && assetDetails.savingsBonds) {
+            sumLiquidCash += assetDetails.savingsBonds;
+        }
+        if (expenseDetails && expenseDetails.totalAnnualExpenses) {
+            sumLiquidCash -= (expenseDetails.totalAnnualExpenses / 2);
+        }
+        return sumLiquidCash;
+    }
+    /*
+    *Compute Spare Cash
+    * 75% of (HomePay - RSP - BadMood - Expense)
+    * 50% of (Annual Bonus/Dividend)
+    */
+    getComputeSpareCash() {
+        let spareCash = 0;
+        const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
+        const earningDetails = this.getMyEarnings();
+        const spendDetails = this.getMySpendings();
+        const homePayTotal = this.getTakeHomeSalary(earningDetails, summaryConfig);
+        const regularSavingTotal = this.getRegularSaving();
+        const badMoodTotal = this.getBadMoodFund();
+        const expenseTotal = (spendDetails && spendDetails.totalAnnualExpenses) ? this.getValidAmount(spendDetails.totalAnnualExpenses) : 0;
+        const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
+        const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
+        spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal)) 
+                    + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
+        return (Math.round(spareCash));
+    }
+    /*
+    *Compute Take Home
+    */
+    getTakeHomeSalary(earningDetails: any, summaryConfig: any) {
+        const baseProfile = this.getMyProfile();
+        let homeSalary = 0;
+        let homeCpfSalary = 0;
+        if (earningDetails && earningDetails.totalAnnualIncomeBucket > 0) {
+            if (baseProfile && baseProfile.nation === 'Foreigner') {
+                homeSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+            } else {
+                const cpfDetails = {
+                    amountLimitCpf : summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN,
+                    cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT
+                };
+                if (earningDetails.employmentType === 'Employed') {
+                    cpfDetails.amountLimitCpf = summaryConfig.HOME_PAY_CPF_EMPLOYED_BREAKDOWN;
+                    cpfDetails.cpfPercent = summaryConfig.HOME_PAY_CPF_EMPLOYED_PERCENT;
+                }
+                homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                if (homeCpfSalary > cpfDetails.amountLimitCpf) {
+                    homeSalary = ( cpfDetails.amountLimitCpf * cpfDetails.cpfPercent ) + (homeCpfSalary - cpfDetails.amountLimitCpf);
+                } else {
+                    homeSalary = (homeCpfSalary * cpfDetails.cpfPercent);
+                }
+            }
+            homeSalary += this.getValidAmount(earningDetails.monthlyRentalIncome);
+            homeSalary += this.getValidAmount(earningDetails.otherMonthlyIncome);
+            homeSalary *= 12;
+            homeSalary += this.getValidAmount(earningDetails.otherAnnualIncome);
+        }
+        return homeSalary;
+    }
+    /*
+    * compute Regular Saving Plan
+    */
+    getRegularSaving() {
+        const rspDetails = this.getRegularSavingsList();
+        if (rspDetails) {
+            const inputParams = { rsp: rspDetails};
+            const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
+            const monthlySumCal = this.additionOfCurrency(filterInput);
+            const yearCal = this.additionOfCurrency(filterInput) * 12;
+            return yearCal;
+        } else {
+            return 0;
+        }
+    }
+    /*
+    *compute Bad Mood Fund
+    */
+    getBadMoodFund() {
+        const badMoodDetails = this.getDownOnLuck();
+        if ( badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
+           const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
+           return badMoodMonthly * 12;
+        } else {
+            return 0;
+        }
+    }
+    /*
+    * check Number
+    */
+    getValidAmount(thisValue) {
+        if (!isNaN(thisValue)) {
+            return toInteger(thisValue);
+        } else {
+            return 0;
+        }
+    }
+
 }

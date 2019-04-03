@@ -15,7 +15,7 @@
         <div class="summary-modal__main-content mb20 {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">
           <span class='liquid-cash'></span>
           <div>{{ summaryModalDetails.contentObj.CONTENT_BODY1 }}</div>
-          <div class="summary-modal__main-content_dollar {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">{{ (!summaryModalDetails.liabilitiesEmergency)?'-':'' }} {{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+          <div class="summary-modal__main-content_dollar {{ (!summaryModalDetails.liabilitiesEmergency)?'summary-modal__minus-content':'' }}">{{ summaryModalDetails.liabilitiesLiquidCash | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
           <span class='liquid-alert' [hidden]="summaryModalDetails.liabilitiesEmergency"></span>
         </div>
         <div class="summary-modal__main-content mb30 ">

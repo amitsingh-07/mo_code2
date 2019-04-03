@@ -96,6 +96,14 @@ export const COMPREHENSIVE_CONST = {
             STEP2: true,
             STEP3: true,
             STEP4: true,
+        },
+        YOUR_FINANCES: {
+            HOME_PAY_CPF_EMPLOYED_BREAKDOWN: 6000,
+            HOME_PAY_CPF_EMPLOYED_PERCENT: 0.8,
+            HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN: 6000,
+            HOME_PAY_CPF_SELF_EMPLOYED_PERCENT: 0.96,
+            SPARE_CASH_EARN_SPEND_PERCENT: 0.75,
+            SPARE_CASH_ANNUAL_PERCENT: 0.50
         }
     }
 };
