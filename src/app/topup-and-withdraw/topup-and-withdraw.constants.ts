@@ -39,5 +39,5 @@ export let TOPUPANDWITHDRAW_CONFIG = {
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal'
   },
-  STATEMENT_CUT_OFF_DAY: 2
+  STATEMENT_CUT_OFF_DAY: 1
 };
