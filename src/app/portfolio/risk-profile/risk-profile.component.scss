@@ -130,6 +130,17 @@ app-risk-profile {
     .risk-profile-block__content__desc {
       text-align: left;
       padding: 0px 30px;
+      position: relative;
+      top: 240px;
+      @include iPadLandscape{
+        top: 260px;
+      }
+      @include iPadProPortrait{
+        top: 265px;
+      }
+      @include iPadProLandscape{
+        top: 265px;
+      }
       @include tablet {
         margin-top: 0px;
       }
@@ -193,7 +204,10 @@ app-risk-profile {
   .risk-profile-title-block {
     background-color: $white-color;
     padding-bottom: 35px;
-    margin-bottom: 37px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
   }
   .risk-profile-title-block.invert {
     background: none;
