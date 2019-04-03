@@ -223,7 +223,7 @@
         "ADD_MONTHLY_INCOME_TITLE": "Other Monthly Income",
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
         "ADD_DIVIDENDS_TITLE": "Annual Dividends",
-        "ADD_DIVIDENDS_MESSAGE": "Add up all the stock dividends you receive every year."
+        "ADD_DIVIDENDS_MESSAGE": "This is the total dividends or interest you expect to receive on a regular basis from your investments."
       },
       "SELECTED": "(Selected)",
       "OPTIONAL_VALIDATION_FLAG": false
