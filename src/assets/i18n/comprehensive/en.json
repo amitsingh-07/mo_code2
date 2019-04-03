@@ -124,7 +124,7 @@
       "STEP_2_TITLE": "Your Finances",
       "STEP_2_DESC": "The information help us to estimate what you can save and invest, your protection need and your financial health.",
       "STEP_3_TITLE": "Your Current Fire Proofing",
-      "STEP_3_DESC": "Let's find out how protected you are in face unexpected events",
+      "STEP_3_DESC": "Let's find out how protected you are in face of unexpected events.",
       "STEP_4_TITLE_NAV":"Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
@@ -223,7 +223,7 @@
         "ADD_MONTHLY_INCOME_TITLE": "Other Monthly Income",
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
         "ADD_DIVIDENDS_TITLE": "Annual Dividends",
-        "ADD_DIVIDENDS_MESSAGE": "Add up all the stock dividends you receive every year."
+        "ADD_DIVIDENDS_MESSAGE": "This is the total dividends or interest you expect to receive on a regular basis from your investments."
       },
       "SELECTED": "(Selected)",
       "OPTIONAL_VALIDATION_FLAG": false
@@ -401,9 +401,9 @@
         "YOUR_HOME_TITLE": "Your Home",
         "YOUR_HOME_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
         "INVESTMENT_PROPERTIES_TITLE": "Investment Properties",
-        "INVESTMENT_PROPERTIES_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
+        "INVESTMENT_PROPERTIES_MESSAGE": "Property that you purchased with the purpose expectation of earning a return, either through the future resale of the property, rental income or both.",
         "OTHER_PROPERTIES_TITLE": "Other Properties",
-        "OTHER_PROPERTIES_MESSAGE": "This is the gross value of the property. Do not deduct any outstanding mortgages."        
+        "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate."        
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
@@ -429,9 +429,9 @@
         "OTHER_LOAN_TITLE": "Other Loans",
         "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, car loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
-        "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
+        "OTHER_PROPERTY_LOAN_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car.",
         "CAR_LOANS_TITLE": "Car Loans",
-        "CAR_LOANS_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments."
+        "CAR_LOANS_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
@@ -480,9 +480,9 @@
      "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
       "TOOLTIP":{
         "CPF_TITLE": "CPF Dependants’ Protection Scheme",
-        "CPF_MESSAGE": "A basic term insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It provides a maximum sum assured of $46,000 up to 60 years old. Premiums can be paid from the CPF Ordinary Account.",
+        "CPF_MESSAGE": "A basic insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It covers the insured member for a maximum sum assured of $46,000 up to 60 years old",
         "OTHER_LIFE_INSURANCE_TITLE": "Other Life Insurance Coverage",
-        "OTHER_LIFE_INSURANCE_MESSAGE": "The total benefit payable to you or your loved ones from all your insurance policies in the event of death, Terminal Illness or Total Permanent Disability."
+        "OTHER_LIFE_INSURANCE_MESSAGE": "The total amount you or your loved ones would receive from all your insurance policies should you pass away, suffer from Terminal Illness or Total Permanent Disability."
       }
     },
     "RESULT":{
