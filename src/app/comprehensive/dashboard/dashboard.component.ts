@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userName = 'kelvin goh';
     this.userDetails = this.comprehensiveService.getMyProfile();
-    console.log(this.comprehensiveService.getComprehensiveSummary());
     this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
     // tslint:disable-next-line: no-commented-code
     if (!this.userDetails || !this.userDetails.firstName) {
@@ -62,7 +61,6 @@ export class DashboardComponent implements OnInit {
     const reportDateAPI = new Date();
     this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
     this.getComprehensiveSummaryEnquiry = this.getComprehensiveSummary.comprehensiveEnquiry;
-    console.log(this.getComprehensiveSummaryEnquiry);
     if ( this.getComprehensiveSummaryEnquiry.hasComprehensive === true &&
         this.getComprehensiveSummaryEnquiry.hasDependents === true &&
         this.getComprehensiveSummaryEnquiry.hasEndowments === true &&
@@ -77,10 +75,8 @@ export class DashboardComponent implements OnInit {
         }
     }
     Object.keys(this.stepDetails).forEach((key) => {
-      console.log(key + ' - ' + this.stepDetails[key]);
       this.currentStep = this.stepDetails[key];
     });
-    console.log(this.currentStep);
     this.getCurrentComprehensiveStep();
   }
 
