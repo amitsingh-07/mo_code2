@@ -282,7 +282,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   getMyInfoData() {
     this.myInfoService.getMyInfoData().subscribe((data: any) => {
-      console.log(data);
     });
   }
   onTotalAssetsBucket() {

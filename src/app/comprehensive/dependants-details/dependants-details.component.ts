@@ -210,7 +210,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
       const maxAge = (dependant.gender.toLowerCase() === 'male') ?
         this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR');
-      console.log(getAge, maxAge);
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;

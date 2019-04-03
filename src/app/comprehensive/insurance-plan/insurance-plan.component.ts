@@ -68,7 +68,6 @@ export class InsurancePlanComponent implements OnInit {
     // Above Service Will be deleted once API is Ready
     // this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
-    console.log(this.comprehensiveService.getMySpendings().HLtypeOfHome);
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
   buildInsuranceForm() {

@@ -94,7 +94,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-        console.log(getAge);
         const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
@@ -209,7 +208,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       }
     });
     form.hasEndowments == null ? this.educationPreference = true : this.educationPreference = educationPreferenceAlert;
-    console.log(this.educationPreference);
   }
 
   goToNext(form) {
