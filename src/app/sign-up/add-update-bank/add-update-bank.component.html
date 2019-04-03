@@ -8,8 +8,10 @@
             <label class="form-lbl"> {{'ADD_BANK.ACCOUNT_NAME' | translate}}</label>
           </div>
           <div class="flex-col-12">
-             <label class="form-control input-control disabled" 
-              id="account_holder">{{bankForm.controls.accountHolderName.value}}</label> 
+            <div>
+              <input type="text" class="form-control input-control" formControlName="accountHolderName"
+                id="account_holder" maxLength="30">
+            </div>
           </div>
         </div>
       </div>
@@ -23,7 +25,8 @@
       <div class="form-group">
         <div class="flex-row">
           <div class="flex-col-6">
-            <label for="residentialAddress-country-drpdown" class="form-lbl bank_text" id="residentialAddress-country-lbl">
+            <label for="residentialAddress-country-drpdown" class="form-lbl bank_text"
+              id="residentialAddress-country-lbl">
               {{'ADD_BANK.BANK' | translate}}</label>
           </div>
           <div class="flex-col-6">
@@ -35,7 +38,8 @@
                   <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank, i)"
+                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;"
+                    (click)="setDropDownValue('bank',bank, i)"
                     id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
                 </div>
               </div>
@@ -58,5 +62,6 @@
       </div>
     </div>
   </form>
-  <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
+  <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100"
+    id="forgotPasswordButton">{{buttonTitle}}</button>
 </div>

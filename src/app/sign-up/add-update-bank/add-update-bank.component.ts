@@ -97,7 +97,6 @@ export class AddUpdateBankComponent implements OnInit {
       bank: [this.formValues.bank, [Validators.required]],
       accountNo: [this.formValues.accountNumber, [Validators.required]]
     });
-    this.bankForm.controls.accountHolderName.disable();
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
@@ -155,7 +154,7 @@ export class AddUpdateBankComponent implements OnInit {
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
         this.signUpService.updateBankInfo(form.value.bank,
-          form.getRawValue().accountHolderName, accountNum, this.updateId).subscribe((data) => {
+          form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
           this.loaderService.hideLoader();
           // tslint:disable-next-line:triple-equals
           if (data.responseMessage.responseCode < 6000) {
