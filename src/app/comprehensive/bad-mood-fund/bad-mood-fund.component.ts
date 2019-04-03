@@ -124,4 +124,11 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
   }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.YOUR_FINANCES.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.YOUR_FINANCES.TOOLTIP.' + toolTipMessage)
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
+  }
 }
