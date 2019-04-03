@@ -160,6 +160,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               const investmentStatus = this.signUpService.getInvestmentStatus();
               const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
               const redirect_url = this.signUpService.getRedirectUrl();
+              const journeyType = this.appService.getJourneyType();
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
@@ -170,7 +171,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([redirect_url]);
                 }
-              } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+              } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING &&
                 this.willWritingService.getExecTrusteeInfo().length > 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
                   this.willWritingApiService.createWill().subscribe((data) => {
@@ -186,7 +187,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                 }
-              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
+                journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
+                journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
