@@ -13,15 +13,19 @@ import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.ser
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
+import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { IEnquiryUpdate } from '../signup-types';
 import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
 
@@ -60,7 +64,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private willWritingService: WillWritingService,
     private _location: Location,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private apiService: ApiService,
+    private selectedPlansService: SelectedPlansService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -152,6 +158,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               }
             } catch (e) {
               console.log(e);
+            }
+            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+            if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+              const payload: IEnquiryUpdate = {
+                customerId: data.objectList[0].customerId,
+                enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+                selectedProducts: insuranceEnquiry.plans
+              };
+              this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+                this.selectedPlansService.clearData();
+              });
             }
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
