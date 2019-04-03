@@ -32,6 +32,9 @@ export class NavbarService {
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
 
+  private investPageTitle = new BehaviorSubject('');
+  private investPageSuperTitle = new BehaviorSubject('');  
+
   private mobileModal = new BehaviorSubject('');
   private clearNotificationEvent = new BehaviorSubject(false);
   private closeProdInfo = new BehaviorSubject('');
@@ -50,6 +53,10 @@ export class NavbarService {
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
   currentPageFilterIcon = this.pageFilterIcon.asObservable();
   currentPageSuperTitle = this.pageSuperTitle.asObservable();
+
+  investmentPageTitle = this.investPageTitle.asObservable();
+  investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
+  
 
   constructor() { }
 
@@ -101,9 +108,15 @@ export class NavbarService {
     this.pageClearNotify.next(isVisible);
   }
 
+  setInvestPageTitle(title: string, superTitle?: string) {
+    this.investPageTitle.next(title);
+    this.investPageSuperTitle.next(superTitle);
+  }
+
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
+    this.setInvestPageTitle(title, superTitle ? superTitle : ''); //Investment - Desktop/Tablet page tile
     this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);

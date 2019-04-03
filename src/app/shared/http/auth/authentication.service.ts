@@ -26,7 +26,7 @@ export class AuthenticationService {
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
 
-  private getAppSecretKey() {
+  getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
 
@@ -35,7 +35,7 @@ export class AuthenticationService {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
       password: userPassword ? userPassword : '',
-      secretKey: this.getAppSecretKey()
+      //secretKey: this.getAppSecretKey()
     };
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }
     if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
@@ -54,7 +54,7 @@ export class AuthenticationService {
       email: '',
       mobile: '',
       password: '',
-      secretKey: this.getAppSecretKey()
+      //secretKey: this.getAppSecretKey()
     };
     return this.doAuthenticate(authenticateBody);
   }
