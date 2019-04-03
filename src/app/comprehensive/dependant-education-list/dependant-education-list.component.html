@@ -60,7 +60,7 @@
             </div>
             <div class="flex-col-7">
               <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
-                id="myFamilyFormInpt4"placeholder="Enter Year" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
+                id="myFamilyFormInpt4" [placeholder]="yearPlaceholder" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
               </div>
             </div>
           </div>
