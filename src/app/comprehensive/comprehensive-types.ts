@@ -156,6 +156,7 @@ export interface IMyAssets {
     assetsInvestmentSet: IOtherProperties[];
     otherAssetsValue: number;
     totalAnnualAssets: number;
+    source: string;
 }
 export interface IOtherProperties {
     enquiryId: number;

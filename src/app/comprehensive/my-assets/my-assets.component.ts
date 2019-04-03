@@ -44,6 +44,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   modelMessage: string;
   modelBtnText: string;
   showConfirmation: boolean;
+  cpfFromMyInfo = false;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
@@ -67,7 +68,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
-              this.myInfoService.isMyInfoEnabled = false;
+              const cpfValues = data.objectList[0].cpfbalances;
+              this.myAssetsForm.controls['cpfOrdinaryAccount'].setValue(cpfValues.ca);
+              this.myAssetsForm.controls['cpfSpecialAccount'].setValue(cpfValues.sa);
+              this.myAssetsForm.controls['cpfMediSaveAccount'].setValue(cpfValues.ma);
+              this.cpfFromMyInfo = true;
               this.closeMyInfoPopup();
             } else {
               this.closeMyInfoPopup();
@@ -82,6 +87,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     });
     this.assetDetails = this.comprehensiveService.getMyAssets();
+    if (this.assetDetails && this.assetDetails.source === 'MyInFo' ) {
+      this.cpfFromMyInfo = true;
+    }
   }
   cancelMyInfo() {
     this.myInfoService.isMyInfoEnabled = false;
@@ -204,7 +212,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   removeInvestment(i) {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
-    this.investType[i] = '';    
+    this.investType[i] = '';
     investments.markAsDirty();
     investments.removeAt(i);
     this.setInvestValidation(investments.length);
@@ -251,6 +259,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if (this.validateAssets(form)) {
       if (!form.pristine) {
         this.assetDetails = form.value;
+        this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
         this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
         this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
         this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
