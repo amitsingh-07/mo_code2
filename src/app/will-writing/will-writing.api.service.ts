@@ -200,23 +200,10 @@ export class WillWritingApiService {
     }
 
     getWill() {
-        const payload = {
-            customerId: ''
-        };
-        return this.apiService.getWill(payload);
+        return this.apiService.getWill();
     }
 
     downloadWill() {
-        const payload = {
-            customerId: ''
-        };
-        return this.apiService.downloadWill(payload);
-    }
-
-    downloadWillById(custId) {
-        const payload = {
-            customerId: custId
-        };
-        return this.apiService.downloadWill(payload);
+        return this.apiService.downloadWill();
     }
 }
