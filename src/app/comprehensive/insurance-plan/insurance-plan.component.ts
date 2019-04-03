@@ -61,14 +61,9 @@ export class InsurancePlanComponent implements OnInit {
     this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
       this.longTermInsurance = false;
     }
-    this.comprehensiveApiService.getInsurancePlanning().subscribe((data: IInsurancePlan) => {
-      this.insurancePlanFormValues = data;
-      this.buildInsuranceForm();
-    });
-    // Above Service Will be deleted once API is Ready
-    // this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
+
+    this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
-    console.log(this.comprehensiveService.getMySpendings().HLtypeOfHome);
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
   buildInsuranceForm() {
@@ -106,9 +101,9 @@ export class InsurancePlanComponent implements OnInit {
   goToNext(form) {
     form.value.enquiryId = this.comprehensiveService.getEnquiryId();
     this.comprehensiveService.setInsurancePlanningList(form.value);
-    this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+    // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
 
-    });
+    // });
     this.showSummaryModal();
   }
   showSummaryModal() {
@@ -128,5 +123,12 @@ export class InsurancePlanComponent implements OnInit {
       };
       this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
     }
+  }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.' + toolTipMessage)
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }

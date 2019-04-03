@@ -66,7 +66,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-    console.log(this.downOnLuck);
     this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
   }
   setPageTitle(title: string) {
@@ -118,7 +117,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   goToNext(form) {
     form.value.badMoodMonthlyAmount = this.SliderValue;
     form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    console.log(form.value);
     this.comprehensiveService.setDownOnLuck(form.value);
     this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
       any) => {

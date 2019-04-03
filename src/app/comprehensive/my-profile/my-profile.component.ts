@@ -192,7 +192,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     validateDOB(date) {
         const today: Date = new Date();
-        if (today.getFullYear() - date._model.year > 55) {
+        if (today.getFullYear() - date._model.year > 54) {
             this.DOBAlert = true;
         } else {
             this.DOBAlert = false;
