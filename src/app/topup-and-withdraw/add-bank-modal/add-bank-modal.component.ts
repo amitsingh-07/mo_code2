@@ -27,7 +27,7 @@ export class AddBankModalComponent implements OnInit {
   ngOnInit() {
     this.banks = this.signUpService.addMaxLengthInfoForAccountNo(this.banks);
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl({value: this.fullName, disabled: true}, [
+      accountHolderName: new FormControl(this.fullName, [
         Validators.required,
         Validators.pattern(RegexConstants.SymbolAlphabets)
       ]),

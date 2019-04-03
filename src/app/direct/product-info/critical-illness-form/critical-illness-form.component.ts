@@ -27,9 +27,11 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   doberror = false;
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Whole Life', 'Whole life w/Multiplier'];
+  durationValues = ['5 Years', '10 Years', 'Till Age 55',
+                    'Till Age 60', 'Till Age 65', 'Till Age 70',
+                    'Whole Life', 'Whole life w/Multiplier'];
   minDate;
-  maxDate
+  maxDate;
 
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
