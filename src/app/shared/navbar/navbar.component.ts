@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
   showMenu = true;  // Show Menu Feature
   showLogin = true; // Show Login Feature
+  showLogout = true; // Show Logout Feature only
   showNavShadow = true; // Navbar Show Shadow
   showSearchBar = false; // Navbar Show Search
   showNotifications = false; // Show Notifications Feature
@@ -219,6 +220,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showHeaderBackBtn = config.showHeaderBackBtn;
     this.showMenu = config.showMenu;
     this.showLogin = config.showLogin;
+    this.showLogout = config.showLogout;
     this.showNavShadow = config.showNavShadow;
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;

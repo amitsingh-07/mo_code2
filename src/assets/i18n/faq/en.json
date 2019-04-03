@@ -22,7 +22,7 @@
                     },
                     {
                         "QUESTION": "Which are the insurance companies that are under MoneyOwl’s panel of insurance companies?",
-                        "ANSWER": "We currently distribute products from the following insurance companies:<br/><ul><li>Aviva Ltd</li><li>Manulife (Singapore) Pte Ltd</li><li>NTUC Income Insurance Cooperative Ltd</li><li>Tokio Marine Life Insurance Singapore Ltd</li></ul>"
+                        "ANSWER": "We currently distribute products from the following insurance companies:<br/><ul><li>Aviva Ltd</li><li>Manulife (Singapore) Pte Ltd</li><li>NTUC Income Insurance Cooperative Ltd</li><li>Raffles Health Insurance Pte Ltd</li><li>Singapore Life Pte Ltd</li><li>Tokio Marine Life Insurance Singapore Ltd</li></ul>"
                     }
                 ],
                 "Commission Rebate": [
@@ -336,11 +336,11 @@
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
-                        "ANSWER": "<p>As soon as there are sufficient monies in your Investment Cash Account, we will process the request by 3pm on the current business day. If the buy request is received after 3pm, the request will be processed by the next business day.</p><p>You will receive an email notifying you on the transaction within 2 business days after request is processed. The holdings will be reflected in your Investment Account within 7 business days after the request is processed.</p>"
+                        "ANSWER": "<p>As soon as there are sufficient monies in your Investment Cash Account, we will process the online request by 3pm on the current business day. If the buy request is received after 3pm, the request will be processed by the next business day.</p><p>You will receive an email notifying you on the transaction within 2 business days after request is processed. The holdings will be reflected in your Investment Account within 4 business days after the request is processed.</p>"
                     },
                     {
                         "QUESTION": "How soon will my sell request be processed? ",
-                        "ANSWER": "<p>We will process the request by 11am on the current business day. If the request is received after 11am, the request will be processed by the next business day.<br/>The price of the funds sold will be based on the ending Net Asset Value (NAV) of business day the request is processed.</p><p>You will receive an email notification within the next 2 business days. The monies will be transferred to your Investment Cash Account within the next business day.<br/>Monies will be reflected in your bank account within 7 business days of redemption from your Investment Cash Account.</p>"
+                        "ANSWER": "<p>We will process the online request by 3pm on the current business day. If the request is received after 3pm, the request will be processed by the next business day.<br/>The price of the funds sold will be based on the ending Net Asset Value (NAV) of business day the request is processed.</p><p>You will receive an email notification within the next 2 business days. <br/>Redemption Proceeds will be reflected in your bank account within 8 business days.</p>"
                     },
                     {
                         "QUESTION": "I have funded my Investment Account but have decided not to proceed with the investment. How do I get my monies back?",
@@ -354,7 +354,7 @@
                     },
                     {
                         "QUESTION": "How soon will I receive the cash in my bank account?",
-                        "ANSWER": "<p>If you redeem (sell) investments and choose to receive the proceeds directly in your bank account, the money will be transferred to your designated bank account in the next 7 business days.</p><p>If withdrawal is done from your Investment Cash Account to your bank account, the money will be transferred to your bank account in the next business day.</p>"
+                        "ANSWER": "<p>If you redeem (sell) investments and choose to receive the proceeds directly in your bank account, the redemption proceeds will be reflected into your designated bank account within 8 business days.</p><p>If withdrawal is done from your Investment Cash Account to your bank account, the money will be reflected in your bank account within 2 business days.</p>"
                     },
                     {
                         "QUESTION": "How do I add my bank account details for purpose of receiving redemption proceeds?",
@@ -368,7 +368,7 @@
                 "Fees": [
                     {
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay is as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65%</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18%</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.32% to 0.38%</td></tr></table>"
+                        "ANSWER": "The total annual fees you have to pay is as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65%</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18%</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.2% to 0.4%</td></tr></table>"
                     },
                     {
                         "QUESTION": "How are fees deducted?", 

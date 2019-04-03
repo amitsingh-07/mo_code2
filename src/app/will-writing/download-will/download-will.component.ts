@@ -37,9 +37,9 @@ export class DownloadWillComponent implements OnInit, OnDestroy {
   }
 
   downloadWill() {
-    this.willWritingApiService.downloadWillById(this.customerId).subscribe((data: any) => {
+    /*this.willWritingApiService.downloadWillById(this.customerId).subscribe((data: any) => {
       this.saveAs(data);
-    }, (error) => console.log(error));
+    }, (error) => console.log(error));*/
   }
 
   saveAs(data) {
