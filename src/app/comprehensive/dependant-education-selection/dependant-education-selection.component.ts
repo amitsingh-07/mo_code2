@@ -94,7 +94,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+        console.log(getAge);
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
@@ -123,7 +124,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       location: null,
       educationCourse: null,
       endowmentMaturityAmount: 0,
-      endowmentMaturityYears: 0,
+      endowmentMaturityYears: null,
       age: maturityAge,
       preferenceSelection: preferenceSelected
     } as IChildEndowment;
@@ -165,7 +166,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 20 : 18;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {

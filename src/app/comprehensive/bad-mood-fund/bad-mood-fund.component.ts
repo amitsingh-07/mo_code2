@@ -66,7 +66,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-    console.log(this.downOnLuck);
     this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
   }
   setPageTitle(title: string) {
