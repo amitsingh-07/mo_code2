@@ -42,7 +42,7 @@
         </div>
 
         <div class="flex-row investmentProperties home-loan" [hidden]="!propertyLoan">
-          <div class="flex-col-12 mt-2 ">
+          <div class="flex-col-12 mt30 ">
             <div class="with-help-icon" for="name"><u (click)="addPropertyLoan()">{{
                 'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN' | translate}}</u>
 
@@ -53,7 +53,7 @@
 
         <div [hidden]="propertyLoan" class="liabilities investmentProperties">
 
-          <div class="flex-row mt-2">
+          <div class="flex-row mt30">
             <div class="flex-col-12">
               <div class="with-help-icon both-icon form-group-with-bg--content-label" for="name"><b>{{
                   'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN' | translate}}</b>
@@ -149,7 +149,7 @@
     <div class='mb-10'>
       <div class="flex-row mb-3 mt-3 ">
         <div class="flex-col-12">
-      <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary width100" id="prfBtn1">{{
+      <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary mt30 mb10 width100" id="prfBtn1">{{
         'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
         translate}}</button>
         </div>

@@ -1033,6 +1033,7 @@ button:active:focus {
     &.btn-primary {
       font-size: 18px;
       background: $btn-comprehensive;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;
       &:disabled {
         background: $btn-comprehensive-disabled-bg;
         color: $white-color;

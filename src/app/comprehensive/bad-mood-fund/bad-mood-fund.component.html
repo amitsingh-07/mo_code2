@@ -12,23 +12,33 @@
         <div class="form-group-with-bg">
 
         <div class="form-group-with-bg--header">
-          <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span class="help-icon"></span></div>
+          <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span class="help-icon" (click)="showToolTipModal('TITLE','DESCRIPTION')"></span></div>
         </div>
         <div class="form-group form-group-with-bg--content">
-          <label>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</label>
-          <input type="text" name="badMoodMonthlyAmount" class="form-control with-bg offset-7 col-5" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
-          <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
-            [step]="100"></nouislider>
-            <div class="min-max-val">
-          <span class="min-val">$0<br>Min</span>
-          <span class="max-val">$2000<br>Max.</span>
+          <div>{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</div>
+          <div class="flex-row">
+            <div class="flex-col-6 mnth-amt">
+              {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
             </div>
+            <div class="flex-col-6">
+              <input type="text" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
+            </div>
+            <div class="width100">
+              <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="2000"
+                  [step]="100"></nouislider>
+                <div class="min-max-val">
+                  <div class="min-val">$0<span class="min-text">Min</span></div>
+                  <div class="max-val">$2000<span class="max-text">Max.</span></div>
+                </div>
+            </div>
+          </div>
+          
         </div>
        
     </div>
     <h6> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</h6>
     <p>{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</p>
-    <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz">
+    <div class="form-group mb0 flex-col flex__box--sm-horz">
     <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
         <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlanId"
           formControlName="hospitalPlanId" type="radio" class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
@@ -38,9 +48,9 @@
         </label>
       </div>
      </div>
-      <div class="mb-3">
-        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mb50 mt30 width100"
-      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+      <div class="mb100">
+        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mt30 width100"
+      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.CONTINUE' | translate}}
     </button>
       </div>
       <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1"><div class="flex-col-9 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
