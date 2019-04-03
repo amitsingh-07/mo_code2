@@ -42,15 +42,13 @@ app-inv-personal-info {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 60px;
+      top: 76px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
-    }
-    @media (min-width: 768px) {
-      .step-indicator-container {
-        top: 0px;
+      @include allmobiles{
+        top: 60px;
       }
     }
     .form-control {
