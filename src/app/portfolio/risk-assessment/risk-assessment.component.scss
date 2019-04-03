@@ -4,7 +4,7 @@
 app-risk-assessment {
   .question-info {
     position: relative;
-    top: 60px;
+    top: 75px;
     background-color: $white-color;
     display: flex;
     justify-content: center;
@@ -16,18 +16,8 @@ app-risk-assessment {
     font-weight: bold;
     border-top: 1px solid $question-info-brdr-color;
     color: $teal-color;
-  }
-
-  @media (min-width: 768px) {
-    .question-info {
-      top: 0px;
-    }
-    .risk-assessment {
-    }
-  }
-
-  @media (max-width: 767px) {
-    .risk-assessment {
+    @include allmobiles{
+      top: 60px;
     }
   }
 
