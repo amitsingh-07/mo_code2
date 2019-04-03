@@ -23,7 +23,7 @@
                     Premium Discount
                     </div>
                 <div class="info--details">
-                    35% Off (Lifetime)
+                    35% Off Lifetime
                     </div>
                 </div>
         </div>
