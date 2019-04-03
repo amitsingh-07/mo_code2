@@ -55,6 +55,10 @@ export class GuideMeApiService {
         return this.apiService.getRecommendations(this.constructRecommendationsRequest());
     }
 
+    getCustomerInsuranceDetails() {
+        return this.apiService.getCustomerInsuranceDetails();
+    }
+
     private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();
