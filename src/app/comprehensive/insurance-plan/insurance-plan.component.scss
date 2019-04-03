@@ -31,4 +31,9 @@
   .fixed-btn--sm-comprehensive {
     width: 90%;
   }
+  .fixed-btn--sm-comprehensive {
+    &.full-width {
+      width: 100% !important;
+    }
+  }
 }

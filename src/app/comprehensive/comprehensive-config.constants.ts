@@ -29,7 +29,8 @@ export const COMPREHENSIVE_CONST = {
             API_TOTAL_BUCKET_KEY: 'totalAnnualLiabilities',
             MONTHLY_INPUT_CALC : [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
-            BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount']
+            BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount',
+            'otherPropertyLoanOutstandingAmount']
         }
     },
     SUMMARY_CALC_CONST: {
@@ -95,6 +96,14 @@ export const COMPREHENSIVE_CONST = {
             STEP2: true,
             STEP3: true,
             STEP4: true,
+        },
+        YOUR_FINANCES: {
+            HOME_PAY_CPF_EMPLOYED_BREAKDOWN: 6000,
+            HOME_PAY_CPF_EMPLOYED_PERCENT: 0.8,
+            HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN: 6000,
+            HOME_PAY_CPF_SELF_EMPLOYED_PERCENT: 0.96,
+            SPARE_CASH_EARN_SPEND_PERCENT: 0.75,
+            SPARE_CASH_ANNUAL_PERCENT: 0.50
         }
     }
 };

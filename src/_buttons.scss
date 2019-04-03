@@ -1029,6 +1029,9 @@ button:active:focus {
   }
 }
 .comprehensive {
+  .datepicker-control .input-group-append .btn-primary {
+    box-shadow: none !important;
+  }
   .btn {
     &.btn-primary {
       font-size: 18px;

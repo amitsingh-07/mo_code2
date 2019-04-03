@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { AboutAge } from '../../shared/utils/about-age.util';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -48,7 +49,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig) {
+    private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig, private aboutAge: AboutAge) {
     const today: Date = new Date();
     configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -117,15 +118,18 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   selectRelationship(status, i) {
     const relationship = status ? status : '';
     this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.relationship.setValue(relationship);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
 
   }
   selectGender(status, i) {
     const gender = status ? status : '';
     this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.gender.setValue(gender);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
   }
   selectNationality(status, i) {
     const nationality = status ? status : '';
     this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.nation.setValue(nationality);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
   }
 
   buildDependantDetailsForm(thisDependant) {
@@ -159,6 +163,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   removeDependant(i) {
     const dependantdetails = this.myDependantForm.get('dependentMappingList') as FormArray;
     dependantdetails.removeAt(i);
+    this.myDependantForm.get('dependentMappingList').markAsDirty();
   }
   validateDependantForm(form: FormGroup) {
 
@@ -173,14 +178,13 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-    if (!form.pristine) {
-      this.comprehensiveService.clearEndowmentPlan();
 
-      if (this.validateDependantForm(form)) {
-        form.value.dependentMappingList.forEach((dependant: any, index) => {
-          form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-          form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
-        });
+    if (this.validateDependantForm(form)) {
+      form.value.dependentMappingList.forEach((dependant: any, index) => {
+        form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+        form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
+      });
+      if (!form.pristine) {
         this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
         this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
         form.value.hasDependents = this.hasDependant;
@@ -188,18 +192,25 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
           this.loaderService.hideLoader();
           this.comprehensiveService.setMyDependant(data.objectList);
+          this.comprehensiveService.clearEndowmentPlan();
+          this.comprehensiveService.setEndowment(null);
           this.goToNextPage();
         }));
+      } else {
+        this.goToNextPage();
       }
-    } else {
-      this.goToNextPage();
+
     }
+
   }
 
   goToNextPage() {
     let hasChildDependant = false;
     this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-      if (dependant.relationship.toLowerCase() === 'child' || dependant.relationship.toLowerCase() === 'sibling') {
+      const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ?
+        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR');
+      if (getAge < maxAge) {
         hasChildDependant = true;
         return;
       }

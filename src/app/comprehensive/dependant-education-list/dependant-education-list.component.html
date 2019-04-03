@@ -21,7 +21,7 @@
             <div class="flex-row">
               <div class="flex-col-12">
                   <div class="checkbox-button one-label">
-                      <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
+                      <input  (change)="checkDependant()"  [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
                         formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="">
                       <label for="educationSupport{{i}}">
                         <div class="form-group-with-bg--header-label pb0">{{educationPlan.get('name').value}}</div>
@@ -60,7 +60,7 @@
             </div>
             <div class="flex-col-7">
               <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
-                id="myFamilyFormInpt4" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
+                id="myFamilyFormInpt4" [placeholder]="yearPlaceholder" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
               </div>
             </div>
           </div>

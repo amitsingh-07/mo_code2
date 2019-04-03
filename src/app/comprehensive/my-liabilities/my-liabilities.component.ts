@@ -39,6 +39,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   financeModal: any;
   summaryRouterFlag: boolean;
   routerEnabled =  false;
+  bucketImage: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -73,6 +74,12 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       }
     });
     this.buildMyLiabilitiesForm();
+    this.onTotalOutstanding();
+    if ( this.liabilitiesDetails && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
+      && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount !== null
+      && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount > 0) {
+        this.addPropertyLoan();
+      }
   }
 
   ngOnDestroy() {
@@ -89,6 +96,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       otherPropertyControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherPropertyControl.updateValueAndValidity();
     } else {
+      otherPropertyControl.markAsDirty();
       otherPropertyControl.setValue('');
       otherPropertyControl.setValidators([]);
       otherPropertyControl.updateValueAndValidity();
@@ -112,12 +120,12 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
         this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
-        //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
-        // this.loaderService.showLoader({ title: 'Saving' });
-        // this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
-        //   this.loaderService.hideLoader();
-        this.showSummaryModal();
-        // });
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
+        this.loaderService.showLoader({ title: 'Saving' });
+        this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
+           this.loaderService.hideLoader();
+           this.showSummaryModal();
+        });
       } else {
         this.showSummaryModal();
       }
@@ -156,17 +164,22 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
 
   onTotalOutstanding() {
     this.totalOutstanding = this.comprehensiveService.additionOfCurrency(this.myLiabilitiesForm.value);
+    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.BUCKET_INPUT_CALC;
+    this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, this.myLiabilitiesForm.value, this.totalOutstanding);
   }
   showSummaryModal() {
     if (this.routerEnabled) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
     } else {
+      const liquidCash = this.comprehensiveService.getLiquidCash();
+      const spareCash = this.comprehensiveService.getComputeSpareCash();
       this.summaryModalDetails = {
         setTemplateModal: 2,
         contentObj: this.financeModal,
-        liabilitiesEmergency: false,
-        liabilitiesLiquidCash: 30000,
-        liabilitiesMonthlySpareCash: 200,
+// tslint:disable-next-line: no-redundant-boolean
+        liabilitiesEmergency: ( liquidCash > 0 ) ? true : false,
+        liabilitiesLiquidCash: liquidCash,
+        liabilitiesMonthlySpareCash: spareCash,
         nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',
         routerEnabled: this.summaryRouterFlag
       };
@@ -174,4 +187,3 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
   }
 }
-

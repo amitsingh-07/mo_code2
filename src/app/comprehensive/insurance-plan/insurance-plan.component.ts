@@ -26,7 +26,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
-  haveHDB = true;
+  haveHDB = false;
   submitted = false;
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
@@ -53,17 +53,16 @@ export class InsurancePlanComponent implements OnInit {
           this.showSummaryModal();
         }
       });
+      if (this.comprehensiveService.getMySpendings().HLtypeOfHome === 'HDB') {
+        this.haveHDB = true;
+      }
     });
     if (this.comprehensiveService.getMyProfile() &&
     this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
       this.longTermInsurance = false;
     }
-    this.comprehensiveApiService.getInsurancePlanning().subscribe((data: IInsurancePlan) => {
-      this.insurancePlanFormValues = data;
-      this.buildInsuranceForm();
-    });
-    // Above Service Will be deleted once API is Ready
-    // this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
+
+    this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
@@ -102,9 +101,9 @@ export class InsurancePlanComponent implements OnInit {
   goToNext(form) {
     form.value.enquiryId = this.comprehensiveService.getEnquiryId();
     this.comprehensiveService.setInsurancePlanningList(form.value);
-    this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+    // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
 
-    });
+    // });
     this.showSummaryModal();
   }
   showSummaryModal() {
@@ -133,4 +132,3 @@ export class InsurancePlanComponent implements OnInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
-
