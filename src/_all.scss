@@ -65,7 +65,12 @@ h6 {
     }
   }
   &.invest-web-pt-90{
-    padding-top: 90px;
+    @include LargeDevice {
+      padding-top: 90px;
+    }
+    @include MediumDevice {
+      padding-top: 90px;
+    }
   }
 }
 
