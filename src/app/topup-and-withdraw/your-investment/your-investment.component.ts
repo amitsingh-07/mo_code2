@@ -203,6 +203,8 @@ export class YourInvestmentComponent implements OnInit {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
         }
       },
       (err) => {

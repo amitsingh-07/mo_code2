@@ -131,10 +131,20 @@ export class AddUpdateBankComponent implements OnInit {
         this.topupAndWithDrawService.saveNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
-            // ERROR SCENARIO
-            const errorResponse = response.objectList;
-            const errorList = errorResponse.serverStatus.errors;
-            this.showIfastErrorModal(errorList);
+            if (
+              response.objectList &&
+              response.objectList.serverStatus &&
+              response.objectList.serverStatus.errors.length
+            ) {
+              const errorResponse = response.objectList;
+              const errorList = errorResponse.serverStatus.errors;
+              this.showIfastErrorModal(errorList);
+            } else if (response.responseMessage.responseDescription) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
@@ -158,10 +168,20 @@ export class AddUpdateBankComponent implements OnInit {
           this.loaderService.hideLoader();
           // tslint:disable-next-line:triple-equals
           if (data.responseMessage.responseCode < 6000) {
-            // ERROR SCENARIO
+            if (
+              data.objectList &&
+              data.objectList.serverStatus &&
+              data.objectList.serverStatus.errors.length
+            ) {
             const errorResponse = data.objectList;
             const errorList = errorResponse.serverStatus.errors;
             this.showIfastErrorModal(errorList);
+            } else if (data.responseMessage.responseDescription) {
+              const errorResponse = data.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
@@ -188,5 +208,11 @@ export class AddUpdateBankComponent implements OnInit {
     const ref = this.modal.open(IfastErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorList = errorList;
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 }

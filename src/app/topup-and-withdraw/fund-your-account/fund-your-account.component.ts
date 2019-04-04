@@ -220,6 +220,11 @@ export class FundYourAccountComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           if (!this.fundDetails.isAmountExceedBalance) {
@@ -258,6 +263,11 @@ export class FundYourAccountComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           if (!this.fundDetails.isAmountExceedBalance) {
