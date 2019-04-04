@@ -1166,11 +1166,48 @@ input::placeholder {
 //Comprehensive form styles
 .comprehensive {
   .form-group-with-bg {
+      margin-bottom: 20px;
+      .form-group-with-bg--content {
+        padding: 20px;
+      }
+      .form-group-with-bg--content-white {
+          background: $white-color;
+          padding: 30px 20px;
+          border-radius: 6px;
+          &--title {
+            font-size: 18px;
+            font-family: $muli-semi-bold;
+            margin-bottom: 10px;
+            color: $btn-comprehensive;
+            @extend .flex;
+            @extend .align-center;
+            }
+            &--desc {
+              font-size: 16px;
+              font-family: $muli-regular;
+              margin-bottom: 10px;
+              color: $btn-comprehensive;
+              align-items: self-end;
+              strong {
+                font-family: $muli-bold;
+              }
+            }
+          }
+          .form-group-with-bg--header {
+            .form-group-with-bg--header-label {
+              width: 97%;
+            }
+      }
     //padding: 10px 0;
     color:$app-backgrnd-color;
     label {
       color: $dark-teal-color;
       margin-bottom: 0;
+      font-family: $muli-semi-bold;
+      &.btn-outline-primary {
+        font-family: $muli-regular;
+        color: $app-backgrnd-color;
+      }
     }
     &--header-sub-label {
       font-weight: normal;
