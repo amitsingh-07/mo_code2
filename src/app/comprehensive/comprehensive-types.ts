@@ -173,6 +173,8 @@ export interface IInsurancePlan {
     enquiryId: number;
     haveHospitalPlan: boolean;
     haveCPFDependentsProtectionScheme: string;
+    haveHDBHomeProtectionScheme: string;
+    homeProtectionCoverageAmount: string;
     life_protection_amount: number;
     other_life_protection_amount: number;
     criticalIllnessCoverageAmount: number;

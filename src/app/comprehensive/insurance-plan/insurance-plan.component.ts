@@ -31,13 +31,13 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
 
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private age: AboutAge, private route: ActivatedRoute ) {
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private age: AboutAge, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -49,7 +49,7 @@ export class InsurancePlanComponent implements OnInit {
         this.insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
         this.insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled =  !this.summaryRouterFlag;
+          this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
         }
       });
@@ -58,10 +58,9 @@ export class InsurancePlanComponent implements OnInit {
       }
     });
     if (this.comprehensiveService.getMyProfile() &&
-    this.age.calculateAge( this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > 41) {
+      this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) < 41) {
       this.longTermInsurance = false;
     }
-
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -69,20 +68,24 @@ export class InsurancePlanComponent implements OnInit {
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
       haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan ? 'true' : 'false'
-       : '' , [Validators.required]],
+        : '', [Validators.required]],
       haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
-         : '', [Validators.required]],
+        : '', [Validators.required]],
       life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
         life_protection_amount : '', [Validators.required]],
+      haveHDBHomeProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
+      [Validators.required]],
+      homeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
+      [Validators.required]],
       other_life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.other_life_protection_amount : '',
-       [Validators.required]],
-      criticalIllnessCoverageAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.criticalIllnessCoverageAmount :
-         '', [Validators.required]],
-      disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '' ,
-       [Validators.required]],
-      haveLongTermElderShield: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.haveLongTermElderShield :
+      [Validators.required]],
+      criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
         '', [Validators.required]],
-      longTermElderShieldAmount: [this.insurancePlanFormValues ?  this.insurancePlanFormValues.longTermElderShieldAmount
+      disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '',
+      [Validators.required]],
+      haveLongTermElderShield: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
+        '', [Validators.required]],
+      longTermElderShieldAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
         : '', [Validators.required]],
     });
   }
