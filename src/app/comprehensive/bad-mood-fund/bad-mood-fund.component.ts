@@ -116,6 +116,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   goToNext(form) {
     form.value.badMoodMonthlyAmount = this.SliderValue;
+    form.value.hospitalClass = this.downOnLuck.hospitalClass;
     form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
     this.comprehensiveService.setDownOnLuck(form.value);
     this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
@@ -123,5 +124,12 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
     });
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+  }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.YOUR_FINANCES.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.YOUR_FINANCES.TOOLTIP.' + toolTipMessage)
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }

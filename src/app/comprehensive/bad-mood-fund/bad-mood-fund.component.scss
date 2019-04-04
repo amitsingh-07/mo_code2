@@ -1,3 +1,5 @@
+@import '../../../variables';
+@import '../../../mixins';
 .comprehensive {
     .title {
       font-size: 18px;
@@ -11,9 +13,20 @@
     }
     .min-val, .max-val {
       color: #aeaeae;
+      font-family: $muli-semi-bold;
+      font-size: 14px;
     }
     .max-val {
       text-align: right;
+    }
+    .min-text, .max-text {
+      color: #bdbdbd;
+      font-family: $muli-regular;
+      font-size: 12px;
+      display: block;
+    }
+    .mnth-amt {
+      color: #5e5e5e;
     }
     .income-value{
       background:#00c5c4;

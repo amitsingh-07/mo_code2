@@ -77,9 +77,9 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control"  [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfOrdinaryAccount
+              <input type="text" class="input-control" [readonly]="cpfFromMyInfo" [ngClass]="{'readonly-disabled': cpfFromMyInfo}"  appCurrencyInput maxLength="7" #cpfOrdinaryAccount
                 formControlName="cpfOrdinaryAccount" value="0">
             </div>
           </div>
@@ -92,9 +92,9 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control"  [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfSpecialAccount
+              <input type="text" class="input-control" [readonly]="cpfFromMyInfo" [ngClass]="{'readonly-disabled': cpfFromMyInfo}"  appCurrencyInput maxLength="7" #cpfSpecialAccount
                 formControlName="cpfSpecialAccount" value="0">
             </div>
           </div>
@@ -107,9 +107,9 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control"  [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="7" #cpfMediSaveAccount
+              <input type="text" class="input-control" [readonly]="cpfFromMyInfo" [ngClass]="{'readonly-disabled': cpfFromMyInfo}"  appCurrencyInput maxLength="7" #cpfMediSaveAccount
                 formControlName="cpfMediSaveAccount" value="0">
             </div>
           </div>
@@ -155,7 +155,7 @@
         </div>
 
         <div class="flex-row investmentProperties add-invest" [hidden]="!myInvestmentProperties">
-          <div class="flex-col-12 mt-2">
+          <div class="flex-col-12 mt30">
             <div class="with-help-icon" for="name"><u (click)="addOtherInvestment()">{{
                 'CMP.MY_ASSETS.ADD_INVESTMENT_PROPERTIES' | translate}}</u>
 
@@ -167,7 +167,7 @@
 
         <div class='investmentProperties' [hidden]="myInvestmentProperties">
 
-          <div class="flex-row mt-2">
+          <div class="flex-row mt30">
             <div class="flex-col-12 both-icon with-help-icon">
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
@@ -329,7 +329,7 @@
     <div class='mb-10'>
       <div class="flex-row mb-3 mt-3 ">
         <div class="flex-col-12">
-          <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100" id="prfBtn1">{{
+          <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100 mt30 mb10" id="prfBtn1">{{
           'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
           translate}}</button>
         </div>
