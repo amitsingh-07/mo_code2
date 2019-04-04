@@ -21,6 +21,7 @@ import { AllocationComponent } from './components/allocation/allocation.componen
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
+import { InvestmentTitleBarComponent } from './components/investment-title-bar/investment-title-bar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
@@ -69,7 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -90,6 +91,7 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioInfoComponent,
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
+    InvestmentTitleBarComponent,
     RoundPipe
   ],
   entryComponents: [

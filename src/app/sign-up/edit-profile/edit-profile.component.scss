@@ -2,14 +2,14 @@
 @import "../../../_mixins.scss";
 app-edit-profile{
  .container-fluid{
-  padding-top: 0px;
+  padding-top: 76px !important;
   @include allmobiles {
-   padding-top: 60px;
+   padding-top: 60px !important;
    padding-left: 0 !important;
    padding-right: 0 !important;
   }
   @include phablet{
-    padding-top: 100px;
+    padding-top: 60px !important;
    }
  }
  .grass_bg_container{
