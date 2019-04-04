@@ -48,6 +48,7 @@ export interface ISetPassword {
     resetCode: string;
     selectedProducts: IPlan[];
     journeyType: string;
+    sessionId: string;
 }
 
 export interface IVerifyCode {

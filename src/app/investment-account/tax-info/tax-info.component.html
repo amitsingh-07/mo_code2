@@ -1,10 +1,11 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="app-tax-info">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024">
+    <div class="container-fluid max-width--1024 invest-web-width">
       <app-step-indicator [count]="9" [activeStepIndex]="4"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-width">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
       <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}" *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
         <div [formGroupName]="x">

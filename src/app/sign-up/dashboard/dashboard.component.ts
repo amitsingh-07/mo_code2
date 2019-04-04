@@ -2,22 +2,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
-import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { Formatter } from '../../shared/utils/formatter.util';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { IEnquiryUpdate } from '../signup-types';
 
 // Will Writing
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
@@ -35,7 +30,6 @@ import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
 })
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
-  insuranceEnquiry: any;
   showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
@@ -67,12 +61,9 @@ export class DashboardComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
-    private appService: AppService,
     private signUpService: SignUpService,
-    private apiService: ApiService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private selectedPlansService: SelectedPlansService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
     private guideMeApiService: GuideMeApiService
@@ -94,17 +85,6 @@ export class DashboardComponent implements OnInit {
       this.signUpService.setUserProfileInfo(userInfo.objectList);
       this.userProfileInfo = this.signUpService.getUserProfileInfo();
       this.getDashboardList();
-      this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
-        const payload: IEnquiryUpdate = {
-          customerId: this.appService.getCustomerId(),
-          enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
-          selectedProducts: this.insuranceEnquiry.plans
-        };
-        this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
-          this.selectedPlansService.clearData();
-        });
-      }
     });
 
     // Will Writing
@@ -130,7 +110,7 @@ export class DashboardComponent implements OnInit {
         this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
         this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
       }
-    })
+    });
   }
 
   loadOptionListCollection() {
@@ -229,7 +209,8 @@ export class DashboardComponent implements OnInit {
         this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
         this.showCddCheckFail = true;
         this.enableInvestment();
         break;
