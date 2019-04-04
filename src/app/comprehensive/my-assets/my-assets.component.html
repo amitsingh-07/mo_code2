@@ -155,7 +155,7 @@
         </div>
 
         <div class="flex-row investmentProperties add-invest" [hidden]="!myInvestmentProperties">
-          <div class="flex-col-12 mt-2">
+          <div class="flex-col-12 mt30">
             <div class="with-help-icon" for="name"><u (click)="addOtherInvestment()">{{
                 'CMP.MY_ASSETS.ADD_INVESTMENT_PROPERTIES' | translate}}</u>
 
@@ -167,7 +167,7 @@
 
         <div class='investmentProperties' [hidden]="myInvestmentProperties">
 
-          <div class="flex-row mt-2">
+          <div class="flex-row mt30">
             <div class="flex-col-12 both-icon with-help-icon">
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
@@ -329,7 +329,7 @@
     <div class='mb-10'>
       <div class="flex-row mb-3 mt-3 ">
         <div class="flex-col-12">
-          <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100" id="prfBtn1">{{
+          <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100 mt30 mb10" id="prfBtn1">{{
           'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
           translate}}</button>
         </div>
