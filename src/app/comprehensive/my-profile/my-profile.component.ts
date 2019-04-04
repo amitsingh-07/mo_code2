@@ -68,7 +68,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     ) {
         const today: Date = new Date();
         configDate.minDate = { year: today.getFullYear() - 100, month: today.getMonth() + 1, day: today.getDate() };
-        configDate.maxDate = { year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate() };
+        configDate.maxDate = { year: today.getFullYear() - 18, month: today.getMonth() + 1, day: today.getDate() };
         configDate.outsideDays = 'collapsed';
         this.pageId = this.activatedRoute.routeConfig.component.name;
         this.configService.getConfig().subscribe((config: any) => {

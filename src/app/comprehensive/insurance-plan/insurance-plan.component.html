@@ -89,11 +89,10 @@
             </label>
           </div>
           <div class="pr0 flex-col-7">
-            <div class="form-control">
+            <div class="form-control form-control-right"  >
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="4"
-                formControlName="other_life_protection_amount" value="0">
-
+              <input type="text" class="input-control" appCurrencyInput   formControlName="life_protection_amount" value="" >
+              <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
             </div>
           </div>
         </div>
@@ -101,7 +100,7 @@
           <div class="form-group-with-bg--content-white--desc flex-row"><div class="flex-col-1">2.</div><div class="flex-col-11"> {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_2' | translate}}</div></div>
           <div class="flex-col-12 mb-3">
             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-              formControlName="haveCPFDependentsProtectionScheme">
+              formControlName="haveHDBHomeProtectionScheme">
               <div class="flex-row mb0">
                 <div class="flex-col-4 ">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
@@ -128,7 +127,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="insurancePlanForm.get('other_life_protection_amount').value === '0'" class="flex-row">
+        <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === '0'" class="flex-row">
           <div class="flex-col-5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
@@ -145,16 +144,16 @@
           </div>
         </div>
 
-        <div class="form-group-with-bg--content-white--desc flex-row"><div class="flex-col-1">3.</div><div class="flex-col-10"><span [hidden]="!haveHDB"></span><span [hidden]="haveHDB">2</span>
+        <div class="form-group-with-bg--content-white--desc flex-row"><div class="flex-col-1"><span [hidden]="!haveHDB">3.</span> <span [hidden]="haveHDB">2.</span></div><div class="flex-col-10">
           {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_3' | translate}}</div><div class="help-icon flex-col-1" (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"></div></div>
         <div class="flex-row">
-          <div class="flex-col-5">
+          <div class="flex-col-6">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
               </div>
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class="pr0 flex-col-6">
             <div class="form-control">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4"
@@ -175,13 +174,13 @@
                 'CMP.INSURANCE_PLAN.CRITICAL_ILLNESS' | translate}} &nbsp;<img src="../../../assets/images/comprehensive/insurance-plan/critical-illness.svg"></div>
             </div>
             <div class="flex-row">
-              <div class="flex-col-5">
+              <div class="flex-col-6">
                 <label for="name" id="myDependantFormLb1">
                   <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
                   </div>
                 </label>
               </div>
-              <div class="pr0 flex-col-7">
+              <div class="pr0 flex-col-6">
                 <div class="form-control">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="4"
@@ -211,13 +210,11 @@
                 </label>
               </div>
               <div class="pr0 flex-col-7">
-                <div class="form-control">
+                <div class="form-control form-control-right"  >
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="4"
-                    formControlName="haveLongTermElderShield" value="0">
-
+                  <input type="text" class="input-control" appCurrencyInput   formControlName="disabilityIncomeCoverageAmount" value="" >
+                  <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                 </div>
-
               </div>
             </div>
           </div>
@@ -268,7 +265,7 @@
             <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
               formControlName="longTermElderShieldAmount">
               <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
                   [ngClass]="{'inline-error': submitted}">
                   <input id="myProfileRadioFemale" ngbButton type="radio" value="300">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_1' |
@@ -276,7 +273,7 @@
                 </label>
               </div>
               <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
                   [ngClass]="{'inline-error': submitted}">
                   <input id="myProfileRadioFemale" ngbButton type="radio" value="400">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_2' |
@@ -284,7 +281,7 @@
                 </label>
               </div>
               <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
                   [ngClass]="{'inline-error': submitted}">
                   <input id="myProfileRadioFemale" ngbButton type="radio" value="-1">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_3' |
@@ -292,7 +289,7 @@
                 </label>
               </div>
               <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
                   [ngClass]="{'inline-error': submitted}">
                   <input id="myProfileRadioFemale" ngbButton type="radio" value=null>{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_4' |
@@ -311,3 +308,4 @@
   </form>
 
 </div>
+
