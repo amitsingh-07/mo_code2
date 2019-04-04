@@ -42,7 +42,7 @@ app-risk-profile {
     left: 0;
   }
   .custom-modal-wrapper {
-    top: 0;
+    top: 30px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -64,8 +64,6 @@ app-risk-profile {
   .custom-modal--icon {
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 30px;
   }
   .custom-modal--title {
     color: $custom-modal-title-color;
