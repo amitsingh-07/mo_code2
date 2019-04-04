@@ -26,7 +26,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
-  haveHDB = false;
+  haveHDB = true;
   submitted = false;
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
