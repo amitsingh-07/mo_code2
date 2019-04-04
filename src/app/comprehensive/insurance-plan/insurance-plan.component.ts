@@ -34,10 +34,10 @@ export class InsurancePlanComponent implements OnInit {
   routerEnabled = false;
 
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-    private translate: TranslateService,
-    private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private age: AboutAge, private route: ActivatedRoute) {
+              private translate: TranslateService,
+              private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+              private age: AboutAge, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
