@@ -771,13 +771,16 @@ export class ComprehensiveService {
     /*
     *Dependant Summary Page Compute
     */
-    setDependantExpense(location: any, univ: any, aboutAge: number) {
+    setDependantExpense(location: any, univ: any, aboutAge: number, nation: any) {
         let totalExpense: any = 0;
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
+            let locationChange = location;
+            if ( (nation === 'Foreigner' && location === 'Singapore') || (nation === 'Singapore PR' && location === 'Singapore') ) {
+                locationChange = nation;
+            }
             const expenseConfig = summaryConst[expenseInput];
-            totalExpense += this.getComputedExpense(expenseConfig[univ][location], expenseConfig.PERCENT, aboutAge);
-            console.log(totalExpense);
+            totalExpense += this.getComputedExpense(expenseConfig[univ][locationChange], expenseConfig.PERCENT, aboutAge);
         });
         return totalExpense;
     }

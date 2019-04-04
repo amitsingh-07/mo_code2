@@ -69,6 +69,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.earningDetails = this.comprehensiveService.getMyEarnings();
     if (this.earningDetails.employmentType) {
       this.employmentType = this.earningDetails.employmentType;
+    } else {
+      this.employmentType = 'Employed';
     }
 
   }
@@ -99,7 +101,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   SelectEarningsType(earningsType, earningFlag) {
     this[earningsType] = earningFlag;
     const otherEarningsControl = this.myEarningsForm.controls[this.incomeDetailsDyn[earningsType]];
-    if (!earningFlag) {      
+    if (!earningFlag) {
       otherEarningsControl.markAsDirty();
       otherEarningsControl.setValue(0);
       otherEarningsControl.setValidators([]);
@@ -115,7 +117,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   buildMyEarningsForm() {
     this.myEarningsForm = this.formBuilder.group({
-      employmentType: [this.earningDetails ? this.earningDetails.employmentType : '', []],
+      employmentType: [(this.earningDetails && this.earningDetails.employmentType) ? this.earningDetails.employmentType : 'Employed', []],
       monthlySalary: [this.earningDetails ? this.earningDetails.monthlySalary : '', []],
       monthlyRentalIncome: [this.earningDetails ? this.earningDetails.monthlyRentalIncome : ''],
       otherMonthlyWorkIncome: [this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : ''],

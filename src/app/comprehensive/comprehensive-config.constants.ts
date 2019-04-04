@@ -42,14 +42,16 @@ export const COMPREHENSIVE_CONST = {
                         'Singapore PR': 220000,
                         'USA': 676800,
                         'United Kingdom': 482400,
-                        'Australia': 489600
+                        'Australia': 489600,
+                        'Foreigner': 335000
                     },
                     'Non-Medicine': {
                         'Singapore': 44000,
                         'Singapore PR': 64000,
                         'USA': 252800,
                         'United Kingdom': 210800,
-                        'Australia': 163600
+                        'Australia': 163600,
+                        'Foreigner': 96000
                     },
                     'PERCENT': 6
                 },
@@ -59,14 +61,16 @@ export const COMPREHENSIVE_CONST = {
                         'Singapore PR': 60000,
                         'USA': 96400,
                         'United Kingdom': 92000,
-                        'Australia': 96400
+                        'Australia': 96400,
+                        'Foreigner': 60000
                     },
                     'Non-Medicine': {
                         'Singapore': 48000,
                         'Singapore PR': 48000,
                         'USA': 96400,
                         'United Kingdom': 92000,
-                        'Australia': 116800
+                        'Australia': 116800,
+                        'Foreigner': 48000
                     },
                     'PERCENT': 3
                 }

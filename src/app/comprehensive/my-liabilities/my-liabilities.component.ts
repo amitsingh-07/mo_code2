@@ -176,8 +176,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.summaryModalDetails = {
         setTemplateModal: 2,
         contentObj: this.financeModal,
-// tslint:disable-next-line: no-redundant-boolean
-        liabilitiesEmergency: ( liquidCash > 0 ) ? true : false,
+        liabilitiesEmergency: ( liquidCash > 0 ),
         liabilitiesLiquidCash: liquidCash,
         liabilitiesMonthlySpareCash: spareCash,
         nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',

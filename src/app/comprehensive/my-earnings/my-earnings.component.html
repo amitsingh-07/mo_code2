@@ -35,11 +35,10 @@
                         <div class="dropdown-control" >
                           <div ngbDropdown id="employmentTypeDropDown">
                             <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
-                              <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <!-- <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span> -->
                               <span *ngIf="employmentType !== ''">{{employmentType}}</span>                  
                             </button>
                             <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
-                              <button class="dropdown-item" (click)="selectEmploymentType('')">Select</button>
                               <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
                                 (click)="selectEmploymentType(employmentType)">
                                 {{employmentType.text}}

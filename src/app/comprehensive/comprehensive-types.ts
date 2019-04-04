@@ -54,6 +54,7 @@ export interface IChildEndowment {
     age: number;
     gender: string;
     preferenceSelection: boolean;
+    nation?: string;
 }
 
 export interface IMyLiabilities {

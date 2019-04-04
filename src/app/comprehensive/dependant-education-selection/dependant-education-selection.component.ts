@@ -125,7 +125,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       endowmentMaturityAmount: 0,
       endowmentMaturityYears: null,
       age: maturityAge,
-      preferenceSelection: preferenceSelected
+      preferenceSelection: preferenceSelected,
+      nation: dependant.nation
     } as IChildEndowment;
   }
 
@@ -145,7 +146,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
       endowmentMaturityYears: childEndowment.endowmentMaturityYears,
       age: maturityAge,
-      preferenceSelection: true
+      preferenceSelection: true,
+      nation: dependant.nation
     } as IChildEndowment;
   }
 
