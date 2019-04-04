@@ -34,6 +34,7 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
+import { AboutAge } from '../shared/utils/about-age.util';
 
 @Injectable({
     providedIn: 'root'
@@ -45,7 +46,7 @@ export class ComprehensiveService {
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
-        private http: HttpClient, private modal: NgbModal, private location: Location) {
+        private http: HttpClient, private modal: NgbModal, private location: Location, private aboutAge: AboutAge) {
         this.getComprehensiveFormData();
     }
 
@@ -894,6 +895,28 @@ export class ComprehensiveService {
         } else {
             return 0;
         }
+    }
+    /*
+    *Summary Dynamic Value
+    *Get Static Json value for Fire Proofing
+    */
+    getCurrentFireProofing() {
+        const getComprehensiveDetails = this.getComprehensiveSummary();
+        const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;        
+        const userGender = getComprehensiveDetails.baseProfile.gender;
+        const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
+        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge};
+        if (enquiry.hasDependents) {
+            getComprehensiveDetails.dependentsList.forEach((dependant) => {
+                const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+                if ( dependantAge > 50) {
+                    fireProofingDetails.dependant = false;
+                }
+            });
+        } else {
+            fireProofingDetails.dependant = false;
+        }
+        return fireProofingDetails;
     }
 
 }
