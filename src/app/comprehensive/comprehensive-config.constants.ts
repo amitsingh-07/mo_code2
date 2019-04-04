@@ -92,8 +92,7 @@ export const COMPREHENSIVE_CONST = {
         },
         INSURANCE_PLAN: {
             ESTIMATED_COST: 100000,
-            TERM_INSURANCE: 90,
-            WHOLE_LIFE: 450
+            DEPENDENT_AGE: 70
         },
         ROUTER_CONFIG: {
             STEP1: true,

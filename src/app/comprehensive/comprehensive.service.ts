@@ -868,7 +868,7 @@ export class ComprehensiveService {
             const inputParams = { rsp: rspDetails};
             const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
             const monthlySumCal = this.additionOfCurrency(filterInput);
-            const yearCal = this.additionOfCurrency(filterInput) * 12;
+            const yearCal = monthlySumCal * 12;
             return yearCal;
         } else {
             return 0;
@@ -902,14 +902,14 @@ export class ComprehensiveService {
     */
     getCurrentFireProofing() {
         const getComprehensiveDetails = this.getComprehensiveSummary();
-        const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;        
+        const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
         const userGender = getComprehensiveDetails.baseProfile.gender;
         const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
         const fireProofingDetails = { dependant: true, gender: userGender, age: userAge};
         if (enquiry.hasDependents) {
             getComprehensiveDetails.dependentsList.forEach((dependant) => {
                 const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-                if ( dependantAge > 50) {
+                if ( dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
                     fireProofingDetails.dependant = false;
                 }
             });
