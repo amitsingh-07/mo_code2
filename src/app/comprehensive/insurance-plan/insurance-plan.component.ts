@@ -119,6 +119,7 @@ export class InsurancePlanComponent implements OnInit {
           setTemplateModal: 3,
           contentObj: this.insurancePlanningDependantModal,
           dependantModelSel: true,
+          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
           routerEnabled: this.summaryRouterFlag
         };
         this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
