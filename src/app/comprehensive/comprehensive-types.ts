@@ -157,6 +157,7 @@ export interface IMyAssets {
     assetsInvestmentSet: IOtherProperties[];
     otherAssetsValue: number;
     totalAnnualAssets: number;
+    source: string;
 }
 export interface IOtherProperties {
     enquiryId: number;
@@ -173,6 +174,8 @@ export interface IInsurancePlan {
     enquiryId: number;
     haveHospitalPlan: boolean;
     haveCPFDependentsProtectionScheme: string;
+    haveHDBHomeProtectionScheme: string;
+    homeProtectionCoverageAmount: string;
     life_protection_amount: number;
     other_life_protection_amount: number;
     criticalIllnessCoverageAmount: number;

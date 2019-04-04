@@ -34,7 +34,6 @@ export class DependantEducationListComponent implements OnInit {
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
-  yearPlaceholder: string;
   childrenEducationDependantModal: any;
   summaryFlag = true;
   dependantSummaryCons = [];
@@ -65,7 +64,6 @@ export class DependantEducationListComponent implements OnInit {
         // meta tag and title
 
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
-        this.yearPlaceholder = this.translate.instant('CMP.MY_SPENDINGS.ENTER_YEAR');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         this.childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');        
@@ -266,4 +264,5 @@ export class DependantEducationListComponent implements OnInit {
     }
   }
 }
+
 
