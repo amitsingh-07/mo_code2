@@ -39,7 +39,7 @@ export const COMPREHENSIVE_CONST = {
                 UNIVERSITY_FEE: {
                     'Medicine': {
                         'Singapore': 160000,
-                        'Singapore PR': 220000,
+                        'Singaporean PR': 220000,
                         'USA': 676800,
                         'United Kingdom': 482400,
                         'Australia': 489600,
@@ -47,7 +47,7 @@ export const COMPREHENSIVE_CONST = {
                     },
                     'Non-Medicine': {
                         'Singapore': 44000,
-                        'Singapore PR': 64000,
+                        'Singaporean PR': 64000,
                         'USA': 252800,
                         'United Kingdom': 210800,
                         'Australia': 163600,
@@ -58,7 +58,7 @@ export const COMPREHENSIVE_CONST = {
                 LIVING_EXPENSES: {
                     'Medicine': {
                         'Singapore': 60000,
-                        'Singapore PR': 60000,
+                        'Singaporean PR': 60000,
                         'USA': 96400,
                         'United Kingdom': 92000,
                         'Australia': 96400,
@@ -66,7 +66,7 @@ export const COMPREHENSIVE_CONST = {
                     },
                     'Non-Medicine': {
                         'Singapore': 48000,
-                        'Singapore PR': 48000,
+                        'Singaporean PR': 48000,
                         'USA': 96400,
                         'United Kingdom': 92000,
                         'Australia': 116800,

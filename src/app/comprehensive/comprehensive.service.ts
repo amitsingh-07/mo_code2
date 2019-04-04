@@ -777,7 +777,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if ( (nation === 'Foreigner' && location === 'Singapore') || (nation === 'Singapore PR' && location === 'Singapore') ) {
+            if ( (nation === 'Foreigner' && location === 'Singapore') || (nation === 'Singaporean PR' && location === 'Singapore') ) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
