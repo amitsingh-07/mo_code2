@@ -218,7 +218,7 @@
       "TOOLTIP":{
         "MONTHLY_SALARY_TITLE": "Monthly Salary",
         "MONTHLY_SALARY_MESSAGE": "Your total monthly gross salary, including the portion that goes into your CPF.",
-        "ANNUAL_BONUS_TITLE": "Annual Bonuses",
+        "ANNUAL_BONUS_TITLE": "Annual Bonus",
         "ANNUAL_BONUS_MESSAGE": "Annual bonuses include 13th month payments, performance bonuses and other additional payments you expect to receive from work outside of the regular monthly paycheck.",
         "ADD_MONTHLY_INCOME_TITLE": "Other Monthly Income",
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
@@ -446,6 +446,7 @@
          "HOSPITAL_CHOICE":"Hospital Choice",
          "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
          "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg",
+         "BAD_MOOD_FUND_ALERT":"Vadhani will Provide Content for not having Bad mood Fund",
          "TOOLTIP":{
           "TITLE": "Bad Mood Fund",
           "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
