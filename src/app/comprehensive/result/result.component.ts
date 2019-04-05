@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -18,7 +18,11 @@ export class ResultComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   emailID: string;
+  alertTitle: string;
+  alertMessage: string;
+  @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
               private translate: TranslateService,
               private configService: ConfigService, private router: Router,
@@ -31,10 +35,17 @@ export class ResultComponent implements OnInit, OnDestroy {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE_NAV');
+        this.alertTitle = this.translate.instant('CMP.RESULT.TOOLTIP_TITLE');
+        this.alertMessage = this.translate.instant('CMP.RESULT.TOOLTIP_MESSAGE');
         this.setPageTitle(this.pageTitle);
       });
     });
     this.emailID = this.signUpService.getUserProfileInfo().emailAddress;
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.showToolTipModal();
+      }
+    });
   }
 
   ngOnInit() {
@@ -47,8 +58,16 @@ export class ResultComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
+  }
+  showToolTipModal() {
+    const toolTipParams = {
+      TITLE: this.alertTitle,
+      DESCRIPTION: this.alertMessage
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
