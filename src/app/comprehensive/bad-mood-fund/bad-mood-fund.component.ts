@@ -32,6 +32,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   hospitalPlanForm: FormGroup;
   downOnLuck: HospitalPlan;
   maxBadMoodFund: number;
+  hasBadMoodFund: boolean;
   hospitalPlanList: any[];
   isFormValid = false;
   ciSliderConfig: any = {
@@ -95,6 +96,9 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
       - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
+    if (this.maxBadMoodFund > 0) {
+      this.hasBadMoodFund = true;
+    }
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 
