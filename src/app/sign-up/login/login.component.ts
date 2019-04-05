@@ -13,6 +13,7 @@ import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.ser
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -66,7 +67,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private _location: Location,
     private translate: TranslateService,
     private apiService: ApiService,
-    private selectedPlansService: SelectedPlansService) {
+    private selectedPlansService: SelectedPlansService,
+    private investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -171,46 +173,68 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               });
             }
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-              this.signUpService.setUserProfileInfo(userInfo.objectList);
-
-              // Investment status
-              const investmentStatus = this.signUpService.getInvestmentStatus();
-              const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
-              const redirect_url = this.signUpService.getRedirectUrl();
-              const journeyType = this.appService.getJourneyType();
-              if (redirect_url) {
-                this.signUpService.clearRedirectUrl();
-                if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
-                  this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-                } else if (investmentRoutes.includes(redirect_url) &&
-                  investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+              if (userInfo.responseMessage.responseCode < 6000) {
+                // ERROR SCENARIO
+                if (
+                  userInfo.objectList &&
+                  userInfo.objectList.serverStatus &&
+                  userInfo.objectList.serverStatus.errors.length
+                ) {
+                  this.showCustomErrorModal(
+                    'Error!',
+                    userInfo.objectList.serverStatus.errors[0].msg
+                  );
+                } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+                  const errorResponse = userInfo.responseMessage.responseDescription;
+                  this.showCustomErrorModal('Error!', errorResponse);
                 } else {
-                  this.router.navigate([redirect_url]);
+                  this.investmentAccountService.showGenericErrorModal();
                 }
-              } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-                this.willWritingService.getExecTrusteeInfo().length > 0) {
-                if (!this.willWritingService.getIsWillCreated()) {
-                  this.willWritingApiService.createWill().subscribe((data) => {
-                    if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-                      this.willWritingService.setIsWillCreated(true);
-                      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                    } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
-                      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-                      ref.componentInstance.errorTitle = '';
-                      ref.componentInstance.errorMessage = this.duplicateError;
-                    }
-                  });
-                } else {
-                  this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                }
-              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
-                journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
-                journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
-                this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+                this.signUpService.setUserProfileInfo(userInfo.objectList);
+
+                // Investment status
+                const investmentStatus = this.signUpService.getInvestmentStatus();
+                const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
+                const redirect_url = this.signUpService.getRedirectUrl();
+                const journeyType = this.appService.getJourneyType();
+                if (redirect_url) {
+                  this.signUpService.clearRedirectUrl();
+                  if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+                    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+                  } else if (investmentRoutes.includes(redirect_url) &&
+                    investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+                      this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+                  } else {
+                    this.router.navigate([redirect_url]);
+                  }
+                } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+                  this.willWritingService.getExecTrusteeInfo().length > 0) {
+                  if (!this.willWritingService.getIsWillCreated()) {
+                    this.willWritingApiService.createWill().subscribe((data) => {
+                      if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+                        this.willWritingService.setIsWillCreated(true);
+                        this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                      } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+                        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+                        ref.componentInstance.errorTitle = '';
+                        ref.componentInstance.errorMessage = this.duplicateError;
+                      }
+                    });
+                  } else {
+                    this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                  }
+                } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
+                  journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
+                  journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
+                  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+                } else {
+                  this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+                }
               }
+            },
+            (err) => {
+              this.investmentAccountService.showGenericErrorModal();
             });
             this.signUpService.removeCaptchaSessionId();
           } else if (data.responseMessage.responseCode === 5016) {
@@ -270,5 +294,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   refreshCaptcha() {
     this.captchaSrc = this.authService.getCaptchaUrl();
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 }

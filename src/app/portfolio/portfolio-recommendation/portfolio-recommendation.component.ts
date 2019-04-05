@@ -241,14 +241,33 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
       this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-        this.signUpService.setUserProfileInfo(userInfo.objectList);
-        const investmentStatus = this.signUpService.getInvestmentStatus();
-        if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-          const fundingParams = this.constructFundingParams(this.portfolio);
-          this.topupAndWithDrawService.setFundingDetails(fundingParams);
-          this.topUpOneTime();
+        if (userInfo.responseMessage.responseCode < 6000) {
+          // ERROR SCENARIO
+          if (
+            userInfo.objectList &&
+            userInfo.objectList.serverStatus &&
+            userInfo.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              userInfo.objectList.serverStatus.errors[0].msg
+            );
+          } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+            const errorResponse = userInfo.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+          this.signUpService.setUserProfileInfo(userInfo.objectList);
+          const investmentStatus = this.signUpService.getInvestmentStatus();
+          if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+            const fundingParams = this.constructFundingParams(this.portfolio);
+            this.topupAndWithDrawService.setFundingDetails(fundingParams);
+            this.topUpOneTime();
+          } else {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+          }
         }
       },
       (err) => {
