@@ -107,6 +107,9 @@ export class DashboardComponent implements OnInit {
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
         this.getDashboardList();
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
 
     // Will Writing
