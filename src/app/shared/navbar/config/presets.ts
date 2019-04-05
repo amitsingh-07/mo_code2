@@ -52,16 +52,13 @@ export class NavbarConfig {
     '103': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
-      showMenu: false,
+      showMenu: true,
       showLogin: true,
       showLogout: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: true,
-      showHeaderNavbar: true,
-      showLabel: {
-        primary: 'Investment'
-      }
+      showHeaderNavbar: true
     };
 
     // ------ Features -----
