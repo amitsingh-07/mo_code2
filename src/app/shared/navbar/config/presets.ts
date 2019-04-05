@@ -48,6 +48,19 @@ export class NavbarConfig {
       showHeaderNavbar: true,
     };
 
+    // Topup and Withdraw
+    '103': object = {
+      showNavBackBtn: true,
+      showHeaderBackBtn: true,
+      showMenu: true,
+      showLogin: true,
+      showLogout: true,
+      showNavShadow: true,
+      showSearchBar: false,
+      showNotifications: true,
+      showHeaderNavbar: true
+    };
+
     // ------ Features -----
     // Home;
     '1': object = {

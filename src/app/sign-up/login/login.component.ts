@@ -28,6 +28,7 @@ import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
+import { ValidatePassword } from '../password/password.validator';
 
 @Component({
   selector: 'app-login',
@@ -141,11 +142,21 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
-    if (!form.valid) {
-      this.markAllFieldsDirty(form);
-      const error = this.currentFormError(form);
+    if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
+      let error;
+      if (!form.valid) {
+        this.markAllFieldsDirty(form);
+        error = this.currentFormError(form);
+        ref.componentInstance.errorTitle = error.errorTitle;
+      } else {
+        this.loginForm.controls['loginPassword'].reset();
+        error = { errorMessage: 'User ID and/or password does not match.' };
+        if (this.signUpService.getCaptchaShown()) {
+          this.loginForm.controls['captchaValue'].reset();
+          this.refreshCaptcha();
+        }
+      }
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
@@ -184,7 +195,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                   this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
                 } else if (investmentRoutes.includes(redirect_url) &&
                   investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+                  this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
                 } else {
                   this.router.navigate([redirect_url]);
                 }

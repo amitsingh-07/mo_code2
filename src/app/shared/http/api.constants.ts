@@ -75,7 +75,7 @@ export let apiConstants = {
             deletePortfolio: INVESTMENT_API_BASE_URL + 'customer/portfolios',
             monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
-            investmentoverview: 'invest/investment-microservice/portfolio/holdings',
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings?handleError=true',
             porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {
