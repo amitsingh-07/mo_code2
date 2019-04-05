@@ -178,7 +178,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
             response.objectList.serverStatus.errors[0].msg + '('
             + response.objectList.serverStatus.errors[0].code + ')'
           );
-        } else if (response.responseMessage.responseDescription) {
+        } else if (response.responseMessage && response.responseMessage.responseDescription) {
           const errorResponse = response.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
@@ -210,7 +210,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
-          } else if (response.responseMessage.responseDescription) {
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {

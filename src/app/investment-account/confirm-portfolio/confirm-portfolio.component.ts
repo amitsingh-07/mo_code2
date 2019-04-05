@@ -274,7 +274,7 @@ export class ConfirmPortfolioComponent implements OnInit {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showInvestmentAccountErrorModal(errorList);
-          } else if (response.responseMessage.responseDescription) {
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
@@ -322,7 +322,7 @@ export class ConfirmPortfolioComponent implements OnInit {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showInvestmentAccountErrorModal(errorList);
-          } else if (response.responseMessage.responseDescription) {
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {

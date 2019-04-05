@@ -278,7 +278,7 @@ export class PortfolioRecommendationComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
-          } else if (response.responseMessage.responseDescription) {
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {

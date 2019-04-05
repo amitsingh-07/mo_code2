@@ -139,7 +139,7 @@ export class AddUpdateBankComponent implements OnInit {
               const errorResponse = response.objectList;
               const errorList = errorResponse.serverStatus.errors;
               this.showIfastErrorModal(errorList);
-            } else if (response.responseMessage.responseDescription) {
+            } else if (response.responseMessage && response.responseMessage.responseDescription) {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
@@ -176,7 +176,7 @@ export class AddUpdateBankComponent implements OnInit {
             const errorResponse = data.objectList;
             const errorList = errorResponse.serverStatus.errors;
             this.showIfastErrorModal(errorList);
-            } else if (data.responseMessage.responseDescription) {
+            } else if (data.responseMessage && data.responseMessage.responseDescription) {
               const errorResponse = data.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
