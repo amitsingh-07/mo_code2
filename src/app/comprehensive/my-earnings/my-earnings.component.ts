@@ -67,7 +67,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       });
     });
     this.earningDetails = this.comprehensiveService.getMyEarnings();
-    if (this.earningDetails.employmentType) {
+    if (this.earningDetails && this.earningDetails.employmentType) {
       this.employmentType = this.earningDetails.employmentType;
     } else {
       this.employmentType = 'Employed';
@@ -117,7 +117,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   buildMyEarningsForm() {
     this.myEarningsForm = this.formBuilder.group({
-      employmentType: [(this.earningDetails && this.earningDetails.employmentType) ? this.earningDetails.employmentType : 'Employed', []],
+      employmentType: [(this.employmentType) ? this.employmentType : '', []],
       monthlySalary: [this.earningDetails ? this.earningDetails.monthlySalary : '', []],
       monthlyRentalIncome: [this.earningDetails ? this.earningDetails.monthlyRentalIncome : ''],
       otherMonthlyWorkIncome: [this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : ''],
