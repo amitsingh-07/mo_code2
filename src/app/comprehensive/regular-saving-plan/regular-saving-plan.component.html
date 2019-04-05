@@ -66,7 +66,7 @@
                     <div class="pr0 flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCash formControlName="regularPaidByCash"  >
+                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="pr0 flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput  #regularPaidByCPF formControlName="regularPaidByCPF" >
+                        <input type="text" class="input-control" appCurrencyInput maxLength="4"  #regularPaidByCPF formControlName="regularPaidByCPF" >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
