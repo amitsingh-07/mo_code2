@@ -168,12 +168,21 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
-        } else {
+        } else if (
+          response.objectList &&
+          response.objectList.serverStatus &&
+          response.objectList.serverStatus.errors.length
+        ) {
           this.showCustomErrorModal(
             'Error!',
             response.objectList.serverStatus.errors[0].msg + '('
             + response.objectList.serverStatus.errors[0].code + ')'
           );
+        } else if (response.responseMessage && response.responseMessage.responseDescription) {
+          const errorResponse = response.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
         }
       },
         (err) => {
@@ -201,6 +210,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
           } else {
             this.investmentAccountService.showGenericErrorModal();
           }

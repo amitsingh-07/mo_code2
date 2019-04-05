@@ -267,15 +267,18 @@ export class ConfirmPortfolioComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           // ERROR SCENARIO
           if (
-            response.responseMessage.responseCode === 5018 ||
-            response.responseMessage.responseCode === 5019
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
           ) {
-            const errorResponse = response.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showInvestmentAccountErrorModal(errorList);
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else if (
           response.objectList.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.aml_cleared.toUpperCase() &&
@@ -312,16 +315,18 @@ export class ConfirmPortfolioComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           // ERROR SCENARIO
           if (
-            response.responseMessage.responseCode === 5018 ||
-            response.responseMessage.responseCode === 5019 ||
-            response.responseMessage.responseCode === 5105
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
           ) {
-            const errorResponse = response.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showInvestmentAccountErrorModal(errorList);
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           // SUCCESS SCENARIO
