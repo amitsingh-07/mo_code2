@@ -27,7 +27,7 @@ export let apiConstants = {
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
-        userProfileInfo: 'account/account-microservice/api/getCustomerProfileDetails',
+        userProfileInfo: 'account/account-microservice/api/getCustomerProfileDetails?handleError=true',
         editContactDeatails: 'account/account-microservice/api/updateAddress',
         editPassword: 'account/account-microservice/api/editPassword',
         editProfile: 'account/account-microservice/api/customer/customerProfile',
@@ -74,7 +74,7 @@ export let apiConstants = {
             deletePortfolio: INVESTMENT_API_BASE_URL + 'customer/portfolios',
             monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
-            investmentoverview: 'invest/investment-microservice/portfolio/holdings',
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings?handleError=true',
             porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {

@@ -96,27 +96,43 @@ export class YourInvestmentComponent implements OnInit {
   }
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
-      this.investmentoverviewlist = data.objectList;
-      this.totalReturns = this.investmentoverviewlist.data.totalReturns
-        ? this.investmentoverviewlist.data.totalReturns * 100
-        : 0;
-      this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-        ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-        : 0;
-      this.totalValue = this.investmentoverviewlist.data.totalValue
-        ? this.investmentoverviewlist.data.totalValue
-        : 0;
-      this.portfolioList = this.investmentoverviewlist.data.portfolios;
-      this.totalPortfolio = this.portfolioList.length;
-      this.welcomeInfo = {
-        name: this.userProfileInfo.firstName,
-        total: this.totalPortfolio
-      };
-      this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
-      if (this.investmentoverviewlist.data.cashAccountDetails) {
-        this.topupAndWithDrawService.setUserCashBalance(
-          this.investmentoverviewlist.data.cashAccountDetails.availableBalance
+      if (data.responseMessage.responseCode >= 6000) {
+        this.investmentoverviewlist = data.objectList;
+        this.totalReturns = this.investmentoverviewlist.data.totalReturns
+          ? this.investmentoverviewlist.data.totalReturns * 100
+          : 0;
+        this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
+          ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
+          : 0;
+        this.totalValue = this.investmentoverviewlist.data.totalValue
+          ? this.investmentoverviewlist.data.totalValue
+          : 0;
+        this.portfolioList = this.investmentoverviewlist.data.portfolios;
+        this.totalPortfolio = this.portfolioList.length;
+        this.welcomeInfo = {
+          name: this.userProfileInfo.firstName,
+          total: this.totalPortfolio
+        };
+        this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
+        if (this.investmentoverviewlist.data.cashAccountDetails) {
+          this.topupAndWithDrawService.setUserCashBalance(
+            this.investmentoverviewlist.data.cashAccountDetails.availableBalance
+          );
+        }
+      } else if (
+        data.objectList &&
+        data.objectList.serverStatus &&
+        data.objectList.serverStatus.errors.length
+      ) {
+        this.showCustomErrorModal(
+          'Error!',
+          data.objectList.serverStatus.errors[0].msg
         );
+      } else if (data.responseMessage && data.responseMessage.responseDescription) {
+        const errorResponse = data.responseMessage.responseDescription;
+        this.showCustomErrorModal('Error!', errorResponse);
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
       }
     },
     (err) => {
@@ -202,6 +218,8 @@ export class YourInvestmentComponent implements OnInit {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
         }
       },
       (err) => {
@@ -220,4 +238,11 @@ export class YourInvestmentComponent implements OnInit {
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+
 }
