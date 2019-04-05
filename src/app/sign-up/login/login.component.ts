@@ -1,18 +1,20 @@
+import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { WillWritingService } from '../../will-writing/will-writing.service';
-import { AppService } from './../../app.service';
-import { FooterService } from './../../shared/footer/footer.service';
 
-import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -21,15 +23,14 @@ import { SelectedPlansService } from '../../shared/Services/selected-plans.servi
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+import { WillWritingService } from '../../will-writing/will-writing.service';
+import { ValidatePassword } from '../password/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
-import { ValidatePassword } from '../password/password.validator';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-login',

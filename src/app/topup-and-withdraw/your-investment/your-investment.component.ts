@@ -46,7 +46,6 @@ export class YourInvestmentComponent implements OnInit {
   portfolio;
   productCode;
 
-
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -73,7 +72,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.getInvestmentOverview();
