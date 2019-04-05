@@ -1203,7 +1203,7 @@ input::placeholder {
     label {
       color: $dark-teal-color;
       margin-bottom: 0;
-      font-family: $muli-semi-bold;
+      font-family: $muli-semi-bold !important;
       &.btn-outline-primary {
         font-family: $muli-regular;
         color: $app-backgrnd-color;

@@ -1,83 +1,79 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive ">
-    <div class="step-indicator-container">
-        <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
-    </div>
-  <div class="dependant-title mt40">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</div>
-  <div class="col-lg-5 col-md-6 p-0">
-    <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
-      <div class="form-group-single-column  flex-col">
-        <div class="checkbox-button one-label mt20">
-          <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
-            type="radio" value="1" class="field radio" (change)="checkDependant()">
-          <label for="dependant_selection_yes">
-            <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
-
-          </label>
-          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="mb15 dependantSection">
-            <div class="dependant_selection_title mt15">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
-
-              <div class="form-group mb0" [formGroupName]="i">
-
-                <div class="education-support">
-                  <div class="checkbox-button one-label mb0 pl0 pb0">
-                    <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
-                      formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
-                    <label for="educationSupportYes{{i}}">
-                      <div class="title">{{educationPlan.get('name').value}}</div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            
-            </div>
-            <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
-          </section>
-        </div>
-        <div class="checkbox-button one-label">
-          <input (change)="checkDependant()" id="dependant_selection_no_list" name="hasEndowments" formControlName="hasEndowments"
-            type="radio" value="2" class="field radio">
-          <label for="dependant_selection_no_list">
-            <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
-          </label>
-          <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '2'" class="mb15 dependantSection">
-            <div class="dependant_selection_title mt15">
-               
-              {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
-            <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
-
-              <div class="form-group mb0" [formGroupName]="i" >
-
-                <div class="education-support">
-                  <div class="checkbox-button one-label mb0 pl0 pb0">
-                    <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
-                      formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
-                    <label for="educationSupportNo{{i}}">
-                      <div class="title">{{educationPlan.get('name').value}}</div>
-
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
-          </section>
-        </div>
-        <div class="checkbox-button one-label">
-          <input (change)="checkDependant()" id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
-            type="radio" value='0' class="field radio">
-          <label for="dependant_selection_no">
-            <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
-          </label>
-
-        </div>
-       
-      </div>
-      <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary mb50 width100 mt30"
-      id="moDpdnt2BtnFooter"> {{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
-   
-    </button>
-    </form>
+  <!--Step indicator-->
+  <div class="step-indicator-container">
+      <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
   </div>
-  
+  <!--Step indicator /-->
+  <!--Page sub-heading-->
+  <div class="comprehensive__page-sub-heading mt30 pb0">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page form-->
+  <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
+    <div class="form-group-single-column  flex-col">
+      <div class="checkbox-button one-label mt20">
+        <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
+          type="radio" value="1" class="field radio" (change)="checkDependant()">
+        <label for="dependant_selection_yes">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
+        </label>
+        <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '1'" class="mb15 dependantSection">
+          <div class="dependant_selection_title mt15">{{'CMP.DEPENDANT_EDUCATION_SELECTION.YES_DESC'|translate}}</div>
+          <div formArrayName="endowmentDetailsList" class="education-support-array " *ngFor="let educationPlan of dependantEducationSelectionForm['controls'].endowmentDetailsList['controls']; let i = index;">
+            <div class="form-group mb0" [formGroupName]="i">
+              <div class="education-support">
+                <div class="checkbox-button one-label mb0 pl0 pb0">
+                  <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
+                    formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
+                  <label for="educationSupportYes{{i}}">
+                    <div class="title">{{educationPlan.get('name').value}}</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
+        </section>
+      </div>
+      <div class="checkbox-button one-label">
+        <input (change)="checkDependant()" id="dependant_selection_no_list" name="hasEndowments" formControlName="hasEndowments"
+          type="radio" value="2" class="field radio">
+        <label for="dependant_selection_no_list">
+          <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
+        </label>
+        <section *ngIf="dependantEducationSelectionForm.get('hasEndowments').value === '2'" class="mb15 dependantSection">
+          <div class="dependant_selection_title mt15">
+            {{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_DESC'|translate}}</div>
+          <div formArrayName="endowmentDetailsList" class="education-support-array" *ngFor="let educationPlan of dependantEducationSelectionForm.controls.endowmentDetailsList.controls; let i = index;">
+            <div class="form-group mb0" [formGroupName]="i" >
+              <div class="education-support">
+                <div class="checkbox-button one-label mb0 pl0 pb0">
+                  <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
+                    formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
+                  <label for="educationSupportNo{{i}}">
+                    <div class="title">{{educationPlan.get('name').value}}</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p [hidden]="!educationPreference" class="pl0 error-child-msg mt15" >Please select at least one child.</p>
+        </section>
+      </div>
+      <div class="checkbox-button one-label">
+        <input (change)="checkDependant()" id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
+          type="radio" value='0' class="field radio">
+        <label for="dependant_selection_no">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
+        </label>
+      </div>
+    </div>
+    <div class="footer-cta"> 
+    <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary width100"
+    id="moDpdnt2BtnFooter"> {{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    </button>
+  </div>
+  </form>
+  <!--Page form /-->
 </div>
+<!--Container fluid /-->
