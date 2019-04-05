@@ -135,3 +135,4 @@ export class InsurancePlanComponent implements OnInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
+
