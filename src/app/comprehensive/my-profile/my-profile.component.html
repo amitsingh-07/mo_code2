@@ -1,4 +1,6 @@
-<div class="container-fluid--comprehensive container-fluid max-width--1024 comprehensive">
+<!--Container fluid-->
+<div class="container-fluid max-width--1024 comprehensive">
+  <!--Tooltip-->
   <div class="tooltip-container" *ngIf="showToolTip">
     <div class="tooltip-container__inner">
       <!-- <span class="tooltip-container__inner__arrow"></span> -->
@@ -7,19 +9,31 @@
       <span class="tooltip-container__inner__close" (click)="onCloseClick()"></span>
     </div>
   </div>
+  <!--Tooltip />
+  <!--Moneyown Logo-->
   <div class="text-center">
     <img class="owl-img" src="/assets/images/comprehensive/createAccount-icon.svg" id="moGetStrdOwlImg" />
   </div>
+  <!--Moneyown Logo /-->
+  <!--Page heading-->
   <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
     {{userDetails ?userDetails.firstName : ''}} </div>
-  <div  class="comprehensive__page-sub-heading" id="moGetStrdWelcomeMsg" [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
-  <div class="comprehensive__page-content" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
+  <!--Page heading /-->
+  <!--Page sub-heading-->
+  <div  class="comprehensive__page-sub-heading--center" id="moGetStrdWelcomeMsg" [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
+  <!--Page sub-heading /-->  
+  <!--Page desc-->
+  <div class="comprehensive__page-content--center" id="moGetStrdPageCont">{{'CMP.GETTING_STARTED.DESC'|translate}}</div>
+  <!--Page desc /-->
+  <!--Page form-->
   <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
+    <!--Form group-->
     <div class="form-group-with-bg">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
+        <!--Flex row 1-->
         <div class="flex-row ">
-          <div class="pl0 col-5">
+          <div class="flex-col-5">
             <label for="name" id="myProfileNameLabel">
               <div>{{ 'CMP.FORM_LABEL.NAME' | translate}}
               </div>
@@ -29,6 +43,8 @@
               {{userDetails ? userDetails.firstName : ''}}    
           </div>
         </div>
+        <!--Flex row 1 /-->
+        <!--Flex row 2-->
         <div class="flex-row">
           <div class="flex-col-5">
             <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
@@ -36,12 +52,12 @@
           <div class="flex-col-7">
             <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
               <div class="flex-row mb0">
-                <div class="flex-col-6" style="width: 50% !important;">
+                <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
                     <input id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-6" style="width: 50% !important;">
+                <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
                     <input id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
                     translate}}
@@ -51,6 +67,8 @@
             </div>
           </div>
         </div>
+        <!--Flex row 2 /-->
+        <!--Flex row 3-->
         <div class="flex-row">
           <div class="flex-col-5">
             <label for="nationality">{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</label>
@@ -73,8 +91,10 @@
             </div>
           </div>
         </div>
+        <!--Flex row 3 /-->
         <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
-        <div class="flex-row">
+        <!--Flex row 4-->
+        <div class="flex-row  mb0">
           <div class="flex-col-5">
             <label for="dob">{{ 'CMP.FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
           </div>
@@ -95,11 +115,20 @@
             </div>
           </div>
         </div>
-        <div [hidden]="!DOBAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
+        <!--Flex row 4 /-->
+        <div [hidden]="!DOBAlert" class="flex-row info-msg mt20">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
       </div>
+      <!--Form Content-->
     </div>
-    <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary mt30 mb50 width100" id="prfBtn1">{{
-      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
-    </button>
+    <!--Form group-->
+    <!--Footer CTA-->
+    <div class="footer-cta">
+      <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary width100" id="prfBtn1">{{
+        'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+      </button>
+    </div>
+    <!--Footer CTA-->
   </form>
+  <!--Page form /-->
 </div>
+<!--Container fluid /-->
