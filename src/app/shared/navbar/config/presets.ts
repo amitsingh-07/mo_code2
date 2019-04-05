@@ -48,7 +48,7 @@ export class NavbarConfig {
       showHeaderNavbar: true,
     };
 
-    // Topup and Withdraw (Robo2)
+    // Topup and Withdraw
     '103': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
