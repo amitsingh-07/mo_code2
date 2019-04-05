@@ -48,6 +48,22 @@ export class NavbarConfig {
       showHeaderNavbar: true,
     };
 
+    // Topup and Withdraw (Robo2)
+    '103': object = {
+      showNavBackBtn: true,
+      showHeaderBackBtn: true,
+      showMenu: false,
+      showLogin: true,
+      showLogout: true,
+      showNavShadow: true,
+      showSearchBar: false,
+      showNotifications: true,
+      showHeaderNavbar: true,
+      showLabel: {
+        primary: 'Investment'
+      }
+    };
+
     // ------ Features -----
     // Home;
     '1': object = {

@@ -46,7 +46,7 @@ export class TransactionComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getTransactionHistory();
 
