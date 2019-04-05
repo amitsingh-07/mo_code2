@@ -77,12 +77,18 @@ app-top-up {
         margin-top: 10px;
       }
       &:nth-child(2n + 1) input[type='radio'] + label {
-        margin-left: auto;
-        margin-right: 8.5px;
+        margin: 0 auto;
+        @include allmobiles{
+          margin-left: auto;
+          margin-right: 8.5px;
+        }
       }
       &:nth-child(2n) input[type='radio'] + label {
-        margin-left: auto;
-        margin-right: 5.5px;
+        margin: 0 auto;
+        @include allmobiles{
+          margin-left: auto;
+          margin-right: 5.5px;
+        }
       }
     //}
     &.one-label {
@@ -108,8 +114,10 @@ app-top-up {
         height: 104px;
         text-align: center;
         padding: 20px 19px;
-        max-width: 163px;
         position: relative;
+        @include allmobiles{
+          max-width: 163px;
+        }
         &.ltc {
           padding: 25px 21px;
         }

@@ -22,7 +22,6 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class TransactionComponent implements OnInit {
   pageTitle: string;
   transactionHistory: any;
-  accountCreationDate: any;
   statementMonthsList: any;
   Object = Object;
   activeTransactionIndex;
@@ -58,12 +57,15 @@ export class TransactionComponent implements OnInit {
       this.userProfileInfo.investementDetails.account &&
       this.userProfileInfo.investementDetails.account.accountCreatedDate
     ) {
-      this.accountCreationDate = this.convertStringToDate(
+      const accountCreationDate = this.convertStringToDate(
        this.userProfileInfo.investementDetails.account.accountCreatedDate
       );
+      const recentStatementAvailDate = this.convertStringToDate(
+        this.userProfileInfo.investementDetails.account.statementCreatedDate
+       );
       this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
-        this.accountCreationDate,
-        new Date()
+        accountCreationDate,
+        recentStatementAvailDate
       );
     }
   }
