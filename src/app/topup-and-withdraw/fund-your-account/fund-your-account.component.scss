@@ -146,6 +146,13 @@ app-fund-your-account {
           font-size: 16px;
           font-weight: 600;
           margin-bottom: 10px;
+          &.ref_num {
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #ff872f;
+          }
           .investment-values {
             display: flex;
             flex-direction: row;
@@ -162,6 +169,19 @@ app-fund-your-account {
               }
             }
           }
+        }
+        .ref_code_info{
+         display: flex;
+         justify-content: space-between;
+         color:#e57300;
+         font-weight: bold;
+         line-height: 1.38;
+         font-family: $muli-bold;
+         letter-spacing: -0.1px;
+         span {
+          padding:0px 8px 20px 0px;
+        }
+
         }
       }
       .sub-text {

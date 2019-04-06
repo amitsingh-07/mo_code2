@@ -42,7 +42,11 @@
               </div>
               <div class="flex-col">
                 <div>{{'FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.REFERENCE_CODE' | translate}}</div>
-                <div><strong>{{setBankDetails.referenceNumber}}</strong></div>
+                <div><strong class="ref_num"><u>{{setBankDetails.referenceNumber}}</u></strong></div>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
           </div>
@@ -94,7 +98,11 @@
                 </div>
                 <div class="flex-col">
                   <div>{{'FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.REFERENCE_CODE' | translate}}</div>
-                  <div><strong>{{setPaynowDetails.referenceNumber}}</strong></div>
+                  <div><strong class="ref_num"><u>{{setPaynowDetails.referenceNumber}}</u></strong></div>
+                </div>
+                <div class="ref_code_info">
+                  <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                  <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
                 </div>
               </div>
           </div>
