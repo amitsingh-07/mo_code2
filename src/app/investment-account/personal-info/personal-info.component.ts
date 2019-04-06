@@ -121,7 +121,7 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.fullName,
             disabled: this.investmentAccountService.isDisabled('fullName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]
         ],
         nricNumber: [
           {
@@ -186,7 +186,7 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.fullName,
             disabled: this.investmentAccountService.isDisabled('fullName')
           },
-          [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]
+          [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]
         ],
         dob: [
           {

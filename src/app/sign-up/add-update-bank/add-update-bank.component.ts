@@ -93,7 +93,7 @@ export class AddUpdateBankComponent implements OnInit {
     }
     this.updateId = this.formValues.id;
     this.bankForm = this.formBuilder.group({
-      accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.SymbolAlphabets)]],
+      accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       bank: [this.formValues.bank, [Validators.required]],
       accountNo: [this.formValues.accountNumber, [Validators.required]]
     });
