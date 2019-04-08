@@ -33,6 +33,10 @@ app-acknowledgement {
     .text-bold {
       font-weight: bold;
       color: $black-color;
+      a{
+        color:$acknowledgement-text-color;
+        text-decoration: underline;
+      }
     }
 
     ol {
