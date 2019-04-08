@@ -64,17 +64,19 @@ app-bank-details {
          color:#e57300;
          font-weight: bold;
          font-family: $muli-bold;
-         letter-spacing: -0.1px;
+         letter-spacing: -0.12px;
+         font-size: 14px;
          span {
           padding:0px 8px 0px 0px;
         }
       }
       .ref_num{
-        font-family:$muli-semi-bold;
+        font-family:$muli-bold;
        font-size: 16px;
        font-weight: 600;
-       letter-spacing: -0.3px;
+       letter-spacing: -0.16px;
        color: #ff872f;
+       line-height: 22px;
       }
     }
 
