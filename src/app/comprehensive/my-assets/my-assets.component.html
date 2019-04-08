@@ -1,15 +1,21 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+  <!--Step indicator-->
   <div class="step-indicator-container" id="moDpdnt2StepIndctr">
     <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
   </div>
-  <div class="dependant-title mt40">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
+  <!--Step indicator /-->
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
+  <div class="comprehensive__page-content">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
+  <!--Income bucket-->
   <div class='income-bucket-panel'>
     <div class="income-bucket-panel__img {{ bucketImage }}"></div>
     <div class="income-bucket-panel__content">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
     <div class="income-bucket-panel__desc"><span class='income-bucket-panel__value'>{{ totalAssets |
         currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_ASSETS.TOTAL'|translate}} </div>
   </div>
+  <!--Income bucket /-->
+  <!--Page form-->
   <form [formGroup]="myAssetsForm" id="myAssetsForm" name="myAssetsForm" class="myAssetsForm form-group">
     <div class="form-group-with-bg">
       <!--Form Header-->
@@ -337,7 +343,7 @@
     </div>
 
   </form>
-
+  <!--Page form /-->
   <div class="flex-row footer-notes btn__footer--fixed width100 p-3 " id="prfBtn1">
     <div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_ASSETS.ASSETS_BUCKETS_NOTE'|translate}}</div>
     <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalAssets | currency:'USD':'symbol-narrow':'1.0-2'}}
@@ -345,3 +351,4 @@
   </div>
 
 </div>
+<!--Container fluid /-->

@@ -153,7 +153,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     buildProfileForm() {
         this.moGetStrdForm = this.formBuilder.group({
             firstName: [this.userDetails ? this.userDetails.firstName : ''],
-            gender: [this.userDetails ? this.userDetails.gender : '', [Validators.required]],
+            gender: [this.userDetails ? this.userDetails.gender.toLocaleLowerCase() : '', [Validators.required]],
             nation: [this.userDetails ? this.userDetails.nation : '', [Validators.required]],
             dateOfBirth: [this.userDetails ? this.userDetails.dateOfBirth : ''],
             ngbDob: [this.userDetails ? this.userDetails.ngbDob : '', [Validators.required]]

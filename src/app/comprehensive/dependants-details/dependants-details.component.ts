@@ -209,7 +209,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
       const maxAge = (dependant.gender.toLowerCase() === 'male') ?
-        this.translate.instant('CMP.ENDOWMENT_PLAN.MALE_ABOUT_YEAR') : this.translate.instant('CMP.ENDOWMENT_PLAN.FEMALE_ABOUT_YEAR');
+21 : 19;
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;

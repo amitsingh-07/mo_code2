@@ -46,10 +46,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   showConfirmation: boolean;
   cpfFromMyInfo = false;
   constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
-              private modal: NgbModal) {
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
+    private modal: NgbModal) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -69,11 +69,18 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               const cpfValues = data.objectList[0].cpfbalances;
-              this.myAssetsForm.controls['cpfOrdinaryAccount'].setValue(cpfValues.ca);
-              this.myAssetsForm.controls['cpfSpecialAccount'].setValue(cpfValues.sa);
-              this.myAssetsForm.controls['cpfMediSaveAccount'].setValue(cpfValues.ma);
+              const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
+              const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
+              const maFormControl = this.myAssetsForm.controls['cpfMediSaveAccount'];
+              oaFormControl.setValue(cpfValues.oa);
+              saFormControl.setValue(cpfValues.sa);
+              maFormControl.setValue(cpfValues.ma);
+              oaFormControl.markAsDirty();
+              saFormControl.markAsDirty();
+              maFormControl.markAsDirty();
+
+              this.onTotalAssetsBucket();
               this.cpfFromMyInfo = true;
-              this.closeMyInfoPopup();
             } else {
               this.closeMyInfoPopup();
             }
@@ -87,7 +94,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     });
     this.assetDetails = this.comprehensiveService.getMyAssets();
-    if (this.assetDetails && this.assetDetails.source === 'MyInFo' ) {
+    if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
     }
   }
