@@ -135,7 +135,23 @@ export class ComprehensiveFormError {
 
         }
     };
-
+    hospitalPlanForm: object = {
+        formFieldErrors: {
+            errorTitle: 'Please Select the hospital Plan',
+            hospitalPlanId: {
+                required: {
+                    errorTitle: 'Please Select the hospital Plan',
+                    errorMessage: 'Please Select the hospital Plan'
+                }
+            },
+            badMoodMonthlyAmount: {
+                required: {
+                    errorTitle: 'Please Select the hospital Plan',
+                    errorMessage: 'Please Select the hospital Plan'
+                }
+            },
+        }
+    };
     myEarningsForm: object = {
         formFieldErrors: {
             errorTitle: this.errorTitleDetails,
