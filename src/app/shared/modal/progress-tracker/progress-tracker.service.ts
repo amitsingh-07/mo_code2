@@ -29,6 +29,8 @@ export class ProgressTrackerService {
                 backdropClass: 'progress-tracker-backdrop'
             });
             this.isModalOpen = true;
+        } else {
+            this.hide();
         }
     }
 
