@@ -2,8 +2,8 @@
   <div class="step-indicator-container" id="moDpdnt2StepIndctr">
     <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
   </div>
-  <div class="dependant-title mt40">{{'CMP.MY_LIABILITIES.TITLE'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_LIABILITIES.TITLE'|translate}}</div>
+  <div class="dcomprehensive__page-content">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
     <div class="income-bucket-panel__img  {{ bucketImage }}"></div>
     <div class="income-bucket-panel__content">{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</div>
@@ -41,8 +41,8 @@
           </div>
         </div>
 
-        <div class="flex-row investmentProperties home-loan" [hidden]="!propertyLoan">
-          <div class="flex-col-12 mt30 ">
+        <div class="flex-row investmentProperties home-loan mb0" [hidden]="!propertyLoan">
+          <div class="flex-col-12 mt15 ">
             <div class="with-help-icon" for="name"><u (click)="addPropertyLoan()">{{
                 'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN' | translate}}</u>
 

@@ -12,41 +12,29 @@ $grey-color-notes: #9f9f9f;
 }
 .with-help-icon{
     display:flex;
-    align-items: flex-end;
+    justify-content: space-between;
     position: relative;        
-    margin-right: 10px;
-    position: relative;
     //font-size: 18px;
     .help-icon {
       
         background: url("/assets/images/tool-help-icon.svg") no-repeat;
-        width: 40px;
-        height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        left: 93%;
+        right: 0;
         top: 5px;
     }    
 }
 .delete-icon {      
     background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
-    width: 40px;
-    height: 20px;
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    left: 95%;
+    right: 0;
+    margin-left: 10px;
     top: 5px;
 } 
 .comprehensive {
-    .dependant-title {
-        font-size: 18px;       
-    }
-    .dependant-desc {
-        font-size: 16px;
-        padding-bottom: 16px;
-    }
     .liabilities-field .btn-outline-primary{
         color:$teal-color;
     }
@@ -95,11 +83,12 @@ $grey-color-notes: #9f9f9f;
 .both-icon{    
     .help-icon {
         top:3px!important;
-        left: 80% !important;
+        right: 0 !important;
     }
     .delete-icon {
         top:3px!important;        
-        left: 95% !important;
+        right: 0 !important;
+        margin-left: 10px;
     }
     .form-group-with-bg--content-label{
         color:$black-color;
