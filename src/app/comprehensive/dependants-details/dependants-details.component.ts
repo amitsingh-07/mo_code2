@@ -191,6 +191,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.loaderService.showLoader({ title: 'Saving Details' });
         this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
           this.loaderService.hideLoader();
+          this.comprehensiveService.setHasDependant(true);
           this.comprehensiveService.setMyDependant(data.objectList);
           this.comprehensiveService.clearEndowmentPlan();
           this.comprehensiveService.setEndowment(null);

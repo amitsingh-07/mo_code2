@@ -1,22 +1,18 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyEarnings } from '../comprehensive-types';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -107,7 +103,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       otherEarningsControl.setValidators([]);
       otherEarningsControl.updateValueAndValidity();
     } else {
-      otherEarningsControl.setValidators([ Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+      otherEarningsControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
       otherEarningsControl.updateValueAndValidity();
     }
     this.onTotalAnnualIncomeBucket();
@@ -135,8 +131,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.validateEarnings(form)) {
-
-      if (!form.pristine) {
+      const earningsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveIncome;
+      if (!form.pristine || Util.isEmptyOrNull(earningsData)) {
         this.earningDetails = form.value;
         this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY] = this.totalAnnualIncomeBucket;
         this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
