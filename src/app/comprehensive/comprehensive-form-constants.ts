@@ -9,4 +9,5 @@ MY_EARNINGS: 'myEarningsForm',
 MY_SPENDINGS: 'mySpendingsForm',
 MY_ASSETS: 'myAssetsForm',
 REGULAR_SAVINGS: 'RSPForm',
+DOWN_ON_LUCK: 'hospitalPlanForm'
 };
