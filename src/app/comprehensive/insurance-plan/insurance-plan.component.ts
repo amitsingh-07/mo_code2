@@ -26,7 +26,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
-  haveHDB = true;
+  haveHDB = false;
   submitted = false;
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
@@ -155,3 +155,4 @@ export class InsurancePlanComponent implements OnInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
+

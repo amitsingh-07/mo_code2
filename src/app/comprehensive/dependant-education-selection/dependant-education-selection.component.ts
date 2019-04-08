@@ -266,10 +266,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   gotoNextPage(form) {
-    if (form.value.hasEndowments === '0') {
-      this.showSummaryModal();
-    } else {
+    if (form.value.hasEndowments === '1') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+    } else {
+      this.showSummaryModal();
     }
   }
 
