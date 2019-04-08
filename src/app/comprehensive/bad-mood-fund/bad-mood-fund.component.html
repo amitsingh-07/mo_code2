@@ -19,7 +19,7 @@
           <div  [hidden]="hasBadMoodFund">
             {{'CMP.YOUR_FINANCES.BAD_MOOD_FUND_ALERT'|translate}}
              </div>
-          <div class="flex-row" [hidden]="!hasBadMoodFund">
+          <div class="flex-row" *ngIf="hasBadMoodFund">
             <div class="flex-col-6 mnth-amt">
               {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
             </div>

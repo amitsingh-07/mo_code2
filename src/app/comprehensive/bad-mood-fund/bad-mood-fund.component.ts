@@ -89,7 +89,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0, Validators.required)
     });
-    if (this.downOnLuck.hospitalClassId) {
+    if (this.downOnLuck.hospitalPlanId) {
       this.isFormValid = true;
     }
     this.apiService.getHospitalPlanList().subscribe((data) => {
@@ -102,8 +102,9 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
-
+    if (this.hasBadMoodFund) {
+      this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
+    }
   }
   validateForm(hospitalPlan) {
     this.downOnLuck = {
@@ -134,7 +135,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         error.title,
         error.errorMessages,
         false,
-        this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_PROFILE')
+        ''
       );
     }
 
