@@ -201,7 +201,7 @@
         <div class="summary-modal__box-content">
             <div class='summary-modal__box-content-head text-left'><u>{{ summaryModalDetails.contentObj.SUB_TITLE }}</u></div>
             <div class='summary-modal__box-content-body mb20'> {{ summaryModalDetails.contentObj.SUB_TITLE_DESC }}</div>
-            <div class='summary-modal__box-content-body mb20 explanation-graph'> <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE}}" /><span class="explanation-graph__insurance-indicator"></span><span class="explanation-graph__insurance-indicator1"></span><span class="explanation-graph__insurance-details">Insurance<br>$0.20</span><span class="explanation-graph__investment-indicator"></span><span class="explanation-graph__investment-value">Investments<br>$0.80</span></div>
+            <div class='summary-modal__box-content-body mb20 explanation-graph'> <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE}}" /><span class="explanation-graph__insurance-indicator"></span><span class="explanation-graph__insurance-indicator1"></span><span class="explanation-graph__insurance-details">{{summaryModalDetails.contentObj.INSURANCE_STATISTIC_LABEL}}<br>{{summaryModalDetails.contentObj.INSURANCE_STATISTIC_VALUE}}</span><span class="explanation-graph__investment-indicator"></span><span class="explanation-graph__investment-value">{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_LABEL }}<br>{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_VALUE }}</span></div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-grey text-center'> {{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC2 }}</div>
@@ -224,7 +224,7 @@
     <div class="mb30 text-center summary-modal__details--label-grey">
         {{ summaryModalDetails.contentObj.CONTENT_BODY_DESC }}
     </div>
-    <div class="summary-modal__box-content f13">
+    <div class="summary-modal__box-content">
         {{ summaryModalDetails.contentObj.CONTENT_NOTE }} <img src="./assets/images/comprehensive/summary-page/img_smiley.svg" />
     </div>
     <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">

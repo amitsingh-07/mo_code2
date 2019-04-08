@@ -37,7 +37,11 @@
                 "SUB_TITLE_NOTE": "Actual split depends on companies and age of insured",
                 "SUB_CONTENT_DESC1": "You will never fully cover yourself with expensive whole life policies. With whole life, you are mainly paying for a low-return investment.",
                 "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
-                "NEXT": "Next"
+                "NEXT": "Next",
+                "INVESTMENT_STATISTIC_LABEL": "Investments",                
+                "INVESTMENT_STATISTIC_VALUE": "$0.80",
+                "INSURANCE_STATISTIC_LABEL": "Insurance",
+                "INSURANCE_STATISTIC_VALUE": "$0.20"
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 3",        

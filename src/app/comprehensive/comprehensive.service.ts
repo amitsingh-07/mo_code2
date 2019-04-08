@@ -34,6 +34,7 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
+import { AboutAge } from '../shared/utils/about-age.util';
 
 @Injectable({
     providedIn: 'root'
@@ -45,7 +46,7 @@ export class ComprehensiveService {
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
-        private http: HttpClient, private modal: NgbModal, private location: Location) {
+        private http: HttpClient, private modal: NgbModal, private location: Location, private aboutAge: AboutAge) {
         this.getComprehensiveFormData();
     }
 
@@ -771,13 +772,16 @@ export class ComprehensiveService {
     /*
     *Dependant Summary Page Compute
     */
-    setDependantExpense(location: any, univ: any, aboutAge: number) {
+    setDependantExpense(location: any, univ: any, aboutAge: number, nation: any) {
         let totalExpense: any = 0;
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
+            let locationChange = location;
+            if ( location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR') ) {
+                locationChange = nation;
+            }
             const expenseConfig = summaryConst[expenseInput];
-            totalExpense += this.getComputedExpense(expenseConfig[univ][location], expenseConfig.PERCENT, aboutAge);
-            console.log(totalExpense);
+            totalExpense += this.getComputedExpense(expenseConfig[univ][locationChange], expenseConfig.PERCENT, aboutAge);
         });
         return totalExpense;
     }
@@ -864,7 +868,7 @@ export class ComprehensiveService {
             const inputParams = { rsp: rspDetails};
             const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
             const monthlySumCal = this.additionOfCurrency(filterInput);
-            const yearCal = this.additionOfCurrency(filterInput) * 12;
+            const yearCal = monthlySumCal * 12;
             return yearCal;
         } else {
             return 0;
@@ -891,6 +895,28 @@ export class ComprehensiveService {
         } else {
             return 0;
         }
+    }
+    /*
+    *Summary Dynamic Value
+    *Get Static Json value for Fire Proofing
+    */
+    getCurrentFireProofing() {
+        const getComprehensiveDetails = this.getComprehensiveSummary();
+        const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
+        const userGender = getComprehensiveDetails.baseProfile.gender;
+        const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
+        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge};
+        if (enquiry.hasDependents) {
+            getComprehensiveDetails.dependentsList.forEach((dependant) => {
+                const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+                if ( dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
+                    fireProofingDetails.dependant = false;
+                }
+            });
+        } else {
+            fireProofingDetails.dependant = false;
+        }
+        return fireProofingDetails;
     }
 
 }
