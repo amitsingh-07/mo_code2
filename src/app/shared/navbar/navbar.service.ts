@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 
 import { IHeaderMenuItem } from './navbar.types';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -62,8 +62,8 @@ export class NavbarService {
 
   constructor(private router: Router) {
     this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
+      filter((event) => event instanceof NavigationStart)
+    ).subscribe((event: NavigationStart) => {
       this.unsubscribeBackPress();
     });
   }
