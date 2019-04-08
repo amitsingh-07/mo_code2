@@ -213,7 +213,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (navbarMode ? true : false && (navbarMode !== 'default')) {
       this.navbarMode = navbarMode;
       nc = matrix[navbarMode];
-      console.log('NavBar Mode: ' + navbarMode);
       // Just cos there is no automapper. FK
       this.processMatrix(nc);
     } else {

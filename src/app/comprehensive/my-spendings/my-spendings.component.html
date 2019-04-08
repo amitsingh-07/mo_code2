@@ -1,17 +1,26 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+  <!--Step indicator-->
   <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="6" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
-    </div> 
-  <div class="dependant-title mt40">{{'CMP.MY_SPENDINGS.HEADER'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.MY_SPENDINGS.ABOUT'|translate}}</div>
+      <app-step-indicator [count]="6" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
+  <!--Page sub-heading--> 
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_SPENDINGS.HEADER'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page desc-->
+  <div class="comprehensive__page-content">{{'CMP.MY_SPENDINGS.ABOUT'|translate}}</div>
+  <!--Page desc /-->
+  <!--Income bucket-->
   <div class = 'income-bucket-panel'>     
     <div class="income-bucket-panel__img {{ bucketImage }}"></div> 
     <div class="income-bucket-panel__content">{{'CMP.MY_SPENDINGS.SPEND_TITLE1'|translate}} <span class='income-bucket-panel__value'>{{ totalSpending | currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_SPENDINGS.SPEND_TITLE2'|translate}} </div> 
     <div class="income-bucket-panel__desc"> {{'CMP.MY_SPENDINGS.SPEND_DESC1'|translate}} {{ calculatedSpending | currency:'USD':'symbol-narrow':'1.0-2' }} {{'CMP.MY_SPENDINGS.SPEND_DESC2'|translate}}</div>
   </div>
+  <!--Income bucket /-->
+  <!--Page form-->
   <form [formGroup]="mySpendingsForm" id="mySpendingsForm" name="mySpendingsForm" class="mySpendingsForm">
-   
-    <div  class="form-group-with-bg"  >
+    <div  class="form-group-with-bg" >
         <!--Form Header-->
         <div class="form-group-with-bg--header">
             <div class="flex-row">
@@ -37,11 +46,8 @@
               </div>
               </div>  
             </div>
-
-
           </div>
       </div>
-
       <div  class="form-group-with-bg"  >
         <!--Form Header-->
         <div class="form-group-with-bg--header">
@@ -50,7 +56,6 @@
               <div class="form-group-with-bg--header-label">{{
     'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES' | translate}}<div class="form-group-with-bg--header-sub-label">{{
             'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES_HINT' | translate}}</div></div>                      
-              
               </div>  
             </div>
           </div>
@@ -68,12 +73,9 @@
               </div>
               </div>  
             </div>
-
-
           </div>
       </div>
-    
-     <div  class="form-group-with-bg"  >
+     <div  class="form-group-with-bg">
         <!--Form Header-->
         <div class="form-group-with-bg--header">
             <div class="flex-row">
@@ -98,7 +100,6 @@
               </div>
               </div>  
             </div>
-
             <div class="flex-row">
               <div class="flex-col-6">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
@@ -111,7 +112,6 @@
               </div>
               </div>  
             </div>
-
             <div class="flex-row">
               <div class="flex-col-6">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
@@ -136,18 +136,16 @@
               </div>
               </div>  
             </div>
-
             <div class="flex-row">
               <div class="flex-col-6">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.homeLoanPayOffUntil.invalid}">
-                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="4" formControlName="homeLoanPayOffUntil">
+                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="5" formControlName="homeLoanPayOffUntil">
               </div>
               </div>  
             </div>
-
             <div class="flex-row otherMortage" [hidden]="!otherMortage" >
               <div class="flex-col-12 mt20">
                 <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
@@ -157,20 +155,16 @@
                 </div>         
               </div>
             </div>
-
             <div class='otherMortage' [hidden]="otherMortage">
-                
                 <div class="flex-row mt-2 both-icon">
                   <div class="flex-col-12 form-group-with-bg--content-label">
                     <div class="with-help-icon" for="name"><b>{{
                       'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>
-
                       <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
                       <span class="delete-icon" (click)="addOtherMortage()"> </span>
                     </div>         
                   </div>
                   </div>
-
                 <div class="flex-row">
                   <div class="flex-col-6">
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
@@ -183,7 +177,6 @@
                   </div>
                   </div>  
                 </div>
-
                 <div class="flex-row">
                   <div class="flex-col-6">
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
@@ -191,12 +184,11 @@
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
                     <i>$</i>
-                    <input type="text" class="input-control" appCurrencyInput maxLength="4" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
+                    <input type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
                     value="0">
                   </div>
                   </div>  
                 </div>
-
                 <div class="flex-row">
                   <div class="flex-col-6">
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
@@ -221,25 +213,19 @@
                   </div>
                   </div>  
                 </div>
-
                 <div class="flex-row">
                   <div class="flex-col-6">
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
                   </div>
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid}">
-                    <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
+                    <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="5" formControlName="mortgagePayOffUntil">
                   </div>
                   </div>  
                 </div>
-
             </div>
-
-
-
           </div>
       </div>
-
     <div  class="form-group-with-bg"  >
         <!--Form Header-->
         <div class="form-group-with-bg--header">
@@ -247,7 +233,6 @@
               <div class="flex-col-12 with-help-icon">
               <div class="form-group-with-bg--header-label">{{
     'CMP.MY_SPENDINGS.MONTHLY_CAR_LOAN_PAYMENT' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-              
               </div>  
             </div>
           </div>
@@ -265,11 +250,8 @@
               </div>
               </div>  
             </div>
-
-
           </div>
       </div>
-
       <div  class="form-group-with-bg"  >
         <!--Form Header-->
         <div class="form-group-with-bg--header">
@@ -295,34 +277,32 @@
               </div>
               </div>  
             </div>
-
             <div class="flex-row">
               <div class="flex-col-6">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.otherLoanPayoffUntil.invalid}">
-                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="4" formControlName="otherLoanPayoffUntil">
+                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="5" formControlName="otherLoanPayoffUntil">
               </div>
               </div>  
             </div>
-
-
           </div>
       </div>
     <div class='mb-10'>
-    <div class="flex-row mt40">
+    <div class="flex-row">
       <div class="flex-col-12">
+          <div class="footer-cta"> 
       <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">{{
       'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
       translate}}</button>
+      </div>
       </div>
     </div>
   </div>
   
   </form>
-  <div class="flex-row footer-notes btn__footer--fixed width100 p-3 " id="prfBtn1"><div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
-
-
-
+  <!--Page form /-->
+  <div class="flex-row footer-notes btn__footer--fixed width100" id="prfBtn1"><div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}</div> <div class="flex-col-3 text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
 </div>
+<!--Container fluid /-->
