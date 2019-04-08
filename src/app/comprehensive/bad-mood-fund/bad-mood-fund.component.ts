@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { HospitalPlan } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
@@ -119,15 +120,26 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
-    form.value.badMoodMonthlyAmount = this.SliderValue;
-    form.value.hospitalClass = this.downOnLuck.hospitalClass;
-    form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    this.comprehensiveService.setDownOnLuck(form.value);
-    this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
-      any) => {
+    if (this.isFormValid) {
+      form.value.badMoodMonthlyAmount = this.SliderValue;
+      form.value.hospitalClass = this.downOnLuck.hospitalClass;
+      form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+      this.comprehensiveService.setDownOnLuck(form.value);
+      this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
+        any) => {
 
-    });
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+      });
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+    } else {
+      const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);
+      this.comprehensiveService.openErrorModal(
+        error.title,
+        error.errorMessages,
+        false,
+        this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_PROFILE')
+      );
+    }
+
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {

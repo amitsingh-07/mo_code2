@@ -440,13 +440,13 @@
          "HEADER":"How You Spend When Down On Luck",
          "ABOUT":"Sometimes life throws you a curve ball.",
          "TITLE":"Bad Mood Fund",
-         "DESC":"Why not put little aside to each month to pamper yourself on rough days without guilt or worry,out of your monthly surplus?",
+         "DESC":"Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
          "LABEL_DESC":"Your monthly allocation to your Bad Mood Fund.",
          "MONTHLY_AMOUNT":"Monthly Amount",
          "HOSPITAL_CHOICE":"Hospital Choice",
          "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
          "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg",
-         "BAD_MOOD_FUND_ALERT":"Vadhani will Provide Content for not having Bad mood Fund",
+         "BAD_MOOD_FUND_ALERT":"Once Content is Provided We will Update ",
          "TOOLTIP":{
           "TITLE": "Bad Mood Fund",
           "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
