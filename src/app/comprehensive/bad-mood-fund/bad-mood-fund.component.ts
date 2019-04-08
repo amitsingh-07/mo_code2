@@ -94,11 +94,9 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.apiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
-    this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
-      - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
-    if (this.maxBadMoodFund > 0) {
-      this.hasBadMoodFund = true;
-    }
+    
+    this.comprehensiveService.hasBadMoodFund();
+
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 

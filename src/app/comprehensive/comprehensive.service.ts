@@ -7,12 +7,14 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
 import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import {
     IProgressTrackerData,
     IProgressTrackerItem,
+    IProgressTrackerSubItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
@@ -34,7 +36,6 @@ import {
     IProgressTrackerWrapper,
     IRegularSavings
 } from './comprehensive-types';
-import { AboutAge } from '../shared/utils/about-age.util';
 
 @Injectable({
     providedIn: 'root'
@@ -304,6 +305,13 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
         this.commit();
     }
+
+    hasBadMoodFund() {
+        const maxBadMoodFund = Math.floor((this.getMyEarnings().totalAnnualIncomeBucket
+            - this.getMySpendings().totalAnnualExpenses) / 12);
+        return maxBadMoodFund > 0;
+    }
+
     setDependantSelection(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = selection;
@@ -541,7 +549,7 @@ export class ComprehensiveService {
     generateProgressTrackerData(): IProgressTrackerData {
         this.progressData = {} as IProgressTrackerData;
         this.progressData = {
-            title: 'Progress Tracker Title',
+            title: 'Your Progress Tracker',
             subTitle: 'Time Taken: 20 mins',
             properties: {
                 disabled: false
@@ -552,6 +560,8 @@ export class ComprehensiveService {
         this.progressData.items.push(this.getGetStartedProgressData());
         this.progressData.items.push(this.getDependantsProgressData());
         this.progressData.items.push(this.getFinancesProgressData());
+        this.progressData.items.push(this.getFireproofingProgressData());
+        this.progressData.items.push(this.getRetirementProgressData());
 
         return this.progressData;
     }
@@ -653,37 +663,120 @@ export class ComprehensiveService {
     }
 
     getFinancesProgressData(): IProgressTrackerItem {
+        const subItemsArray: IProgressTrackerSubItem[] = [];
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
+            title: 'Your Earnings',
+            value: this.getMyEarnings() && this.getMyEarnings().totalAnnualIncomeBucket
+                ? this.getMyEarnings().totalAnnualIncomeBucket + '' : '',
+            completed: false
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
+            title: 'Your Spendings',
+            value: '',
+            completed: false
+        });
+        if (this.hasBadMoodFund()) {
+            subItemsArray.push({
+                path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+                title: 'Bad Mood Fund',
+                value: '',
+                completed: false
+            });
+        }
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            title: 'Hospital Choice',
+            value: '',
+            completed: false
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
+            title: 'Assets (What You Own)',
+            value: '',
+            completed: false
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
+            title: 'Liabilities (What You Owe)',
+            value: '',
+            completed: false
+        });
         return {
             title: 'Your Finances',
             expanded: true,
             completed: false,
             customStyle: 'get-started',
+            subItems: subItemsArray
+        };
+    }
+
+    /**
+     * Get progress tracker data for  the 'Your Current Fireproofing' section.
+     *
+     * @returns {IProgressTrackerItem}
+     * @memberof ComprehensiveService
+     */
+    getFireproofingProgressData(): IProgressTrackerItem {
+        return {
+            title: 'Your Current Fireproofing',
+            expanded: true,
+            completed: false,
+            customStyle: 'get-started',
             subItems: [
                 {
-                    path: 'GetStartedComponent',
-                    title: 'Your Earnings',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Do you have a hospital plan',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Your Spendings',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Life Protection',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Bad Mood Fund',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Critical Illness',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Hospital Choice',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Occupational Disability',
+                    value: '',
+                    completed: false
+                },
+                {
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Long-Term Care',
                     value: '',
                     completed: false
                 }
             ]
+        };
+    }
+
+    /**
+     * Get progress tracker data for the 'Financial Independence' section.
+     *
+     * @returns {IProgressTrackerItem}
+     * @memberof ComprehensiveService
+     */
+    getRetirementProgressData(): IProgressTrackerItem {
+        return {
+            title: 'Financial Independence',
+            expanded: true,
+            completed: false,
+            customStyle: 'get-started',
+            subItems: [{
+                path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                title: 'Retirement Age',
+                value: '',
+                completed: false
+            }]
         };
     }
     /*
@@ -777,7 +870,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if ( location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR') ) {
+            if (location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR')) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
@@ -820,8 +913,8 @@ export class ComprehensiveService {
         const expenseTotal = (spendDetails && spendDetails.totalAnnualExpenses) ? this.getValidAmount(spendDetails.totalAnnualExpenses) : 0;
         const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
-        spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal)) 
-                    + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
+        spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
+            + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
         return (Math.round(spareCash));
     }
     /*
@@ -837,7 +930,7 @@ export class ComprehensiveService {
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {
                 const cpfDetails = {
-                    amountLimitCpf : summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN,
+                    amountLimitCpf: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN,
                     cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT
                 };
                 if (earningDetails.employmentType === 'Employed') {
@@ -847,7 +940,7 @@ export class ComprehensiveService {
                 homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
                 if (homeCpfSalary > cpfDetails.amountLimitCpf) {
-                    homeSalary = ( cpfDetails.amountLimitCpf * cpfDetails.cpfPercent ) + (homeCpfSalary - cpfDetails.amountLimitCpf);
+                    homeSalary = (cpfDetails.amountLimitCpf * cpfDetails.cpfPercent) + (homeCpfSalary - cpfDetails.amountLimitCpf);
                 } else {
                     homeSalary = (homeCpfSalary * cpfDetails.cpfPercent);
                 }
@@ -865,7 +958,7 @@ export class ComprehensiveService {
     getRegularSaving() {
         const rspDetails = this.getRegularSavingsList();
         if (rspDetails) {
-            const inputParams = { rsp: rspDetails};
+            const inputParams = { rsp: rspDetails };
             const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
             const monthlySumCal = this.additionOfCurrency(filterInput);
             const yearCal = monthlySumCal * 12;
@@ -879,9 +972,9 @@ export class ComprehensiveService {
     */
     getBadMoodFund() {
         const badMoodDetails = this.getDownOnLuck();
-        if ( badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
-           const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
-           return badMoodMonthly * 12;
+        if (badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
+            const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
+            return badMoodMonthly * 12;
         } else {
             return 0;
         }
@@ -905,11 +998,11 @@ export class ComprehensiveService {
         const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
         const userGender = getComprehensiveDetails.baseProfile.gender;
         const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
-        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge};
+        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge };
         if (enquiry.hasDependents) {
             getComprehensiveDetails.dependentsList.forEach((dependant) => {
                 const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-                if ( dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
+                if (dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
                     fireProofingDetails.dependant = false;
                 }
             });
