@@ -68,7 +68,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-    this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
+  
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -89,21 +89,27 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0, Validators.required)
     });
-    if (this.downOnLuck.hospitalClassId) {
+    if (this.downOnLuck.hospitalPlanId) {
       this.isFormValid = true;
     }
     this.apiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
-    
     this.comprehensiveService.hasBadMoodFund();
+    this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
+      - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
+    if (this.maxBadMoodFund > 0) {
+      this.hasBadMoodFund = true;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
 
+    }
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
-
+    if (this.hasBadMoodFund) {
+      this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
+    }
   }
   validateForm(hospitalPlan) {
     this.downOnLuck = {
@@ -134,7 +140,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         error.title,
         error.errorMessages,
         false,
-        this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_PROFILE')
+        ''
       );
     }
 

@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -47,7 +47,8 @@ export class ComprehensiveService {
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
-        private http: HttpClient, private modal: NgbModal, private location: Location, private aboutAge: AboutAge) {
+        private http: HttpClient, private modal: NgbModal, private location: Location,
+        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe) {
         this.getComprehensiveFormData();
     }
 
@@ -221,6 +222,12 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.baseProfile = profile;
         this.commit();
     }
+
+    setHasDependant(hasDependant: boolean) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = hasDependant;
+        this.updateComprehensiveSummary();
+    }
+
     setMyDependant(dependant: IDependantDetail[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentsList = dependant;
         this.updateComprehensiveSummary();
@@ -586,122 +593,149 @@ export class ComprehensiveService {
 
     // tslint:disable-next-line:cognitive-complexity
     getDependantsProgressData(): IProgressTrackerItem {
+
+        const subItemsArray: IProgressTrackerSubItem[] = [];
+
         let hasDependants = false;
         let hasEndowments = false;
         let hasRegularSavings = false;
         const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
-        if (enquiry && enquiry.hasDependents !== null) {
+        const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
+        const dependantData: IDependantDetail[] = this.getMyDependant();
+
+        if (enquiry && enquiry.hasDependents !== null && dependantData.length > 0) {
             hasDependants = true;
         }
-        if (enquiry && enquiry.hasEndowments === '1') {
+        if (enquiry && enquiry.hasEndowments === '1' && childEndowmentData.length > 0) {
             hasEndowments = true;
         }
         if (enquiry && enquiry.hasRegularSavingsPlans !== null) {
             hasRegularSavings = true;
         }
-        const dependantDetails: IDependantDetail[] = this.getMyDependant();
-        const eduPrefs: IChildEndowment[] = this.getChildEndowment();
-        const eduPlan: string = this.hasEndowment();
 
         let noOfDependants = '';
-        if (dependantDetails) {
-            noOfDependants = dependantDetails.length + '';
+        if (dependantData) {
+            noOfDependants = dependantData.length + '';
         }
-        const prefsList: IProgressTrackerSubItemList[] = [];
-        if (eduPrefs) {
-            eduPrefs.forEach((item) => {
-                prefsList.push({
-                    title: item.name,
-                    value: (item.location === null ? '' : item.location)
-                        + (item.educationCourse === null ? '' : ', ' + item.educationCourse)
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+            title: 'Number of Dependant',
+            value: noOfDependants,
+            completed: enquiry.hasDependents !== null
+        });
+        if (enquiry.hasDependents === null || dependantData.length > 0) {
+
+            const eduPrefs: IChildEndowment[] = this.getChildEndowment();
+            const eduPlan: string = this.hasEndowment();
+
+            const prefsList: IProgressTrackerSubItemList[] = [];
+            if (eduPrefs && enquiry.hasDependents !== null) {
+                eduPrefs.forEach((item) => {
+                    prefsList.push({
+                        title: item.name,
+                        value: (item.location === null ? '' : item.location)
+                            + (item.educationCourse === null ? '' : ', ' + item.educationCourse)
+                    });
                 });
-            });
-        }
+            }
 
-        let hasEndowmentPlans = '';
-        if (eduPlan === '1') {
-            hasEndowmentPlans = 'Yes';
-        } else if (eduPlan === '2') {
-            hasEndowmentPlans = 'No';
-        }
+            let hasEndowmentPlans = '';
+            if (eduPlan === '1') {
+                hasEndowmentPlans = 'Yes';
+            } else if (eduPlan === '2') {
+                hasEndowmentPlans = 'No';
+            }
 
-        const hasEduPlans = hasEndowments ? 'Yes' : 'No';
+            const hasEduPlans = hasEndowments ? 'Yes' : 'No';
 
-        return {
-            title: 'What\'s on your shoulders',
-            expanded: true,
-            completed: hasDependants,
-            customStyle: 'dependant',
-            subItems: [
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-                    title: 'Number of Dependant',
-                    value: noOfDependants,
-                    completed: hasDependants && typeof dependantDetails !== 'undefined'
-                },
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Plan for children education',
                     value: hasEduPlans,
                     completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
-                },
+                });
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                     title: 'Education Preferences',
-                    value: '',
-                    completed: hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
+                    value: prefsList.length === 0 ? 'No' : '',
+                    completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
                     list: prefsList
-                },
+                });
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                     title: 'Do you have education endowment plan',
                     value: hasEndowmentPlans,
-                    completed: (hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
-                }
-            ]
+                    completed: (hasDependants && hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
+                });
+        }
+        return {
+            title: 'What\'s on your shoulders',
+            expanded: true,
+            completed: hasDependants,
+            customStyle: 'dependant',
+            subItems: subItemsArray
         };
+    }
+
+    transformAsCurrency(in_amount: any): string {
+        return this.currencyPipe.transform(in_amount, 'USD',
+        'symbol-narrow',
+        '1.0-2');
     }
 
     getFinancesProgressData(): IProgressTrackerItem {
         const subItemsArray: IProgressTrackerSubItem[] = [];
+        const earningsData: IMyEarnings = this.getMyEarnings();
+        const spendingsData: IMySpendings = this.getMySpendings();
+        const assetsData: IMyAssets = this.getMyAssets();
+        const liabilitiesData: IMyLiabilities = this.getMyLiabilities();
+
         subItemsArray.push({
             path: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
             title: 'Your Earnings',
-            value: this.getMyEarnings() && this.getMyEarnings().totalAnnualIncomeBucket
-                ? this.getMyEarnings().totalAnnualIncomeBucket + '' : '',
-            completed: false
+            value: earningsData && earningsData.totalAnnualIncomeBucket >= 0
+                ? this.transformAsCurrency(earningsData.totalAnnualIncomeBucket) + '' : '',
+            completed: !Util.isEmptyOrNull(earningsData)
         });
         subItemsArray.push({
             path: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
             title: 'Your Spendings',
-            value: '',
-            completed: false
+            value: spendingsData && spendingsData.totalAnnualExpenses >= 0
+                ? this.transformAsCurrency(spendingsData.totalAnnualExpenses) + '' : '',
+            completed: !Util.isEmptyOrNull(spendingsData)
         });
-        if (this.hasBadMoodFund()) {
+        if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
             subItemsArray.push({
-                path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+                path: '',
                 title: 'Bad Mood Fund',
-                value: '',
-                completed: false
+                value: this.getDownOnLuck().badMoodMonthlyAmount
+                    ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
+                completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
             });
         }
         subItemsArray.push({
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Hospital Choice',
-            value: '',
-            completed: false
+            value: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+                ? this.getDownOnLuck().hospitalClass : '',
+            completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
         });
         subItemsArray.push({
             path: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
             title: 'Assets (What You Own)',
-            value: '',
-            completed: false
+            value: assetsData && assetsData.totalAnnualAssets >= 0
+                ? this.transformAsCurrency(assetsData.totalAnnualAssets) + '' : '',
+            completed: !Util.isEmptyOrNull(assetsData)
         });
         subItemsArray.push({
             path: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
             title: 'Liabilities (What You Owe)',
-            value: '',
-            completed: false
+            value: liabilitiesData && liabilitiesData.totalAnnualLiabilities >= 0
+                ? this.transformAsCurrency(liabilitiesData.totalAnnualLiabilities) + '' : '',
+            completed: !Util.isEmptyOrNull(liabilitiesData)
         });
         return {
             title: 'Your Finances',
@@ -772,7 +806,7 @@ export class ComprehensiveService {
             completed: false,
             customStyle: 'get-started',
             subItems: [{
-                path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 title: 'Retirement Age',
                 value: '',
                 completed: false
