@@ -125,7 +125,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       endowmentMaturityAmount: 0,
       endowmentMaturityYears: null,
       age: maturityAge,
-      preferenceSelection: preferenceSelected
+      preferenceSelection: preferenceSelected,
+      nation: dependant.nation
     } as IChildEndowment;
   }
 
@@ -145,7 +146,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
       endowmentMaturityYears: childEndowment.endowmentMaturityYears,
       age: maturityAge,
-      preferenceSelection: true
+      preferenceSelection: true,
+      nation: dependant.nation
     } as IChildEndowment;
   }
 
@@ -264,10 +266,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   gotoNextPage(form) {
-    if (form.value.hasEndowments === '0') {
-      this.showSummaryModal();
-    } else {
+    if (form.value.hasEndowments === '1') {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE]);
+    } else {
+      this.showSummaryModal();
     }
   }
 

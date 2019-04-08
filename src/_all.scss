@@ -1749,20 +1749,30 @@ a.link-white {
     padding-bottom: 0;
   }
   &__page-heading {
-    padding: 16px 0;
-    font-size: 22px;
-    font-family: $muli-bold;
-    @extend .text-center;
+      padding: 16px 0;
+      font-size: 22px;
+      font-family: $muli-bold;
+      @extend .text-center;
   }
   &__page-sub-heading {
-    padding-bottom: 20px;
-    font-size: 17px;
-    @extend .text-center;
+      padding-bottom: 10px;
+      font-size: 17px;
+      @extend .text-left;
+    &--center{
+      @extend .text-center;
+      padding-bottom: 20px;
+      font-size: 17px;
+    }
   }
   &__page-content {
-    font-size: 16px;
-    @extend .text-center;
-    margin-bottom: 30px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      @extend .text-left;
+    &--center {
+      @extend .text-center;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
   }
   .owl-img {
     width: 83px;
@@ -1777,7 +1787,7 @@ a.link-white {
     border-left: 3px solid $screen-separator-bar-color;
     padding-left: 52px;
     margin-left: 20px;
-    margin-top: 100px;
+    //margin-top: 100px;
     &__step-number {
       font-size: 18px;
       font-family: $muli-bold;
@@ -1898,7 +1908,7 @@ a.link-white {
   }
   .step-indicator-container {
     background: $white-color;
-    margin: -15px -20px 20px;
+    margin: -30px -20px 20px;
     padding: 15px;
     position: fixed;
     width: 100%;
@@ -1944,44 +1954,20 @@ a.link-white {
     padding-bottom: 16px;
     margin-bottom: 15px;
   }
-  .form-group-with-bg {
-    .form-group-with-bg--content-white {
-      //padding: 30px; //For future use
-        background: $white-color;
-        padding: 20px;
-        border-radius: 6px;
-        &--title {
-          font-size: 18px;
-          font-family: $muli-semi-bold;
-          margin-bottom: 10px;
-          color: $btn-comprehensive;
-          @extend .flex;
-          @extend .align-center;
-          }
-          &--desc {
-            font-size: 16px;
-            font-family: $muli-regular;
-            margin-bottom: 10px;
-            color: $btn-comprehensive;
-            align-items: self-end;
-            strong {
-              font-family: $muli-bold;
-            }
-          }
-        }
-        .form-group-with-bg--header {
-          .form-group-with-bg--header-label {
-            width: 97%;
-          }
-        }
-    }
-    .flex-col-6 {
-      width: 50% !important;
-    }
-    .grey-text {
-      color: #888888;
-    }
+  .flex-col-6 {
+    width: 50% !important;
   }
+  .grey-text {
+    color: #888888;
+  }
+  .footer-cta {
+    padding: 0 5px;
+  }
+  .footer-notes{
+    background: $btn-primary-backgrnd-color;
+    padding: 20px !important;
+  }
+}
 
 
 

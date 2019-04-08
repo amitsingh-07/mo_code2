@@ -1,10 +1,17 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+    <!--Step indicator-->
     <div class="step-indicator-container" id="moDpdnt2StepIndctr">
         <app-step-indicator [count]="5" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
     </div>
-  <div class="dependant-title mt40" id="moDpdnt2Title">{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</div>
-  <div class="dependant-desc" id="moDpdnt2Desc">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</div>
-
+    <!--Step indicator /-->
+  <!--Page sub-heading-->  
+  <div class="comprehensive__page-sub-heading mt30" id="moDpdnt2Title">{{'CMP.DEPENDANT_DETAILS.ABOUT'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page desc-->    
+  <div class="comprehensive__page-content" id="moDpdnt2Desc">{{'CMP.DEPENDANT_DETAILS.DESC'|translate}}</div>
+  <!--Page desc /--> 
+  <!--Page form-->  
   <form [formGroup]="myDependantForm" id="myDependantForm" name="myDependantForm" class="myDependant">
     <div formArrayName="dependentMappingList" class="myDependantFormArray  form-group-with-bg" *ngFor="let dependentMappingList of myDependantForm['controls'].dependentMappingList['controls']; let i = index;">
       <!--Form Header-->
@@ -13,18 +20,16 @@
             <div class="flex-col-7">
               <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1">Dependant {{i+1}}</div>
               </div>
-
             <div class="flex-col-5">
               <div class="total" (click)="removeDependant(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length>1"><span class="delete-icon"></span></div>
             </div>
           </div>
         </div>
-        
+        <!--Form Header /-->
         <!--Form Content-->
         <div class="form-group form-group-with-bg--content" [formGroupName]="i">
-
           <div class="flex-row">
-            <div class="pl0 col-5">
+            <div class="flex-col-5">
               <label for="name" id="moDpdnt2LblName">
                 <div>{{ 'CMP.FORM_LABEL.NAME' | translate}}
                 </div>
@@ -36,10 +41,10 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="pl0 col-5">
+            <div class="flex-col-5">
               <label for="relationship" id="moDpdnt2LblRelationship">{{ 'CMP.FORM_LABEL.RELATIONSHIP' | translate}}</label>
             </div>
-            <div class="pr0 flex-col-7">
+            <div class="flex-col-7">
               <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].relationship.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnRelationship">
                   <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
@@ -57,7 +62,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="pl0 col-5">
+            <div class="flex-col-5">
               <label for="name" id="moDpdnt2DrpdwnGender">
                 <div>{{ 'CMP.FORM_LABEL.GENDER' | translate}}</div>
               </label>
@@ -80,46 +85,28 @@
             </div>
           </div>
           <div class="flex-row">
-  
             <div class="flex-col-5">
-  
               <label for="dob" id="moDpdnt2LblDob">{{ 'CMP.FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
-  
             </div>
-  
             <div #usrFrmDp class="flex-col-7">
-  
               <div class="datepicker-control datepicker-upside">
-  
                 <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !dependentMappingList.get('dateOfBirth').valid && submitted}">
-  
                   <input readonly (click)="d.toggle()" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="dateOfBirth"
                     name="dp" ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB">
-  
                   <div class="input-group-append">
-  
                     <button (click)="d.toggle()" class="btn btn-primary" type="button" id="moDpdnt2CalndrDob">
-  
                       <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="dependentMappingList.get('dateOfBirth').valid || !submitted"
                         src="./assets/images/calendar-normal.svg" />
-  
                       <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!dependentMappingList.get('dateOfBirth').valid && submitted"
                         src="./assets/images/calendar-error.svg" />
-  
                     </button>
-  
                   </div>
-  
                 </div>
-  
               </div>
-  
             </div>
-  
           </div>
-  
           <div class="flex-row">
-            <div class="pl0 col-5">
+            <div class="flex-col-5">
               <label for="name" id="moDpdnt2LblNationality">
                 <div>{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</div>
               </label>
@@ -142,11 +129,20 @@
             </div>
           </div>
         </div>
+        <!--Form content /-->
       </div>
-      <div *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length < 5" class="mb30 mt20" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
+      <!--Add dependant-->
+      <div *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length < 5" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
         Dependant</div></div>
-    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary mt30 mb50 width100"
+      <!--Add dependant /-->
+      <!--Footer button-->
+      <div class="footer-cta">  
+    <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
     </button>
+  </div>
+  <!--Footer button /-->
   </form>
+  <!--Page form-->
 </div>
+<!--Container fluid /-->

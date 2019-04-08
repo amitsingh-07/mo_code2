@@ -37,7 +37,11 @@
                 "SUB_TITLE_NOTE": "Actual split depends on companies and age of insured",
                 "SUB_CONTENT_DESC1": "You will never fully cover yourself with expensive whole life policies. With whole life, you are mainly paying for a low-return investment.",
                 "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
-                "NEXT": "Next"
+                "NEXT": "Next",
+                "INVESTMENT_STATISTIC_LABEL": "Investments",                
+                "INVESTMENT_STATISTIC_VALUE": "$0.80",
+                "INSURANCE_STATISTIC_LABEL": "Insurance",
+                "INSURANCE_STATISTIC_VALUE": "$0.20"
           },
         "DEPENDANTS" : {
                 "TITLE": "Step 3",        
@@ -218,8 +222,8 @@
       "TOOLTIP":{
         "MONTHLY_SALARY_TITLE": "Monthly Salary",
         "MONTHLY_SALARY_MESSAGE": "Your total monthly gross salary, including the portion that goes into your CPF.",
-        "ANNUAL_BONUS_TITLE": "Annual Bonuses",
-        "ANNUAL_BONUS_MESSAGE": "Annual bonuses include 13th month payments, performance bonuses and other additional payments you expect to receive from work outside of the regular monthly paycheck.",
+        "ANNUAL_BONUS_TITLE": "Annual Bonus",
+        "ANNUAL_BONUS_MESSAGE": "Annual bonus include 13th month payments, performance bonuses and other additional payments you expect to receive from work outside of the regular monthly paycheck.",
         "ADD_MONTHLY_INCOME_TITLE": "Other Monthly Income",
         "ADD_MONTHLY_INCOME_MESSAGE": "Additional work that pays you a monthly income with CPF should be in Other Work Income.",
         "ADD_DIVIDENDS_TITLE": "Annual Dividends",
@@ -440,12 +444,13 @@
          "HEADER":"How You Spend When Down On Luck",
          "ABOUT":"Sometimes life throws you a curve ball.",
          "TITLE":"Bad Mood Fund",
-         "DESC":"Why not put little aside to each month to pamper yourself on rough days without guilt or worry,out of your monthly surplus?",
+         "DESC":"Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
          "LABEL_DESC":"Your monthly allocation to your Bad Mood Fund.",
          "MONTHLY_AMOUNT":"Monthly Amount",
          "HOSPITAL_CHOICE":"Hospital Choice",
          "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
          "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg",
+         "BAD_MOOD_FUND_ALERT":"Once Content is Provided We will Update ",
          "TOOLTIP":{
           "TITLE": "Bad Mood Fund",
           "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
@@ -498,7 +503,9 @@
       "STEP_1":"Keep a lookout of your mail box! You will be notified once your report is ready!",
       "STEP_2":"Choose if you want MoneyOwl advisor to explain your report",
       "STEP_3":"Meet your advisor to customise and implement  financial plan.",
-      "DASHBOARD":"Dashboard"
+      "DASHBOARD":"Dashboard",
+       "TOOLTIP_TITLE":"Sorry, you are unable to access the previous page.",
+       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."
 
     },
     "ENQUIRY":{

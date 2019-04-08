@@ -68,6 +68,13 @@ $grey-color-notes: #9f9f9f;
     border-top:1px solid rgba(134, 205, 206, 0.3);
     margin-top:10px;
 }
+.finance-liabilities {    
+    background: url("../../../assets/images/comprehensive/finance-liabilities.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+/*
 .emptyBucket{
     background: url("../../../assets/images/comprehensive/finance-liabilities-empty.svg") no-repeat;
     display: inline-block;
@@ -85,7 +92,7 @@ $grey-color-notes: #9f9f9f;
     display: inline-block;
     width: 243px;
     height: 150px;
-}
+}*/
 .income-modal-notes{
     color:$grey-color-notes;
 }

@@ -1,34 +1,49 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+    <!--Step indicator-->  
     <div class="step-indicator-container">
         <app-step-indicator [count]="5" [activeStepIndex]="0"></app-step-indicator>
     </div>
-  <div class="dependant-title mt40">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
-  <div class="dependant-desc">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</div>
-  <div class="col-lg-5 col-md-6 p-0">
+    <!--Step indicator /-->
+  <!--Page sub-heading--> 
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page desc-->
+  <div class="comprehensive__page-content">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</div>
+  <!--Page desc-->
+  <!--Page form-->
     <form name="dependantSelectionForm" [formGroup]="dependantSelectionForm">
+      <!--Formgroup single col-->
       <div class="form-group-single-column  flex-col">
+        <!--Form label-->
         <div class="checkbox-button one-label">
           <input id="dependantYesInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
             [value]=true class="field radio">
           <label id="dependantYesLabel" for="dependantYesInput">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
           </label>
-
         </div>
+        <!--Form label /-->
+        <!--Form label-->
         <div class="checkbox-button one-label">
           <input id="dependantNoInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
             [value]=false class="field radio">
           <label id="dependantNoLabel" for="dependantNoInput">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
-
         </div>
-        
+        <!--Form label /-->
       </div>
+      <!--Formgroup single col /-->
     </form>
-  </div>
+    <!--Page form /-->
+  <!--Footer CTA-->
+  <div class="footer-cta">
   <button type="button" [disabled]="!dependantSelectionForm.valid" (click)="goToNext(dependantSelectionForm)"
-          class="btn btn-primary mt30 mb50 width100" id="dependantSelectionBtn
+          class="btn btn-primary width100" id="dependantSelectionBtn
           ">{{ 'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
           translate}}</button>
+  </div>
+  <!--Footer CTA /-->        
 </div>
+<!--Container fluid /-->
