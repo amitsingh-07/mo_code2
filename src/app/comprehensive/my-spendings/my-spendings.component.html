@@ -142,7 +142,7 @@
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.homeLoanPayOffUntil.invalid}">
-                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="4" formControlName="homeLoanPayOffUntil">
+                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="4" formControlName="homeLoanPayOffUntil">
               </div>
               </div>  
             </div>
@@ -219,7 +219,7 @@
                   </div>
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid}">
-                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
+                    <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
                   </div>
                   </div>  
                 </div>
@@ -283,7 +283,7 @@
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.otherLoanPayoffUntil.invalid}">
-                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="5" formControlName="otherLoanPayoffUntil">
+                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="4" formControlName="otherLoanPayoffUntil">
               </div>
               </div>  
             </div>

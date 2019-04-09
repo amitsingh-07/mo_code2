@@ -137,7 +137,7 @@ export class ComprehensiveFormError {
     };
     hospitalPlanForm: object = {
         formFieldErrors: {
-            errorTitle: 'Please Select the hospital Plan',
+            errorTitle: 'Select the hospital Plan',
             hospitalPlanId: {
                 required: {
                     errorTitle: 'Please Select the hospital Plan',
