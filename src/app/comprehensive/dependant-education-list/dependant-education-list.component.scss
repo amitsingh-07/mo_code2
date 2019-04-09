@@ -4,10 +4,10 @@
 
 
 input[type='checkbox']+label {
-  background: url("../../../assets/images/check-box-normal.svg") left top no-repeat;
+  background: url("/assets/images/check-box-normal.svg") left top no-repeat;
 }
 input[type='checkbox']:checked+label {
-  background-image: url("../../../assets/images/check-box-select.svg");
+  background-image: url("/assets/images/check-box-select.svg");
 }
 .title {
   
@@ -31,17 +31,6 @@ input[type='checkbox']:checked+label {
       font-size: 18px;
   }
 
-}
-
-.form-group-with-bg--header-label {
-
-  background: #fff;
-  color: #313644;
-  font-size: 18px;
-  font-weight: 600;
-
-  
- 
 }
 .age {
   color: #8d9aa8!important;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,8 @@ import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 @Component({
   selector: 'app-retirement-plan',
   templateUrl: './retirement-plan.component.html',
-  styleUrls: ['./retirement-plan.component.scss']
+  styleUrls: ['./retirement-plan.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RetirementPlanComponent implements OnInit , AfterViewInit {
   SliderValue = 45;

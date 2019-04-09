@@ -42,19 +42,19 @@ color: $dark-teal-color;
     right: 10px;
 }
 .filledSpend{
-    background: url("../../../assets/images/comprehensive/empty-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/empty-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .emptySpend{
-    background: url("../../../assets/images/comprehensive/filled-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/filled-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .middleSpend{
-    background: url("../../../assets/images/comprehensive/middle-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/middle-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
@@ -100,25 +100,7 @@ color: $dark-teal-color;
 .bucket-notes-dollar{
     font-size:20px;
 }
-.income-bucket-panel {
-    text-align: center;
-    &__img {
-        padding: 14px 0 20px 0;
-    }
-    &__desc {
-        padding-bottom: 16px;
-        font-size: 14px;
-    }
-    &__value {
-        padding-bottom: 30px;
-        font-family: $muli-bold;
-        font-size: 24px;
-    }
-    &__content {
-        font-family: $muli-bold;
-        font-size: 16px;
-    }
-}
+
 .both-icon{  
     .delete-icon { 
         left: 95% !important;

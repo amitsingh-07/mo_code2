@@ -3,8 +3,8 @@
     <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
 
   </div>
-  <div class="page-content-title mt40">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE'|translate}}</div>
-  <div class="page-content-desc">{{'CMP.INSURANCE_PLAN.SUB_TITLE'|translate}} </div>
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE'|translate}}</div>
+  <div class="comprehensive__page-content">{{'CMP.INSURANCE_PLAN.SUB_TITLE'|translate}} </div>
   <form [formGroup]="insurancePlanForm" id="insurancePlanForm" name="insurancePlanForm" class="insurancePlanForm">
     <div class="form-group-with-bg">
       <!--Form Content-->
@@ -15,13 +15,13 @@
                 'CMP.INSURANCE_PLAN.HOSPITAL_PLAN' | translate}} &nbsp;<img src="../../../assets/images/comprehensive/insurance-plan/hospital-plan.svg" width="30" height="30" />
             </div>
             <div class="form-group-with-bg--content-white--desc">{{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_DESC' | translate}}
-              <strong>Private Hospital</strong>
+              <strong>{{hospitalType}}</strong>
               {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_DESC_END' | translate}}
             </div>
           </div>
         </div>
         <div class="form-group-with-bg--content-white--desc">1. {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL' | translate}}</div>
-        <div class="flex-col-8">
+        <div class="flex-col-8 mt15">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlan">
             <div class="flex-row mb0">
               <div class="flex-col-6">
@@ -301,10 +301,12 @@
         </div>
       </div>
     </div>
+    <div class="footer-cta">
     <button type="button" (click)="goToNext(insurancePlanForm)" class="btn btn-primary mt30 mb50 width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE'
         | translate}}
     </button>
+  </div>
   </form>
 
 </div>

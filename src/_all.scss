@@ -1756,12 +1756,25 @@ a.link-white {
   }
   &__page-sub-heading {
       padding-bottom: 10px;
-      font-size: 17px;
       @extend .text-left;
-    &--center{
-      @extend .text-center;
-      padding-bottom: 20px;
-      font-size: 17px;
+      @extend .flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      &-big {
+        font-size: 20px;
+        padding-bottom: 10px;
+      }
+      &--center {
+        @extend .text-center;
+        padding-bottom: 20px;
+        font-size: 18px;
+    }
+    .help-icon {
+      background: url("./assets/images/comprehensive/tool-tip-white.svg") !important;
+      width: 30px !important;
+      height: 30px !important;
+      background-repeat: no-repeat !important;
     }
   }
   &__page-content {
@@ -1793,7 +1806,7 @@ a.link-white {
       font-family: $muli-bold;
     }
     &__step-title {
-      font-size: 16px;
+      font-size: 18px;
       font-family: $muli-regular;
       margin: 5px 0 5px;
     }
@@ -1864,6 +1877,7 @@ a.link-white {
     right: 4%;
     left: 4%;
     z-index: 1062;
+    box-shadow: 0 2px 7px 0 rgba(68, 68, 68, 0.4);
     &__inner {
       position: relative;
       border-radius: 6px;
@@ -1961,12 +1975,31 @@ a.link-white {
     color: #888888;
   }
   .footer-cta {
-    padding: 0 5px;
+    padding: 0 10px;
   }
   .footer-notes{
     background: $btn-primary-backgrnd-color;
     padding: 20px !important;
   }
+  .income-bucket-panel {
+    text-align: center;
+    &__img {
+        padding: 14px 0 20px 0;
+    }
+    &__desc {
+        padding-bottom: 16px;
+        font-size: 14px;
+    }
+    &__value {
+        padding-bottom: 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+    }
+    &__content {
+        font-family: $muli-bold;
+        font-size: 16px;
+    }
+}
 }
 
 
