@@ -37,12 +37,14 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService,
     private aboutAge: AboutAge, private comprehensiveApiService: ComprehensiveApiService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService) {
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -212,56 +214,60 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(form) {
-    const dependantArray = [];
-    if (form.value.hasEndowments === '0') {
-      this.loaderService.showLoader({ title: 'Saving' });
-      this.comprehensiveService.setEndowment(form.value.hasEndowments);
-      this.comprehensiveService.setChildEndowment([]);
-      this.comprehensiveApiService.saveChildEndowment({
-        hasEndowments: form.value.hasEndowments,
-        endowmentDetailsList: [{
-          id: 0,
-          dependentId: 0,
-          enquiryId: this.comprehensiveService.getEnquiryId(),
-          location: null,
-          educationCourse: null,
-          endowmentMaturityAmount: null,
-          endowmentMaturityYears: null
-        } as IChildEndowment]
-      }).subscribe((data: any) => {
-        this.loaderService.hideLoader();
-        this.showSummaryModal();
-      });
-    } else {
-      const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
-        .filter((item: IChildEndowment) => item.preferenceSelection);
-      this.comprehensiveService.setEndowment(form.value.hasEndowments);
-      this.comprehensiveService.setChildEndowment(selectedChildArray);
-      if (!form.pristine) {
-
+    if (!this.viewMode) {
+      const dependantArray = [];
+      if (form.value.hasEndowments === '0') {
         this.loaderService.showLoader({ title: 'Saving' });
-
+        this.comprehensiveService.setEndowment(form.value.hasEndowments);
+        this.comprehensiveService.setChildEndowment([]);
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: form.value.hasEndowments,
-          endowmentDetailsList: selectedChildArray
-        }).subscribe((data: IServerResponse) => {
-          data.objectList.forEach((item) => {
-            // tslint:disable-next-line:no-commented-code
-            /*
-            selectedChildArray.forEach((childItem: IChildEndowment) => {
-              if (childItem.dependentId === item.dependentId) {
-                childItem.id = item.id;
-              }
-            });
-            */
-          });
-          this.comprehensiveService.setChildEndowment(selectedChildArray);
+          endowmentDetailsList: [{
+            id: 0,
+            dependentId: 0,
+            enquiryId: this.comprehensiveService.getEnquiryId(),
+            location: null,
+            educationCourse: null,
+            endowmentMaturityAmount: null,
+            endowmentMaturityYears: null
+          } as IChildEndowment]
+        }).subscribe((data: any) => {
           this.loaderService.hideLoader();
-          this.gotoNextPage(form);
+          this.showSummaryModal();
         });
       } else {
-        this.gotoNextPage(form);
+        const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
+          .filter((item: IChildEndowment) => item.preferenceSelection);
+        this.comprehensiveService.setEndowment(form.value.hasEndowments);
+        this.comprehensiveService.setChildEndowment(selectedChildArray);
+        if (!form.pristine) {
+
+          this.loaderService.showLoader({ title: 'Saving' });
+
+          this.comprehensiveApiService.saveChildEndowment({
+            hasEndowments: form.value.hasEndowments,
+            endowmentDetailsList: selectedChildArray
+          }).subscribe((data: IServerResponse) => {
+            data.objectList.forEach((item) => {
+              // tslint:disable-next-line:no-commented-code
+              /*
+              selectedChildArray.forEach((childItem: IChildEndowment) => {
+                if (childItem.dependentId === item.dependentId) {
+                  childItem.id = item.id;
+                }
+              });
+              */
+            });
+            this.comprehensiveService.setChildEndowment(selectedChildArray);
+            this.loaderService.hideLoader();
+            this.gotoNextPage(form);
+          });
+        } else {
+          this.gotoNextPage(form);
+        }
       }
+    } else {
+      this.gotoNextPage(form);
     }
   }
 

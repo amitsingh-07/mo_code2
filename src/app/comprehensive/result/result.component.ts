@@ -7,6 +7,7 @@ import { ProgressTrackerService } from '../../shared/modal/progress-tracker/prog
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTES } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 
 @Component({
@@ -73,6 +74,6 @@ export class ResultComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext() {
-    this.router.navigate([SIGN_UP_ROUTES.DASHBOARD]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
   }
 }

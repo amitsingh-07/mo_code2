@@ -6,22 +6,29 @@
     padding: 15px 0px 5px!important;
    }
    .retirementImg{
-    background: url("../../../assets/images/comprehensive/retirement.svg") no-repeat;
+    background: url("/assets/images/comprehensive/retirement.svg") no-repeat;
     display: inline-block;
     width: 218px;
     height: 150px;
 }
-.income-bucket-panel {
-    text-align: center;
-    &__img {
-        padding: 14px 0 20px 0;
-    }
-    &__desc {
-        padding-bottom: 16px;
-    }
-  
+.income-bucket-panel__desc {
+    padding-bottom: 25px;
 }
-
-
-
+nouislider .noUi-horizontal .noUi-handle {
+    width: 30px !important;
+    height: 30px !important;
+    top: -6px !important;
+}
+nouislider .noUi-base {
+    background: #007474 !important;
+    height: 18px !important;
+}
+nouislider .noUi-connect {
+    background: #ff9445 !important;
+    height: 18px !important;
+}
+.noUi-target {
+    height: 18px !important;
+    border-radius: 10px !important;
+}
 }

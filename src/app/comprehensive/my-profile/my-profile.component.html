@@ -54,12 +54,12 @@
               <div class="flex-row mb0">
                 <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
-                    <input id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
                     translate}}
                   </label>
                 </div>
@@ -76,7 +76,7 @@
           <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
               <div  ngbDropdown id="nationalityDropDown" placement="top-right">
-                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
                   <span class="grey-text" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
@@ -101,10 +101,10 @@
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted}">
-                <input readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
                 <div class="input-group-append">
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" >
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" appComprehensiveViewMode="{{viewMode}}" mode=1>
                     <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid || !submitted"
                       src="./assets/images/calendar-normal.svg" />
                     <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted"
@@ -124,7 +124,7 @@
     <!--Footer CTA-->
     <div class="footer-cta">
       <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary width100" id="prfBtn1">{{
-        'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+        (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
       </button>
     </div>
     <!--Footer CTA-->

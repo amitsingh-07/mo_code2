@@ -23,10 +23,10 @@ export class Util {
     }
 
     public static sortAsString(objectValue: any): string {
-        let oldObj = objectValue;
-        let obj = (oldObj.length || oldObj.length === 0) ? [] : {};
-        for (let key of Object.keys(this).sort((a, b) => a.localeCompare(b))) {
-            let type = typeof (oldObj[key])
+        const oldObj = objectValue;
+        const obj = (oldObj.length || oldObj.length === 0) ? [] : {};
+        for (const key of Object.keys(this).sort((a, b) => a.localeCompare(b))) {
+            const type = typeof (oldObj[key]);
             if (type === 'object') {
                 obj[key] = oldObj[key].stringifySorted();
             } else {
@@ -37,7 +37,7 @@ export class Util {
     }
 
     public static getKeyByValue(object, value) {
-        return Object.keys(object).find(key => object[key] === value);
+        return Object.keys(object).find((key) => object[key] === value);
     }
 
     public static sortDescending(list): any[] {

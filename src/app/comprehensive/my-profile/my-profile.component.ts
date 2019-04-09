@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { IComprehensiveEnquiry } from './../comprehensive-types';
+import { IComprehensiveEnquiry, IHospitalPlanList } from './../comprehensive-types';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -42,7 +43,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     genderDisabled = false;
     myProfileShow = true;
     DOBAlert = false;
-
+    viewMode: boolean;
+    hospitalPlanList: IHospitalPlanList[];
     menuClickSubscription: Subscription;
     public showToolTip = false;
 
@@ -64,7 +66,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private comprehensiveService: ComprehensiveService,
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
-        private progressService: ProgressTrackerService
+        private progressService: ProgressTrackerService,
+        private apiService: ApiService
     ) {
         const today: Date = new Date();
         configDate.minDate = { year: today.getFullYear() - 100, month: today.getMonth() + 1, day: today.getDate() };
@@ -83,6 +86,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.buildProfileForm();
+        this.viewMode = this.comprehensiveService.getViewableMode();
     }
 
     ngOnInit() {
@@ -92,6 +96,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.loaderService.showLoader({ title: 'Fetching Data' });
             this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+
                 this.loaderService.hideLoader();
                 this.checkRedirect();
             });
@@ -111,7 +116,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             }, 1000);
         }
     }
-
     checkRedirect() {
         const redirectUrl = this.signUpService.getRedirectUrl();
         if (redirectUrl) {
@@ -162,22 +166,26 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
 
     goToNext(form: FormGroup) {
-
-        if (this.validateMoGetStrdForm(form)) {
-            form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
-            form.value.firstName = this.userDetails.firstName;
-            this.comprehensiveService.setMyProfile(form.value);
-            if (!form.pristine) {
-                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                    cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
-                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+        if (this.viewMode) {
+            this.comprehensiveService.setProgressToolTipShown(true);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+        } else {
+            if (this.validateMoGetStrdForm(form)) {
+                form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
+                form.value.firstName = this.userDetails.firstName;
+                this.comprehensiveService.setMyProfile(form.value);
+                if (!form.pristine) {
+                    this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+                        const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                        cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
+                        cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                        this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                    });
+                } else {
+                    this.comprehensiveService.setProgressToolTipShown(true);
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
-                });
-            } else {
-                this.comprehensiveService.setProgressToolTipShown(true);
-                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                }
             }
         }
     }
@@ -218,3 +226,4 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         return true;
     }
 }
+

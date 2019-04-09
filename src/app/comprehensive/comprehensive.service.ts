@@ -27,6 +27,7 @@ import {
     IComprehensiveDetails,
     IComprehensiveEnquiry,
     IDependantDetail,
+    IHospitalPlanList,
     IInsurancePlan,
     IMyAssets,
     IMyEarnings,
@@ -67,11 +68,11 @@ export class ComprehensiveService {
         return {};
     }
 
-    getHospitalPlan(): HospitalPlan {
-        if (!this.comprehensiveFormData.hospitalPlanData) {
-            this.comprehensiveFormData.hospitalPlanData = {} as HospitalPlan;
+    getHospitalPlan(): IHospitalPlanList[] {
+        if (!this.comprehensiveFormData.hospitalPlanList) {
+            this.comprehensiveFormData.hospitalPlanList = [] as IHospitalPlanList[];
         }
-        return this.comprehensiveFormData.hospitalPlanData;
+        return this.comprehensiveFormData.hospitalPlanList;
     }
 
     clearFormData() {
@@ -380,6 +381,10 @@ export class ComprehensiveService {
             = comprehensiveInsurancePlanning;
         this.commit();
     }
+    setHospitalPlan(hospitalPlanList: IHospitalPlanList[]) {
+        this.comprehensiveFormData.hospitalPlanList = hospitalPlanList;
+        this.commit();
+    }
     getFormError(form, formName) {
         const controls = form.controls;
         const errors: any = {};
@@ -682,8 +687,8 @@ export class ComprehensiveService {
 
     transformAsCurrency(in_amount: any): string {
         return this.currencyPipe.transform(in_amount, 'USD',
-        'symbol-narrow',
-        '1.0-2');
+            'symbol-narrow',
+            '1.0-2');
     }
 
     getFinancesProgressData(): IProgressTrackerItem {
@@ -1045,5 +1050,25 @@ export class ComprehensiveService {
         }
         return fireProofingDetails;
     }
-
+    /*
+    *Disable Form Element
+    */
+    getFormDisabled(formDetails: any) {
+        formDetails.disable();
+    }
+    /**
+     * View / Edit Mode Flag Service
+     * True = View False = Edit Mode
+     */
+    getViewableMode() {
+        if ( this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode ) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode;
+        }
+        return false;
+    }
+    setViewableMode(viewMode: boolean) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
+        this.commit();
+        return true;
+    }
 }

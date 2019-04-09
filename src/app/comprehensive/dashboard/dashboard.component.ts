@@ -8,6 +8,7 @@ import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,13 +26,19 @@ export class DashboardComponent implements OnInit {
   reportDate: any;
   currentStep = 1;
   stepDetails = {hasDependents: 1, hasEndowments: 2};
+  items: any;
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService,
               private configService: ConfigService, private comprehensiveService: ComprehensiveService,
-              private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe) {
+              private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe,
+              private navbarService: NavbarService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
+    this.items = [0, 1, 2, 3];
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(100);
+    this.navbarService.setNavbarMobileVisibility(false);
   }
 
   ngOnInit() {
@@ -55,7 +62,7 @@ export class DashboardComponent implements OnInit {
      * 2 - Completed & View Report with advisor
      * 3 - Not Completed
      */
-    this.comprehensivePlanning = 3;
+    this.comprehensivePlanning = 0;
     this.reportStatus = 1;
     this.advisorStatus = true;
     const reportDateAPI = new Date();
@@ -87,7 +94,8 @@ export class DashboardComponent implements OnInit {
   goToCurrentStep() {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
   }
-  goToEditComprehensivePlan() {
+  goToEditComprehensivePlan(viewMode: boolean) {
+    this.comprehensiveService.setViewableMode(viewMode);
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
   }
   getCurrentComprehensiveStep() {

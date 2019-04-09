@@ -20,6 +20,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   url: string;
   pageId: string;
   menuClickSubscription: Subscription;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
@@ -37,7 +38,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
 
     // tslint:disable-next-line:radix
     this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
-
+    this.viewMode = this.comprehensiveService.getViewableMode();
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

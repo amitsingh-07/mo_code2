@@ -26,6 +26,10 @@
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC2' | translate}}</div>
     </li>
   </ul>
-  <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">{{
-    'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+  <div class="footer-cta">
+  <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">
+      {{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
+  </button>
+  </div>
 </div>
+
