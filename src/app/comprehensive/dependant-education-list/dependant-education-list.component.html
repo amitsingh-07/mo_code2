@@ -22,7 +22,7 @@
             <div class="flex-row">
               <div class="flex-col-12">
                   <div class="checkbox-button one-label">
-                      <input  (change)="checkDependant()"  [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
+                      <input appComprehensiveViewMode="{{viewMode}}" mode=1 (change)="checkDependant()"  [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="endowmentPlanShow"
                         formControlName="endowmentPlanShow" type="checkbox" class="field checkbox" value="">
                       <label for="educationSupport{{i}}">
                         <div class="form-group-with-bg--header-label pb0">{{educationPlan.get('name').value}}</div>
@@ -45,7 +45,7 @@
               <div class="pr0 flex-col-7">
                 <div class="form-control" [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityAmount.invalid}">
                   <i>$</i>
-                  <input type="text" class="input-control" appCurrencyInput maxLength="9" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0"
+                  <input appComprehensiveViewMode="{{viewMode}}" mode=1  type="text" class="input-control" appCurrencyInput maxLength="9" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0"
                   >
                 </div>
               </div>
@@ -58,17 +58,20 @@
               </label>
             </div>
             <div class="flex-col-7">
-              <input type="text" appNumberOnly [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" appNumberOnly [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
                 id="myFamilyFormInpt4" [placeholder]="'CMP.MY_SPENDINGS.ENTER_YEAR'| translate" class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
               </div>
             </div>
           </div>
       </div>
       </div>
-      <div class="footer-cta">
-      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary width100"
-      id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'CMP.FORM_LABEL.SAVE_AND_CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
-      </div>
+<div class="footer-cta">
+    <button type="button" (click)="goToNext(endowmentListForm)" *ngIf="!this.viewMode" class="btn btn-primary mb50 mt30 width100"
+    id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'CMP.FORM_LABEL.SAVE_AND_CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
+    <button type="button" *ngIf="this.viewMode" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt30 width100"
+    id="moDpdnt2BtnFooter"> {{   'CMP.FORM_LABEL.CONTINUE'|translate}}</button>
+</div>
+      
   </form>
   <!--Page form-->
 </div>

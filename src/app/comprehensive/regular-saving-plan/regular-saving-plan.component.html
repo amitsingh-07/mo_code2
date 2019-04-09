@@ -19,7 +19,7 @@
                           <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1"><span *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span *ngIf="i > 0">{{i}}</span></div>
                           </div>
                         <div class="">
-                          <div class="total" ><span class="help-icon" (click)="showToolTipModal('RSP_TITLE','RSP_MESSAGE')"></span><span class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></span></div>
+                          <div class="total" ><span class="help-icon" (click)="showToolTipModal('RSP_TITLE','RSP_MESSAGE')"></span><span class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="!viewMode && RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></span></div>
                         </div>
                       </div>
                     </div>  
@@ -31,9 +31,9 @@
                   <div class="flex-col-7">
                     <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularUnitTrust.invalid}">
                       <div ngbDropdown id="relationshipDropDown">
-                        <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle>
-                          <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                          <span *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==''">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
+                        <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1 >
+                          <span class="grey-text" *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ==='' || comprehensiveRegularSavingsList.get('regularUnitTrust'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !=='' && comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==null">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownRelation">
                           <button class="dropdown-item" (click)="selectInvest('',i)">Select</button>
@@ -56,7 +56,7 @@
                     <div class="flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash"  >
+                        <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
@@ -71,25 +71,25 @@
                     <div class="flex-col-7">
                       <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
                         <i>$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="4"  #regularPaidByCPF formControlName="regularPaidByCPF" >
+                        <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="4"  #regularPaidByCPF formControlName="regularPaidByCPF" >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                       </div>
                     </div>
                   </div>
               </div>
             </div>
-            <p class="add-rsp" (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
+            <p *ngIf="!viewMode" class="add-rsp" (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='false' class="field radio">
+          <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='false' class="field radio">
           <label for="RSPInpt2">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
         </div>
         <div class="footer-cta">
         <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary width100"
-        id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+        id="moDpdnt2BtnFooter">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
         </button>
       </div>
       </div>

@@ -42,13 +42,13 @@
       <div class="flex-col-6">
         <div class="dropdown-control" >
           <div ngbDropdown id="employmentTypeDropDown">
-            <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle>
+            <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
              <!-- <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>-->
               <span *ngIf="employmentType !== ''">{{employmentType}}</span>                  
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
               <!--<button class="dropdown-item" (click)="selectEmploymentType('')">Select</button>-->
-              <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList; let i=index"
+              <button type="button" class="dropdown-item" appComprehensiveViewMode="{{viewMode}}" mode=1 *ngFor="let employmentType of employmentTypeList; let i=index"
                 (click)="selectEmploymentType(employmentType)">
                 {{employmentType.text}}
               </button>
@@ -81,7 +81,7 @@
   <div class="flex-row">
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.RENTAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-      <span class="delete-icon" (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
+      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
       </div>  
     </div>
   </div>
@@ -109,7 +109,7 @@
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.OTHER_WORK_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label">{{
     'CMP.MY_EARNINGS.OTHER_WORK_INCOME_DESC' | translate}}</div></div>                      
-      <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
+      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
       </div>  
     </div>
   </div>
@@ -136,7 +136,7 @@
     <div class="flex-row">
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-      <span class="delete-icon" (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
+      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
       </div>  
     </div>
   </div>
@@ -164,7 +164,7 @@
   <div class="flex-col-12 with-help-icon">
   <div class="dropdown-control earn-notes flex-col-10" >
   <div ngbDropdown id="employmentTypeDropDown">                             
-    <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle>
+    <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle  appComprehensiveViewMode="{{viewMode}}" mode=1>
       <span >  {{'CMP.MY_EARNINGS.ADD_MONTHLY_INCOME'|translate}}</span>
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType" class="custom-dd">
@@ -234,7 +234,7 @@
   <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>
   <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>    
-  <span class="delete-icon" (click)="SelectEarningsType('annualDividendsType', false)"></span>
+  <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('annualDividendsType', false)" appComprehensiveViewMode="{{viewMode}}" mode=1></span>
   </div>  
 </div>
 </div>
@@ -260,7 +260,7 @@
   <div class="flex-col-12 with-delete-icon">
   <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-  <span class="delete-icon" (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
+  <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
   </div>  
 </div>
 </div>
@@ -285,7 +285,7 @@
 </div>
 <div class="flex-col-11 dropdown-control" [hidden]="otherAnnualIncomeType && annualDividendsType" >
 <div ngbDropdown id="employmentTypeDropDown">
-<button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle>
+<button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
   <span >{{'CMP.MY_EARNINGS.ADD_DIVIDENDS'|translate}}</span>
 </button>
 <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType" class="custom-dd">
@@ -312,8 +312,7 @@
   <div class="flex-col-12">
   <div class="footer-cta">  
   <button type="button" (click)="goToNext(myEarningsForm)" class="btn btn-primary width100" id="prfBtn1">{{
-  'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
-  translate}}</button>
+  (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}</button>
   </div>
   </div>
 </div>

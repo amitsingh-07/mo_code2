@@ -41,7 +41,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="5" #monthlyLivingExpenses formControlName="monthlyLivingExpenses"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #monthlyLivingExpenses formControlName="monthlyLivingExpenses"
                 value="0">
               </div>
               </div>  
@@ -68,7 +68,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="6" #adHocExpenses formControlName="adHocExpenses"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="6" #adHocExpenses formControlName="adHocExpenses"
                 value="0">
               </div>
               </div>  
@@ -95,7 +95,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCPF formControlName="HLMortgagePaymentUsingCPF"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCPF formControlName="HLMortgagePaymentUsingCPF"
                 value="0">
               </div>
               </div>  
@@ -107,7 +107,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCash formControlName="HLMortgagePaymentUsingCash"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCash formControlName="HLMortgagePaymentUsingCash"
                 value="0">
               </div>
               </div>  
@@ -122,12 +122,12 @@
                   <div class="flex-row mb0">
                     <div class="flex-col-6">
                       <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" >
-                        <input id="HLtypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
+                        <input  appComprehensiveViewMode="{{viewMode}}" mode=1  id="HLtypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
                       </label>
                     </div>
                     <div class="flex-col-6">
                       <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" >
-                        <input id="HLtypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
+                        <input  appComprehensiveViewMode="{{viewMode}}" mode=1  id="HLtypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
                         translate}}
                       </label>
                     </div>
@@ -142,11 +142,11 @@
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.homeLoanPayOffUntil.invalid}">
-                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="5" formControlName="homeLoanPayOffUntil">
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #homeLoanPayOffUntil appNumberOnly maxLength="4" formControlName="homeLoanPayOffUntil">
               </div>
               </div>  
             </div>
-            <div class="flex-row otherMortage" [hidden]="!otherMortage" >
+            <div class="flex-row otherMortage" [hidden]="!otherMortage" *ngIf="!viewMode" >
               <div class="flex-col-12 mt20">
                 <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
                   'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u>
@@ -161,7 +161,7 @@
                     <div class="with-help-icon" for="name"><b>{{
                       'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>
                       <span class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
-                      <span class="delete-icon" (click)="addOtherMortage()"> </span>
+                      <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherMortage()"> </span>
                     </div>         
                   </div>
                   </div>
@@ -172,7 +172,7 @@
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePaymentUsingCPF.invalid}">
                     <i>$</i>
-                    <input type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCPF formControlName="mortgagePaymentUsingCPF"
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCPF formControlName="mortgagePaymentUsingCPF"
                     value="0">
                   </div>
                   </div>  
@@ -184,7 +184,7 @@
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
                     <i>$</i>
-                    <input type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
                     value="0">
                   </div>
                   </div>  
@@ -199,12 +199,12 @@
                       <div class="flex-row mb0">
                         <div class="flex-col-6">
                           <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid}" >
-                            <input id="mortgageTypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
+                            <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
                           </label>
                         </div>
                         <div class="flex-col-6">
                           <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid}">
-                            <input id="mortgageTypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
+                            <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
                             translate}}
                           </label>
                         </div>
@@ -219,7 +219,7 @@
                   </div>
                   <div class="flex-col-6">
                   <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid}">
-                    <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="5" formControlName="mortgagePayOffUntil">
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
                   </div>
                   </div>  
                 </div>
@@ -245,7 +245,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="5" #carLoanPayment formControlName="carLoanPayment"
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #carLoanPayment formControlName="carLoanPayment"
                 value="0">
               </div>
               </div>  
@@ -272,7 +272,7 @@
               <div class="flex-col-6">
               <div class="form-control">
                 <i>$</i>
-                <input type="text" class="input-control" appCurrencyInput maxLength="5" #otherLoanPayment
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #otherLoanPayment
                 formControlName="otherLoanPayment" value="0">
               </div>
               </div>  
@@ -283,7 +283,7 @@
               </div>
               <div class="flex-col-6">
               <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.otherLoanPayoffUntil.invalid}">
-                <input type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="5" formControlName="otherLoanPayoffUntil">
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left" #otherLoanPayoffUntil appNumberOnly maxLength="5" formControlName="otherLoanPayoffUntil">
               </div>
               </div>  
             </div>
@@ -293,9 +293,8 @@
     <div class="flex-row">
       <div class="flex-col-12">
           <div class="footer-cta"> 
-      <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">{{
-      'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
-      translate}}</button>
+      <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">
+        {{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}</button>
       </div>
       </div>
     </div>
