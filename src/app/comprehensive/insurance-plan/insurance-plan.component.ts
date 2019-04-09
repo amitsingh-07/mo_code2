@@ -13,6 +13,7 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { ApiService } from '../../shared/http/api.service';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -40,7 +41,7 @@ export class InsurancePlanComponent implements OnInit {
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private age: AboutAge, private route: ActivatedRoute) {
+              private age: AboutAge, private route: ActivatedRoute, private apiService: ApiService) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -65,6 +66,12 @@ export class InsurancePlanComponent implements OnInit {
       this.longTermInsurance = false;
     }
     this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
+    if (this.hospitalPlanList.length === 0) {
+      this.apiService.getHospitalPlanList().subscribe((hospitalPlanData: any) => {
+        this.hospitalPlanList = hospitalPlanData.objectList;
+        this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
+      });
+    }
     this.DownLuck = this.comprehensiveService.getDownOnLuck();
 
     this.hospitalPlanList.forEach((hospitalPlanData: IHospitalPlanList) => {
