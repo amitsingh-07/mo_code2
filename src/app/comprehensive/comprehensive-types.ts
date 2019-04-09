@@ -74,7 +74,13 @@ export class HospitalPlan {
     badMoodMonthlyAmount: number;
     enquiryId: number;
 }
-
+export interface IHospitalPlanList {
+    id: number;
+    hospitalClass: string;
+    hospitalClassDescription: string;
+    hospitalClassId: number;
+    hospitalPlanId: number;
+}
 export interface IMySummaryModal {
     setTemplateModal: number;
     title?: any;
