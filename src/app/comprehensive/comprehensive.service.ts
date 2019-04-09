@@ -634,7 +634,7 @@ export class ComprehensiveService {
             const eduPlan: string = this.hasEndowment();
 
             const prefsList: IProgressTrackerSubItemList[] = [];
-            if (eduPrefs && enquiry.hasDependents !== null) {
+            if (eduPrefs && enquiry.hasDependents !== null && enquiry.hasEndowments === '1') {
                 eduPrefs.forEach((item) => {
                     prefsList.push({
                         title: item.name,
@@ -651,30 +651,38 @@ export class ComprehensiveService {
                 hasEndowmentPlans = 'No';
             }
 
-            const hasEduPlans = hasEndowments ? 'Yes' : 'No';
+            let hasEduPlansValue = '';
+            if (hasEndowments) {
+                hasEduPlansValue = 'Yes';
+            } else if (enquiry.hasEndowments !== '1') {
+                hasEduPlansValue = 'No';
+            }
 
             subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Plan for children education',
-                    value: hasEduPlans,
-                    completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
+                    value: hasEduPlansValue,
+                    completed: enquiry.hasEndowments !== null && hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
                 });
-            subItemsArray.push(
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
-                    title: 'Education Preferences',
-                    value: prefsList.length === 0 ? 'No' : '',
-                    completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
-                    list: prefsList
-                });
-            subItemsArray.push(
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
-                    title: 'Do you have education endowment plan',
-                    value: hasEndowmentPlans,
-                    completed: (hasDependants && hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
-                });
+
+            if (enquiry.hasEndowments === '1') {
+                subItemsArray.push(
+                    {
+                        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
+                        title: 'Education Preferences',
+                        value: prefsList.length === 0 || enquiry.hasEndowments !== '1' ? 'No' : '',
+                        completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
+                        list: prefsList
+                    });
+                subItemsArray.push(
+                    {
+                        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
+                        title: 'Do you have education endowment plan',
+                        value: hasEndowmentPlans,
+                        completed: (hasDependants && hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
+                    });
+            }
         }
         return {
             title: 'What\'s on your shoulders',
@@ -771,25 +779,25 @@ export class ComprehensiveService {
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
                     title: 'Life Protection',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
                     title: 'Critical Illness',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
                     title: 'Occupational Disability',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
                     title: 'Long-Term Care',
                     value: '',
                     completed: false
@@ -1061,7 +1069,7 @@ export class ComprehensiveService {
      * True = View False = Edit Mode
      */
     getViewableMode() {
-        if ( this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode ) {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode) {
             return this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode;
         }
         return false;
