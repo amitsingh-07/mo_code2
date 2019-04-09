@@ -1,12 +1,11 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -16,6 +15,7 @@ import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -264,7 +264,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.validateAssets(form)) {
-      if (!form.pristine) {
+      const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
+      if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
         this.assetDetails = form.value;
         this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
         this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;

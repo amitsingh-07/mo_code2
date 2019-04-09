@@ -1,3 +1,4 @@
+import { Util } from './../../shared/utils/util';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -115,7 +116,9 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.validateLiabilities(form)) {
-      if (!form.pristine) {
+      const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
+
+      if (!form.pristine || Util.isEmptyOrNull(liabilitiesData)) {
         this.liabilitiesDetails = form.value;
         this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
         this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
@@ -176,8 +179,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.summaryModalDetails = {
         setTemplateModal: 2,
         contentObj: this.financeModal,
-// tslint:disable-next-line: no-redundant-boolean
-        liabilitiesEmergency: ( liquidCash > 0 ) ? true : false,
+        liabilitiesEmergency: ( liquidCash > 0 ),
         liabilitiesLiquidCash: liquidCash,
         liabilitiesMonthlySpareCash: spareCash,
         nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',

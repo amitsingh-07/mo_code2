@@ -1,8 +1,10 @@
+import { filter } from 'rxjs/operators';
 import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 
 import { IHeaderMenuItem } from './navbar.types';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +60,13 @@ export class NavbarService {
 
   onMenuItemClicked = this.$menuItemClick.asObservable();
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationStart)
+    ).subscribe((event: NavigationStart) => {
+      this.unsubscribeBackPress();
+    });
+  }
 
   /* Navbar Generic Element Details*/
   setNavbarDetails(navbar: ElementRef) {

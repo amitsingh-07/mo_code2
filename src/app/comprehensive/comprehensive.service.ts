@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,12 +7,14 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
 import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import {
     IProgressTrackerData,
     IProgressTrackerItem,
+    IProgressTrackerSubItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
@@ -45,7 +47,8 @@ export class ComprehensiveService {
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
-        private http: HttpClient, private modal: NgbModal, private location: Location) {
+        private http: HttpClient, private modal: NgbModal, private location: Location,
+        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe) {
         this.getComprehensiveFormData();
     }
 
@@ -219,6 +222,12 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.baseProfile = profile;
         this.commit();
     }
+
+    setHasDependant(hasDependant: boolean) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = hasDependant;
+        this.updateComprehensiveSummary();
+    }
+
     setMyDependant(dependant: IDependantDetail[]) {
         this.comprehensiveFormData.comprehensiveDetails.dependentsList = dependant;
         this.updateComprehensiveSummary();
@@ -303,6 +312,13 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
         this.commit();
     }
+
+    hasBadMoodFund() {
+        const maxBadMoodFund = Math.floor((this.getMyEarnings().totalAnnualIncomeBucket
+            - this.getMySpendings().totalAnnualExpenses) / 12);
+        return maxBadMoodFund > 0;
+    }
+
     setDependantSelection(selection: boolean) {
 
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.hasDependents = selection;
@@ -540,7 +556,7 @@ export class ComprehensiveService {
     generateProgressTrackerData(): IProgressTrackerData {
         this.progressData = {} as IProgressTrackerData;
         this.progressData = {
-            title: 'Progress Tracker Title',
+            title: 'Your Progress Tracker',
             subTitle: 'Time Taken: 20 mins',
             properties: {
                 disabled: false
@@ -551,6 +567,8 @@ export class ComprehensiveService {
         this.progressData.items.push(this.getGetStartedProgressData());
         this.progressData.items.push(this.getDependantsProgressData());
         this.progressData.items.push(this.getFinancesProgressData());
+        this.progressData.items.push(this.getFireproofingProgressData());
+        this.progressData.items.push(this.getRetirementProgressData());
 
         return this.progressData;
     }
@@ -575,114 +593,224 @@ export class ComprehensiveService {
 
     // tslint:disable-next-line:cognitive-complexity
     getDependantsProgressData(): IProgressTrackerItem {
+
+        const subItemsArray: IProgressTrackerSubItem[] = [];
+
         let hasDependants = false;
         let hasEndowments = false;
         let hasRegularSavings = false;
         const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
-        if (enquiry && enquiry.hasDependents !== null) {
+        const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
+        const dependantData: IDependantDetail[] = this.getMyDependant();
+
+        if (enquiry && enquiry.hasDependents !== null && dependantData.length > 0) {
             hasDependants = true;
         }
-        if (enquiry && enquiry.hasEndowments === '1') {
+        if (enquiry && enquiry.hasEndowments === '1' && childEndowmentData.length > 0) {
             hasEndowments = true;
         }
         if (enquiry && enquiry.hasRegularSavingsPlans !== null) {
             hasRegularSavings = true;
         }
-        const dependantDetails: IDependantDetail[] = this.getMyDependant();
-        const eduPrefs: IChildEndowment[] = this.getChildEndowment();
-        const eduPlan: string = this.hasEndowment();
 
         let noOfDependants = '';
-        if (dependantDetails) {
-            noOfDependants = dependantDetails.length + '';
+        if (dependantData) {
+            noOfDependants = dependantData.length + '';
         }
-        const prefsList: IProgressTrackerSubItemList[] = [];
-        if (eduPrefs) {
-            eduPrefs.forEach((item) => {
-                prefsList.push({
-                    title: item.name,
-                    value: (item.location === null ? '' : item.location)
-                        + (item.educationCourse === null ? '' : ', ' + item.educationCourse)
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+            title: 'Number of Dependant',
+            value: noOfDependants,
+            completed: enquiry.hasDependents !== null
+        });
+        if (enquiry.hasDependents === null || dependantData.length > 0) {
+
+            const eduPrefs: IChildEndowment[] = this.getChildEndowment();
+            const eduPlan: string = this.hasEndowment();
+
+            const prefsList: IProgressTrackerSubItemList[] = [];
+            if (eduPrefs && enquiry.hasDependents !== null) {
+                eduPrefs.forEach((item) => {
+                    prefsList.push({
+                        title: item.name,
+                        value: (item.location === null ? '' : item.location)
+                            + (item.educationCourse === null ? '' : ', ' + item.educationCourse)
+                    });
                 });
-            });
-        }
+            }
 
-        let hasEndowmentPlans = '';
-        if (eduPlan === '1') {
-            hasEndowmentPlans = 'Yes';
-        } else if (eduPlan === '2') {
-            hasEndowmentPlans = 'No';
-        }
+            let hasEndowmentPlans = '';
+            if (eduPlan === '1') {
+                hasEndowmentPlans = 'Yes';
+            } else if (eduPlan === '2') {
+                hasEndowmentPlans = 'No';
+            }
 
-        const hasEduPlans = hasEndowments ? 'Yes' : 'No';
+            const hasEduPlans = hasEndowments ? 'Yes' : 'No';
 
-        return {
-            title: 'What\'s on your shoulders',
-            expanded: true,
-            completed: hasDependants,
-            customStyle: 'dependant',
-            subItems: [
-                {
-                    path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-                    title: 'Number of Dependant',
-                    value: noOfDependants,
-                    completed: hasDependants && typeof dependantDetails !== 'undefined'
-                },
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Plan for children education',
                     value: hasEduPlans,
                     completed: hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
-                },
+                });
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                     title: 'Education Preferences',
-                    value: '',
-                    completed: hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
+                    value: prefsList.length === 0 ? 'No' : '',
+                    completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
                     list: prefsList
-                },
+                });
+            subItemsArray.push(
                 {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                     title: 'Do you have education endowment plan',
                     value: hasEndowmentPlans,
-                    completed: (hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
-                }
-            ]
+                    completed: (hasDependants && hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
+                });
+        }
+        return {
+            title: 'What\'s on your shoulders',
+            expanded: true,
+            completed: hasDependants,
+            customStyle: 'dependant',
+            subItems: subItemsArray
         };
     }
 
+    transformAsCurrency(in_amount: any): string {
+        return this.currencyPipe.transform(in_amount, 'USD',
+        'symbol-narrow',
+        '1.0-2');
+    }
+
     getFinancesProgressData(): IProgressTrackerItem {
+        const subItemsArray: IProgressTrackerSubItem[] = [];
+        const earningsData: IMyEarnings = this.getMyEarnings();
+        const spendingsData: IMySpendings = this.getMySpendings();
+        const assetsData: IMyAssets = this.getMyAssets();
+        const liabilitiesData: IMyLiabilities = this.getMyLiabilities();
+
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
+            title: 'Your Earnings',
+            value: earningsData && earningsData.totalAnnualIncomeBucket >= 0
+                ? this.transformAsCurrency(earningsData.totalAnnualIncomeBucket) + '' : '',
+            completed: !Util.isEmptyOrNull(earningsData)
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
+            title: 'Your Spendings',
+            value: spendingsData && spendingsData.totalAnnualExpenses >= 0
+                ? this.transformAsCurrency(spendingsData.totalAnnualExpenses) + '' : '',
+            completed: !Util.isEmptyOrNull(spendingsData)
+        });
+        if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
+            subItemsArray.push({
+                path: '',
+                title: 'Bad Mood Fund',
+                value: this.getDownOnLuck().badMoodMonthlyAmount
+                    ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
+                completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+            });
+        }
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            title: 'Hospital Choice',
+            value: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+                ? this.getDownOnLuck().hospitalClass : '',
+            completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
+            title: 'Assets (What You Own)',
+            value: assetsData && assetsData.totalAnnualAssets >= 0
+                ? this.transformAsCurrency(assetsData.totalAnnualAssets) + '' : '',
+            completed: !Util.isEmptyOrNull(assetsData)
+        });
+        subItemsArray.push({
+            path: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
+            title: 'Liabilities (What You Owe)',
+            value: liabilitiesData && liabilitiesData.totalAnnualLiabilities >= 0
+                ? this.transformAsCurrency(liabilitiesData.totalAnnualLiabilities) + '' : '',
+            completed: !Util.isEmptyOrNull(liabilitiesData)
+        });
         return {
             title: 'Your Finances',
             expanded: true,
             completed: false,
             customStyle: 'get-started',
+            subItems: subItemsArray
+        };
+    }
+
+    /**
+     * Get progress tracker data for  the 'Your Current Fireproofing' section.
+     *
+     * @returns {IProgressTrackerItem}
+     * @memberof ComprehensiveService
+     */
+    getFireproofingProgressData(): IProgressTrackerItem {
+        return {
+            title: 'Your Current Fireproofing',
+            expanded: true,
+            completed: false,
+            customStyle: 'get-started',
             subItems: [
                 {
-                    path: 'GetStartedComponent',
-                    title: 'Your Earnings',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Do you have a hospital plan',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Your Spendings',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Life Protection',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Bad Mood Fund',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Critical Illness',
                     value: '',
                     completed: false
                 },
                 {
-                    path: 'GetStartedComponent1',
-                    title: 'Hospital Choice',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Occupational Disability',
+                    value: '',
+                    completed: false
+                },
+                {
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+                    title: 'Long-Term Care',
                     value: '',
                     completed: false
                 }
             ]
+        };
+    }
+
+    /**
+     * Get progress tracker data for the 'Financial Independence' section.
+     *
+     * @returns {IProgressTrackerItem}
+     * @memberof ComprehensiveService
+     */
+    getRetirementProgressData(): IProgressTrackerItem {
+        return {
+            title: 'Financial Independence',
+            expanded: true,
+            completed: false,
+            customStyle: 'get-started',
+            subItems: [{
+                path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+                title: 'Retirement Age',
+                value: '',
+                completed: false
+            }]
         };
     }
     /*
@@ -771,13 +899,16 @@ export class ComprehensiveService {
     /*
     *Dependant Summary Page Compute
     */
-    setDependantExpense(location: any, univ: any, aboutAge: number) {
+    setDependantExpense(location: any, univ: any, aboutAge: number, nation: any) {
         let totalExpense: any = 0;
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
+            let locationChange = location;
+            if (location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR')) {
+                locationChange = nation;
+            }
             const expenseConfig = summaryConst[expenseInput];
-            totalExpense += this.getComputedExpense(expenseConfig[univ][location], expenseConfig.PERCENT, aboutAge);
-            console.log(totalExpense);
+            totalExpense += this.getComputedExpense(expenseConfig[univ][locationChange], expenseConfig.PERCENT, aboutAge);
         });
         return totalExpense;
     }
@@ -816,8 +947,8 @@ export class ComprehensiveService {
         const expenseTotal = (spendDetails && spendDetails.totalAnnualExpenses) ? this.getValidAmount(spendDetails.totalAnnualExpenses) : 0;
         const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
-        spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal)) 
-                    + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
+        spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
+            + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
         return (Math.round(spareCash));
     }
     /*
@@ -833,7 +964,7 @@ export class ComprehensiveService {
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {
                 const cpfDetails = {
-                    amountLimitCpf : summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN,
+                    amountLimitCpf: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN,
                     cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT
                 };
                 if (earningDetails.employmentType === 'Employed') {
@@ -843,7 +974,7 @@ export class ComprehensiveService {
                 homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
                 if (homeCpfSalary > cpfDetails.amountLimitCpf) {
-                    homeSalary = ( cpfDetails.amountLimitCpf * cpfDetails.cpfPercent ) + (homeCpfSalary - cpfDetails.amountLimitCpf);
+                    homeSalary = (cpfDetails.amountLimitCpf * cpfDetails.cpfPercent) + (homeCpfSalary - cpfDetails.amountLimitCpf);
                 } else {
                     homeSalary = (homeCpfSalary * cpfDetails.cpfPercent);
                 }
@@ -861,10 +992,10 @@ export class ComprehensiveService {
     getRegularSaving() {
         const rspDetails = this.getRegularSavingsList();
         if (rspDetails) {
-            const inputParams = { rsp: rspDetails};
+            const inputParams = { rsp: rspDetails };
             const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
             const monthlySumCal = this.additionOfCurrency(filterInput);
-            const yearCal = this.additionOfCurrency(filterInput) * 12;
+            const yearCal = monthlySumCal * 12;
             return yearCal;
         } else {
             return 0;
@@ -875,9 +1006,9 @@ export class ComprehensiveService {
     */
     getBadMoodFund() {
         const badMoodDetails = this.getDownOnLuck();
-        if ( badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
-           const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
-           return badMoodMonthly * 12;
+        if (badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
+            const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
+            return badMoodMonthly * 12;
         } else {
             return 0;
         }
@@ -891,6 +1022,28 @@ export class ComprehensiveService {
         } else {
             return 0;
         }
+    }
+    /*
+    *Summary Dynamic Value
+    *Get Static Json value for Fire Proofing
+    */
+    getCurrentFireProofing() {
+        const getComprehensiveDetails = this.getComprehensiveSummary();
+        const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
+        const userGender = getComprehensiveDetails.baseProfile.gender;
+        const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
+        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge };
+        if (enquiry.hasDependents) {
+            getComprehensiveDetails.dependentsList.forEach((dependant) => {
+                const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+                if (dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
+                    fireProofingDetails.dependant = false;
+                }
+            });
+        } else {
+            fireProofingDetails.dependant = false;
+        }
+        return fireProofingDetails;
     }
 
 }

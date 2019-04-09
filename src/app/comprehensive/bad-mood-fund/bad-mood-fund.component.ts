@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { HospitalPlan } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
@@ -67,7 +68,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-    this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
+  
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -88,23 +89,27 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0, Validators.required)
     });
-    if (this.downOnLuck.hospitalClassId) {
+    if (this.downOnLuck.hospitalPlanId) {
       this.isFormValid = true;
     }
     this.apiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
+    this.comprehensiveService.hasBadMoodFund();
     this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
       - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
+
     }
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
   }
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
-
+    if (this.hasBadMoodFund) {
+      this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
+    }
   }
   validateForm(hospitalPlan) {
     this.downOnLuck = {
@@ -119,15 +124,26 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
-    form.value.badMoodMonthlyAmount = this.SliderValue;
-    form.value.hospitalClass = this.downOnLuck.hospitalClass;
-    form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    this.comprehensiveService.setDownOnLuck(form.value);
-    this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
-      any) => {
+    if (this.isFormValid) {
+      form.value.badMoodMonthlyAmount = this.SliderValue;
+      form.value.hospitalClass = this.downOnLuck.hospitalClass;
+      form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+      this.comprehensiveService.setDownOnLuck(form.value);
+      this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
+        any) => {
 
-    });
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+      });
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+    } else {
+      const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);
+      this.comprehensiveService.openErrorModal(
+        error.title,
+        error.errorMessages,
+        false,
+        ''
+      );
+    }
+
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
