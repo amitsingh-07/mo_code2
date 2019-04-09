@@ -71,17 +71,14 @@
       color: #2d8289;
       font-family: $muli-semi-bold;
       margin-right: 10px;
-
+      position: relative;
+      font-size: 16px;
       .form-group-with-bg--header-single-label {
         font-family: $muli-semi-bold;
         color: #000000;
         padding: 10px 0 18px 0;
         font-size: 18px;
       }
-
-      position: relative;
-      font-size: 18px;
-
       a.link {
         text-decoration: underline !important;
         color: #2d8289 !important;
@@ -1170,14 +1167,17 @@ input::placeholder {
       .form-group-with-bg--content {
         padding: 20px;
       }
+      .form-group-with-bg--header-label {
+        font-size: 16px;
+      }
       .form-group-with-bg--content-white {
           background: $white-color;
-          padding: 30px 20px;
+          padding: 20px;
           border-radius: 6px;
           &--title {
             font-size: 18px;
             font-family: $muli-semi-bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: $btn-comprehensive;
             @extend .flex;
             @extend .align-center;
@@ -1185,7 +1185,7 @@ input::placeholder {
             &--desc {
               font-size: 16px;
               font-family: $muli-regular;
-              margin-bottom: 10px;
+              margin-bottom: 15px;
               color: $btn-comprehensive;
               align-items: self-end;
               strong {
@@ -1195,7 +1195,7 @@ input::placeholder {
           }
           .form-group-with-bg--header {
             .form-group-with-bg--header-label {
-              width: 97%;
+              //width: 97%;
             }
       }
     //padding: 10px 0;
@@ -1203,9 +1203,9 @@ input::placeholder {
     label {
       color: $dark-teal-color;
       margin-bottom: 0;
-      font-family: $muli-semi-bold;
+      font-family: $muli-semi-bold !important;
       &.btn-outline-primary {
-        font-family: $muli-regular;
+        font-family: $muli-regular !important;
         color: $app-backgrnd-color;
       }
     }
@@ -1248,6 +1248,8 @@ input::placeholder {
   }
   .form-group-single-column .checkbox-button {
     margin-bottom: 20px;
+    font-size: 16px;
+    font-family: $muli-semi-bold;
   }
   .form-group-with-bg--header-label {
     &.with-tooltip {
@@ -1255,5 +1257,8 @@ input::placeholder {
       justify-content: space-between;
       align-items: center;
     }
+  }
+  .placeholderAmount {
+    color: #5e5e5e;
   }
 }

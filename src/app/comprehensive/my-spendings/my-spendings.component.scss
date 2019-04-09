@@ -100,25 +100,7 @@ color: $dark-teal-color;
 .bucket-notes-dollar{
     font-size:20px;
 }
-.income-bucket-panel {
-    text-align: center;
-    &__img {
-        padding: 14px 0 20px 0;
-    }
-    &__desc {
-        padding-bottom: 16px;
-        font-size: 14px;
-    }
-    &__value {
-        padding-bottom: 30px;
-        font-family: $muli-bold;
-        font-size: 24px;
-    }
-    &__content {
-        font-family: $muli-bold;
-        font-size: 16px;
-    }
-}
+
 .both-icon{  
     .delete-icon { 
         left: 95% !important;
