@@ -31,6 +31,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   validationFlag: boolean;
   hasRegularSavings: boolean;
   enquiryId: number;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -49,6 +50,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       });
     });
     this.enquiryId = this.comprehensiveService.getEnquiryId();
+    this.viewMode = this.comprehensiveService.getViewableMode();
 
   }
   setPageTitle(title: string) {
@@ -128,12 +130,16 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.regularUnitTrust.setValue(investment);
   }
   goToNext(form) {
-    if (this.validateRegularSavings(form)) {
-      this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
-      this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
-      this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
-      });
+    if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+    } else {
+      if (this.validateRegularSavings(form)) {
+        this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
+        this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
+        this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+        });
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+      }
     }
   }
 

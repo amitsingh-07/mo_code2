@@ -12,6 +12,7 @@ export interface IComprehensiveDetails {
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
     comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveViewMode?: boolean;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;

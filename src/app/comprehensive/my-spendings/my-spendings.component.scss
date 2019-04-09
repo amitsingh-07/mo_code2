@@ -42,19 +42,19 @@ color: $dark-teal-color;
     right: 10px;
 }
 .filledSpend{
-    background: url("../../../assets/images/comprehensive/empty-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/empty-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .emptySpend{
-    background: url("../../../assets/images/comprehensive/filled-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/filled-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .middleSpend{
-    background: url("../../../assets/images/comprehensive/middle-expenses-bucket.svg") no-repeat;
+    background: url(/assets/images/comprehensive/middle-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;

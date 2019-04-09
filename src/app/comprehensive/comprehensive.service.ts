@@ -1050,5 +1050,25 @@ export class ComprehensiveService {
         }
         return fireProofingDetails;
     }
-
+    /*
+    *Disable Form Element
+    */
+    getFormDisabled(formDetails: any) {
+        formDetails.disable();
+    }
+    /**
+     * View / Edit Mode Flag Service
+     * True = View False = Edit Mode
+     */
+    getViewableMode() {
+        if ( this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode ) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode;
+        }
+        return false;
+    }
+    setViewableMode(viewMode: boolean) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
+        this.commit();
+        return true;
+    }
 }

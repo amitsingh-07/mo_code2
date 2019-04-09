@@ -12,7 +12,7 @@
   <form name="dependantEducationSelectionForm" [formGroup]="dependantEducationSelectionForm">
     <div class="form-group-single-column  flex-col">
       <div class="checkbox-button one-label mt20">
-        <input id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1  id="dependant_selection_yes" name="hasEndowments" formControlName="hasEndowments"
           type="radio" value="1" class="field radio" (change)="checkDependant()">
         <label for="dependant_selection_yes">
           <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
@@ -23,7 +23,7 @@
             <div class="form-group mb0" [formGroupName]="i">
               <div class="education-support">
                 <div class="checkbox-button one-label mb0 pl0 pb0">
-                  <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
+                  <input appComprehensiveViewMode="{{viewMode}}" mode=1  (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportYes{{i}}" name="name"
                     formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
                   <label for="educationSupportYes{{i}}">
                     <div class="title">{{educationPlan.get('name').value}}</div>
@@ -36,7 +36,7 @@
         </section>
       </div>
       <div class="checkbox-button one-label">
-        <input (change)="checkDependant()" id="dependant_selection_no_list" name="hasEndowments" formControlName="hasEndowments"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1  (change)="checkDependant()" id="dependant_selection_no_list" name="hasEndowments" formControlName="hasEndowments"
           type="radio" value="2" class="field radio">
         <label for="dependant_selection_no_list">
           <span class="input-label-grey">{{'CMP.DEPENDANT_EDUCATION_SELECTION.NO_LABEL'|translate}}</span>
@@ -48,7 +48,7 @@
             <div class="form-group mb0" [formGroupName]="i" >
               <div class="education-support">
                 <div class="checkbox-button one-label mb0 pl0 pb0">
-                  <input (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
+                  <input appComprehensiveViewMode="{{viewMode}}" mode=1  (change)="checkDependant()" [attr.disabled]="isFormControlDisabled" id="educationSupportNo{{i}}" name="name"
                     formControlName="preferenceSelection" type="checkbox" class="field checkbox" value="">
                   <label for="educationSupportNo{{i}}">
                     <div class="title">{{educationPlan.get('name').value}}</div>
@@ -61,7 +61,7 @@
         </section>
       </div>
       <div class="checkbox-button one-label">
-        <input (change)="checkDependant()" id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1 (change)="checkDependant()" id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
           type="radio" value='0' class="field radio">
         <label for="dependant_selection_no">
           <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
@@ -70,7 +70,8 @@
     </div>
     <div class="footer-cta"> 
     <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary width100"
-    id="moDpdnt2BtnFooter"> {{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+    id="moDpdnt2BtnFooter">  {{
+      (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
     </button>
   </div>
   </form>

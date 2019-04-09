@@ -29,6 +29,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
+  viewMode: boolean;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -50,6 +51,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         }
       });
     });
+    this.viewMode = this.cmpService.getViewableMode();
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
@@ -81,33 +83,40 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(dependantSelectionForm) {
-    this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
-    if (dependantSelectionForm.value.dependantSelection) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
-    } else {
-      const payload = {
-        hasDependents: false,
-        dependentMappingList: [{
-          id: 0,
-          customerId: 0,
-          enquiryId: this.cmpService.getEnquiryId(),
-          name: '',
-          relationship: '',
-          gender: '',
-          dateOfBirth: '',
-          nation: ''
-        }]
-      };
-
-      this.cmpApiService.addDependents(payload).subscribe(((data: any) => {
-        this.loaderService.hideLoader();
-        this.cmpService.setHasDependant(false);
-        this.cmpService.setMyDependant([]);
-        this.cmpService.clearEndowmentPlan();
+    if (this.viewMode) {
+      if (dependantSelectionForm.value.dependantSelection) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+      } else {
         this.showSummaryModal();
-      }));
-    }
+      }
+    } else {
+      this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
+      if (dependantSelectionForm.value.dependantSelection) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+      } else {
+        const payload = {
+          hasDependents: false,
+          dependentMappingList: [{
+            id: 0,
+            customerId: 0,
+            enquiryId: this.cmpService.getEnquiryId(),
+            name: '',
+            relationship: '',
+            gender: '',
+            dateOfBirth: '',
+            nation: ''
+          }]
+        };
 
+        this.cmpApiService.addDependents(payload).subscribe((data: any) => {
+          this.loaderService.hideLoader();
+          this.cmpService.setHasDependant(false);
+          this.cmpService.setMyDependant([]);
+          this.cmpService.clearEndowmentPlan();
+          this.showSummaryModal();
+        });
+      }
+    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {
@@ -132,3 +141,4 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
 }
+
