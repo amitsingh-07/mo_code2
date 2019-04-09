@@ -152,6 +152,7 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
             this.loaderService.hideLoader();
+            this.comprehensiveService.setDownOnLuck(null);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
           });
         } else {
@@ -198,3 +199,4 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);
   }
 }
+

@@ -154,12 +154,12 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
             this.loaderService.hideLoader();
+            this.comprehensiveService.setDownOnLuck(null);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
         }
-
       }
     }
   }
@@ -229,4 +229,5 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     }
   }
 }
+
 
