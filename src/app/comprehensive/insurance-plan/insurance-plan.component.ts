@@ -32,7 +32,7 @@ export class InsurancePlanComponent implements OnInit {
   insurancePlanningNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
-  HospitalType: string;
+  hospitalType: string;
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
 
@@ -70,7 +70,7 @@ export class InsurancePlanComponent implements OnInit {
     this.hospitalPlanList.forEach((hospitalPlanData: IHospitalPlanList) => {
       // tslint:disable-next-line:triple-equals
       if (hospitalPlanData.id == this.DownLuck.hospitalPlanId) {
-        this.HospitalType = hospitalPlanData.hospitalClass;
+        this.hospitalType = hospitalPlanData.hospitalClass;
       }
     });
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { IComprehensiveEnquiry } from './../comprehensive-types';
+import { IComprehensiveEnquiry, IHospitalPlanList } from './../comprehensive-types';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -43,7 +43,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     genderDisabled = false;
     myProfileShow = true;
     DOBAlert = false;
-
+    hospitalPlanList: IHospitalPlanList[];
     menuClickSubscription: Subscription;
     public showToolTip = false;
 
@@ -90,9 +90,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.apiService.getHospitalPlanList().subscribe((hospitalPlanData: any) => {
-            this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
-        });
+        this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
+        if (!this.hospitalPlanList) {
+            this.apiService.getHospitalPlanList().subscribe((hospitalPlanData: any) => {
+                this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
+            });
+        }
+
         if (!this.userDetails || !this.userDetails.firstName) {
             this.loaderService.showLoader({ title: 'Fetching Data' });
             this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
