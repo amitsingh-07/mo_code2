@@ -5,8 +5,9 @@
   <div class="dependant-title mt40">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
   <div class="dependant-desc">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
-    <div class="income-bucket-panel__img finance-assets {{ bucketImage }}"></div>
-    <div class="income-bucket-panel__content">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
+    <!-- <div class="income-bucket-panel__img finance-assets {{ bucketImage }}"></div> -->
+    <div class="income-bucket-panel__img finance-assets"><img src="./assets/images/comprehensive/finance-assets.svg" /> </div>
+    <div class="income-bucket-panel__content" style="margin-top:5%;">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
     <div class="income-bucket-panel__desc"><span class='income-bucket-panel__value'>{{ totalAssets |
         currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_ASSETS.TOTAL'|translate}} </div>
   </div>
