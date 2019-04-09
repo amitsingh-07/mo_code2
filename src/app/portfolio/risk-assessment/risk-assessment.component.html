@@ -1,14 +1,20 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div>
-  <div class="question-info" id="risk-assessment_question-info_lbl">
+  <div class="question-info hidden-lg" id="risk-assessment_question-info_lbl">
     {{QuestionLabel}} {{questionIndex}} {{ofLabel}} {{questionsList.length}}
   </div>
-  <div class="container-fluid max-width--1024 invest-web-width risk-assessment">
+  <div class="container-fluid max-width--1024 risk-assessment">
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="currentQuestion">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2 class="question-info">{{QuestionLabel}} {{questionIndex}} {{ofLabel}} {{questionsList.length}}</h2>
+        <h6 class="question-title">{{currentQuestion.description}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/investment-account/qn-1.svg"/>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6" *ngIf="currentQuestion">
         <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
           <div class="form-group-single-column flex-col">
-            <div class="question-title" id="risk-assessment_question_lbl">
+            <div class="question-title hidden-lg" id="risk-assessment_question_lbl">
               {{currentQuestion.description}}
             </div>
             <!-- NORMAL CASE -->
