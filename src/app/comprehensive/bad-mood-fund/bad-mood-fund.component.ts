@@ -106,7 +106,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
     }
 
-
   }
 
   ngAfterViewInit() {

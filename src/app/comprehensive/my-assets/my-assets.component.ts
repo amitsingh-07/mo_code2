@@ -45,11 +45,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   modelBtnText: string;
   showConfirmation: boolean;
   cpfFromMyInfo = false;
-  constructor(private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-              private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
-              private modal: NgbModal) {
+  constructor(
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
+    private modal: NgbModal) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
