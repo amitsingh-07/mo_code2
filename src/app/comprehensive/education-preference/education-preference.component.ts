@@ -30,6 +30,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
   educationPreferencePlan: any = [];
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -46,6 +47,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
 
       });
+      this.viewMode = this.comprehensiveService.getViewableMode();
     });
 
   }
@@ -108,24 +110,27 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   }
 
   goToNext(form) {
-    if (this.validateEducationPreference(form)) {
-      form.value.preference.forEach((preferenceDetails: any, index) => {
-        this.endowmentDetail[index].location = preferenceDetails.location;
-        this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
-      });
-      this.comprehensiveService.setChildEndowment(this.endowmentDetail);
-      if (!form.pristine) {
-        this.comprehensiveApiService.saveChildEndowment({
-          hasEndowments: this.comprehensiveService.hasEndowment(),
-          endowmentDetailsList: this.endowmentDetail
-        }).subscribe((data) => {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+    if (this.viewMode) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+    } else {
+      if (this.validateEducationPreference(form)) {
+        form.value.preference.forEach((preferenceDetails: any, index) => {
+          this.endowmentDetail[index].location = preferenceDetails.location;
+          this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
         });
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+        this.comprehensiveService.setChildEndowment(this.endowmentDetail);
+        if (!form.pristine) {
+          this.comprehensiveApiService.saveChildEndowment({
+            hasEndowments: this.comprehensiveService.hasEndowment(),
+            endowmentDetailsList: this.endowmentDetail
+          }).subscribe((data) => {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+          });
+        } else {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+        }
       }
     }
-
   }
   validateEducationPreference(form) {
     this.submitted = true;

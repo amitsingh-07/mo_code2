@@ -39,6 +39,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   bucketImage: string;
   validationFlag: boolean;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -58,6 +59,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       });
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
+    this.viewMode = this.comprehensiveService.getViewableMode();
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -139,24 +141,26 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     });
   }
   goToNext(form: FormGroup) {
-    if (this.validateSpendings(form)) {
-      const spendingsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveSpending;
-
-      if (!form.pristine || Util.isEmptyOrNull(spendingsData)) {
-        this.spendingDetails = form.value;
-        this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
-        this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.comprehensiveService.setMySpendings(this.spendingDetails);
-        this.loaderService.showLoader({ title: 'Saving' });
-        this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
-          this.loaderService.hideLoader();
-          this.comprehensiveService.setDownOnLuck(null);
+    if (this.viewMode) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+    } else {
+      if (this.validateSpendings(form)) {
+        const spendingsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveSpending;
+        if (!form.pristine || Util.isEmptyOrNull(spendingsData)) {
+          this.spendingDetails = form.value;
+          this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
+          this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+          this.comprehensiveService.setMySpendings(this.spendingDetails);
+          this.loaderService.showLoader({ title: 'Saving' });
+          this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
+            this.loaderService.hideLoader();
+            this.comprehensiveService.setDownOnLuck(null);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+          });
+        } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
-        });
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+        }
       }
-
     }
   }
   validateSpendings(form: FormGroup) {
@@ -184,7 +188,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
+      validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <= (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
     }
     if (validCheck) {
       return null;
@@ -225,3 +229,5 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+

@@ -30,9 +30,9 @@
               <div class="flex-col-6">
                   <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  preferencePlan['controls'].location.invalid}">
                       <div ngbDropdown id="locationDropDown">
-                          <button type="button" class="btn btn-dropdown" id="dropdownLocation" ngbDropdownToggle>
-                              <span class="grey-text" *ngIf="preferencePlan.get('location'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                              <span *ngIf="preferencePlan.get('location'). value !==''">{{preferencePlan.get('location').value === null ? 'Select' : preferencePlan.get('location').value}}</span>
+                          <button type="button" class="btn btn-dropdown" id="dropdownLocation" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1 >
+                              <span class="grey-text" *ngIf="preferencePlan.get('location'). value ==='' || preferencePlan.get('location').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="preferencePlan.get('location'). value !=='' && preferencePlan.get('location').value !== null">{{preferencePlan.get('location').value === null ? 'Select' : preferencePlan.get('location').value}}</span>
                             </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownLocation">
                           <button class="dropdown-item" (click)="selectLocation('',i)">Select</button>
@@ -50,10 +50,10 @@
               </div>
               <div class="flex-col-6">
                   <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  preferencePlan['controls'].educationCourse.invalid}">
-                      <div ngbDropdown id="EducationDropDown">
-                          <button type="button" class="btn btn-dropdown" id="dropdownEducationCourse" ngbDropdownToggle>
-                              <span class="grey-text" *ngIf="preferencePlan.get('educationCourse'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                              <span *ngIf="preferencePlan.get('educationCourse'). value !==''">{{preferencePlan.get('educationCourse').value === null ? 'Select' : preferencePlan.get('educationCourse').value}}</span>
+                      <div ngbDropdown id="EducationDropDown" >
+                          <button type="button" class="btn btn-dropdown" id="dropdownEducationCourse" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1 >
+                              <span class="grey-text" *ngIf="preferencePlan.get('educationCourse'). value ==='' || preferencePlan.get('educationCourse').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="preferencePlan.get('educationCourse'). value !=='' && preferencePlan.get('educationCourse').value !== null">{{preferencePlan.get('educationCourse').value === null ? 'Select' : preferencePlan.get('educationCourse').value}}</span>
                             </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownRelation">
                           <button class="dropdown-item" (click)="selectCourse('',i)">Select</button>
@@ -70,7 +70,8 @@
       </div>
       <div class="footer-cta"> 
         <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100"
-        >{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+        >{{
+          (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}</button>
       </div>
   </form>
   <!--Page form /-->

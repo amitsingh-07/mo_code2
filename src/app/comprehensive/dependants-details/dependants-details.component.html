@@ -21,7 +21,7 @@
               <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1">Dependant {{i+1}}</div>
               </div>
             <div class="flex-col-5">
-              <div class="total" (click)="removeDependant(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length>1"><span class="delete-icon"></span></div>
+              <div class="total" (click)="removeDependant(i)" id="moDpdnt2FrmDeleteIcon" *ngIf="!viewMode && myDependantForm['controls'].dependentMappingList['controls'].length>1"><span class="delete-icon"></span></div>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
               </label>
             </div>
             <div class=" flex-col-7">
-              <input type="text" [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}" id="moDpdnt2InptName"
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}" id="moDpdnt2InptName"
                 class="form-control" #name formControlName="name" placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}">
             </div>
           </div>
@@ -47,7 +47,7 @@
             <div class="flex-col-7">
               <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].relationship.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnRelationship">
-                  <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
+                  <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle  appComprehensiveViewMode="{{viewMode}}" mode=1 >
                     <span class="grey-text" *ngIf="dependentMappingList.get('relationship'). value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                     <span *ngIf="dependentMappingList.get('relationship'). value !==''">{{dependentMappingList.get('relationship').value}}</span>
                   </button>
@@ -70,7 +70,7 @@
             <div class="flex-col-7">
               <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].gender.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnGender" placement="top-right">
-                  <button type="button" class="btn btn-dropdown" id="dropdownGender" ngbDropdownToggle>
+                  <button type="button" class="btn btn-dropdown" id="dropdownGender" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1 >
                     <span class="grey-text" *ngIf="dependentMappingList.get('gender').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                     <span *ngIf="dependentMappingList.get('gender').value !==''">{{dependentMappingList.get('gender').value}}</span>
                   </button>
@@ -92,9 +92,9 @@
               <div class="datepicker-control datepicker-upside">
                 <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !dependentMappingList.get('dateOfBirth').valid && submitted}">
                   <input readonly (click)="d.toggle()" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="dateOfBirth"
-                    name="dp" ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB">
+                    name="dp" ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB"  appComprehensiveViewMode="{{viewMode}}" mode=1 >
                   <div class="input-group-append">
-                    <button (click)="d.toggle()" class="btn btn-primary" type="button" id="moDpdnt2CalndrDob">
+                    <button (click)="d.toggle()" class="btn btn-primary" type="button" id="moDpdnt2CalndrDob"  appComprehensiveViewMode="{{viewMode}}" mode=1 >
                       <img class="date-picker-image--valid" id="myProfileFormImg1" *ngIf="dependentMappingList.get('dateOfBirth').valid || !submitted"
                         src="./assets/images/calendar-normal.svg" />
                       <img class="date-picker-image--invalid" id="myProfileFormImg1" *ngIf="!dependentMappingList.get('dateOfBirth').valid && submitted"
@@ -114,7 +114,7 @@
             <div class="flex-col-7">
               <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].nation.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnNationality" placement="top-right">
-                  <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle>
+                  <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle  appComprehensiveViewMode="{{viewMode}}" mode=1 >
                     <span class="grey-text" *ngIf="dependentMappingList.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
                     <span *ngIf="dependentMappingList.get('nation').value !==''">{{dependentMappingList.get('nation').value}}</span>
                   </button>
@@ -132,13 +132,14 @@
         <!--Form content /-->
       </div>
       <!--Add dependant-->
-      <div *ngIf="myDependantForm['controls'].dependentMappingList['controls'].length < 5" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
+      <div *ngIf="!this.viewMode && myDependantForm['controls'].dependentMappingList['controls'].length < 5" (click)="addDependant()"><div class="add-dependant-icon" id="moDpdnt2AddDpdntLbl">Add
         Dependant</div></div>
       <!--Add dependant /-->
       <!--Footer button-->
       <div class="footer-cta">  
     <button type="button" (click)="goToNext(myDependantForm)" class="btn btn-primary width100"
-      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}
+      id="moDpdnt2BtnFooter">{{
+        (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
     </button>
   </div>
   <!--Footer button /-->

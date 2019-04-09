@@ -108,5 +108,6 @@ export const COMPREHENSIVE_CONST = {
             SPARE_CASH_EARN_SPEND_PERCENT: 0.75,
             SPARE_CASH_ANNUAL_PERCENT: 0.50
         }
-    }
+    },
+    PAY_OFF_YEAR: 50
 };

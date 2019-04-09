@@ -44,6 +44,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
@@ -55,6 +56,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
     this.pageId = this.route.routeConfig.component.name;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.dependantDetails = [];
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
@@ -179,28 +181,31 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
 
-    if (this.validateDependantForm(form)) {
-      form.value.dependentMappingList.forEach((dependant: any, index) => {
-        form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-        form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
-      });
-      if (!form.pristine) {
-        this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
-        this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
-        form.value.hasDependents = this.hasDependant;
-        this.loaderService.showLoader({ title: 'Saving Details' });
-        this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
-          this.loaderService.hideLoader();
-          this.comprehensiveService.setHasDependant(true);
-          this.comprehensiveService.setMyDependant(data.objectList);
-          this.comprehensiveService.clearEndowmentPlan();
-          this.comprehensiveService.setEndowment(null);
+    if (!this.viewMode) {
+      if (this.validateDependantForm(form)) {
+        form.value.dependentMappingList.forEach((dependant: any, index) => {
+          form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
+          form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
+        });
+        if (!form.pristine) {
+          this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
+          this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
+          form.value.hasDependents = this.hasDependant;
+          this.loaderService.showLoader({ title: 'Saving Details' });
+          this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
+            this.loaderService.hideLoader();
+            this.comprehensiveService.setHasDependant(true);
+            this.comprehensiveService.setMyDependant(data.objectList);
+            this.comprehensiveService.clearEndowmentPlan();
+            this.comprehensiveService.setEndowment(null);
+            this.goToNextPage();
+          }));
+        } else {
           this.goToNextPage();
-        }));
-      } else {
-        this.goToNextPage();
+        }
       }
-
+    } else {
+      this.goToNextPage();
     }
 
   }
@@ -209,8 +214,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     let hasChildDependant = false;
     this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ?
-21 : 19;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ?21 : 19;
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;
@@ -245,3 +249,4 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
 }
+

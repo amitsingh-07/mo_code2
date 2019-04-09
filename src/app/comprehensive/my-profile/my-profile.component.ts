@@ -43,6 +43,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     genderDisabled = false;
     myProfileShow = true;
     DOBAlert = false;
+    viewMode: boolean;
     hospitalPlanList: IHospitalPlanList[];
     menuClickSubscription: Subscription;
     public showToolTip = false;
@@ -85,6 +86,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.buildProfileForm();
+        this.viewMode = this.comprehensiveService.getViewableMode();
     }
 
     ngOnInit() {
@@ -121,7 +123,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             }, 1000);
         }
     }
-
     checkRedirect() {
         const redirectUrl = this.signUpService.getRedirectUrl();
         if (redirectUrl) {
@@ -172,22 +173,26 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
 
     goToNext(form: FormGroup) {
-
-        if (this.validateMoGetStrdForm(form)) {
-            form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
-            form.value.firstName = this.userDetails.firstName;
-            this.comprehensiveService.setMyProfile(form.value);
-            if (!form.pristine) {
-                this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                    cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
-                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+        if (this.viewMode) {
+            this.comprehensiveService.setProgressToolTipShown(true);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+        } else {
+            if (this.validateMoGetStrdForm(form)) {
+                form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
+                form.value.firstName = this.userDetails.firstName;
+                this.comprehensiveService.setMyProfile(form.value);
+                if (!form.pristine) {
+                    this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+                        const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                        cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
+                        cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                        this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                    });
+                } else {
+                    this.comprehensiveService.setProgressToolTipShown(true);
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
-                });
-            } else {
-                this.comprehensiveService.setProgressToolTipShown(true);
-                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                }
             }
         }
     }
@@ -228,3 +233,4 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         return true;
     }
 }
+

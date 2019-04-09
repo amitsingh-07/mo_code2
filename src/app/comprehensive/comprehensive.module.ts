@@ -16,6 +16,7 @@ import { ComprehensiveComponent } from './comprehensive/comprehensive.component'
 import { SharedModule } from '../shared/shared.module';
 import { NgbDateCustomParserFormatter } from '../shared/utils/ngb-date-custom-parser-formatter';
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
+import { ComprehensiveViewModeDirective } from './comprehensive-view-mode.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
@@ -75,7 +76,8 @@ export function createTranslateLoader(http: HttpClient) {
     InsurancePlanComponent,
     ResultComponent,
     EnquiryComponent,
-    DashboardComponent
+    DashboardComponent,
+    ComprehensiveViewModeDirective
     ],
     providers: [NgbDateCustomParserFormatter]
 
