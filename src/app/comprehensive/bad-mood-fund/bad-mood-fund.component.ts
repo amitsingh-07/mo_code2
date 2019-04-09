@@ -10,7 +10,7 @@ import { ApiService } from '../../shared/http/api.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { HospitalPlan } from '../comprehensive-types';
+import { HospitalPlan, IHospitalPlanList } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -34,7 +34,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   downOnLuck: HospitalPlan;
   maxBadMoodFund: number;
   hasBadMoodFund: boolean;
-  hospitalPlanList: any[];
+  hospitalPlanList: IHospitalPlanList[];
   isFormValid = false;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -67,8 +67,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-  
+
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -78,6 +77,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.totalAnnualIncomeBucket = this.SliderValue * 12;
   }
   ngOnInit() {
+    this.downOnLuck = this.comprehensiveService.getDownOnLuck();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -92,9 +92,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.downOnLuck.hospitalPlanId) {
       this.isFormValid = true;
     }
-    this.apiService.getHospitalPlanList().subscribe((data) => {
-      this.hospitalPlanList = data.objectList; // Getting the information from the API
-    });
+
+    this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
     this.comprehensiveService.hasBadMoodFund();
     this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
       - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
@@ -104,6 +103,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
     }
     this.SliderValue = this.downOnLuck ? this.downOnLuck.badMoodMonthlyAmount : 0;
+
   }
 
   ngAfterViewInit() {
