@@ -408,7 +408,12 @@
         "INVESTMENT_PROPERTIES_TITLE": "Investment Properties",
         "INVESTMENT_PROPERTIES_MESSAGE": "Property that you purchased with the purpose expectation of earning a return, either through the future resale of the property, rental income or both.",
         "OTHER_PROPERTIES_TITLE": "Other Properties",
-        "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate."        
+        "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate.",
+        "OTHER_ASSETS_TITLE" :"Other Assets",
+        "OTHER_ASSETS_MESSAGE":"Content Will be Updated",
+        "OTHER_INVESTMENT_TITLE":"Other Investments",
+        "OTHER_INVESTMENT_MESSAGE":"Content Will be updated"
+
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
@@ -432,9 +437,9 @@
         "HOME_LOAN_OUTSTANDING_TITLE": "Home Loan Outstanding",
         "HOME_LOAN_OUTSTANDING_MESSAGE": "This is the total outstanding loan for the home you live in that has yet to be paid off, not the monthly instalment.",
         "OTHER_LOAN_TITLE": "Other Loans",
-        "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, car loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
+        "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
-        "OTHER_PROPERTY_LOAN_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car.",
+        "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "CAR_LOANS_TITLE": "Car Loans",
         "CAR_LOANS_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car."
       },
