@@ -81,7 +81,7 @@
 }
 
 .white-bg {
-  background: #FFF
+  background: $white-color;
 }
 
 .mt0 {
@@ -179,6 +179,10 @@
 
 .ml55 {
   margin-left: 55px !important;
+}
+
+.mr0 {
+  margin-right: 0 !important;
 }
 
 .mr5 {

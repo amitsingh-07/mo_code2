@@ -59,9 +59,6 @@ color: $dark-teal-color;
         font-size: 16px;
         padding-bottom: 16px;
     }
-    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
-        font-size:16px;
-    }
     .form-group-with-bg{
         padding:0px;
     }
@@ -169,25 +166,11 @@ color: $dark-teal-color;
     width: 117px;
     height: 112px;
 }
-.income-bucket-panel {
-    text-align: center;
-    &__img {
-        padding: 14px 0 20px 0;
-    }
-    &__desc {
-        padding-bottom: 16px;
-    }
-    &__value {
-        padding-bottom: 30px;
-        font-family: $muli-bold;
-        font-size: 24px;
-    }
 .footer-notes{
     background: $btn-primary-backgrnd-color;
 }
 .dividend-icon .help-icon{
     top:10px!important;
-}
 }
 .custom-dd {
     border-radius: 6px;

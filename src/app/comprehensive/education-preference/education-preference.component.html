@@ -1,12 +1,17 @@
+<!--Container fluid-->
 <div class="container-fluid comprehensive max-width--1024 ">
+  <!--Step indicator-->
   <div class="step-indicator-container" id="moDpdnt2StepIndctr">
     <app-step-indicator [count]="5" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
   </div>
-  <header class="dependant-title mt40">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</header>
+  <!--Step indicator /-->
+  <!--Page sub-heading-->
+  <div class="comprehensive__page-sub-heading mt30 pb0">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page form-->
   <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
       <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm['controls'].preference['controls']; let i = index;">
       <div class="form-group-with-bg mt20" [formGroupName]="i">
-        
         <!--Form Header-->
         <div class="form-group-with-bg--header" >
             <div class="flex-row">
@@ -16,7 +21,6 @@
               </div> 
             </div>
           </div>
-  
           <!--Form Content-->
           <div class="form-group-with-bg--content">
             <div class="flex-row">
@@ -59,12 +63,16 @@
                         </div>
                       </div>
                     </div>
-            </div>
+                </div>
             </div>
           </div>
       </div>
       </div>
-        <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100  mt30 mb50"
+      <div class="footer-cta"> 
+        <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100"
         >{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+      </div>
   </form>
+  <!--Page form /-->
 </div>
+<!--Container fluid /-->
