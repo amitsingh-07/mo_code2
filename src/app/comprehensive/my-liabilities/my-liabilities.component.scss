@@ -12,46 +12,30 @@ $grey-color-notes: #9f9f9f;
 }
 .with-help-icon{
     display:flex;
-    align-items: flex-end;
+    justify-content: space-between;
     position: relative;        
-    margin-right: 10px;
-    position: relative;
     //font-size: 18px;
-    .help-icon {
-      
+    .help-icon {  
         background: url("/assets/images/tool-help-icon.svg") no-repeat;
-        width: 40px;
-        height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
-        position: absolute;
-        left: 93%;
+        //position: absolute;
+        right: 0;
         top: 5px;
     }    
 }
 .delete-icon {      
     background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
-    width: 40px;
-    height: 20px;
     cursor: pointer;
     background-repeat: no-repeat;
-    position: absolute;
-    left: 95%;
+    //position: absolute;
+    right: 0;
+    margin-left: 10px;
     top: 5px;
 } 
 .comprehensive {
-    .dependant-title {
-        font-size: 18px;       
-    }
-    .dependant-desc {
-        font-size: 16px;
-        padding-bottom: 16px;
-    }
     .liabilities-field .btn-outline-primary{
         color:$teal-color;
-    }
-    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
-        font-size:16px;
     }
     .form-group-with-bg{
         padding:0px;
@@ -102,28 +86,16 @@ $grey-color-notes: #9f9f9f;
 .bucket-notes-dollar{
     font-size:20px;
 }
-.income-bucket-panel {
-    text-align: center;
-    &__img {
-        padding: 14px 0 20px 0;
-    }
-    &__desc {
-        padding-bottom: 16px;
-    }
-    &__value {
-        padding-bottom: 30px;
-        font-family: $muli-bold;
-        font-size: 24px;
-    }
-}
 .both-icon{    
     .help-icon {
         top:3px!important;
-        left: 80% !important;
+        right: 0 !important;
+        width: 20px;
     }
     .delete-icon {
         top:3px!important;        
-        left: 95% !important;
+        right: 0 !important;
+        margin-left: 10px;
     }
     .form-group-with-bg--content-label{
         color:$black-color;

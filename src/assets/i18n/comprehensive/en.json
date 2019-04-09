@@ -304,14 +304,14 @@
     },
 
     "DEPENDANT_EDUCATION_SELECTION": {
-      "TITLE": "Do you need to save up for any of your children's education ?",
+      "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "whose education you would like to fund?",
       "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
       "NO_DESC": "Select which child you will like to cover for."
     },
 
     "RSP": {
-      "TITLE": "Do you have any Regular Unit Trust Saving Plans(RSP)?",
+      "TITLE": "Do you have any Regular Unit Trust Saving Plans (RSP)?",
       "HEADER": "Regular Saving Plan",
       "OTHER": "Other ",
       "ADD_RSP": "Add Other Regular Saving Plan",
@@ -500,9 +500,9 @@
       "DESC":"We are analysing your needs using proprietary models now…",
       "ABOUT":"Your report will be ready in a few mins. Once the report is ready, we will inform you via your email ",
       "STEP_TITLE":"What’s Next?",
-      "STEP_1":"Keep a lookout of your mail box! You will be notified once your report is ready!",
-      "STEP_2":"Choose if you want MoneyOwl advisor to explain your report",
-      "STEP_3":"Meet your advisor to customise and implement  financial plan.",
+      "STEP_1":"Keep a lookout for our notification mail!",
+      "STEP_2":"Set up an appointment with a MoneyOwl client adviser to go through your report.",
+      "STEP_3":"Customise and implement your financial plan with your adviser.",
       "DASHBOARD":"Dashboard",
        "TOOLTIP_TITLE":"Sorry, you are unable to access the previous page.",
        "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."

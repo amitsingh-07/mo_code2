@@ -1,16 +1,18 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+  <!--Step indicator-->
   <div class="step-indicator-container">
     <app-step-indicator [count]="6" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
   </div>
-  <div class="title mt40">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
-  <div class="desc">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
+  <!--Step indicator /-->
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
+  <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
   <div class="text-center mt20 mb20"><img  src="./assets/images/{{ bucketImage }}"/></div>
-  <h6>{{'CMP.YOUR_FINANCES.TITLE' | translate}}</h6>
-  <p>{{'CMP.YOUR_FINANCES.DESC' | translate}}</p>
-  <div class="col-lg-5 col-md-6 flex--pad-mt-reset">
+  <div class="comprehensive__page-sub-heading-big">{{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
+  <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.DESC' | translate}}</div>
+  <!--Page form-->
     <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
         <div class="form-group-with-bg">
-
         <div class="form-group-with-bg--header">
           <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span class="help-icon" (click)="showToolTipModal('TITLE','DESCRIPTION')"></span></div>
         </div>
@@ -35,13 +37,11 @@
                 </div>
             </div>
           </div>
-         
         </div>
-       
     </div>
-    <h6> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</h6>
-    <p>{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</p>
-    <div class="form-group mb0 flex-col flex__box--sm-horz">
+    <div class="comprehensive__page-sub-heading-big"> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</div>
+    <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</div>
+    <div class="form-group mb0 flex-col flex__box--sm-horz mrg-minus10">
     <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
         <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlanId"
           formControlName="hospitalPlanId" type="radio" class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
@@ -51,12 +51,12 @@
         </label>
       </div>
      </div>
-      <div class="mb100">
-        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary mt30 width100"
+      <div class="mb100 footer-cta">
+        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary width100"
       id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.CONTINUE' | translate}}
     </button>
       </div>
       <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1"><div class="flex-col-9 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div  class="flex-col-3 text-right bucket-notes-dollar"> {{ totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
     </form>
-  </div>
+  <!--Form bg-->
 </div>

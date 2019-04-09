@@ -15,50 +15,30 @@ $grey-color-notes: #9f9f9f;
 
 .with-help-icon {
   display: flex;
-  align-items: flex-end;
-  position: relative;
-  margin-right: 10px;
+  justify-content: space-between;
   position: relative;
 
   //font-size: 18px;
   .help-icon {
-
     background: url("/assets/images/tool-help-icon.svg") no-repeat;
-    width: 40px;
-    height: 20px;
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    left: 93%;
+    right: 0;
     top: 5px;
   }
 }
 
 .delete-icon {
   background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
-  width: 40px;
-  height: 20px;
   cursor: pointer;
   background-repeat: no-repeat;
   position: absolute;
-  left: 95%;
+  right: 0;
   top: 5px;
 }
 
 .comprehensive {
-  .dependant-title {
-    font-size: 18px;
-  }
-
-  .dependant-desc {
-    font-size: 16px;
-    padding-bottom: 16px;
-  }
-
-  .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label {
-    font-size: 16px;
-  }
-
   .form-group-with-bg {
     padding: 0px;
   }
@@ -123,25 +103,6 @@ $grey-color-notes: #9f9f9f;
 .bucket-notes-dollar {
   font-size: 20px;
 }
-
-.income-bucket-panel {
-  text-align: center;
-
-  &__img {
-    padding: 14px 0 20px 0;
-  }
-
-  &__desc {
-    padding-bottom: 16px;
-  }
-
-  &__value {
-    padding-bottom: 30px;
-    font-family: $muli-bold;
-    font-size: 24px;
-  }
-}
-
 .footer-notes {
   background: $btn-primary-backgrnd-color;
 }
@@ -150,8 +111,10 @@ $grey-color-notes: #9f9f9f;
   top: 3px !important;
 }
 
-.add-invest u {
+.add-invest-link {
   color: $post-login-widget-title;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .both-icon {

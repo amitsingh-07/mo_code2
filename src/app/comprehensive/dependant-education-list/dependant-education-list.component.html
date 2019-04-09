@@ -1,21 +1,22 @@
+<!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
+    <!--Step indicator-->
     <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
-      </div>
+      <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+    </div>
+    <!--Step indicator-->
    <div class="flex-row">
      <div class="flex-col-12">
-      <div class="page-title mt40" for="name">{{
+      <div class="comprehensive__page-sub-heading mt30 pb0" for="name">{{
         'CMP.ENDOWMENT_PLAN.DESCRIPTION' | translate}}
         <span class="help-icon" (click)="showToolTipModal()"></span>
       </div>
     </div>
     </div>
-             
+  <!--Page form-->  
   <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
       <div formArrayName="endowmentPlan" class="education-support-array  mb-2" *ngFor="let educationPlan of endowmentListForm['controls'].endowmentPlan['controls']; let i = index;">
-  
         <div class="form-group-with-bg mt20" [formGroupName]="i">
-        
         <!--Form Header-->
           <div class="form-group-with-bg--header pb15" [ngClass]="{' border-all8': !educationPlan.get('endowmentPlanShow').value}">
             <div class="flex-row">
@@ -32,7 +33,6 @@
               </div> 
             </div>
           </div>
-  
           <!--Form Content-->
           <div class="form-group-with-bg--content"  [hidden]="!educationPlan.get('endowmentPlanShow').value">
             <div class="flex-row">
@@ -47,7 +47,6 @@
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="9" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0"
                   >
-                  
                 </div>
               </div>
             </div>
@@ -66,9 +65,11 @@
           </div>
       </div>
       </div>
-      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary mb50 mt30 width100"
+      <div class="footer-cta">
+      <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary width100"
       id="moDpdnt2BtnFooter"> {{  ( !endowmentSkipEnable ? 'CMP.FORM_LABEL.SAVE_AND_CONTINUE' : 'CMP.ENDOWMENT_PLAN.SKIP_ENDOWMENT_PLAN') |translate}}</button>
+      </div>
   </form>
-
-
+  <!--Page form-->
 </div>
+<!--Container fluid /-->
