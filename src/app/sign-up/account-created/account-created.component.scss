@@ -1,7 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 /*Modal styles*/
-.account-created-success-modal {
+.account-created-success-modal, .verify-mail-modal{
 .custom-modal-backdrop {
     background: $dark-teal-color;
     position: fixed;
@@ -25,6 +25,9 @@
     @include allmobiles{
       padding-top: 40px;
     }
+    &.drop-off{
+      padding-top: 85px;
+    }
   }
   .custom-modal-content {
     width: 100%;
@@ -41,6 +44,24 @@
         width: 80%;
       }
     }
+    &.drop-off{
+      width: 230px;
+      height: 143px;
+      margin-bottom: 58px;
+      @include allmobiles{
+        width: 132px;
+        height: 82px;
+        margin-bottom: 31px;
+      }
+      img{
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        @include allmobiles{
+          width: 100%;
+        }
+      }
+    }
   }
   .custom-modal--title {
     color: $white-color;
@@ -54,6 +75,13 @@
       font-size: 20px;
       letter-spacing: -0.2px;
     }
+    &.drop-off{
+      font-family: $muli-semi-bold;
+      padding-bottom: 26px;
+      @include allmobiles{
+        padding-bottom: 6px;
+      }
+    }
   }
   .custom-modal--desc {
     color: $white-color;
@@ -66,6 +94,17 @@
     @include allmobiles {
       padding: 0 30px;
     }
+    .custom-modal--sub--desc{
+      margin-top: 38px;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.16px;
+      a{
+        color: $white-color;
+        text-decoration: underline;
+        letter-spacing: -0.14px;
+      }
+    }
   }
   .btn-primary {
     width: 275px;
@@ -74,7 +113,7 @@
   .btn__footer--fixed {
     width: 100%;
   }
- }
+}
 }
 
 // will-writing

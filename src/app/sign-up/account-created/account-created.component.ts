@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
@@ -22,6 +22,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 export class AccountCreatedComponent implements OnInit {
 
   duplicateError: string;
+  emailVerified;
 
   constructor(
     private translate: TranslateService,
@@ -31,10 +32,14 @@ export class AccountCreatedComponent implements OnInit {
     private willWritingService: WillWritingService,
     private signUpService: SignUpService, private configService: ConfigService,
     private router: Router,
-    private appService: AppService) {
+    private appService: AppService,
+    private route: ActivatedRoute) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
+    });
+    this.route.queryParams.subscribe((params) => {
+      this.emailVerified = params.emailVerified;
     });
   }
   // constonts
