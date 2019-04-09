@@ -1,3 +1,5 @@
+@import '../../../variables';
+@import '../../../mixins';
 .comprehensive {
   background: #fff;
   height: 100%!important;
@@ -5,10 +7,7 @@
   .header {
     color: #066360;
     font-size: 24px;
-    font-weight: bold;
-    font-family: Muli;
-
-
+    font-family: $muli-bold;
   }
 
   .resultImg {
@@ -22,16 +21,13 @@
     &__about {
       font-size: 14px;
       color: #9f9f9f;
-      font-weight: 300;
-      font-style: italic;
-
+      font-family: $muli-italic;
     }
   }
-
   .about {
     font-size: 16px;
     color: #066360;
-    font-family: Muli;
+    font-family: $muli-regular;
 
     .email {
       font-weight: bold;
@@ -39,22 +35,38 @@
     }
   }
 
-  .steps {
+  .what-next {
     border-radius: 6px;
     background-color: #00a7a7;
     width: 100%;
-
+    padding: 30px;
+    &--title {
+      font-size: 16px;
+      font-family: $muli-bold-italic;
+      text-align: center;
+      text-decoration: underline;
+      letter-spacing: -0.16px;
+      line-height: 24px;
+      margin-bottom: 15px;
+    }
     li {
-      span {
-        font-size: 14px;
+      font-size: 14px;
+      font-family: $muli-light-italic;
+      margin-bottom: 15px;
+      &.report {
+        background: url(../../../assets/images/comprehensive/report.svg) no-repeat;
+        padding-left: 60px;
+      }
+      &.choose {
+        background: url(../../../assets/images/comprehensive/choose.svg) no-repeat;
+        padding-left: 60px;
+      }
+      &.meeting-white {
+        background: url(../../../assets/images/comprehensive/meeting-white.svg) no-repeat;
+        padding-left: 60px;
       }
     }
   }
 
-  u {
-    font-size: 16px;
-    font-weight: bold;
-    font-style: italic;
-
-  }
+ 
 }

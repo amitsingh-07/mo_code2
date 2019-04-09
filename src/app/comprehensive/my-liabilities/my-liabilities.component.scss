@@ -15,12 +15,11 @@ $grey-color-notes: #9f9f9f;
     justify-content: space-between;
     position: relative;        
     //font-size: 18px;
-    .help-icon {
-      
+    .help-icon {  
         background: url("/assets/images/tool-help-icon.svg") no-repeat;
         cursor: pointer;
         background-repeat: no-repeat;
-        position: absolute;
+        //position: absolute;
         right: 0;
         top: 5px;
     }    
@@ -29,7 +28,7 @@ $grey-color-notes: #9f9f9f;
     background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
     cursor: pointer;
     background-repeat: no-repeat;
-    position: absolute;
+    //position: absolute;
     right: 0;
     margin-left: 10px;
     top: 5px;
@@ -84,6 +83,7 @@ $grey-color-notes: #9f9f9f;
     .help-icon {
         top:3px!important;
         right: 0 !important;
+        width: 20px;
     }
     .delete-icon {
         top:3px!important;        

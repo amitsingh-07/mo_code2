@@ -3,7 +3,7 @@
     <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
   </div>
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_LIABILITIES.TITLE'|translate}}</div>
-  <div class="dcomprehensive__page-content">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
+  <div class="comprehensive__page-content">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
     <div class="income-bucket-panel__img  {{ bucketImage }}"></div>
     <div class="income-bucket-panel__content">{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</div>
@@ -45,24 +45,22 @@
           <div class="flex-col-12 mt15 ">
             <div class="with-help-icon" for="name"><u (click)="addPropertyLoan()">{{
                 'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN' | translate}}</u>
-
               <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
             </div>
           </div>
         </div>
-
         <div [hidden]="propertyLoan" class="liabilities investmentProperties">
-
           <div class="flex-row mt30">
             <div class="flex-col-12">
-              <div class="with-help-icon both-icon form-group-with-bg--content-label" for="name"><b>{{
+              <div class="with-help-icon both-icon form-group-with-bg--content-label mr0" for="name"><b>{{
                   'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN' | translate}}</b>
+                <div>
                 <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
                 <span class="delete-icon" (click)="addPropertyLoan()"> </span>
+                </div>
               </div>
             </div>
           </div>
-
           <div class="flex-row">
             <div class="flex-col-6">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' |
@@ -78,11 +76,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
@@ -110,11 +105,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
@@ -141,21 +133,19 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
     <div class='mb-10'>
-      <div class="flex-row mb-3 mt-3 ">
+      <div class="flex-row">
         <div class="flex-col-12">
-      <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary mt30 mb10 width100" id="prfBtn1">{{
+          <div class="footer-cta">
+          <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary width100" id="prfBtn1">{{
         'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
         translate}}</button>
         </div>
+        </div>
       </div>
     </div>
-
   </form>
   <div class="flex-row footer-notes btn__footer--fixed width100 p-3" id="prfBtn1">
     <div class="flex-col-9 text-left bucket-notes">{{ 'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_NOTE'|translate}}</div>

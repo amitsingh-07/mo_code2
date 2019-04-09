@@ -1172,12 +1172,12 @@ input::placeholder {
       }
       .form-group-with-bg--content-white {
           background: $white-color;
-          padding: 30px 20px;
+          padding: 20px;
           border-radius: 6px;
           &--title {
             font-size: 18px;
             font-family: $muli-semi-bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: $btn-comprehensive;
             @extend .flex;
             @extend .align-center;
@@ -1185,7 +1185,7 @@ input::placeholder {
             &--desc {
               font-size: 16px;
               font-family: $muli-regular;
-              margin-bottom: 10px;
+              margin-bottom: 15px;
               color: $btn-comprehensive;
               align-items: self-end;
               strong {
