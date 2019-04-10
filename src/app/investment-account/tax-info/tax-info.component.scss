@@ -106,8 +106,9 @@ app-tax-info {
     input::placeholder {
       color: $teal-grey-color !important;
     }
+   
     .add-tax-box {
-      padding: 30px 20px;
+      padding: 18px;
       border-radius: 6px;
       box-shadow: 0 8px 12px 0 $post-login-shadow;
       background-color: $white-color;
@@ -124,26 +125,33 @@ app-tax-info {
       font-size: 18px;
       font-weight: bold;
       color: $inline-error-border-color;
-      padding-top: 10px;
+     // padding-top: 10px;
     }
     .tax-form {
-      padding: 0px 30px 35px;
+      //padding: 0px 0px 35px;
       position: relative;
       border-radius: 6px;
-      background-color: #f4fafb;
       margin-top: 20px;
       // @include allmobiles{
       //   padding: 60px 0px 25px; 
       // }
+      .tax-lbl{
+        color: $white-color;
+        padding-top: 24px;
+        display: none;
+      }
       &:first-child {
         //padding-top: 0px;
         margin-top: 0px;
         .thumb-close-icon {
           display: none;
         }
+        .tax-lbl{
+          display: flex;
+        }
       }
       &.brdr-btm {
-        border-bottom: 1px solid $white-color;
+        //border-bottom: 1px solid $white-color;
       }
       .thumb-close-icon {
         display: none !important;
@@ -174,15 +182,18 @@ app-tax-info {
         color: #000000;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
-        padding: 25px 0;
+        padding: 25px 30px;
       }
       .widget-body{
-        padding-top: 20px;
+        padding: 20px 30px 35px;
+        background-color: #f4fafb;
         font-family: $muli-semi-bold;
         font-size: 18px;
         font-weight: 600;
         letter-spacing: -0.34px;
         color: #2d8289;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
       }
     }
     .btn__footer--fixed {
