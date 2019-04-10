@@ -832,8 +832,11 @@ export class ApiService {
   }
 
   // Resend Email Verification Link
-  resendEmailVerification() {
-
+  resendEmailVerification(payload) {
+    return this.http.post(apiConstants.endpoint.resendEmailVerification, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
 }

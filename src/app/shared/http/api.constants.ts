@@ -36,6 +36,7 @@ export let apiConstants = {
         detailCustomerSummary: 'account/account-microservice/api/getDetailedCustomerSummary',
         getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails',
         updateSelectedProducts: 'account/account-microservice/api/updateSelectedProducts',
+        resendEmailVerification: 'account/account-microservice/api/resendEmailVerification',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',

@@ -265,6 +265,9 @@ export class SignUpApiService {
   }
 
   resendEmailVerification() {
-    return this.apiService.resendEmailVerification();
+    const payload = {
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+    }
+    return this.apiService.resendEmailVerification(payload);
   }
 }
