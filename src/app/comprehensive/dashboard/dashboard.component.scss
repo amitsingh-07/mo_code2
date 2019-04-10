@@ -50,6 +50,7 @@
     }
     .btn.btn-primary{
         background: $teal-color!important;
+        margin: 0px;
     }
     .btn.btn-primary:hover{
         background: $teal-color!important;
@@ -65,6 +66,7 @@
     }
     .ft-18{
         font-size: 18px!important;
+        white-space:normal;
     }
     .ft-13{
         font-size: 13px!important;
