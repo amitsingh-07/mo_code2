@@ -26,10 +26,10 @@
               {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
             </div>
             <div class="flex-col-6">
-              <input type="text"  [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
+              <input type="text" appComprehensiveViewMode="{{viewMode}}" mode=1 [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
             </div>
             <div class="width100">
-              <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="maxBadMoodFund"
+              <nouislider [disabled]="viewMode" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="maxBadMoodFund"
                   [step]="100"></nouislider>
                 <div class="min-max-val">
                   <div class="min-val">$0<span class="min-text">Min</span></div>
@@ -43,7 +43,7 @@
     <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</div>
     <div class="form-group mb0 flex-col flex__box--sm-horz mrg-minus10">
     <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
-        <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlanId"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlanId"
           formControlName="hospitalPlanId" type="radio" class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
         <label for="hospitalPlan_{{i+1}}">
           <div class="input-label-white">{{hospitalPlanData.hospitalClass}}</div>
@@ -53,7 +53,7 @@
      </div>
       <div class="mb100 footer-cta">
         <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary width100"
-      id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.CONTINUE' | translate}}
+      id="moDpdnt2BtnFooter">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
     </button>
       </div>
       <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1"><div class="flex-col-7 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div  class="flex-col-5 text-right bucket-notes-dollar"> {{ totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>

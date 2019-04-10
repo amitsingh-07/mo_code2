@@ -220,7 +220,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-    if (this.totalSpending === 0 && this.totalBucket > 0) {
+    if (this.totalSpending <= 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
     } else if (this.totalSpending > 0 && this.calculatedSpending > 0) {
       this.bucketImage = 'middleSpend';

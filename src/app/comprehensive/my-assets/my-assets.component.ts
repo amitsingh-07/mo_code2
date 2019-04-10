@@ -45,6 +45,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   modelBtnText: string;
   showConfirmation: boolean;
   cpfFromMyInfo = false;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -63,6 +64,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
+      this.viewMode = this.comprehensiveService.getViewableMode();
     });
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
