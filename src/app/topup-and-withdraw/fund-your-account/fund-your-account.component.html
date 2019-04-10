@@ -108,11 +108,15 @@
                 {{ bankDetails.bankAccountNumber }}
               </div>
               <label>{{ 'FUND_YOUR_ACCOUNT.REFERENCE_CODE' | translate }}</label>
-              <div class="value">
-                {{ bankDetails.referenceNumber }}
+              <div class="value ref_num">
+                <u>{{ bankDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-            <p class="sub-text">{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</p>
+            
             <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
@@ -180,12 +184,15 @@
                 <img (click)="showPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
               </div>
               <label>{{ 'FUND_YOUR_ACCOUNT.REFERENCE_CODE' | translate }}</label>
-              <div class="value">
-                {{ paynowDetails.referenceNumber }}
+              <div class="value ref_num">
+                <u>{{ paynowDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-            <p class="sub-text">{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</p>
-            <!-- <div class="setup-auto-deposit">
+           <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
                 </div>

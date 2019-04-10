@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +8,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -66,7 +68,8 @@ export class DashboardComponent implements OnInit {
     public footerService: FooterService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private guideMeApiService: GuideMeApiService
+    private guideMeApiService: GuideMeApiService,
+    public modal: NgbModal
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -82,9 +85,31 @@ export class DashboardComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-      this.signUpService.setUserProfileInfo(userInfo.objectList);
-      this.userProfileInfo = this.signUpService.getUserProfileInfo();
-      this.getDashboardList();
+      if (userInfo.responseMessage.responseCode < 6000) {
+        // ERROR SCENARIO
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.serverStatus &&
+          userInfo.objectList.serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList.serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+        this.userProfileInfo = this.signUpService.getUserProfileInfo();
+        this.getDashboardList();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
 
     // Will Writing
@@ -299,6 +324,12 @@ export class DashboardComponent implements OnInit {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, 1000);
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 
 }

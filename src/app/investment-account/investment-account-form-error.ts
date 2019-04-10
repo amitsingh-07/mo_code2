@@ -85,7 +85,7 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Address Line 1',
         errorMessage:
-          'Address Line 1 should contain  alphanumeric and  Special characters.'
+          'Address Line 1 should contain alphanumeric and Special characters.'
       }
     },
     address2: {
@@ -93,7 +93,7 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
-          'Address Line 2 should contain  alphanumeric and  Special characters.'
+          'Address Line 2 should contain alphanumeric and Special characters.'
       }
     },
     floor: {
@@ -118,14 +118,14 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid mail Address Line 1',
         errorMessage:
-          'Address Line 1 should contain  alphanumeric and  Special characters in mailing address.'
+          'Address Line 1 should contain alphanumeric and Special characters in mailing address.'
       }
     },
     mailAddress2: {
       pattern: {
         errorTitle: 'Invalid mail Address Line 2',
         errorMessage:
-          'Address Line 2 should contain  alphanumeric and  Special characters in mailing address.'
+          'Address Line 2 should contain alphanumeric and Special characters in mailing address.'
       }
     },
     mailFloor: {
@@ -254,7 +254,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Full Name',
-        errorMessage: 'Full Name should not contain numbers and special characters.'
+        errorMessage: 'Enter valid Full Name'
       }
     },
     nricNumber: {
@@ -330,7 +330,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Company Name',
-        errorMessage: 'Company Name should not contain special characters.'
+        errorMessage: 'Enter valid Company Name'
       }
     },
     occupation: {
@@ -390,14 +390,14 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Address Line 1',
         errorMessage:
-          'Address Line 1  should contain  alphanumeric and  Special characters.'
+          'Address Line 1 should contain alphanumeric and Special characters.'
       }
     },
     empAddress2: {
       pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
-          'Address Line 2  should contain  alphanumeric and  Special characters.'
+          'Address Line 2 should contain alphanumeric and Special characters.'
       }
     },
     empFloor: {
@@ -555,7 +555,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid First Name',
-        errorMessage: 'Full Name should not contain numbers and special characters.'
+        errorMessage: 'Enter valid Full Name'
       }
     },
     cName: {

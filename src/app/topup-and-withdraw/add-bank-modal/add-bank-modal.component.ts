@@ -29,7 +29,7 @@ export class AddBankModalComponent implements OnInit {
     this.addBankForm = new FormGroup({
       accountHolderName: new FormControl(this.fullName, [
         Validators.required,
-        Validators.pattern(RegexConstants.SymbolAlphabets)
+        Validators.pattern(RegexConstants.NameWithSymbol)
       ]),
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [

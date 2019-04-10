@@ -92,8 +92,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
       confirmEmail: [this.formValues.email],
       password: ['', [Validators.required, ValidatePassword]],
