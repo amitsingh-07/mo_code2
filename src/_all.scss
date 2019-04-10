@@ -1749,3 +1749,37 @@ a.link-white {
 .dropdown-toggle.last::after {
   background-image: none !important;
 }
+
+// investment-account
+
+.my-info-mt66{
+  margin-top:66px;
+  @include allmobiles{
+    margin-top: 0;
+  }
+}
+.or-block{
+  padding: 25px 0 45px;
+  position: relative;
+  hr{
+    border: 2px solid #008c8c;
+    margin: 0;
+  }
+  .or-circle{
+    width: 38px;
+    height: 38px;
+    border: 5px solid #00a7a7;
+    background-color: #008c8c;
+    border-radius: 50%;
+    font-family: $muli-bold;
+    font-size: 13px;
+    letter-spacing: -0.12px;
+    color: #98dfdf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 7px;
+    left: 45%;
+  }
+}

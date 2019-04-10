@@ -60,6 +60,7 @@ app-withdrawal-payment-method {
       margin-bottom: 10px;
       align-items: center;
       justify-content: center;
+      position: relative;
       cursor: pointer;
       .selected_logo {
         display: none;
@@ -104,6 +105,11 @@ app-withdrawal-payment-method {
       width: 71px;
       height: 49px;
       margin-bottom: 19px;
+      .edit-bank{
+        position: absolute;
+        top: 24px;
+        right: 23px;
+      }
     }
     .add_account {
       align-items: center;

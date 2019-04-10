@@ -1,8 +1,14 @@
-<app-investment-title-bar></app-investment-title-bar>
-<div class="container-fluid max-width--1024 invest-web-width">
+<div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
-      <div class="col-lg-12 col-md-12">
+      <div class="col-lg-7 col-md-6 hidden-sm-md mt10">
+        <h2>Your Investment Period</h2>
+        <h6>How many years do you want to stay invested?</h6>
+        <div class="banner-image">
+          <img src="assets/images/investment-account/investment-period.svg"/>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">

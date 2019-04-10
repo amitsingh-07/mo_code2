@@ -1,17 +1,28 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="personal-info" *ngIf="optionList">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024 invest-web-width">
+    <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="9" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024 invest-web-width">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
-        <div class="col-12">
-          <app-sing-pass></app-sing-pass>
+        <div class="col-lg-6 col-md-6 hidden-sm-md">
+          <h2>Personal Information</h2>
+          <h6></h6>
+          <div class="banner-image">
+            <img src="assets/images/investment-account/investment-period.svg"/>
+          </div>
         </div>
-        <div class="col-lg-12 col-md-12">
+       
+        <div class="col-lg-6 col-md-6 my-info-mt66">
+          <div class="flex-col-12">
+            <app-sing-pass></app-sing-pass>
+          </div>
+          <div class="or-block">
+            <hr>
+            <div class="or-circle">Or</div>
+          </div>
           <form [formGroup]="invPersonalInfoForm" id="invPersonalInfoForm" name="invPersonalInfoForm">
             <div class="form-group">
               <!-- Salutation start -->

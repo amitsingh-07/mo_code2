@@ -24,6 +24,12 @@ app-personal-info {
     }
     padding-right: 15px !important;
     padding-left: 23px !important;
+
+    .banner-image{
+      img{
+        padding-top: 0;
+      }
+    }
   }
 
   #userInfoForm .col-sm-7 {
