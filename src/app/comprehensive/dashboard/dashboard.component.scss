@@ -21,12 +21,11 @@
     .form-group-with-bg .form-group-with-bg--header-label{
         font-size:20px;
         color:$teal-color;
-        font-weight: bold;
     }
     .plan-view-icon{
         font-size:16px!important;
-        font-weight: normal!important;
-        margin:1px 0 2px 0;
+        font-family: $muli-regular;
+        margin:4px 0 2px 0;
     }
     .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
         font-size:15px;
@@ -92,5 +91,8 @@
     }    
     .overlay-bg{
         position: relative;
+    }
+    .form-group-with-bg--header {
+        padding: 15px 20px 5px;
     }
 }

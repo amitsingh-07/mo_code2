@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
   }
   goToEditComprehensivePlan(viewMode: boolean) {
     this.comprehensiveService.setViewableMode(viewMode);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
