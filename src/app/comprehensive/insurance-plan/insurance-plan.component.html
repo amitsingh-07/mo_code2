@@ -91,13 +91,13 @@
           </div>
         </div>
         <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value === '0'" class="flex-row mb20">
-          <div class="flex-col-5">
+          <div class="flex-col-6 pr5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}
               </div>
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class="pr0 flex-col-6">
             <div class="form-control form-control-right">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput formControlName="life_protection_amount"
@@ -141,13 +141,13 @@
           </div>
         </div>
         <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === '0'" class="flex-row">
-          <div class="flex-col-5">
+          <div class="flex-col-6 pr5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
               </div>
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class="pr0 flex-col-6">
             <div class="form-control">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4"
@@ -165,13 +165,13 @@
             (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"></div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-5">
+          <div class="flex-col-6 pr5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
               </div>
             </label>
           </div>
-          <div class="pr0 flex-col-7">
+          <div class="pr0 flex-col-6">
             <div class="form-control">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4"
@@ -194,13 +194,13 @@
                   src="../../../assets/images/comprehensive/insurance-plan/critical-illness.svg" alt=""></div>
             </div>
             <div class="flex-row">
-              <div class="flex-col-5">
+              <div class="flex-col-6 pr5">
                 <label for="name" id="myDependantFormLb1">
                   <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
                   </div>
                 </label>
               </div>
-              <div class="pr0 flex-col-7">
+              <div class="pr0 flex-col-6">
                 <div class="form-control">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="4"
@@ -225,13 +225,13 @@
                   src="../../../assets/images/comprehensive/insurance-plan/disability-income.svg" alt=""></div>
             </div>
             <div class="flex-row">
-              <div class="flex-col-5">
+              <div class="flex-col-6 pr5">
                 <label for="name" id="myDependantFormLb1">
                   <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
                   </div>
                 </label>
               </div>
-              <div class="pr0 flex-col-7">
+              <div class="pr0 flex-col-6">
                 <div class="form-control form-control-right">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput

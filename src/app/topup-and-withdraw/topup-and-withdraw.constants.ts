@@ -21,6 +21,9 @@ export let TOPUPANDWITHDRAW_CONFIG = {
     CASH_TO_BANK_TYPE_ID: 3,
     DEFAULT_WITHDRAW_MODE: 'BANK'
   },
+  STATEMENT: {
+    STATEMENT_BASE_PATH: window.location.origin + '/assets/docs/portfolio/transaction/'
+  },
   FUND_YOUR_ACCOUNT: {
     ONETIME: 'ONETIME',
     MONTHLY: 'MONTHLY',

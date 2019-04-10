@@ -22,14 +22,14 @@ import { ComprehensiveService } from './../comprehensive.service';
   styleUrls: ['./bad-mood-fund.component.scss']
 })
 export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
-  SliderValue = 0;
+  sliderValue = 0;
   bucketImage: string;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
   pageSubTitle: string;
-  totalAnnualIncomeBucket = 0;
+  totalAnnualIncomeBucket: number;
   hospitalPlanForm: FormGroup;
   downOnLuck: HospitalPlan;
   maxBadMoodFund: number;
@@ -74,8 +74,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   onSliderChange(value): void {
-    this.SliderValue = value;
-    this.totalAnnualIncomeBucket = this.SliderValue * 12;
+    this.sliderValue = value;
+    this.totalAnnualIncomeBucket = this.sliderValue * 12;
   }
   ngOnInit() {
     this.downOnLuck = this.comprehensiveService.getDownOnLuck();
@@ -92,7 +92,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ?
         this.downOnLuck.badMoodMonthlyAmount : 0, Validators.required)
     });
-    this.SliderValue = this.hospitalPlanForm.value.badMoodMonthlyAmount ? this.hospitalPlanForm.value.badMoodMonthlyAmount : 0;
+    this.sliderValue = this.hospitalPlanForm.value.badMoodMonthlyAmount ? this.hospitalPlanForm.value.badMoodMonthlyAmount : 0;
     if (this.downOnLuck.hospitalPlanId) {
       this.isFormValid = true;
     }
@@ -110,7 +110,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
-      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ?  this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
 
     }
 
@@ -118,7 +118,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.hasBadMoodFund) {
-      this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
   }
   validateForm(hospitalPlan) {
@@ -138,7 +138,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
     } else {
       if (this.isFormValid) {
-        form.value.badMoodMonthlyAmount = this.SliderValue;
+        form.value.badMoodMonthlyAmount = this.sliderValue;
         form.value.hospitalClass = this.downOnLuck.hospitalClass;
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
         this.comprehensiveService.setDownOnLuck(form.value);
@@ -166,3 +166,4 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
+
