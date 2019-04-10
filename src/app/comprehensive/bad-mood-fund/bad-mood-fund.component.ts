@@ -29,7 +29,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   pageId: string;
   menuClickSubscription: Subscription;
   pageSubTitle: string;
-  totalAnnualIncomeBucket = 0;
+  totalAnnualIncomeBucket: number;
   hospitalPlanForm: FormGroup;
   downOnLuck: HospitalPlan;
   maxBadMoodFund: number;
@@ -109,7 +109,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
-      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount * 12;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ?  this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
 
     }
 
@@ -117,7 +117,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.hasBadMoodFund) {
-      this.ciMultiplierSlider.writeValue(this.downOnLuck.badMoodMonthlyAmount);
+      this.ciMultiplierSlider.writeValue(this.SliderValue);
     }
   }
   validateForm(hospitalPlan) {
