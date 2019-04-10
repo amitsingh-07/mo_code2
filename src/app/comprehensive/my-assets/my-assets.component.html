@@ -121,7 +121,7 @@
             </div>
           </div>
         </div>
-        <div (click)="openModal()" class="auto-fill-cpf p-2">
+        <div (click)="openModal()" class="auto-fill-cpf p-2" appComprehensiveViewMode="{{viewMode}}" mode=1>
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
           <img class="auto-fill-logo" src="/assets/images/comprehensive/myinfo-logo.svg">
         </div>
@@ -156,7 +156,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row investmentProperties add-invest mb0" [hidden]="!myInvestmentProperties">
+        <div class="flex-row investmentProperties add-invest mb0" [hidden]="!myInvestmentProperties" *ngIf="!viewMode" >
           <div class="flex-col-12 mt15 mb0">
             <div class="with-help-icon" for="name"><span class="add-invest-link" (click)="addOtherInvestment()">{{
                 'CMP.MY_ASSETS.ADD_INVESTMENT_PROPERTIES' | translate}}</span>
@@ -168,7 +168,7 @@
 
         <div class='investmentProperties' [hidden]="myInvestmentProperties">
 
-          <div class="flex-row mt20">
+          <div class="flex-row mt20" >
             <div class="flex-col-12 both-icon with-help-icon">
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
@@ -176,7 +176,7 @@
 
                 <span class="help-icon"
                   (click)="showToolTipModal('INVESTMENT_PROPERTIES_TITLE','INVESTMENT_PROPERTIES_MESSAGE')"></span>
-                <span class="delete-icon" (click)="addOtherInvestment()"> </span>
+                <span *ngIf="!viewMode"  class="delete-icon" (click)="addOtherInvestment()"> </span>
 
               </div>
             </div>
@@ -224,7 +224,7 @@
                 'CMP.MY_ASSETS.OTHER_INVESTMENT' | translate}} {{i}}
                 <span class="help-icon"
                   (click)="showToolTipModal('OTHER_INVESTMENT_TITLE','OTHER_INVESTMENT_MESSAGE')"></span>
-                <span class="delete-icon" (click)="removeInvestment(i)"> </span>
+                <span *ngIf="!viewMode" class="delete-icon" (click)="removeInvestment(i)"> </span>
               </div>
             </div>
           </div>
@@ -239,7 +239,7 @@
                 <div class="dropdown-control"
                   [ngClass]="{'inline-error': submitted && otherInvestment['controls'].typeOfInvestment.invalid}">
                   <div ngbDropdown id="investTypeDropDown">
-                    <button type="button" class="btn btn-dropdown" id="dropdownsInvestType" ngbDropdownToggle>
+                    <button type="button" class="btn btn-dropdown" id="dropdownsInvestType" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1> 
                       <span *ngIf="!investType[i] || investType[i] === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                       <span *ngIf=" investType[i] !==''">{{investType[i]}}</span>
                     </button>
@@ -271,7 +271,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row investmentProperties add-invest mb0">
+        <div class="flex-row investmentProperties add-invest mb0" *ngIf="!viewMode" >
           <div class="flex-col-12 mt15 mb0">
             <div class="with-help-icon" for="name"><span class="add-invest-link" (click)="addInvestment()">{{
                 'CMP.MY_ASSETS.ADD_INVESTMENT' | translate}}</span>
@@ -291,7 +291,7 @@
                 class="form-group-with-bg--header-sub-label">{{'CMP.MY_ASSETS.OTHER_ASSETS_HINT'
                 | translate}}</div>
             </div>
-            <span class="help-icon" (click)="showToolTipModal('OTHER_ASSETS_TITLE','OTHER_ASSETS_MESSAGE')"></span>
+            
           </div>
         </div>
       </div>
@@ -320,8 +320,7 @@
         <div class="flex-col-12">
           <button type="button" (click)="goToNext(myAssetsForm)" class="btn btn-primary width100 mt30 mb10"
             id="prfBtn1">{{
-          'CMP.FORM_LABEL.SAVE_AND_CONTINUE' |
-          translate}}</button>
+              (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}</button>
         </div>
       </div>
     </div>

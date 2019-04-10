@@ -1030,7 +1030,7 @@ export class ComprehensiveService {
     * check Number
     */
     getValidAmount(thisValue) {
-        if (!isNaN(thisValue)) {
+        if (thisValue && thisValue !== null && !isNaN(thisValue)) {
             return toInteger(thisValue);
         } else {
             return 0;
