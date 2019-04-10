@@ -26,7 +26,7 @@ export class MyInfoService {
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
-  purpose = 'demonstrating MyInfo APIs';
+  purpose = 'financial planning and advisory.';
   redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
   myInfoValue: any;

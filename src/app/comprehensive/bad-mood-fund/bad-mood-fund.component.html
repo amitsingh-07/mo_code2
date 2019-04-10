@@ -26,7 +26,7 @@
               {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
             </div>
             <div class="flex-col-6">
-              <input type="text"  [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="SliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
+              <input type="text"  [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="sliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
             </div>
             <div class="width100">
               <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="maxBadMoodFund"
