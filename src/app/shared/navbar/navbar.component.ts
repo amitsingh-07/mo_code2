@@ -8,6 +8,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
   TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
@@ -19,7 +20,6 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-navbar',
@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
+  closeIcon = false;
   showLabel: any;
 
   // Navbar Configurations
@@ -149,6 +150,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
       });
+    this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });
@@ -340,6 +342,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.router.url === EDIT_PROFILE_PATH
       );
   }
+
   clearNotifications() {
     this.navbarService.clearNotification();
   }
@@ -386,3 +389,4 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.browserError = false;
   }
 }
+
