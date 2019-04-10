@@ -127,6 +127,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
+    if (!this.viewMode) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
@@ -136,7 +137,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
-
+    }
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -176,15 +177,15 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     }
 
     this.myAssetsForm = this.formBuilder.group({
-      cashInBank: [this.assetDetails ? this.assetDetails.cashInBank : '', []],
-      savingsBonds: [this.assetDetails ? this.assetDetails.savingsBonds : '', []],
-      cpfOrdinaryAccount: [this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', []],
-      cpfSpecialAccount: [this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', []],
-      cpfMediSaveAccount: [this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', []],
-      homeMarketValue: [this.assetDetails ? this.assetDetails.homeMarketValue : '', []],
-      investmentPropertiesValue: [this.assetDetails ? this.assetDetails.investmentPropertiesValue : '', []],
+      cashInBank: [{ value: this.assetDetails ? this.assetDetails.cashInBank : '', disabled: this.viewMode }, []],
+      savingsBonds: [{ value: this.assetDetails ? this.assetDetails.savingsBonds : '', disabled: this.viewMode }, []],
+      cpfOrdinaryAccount: [{ value: this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', disabled: this.viewMode }, []],
+      cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
+      cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
+      homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
+      investmentPropertiesValue: [{ value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '', disabled: this.viewMode }, []],
       assetsInvestmentSet: this.formBuilder.array(otherInvestFormArray),
-      otherAssetsValue: [this.assetDetails ? this.assetDetails.otherAssetsValue : '', []]
+      otherAssetsValue: [{ value: this.assetDetails ? this.assetDetails.otherAssetsValue : '', disabled: this.viewMode }, []]
     });
   }
   addOtherInvestment() {
@@ -211,14 +212,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   buildInvestmentForm(inputParams, totalLength) {
     if (totalLength > 0) {
       return this.formBuilder.group({
-        typeOfInvestment: [inputParams.typeOfInvestment, [Validators.required]],
-        investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+        typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, [Validators.required]],
+        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '', disabled: this.viewMode },
         [Validators.required, Validators.pattern(this.patternValidator)]]
       });
     } else {
       return this.formBuilder.group({
-        typeOfInvestment: [inputParams.typeOfInvestment, []],
-        investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '', []]
+        typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
+        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '', disabled: this.viewMode }, []]
       });
     }
   }
@@ -268,25 +269,29 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
-    if (this.validateAssets(form)) {
-      const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
-      if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
-        this.assetDetails = form.value;
-        this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
-        this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
-        this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
-          this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
-          delete this.assetDetails['investmentAmount_' + index];
-        });
-        this.comprehensiveService.setMyAssets(this.assetDetails);
-        this.loaderService.showLoader({ title: 'Saving' });
-        this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
-          this.loaderService.hideLoader();
+    if (this.viewMode) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+    } else {
+      if (this.validateAssets(form)) {
+        const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
+        if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
+          this.assetDetails = form.value;
+          this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
+          this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
+          this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+          this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
+            this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
+            delete this.assetDetails['investmentAmount_' + index];
+          });
+          this.comprehensiveService.setMyAssets(this.assetDetails);
+          this.loaderService.showLoader({ title: 'Saving' });
+          this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
+            this.loaderService.hideLoader();
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+          });
+        } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
-        });
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        }
       }
     }
   }
