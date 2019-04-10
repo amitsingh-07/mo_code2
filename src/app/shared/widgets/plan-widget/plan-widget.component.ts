@@ -111,7 +111,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
 
       // For Whole Life
-      if (this.data.premium.durationName.indexOf('Whole Life') > -1) {
+      if (this.data.premium.durationName.indexOf('Whole Life') > -1 && this.type !== 'hospital plan') {
         this.highlights.push({ title: 'Coverage:', description: this.currency.transform(this.data.premium.sumAssured, 'USD', 'symbol', '1.0-0') + ` + Variable Bonus.` });
       }
 
