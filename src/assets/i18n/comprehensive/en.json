@@ -205,7 +205,7 @@
       "OTHER_ANNUAL_INCOME": "Other Annual Income",
       "ADD_MONTHLY_INCOME": "Add other monthly income",
       "ADD_MONTHLY_INCOME_NOTE":"You have added all types of income",
-      "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+      "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE":"You have added all types of annual income",
       "BUCKET_NOTE":"Your annual income bucket",
       "EMPLOYMENT_TYPE_LIST": [{
@@ -373,7 +373,7 @@
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "e.g. Jewellary",
+      "OTHER_ASSETS_HINT": "e.g. Jewellery",
       "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
@@ -551,7 +551,10 @@
       "WILL_WRITING": "Will Writing",
       "WILL_WRITING_DESC": "Write a legally-binding Will online, anytime & anywhere!",
       "WILL_WRITING_START": "Start Writing",
-      "WILL_WRITING_ESTIMATED": "Estimated 10 mins"
+      "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
+      "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
+      "DEFAULT_START": "Start Planning",
+      "DEFAULT_ESTIMATED": "Estimated 20 mins"
     }
   }
 }
