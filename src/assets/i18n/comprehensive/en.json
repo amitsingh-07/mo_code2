@@ -373,7 +373,7 @@
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "e.g. Jewellary",
+      "OTHER_ASSETS_HINT": "e.g. Jewellery",
       "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
