@@ -20,7 +20,7 @@ import {
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IChildEndowment,
@@ -530,6 +530,29 @@ export class ComprehensiveService {
         return sum.toFixed();
     }
 
+    /**
+     * Get the previous url to navigate.
+     *
+     * @param {string} currentUrl
+     * @returns {string}
+     * @memberof ComprehensiveService
+     */
+    getPreviousUrl(currentUrl: string): string {
+        const urlList = this.getComprehensiveUrlList();
+        const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
+        if (currentUrlIndex > 0) {
+            return urlList[currentUrlIndex - 1];
+        }
+        return COMPREHENSIVE_BASE_ROUTE;
+    }
+
+    /**
+     * Check whether the current URL is accessible if not, return the next accessible URL.
+     *
+     * @param {string} url
+     * @returns {string}
+     * @memberof ComprehensiveService
+     */
     // tslint:disable-next-line:cognitive-complexity
     getAccessibleUrl(url: string): string {
         const urlList = this.getComprehensiveUrlList();
