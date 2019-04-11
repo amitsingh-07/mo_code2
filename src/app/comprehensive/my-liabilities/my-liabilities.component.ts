@@ -41,6 +41,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled =  false;
   bucketImage: string;
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -51,6 +52,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
@@ -107,30 +109,38 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   buildMyLiabilitiesForm() {
     this.myLiabilitiesForm = this.formBuilder.group({
-      homeLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '', []],
-      otherPropertyLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount : ''],
-      otherLoanOutstandingAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount : '', []],
-      carLoansAmount: [this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '', []],
+      homeLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '',
+                                  disabled: this.viewMode}, []],
+      otherPropertyLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
+                                          : '', disabled: this.viewMode}],
+      otherLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount : '',
+                                  disabled: this.viewMode}, []],
+      carLoansAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '',
+                      disabled: this.viewMode}, []],
 
     });
   }
   goToNext(form: FormGroup) {
-    if (this.validateLiabilities(form)) {
-      const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
+    if ( this.viewMode ) {
+      this.showSummaryModal();
+    } else {
+      if (this.validateLiabilities(form)) {
+        const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
 
-      if (!form.pristine || Util.isEmptyOrNull(liabilitiesData)) {
-        this.liabilitiesDetails = form.value;
-        this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
-        this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
-        this.loaderService.showLoader({ title: 'Saving' });
-        this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
-           this.loaderService.hideLoader();
-           this.showSummaryModal();
-        });
-      } else {
-        this.showSummaryModal();
+        if (!form.pristine || Util.isEmptyOrNull(liabilitiesData)) {
+          this.liabilitiesDetails = form.value;
+          this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
+          this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+          this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
+          this.loaderService.showLoader({ title: 'Saving' });
+          this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
+             this.loaderService.hideLoader();
+             this.showSummaryModal();
+          });
+        } else {
+          this.showSummaryModal();
+        }
       }
     }
   }

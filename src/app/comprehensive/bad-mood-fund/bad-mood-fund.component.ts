@@ -49,6 +49,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
   };
+  viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private loaderService: LoaderService, private apiService: ApiService,
@@ -67,7 +68,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-
+    this.viewMode = this.comprehensiveService.getViewableMode();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -133,26 +134,29 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.menuClickSubscription.unsubscribe();
   }
   goToNext(form) {
-    if (this.isFormValid) {
-      form.value.badMoodMonthlyAmount = this.sliderValue;
-      form.value.hospitalClass = this.downOnLuck.hospitalClass;
-      form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-      this.comprehensiveService.setDownOnLuck(form.value);
-      this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
-        any) => {
-
-      });
+    if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
     } else {
-      const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);
-      this.comprehensiveService.openErrorModal(
-        error.title,
-        error.errorMessages,
-        false,
-        ''
-      );
+      if (this.isFormValid) {
+        form.value.badMoodMonthlyAmount = this.sliderValue;
+        form.value.hospitalClass = this.downOnLuck.hospitalClass;
+        form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+        this.comprehensiveService.setDownOnLuck(form.value);
+        this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
+          any) => {
+  
+        });
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+      } else {
+        const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);
+        this.comprehensiveService.openErrorModal(
+          error.title,
+          error.errorMessages,
+          false,
+          ''
+        );
+      }
     }
-
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
@@ -162,3 +166,4 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
+

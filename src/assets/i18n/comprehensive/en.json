@@ -111,14 +111,33 @@
       "HEADER": "Our Bionic Journey Together",
       "START": "Let’s Go",
       "SUB_HEADER_1": "3-in-1 Analysis Report",
-      "SUB_HEADER_2":" ",
-      "SUB_HEADER_3":" ",
-      "PHILOSOPHY_DESC": "when planning for your future, we show you the 'good enough' concept of what children education and retirement could like.(pls edit text)",
-      "PHOLOSOPHY_DESC_SUB": "your money will be used to first fund children education and later support your retirement. Let's see how it turns out",
-      "RESULT_TITLE": "What will you get?",
-      "RESULT_SUB_TITLE": "At the end of the session ,you will get:",
-      "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
-      "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help",
+      "SUB_HEADER_2":"2 Hours face-to-face advisory",
+      "SUB_HEADER_3":"A financial plan integrated with national schemes ",
+      "DESC1":"As Singapore’s first Bionic Financial Adviser, MoneyOwl will journey with you using both technology and personalised advice.",
+      "DESC2":"In comprehensive planning, we will focus on your financial health, achieveing your core financial goals of retirement and children’s education, and fireproofing your plan.",
+      "DESC3":"We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.",
+      "DESC4":"This tool is currently available only for those aged 18 to 54 years old.",
+      "DESC_TITLE":"How it works",
+      "DESC_SUB_TITLE_1":"Information gathering",
+      "DESC_SUB_TITLE_2":"Get your 3-in-1 Analysis Report",
+      "DESC_SUB_TITLE_3":"Face-to-Face: Client Adviser Time (2 hrs) and Implementation Plan",
+      "DESC_SUB_TITLE_4":"Prompt: Review",
+      "DESC_SUB_ABOUT_1":"At the start, our roboadvisor will seek to understand you – your situation and your goals.",
+      "DESC_SUB_ABOUT_2":"You can acess your 3-in-1 Analysis Report on your MoneyOwl Account Dashboard within 1-2 working days. The report will comprise:",
+      "DESC_SUB_ABOUT_2_SUB_POINT_1":"Your Financial Health Check",
+      "DESC_SUB_ABOUT_2_SUB_POINT_2":"Your Protection Needs Analysis",
+      "DESC_SUB_ABOUT_2_SUB_POINT_3":"Your Retirement and Children’s Education Plan",
+      "DESC_SUB_ABOUT_3":"When you are ready, our Client Adviser will meet you for a fuller consultation of up to two hours, where we can discuss your Financial Health report, refine your analysis and goals and customise your plan further. We will also help you to implement the plan through specific product recommendations, if you choose to do so.",
+      "DESC_SUB_ABOUT_4":"Financial planning is an ongoing process. We will prompt you to review your plan once a year. For a limited period, our clients will not be charged for the first-year review. ",
+      "DESCRIPTION":"Description",
+      "ROBOADVISORY":"Roboadvisory",
+      "FREE":"Free ",
+      "FREE_LIMITED":"Free for a limited time only!",
+      "ENTER_PROMO":"Enter your promo code",
+      "NO_PROMO":"No promo code?",
+      "GET_NEW":" Get one now!",
+      "ONE_TIME_FEE":"$500  One-time fee",
+      "GET_PROMO":"Get Promocode",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw"
     },
     "COMPREHENSIVE_STEPS": {
@@ -205,7 +224,7 @@
       "OTHER_ANNUAL_INCOME": "Other Annual Income",
       "ADD_MONTHLY_INCOME": "Add other monthly income",
       "ADD_MONTHLY_INCOME_NOTE":"You have added all types of income",
-      "ADD_DIVIDENDS": "Add dividends & other Annual Income",
+      "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE":"You have added all types of annual income",
       "BUCKET_NOTE":"Your annual income bucket",
       "EMPLOYMENT_TYPE_LIST": [{
@@ -373,7 +392,7 @@
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "e.g. Jewellary",
+      "OTHER_ASSETS_HINT": "e.g. Jewellery",
       "INVESTMENT_TYPE_LIST": [{
           "text": "Equities",
           "value": "equities"
@@ -412,7 +431,7 @@
         "OTHER_ASSETS_TITLE" :"Other Assets",
         "OTHER_ASSETS_MESSAGE":"Content Will be Updated",
         "OTHER_INVESTMENT_TITLE":"Other Investments",
-        "OTHER_INVESTMENT_MESSAGE":"Content Will be updated"
+        "OTHER_INVESTMENT_MESSAGE":"Other forms of committing money with the expectation of obtaining an profit or additional income other than putting money into stocks, bonds, mutual funds, ETFs, real estate."
 
       },
       "OPTIONAL_VALIDATION_FLAG": false
@@ -472,7 +491,9 @@
     },
     "RETIREMENT_PLAN":{
     "SUB_TITLE":"Finally, at what age would you retire?",
-    "ABOUT":"I want to retire by age "
+    "ABOUT":"I want to retire by age ",
+    "YOUR_AGE":"Your Age"
+
     },
     "INSURANCE_PLAN":{
      "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing.",
@@ -551,7 +572,10 @@
       "WILL_WRITING": "Will Writing",
       "WILL_WRITING_DESC": "Write a legally-binding Will online, anytime & anywhere!",
       "WILL_WRITING_START": "Start Writing",
-      "WILL_WRITING_ESTIMATED": "Estimated 10 mins"
+      "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
+      "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
+      "DEFAULT_START": "Start Planning",
+      "DEFAULT_ESTIMATED": "Estimated 20 mins"
     }
   }
 }

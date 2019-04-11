@@ -188,7 +188,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <= (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
+      //validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <= (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
+      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
     }
     if (validCheck) {
       return null;
@@ -220,7 +221,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     };
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
-    if (this.totalSpending === 0 && this.totalBucket > 0) {
+    if (this.totalSpending <= 0 && this.totalBucket > 0) {
       this.bucketImage = 'filledSpend';
     } else if (this.totalSpending > 0 && this.calculatedSpending > 0) {
       this.bucketImage = 'middleSpend';

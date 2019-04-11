@@ -81,7 +81,7 @@
   <div class="flex-row">
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.RENTAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
+      <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('monthlyRentIncome', false)"></span>
       </div>  
     </div>
   </div>
@@ -109,7 +109,7 @@
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.OTHER_WORK_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label">{{
     'CMP.MY_EARNINGS.OTHER_WORK_INCOME_DESC' | translate}}</div></div>                      
-      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
+      <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('otherMonthlyWorkIncomeType', false)"></span>
       </div>  
     </div>
   </div>
@@ -136,7 +136,7 @@
     <div class="flex-row">
       <div class="flex-col-12 with-delete-icon">
       <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.OTHER_MONTHLY_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-      <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
+      <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('otherMonthlyIncomeType', false)"></span>
       </div>  
     </div>
   </div>
@@ -230,11 +230,11 @@
 <!--Form Header-->
 <div class="form-group-with-bg--header">
 <div class="flex-row">
-  <div class="flex-col-12 with-delete-icon  both-icon">
+  <div class="flex-col-12 with-delete-icon" [ngClass]="{'both-icon': !viewMode}">
   <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>
   <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>    
-  <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('annualDividendsType', false)" appComprehensiveViewMode="{{viewMode}}" mode=1></span>
+  <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('annualDividendsType', false)" appComprehensiveViewMode="{{viewMode}}" mode=1></span>
   </div>  
 </div>
 </div>
@@ -260,7 +260,7 @@
   <div class="flex-col-12 with-delete-icon">
   <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div></div>                      
-  <span class="delete-icon" appComprehensiveViewMode="{{viewMode}}" mode=2 (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
+  <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
   </div>  
 </div>
 </div>
