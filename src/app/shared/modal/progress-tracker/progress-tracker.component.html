@@ -14,8 +14,8 @@
         </div>
         <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
           <ul>
-            <li (click)="navigate(subItem.path)" *ngFor="let subItem of item.subItems" [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.path.replace(pathRegex, '')}">
-              <span [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'now': currentPath == subItem.path.replace(pathRegex, '')}"></span>
+            <li (click)="navigate(subItem.path)" *ngFor="let subItem of item.subItems" [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.id.replace(pathRegex, '')}">
+              <span [ngClass]="{'incomplete': !subItem.completed, 'complete': subItem.completed, 'now': currentPath == subItem.id.replace(pathRegex, '')}"></span>
               {{subItem.title}}<span *ngIf="subItem.completed">:
                 <strong style="text-transform: capitalize;">{{subItem.value}}</strong></span>
               <ul class="sub-item-list" *ngIf="subItem.list && subItem.list.length > 0">

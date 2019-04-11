@@ -30,14 +30,14 @@
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                   [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioMale" ngbButton type="radio" value=true>{{ 'CMP.FORM_LABEL.YES_LABEL' |
+                  <input id="myProfileRadioMale" ngbButton type="radio" [value]=true>{{ 'CMP.FORM_LABEL.YES_LABEL' |
                     translate}}
                 </label>
               </div>
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" value=false>{{ 'CMP.FORM_LABEL.NO_LABEL' |
+                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]=false>{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                 </label>
               </div>
@@ -313,8 +313,8 @@
     </div>
     <div class="footer-cta">
       <button type="button" (click)="goToNext(insurancePlanForm)" class="btn btn-primary mt30 mb50 width100"
-        id="moDpdnt2BtnFooter">{{'CMP.FORM_LABEL.SAVE_AND_CONTINUE'
-        | translate}}
+        id="moDpdnt2BtnFooter">{{
+          (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
       </button>
     </div>
   </form>

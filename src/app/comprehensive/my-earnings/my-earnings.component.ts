@@ -199,4 +199,3 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);
   }
 }
-
