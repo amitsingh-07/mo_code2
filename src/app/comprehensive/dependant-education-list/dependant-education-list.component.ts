@@ -1,3 +1,5 @@
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { Util } from './../../shared/utils/util';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -119,7 +121,7 @@ export class DependantEducationListComponent implements OnInit {
       age: [value.age, []],
       endowmentMaturityAmount: [value.endowmentMaturityAmount, []],
       endowmentMaturityYears: [value.endowmentMaturityYears, []],
-      endowmentPlanShow: [value.endowmentMaturityAmount > 0 ? true : false, []],
+      endowmentPlanShow: [value.endowmentMaturityAmount > 0, []],
       gender: [value.gender, []],
       location: [value.location, []],
       course: [value.educationCourse, []],
@@ -149,7 +151,7 @@ export class DependantEducationListComponent implements OnInit {
             otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
             otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
             otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
-            this.endowmentArrayPlan[index].endowmentMaturityAmount = preferenceDetails.endowmentMaturityAmount;
+            this.endowmentArrayPlan[index].endowmentMaturityAmount = toInteger(preferenceDetails.endowmentMaturityAmount);
             this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
             dependantArray.push({
               userName: preferenceDetails.name,
@@ -173,7 +175,7 @@ export class DependantEducationListComponent implements OnInit {
           this.endowmentDetail.forEach((details: any) => {
             educationPreferenceList.push({
               dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
-              endowmentMaturityAmount: details.endowmentMaturityAmount, endowmentMaturityYears: details.endowmentMaturityYears,
+              endowmentMaturityAmount: toInteger(details.endowmentMaturityAmount), endowmentMaturityYears: details.endowmentMaturityYears,
               enquiryId: details.enquiryId, nation: details.nation
             }
             );
