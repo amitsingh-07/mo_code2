@@ -48,11 +48,12 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     }
   };
   viewMode: boolean;
-  constructor(private navbarService: NavbarService,  private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private router: Router, private route: ActivatedRoute, private age: AboutAge) {
+  constructor(
+    private navbarService: NavbarService, private progressService: ProgressTrackerService,
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private router: Router, private route: ActivatedRoute, private age: AboutAge) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
