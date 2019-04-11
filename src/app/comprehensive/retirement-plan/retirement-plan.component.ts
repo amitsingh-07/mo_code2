@@ -42,12 +42,14 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
       }
     }
   };
+  viewMode: boolean;
   constructor(private navbarService: NavbarService,  private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
               private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -84,7 +86,12 @@ export class RetirementPlanComponent implements OnInit , AfterViewInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(SliderValue) {
-    this.showSummaryModal();
+    if (this.viewMode) {
+      this.showSummaryModal();
+    } else {
+      const enquiryId = this.comprehensiveService.getEnquiryId();
+      this.showSummaryModal();
+    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {
