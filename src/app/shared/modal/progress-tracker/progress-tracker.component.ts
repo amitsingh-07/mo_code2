@@ -43,6 +43,6 @@ export class ProgressTrackerComponent implements OnInit {
     }
 
     public navigate(path: string) {
-        // TODO : Navigate to the 'path'
+        this.progressService.navigate(path);
     }
 }

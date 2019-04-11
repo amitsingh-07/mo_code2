@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
   styleUrls: ['./retirement-plan.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementPlanComponent implements OnInit, AfterViewInit {
+export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy {
   sliderValue = 45;
   pageTitle: any;
   pageId: string;
@@ -53,6 +53,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
               private router: Router, private route: ActivatedRoute, private age: AboutAge) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -83,6 +84,10 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.ciMultiplierSlider.writeValue(this.sliderValue);
+  }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
+    this.menuClickSubscription.unsubscribe();
   }
   buildRetirementPlanForm() {
     this.retirementPlanForm = new FormGroup({

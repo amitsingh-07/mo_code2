@@ -599,6 +599,7 @@ export class ComprehensiveService {
             customStyle: 'get-started',
             subItems: [
                 {
+                    id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
                     path: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
                     title: 'Tell us about you',
                     value: myProfile.firstName,
@@ -635,6 +636,7 @@ export class ComprehensiveService {
             noOfDependants = dependantData.length + '';
         }
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
             path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
             title: 'Number of Dependant',
             value: noOfDependants,
@@ -672,6 +674,7 @@ export class ComprehensiveService {
 
             subItemsArray.push(
                 {
+                    id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Plan for children education',
                     value: hasEduPlansValue,
@@ -681,6 +684,7 @@ export class ComprehensiveService {
             if (enquiry.hasEndowments === '1') {
                 subItemsArray.push(
                     {
+                        id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                         title: 'Education Preferences',
                         value: prefsList.length === 0 || enquiry.hasEndowments !== '1' ? 'No' : '',
@@ -689,6 +693,7 @@ export class ComprehensiveService {
                     });
                 subItemsArray.push(
                     {
+                        id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                         title: 'Do you have education endowment plan',
                         value: hasEndowmentPlans,
@@ -719,6 +724,7 @@ export class ComprehensiveService {
         const liabilitiesData: IMyLiabilities = this.getMyLiabilities();
 
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
             path: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
             title: 'Your Earnings',
             value: earningsData && earningsData.totalAnnualIncomeBucket >= 0
@@ -726,6 +732,7 @@ export class ComprehensiveService {
             completed: !Util.isEmptyOrNull(earningsData)
         });
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
             path: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
             title: 'Your Spendings',
             value: spendingsData && spendingsData.totalAnnualExpenses >= 0
@@ -734,7 +741,8 @@ export class ComprehensiveService {
         });
         if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
             subItemsArray.push({
-                path: '',
+                id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND + '1',
+                path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
                 title: 'Bad Mood Fund',
                 value: this.getDownOnLuck().badMoodMonthlyAmount
                     ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
@@ -742,6 +750,7 @@ export class ComprehensiveService {
             });
         }
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Hospital Choice',
             value: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
@@ -749,6 +758,7 @@ export class ComprehensiveService {
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
         });
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
             path: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
             title: 'Assets (What You Own)',
             value: assetsData && assetsData.totalAnnualAssets >= 0
@@ -756,6 +766,7 @@ export class ComprehensiveService {
             completed: !Util.isEmptyOrNull(assetsData)
         });
         subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
             path: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
             title: 'Liabilities (What You Owe)',
             value: liabilitiesData && liabilitiesData.totalAnnualLiabilities >= 0
@@ -785,31 +796,36 @@ export class ComprehensiveService {
             customStyle: 'get-started',
             subItems: [
                 {
+                    id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Do you have a hospital plan',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
+                    id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Life Protection',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
+                    id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Critical Illness',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
+                    id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Occupational Disability',
                     value: '',
                     completed: false
                 },
                 {
-                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
+                    id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
+                    path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Long-Term Care',
                     value: '',
                     completed: false
@@ -831,6 +847,7 @@ export class ComprehensiveService {
             completed: false,
             customStyle: 'get-started',
             subItems: [{
+                id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 title: 'Retirement Age',
                 value: '',
