@@ -156,7 +156,7 @@
               </div>
             </div>
             <div class='otherMortage' [hidden]="otherMortage">
-                <div class="flex-row mt-2 both-icon">
+                <div class="flex-row mt-2"  [ngClass]="{'both-icon': !viewMode}">
                   <div class="flex-col-12 form-group-with-bg--content-label">
                     <div class="with-help-icon" for="name"><b>{{
                       'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>

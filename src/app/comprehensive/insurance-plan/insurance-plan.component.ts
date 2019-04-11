@@ -36,7 +36,7 @@ export class InsurancePlanComponent implements OnInit {
   hospitalType: string;
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
-
+  viewMode: boolean;
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
@@ -46,6 +46,7 @@ export class InsurancePlanComponent implements OnInit {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.viewMode = this.comprehensiveService.getViewableMode();
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE');
@@ -87,26 +88,26 @@ export class InsurancePlanComponent implements OnInit {
   }
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
-        : '', [Validators.required]],
-      haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
-        : '', [Validators.required]],
-      life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
-        life_protection_amount : '', [Validators.required]],
-      haveHDBHomeProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
-      [Validators.required]],
-      homeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
-      [Validators.required]],
-      other_life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.other_life_protection_amount : '',
-      [Validators.required]],
+      haveHospitalPlan: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
+        : '', disabled: this.viewMode}, [Validators.required]],
+      haveCPFDependentsProtectionScheme: [{ value: this.insurancePlanFormValues ?
+        this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode}, [Validators.required]],
+      life_protection_amount: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.
+        life_protection_amount : '', disabled: this.viewMode}, [Validators.required]],
+      haveHDBHomeProtectionScheme: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
+       disabled: this.viewMode}, [Validators.required]],
+      homeProtectionCoverageAmount: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
+      disabled: this.viewMode}, [Validators.required]],
+      other_life_protection_amount: [{ value: this.insurancePlanFormValues ?
+        this.insurancePlanFormValues.other_life_protection_amount : '', disabled: this.viewMode}, [Validators.required]],
       criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
         '', [Validators.required]],
-      disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '',
-      [Validators.required]],
-      haveLongTermElderShield: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
-        '', [Validators.required]],
-      longTermElderShieldAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
-        : '', [Validators.required]],
+      disabilityIncomeCoverageAmount: [{ value: this.insurancePlanFormValues ?
+        this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode}, [Validators.required]],
+      haveLongTermElderShield: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
+        '', disabled: this.viewMode}, [Validators.required]],
+      longTermElderShieldAmount: [{ value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
+        : '', disabled: this.viewMode}, [Validators.required]],
     });
   }
   ngOnInit() {
@@ -122,19 +123,23 @@ export class InsurancePlanComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form) {
-    form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-    this.comprehensiveService.setInsurancePlanningList(form.value);
-    // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+    if (this.viewMode) {
+      this.showSummaryModal();
+    } else {
+      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+      this.comprehensiveService.setInsurancePlanningList(form.value);
+      // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
 
-    // });
-    this.showSummaryModal();
+      // });
+      this.showSummaryModal();
+    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '/summary']);
     } else {
       const fireProofingDetails = this.comprehensiveService.getCurrentFireProofing();
-      if (fireProofingDetails.dependant) {
+      if (!fireProofingDetails.dependant) {
         const summaryModalDetails = {
           setTemplateModal: 3,
           contentObj: this.insurancePlanningDependantModal,
@@ -175,3 +180,4 @@ export class InsurancePlanComponent implements OnInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
+

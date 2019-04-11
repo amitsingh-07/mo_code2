@@ -47,13 +47,15 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       }
     }
   };
-  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
+  viewMode: boolean;
+  constructor(private navbarService: NavbarService,  private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
               private router: Router, private route: ActivatedRoute, private age: AboutAge) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -102,15 +104,19 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form: FormGroup) {
-    form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-    form.value.retirementAge = this.sliderValue;
-    this.comprehensiveService.setRetirementPlan(form.value);
-    // if (this.retirementValueChanges) {
-    //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
+    if (this.viewMode) {
+      this.showSummaryModal();
+    } else {
+      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+      form.value.retirementAge = this.sliderValue;
+      this.comprehensiveService.setRetirementPlan(form.value);
+      // if (this.retirementValueChanges) {
+      //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
 
-    //   });
-    // }
-    this.showSummaryModal();
+      //   });
+      // }
+      this.showSummaryModal();
+    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {
@@ -126,3 +132,4 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 }
+

@@ -1072,18 +1072,13 @@ export class ComprehensiveService {
     getCurrentFireProofing() {
         const getComprehensiveDetails = this.getComprehensiveSummary();
         const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
-        const userGender = getComprehensiveDetails.baseProfile.gender;
+        const userGender = (getComprehensiveDetails.baseProfile.gender).toLowerCase();
         const userAge = this.aboutAge.calculateAge(getComprehensiveDetails.baseProfile.dateOfBirth, new Date());
-        const fireProofingDetails = { dependant: true, gender: userGender, age: userAge };
+        const fireProofingDetails = { dependant: false, gender: userGender.toLowerCase(), age: userAge };
         if (enquiry.hasDependents) {
             getComprehensiveDetails.dependentsList.forEach((dependant) => {
-                const dependantAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-                if (dependantAge > COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.DEPENDENT_AGE) {
-                    fireProofingDetails.dependant = false;
-                }
+                fireProofingDetails.dependant = true;
             });
-        } else {
-            fireProofingDetails.dependant = false;
         }
         return fireProofingDetails;
     }
