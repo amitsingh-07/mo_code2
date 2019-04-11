@@ -226,4 +226,3 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         return true;
     }
 }
-

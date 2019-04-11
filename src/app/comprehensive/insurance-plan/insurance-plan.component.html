@@ -30,14 +30,14 @@
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                   [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioMale" ngbButton type="radio" value=true>{{ 'CMP.FORM_LABEL.YES_LABEL' |
+                  <input id="myProfileRadioMale" ngbButton type="radio" [value]=true>{{ 'CMP.FORM_LABEL.YES_LABEL' |
                     translate}}
                 </label>
               </div>
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" value=false>{{ 'CMP.FORM_LABEL.NO_LABEL' |
+                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]=false>{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                 </label>
               </div>
