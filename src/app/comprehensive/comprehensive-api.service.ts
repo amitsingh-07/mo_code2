@@ -98,4 +98,5 @@ export class ComprehensiveApiService {
         return this.httpClient.get('../../assets/comprehensive/insurancePlan.json')
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+
 }

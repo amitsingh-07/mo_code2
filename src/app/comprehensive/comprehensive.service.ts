@@ -35,7 +35,8 @@ import {
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
-    IRegularSavings
+    IRegularSavings,
+    IRetirementPlan
 } from './comprehensive-types';
 
 @Injectable({
@@ -383,6 +384,17 @@ export class ComprehensiveService {
     }
     setHospitalPlan(hospitalPlanList: IHospitalPlanList[]) {
         this.comprehensiveFormData.hospitalPlanList = hospitalPlanList;
+        this.commit();
+    }
+    getRetirementPlan() {
+        if (!this.comprehensiveFormData.comprehensiveDetails) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveRetirementPlanning = {} as IRetirementPlan;
+        }
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRetirementPlanning;
+    }
+    setRetirementPlan(comprehensiveRetirementPlanning: IRetirementPlan) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveRetirementPlanning
+            = comprehensiveRetirementPlanning;
         this.commit();
     }
     getFormError(form, formName) {

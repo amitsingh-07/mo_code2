@@ -12,6 +12,7 @@ export interface IComprehensiveDetails {
     comprehensiveSpending: IMySpendings;
     comprehensiveAssets: IMyAssets;
     comprehensiveInsurancePlanning: IInsurancePlan;
+    comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
 }
 export interface IComprehensiveEnquiry {
@@ -189,4 +190,8 @@ export interface IInsurancePlan {
     disabilityIncomeCoverageAmount: number;
     haveLongTermElderShield: string;
     longTermElderShieldAmount: number;
+}
+export interface IRetirementPlan {
+    enquiryId: number;
+    retirementAge: number;
 }
