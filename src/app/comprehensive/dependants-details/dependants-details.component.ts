@@ -52,7 +52,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig, private aboutAge: AboutAge) {
     const today: Date = new Date();
-    configDate.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
+    configDate.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
     this.pageId = this.route.routeConfig.component.name;
@@ -214,7 +214,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     let hasChildDependant = false;
     this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ?21 : 19;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;
@@ -249,4 +249,3 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
 }
-

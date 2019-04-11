@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ConfigService } from '../../config/config.service';
+import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -13,7 +14,6 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
-import { ApiService } from '../../shared/http/api.service';
 
 @Component({
   selector: 'app-insurance-plan',
@@ -87,7 +87,7 @@ export class InsurancePlanComponent implements OnInit {
   }
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan ? 'true' : 'false'
+      haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
         : '', [Validators.required]],
       haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
         : '', [Validators.required]],
