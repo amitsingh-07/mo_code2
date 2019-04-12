@@ -1452,6 +1452,7 @@ export class InvestmentAccountService {
       identityDetails.customer.salutation,
       'salutation'
     );
+    this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
     this.investmentAccountFormData.nricNumber = identityDetails.nricNumber;
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
       identityDetails.customer.dateOfBirth
@@ -1609,8 +1610,8 @@ export class InvestmentAccountService {
   }
   setDueDiligence1FromApi(pepDetails) {
     if (pepDetails) {
-      this.investmentAccountFormData.pepFullName = pepDetails.pepFullName;
-     this.investmentAccountFormData.cName = pepDetails.companyName;
+      this.investmentAccountFormData.pepFullName = pepDetails.firstName;
+      this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
       this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
