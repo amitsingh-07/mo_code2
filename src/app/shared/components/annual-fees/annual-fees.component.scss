@@ -22,6 +22,21 @@
       .flex-row{
         justify-content: space-between;
         padding-bottom: 18px;
+        .announcement{
+          display: flex;
+          justify-content: space-between;
+          color: #000000;
+          font-weight: bold;
+          line-height: 22px;
+          font-family: $muli-bold;
+          letter-spacing: -0.1px;
+          font-size: 14px;
+         background-color: #e3f0f0;
+          padding:20px;
+          span{
+            padding-right: 10px;
+          }
+        }
         &:last-child{
           font-family: $muli-bold;
           padding-bottom: 0;
@@ -31,6 +46,8 @@
             font-size: 13px;
             color: $text-color-secondary;
           }
+          
+          
         }
         .fee_value{
           color: $teal-color;

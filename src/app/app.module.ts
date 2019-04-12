@@ -82,9 +82,7 @@ import {
 
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
-import {
-  TopUpConfirmationComponent
-} from './shared/modal/top-up-confirmation/top-up-confirmation.component';
+
 import {
     TransactionModalComponent
 } from './shared/modal/transaction-modal/transaction-modal.component';
@@ -132,7 +130,6 @@ export function tokenGetterFn() {
     BankDetailsComponent,
     ToolTipModalComponent,
     ModelWithButtonComponent,
-    TopUpConfirmationComponent,
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
@@ -208,7 +205,6 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    TopUpConfirmationComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
