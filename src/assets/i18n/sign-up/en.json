@@ -84,7 +84,7 @@
   },
   "EMAIL_VERIFICATION": {
     "LOADING": {
-      "VERIFYING": "Verifying...",
+      "VERIFYING": "Verifying E-mail...",
       "VERIFIED": "Email Verified!"
     }
   },
