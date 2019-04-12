@@ -87,12 +87,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
-      if (event && event !== '') {
-        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
-        this.router.navigate([previousUrl]);
-      }
-    });
   }
 
   buildInsuranceForm() {
@@ -143,6 +137,17 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
         this.progressService.show();
+      }
+    });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
       }
     });
   }

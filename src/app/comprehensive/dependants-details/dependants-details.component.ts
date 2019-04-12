@@ -41,6 +41,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   pageId: string;
   summaryModalDetails: IMySummaryModal;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
@@ -89,11 +90,24 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   setPageTitle(title: string) {

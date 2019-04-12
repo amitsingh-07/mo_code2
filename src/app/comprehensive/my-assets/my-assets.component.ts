@@ -34,6 +34,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   totalAssets = 0;
   assetDetails: IMyAssets;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   pageId: string;
   submitted: boolean;
   bucketImage: string;
@@ -150,6 +151,18 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.buildMyAssetsForm();
     if (this.assetDetails && this.assetDetails.investmentPropertiesValue > 0) {
       this.myInvestmentProperties = false;
@@ -157,10 +170,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.onTotalAssetsBucket();
 
   }
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
+
   buildMyAssetsForm() {
     const otherInvestFormArray = [];
     let inc = 0;
@@ -183,8 +200,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
       cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
       homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
-      investmentPropertiesValue: [{ value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
-                                 disabled: this.viewMode }, []],
+      investmentPropertiesValue: [{
+        value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
+        disabled: this.viewMode
+      }, []],
       assetsInvestmentSet: this.formBuilder.array(otherInvestFormArray),
       otherAssetsValue: [{ value: this.assetDetails ? this.assetDetails.otherAssetsValue : '', disabled: this.viewMode }, []]
     });
@@ -214,15 +233,19 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if (totalLength > 0) {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, [Validators.required]],
-        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
-                          disabled: this.viewMode },
+        investmentAmount: [{
+          value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+          disabled: this.viewMode
+        },
         [Validators.required, Validators.pattern(this.patternValidator)]]
       });
     } else {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
-        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
-                          disabled: this.viewMode }, []]
+        investmentAmount: [{
+          value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+          disabled: this.viewMode
+        }, []]
       });
     }
   }

@@ -20,6 +20,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   url: string;
   pageId: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
@@ -48,11 +49,24 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   setPageTitle(title: string) {

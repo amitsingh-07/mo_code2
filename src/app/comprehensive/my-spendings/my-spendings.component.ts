@@ -35,6 +35,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   spendDesc: string;
   spendTitle: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   pageId: string;
   bucketImage: string;
   validationFlag: boolean;
@@ -69,6 +70,18 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.buildMySpendingForm();
     if (this.spendingDetails) {
       for (const value of this.mortageFieldSet) {
@@ -89,10 +102,14 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
 
     this.onTotalAnnualSpendings();
   }
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
