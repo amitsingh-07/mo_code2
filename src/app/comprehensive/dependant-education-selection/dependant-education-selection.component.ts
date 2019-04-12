@@ -124,7 +124,13 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   getNewEndowmentItem(dependant: IDependantDetail) {
     let preferenceSelected = true;
-    if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments) {
+    if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
+      if (this.comprehensiveService.getChildEndowment().length) {
+        preferenceSelected = false;
+      } else {
+        preferenceSelected = dependant.isInsuranceNeeded;
+      }
+    } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
       preferenceSelected = false;
     }
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
