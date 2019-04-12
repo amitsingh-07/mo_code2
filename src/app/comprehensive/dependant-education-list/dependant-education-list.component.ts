@@ -1,10 +1,10 @@
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { Util } from './../../shared/utils/util';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Util } from './../../shared/utils/util';
 
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
@@ -230,7 +230,8 @@ export class DependantEducationListComponent implements OnInit {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <= (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
+      validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <=
+        (COMPREHENSIVE_CONST.PAY_OFF_YEAR + currentYear)) ? true : false;
     }
     if (validCheck) {
       return null;

@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { AboutAge } from '../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal, IRetirementPlan } from '../comprehensive-types';
@@ -30,7 +29,6 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
   retireModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
-  myAge: number;
   retirementDetails: IRetirementPlan;
   retirementValueChanges = false;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
@@ -51,7 +49,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private router: Router, private route: ActivatedRoute, private age: AboutAge) {
+              private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -77,7 +75,6 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
         this.progressService.show();
       }
     });
-    this.myAge = this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
     this.sliderValue = this.comprehensiveService.getRetirementPlan() ? this.comprehensiveService.getRetirementPlan().retirementAge : 45;
     this.buildRetirementPlanForm();
   }

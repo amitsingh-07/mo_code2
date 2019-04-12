@@ -72,15 +72,7 @@ export class InsurancePlanComponent implements OnInit {
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });
     }
-    this.DownLuck = this.comprehensiveService.getDownOnLuck();
-
-    this.hospitalPlanList.forEach((hospitalPlanData: IHospitalPlanList) => {
-      // tslint:disable-next-line:triple-equals
-      if (hospitalPlanData.id == this.DownLuck.hospitalPlanId) {
-        this.hospitalType = hospitalPlanData.hospitalClass;
-      }
-    });
-
+    this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -91,14 +83,14 @@ export class InsurancePlanComponent implements OnInit {
         : '', [Validators.required]],
       haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
         : '', [Validators.required]],
-      life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
-        life_protection_amount : '', [Validators.required]],
+        lifeProtectionAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
+          lifeProtectionAmount : '', [Validators.required]],
       haveHDBHomeProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
       [Validators.required]],
       homeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
       [Validators.required]],
-      other_life_protection_amount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.other_life_protection_amount : '',
-      [Validators.required]],
+      otherLifeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues
+        .otherLifeProtectionCoverageAmount : '', [Validators.required]],
       criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
         '', [Validators.required]],
       disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '',
@@ -122,12 +114,16 @@ export class InsurancePlanComponent implements OnInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form) {
-    form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-    this.comprehensiveService.setInsurancePlanningList(form.value);
-    // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+    if (!form.pristine) {
+      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+      this.comprehensiveService.setInsurancePlanningList(form.value);
+      this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+        this.showSummaryModal();
+      });
+    } else {
+      this.showSummaryModal();
+    }
 
-    // });
-    this.showSummaryModal();
   }
   showSummaryModal() {
     if (this.routerEnabled) {
