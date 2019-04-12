@@ -69,6 +69,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.maxBadMoodFund = this.comprehensiveService.computeBadMoodFund();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -105,9 +106,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });
     }
-    this.comprehensiveService.hasBadMoodFund();
-    this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
-      - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
       this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ?  this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
