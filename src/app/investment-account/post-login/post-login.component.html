@@ -1,13 +1,20 @@
-<div class="container-fluid max-width--1024 invest-web-width">
+<div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
-      <div class="col-12">
-        <div class="signup-wrapper">
-          <h2 class="prelogin-wrapper__title order1 sm-order2 mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
-          <div class="signup-wrapper__header-icon order3 sm-order1"><img id="pos_login_img" src="assets/images/createAccount-icon.svg" /></div>
+      <div class="col-lg-7 col-md-6 hidden-sm-md mt10">
+          <h2>Investment Account Opening</h2>
+          <h6>Next, set up your investment account to start investing!</h6>
+          <div class="banner-image">
+            <img src="assets/images/investment-account/openaccount.svg"/>
+          </div>
+       </div>
+       <div class="clo-12 hidden-lg">
+         <div class="signup-wrapper">
+           <h2 class="prelogin-wrapper__title order1 sm-order2 mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
+          <div class="signup-wrapper__header-icon order3 sm-order1"><img id="pos_login_img" src="assets/images/investment-account/openaccountmoble.svg" /></div>
+        </div> 
         </div>
-      </div>
-      <div class="col-12">
+      <div class="col-lg-5 col-md-6">
         <div class="widgets">
           <div class="widget" *ngIf="showSingPass && isInvestmentMyInfoEnabled">
             <div class="widget-title">{{ 'POSTLOGIN.APPLY_USING_MYINFO' | translate}}</div>

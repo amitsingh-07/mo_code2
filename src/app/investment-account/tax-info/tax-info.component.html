@@ -18,7 +18,9 @@
           <form name="taxInfoForm" [formGroup]="taxInfoForm">
             <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}"
               *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
-              <div class="widget-title">Tax Residence </div>
+              <div class="widget-title">Tax Residence 
+                   <i *ngIf="x !== 0" class="tooltip-icon" id="myFinancialHelpIcon"></i>
+                  </div>
               <div class="widget-body" [formGroupName]="x">
                 <div class="flex-row">
                   <div class="flex-col-4">
