@@ -123,7 +123,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   validateForm(hospitalPlan) {
     this.downOnLuck = {
-      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalPlanName: hospitalPlan.hospitalClass,
       hospitalClassDescription: hospitalPlan.hospitalClassDescription,
       hospitalPlanId: hospitalPlan.id
     } as HospitalPlan;
@@ -139,12 +139,11 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       if (this.isFormValid) {
         form.value.badMoodMonthlyAmount = this.sliderValue;
-        form.value.hospitalClass = this.downOnLuck.hospitalClass;
+        form.value.hospitalPlanName = this.downOnLuck.hospitalPlanName;
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
         this.comprehensiveService.setDownOnLuck(form.value);
         this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
           any) => {
-  
         });
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
       } else {
@@ -166,4 +165,3 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
-

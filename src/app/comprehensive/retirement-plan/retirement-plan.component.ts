@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { AboutAge } from '../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal, IRetirementPlan } from '../comprehensive-types';
@@ -30,9 +29,9 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   retireModal: any;
   summaryRouterFlag: boolean;
   routerEnabled = false;
-  myAge: number;
   retirementDetails: IRetirementPlan;
   retirementValueChanges = false;
+  viewMode: boolean;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -47,13 +46,11 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       }
     }
   };
-  viewMode: boolean;
-  constructor(
-    private navbarService: NavbarService, private progressService: ProgressTrackerService,
-    private translate: TranslateService,
-    private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private router: Router, private route: ActivatedRoute, private age: AboutAge) {
+  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
+              private translate: TranslateService,
+              private formBuilder: FormBuilder, private configService: ConfigService,
+              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+              private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
@@ -81,7 +78,6 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
         this.progressService.show();
       }
     });
-    this.myAge = this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
     this.sliderValue = this.comprehensiveService.getRetirementPlan() ? this.comprehensiveService.getRetirementPlan().retirementAge : 45;
     this.buildRetirementPlanForm();
   }
