@@ -18,6 +18,7 @@ export class IProgressTrackerItem {
 }
 
 export interface IProgressTrackerSubItem {
+    id: string;
     path: string;
     title: string;
     value: string;

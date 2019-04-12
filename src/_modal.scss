@@ -127,7 +127,7 @@ body.modal-open::-webkit-scrollbar {
   letter-spacing: -0.2px;
   color: #009999;
   margin-bottom: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
   //padding: 0 15px 0 0;
 }
 
@@ -768,6 +768,9 @@ body.modal-open::-webkit-scrollbar {
       border-radius: 6px !important;
       overflow-y: auto;
       padding: 30px 45px 40px !important;
+    }
+    @include iphoneX {
+      padding: 30px 45px 130px !important;
     }
   }
 }

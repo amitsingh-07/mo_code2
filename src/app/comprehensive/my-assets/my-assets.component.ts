@@ -45,6 +45,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   modelBtnText: string;
   showConfirmation: boolean;
   cpfFromMyInfo = false;
+  viewMode: boolean;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -53,6 +54,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
     private modal: NgbModal) {
     this.pageId = this.route.routeConfig.component.name;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -127,16 +129,17 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-    ref.componentInstance.isButtonEnabled = true;
-    ref.result.then(() => {
-      this.myInfoService.setMyInfoAttributes('cpfbalances');
-      this.myInfoService.goToMyInfo();
-    }).catch((e) => {
-    });
-
+    if (!this.viewMode) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+      ref.componentInstance.isButtonEnabled = true;
+      ref.result.then(() => {
+        this.myInfoService.setMyInfoAttributes('cpfbalances');
+        this.myInfoService.goToMyInfo();
+      }).catch((e) => {
+      });
+    }
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -176,13 +179,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     }
 
     this.myAssetsForm = this.formBuilder.group({
-      cashInBank: [this.assetDetails ? this.assetDetails.cashInBank : '', []],
-      savingsBonds: [this.assetDetails ? this.assetDetails.savingsBonds : '', []],
-      cpfOrdinaryAccount: [this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', []],
-      cpfSpecialAccount: [this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', []],
-      cpfMediSaveAccount: [this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', []],
-      homeMarketValue: [this.assetDetails ? this.assetDetails.homeMarketValue : '', []],
-      investmentPropertiesValue: [this.assetDetails ? this.assetDetails.investmentPropertiesValue : '', []],
+      cashInBank: [{ value: this.assetDetails ? this.assetDetails.cashInBank : '', disabled: this.viewMode }, []],
+      savingsBonds: [{ value: this.assetDetails ? this.assetDetails.savingsBonds : '', disabled: this.viewMode }, []],
+      cpfOrdinaryAccount: [{ value: this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', disabled: this.viewMode }, []],
+      cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
+      cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
+      homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
+      investmentPropertiesValue: [{ value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
+                                 disabled: this.viewMode }, []],
       assetsInvestmentSet: this.formBuilder.array(otherInvestFormArray),
       otherAssetsValue: [this.assetDetails ? this.assetDetails.otherAssetsValue : '', []]
     });
@@ -211,14 +215,16 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   buildInvestmentForm(inputParams, totalLength) {
     if (totalLength > 0) {
       return this.formBuilder.group({
-        typeOfInvestment: [inputParams.typeOfInvestment, [Validators.required]],
-        investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+        typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, [Validators.required]],
+        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+                          disabled: this.viewMode },
         [Validators.required, Validators.pattern(this.patternValidator)]]
       });
     } else {
       return this.formBuilder.group({
-        typeOfInvestment: [inputParams.typeOfInvestment, []],
-        investmentAmount: [(inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '', []]
+        typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
+        investmentAmount: [{ value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
+                          disabled: this.viewMode }, []]
       });
     }
   }
@@ -318,3 +324,4 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
   }
 }
+

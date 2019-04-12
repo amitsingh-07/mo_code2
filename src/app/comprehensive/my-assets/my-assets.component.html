@@ -169,7 +169,7 @@
         <div class='investmentProperties' [hidden]="myInvestmentProperties">
 
           <div class="flex-row mt20" >
-            <div class="flex-col-12 both-icon with-help-icon">
+            <div class="flex-col-12 with-help-icon"  [ngClass]="{'both-icon': !viewMode}">
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
                   'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
@@ -218,7 +218,7 @@
       <div class="form-group-with-bg--content">
         <div formArrayName="assetsInvestmentSet" class="{{ (i>0)?'investmentProperties':'' }} mt-2 otherInvestment "
           *ngFor="let otherInvestment of myAssetsForm['controls'].assetsInvestmentSet['controls']; let i = index;">
-          <div class="flex-row both-icon mt15" *ngIf="i>0">
+          <div class="flex-row mt15" *ngIf="i>0" [ngClass]="{'both-icon': !viewMode}">
             <div class="flex-col-12 form-group-with-bg--content-label">
               <div class="with-help-icon" for="name">{{
                 'CMP.MY_ASSETS.OTHER_INVESTMENT' | translate}} {{i}}

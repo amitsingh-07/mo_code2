@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,7 @@ import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
   styleUrls: ['./retirement-plan.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementPlanComponent implements OnInit, AfterViewInit {
+export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy {
   sliderValue = 45;
   pageTitle: any;
   pageId: string;
@@ -31,6 +31,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
   routerEnabled = false;
   retirementDetails: IRetirementPlan;
   retirementValueChanges = false;
+  viewMode: boolean;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -51,6 +52,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
               private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
+    this.pageId = this.route.routeConfig.component.name;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -81,6 +84,10 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.ciMultiplierSlider.writeValue(this.sliderValue);
   }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeMenuItemClick();
+    this.menuClickSubscription.unsubscribe();
+  }
   buildRetirementPlanForm() {
     this.retirementPlanForm = new FormGroup({
       retirementAge: new FormControl(this.sliderValue),
@@ -94,15 +101,19 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form: FormGroup) {
-    form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-    form.value.retirementAge = this.sliderValue;
-    this.comprehensiveService.setRetirementPlan(form.value);
-    // if (this.retirementValueChanges) {
-    //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
+    if (this.viewMode) {
+      this.showSummaryModal();
+    } else {
+      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+      form.value.retirementAge = this.sliderValue;
+      this.comprehensiveService.setRetirementPlan(form.value);
+      // if (this.retirementValueChanges) {
+      //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
 
-    //   });
-    // }
-    this.showSummaryModal();
+      //   });
+      // }
+      this.showSummaryModal();
+    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {
@@ -118,3 +129,4 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit {
     }
   }
 }
+

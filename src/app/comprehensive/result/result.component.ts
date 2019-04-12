@@ -60,8 +60,9 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
   showToolTipModal() {
     const toolTipParams = {

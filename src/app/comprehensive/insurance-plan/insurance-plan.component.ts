@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,10 +20,11 @@ import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
   templateUrl: './insurance-plan.component.html',
   styleUrls: ['./insurance-plan.component.scss']
 })
-export class InsurancePlanComponent implements OnInit {
+export class InsurancePlanComponent implements OnInit, OnDestroy {
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
   longTermInsurance = true;
@@ -36,16 +37,18 @@ export class InsurancePlanComponent implements OnInit {
   hospitalType: string;
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
-
-  constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private age: AboutAge, private route: ActivatedRoute, private apiService: ApiService) {
+  viewMode: boolean;
+  constructor(
+    private navbarService: NavbarService, private progressService: ProgressTrackerService,
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private age: AboutAge, private route: ActivatedRoute, private apiService: ApiService) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.viewMode = this.comprehensiveService.getViewableMode();
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE');
@@ -76,29 +79,53 @@ export class InsurancePlanComponent implements OnInit {
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        this.router.navigate([previousUrl]);
+      }
+    });
   }
+
   buildInsuranceForm() {
     this.insurancePlanForm = this.formBuilder.group({
-      haveHospitalPlan: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
-        : '', [Validators.required]],
-      haveCPFDependentsProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveCPFDependentsProtectionScheme
-        : '', [Validators.required]],
-        lifeProtectionAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.
-          lifeProtectionAmount : '', [Validators.required]],
-      haveHDBHomeProtectionScheme: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
-      [Validators.required]],
-      homeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
-      [Validators.required]],
-      otherLifeProtectionCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues
-        .otherLifeProtectionCoverageAmount : '', [Validators.required]],
+      haveHospitalPlan: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
+          : '', disabled: this.viewMode
+      }, [Validators.required]],
+      haveCPFDependentsProtectionScheme: [{
+        value: this.insurancePlanFormValues ?
+          this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
+      }, [Validators.required]],
+      lifeProtectionAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : '', disabled: this.viewMode
+      }, [Validators.required]],
+      haveHDBHomeProtectionScheme: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
+        disabled: this.viewMode
+      }, [Validators.required]],
+      homeProtectionCoverageAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
+        disabled: this.viewMode
+      }, [Validators.required]],
+      otherLifeProtectionCoverageAmount: [{
+        value: this.insurancePlanFormValues ?
+          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
+      }, [Validators.required]],
       criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
         '', [Validators.required]],
-      disabilityIncomeCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '',
-      [Validators.required]],
-      haveLongTermElderShield: [this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
-        '', [Validators.required]],
-      longTermElderShieldAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
-        : '', [Validators.required]],
+      disabilityIncomeCoverageAmount: [{
+        value: this.insurancePlanFormValues ?
+          this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode
+      }, [Validators.required]],
+      haveLongTermElderShield: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
+          '', disabled: this.viewMode
+      }, [Validators.required]],
+      longTermElderShieldAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
+          : '', disabled: this.viewMode
+      }, [Validators.required]],
     });
   }
   ngOnInit() {
@@ -110,27 +137,38 @@ export class InsurancePlanComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+  }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext(form) {
-    if (!form.pristine) {
-      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-      this.comprehensiveService.setInsurancePlanningList(form.value);
-      this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
-        this.showSummaryModal();
-      });
-    } else {
+    if (this.viewMode) {
       this.showSummaryModal();
+    } else {
+      if (!form.pristine) {
+        form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.comprehensiveService.setInsurancePlanningList(form.value);
+        this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+          this.showSummaryModal();
+        });
+      } else {
+        this.showSummaryModal();
+      }
     }
-
   }
   showSummaryModal() {
     if (this.routerEnabled) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '/summary']);
     } else {
       const fireProofingDetails = this.comprehensiveService.getCurrentFireProofing();
-      if (fireProofingDetails.dependant) {
+      if (!fireProofingDetails.dependant) {
         const summaryModalDetails = {
           setTemplateModal: 3,
           contentObj: this.insurancePlanningDependantModal,
