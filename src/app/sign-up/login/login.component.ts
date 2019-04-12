@@ -269,6 +269,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  resendEmailVerification() {
+    const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
+    this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail).subscribe(() => {});
+  }
+
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = error;

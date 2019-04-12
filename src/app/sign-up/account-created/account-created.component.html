@@ -23,7 +23,7 @@
         <div class="custom-modal--desc" id="custModalDesc">We have sent an email to you. Please verify your email address to get started!
           <div class="custom-modal--sub--desc">
             <div>Didn’t receive it?</div>
-            <a href="#">Resend Verification Email</a>
+            <a href="#" (click)="resendEmailVerification()">Resend Verification Email</a>
           </div>
         </div>
        <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>

@@ -243,7 +243,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification();
+    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {});
   }
 
   onlyNumber(el) {

@@ -264,9 +264,11 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
-  resendEmailVerification() {
+  resendEmailVerification(value: any, isEmail: boolean) {
     const payload = {
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      mobileNumber: isEmail ? '' : value,
+      emailAddress: isEmail ? value : '',
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification'
     }
     return this.apiService.resendEmailVerification(payload);
   }

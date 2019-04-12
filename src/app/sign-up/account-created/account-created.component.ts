@@ -13,6 +13,7 @@ import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
+import { SignUpApiService } from './../sign-up.api.service';
 
 @Component({
   selector: 'app-account-created',
@@ -33,7 +34,8 @@ export class AccountCreatedComponent implements OnInit {
     private signUpService: SignUpService, private configService: ConfigService,
     private router: Router,
     private appService: AppService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private signUpApiService: SignUpApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -71,6 +73,12 @@ export class AccountCreatedComponent implements OnInit {
    */
   redirectToLogin() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+  }
+
+  resendEmailVerification() {
+    this.signUpApiService.resendEmailVerification('', true).subscribe((data) => {
+      console.log(data);
+    });
   }
 
 }
