@@ -1,4 +1,5 @@
-<div class="container-fluid max-width--1024">
+<app-investment-title-bar></app-investment-title-bar>
+<div class="container-fluid max-width--1024 invest-web-pt-90">
   <div class="content">
     <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
       <div class="row">
@@ -20,12 +21,12 @@
                     <div ngbDropdown>
                       <button class="btn btn-dropdown" id="topup_portfolio_dropdwon_value"
                         ngbDropdownToggle>
-                        {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.productName :'Select
+                        {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.riskProfile.type :'Select
                         Portfolio'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('portfolio',portfolio)"
-                          id="topup_portfolio_option-{{i}}">{{portfolio.productName}}</button>
+                          id="topup_portfolio_option-{{i}}">{{portfolio.riskProfile.type}}</button>
                       </div>
                     </div>
                   </div>

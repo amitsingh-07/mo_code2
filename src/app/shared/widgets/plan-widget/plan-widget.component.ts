@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { RecommendationsModalComponent } from '../../modal/recommendations-modal/recommendations-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
+import { RoundPipe } from './../../Pipes/round.pipe';
 import { SelectedPlansService } from './../../Services/selected-plans.service';
 
 @Component({
@@ -68,7 +69,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
     private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe,
-    private planService: SelectedPlansService) {
+    private planService: SelectedPlansService, private round: RoundPipe) {
     this.highlights = [];
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -108,6 +109,21 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       // Premium Duration field is expected for all the types
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
+
+      // For Whole Life
+      if (this.data.premium.durationName.indexOf('Whole Life') > -1 && this.type !== 'hospital plan') {
+        this.highlights.push({ title: 'Coverage:', description: this.currency.transform(this.data.premium.sumAssured, 'USD', 'symbol', '1.0-0') + ` + Variable Bonus.` });
+      }
+
+      // For Whole Life Multiplier
+      if (this.data.premium.durationName.indexOf('Whole life w/Multiplier') > -1) {
+        const age = this.data.insurer.insurerName.indexOf('Tokio Marine') > -1 ? 70 : 65;
+        const sumAssured = this.currency.transform(this.round.transform(this.data.premium.sumAssured / 3), 'USD', 'symbol', '1.0-0');
+        this.highlights.push({ title: 'Coverage:', description: this.currency.transform(this.data.premium.sumAssured, 'USD', 'symbol', '1.0-0') + ` till age ${age}.` });
+        this.highlights.push({ title: `(After age ${age}: ${sumAssured} + Variable Bonus.)`, description: '' });
+      }
+
+
       if (this.type.indexOf('critical') > -1) {
         if (this.isDirect && this.data.premium.claimFeature) {
           this.highlights.push({ title: 'Claim Feature:', description: this.data.premium.claimFeature });

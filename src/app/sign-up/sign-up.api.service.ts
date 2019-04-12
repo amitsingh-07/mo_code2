@@ -154,7 +154,8 @@ export class SignUpApiService {
       resetType: 'New',
       selectedProducts: selectedPlanData.plans,
       resetCode: resCode,
-      journeyType: journey
+      journeyType: journey,
+      sessionId: this.authService.getSessionId()
     };
   }
 

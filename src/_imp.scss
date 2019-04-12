@@ -62,7 +62,7 @@
 }
 
 .word-break {
-  word-break: break-all;
+  word-break: break-word;
 }
 @include allmobiles{
   .sm-text-align-center{

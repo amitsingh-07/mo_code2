@@ -91,7 +91,7 @@ export class BaseService {
       });
   }
 
-  postForBlob(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+  postForBlob(url, showLoader?: boolean, showError?: boolean) {
     if (showLoader) {
       this.helperService.showLoader();
     }
@@ -101,7 +101,7 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post(`${this.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' })
+      .get(`${this.apiBaseUrl}/${url}${param}`, { responseType: 'blob' })
       .finally(() => {
         this.helperService.hideLoader();
       });

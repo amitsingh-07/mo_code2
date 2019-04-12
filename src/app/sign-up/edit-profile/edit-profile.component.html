@@ -1,5 +1,6 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="content">
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-pt-90">
   <div class="flex-row">
     <div class="flex-col-12">
       <div class="grass_bg_container white-bg">
@@ -448,7 +449,7 @@
       </div>
     </div>
     <!-- Update bank details  -->
-    <div class="bank_details">
+    <div class="bank_details" *ngIf=showAddbank>
       <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
         <div class="flex-row">
           <div class="flex-col-11">

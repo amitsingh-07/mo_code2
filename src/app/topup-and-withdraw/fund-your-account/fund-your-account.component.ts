@@ -64,7 +64,7 @@ export class FundYourAccountComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
@@ -220,6 +220,11 @@ export class FundYourAccountComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           if (!this.fundDetails.isAmountExceedBalance) {
@@ -258,6 +263,11 @@ export class FundYourAccountComponent implements OnInit {
               'Error!',
               response.objectList.serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           if (!this.fundDetails.isAmountExceedBalance) {

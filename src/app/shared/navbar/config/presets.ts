@@ -6,6 +6,7 @@ export class NavbarConfig {
       showHeaderBackBtn: false,
       showMenu: true,
       showLogin: true,
+      showLogout: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
@@ -24,6 +25,7 @@ export class NavbarConfig {
       showNotifications: true,
       showHeaderNavbar: false
     };
+
     // Sign Up Journey
     '101': object = {
       showNavBackBtn: true,
@@ -34,15 +36,29 @@ export class NavbarConfig {
       showNotifications: false,
       showHeaderNavbar: false
     };
+
     // Edit Profile
     '102': object = {
-      showNavBackBtn: false,
+      showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: true,
       showLogin: true,
       showSearchBar: false,
       showNotifications: true,
       showHeaderNavbar: true,
+    };
+
+    // Topup and Withdraw
+    '103': object = {
+      showNavBackBtn: true,
+      showHeaderBackBtn: true,
+      showMenu: true,
+      showLogin: true,
+      showLogout: true,
+      showNavShadow: true,
+      showSearchBar: false,
+      showNotifications: true,
+      showHeaderNavbar: true
     };
 
     // ------ Features -----
@@ -57,25 +73,30 @@ export class NavbarConfig {
       showNotifications: true,
       showHeaderNavbar: false
     };
+
     // Direct/ Guide Me Journey (Robo1)
     '2': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
       showLogin: false,
+      showLogout: false,
       showNavShadow: true,
       showSearchBar: false,
+      showNotifications: false,
       showLabel: {
         primary: 'Insurance Adviser',
         secondary: 'powered by DIYInsurance'
       }
     };
+
     // Will-Writing (Robo1.5)
     '4': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
       showLogin: false,
+      showLogout: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
@@ -84,12 +105,14 @@ export class NavbarConfig {
         primary: 'Will Writing'
       }
     };
+
     // Investment (Robo2)
     '6': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: false,
       showLogin: false,
+      showLogout: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,

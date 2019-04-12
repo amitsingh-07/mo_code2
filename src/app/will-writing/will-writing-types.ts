@@ -61,7 +61,6 @@ export interface IWill {
 }
 
 export interface IwillProfile {
-    customerId: string;
     enquiryId?: number;
     uin: string;
     name: string;

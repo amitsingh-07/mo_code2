@@ -3,6 +3,7 @@
 
 app-post-login {
   .container-fluid {
+    padding-top: 50px !important;
     @include allmobiles {
       padding: 45px 0;
     }
@@ -52,12 +53,19 @@ app-post-login {
     width: 327px;
     letter-spacing: -0.3px;
     color: $white-color;
-
+    text-align: center;
     @include allmobiles {
       text-align: center;
     }
   }
-
+  .signup-wrapper{
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    @include allmobiles{
+      padding-bottom: 0;
+    }
+  }
   .signup-wrapper__header-icon {
     @include allmobiles {
       width: 99px !important;
