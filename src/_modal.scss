@@ -769,6 +769,9 @@ body.modal-open::-webkit-scrollbar {
       overflow-y: auto;
       padding: 30px 45px 40px !important;
     }
+    @include iphoneX {
+      padding: 30px 45px 130px !important;
+    }
   }
 }
 
