@@ -110,7 +110,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getNewEndowmentItem(dependant: IDependantDetail) {
     let preferenceSelected = true;
     if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
-      console.log(this.comprehensiveService.getChildEndowment());
       if (this.comprehensiveService.getChildEndowment().length) {
         preferenceSelected = false;
       } else {
