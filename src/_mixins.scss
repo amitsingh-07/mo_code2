@@ -141,6 +141,11 @@ $desktop-width: 1024px;
     @content;
   }
 }
+@mixin iphoneX {
+	@media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) { 
+		@content;
+	}
+}
 
 // USAGE
 // .class{
