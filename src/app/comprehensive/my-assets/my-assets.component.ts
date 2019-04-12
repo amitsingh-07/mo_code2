@@ -188,7 +188,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       investmentPropertiesValue: [{ value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
                                  disabled: this.viewMode }, []],
       assetsInvestmentSet: this.formBuilder.array(otherInvestFormArray),
-      otherAssetsValue: [this.assetDetails ? this.assetDetails.otherAssetsValue : '', []]
+      otherAssetsValue: [{ value: this.assetDetails ? this.assetDetails.otherAssetsValue : '', disabled: this.viewMode }, []]
+
     });
   }
   addOtherInvestment() {
@@ -274,6 +275,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     return true;
   }
   goToNext(form: FormGroup) {
+    if (this.viewMode) {
+         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+         } else {
     if (this.validateAssets(form)) {
       const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
       if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
@@ -296,7 +300,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     }
   }
-
+  }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {
       TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
