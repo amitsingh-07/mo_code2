@@ -273,17 +273,8 @@ export class PortfolioService {
     return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   getFundDetails() {
@@ -330,5 +321,17 @@ export class PortfolioService {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY);
     }
+  }
+
+  buildQueryString(parameters){
+    let qs = '';
+    Object.keys(parameters).forEach((key) => {
+      const value = parameters[key];
+      qs += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+    });
+    if (qs.length > 0){
+      qs = qs.substring(0, qs.length - 1);
+    }
+    return '?' + qs;
   }
 }
