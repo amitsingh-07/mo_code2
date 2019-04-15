@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" id="errorModelImage" />
+  </div>
+</div>
+<div class="total-modal">
+  <div class="modal-body">
+    <div class="modal-body-title" id="errorModeltitle">
+      Confirmation
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true" id="errorModelCloseIcon"></span>
+    </button>
+    <div class="modal-body-message" id="errorModelMessage">You are submitting a Monthly Investment request for the
+      following amount to your Growth Portfolio.</div>
+  </div>
+  <div class="fund-summary">
+    <div class="from-account">
+      <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
+      <div>Your Investment</div>
+      <div class="strong">2000
+        <span> /mth</span>
+      </div>
+    </div>
+    <div class="right-arrow">
+      <img src="../../../assets/images/investment-account/arrow-right.png" alt="" />
+    </div>
+    <div class="to-account">
+      <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+      <div>Your Portfolio</div>
+      <div class="strong">Growth</div>
+    </div>
+  </div>
+  <div class="fund-content">
+    <div class="lab-tex">Your request will only be processed once your account has sufficient funds.</div>
+    <hr>
+    <div class="req-process">Before your request is processed:</div>
+    <div class="list-order">
+      <div class="flex-row">
+        <span class="circle"></span>
+        <span>You may submit a new request to change the existing One Time Investment request.</span>
+      </div>
+      <div class="flex-row">
+        <span class="circle"></span>
+        <span>You can delete existing request by submitting a new request with $0.</span>
+
+      </div>
+    </div>
+    <hr>
+    <div>Remember to fund your cash account with $800 by the 15th of every month for the Monthly Investment request to
+      be
+      processed.</div>
+
+    <button type="button" class="action-button" id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
+      Submit Request
+    </button>
+  </div>
+</div>

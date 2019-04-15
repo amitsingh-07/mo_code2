@@ -24,6 +24,7 @@ import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-with
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
+import { ProfileIcons } from './../risk-profile/profileIcons';
 import { SignUpApiService } from './../../sign-up/sign-up.api.service';
 import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from './../../topup-and-withdraw/topup-and-withdraw-routes.constants';
@@ -46,7 +47,8 @@ export class PortfolioRecommendationComponent implements OnInit {
   buttonTitle: any;
   event1 = true;
   event2 = true;
-  userInputSubtext;
+  iconImage;
+ userInputSubtext;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -82,6 +84,7 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
   setPageTitle(title: string) {

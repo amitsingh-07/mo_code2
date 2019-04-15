@@ -2,6 +2,11 @@
 @import '../../../mixins';
 
 app-my-financials {
+  .banner-image{
+    img{
+      padding-top: 0;
+    }
+  }
   .fixed-btn--sm {
     border: 1px solid $fixed-btn-brdr-color;
     color: $teal-color;
