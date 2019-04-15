@@ -41,6 +41,7 @@ export interface IDependantDetail {
     dateOfBirth: string;
     nation: string;
     enquiryId: number;
+    isInsuranceNeeded: boolean;
 }
 
 export interface IChildEndowment {
@@ -69,6 +70,7 @@ export interface IMyLiabilities {
 }
 export class HospitalPlan {
     hospitalClass: string;
+    hospitalPlanName: string;
     hospitalClassDescription: string;
     hospitalClassId: number;
     hospitalPlanId: number;
@@ -181,14 +183,14 @@ export interface IRegularSavings {
 export interface IInsurancePlan {
     enquiryId: number;
     haveHospitalPlan: boolean;
-    haveCPFDependentsProtectionScheme: string;
-    haveHDBHomeProtectionScheme: string;
-    homeProtectionCoverageAmount: string;
-    life_protection_amount: number;
-    other_life_protection_amount: number;
+    haveCPFDependentsProtectionScheme: number;
+    haveHDBHomeProtectionScheme: number;
+    homeProtectionCoverageAmount: number;
+    lifeProtectionAmount: number;
+    otherLifeProtectionCoverageAmount: number;
     criticalIllnessCoverageAmount: number;
     disabilityIncomeCoverageAmount: number;
-    haveLongTermElderShield: string;
+    haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
 }
 export interface IRetirementPlan {

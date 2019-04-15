@@ -25,6 +25,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   pageId: string;
   hasDependant: boolean;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
@@ -62,12 +63,26 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.cmpService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.buildMyDependantSelectionForm();
   }
 
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   setPageTitle(title: string) {

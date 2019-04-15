@@ -29,6 +29,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   pageTitle: string;
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   educationPreferencePlan: any = [];
   viewMode: boolean;
   constructor(
@@ -55,10 +56,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
-  ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
-    this.menuClickSubscription.unsubscribe();
-  }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
@@ -67,9 +64,28 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     this.buildEducationPreferenceForm();
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+  }
+
 
   buildEducationPreferenceForm() {
     const preferenceArray = [];

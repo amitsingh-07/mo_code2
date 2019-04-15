@@ -1,3 +1,4 @@
+import { RoutingService } from './../shared/Services/routing.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -50,7 +51,7 @@ export class ComprehensiveService {
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
-        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe) {
+        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe, private routingService: RoutingService) {
         this.getComprehensiveFormData();
     }
 
@@ -541,7 +542,12 @@ export class ComprehensiveService {
         const urlList = this.getComprehensiveUrlList();
         const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
         if (currentUrlIndex > 0) {
-            return urlList[currentUrlIndex - 1];
+            const previousUrl = urlList[currentUrlIndex];
+            if (previousUrl === ProgressTrackerUtil.trimPath(this.routingService.getCurrentUrl())) {
+                return null;
+            } else {
+                return previousUrl;
+            }
         }
         return COMPREHENSIVE_BASE_ROUTE;
     }

@@ -1,8 +1,7 @@
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { Util } from './../../shared/utils/util';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -22,11 +21,12 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './dependant-education-list.component.html',
   styleUrls: ['./dependant-education-list.component.scss']
 })
-export class DependantEducationListComponent implements OnInit {
+export class DependantEducationListComponent implements OnInit, OnDestroy {
   pageTitle: string;
   pageId: string;
   endowmentListForm: FormGroup;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   endowmentDetail: IChildEndowment[];
   endowmentArrayPlan: any;
   endowmentPlan: any = [];
@@ -50,16 +50,16 @@ export class DependantEducationListComponent implements OnInit {
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
       this.endowmentDetail.forEach((dependant: any) => {
-      if (dependant.endowmentMaturityAmount > 0) {
-        this.summaryFlag = false;
-        this.dependantSummaryCons.push({
-          userName: dependant.name,
-          userAge: dependant.age,
-          // tslint:disable-next-line: max-line-length
-          userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
-        });
-      }
-    });
+        if (dependant.endowmentMaturityAmount > 0) {
+          this.summaryFlag = false;
+          this.dependantSummaryCons.push({
+            userName: dependant.name,
+            userAge: dependant.age,
+            // tslint:disable-next-line: max-line-length
+            userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
+          });
+        }
+      });
     }
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -94,6 +94,18 @@ export class DependantEducationListComponent implements OnInit {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.endowmentArrayPlan = this.endowmentDetail;
     this.buildEndowmentListForm();
     let endowmentSkipEnableFlag = true;
@@ -104,6 +116,14 @@ export class DependantEducationListComponent implements OnInit {
     });
     this.endowmentSkipEnable = endowmentSkipEnableFlag;
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+  }
+
   buildEndowmentListForm() {
     const endowmentArray = [];
     this.endowmentArrayPlan.forEach((endowmentPlan: any) => {
@@ -273,3 +293,5 @@ export class DependantEducationListComponent implements OnInit {
     }
   }
 }
+
+

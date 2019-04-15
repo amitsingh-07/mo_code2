@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -75,24 +75,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });
     }
-    this.DownLuck = this.comprehensiveService.getDownOnLuck();
-
-    this.hospitalPlanList.forEach((hospitalPlanData: IHospitalPlanList) => {
-      // tslint:disable-next-line:triple-equals
-      if (hospitalPlanData.id == this.DownLuck.hospitalPlanId) {
-        this.hospitalType = hospitalPlanData.hospitalClass;
-      }
-    });
-
+    this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
-      if (event && event !== '') {
-        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
-        this.router.navigate([previousUrl]);
-      }
-    });
   }
 
   buildInsuranceForm() {
@@ -105,9 +91,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
-      life_protection_amount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.
-          life_protection_amount : '', disabled: this.viewMode
+      lifeProtectionAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : '', disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
@@ -117,9 +102,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
         disabled: this.viewMode
       }, [Validators.required]],
-      other_life_protection_amount: [{
+      otherLifeProtectionCoverageAmount: [{
         value: this.insurancePlanFormValues ?
-          this.insurancePlanFormValues.other_life_protection_amount : '', disabled: this.viewMode
+          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
       }, [Validators.required]],
       criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
         '', [Validators.required]],
@@ -145,6 +130,17 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -161,12 +157,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.showSummaryModal();
     } else {
-      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-      this.comprehensiveService.setInsurancePlanningList(form.value);
-      // this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
-
-      // });
-      this.showSummaryModal();
+      if (!form.pristine) {
+        form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+        this.comprehensiveService.setInsurancePlanningList(form.value);
+        this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+          this.showSummaryModal();
+        });
+      } else {
+        this.showSummaryModal();
+      }
     }
   }
   showSummaryModal() {
@@ -215,4 +214,3 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
-

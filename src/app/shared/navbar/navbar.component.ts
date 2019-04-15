@@ -1,17 +1,20 @@
-import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import {
-  TransactionModalComponent
-} from '../../shared/modal/transaction-modal/transaction-modal.component';
+import { TransactionModalComponent } from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { appConstants } from './../../app.constants';
@@ -87,7 +90,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
-    private navbarService: NavbarService, private _location: Location,
+    private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
@@ -261,7 +264,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.isBackPressSubscribed) {
       this.navbarService.backPressed(this.pageTitle);
     } else {
-      this._location.back();
+      this.navbarService.goBack();
     }
   }
 
