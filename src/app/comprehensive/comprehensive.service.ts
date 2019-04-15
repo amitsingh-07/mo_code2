@@ -884,9 +884,9 @@ export class ComprehensiveService {
             }]
         };
     }
-    /*
-    *Bucket Calculation for Earnings and Assets
-    */
+    /**
+     * Bucket Calculation for Earnings and Assets
+     */
     setBucketImage(bucketParams: any, formValues: any, totalBucket) {
         const bucketFlag = [];
         for (const i in bucketParams) {
@@ -904,9 +904,9 @@ export class ComprehensiveService {
             return 'emptyBucket';
         }
     }
-    /*
-   *Set Total Bucket Income For Earnings
-   */
+    /**
+     * Set Total Bucket Income For Earnings
+     */
     setBucketAmountByCal() {
         Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
             const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
@@ -921,17 +921,17 @@ export class ComprehensiveService {
             }
         });
     }
-    /*
-    *Remove key from Object
-    * First Parameter is Object and Second Parameter is array with key need to pop
-    */
-    // tslint:disable-next-line: cognitive-complexity
+    /**
+     * Remove key from Object
+     * First Parameter is Object and Second Parameter is array with key need to pop
+     */
+// tslint:disable-next-line: cognitive-complexity
     unSetObjectByKey(inputObject: any, removeKey: any) {
         Object.keys(inputObject).forEach((key) => {
             if (Array.isArray(inputObject[key])) {
                 inputObject[key].forEach((objDetails: any, index) => {
                     Object.keys(objDetails).forEach((innerKey) => {
-                        if (innerKey !== 'enquiryId') {
+                        if (innerKey !== 'enquiryId' && removeKey.indexOf(innerKey) < 0) {
                             const Regexp = new RegExp('[,]', 'g');
                             let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
                             thisValue = parseInt(objDetails[innerKey], 10);
@@ -952,10 +952,10 @@ export class ComprehensiveService {
         }
         return inputObject;
     }
-    /*
-    *Compute Expense Calculation for Summary Page
-    *PV x (1+r)^n
-    */
+    /**
+     * Compute Expense Calculation for Summary Page
+     * PV x (1+r)^n
+     */
     getComputedExpense(amount: number, percent: any, aboutAge: number) {
         let percentCal: any;
         let computedVal: any;
@@ -967,9 +967,9 @@ export class ComprehensiveService {
         }
         return finalResult;
     }
-    /*
-    *Dependant Summary Page Compute
-    */
+    /**
+     * Dependant Summary Page Compute
+     */
     setDependantExpense(location: any, univ: any, aboutAge: number, nation: any) {
         let totalExpense: any = 0;
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
@@ -983,53 +983,54 @@ export class ComprehensiveService {
         });
         return totalExpense;
     }
-    /*
-    *Summary Page Finance - Compute Liquid Cash
-    * (Cash + SavingBond) - (Expense/2)
-    */
+    /**
+     * Summary Page Finance - Compute Liquid Cash
+     * (Cash + SavingBond) - (Expense/2)
+     */
     getLiquidCash() {
         const assetDetails = this.getMyAssets();
-        const expenseDetails = this.getMySpendings();
+        const expenseDetails = this.getHomeExpenses('cash', false);
         let sumLiquidCash = 0;
         if (assetDetails && assetDetails.cashInBank) {
-            sumLiquidCash += assetDetails.cashInBank;
+            sumLiquidCash += this.getValidAmount(assetDetails.cashInBank);
         }
         if (assetDetails && assetDetails.savingsBonds) {
-            sumLiquidCash += assetDetails.savingsBonds;
+            sumLiquidCash += this.getValidAmount(assetDetails.savingsBonds);
         }
-        if (expenseDetails && expenseDetails.totalAnnualExpenses) {
-            sumLiquidCash -= (expenseDetails.totalAnnualExpenses / 2);
+        if (expenseDetails) {
+            sumLiquidCash -= (6 * expenseDetails);
         }
-        return sumLiquidCash;
+        return (Math.floor(sumLiquidCash));
     }
-    /*
-    *Compute Spare Cash
-    * 75% of (HomePay - RSP - BadMood - Expense)
-    * 50% of (Annual Bonus/Dividend)
-    */
+    /**
+     * Compute Spare Cash
+     * 75% of (HomePay - RSP - BadMood - Expense)
+     * 50% of (Annual Bonus/Dividend)
+     */
     getComputeSpareCash() {
         let spareCash = 0;
         const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
         const earningDetails = this.getMyEarnings();
-        const spendDetails = this.getMySpendings();
-        const homePayTotal = this.getTakeHomeSalary(earningDetails, summaryConfig);
-        const regularSavingTotal = this.getRegularSaving();
+        const homePayTotal = this.getTakeHomeSalary(earningDetails, summaryConfig, true);
+        const regularSavingTotal = this.getRegularSaving('cash', true);
         const badMoodTotal = this.getBadMoodFund();
-        const expenseTotal = (spendDetails && spendDetails.totalAnnualExpenses) ? this.getValidAmount(spendDetails.totalAnnualExpenses) : 0;
+        const expenseTotal = this.getHomeExpenses('cash', true);
         const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
         spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
             + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
-        return (Math.round(spareCash));
+        return (Math.floor(spareCash));
     }
-    /*
-    *Compute Take Home
-    */
-    getTakeHomeSalary(earningDetails: any, summaryConfig: any) {
+    /**
+     * Compute Take Home
+     * annual Flag = true for annual calculation
+     * annual Flag = false for monthly calculation
+     */
+    getTakeHomeSalary(earningDetails: any, summaryConfig: any, annualFlag: boolean) {
         const baseProfile = this.getMyProfile();
         let homeSalary = 0;
         let homeCpfSalary = 0;
-        if (earningDetails && earningDetails.totalAnnualIncomeBucket > 0) {
+        if (earningDetails && earningDetails !== null && earningDetails.totalAnnualIncomeBucket > 0) {
             if (baseProfile && baseProfile.nation === 'Foreigner') {
                 homeSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
@@ -1052,41 +1053,96 @@ export class ComprehensiveService {
             }
             homeSalary += this.getValidAmount(earningDetails.monthlyRentalIncome);
             homeSalary += this.getValidAmount(earningDetails.otherMonthlyIncome);
-            homeSalary *= 12;
-            homeSalary += this.getValidAmount(earningDetails.otherAnnualIncome);
+            if (annualFlag) {
+                homeSalary *= 12;
+                homeSalary += this.getValidAmount(earningDetails.otherAnnualIncome);
+            }
         }
         return homeSalary;
     }
-    /*
-    * compute Regular Saving Plan
-    */
-    getRegularSaving() {
+    /**
+     * compute Regular Saving Plan
+     * based on cash mode, cpf mode or both cpf/cash
+     * annual Flag = true for annual calculation
+     * annual Flag = false for monthly calculation
+     */
+    getRegularSaving(mode: any, annualFlag: boolean) {
         const rspDetails = this.getRegularSavingsList();
-        if (rspDetails) {
+        if (rspDetails && rspDetails !== null) {
             const inputParams = { rsp: rspDetails };
-            const filterInput = this.unSetObjectByKey(inputParams, ['enquiryId']);
+            const removeParams = ['enquiryId'];
+            if ( mode === 'cash' ) {
+                removeParams.push('regularPaidByCPF');
+            } else if (mode === 'cpf') {
+                removeParams.push('regularPaidByCash');
+            }
+            const filterInput = this.unSetObjectByKey(inputParams, removeParams);
             const monthlySumCal = this.additionOfCurrency(filterInput);
-            const yearCal = monthlySumCal * 12;
-            return yearCal;
+            if (annualFlag) {
+                return (monthlySumCal * 12);
+            } else {
+                return monthlySumCal;
+            }
         } else {
             return 0;
         }
     }
-    /*
-    *compute Bad Mood Fund
-    */
+    /**
+     * get Expense based on cash mode, cpf mode or both cpf/cash
+     * annual Flag = true for annual calculation
+     * annual Flag = false for monthly calculation
+     */
+    getHomeExpenses(modeType: any, annualFlag: boolean) {
+        const expenseDetails = this.getMySpendings();
+        let homeExpenses = 0;
+        if (expenseDetails && expenseDetails !== null) {
+            homeExpenses += this.getValidAmount(expenseDetails.monthlyLivingExpenses);
+            homeExpenses += this.getValidAmount(expenseDetails.carLoanPayment);
+            homeExpenses += this.getValidAmount(expenseDetails.otherLoanPayment);
+            if (modeType === 'cash' || modeType === 'both') {
+                homeExpenses += this.getValidAmount(expenseDetails.HLMortgagePaymentUsingCash);
+                homeExpenses += this.getValidAmount(expenseDetails.mortgagePaymentUsingCash);
+            }
+            if (modeType === 'cpf' || modeType === 'both') {
+                homeExpenses += this.getValidAmount(expenseDetails.HLMortgagePaymentUsingCPF);
+                homeExpenses += this.getValidAmount(expenseDetails.mortgagePaymentUsingCPF);
+            }
+            if (annualFlag) {
+                homeExpenses *= 12;
+                homeExpenses += this.getValidAmount(expenseDetails.adHocExpenses);
+            }
+        }
+        return homeExpenses;
+    }
+    /**
+     * Set Bad Mood Input value for Maximum
+     * Bad Mood Fund =  Take Home Pay - Expenses - Less RSP (cash Component)
+     */
+    computeBadMoodFund() {
+        const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
+        const earningDetails = this.getMyEarnings();
+        const homeExpenseTotal = this.getHomeExpenses('cash', false);
+        const homePayTotal = this.getTakeHomeSalary(earningDetails, summaryConfig, false);
+        const regularSavingTotal = this.getRegularSaving('cash', false);
+        let maxAmount = 0;
+        maxAmount = homePayTotal - homeExpenseTotal - regularSavingTotal;
+        return Math.floor(maxAmount);
+    }
+    /**
+     * compute Bad Mood Fund
+     */
     getBadMoodFund() {
         const badMoodDetails = this.getDownOnLuck();
-        if (badMoodDetails && badMoodDetails.badMoodMonthlyAmount) {
+        if (badMoodDetails && badMoodDetails !== null && badMoodDetails.badMoodMonthlyAmount) {
             const badMoodMonthly = this.getValidAmount(badMoodDetails.badMoodMonthlyAmount);
             return badMoodMonthly * 12;
         } else {
             return 0;
         }
     }
-    /*
-    * check Number
-    */
+    /**
+     * check Number
+     */
     getValidAmount(thisValue) {
         if (thisValue && thisValue !== null && !isNaN(thisValue)) {
             return toInteger(thisValue);
@@ -1094,10 +1150,10 @@ export class ComprehensiveService {
             return 0;
         }
     }
-    /*
-    *Summary Dynamic Value
-    *Get Static Json value for Fire Proofing
-    */
+    /**
+     * Summary Dynamic Value
+     * Get Static Json value for Fire Proofing
+     */
     getCurrentFireProofing() {
         const getComprehensiveDetails = this.getComprehensiveSummary();
         const enquiry: IComprehensiveEnquiry = getComprehensiveDetails.comprehensiveEnquiry;
@@ -1111,9 +1167,9 @@ export class ComprehensiveService {
         }
         return fireProofingDetails;
     }
-    /*
-    *Disable Form Element
-    */
+    /**
+     * Disable Form Element
+     */
     getFormDisabled(formDetails: any) {
         formDetails.disable();
     }
