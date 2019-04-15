@@ -17,8 +17,10 @@ import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
+import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
     selector: 'app-cmp-my-profile',
@@ -67,11 +69,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
-        configDate.minDate = { year: today.getFullYear() - 100, month: today.getMonth() + 1, day: today.getDate() };
-        configDate.maxDate = { year: today.getFullYear() - 18, month: today.getMonth() + 1, day: today.getDate() };
+        configDate.minDate = { year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MAX_YEAR,
+            month: today.getMonth() + 1, day: today.getDate() };
+        configDate.maxDate = { year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MIN_YEAR,
+            month: today.getMonth() + 1, day: today.getDate() };
         configDate.outsideDays = 'collapsed';
         this.pageId = this.activatedRoute.routeConfig.component.name;
         this.configService.getConfig().subscribe((config: any) => {
@@ -170,7 +175,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setProgressToolTipShown(true);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
         } else {
-            if (this.validateMoGetStrdForm(form)) {
+            if (this.validateMoGetStrdForm(form) && !this.validateDOB(form.value.ngbDob)) {
                 form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
                 form.value.firstName = this.userDetails.firstName;
                 this.comprehensiveService.setMyProfile(form.value);
@@ -200,11 +205,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     validateDOB(date) {
         const today: Date = new Date();
-        if (today.getFullYear() - date._model.year > 54) {
+        const inputDateFormat = this.parserFormatter.format(date);
+        const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
+        if (getAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE || getAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE) {
             this.DOBAlert = true;
         } else {
             this.DOBAlert = false;
         }
+        return this.DOBAlert;
     }
 
     validateMoGetStrdForm(form: FormGroup) {

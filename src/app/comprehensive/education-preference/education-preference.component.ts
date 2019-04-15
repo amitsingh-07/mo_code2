@@ -11,7 +11,6 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 @Component({
@@ -35,8 +34,8 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService, private progressService: ProgressTrackerService) {
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);

@@ -158,8 +158,8 @@
 
     },
     "MY_PROFILE": {
-      "NATIONALITY_ALERT": "Seems like you have changed your nationality.Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is not suitable for people age 55 and above.For queries,You may wish to contact us at enquiries@moneyowl.com.sg."
+      "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 54 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
@@ -290,7 +290,7 @@
       "HI": "Hi",
       "HEADER": "Welcome to MoneyOwl <br>roboadvisory!",
       "WELCOME_BACK": "Welcome Back",
-      "DESC": "Your financial report will be generated at the end of the journey! Ready to go?",
+      "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Some tips for you",
       "TOOL_TIP_DESC": "You can check your progress here!",
       "TOOL_TIP_CLOSE": "X"
