@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './my-earnings.component.html',
   styleUrls: ['./my-earnings.component.scss']
 })
-export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MyEarningsComponent implements OnInit, OnDestroy {
   pageTitle: string;
   myEarningsForm: FormGroup;
   submitted: boolean;
@@ -35,6 +35,7 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
   totalAnnualIncomeBucket = 0;
   bucketImage: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   earningDetails: IMyEarnings;
   pageId: string;
   incomeDetailsDyn = {
@@ -79,6 +80,18 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.progressService.show();
       }
     });
+    
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.buildMyEarningsForm();
     this.onTotalAnnualIncomeBucket();
     for (const i in this.incomeDetailsDyn) {
@@ -89,15 +102,14 @@ export class MyEarningsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
-  ngAfterViewInit() {
-     if (this.viewMode) {
-       //this.comprehensiveService.getFormDisabled(this.myEarningsForm);
-     }
-  }
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
+
 
   SelectEarningsType(earningsType, earningFlag) {
     this[earningsType] = earningFlag;

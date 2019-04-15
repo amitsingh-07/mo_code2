@@ -25,6 +25,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   investmentList: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   RSPSelection = false;
   regularSavingsArray: IRegularSavings[];
   submitted = false;
@@ -73,13 +74,28 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.regularSavingsArray = this.comprehensiveService.getRegularSavingsList();
     this.hasRegularSavings = this.comprehensiveService.hasRegularSavings();
     this.buildRSPForm();
   }
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   buildRSPForm() {
