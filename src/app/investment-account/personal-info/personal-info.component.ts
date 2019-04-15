@@ -5,6 +5,7 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { RoadmapService } from '../../shared/components/roadmap/roadmap.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -12,6 +13,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
+import { INVESTMENT_ACCOUNT_ROADMAP } from '../investment-account-roadmap';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -53,7 +55,8 @@ export class PersonalInfoComponent implements OnInit {
     private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private roadmapService: RoadmapService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -92,6 +95,7 @@ export class PersonalInfoComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_ROADMAP);
   }
 
   buildForm() {
