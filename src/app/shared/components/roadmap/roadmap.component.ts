@@ -31,7 +31,8 @@ export class RoadmapComponent implements OnInit {
   updateStatus() {
     let itemFound = false;
     this.roadmapData.items.forEach((item) => {
-      if (item.path.includes('..' + this.router.url)) { // TODO: Relative path logic to be added
+      item.path = this.cleanRelativePath(item.path);
+      if (item.path.includes(this.router.url)) {
         itemFound = true;
         item.status = ERoadmapStatus.IN_PROGRESS;
       } else {
@@ -42,6 +43,16 @@ export class RoadmapComponent implements OnInit {
         }
       }
     });
+  }
+
+  cleanRelativePath(pathList) {
+    const cleanedList = [];
+    let cleanedPath;
+    pathList.forEach((path) => {
+      cleanedPath = path.replace(/\./g, '');
+      cleanedList.push(cleanedPath);
+    });
+    return cleanedList;
   }
 
 }

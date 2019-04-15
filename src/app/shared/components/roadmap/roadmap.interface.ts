@@ -8,7 +8,7 @@ export interface IRoadmap {
 
 export interface IRoadmapItem {
     title: string;
-    path: string;
+    path: string[];
     status: ERoadmapStatus;
 }
 
