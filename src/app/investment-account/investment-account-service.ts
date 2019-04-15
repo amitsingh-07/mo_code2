@@ -878,7 +878,7 @@ export class InvestmentAccountService {
         addressLine1: data.mailAddress1,
         addressLine2: data.mailAddress2,
         floor: data.mailFloor,
-        unitNumber: data.unitNo,
+        unitNumber: data.mailUnitNo,
         townName: null, // todo - not available in client
         city: data.mailCity,
         reasonId: data.reason.id,
