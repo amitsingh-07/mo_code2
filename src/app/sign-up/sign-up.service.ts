@@ -521,22 +521,4 @@ export class SignUpService {
       return false;
     }
   }
-
-  showUnsupportedDeviceModal() {
-      const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
-      return false;
-  }
-
-  setUnsupportedNoteShownFlag() {
-    this.signUpFormData.isUnsupportedNoteShown = true;
-    this.commit();
-  }
-
-  getUnsupportedNoteShownFlag() {
-    return this.signUpFormData.isUnsupportedNoteShown;
-  }
-
-
 }
