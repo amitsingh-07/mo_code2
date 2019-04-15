@@ -256,9 +256,18 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   verifyAML() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+      )
+    });
     const pepData = this.investmentAccountService.getPepData();
     this.investmentAccountService.verifyAML().subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.objectList && response.objectList.status) {
           this.investmentAccountService.setAccountCreationStatus(
             response.objectList.status
@@ -290,6 +299,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         }
       },
       (err) => {
+        this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       }
     );
