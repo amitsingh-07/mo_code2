@@ -69,6 +69,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.maxBadMoodFund = this.comprehensiveService.computeBadMoodFund();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
@@ -105,9 +106,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });
     }
-    this.comprehensiveService.hasBadMoodFund();
-    this.maxBadMoodFund = Math.floor((this.comprehensiveService.getMyEarnings().totalAnnualIncomeBucket
-      - this.comprehensiveService.getMySpendings().totalAnnualExpenses) / 12);
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
       this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ?  this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
@@ -123,7 +121,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   validateForm(hospitalPlan) {
     this.downOnLuck = {
-      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalPlanName: hospitalPlan.hospitalClass,
       hospitalClassDescription: hospitalPlan.hospitalClassDescription,
       hospitalPlanId: hospitalPlan.id
     } as HospitalPlan;
@@ -139,12 +137,11 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       if (this.isFormValid) {
         form.value.badMoodMonthlyAmount = this.sliderValue;
-        form.value.hospitalClass = this.downOnLuck.hospitalClass;
+        form.value.hospitalPlanName = this.downOnLuck.hospitalPlanName;
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
         this.comprehensiveService.setDownOnLuck(form.value);
         this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
           any) => {
-  
         });
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
       } else {
@@ -166,4 +163,3 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
 }
-

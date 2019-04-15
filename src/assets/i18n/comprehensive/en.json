@@ -158,8 +158,8 @@
 
     },
     "MY_PROFILE": {
-      "NATIONALITY_ALERT": "Seems like you have changed your nationality.Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is not suitable for people age 55 and above.For queries,You may wish to contact us at enquiries@moneyowl.com.sg."
+      "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 54 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
@@ -290,7 +290,7 @@
       "HI": "Hi",
       "HEADER": "Welcome to MoneyOwl <br>roboadvisory!",
       "WELCOME_BACK": "Welcome Back",
-      "DESC": "Your financial report will be generated at the end of the journey! Ready to go?",
+      "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Some tips for you",
       "TOOL_TIP_DESC": "You can check your progress here!",
       "TOOL_TIP_CLOSE": "X"
@@ -516,9 +516,18 @@
      "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
       "TOOLTIP":{
         "CPF_TITLE": "CPF Dependants’ Protection Scheme",
-        "CPF_MESSAGE": "A basic insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It covers the insured member for a maximum sum assured of $46,000 up to 60 years old",
+        "CPF_MESSAGE": "A basic term insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It provides a maximum sum assured of $46,000 up to 60 years old. Premiums can be paid from the CPF Ordinary Account.",
+        "HOME_PROTECTION_SCHEME_TITLE":"Home Protection Scheme",
+        "HOME_PROTECTION_SCHEME_MESSAGE":"A mortgage reducing term insurance that protects CPF members and their families from losing their HDB flat should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It pays off the member's share of the outstanding mortgage loan. Premiums can be paid from the CPF Ordinary Account.​",
         "OTHER_LIFE_INSURANCE_TITLE": "Other Life Insurance Coverage",
-        "OTHER_LIFE_INSURANCE_MESSAGE": "The total amount you or your loved ones would receive from all your insurance policies should you pass away, suffer from Terminal Illness or Total Permanent Disability."
+        "OTHER_LIFE_INSURANCE_MESSAGE": "The total benefit payable to you or your loved ones from all your insurance policies in the event of death, Terminal Illness or Total Permanent Disability.",
+        "DISABILITY_INCOME_INSURANCE_TITLE":"Disability Income Insurance",
+        "DISABILITY_INCOME_INSURANCE_MESSAGE":"The monthly payout you can receive in the event you are not able to perform your current occupation due to a disability.",
+        "LONG_TERM_CARE_INSURANCE_TITLE":"Long Term Care Insurance",
+        "LONG_TERM_CARE_INSURANCE_MESSAGE":"The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
+        "CRITICAL_INSURANCE_TITLE":"Critical Illness Insurance",
+        "CRITICAL_INSURANCE_MESSAGE":"The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
+          
       }
     },
     "RESULT":{

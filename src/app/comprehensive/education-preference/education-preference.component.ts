@@ -11,7 +11,6 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 @Component({
@@ -29,13 +28,14 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
   pageTitle: string;
   EducationPreferenceForm: FormGroup;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   educationPreferencePlan: any = [];
   viewMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
-    private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService, private progressService: ProgressTrackerService) {
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private progressService: ProgressTrackerService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -55,10 +55,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
 
-  ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
-    this.menuClickSubscription.unsubscribe();
-  }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
@@ -67,9 +63,28 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     this.buildEducationPreferenceForm();
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+  }
+
 
   buildEducationPreferenceForm() {
     const preferenceArray = [];
