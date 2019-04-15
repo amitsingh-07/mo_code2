@@ -14,11 +14,11 @@
   </div>  
   <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
   <div class="slider-dark">  
-  <nouislider  disabled = "viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="62"
+  <nouislider  [disabled] = "viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="62"
     [step]="1"></nouislider>
   </div>
   </form>
-    <div>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}} : {{myAge}}</div>
+    <div>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}}</div>
     <div class="footer-cta">
     <button type="button" (click)="goToNext(retirementPlanForm)" class="btn btn-primary mt30 width100"
     id="moDpdnt2BtnFooter">{{
