@@ -65,9 +65,9 @@ app-personal-declaration {
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
-      position: relative;
       top: 76px;
       @include allmobiles{
+        position: relative;
         top: 60px;
       }
       .container-fluid {
