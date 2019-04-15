@@ -21,7 +21,7 @@ export class InvestmentGuardService implements CanActivate {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     } else if (
-      INVESTMENT_ACCOUNT_CONFIG.INVESTMENT_ACCOUNT_GUARD_STATUS.includes(investmentStatus)
+      INVESTMENT_ACCOUNT_CONFIG.INVESTMENT_ACCOUNT_GUARD_STATUS.indexOf(investmentStatus) >= 0
     ) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
