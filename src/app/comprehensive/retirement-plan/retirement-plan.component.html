@@ -13,7 +13,7 @@
     <span class="col-4">62 or later </span>
   </div>  
   <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
-  <nouislider  disabled = "viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="62"
+  <nouislider  [disabled] = "viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="62"
     [step]="1"></nouislider>
   </form>
     <div>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}} </div>

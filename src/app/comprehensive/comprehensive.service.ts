@@ -989,16 +989,16 @@ export class ComprehensiveService {
      */
     getLiquidCash() {
         const assetDetails = this.getMyAssets();
-        const expenseDetails = this.getMySpendings();
+        const expenseDetails = this.getHomeExpenses('cash', false);
         let sumLiquidCash = 0;
         if (assetDetails && assetDetails.cashInBank) {
-            sumLiquidCash += assetDetails.cashInBank;
+            sumLiquidCash += this.getValidAmount(assetDetails.cashInBank);
         }
         if (assetDetails && assetDetails.savingsBonds) {
-            sumLiquidCash += assetDetails.savingsBonds;
+            sumLiquidCash += this.getValidAmount(assetDetails.savingsBonds);
         }
-        if (expenseDetails && expenseDetails.totalAnnualExpenses) {
-            sumLiquidCash -= (expenseDetails.totalAnnualExpenses / 2);
+        if (expenseDetails) {
+            sumLiquidCash -= (6 * expenseDetails);
         }
         return (Math.floor(sumLiquidCash));
     }
@@ -1011,11 +1011,10 @@ export class ComprehensiveService {
         let spareCash = 0;
         const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
         const earningDetails = this.getMyEarnings();
-        const spendDetails = this.getMySpendings();
         const homePayTotal = this.getTakeHomeSalary(earningDetails, summaryConfig, true);
         const regularSavingTotal = this.getRegularSaving('cash', true);
         const badMoodTotal = this.getBadMoodFund();
-        const expenseTotal = (spendDetails && spendDetails.totalAnnualExpenses) ? this.getValidAmount(spendDetails.totalAnnualExpenses) : 0;
+        const expenseTotal = this.getHomeExpenses('cash', true);
         const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
         spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
