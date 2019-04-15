@@ -6,132 +6,142 @@
   </div>
   <div class="container-fluid max-width--1024">
     <div class="content">
+        <div class="title-big">Tax Information</div>
       <div class="row">
-        <div class="col-lg-6 col-md-6 hidden-sm-md">
-          <h2>Tax Information</h2>
+        <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>
         </div>
-        <div class="col-lg-6 col-md-6 my-info-mt66">
-          <form name="taxInfoForm" [formGroup]="taxInfoForm">
-            <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}"
-              *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
-              <div class="widget-title">Tax Residence </div>
-              <div class="widget-body" [formGroupName]="x">
-                <div class="flex-row">
-                  <div class="flex-col-4">
-                    <label for="name" class="country_text"
-                      id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
-                  </div>
-                  <div class="flex-col-8">
-                    <div class="dropdown-control"
-                      [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
-                      <div ngbDropdown>
-                        <button class="btn btn-dropdown" ngbDropdownToggle>
-                          <span *ngIf="taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
-                            id="tax_Info_dropdown_country">{{
-                      taxInfoItem.controls.taxCountry.value.name | titlecase }}</span>
-                          <span *ngIf="!taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
-                            id="tax_Info_dropdown_country">{{
-                      'TAX_INFO.SELECT_COUNTRY' | translate}}</span>
-                        </button>
-                        <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                          <button class="dropdown-item" *ngFor="let country of countries; let i = index;"
-                            (click)="selectCountry(country , taxInfoItem)" id="selectNationality-country-option-{{i}}">
-                            {{country.name | titlecase}}
-                          </button>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+              <form name="taxInfoForm" [formGroup]="taxInfoForm">
+                <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}"
+                  *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
+                  <div class="widget-title">Tax Residence </div>
+                  <div class="widget-body" [formGroupName]="x">
+                    <div class="flex-row">
+                      <div class="flex-col-4">
+                        <label for="name" class="country_text"
+                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
+                      </div>
+                      <div class="flex-col-8">
+                        <div class="dropdown-control"
+                          [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
+                          <div ngbDropdown>
+                            <button class="btn btn-dropdown" ngbDropdownToggle>
+                              <span *ngIf="taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
+                                id="tax_Info_dropdown_country">{{
+                              taxInfoItem.controls.taxCountry.value.name | titlecase }}</span>
+                              <span *ngIf="!taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
+                                id="tax_Info_dropdown_country">{{
+                              'TAX_INFO.SELECT_COUNTRY' | translate}}</span>
+                            </button>
+                            <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button class="dropdown-item" *ngFor="let country of countries; let i = index;"
+                                (click)="selectCountry(country , taxInfoItem)"
+                                id="selectNationality-country-option-{{i}}">
+                                {{country.name | titlecase}}
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <!-- PLACEHOLDER -->
-                <!-- Do you have a TIN question -->
-                <div class="flex-row mb10">
-                  <div class="flex-col-11 mt15">
-                    <div class="tin_question_text" id="tax_Info_question-one">{{ 'TAX_INFO.TIN_QUESTION' | translate}}
-                    </div>
-                  </div>
-                  <div class="flex-col-1">
-                    <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
-                  </div>
-                </div>
-                <!-- Button part -->
-                <div class="flex-row">
-                  <div class="flex-col-12 mb15">
-                    <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
-                      <div class="flex-row">
-                        <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                            <input ngbButton type="radio" id="tin_yes" [value]=true
-                              (change)="isTinNumberAvailChanged(true , taxInfoItem, null)">
-                            {{ 'TAX_INFO.YES_lABEL' | translate}}
-                          </label>
+                    <!-- PLACEHOLDER -->
+                    <!-- Do you have a TIN question -->
+                    <div class="flex-row mb10">
+                      <div class="flex-col-11 mt15">
+                        <div class="tin_question_text" id="tax_Info_question-one">
+                          {{ 'TAX_INFO.TIN_QUESTION' | translate}}
                         </div>
-                        <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                            <input ngbButton type="radio" id="tin_no" [value]=false
-                              (change)="isTinNumberAvailChanged(false , taxInfoItem, null)">{{
-                      'TAX_INFO.NO_LABEL' | translate}}</label>
+                      </div>
+                      <div class="flex-col-1">
+                        <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+                      </div>
+                    </div>
+                    <!-- Button part -->
+                    <div class="flex-row">
+                      <div class="flex-col-12 mb15">
+                        <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
+                          <div class="flex-row">
+                            <div class="flex-col-6">
+                              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
+                                <input ngbButton type="radio" id="tin_yes" [value]=true
+                                  (change)="isTinNumberAvailChanged(true , taxInfoItem, null)">
+                                {{ 'TAX_INFO.YES_lABEL' | translate}}
+                              </label>
+                            </div>
+                            <div class="flex-col-6">
+                              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                                <input ngbButton type="radio" id="tin_no" [value]=false
+                                  (change)="isTinNumberAvailChanged(false , taxInfoItem, null)">{{
+                              'TAX_INFO.NO_LABEL' | translate}}</label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <!-- Second Dropdown -->
-                <div class="flex-row" *ngIf=" taxInfoItem.controls.radioTin.value === false">
-                  <div class="flex-col-4">
-                    <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' |
-                translate}}</label>
-                  </div>
-                  <div class="flex-col-8">
-                    <div class="dropdown-control"
-                      [ngClass]="{'inline-error':getInlineErrorStatus( taxInfoItem.controls.noTinReason)}">
-                      <div ngbDropdown>
-                        <button class="btn btn-dropdown" ngbDropdownToggle>
-                          <span *ngIf=" taxInfoItem.controls.noTinReason.value" class="dependent-count"
-                            id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name}}</span>
-                          <span *ngIf="! taxInfoItem.controls.noTinReason.value" class="dependent-count"
-                            id="tax_Info_dropdown_country">Select</span>
-                        </button>
-                        <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                          <button class="dropdown-item" *ngFor="let reasonListObj of noTinReasonlist; let i = index;"
-                            (click)="selectReason(reasonListObj , taxInfoItem)" id="selectReason-country-option-{{i}}">
-                            {{reasonListObj.name}}
-                          </button>
+                    <!-- Second Dropdown -->
+                    <div class="flex-row" *ngIf=" taxInfoItem.controls.radioTin.value === false">
+                      <div class="flex-col-4">
+                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' |
+                        translate}}</label>
+                      </div>
+                      <div class="flex-col-8">
+                        <div class="dropdown-control"
+                          [ngClass]="{'inline-error':getInlineErrorStatus( taxInfoItem.controls.noTinReason)}">
+                          <div ngbDropdown>
+                            <button class="btn btn-dropdown" ngbDropdownToggle>
+                              <span *ngIf=" taxInfoItem.controls.noTinReason.value" class="dependent-count"
+                                id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name}}</span>
+                              <span *ngIf="! taxInfoItem.controls.noTinReason.value" class="dependent-count"
+                                id="tax_Info_dropdown_country">Select</span>
+                            </button>
+                            <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button class="dropdown-item"
+                                *ngFor="let reasonListObj of noTinReasonlist; let i = index;"
+                                (click)="selectReason(reasonListObj , taxInfoItem)"
+                                id="selectReason-country-option-{{i}}">
+                                {{reasonListObj.name}}
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <!-- Tin text box -->
-                <!-- Second Dropdown -->
-                <div class="flex-row" *ngIf="taxInfoItem.controls.radioTin.value === true">
-                  <div class="flex-col-4">
-                    <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' |
-                translate}}</label>
-                  </div>
-                  <div class="flex-col-8">
-                    <div class="dropdown-control"
-                      [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
-                      <input type="text"
-                        [placeholder]="getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)"
-                        id="invPersInfoInpt1" class="form-control" formControlName="tinNumber" maxLength="50">
+                    <!-- Tin text box -->
+                    <!-- Second Dropdown -->
+                    <div class="flex-row" *ngIf="taxInfoItem.controls.radioTin.value === true">
+                      <div class="flex-col-4">
+                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' |
+                        translate}}</label>
+                      </div>
+                      <div class="flex-col-8">
+                        <div class="dropdown-control"
+                          [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
+                          <input type="text"
+                            [placeholder]="getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)"
+                            id="invPersInfoInpt1" class="form-control" formControlName="tinNumber" maxLength="50">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="thumb-close-icon" (click)="removeTaxForm(taxInfoForm , x)">
+                      <img src="../../../assets/images/close-button-dark.svg" alt="x" />
                     </div>
                   </div>
+                  <div class="tax-lbl">{{ 'TAX_INFO.TAX_OTHER_COUNTRY' | translate}}</div>
                 </div>
-                <div class="thumb-close-icon" (click)="removeTaxForm(taxInfoForm , x)">
-                  <img src="../../../assets/images/close-button-dark.svg" alt="x" />
+                <div class="add-tax-box" *ngIf="formCount < 4" (click)="addTaxForm(null)">
+                  <div class="add-tax-text">{{ 'TAX_INFO.ADD_TAX_RESIDENCE' | translate}}</div>
                 </div>
-              </div>
-            <div class="tax-lbl">{{ 'TAX_INFO.TAX_OTHER_COUNTRY' | translate}}</div>
+              </form>
+              <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)"
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
             </div>
-            <div class="add-tax-box" *ngIf="formCount < 4" (click)="addTaxForm(null)">
-              <div class="add-tax-text">{{ 'TAX_INFO.ADD_TAX_RESIDENCE' | translate}}</div>
-            </div>
-          </form>
-          <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-            id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
+          </div>
+
         </div>
       </div>
     </div>
