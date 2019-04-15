@@ -8,6 +8,7 @@ import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
+import { PortfolioService } from '../portfolio/portfolio.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -17,7 +18,8 @@ export class TopupAndWithDrawService {
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    public portfolioService: PortfolioService
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
@@ -319,17 +321,8 @@ export class TopupAndWithDrawService {
   }
 
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.portfolioService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {
