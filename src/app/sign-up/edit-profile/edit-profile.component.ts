@@ -89,7 +89,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitle(title);
   }
   showAddBankDetails(investmentStatus) {
-    if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.includes(investmentStatus)) {
+    if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.indexOf(investmentStatus) >= 0) {
       this.showAddbank = true;
     }
   }

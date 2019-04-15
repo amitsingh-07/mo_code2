@@ -715,9 +715,9 @@ export class InvestmentAccountService {
     let disable: boolean;
     if (
       this.investmentAccountFormData.isMyInfoEnabled &&
-      this.investmentAccountFormData.disableAttributes.includes(fieldName)
+      this.investmentAccountFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
-      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.includes(fieldName) && this.isSingaporeResident()) {
+      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.indexOf(fieldName) >= 0 && this.isSingaporeResident()) {
         disable = false;
       } else {
         disable = true;

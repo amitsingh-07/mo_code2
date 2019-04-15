@@ -89,7 +89,7 @@ export class SelectNationalityComponent implements OnInit {
     const selectedNationalityName = this.selectNationalityForm.controls.nationality.value &&
       this.selectNationalityForm.controls.nationality.value.name ?
       this.selectNationalityForm.controls.nationality.value.name.toUpperCase() : '';
-    if (['SINGAPOREAN', 'SG'].includes(selectedNationalityName)) {
+    if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
       this.selectNationalityForm.addControl(
         'unitedStatesResident',
         new FormControl(this.selectNationalityFormValues.unitedStatesResident, Validators.required)
@@ -149,7 +149,7 @@ export class SelectNationalityComponent implements OnInit {
       } else if (form.controls.unitedStatesResident) {
         const nationalityName = form.controls.nationality.value.name.toUpperCase();
         if (
-          (['SINGAPOREAN', 'SG'].includes(nationalityName) &&
+          (['SINGAPOREAN', 'SG'].indexOf(nationalityName) >= 0 &&
             form.controls.unitedStatesResident.value) ||
           ((form.controls.unitedStatesResident.value &&
             form.controls.singaporeanResident.value) ||
@@ -184,7 +184,7 @@ export class SelectNationalityComponent implements OnInit {
     const selectedNationalityName = this.selectNationalityForm.controls.nationality.value &&
       this.selectNationalityForm.controls.nationality.value.name ?
       this.selectNationalityForm.controls.nationality.value.name.toUpperCase() : '';
-    if (['SINGAPOREAN', 'SG'].includes(selectedNationalityName)) {
+    if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
       return true;
     } else {
       return false;
