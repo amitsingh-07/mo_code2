@@ -1,10 +1,11 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="financial-details">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024">
+    <div class="container-fluid max-width--1024 invest-web-width">
       <app-step-indicator [count]="9" [activeStepIndex]="3"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-width">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -52,32 +53,6 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let numberOfHouseHoldMembers of numberOfHouseHoldMembersList; let i = index;" (click)="setnumberOfHouseHoldMembers(numberOfHouseHoldMembers)"
                           id="residentialAddress-country-option-{{i}}">{{numberOfHouseHoldMembers}}</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Salary Range -->
-            <div class="form-group">
-              <div class="flex-row">
-                <div class="flex-col-5">
-                  <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.SALARY_RANGE'
-                    | translate}}
-                  </label>
-                </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('salaryRange').valid && !financialDetails.get('salaryRange').pristine}">
-                  <div class="dropdown-control">
-                    <div ngbDropdown placement="top-right">
-                      <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown"
-                        ngbDropdownToggle>
-                        {{(financialDetails.controls.salaryRange.value == '' ||
-                        financialDetails.controls.salaryRange.value) ? financialDetails.controls.salaryRange.value.name
-                        :'Select Range'}}
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let range of salaryRanges; let i = index;" (click)="setSalaryRange(range)"
-                          id="residentialAddress-country-option-{{i}}">{{range.name}}</button>
                       </div>
                     </div>
                   </div>

@@ -21,6 +21,7 @@ import { AllocationComponent } from './components/allocation/allocation.componen
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
+import { InvestmentTitleBarComponent } from './components/investment-title-bar/investment-title-bar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
@@ -37,6 +38,7 @@ import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { RoundPipe } from './Pipes/round.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
@@ -68,7 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -88,11 +90,14 @@ export function createTranslateLoader(http: HttpClient) {
     AnnualFeesComponent,
     PortfolioInfoComponent,
     EditInvestmentModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    InvestmentTitleBarComponent,
+    RoundPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     IfastErrorModalComponent
-  ]
+  ],
+  providers: [ RoundPipe ]
 })
 export class SharedModule { }

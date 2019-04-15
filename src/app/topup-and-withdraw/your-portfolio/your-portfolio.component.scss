@@ -11,6 +11,7 @@ app-your-portfolio {
     }
   }
   .portfolio-bg {
+    padding-top: 60px;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
@@ -52,9 +53,9 @@ app-your-portfolio {
     }
     .flex-col-4 {
       position: absolute;
-      right: 29px;
       top: 60px;
       right: 230px;
+      max-width: 200px;
       @include allmobiles {
         top: 60px;
         max-width: 85px;

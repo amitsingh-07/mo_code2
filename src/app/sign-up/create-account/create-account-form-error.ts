@@ -144,34 +144,34 @@ export class CreateAccountFormError {
         bank: {
                 required : {
                         errorTitle: 'Bank Name required',
-                        errorMessage: 'Please select your Bank Name.'
+                        errorMessage: 'Select your Bank Name.'
                 }
         },
         accountNo: {
                 required : {
                         errorTitle: 'Account Number required',
-                        errorMessage: 'Please enter your Account Number.'
+                        errorMessage: 'Enter your Account Number.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Account Number',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter valid Account Number.'
+                        errorMessage: 'Enter valid Account Number.'
                 },
                 validAccountNo : {
                         errorTitle: 'Invalid Account Number',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter valid Account Number.'
+                        errorMessage: 'Enter valid Account Number.'
                 }
         },
         accountHolderName: {
                 required : {
                         errorTitle: 'Account Holder Name required',
-                        errorMessage: 'Please enter your Name.'
+                        errorMessage: 'Enter your Name.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Name',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter your name.'
+                        errorMessage: 'Enter valid Name.'
                 }
         },
     };

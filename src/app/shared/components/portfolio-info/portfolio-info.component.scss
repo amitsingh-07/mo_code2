@@ -51,7 +51,10 @@
       width: 315px;
       height: 205px;
       margin: 0 auto;
-
+      @include max360{
+        max-width: 315px;
+        width: 100%;
+      }
       img {
         max-width: 100%;
         height: auto;

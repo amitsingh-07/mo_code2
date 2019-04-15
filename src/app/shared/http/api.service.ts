@@ -235,6 +235,13 @@ export class ApiService {
       );
   }
 
+  getCustomerInsuranceDetails(){
+    return this.http.get(apiConstants.endpoint.getCustomerInsuranceDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   /* SignUp API */
   requestVerifyMobile(): string {
     return '000000';
@@ -767,15 +774,15 @@ export class ApiService {
       );
   }
 
-  getWill(payload) {
-    return this.http.post(apiConstants.endpoint.willWriting.getWill, payload)
+  getWill() {
+    return this.http.get(apiConstants.endpoint.willWriting.getWill)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  downloadWill(payload): Observable<any> {
-    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false, false)
+  downloadWill(): Observable<any> {
+    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, false, false)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

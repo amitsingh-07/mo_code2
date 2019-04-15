@@ -1,5 +1,6 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="withdraw">
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-pt-90">
     <div class="content">
       <div class="row">
         <div class="col-md-12">
@@ -42,11 +43,11 @@
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                           translate}}</span>
-                        <span *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.productName}}</span>
+                        <span *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.riskProfile.type}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('withdrawPortfolio',portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.productName}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.riskProfile.type}}</button>
                       </div>
                     </div>
                   </div>

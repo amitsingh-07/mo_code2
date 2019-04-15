@@ -36,7 +36,7 @@
             </span>
           </div>
           <!-- Hamburger Icon -->
-          <div *ngIf="showMenu || showLogin" class="navbar-toggler"
+          <div *ngIf="showMenu || (isLoggedIn && showLogout) || showLogin" class="navbar-toggler"
           (click)="toggleMenu()" data-target="#navbarNav" aria-controls="navbarNav"
           aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
@@ -63,7 +63,7 @@
       <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse mobile-menu"
         id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar, 'notificationOpen': showNotifications}" id="navbarDefault" #navbar>
         <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar, 'noMenu': !showMenu}">
-          <li *ngIf="isLoggedIn" class="nav-item flex space-between link-mob-profile hidden-lg" style="flex-direction: row">
+          <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item flex space-between link-mob-profile hidden-lg" style="flex-direction: row">
             <div class="dashboard-btn" (click)="goToDashboard()">
               <div class="name">{{userInfo.firstName}}</div>
               <div class="sub-text">My Dashboard</div>
@@ -171,7 +171,7 @@
           <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
             <a class="nav-link" [routerLink]="['/account/login']"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
             </li>
-          <li *ngIf="isLoggedIn && showLogin" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
+          <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
           (mouseleave)="closeDropdown(id05);">
             <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle></a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">

@@ -1,4 +1,5 @@
-<div class="container-fluid max-width--1024" *ngIf="portfolio">
+<app-investment-title-bar></app-investment-title-bar>
+<div class="container-fluid max-width--1024 invest-web-width" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content">
@@ -34,6 +35,6 @@
       <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
-  <button type="button" (click)="verifyAML()" class="btn btn__footer--fixed btn-primary width100">{{
+  <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100">{{
     'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
 </div>

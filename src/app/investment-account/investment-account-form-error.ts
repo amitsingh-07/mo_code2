@@ -85,7 +85,7 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Address Line 1',
         errorMessage:
-          'Address Line 1 should contain  alphanumeric and  Special characters.'
+          'Address Line 1 should contain alphanumeric and Special characters.'
       }
     },
     address2: {
@@ -93,7 +93,7 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
-          'Address Line 2 should contain  alphanumeric and  Special characters.'
+          'Address Line 2 should contain alphanumeric and Special characters.'
       }
     },
     floor: {
@@ -118,14 +118,14 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid mail Address Line 1',
         errorMessage:
-          'Address Line 1 should contain  alphanumeric and  Special characters in mailing address.'
+          'Address Line 1 should contain alphanumeric and Special characters in mailing address.'
       }
     },
     mailAddress2: {
       pattern: {
         errorTitle: 'Invalid mail Address Line 2',
         errorMessage:
-          'Address Line 2 should contain  alphanumeric and  Special characters in mailing address.'
+          'Address Line 2 should contain alphanumeric and Special characters in mailing address.'
       }
     },
     mailFloor: {
@@ -254,38 +254,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Full Name',
-        errorMessage: 'Full Name should not contain numbers and special characters.'
-      }
-    },
-    firstName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid First Name',
-        errorMessage: 'Enter First Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid First Name',
-        errorMessage: 'First Name should not contain numbers and special characters.'
-      },
-      nameMatch: {
-        errorTitle: 'Invalid Name',
-        errorMessage: 'First Name and Last Name are not matched with Full Name.'
-      }
-    },
-
-    lastName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Enter Last Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Last Name should not contain numbers and special characters.'
-      },
-      nameMatch: {
-        errorTitle: 'Invalid Name',
-        errorMessage: 'Full Name not matched with [First Name and Last Name] or [Last Name].'
+        errorMessage: 'Enter valid Full Name'
       }
     },
     nricNumber: {
@@ -361,7 +330,7 @@ export class InvestmentAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Company Name',
-        errorMessage: 'Company Name should not contain special characters.'
+        errorMessage: 'Enter valid Company Name'
       }
     },
     occupation: {
@@ -421,14 +390,14 @@ export class InvestmentAccountFormError {
       pattern: {
         errorTitle: 'Invalid Address Line 1',
         errorMessage:
-          'Address Line 1  should contain  alphanumeric and  Special characters.'
+          'Address Line 1 should contain alphanumeric and Special characters.'
       }
     },
     empAddress2: {
       pattern: {
         errorTitle: 'Invalid Address Line 2',
         errorMessage:
-          'Address Line 2  should contain  alphanumeric and  Special characters.'
+          'Address Line 2 should contain alphanumeric and Special characters.'
       }
     },
     empFloor: {
@@ -578,26 +547,15 @@ export class InvestmentAccountFormError {
         errorMessage: 'Select Occupation'
       }
     },
-    fName: {
+    pepFullName: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid First Name',
-        errorMessage: 'Enter First Name'
+        errorMessage: 'Enter Full Name'
       },
       pattern: {
         errorTitle: 'Invalid First Name',
-        errorMessage: 'First Name should not contain numbers and special characters.'
-      }
-    },
-    lName: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Enter Last Name'
-      },
-      pattern: {
-        errorTitle: 'Invalid Last Name',
-        errorMessage: 'Last Name should not contain numbers and special characters.'
+        errorMessage: 'Enter valid Full Name'
       }
     },
     cName: {
@@ -684,13 +642,6 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Zip Code',
         errorMessage: 'Zip Code you entered is invalid.'
       }
-    },
-    salaryRange: {
-      required: {
-        // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid salary range',
-        errorMessage: 'Select Salary Range'
-      }
-    },
+    }
   };
 }

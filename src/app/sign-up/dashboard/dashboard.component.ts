@@ -1,28 +1,28 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
-import { ApiService } from '../../shared/http/api.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { Formatter } from '../../shared/utils/formatter.util';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { IEnquiryUpdate } from '../signup-types';
 
-  // Will Writing
+// Will Writing
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+
+// Insurance
+import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +32,6 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 })
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
-  insuranceEnquiry: any;
   showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
@@ -54,21 +53,24 @@ export class DashboardComponent implements OnInit {
   showWillWritingSection = false;
   wills: any = {};
 
+  // Insurance
+  showInsuranceSection = false;
+  insurance: any = {};
+
   constructor(
     private router: Router,
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
-    private appService: AppService,
     private signUpService: SignUpService,
-    private apiService: ApiService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private selectedPlansService: SelectedPlansService,
     private willWritingApiService: WillWritingApiService,
-    private willWritingService: WillWritingService
-    ) {
+    private willWritingService: WillWritingService,
+    private guideMeApiService: GuideMeApiService,
+    public modal: NgbModal
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -83,22 +85,34 @@ export class DashboardComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-      this.signUpService.setUserProfileInfo(userInfo.objectList);
-      this.userProfileInfo = this.signUpService.getUserProfileInfo();
-      this.getDashboardList();
-      this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
-        const payload: IEnquiryUpdate = {
-          customerId: this.appService.getCustomerId(),
-          enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
-          selectedProducts: this.insuranceEnquiry.plans
-        };
-        this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
-          this.selectedPlansService.clearData();
-        });
+      if (userInfo.responseMessage.responseCode < 6000) {
+        // ERROR SCENARIO
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.serverStatus &&
+          userInfo.objectList.serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList.serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+        this.userProfileInfo = this.signUpService.getUserProfileInfo();
+        this.getDashboardList();
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
 
+    // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {
       this.showWillWritingSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
@@ -111,6 +125,15 @@ export class DashboardComponent implements OnInit {
         }
       } else if (data.responseMessage && data.responseMessage.responseCode === 6004) {
         this.wills.hasWills = false;
+      }
+    });
+
+    // Insurance
+    this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
+      this.showInsuranceSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
+        this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
       }
     });
   }
@@ -211,7 +234,8 @@ export class DashboardComponent implements OnInit {
         this.enableInvestment();
         break;
       }
-      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED: {
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
         this.showCddCheckFail = true;
         this.enableInvestment();
         break;
@@ -300,6 +324,12 @@ export class DashboardComponent implements OnInit {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, 1000);
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 
 }

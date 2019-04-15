@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { PortfolioService } from '../../portfolio/portfolio.service';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -18,7 +20,7 @@ import { AccountCreationErrorModalComponent } from '../account-creation-error-mo
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
+import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -55,6 +57,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public portfolioService: PortfolioService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -100,9 +103,9 @@ export class ConfirmPortfolioComponent implements OnInit {
           period: this.portfolio.investmentPeriod
         };
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   constructFundingParams(data) {
@@ -204,9 +207,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioDetails();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructUpdateInvestmentParams(data) {
@@ -237,10 +240,34 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorMessage = errorMessage;
   }
 
+  verifyCustomer() {
+    const investStatus = this.signUpService.getInvestmentStatus();
+    if (investStatus && investStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
+      const pepData = this.investmentAccountService.getPepData();
+      const OldPepData = this.investmentAccountService.getOldPepData();
+      if (pepData && !OldPepData) {
+        this.goToAdditionalDeclaration();
+      } else {
+        this.createInvestmentAccount();
+      }
+    } else {
+      this.verifyAML();
+    }
+  }
+
   verifyAML() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+      )
+    });
     const pepData = this.investmentAccountService.getPepData();
     this.investmentAccountService.verifyAML().subscribe(
       (response) => {
+        this.loaderService.hideLoader();
         if (response.objectList && response.objectList.status) {
           this.investmentAccountService.setAccountCreationStatus(
             response.objectList.status
@@ -249,15 +276,18 @@ export class ConfirmPortfolioComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           // ERROR SCENARIO
           if (
-            response.responseMessage.responseCode === 5018 ||
-            response.responseMessage.responseCode === 5019
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
           ) {
-            const errorResponse = response.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showInvestmentAccountErrorModal(errorList);
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else if (
           response.objectList.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.aml_cleared.toUpperCase() &&
@@ -265,70 +295,71 @@ export class ConfirmPortfolioComponent implements OnInit {
         ) {
           this.createInvestmentAccount();
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+          this.goToAdditionalDeclaration();
         }
       },
       (err) => {
+        this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       }
     );
   }
 
+  goToAdditionalDeclaration() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   createInvestmentAccount() {
-    const pepData = this.investmentAccountService.getPepData();
-    if (pepData) {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
-    } else {
-      // CREATE INVESTMENT ACCOUNT
-      this.loaderService.showLoader({
-        title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
-        ),
-        desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
-        )
-      });
-      this.investmentAccountService.createInvestmentAccount().subscribe(
-        (response) => {
-          this.loaderService.hideLoader();
-          if (response.responseMessage.responseCode < 6000) {
-            // ERROR SCENARIO
-            if (
-              response.responseMessage.responseCode === 5018 ||
-              response.responseMessage.responseCode === 5019 ||
-              response.responseMessage.responseCode === 5105
-            ) {
-              const errorResponse = response.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
-            } else {
-              const errorResponse = response.objectList[response.objectList.length - 1];
-              const errorList = errorResponse.serverStatus.errors;
-              this.showInvestmentAccountErrorModal(errorList);
-            }
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+      )
+    });
+    this.investmentAccountService.createInvestmentAccount().subscribe(
+      (response) => {
+        this.loaderService.hideLoader();
+        if (response.responseMessage.responseCode < 6000) {
+          // ERROR SCENARIO
+          if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            const errorResponse = response.objectList[response.objectList.length - 1];
+            const errorList = errorResponse.serverStatus.errors;
+            this.showInvestmentAccountErrorModal(errorList);
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            // SUCCESS SCENARIO
-            if (response.objectList[response.objectList.length - 1]) {
-              if (
-                response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
-                INVESTMENT_ACCOUNT_CONFIG.status.account_creation_confirmed.toUpperCase()
-              ) {
-                this.investmentAccountService.setAccountSuccussModalCounter(0);
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
-              } else {
-                this.investmentAccountService.setAccountCreationStatus(
-                  INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending
-                );
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
-              }
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
+          // SUCCESS SCENARIO
+          if (response.objectList[response.objectList.length - 1]) {
+            if (
+              response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
+              INVESTMENT_ACCOUNT_CONFIG.status.account_creation_confirmed.toUpperCase()
+            ) {
+              this.investmentAccountService.setAccountSuccussModalCounter(0);
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
+            } else {
+              this.investmentAccountService.setAccountCreationStatus(
+                INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending
+              );
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
             }
           }
-        },
-        (err) => {
-          this.loaderService.hideLoader();
-          this.investmentAccountService.showGenericErrorModal();
         }
-      );
-    }
+      },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    );
   }
 }
