@@ -38,17 +38,19 @@
       <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
+  
   <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary hidden-lg  width100">Proceed</button>
 </div>
-<div class="recommend-footer hidden-sm-md">
-  <div class="footer-content">
-    <div>
-      <div class="text-one">Review your inputs or proceed to start investing in this portfolio.</div>
-      <div class="text-two">Please note that your investment only starts after you have started funding your account.
+<div class="recommend-footer hidden-sm-md cont">
+    <div class="footer-content container-fluid max-width--1024">
+      <div>
+        <div class="text-one">Review your inputs or proceed to start investing in this portfolio.</div>
+        <div class="text-two">Please note that your investment only starts after you have started funding your account.
+        </div>
+      </div>
+      <div>
+        <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
       </div>
     </div>
-    <div>
-      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
-    </div>
   </div>
-</div>
+

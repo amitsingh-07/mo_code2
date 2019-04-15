@@ -53,10 +53,10 @@ app-additional-declaration-step1 {
     .step-indicator-container {
       background-color: $white-color;
       padding: 10px 0px;
-      position: relative;
       top: 76px;
       @include allmobiles{
         top: 60px;
+        position: relative;
       }
       .container-fluid {
         padding-top: 0px;

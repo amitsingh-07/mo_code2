@@ -7,9 +7,12 @@ app-select-nationality {
     }
   }
   .container-fluid {
-    padding-top: 50px !important;
+    // padding-top: 50px !important;
     @include allmobiles{
-      padding-top: 20px !important;
+      // padding-top: 20px !important;
+    }
+    .row{
+      justify-content: center;
     }
   }
   .flex-row {
@@ -37,7 +40,7 @@ app-select-nationality {
     right: 0 !important;
     overflow: auto;
     height: auto;
-    max-height: 264px;
+    max-height: 200px;
   }
   .dropdown-item {
     white-space: normal;
