@@ -1,23 +1,18 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
-import { Util } from './../../shared/utils/util';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyLiabilities, IMySummaryModal } from '../comprehensive-types';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { apiConstants } from './../../shared/http/api.constants';
+import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -35,6 +30,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   totalOutstanding = 0;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   pageId: string;
   validationFlag: boolean;
   financeModal: any;
@@ -76,6 +72,18 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.buildMyLiabilitiesForm();
     this.onTotalOutstanding();
     if ( this.liabilitiesDetails && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
@@ -86,8 +94,10 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   setPageTitle(title: string) {

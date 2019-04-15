@@ -102,7 +102,7 @@
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert }">
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
-                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d)" >
+                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d._model)" >
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" appComprehensiveViewMode="{{viewMode}}" mode=1>
                     <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid || !submitted"

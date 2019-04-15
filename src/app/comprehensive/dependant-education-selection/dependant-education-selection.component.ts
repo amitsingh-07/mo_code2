@@ -33,6 +33,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   childEndowmentArray: IChildEndowment[];
   educationPreference = true;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
@@ -65,10 +66,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
-  ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
-    this.menuClickSubscription.unsubscribe();
-  }
 
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -78,6 +75,24 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
 
   dependantSelection() {

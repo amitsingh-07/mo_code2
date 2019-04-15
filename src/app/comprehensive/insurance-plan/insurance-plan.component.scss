@@ -1,3 +1,5 @@
+@import '../../../variables';
+@import '../../../mixins';
 .comprehensive {
   .title {
     font-size: 18px;
@@ -35,5 +37,37 @@
     &.full-width {
       width: 100% !important;
     }
+  }
+  .hospital-plan, .life-protection, .critical-illness, .disability-income, .long-term-care {
+    @extend .flex;
+    &.with-help-icon {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  .hospital-plan {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/hospital-plan.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
+  }
+  .life-protection {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/life-protection.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
+  }
+  .critical-illness {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/critical-illness.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
+  }
+  .disability-income {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/disability-income.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
+  }
+  .long-term-care {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/long-term-care.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
   }
 }

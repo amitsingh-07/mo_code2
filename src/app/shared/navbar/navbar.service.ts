@@ -1,10 +1,11 @@
-import { filter } from 'rxjs/operators';
+import { Location } from '@angular/common';
 import { ElementRef, Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { filter } from 'rxjs/operators';
 
 import { IHeaderMenuItem } from './navbar.types';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +61,7 @@ export class NavbarService {
 
   onMenuItemClicked = this.$menuItemClick.asObservable();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
@@ -177,6 +178,10 @@ export class NavbarService {
   // Hiding Product Info Modal Trigger
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   // Clearing Notification
