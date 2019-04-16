@@ -1,9 +1,10 @@
-<app-investment-title-bar></app-investment-title-bar>
+<div class="notification-panel">
 <!-- <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button> -->
-<div class="container-fluid max-width--1024 invest-web-pt-90">
+<div class="container-fluid max-width--1024">
   <div class="content">
+      <div class="title hidden-sm-md">Notifications</div>
     <div>
-      <div class="flex-col-12 notifications-block">
+      <div class="notifications-block">
         <!--Notifications container-->
         <div class="notifications-container" *ngFor="let group of allMessages">
           <!--Notifications Header-->
@@ -33,4 +34,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
