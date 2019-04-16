@@ -195,13 +195,13 @@
           <div class="summary-modal__details--value">{{ summaryModalDetails.termInsurance | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>
         </div>
         <div class="summary-modal__details mb30">
-          <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY2 }}</div>
+          <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.CONTENT_BODY2 }} <br> <span class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.CONTENT_BODY2_DESC }}</span></div>
           <div class="summary-modal__details--value">{{ summaryModalDetails.wholeLife | currency:'USD':'symbol-narrow':'1.0-2'}} {{ summaryModalDetails.contentObj.PER_YEAR }}</div>
         </div>
         <div class="summary-modal__box-content">
             <div class='summary-modal__box-content-head text-left'><u>{{ summaryModalDetails.contentObj.SUB_TITLE }}</u></div>
             <div class='summary-modal__box-content-body mb20'> {{ summaryModalDetails.contentObj.SUB_TITLE_DESC }}</div>
-            <div class='summary-modal__box-content-body mb20 explanation-graph'> <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE}}" /><span class="explanation-graph__insurance-indicator"></span><span class="explanation-graph__insurance-indicator1"></span><span class="explanation-graph__insurance-details">{{summaryModalDetails.contentObj.INSURANCE_STATISTIC_LABEL}}<br>{{summaryModalDetails.contentObj.INSURANCE_STATISTIC_VALUE}}</span><span class="explanation-graph__investment-indicator"></span><span class="explanation-graph__investment-value">{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_LABEL }}<br>{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_VALUE }}</span></div>
+            <div class='summary-modal__box-content-body mb20 explanation-graph'> <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE}}" /><span class="explanation-graph__insurance-indicator"></span><span class="explanation-graph__insurance-indicator1"></span><span class="explanation-graph__insurance-details">{{summaryModalDetails.contentObj.INSURANCE_STATISTIC_LABEL}}</span><span class="explanation-graph__investment-indicator"></span><span class="explanation-graph__investment-value">{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_LABEL }}</span></div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-grey text-center'> {{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div>
             <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'> {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC2 }}</div>
