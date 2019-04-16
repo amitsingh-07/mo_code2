@@ -1,9 +1,8 @@
-<app-investment-title-bar></app-investment-title-bar>
-<div class="container-fluid max-width--1024 invest-web-pt-90">
+<div class="container-fluid max-width--1024">
 <div class="flex-col-12" *ngIf="portfolio">
   <div class="portfolio-bg">
-    <img id="edit_profile_bg_img" id="your_portfolio_backgroung_img" class="background_img" src="assets/images/investment_header.svg"
-    />
+      <img id="investment_overview_background_img" class="background_img web_bg" src="assets/images/investment_header_web.svg" />
+      <img id="investment_overview_background_img" class="background_img mobile_bg" src="assets/images/investment_header_mobile.svg" />
     <div class="flex-row user_content flex-col-12">
       <div class="flex-col-8 user_portfolio" id="youe_portfolio_summary">
         <div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
