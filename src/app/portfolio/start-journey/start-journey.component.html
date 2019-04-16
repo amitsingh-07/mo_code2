@@ -1,4 +1,3 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="container-fluid max-width--1024 invest-web-width full-height white-bg">
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
   <div class="content">
@@ -12,8 +11,10 @@
         <p>{{'START.DESC1' | translate}}</p>
         <p>{{'START.DESC2' | translate}}</p>
         <p>{{'START.DESC3' | translate}}</p>
-        <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
-      </div>
+        <div class="btn-center">
+            <button type="button" class="btn btn__footer--fixed btn-primary" (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
+        </div>
+       </div>
     </div>
   </div>
 </div>
