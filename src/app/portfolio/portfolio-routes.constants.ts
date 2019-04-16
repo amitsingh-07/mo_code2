@@ -1,7 +1,7 @@
 // Production release path
-// export const PORTFOLIO_BASE_ROUTE = '../invest/';
+export const PORTFOLIO_BASE_ROUTE = '../invest/';
 // Soft release path
-export const PORTFOLIO_BASE_ROUTE = '../20190316invest/';
+// export const PORTFOLIO_BASE_ROUTE = '../20190316invest/';
 
 export const PORTFOLIO_ROUTES = {
   ROOT: '',

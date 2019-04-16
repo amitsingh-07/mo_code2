@@ -496,6 +496,13 @@ body{
                 @include minMobilemaxPhablet{
                     margin-right:auto;
                 }
+                a{
+                    color: $orange-color;
+                    &:hover{
+                        color: $orange-color;
+                        text-decoration: underline;
+                    }
+                }
             }
             &.quaternary{
                 margin-left:60px;
@@ -658,6 +665,32 @@ body{
                     bottom:-130px;
                     right:-90px;
                 }
+            }
+        }
+        .home__invest-promo{
+            color: $post-login-widget-title;
+            padding: 10px;
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            letter-spacing: -0.15px;
+            text-align: center;
+            @include LargeDevice{
+                background: $invest-promo-bg;
+                position: absolute;
+                bottom: 0px;
+                left: 135px;
+            }
+            @include tablet{
+                background: $invest-promo-bg;
+                position: absolute;
+                bottom: -15px;
+                left: 50px;
+                right: 50px;
+            }
+            span{
+                text-decoration: underline;
             }
         }
     }
