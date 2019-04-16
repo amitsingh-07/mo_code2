@@ -82,7 +82,12 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.sliderValue);
+    if (this.sliderValue > 61) {
+      this.sliderValue = 62;
+      this.ciMultiplierSlider.writeValue(65);
+    } else {
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
+    }
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
@@ -96,6 +101,10 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   onSliderChange(value): void {
     this.sliderValue = value;
     this.retirementValueChanges = true;
+    if (this.sliderValue > 61) {
+      this.sliderValue = 62;
+      this.ciMultiplierSlider.writeValue(65);
+    }
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
