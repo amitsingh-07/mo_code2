@@ -767,7 +767,7 @@ body.modal-open::-webkit-scrollbar {
       margin: 5% !important;
       border-radius: 6px !important;
       overflow-y: auto;
-      padding: 30px 45px 40px !important;
+      padding: 30px !important;
     }
     @include iphoneX {
       padding: 30px 45px 130px !important;
@@ -903,5 +903,56 @@ body.modal-open::-webkit-scrollbar {
     background: $dark-teal-color;
     color: $white-color;
   }
-  
+  .medical-crisis {
+    &__heading {
+      border-radius: 6px;
+      background: $summary-modal-heading-bg;
+      padding: 20px;
+      color: $white-color;
+      font-size: 16px;
+      font-family: $muli-semi-bold;
+    }
+    &__panel {
+      @extend .flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      &__left, &__right {
+        width: 48%;
+        background: $light-grey-color;
+        padding: 20px 10px;
+        &__img {
+          height: 40px;
+          line-height: 40px;
+        }
+        &__title {
+          font-size: 14px;
+          color: $black-color;
+          font-family: $muli-semi-bold;
+        }
+        &__desc {
+          color: $text-grey-color;
+          font-size: 12px;
+          margin-top: 10px;
+          min-height: 80px;
+        }
+        &__list {
+          list-style-type: disc;
+          color: $dark-teal-color;
+          font-family: $muli-regular;
+          font-size: 12px;
+        }
+        ul {
+          margin-left: 0;
+          padding-left: 20px;
+          li {
+            margin-bottom: 15px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .footer-cta {
+    padding: 0 10px;
+  }
 }
