@@ -63,11 +63,18 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = false;
     this.mobileNumberVerified = false;
     this.editProfile = this.signUpService.getAccountInfo().editContact;
-    this.mobileNumber = this.signUpService.getMobileNumber() || this.signUpService.getUserMobileNo();
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
+    if (this.signUpService.getFromLoginPage()) {
+      this.mobileNumber = {
+        code : '+65',
+        number: this.signUpService.getUserMobileNo()
+      };
+    } else {
+      this.mobileNumber = this.signUpService.getMobileNumber();
+    }
   }
 
   /**
@@ -152,7 +159,9 @@ export class VerifyMobileComponent implements OnInit {
     const mobileNo = this.signUpService.getUserMobileNo();
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
-        if (!this.signUpService.getFromLoginPage()) {
+        if (this.signUpService.getFromLoginPage()) {
+          this.signUpService.clearCustomerRefAndFromLogin();
+        } else {
           sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
           this.signUpService.clearData();
         }

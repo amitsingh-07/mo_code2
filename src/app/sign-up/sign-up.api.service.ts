@@ -77,19 +77,6 @@ export class SignUpApiService {
   }
 
   /**
-   * set insurance selected products request.
-   */
-  setSelectedProductsBodyRequest(isNewCustomer: boolean): ISelectedProducts {
-    const custRef = this.signUpService.getCustomerRef();
-    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    return {
-      customerRef: custRef,
-      isNewCustomer,
-      selectedProducts: selectedPlanData.plans
-    };
-  }
-
-  /**
    * form create user account request.
    */
   updateAccountBodyRequest(data) {
@@ -167,15 +154,6 @@ export class SignUpApiService {
   createAccount(captcha: string, pwd: string) {
     const payload = this.createAccountBodyRequest(captcha, pwd);
     return this.apiService.createAccount(payload);
-  }
-
-  /**
-   * insurance selected plans.
-   * @param isNewCustomer - is customer new.
-   */
-  selectedProducts(isNewCustomer: boolean) {
-    const payload = this.setSelectedProductsBodyRequest(isNewCustomer);
-    return this.apiService.updateSelectedProducts(payload);
   }
 
   /**
@@ -268,7 +246,7 @@ export class SignUpApiService {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
       callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
-      hostedServerName: environment.apiBaseUrl
+      hostedServerName: window.location.hostname
     }
     return this.apiService.resendEmailVerification(payload);
   }

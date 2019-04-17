@@ -20,6 +20,10 @@ import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.ser
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { appConstants } from '../../app.constants';
 import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/shared/http/api.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { IEnquiryUpdate } from '../signup-types';
+import { Formatter } from '../../shared/utils/formatter.util';
 
 @Component({
   selector: 'app-create-account',
@@ -53,7 +57,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private appService: AppService
+    private appService: AppService,
+    private apiService: ApiService,
+    private selectedPlansService: SelectedPlansService,
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -162,41 +168,46 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       .subscribe((data: any) => {
         if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 6008) {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-          if (data.responseMessage.responseCode === 6008) {
-            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
-              this.translate.instant('COMMON.VERIFY_NOW'),
-              SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
-            this.signUpService.setIsMobileVerified();
-          }
-
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
             this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-            const redirect = data.responseMessage.responseCode === 6008;
-            this.updateInsuranceEnquiry(true, !redirect);
+            if (data.responseMessage.responseCode === 6008) {
+              this.signUpService.setIsMobileVerified();
+            }
+            const redirect = data.responseMessage.responseCode === 6000;
+            this.updateInsuranceEnquiry(data, redirect);
           } else if (data.responseMessage.responseCode === 6000) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
           }
         } else if (data.responseMessage.responseCode === 5006) {
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
             this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-            this.updateInsuranceEnquiry(true, false);
-          }
-          if (data.objectList[0].accountAlreadyCreated) {
-            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-              this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
-              this.translate.instant('COMMON.LOG_IN'),
-              SIGN_UP_ROUTE_PATHS.LOGIN, false);
-          } else if (!data.objectList[0].emailVerified) {
-            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
-              this.translate.instant('COMMON.LOG_IN'),
-              SIGN_UP_ROUTE_PATHS.LOGIN, true);
+            this.updateInsuranceEnquiry(data, false);
+          } else {
+            this.callErrorModal(data);
           }
         } else {
           this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
         }
       });
+  }
+
+  callErrorModal(data) {
+    if (data.objectList[0].accountAlreadyCreated) {
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
+        this.translate.instant('COMMON.LOG_IN'),
+        SIGN_UP_ROUTE_PATHS.LOGIN, false);
+    } else if (!data.objectList[0].emailVerified) {
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
+        this.translate.instant('COMMON.LOG_IN'),
+        SIGN_UP_ROUTE_PATHS.LOGIN, true);
+    } else if (data.responseMessage.responseCode === 6008) {
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+      this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+      this.translate.instant('COMMON.VERIFY_NOW'),
+      SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+    }
   }
 
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
@@ -222,17 +233,28 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm.controls['confirmPassword'].reset();
   }
 
-  updateInsuranceEnquiry(isNewCustomer: boolean, redirect: boolean) {
-    this.signUpApiService.selectedProducts(isNewCustomer)
-      .subscribe(() => {
+  updateInsuranceEnquiry(data, redirect: boolean) {
+    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+    if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+      const payload: IEnquiryUpdate = {
+        customerId: data.objectList[0].customerRef,
+        enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+        selectedProducts: insuranceEnquiry.plans
+      };
+      this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+        this.selectedPlansService.clearData();
         if (redirect) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        } else {
+          this.callErrorModal(data);
         }
       });
+    }
   }
 
   onPasswordInputChange() {
-    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty) {
+    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty 
+      && this.createAccountForm.controls.password.value) {
       this.isPasswordValid = false;
     } else {
       const _self = this;

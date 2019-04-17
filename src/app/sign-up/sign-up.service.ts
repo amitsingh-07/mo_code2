@@ -573,5 +573,12 @@ export class SignUpService {
   getFromLoginPage() {
     return sessionStorage.getItem(FROM_LOGIN_PAGE);
   }
+
+  clearCustomerRefAndFromLogin() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(FROM_LOGIN_PAGE);
+      sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
+    }
+  }
   
 }
