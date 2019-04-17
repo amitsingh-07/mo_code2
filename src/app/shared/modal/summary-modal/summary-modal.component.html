@@ -140,44 +140,37 @@
         <div class="mb30">
             {{ summaryModalDetails.contentObj.CONTENT_DESC }}
         </div>
-        <button type="button" class="btn width100 mb20" id="prfBtn1">
-            {{ summaryModalDetails.contentObj.SUB_TITLE }}
-        </button>
-      
-        <div class="flex-row mb10">
-            <div class="flex-col-6">
-                <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_1}}">
+
+        <div class="medical-crisis">
+          <div class="medical-crisis__heading">
+              {{ summaryModalDetails.contentObj.SUB_TITLE }}
+          </div>
+          <div class="medical-crisis__panel">
+            <div class="medical-crisis__panel__left">
+                <div class="medical-crisis__panel__left__img"><img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_1}}"></div>
+                <div class="medical-crisis__panel__left__title">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</div>
+                <div class="medical-crisis__panel__left__desc">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_1 }}</div>
+                <ul>
+                  <li class="medical-crisis__panel__left__list">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC11 }}</li>
+                  <li class="medical-crisis__panel__left__list">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC12 }}</li>
+                </ul>
             </div>
-            <div class="flex-col-6">
-                <img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_2}}">
+            <div class="medical-crisis__panel__right">
+                <div class="medical-crisis__panel__left__img"><img src="./assets/images/comprehensive/summary-page/{{summaryModalDetails.contentObj.SUB_CONTENT_IMAGE_2}}"></div>
+                <div class="medical-crisis__panel__right__title">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</div>
+                <div class="medical-crisis__panel__right__desc">{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_2 }}</div>
+                <ul>
+                  <li class="medical-crisis__panel__left__list">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC21 }}</li>
+                  <li class="medical-crisis__panel__left__list">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC22 }}</li>
+                </ul>
             </div>
           </div>
-        <div class="flex-row">
-            <div class="flex-col-6">              
-                <p class='summary-modal__details--label-black'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_1 }}</p> 
-                <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_1 }}</p>
-                                
-            </div>
-            <div class="flex-col-6">                
-                <p class='summary-modal__details--label-black'>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_2 }}</p>
-                <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_TITLE_DESC_2 }}</p>                             
-            </div>
         </div>
-    
-    
-          <div class="flex-row text-left  mb20 ">
-            <div class="flex-col-6 loss-of-income">
-              <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC11 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC12 }}</p>
-                                
-            </div>
-            <div class="flex-col-5 loss-of-income ml10">
-              <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC21 }}</p> <p>{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC22 }}</p>
-            </div>
-          </div>
-          
+        <div class="footer-cta">
         <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goNextPage()">
             {{ summaryModalDetails.contentObj.NEXT }}
         </button>
+      </div>
     </div>
     
   </div>
