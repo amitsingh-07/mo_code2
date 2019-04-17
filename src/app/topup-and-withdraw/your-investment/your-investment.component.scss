@@ -12,7 +12,6 @@ app-your-investment {
     }
   }
   .investment-bg {
-    //padding-top: 60px;
     position: absolute;
     background: #3bbfbf;
     width: 100%;
@@ -24,13 +23,11 @@ app-your-investment {
     }
   }
   .background_img {
-    //display: none;
     float: right;
     @include allmobiles{
       object-fit: contain;
       position: relative;
       width: 100%;
-      //display: block;
     }
     &.web_bg{
       @include allmobiles{
@@ -48,6 +45,10 @@ app-your-investment {
     position: absolute;
     padding: 0 75px;
     top:60px;
+    max-width: 1024px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     @include allmobiles{
       top: 100px;
       padding: 0;
