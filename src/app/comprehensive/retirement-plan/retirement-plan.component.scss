@@ -1,4 +1,4 @@
-.comprehensive {
+.retirement-plan-container{
     .title {
         font-size: 18px;
     }
@@ -7,17 +7,38 @@
     display: inline-block;
     width: 218px;
     height: 150px;
-}
-.income-bucket-panel__desc {
-    padding-bottom: 25px;
-}
-.custom-slider-left{
-    width: 4%; 
-}
-.custom-slider-middle{
-    width: 24.5%; 
-}
-.custom-slider-right{
-    width: 22%; 
-}
+    }
+    .income-bucket-panel__desc {
+        padding-bottom: 25px;
+        font-size: 18px;
+    }
+    .income-bucket-panel__value {
+        font-size: 18px;
+    }
+    .custom-slider-left{
+        width: 4%; 
+    }
+    .custom-slider-middle{
+        width: 24.5%; 
+    }
+    .custom-slider-right{
+        width: 22%; 
+    }
+    .noUi-marker-large, .noUi-marker-sub, .noUi-marker {
+        background: none!important;
+    }
+    .noUi-pips {
+        color:#fff!important;
+    }
+    .noUi-pips-horizontal {
+        top: -325%!important;
+    }
+    .noUi-value {
+    margin-left:5px;
+    font-size: 14px;
+    }
+    .lastSliderPips{
+        left:90%!important;
+        text-align: right;
+    }
 }

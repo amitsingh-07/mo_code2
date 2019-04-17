@@ -69,14 +69,14 @@
           "TITLE_IMAGE": "retirement.svg",
           "TITLE_DESC": "Completed",
           "CONTENT_TITLE": "Do you know?",
-          "CONTENT_DESC": "The 3 “must haves” in retirement",  
+          "CONTENT_DESC": "There 3 “must haves” in retirement:",  
           "SUB_CONTENT_TITLE_1": "A fully paid-up home",          
           "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
-          "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability.",
-          "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, Eldershield, annuities)",
+          "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability",
+          "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, ElderShield, CareShield, other annuities)",
           "SUB_CONTENT_DESC_22": "2. Additional income for better lifestyle",
-          "SUB_CONTENT_TITLE_3": "Medical Expenses Insurance to Pay Hospital Bills",
-          "SUB_CONTENT_TITLE_3_DESC": "(e.g. Medishield Life, Private Integrated Shield Plans)",
+          "SUB_CONTENT_TITLE_3": "Medical Insurance to Cover Large Hospital Bills",
+          "SUB_CONTENT_TITLE_3_DESC": "(e.g. MediShield Life, Private Integrated Shield Plans)",
           "SUB_CONTENT_NOTE": "Let’s plan together!",
           "NEXT": "Next"
       },
@@ -491,7 +491,7 @@
       "MY_ASSETS": "My Assets"
     },
     "RETIREMENT_PLAN":{
-    "SUB_TITLE":"Finally, at what age would you retire?",
+    "SUB_TITLE":"We're almost done! Tell us when would you like to retire.",
     "ABOUT":"I want to retire by age ",
     "YOUR_AGE":"Your Age"
 

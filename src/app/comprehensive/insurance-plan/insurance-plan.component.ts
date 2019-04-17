@@ -150,6 +150,12 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeMenuItemClick();
   }
 
+  /**
+   * Set the page title
+   *
+   * @param {string} title
+   * @memberof InsurancePlanComponent
+   */
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
@@ -157,7 +163,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.showSummaryModal();
     } else {
-      if (!form.pristine) {
+      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+      if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveService.setInsurancePlanningList(form.value);
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
