@@ -40,7 +40,7 @@ export class AccountCreatedComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
     });
-    this.route.queryParams.subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.emailVerified = params.emailVerified;
     });
   }
@@ -52,20 +52,6 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-      this.willWritingService.getExecTrusteeInfo().length > 0 && !this.willWritingService.getIsWillCreated()) {
-      this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
-        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-          this.willWritingService.setIsWillCreated(true);
-        } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = '';
-          ref.componentInstance.errorMessage = this.duplicateError;
-        }
-      });
-      sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
-      this.signUpService.clearData();
-    }
   }
 
   /**
@@ -76,8 +62,8 @@ export class AccountCreatedComponent implements OnInit {
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification('', true).subscribe((data) => {
-      console.log(data);
+    const mobile = this.signUpService.getUserMobileNo();
+    this.signUpApiService.resendEmailVerification(mobile, false).subscribe(() => {
     });
   }
 

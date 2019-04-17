@@ -122,6 +122,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
+      this.signUpService.setUserMobileNo(form.value.mobileNumber);
       this.openTermsOfConditions();
     }
   }
@@ -159,17 +160,28 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccount() {
     this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
       .subscribe((data: any) => {
-        if (data.responseMessage.responseCode === 6000) {
+        if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 6008) {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+          if (data.responseMessage.responseCode === 6008) {
+            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+              this.translate.instant('COMMON.VERIFY_NOW'),
+              SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+            this.signUpService.setIsMobileVerified();
+          }
+
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
             this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-            this.updatedSelectedProducts(true);
-          } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-            this.createWill();
-          } else {
+            const redirect = data.responseMessage.responseCode === 6008;
+            this.updateInsuranceEnquiry(true, !redirect);
+          } else if (data.responseMessage.responseCode === 6000) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
           }
         } else if (data.responseMessage.responseCode === 5006) {
+          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+            this.updateInsuranceEnquiry(true, false);
+          }
           if (data.objectList[0].accountAlreadyCreated) {
             this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
               this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
@@ -180,45 +192,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
               this.translate.instant('COMMON.LOG_IN'),
               SIGN_UP_ROUTE_PATHS.LOGIN, true);
-          } else if (!data.objectList[0].mobileVerified) {
-            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
-              this.translate.instant('COMMON.VERIFY_NOW'),
-              SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
           }
+        } else {
+          this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
         }
       });
-  }
-
-  updatedSelectedProducts(isNewCustomer: boolean) {
-    this.signUpApiService.selectedProducts(isNewCustomer)
-      .subscribe(() => {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      });
-  }
-
-  createWill() {
-    this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
-      if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-        this.willWritingService.setIsWillCreated(true);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = '';
-        ref.componentInstance.errorMessage = this.translate.instant('COMMON.DUPLICATE_ERROR');
-      }
-    });
-  }
-
-  onPasswordInputChange() {
-    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty) {
-      this.isPasswordValid = false;
-    } else {
-      const _self = this;
-      setTimeout(() => {
-        _self.isPasswordValid = true;
-      }, 500);
-    }
   }
 
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
@@ -240,10 +218,34 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       });
     }
     this.refreshCaptcha();
+    this.createAccountForm.controls['password'].reset();
+    this.createAccountForm.controls['confirmPassword'].reset();
+  }
+
+  updateInsuranceEnquiry(isNewCustomer: boolean, redirect: boolean) {
+    this.signUpApiService.selectedProducts(isNewCustomer)
+      .subscribe(() => {
+        if (redirect) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        }
+      });
+  }
+
+  onPasswordInputChange() {
+    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty) {
+      this.isPasswordValid = false;
+    } else {
+      const _self = this;
+      setTimeout(() => {
+        _self.isPasswordValid = true;
+      }, 500);
+    }
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {});
+    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {
+
+    });
   }
 
   onlyNumber(el) {

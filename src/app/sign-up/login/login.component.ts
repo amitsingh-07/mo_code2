@@ -173,17 +173,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } catch (e) {
               console.log(e);
             }
-            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-            if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
-              const payload: IEnquiryUpdate = {
-                customerId: data.objectList[0].customerId,
-                enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-                selectedProducts: insuranceEnquiry.plans
-              };
-              this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-                this.selectedPlansService.clearData();
-              });
-            }
+            this.updateInsuranceEnquiry(data);
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
               if (userInfo.responseMessage.responseCode < 6000) {
                 // ERROR SCENARIO
@@ -220,22 +210,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                   } else {
                     this.router.navigate([redirect_url]);
                   }
-                } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-                  this.willWritingService.getExecTrusteeInfo().length > 0) {
-                  if (!this.willWritingService.getIsWillCreated()) {
-                    this.willWritingApiService.createWill().subscribe((data) => {
-                      if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-                        this.willWritingService.setIsWillCreated(true);
-                        this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                      } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
-                        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-                        ref.componentInstance.errorTitle = '';
-                        ref.componentInstance.errorMessage = this.duplicateError;
-                      }
-                    });
-                  } else {
+                } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
                     this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                  }
                 } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
                   journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
                   journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
@@ -254,6 +230,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
             this.refreshCaptcha();
+          } else if (data.responseMessage.responseCode === 5012) {
+            this.updateInsuranceEnquiry(data);
+            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.LOGIN_EMAIL_TITLE'),
+              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
+              this.translate.instant('SIGNUP_ERRORS.LOGIN_EMAIL_MESSAGE'),
+              '', true);
+          } else if (data.responseMessage.responseCode === 5014) {
+            this.updateInsuranceEnquiry(data);
+            this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+              this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+              this.translate.instant('COMMON.VERIFY_NOW'),
+              SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+              this.signUpService.setFromLoginPage();
+              this.signUpService.setUserMobileNo('sdfsdf');
           } else {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
@@ -266,6 +256,43 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           }
         });
+    }
+  }
+
+  updateInsuranceEnquiry(data) {
+    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+    if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+      const payload: IEnquiryUpdate = {
+        customerId: data.objectList[0].customerId,
+        enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+        selectedProducts: insuranceEnquiry.plans
+      };
+      this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+        this.selectedPlansService.clearData();
+      });
+    }
+  }
+
+  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
+    this.loginForm.controls['captchaValue'].reset();
+    this.loginForm.controls['loginPassword'].reset();
+    this.refreshCaptcha();
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorMessage = message;
+    ref.result.then((data) => {
+      if (!data && redirect) {
+        this.router.navigate([redirect]);
+      }
+    });
+    if (title) {
+      ref.componentInstance.errorTitle = title;
+      ref.componentInstance.buttonLabel = buttonLabel;
+    }
+    if (emailResend) {
+      ref.componentInstance.enableResendEmail = true;
+      ref.componentInstance.resendEmail.subscribe(($e) => {
+        this.resendEmailVerification();
+      });
     }
   }
 

@@ -24,6 +24,10 @@ const REDIRECT_URL_KEY = 'app_redirect_url';
 const IS_CAPTCHA_SHOWN = 'is_captcha';
 const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
+const USER_MOBILE = 'user_mobile';
+const IS_MOBILE_VERIFIED = 'is_mobile_verified';
+const FROM_LOGIN_PAGE = 'from_login_page';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,6 +75,7 @@ export class SignUpService {
       sessionStorage.removeItem(SIGNUP_SESSION_STORAGE_KEY);
       sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
       sessionStorage.removeItem(RESET_CODE_SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(IS_MOBILE_VERIFIED);
     }
   }
 
@@ -539,5 +544,34 @@ export class SignUpService {
     return this.signUpFormData.isUnsupportedNoteShown;
   }
 
+  setUserMobileNo(mobile) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(USER_MOBILE, mobile);
+    }
+  }
 
+  getUserMobileNo() {
+    return sessionStorage.getItem(USER_MOBILE);
+  }
+
+  setIsMobileVerified() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_MOBILE_VERIFIED, 'true');
+    }
+  }
+
+  getIsMobileVerified() {
+    return sessionStorage.getItem(IS_MOBILE_VERIFIED);
+  }
+
+  setFromLoginPage() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FROM_LOGIN_PAGE, 'true');
+    }
+  }
+
+  getFromLoginPage() {
+    return sessionStorage.getItem(FROM_LOGIN_PAGE);
+  }
+  
 }

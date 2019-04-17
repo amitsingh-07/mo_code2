@@ -4,7 +4,6 @@ export interface ISignUp {
     captcha: string;
     journeyType: string;
     enquiryId: number;
-    callbackUrl: string;
 }
 
 export interface IEnquiryUpdate {

@@ -72,8 +72,7 @@ export class SignUpApiService {
       sessionId: this.authService.getSessionId(),
       captcha,
       journeyType,
-      enquiryId,
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      enquiryId
     };
   }
 
@@ -268,7 +267,8 @@ export class SignUpApiService {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification'
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      hostedServerName: environment.apiBaseUrl
     }
     return this.apiService.resendEmailVerification(payload);
   }

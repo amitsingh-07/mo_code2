@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -30,6 +31,7 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
   editProfile: boolean;
+  showEditMobileNo = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +41,9 @@ export class VerifyMobileComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
-    private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
+    private translate: TranslateService, 
+    private errorHandler: CustomErrorHandlerService,
+    public authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -49,13 +53,17 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['verified'] = result.LOADING.VERIFIED;
       this.loading['sending'] = result.LOADING.SENDING;
     });
+
+    if (this.signUpService.getFromLoginPage()) {
+      this.showEditMobileNo = false;
+    }
   }
 
   ngOnInit() {
     this.progressModal = false;
     this.mobileNumberVerified = false;
     this.editProfile = this.signUpService.getAccountInfo().editContact;
-    this.mobileNumber = this.signUpService.getMobileNumber();
+    this.mobileNumber = this.signUpService.getMobileNumber() || this.signUpService.getUserMobileNo();
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
@@ -103,7 +111,6 @@ export class VerifyMobileComponent implements OnInit {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
-        this.signUpService.setResetCode(data.objectList[0].resetCode);
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : '';
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
@@ -137,8 +144,25 @@ export class VerifyMobileComponent implements OnInit {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+      this.resendEmailVerification();
     }
+  }
+
+  resendEmailVerification() {
+    const mobileNo = this.signUpService.getUserMobileNo();
+    this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
+      if (data.responseMessage.responseCode === 6007) {
+        if (!this.signUpService.getFromLoginPage()) {
+          sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
+          this.signUpService.clearData();
+        }
+        if (this.signUpService.getIsMobileVerified() || this.signUpService.getFromLoginPage()) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED, { emailVerified: true }]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+        }
+      }
+    });
   }
 
   /**
