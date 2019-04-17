@@ -60,7 +60,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.showSummaryModal();
         }
       });
-      if (this.comprehensiveService.getMySpendings().HLtypeOfHome === 'HDB') {
+      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+      if (cmpSummary.comprehensiveSpending.HLtypeOfHome === 'HDB'
+        || cmpSummary.comprehensiveSpending.mortgageTypeOfHome === 'HDB') {
         this.haveHDB = true;
       }
     });
