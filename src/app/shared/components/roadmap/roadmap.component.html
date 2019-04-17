@@ -2,7 +2,7 @@
   <div class="main-title">{{roadmapData.title}}</div>
   <div class="roadmap-item-container">
     <ng-container *ngFor="let item of roadmapData.items; let i = index">
-    <div class="roadmap-item" *ngIf="item.enabled">
+    <div class="roadmap-item">
       <div class="roadmap-icon">
         <span class="line"></span>
         <span class="icon" [ngClass]="item.status"></span>
