@@ -53,4 +53,12 @@ export class Util {
         }
         return isEmpty;
     }
+
+    public static toNumber(value: any): number {
+        if (isNaN(parseInt(value, 10))) {
+            return 0;
+        } else {
+            return parseInt(value, 10);
+        }
+    }
 }

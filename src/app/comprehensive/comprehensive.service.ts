@@ -1,4 +1,3 @@
-import { RoutingService } from './../shared/Services/routing.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,10 +17,11 @@ import {
     IProgressTrackerSubItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
+import { RoutingService } from './../shared/Services/routing.service';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
+import { COMPREHENSIVE_BASE_ROUTE, COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IChildEndowment,
@@ -542,7 +542,7 @@ export class ComprehensiveService {
         const urlList = this.getComprehensiveUrlList();
         const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
         if (currentUrlIndex > 0) {
-            const previousUrl = urlList[currentUrlIndex];
+            const previousUrl = urlList[currentUrlIndex - 1];
             if (previousUrl === ProgressTrackerUtil.trimPath(this.routingService.getCurrentUrl())) {
                 return null;
             } else {
@@ -770,7 +770,7 @@ export class ComprehensiveService {
         });
         if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
             subItemsArray.push({
-                id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND + '1',
+                id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
                 path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
                 title: 'Bad Mood Fund',
                 value: this.getDownOnLuck().badMoodMonthlyAmount
@@ -779,11 +779,11 @@ export class ComprehensiveService {
             });
         }
         subItemsArray.push({
-            id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND + '1',
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Hospital Choice',
             value: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
-                ? this.getDownOnLuck().hospitalClass : '',
+                ? this.getDownOnLuck().hospitalPlanName : '',
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
         });
         subItemsArray.push({
@@ -818,6 +818,49 @@ export class ComprehensiveService {
      * @memberof ComprehensiveService
      */
     getFireproofingProgressData(): IProgressTrackerItem {
+        const cmpSummary = this.getComprehensiveSummary();
+        const isCompleted = cmpSummary.comprehensiveInsurancePlanning !== null;
+        let hospitalPlanValue = '';
+        let cpfDependantProtectionSchemeValue = '';
+        let criticalIllnessValue = '$0';
+        let ocpDisabilityValue = '$0';
+        let longTermCareValue = '$0';
+        if (isCompleted) {
+            const haveHospitalPlan = cmpSummary.comprehensiveInsurancePlanning.haveHospitalPlan;
+            if (haveHospitalPlan) {
+                hospitalPlanValue = 'Yes';
+            } else if (haveHospitalPlan !== null && !haveHospitalPlan) {
+                hospitalPlanValue = 'No';
+            }
+
+            const haveCPFDependentsProtectionScheme = cmpSummary.comprehensiveInsurancePlanning.haveCPFDependentsProtectionScheme;
+            if (haveCPFDependentsProtectionScheme !== null) {
+                if (haveCPFDependentsProtectionScheme === 0) {
+                    const otherLifeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.otherLifeProtectionCoverageAmount;
+                    const lifeProtectionAmount = cmpSummary.comprehensiveInsurancePlanning.lifeProtectionAmount;
+                    const homeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.homeProtectionCoverageAmount;
+                    cpfDependantProtectionSchemeValue = this.transformAsCurrency(Util.toNumber(otherLifeProtectionCoverageAmount)
+                        + Util.toNumber(lifeProtectionAmount) + Util.toNumber(homeProtectionCoverageAmount));
+                } else if (haveCPFDependentsProtectionScheme === 1) {
+                    cpfDependantProtectionSchemeValue = 'No';
+                } else if (haveCPFDependentsProtectionScheme === 2) {
+                    cpfDependantProtectionSchemeValue = 'Not Sure';
+                }
+            }
+
+            if (cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount !== null) {
+                criticalIllnessValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount);
+            }
+
+            if (cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount !== null) {
+                ocpDisabilityValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount);
+            }
+
+            if (cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount !== null) {
+                longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
+            }
+        }
+
         return {
             title: 'Your Current Fireproofing',
             expanded: true,
@@ -828,36 +871,36 @@ export class ComprehensiveService {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Do you have a hospital plan',
-                    value: '',
-                    completed: false
+                    value: hospitalPlanValue,
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Life Protection',
-                    value: '',
-                    completed: false
+                    value: cpfDependantProtectionSchemeValue,
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Critical Illness',
-                    value: '',
-                    completed: false
+                    value: criticalIllnessValue,
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Occupational Disability',
-                    value: '',
-                    completed: false
+                    value: ocpDisabilityValue,
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Long-Term Care',
-                    value: '',
-                    completed: false
+                    value: longTermCareValue,
+                    completed: isCompleted
                 }
             ]
         };
@@ -870,6 +913,12 @@ export class ComprehensiveService {
      * @memberof ComprehensiveService
      */
     getRetirementProgressData(): IProgressTrackerItem {
+        let retirementAgeValue = '';
+        const cmpSummary = this.getComprehensiveSummary();
+        const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
+        if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
+            retirementAgeValue = cmpSummary.comprehensiveRetirementPlanning.retirementAge + ' yrs old';
+        }
         return {
             title: 'Financial Independence',
             expanded: true,
@@ -879,11 +928,12 @@ export class ComprehensiveService {
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 title: 'Retirement Age',
-                value: '',
-                completed: false
+                value: retirementAgeValue,
+                completed: isCompleted
             }]
         };
     }
+
     /**
      * Bucket Calculation for Earnings and Assets
      */
@@ -925,7 +975,7 @@ export class ComprehensiveService {
      * Remove key from Object
      * First Parameter is Object and Second Parameter is array with key need to pop
      */
-// tslint:disable-next-line: cognitive-complexity
+    // tslint:disable-next-line: cognitive-complexity
     unSetObjectByKey(inputObject: any, removeKey: any) {
         Object.keys(inputObject).forEach((key) => {
             if (Array.isArray(inputObject[key])) {
@@ -1071,7 +1121,7 @@ export class ComprehensiveService {
         if (rspDetails && rspDetails !== null) {
             const inputParams = { rsp: rspDetails };
             const removeParams = ['enquiryId'];
-            if ( mode === 'cash' ) {
+            if (mode === 'cash') {
                 removeParams.push('regularPaidByCPF');
             } else if (mode === 'cpf') {
                 removeParams.push('regularPaidByCash');

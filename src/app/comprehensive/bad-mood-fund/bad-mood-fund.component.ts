@@ -28,6 +28,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   pageSubTitle: string;
   totalAnnualIncomeBucket: number;
   hospitalPlanForm: FormGroup;
@@ -88,6 +89,16 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         this.progressService.show();
       }
     });
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
     this.hospitalPlanForm = new FormGroup({
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ?
@@ -108,7 +119,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
-      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ?  this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ? this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
 
     }
 
@@ -127,10 +138,14 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     } as HospitalPlan;
     this.isFormValid = true;
   }
+
   ngOnDestroy() {
-    this.navbarService.unsubscribeMenuItemClick();
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
   }
+
   goToNext(form) {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);

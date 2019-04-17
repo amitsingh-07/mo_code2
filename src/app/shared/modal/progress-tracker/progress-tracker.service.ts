@@ -41,6 +41,15 @@ export class ProgressTrackerService {
         }
     }
 
+    public isReadOnly(): boolean {
+        return this.data.properties.readOnly || false;
+    }
+
+    setReadOnly(readOnly: boolean) {
+        this.data.properties.readOnly = readOnly;
+        this.subject.next(this.data);
+    }
+
     public setProgressTrackerData(data: IProgressTrackerData) {
         this.data = data;
         this.subject.next(this.data);

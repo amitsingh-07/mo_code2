@@ -7,6 +7,7 @@ export interface IProgressTrackerData {
 
 export interface IProgressTrackerProperties {
     disabled?: boolean;
+    readOnly?: boolean;
 }
 
 export class IProgressTrackerItem {
