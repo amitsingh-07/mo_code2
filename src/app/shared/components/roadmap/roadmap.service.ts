@@ -4,7 +4,8 @@ import { Subject } from 'rxjs/internal/Subject';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { IRoadmap, IRoadmapItem } from './roadmap.interface';
+import { IRoadmap, IRoadmapItem, ERoadmapStatus } from './roadmap.interface';
+import { INVESTMENT_ACCOUNT_ROUTES, INVESTMENT_ACCOUNT_ROUTE_PATHS } from 'src/app/investment-account/investment-account-routes.constants';
 
 const SESSION_STORAGE_KEY = 'app_roadmap';
 
@@ -12,13 +13,9 @@ const SESSION_STORAGE_KEY = 'app_roadmap';
   providedIn: 'root'
 })
 export class RoadmapService {
-  roadmapData: IRoadmap;
+  private roadmapData: IRoadmap;
   private roadmapSubject = new BehaviorSubject(null);
   roadmapDataChanges = this.roadmapSubject.asObservable();
-
-  roadMapData: IRoadmap;
-
-  changeData = new Subject();
 
   constructor(private router: Router) {
     this.loadData(this.getDataFromSession());
@@ -29,15 +26,43 @@ export class RoadmapService {
     });
   }
 
+  /* To Set Initial Data */
   loadData(data: IRoadmap) {
     this.roadmapData = data;
     this.roadmapSubject.next(this.roadmapData);
   }
 
-  addItem(item: IRoadmapItem) {
-    if (this.roadmapData.items) {
+  addItem(item: IRoadmapItem, path?) {
+    const existingItem = this.findExistingItem(item.path);
+    if (!existingItem) {
       this.roadmapData.items.push(item);
+      this.roadmapSubject.next(this.roadmapData);
     }
+  }
+
+  removeItem(path) {
+    const existingItem = this.findExistingItem(path);
+    const index = this.roadmapData.items.indexOf(existingItem);
+    if (index > -1) {
+      this.roadmapData.items.splice(index, 1);
+    }
+  }
+
+  updateStatus() {
+    let itemFound = false;
+    this.roadmapData.items.forEach((item) => {
+      item.path = this.cleanRelativePath(item.path);
+      if (item.path.includes(this.router.url)) {
+        itemFound = true;
+        item.status = ERoadmapStatus.IN_PROGRESS;
+      } else {
+        if (itemFound) {
+          item.status = ERoadmapStatus.NOT_STARTED;
+        } else {
+          item.status = ERoadmapStatus.COMPLETED;
+        }
+      }
+    });
   }
 
   getDataFromSession() {
@@ -56,6 +81,23 @@ export class RoadmapService {
         sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.roadmapData));
       }
     }
+  }
+
+  cleanRelativePath(pathList) {
+    const cleanedList = [];
+    let cleanedPath;
+    pathList.forEach((path) => {
+      cleanedPath = path.replace(/\./g, '');
+      cleanedList.push(cleanedPath);
+    });
+    return cleanedList;
+  }
+
+  findExistingItem(path) {
+    const roadmapItem = this.roadmapData.items.filter(
+      (item) => item.path.includes(this.cleanRelativePath(path)[0])
+    );
+    return roadmapItem[0];
   }
 
 }
