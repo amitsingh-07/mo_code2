@@ -32,7 +32,7 @@
     <div class="contact-us__inner-content">
       <div class="contact-us__form-container">
         <form id="contactUsForm" name="contactUsForm" [formGroup]="contactUsForm">
-          <div class="dropdown-control">
+          <div class="dropdown-control mb10">
             <div ngbDropdown id="subjectDropDown">
               <button class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
                 <span class="">{{subject}}</span>
@@ -44,6 +44,16 @@
               </div>
             </div>
           </div>
+          <input type="text" class="form-control mb10" formControlName="emailAddress" placeholder="Email Address*" required>         
+          <div *ngIf="contactUsForm.controls.emailAddress.invalid && contactUsForm.controls.emailAddress.dirty">
+             <p class="error--msg" *ngIf="contactUsForm.controls.emailAddress.errors.email">{{emailErrorMessage.email}}</p>
+             <p class="error--msg" *ngIf="contactUsForm.controls.emailAddress.errors.required">{{emailErrorMessage.required}}</p>
+          </div>
+          <input type="text" class="form-control mb10" formControlName="contactNumber" placeholder="Contact Number*" required>
+          <div *ngIf="contactUsForm.controls.contactNumber.invalid && contactUsForm.controls.contactNumber.dirty">
+              <p class="error--msg" *ngIf="contactUsForm.controls.contactNumber.errors.pattern">{{contactNumberErrorMessage.pattern}}</p>
+              <p class="error--msg" *ngIf="contactUsForm.controls.contactNumber.errors.required">{{contactNumberErrorMessage.required}}</p>
+           </div>
           <textarea class="form-control" formControlName="message" placeholder="{{'CONTACT_US.GENERAL.FORM.PLACEHOLDER' | translate}}" ></textarea>
           <p class="error--msg" *ngIf="(!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty)">{{contactUsErrorMessage}}</p>
           <p class="error--msg success" *ngIf="sendSuccess ">{{'CONTACT_US.GENERAL.FORM.SUCCESS_MSG' | translate}}</p>
