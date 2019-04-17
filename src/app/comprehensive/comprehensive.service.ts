@@ -1,4 +1,3 @@
-import { RoutingService } from './../shared/Services/routing.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,10 +17,11 @@ import {
     IProgressTrackerSubItem,
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
+import { RoutingService } from './../shared/Services/routing.service';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
+import { COMPREHENSIVE_BASE_ROUTE, COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
     HospitalPlan,
     IChildEndowment,
@@ -542,7 +542,7 @@ export class ComprehensiveService {
         const urlList = this.getComprehensiveUrlList();
         const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
         if (currentUrlIndex > 0) {
-            const previousUrl = urlList[currentUrlIndex];
+            const previousUrl = urlList[currentUrlIndex - 1];
             if (previousUrl === ProgressTrackerUtil.trimPath(this.routingService.getCurrentUrl())) {
                 return null;
             } else {
@@ -783,7 +783,7 @@ export class ComprehensiveService {
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Hospital Choice',
             value: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
-                ? this.getDownOnLuck().hospitalClass : '',
+                ? this.getDownOnLuck().hospitalPlanName : '',
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
         });
         subItemsArray.push({
@@ -818,6 +818,8 @@ export class ComprehensiveService {
      * @memberof ComprehensiveService
      */
     getFireproofingProgressData(): IProgressTrackerItem {
+        const cmpSummary = this.getComprehensiveSummary();
+        const isCompleted = cmpSummary.comprehensiveInsurancePlanning !== null;
         return {
             title: 'Your Current Fireproofing',
             expanded: true,
@@ -829,35 +831,35 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Do you have a hospital plan',
                     value: '',
-                    completed: false
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Life Protection',
                     value: '',
-                    completed: false
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Critical Illness',
                     value: '',
-                    completed: false
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Occupational Disability',
                     value: '',
-                    completed: false
+                    completed: isCompleted
                 },
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Long-Term Care',
                     value: '',
-                    completed: false
+                    completed: isCompleted
                 }
             ]
         };

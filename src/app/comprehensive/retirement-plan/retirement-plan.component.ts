@@ -133,13 +133,13 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       form.value.enquiryId = this.comprehensiveService.getEnquiryId();
       form.value.retirementAge = this.sliderValue;
-      this.comprehensiveService.setRetirementPlan(form.value);
-      // if (this.retirementValueChanges) {
-      //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
-
-      //   });
-      // }
-      this.showSummaryModal();
+      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+      if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
+        this.comprehensiveApiService.saveRetirementPlanning(form.value).subscribe((data: any) => {
+          this.comprehensiveService.setRetirementPlan(form.value);
+          this.showSummaryModal();
+        });
+      }
     }
   }
   showSummaryModal() {
@@ -156,3 +156,4 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 }
+
