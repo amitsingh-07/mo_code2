@@ -17,6 +17,7 @@ import { INVESTMENT_ACCOUNT_ROADMAP } from '../investment-account-roadmap';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import { ERoadmapStatus } from 'src/app/shared/components/roadmap/roadmap.interface';
 
 @Component({
   selector: 'app-inv-personal-info',
@@ -96,6 +97,15 @@ export class PersonalInfoComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_ROADMAP);
+    if (!this.investmentAccountService.getMyInfoStatus()) {
+      this.roadmapService.addItem({
+        title: 'Upload Documents',
+        path: [INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS, INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO],
+        status: ERoadmapStatus.NOT_STARTED
+      });
+    } else {
+      this.roadmapService.removeItem(INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS);
+    }
   }
 
   buildForm() {

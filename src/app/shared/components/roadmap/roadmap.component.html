@@ -1,12 +1,15 @@
 <div class="roadmap-widget" *ngIf="roadmapData">
-<div class="main-title">{{roadmapData.title}}</div>
-<div class="roadmap-item-container">
-<div class="roadmap-item" *ngFor="let item of roadmapData.items; let i = index">
-  <div class="roadmap-icon">
-    <span class="line"></span>
-    <span class="icon" [ngClass]="item.status"></span>
+  <div class="main-title">{{roadmapData.title}}</div>
+  <div class="roadmap-item-container">
+    <ng-container *ngFor="let item of roadmapData.items; let i = index">
+    <div class="roadmap-item" *ngIf="item.enabled">
+      <div class="roadmap-icon">
+        <span class="line"></span>
+        <span class="icon" [ngClass]="item.status"></span>
+      </div>
+      <div class="roadmap-item-title">{{item.title}}</div>
+    </div>
+    </ng-container>
+
   </div>
-  <div class="roadmap-item-title">{{item.title}}</div>
-</div>
-</div>
 </div>
