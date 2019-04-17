@@ -105,11 +105,21 @@
   letter-spacing: -0.1px;
   color: #b3d6d6;
 
+  .web-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include allmobiles{
+      flex-direction: column;
+    }
+  }
+
   .indicators {
     justify-content: space-evenly;
-    margin: 0 auto;
     margin-bottom:5px;
-
+    @include allmobiles{
+      margin: 0 auto;
+    }
     .flex-row {
       align-items: center;
     }
@@ -136,9 +146,11 @@
 
   .capital {
     justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 31px;
     align-items: center;
+    @include allmobiles{
+      padding-top: 10px;
+      padding-bottom: 31px;
+    }
     span {
       &:first-child {
         padding-right: 9px;

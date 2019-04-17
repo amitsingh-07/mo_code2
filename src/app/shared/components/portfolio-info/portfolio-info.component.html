@@ -26,6 +26,7 @@
 
       </div>
       <div class="portfolio-graph-indicator">
+        <div class="web-flex">
         <div class="flex-row indicators">
           <div class="flex-row"><span class="circle best"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.BEST' | translate}}</span></div>
           <div class="flex-row"><span class="circle median"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.MEDIAN' |
@@ -36,6 +37,7 @@
         <div class="flex-row capital">
           <span><img class="img-fluid" src="../../../assets/images/investment-account/orangedots.svg" /></span>
           <span>{{ 'PORTFOLIO_RECOMMENDATION.CAPITAL_INVESTED' | translate}}</span>
+        </div>
         </div>
         <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate"></div>
       </div>

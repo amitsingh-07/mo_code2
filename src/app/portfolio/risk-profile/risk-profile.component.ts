@@ -28,6 +28,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   selectedRiskProfile: RiskProfile;
   formValues;
   pageTitle: string;
+  secondIcon;
 
   constructor(
     public readonly translate: TranslateService,
@@ -51,6 +52,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
   }
 
   ngAfterViewInit() {
