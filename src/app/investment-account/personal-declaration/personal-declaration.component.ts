@@ -10,7 +10,8 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
-
+import { RoadmapService } from '../../shared/components/roadmap/roadmap.service';
+import { ERoadmapStatus } from 'src/app/shared/components/roadmap/roadmap.interface';
 @Component({
   selector: 'app-personal-declaration',
   templateUrl: './personal-declaration.component.html',
@@ -33,7 +34,8 @@ export class PersonalDeclarationComponent implements OnInit {
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private roadmapService: RoadmapService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -140,5 +142,8 @@ export class PersonalDeclarationComponent implements OnInit {
     ) {
       return true;
     }
+  }
+
+  changeBoOption(value) {
   }
 }
