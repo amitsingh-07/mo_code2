@@ -668,22 +668,24 @@ body{
             }
         }
         .home__invest-promo{
-            color: $post-login-widget-title;
-            padding: 10px;
-            font-family: $muli-bold;
+            color: $invest-promo-txt-color;
+            font-family: $muli;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: normal;
             font-style: italic;
             letter-spacing: -0.15px;
             text-align: center;
+            @include allmobiles{
+                font-size: 12px;
+                letter-spacing: -0.11px;
+                padding: 0 25px 40px 25px;
+            }
             @include LargeDevice{
-                background: $invest-promo-bg;
                 position: absolute;
-                bottom: 0px;
+                bottom: 29px;
                 left: 135px;
             }
             @include tablet{
-                background: $invest-promo-bg;
                 position: absolute;
                 bottom: -15px;
                 left: 50px;
