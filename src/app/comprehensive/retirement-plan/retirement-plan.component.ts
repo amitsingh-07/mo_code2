@@ -47,10 +47,10 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     }
   };
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private router: Router, private route: ActivatedRoute) {
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private router: Router, private route: ActivatedRoute) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
@@ -115,13 +115,13 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       form.value.enquiryId = this.comprehensiveService.getEnquiryId();
       form.value.retirementAge = this.sliderValue;
-      this.comprehensiveService.setRetirementPlan(form.value);
-      // if (this.retirementValueChanges) {
-      //   this.comprehensiveApiService.saveRetirementPlanning( form.value).subscribe((data: any) => {
-
-      //   });
-      // }
-      this.showSummaryModal();
+      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+      if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
+        this.comprehensiveApiService.saveRetirementPlanning(form.value).subscribe((data: any) => {
+          this.comprehensiveService.setRetirementPlan(form.value);
+          this.showSummaryModal();
+        });
+      }
     }
   }
   showSummaryModal() {

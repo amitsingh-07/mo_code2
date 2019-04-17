@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
 import { ProgressTrackerService } from './progress-tracker.service';
-import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.types';
+import { IProgressTrackerData, IProgressTrackerItem, IProgressTrackerSubItem } from './progress-tracker.types';
 
 @Component({
     selector: 'app-progress-tracker',
@@ -13,7 +13,6 @@ import { IProgressTrackerData, IProgressTrackerItem } from './progress-tracker.t
 })
 export class ProgressTrackerComponent implements OnInit {
     data: IProgressTrackerData;
-    private subscription: Subscription;
 
     currentPath = '';
     pathRegex = /../;
@@ -23,7 +22,7 @@ export class ProgressTrackerComponent implements OnInit {
         private route: Router
     ) {
         this.currentPath = this.route.url;
-        this.subscription = this.progressService.getProgressTrackerData().subscribe((progressData) => {
+        this.progressService.getProgressTrackerData().subscribe((progressData) => {
             if (progressData) {
                 this.data = progressData;
             } else {
@@ -34,15 +33,35 @@ export class ProgressTrackerComponent implements OnInit {
 
     ngOnInit() { }
 
+    /**
+     * Close the progress tracker popup.
+     *
+     * @memberof ProgressTrackerComponent
+     */
     public onCloseClick(): void {
         this.progressService.hide();
     }
 
+    /**
+     * Toggle the accordion item state: `expanded = true | false`
+     *
+     * @param {IProgressTrackerItem} item
+     * @memberof ProgressTrackerComponent
+     */
     public toggle(item: IProgressTrackerItem) {
         item.expanded = !item.expanded;
     }
 
-    public navigate(path: string) {
-        this.progressService.navigate(path);
+    /**
+     * Navigate to the selected component if the item is completed.
+     *
+     * @param {IProgressTrackerSubItem} subItem
+     * @memberof ProgressTrackerComponent
+     */
+    public navigate(subItem: IProgressTrackerSubItem) {
+        if (subItem.completed) {
+            this.progressService.hide();
+            this.progressService.navigate(subItem.path);
+        }
     }
 }
