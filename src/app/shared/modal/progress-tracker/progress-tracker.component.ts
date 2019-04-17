@@ -59,7 +59,7 @@ export class ProgressTrackerComponent implements OnInit {
      * @memberof ProgressTrackerComponent
      */
     public navigate(subItem: IProgressTrackerSubItem) {
-        if (subItem.completed) {
+        if (subItem.completed && !this.data.properties.readOnly) {
             this.progressService.hide();
             this.progressService.navigate(subItem.path);
         }

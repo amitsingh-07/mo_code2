@@ -121,6 +121,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
           this.comprehensiveService.setRetirementPlan(form.value);
           this.showSummaryModal();
         });
+      } else {
+        this.showSummaryModal();
       }
     }
   }

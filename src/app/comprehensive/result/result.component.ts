@@ -51,6 +51,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+    this.progressService.setReadOnly(true);
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {
