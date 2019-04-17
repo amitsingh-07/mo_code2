@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal, IRetirementPlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
+import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 
 @Component({
@@ -44,16 +45,24 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       from: (value) => {
         return Math.round(value);
       }
+    },
+    pips: {
+        mode: 'values',
+        values: [45, 50, 55, 60, 65],
+        density: 4
     }
   };
+  userAge: number;
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
               private translate: TranslateService,
               private formBuilder: FormBuilder, private configService: ConfigService,
               private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router, private route: ActivatedRoute, private aboutAge: AboutAge,
+              private eleRef: ElementRef, private renderer: Renderer2) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.userAge = this.aboutAge.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -82,9 +91,15 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
+    const containerRef = this.eleRef.nativeElement.querySelector('.noUi-value:last-child');
+    this.renderer.setProperty(containerRef, 'innerHTML', '62 or later');
+    this.renderer.addClass(containerRef, 'lastSliderPips');
     if (this.sliderValue > 61) {
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
+    } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
+      this.sliderValue = this.userAge;
+      this.ciMultiplierSlider.writeValue(this.userAge);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
@@ -104,6 +119,9 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.sliderValue > 61) {
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
+    } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
+      this.sliderValue = this.userAge;
+      this.ciMultiplierSlider.writeValue(this.userAge);
     }
   }
   setPageTitle(title: string) {
