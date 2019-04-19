@@ -35,7 +35,7 @@
           <div class="dropdown-control mb10">
             <div ngbDropdown id="subjectDropDown">
               <button class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
-                <span class="">{{subject}}</span>
+                <span [ngClass]="{'green-text': subject === subjectPreset}">{{subject}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownSubject">
                 <button class="dropdown-item" *ngFor="let in_subject of subjectItems" (click)="selectSubject(in_subject)">
