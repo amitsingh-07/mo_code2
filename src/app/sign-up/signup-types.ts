@@ -39,17 +39,6 @@ export interface IVerifyRequestOTP {
     editProfile?: boolean;
 }
 
-export interface ISetPassword {
-    customerRef: string;
-    password: string;
-    callbackUrl: string;
-    resetType: string;
-    resetCode: string;
-    selectedProducts: IPlan[];
-    journeyType: string;
-    sessionId: string;
-}
-
 export interface IVerifyCode {
     code: string;
 }

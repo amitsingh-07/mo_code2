@@ -24,7 +24,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { WillWritingService } from '../../will-writing/will-writing.service';
-import { ValidatePassword } from '../password/password.validator';
+import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';

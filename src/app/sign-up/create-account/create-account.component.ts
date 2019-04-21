@@ -166,23 +166,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccount() {
     this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
       .subscribe((data: any) => {
-        if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 6008) {
-          this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+        const responseCode = [6000, 6008, 5006];
+        if (responseCode.includes(data.responseMessage.responseCode)) {
+          if (data.responseMessage.responseCode === 6000 ||
+            data.responseMessage.responseCode === 6008) {
+            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+          }
           if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
             this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-            if (data.responseMessage.responseCode === 6008) {
-              this.signUpService.setIsMobileVerified();
-            }
             const redirect = data.responseMessage.responseCode === 6000;
             this.updateInsuranceEnquiry(data, redirect);
           } else if (data.responseMessage.responseCode === 6000) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-          }
-        } else if (data.responseMessage.responseCode === 5006) {
-          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-            this.updateInsuranceEnquiry(data, false);
-          } else {
+          } else if (data.responseMessage.responseCode === 6008 ||
+            data.responseMessage.responseCode === 5006) {
             this.callErrorModal(data);
           }
         } else {
@@ -191,8 +188,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       });
   }
 
-  callErrorModal(data) {
-    if (data.objectList[0].accountAlreadyCreated) {
+  callErrorModal(data: any) {
+    if (data.responseMessage.responseCode === 6008) {
+      this.signUpService.setIsMobileVerified();
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+        this.translate.instant('COMMON.VERIFY_NOW'),
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+    } else if (data.objectList[0].accountAlreadyCreated) {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
@@ -202,11 +205,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
         SIGN_UP_ROUTE_PATHS.LOGIN, true);
-    } else if (data.responseMessage.responseCode === 6008) {
-      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-      this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
-      this.translate.instant('COMMON.VERIFY_NOW'),
-      SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
     }
   }
 
@@ -233,7 +231,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm.controls['confirmPassword'].reset();
   }
 
-  updateInsuranceEnquiry(data, redirect: boolean) {
+  updateInsuranceEnquiry(data: any, redirect: boolean) {
     const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
     if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
       const payload: IEnquiryUpdate = {
@@ -253,7 +251,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   onPasswordInputChange() {
-    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty 
+    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty
       && this.createAccountForm.controls.password.value) {
       this.isPasswordValid = false;
     } else {

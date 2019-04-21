@@ -23,7 +23,6 @@ export let apiConstants = {
         updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
-        setPassword: 'account/account-microservice/api/setPassword',
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
