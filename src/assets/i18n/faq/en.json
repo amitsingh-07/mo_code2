@@ -271,7 +271,7 @@
                 ]
             },
             "Investment": {
-                "<b>SOME NOTES:</b><br/><p>For an illustration of the transaction flow and timeline, please click here or read the FAQs below.</p></br/><p>To read about keys to a successful investing experience, MoneyOwl’s portfolios, Dimensional Fund Advisors and other information, please visit our investment information page here.</p><br/><p>IMPORTANT NOTE ON FUNDING:<br/>To get to the funding instructions or top-up instructions after your Investment Account has been successfully set up, look out for a right arrow and/or an orange alert triangle in the My Investment &gt; My Portfolio page.</p><br/><p>In the funding instructions, there is a “Reference Code”. You MUST indicate the “Reference Code” in the “Remarks/ Descriptions/ Comments” of your fund transfer, even if the bank says it is optional, otherwise we cannot trace your transaction easily and there will be a delay.</p><br/>Getting Started": [
+                "Getting Started": [
                     {
                         "QUESTION": "What is the minimum age at which I can start investing?",
                         "ANSWER": "Anyone 18 years old and above can open an investment Account."
@@ -372,7 +372,7 @@
                 "Fees": [
                     {
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay are as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.50% p.a. promotional rate* (usual 0.65% p.a.)</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.2% to 0.4% p.a.</td></tr></table><p><i>*You will enjoy the promotional rate on Advisory Fees if you invest before 31 May 2019. The promotional rate will expire on 31 December 2019. Please note that MoneyOwl Advisory Fees are subject to change.</i></p>"
+                        "ANSWER": "The total annual fees you have to pay are as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.50% p.a. promotional rate* (usual 0.65% p.a.)</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.3% to 0.4% p.a.</td></tr></table><p><i>*You will enjoy the promotional rate on Advisory Fees if you invest before 31 May 2019. The promotional rate will expire on 31 December 2019. Please note that MoneyOwl Advisory Fees are subject to change.</i></p>"
                     },
                     {
                         "QUESTION": "How are fees deducted?", 
