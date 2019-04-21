@@ -271,10 +271,14 @@
                 ]
             },
             "Investment": {
-                "Getting Started": [
+                "<b>SOME NOTES:</b><br/><p>For an illustration of the transaction flow and timeline, please click here or read the FAQs below.</p></br/><p>To read about keys to a successful investing experience, MoneyOwl’s portfolios, Dimensional Fund Advisors and other information, please visit our investment information page here.</p><br/><p>IMPORTANT NOTE ON FUNDING:<br/>To get to the funding instructions or top-up instructions after your Investment Account has been successfully set up, look out for a right arrow and/or an orange alert triangle in the My Investment &gt; My Portfolio page.</p><br/><p>In the funding instructions, there is a “Reference Code”. You MUST indicate the “Reference Code” in the “Remarks/ Descriptions/ Comments” of your fund transfer, even if the bank says it is optional, otherwise we cannot trace your transaction easily and there will be a delay.</p><br/>Getting Started": [
                     {
                         "QUESTION": "What is the minimum age at which I can start investing?",
-                        "ANSWER": "Anyone above the age of 18 can open an investment Account"
+                        "ANSWER": "Anyone 18 years old and above can open an investment Account."
+                    },
+					{
+                        "QUESTION": "What is the minimum age at which I can start investing?",
+                        "ANSWER": "Anyone 18 years old and above can open an investment Account."
                     },
                     {
                         "QUESTION": "What is the minimum amount required to start investing?",
@@ -290,7 +294,7 @@
                     },
                     {
                         "QUESTION": "How can I fund my Investment Cash Account for investments?",
-                        "ANSWER": "<p>You can login to your online banking to do a FAST transfer or do an offline bank transfer to our custodian’s bank account.</p><p><strong>Transfer Details -</strong><br/>Recipient's Name: IFASTFINANCIALPteLtd<br/>Bank Name: Standard Chartered Bank (Singapore)<br/>Bank Account No.: 0102046042<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>You can also fund your account using PayNow.</p><p><strong>Transfer Details -</strong><br/>Unique Entity Number (UEN): 200000231RAIY<br/>Entity Name: IFAST FINANCIAL PL-CT SUB<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>The monies will be deposited into your Investment Cash Account.</p>"
+                        "ANSWER": "<p>You can login to your online banking to do a FAST transfer or do an offline bank transfer to our custodian’s bank account.</p><p><strong>Transfer Details -</strong><br/>Recipient's Name: IFASTFINANCIALPteLtd<br/>Bank Name: Standard Chartered Bank (Singapore)<br/>Bank Account No.: 0102046042<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>You can also fund your account using PayNow.</p><p><strong>Transfer Details -</strong><br/>Unique Entity Number (UEN): 200000231RAIY<br/>Entity Name: IFAST FINANCIAL PL-CT SUB<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>The monies will be deposited into your Investment Cash Account.</p><p>To avoid delay, you <b><u>MUST</u></b> indicate the “Reference Code” in the “Remarks/ Descriptions/ Comments” of your fund transfer, even if the bank says it is optional.</p>"
                     },
                     {
                         "QUESTION": "I do not live in Singapore. Can I open an account?",
@@ -368,7 +372,7 @@
                 "Fees": [
                     {
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay is as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65%</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18%</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.2% to 0.4%</td></tr></table>"
+                        "ANSWER": "The total annual fees you have to pay are as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.50% p.a. promotional rate* (usual 0.65% p.a.)</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.2% to 0.4% p.a.</td></tr></table><p><i>*You will enjoy the promotional rate on Advisory Fees if you invest before 31 May 2019. The promotional rate will expire on 31 December 2019. Please note that MoneyOwl Advisory Fees are subject to change.</i></p>"
                     },
                     {
                         "QUESTION": "How are fees deducted?", 
@@ -387,6 +391,14 @@
                     { 
                         "QUESTION": "How can I get help when I need it?",
                         "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
+                    },
+                    { 
+                        "QUESTION": "Forward Pricing",
+                        "ANSWER": "<p>As with most unit trusts, buy and sell orders for the funds making up the portfolio are transacted at end-of-day prices. The exact price at which you will transact is therefore not known at the point of your placing an order. The price of the fund that you see on screen is from the previous one or two business days before, depending on the fund, not the actual price at which you will transact. The actual price at which you will transact will only be known one or two business days later.</p><p>For example:<br/>You redeem $100 of the portfolio (T day). The indicative price of one of the portfolio’s underlying funds, Fund A, is $1 on T day. Based on this indicative price, you will redeem $100 / $1 = 100 units. The actual price of the fund at the end of T day is $1.01. This price is only reflected on T+1 day. You will transact at $1.01 and your redemption proceeds will be $1.01 x 100 = $101.</p>"
+                    },
+                    { 
+                        "QUESTION": "Full redemptions of portfolio holdings",
+                        "ANSWER": "<p>Outstanding fees on a pro-rated basis apply and will be deducted prior to redemption, if you choose to redeem all your portfolio holdings.</p>"
                     }
                 ]
             }
