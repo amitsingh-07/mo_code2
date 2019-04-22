@@ -78,7 +78,7 @@ app-tax-info {
       }
     }
     .tooltip-icon {
-      background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
+      background: url('../../../assets/images/tooltip-icon.svg') no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
@@ -183,6 +183,8 @@ app-tax-info {
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
       }
       .widget-body{
         padding: 20px 30px 35px;

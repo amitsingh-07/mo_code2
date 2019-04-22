@@ -9,6 +9,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { BreakdownAccordionComponent } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
+import { RoadmapComponent } from '../shared/components/roadmap/roadmap.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import {
     EditInvestmentModalComponent
@@ -70,7 +71,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe,
+    RoadmapComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -92,7 +94,8 @@ export function createTranslateLoader(http: HttpClient) {
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    RoadmapComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

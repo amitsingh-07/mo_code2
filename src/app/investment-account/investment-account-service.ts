@@ -715,9 +715,9 @@ export class InvestmentAccountService {
     let disable: boolean;
     if (
       this.investmentAccountFormData.isMyInfoEnabled &&
-      this.investmentAccountFormData.disableAttributes.includes(fieldName)
+      this.investmentAccountFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
-      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.includes(fieldName) && this.isSingaporeResident()) {
+      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.indexOf(fieldName) >= 0 && this.isSingaporeResident()) {
         disable = false;
       } else {
         disable = true;
@@ -788,7 +788,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.portfolioService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
   }
 
@@ -1027,15 +1027,6 @@ export class InvestmentAccountService {
     }
 
     return additionalDesc;
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   // tslint:disable-next-line:cognitive-complexity

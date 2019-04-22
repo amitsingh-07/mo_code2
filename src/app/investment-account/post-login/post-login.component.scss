@@ -62,14 +62,15 @@ app-post-login {
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
+    padding-left: 30px;
     @include allmobiles{
       padding-bottom: 0;
     }
   }
   .signup-wrapper__header-icon {
     @include allmobiles {
-      width: 99px !important;
-      height: 100px !important;
+      width: 400px !important;
+      height: 50% !important;
     }
 
     img {
