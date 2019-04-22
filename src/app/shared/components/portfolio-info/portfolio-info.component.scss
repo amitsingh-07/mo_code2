@@ -63,6 +63,32 @@
         height: auto;
         margin: 0;
       }
+      img.big {
+        display:none;
+      }
+      img.small {
+        display:block;
+      }
+    }
+
+    @media(min-width:$col-md){
+      .graph {
+        width: 560px;
+        img.big {
+          display:block;
+          width:100%;
+        }
+        img.small {
+          display:none;
+        }
+      }
+    }
+
+    @media(min-width:$col-lg){
+      .graph {
+        width: 720px;
+        height:235px;
+      }
     }
 
     .graph_values {
@@ -78,6 +104,34 @@
           padding: 0 10px;
           margin-bottom: 4px;
           margin-top: 8px;
+        }
+      }
+    }
+    @media(min-width:$col-md) {
+      .graph_values {
+        top: -29px;
+  
+        span {
+          &:nth-child(2){
+            margin-top: -2px;
+          }
+          &:last-child{
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+    @media(min-width:$col-lg) {
+      .graph_values {
+        top: -24px;
+  
+        span {
+          &:nth-child(2){
+            margin-top: 17px;
+          }
+          &:last-child{
+            margin-top: 16px;
+          }
         }
       }
     }
