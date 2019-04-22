@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -32,9 +34,11 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   showTwoPortfolio = false;
   showSinglePortfolio = false;
   showNoPortfolio = false;
+  time;
 
   constructor(
     public readonly translate: TranslateService,
+    public activeModal: NgbActiveModal,
     private router: Router,
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
@@ -55,14 +59,16 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    if (this.selectedRiskProfile.alternateRiskProfileId) {
     this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
+  }
     this.showButton();
   }
 
   ngAfterViewInit() {
     if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
       this.portfolioService.setPortfolioSplashModalCounter(1);
-      setTimeout(() => {
+      this.time = setTimeout(() => {
         this.animateStaticModal = true;
       }, 3000);
 
@@ -73,6 +79,10 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
       this.hideStaticModal = true;
     }
   }
+  dismissFlashScreen() {
+    clearTimeout(this.time);
+    this.animateStaticModal = true;
+    }
 
   goToNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
@@ -94,7 +104,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     if (this.selectedRiskProfile.riskProfileId === PORTFOLIO_CONFIG.risk_profile.should_not_invest_id) {
       this.showNoPortfolio = true;
     } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
-      this. showTwoPortfolio = true;
+      this.showTwoPortfolio = true;
     } else {
       this.showSinglePortfolio = true;
     }
