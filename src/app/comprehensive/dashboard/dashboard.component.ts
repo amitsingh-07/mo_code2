@@ -21,10 +21,10 @@ export class DashboardComponent implements OnInit {
   userDetails: IMyProfile;
   getComprehensiveSummary: any;
   getComprehensiveSummaryEnquiry: any;
-  reportStatus: number; // 0 - Not Completed 1 - Pending 2 - Completed
+  reportStatus: any; // new submitted ready
   advisorStatus: boolean;
   reportDate: any;
-  currentStep = 1;
+  currentStep: number;
   stepDetails = {hasDependents: 1, hasEndowments: 2};
   items: any;
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService,
@@ -35,39 +35,44 @@ export class DashboardComponent implements OnInit {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
-    this.items = [0, 1, 2, 3];
+    this.items = [0, 1, 2, 3, 4];
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
-  }
 
-  ngOnInit() {
-    this.userName = 'kelvin goh';
-    this.userDetails = this.comprehensiveService.getMyProfile();
-    this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
-    // tslint:disable-next-line: no-commented-code
-    if (!this.userDetails || !this.userDetails.firstName) {
-      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data) {
           this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
           this.userDetails = this.comprehensiveService.getMyProfile();
+          this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
+          this.userName = this.userDetails.firstName;
         }
       });
-    } else {
-      this.userName = this.userDetails.firstName;
-    }
+  }
+
+  ngOnInit() {
     /**
      * 0 - Waiting for report
      * 1 - Completed & View Report
      * 2 - Completed & View Report with advisor
      * 3 - Not Completed
      */
-    this.comprehensivePlanning = 0;
-    this.reportStatus = 1;
-    this.advisorStatus = true;
+    this.comprehensivePlanning = 4;
+    this.advisorStatus = false;
     const reportDateAPI = new Date();
     this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
-    this.getComprehensiveSummaryEnquiry = this.getComprehensiveSummary.comprehensiveEnquiry;
+    this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.reportStatus
+                        && this.getComprehensiveSummary.reportStatus !== null) ? this.getComprehensiveSummary.reportStatus : 'new' ;
+    if (this.reportStatus === 'new') {
+      this.comprehensivePlanning = 3;
+    } else if (this.reportStatus === 'submitted') {
+      this.comprehensivePlanning = 0;
+    } else if (this.reportStatus === 'ready') {
+      this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
+    }
+
+// tslint:disable-next-line: no-commented-code
+    /*this.getComprehensiveSummaryEnquiry = this.getComprehensiveSummary.comprehensiveEnquiry;
     if ( this.getComprehensiveSummaryEnquiry.hasComprehensive === true &&
         this.getComprehensiveSummaryEnquiry.hasDependents === true &&
         this.getComprehensiveSummaryEnquiry.hasEndowments === true &&
@@ -83,8 +88,9 @@ export class DashboardComponent implements OnInit {
     }
     Object.keys(this.stepDetails).forEach((key) => {
       this.currentStep = this.stepDetails[key];
-    });
-    this.getCurrentComprehensiveStep();
+     });*/
+    this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.stepCompleted
+                        && this.getComprehensiveSummary.stepCompleted !== null ) ? this.getComprehensiveSummary.stepCompleted : 0;
   }
 
   goToEditProfile() {
@@ -92,7 +98,9 @@ export class DashboardComponent implements OnInit {
   }
 
   goToCurrentStep() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+    if (this.currentStep >= 0  && this.currentStep < 4 ) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+    }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
     this.comprehensiveService.setViewableMode(viewMode);

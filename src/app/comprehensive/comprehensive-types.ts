@@ -14,6 +14,8 @@ export interface IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
+    reportStatus: string;
+    stepCompleted: number;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;

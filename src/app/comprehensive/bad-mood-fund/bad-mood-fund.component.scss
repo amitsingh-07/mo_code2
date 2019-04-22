@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+$minus-content-color:#ff872f;
 .comprehensive {
     .title {
       font-size: 18px;
@@ -33,5 +34,8 @@
     }
     .flex__box--sm-horz {
       margin: 0 -10px 20px -10px !important;
+    }
+    .minus-bad-mood {
+      color:$minus-content-color;
     }
 }

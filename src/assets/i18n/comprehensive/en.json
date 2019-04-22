@@ -475,7 +475,7 @@
          "HOSPITAL_CHOICE":"Hospital Choice",
          "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
          "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg",
-         "BAD_MOOD_FUND_ALERT":"Content to be updated......",
+         "BAD_MOOD_FUND_ALERT":"It appears that your spendings is currently more than your earnings. Review your expenses so that you have spare cash to set aside for bad mood days as well as save up for your financial goals.",
          "TOOLTIP":{
           "TITLE": "Bad Mood Fund",
           "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
@@ -569,7 +569,7 @@
       "COMPREHENSIVE_PLANNING_ADVISOR": "I want my adviser to contact me",
       "COMPREHENSIVE_PLANNING_PENDING_DESC":"You are almost there! Complete your journey and get your financial report!",
       "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
-      "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed 2 out of 4 steps",
+      "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
       "INSURANCE": "Insurance",
       "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
       "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
