@@ -52,7 +52,9 @@ export class PortfolioService {
     return {
       riskProfileId: this.portfolioFormData.riskProfileId,
       riskProfileName: this.portfolioFormData.riskProfileName,
-      htmlDescription: this.portfolioFormData.htmlDescription
+      htmlDescription: this.portfolioFormData.htmlDescription,
+      alternateRiskProfileId: this.portfolioFormData.alternateRiskProfileId,
+      alternateRiskProfileType: this.portfolioFormData.alternateRiskProfileType
     };
   }
 
@@ -60,6 +62,9 @@ export class PortfolioService {
     this.portfolioFormData.riskProfileId = data.primaryRiskProfileId;
     this.portfolioFormData.riskProfileName = data.primaryRiskProfileType;
     this.portfolioFormData.htmlDescription = data.htmlDescObject;
+    this.portfolioFormData.alternateRiskProfileId = data.alternateRiskProfileId;
+    this.portfolioFormData.alternateRiskProfileType = data.alternateRiskProfileType;
+
     this.commit();
   }
 

@@ -77,7 +77,7 @@
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
   "PORTFOLIO_RECOMMENDATION": {
-    "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<br><strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
+    "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
     "REVIEW_INPUTS": "Review My Inputs",
     "ASSET_ALLOCATION": "Asset Allocation",
     "ANNUAL_FEES": "Annual Fees",
