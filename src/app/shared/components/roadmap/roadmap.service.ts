@@ -1,11 +1,13 @@
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+} from 'src/app/investment-account/investment-account-routes.constants';
 
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { IRoadmap, IRoadmapItem, ERoadmapStatus } from './roadmap.interface';
-import { INVESTMENT_ACCOUNT_ROUTES, INVESTMENT_ACCOUNT_ROUTE_PATHS } from 'src/app/investment-account/investment-account-routes.constants';
+import { ERoadmapStatus, IRoadmap, IRoadmapItem } from './roadmap.interface';
 
 const SESSION_STORAGE_KEY = 'app_roadmap';
 
@@ -18,10 +20,10 @@ export class RoadmapService {
   roadmapDataChanges = this.roadmapSubject.asObservable();
 
   constructor(private router: Router) {
-    this.loadData(this.getDataFromSession());
+    //this.loadData(this.getDataFromSession());
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.setDataToSession(this.roadmapData);
+        //this.setDataToSession(this.roadmapData);
       }
     });
   }
@@ -65,6 +67,7 @@ export class RoadmapService {
     });
   }
 
+  /*
   getDataFromSession() {
     let data;
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
@@ -82,6 +85,7 @@ export class RoadmapService {
       }
     }
   }
+  */
 
   cleanRelativePath(pathList) {
     const cleanedList = [];

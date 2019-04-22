@@ -96,6 +96,6 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class InvestmentAccountModule {
 
-  constructor(private signUpService: SignUpService) {
+  constructor() {
   }
 }

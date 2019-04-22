@@ -20,7 +20,10 @@ import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import { PersonalInfo } from './personal-info/personal-info';
-
+import { RoadmapService } from '../shared/components/roadmap/roadmap.service';
+import { INVESTMENT_ACCOUNT_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP } from './investment-account-roadmap';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from './investment-account-routes.constants';
+import { ERoadmapStatus } from '../shared/components/roadmap/roadmap.interface';
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 
@@ -41,7 +44,8 @@ export class InvestmentAccountService {
     public authService: AuthenticationService,
     private portfolioService: PortfolioService,
     public readonly translate: TranslateService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private roadmapService: RoadmapService
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -1695,5 +1699,22 @@ export class InvestmentAccountService {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(ACCOUNT_SUCCESS_COUNTER_KEY);
     }
+  }
+
+  loadInvestmentAccountRoadmap() {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_ROADMAP);
+    if (!this.getMyInfoStatus()) {
+      this.roadmapService.addItem({
+        title: 'Upload Documents',
+        path: [INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS, INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO],
+        status: ERoadmapStatus.NOT_STARTED
+      });
+    } else {
+      this.roadmapService.removeItem(INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS);
+    }
+  }
+
+  loadDDCRoadmap() {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC_ROADMAP);
   }
 }
