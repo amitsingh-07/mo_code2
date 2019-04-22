@@ -21,9 +21,10 @@ import { IFAQSection } from './faq.interface';
   encapsulation: ViewEncapsulation.None
 })
 
-export class FAQComponent implements OnInit{
+export class FAQComponent implements OnInit {
   public pageTitle: string;
   public sections: any;
+  public extras: any;
   public navBarElement: ElementRef;
 
   activeSection;
@@ -89,8 +90,10 @@ export class FAQComponent implements OnInit{
 
   getFAQSections(data: any): IFAQSection[] {
     const sections = [];
+    const section_keys = [];
     const groupKey = Object.keys(data);
     groupKey.forEach((element) => {
+      section_keys.push(element);
       sections.push(this.createFAQSections(element, data[element]));
     });
     return sections;
@@ -99,16 +102,41 @@ export class FAQComponent implements OnInit{
   createFAQSections(section_title: string, section_data: any): IFAQSection {
     const section_groups = Object.keys(section_data);
     const section_question_sets = [];
-
+    let section_disclaimer: any;
+    const extras = this.translate.instant('FAQ.EXTRA');
+    const extraKeys = Object.keys(extras);
+    extraKeys.forEach((key) => {
+      if (key === section_title) {
+        section_disclaimer = extras[key].CONTENT;
+      }
+    });
     section_groups.forEach((group) => {
       section_question_sets.push(section_data[group]);
     });
     const section = {
       title: section_title,
       groups: section_groups,
-      questions: section_question_sets
+      questions: section_question_sets,
+      extra: section_disclaimer
     } as IFAQSection;
     return section;
+  }
+
+  getFAQExtra(data: any) {
+    const extras = [];
+    const extrasKey = Object.keys(data);
+    extrasKey.forEach((element) => {
+      extras.push(this.createFAQExtra(element, data[element]));
+    });
+    return extras;
+  }
+
+  createFAQExtra(sectionTitle, data) {
+    const extra = {
+      title: sectionTitle,
+      data: data[sectionTitle].content
+    };
+    return extra;
   }
 
   toggleSection(event: any) {

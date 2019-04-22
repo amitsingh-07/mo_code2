@@ -40,8 +40,8 @@
             {
                 "NAME": "Harry CH’NG, CA, CFA",
                 "DP": "harry.jpg",
-                "TITLE": "Head, Finance and Corporate Affairs",
-                "CV": "<p>Harry Ch’ng has almost twenty years of experience across multiple finance disciplines including financial accounting, financial planning and analysis (FP&A), tax, transfer pricing, treasury and business partnering. As Head of Finance and Corporate Affairs, Harry oversees the financial controlling, human resource, operations and administration functions in MoneyOwl. Harry started his career in Arthur Andersen before moving on to leadership positions in finance and treasury functions across diverse industries. More recently, he was Head of Finance for Asia at Unity Technologies, a global leader in game engine and developer services. Harry is also concurrently Senior Vice President, Finance and Corporate Services at NTUC Link Pte Ltd where he leads the controlling, business analysis, compliance and pricing functions.</p><p>Harry has a Bachelor of Accountancy (Honours) degree from Nanyang Technological University. He holds the Chartered Accountant (CA) and Chartered Financial Analyst (CFA) designations.</p>"
+                "TITLE": "Chief Financial Officer/ Senior Vice President, Investment",
+                "CV": "<p>Harry Ch’ng has almost twenty years of experience across multiple finance disciplines including financial accounting, financial planning and analysis tax, transfer pricing, treasury and business partnering. As the Chief Financial Officer & Senior Vice President, Investments, Harry is responsible for the finance, investment, human resource and administration functions in MoneyOwl. Harry started his career in Arthur Andersen before moving on to leadership positions in finance and treasury functions across diverse industries. More recently, he was Senior Vice President, Finance and Corporate Services at NTUC Link Pte Ltd. Prior to that, he was the Head of Finance for Asia at Unity Technologies, a global leader in game engine and developer services, and also spent time as the Global Treasury Director at Dystar, a solutions provider for textile colorants and auxiliary chemicals. Harry has a Bachelor of Accountancy (Honours) degree from Nanyang Technological University. He holds the Chartered Accountant (CA) and Chartered Financial Analyst (CFA) designations.</p>"
             },
             {
                 "NAME": "Justin TAN, FLMI, IBFA",
@@ -119,9 +119,8 @@
             "SUB_TITLE": "We are here for you",
             "DESCRIPTION": "Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance. Your privacy is our priority and all information shared will be kept confidential.",
             "FORM" : {
-                "PLACEHOLDER": "Your Message and Contact Details Here",
+                "PLACEHOLDER": "Your Message",
                 "SUCCESS_MSG": "Your Enquiry has been sent successfully",
-                "SUB_TEXT": "Do leave us your contact details if you would like us to contact you.",
                 "SEND_MESSAGE": "Send Message"
             },
             "INFO": {
