@@ -1,8 +1,10 @@
+import { browser } from 'protractor';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { filter, pairwise } from 'rxjs/operators';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -54,9 +56,18 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['sending'] = result.LOADING.SENDING;
     });
 
-    if (this.signUpService.getFromLoginPage()) {
-      this.showEditMobileNo = false;
-    }
+    this.router.events
+      .pipe(
+        filter(event => event instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((e: any) => {
+        if (SIGN_UP_ROUTE_PATHS.LOGIN.indexOf(e[0].urlAfterRedirects) > -1) {
+          this.showEditMobileNo = false;
+        } else {
+          this.showEditMobileNo = true;
+        }
+      });
   }
 
   ngOnInit() {
@@ -67,14 +78,16 @@ export class VerifyMobileComponent implements OnInit {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
-    if (this.signUpService.getFromLoginPage()) {
-      this.mobileNumber = {
-        code: '+65',
-        number: this.signUpService.getUserMobileNo()
-      };
-    } else {
-      this.mobileNumber = this.signUpService.getMobileNumber();
-    }
+    setTimeout(() => {
+      if (!this.showEditMobileNo) {
+        this.mobileNumber = {
+          code: '+65',
+          number: this.signUpService.getUserMobileNo()
+        };
+      } else {
+        this.mobileNumber = this.signUpService.getMobileNumber();
+      }
+    }, 1000);
   }
 
   /**
@@ -160,8 +173,8 @@ export class VerifyMobileComponent implements OnInit {
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.signUpService.clearData();
-        if (this.signUpService.getIsMobileVerified() || this.signUpService.getFromLoginPage()) {
-          this.signUpService.clearMobileVerifiedAndFromLogin();
+        if (this.signUpService.getIsMobileVerified()) {
+          this.signUpService.removeIsMobileVerified();
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED, { emailVerified: true }]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);

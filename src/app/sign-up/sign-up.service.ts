@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import {
-    UnsupportedDeviceModalComponent
+  UnsupportedDeviceModalComponent
 } from '../shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
@@ -26,7 +26,6 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
 const USER_MOBILE = 'user_mobile';
 const IS_MOBILE_VERIFIED = 'is_mobile_verified';
-const FROM_LOGIN_PAGE = 'from_login_page';
 
 @Injectable({
   providedIn: 'root'
@@ -343,13 +342,13 @@ export class SignUpService {
     const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
     return this.apiService.requestEditPassword(data);
   }
-  updateBankInfo(bank, fullName , accountNum , id) {
+  updateBankInfo(bank, fullName, accountNum, id) {
     // API Call here
-    const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
+    const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBank(data);
   }
   // tslint:disable-next-line:no-identical-functions
-  constructUpdateBankPayload(bank , fullName , accountNum , id) {
+  constructUpdateBankPayload(bank, fullName, accountNum, id) {
     if (bank) {
       delete bank.accountNoMaxLength;
     }
@@ -401,7 +400,7 @@ export class SignUpService {
     if (messages === null) {
       return null;
     } else {
-      return messages.map( (message) =>  message.messageId);
+      return messages.map((message) => message.messageId);
     }
   }
 
@@ -515,7 +514,7 @@ export class SignUpService {
   }
 
   isMobileDevice() {
-    if ( navigator.userAgent.match(/Android/i)
+    if (navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/BlackBerry/i)
@@ -528,10 +527,10 @@ export class SignUpService {
   }
 
   showUnsupportedDeviceModal() {
-      const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
-      return false;
+    const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
+    return false;
   }
 
   setUnsupportedNoteShownFlag() {
@@ -563,21 +562,7 @@ export class SignUpService {
     return sessionStorage.getItem(IS_MOBILE_VERIFIED);
   }
 
-  setFromLoginPage() {
-    if (window.sessionStorage) {
-      sessionStorage.setItem(FROM_LOGIN_PAGE, 'true');
-    }
+  removeIsMobileVerified() {
+    sessionStorage.removeItem(IS_MOBILE_VERIFIED);
   }
-
-  getFromLoginPage() {
-    return sessionStorage.getItem(FROM_LOGIN_PAGE);
-  }
-
-  clearMobileVerifiedAndFromLogin() {
-    if (window.sessionStorage) {
-      sessionStorage.removeItem(IS_MOBILE_VERIFIED);
-      sessionStorage.removeItem(FROM_LOGIN_PAGE);
-    }
-  }
-  
 }
