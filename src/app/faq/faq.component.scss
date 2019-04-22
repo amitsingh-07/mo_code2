@@ -52,7 +52,6 @@
             font-family:$muli-bold;
             color:$black-color;
             text-transform: uppercase;
-            text-decoration: underline;
             @include minMobilemaxPhablet{
                 font-family:$muli-semi-bold;
             }
