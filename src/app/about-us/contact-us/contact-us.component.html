@@ -49,7 +49,7 @@
              <p class="error--msg" *ngIf="contactUsForm.controls.emailAddress.errors.email">{{emailErrorMessage.email}}</p>
              <p class="error--msg" *ngIf="contactUsForm.controls.emailAddress.errors.required">{{emailErrorMessage.required}}</p>
           </div>
-          <input type="text" class="form-control mb10" formControlName="contactNumber" placeholder="Contact Number*" required>
+          <input type="number" class="form-control mb10" formControlName="contactNumber" placeholder="Contact Number*" required>
           <div *ngIf="contactUsForm.controls.contactNumber.invalid && contactUsForm.controls.contactNumber.dirty">
               <p class="error--msg" *ngIf="contactUsForm.controls.contactNumber.errors.pattern">{{contactNumberErrorMessage.pattern}}</p>
               <p class="error--msg" *ngIf="contactUsForm.controls.contactNumber.errors.required">{{contactNumberErrorMessage.required}}</p>
