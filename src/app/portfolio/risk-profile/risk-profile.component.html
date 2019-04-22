@@ -48,17 +48,17 @@
           <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
             [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc"
             *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
-          <button type="button" *ngIf="selectedRiskProfile.riskProfileId &&selectedRiskProfile.alternateRiskProfileId" (click)="goToNext()"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed hidden-lg"
+          <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext()"
+            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
-          <button type="button" *ngIf="selectedRiskProfile.riskProfileId == 6" (click)="goToHomepage()"
+          <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
             class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
           <!-- buttons -->
-          <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="selectedRiskProfile.riskProfileId &&selectedRiskProfile.alternateRiskProfileId" >
+          <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="showTwoPortfolio"  (click)="goToNext()">
             <div class="portfolio_bts">
               <span>
-                <img class="portfolio-btn" src={{secondIcon}} id="secondRiskProfileImg" />
+                <img class="portfolio-btn" src={{iconImage}} id="secondRiskProfileImg" />
                 <span>View Moderate Portfolio</span>
               </span>
               <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
@@ -66,7 +66,7 @@
               </span>
             </div>
           </button>
-          <button type="button" class="btn portfolio_btn_produced width100" *ngIf="selectedRiskProfile.riskProfileId && selectedRiskProfile.alternateRiskProfileId">
+          <button type="button" class="btn portfolio_btn_produced width100" *ngIf="showTwoPortfolio"  (click)="goToNext()">
             <div class="portfolio_bts">
               <span>
                 <img class="portfolio-btn" src={{secondIcon}} id="secondRiskProfileImg" />
@@ -81,8 +81,5 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
 </div>

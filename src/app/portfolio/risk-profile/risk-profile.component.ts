@@ -29,6 +29,9 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   formValues;
   pageTitle: string;
   secondIcon;
+  showTwoPortfolio = false;
+  showSinglePortfolio = false;
+  showNoPortfolio = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -53,6 +56,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
     this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
+    this.showButton();
   }
 
   ngAfterViewInit() {
@@ -85,5 +89,14 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
       this.selectedRiskProfile.riskProfileId !==
       PORTFOLIO_CONFIG.risk_profile.should_not_invest_id
     );
+  }
+  showButton() {
+    if (this.selectedRiskProfile.riskProfileId === PORTFOLIO_CONFIG.risk_profile.should_not_invest_id) {
+      this.showNoPortfolio = true;
+    } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
+      this. showTwoPortfolio = true;
+    } else {
+      this.showSinglePortfolio = true;
+    }
   }
 }
