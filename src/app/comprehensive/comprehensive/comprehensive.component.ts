@@ -68,7 +68,7 @@ export class ComprehensiveComponent implements OnInit {
           const cmpData = data.objectList[0];
           this.cmpService.setComprehensiveSummary(cmpData);
           this.loaderService.hideLoader();
-          const action = this.cmpService.getAction();
+          const action = this.appService.getAction();
           if (action === 'GET_PROMO_CODE') {
             this.getPromoCode();
           } else if (action === 'VALIDATE_PROMO_CODE') {
@@ -104,19 +104,22 @@ export class ComprehensiveComponent implements OnInit {
     });
   }
   getStarted(form) {
-    this.cmpService.setAction('VALIDATE_PROMO_CODE');
+    this.appService.setAction('VALIDATE_PROMO_CODE');
     if (this.authService.isSignedUser()) {
       let promoCode = this.cmpService.getPromoCode();
-      if (promoCode) {
+      if (form) {
         form.value.enquiryId = this.cmpService.getEnquiryId();
         this.cmpService.setPromoCode(form.value);
         promoCode = this.cmpService.getPromoCode();
       }
-      this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data) => {
-        this.redirect();
-      }, (err) => {
-
-      });
+      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.promoCodeValidated) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      } else {
+        this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data) => {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }, (err) => {
+        });
+      }
     } else {
       this.showLoginOrSignUpModal();
     }
@@ -124,11 +127,11 @@ export class ComprehensiveComponent implements OnInit {
   showSuccessPopup() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '';
-    ref.componentInstance.errorMessage = this.promoCodeSuccess + this.signUpService.getUserProfileInfo().emailAddress;;
+    ref.componentInstance.errorMessage = this.promoCodeSuccess + this.signUpService.getUserProfileInfo().emailAddress;
     ref.componentInstance.promoSuccess = true;
   }
   getPromoCode() {
-    this.cmpService.setAction('GET_PROMO_CODE');
+    this.appService.setAction('GET_PROMO_CODE');
     if (this.authService.isSignedUser()) {
       this.comprehensiveApiService.getPromoCode().subscribe((data) => {
         this.showSuccessPopup();
