@@ -274,11 +274,7 @@
                 "Getting Started": [
                     {
                         "QUESTION": "What is the minimum age at which I can start investing?",
-                        "ANSWER": "Anyone 18 years old and above can open an investment Account."
-                    },
-					{
-                        "QUESTION": "What is the minimum age at which I can start investing?",
-                        "ANSWER": "Anyone 18 years old and above can open an investment Account."
+                        "ANSWER": "Anyone 18 years old and above can open an Investment Account."
                     },
                     {
                         "QUESTION": "What is the minimum amount required to start investing?",
@@ -286,7 +282,7 @@
                     },
                     {
                         "QUESTION": "How can I start investing?",
-                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
+                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you.</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
                     },
                     {
                         "QUESTION": "What is an Investment Cash Account?",
@@ -302,7 +298,7 @@
                     },
                     {
                         "QUESTION": "I am not a Singaporean/PR. Can I open an account?",
-                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p>Please note that this list may be updated from time to time.</p></ol>"
+                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p><i>Please note that this list may be updated from time to time.</i></p></ol>"
                     },
                     {
                         "QUESTION": "Can I open multiple MoneyOwl Accounts?",
@@ -313,7 +309,7 @@
                         "ANSWER": "No. We are currently accepting only SGD."
                     }
                 ],
-                "Managing your investments": [
+                "Managing Your Investments": [
                     {
                         "QUESTION": "Where can I see the value of my investments?",
                         "ANSWER": "You can login to your MoneyOwl Account to check on your portfolio value."
@@ -336,7 +332,7 @@
                     },
                     {
                         "QUESTION": "How do I submit a monthly buy request?",
-                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15th of every month. If there are insufficient monies in your Investment Cash Account by the 15th of the month, the monthly investment request will be processed on the 15th of the following month.</p>"
+                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month. If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month.</p>"
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
@@ -372,7 +368,7 @@
                 "Fees": [
                     {
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay are as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.50% p.a. promotional rate* (usual 0.65% p.a.)</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.3% to 0.4% p.a.</td></tr></table><p><i>*You will enjoy the promotional rate on Advisory Fees if you invest before 31 May 2019. The promotional rate will expire on 31 December 2019. Please note that MoneyOwl Advisory Fees are subject to change.</i></p>"
+                        "ANSWER": "The total annual fees you have to pay are as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small><i>(Payable to Dimensional Fund Advisors)</i></small></td><td>0.2% to 0.4% p.a.</td></tr></table><p><u><i>Please note that MoneyOwl Advisory Fees are subject to change.</i></u></p>"
                     },
                     {
                         "QUESTION": "How are fees deducted?", 
@@ -390,7 +386,7 @@
                     },
                     { 
                         "QUESTION": "How can I get help when I need it?",
-                        "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
+                        "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a>.</p>"
                     },
                     { 
                         "QUESTION": "Forward Pricing",
