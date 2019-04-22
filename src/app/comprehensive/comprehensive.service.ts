@@ -856,7 +856,7 @@ export class ComprehensiveService {
                 ocpDisabilityValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount);
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount !== null) {
+            if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield !== null) {
                 if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
                     longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
                 } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
