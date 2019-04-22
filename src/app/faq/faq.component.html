@@ -13,26 +13,27 @@
     <div class="faq-img mb15"><img src="assets/images/faq.svg"/></div>
 +   <div class="faq-title">{{ 'FAQ.PAGE_TITLE' | translate}}</div>
   <div class="faq__container">
-      <div class="home__navbar" #homeNavBar>
-          <div class="home__navbar--inner">
-              <div class="navbar__btn" [ngClass]="{'active': activeSection == 0}" #homeNavInsurance (click)="goToSection('insurance')">
-                  <span class="navbar__btn--title">{{'INSURANCE.INSURANCE' | translate}}</span>
-              </div>
-              <div *ngIf="isWillWritingEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 1}" #homeNavWill (click)="goToSection('will')">
-                  <span class="navbar__btn--title">{{'WILL.WILL_WRITING' | translate}}</span>
-                  </div>
-              <div *ngIf="isInvestmentEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 2}" #homeNavInvest (click)="goToSection('investment')">
-                  <span class="navbar__btn--title">{{'INVESTMENT.LABEL' | translate}}</span>
-                  </div>
-              <div *ngIf="isComprehensiveEnabled" class="navbar__btn" [ngClass]="{'active' : activeSession == 3 }" #homeNavComprehensive (click)="goToSection('comprehensive')">
-                  <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
-                  <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span> 
-                  </div>
-              <div class="home__navbar--border"></div>
-              </div>
+    <div class="home__navbar" #homeNavBar>
+      <div class="home__navbar--inner">
+        <div class="navbar__btn" [ngClass]="{'active': activeSection == 0}" #homeNavInsurance (click)="goToSection('insurance')">
+          <span class="navbar__btn--title">{{'INSURANCE.INSURANCE' | translate}}</span>
           </div>
-
+        <div *ngIf="isWillWritingEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 1}" #homeNavWill (click)="goToSection('will')">
+            <span class="navbar__btn--title">{{'WILL.WILL_WRITING' | translate}}</span>
+            </div>
+        <div *ngIf="isInvestmentEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 2}" #homeNavInvest (click)="goToSection('investment')">
+          <span class="navbar__btn--title">{{'INVESTMENT.LABEL' | translate}}</span>
+          </div>
+        <div *ngIf="isComprehensiveEnabled" class="navbar__btn" [ngClass]="{'active' : activeSession == 3 }" #homeNavComprehensive (click)="goToSection('comprehensive')">
+          <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
+          <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span> 
+          </div>
+        <div class="home__navbar--border"></div>
+        </div>
+      </div>
     <div class="faq-category__container" *ngFor="let section of sections; let i = index">
+      <div *ngIf="section.extra" class="faq-category__header faq-disclaimer" [ngClass]="{'active': activeSection == i}" innerHtml={{section.extra}}>
+      </div>
       <div class="faq-category__body" [ngClass]="{'active': activeSection == i}">
         <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">
           <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1" ngbDropdownToggle>{{section.groups[0]}}</button>
