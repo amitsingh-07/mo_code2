@@ -44,7 +44,7 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: '20190316invest',
+      { path: 'invest',
         loadChildren: './portfolio/portfolio.module#PortfolioModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]

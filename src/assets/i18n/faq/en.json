@@ -8,7 +8,7 @@
     },
     "FAQ": {
         "TITLE": "FAQs",
-        "PAGE_TITLE": "Frequently Asked Questions on",
+        "PAGE_TITLE": "Frequently Asked Questions",
         "CONTENT": {
             "Insurance": {
                 "General": [
@@ -274,7 +274,7 @@
                 "Getting Started": [
                     {
                         "QUESTION": "What is the minimum age at which I can start investing?",
-                        "ANSWER": "Anyone above the age of 18 can open an investment Account"
+                        "ANSWER": "Anyone 18 years old and above can open an Investment Account."
                     },
                     {
                         "QUESTION": "What is the minimum amount required to start investing?",
@@ -282,15 +282,15 @@
                     },
                     {
                         "QUESTION": "How can I start investing?",
-                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
+                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you.</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
                     },
                     {
                         "QUESTION": "What is an Investment Cash Account?",
-                        "ANSWER": "<p>The Investment Cash Account is an online cash management service by iFAST Financial Pte Ltd (Please refer to General Question on who iFAST Financial is) which facilitates online transactions. The monies in your Investment Cash Account are held with Standard Chartered Bank.</p><p>As long as there are sufficient funds in the Investment Cash Account, your One-Time or Monthly Investment Request will be processed.</p><p>The Investment Cash Account currently pays an interest of 0.35% per annum. The interest is accrued daily, compounded monthly and credited on a quarterly basis into your Investment Cash Account.</p>"
+                        "ANSWER": "<p>The Investment Cash Account is an online cash management service by iFAST Financial Pte Ltd (Please refer to General Question on who iFAST Financial is) which facilitates online transactions. The monies in your Investment Cash Account are held with Standard Chartered Bank.</p><p>As long as there are sufficient funds in the Investment Cash Account, your One-Time or Monthly Investment Request will be processed.</p><p>The Investment Cash Account currently pays an interest of 0.4% per annum (rates are subjected to change). The interest is accrued daily, compounded monthly and credited on a quarterly basis into your Investment Cash Account.</p>"
                     },
                     {
                         "QUESTION": "How can I fund my Investment Cash Account for investments?",
-                        "ANSWER": "<p>You can login to your online banking to do a FAST transfer or do an offline bank transfer to our custodian’s bank account.</p><p><strong>Transfer Details -</strong><br/>Recipient's Name: IFASTFINANCIALPteLtd<br/>Bank Name: Standard Chartered Bank (Singapore)<br/>Bank Account No.: 0102046042<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>You can also fund your account using PayNow.</p><p><strong>Transfer Details -</strong><br/>Unique Entity Number (UEN): 200000231RAIY<br/>Entity Name: IFAST FINANCIAL PL-CT SUB<br/>Reference Code: Refer to the unique code tied to your account when you submit a new request.</p><p>The monies will be deposited into your Investment Cash Account.</p>"
+                        "ANSWER": "<p>Please do an online bank transfer via FAST or PayNow to our custodian's bank account.</p><p><strong><u>On average, it takes 1 business day for funds to be received by our custodian, upon which you will be notified. Until then, the funds will not be reflected in your account. To avoid delay, you MUST use FAST or PayNow and indicate the Reference Code, even if the bank says it is optional. </strong></u></p><p><strong>Transfer Details -</strong><br/>Recipient's Name: IFASTFINANCIALPteLtd<br/>Bank Name: Standard Chartered Bank (Singapore)<br/>Bank Account No.: 0102046042<br/><b>Reference Code: Refer to the unique code tied to your account when you submit a new request.</b></p><p>You can also fund your account using PayNow.</p><p><strong>Transfer Details -</strong><br/>Unique Entity Number (UEN): 200000231RAIY<br/>Entity Name: IFAST FINANCIAL PL-CT SUB<br/><b>Reference Code: Refer to the unique code tied to your account when you submit a new request.</b></p><p>The monies will be deposited into your Investment Cash Account.</p><p>To avoid delay, you <u>MUST</u> indicate the “Reference Code” in the “Remarks/ Descriptions/ Comments” of your fund transfer, even if the bank says it is optional</p>"
                     },
                     {
                         "QUESTION": "I do not live in Singapore. Can I open an account?",
@@ -298,7 +298,7 @@
                     },
                     {
                         "QUESTION": "I am not a Singaporean/PR. Can I open an account?",
-                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p>Please note that this list may be updated from time to time.</p></ol>"
+                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p><i>Please note that this list may be updated from time to time.</i></p></ol>"
                     },
                     {
                         "QUESTION": "Can I open multiple MoneyOwl Accounts?",
@@ -309,7 +309,7 @@
                         "ANSWER": "No. We are currently accepting only SGD."
                     }
                 ],
-                "Managing your investments": [
+                "Managing Your Investments": [
                     {
                         "QUESTION": "Where can I see the value of my investments?",
                         "ANSWER": "You can login to your MoneyOwl Account to check on your portfolio value."
@@ -332,7 +332,7 @@
                     },
                     {
                         "QUESTION": "How do I submit a monthly buy request?",
-                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15th of every month. If there are insufficient monies in your Investment Cash Account by the 15th of the month, the monthly investment request will be processed on the 15th of the following month.</p>"
+                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month, or the next working day, if the 15<sup>th</sup> is not a working day, provided that there are sufficient monies in your Investment Cash Account. <u>To ensure that your investment can be executed, we strongly advise you to transfer your money at least 1-2 working days before the 15<sup>th</sup> of the month (with complete information, including the Reference Code) to ensure that there are sufficient monies in your Investment Cash Account before the 15<sup>th</sup> of the month.</u> If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month. </p>"
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
@@ -354,7 +354,7 @@
                     },
                     {
                         "QUESTION": "How soon will I receive the cash in my bank account?",
-                        "ANSWER": "<p>If you redeem (sell) investments and choose to receive the proceeds directly in your bank account, the redemption proceeds will be reflected into your designated bank account within 8 business days.</p><p>If withdrawal is done from your Investment Cash Account to your bank account, the money will be reflected in your bank account within 2 business days.</p>"
+                        "ANSWER": "<p>If you redeem (sell) investments and choose to receive the proceeds directly in your bank account, the redemption proceeds will be reflected in your designated bank account within 8 business days.</p><p>If withdrawal is done from your Investment Cash Account to your bank account, the money will be reflected in your bank account within 2 business days.</p>"
                     },
                     {
                         "QUESTION": "How do I add my bank account details for purpose of receiving redemption proceeds?",
@@ -368,11 +368,11 @@
                 "Fees": [
                     {
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay is as follow:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.65%</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small>(Paid to iFast)</small></td><td>0.18%</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio (Estimated)</span><br/><small>Payable to Dimensional Fund Advisors</small></td><td>0.2% to 0.4%</td></tr></table>"
+                        "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees</td><td>0.50% p.a. promotional rate* (usual 0.65% p.a.)</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio <i>(Estimated)</i></span><br/><small><i>(Payable to Dimensional Fund Advisors)</i></small></td><td>0.3% to 0.4% p.a.</td></tr></table><p><i>*You will enjoy the promotional rate on Advisory Fees if you invest before 31 May 2019. <small>The promotional rate will expire on 31 December 2019. Please note that MoneyOwl Advisory Fees are subject to change.</small></i></p>"
                     },
                     {
                         "QUESTION": "How are fees deducted?", 
-                        "ANSWER": "The fees are deducted from the units in your portfolio on a monthly basis. For MoneyOwl, projected returns are net of Total Fees."
+                        "ANSWER": "The fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
                     },
                     {
                         "QUESTION": "Are there any fees if I close my MoneyOwl Investment Account?",
@@ -386,9 +386,22 @@
                     },
                     { 
                         "QUESTION": "How can I get help when I need it?",
-                        "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
+                        "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a>.</p>"
+                    },
+                    { 
+                        "QUESTION": "Forward Pricing",
+                        "ANSWER": "<p>As with most unit trusts, buy and sell orders for the funds making up the portfolio are transacted at end-of-day prices. The exact price at which you will transact is therefore not known at the point of your placing an order. The price of the fund that you see on screen is from the previous one or two business days before, depending on the fund, not the actual price at which you will transact. The actual price at which you will transact will only be known one or two business days later.</p><p>For example:<br/>You redeem $100 of the portfolio (T day). The indicative price of one of the portfolio’s underlying funds, Fund A, is $1 on T day. Based on this indicative price, you will redeem $100 / $1 = 100 units. The actual price of the fund at the end of T day is $1.01. This price is only reflected on T+1 day. You will transact at $1.01 and your redemption proceeds will be $1.01 x 100 = $101.</p>"
+                    },
+                    { 
+                        "QUESTION": "Full redemptions of portfolio holdings",
+                        "ANSWER": "<p>Outstanding fees on a pro-rated basis apply and will be deducted prior to redemption, if you choose to redeem all your portfolio holdings.</p>"
                     }
                 ]
+            }
+        },
+        "EXTRA": {
+            "Investment": {
+                "CONTENT": "<p class='disclaimer--sub-title'>Some Notes:</p><p>For an illustration of the transaction flow and timeline, please visit <a href='https://advice.moneyowl.com.sg/investment/transacting' target='_blank'>https://advice.moneyowl.com.sg/investment/transacting</a>  or read the FAQs below.</p><p>To read about keys to a successful investing experience, MoneyOwl’s portfolios, Dimensional Fund Advisors and other information, please visit our investment information page at <a href='https://advice.moneyowl.com.sg/investing' target='_blank'>https://advice.moneyowl.com.sg/investing</a></p><p class='disclaimer--sub-title'>IMPORTANT NOTE ON FUNDING:</p><p>To get to the funding instructions or top-up instructions after your Investment Account has been successfully set up, look out for a right arrow and/or an orange alert triangle in the My Investment > My Portfolio page.</p><p>In the funding instructions, there is a “Reference Code”. You <u>MUST</u> indicate the “Reference Code” in the \"Remarks/ Descriptions/ Comments\" of your fund transfer, even if the bank says it is optional, otherwise we cannot trace your transaction easily and there will be a delay.</p>"
             }
         }
     }
