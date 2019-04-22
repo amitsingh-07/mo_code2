@@ -30,7 +30,7 @@
             </div>
             <div class="flex-col-7 stretch" [formGroup]="createAccountForm">
               <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
+                <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder"
                   for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>

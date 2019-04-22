@@ -5,11 +5,7 @@ import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.ser
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up.service';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ConfigService } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
@@ -24,6 +20,7 @@ export class AccountCreatedComponent implements OnInit {
 
   duplicateError: string;
   emailVerified;
+  emailTriggered = false;
 
   constructor(
     private translate: TranslateService,
@@ -33,7 +30,6 @@ export class AccountCreatedComponent implements OnInit {
     private willWritingService: WillWritingService,
     private signUpService: SignUpService, private configService: ConfigService,
     private router: Router,
-    private appService: AppService,
     private route: ActivatedRoute,
     private signUpApiService: SignUpApiService) {
     this.translate.use('en');
@@ -62,9 +58,15 @@ export class AccountCreatedComponent implements OnInit {
   }
 
   resendEmailVerification() {
-    const mobile = this.signUpService.getUserMobileNo();
-    this.signUpApiService.resendEmailVerification(mobile, false).subscribe(() => {
-    });
+    if (!this.emailTriggered) {
+      this.emailTriggered = true;
+      const mobile = this.signUpService.getUserMobileNo();
+      this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
+        if (data.responseMessage.responseCode === 6007) {
+          this.emailTriggered = false;
+        }
+      });
+    }
   }
 
 }

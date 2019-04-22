@@ -75,7 +75,6 @@ export class SignUpService {
       sessionStorage.removeItem(SIGNUP_SESSION_STORAGE_KEY);
       sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
       sessionStorage.removeItem(RESET_CODE_SESSION_STORAGE_KEY);
-      sessionStorage.removeItem(IS_MOBILE_VERIFIED);
     }
   }
 
@@ -574,10 +573,10 @@ export class SignUpService {
     return sessionStorage.getItem(FROM_LOGIN_PAGE);
   }
 
-  clearCustomerRefAndFromLogin() {
+  clearMobileVerifiedAndFromLogin() {
     if (window.sessionStorage) {
+      sessionStorage.removeItem(IS_MOBILE_VERIFIED);
       sessionStorage.removeItem(FROM_LOGIN_PAGE);
-      sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
     }
   }
   

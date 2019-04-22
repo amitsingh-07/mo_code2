@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -41,7 +41,7 @@ export class VerifyMobileComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
-    private translate: TranslateService, 
+    private translate: TranslateService,
     private errorHandler: CustomErrorHandlerService,
     public authService: AuthenticationService) {
     this.translate.use('en');
@@ -69,7 +69,7 @@ export class VerifyMobileComponent implements OnInit {
     this.buildVerifyMobileForm();
     if (this.signUpService.getFromLoginPage()) {
       this.mobileNumber = {
-        code : '+65',
+        code: '+65',
         number: this.signUpService.getUserMobileNo()
       };
     } else {
@@ -159,13 +159,9 @@ export class VerifyMobileComponent implements OnInit {
     const mobileNo = this.signUpService.getUserMobileNo();
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
-        if (this.signUpService.getFromLoginPage()) {
-          this.signUpService.clearCustomerRefAndFromLogin();
-        } else {
-          sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
-          this.signUpService.clearData();
-        }
+        this.signUpService.clearData();
         if (this.signUpService.getIsMobileVerified() || this.signUpService.getFromLoginPage()) {
+          this.signUpService.clearMobileVerifiedAndFromLogin();
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED, { emailVerified: true }]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);

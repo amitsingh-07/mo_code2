@@ -128,7 +128,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
-      this.signUpService.setUserMobileNo(form.value.mobileNumber);
       this.openTermsOfConditions();
     }
   }
@@ -191,6 +190,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   callErrorModal(data: any) {
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setIsMobileVerified();
+      this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
@@ -201,6 +201,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.translate.instant('COMMON.LOG_IN'),
         SIGN_UP_ROUTE_PATHS.LOGIN, false);
     } else if (!data.objectList[0].emailVerified) {
+      this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
