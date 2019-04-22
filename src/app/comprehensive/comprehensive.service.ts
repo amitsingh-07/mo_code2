@@ -857,7 +857,13 @@ export class ComprehensiveService {
             }
 
             if (cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount !== null) {
-                longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
+                if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
+                    longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
+                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
+                    longTermCareValue = 'No';
+                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 2) {
+                    longTermCareValue = 'Not Sure';
+                }
             }
         }
 
