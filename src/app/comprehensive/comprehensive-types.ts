@@ -23,6 +23,11 @@ export interface IComprehensiveEnquiry {
     hasEndowments: string;
     hasRegularSavingsPlans: boolean;
     type: string;
+    promoCodeValidated?: boolean;
+}
+export interface IPromoCode {
+    comprehensivePromoCodeToken: string;
+    enquiryId: number;
 }
 export interface IMyProfile {
     id: string;

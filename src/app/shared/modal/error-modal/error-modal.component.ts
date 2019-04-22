@@ -47,4 +47,7 @@ export class ErrorModalComponent implements OnInit {
   goToHome() {
     this.activeModal.close();
   }
+  gotoComprehensive() {
+    this.activeModal.close();
+  }
 }

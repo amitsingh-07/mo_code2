@@ -37,7 +37,8 @@ import {
     IMySpendings,
     IProgressTrackerWrapper,
     IRegularSavings,
-    IRetirementPlan
+    IRetirementPlan,
+    IPromoCode
 } from './comprehensive-types';
 
 @Injectable({
@@ -159,6 +160,26 @@ export class ComprehensiveService {
             this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList = [] as IChildEndowment[];
         }
         return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
+    }
+    getAction() {
+        if (!this.comprehensiveFormData.promoCodeActionType) {
+            this.comprehensiveFormData.promoCodeActionType = {} as string;
+        }
+        return this.comprehensiveFormData.promoCodeActionType;
+    }
+    setAction(promoCodeActionType: string) {
+        this.comprehensiveFormData.promoCodeActionType = promoCodeActionType;
+        this.commit();
+    }
+    getPromoCode() {
+        if (!this.comprehensiveFormData.promoCode) {
+            this.comprehensiveFormData.promoCode = {} as IPromoCode;
+        }
+        return this.comprehensiveFormData.promoCode;
+    }
+    setPromoCode(promoCode: IPromoCode) {
+        this.comprehensiveFormData.promoCode = promoCode;
+        this.commit();
     }
 
     /**

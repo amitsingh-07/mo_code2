@@ -1,4 +1,8 @@
 export const COMPREHENSIVE_CONST = {
+    PROMO_ACTION_TYPE: {
+     GET: 'GET_PROMO_CODE',
+     VALIDATE: 'VALIDATE_PROMO_CODE',
+    },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
         APP_MAX_AGE: 54,
