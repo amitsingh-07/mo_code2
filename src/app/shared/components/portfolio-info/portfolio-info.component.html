@@ -10,17 +10,17 @@
     <div class="portfolio-graph-block">
       <div class="portfolio-graph-container">
         <div class="flex-col-12">
-          <div class="graph">
-            <img class="hidden-lg" src="../../../assets/images/investment-account/recommend_graph.svg" />
-            <img class="hidden-sm-md" src="../../../assets/images/portfolio_recommend.svg" />
-            <div class="flex-col graph_values">
-              <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-              <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-              <span>{{portfolio.projectedReturnsLowEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-              <span>{{portfolio.capitalInvested | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-            </div>
-            <div class="flex-row flex-col-12 time-lapse">
-              <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
+            <div class="graph">
+              <img class="small" src="../../../assets/images/investment-account/recommend_graph.svg" />
+              <img class="big" src="../../../assets/images/investment-account/recommend_graph_big.svg" />
+              <div class="flex-col graph_values">
+                <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
+                <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
+                <span>{{portfolio.projectedReturnsLowEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
+                <span>{{portfolio.capitalInvested | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
+              </div>
+              <div class="flex-row time-lapse">
+                <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
                   'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
             </div>
           </div>

@@ -4,6 +4,7 @@ app-your-investment {
   .container-fluid{
     &.max-width--1024{
       top: 0 !important;
+      padding-top: 0;
       @include allmobiles{
         padding: 0 !important;
         margin-top: 0 !important
@@ -11,46 +12,67 @@ app-your-investment {
     }
   }
   .investment-bg {
-    padding-top: 60px;
+    position: absolute;
+    background: #3bbfbf;
+    width: 100%;
+    left: 0;
+    right: 0;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
     }
-    @include phablet{
-      padding-top: 105px;
-      width: 100%;
-    }
   }
   .background_img {
-    display: none;
+    float: right;
     @include allmobiles{
       object-fit: contain;
       position: relative;
       width: 100%;
-      display: block;
+    }
+    &.web_bg{
+      @include allmobiles{
+        display: none;
+      }
+    }
+    &.mobile_bg{
+      display: none;
+      @include allmobiles{
+        display: block;
+      }
     }
   }
   .user_content {
     position: absolute;
     padding: 0 75px;
+    top:60px;
+    max-width: 1024px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     @include allmobiles{
       top: 100px;
       padding: 0;
+    }
+    @include phablet{
+      top: 85px;
     }
     .user_summary {
       font-family: $muli-regular;
       font-size: 18px;
       line-height: 1.28;
       letter-spacing: -0.2px;
+      padding: 0 29px 0 15px;
       position: relative;
-      padding: 0 29px 0 28px;
       max-width: 400px;
+      @include allmobiles{
+        padding: 0 29px 0 28px;
+      }
     }
     .flex-col-4 {
       position: absolute;
-      top: 45px;
-      right: 230px;
-      max-width: 200px;
+      top: 40px;
+      right: 120px;
+      max-width: 85px;
       @include iphone5 {
         top: 28px;
       }
@@ -71,10 +93,7 @@ app-your-investment {
       @include phablet {
         top: 40px;
         max-width: 85px;
-        right: 230px;
-      }
-      @include tablet {
-        right: 230px;
+        right: 100px;
       }
     }
   }
@@ -103,18 +122,26 @@ app-your-investment {
   }
   .container-fluid {
     position: relative;
-    top: 100px;
+    top: 120px;
+    padding-left: 45px;
+    padding-right: 45px;
     @include allmobiles {
       padding-left: 20px !important;
       padding-right: 20px !important;
       height: 100%;
       padding: 0px;
       padding-bottom: 20px;
-      top: -42px;
+      top: 250px;
+    }
+    @include max360{
+      top: 210px;
+    }
+    @include iphone6{
+      top: 220px;
     }
     @include phablet {
-      top: 60px;
-     }
+      top: 140px;
+    }
   }
   .dropdown-control .dropdown-menu.show {
     left: auto !important;

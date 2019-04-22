@@ -2,7 +2,7 @@
 @import "../../../_mixins.scss";
 app-edit-profile{
  .container-fluid{
-  padding-top: 76px !important;
+  padding-top: 0px !important;
   @include allmobiles {
    padding-top: 60px !important;
    padding-left: 0 !important;
@@ -44,15 +44,12 @@ app-edit-profile{
     border-right: 0.5px solid $dark-teal-color;
     height: 28px;
     width: 2px;
-    margin-left: 10px;
-    display: none;
+    margin: 10px 30px;
     @include allmobiles{
-      margin-top: 10px;
-      display: flex;
+      margin: 10px 5px 0;
     }
-    @include tablet{
-      margin-top: 10px;
-      display: flex;
+    @include phablet{
+      margin: 10px 5px 0;
     }
   }
 }
@@ -88,17 +85,26 @@ app-edit-profile{
     color: $post-login-widget-title;
     margin-top: 9px;
   }
-  .grid-wrapper{
-    @extend .flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .grid-wrapper-block{
+    justify-content: center;
     @include allmobiles{
-      flex-direction: column;
-      align-items: flex-start;
+      justify-content: space-between;
     }
     @include phablet{
+      justify-content: space-between;
+    }
+    .grid-wrapper{
+      @extend .flex;
       flex-direction: column;
       align-items: flex-start;
+      @include allmobiles{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      @include phablet{
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   }
   .content-text{
