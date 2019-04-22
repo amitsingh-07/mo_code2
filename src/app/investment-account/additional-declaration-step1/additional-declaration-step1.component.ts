@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { RoadmapService } from '../../shared/components/roadmap/roadmap.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { INVESTMENT_ACCOUNT_DDC_ROADMAP } from '../investment-account-roadmap';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -41,8 +39,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService,
-    private roadmapService: RoadmapService
+    public readonly translate: TranslateService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -67,7 +64,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
     this.observeCountryChange();
     this.observeOccupationChange();
-    this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC_ROADMAP);
+    this.investmentAccountService.loadDDCRoadmap();
   }
 
   buildForm() {
