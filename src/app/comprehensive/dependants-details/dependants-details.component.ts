@@ -225,15 +225,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
 
   goToNextPage() {
-    let hasChildDependant = false;
-    this.comprehensiveService.getMyDependant().forEach((dependant: any) => {
-      const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
-      if (getAge < maxAge) {
-        hasChildDependant = true;
-        return;
-      }
-    });
+    const hasChildDependant = this.comprehensiveService.hasChildDependant();
     if (hasChildDependant) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION]);
     } else {
