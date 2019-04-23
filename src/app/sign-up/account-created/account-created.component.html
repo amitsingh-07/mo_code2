@@ -1,4 +1,4 @@
-<div class="account-created-success-modal" *ngIf="!emailVerified">
+<div class="account-created-success-modal" *ngIf="!resendEmail">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
@@ -12,7 +12,7 @@
   </div>
 </div>
 <!-- verify e-mail -->
-<div class="verify-mail-modal" *ngIf="emailVerified">
+<div class="verify-mail-modal" *ngIf="resendEmail">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper drop-off">
     <div class="custom-modal--icon drop-off">

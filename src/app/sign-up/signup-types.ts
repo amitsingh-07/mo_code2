@@ -48,3 +48,10 @@ export interface ISelectedProducts {
     isNewCustomer: boolean;
     selectedProducts: IPlan[];
 }
+
+export interface IResendEmail {
+    mobileNumber: string;
+    emailAddress: string;
+    callbackUrl: string;
+    hostedServerName: string;
+}

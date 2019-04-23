@@ -1,10 +1,9 @@
 import { browser } from 'protractor';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { filter, pairwise } from 'rxjs/operators';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -33,6 +32,7 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
   editProfile: boolean;
+  fromLoginPage: string;  
   showEditMobileNo = true;
 
   constructor(
@@ -55,19 +55,6 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['verified'] = result.LOADING.VERIFIED;
       this.loading['sending'] = result.LOADING.SENDING;
     });
-
-    this.router.events
-      .pipe(
-        filter(event => event instanceof RoutesRecognized),
-        pairwise()
-      )
-      .subscribe((e: any) => {
-        if (SIGN_UP_ROUTE_PATHS.LOGIN.indexOf(e[0].urlAfterRedirects) > -1) {
-          this.showEditMobileNo = false;
-        } else {
-          this.showEditMobileNo = true;
-        }
-      });
   }
 
   ngOnInit() {
@@ -78,16 +65,16 @@ export class VerifyMobileComponent implements OnInit {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
-    setTimeout(() => {
-      if (!this.showEditMobileNo) {
-        this.mobileNumber = {
-          code: '+65',
-          number: this.signUpService.getUserMobileNo()
-        };
-      } else {
-        this.mobileNumber = this.signUpService.getMobileNumber();
-      }
-    }, 1000);
+    this.fromLoginPage = this.signUpService.getFromLoginPage();
+    if (this.fromLoginPage) {
+      this.mobileNumber = {
+        code: '+65',
+        number: this.signUpService.getUserMobileNo()
+      };
+      this.showEditMobileNo = false;
+    } else {
+      this.mobileNumber = this.signUpService.getMobileNumber();
+    }
   }
 
   /**
@@ -169,16 +156,14 @@ export class VerifyMobileComponent implements OnInit {
   }
 
   resendEmailVerification() {
-    const mobileNo = this.signUpService.getUserMobileNo();
+    const mobileNo = this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.signUpService.clearData();
-        if (this.signUpService.getIsMobileVerified()) {
-          this.signUpService.removeIsMobileVerified();
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED, { emailVerified: true }]);
-        } else {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+        if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
+          this.signUpService.removeFromLoginPage();
         }
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
     });
   }

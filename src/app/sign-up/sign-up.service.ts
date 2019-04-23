@@ -25,7 +25,7 @@ const IS_CAPTCHA_SHOWN = 'is_captcha';
 const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
 const USER_MOBILE = 'user_mobile';
-const IS_MOBILE_VERIFIED = 'is_mobile_verified';
+const FROM_LOGIN_PAGE = 'from_login_page';
 
 @Injectable({
   providedIn: 'root'
@@ -552,17 +552,17 @@ export class SignUpService {
     return sessionStorage.getItem(USER_MOBILE);
   }
 
-  setIsMobileVerified() {
+  setFromLoginPage() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(IS_MOBILE_VERIFIED, 'true');
+      sessionStorage.setItem(FROM_LOGIN_PAGE, 'true');
     }
   }
 
-  getIsMobileVerified() {
-    return sessionStorage.getItem(IS_MOBILE_VERIFIED);
+  getFromLoginPage() {
+    return sessionStorage.getItem(FROM_LOGIN_PAGE);
   }
 
-  removeIsMobileVerified() {
-    sessionStorage.removeItem(IS_MOBILE_VERIFIED);
+  removeFromLoginPage() {
+    sessionStorage.removeItem(FROM_LOGIN_PAGE);
   }
 }

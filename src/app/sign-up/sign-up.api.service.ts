@@ -7,7 +7,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { ISignUp, IResendEmail, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -212,7 +212,7 @@ export class SignUpApiService {
       emailAddress: isEmail ? value : '',
       callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
       hostedServerName: window.location.hostname
-    }
+    } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }
 }

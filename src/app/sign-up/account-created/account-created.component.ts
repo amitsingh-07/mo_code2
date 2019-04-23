@@ -19,7 +19,7 @@ import { SignUpApiService } from './../sign-up.api.service';
 export class AccountCreatedComponent implements OnInit {
 
   duplicateError: string;
-  emailVerified;
+  resendEmail: boolean;
   emailTriggered = false;
 
   constructor(
@@ -28,16 +28,13 @@ export class AccountCreatedComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private signUpService: SignUpService, private configService: ConfigService,
+    private signUpService: SignUpService, 
+    private configService: ConfigService,
     private router: Router,
-    private route: ActivatedRoute,
     private signUpApiService: SignUpApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-    });
-    this.route.params.subscribe((params) => {
-      this.emailVerified = params.emailVerified;
     });
   }
   // constonts
@@ -48,6 +45,9 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
+    if (this.signUpService.getUserMobileNo()) {
+      this.resendEmail = true;
+    }
   }
 
   /**

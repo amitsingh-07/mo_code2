@@ -234,7 +234,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             if (data.responseMessage.responseCode === 5014) {
               this.signUpService.setCustomerRef(data.objectList[0].customerRef);
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
-              this.signUpService.setIsMobileVerified();
+              this.signUpService.setFromLoginPage();
             }
             this.updateInsuranceEnquiry(data, true);
           } else {

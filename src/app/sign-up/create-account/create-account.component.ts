@@ -189,7 +189,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   callErrorModal(data: any) {
     if (data.responseMessage.responseCode === 6008) {
-      this.signUpService.setIsMobileVerified();
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
