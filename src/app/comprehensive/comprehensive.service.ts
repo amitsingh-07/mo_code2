@@ -36,6 +36,7 @@ import {
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
+    IPromoCode,
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
@@ -88,21 +89,29 @@ export class ComprehensiveService {
             0: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
             1: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1',
             2: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-            3: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-            4: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
-            5: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
-            6: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
-            7: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2',
-            8: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
-            9: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
-            10: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
-            11: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
-            12: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
-            13: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
-            14: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3',
-            15: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
-            16: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
-            17: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN
+            3: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY + '/summary',
+            4: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+            5: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS_SUMMARY + '/summary',
+            6: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
+            7: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION_SUMMARY + '/summary',
+            8: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
+            9: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
+            10: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST_SUMMARY + '/summary',
+            11: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2',
+            12: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
+            13: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
+            14: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
+            15: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            16: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
+            17: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
+            18: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES_SUMMARY + '/summary',
+            19: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3',
+            20: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+            21: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN_SUMMARY + '/summary',
+            22: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
+            23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+            24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
+            25: COMPREHENSIVE_ROUTE_PATHS.RESULT
         };
 
         Object.keys(urlList).forEach((key) => {
@@ -160,7 +169,19 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
     }
-
+    getPromoCode() {
+        if (!this.comprehensiveFormData.promoCode) {
+            this.comprehensiveFormData.promoCode = {} as IPromoCode;
+        }
+        return this.comprehensiveFormData.promoCode;
+    }
+    setPromoCode(promoCode: IPromoCode) {
+        this.comprehensiveFormData.promoCode = promoCode;
+        this.commit();
+    }
+    setPromoCodeValidation(promoCodeValidated: boolean) {
+     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.promoCodeValidated = promoCodeValidated;
+    }
     /**
      * Get the comprehensive summary object.
      *
@@ -219,6 +240,26 @@ export class ComprehensiveService {
             }
         }
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+    }
+
+    /**
+     * Check whether there are any child dependant. Child dependant age criteria `MALE = 21`, `FEMALE = 19`
+     *
+     * @returns {boolean}
+     * @memberof ComprehensiveService
+     */
+    hasChildDependant(): boolean {
+        let hasChildDependant = false;
+        this.getMyDependant().forEach((dependant: any) => {
+            const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+            const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
+            if (getAge < maxAge) {
+                hasChildDependant = true;
+                return;
+            }
+        });
+
+        return hasChildDependant;
     }
 
     setMyProfile(profile: IMyProfile) {
@@ -561,40 +602,155 @@ export class ComprehensiveService {
      */
     // tslint:disable-next-line:cognitive-complexity
     getAccessibleUrl(url: string): string {
+
         const urlList = this.getComprehensiveUrlList();
         this.generateProgressTrackerData();
 
         const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
         let accessibleUrl = '';
+
         const profileData = this.getMyProfile();
+        const cmpSummary = this.getComprehensiveSummary();
+        const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
+        const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
+
         const dependantProgressData = this.getDependantsProgressData();
         for (let index = currentUrlIndex; index >= 0; index--) {
             if (accessibleUrl !== '') {
                 break;
             } else {
+                accessibleUrl = urlList[index];
                 switch (index) {
+                    // 'getting-started'
                     case 0:
-                        accessibleUrl = urlList[index];
+                        // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
+                        if (!cmpSummary.comprehensiveEnquiry.enquiryId) {
+                            accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
+                        }
                         break;
+
+                    // 'steps/1',
                     case 1:
+                    // 'dependant-selection'
                     case 2:
                         if (profileData.nation) {
                             accessibleUrl = urlList[index];
                         }
                         break;
+
+                    // 'dependant-selection/summary'
                     case 3:
-                        if (dependantProgressData.subItems[0].completed) {
+                        if (enquiry.hasDependents === false && dependantProgressData.subItems[0].value === '0') {
                             accessibleUrl = urlList[index];
                         }
+                        break;
+
+                    // 'dependant-details'
+                    case 4:
+                        if (enquiry.hasDependents !== null && enquiry.hasDependents !== false) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'dependant-details/summary'
+                    case 5:
+                        if (!this.hasChildDependant()) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'dependant-education-selection'
+                    case 6:
+                        if (this.hasChildDependant()) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'dependant-education-selection/summary'
+                    case 7:
+                        if (this.hasChildDependant() && (this.hasEndowment() === '0' || this.hasEndowment() === '2')) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'dependant-education-preference'
+                    case 8:
+                        if (this.hasChildDependant() && this.hasEndowment() === '1') {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'dependant-education-list'
+                    case 9:
+                    // 'dependant-education-list/summary'
+                    case 10:
+                        let eduPref = '';
+                        if (childEndowmentData.length > 0 && childEndowmentData[0].location !== null) {
+                            eduPref = childEndowmentData[0].location;
+                        }
+                        if (this.hasChildDependant() && this.hasEndowment() === '1' && eduPref !== '') {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+
+                    // 'steps/2'
+                    case 11:
+                        let canAccess = true;
+                        dependantProgressData.subItems.forEach((subItem) => {
+                            if (!subItem.completed) {
+                                canAccess = false;
+                            }
+                        });
+                        if (canAccess) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+                    // 'my-earnings'
+                    case 12:
+                        break;
+                    // 'my-spendings'
+                    case 13:
+                        break;
+                    // 'regular-saving-plan'
+                    case 14:
+                        break;
+                    // 'bad-mood-fund'
+                    case 15:
+                        break;
+                    // 'my-assets'
+                    case 16:
+                        break;
+                    // 'my-liabilities'
+                    case 17:
+                        break;
+                    // 'my-liabilities/summary'
+                    case 18:
+                        break;
+                    // 'steps/3'
+                    case 19:
+                    // 'insurance-plan'
+                    case 20:
+                        break;
+                    // 'insurance-plan/summary'
+                    case 21:
+                        break;
+                    // 'steps/4'
+                    case 22:
+                        break;
+                    // 'retirement-plan'
+                    case 23:
+                        break;
+                    // 'retirement-plan/summary'
+                    case 24:
+                        break;
+                    // 'result'
+                    case 25:
                         break;
                 }
             }
         }
-
         if (accessibleUrl === '') {
             accessibleUrl = urlList[0];
-            // TODO : remove the below line after above routing switch cases are updated correctly
-            accessibleUrl = url;
         }
         return accessibleUrl;
     }
@@ -677,8 +833,18 @@ export class ComprehensiveService {
             const eduPlan: string = this.hasEndowment();
 
             const prefsList: IProgressTrackerSubItemList[] = [];
+            let prefsListCompleted = false;
+            let hasEndowmentAmount = false;
+            const tempPrefsList = [];
+
             if (eduPrefs && enquiry.hasDependents !== null && enquiry.hasEndowments === '1') {
                 eduPrefs.forEach((item) => {
+                    if (!Util.isEmptyOrNull(item.location)) {
+                        tempPrefsList.push(item);
+                    }
+                    if (item.endowmentMaturityYears !== null) {
+                        hasEndowmentAmount = true;
+                    }
                     prefsList.push({
                         title: item.name,
                         value: (item.location === null ? '' : item.location)
@@ -687,9 +853,13 @@ export class ComprehensiveService {
                 });
             }
 
+            if (tempPrefsList.length === prefsList.length) {
+                prefsListCompleted = true;
+            }
+
             let hasEndowmentPlans = '';
             if (eduPlan === '1') {
-                hasEndowmentPlans = 'Yes';
+                hasEndowmentPlans = hasEndowmentAmount ? 'Yes' : 'No';
             } else if (eduPlan === '2') {
                 hasEndowmentPlans = 'No';
             }
@@ -717,7 +887,7 @@ export class ComprehensiveService {
                         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
                         title: 'Education Preferences',
                         value: prefsList.length === 0 || enquiry.hasEndowments !== '1' ? 'No' : '',
-                        completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined',
+                        completed: hasDependants && hasEndowments && eduPrefs && typeof eduPrefs !== 'undefined' && prefsListCompleted,
                         list: prefsList
                     });
                 subItemsArray.push(
@@ -726,7 +896,8 @@ export class ComprehensiveService {
                         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
                         title: 'Do you have education endowment plan',
                         value: hasEndowmentPlans,
-                        completed: (hasDependants && hasEndowments && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
+                        completed: (hasDependants && hasEndowments && prefsListCompleted
+                            && (typeof eduPlan !== 'undefined' || eduPlan !== '0'))
                     });
             }
         }
@@ -1243,5 +1414,65 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
         this.commit();
         return true;
+    }
+    /**
+     * Result Validation before report generation
+     */
+    checkResultData() {
+        const getCompData = this.getComprehensiveSummary();
+        let validateFlag = true;
+        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === '' 
+            ||  getCompData.reportStatus !== 'new') {
+            validateFlag = false;
+        }
+        const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
+        Object.keys(getResultConfig).forEach((financeInput) => {
+            const apiInput = getResultConfig[financeInput].API_KEY;
+            const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
+            validationDataSet.forEach((dataSet) => {
+                if (!getCompData[apiInput][dataSet]) {
+                    validateFlag = false;
+                } else {
+                    const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
+                    if (getAmount <= 0) {
+                        validateFlag = false;
+                    }
+                }
+            });
+        });
+        return validateFlag;
+    }
+    /**
+     * Step Validation before api call
+     */
+    checkStepValidation(currentStep: number) {
+        const progressData = [];
+        progressData.push(this.getDependantsProgressData());
+        progressData.push(this.getFinancesProgressData());
+        progressData.push(this.getFireproofingProgressData());
+        progressData.push(this.getRetirementProgressData());
+        let goToStep = 5;
+        let stepStatus = true;
+        for (let t = 0; t < currentStep; t++) {
+            if (goToStep === 5) {
+                if (!this.getSubItemStatus(progressData[t])) {
+                    stepStatus = false;
+                    goToStep = t;
+                }
+            }
+        }
+        return { status: stepStatus, stepIndicate: goToStep };
+    }
+    getSubItemStatus(progressData: any) {
+        let completedStatus = true;
+        /*if (!progressData.completed) {
+            completedStatus = false;
+        }*/
+        Object.keys(progressData.subItems).forEach((completedData) => {
+            if (!progressData.subItems[completedData].completed) {
+                completedStatus = false;
+            }
+        });
+        return completedStatus;
     }
 }
