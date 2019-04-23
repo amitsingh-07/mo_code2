@@ -98,5 +98,14 @@ export class ComprehensiveApiService {
         return this.httpClient.get('../../assets/comprehensive/insurancePlan.json')
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-
+    getPromoCode() {
+        return this.http
+        .get(apiConstants.endpoint.comprehensive.getPromoCode)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    ValidatePromoCode(payload) {
+        return this.http
+        .post(apiConstants.endpoint.comprehensive.validatePromoCode, payload)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 }

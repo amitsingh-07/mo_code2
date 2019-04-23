@@ -36,6 +36,7 @@ import {
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
+    IPromoCode,
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
@@ -168,7 +169,19 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
     }
-
+    getPromoCode() {
+        if (!this.comprehensiveFormData.promoCode) {
+            this.comprehensiveFormData.promoCode = {} as IPromoCode;
+        }
+        return this.comprehensiveFormData.promoCode;
+    }
+    setPromoCode(promoCode: IPromoCode) {
+        this.comprehensiveFormData.promoCode = promoCode;
+        this.commit();
+    }
+    setPromoCodeValidation(promoCodeValidated: boolean) {
+     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.promoCodeValidated = promoCodeValidated;
+    }
     /**
      * Get the comprehensive summary object.
      *

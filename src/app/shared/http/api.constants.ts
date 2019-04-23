@@ -116,7 +116,9 @@ export let apiConstants = {
             saveInsurancePlan: INSURANCE_API_BASE_URL  + 'saveInsurancePlanning',
             saveRetirementPlan: INSURANCE_API_BASE_URL + 'saveRetirementPlanning',
             saveAssets: FINANCE_API_BASE_URL + 'saveComprehensiveAssets',
-            saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities'
+            saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
+            getPromoCode: ACCOUNT_API_BASE_URL + 'customer/comprehensive/requestComprehensivePromoCode',
+            validatePromoCode: ACCOUNT_API_BASE_URL + 'customer/comprehensive/validateComprehensivePromoCode'
         }
     }
 };
