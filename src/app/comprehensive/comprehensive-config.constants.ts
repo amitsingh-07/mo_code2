@@ -122,5 +122,15 @@ export const COMPREHENSIVE_CONST = {
             SPARE_CASH_ANNUAL_PERCENT: 0.50
         }
     },
-    PAY_OFF_YEAR: 50
+    PAY_OFF_YEAR: 50,
+    YOUR_RESULTS: {
+        YOUR_EARNINGS: {
+            API_KEY: 'comprehensiveIncome',
+            VALIDATION_INPUT: ['monthlySalary'],
+        },
+        YOUR_ASSETS: {
+            API_KEY: 'comprehensiveAssets',
+            VALIDATION_INPUT: ['cashInBank', 'savingsBonds'],
+        }
+    }
 };

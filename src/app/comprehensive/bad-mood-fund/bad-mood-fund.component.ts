@@ -128,6 +128,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     if (this.hasBadMoodFund) {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
+    } else {
+      this.ciMultiplierSlider.writeValue(0);
     }
   }
   validateForm(hospitalPlan) {
