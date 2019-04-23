@@ -2,6 +2,7 @@
   "CMP": {
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account.",
+      "PROMO_CODE_SUCCESS":"Hurray! Your promocode is sent to your email ",
       "FINANCES_MODAL":{
         "TITLE": "Step 2",        
         "TITLE_IMAGE": "finances.svg",
@@ -528,7 +529,7 @@
         "LONG_TERM_CARE_INSURANCE_MESSAGE":"The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
         "CRITICAL_INSURANCE_TITLE":"Critical Illness Insurance",
         "CRITICAL_INSURANCE_MESSAGE":"The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
-          
+
       }
     },
     "RESULT":{
