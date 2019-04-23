@@ -142,6 +142,10 @@
                         color: $incomplete-list;
                     }
 
+                    &.hidden {
+                        display: none;
+                    }
+
                     span.complete {
                         background: url('../../../../assets/images/comprehensive/progress-tracker/on.svg');
                         position: absolute;
