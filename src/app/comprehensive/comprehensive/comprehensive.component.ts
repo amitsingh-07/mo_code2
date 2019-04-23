@@ -105,17 +105,17 @@ export class ComprehensiveComponent implements OnInit {
   }
   getStarted(form) {
     this.appService.setAction('VALIDATE_PROMO_CODE');
+    if (form !== '') {
+      this.appService.setPromoCode(form.value.comprehensivePromoCodeToken);
+    }
+
     if (this.authService.isSignedUser()) {
-      let promoCode = this.cmpService.getPromoCode();
-      if (form) {
-        form.value.enquiryId = this.cmpService.getEnquiryId();
-        this.cmpService.setPromoCode(form.value);
-        promoCode = this.cmpService.getPromoCode();
-      }
+      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId() };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.promoCodeValidated) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
       } else {
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data) => {
+          this.cmpService.setPromoCodeValidation(true);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
         }, (err) => {
         });
@@ -133,11 +133,16 @@ export class ComprehensiveComponent implements OnInit {
   getPromoCode() {
     this.appService.setAction('GET_PROMO_CODE');
     if (this.authService.isSignedUser()) {
-      this.comprehensiveApiService.getPromoCode().subscribe((data) => {
+      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.promoCodeValidated) {
         this.showSuccessPopup();
-      }, (err) => {
+      } else {
+        this.comprehensiveApiService.getPromoCode().subscribe((data) => {
+          this.showSuccessPopup();
+        }, (err) => {
 
-      });
+        });
+      }
+
     } else {
       this.showLoginOrSignUpModal();
     }

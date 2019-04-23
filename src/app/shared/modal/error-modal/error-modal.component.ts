@@ -20,6 +20,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() isError: boolean;
   @Input() navToHome: boolean;
   @Input() unSaved: boolean;
+  @Input() promoSuccess: boolean;
   @Input() hasImpact: any;
   @Input() formName: any;
   @Output() selected: EventEmitter<any> = new EventEmitter();

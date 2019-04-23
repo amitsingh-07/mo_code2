@@ -179,7 +179,9 @@ export class ComprehensiveService {
         this.comprehensiveFormData.promoCode = promoCode;
         this.commit();
     }
-
+    setPromoCodeValidation(promoCodeValidated: boolean) {
+     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.promoCodeValidated = promoCodeValidated;
+    }
     /**
      * Get the comprehensive summary object.
      *
