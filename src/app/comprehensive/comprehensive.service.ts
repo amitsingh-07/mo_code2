@@ -36,6 +36,7 @@ import {
     IMyProfile,
     IMySpendings,
     IProgressTrackerWrapper,
+    IPromoCode,
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
@@ -168,7 +169,19 @@ export class ComprehensiveService {
         }
         return this.comprehensiveFormData.comprehensiveDetails.dependentEducationPreferencesList;
     }
-
+    getPromoCode() {
+        if (!this.comprehensiveFormData.promoCode) {
+            this.comprehensiveFormData.promoCode = {} as IPromoCode;
+        }
+        return this.comprehensiveFormData.promoCode;
+    }
+    setPromoCode(promoCode: IPromoCode) {
+        this.comprehensiveFormData.promoCode = promoCode;
+        this.commit();
+    }
+    setPromoCodeValidation(promoCodeValidated: boolean) {
+     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
+    }
     /**
      * Get the comprehensive summary object.
      *
@@ -610,6 +623,7 @@ export class ComprehensiveService {
             if (accessibleUrl !== '') {
                 break;
             } else {
+                accessibleUrl = urlList[index];
                 switch (index) {
                     // 'getting-started'
                     case 0:
@@ -758,7 +772,6 @@ export class ComprehensiveService {
                 }
             }
         }
-
         if (accessibleUrl === '') {
             accessibleUrl = urlList[0];
         }
@@ -1435,5 +1448,65 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
         this.commit();
         return true;
+    }
+    /**
+     * Result Validation before report generation
+     */
+    checkResultData() {
+        const getCompData = this.getComprehensiveSummary();
+        let validateFlag = true;
+        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === '' 
+            ||  getCompData.reportStatus !== 'new') {
+            validateFlag = false;
+        }
+        const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
+        Object.keys(getResultConfig).forEach((financeInput) => {
+            const apiInput = getResultConfig[financeInput].API_KEY;
+            const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
+            validationDataSet.forEach((dataSet) => {
+                if (!getCompData[apiInput][dataSet]) {
+                    validateFlag = false;
+                } else {
+                    const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
+                    if (getAmount <= 0) {
+                        validateFlag = false;
+                    }
+                }
+            });
+        });
+        return validateFlag;
+    }
+    /**
+     * Step Validation before api call
+     */
+    checkStepValidation(currentStep: number) {
+        const progressData = [];
+        progressData.push(this.getDependantsProgressData());
+        progressData.push(this.getFinancesProgressData());
+        progressData.push(this.getFireproofingProgressData());
+        progressData.push(this.getRetirementProgressData());
+        let goToStep = 5;
+        let stepStatus = true;
+        for (let t = 0; t < currentStep; t++) {
+            if (goToStep === 5) {
+                if (!this.getSubItemStatus(progressData[t])) {
+                    stepStatus = false;
+                    goToStep = t;
+                }
+            }
+        }
+        return { status: stepStatus, stepIndicate: goToStep };
+    }
+    getSubItemStatus(progressData: any) {
+        let completedStatus = true;
+        /*if (!progressData.completed) {
+            completedStatus = false;
+        }*/
+        Object.keys(progressData.subItems).forEach((completedData) => {
+            if (!progressData.subItems[completedData].completed) {
+                completedStatus = false;
+            }
+        });
+        return completedStatus;
     }
 }

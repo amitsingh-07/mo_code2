@@ -119,7 +119,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       regularUnitTrust: [value.regularUnitTrust, [Validators.required]],
       regularPaidByCash: [value.regularPaidByCash, [Validators.required]],
-      regularPaidByCPF: [value.regularPaidByCash, [Validators.required]],
+      regularPaidByCPF: [value.regularPaidByCPF, [Validators.required]],
       enquiryId: this.enquiryId
 
     });

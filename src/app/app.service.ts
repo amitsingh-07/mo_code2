@@ -12,6 +12,8 @@ import { WillWritingService } from './will-writing/will-writing.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
+const PROMO_CODE_ACTION_TYPE = 'app_promo_code_action_type';
+const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
 
 @Injectable({
@@ -19,6 +21,8 @@ const SESSION_CUSTOMER = 'app_customer_id';
 })
 export class AppService {
   journeyType: string;
+  promoCodeActionType: string;
+  promoCode: string;
   enquiryId: any;
   activeSession: string;
   customer = {
@@ -76,6 +80,27 @@ export class AppService {
     return this.journeyType;
   }
 
+  getAction() {
+    if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE_ACTION_TYPE)) {
+      this.promoCodeActionType = JSON.parse(sessionStorage.getItem(PROMO_CODE_ACTION_TYPE));
+    }
+    return this.promoCodeActionType;
+
+  }
+  setAction(promoCodeActionType: string) {
+    this.promoCodeActionType = promoCodeActionType;
+    this.commit(PROMO_CODE_ACTION_TYPE, this.promoCodeActionType);
+  }
+  getPromoCode() {
+    if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE)) {
+      this.promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
+    }
+    return this.promoCode;
+}
+setPromoCode(promoCode: string) {
+  this.promoCode = promoCode;
+  this.commit(promoCode, this.promoCode);
+}
   clearJourneys() {
     if (window.sessionStorage) {
       // App data

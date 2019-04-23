@@ -14,6 +14,8 @@ export interface IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
+    reportStatus: string;
+    stepCompleted: number;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -23,6 +25,11 @@ export interface IComprehensiveEnquiry {
     hasEndowments: string;
     hasRegularSavingsPlans: boolean;
     type: string;
+    isValidatedPromoCode: boolean;
+}
+export interface IPromoCode {
+    comprehensivePromoCodeToken: string;
+    enquiryId: number;
 }
 export interface IMyProfile {
     id: string;

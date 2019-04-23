@@ -176,7 +176,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               if (redirect_url && !ProgressTrackerUtil.compare(redirect_url, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED)) {
                 skipLocation = true;
               }
-              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: skipLocation });
+
+ // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: skipLocation });
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: skipLocation });
             } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
               this.willWritingService.getExecTrusteeInfo().length > 0) {
               if (!this.willWritingService.getIsWillCreated()) {
@@ -267,4 +269,3 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }
-

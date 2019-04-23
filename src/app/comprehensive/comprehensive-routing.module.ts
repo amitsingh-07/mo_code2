@@ -30,7 +30,6 @@ const routes: Routes = [
         canActivate: [ComprehensiveEnableGuard],
         children: [
             { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
-            { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS_SUMMARY + '/:summary', component: DependantsDetailsComponent },

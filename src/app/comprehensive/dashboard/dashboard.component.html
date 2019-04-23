@@ -9,7 +9,7 @@
       <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
     </div>
   </div>  
-    <div class="form-group-with-bg overlay-bg" *ngFor="let item of items; let comprehensivePlanning = index;">
+    <div class="form-group-with-bg overlay-bg" >
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row">
@@ -26,16 +26,22 @@
       </div>
       <!--Form Content-->
       <div class="form-group-with-bg--content">
-        <div class="flex-row"  [hidden]="comprehensivePlanning === 3" >
-          <div class="flex-col-12">
+        <div class="flex-row"  [hidden]="comprehensivePlanning === 3 || comprehensivePlanning === 4" >
+          <div class="flex-col-8">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_COMPLETED_DESC' | translate}}
             </div>
           </div>
+          <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+          </div>
         </div>        
         <div class="flex-row"  [hidden]="comprehensivePlanning !== 3" >
-          <div class="flex-col-12">
+          <div class="flex-col-8">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_PENDING_DESC' | translate}}
             </div>
+          </div>
+          <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
           </div>
         </div>
         <div class="flex-row" [hidden]="comprehensivePlanning !== 2">
@@ -84,42 +90,25 @@
               </div>
           </div>
 
-      </div>
-    </div>
-
-    <div class="form-group-with-bg">
-      <!--Form Header-->
-      <div class="form-group-with-bg--header">
-        <div class="flex-row">
-          <div class="flex-col-12">
-            <div class="form-group-with-bg--header-label">{{
-              'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
+          <div class="flex-row" [hidden]="comprehensivePlanning !== 4">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.DEFAULT_CONTENT' | translate}}
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!--Form Content-->
-      <div class="form-group-with-bg--content">
-        <div class="flex-row" >
-          <div class="flex-col-8">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.DEFAULT_CONTENT' | translate}}
+            <div class="flex-col-4 text-right">
+                <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
             </div>
+          </div>  
+          <div class="flex-row" [hidden]="comprehensivePlanning !== 4">
+              <div class="flex-col-12">
+                  <button type="button"  class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
+                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.DEFAULT_START' | translate}}                  
+                      <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.DEFAULT_ESTIMATED' | translate}}
+                            </div>
+                      </div>
+                  </button>
+              </div>
           </div>
-          <div class="flex-col-4 text-right">
-              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
-          </div>
-        </div>  
-        <div class="flex-row">
-            <div class="flex-col-12">
-                <button type="button"  class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
-                    <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.DEFAULT_START' | translate}}                  
-                    <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.DEFAULT_ESTIMATED' | translate}}
-                          </div>
-                    </div>
-                </button>
-            </div>
-        </div>
-
       </div>
     </div>
     
