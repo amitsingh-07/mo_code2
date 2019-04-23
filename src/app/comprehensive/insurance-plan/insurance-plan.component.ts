@@ -66,8 +66,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.haveHDB = true;
       }
     });
-    if (this.comprehensiveService.getMyProfile() &&
-      this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) < 41) {
+    if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
+    COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE ) {
       this.longTermInsurance = false;
     }
     this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();

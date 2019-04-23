@@ -15,7 +15,7 @@ export const COMPREHENSIVE_CONST = {
             API_TOTAL_BUCKET_KEY: 'totalAnnualIncomeBucket',
             MONTHLY_INPUT_CALC : ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket'],
-            BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 
+            BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome',
             'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
         },
         YOUR_SPENDING: {
@@ -41,8 +41,11 @@ export const COMPREHENSIVE_CONST = {
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
             BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount',
             'otherPropertyLoanOutstandingAmount']
-        }
+        },
     },
+    INSURANCE_PLAN: {
+        LONG_TERM_INSURANCE_AGE: 40
+        },
     SUMMARY_CALC_CONST: {
         EDUCATION_ENDOWMENT: {
             DEPENDANT: {
@@ -102,7 +105,7 @@ export const COMPREHENSIVE_CONST = {
         },
         INSURANCE_PLAN: {
             ESTIMATED_COST: 100000,
-            DEPENDENT_AGE: 70
+            DEPENDENT_AGE: 70,
         },
         ROUTER_CONFIG: {
             STEP1: true,
