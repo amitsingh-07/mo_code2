@@ -11,6 +11,7 @@ import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
@@ -20,7 +21,6 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
     selector: 'app-cmp-my-profile',
