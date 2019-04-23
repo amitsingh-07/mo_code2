@@ -27,42 +27,45 @@ import { RetirementPlanComponent } from './retirement-plan/retirement-plan.compo
 const routes: Routes = [
     {
         path: '',
-        canActivate: [ ComprehensiveEnableGuard ],
+        canActivate: [ComprehensiveEnableGuard],
         children: [
             { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
             { path: COMPREHENSIVE_ROUTES.ROOT, redirectTo: '/comprehensive/getting-started', pathMatch: 'full' },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS, component: DependantsDetailsComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS + '/:summary', component: DependantsDetailsComponent },
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS_SUMMARY + '/:summary', component: DependantsDetailsComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST, component: DependantEducationListComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST + '/:summary', component: DependantEducationListComponent },
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_LIST_SUMMARY + '/:summary', component: DependantEducationListComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_PREFERENCE, component: EducationPreferenceComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION, component: DependantEducationSelectionComponent},
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION + '/:summary', component: DependantEducationSelectionComponent},
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION, component: DependantEducationSelectionComponent },
+            {
+                path: COMPREHENSIVE_ROUTES.DEPENDANT_EDUCATION_SELECTION_SUMMARY + '/:summary',
+                component: DependantEducationSelectionComponent
+            },
             { path: COMPREHENSIVE_ROUTES.MY_EARNINGS, component: MyEarningsComponent },
             { path: COMPREHENSIVE_ROUTES.MY_SPENDINGS, component: MySpendingsComponent },
             { path: COMPREHENSIVE_ROUTES.REGULAR_SAVING_PLAN, component: RegularSavingPlanComponent },
             { path: COMPREHENSIVE_ROUTES.MY_ASSETS, component: MyAssetsComponent },
             { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES, component: MyLiabilitiesComponent },
-            { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES + '/:summary', component: MyLiabilitiesComponent },
+            { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY + '/:summary', component: MyLiabilitiesComponent },
             { path: COMPREHENSIVE_ROUTES.STEPS + '/:stepNo', component: ComprehensiveStepsComponent },
             { path: COMPREHENSIVE_ROUTES.BAD_MOOD_FUND, component: BadMoodFundComponent },
             { path: COMPREHENSIVE_ROUTES.PROGRESS_TRACKER, component: ProgressTrackerComponent },
             { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION, component: DependantSelectionComponent },
-            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION + '/:summary', component: DependantSelectionComponent },
+            { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION_SUMMARY + '/:summary', component: DependantSelectionComponent },
             { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN, component: RetirementPlanComponent },
-            { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN + '/:summary', component: RetirementPlanComponent },
-            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN , component: InsurancePlanComponent },
-            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN + '/:summary', component: InsurancePlanComponent },
+            { path: COMPREHENSIVE_ROUTES.RETIREMENT_PLAN_SUMMARY + '/:summary', component: RetirementPlanComponent },
+            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN, component: InsurancePlanComponent },
+            { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN_SUMMARY + '/:summary', component: InsurancePlanComponent },
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
-            { path: COMPREHENSIVE_ROUTES.DASHBOARD , component: DashboardComponent },
-            { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent}
+            { path: COMPREHENSIVE_ROUTES.DASHBOARD, component: DashboardComponent },
+            { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent }
         ]
     }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(routes) ],
-    exports: [ RouterModule ]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class ComprehensiveRoutingModule {}
+export class ComprehensiveRoutingModule { }
