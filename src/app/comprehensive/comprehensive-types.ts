@@ -25,7 +25,7 @@ export interface IComprehensiveEnquiry {
     hasEndowments: string;
     hasRegularSavingsPlans: boolean;
     type: string;
-    promoCodeValidated?: boolean;
+    isValidatedPromoCode: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
