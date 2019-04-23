@@ -2,8 +2,8 @@
     <!-- Browser Detection (Error if IE11 or below) -->
     <div *ngIf="browserError" class="navbar-wrapper error">
         <div class="navbar__inner-wrapper">
-          <span>{{defaultErrors.errorList['browser'].title}}</span>
-          <span>{{defaultErrors.errorList['browser'].message}}</span>
+          <span>{{defaultError.errorList['browser'].title}}</span>
+          <span>{{defaultError.errorList['browser'].message}}</span>
           <div class="close-btn" (click)="closeBrowserError()"></div>
         </div>
       </div>

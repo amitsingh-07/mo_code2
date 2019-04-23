@@ -33,8 +33,9 @@
     },
     "INVESTMENT": {
         "LABEL": "Invest",
-        "TITLE": "Invest With Confidence",
-        "DESCRIPTION": "Feel confident about investing even as a beginner! Get access to low-cost and best-in-class globally diversified investments at your fingertips!",
+        "TITLE": "Invest With Whom You Can Trust",
+        "DESCRIPTION": "Achieve your financial goals and have a successful investment experience with us. Gain access to low-cost and globally diversified portfolio.",
+        "PROMO_TEXT": "*Start investing by <u>31st May 2019</u> and enjoy only 0.50% advisory fee (usual 0.65% per annum) until 31st Dec 2019!",
         "LINK1": "Start Investing"
     },
     "COMPREHENSIVE": {

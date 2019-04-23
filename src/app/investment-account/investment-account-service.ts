@@ -882,7 +882,7 @@ export class InvestmentAccountService {
         addressLine1: data.mailAddress1,
         addressLine2: data.mailAddress2,
         floor: data.mailFloor,
-        unitNumber: data.unitNo,
+        unitNumber: data.mailUnitNo,
         townName: null, // todo - not available in client
         city: data.mailCity,
         reasonId: data.reason.id,
@@ -1447,6 +1447,7 @@ export class InvestmentAccountService {
       identityDetails.customer.salutation,
       'salutation'
     );
+    this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
     this.investmentAccountFormData.nricNumber = identityDetails.nricNumber;
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
       identityDetails.customer.dateOfBirth
@@ -1604,8 +1605,8 @@ export class InvestmentAccountService {
   }
   setDueDiligence1FromApi(pepDetails) {
     if (pepDetails) {
-      this.investmentAccountFormData.pepFullName = pepDetails.pepFullName;
-     this.investmentAccountFormData.cName = pepDetails.companyName;
+      this.investmentAccountFormData.pepFullName = pepDetails.firstName;
+      this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
       this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
