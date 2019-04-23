@@ -188,7 +188,7 @@ export class ApiService {
       subject: data.subject,
       body: data.message,
       custEmail: data.emailAddress,
-      custContactNo: data.contactNumber
+      custContactNo: data.contactNumber.toString()
     };
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
       .pipe(
