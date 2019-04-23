@@ -41,11 +41,11 @@
   
   <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary hidden-lg  width100">Proceed</button>
 </div>
-<div class="recommend-footer hidden-sm-md cont">
+<div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
     <div class="footer-content container-fluid max-width--1024">
       <div>
-        <div class="text-one">Review your inputs or proceed to start investing in this portfolio.</div>
-        <div class="text-two">Please note that your investment only starts after you have started funding your account.
+        <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
+        <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}
         </div>
       </div>
       <div>

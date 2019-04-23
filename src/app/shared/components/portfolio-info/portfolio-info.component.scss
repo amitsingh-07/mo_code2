@@ -179,8 +179,19 @@
     @include allmobiles{
       flex-direction: column;
       padding-top: 26px;
-      margin-top: 0px;
+      margin-top: 0px !important;
     }
+     @media(min-width:$col-md) {
+      margin-top: -11px !important;
+      flex-direction: none !important ;
+     }
+     @include minMobilemaxPhablet {
+      margin-top: 20px !important;
+      flex-direction: column;
+      }
+      @media(min-width:$col-lg) {
+        margin-top: 11px !important;
+       }
   }
 
   .indicators {

@@ -48,29 +48,29 @@
           <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
             [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc"
             *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
-          <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext()"
+          <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext(selectedRiskProfile.riskProfileId)"
             class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
           <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
             class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
           <!-- buttons -->
-          <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="showTwoPortfolio"  (click)="goToNext()">
+          <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="showTwoPortfolio"  (click)="goToNext(selectedRiskProfile.riskProfileId)">
             <div class="portfolio_bts">
               <span>
                 <img class="portfolio-btn" src={{iconImage}} id="secondRiskProfileImg" />
-                <span>View Moderate Portfolio</span>
+                <span>View {{selectedRiskProfile.riskProfileName}} Portfolio</span>
               </span>
               <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
                   alt="" />
               </span>
             </div>
           </button>
-          <button type="button" class="btn portfolio_btn_produced width100" *ngIf="showTwoPortfolio"  (click)="goToNext()">
+          <button type="button" class="btn portfolio_btn_produced width100" *ngIf="showTwoPortfolio"  (click)="goToNext(selectedRiskProfile.alternateRiskProfileId)">
             <div class="portfolio_bts">
               <span>
                 <img class="portfolio-btn" src={{secondIcon}} id="secondRiskProfileImg" />
-                <span>View Moderate Portfolio</span>
+                <span>View {{selectedRiskProfile.alternateRiskProfileType}} Portfolio</span>
               </span>
               <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
                   alt="" />

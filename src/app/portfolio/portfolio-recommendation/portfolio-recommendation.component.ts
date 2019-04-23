@@ -38,7 +38,7 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from './../../topup-and-withdraw/topup
 export class PortfolioRecommendationComponent implements OnInit {
   pageTitle: string;
   portfolio;
-  selectedRiskProfile: RiskProfile;
+  selectedRiskProfile: any;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -83,7 +83,7 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.selectedRiskProfile = this.portfolioService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
@@ -174,10 +174,10 @@ export class PortfolioRecommendationComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const formData = this.portfolioService.getRiskProfile();
+    const selectedRiskId  = this.portfolioService.getSelectedRiskProfileId();
     const enqId = this.authService.getEnquiryId();
     return {
-      riskProfileId: formData.riskProfileId,
+      riskProfileId: selectedRiskId.riskProfileId,
       enquiryId: enqId
     };
   }

@@ -4,7 +4,7 @@
   </div>
   <div class="container-fluid max-width--1024 risk-assessment">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <div class="col-lg-7 col-md-6 hidden-sm-md" *ngIf="currentQuestion">
         <h2 class="question-info">{{QuestionLabel}} {{questionIndex}} {{ofLabel}} {{questionsList.length}}</h2>
         <h6 class="question-title">{{currentQuestion.description}}</h6>
         <div class="banner-image">

@@ -23,6 +23,8 @@
     "STEP_1_LABEL": "Step 1",
     "YEARS": "Years",
     "BORN_ON": "I was born on",
+    "INVESTMENT_PERIOD":"Your Investment Period",
+    "HOW_MANY_YEARS":"How many years do you want to stay invested?",
     "SELECT_INVESTMENT_HEAD": "Select Investment Period",
     "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for.",
     "I_WANT_INVEST_LBL": "I want to invest for",
@@ -66,7 +68,9 @@
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
-    "modalData": {
+    "YOUR_INVESTMENT":"Your Financials",
+    "HOW_MUCH_INVEST":"How much do you want invest?",
+   "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
     },
