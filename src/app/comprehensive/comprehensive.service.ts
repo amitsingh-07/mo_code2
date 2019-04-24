@@ -1,6 +1,7 @@
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
@@ -40,6 +41,7 @@ import {
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
+import { NavbarService } from '../shared/navbar/navbar.service';
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +54,9 @@ export class ComprehensiveService {
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
-        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe, private routingService: RoutingService) {
+        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
+        private routingService: RoutingService, private router: Router,
+        private navbarService: NavbarService) {
         this.getComprehensiveFormData();
     }
 
@@ -180,7 +184,7 @@ export class ComprehensiveService {
         this.commit();
     }
     setPromoCodeValidation(promoCodeValidated: boolean) {
-     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.promoCodeValidated = promoCodeValidated;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
     }
     /**
      * Get the comprehensive summary object.
@@ -545,7 +549,12 @@ export class ComprehensiveService {
         ref.result.then((result) => {
         }, (reason) => {
             if (reason === 'dismiss' && summaryModalDetails.routerEnabled) {
-                this.location.back();
+                const previousUrl = this.getPreviousUrl(this.router.url);
+                if (previousUrl !== null) {
+                    this.router.navigate([previousUrl]);
+                } else {
+                    this.navbarService.goBack();
+                }
             }
         });
         return false;
@@ -615,11 +624,14 @@ export class ComprehensiveService {
         const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
 
         const dependantProgressData = this.getDependantsProgressData();
+        const financeProgressData = this.getFinancesProgressData();
+        const fireProofingProgressData = this.getFireproofingProgressData();
+        const retirementProgressData = this.getRetirementProgressData();
+
         for (let index = currentUrlIndex; index >= 0; index--) {
             if (accessibleUrl !== '') {
                 break;
             } else {
-                accessibleUrl = urlList[index];
                 switch (index) {
                     // 'getting-started'
                     case 0:
@@ -695,6 +707,8 @@ export class ComprehensiveService {
 
                     // 'steps/2'
                     case 11:
+                    // 'my-earnings'
+                    case 12:
                         let canAccess = true;
                         dependantProgressData.subItems.forEach((subItem) => {
                             if (!subItem.completed) {
@@ -705,46 +719,63 @@ export class ComprehensiveService {
                             accessibleUrl = urlList[index];
                         }
                         break;
-                    // 'my-earnings'
-                    case 12:
-                        break;
                     // 'my-spendings'
                     case 13:
+                        if (financeProgressData.subItems[0].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'regular-saving-plan'
                     case 14:
+                        if (financeProgressData.subItems[1].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'bad-mood-fund'
                     case 15:
+                        if (financeProgressData.subItems[2].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'my-assets'
                     case 16:
+                        if (financeProgressData.subItems[4].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'my-liabilities'
                     case 17:
+                        if (financeProgressData.subItems[5].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'my-liabilities/summary'
                     case 18:
-                        break;
                     // 'steps/3'
                     case 19:
                     // 'insurance-plan'
                     case 20:
+                        if (financeProgressData.subItems[6].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'insurance-plan/summary'
                     case 21:
-                        break;
                     // 'steps/4'
                     case 22:
-                        break;
                     // 'retirement-plan'
                     case 23:
+                        if (fireProofingProgressData.subItems[0].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                     // 'retirement-plan/summary'
                     case 24:
-                        break;
                     // 'result'
                     case 25:
+                        if (retirementProgressData.subItems[0].completed) {
+                            accessibleUrl = urlList[index];
+                        }
                         break;
                 }
             }
@@ -939,6 +970,16 @@ export class ComprehensiveService {
                 ? this.transformAsCurrency(spendingsData.totalAnnualExpenses) + '' : '',
             completed: !Util.isEmptyOrNull(spendingsData)
         });
+
+        subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
+            path: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
+            title: 'Regular Savings Plan',
+            value: '',
+            completed: this.hasRegularSavings() !== null,
+            hidden: true
+        });
+
         if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
             subItemsArray.push({
                 id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
@@ -957,6 +998,7 @@ export class ComprehensiveService {
                 ? this.getDownOnLuck().hospitalPlanName : '',
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
         });
+
         subItemsArray.push({
             id: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
             path: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
@@ -1421,8 +1463,8 @@ export class ComprehensiveService {
     checkResultData() {
         const getCompData = this.getComprehensiveSummary();
         let validateFlag = true;
-        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === '' 
-            ||  getCompData.reportStatus !== 'new') {
+        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === ''
+            || getCompData.reportStatus !== 'new') {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
