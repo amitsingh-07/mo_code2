@@ -171,10 +171,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             data.responseMessage.responseCode === 6008) {
             this.signUpService.setCustomerRef(data.objectList[0].customerRef);
           }
-          if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+          const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+          if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+            (insuranceEnquiry &&
+              insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
             const redirect = data.responseMessage.responseCode === 6000;
-            this.updateInsuranceEnquiry(data, redirect);
+            this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
           } else if (data.responseMessage.responseCode === 6000) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
           } else if (data.responseMessage.responseCode === 6008 ||
@@ -231,23 +234,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm.controls['confirmPassword'].reset();
   }
 
-  updateInsuranceEnquiry(data: any, redirect: boolean) {
-    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-    if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
-      const payload: IEnquiryUpdate = {
-        customerId: data.objectList[0].customerRef,
-        enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-        selectedProducts: insuranceEnquiry.plans
-      };
-      this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-        this.selectedPlansService.clearData();
-        if (redirect) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-        } else {
-          this.callErrorModal(data);
-        }
-      });
-    }
+  updateInsuranceEnquiry(insuranceEnquiry, data: any, redirect: boolean) {
+    const payload: IEnquiryUpdate = {
+      customerId: data.objectList[0].customerRef,
+      enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      selectedProducts: insuranceEnquiry.plans
+    };
+    this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+      this.selectedPlansService.clearData();
+      if (redirect) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      } else {
+        this.callErrorModal(data);
+      }
+    });
   }
 
   onPasswordInputChange() {

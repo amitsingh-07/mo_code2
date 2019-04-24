@@ -43,13 +43,15 @@ export class SignUpApiService {
    */
   createAccountBodyRequest(captcha: string, pwd: string): ISignUp {
     const getAccountInfo = this.signUpService.getAccountInfo();
+    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
     let journeyType = 'signup';
     let enquiryId = -1;
 
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+    if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && (insuranceEnquiry &&
+        insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
       journeyType = 'insurance';
-      enquiryId = this.selectedPlansService.getSelectedPlan().enquiryId;
+      enquiryId = insuranceEnquiry.enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
       journeyType = 'will-writing';
       enquiryId = this.willWritingService.getEnquiryId();

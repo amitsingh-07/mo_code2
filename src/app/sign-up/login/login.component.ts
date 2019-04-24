@@ -173,58 +173,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } catch (e) {
               console.log(e);
             }
-            this.updateInsuranceEnquiry(data, false);
-            this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-              if (userInfo.responseMessage.responseCode < 6000) {
-                // ERROR SCENARIO
-                if (
-                  userInfo.objectList &&
-                  userInfo.objectList.serverStatus &&
-                  userInfo.objectList.serverStatus.errors.length
-                ) {
-                  this.showCustomErrorModal(
-                    'Error!',
-                    userInfo.objectList.serverStatus.errors[0].msg
-                  );
-                } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
-                  const errorResponse = userInfo.responseMessage.responseDescription;
-                  this.showCustomErrorModal('Error!', errorResponse);
-                } else {
-                  this.investmentAccountService.showGenericErrorModal();
-                }
-              } else {
-                this.signUpService.setUserProfileInfo(userInfo.objectList);
-
-                // Investment status
-                const investmentStatus = this.signUpService.getInvestmentStatus();
-                const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
-                const redirect_url = this.signUpService.getRedirectUrl();
-                const journeyType = this.appService.getJourneyType();
-                if (redirect_url) {
-                  this.signUpService.clearRedirectUrl();
-                  if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
-                    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-                  } else if (investmentRoutes.includes(redirect_url) &&
-                    investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-                    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
-                  } else {
-                    this.router.navigate([redirect_url]);
-                  }
-                } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-                  this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-                } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
-                  journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
-                  journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
-                  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
-                } else {
-                  this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-                }
-              }
-            },
-              (err) => {
-                this.investmentAccountService.showGenericErrorModal();
-              });
             this.signUpService.removeCaptchaSessionId();
+            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+            if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+              this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
+            } else {
+              this.getUserProfileInfo();
+            }
           } else if (data.responseMessage.responseCode === 5016) {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
@@ -236,7 +191,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
               this.signUpService.setFromLoginPage();
             }
-            this.updateInsuranceEnquiry(data, true);
+            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+            if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+              this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
+            } else {
+              this.callErrorModal(data);
+            }
           } else {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
@@ -252,24 +212,81 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  updateInsuranceEnquiry(data, errorModal: boolean) {
-    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-    if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
-      const payload: IEnquiryUpdate = {
-        customerId: data.objectList[0].customerId,
-        enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-        selectedProducts: insuranceEnquiry.plans
-      };
-      this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-        this.selectedPlansService.clearData();
-        if (errorModal) {
-          this.callErrorModal(data);
+  getUserProfileInfo() {
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      if (userInfo.responseMessage.responseCode < 6000) {
+        // ERROR SCENARIO
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.serverStatus &&
+          userInfo.objectList.serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList.serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
         }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+
+        // Investment status
+        const investmentStatus = this.signUpService.getInvestmentStatus();
+        const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
+        const redirect_url = this.signUpService.getRedirectUrl();
+        const journeyType = this.appService.getJourneyType();
+        if (redirect_url) {
+          this.signUpService.clearRedirectUrl();
+          if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          } else if (investmentRoutes.includes(redirect_url) &&
+            investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+            this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+          } else {
+            this.router.navigate([redirect_url]);
+          }
+        } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+          this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+        } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
+          journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
+          journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        }
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
-    } else {
-      this.callErrorModal(data);
-    }
   }
+
+  checkInsuranceEnquiry(insuranceEnquiry): boolean {
+    return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+      (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0));
+  }
+
+  updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
+    const payload: IEnquiryUpdate = {
+      customerId: data.objectList[0].customerId,
+      enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      selectedProducts: insuranceEnquiry.plans
+    };
+    this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+      this.selectedPlansService.clearData();
+      if (errorModal) {
+        this.callErrorModal(data);
+      } else {
+        this.getUserProfileInfo();
+      }
+    });
+  }
+
 
   callErrorModal(data) {
     if (data.responseMessage.responseCode === 5012) {
