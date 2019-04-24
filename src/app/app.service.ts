@@ -96,11 +96,11 @@ export class AppService {
       this.promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
     }
     return this.promoCode;
-}
-setPromoCode(promoCode: string) {
-  this.promoCode = promoCode;
-  this.commit(promoCode, this.promoCode);
-}
+  }
+  setPromoCode(promoCode: string) {
+    this.promoCode = promoCode;
+    this.commit(PROMO_CODE, this.promoCode);
+  }
   clearJourneys() {
     if (window.sessionStorage) {
       // App data
