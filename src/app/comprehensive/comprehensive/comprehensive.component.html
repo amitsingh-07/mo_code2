@@ -1,9 +1,15 @@
 <div class="comprehensive-section">
   <section class="comprehensive-section p-1 text-center">
-    <iframe [src]='safeURL' frameborder="0" style="width: 100%;" ></iframe>
-</section>
+    <iframe [src]='safeURL' frameborder="0" style="width: 100%;"></iframe>
+  </section>
  
-
- 
-  <button class="start-now-btn btn-block btn btn-primary-dark" (click)="start()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
+<form [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm" class="promoCodeForm">
+    <div class=" flex-col-7">
+        <input  type="text"  id="promoCodeInpt"
+          class="form-control"  formControlName="comprehensivePromoCodeToken"  >
+      </div>
+</form>
+  <div style="color: #2d8289;" (click)="getPromoCode()"> {{'CMP.COMPREHENSIVE.GET_NEW'| translate}}</div>
+  <button class="start-now-btn btn-block btn btn-primary-dark"
+    (click)="getStarted()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
 </div>

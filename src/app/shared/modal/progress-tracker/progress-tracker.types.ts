@@ -24,6 +24,7 @@ export interface IProgressTrackerSubItem {
     title: string;
     value: string;
     completed: boolean;
+    hidden?: boolean;
     list?: IProgressTrackerSubItemList[];
 }
 

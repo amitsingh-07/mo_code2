@@ -54,8 +54,8 @@ export class ComprehensiveApiService {
     }
     saveRegularSavings(payload) {
         return this.http
-        .post(apiConstants.endpoint.comprehensive.saveRegularSavings, payload)
-        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .post(apiConstants.endpoint.comprehensive.saveRegularSavings, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     saveDownOnLuck(payload) {
         return this.http
@@ -86,17 +86,38 @@ export class ComprehensiveApiService {
 
     saveInsurancePlanning(payload) {
         return this.http
-        .post(apiConstants.endpoint.comprehensive.saveInsurancePlan, payload)
-        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .post(apiConstants.endpoint.comprehensive.saveInsurancePlan, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     saveRetirementPlanning(payload) {
         return this.http
-        .post(apiConstants.endpoint.comprehensive.saveRetirementPlan, payload)
-        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .post(apiConstants.endpoint.comprehensive.saveRetirementPlan, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getInsurancePlanning() {
         return this.httpClient.get('../../assets/comprehensive/insurancePlan.json')
-        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    getPromoCode() {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.getPromoCode)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    ValidatePromoCode(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.validatePromoCode, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 
+    /**
+     * Download the comprehensive report as PDF and open it in a new browser tab.
+     *
+     * @memberof ComprehensiveApiService
+     */
+    downloadComprehensiveReport() {
+        const payload = {
+            customerId: 0
+        };
+        return this.apiService.downloadComprehensiveReport(payload);
+    }
 }

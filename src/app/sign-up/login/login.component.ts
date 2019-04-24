@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 
+import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -24,7 +25,6 @@ import { AppService } from './../../app.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { LoginFormError } from './login-form-error';
-import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 
 @Component({
   selector: 'app-login',
@@ -172,11 +172,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             const investmentStatus = this.signUpService.getInvestmentStatus();
             const redirect_url = this.signUpService.getRedirectUrl();
             if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-              let skipLocation = false;
-              if (redirect_url && !ProgressTrackerUtil.compare(redirect_url, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED)) {
-                skipLocation = true;
-              }
-              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: skipLocation });
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
             } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
               this.willWritingService.getExecTrusteeInfo().length > 0) {
               if (!this.willWritingService.getIsWillCreated()) {

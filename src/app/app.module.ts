@@ -78,6 +78,7 @@ import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
 import { AboutAge } from './shared/utils/about-age.util';
+import { FileUtil } from './shared/utils/file.util';
 import { Formatter } from './shared/utils/formatter.util';
 import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
@@ -173,7 +174,7 @@ export function tokenGetterFn() {
             multi: true,
             deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
         }, Formatter, CurrencyPipe, RoutingService,
-        StateStoreService, Util,
+        StateStoreService, Util, FileUtil,
         InvestmentEnableGuard,
         InvestmentChildEnableGuard,
         WillWritingEnableGuard,
