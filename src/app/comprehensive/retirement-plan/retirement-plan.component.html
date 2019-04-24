@@ -6,23 +6,25 @@
   <div class="comprehensive__page-content">{{'CMP.RETIREMENT_PLAN.SUB_TITLE'|translate}} </div>
   <div class="income-bucket-panel">
     <div class="income-bucket-panel__img retirementImg"></div>
-    <div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span class='income-bucket-panel__value'>{{sliderValue}}</span></div>
+    <div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span
+        class='income-bucket-panel__value'>{{sliderValue}}</span></div>
   </div>
-  <div class="flex-row" [hidden] = true>
-    <span class="custom-slider-left text-left">45</span> <span class="custom-slider-middle text-right">50</span> <span class="custom-slider-middle text-right">55</span> <span class="custom-slider-middle text-right">60</span>
+  <div class="flex-row" [hidden]=true>
+    <span class="custom-slider-left text-left">45</span> <span class="custom-slider-middle text-right">50</span> <span
+      class="custom-slider-middle text-right">55</span> <span class="custom-slider-middle text-right">60</span>
     <span class="custom-slider-right text-right">62 or later </span>
-  </div>  
-  <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
-  <div class="slider-dark mt20">  
-  <nouislider  [disabled] = "viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="45" [max]="65"
-    [step]="1"></nouislider>
   </div>
+  <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
+    <div class="slider-dark mt20">
+      <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
+        [config]="ciSliderConfig" [min]="45" [max]="65" [step]="1"></nouislider>
+    </div>
   </form>
-    <div class='mt20 mb20'>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}}</div>
-    <div class="footer-cta">
+  <div class='mt20 mb20'>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}}</div>
+  <div class="footer-cta">
     <button type="button" (click)="goToNext(retirementPlanForm)" class="btn btn-primary mt30 width100"
-    id="moDpdnt2BtnFooter">{{
-      (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
-  </button>
+      id="moDpdnt2BtnFooter">{{
+        (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
+    </button>
   </div>
 </div>
