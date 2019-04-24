@@ -52,7 +52,8 @@ export class SignUpApiService {
         insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
       journeyType = 'insurance';
       enquiryId = insuranceEnquiry.enquiryId;
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getWillCreatedPrelogin()) {
       journeyType = 'will-writing';
       enquiryId = this.willWritingService.getEnquiryId();
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_INVESTMENT) {
@@ -191,8 +192,14 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword, captcha) {
+    let enqId;
     const sessionId = this.authService.getSessionId();
-    const invEnqId = this.authService.getEnquiryId();
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getWillCreatedPrelogin()) {
+      enqId = this.willWritingService.getEnquiryId();
+    } else {
+      enqId = this.authService.getEnquiryId();
+    }
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
   }
 

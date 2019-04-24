@@ -97,6 +97,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       } else {
         this.willWritingApiService.createWill().subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.willWritingService.setWillCreatedPrelogin();
             this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);
           } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
             this.willWritingService.openToolTipModal('', this.duplicateError);
