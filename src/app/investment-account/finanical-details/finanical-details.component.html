@@ -1,12 +1,13 @@
 <div class="financial-details">
   <div class="step-indicator-container">
     <div class="container-fluid max-width--1024">
-      <app-step-indicator [count]="9" [activeStepIndex]="3"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title-big">Financial Details</div>
+      <div class="title-big  hidden-sm-md" >{{'FINANCIAL_DETAILS.TITLE'
+        | translate}}</div>
       <div class="row">
         <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>

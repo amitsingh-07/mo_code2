@@ -3,12 +3,13 @@
 app-upload-documents {
   .upload-doc-nric {
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
         top: 60px;
         position: relative;
+        background-color: $white-color;
+      padding: 10px 0px;
       }
       .container-fluid {
         padding-top: 0px;
@@ -20,6 +21,12 @@ app-upload-documents {
         font-family: $muli;
         margin-bottom: 10px;
         text-align: center;
+      }
+    }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+        padding-top: 80px;
       }
     }
     .doc-upload-instructions {

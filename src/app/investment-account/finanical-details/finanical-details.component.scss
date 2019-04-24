@@ -20,17 +20,25 @@ app-finanical-details {
       color: $text-color-secondary;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+    
+      padding: 20px 0px;
       position: relative;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
       @include allmobiles{
+        background-color: $white-color;
+        padding: 10px 0px;
         top: 60px;
       }
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .form-control {
       &.with-button {
         padding: 0.5rem;

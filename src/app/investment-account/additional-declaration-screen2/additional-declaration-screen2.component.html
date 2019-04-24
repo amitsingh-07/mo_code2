@@ -1,12 +1,12 @@
 <div class="additional_declaration-screen">
   <div *ngIf="formValues.pep" class="step-indicator-container">
     <div class="container-fluid max-width--1024">
-      <app-step-indicator [count]="2" [activeStepIndex]="1"></app-step-indicator>
+      <app-step-indicator [count]="2" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title-big">Investments</div>
+      <div class="title-big hidden-sm-md">Investments</div>
       <div class="row">
         <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>

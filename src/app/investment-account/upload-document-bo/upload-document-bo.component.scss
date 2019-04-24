@@ -3,10 +3,11 @@
 app-upload-document-bo {
   .upload-doc-nric {
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
+        background-color: $white-color;
+        padding: 10px 0px;
         top: 60px;
         position: relative;
       }
@@ -22,6 +23,13 @@ app-upload-document-bo {
         text-align: center;
       }
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+        padding-top: 80px;
+      }
+    }
+
     .sub-title-block {
       display: flex;
       flex-direction: column;

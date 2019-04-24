@@ -1,13 +1,13 @@
 <div class="employement-details">
   <div class="step-indicator-container" *ngIf="!isEditProfile">
     <div class="container-fluid max-width--1024">
-      <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
     </div>
   </div>
   <!--  [class.invest-web-width]="!isEditProfile" [class.invest-web-pt-90]="isEditProfile" -->
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title-big">Employment Details</div>
+      <div class="title-big hidden-sm-md">{{'EMPLOYMENT_DETAILS.TITLE' | translate}}</div>
       <div class="row">
         <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>
