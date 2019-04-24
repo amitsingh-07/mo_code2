@@ -123,6 +123,15 @@ app-risk-profile {
       @include allmobiles {
         padding-top: 60px !important;
       }
+      @include minPhabletmaxTablet{
+        padding-top: 60px !important;
+       
+      }
+      @include tablet {
+        padding-top: 0px !important;
+       
+      }
+     
     }
 
     .fin-accessment-block__tab-container {
@@ -154,7 +163,7 @@ app-risk-profile {
           }
           &.secondPortfolio{
             margin-right: 0px !important;
-          }
+           }
          }
       }
      @include tablet {
@@ -184,21 +193,25 @@ app-risk-profile {
        @include allmobiles{
         padding: 0px 30px 65px !important;
         top: 205px;
-       }
+        }
       @include iPadLandscape {
         top: 260px;
-      }
-
+        }
+      @include minPhabletmaxTablet {
+        top: 166px !important;
+       }
       @include iPadProPortrait {
-        top: 265px;
-      }
+        top: 265px !important;
+       }
 
       @include iPadProLandscape {
         top: 265px;
-      }
+       }
 
       @include tablet {
         margin-top: 0px;
+        top: 265px !important;
+       
       }
     }
 
@@ -224,6 +237,9 @@ app-risk-profile {
       text-align: center;
       margin: 0;
       padding-top: 13px;
+      &.secondPortfolio{
+        padding-left: 13px;
+       }
     }
 
     .risk-profile-block__content__sub-title {
@@ -257,6 +273,9 @@ app-risk-profile {
       font-weight: bold;
       letter-spacing: -0.3px;
       color: #00a7a7;
+      @include allmobiles{
+        padding :0px;
+      }
     
 
       &:active {
@@ -277,12 +296,21 @@ app-risk-profile {
         justify-content: space-between;
         text-align: center;
         align-items: center;
+        @include allmobiles{
+          padding: 0px;
+        }
       }
+      
      }
      .portfolio-btn{
       width: 65px;
       height: 65px;
       padding: 5px;
+      }
+      .forward_img{
+        @include allmobiles{
+        padding-right: 5px
+        }
       }
     
   }

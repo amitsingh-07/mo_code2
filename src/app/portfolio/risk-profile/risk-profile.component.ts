@@ -35,6 +35,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   showSinglePortfolio = false;
   showNoPortfolio = false;
   time;
+  selectedRiskProfileId;
 
   constructor(
     public readonly translate: TranslateService,
@@ -84,13 +85,14 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.animateStaticModal = true;
     }
 
-  goToNext() {
+  goToNext(RiskProfileID) {
+    this.portfolioService.setSelectedRiskProfileId(RiskProfileID);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
   goToHomepage() {
     this.router.navigate(['home']);
   }
-  setPageTitle(title: string) {
+ setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 

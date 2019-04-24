@@ -2,6 +2,12 @@
 @import '../../../mixins';
 
 app-my-financials {
+  .container-fluid {
+   // padding-top: 70px;
+  @include minPhabletmaxTablet{
+   padding-top: 70px;
+  }
+}
   .banner-image{
     img{
       padding-top: 0;
@@ -95,6 +101,9 @@ app-my-financials {
   }
 
   .btn {
+    &:hover {
+      background-color: #3bbcbc !important;
+    }
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $disabled-teal-color;

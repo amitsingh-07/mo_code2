@@ -34,5 +34,12 @@ app-start-journey {
     font-family: $muli-bold !important;
     letter-spacing: -0.25px;
     font-size: 24px;
+    width:200px;
+    padding: 13px;
+    @include allmobiles {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
   }
 }

@@ -67,6 +67,14 @@ export class PortfolioService {
 
     this.commit();
   }
+  setSelectedRiskProfileId(RiskProfileID) {
+    this.portfolioFormData.selectedriskProfileId = RiskProfileID;
+  }
+  getSelectedRiskProfileId() {
+    return {
+      riskProfileId: this.portfolioFormData.selectedriskProfileId
+      };
+  }
 
   currentFormError(form) {
     const invalid = [];
