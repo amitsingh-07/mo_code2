@@ -121,7 +121,7 @@
             </div>
           </div>
         </div>
-        <div (click)="openModal()" class="auto-fill-cpf p-2" appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <div *ngIf="!viewMode" (click)="openModal()" class="auto-fill-cpf p-2" appComprehensiveViewMode="{{viewMode}}" mode=1>
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
           <img class="auto-fill-logo" src="/assets/images/comprehensive/myinfo-logo.svg">
         </div>
