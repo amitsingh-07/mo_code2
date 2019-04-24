@@ -204,9 +204,6 @@
     .flex-row {
       align-items: center;
       padding-right: 18px;
-      @include allmobiles{
-        padding-right: 0;
-        }
     }
 
     .circle {

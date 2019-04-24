@@ -1,6 +1,12 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 
+@mixin riskProfileBtn {
+  #riskProfileBtn {
+    width: 340px;
+  }
+}
+
 app-risk-profile {
   .hide-custom-modal {
     display: none;
@@ -190,6 +196,9 @@ app-risk-profile {
       position: relative;
       padding: 30px 30px 65px !important;
       top: 260px;
+      @include desktop {
+        @include riskProfileBtn;
+      }
        @include allmobiles{
         padding: 0px 30px 65px !important;
         top: 205px;
@@ -211,7 +220,7 @@ app-risk-profile {
       @include tablet {
         margin-top: 0px;
         top: 265px !important;
-       
+        @include riskProfileBtn;
       }
     }
 

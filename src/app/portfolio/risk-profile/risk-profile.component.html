@@ -48,12 +48,14 @@
           <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
             [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc"
             *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
-          <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext(selectedRiskProfile.riskProfileId)"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
-            id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
-          <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
-            id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
+          <div class="text-center">
+            <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext(selectedRiskProfile.riskProfileId)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
+            <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
+          </div>
           <!-- buttons -->
           <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="showTwoPortfolio"  (click)="goToNext(selectedRiskProfile.riskProfileId)">
             <div class="portfolio_bts">

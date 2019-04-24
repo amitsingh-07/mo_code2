@@ -22,9 +22,12 @@ app-personal-info {
     @include allmobiles {
       padding-top: 68px;
     }
+    @include desktop {
+      padding-right: 75px !important;
+      padding-left: 75px !important;
+    }
     padding-right: 15px !important;
     padding-left: 23px !important;
-
     .banner-image{
       img{
         padding-top: 0;
