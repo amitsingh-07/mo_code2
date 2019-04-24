@@ -360,11 +360,15 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck = comprehensiveDownOnLuck;
         this.commit();
     }
+    clearBadMoodFund() {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck.badMoodMonthlyAmount = null;
+        this.commit();
+    }
 
     hasBadMoodFund() {
         const maxBadMoodFund = Math.floor((this.getMyEarnings().totalAnnualIncomeBucket
             - this.getMySpendings().totalAnnualExpenses) / 12);
-        return maxBadMoodFund > 0;
+        return maxBadMoodFund >= 0;
     }
 
     setDependantSelection(selection: boolean) {
@@ -908,7 +912,8 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
                     title: 'Plan for children education',
                     value: hasEduPlansValue,
-                    completed: enquiry.hasEndowments !== null && hasDependants && eduPrefs && typeof eduPrefs !== 'undefined'
+                    completed: enquiry.hasEndowments !== null && hasDependants && eduPrefs && typeof eduPrefs !== 'undefined',
+                    hidden: !this.hasChildDependant()
                 });
 
             if (enquiry.hasEndowments === '1') {
@@ -980,16 +985,16 @@ export class ComprehensiveService {
             hidden: true
         });
 
-        if (this.hasBadMoodFund() || Util.isEmptyOrNull(earningsData)) {
-            subItemsArray.push({
-                id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
-                path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
-                title: 'Bad Mood Fund',
-                value: this.getDownOnLuck().badMoodMonthlyAmount
-                    ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
-                completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
-            });
-        }
+        subItemsArray.push({
+            id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
+            title: 'Bad Mood Fund',
+            value: this.getDownOnLuck().badMoodMonthlyAmount
+                ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
+            completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined',
+            hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
+        });
+
         subItemsArray.push({
             id: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND + '1',
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
@@ -1034,7 +1039,7 @@ export class ComprehensiveService {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveInsurancePlanning !== null;
         let hospitalPlanValue = '';
-        let cpfDependantProtectionSchemeValue = '';
+        let cpfDependantProtectionSchemeValue = '$0';
         let criticalIllnessValue = '$0';
         let ocpDisabilityValue = '$0';
         let longTermCareValue = '$0';
