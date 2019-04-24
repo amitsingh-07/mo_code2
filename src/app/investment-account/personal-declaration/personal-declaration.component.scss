@@ -63,18 +63,25 @@ app-personal-declaration {
       padding-right: 14px;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
         position: relative;
         top: 60px;
+        background-color: $white-color;
+      padding: 10px 0px;
       }
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;

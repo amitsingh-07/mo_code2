@@ -288,6 +288,7 @@
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Additional Declaration",
+    "PEP_DETAILS":"PEP Details",
     "YES": "Yes",
     "NO": "No",
     "PEP_FULL_NAME":"Full Name",
