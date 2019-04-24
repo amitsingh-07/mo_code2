@@ -109,4 +109,3 @@ export class ComprehensiveApiService {
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 }
-

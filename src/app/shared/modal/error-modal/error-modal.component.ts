@@ -23,6 +23,8 @@ export class ErrorModalComponent implements OnInit {
   @Input() promoSuccess: boolean;
   @Input() hasImpact: any;
   @Input() formName: any;
+  @Input() promoSuccessMsg: string;
+  @Input() email: string;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 

@@ -8,6 +8,7 @@
       </button>
     <div class="modal-body-message" id="error_message">
       <span *ngIf="errorMessage" [innerHTML]="errorMessage" id="error_message_one"></span>
+     <div *ngIf="promoSuccess"  class="text-center my-3" > <span class="promo-success" [innerHTML]="promoSuccessMsg"> </span> <span  class="email-promo" [innerHTML]="email"></span></div>
       <ng-container *ngIf="errorMessageList" id="error_message_list">
         <p class="label">{{formName  | titlecase}}</p>
         <p *ngFor="let errorMessage of errorMessageList"><span [innerHTML]="errorMessage"></span></p>
