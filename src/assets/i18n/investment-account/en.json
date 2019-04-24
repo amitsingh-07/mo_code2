@@ -17,7 +17,9 @@
     "APPLY_WITHOUT_MYINFO":"Apply Without MyInfo",
     "FILL_MANUALLY":"Fill in your information manually. Takes at least 1 working day to get your account approved.",
     "MANUALLY":"Fill Form Manually",
-    "ESTIMATE_TIME":"Estimate about 10 mins"
+    "ESTIMATE_TIME":"Estimate about 10 mins",
+    "INVESTMENT_OPENING":"Investment Account Opening",
+    "START_INVESTING":"Next, set up your investment account to start investing!"
 },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
