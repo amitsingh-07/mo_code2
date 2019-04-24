@@ -1,6 +1,7 @@
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
@@ -40,6 +41,7 @@ import {
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
+import { NavbarService } from '../shared/navbar/navbar.service';
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +54,9 @@ export class ComprehensiveService {
     private progressWrapper: IProgressTrackerWrapper;
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
-        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe, private routingService: RoutingService) {
+        private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
+        private routingService: RoutingService, private router: Router,
+        private navbarService: NavbarService) {
         this.getComprehensiveFormData();
     }
 
@@ -180,7 +184,7 @@ export class ComprehensiveService {
         this.commit();
     }
     setPromoCodeValidation(promoCodeValidated: boolean) {
-     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
     }
     /**
      * Get the comprehensive summary object.
@@ -545,7 +549,12 @@ export class ComprehensiveService {
         ref.result.then((result) => {
         }, (reason) => {
             if (reason === 'dismiss' && summaryModalDetails.routerEnabled) {
-                this.location.back();
+                const previousUrl = this.getPreviousUrl(this.router.url);
+                if (previousUrl !== null) {
+                    this.router.navigate([previousUrl]);
+                } else {
+                    this.navbarService.goBack();
+                }
             }
         });
         return false;
@@ -623,7 +632,6 @@ export class ComprehensiveService {
             if (accessibleUrl !== '') {
                 break;
             } else {
-                accessibleUrl = urlList[index];
                 switch (index) {
                     // 'getting-started'
                     case 0:
@@ -1455,8 +1463,8 @@ export class ComprehensiveService {
     checkResultData() {
         const getCompData = this.getComprehensiveSummary();
         let validateFlag = true;
-        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === '' 
-            ||  getCompData.reportStatus !== 'new') {
+        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === ''
+            || getCompData.reportStatus !== 'new') {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
