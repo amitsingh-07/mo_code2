@@ -32,7 +32,7 @@ export class RoadmapComponent implements OnInit {
     let itemFound = false;
     this.roadmapData.items.forEach((item) => {
       item.path = this.cleanRelativePath(item.path);
-      if (item.path.includes(this.router.url)) {
+      if (item.path.indexOf(this.router.url) > -1) {
         itemFound = true;
         item.status = ERoadmapStatus.IN_PROGRESS;
       } else {
