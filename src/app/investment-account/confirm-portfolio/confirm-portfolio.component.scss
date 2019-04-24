@@ -12,68 +12,84 @@ app-confirm-portfolio {
     .portfolio-allocation-details__container {
       color: $white-color;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
-      background-color: $portfolio-allocation-details-bg;
+
       .portfolio-allocation-details__content {
-        padding: 20px 0px;
+        margin-bottom: 30px;
+        border-radius: 6px;
         .portfolio-allocation-details__content__desc {
-          padding: 0 15px;
+          .portfolio_img {
+            text-align: center;
+            padding-top: 30px;
+            img {
+              width: 80px;
+              height: 80px;
+            }
+          }
+
           .portfolio-allocation-details__content__block {
-            font-size: 14px;
+            color: #00a7a7;
+            background-color: #fff;
+            font-size: 18px;
             line-height: 1.5;
             letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
-            background-color: $portfolio-allocation-details-content-color;
             padding: 20px 15px;
+
             strong {
               font-family: $muli-bold;
             }
           }
+
+          .review-edit {
+            justify-content: center;
+            align-items: center;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            color: $review-text-color;
+            background-color: #00717e;
+            border-radius: 0 0 6px 6px;
+            padding: 20px;
+
+            .edit_button {
+              background: url('../../../assets/images/edit-icon.svg') no-repeat;
+              cursor: pointer;
+              display: inline-flex;
+              margin-left: 12px;
+              width: 23px;
+              height: 23px;
+            }
+          }
         }
       }
-      .review-edit {
-        justify-content: center;
-        align-items: center;
-        font-family: $muli-semi-bold;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: -0.2px;
-        color: $review-text-color;
-        .edit_button {
-          background: url('../../../assets/images/edit_button.svg') no-repeat;
-          cursor: pointer;
-          display: inline-flex;
-          margin-left: 12px;
-          width: 18px;
-          height: 18px;
-        }
+    }
+    .asset-allocation {
+      margin-top: 33px;
+      .title {
+        font-family: $muli-bold;
+        font-size: 21px;
+        font-weight: bold;
+        letter-spacing: -0.4px;
+        color: $white-color;
+        padding-bottom: 14px;
+      }
+    }
+    .faq_link {
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      text-align: center;
+      padding: 21px 0 105px;
+      a {
+        color: $white-color;
+        text-decoration: underline;
       }
     }
   }
-  .asset-allocation {
-    margin-top: 33px;
-    .title {
-      font-family: $muli-bold;
-      font-size: 21px;
-      font-weight: bold;
-      letter-spacing: -0.4px;
-      color: $white-color;
-      padding-bottom: 14px;
-    }
-  }
-  .faq_link {
-    font-family: $muli-semi-bold;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    text-align: center;
-    padding: 21px 0 50px;
-    a {
-      color: $white-color;
-      text-decoration: underline;
-    }
-  }
+
   .review-block {
     padding: 20px 35px;
     background-color: $review-block-bg;
@@ -106,5 +122,48 @@ app-confirm-portfolio {
   hr {
     border-color: $teal-color;
     margin: 0;
+  }
+  
+  .recommend-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0 !important;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    padding: 30px !important;
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      .btn-primary{
+        font-size: 22px;
+        padding:10px 20px;
+      }
+    }
+
+    .text-one {
+      font-family: $muli-bold;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.44;
+      letter-spacing: -0.2px;
+      color: #00a7a7;
+      //padding: 0 20px 5px 0px;
+      padding-bottom: 5px;
+    }
+
+    .text-two {
+      font-family: $muli-regular;
+      font-size: 13px;
+      line-height: 1.15;
+      letter-spacing: -0.1px;
+      color: #2d8289;
+      padding-bottom: 5px;
+      //padding: 0 20px 5px 0px;
+    }
   }
 }

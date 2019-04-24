@@ -1,9 +1,11 @@
 <div class="container-fluid max-width--1024" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
-      <div class="portfolio-allocation-details__content">
+      <div class="portfolio-allocation-details__content white-bg">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
-          <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+            <div class="portfolio_img"><img src="../../../assets/images/growth.svg" id="riskProfileImg" /></div>
+          <div class="flex-col-12 portfolio-allocation-details__content__block"
+            [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
         </div>
       </div>
       <hr>
@@ -21,19 +23,31 @@
       <!-- bonds -->
       <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
     </div>
-    <div class="flex-col-12 annual-fees mt20">
+    <div class="flex-col-12 annual-fees mt0">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
       <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
     </div>
     <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
         'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>
-  <div class="row">
+  <div class="row hidden-lg">
     <div class="flex-col-12 review-block">
       <div>{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
       <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
-  <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100">{{
+  <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100 hidden-lg">{{
     'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
+</div>
+
+<div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
+  <div class="footer-content container-fluid max-width--1024">
+    <div>
+      <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
+      <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
+    </div>
+    <div>
+      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">{{'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
+    </div>
+  </div>
 </div>
