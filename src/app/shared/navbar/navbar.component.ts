@@ -251,6 +251,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  goToExternal(url) {
+    window.open(url, '_blank');
+  }
+
   goToHome(in_fragment?: string) {
     if (in_fragment) {
       const extra = { fragment: in_fragment } as NavigationExtras;

@@ -80,6 +80,9 @@ export class PromotionService {
     if (in_promotion.url) {
       promotion.url = in_promotion.url;
     }
+    if (in_promotion.button_label) {
+      promotion.button_label = in_promotion.button_label;
+    }
     if (!in_promotion.external) {
       promotion.logo = this.getPartnerLogo(in_promotion.owner);
     }
