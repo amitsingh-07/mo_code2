@@ -85,10 +85,14 @@
       </div>
     </div>
     <div class="home__section" #investment>
-      <div class="home__section--img tertiary">
+      <div class="home__section--img tertiary" *ngIf="!isInvestmentEnabled">
         <img class="robo" src="assets/images/home-page/home-investment-robo.svg">
         <img class="human" src="assets/images/home-page/home-investment.jpg" />
       </div>
+      <div class="home__section--img tertiary white-bg" *ngIf="isInvestmentEnabled">
+        <img class="robo" src="assets/images/home-page/home-investment.svg">
+      </div>
+      <div class="home__invest-promo tertiary bg-white" *ngIf="isInvestmentEnabled" innerHTML="{{'INVESTMENT.PROMO_TEXT' | translate}}"></div>
       <div class="home__section--text-container tertiary">
         <p class="home__section--title">{{'INVESTMENT.TITLE' | translate}}</p>
         <p class="home__section--desc">{{'INVESTMENT.DESCRIPTION' | translate}}</p>
@@ -98,6 +102,7 @@
         <button *ngIf="isInvestmentEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/invest">
           <span>{{'INVESTMENT.LINK1' | translate}}</span>
         </button>
+        <a class="home__section--subtext" target="_blank" href="https://advice.moneyowl.com.sg/investment/" *ngIf="isInvestmentEnabled">Find out more!</a>
       </div>
       <div class="home__seperator tertiary">
         <img class="hidden-sm" src="assets/images/home-page/seperator3.svg" />

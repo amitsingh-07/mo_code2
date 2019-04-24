@@ -93,16 +93,16 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
 
       // For Whole Life
-      if (this.data.premium.durationName.indexOf('Whole Life') > -1) {
-        this.highlights.push({ title: 'Coverage:', description: `$${this.data.premium.sumAssured} + Variable Bonus.` });
+      if (this.data.premium.durationName.indexOf('Whole Life') > -1 && this.type !== 'hospital plan') {
+        this.highlights.push({ title: 'Coverage:', description: this.currency.transform(this.data.premium.sumAssured, 'USD', 'symbol', '1.0-0') + ` + Variable Bonus.` });
       }
 
       // For Whole Life Multiplier
       if (this.data.premium.durationName.indexOf('Whole life w/Multiplier') > -1) {
-        const age = this.data.insurer.insurerName.indexOf('Tokio Marine') > -1 ? 70 : 65;
-        const sumAssured = this.round.transform(this.data.premium.sumAssured / 3);
-        this.highlights.push({ title: 'Coverage:', description: `$${this.data.premium.sumAssured} till age ${age}.` });
-        this.highlights.push({ title: `(After age ${age}: $${sumAssured} + Variable Bonus.)`, description: '' });
+        const age = this.data.insurer.insurerName.indexOf('Tokio Marine') > -1 ? 65 : 70;
+        const sumAssured = this.currency.transform(this.round.transform(this.data.premium.sumAssured / 3), 'USD', 'symbol', '1.0-0');
+        this.highlights.push({ title: 'Coverage:', description: this.currency.transform(this.data.premium.sumAssured, 'USD', 'symbol', '1.0-0') + ` till age ${age}.` });
+        this.highlights.push({ title: `(After age ${age}: ${sumAssured} + Variable Bonus.)`, description: '' });
       }
 
       if (this.type.indexOf('critical') > -1) {

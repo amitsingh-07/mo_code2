@@ -19,7 +19,10 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+
+import { DefaultErrors } from './../modal/error-modal/default-errors';
 
 @Component({
   selector: 'app-navbar',
@@ -89,6 +92,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
     private appService: AppService,
+    public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     this.matrixResolver();

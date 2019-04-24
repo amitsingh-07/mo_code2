@@ -26,12 +26,14 @@
           display: flex;
           color: #000000;
           font-weight: bold;
-          line-height: 22px;
+          line-height: normal;
           font-family: $muli-bold;
-          letter-spacing: -0.1px;
+          font-style: italic;
+          letter-spacing: -0.13px;
           font-size: 14px;
           background-color: #e3f0f0;
-          padding:20px;
+          border-radius: 8px;
+          padding: 17px 13px 17px 14px;
           align-items: center;
           border-radius: 6px;
           margin-top: 9px;

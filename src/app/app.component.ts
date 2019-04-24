@@ -12,7 +12,6 @@ import { ConfigService, IConfig } from './config/config.service';
 import { FBPixelService } from './shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
-import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RoutingService } from './shared/Services/routing.service';
 
@@ -30,7 +29,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private defaultError: DefaultErrors, private configService: ConfigService) {
+    private configService: ConfigService) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
