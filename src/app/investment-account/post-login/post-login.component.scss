@@ -66,18 +66,21 @@ app-post-login {
     @include allmobiles{
       padding-bottom: 0;
     }
-  }
   .signup-wrapper__header-icon {
     @include allmobiles {
-      width: 400px !important;
-      height: 50% !important;
-    }
-
-    img {
+      width: 282px;
+      height: 190px;
+      max-width: 282px;
+      max-height: 190px;
+      }
+     width: 282px;
+     height: 190px;
+     img {
       width: 100%;
       height: auto;
     }
   }
+}
 
   .autofill-link {
     &.postlogin {
