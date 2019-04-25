@@ -12,7 +12,7 @@ import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

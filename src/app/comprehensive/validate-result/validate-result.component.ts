@@ -32,7 +32,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE_NAV');
+        this.pageTitle = this.translate.instant('CMP.VALIDATE_RESULT.TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
