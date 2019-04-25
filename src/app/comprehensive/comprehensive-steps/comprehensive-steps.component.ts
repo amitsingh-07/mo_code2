@@ -43,7 +43,6 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.reportStatus = this.comprehensiveService.getReportStatus();
-    console.log(this.reportStatus);
     const currentStep = this.comprehensiveService.getMySteps();
     const stepCalculated = this.step - 1;
     if (this.step > 1 && this.step < 4 && (stepCalculated > currentStep)) {
