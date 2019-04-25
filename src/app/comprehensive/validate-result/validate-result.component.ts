@@ -19,6 +19,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
               private translate: TranslateService,
               private configService: ConfigService, private router: Router,
@@ -34,6 +35,11 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE_NAV');
         this.setPageTitle(this.pageTitle);
       });
+    });
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.goToNext();
+      }
     });
   }
 
@@ -55,11 +61,15 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       } else if (currentStep === 3 || currentStep === 4) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if ( stepCheck.status ) {
-          const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated  };
-          this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-            this.comprehensiveService.setMySteps(stepCalculated);
-            this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
-          });
+          if (currentStep === 4) {
+            this.initiateReport();
+          } else {
+            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated  };
+            this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
+              this.comprehensiveService.setMySteps(stepCalculated);
+              this.initiateReport();
+            });
+          }
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + stepCheck.stepIndicate]);
         }
@@ -77,6 +87,13 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2'] );
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS], { skipLocationChange: true } );
+  }
+  initiateReport() {
+    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId(), callBackUrl: '' };
+    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
+      this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT] );
+    });
   }
 }

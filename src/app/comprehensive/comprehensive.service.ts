@@ -780,6 +780,7 @@ export class ComprehensiveService {
                     case 24:
                     // 'result'
                     case 25:
+                    case 26:
                         if (retirementProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
@@ -1557,4 +1558,3 @@ export class ComprehensiveService {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
     }
 }
-
