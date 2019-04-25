@@ -118,7 +118,7 @@ export class NavbarConfig {
       showNotifications: false,
       showHeaderNavbar: true,
       showLabel: {
-        primary: 'Investment Adviser'
+        primary: 'Investment'
       }
     };
 }
