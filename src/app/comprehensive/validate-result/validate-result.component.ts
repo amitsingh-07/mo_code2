@@ -93,6 +93,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     const reportData = { enquiryId: this.comprehensiveService.getEnquiryId(), callBackUrl: '' };
     this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
+      this.comprehensiveService.setViewableMode(true);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT] );
     });
   }
