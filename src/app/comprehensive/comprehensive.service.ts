@@ -1462,7 +1462,8 @@ export class ComprehensiveService {
         return false;
     }
     setViewableMode(commitFlag: boolean) {
-        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus ===
+            COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
         } else {
              this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
@@ -1484,20 +1485,20 @@ export class ComprehensiveService {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
+        let totalAmount = 0;
         Object.keys(getResultConfig).forEach((financeInput) => {
             const apiInput = getResultConfig[financeInput].API_KEY;
             const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
             validationDataSet.forEach((dataSet) => {
-                if (!getCompData[apiInput][dataSet]) {
-                    validateFlag = false;
-                } else {
+                if (getCompData[apiInput][dataSet]) {
                     const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
-                    if (getAmount <= 0) {
-                        validateFlag = false;
-                    }
+                    totalAmount += getAmount;
                 }
             });
         });
+        if (totalAmount <= 0) {
+            validateFlag = false;
+        }
         return validateFlag;
     }
     /**

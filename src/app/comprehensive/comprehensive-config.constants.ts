@@ -126,7 +126,7 @@ export const COMPREHENSIVE_CONST = {
     YOUR_RESULTS: {
         YOUR_EARNINGS: {
             API_KEY: 'comprehensiveIncome',
-            VALIDATION_INPUT: ['monthlySalary'],
+            VALIDATION_INPUT: ['monthlySalary', 'otherMonthlyWorkIncome'],
         },
         YOUR_ASSETS: {
             API_KEY: 'comprehensiveAssets',
