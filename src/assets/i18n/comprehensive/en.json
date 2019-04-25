@@ -329,7 +329,8 @@
       "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
-      "NO_DESC": "Select which child you will like to cover for."
+      "NO_DESC": "Select which child you will like to cover for.",
+      "ALERT":"Please select at least one child."
     },
 
     "RSP": {
