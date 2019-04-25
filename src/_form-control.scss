@@ -1169,3 +1169,35 @@ input::placeholder {
     text-align: center;
   }
 }
+
+/**
+* form button design for investment-account and portfolio, 
+* 1. confirm/save/apply button set to width of 360
+*/
+@include desktop {
+  app-inv-personal-info, app-residential-address, app-employment-details,
+  app-finanical-details, app-tax-info, app-personal-declaration,
+  app-upload-document-bo, app-upload-documents, app-additional-declaration-screen2,
+  app-additional-declaration-step1 {
+    .content {
+        padding: 0 35px;
+    }
+  }
+}
+
+.content, .risk-profile-block {
+  div.text-center {
+      @include desktop {
+          .btn-ftr-get-started {
+            width: 360px;
+          }
+      }
+
+      @include tablet {
+          .btn-ftr-get-started {
+            width: 320px;
+          }
+      }
+  } 
+}
+//

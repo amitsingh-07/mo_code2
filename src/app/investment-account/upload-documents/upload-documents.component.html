@@ -177,9 +177,11 @@
             <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="mailAdressProofHidden"
               formControlName="mailAdressProof" />
           </div>
-          <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-            id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+          <div class="text-center">
+            <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
+              id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+          </div>
         </form>
         </div>
       </div>

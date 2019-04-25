@@ -519,12 +519,20 @@ line-height: lineHeightRem($size);
 	width: 100%;
 }
 
-// form continue button size - 360px
-@mixin formbutton360 {
-	width: 360px;
-}
-
-// form continue button size - 320px
-@mixin formbutton320 {
-	width: 320px;
+/**
+ * Design for stepper indicator, 
+ * Additional space inbetween the stepper for Desktop view
+ */
+@mixin stepindicator-desktop-extraspace {
+	@include desktop {
+		.container-fluid {
+			padding: 0px 25px 0 50px;
+			.step-item {
+				margin-right: 30px !important;
+				&:last-child {
+						margin-right: 0 !important;
+				}
+			}
+		}
+	}
 }

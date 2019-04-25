@@ -75,6 +75,7 @@ app-personal-declaration {
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

@@ -17,6 +17,7 @@ app-acknowledgement {
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
     
 

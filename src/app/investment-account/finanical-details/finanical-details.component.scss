@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../_mixins.scss';
-@import '../../../_form-design.scss';
+
 app-finanical-details {
   .financial-details {
     .inline-error-inv {
@@ -32,7 +32,8 @@ app-finanical-details {
         background-color: $white-color;
         padding: 10px 0px;
         top: 60px;
-      }
+      }    
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

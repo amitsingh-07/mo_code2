@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../_mixins.scss';
-@import '../../../_form-design.scss';
+
 app-employment-details {
   .employement-details {
     .postal-code-control {
@@ -76,6 +76,7 @@ app-employment-details {
          background-color: $white-color;
          padding: 10px 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

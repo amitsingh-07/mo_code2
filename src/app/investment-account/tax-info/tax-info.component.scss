@@ -1,5 +1,6 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
+
 app-tax-info {
   .app-tax-info {
     .flex-row {
@@ -77,6 +78,7 @@ app-tax-info {
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

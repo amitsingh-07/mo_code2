@@ -51,6 +51,7 @@ app-inv-personal-info {
         background-color: $white-color;
         padding: 10px 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
     padding-top: 16px;

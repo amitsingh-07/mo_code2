@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 app-upload-document-bo {
   .upload-doc-nric {
     .step-indicator-container {
@@ -22,6 +23,7 @@ app-upload-document-bo {
         margin-bottom: 10px;
         text-align: center;
       }
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

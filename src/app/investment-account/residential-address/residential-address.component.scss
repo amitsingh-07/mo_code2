@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../_mixins.scss';
+
 app-residential-address {
   .residential-address {
     .postal-code-control {
@@ -60,7 +61,8 @@ app-residential-address {
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
-      }
+      }    
+      @include stepindicator-desktop-extraspace;
     }
     .container-fluid {
       padding-top: 16px;

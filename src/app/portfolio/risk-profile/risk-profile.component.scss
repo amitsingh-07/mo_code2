@@ -190,11 +190,6 @@ app-risk-profile {
       position: relative;
       padding: 30px 30px 65px !important;
       top: 260px;
-      @include desktop {
-        #riskProfileBtn {
-          @include formbutton360;
-        }
-      }
        @include allmobiles{
         padding: 0px 30px 65px !important;
         top: 205px;
@@ -216,9 +211,6 @@ app-risk-profile {
       @include tablet {
         margin-top: 0px;
         top: 265px !important;
-        #riskProfileBtn {
-          @include formbutton360;
-        }
       }
     }
 
