@@ -102,7 +102,7 @@
                 "TITLE_DESC": "Completed",
                 "CONTENT_TITLE": "Do you know?",
                 "CONTENT_DESC": "This is how much university may cost you in future.",
-                "CONTENT_BODY_DESC": "The amount includes 6% inflation for tuition fee per year and 3% inflation for general living expenses per year.",                
+                "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",                
                 "CONTENT_NOTE": "It’s great that you are planning now!",
                 "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
                 "NEXT": "Next"
@@ -146,9 +146,9 @@
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
       "STEP_1_TITLE": "What's On Your Shoulders",
-      "STEP_1_DESC": "Your family commitments will impact on your financial Planning.Lets list it out now!",
+      "STEP_1_DESC": "Your family commitments will impact on your financial planning. Let's list it down now.",
       "STEP_2_TITLE": "Your Finances",
-      "STEP_2_DESC": "The information help us to estimate what you can save and invest, your protection need and your financial health.",
+      "STEP_2_DESC": "This information helps us to estimate what you can save and invest, your protection needs, and your financial health.",
       "STEP_3_TITLE": "Your Current Fireproofing",
       "STEP_3_DESC": "Let's find out how protected you are in face of unexpected events.",
       "STEP_4_TITLE_NAV":"Retirement Planning",
@@ -185,7 +185,7 @@
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you have any dependants?",
-      "DEPENDANTS_DESC": "A dependant is child, parent, spouse, sibling and relative I need to provide for."
+      "DEPENDANTS_DESC": "A dependant is a child, spouse, parent, sibling and/or relative you need to provide for."
     },
     "DEPENDANT_DETAILS": {
       "ABOUT": "About your dependants",
@@ -195,7 +195,7 @@
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
-      "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
+      "OPTIONS": ["yes, I do", "No, but i need insurance payout to cover my child's education in case i pass away", "No, I don't"]
     },
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
@@ -208,7 +208,7 @@
 
     },
     "EDUCATION_PREFERENCE": {
-      "HEADER": "Tell us about the education Preferences.",
+      "HEADER": "Tell us your preferences for their education.",
       "ABOUT": "About"
 
     },
@@ -291,9 +291,9 @@
     "GETTING_STARTED": {
       "TITLE": "Get Started",
       "HI": "Hi",
-      "HEADER": "Welcome to MoneyOwl <br>roboadvisory!",
+      "HEADER": "Welcome to MoneyOwl <br> robo advisory!",
       "WELCOME_BACK": "Welcome Back",
-      "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
+      "DESC": "Let’s kickstart your financial plan by <br> helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Some tips for you",
       "TOOL_TIP_DESC": "You can check your progress here!",
       "TOOL_TIP_CLOSE": "X"
@@ -327,7 +327,7 @@
 
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
-      "YES_DESC": "whose education you would like to fund?",
+      "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
       "NO_DESC": "Select which child you will like to cover for."
     },
