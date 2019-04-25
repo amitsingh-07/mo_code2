@@ -734,7 +734,7 @@ export class WillWritingService {
   }
 
   getWillCreatedPrelogin() {
-    sessionStorage.removeItem(WILL_CREATED_PRELOGIN);
+    return sessionStorage.getItem(WILL_CREATED_PRELOGIN);
   }
 
 }

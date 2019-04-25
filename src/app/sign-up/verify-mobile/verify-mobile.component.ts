@@ -14,6 +14,8 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { WillWritingService } from './../../will-writing/will-writing.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -32,7 +34,7 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
   editProfile: boolean;
-  fromLoginPage: string;  
+  fromLoginPage: string;
   showEditMobileNo = true;
 
   constructor(
@@ -45,7 +47,9 @@ export class VerifyMobileComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private errorHandler: CustomErrorHandlerService,
-    public authService: AuthenticationService) {
+    public authService: AuthenticationService,
+    private selectedPlansService: SelectedPlansService,
+    private willWritingService: WillWritingService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -160,6 +164,8 @@ export class VerifyMobileComponent implements OnInit {
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.signUpService.clearData();
+        this.selectedPlansService.clearData();
+        this.willWritingService.clearData();
         if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
           this.signUpService.removeFromLoginPage();
         }

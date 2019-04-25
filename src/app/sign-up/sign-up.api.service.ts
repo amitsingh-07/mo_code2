@@ -200,7 +200,7 @@ export class SignUpApiService {
     } else {
       enqId = this.authService.getEnquiryId();
     }
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId);
   }
 
   logout() {

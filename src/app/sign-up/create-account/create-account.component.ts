@@ -241,7 +241,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-      this.selectedPlansService.clearData();
       if (redirect) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else {

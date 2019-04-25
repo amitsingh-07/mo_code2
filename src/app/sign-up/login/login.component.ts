@@ -187,10 +187,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.refreshCaptcha();
           } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
             if (data.responseMessage.responseCode === 5014) {
-              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
               this.signUpService.setFromLoginPage();
             }
+            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
               this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
@@ -273,15 +273,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
     const payload: IEnquiryUpdate = {
-      customerId: data.objectList[0].customerId,
+      customerId: data.objectList[0].customerId || data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-      this.selectedPlansService.clearData();
       if (errorModal) {
         this.callErrorModal(data);
       } else {
+        this.selectedPlansService.clearData();
         this.getUserProfileInfo();
       }
     });
