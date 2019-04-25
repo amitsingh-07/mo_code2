@@ -101,7 +101,7 @@
                 "TITLE_IMAGE": "education-with-dependant.svg",
                 "TITLE_DESC": "Completed",
                 "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much university may cost you in future.",
+                "CONTENT_DESC": "This is how much university may cost you in future:",
                 "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",                
                 "CONTENT_NOTE": "It’s great that you are planning now!",
                 "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
@@ -536,7 +536,7 @@
     "RESULT":{
       "READY":"Your report is ready soon!",
       "DESC":"We are analysing your needs using proprietary models now…",
-      "ABOUT":"Your report will be ready in a few mins. Once the report is ready, we will inform you via your email ",
+      "ABOUT":"Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
       "STEP_TITLE":"What’s Next?",
       "STEP_1":"Keep a lookout for our notification mail!",
       "STEP_2":"Set up an appointment with a MoneyOwl client adviser to go through your report.",

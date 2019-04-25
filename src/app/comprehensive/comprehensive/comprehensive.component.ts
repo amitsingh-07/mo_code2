@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +27,8 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-comprehensive',
   templateUrl: './comprehensive.component.html',
-  styleUrls: ['./comprehensive.component.scss']
+  styleUrls: ['./comprehensive.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ComprehensiveComponent implements OnInit {
 
