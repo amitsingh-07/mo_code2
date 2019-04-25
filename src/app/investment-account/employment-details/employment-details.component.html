@@ -343,14 +343,16 @@
                     </div>
                   </div>
                 </div>
-                <button *ngIf="!isEditProfile" type="button" id="employment_details_btn"
-                  (click)="goToNext(employementDetailsForm)"
-                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
-                      'COMMON.LABEL.CONTINUE' | translate}}</button>
-                <button *ngIf="isEditProfile" type="button" id="employment_details_btn"
-                  (click)="goToNext(employementDetailsForm)"
-                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">Apply
-                  Changes</button>
+                <div class="text-center">
+                  <button *ngIf="!isEditProfile" type="button" id="employment_details_btn"
+                    (click)="goToNext(employementDetailsForm)"
+                    class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="getStrdBtn3">{{
+                        'COMMON.LABEL.CONTINUE' | translate}}</button>
+                  <button *ngIf="isEditProfile" type="button" id="employment_details_btn"
+                    (click)="goToNext(employementDetailsForm)"
+                    class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="getStrdBtn3">Apply
+                    Changes</button>
+                </div>
               </form>
             </div>
           </div>

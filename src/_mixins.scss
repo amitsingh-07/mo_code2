@@ -518,3 +518,13 @@ line-height: lineHeightRem($size);
 	flex-basis: 100%;
 	width: 100%;
 }
+
+// form continue button size - 360px
+@mixin formbutton360 {
+	width: 360px;
+}
+
+// form continue button size - 320px
+@mixin formbutton320 {
+	width: 320px;
+}
