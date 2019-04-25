@@ -853,5 +853,19 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  /**
+   * Download the comprehensive report.
+   *
+   * @param {*} payload
+   * @returns {Observable<any>}
+   * @memberof ApiService
+   */
+  downloadComprehensiveReport(payload): Observable<any> {
+    return this.http.postForBlob(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false, false)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
 

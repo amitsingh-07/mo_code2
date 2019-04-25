@@ -25,6 +25,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
+  subscription: Subscription;
   summaryModalDetails: IMySummaryModal;
   retirementPlanForm: FormGroup;
   retireModal: any;
@@ -87,6 +88,18 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
         this.progressService.show();
       }
     });
+
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+        if (previousUrl !== null) {
+          this.router.navigate([previousUrl]);
+        } else {
+          this.navbarService.goBack();
+        }
+      }
+    });
+
     this.sliderValue = this.comprehensiveService.getRetirementPlan() ? this.comprehensiveService.getRetirementPlan().retirementAge : 45;
     this.buildRetirementPlanForm();
   }
@@ -107,6 +120,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+    this.subscription.unsubscribe();
   }
   buildRetirementPlanForm() {
     this.retirementPlanForm = new FormGroup({
@@ -158,4 +173,3 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 }
-

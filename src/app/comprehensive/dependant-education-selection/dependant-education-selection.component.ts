@@ -86,6 +86,11 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
+      form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
+      this.educationSelection(form);
+    });
   }
 
   ngOnDestroy() {
@@ -125,11 +130,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getNewEndowmentItem(dependant: IDependantDetail) {
     let preferenceSelected = true;
     if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
-      if (this.comprehensiveService.getChildEndowment().length) {
-        preferenceSelected = false;
-      } else {
-        preferenceSelected = dependant.isInsuranceNeeded;
-      }
+      preferenceSelected = (dependant.isInsuranceNeeded === null || dependant.isInsuranceNeeded);
     } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
       preferenceSelected = false;
     }
@@ -157,6 +158,14 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
       21 : 19);
+
+    let preferenceSelected = true;
+    if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
+      preferenceSelected = (dependant.isInsuranceNeeded === null || dependant.isInsuranceNeeded);
+    } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
+      preferenceSelected = true;
+    }
+
     return {
       id: 0, // #childEndowment.id,
       dependentId: dependant.id,
@@ -169,17 +178,9 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
       endowmentMaturityYears: childEndowment.endowmentMaturityYears,
       age: maturityAge,
-      preferenceSelection: true,
+      preferenceSelection: preferenceSelected,
       nation: dependant.nation
     } as IChildEndowment;
-  }
-
-  @HostListener('input', ['$event'])
-  checkDependant() {
-    this.dependantEducationSelectionForm.valueChanges.subscribe((form: any) => {
-      form.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
-      this.educationSelection(form);
-    });
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -269,16 +270,22 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             hasEndowments: form.value.hasEndowments,
             endowmentDetailsList: selectedChildArray
           }).subscribe((data: IServerResponse) => {
-            data.objectList.forEach((item) => {
-              // tslint:disable-next-line:no-commented-code
-              /*
-              selectedChildArray.forEach((childItem: IChildEndowment) => {
-                if (childItem.dependentId === item.dependentId) {
-                  childItem.id = item.id;
-                }
-              });
-              */
+
+            // RESET Insurance Needed
+            this.dependantDetailsArray.forEach((dependant: IDependantDetail, i: number) => {
+              this.dependantDetailsArray[i].isInsuranceNeeded = false;
             });
+
+            selectedChildArray.forEach((childItem: IChildEndowment) => {
+              if (form.value.hasEndowments === '2') {
+                this.dependantDetailsArray.forEach((dependant: IDependantDetail, i: number) => {
+                  if (childItem.dependentId === dependant.id) {
+                    this.dependantDetailsArray[i].isInsuranceNeeded = true;
+                  }
+                });
+              }
+            });
+            this.comprehensiveService.setMyDependant(this.dependantDetailsArray);
             this.comprehensiveService.setChildEndowment(selectedChildArray);
             this.loaderService.hideLoader();
             this.gotoNextPage(form);

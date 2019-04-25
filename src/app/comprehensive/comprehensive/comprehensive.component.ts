@@ -72,7 +72,7 @@ export class ComprehensiveComponent implements OnInit {
           if (action === 'GET_PROMO_CODE') {
             this.getPromoCode();
           } else if (action === 'VALIDATE_PROMO_CODE') {
-            this.getStarted('');
+            this.getStarted();
           } else {
             this.redirect();
           }
@@ -90,10 +90,10 @@ export class ComprehensiveComponent implements OnInit {
     const redirectUrl = this.signUpService.getRedirectUrl();
     const cmpData = this.cmpService.getComprehensiveSummary();
     if (redirectUrl && cmpData.comprehensiveEnquiry.hasComprehensive
-      && cmpData.comprehensiveEnquiry.promoCodeValidated) {
+      && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([redirectUrl]);
     } else if (cmpData.comprehensiveEnquiry.hasComprehensive
-      && cmpData.comprehensiveEnquiry.promoCodeValidated) {
+      && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
   }
@@ -103,15 +103,15 @@ export class ComprehensiveComponent implements OnInit {
       comprehensivePromoCodeToken: new FormControl(''),
     });
   }
-  getStarted(form) {
+  getStarted() {
     this.appService.setAction('VALIDATE_PROMO_CODE');
-    if (form !== '') {
-      this.appService.setPromoCode(form.value.comprehensivePromoCodeToken);
+    if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
+      this.appService.setPromoCode(this.promoCodeForm.value.comprehensivePromoCodeToken);
     }
 
     if (this.authService.isSignedUser()) {
       const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId() };
-      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.promoCodeValidated) {
+      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
       } else {
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data) => {
@@ -127,22 +127,18 @@ export class ComprehensiveComponent implements OnInit {
   showSuccessPopup() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '';
-    ref.componentInstance.errorMessage = this.promoCodeSuccess + this.signUpService.getUserProfileInfo().emailAddress;
+    ref.componentInstance.promoSuccessMsg = this.promoCodeSuccess;
+    ref.componentInstance.email =  this.signUpService.getUserProfileInfo().emailAddress;
     ref.componentInstance.promoSuccess = true;
   }
   getPromoCode() {
     this.appService.setAction('GET_PROMO_CODE');
     if (this.authService.isSignedUser()) {
-      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.promoCodeValidated) {
+      this.comprehensiveApiService.getPromoCode().subscribe((data) => {
         this.showSuccessPopup();
-      } else {
-        this.comprehensiveApiService.getPromoCode().subscribe((data) => {
-          this.showSuccessPopup();
-        }, (err) => {
+      }, (err) => {
 
-        });
-      }
-
+      });
     } else {
       this.showLoginOrSignUpModal();
     }
