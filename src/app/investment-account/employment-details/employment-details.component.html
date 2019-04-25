@@ -46,7 +46,7 @@
                   </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('companyName').enabled && !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
-                  <input type="text" formControlName="companyName"  maxLength="30" id="empliyement_status_company_input" class="form-control">
+                  <input type="text" formControlName="companyName"  maxLength="100" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
               <!-- Industry -->

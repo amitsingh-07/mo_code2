@@ -1,5 +1,19 @@
 [
     {
+        "promoId": 12, 
+        "type": 3,
+        "owner": "MoneyOwl",
+        "title": "Enjoy 0.50% advisory fee per annum when you invest now!",
+        "thumbnail": "/assets/promotions/images/12/thumbnail.svg",
+        "desc": "Invest by <u>31st May 2019</u> to enjoy this special rate until 31st Dec 2019 (usual 0.65%) advisory fee per annum.",
+        "date_created": "1555948800000",
+        "date_expiry": "1559318399000",
+        "tag": ["Investment"],
+        "external": true,
+        "url": "https://www.advice.moneyowl.com.sg/investment",
+        "button_label": "Find Out More"
+    },
+    {
         "promoId": 1,
         "type": 1,
         "owner": "Aviva",
@@ -121,7 +135,8 @@
         "date_expiry": "1620230399000",
         "tag" : ["Wills"],
         "external": true,
-        "url": "/home#subscribe"
+        "url": "https://www.moneyowl.com.sg/#/home#subscribe",
+        "button_label": "Subscribe Now!"
     },
     {
         "promoId": 11,
