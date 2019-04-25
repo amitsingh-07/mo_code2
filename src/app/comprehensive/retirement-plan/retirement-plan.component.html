@@ -7,7 +7,7 @@
   <div class="income-bucket-panel">
     <div class="income-bucket-panel__img retirementImg"></div>
     <div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span
-        class='income-bucket-panel__value'>{{sliderValue}}</span></div>
+        class='income-bucket-panel__value'>{{(sliderValue>60)?'62 or later':sliderValue}}</span></div>
   </div>
   <div class="flex-row" [hidden]=true>
     <span class="custom-slider-left text-left">45</span> <span class="custom-slider-middle text-right">50</span> <span
@@ -17,7 +17,7 @@
   <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
     <div class="slider-dark mt20">
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
-        [config]="ciSliderConfig" [min]="45" [max]="65" [step]="1"></nouislider>
+        [config]="ciSliderConfig" [min]="45" [max]="65" [step]="5"></nouislider>
     </div>
   </form>
   <div class='mt20 mb20'>{{'CMP.RETIREMENT_PLAN.YOUR_AGE'|translate}}</div>

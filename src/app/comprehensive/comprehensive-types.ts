@@ -203,6 +203,6 @@ export interface IInsurancePlan {
 }
 export interface IRetirementPlan {
     enquiryId: number;
-    retirementAge: number;
+    retirementAge: string;
 }
 
