@@ -7,7 +7,6 @@ import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
 import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
 import { DependantEducationSelectionComponent } from './dependant-education-selection/dependant-education-selection.component';
 import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
@@ -58,7 +57,6 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN, component: InsurancePlanComponent },
             { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN_SUMMARY + '/:summary', component: InsurancePlanComponent },
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
-            { path: COMPREHENSIVE_ROUTES.DASHBOARD, component: DashboardComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
             { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent }
         ]

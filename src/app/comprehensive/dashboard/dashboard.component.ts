@@ -16,7 +16,7 @@ import { ComprehensiveService } from './../comprehensive.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class ComprehensiveDashboardComponent implements OnInit {
   userName: string;
   comprehensivePlanning: number;
   userDetails: IMyProfile;
@@ -66,8 +66,9 @@ export class DashboardComponent implements OnInit {
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
             this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
           }
-          this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.stepCompleted
-            && this.getComprehensiveSummary.stepCompleted !== null ) ? this.getComprehensiveSummary.stepCompleted : 0;
+          this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
+            && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null )
+            ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
         }
       });
   }
@@ -83,6 +84,8 @@ export class DashboardComponent implements OnInit {
   goToCurrentStep() {
     if (this.currentStep >= 0  && this.currentStep < 4 ) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+    } else if (this.currentStep === 4) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {

@@ -1,26 +1,16 @@
-<div class="container-fluid max-width--1024 comprehensive">
-  <div class="flex-row overlap-grass">
-    <div class="flex-col-8">
-      <div class="welcome-title"> {{'CMP.DASHBOARD.WELCOME_TITLE'|translate}} </div>
-      <div class="welcome-user">{{userName | titlecase}}</div>
-      <div class='edit-profile' (click)="goToEditProfile()"><span class='ml25'>{{'CMP.DASHBOARD.EDIT_PROFILE'|translate}}</span></div>
-    </div>
-    <div class="flex-col-4 grass_bg">
-      <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
-    </div>
-  </div>  
+<div class="container-fluid max-width--1024 comprehensive">  
     <div class="form-group-with-bg overlay-bg" >
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row">
           <div class="flex-col-10">
             <div class="form-group-with-bg--header-label">{{
-              'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
+              'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
             </div>
           </div>
           <div class="flex-col-2">
-              <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
-              <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)" (click)="goToEditComprehensivePlan(false)">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
+              <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
+              <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)" (click)="goToEditComprehensivePlan(false)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
           </div>
         </div>
       </div>
@@ -28,7 +18,7 @@
       <div class="form-group-with-bg--content">
         <div class="flex-row"  [hidden]="comprehensivePlanning === 3 || comprehensivePlanning === 4" >
           <div class="flex-col-8">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_COMPLETED_DESC' | translate}}
+            <div class="form-group-with-bg--content-label" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_COMPLETED_DESC' | translate}}
             </div>
           </div>
           <div class="flex-col-4 text-right">
@@ -37,7 +27,7 @@
         </div>        
         <div class="flex-row"  [hidden]="comprehensivePlanning !== 3" >
           <div class="flex-col-8">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_PENDING_DESC' | translate}}
+            <div class="form-group-with-bg--content-label" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_PENDING_DESC' | translate}}
             </div>
           </div>
           <div class="flex-col-4 text-right">
@@ -46,17 +36,17 @@
         </div>
         <div class="flex-row" [hidden]="comprehensivePlanning !== 2">
             <div class="flex-col-12">
-              <div class="form-group-with-bg--content-label" for="name"><u>{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP' | translate}}</u>
+              <div class="form-group-with-bg--content-label" for="name"><u>{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP' | translate}}</u>
               </div>
-              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP_DESC' | translate}}
+              <div class="form-group-with-bg--content-label" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP_DESC' | translate}}
                 </div>
             </div>
           </div>
 
         <div class="flex-row" [hidden]="comprehensivePlanning !== 0">
             <div class="flex-col-12 text-center disabled-plan-report" >
-              <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_CALCULATE_REPORT' | translate}}
-                  <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_ESTIMATE' | translate}}
+              <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_CALCULATE_REPORT' | translate}}
+                  <div class="ft-13" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_ESTIMATE' | translate}}
                     </div>
               </div>
             </div>
@@ -64,7 +54,7 @@
           <div class="flex-row" [hidden]="comprehensivePlanning !== 2">
               <div class="flex-col-12">
                   <button type="button"  class="btn btn-primary width100" id="prfBtn1">
-                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_ADVISOR' | translate}}                  
+                      <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_ADVISOR' | translate}}                  
                       </div>
                   </button>
               </div>
@@ -72,8 +62,8 @@
           <div class="flex-row"  [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
               <div class="flex-col-12">
                   <button type="button" class="btn btn-view width100" id="prfBtn1">
-                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
-                          <div class="label-grey ft-13" for="name">{{ ('CMP.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', reportDate)}}
+                      <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
+                          <div class="label-grey ft-13" for="name">{{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', reportDate)}}
                             </div>
                       </div>
                   </button>
@@ -82,8 +72,8 @@
           <div class="flex-row"  [hidden]="comprehensivePlanning !== 3">
               <div class="flex-col-12">
                   <button type="button"  class="btn btn-primary width100" id="prfBtn1" (click)="goToCurrentStep()">
-                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.COMPREHENSIVE_PLANNING_CONTINUE' | translate}}                  
-                          <div class="ft-13" for="name" [hidden]="this.currentStep < 1 || this.currentStep > 4">{{ ('CMP.DASHBOARD.COMPREHENSIVE_PLANNING_STEPS_PENDING' | translate).replace('CURRENT_STEP', currentStep)}}
+                      <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_CONTINUE' | translate}}
+                          <div class="ft-13" for="name" [hidden]="this.currentStep > 4">{{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_STEPS_PENDING' | translate).replace('CURRENT_STEP', currentStep)}}
                             </div>
                       </div>
                   </button>
@@ -92,7 +82,7 @@
 
           <div class="flex-row" [hidden]="comprehensivePlanning !== 4">
             <div class="flex-col-8">
-              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.DASHBOARD.DEFAULT_CONTENT' | translate}}
+              <div class="form-group-with-bg--content-label" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_CONTENT' | translate}}
               </div>
             </div>
             <div class="flex-col-4 text-right">
@@ -102,8 +92,8 @@
           <div class="flex-row" [hidden]="comprehensivePlanning !== 4">
               <div class="flex-col-12">
                   <button type="button"  class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
-                      <div class="ft-18" for="name">{{ 'CMP.DASHBOARD.DEFAULT_START' | translate}}                  
-                      <div class="ft-13" for="name">{{ 'CMP.DASHBOARD.DEFAULT_ESTIMATED' | translate}}
+                      <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_START' | translate}}                  
+                      <div class="ft-13" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED' | translate}}
                             </div>
                       </div>
                   </button>
