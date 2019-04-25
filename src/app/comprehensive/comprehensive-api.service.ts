@@ -120,4 +120,9 @@ export class ComprehensiveApiService {
         };
         return this.apiService.downloadComprehensiveReport(payload);
     }
+    saveStepIndicator(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.saveStepIndicator, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 }

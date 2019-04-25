@@ -115,7 +115,8 @@ export class ComprehensiveService {
             22: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
             23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
             24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
-            25: COMPREHENSIVE_ROUTE_PATHS.RESULT
+            25: COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
+            26: COMPREHENSIVE_ROUTE_PATHS.RESULT
         };
 
         Object.keys(urlList).forEach((key) => {
@@ -186,6 +187,7 @@ export class ComprehensiveService {
     setPromoCodeValidation(promoCodeValidated: boolean) {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
     }
+
     /**
      * Get the comprehensive summary object.
      *
@@ -210,6 +212,7 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
         this.reloadDependantDetails();
         this.setBucketAmountByCal();
+        this.setViewableMode(false);
         this.commit();
     }
 
@@ -1457,9 +1460,15 @@ export class ComprehensiveService {
         }
         return false;
     }
-    setViewableMode(viewMode: boolean) {
-        this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
-        this.commit();
+    setViewableMode(commitFlag: boolean) {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
+        } else {
+             this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
+        }
+        if (commitFlag) {
+            this.commit();
+        }
         return true;
     }
     /**
@@ -1468,8 +1477,9 @@ export class ComprehensiveService {
     checkResultData() {
         const getCompData = this.getComprehensiveSummary();
         let validateFlag = true;
-        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === ''
-            || getCompData.reportStatus !== 'new') {
+        if (!getCompData || !getCompData.comprehensiveEnquiry.reportStatus ||
+            getCompData.comprehensiveEnquiry.reportStatus === null || getCompData.comprehensiveEnquiry.reportStatus === ''
+            ||  getCompData.comprehensiveEnquiry.reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
@@ -1498,13 +1508,19 @@ export class ComprehensiveService {
         progressData.push(this.getFinancesProgressData());
         progressData.push(this.getFireproofingProgressData());
         progressData.push(this.getRetirementProgressData());
-        let goToStep = 5;
+        let goToStep = 0;
         let stepStatus = true;
-        for (let t = 0; t < currentStep; t++) {
-            if (goToStep === 5) {
-                if (!this.getSubItemStatus(progressData[t])) {
-                    stepStatus = false;
-                    goToStep = t;
+        const stepIndicator = this.getMySteps();
+        if (stepIndicator !== currentStep - 1) {
+            stepStatus = false;
+            goToStep = stepIndicator + 1;
+        } else {
+            for (let t = 0; t < currentStep; t++) {
+                if (goToStep === 0) {
+                    if (!this.getSubItemStatus(progressData[t])) {
+                        stepStatus = false;
+                        goToStep = t;
+                    }
                 }
             }
         }
@@ -1522,4 +1538,23 @@ export class ComprehensiveService {
         });
         return completedStatus;
     }
+    setMySteps(currentStep: number) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted = currentStep;
+        this.commit();
+    }
+    getMySteps() {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted;
+        } else {
+            return 0;
+        }
+    }
+    setReportStatus(reportStatus: string) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus = reportStatus;
+        this.commit();
+    }
+    getReportStatus() {
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
+    }
 }
+

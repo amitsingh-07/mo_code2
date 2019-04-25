@@ -166,7 +166,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.summaryModalDetails = {
         setTemplateModal: 4,
         contentObj: this.retireModal,
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.RESULT),
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT),
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);

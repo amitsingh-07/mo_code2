@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
@@ -63,11 +64,11 @@ export class DashboardComponent implements OnInit {
     this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
     this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.reportStatus
                         && this.getComprehensiveSummary.reportStatus !== null) ? this.getComprehensiveSummary.reportStatus : 'new' ;
-    if (this.reportStatus === 'new') {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       this.comprehensivePlanning = 3;
-    } else if (this.reportStatus === 'submitted') {
+    } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.comprehensivePlanning = 0;
-    } else if (this.reportStatus === 'ready') {
+    } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
     }
 

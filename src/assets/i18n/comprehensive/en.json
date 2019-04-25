@@ -542,8 +542,12 @@
       "STEP_3":"Customise and implement your financial plan with your adviser.",
       "DASHBOARD":"Dashboard",
        "TOOLTIP_TITLE":"Sorry, you are unable to access the previous page.",
-       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."
-
+       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."      
+    },
+    "VALIDATE_RESULT":{
+      "DESC":"Uh-oh! It seems you have reached a roadblock.",
+      "ABOUT": "As you have not filled in any fields under Your Finances, we are unable to generate your reports. Please review your inputs.",
+      "FINANCE": "Go to Your Finances"
     },
     "ENQUIRY":{
       "TITLE":"Wait for our call!",

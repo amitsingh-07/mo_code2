@@ -1,0 +1,32 @@
+@import '../../../variables';
+@import '../../../mixins';
+.comprehensive.validate-result {
+  background: #fff;
+  height: 100%!important;
+
+  .header {
+    color: #066360;
+    font-size: 24px;
+    font-family: $muli-bold;
+  }
+
+  .resultValidateImg {
+    background: url("/assets/images/comprehensive/result-finance.svg") no-repeat;
+    display: inline-block;
+    width: 218px;
+    height: 150px;
+  }
+
+  .result-panel {
+    &__about {
+      font-size: 14px;
+      color: #9f9f9f;
+      font-family: $muli-italic;
+    }
+  }
+  .about {
+    font-size: 16px;
+    color: #066360;
+    font-family: $muli-regular;
+  }
+}
