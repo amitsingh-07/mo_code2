@@ -23,7 +23,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   viewMode: boolean;
-  
+  reportStatus: string;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
@@ -42,7 +42,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line:radix
     this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
     this.viewMode = this.comprehensiveService.getViewableMode();
-
+    this.reportStatus = this.comprehensiveService.getReportStatus();
+    console.log(this.reportStatus);
     const currentStep = this.comprehensiveService.getMySteps();
     const stepCalculated = this.step - 1;
     if (this.step > 1 && this.step < 4 && (stepCalculated > currentStep)) {
