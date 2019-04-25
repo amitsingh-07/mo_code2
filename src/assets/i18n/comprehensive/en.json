@@ -3,6 +3,7 @@
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account.",
       "PROMO_CODE_SUCCESS":"Hurray! Your promocode is sent to your email ",
+      "PROMO_CODE_VALIDATED":"Content Will Be updated",
       "FINANCES_MODAL":{
         "TITLE": "Step 2",        
         "TITLE_IMAGE": "finances.svg",

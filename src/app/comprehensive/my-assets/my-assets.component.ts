@@ -351,4 +351,3 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
   }
 }
-

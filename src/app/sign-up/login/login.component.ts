@@ -263,4 +263,3 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }
-

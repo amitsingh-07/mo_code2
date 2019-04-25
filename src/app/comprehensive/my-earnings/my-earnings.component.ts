@@ -80,7 +80,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
-    
+
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
@@ -109,7 +109,6 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
   }
-
 
   SelectEarningsType(earningsType, earningFlag) {
     this[earningsType] = earningFlag;

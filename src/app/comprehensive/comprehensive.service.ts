@@ -8,6 +8,7 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarService } from '../shared/navbar/navbar.service';
 import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
@@ -41,8 +42,6 @@ import {
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
-import { NavbarService } from '../shared/navbar/navbar.service';
-
 @Injectable({
     providedIn: 'root'
 })
@@ -52,6 +51,7 @@ export class ComprehensiveService {
     private comprehensiveFormError: any = new ComprehensiveFormError();
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
+    private getStarted = 'get-started';
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
@@ -816,7 +816,7 @@ export class ComprehensiveService {
             title: 'Get Started',
             expanded: true,
             completed: typeof myProfile.gender !== 'undefined',
-            customStyle: 'get-started',
+            customStyle: this.getStarted,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
@@ -1024,7 +1024,7 @@ export class ComprehensiveService {
             title: 'Your Finances',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStarted,
             subItems: subItemsArray
         };
     }
@@ -1035,6 +1035,7 @@ export class ComprehensiveService {
      * @returns {IProgressTrackerItem}
      * @memberof ComprehensiveService
      */
+    // tslint:disable-next-line:cognitive-complexity
     getFireproofingProgressData(): IProgressTrackerItem {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveInsurancePlanning !== null;
@@ -1089,7 +1090,7 @@ export class ComprehensiveService {
             title: 'Your Current Fireproofing',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStarted,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
@@ -1147,7 +1148,7 @@ export class ComprehensiveService {
             title: 'Financial Independence',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStarted,
             subItems: [{
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
@@ -1512,6 +1513,7 @@ export class ComprehensiveService {
     }
     getSubItemStatus(progressData: any) {
         let completedStatus = true;
+        // tslint:disable-next-line:no-commented-code
         /*if (!progressData.completed) {
             completedStatus = false;
         }*/

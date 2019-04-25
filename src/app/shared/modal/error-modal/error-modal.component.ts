@@ -25,6 +25,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() formName: any;
   @Input() promoSuccessMsg: string;
   @Input() email: string;
+  @Input() validatedPromo: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 
