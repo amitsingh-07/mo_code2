@@ -83,6 +83,8 @@ export class AppService {
       sessionStorage.removeItem('app_guided_session');
       // Insurance results
       sessionStorage.removeItem('insurance_results_counter');
+      // Wills Journey Data
+      sessionStorage.removeItem('app_will_writing_session');
       // User mobile no for resend email verification link
       sessionStorage.removeItem('user_mobile');
     }

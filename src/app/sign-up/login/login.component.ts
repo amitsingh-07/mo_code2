@@ -287,7 +287,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-
   callErrorModal(data) {
     if (data.responseMessage.responseCode === 5012) {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.LOGIN_EMAIL_TITLE'),
