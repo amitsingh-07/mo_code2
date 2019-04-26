@@ -56,7 +56,7 @@ export class ComprehensiveService {
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
         private routingService: RoutingService, private router: Router,
-        private navbarService: NavbarService) {
+        private navbarService: NavbarService, private ageUtil: AboutAge) {
         this.getComprehensiveFormData();
     }
 
@@ -718,7 +718,7 @@ export class ComprehensiveService {
                     case 12:
                         let canAccess = true;
                         dependantProgressData.subItems.forEach((subItem) => {
-                            if (!subItem.completed) {
+                            if (!subItem.completed && subItem.hidden !== true) {
                                 canAccess = false;
                             }
                         });
@@ -1057,7 +1057,7 @@ export class ComprehensiveService {
             }
 
             const haveCPFDependentsProtectionScheme = cmpSummary.comprehensiveInsurancePlanning.haveCPFDependentsProtectionScheme;
-            if (haveCPFDependentsProtectionScheme !== null) {
+            if (!Util.isEmptyOrNull(haveCPFDependentsProtectionScheme)) {
                 if (haveCPFDependentsProtectionScheme === 0) {
                     const otherLifeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.otherLifeProtectionCoverageAmount;
                     const lifeProtectionAmount = cmpSummary.comprehensiveInsurancePlanning.lifeProtectionAmount;
@@ -1071,15 +1071,15 @@ export class ComprehensiveService {
                 }
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount)) {
                 criticalIllnessValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount);
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount)) {
                 ocpDisabilityValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount);
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield)) {
                 if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
                     longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
                 } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
@@ -1129,7 +1129,9 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Long-Term Care',
                     value: longTermCareValue,
-                    completed: isCompleted
+                    completed: isCompleted,
+                    hidden: (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) >=
+                        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)
                 }
             ]
         };
@@ -1467,7 +1469,7 @@ export class ComprehensiveService {
             COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
         } else {
-             this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
         }
         if (commitFlag) {
             this.commit();
@@ -1482,7 +1484,7 @@ export class ComprehensiveService {
         let validateFlag = true;
         if (!getCompData || !getCompData.comprehensiveEnquiry.reportStatus ||
             getCompData.comprehensiveEnquiry.reportStatus === null || getCompData.comprehensiveEnquiry.reportStatus === ''
-            ||  getCompData.comprehensiveEnquiry.reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+            || getCompData.comprehensiveEnquiry.reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
