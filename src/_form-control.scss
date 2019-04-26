@@ -1172,8 +1172,26 @@ input::placeholder {
 
 /**
 * form button design for investment-account and portfolio, 
-* 1. confirm/save/apply button set to width of 360
+* 1. confirm/save/apply button set to width of 360 - desktop view
+* 2. confirm/save/apply button set to width of 320 - tablet view
 */
+
+@mixin continue-button {
+  div.text-center {
+    @include desktop {
+        .btn-ftr-get-started {
+          width: 360px;
+        }
+    }
+
+    @include tablet {
+        .btn-ftr-get-started {
+          width: 320px;
+        }
+    }
+  } 
+}
+
 @include desktop {
   app-inv-personal-info, app-residential-address, app-employment-details,
   app-finanical-details, app-tax-info, app-personal-declaration,
@@ -1182,22 +1200,14 @@ input::placeholder {
     .content {
         padding: 0 35px;
     }
+    .content {
+      @include continue-button;
+    }
   }
-}
 
-.content, .risk-profile-block {
-  div.text-center {
-      @include desktop {
-          .btn-ftr-get-started {
-            width: 360px;
-          }
-      }
-
-      @include tablet {
-          .btn-ftr-get-started {
-            width: 320px;
-          }
-      }
-  } 
+  // form button design for portfolio, 
+  .risk-profile-block {
+    @include continue-button;
+  }
 }
 //
