@@ -138,16 +138,12 @@ export class ComprehensiveComponent implements OnInit {
     ref.componentInstance.email = this.signUpService.getUserProfileInfo().emailAddress;
     ref.componentInstance.promoSuccess = true;
   }
-  showValidatedPopup() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorMessage = this.promoValidated;
-    ref.componentInstance.validatedPromo = true;
-  }
+
   getPromoCode() {
     this.appService.setAction('GET_PROMO_CODE');
     if (this.authService.isSignedUser()) {
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
-        this.showValidatedPopup();
+        this.redirect();
       } else {
         this.comprehensiveApiService.getPromoCode().subscribe((data) => {
           this.showSuccessPopup();
