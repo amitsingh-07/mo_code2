@@ -66,7 +66,7 @@
           <p class="how-it-works__box__caption--review"></p>
         </div>
       </div>
-      <div class="desc-box">
+      <div [hidden]="promoCodeValidated" class="desc-box">
         <div class="desc-box__heading"> {{ 'CMP.COMPREHENSIVE.DESCRIPTION' | translate}}</div>
         <div class="desc-box__free-text">
           <div>{{ 'CMP.COMPREHENSIVE.ROBOADVISORY' | translate}}</div>
@@ -91,7 +91,7 @@
         <button class="start-now-btn btn-block btn btn-primary-dark"
           (click)="getStarted()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
       </div>
-      <div class="onetime-free-box">
+      <div  *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
             <div><span class="strikethrough">$500</span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}} </div>
@@ -100,7 +100,7 @@
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
           </div>
           <div>
-            <button [hidden]="promoCodeValidated" class="btn-block btn btn-primary-dark"
+            <button  class="btn-block btn btn-primary-dark"
               (click)="getPromoCode()">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
           </div>
         </div>
