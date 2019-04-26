@@ -11,15 +11,17 @@ app-comprehensive {
       font-size: 28px;
       color: $black-color;
       padding-bottom: 20px;
+      line-height: 35px;
     }
     ul {
-      padding: 0;
+      padding: 0 0 15px 0;
       li {
         font-family: $muli-regular;
         color: $black-color;
         font-size: 16px;
         line-height: 25px;
         list-style-type: none;
+        margin-bottom: 5px;
           &.report, &.national-scheme, &.meeting {
             background-image: url('../../../assets/images/comprehensive/homepage/report.svg');
             background-repeat: no-repeat;
@@ -145,7 +147,7 @@ app-comprehensive {
       font-family: $muli-light-italic;
     }
     &__promo-input {
-      padding: 0 20%;
+      padding: 0 15%;
     }
     &__no-promo {
       color: $dark-teal-color;
@@ -156,6 +158,7 @@ app-comprehensive {
       color: $dark-teal-color;
       font-family: $muli-bold;
       text-decoration: underline;
+      cursor: pointer;
     }
   }
   .onetime-free-box {

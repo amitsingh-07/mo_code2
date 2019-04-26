@@ -3,13 +3,12 @@
     <iframe [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
   </div>
  <div class="intro-box">
-   <div class="intro-box__heading">
+    <div class="intro-box__heading">Our Bionic Journey Together</div>
      <ul>
        <li class="report">Your 3-in-1 Analysis Report</li>
        <li class="meeting">2 Hours face-to-face advisory </li>
        <li class="national-scheme">A financial plan integrated with national schemes</li>
      </ul>
-   </div>
    <div class="intro-box__desc">As Singapore’s first Bionic Financial Adviser, MoneyOwl will journey with you using both technology and personalised advice.</div>
    <div class="intro-box__desc">In comprehensive planning, we will focus on your financial health, achieveing your core financial goals of retirement and children’s education, and fireproofing your plan.
    </div>
@@ -74,7 +73,7 @@
             <input  type="text"  id="promoCodeInpt"
               class="form-control promo-code"  formControlName="comprehensivePromoCodeToken" placeholder="Enter your promocode">
         </div>
-        <div (click)="getPromoCode()" class="promo-code-box__no-promo"> No promo code?<span class="promo-code-box__get-now">Get one now!</span></div>
+        <div (click)="getPromoCode()" class="promo-code-box__no-promo"> No promo code?<span class="promo-code-box__get-now"> Get one now!</span></div>
         <button class="start-now-btn btn-block btn btn-primary-dark"
     (click)="getStarted(promoCodeForm)">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
     </form>
@@ -90,5 +89,4 @@
           (click)="getPromoCode()">Get Promocode</button>
       </div>
     </div>
-  </div
-</div>
+  </div>
