@@ -1748,8 +1748,8 @@ a.link-white {
     padding-top: $cmp-padding-top;
     padding-bottom: 0;
     @include desktop {
-      max-width: 600px;
-      padding-top: 20px;
+      width: 600px;
+      padding: 90px 0 0 0;
     }
   }
   &__page-heading {
@@ -1940,7 +1940,7 @@ a.link-white {
       width: 600px;
       left: 50%;
       margin-left: -300px;
-      top: 114px;
+      top: 165px;
     }
   }
   .delete-icon {

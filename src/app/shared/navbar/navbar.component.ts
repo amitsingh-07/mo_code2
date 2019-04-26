@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode = 1; // Main Navbar Mode
   // Navbar Configuration (New)
   navbarConfig: any;
+  constants: any;
 
   showNavBackBtn = false; // Show Navbar1 Backbtn
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
@@ -87,6 +88,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   menuItemClass = '';
   pageId: any;
 
+  journeyType: string;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -131,6 +134,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    this.constants = appConstants;
+    this.journeyType = this.appService.getJourneyType();
   }
 
   @HostListener('window:scroll', ['$event'])
