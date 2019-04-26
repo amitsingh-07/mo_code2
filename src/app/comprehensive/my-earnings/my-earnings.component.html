@@ -64,7 +64,7 @@
       <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
       </div>
       <div class="flex-col-6">
-      <div class="form-control">
+      <div class="form-control" [ngClass]="{'view-mode': viewMode}">
         <i>$</i>
         <input type="text" class="input-control" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0">
       </div>
@@ -92,7 +92,7 @@
       <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
       </div>
       <div class="flex-col-6">
-      <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.monthlyRentalIncome.invalid}">
+      <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addEarnValid.monthlyRentalIncome.invalid}">
         <i>$</i>
         <input type="text" class="input-control" appCurrencyInput maxLength="5" #monthlyRentalIncome formControlName="monthlyRentalIncome" value="0">
       </div>
@@ -120,7 +120,7 @@
       <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
       </div>
       <div class="flex-col-6">
-      <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherMonthlyWorkIncome.invalid}">
+      <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addEarnValid.otherMonthlyWorkIncome.invalid}">
         <i>$</i>
         <input type="text" class="input-control" appCurrencyInput maxLength="5" #otherMonthlyWorkIncome formControlName="otherMonthlyWorkIncome" value="0">
       </div>
@@ -147,7 +147,7 @@
       <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
       </div>
       <div class="flex-col-6">
-      <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherMonthlyIncome.invalid}">
+      <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addEarnValid.otherMonthlyIncome.invalid}">
         <i>$</i>
         <input type="text" class="input-control" appCurrencyInput maxLength="5" #otherMonthlyIncome formControlName="otherMonthlyIncome" value="0">
       </div>
@@ -217,7 +217,7 @@
       <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
       </div>
       <div class="flex-col-6">
-      <div class="form-control">
+      <div class="form-control" [ngClass]="{'view-mode': viewMode}">
         <i>$</i>
         <input type="text" class="input-control" appCurrencyInput maxLength="6" #annualBonus formControlName="annualBonus" value="0">
       </div>
@@ -245,7 +245,7 @@
   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
   </div>
   <div class="flex-col-6">
-  <div class="form-control"  [ngClass]="{'inline-error': submitted && addEarnValid.annualDividends.invalid}">
+  <div class="form-control"  [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addEarnValid.annualDividends.invalid}">
     <i>$</i>
     <input type="text" class="input-control" appCurrencyInput maxLength="6" #annualDividends formControlName="annualDividends" value="0">
   </div>
@@ -271,7 +271,7 @@
   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
   </div>
   <div class="flex-col-6">
-  <div class="form-control" [ngClass]="{'inline-error': submitted && addEarnValid.otherAnnualIncome.invalid}">
+  <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addEarnValid.otherAnnualIncome.invalid}">
     <i>$</i>
     <input type="text" class="input-control" appCurrencyInput maxLength="6" #otherAnnualIncome formControlName="otherAnnualIncome" value="0">
   </div>

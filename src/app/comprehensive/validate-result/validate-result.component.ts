@@ -2,13 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-validate-result',
@@ -20,12 +21,13 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
   pageTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
-  constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
-              private translate: TranslateService,
-              private configService: ConfigService, private router: Router,
-              private progressService: ProgressTrackerService,
-              private comprehensiveService: ComprehensiveService,
-              private comprehensiveApiService: ComprehensiveApiService) {
+  constructor(
+    private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
+    private translate: TranslateService,
+    private configService: ConfigService, private router: Router,
+    private progressService: ProgressTrackerService,
+    private comprehensiveService: ComprehensiveService,
+    private comprehensiveApiService: ComprehensiveApiService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -54,17 +56,17 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     });
     if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      const stepCalculated = 4;
+      const stepCalculated = 5;
       const reportStatus = this.comprehensiveService.getReportStatus();
       if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT] );
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       } else if (currentStep === 3 || currentStep === 4) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
-        if ( stepCheck.status ) {
+        if (stepCheck.status) {
           if (currentStep === 4) {
             this.initiateReport();
           } else {
-            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated  };
+            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
             this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
               this.comprehensiveService.setMySteps(stepCalculated);
               this.initiateReport();
@@ -87,14 +89,14 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS], { skipLocationChange: true } );
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS], { skipLocationChange: true });
   }
   initiateReport() {
-    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId(), callBackUrl: '' };
+    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
     this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
       this.comprehensiveService.setViewableMode(true);
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT] );
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     });
   }
 }

@@ -73,12 +73,14 @@
       margin-right: 10px;
       position: relative;
       font-size: 16px;
+
       .form-group-with-bg--header-single-label {
         font-family: $muli-semi-bold;
         color: #000000;
         padding: 10px 0 18px 0;
         font-size: 18px;
       }
+
       a.link {
         text-decoration: underline !important;
         color: #2d8289 !important;
@@ -413,6 +415,7 @@ input::placeholder {
 .datepicker-control {
   .input-group {
     margin-bottom: 8px;
+
     .form-control {
       border: transparent;
       color: $app-backgrnd-color;
@@ -585,6 +588,15 @@ input::placeholder {
     i,
     input {
       color: #bff1f1 !important;
+    }
+  }
+
+  &.view-mode {
+    background-color: #e9ecef;
+    opacity: 1;
+    input {
+      background-color: #e9ecef;
+      opacity: 1;
     }
   }
 }
@@ -1018,7 +1030,8 @@ input::placeholder {
     display: flex;
     width: 100%;
     align-items: flex-end;
-    justify-content:space-between;
+    justify-content: space-between;
+
     .subscribe--title {
       font-family: $muli-bold;
       font-size: 24px;
@@ -1048,34 +1061,37 @@ input::placeholder {
     }
 
     .subscribe--icon {
-      margin-right:15px;
+      margin-right: 15px;
     }
   }
 
   .subscribe-promo--container {
     position: relative;
-    display:block;
-    width:100%;
-    background-color:$white-color; 
+    display: block;
+    width: 100%;
+    background-color: $white-color;
     box-shadow: 0 2px 4px 0 rgba(181, 181, 181, 0.5);
-    border-radius:18px;
-    padding:8px 5px 10px 5px;
-    margin-bottom:10px;
-    .subscribe--promo{
-      font-family:$muli;
-      color:$teal-color;
-      font-size:16px;
-      text-align:center;
-      text-transform:uppercase;
-      line-height:1.2;
-      @include minMobilemaxPhablet{
-      font-size:14px;
-        }
-      @include min300max325{ 
-      font-size:14px;
-        }
+    border-radius: 18px;
+    padding: 8px 5px 10px 5px;
+    margin-bottom: 10px;
+
+    .subscribe--promo {
+      font-family: $muli;
+      color: $teal-color;
+      font-size: 16px;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.2;
+
+      @include minMobilemaxPhablet {
+        font-size: 14px;
+      }
+
+      @include min300max325 {
+        font-size: 14px;
       }
     }
+  }
 
   .subscribe-input--container {
     position: relative;
@@ -1101,20 +1117,22 @@ input::placeholder {
 
     .sub-message {
       position: relative;
-      display:block;
+      display: block;
       font-family: $muli-bold;
       color: $red-color;
-      font-style:italic;
+      font-style: italic;
       font-size: 14px;
       letter-spacing: -0.1px;
       line-height: 1.2;
       margin: 0px;
       height: 0px;
-      transition:0.5s;
-      &.active{
-        height:auto;
+      transition: 0.5s;
+
+      &.active {
+        height: auto;
         padding: 0px 0px 16px 0px;
       }
+
       &.success {
         color: $green-color;
       }
@@ -1163,77 +1181,95 @@ input::placeholder {
 //Comprehensive form styles
 .comprehensive {
   .form-group-with-bg {
-      margin-bottom: 20px;
-      .form-group-with-bg--content {
-        padding: 20px;
+    margin-bottom: 20px;
+
+    .form-group-with-bg--content {
+      padding: 20px;
+    }
+
+    .form-group-with-bg--header-label {
+      font-size: 16px;
+    }
+
+    .form-group-with-bg--content-white {
+      background: $white-color;
+      padding: 20px;
+      border-radius: 6px;
+
+      &--title {
+        font-size: 18px;
+        font-family: $muli-semi-bold;
+        margin-bottom: 20px;
+        color: $btn-comprehensive;
+        @extend .flex;
+        @extend .align-center;
       }
-      .form-group-with-bg--header-label {
+
+      &--desc {
         font-size: 16px;
+        font-family: $muli-regular;
+        margin-bottom: 15px;
+        color: $btn-comprehensive;
+        align-items: self-end;
+
+        strong {
+          font-family: $muli-bold;
+        }
       }
-      .form-group-with-bg--content-white {
-          background: $white-color;
-          padding: 20px;
-          border-radius: 6px;
-          &--title {
-            font-size: 18px;
-            font-family: $muli-semi-bold;
-            margin-bottom: 20px;
-            color: $btn-comprehensive;
-            @extend .flex;
-            @extend .align-center;
-            }
-            &--desc {
-              font-size: 16px;
-              font-family: $muli-regular;
-              margin-bottom: 15px;
-              color: $btn-comprehensive;
-              align-items: self-end;
-              strong {
-                font-family: $muli-bold;
-              }
-            }
-          }
-          .form-group-with-bg--header {
-            .form-group-with-bg--header-label {
-              //width: 97%;
-            }
+    }
+
+    .form-group-with-bg--header {
+      .form-group-with-bg--header-label {
+        //width: 97%;
       }
+    }
+
     //padding: 10px 0;
     color:$app-backgrnd-color;
+
     label {
       color: $dark-teal-color;
       margin-bottom: 0;
       font-family: $muli-semi-bold !important;
+
       &.btn-outline-primary {
         font-family: $muli-regular !important;
         color: $app-backgrnd-color;
       }
     }
+
     &--header-sub-label {
       font-weight: normal;
     }
   }
+
   .datepicker-control {
-    border:1px solid rgba(0, 135, 134, 0.4);
+    border: 1px solid rgba(0, 135, 134, 0.4);
     border-radius: 6px;
   }
+
   input::placeholder {
     color: #888888 !important;
   }
+
   .form-group-with-bg--content {
     .flex-row:not(:last-child) {
       margin-bottom: 20px;
     }
+
     .flex-row:last-child {
       margin-bottom: 10px;
     }
   }
+
   .form-control {
     color: $app-backgrnd-color;
+
     &.with-bg {
       background: $form-title-backgrnd-color !important;
     }
   }
+
   .form-group-single-column {
     .checkbox-button {
       .input-label-grey {
@@ -1242,15 +1278,18 @@ input::placeholder {
       }
     }
   }
+
   .dependant_selection_title {
     font-size: 16px;
     font-family: $muli-semi-bold;
   }
+
   .form-group-single-column .checkbox-button {
     margin-bottom: 20px;
     font-size: 16px;
     font-family: $muli-semi-bold;
   }
+
   .form-group-with-bg--header-label {
     &.with-tooltip {
       @extend .flex;
@@ -1258,34 +1297,47 @@ input::placeholder {
       align-items: center;
     }
   }
+
   .placeholderAmount {
     color: #5e5e5e;
   }
+
   //Diasble form control styles
-  .btn-outline-primary.active.view-mode, .dropdown-toggle:disabled {
+  .btn-outline-primary.active.view-mode,
+  .dropdown-toggle:disabled {
     background-color: rgba(0, 167, 167, 0.15) !important;
-    color:$app-backgrnd-color !important;
+    color: $app-backgrnd-color !important;
     border: solid 1px rgba(0, 135, 134, 0.4) !important;
     cursor: not-allowed !important;
+
+    &.earn-btn-dropdown {
+      color: $white-color !important;
+    }
   }
+
   .btn-outline-primary:hover.active.view-mode {
     background-color: rgba(0, 167, 167, 0.15) !important;
   }
+
   .btn-outline-primary.view-mode {
     cursor: not-allowed !important;
   }
+
   .btn-outline-primary:hover.view-mode {
     background: $white-color !important;
   }
+
   .dropdown-toggle:disabled::after {
     color: $app-backgrnd-color !important;
     opacity: 1 !important;
   }
+
   .datepicker-control .input-group.view-mode .form-control {
     background-color: rgba(0, 167, 167, 0.15) !important;
-    color:$app-backgrnd-color !important;
+    color: $app-backgrnd-color !important;
     cursor: not-allowed !important;
   }
+
   .btn.btn-primary:disabled {
     background-color: rgba(0, 167, 167, 0.15) !important;
     cursor: not-allowed !important;

@@ -121,6 +121,8 @@ export class AppService {
       sessionStorage.removeItem('insurance_results_counter');
       // Comprehensive Journey
       sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
+      // Clear comprehensive promo code
+      this.clearPromoCode();
     }
   }
 

@@ -108,8 +108,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
       }, [Validators.required]],
-      criticalIllnessCoverageAmount: [this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
-        '', [Validators.required]],
+      criticalIllnessCoverageAmount: [{value: this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
+        '',  disabled: this.viewMode}, [Validators.required]],
       disabilityIncomeCoverageAmount: [{
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode
