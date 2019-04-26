@@ -218,7 +218,7 @@
 
 <!-- Height Placeholder -->
 <nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2 || navbarMode == 6 || navbarMode == 7)}"></nav>
-<div *ngIf="isComprehensiveEnabled && journeyType === constants.JOURNEY_TYPE_COMPREHENSIVE"  class="comprehensive-desktop-header hidden-sm-md">
+<div *ngIf="isComprehensiveEnabled && journeyType === constants.JOURNEY_TYPE_COMPREHENSIVE && journeyPathType"  class="comprehensive-desktop-header hidden-sm-md">
     <div class="page-title">{{pageTitle}}</div>
     <div class="{{menuItemClass}} prg-trck-icon" *ngIf="showMenuItem" (click)="onMenuItemClicked()">
       <div class="tooltip-icon"></div>

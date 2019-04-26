@@ -89,6 +89,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   pageId: any;
 
   journeyType: string;
+  journeyPathType: boolean;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -182,6 +183,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
+        const currentPath = val.url;
+        this.journeyPathType = (currentPath.indexOf('comprehensive') !== -1);
         if (this.router.url !== this.currentUrl) {
           this.currentUrl = this.router.url;
           this.hideMenu();
