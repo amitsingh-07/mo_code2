@@ -80,8 +80,10 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.totalAnnualIncomeBucket = this.sliderValue * 12;
   }
   ngOnInit() {
-    this.downOnLuck = this.comprehensiveService.getDownOnLuck();
-
+    this.updateProgressTracker();
+    this.buildDownOnLuckForm();
+  }
+  updateProgressTracker() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -99,6 +101,9 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     });
+  }
+  buildDownOnLuckForm() {
+    this.downOnLuck = this.comprehensiveService.getDownOnLuck();
     this.hospitalPlanForm = new FormGroup({
       hospitalPlanId: new FormControl(this.downOnLuck.hospitalPlanId + '', Validators.required),
       badMoodMonthlyAmount: new FormControl(this.downOnLuck ?
@@ -124,7 +129,6 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
   }
-
   ngAfterViewInit() {
     if (this.hasBadMoodFund) {
       this.ciMultiplierSlider.writeValue(this.sliderValue);

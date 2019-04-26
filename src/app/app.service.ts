@@ -101,6 +101,12 @@ export class AppService {
     this.promoCode = promoCode;
     this.commit(PROMO_CODE, this.promoCode);
   }
+  clearPromoCode() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(PROMO_CODE);
+      sessionStorage.removeItem(PROMO_CODE_ACTION_TYPE);
+    }
+  }
   clearJourneys() {
     if (window.sessionStorage) {
       // App data

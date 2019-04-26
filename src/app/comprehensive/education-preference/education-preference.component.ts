@@ -85,7 +85,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeMenuItemClick();
   }
 
-
   buildEducationPreferenceForm() {
     const preferenceArray = [];
     this.endowmentDetail.forEach((educationDetailsList: any) => {

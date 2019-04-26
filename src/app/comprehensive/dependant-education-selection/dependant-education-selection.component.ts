@@ -235,6 +235,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     form.hasEndowments == null ? this.educationPreference = true : this.educationPreference = educationPreferenceAlert;
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
     if (!this.viewMode) {
       const dependantArray = [];

@@ -3,6 +3,7 @@
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promocode, please log in or create a MoneyOwl account.",
       "PROMO_CODE_SUCCESS":"Hurray! Your promocode is sent to your email ",
+      "PROMO_CODE_VALIDATED":"Content Will Be updated",
       "FINANCES_MODAL":{
         "TITLE": "Step 2",        
         "TITLE_IMAGE": "finances.svg",
@@ -100,8 +101,8 @@
                 "TITLE_IMAGE": "education-with-dependant.svg",
                 "TITLE_DESC": "Completed",
                 "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much university may cost you in future.",
-                "CONTENT_BODY_DESC": "The amount includes 6% inflation for tuition fee per year and 3% inflation for general living expenses per year.",                
+                "CONTENT_DESC": "This is how much university may cost you in future:",
+                "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",                
                 "CONTENT_NOTE": "It’s great that you are planning now!",
                 "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
                 "NEXT": "Next"
@@ -124,7 +125,7 @@
       "DESC_SUB_TITLE_2":"Get your 3-in-1 Analysis Report",
       "DESC_SUB_TITLE_3":"Face-to-Face: Client Adviser Time (2 hrs) and Implementation Plan",
       "DESC_SUB_TITLE_4":"Prompt: Review",
-      "DESC_SUB_ABOUT_1":"At the start, our roboadvisor will seek to understand you – your situation and your goals.",
+      "DESC_SUB_ABOUT_1":"To get the most of out of your comprehensive financial planning journey and a suitable action plan, please fill in as many of the applicable fields as possible to the best of your ability. Every piece of information matters as the quality of the evaluation is very much dependent on the information you provide us.",
       "DESC_SUB_ABOUT_2":"You can acess your 3-in-1 Analysis Report on your MoneyOwl Account Dashboard within 1-2 working days. The report will comprise:",
       "DESC_SUB_ABOUT_2_SUB_POINT_1":"Your Financial Health Check",
       "DESC_SUB_ABOUT_2_SUB_POINT_2":"Your Protection Needs Analysis",
@@ -134,20 +135,20 @@
       "DESCRIPTION":"Description",
       "ROBOADVISORY":"Roboadvisory",
       "FREE":"Free ",
-      "FREE_LIMITED":"Free for a limited time only!",
+      "FREE_LIMITED":"for a limited time only!",
       "ENTER_PROMO":"Enter your promo code",
       "NO_PROMO":"No promo code?",
       "GET_NEW":" Get one now!",
-      "ONE_TIME_FEE":"$500  One-time fee",
+      "ONE_TIME_FEE":"One-time fee",
       "GET_PROMO":"Get Promocode",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw"
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
       "STEP_1_TITLE": "What's On Your Shoulders",
-      "STEP_1_DESC": "Your family commitments will impact on your financial Planning.Lets list it out now!",
+      "STEP_1_DESC": "Your family commitments will impact on your financial planning. Let's list it down now.",
       "STEP_2_TITLE": "Your Finances",
-      "STEP_2_DESC": "The information help us to estimate what you can save and invest, your protection need and your financial health.",
+      "STEP_2_DESC": "This information helps us to estimate what you can save and invest, your protection needs, and your financial health.",
       "STEP_3_TITLE": "Your Current Fireproofing",
       "STEP_3_DESC": "Let's find out how protected you are in face of unexpected events.",
       "STEP_4_TITLE_NAV":"Retirement Planning",
@@ -184,7 +185,7 @@
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you have any dependants?",
-      "DEPENDANTS_DESC": "A dependant is child, parent, spouse, sibling and relative I need to provide for."
+      "DEPENDANTS_DESC": "A dependant is a child, spouse, parent, sibling and/or relative you need to provide for."
     },
     "DEPENDANT_DETAILS": {
       "ABOUT": "About your dependants",
@@ -194,7 +195,7 @@
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
-      "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
+      "OPTIONS": ["yes, I do", "No, but i need insurance payout to cover my child's education in case i pass away", "No, I don't"]
     },
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
@@ -207,7 +208,7 @@
 
     },
     "EDUCATION_PREFERENCE": {
-      "HEADER": "Tell us about the education Preferences.",
+      "HEADER": "Tell us your preferences for their education.",
       "ABOUT": "About"
 
     },
@@ -290,9 +291,9 @@
     "GETTING_STARTED": {
       "TITLE": "Get Started",
       "HI": "Hi",
-      "HEADER": "Welcome to MoneyOwl <br>roboadvisory!",
+      "HEADER": "Welcome to MoneyOwl <br> robo advisory!",
       "WELCOME_BACK": "Welcome Back",
-      "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
+      "DESC": "Let’s kickstart your financial plan by <br> helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Some tips for you",
       "TOOL_TIP_DESC": "You can check your progress here!",
       "TOOL_TIP_CLOSE": "X"
@@ -326,9 +327,10 @@
 
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
-      "YES_DESC": "whose education you would like to fund?",
+      "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
-      "NO_DESC": "Select which child you will like to cover for."
+      "NO_DESC": "Select which child you will like to cover for.",
+      "ALERT":"Please select at least one child."
     },
 
     "RSP": {
@@ -425,7 +427,7 @@
         "CASH_TITLE": "Cash",
         "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",
         "YOUR_HOME_TITLE": "Your Home",
-        "YOUR_HOME_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
+        "YOUR_HOME_MESSAGE": "This is the current market value of your home. Do not deduct any mortgage outstanding on it.",
         "INVESTMENT_PROPERTIES_TITLE": "Investment Properties",
         "INVESTMENT_PROPERTIES_MESSAGE": "Property that you purchased with the purpose expectation of earning a return, either through the future resale of the property, rental income or both.",
         "OTHER_PROPERTIES_TITLE": "Other Properties",
@@ -535,7 +537,7 @@
     "RESULT":{
       "READY":"Your report is ready soon!",
       "DESC":"We are analysing your needs using proprietary models now…",
-      "ABOUT":"Your report will be ready in a few mins. Once the report is ready, we will inform you via your email ",
+      "ABOUT":"Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
       "STEP_TITLE":"What’s Next?",
       "STEP_1":"Keep a lookout for our notification mail!",
       "STEP_2":"Set up an appointment with a MoneyOwl client adviser to go through your report.",

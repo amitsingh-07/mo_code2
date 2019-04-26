@@ -146,8 +146,8 @@ export class ComprehensiveFormError {
             },
             badMoodMonthlyAmount: {
                 required: {
-                    errorTitle: 'Please Select the hospital Plan',
-                    errorMessage: 'Please Select the hospital Plan'
+                    errorTitle: 'Invalid Amount',
+                    errorMessage: 'Invalid Amount'
                 }
             },
         }

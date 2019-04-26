@@ -149,6 +149,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     });
 
   }
+  // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
     if (this.viewMode) {
       this.showSummaryModal();
@@ -250,7 +251,6 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      //validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <= (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
       validCheck = (payOffYearVal.value >= currentYear) ? true : false;
     }
     if (validCheck) {
@@ -293,5 +293,3 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-
