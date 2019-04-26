@@ -32,11 +32,12 @@ color: $dark-teal-color;
 }  
 .earn-btn-dropdown{
     background: none;
-    color: $white-color;
+    color: $white-color !important;
     border:none;
     border-bottom: 1px solid;
     border-radius: 0px;
 }
+
 .dropdown-control .earn-btn-dropdown:after {
     background-image: url('/assets/images/dropdown_white.svg');
     width: 16px;

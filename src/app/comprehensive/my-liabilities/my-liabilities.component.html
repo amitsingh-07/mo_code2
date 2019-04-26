@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" maxLength="7" appCurrencyInput #homeLoanOutstandingAmount
                 formControlName="homeLoanOutstandingAmount" value="">
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control"  [ngClass]="{'inline-error': submitted && addLiabilitiesValid.otherPropertyLoanOutstandingAmount.invalid}">
+              <div class="form-control"  [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addLiabilitiesValid.otherPropertyLoanOutstandingAmount.invalid}">
                 <i>$</i>
                 <input type="text" class="input-control" maxLength="7" appCurrencyInput #otherPropertyLoanOutstandingAmount
                   formControlName="otherPropertyLoanOutstandingAmount" value="">
@@ -99,7 +99,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherLoanOutstandingAmount
                 formControlName="otherLoanOutstandingAmount" value="">
@@ -127,7 +127,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoansAmount formControlName="carLoansAmount"
                 value="">

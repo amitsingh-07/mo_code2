@@ -51,6 +51,8 @@ export class SignUpApiService {
       userInfo = this.directService.getUserInfo();
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       userInfo = this.guideMeService.getUserInfo();
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+      journey = this.appService.getJourneyType();
     } else {
       journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
       userInfo = {
@@ -103,12 +105,12 @@ export class SignUpApiService {
    */
   updateAccountBodyRequest(data) {
     return {
-        emailId: data.email,
-        mobileNumber: data.mobileNumber,
-        countryCode: data.countryCode,
-        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
-        notificationByEmail: true,
-        notificationByPhone: true
+      emailId: data.email,
+      mobileNumber: data.mobileNumber,
+      countryCode: data.countryCode,
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      notificationByEmail: true,
+      notificationByPhone: true
     };
   }
 
@@ -144,7 +146,7 @@ export class SignUpApiService {
     let selectedPlanData = { enquiryId: 0, plans: [] };
     let journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-    this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       journey = 'insurance';
       selectedPlanData = this.selectedPlansService.getSelectedPlan();
     }

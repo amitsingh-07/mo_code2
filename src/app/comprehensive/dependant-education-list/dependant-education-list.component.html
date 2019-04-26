@@ -43,7 +43,7 @@
                   </label>
               </div>
               <div class="pr0 flex-col-7">
-                <div class="form-control" [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityAmount.invalid}">
+                <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && educationPlan['controls'].endowmentMaturityAmount.invalid}">
                   <i>$</i>
                   <input appComprehensiveViewMode="{{viewMode}}" mode=1  type="text" class="input-control" appCurrencyInput maxLength="9" #endowmentMaturityAmount formControlName="endowmentMaturityAmount" value="0"
                   >
