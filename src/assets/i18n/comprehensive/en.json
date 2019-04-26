@@ -427,7 +427,7 @@
         "CASH_TITLE": "Cash",
         "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",
         "YOUR_HOME_TITLE": "Your Home",
-        "YOUR_HOME_MESSAGE": "This is the gross value of your home. Do not deduct any mortgage outstanding on it.",
+        "YOUR_HOME_MESSAGE": "This is the current market value of your home. Do not deduct any mortgage outstanding on it.",
         "INVESTMENT_PROPERTIES_TITLE": "Investment Properties",
         "INVESTMENT_PROPERTIES_MESSAGE": "Property that you purchased with the purpose expectation of earning a return, either through the future resale of the property, rental income or both.",
         "OTHER_PROPERTIES_TITLE": "Other Properties",
