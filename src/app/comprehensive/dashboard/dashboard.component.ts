@@ -57,8 +57,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           const reportDateAPI = new Date();
           this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
           this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
-            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null)
-            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : 'new';
+            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userName)
+            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
           if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             this.comprehensivePlanning = 3;
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
