@@ -28,6 +28,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   willWritingConfig = WILL_WRITING_CONFIG;
   willEstateDistribution = { spouse: [], children: [], others: [] };
   willBeneficiary: IBeneficiary[];
+  createWillTriggered = false;
 
   constructor(
     private translate: TranslateService,
@@ -80,7 +81,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   }
 
   goNext() {
-    if (this.willWritingService.checkDuplicateUinAll()) {
+    if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
+      this.createWillTriggered = true;
       if (this.authService.isSignedUser()) {
         let createUpdateWill;
         if (!this.willWritingService.getIsWillCreated()) {
@@ -89,6 +91,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
           createUpdateWill = this.willWritingApiService.updateWill();
         }
         createUpdateWill.subscribe((data) => {
+          this.createWillTriggered = false;
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.willWritingService.setIsWillCreated(true);
             this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
@@ -98,6 +101,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
         });
       } else {
         this.willWritingApiService.createWill().subscribe((data) => {
+          this.createWillTriggered = false;
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.willWritingService.setWillCreatedPrelogin();
             this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);

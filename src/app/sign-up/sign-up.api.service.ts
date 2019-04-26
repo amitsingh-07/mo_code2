@@ -193,14 +193,17 @@ export class SignUpApiService {
    */
   verifyLogin(userEmail, userPassword, captcha) {
     let enqId;
+    let journeyType;
     const sessionId = this.authService.getSessionId();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
       enqId = this.willWritingService.getEnquiryId();
+      journeyType = 'will-writing';
     } else {
       enqId = this.authService.getEnquiryId();
+      journeyType = 'investment';
     }
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId);
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType);
   }
 
   logout() {
