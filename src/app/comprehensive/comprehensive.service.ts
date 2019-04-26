@@ -51,7 +51,7 @@ export class ComprehensiveService {
     private comprehensiveFormError: any = new ComprehensiveFormError();
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
-    private getStarted = 'get-started';
+    private getStartedStyle = 'get-started';
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
@@ -820,7 +820,7 @@ export class ComprehensiveService {
             title: 'Get Started',
             expanded: true,
             completed: typeof myProfile.gender !== 'undefined',
-            customStyle: this.getStarted,
+            customStyle: this.getStartedStyle,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
@@ -1028,7 +1028,7 @@ export class ComprehensiveService {
             title: 'Your Finances',
             expanded: true,
             completed: false,
-            customStyle: this.getStarted,
+            customStyle: this.getStartedStyle,
             subItems: subItemsArray
         };
     }
@@ -1094,7 +1094,7 @@ export class ComprehensiveService {
             title: 'Your Current Fireproofing',
             expanded: true,
             completed: false,
-            customStyle: this.getStarted,
+            customStyle: this.getStartedStyle,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
@@ -1152,7 +1152,7 @@ export class ComprehensiveService {
             title: 'Financial Independence',
             expanded: true,
             completed: false,
-            customStyle: this.getStarted,
+            customStyle: this.getStartedStyle,
             subItems: [{
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,

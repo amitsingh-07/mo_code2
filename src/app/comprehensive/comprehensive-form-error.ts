@@ -41,7 +41,7 @@ export class ComprehensiveFormError {
             name: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Full Name (as per ID)'
+                    errorMessage: 'Name'
                 },
                 pattern: {
                     errorTitle: this.invalidName,
