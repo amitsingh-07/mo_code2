@@ -36,7 +36,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
-    this.items = [0, 1, 2, 3, 4];
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
