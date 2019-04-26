@@ -89,8 +89,23 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    this.comprehensiveService.setViewableMode(viewMode);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.comprehensiveService.setViewableMode(true);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+      this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
+        if (data) {
+          this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+            if (summaryData) {
+              this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            }
+          });
+        }
+      });
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    }
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
