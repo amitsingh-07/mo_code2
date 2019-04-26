@@ -1614,22 +1614,27 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
-      this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
-        pepDetails.pepAddress.country.countryCode
-      );
-      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
-      this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
-      this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
-      this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
-      this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
-      this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
-      if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
-        this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      } else {
-        this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+      if (pepDetails.pepAddress && pepDetails.pepAddress.country && pepDetails.pepAddress.country.countryCode) {
+        this.setPepAddress(pepDetails);
       }
       this.commit();
+    }
+  }
+  setPepAddress(pepDetails) {
+    this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
+      pepDetails.pepAddress.country.countryCode
+    );
+    this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
+    this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
+    this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
+    this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
+    this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
+    this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
+    if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
+      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    } else {
+      this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
     }
   }
   setDueDiligence2FromApi(pepDetails) {
