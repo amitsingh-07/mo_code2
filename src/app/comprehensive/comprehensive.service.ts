@@ -8,6 +8,7 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarService } from '../shared/navbar/navbar.service';
 import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
@@ -41,8 +42,6 @@ import {
     IRegularSavings,
     IRetirementPlan
 } from './comprehensive-types';
-import { NavbarService } from '../shared/navbar/navbar.service';
-
 @Injectable({
     providedIn: 'root'
 })
@@ -52,11 +51,12 @@ export class ComprehensiveService {
     private comprehensiveFormError: any = new ComprehensiveFormError();
     private progressData: IProgressTrackerData;
     private progressWrapper: IProgressTrackerWrapper;
+    private getStartedStyle = 'get-started';
     constructor(
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
         private routingService: RoutingService, private router: Router,
-        private navbarService: NavbarService) {
+        private navbarService: NavbarService, private ageUtil: AboutAge) {
         this.getComprehensiveFormData();
     }
 
@@ -115,7 +115,8 @@ export class ComprehensiveService {
             22: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
             23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
             24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
-            25: COMPREHENSIVE_ROUTE_PATHS.RESULT
+            25: COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
+            26: COMPREHENSIVE_ROUTE_PATHS.RESULT
         };
 
         Object.keys(urlList).forEach((key) => {
@@ -186,6 +187,7 @@ export class ComprehensiveService {
     setPromoCodeValidation(promoCodeValidated: boolean) {
         this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
     }
+
     /**
      * Get the comprehensive summary object.
      *
@@ -210,6 +212,7 @@ export class ComprehensiveService {
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
         this.reloadDependantDetails();
         this.setBucketAmountByCal();
+        this.setViewableMode(false);
         this.commit();
     }
 
@@ -715,7 +718,7 @@ export class ComprehensiveService {
                     case 12:
                         let canAccess = true;
                         dependantProgressData.subItems.forEach((subItem) => {
-                            if (!subItem.completed) {
+                            if (!subItem.completed && subItem.hidden !== true) {
                                 canAccess = false;
                             }
                         });
@@ -777,6 +780,7 @@ export class ComprehensiveService {
                     case 24:
                     // 'result'
                     case 25:
+                    case 26:
                         if (retirementProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
@@ -816,7 +820,7 @@ export class ComprehensiveService {
             title: 'Get Started',
             expanded: true,
             completed: typeof myProfile.gender !== 'undefined',
-            customStyle: 'get-started',
+            customStyle: this.getStartedStyle,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
@@ -1024,7 +1028,7 @@ export class ComprehensiveService {
             title: 'Your Finances',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStartedStyle,
             subItems: subItemsArray
         };
     }
@@ -1035,6 +1039,7 @@ export class ComprehensiveService {
      * @returns {IProgressTrackerItem}
      * @memberof ComprehensiveService
      */
+    // tslint:disable-next-line:cognitive-complexity
     getFireproofingProgressData(): IProgressTrackerItem {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveInsurancePlanning !== null;
@@ -1052,7 +1057,7 @@ export class ComprehensiveService {
             }
 
             const haveCPFDependentsProtectionScheme = cmpSummary.comprehensiveInsurancePlanning.haveCPFDependentsProtectionScheme;
-            if (haveCPFDependentsProtectionScheme !== null) {
+            if (!Util.isEmptyOrNull(haveCPFDependentsProtectionScheme)) {
                 if (haveCPFDependentsProtectionScheme === 0) {
                     const otherLifeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.otherLifeProtectionCoverageAmount;
                     const lifeProtectionAmount = cmpSummary.comprehensiveInsurancePlanning.lifeProtectionAmount;
@@ -1066,15 +1071,15 @@ export class ComprehensiveService {
                 }
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount)) {
                 criticalIllnessValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.criticalIllnessCoverageAmount);
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount)) {
                 ocpDisabilityValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.disabilityIncomeCoverageAmount);
             }
 
-            if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield !== null) {
+            if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield)) {
                 if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
                     longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
                 } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
@@ -1089,7 +1094,7 @@ export class ComprehensiveService {
             title: 'Your Current Fireproofing',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStartedStyle,
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
@@ -1124,7 +1129,9 @@ export class ComprehensiveService {
                     path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
                     title: 'Long-Term Care',
                     value: longTermCareValue,
-                    completed: isCompleted
+                    completed: isCompleted,
+                    hidden: (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) >=
+                        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)
                 }
             ]
         };
@@ -1147,7 +1154,7 @@ export class ComprehensiveService {
             title: 'Financial Independence',
             expanded: true,
             completed: false,
-            customStyle: 'get-started',
+            customStyle: this.getStartedStyle,
             subItems: [{
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
@@ -1457,9 +1464,16 @@ export class ComprehensiveService {
         }
         return false;
     }
-    setViewableMode(viewMode: boolean) {
-        this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = viewMode;
-        this.commit();
+    setViewableMode(commitFlag: boolean) {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus ===
+            COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
+        } else {
+            this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
+        }
+        if (commitFlag) {
+            this.commit();
+        }
         return true;
     }
     /**
@@ -1468,25 +1482,26 @@ export class ComprehensiveService {
     checkResultData() {
         const getCompData = this.getComprehensiveSummary();
         let validateFlag = true;
-        if (!getCompData || !getCompData.reportStatus || getCompData.reportStatus === null || getCompData.reportStatus === ''
-            || getCompData.reportStatus !== 'new') {
+        if (!getCompData || !getCompData.comprehensiveEnquiry.reportStatus ||
+            getCompData.comprehensiveEnquiry.reportStatus === null || getCompData.comprehensiveEnquiry.reportStatus === ''
+            || getCompData.comprehensiveEnquiry.reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             validateFlag = false;
         }
         const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
+        let totalAmount = 0;
         Object.keys(getResultConfig).forEach((financeInput) => {
             const apiInput = getResultConfig[financeInput].API_KEY;
             const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
             validationDataSet.forEach((dataSet) => {
-                if (!getCompData[apiInput][dataSet]) {
-                    validateFlag = false;
-                } else {
+                if (getCompData[apiInput][dataSet]) {
                     const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
-                    if (getAmount <= 0) {
-                        validateFlag = false;
-                    }
+                    totalAmount += getAmount;
                 }
             });
         });
+        if (totalAmount <= 0) {
+            validateFlag = false;
+        }
         return validateFlag;
     }
     /**
@@ -1498,13 +1513,19 @@ export class ComprehensiveService {
         progressData.push(this.getFinancesProgressData());
         progressData.push(this.getFireproofingProgressData());
         progressData.push(this.getRetirementProgressData());
-        let goToStep = 5;
+        let goToStep = 0;
         let stepStatus = true;
-        for (let t = 0; t < currentStep; t++) {
-            if (goToStep === 5) {
-                if (!this.getSubItemStatus(progressData[t])) {
-                    stepStatus = false;
-                    goToStep = t;
+        const stepIndicator = this.getMySteps();
+        if (stepIndicator !== currentStep - 1) {
+            stepStatus = false;
+            goToStep = stepIndicator + 1;
+        } else {
+            for (let t = 0; t < currentStep; t++) {
+                if (goToStep === 0) {
+                    if (!this.getSubItemStatus(progressData[t])) {
+                        stepStatus = false;
+                        goToStep = t;
+                    }
                 }
             }
         }
@@ -1512,6 +1533,7 @@ export class ComprehensiveService {
     }
     getSubItemStatus(progressData: any) {
         let completedStatus = true;
+        // tslint:disable-next-line:no-commented-code
         /*if (!progressData.completed) {
             completedStatus = false;
         }*/
@@ -1521,5 +1543,23 @@ export class ComprehensiveService {
             }
         });
         return completedStatus;
+    }
+    setMySteps(currentStep: number) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted = currentStep;
+        this.commit();
+    }
+    getMySteps() {
+        if (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted) {
+            return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted;
+        } else {
+            return 0;
+        }
+    }
+    setReportStatus(reportStatus: string) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus = reportStatus;
+        this.commit();
+    }
+    getReportStatus() {
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
     }
 }

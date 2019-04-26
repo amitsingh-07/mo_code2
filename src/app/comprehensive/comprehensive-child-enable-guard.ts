@@ -45,7 +45,6 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
         || !this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId) {
         this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
         this.loaderService.showLoader({ title: 'Loading' });
-
         return this.cmpApiService.getComprehensiveSummary().pipe(map((data) => {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
           return this.canAccessUrl(state.url);
@@ -55,7 +54,6 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
       }
     }
   }
-
   canAccessUrl(url: string): boolean {
     const accessibleUrl = this.cmpService.getAccessibleUrl(url);
     if (!ProgressTrackerUtil.compare(accessibleUrl, url)) {

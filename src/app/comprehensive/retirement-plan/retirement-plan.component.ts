@@ -100,7 +100,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       }
     });
 
-    this.sliderValue = this.comprehensiveService.getRetirementPlan() ? this.comprehensiveService.getRetirementPlan().retirementAge : 45;
+    this.sliderValue = this.comprehensiveService.getRetirementPlan() ? parseInt(this.comprehensiveService.getRetirementPlan().retirementAge) : 45;
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
@@ -111,8 +111,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
     } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = this.userAge;
-      this.ciMultiplierSlider.writeValue(this.userAge);
+      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
@@ -135,8 +135,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
     } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = this.userAge;
-      this.ciMultiplierSlider.writeValue(this.userAge);
+      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
   }
   setPageTitle(title: string) {
@@ -146,12 +146,14 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.viewMode) {
       this.showSummaryModal();
     } else {
-      form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-      form.value.retirementAge = this.sliderValue;
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
-        this.comprehensiveApiService.saveRetirementPlanning(form.value).subscribe((data: any) => {
-          this.comprehensiveService.setRetirementPlan(form.value);
+        const retirementData = {
+          enquiryId : this.comprehensiveService.getEnquiryId(),
+          retirementAge : (this.sliderValue > 60 ) ? '62 or later' : this.sliderValue.toString()
+        };
+        this.comprehensiveApiService.saveRetirementPlanning(retirementData).subscribe((data: any) => {
+          this.comprehensiveService.setRetirementPlan(retirementData);
           this.showSummaryModal();
         });
       } else {
@@ -166,7 +168,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.summaryModalDetails = {
         setTemplateModal: 4,
         contentObj: this.retireModal,
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.RESULT),
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT),
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);

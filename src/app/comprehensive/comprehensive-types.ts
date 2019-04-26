@@ -1,4 +1,4 @@
-import { IProgressTrackerItem } from './../shared/modal/progress-tracker/progress-tracker.types';
+import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-tracker.types';
 
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
@@ -14,8 +14,6 @@ export interface IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
-    reportStatus: string;
-    stepCompleted: number;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -26,6 +24,9 @@ export interface IComprehensiveEnquiry {
     hasRegularSavingsPlans: boolean;
     type: string;
     isValidatedPromoCode: boolean;
+    promoCodeValidated?: boolean;
+    reportStatus: string;
+    stepCompleted: number;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -202,5 +203,6 @@ export interface IInsurancePlan {
 }
 export interface IRetirementPlan {
     enquiryId: number;
-    retirementAge: number;
+    retirementAge: string;
 }
+

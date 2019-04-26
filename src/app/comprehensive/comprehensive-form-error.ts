@@ -41,7 +41,7 @@ export class ComprehensiveFormError {
             name: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Full Name (as per ID)'
+                    errorMessage: 'Name'
                 },
                 pattern: {
                     errorTitle: this.invalidName,
@@ -146,8 +146,8 @@ export class ComprehensiveFormError {
             },
             badMoodMonthlyAmount: {
                 required: {
-                    errorTitle: 'Please Select the hospital Plan',
-                    errorMessage: 'Please Select the hospital Plan'
+                    errorTitle: 'Invalid Amount',
+                    errorMessage: 'Invalid Amount'
                 }
             },
         }

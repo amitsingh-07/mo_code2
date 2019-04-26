@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +27,8 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-comprehensive',
   templateUrl: './comprehensive.component.html',
-  styleUrls: ['./comprehensive.component.scss']
+  styleUrls: ['./comprehensive.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ComprehensiveComponent implements OnInit {
 
@@ -37,6 +38,8 @@ export class ComprehensiveComponent implements OnInit {
   userDetails: IMyProfile;
   promoCodeForm: FormGroup;
   promoCodeSuccess: string;
+  promoCodeValidated: boolean;
+  promoValidated: string;
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -51,6 +54,7 @@ export class ComprehensiveComponent implements OnInit {
       this.translate.get(config.common).subscribe((result: string) => {
         this.loginModalTitle = this.translate.instant('CMP.MODAL.LOGIN_SIGNUP_TITLE');
         this.promoCodeSuccess = this.translate.instant('CMP.MODAL.PROMO_CODE_SUCCESS');
+        this.promoValidated = this.translate.instant('CMP.MODAL.PROMO_CODE_VALIDATED');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
       });
     });
@@ -78,6 +82,8 @@ export class ComprehensiveComponent implements OnInit {
           }
         });
       }
+      this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode ? this.promoCodeValidated = true :
+        this.promoCodeValidated = false;
     }
 
     this.buildPromoCodeForm();
@@ -87,6 +93,7 @@ export class ComprehensiveComponent implements OnInit {
    * Navigate to the `redirectUrl` if set, else navigate to the `Getting Started` page.
    */
   redirect() {
+    this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     const cmpData = this.cmpService.getComprehensiveSummary();
     if (redirectUrl && cmpData.comprehensiveEnquiry.hasComprehensive
@@ -112,11 +119,11 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId() };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        this.redirect();
       } else {
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data) => {
           this.cmpService.setPromoCodeValidation(true);
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+          this.redirect();
         }, (err) => {
         });
       }
@@ -128,17 +135,23 @@ export class ComprehensiveComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '';
     ref.componentInstance.promoSuccessMsg = this.promoCodeSuccess;
-    ref.componentInstance.email =  this.signUpService.getUserProfileInfo().emailAddress;
+    ref.componentInstance.email = this.signUpService.getUserProfileInfo().emailAddress;
     ref.componentInstance.promoSuccess = true;
   }
+
   getPromoCode() {
     this.appService.setAction('GET_PROMO_CODE');
     if (this.authService.isSignedUser()) {
-      this.comprehensiveApiService.getPromoCode().subscribe((data) => {
-        this.showSuccessPopup();
-      }, (err) => {
+      if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
+        this.redirect();
+      } else {
+        this.comprehensiveApiService.getPromoCode().subscribe((data) => {
+          this.showSuccessPopup();
+        }, (err) => {
 
-      });
+        });
+      }
+
     } else {
       this.showLoginOrSignUpModal();
     }

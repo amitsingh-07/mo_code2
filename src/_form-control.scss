@@ -1261,4 +1261,33 @@ input::placeholder {
   .placeholderAmount {
     color: #5e5e5e;
   }
+  //Diasble form control styles
+  .btn-outline-primary.active.view-mode, .dropdown-toggle:disabled {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+    color:$app-backgrnd-color !important;
+    border: solid 1px rgba(0, 135, 134, 0.4) !important;
+    cursor: not-allowed !important;
+  }
+  .btn-outline-primary:hover.active.view-mode {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+  }
+  .btn-outline-primary.view-mode {
+    cursor: not-allowed !important;
+  }
+  .btn-outline-primary:hover.view-mode {
+    background: $white-color !important;
+  }
+  .dropdown-toggle:disabled::after {
+    color: $app-backgrnd-color !important;
+    opacity: 1 !important;
+  }
+  .datepicker-control .input-group.view-mode .form-control {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+    color:$app-backgrnd-color !important;
+    cursor: not-allowed !important;
+  }
+  .btn.btn-primary:disabled {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+    cursor: not-allowed !important;
+  }
 }

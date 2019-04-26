@@ -138,50 +138,57 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     RSPDetails.push(this.buildEmptyRSPForm());
   }
   removeRSP(i) {
-    const dependantDetails = this.RSPForm.get('comprehensiveRegularSavingsList') as FormArray;
-    dependantDetails.removeAt(i);
+    const RSPDetails = this.RSPForm.get('comprehensiveRegularSavingsList') as FormArray;
+    RSPDetails.removeAt(i);
+    this.RSPForm.get('comprehensiveRegularSavingsList').markAsDirty();
   }
   selectInvest(status, i) {
     const investment = status ? status : '';
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.regularUnitTrust.setValue(investment);
+    this.RSPForm.get('comprehensiveRegularSavingsList').markAsDirty();
   }
   goToNext(form) {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-      if (this.validateRegularSavings(form)) {
-        this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
-        this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
-        this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
-        });
+      if (!form.pristine || form.value.hasRegularSavings === null) {
+        if (this.validateRegularSavings(form)) {
+          this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
+          this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
+          this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+            this.comprehensiveService.clearBadMoodFund();
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+          });
+        }
+      } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
       }
     }
   }
 
-  validateRegularSavings(form: FormGroup) {
+    validateRegularSavings(form: FormGroup) {
 
-    this.submitted = true;
-    if (this.validationFlag && form.value.hasRegularSavings === 'true') {
-      if (!form.valid) {
-        const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
-          this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
-        this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
-        );
-        return false;
+      this.submitted = true;
+      if (this.validationFlag && form.value.hasRegularSavings === 'true') {
+        if (!form.valid) {
+          const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
+            this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
+          this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+          );
+          return false;
+        }
+      } else {
+        this.submitted = false;
       }
-    } else {
-      this.submitted = false;
+
+      return true;
+    }
+    showToolTipModal(toolTipTitle, toolTipMessage) {
+      const toolTipParams = {
+        TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
+        DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
+      };
+      this.comprehensiveService.openTooltipModal(toolTipParams);
     }
 
-    return true;
   }
-  showToolTipModal(toolTipTitle, toolTipMessage) {
-    const toolTipParams = {
-      TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
-      DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
-    };
-    this.comprehensiveService.openTooltipModal(toolTipParams);
-  }
-
-}

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DependantSelectionComponent } from './dependant-selection.component';
+import { ValidateResultComponent } from './validate-result.component';
 
-describe('DependantSelectionComponent', () => {
-  let component: DependantSelectionComponent;
-  let fixture: ComponentFixture<DependantSelectionComponent>;
+describe('ValidateResultComponent', () => {
+  let component: ValidateResultComponent;
+  let fixture: ComponentFixture<ValidateResultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DependantSelectionComponent ]
+      declarations: [ ValidateResultComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DependantSelectionComponent);
+    fixture = TestBed.createComponent(ValidateResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
