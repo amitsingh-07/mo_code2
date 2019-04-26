@@ -95,11 +95,9 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     const cmpData = this.cmpService.getComprehensiveSummary();
-    if (redirectUrl && cmpData.comprehensiveEnquiry.hasComprehensive
-      && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
+    if (redirectUrl && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([redirectUrl]);
-    } else if (cmpData.comprehensiveEnquiry.hasComprehensive
-      && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
+    } else if (cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
 
