@@ -11,6 +11,7 @@ import { LoaderService } from './loader.service';
 export class LoaderComponent implements OnInit, OnChanges {
 
   isVisible = false;
+  autoHide = true;
   params;
   @ViewChild('anim') anim: ElementRef;
   interval;
@@ -23,14 +24,22 @@ export class LoaderComponent implements OnInit, OnChanges {
     this.loaderService.loaderParamChange.subscribe((param) => {
       if (param) {
         this.params = param;
-        this.showLoader();
+        if (typeof param.hideForced !== 'undefined') {
+          this.hideLoaderForced();
+          return;
+        } else {
+          if (typeof param.autoHide !== 'undefined') {
+            this.autoHide = param.autoHide;
+          }
+          this.showLoader();
+        }
       } else {
         this.hideLoader();
       }
     });
 
     this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
+      if (val instanceof NavigationEnd && this.autoHide && this.isVisible) {
         this.hideLoader();
       }
     });
@@ -45,6 +54,16 @@ export class LoaderComponent implements OnInit, OnChanges {
   }
 
   hideLoader() {
+    if (this.autoHide) {
+      this.hide();
+    }
+  }
+
+  hideLoaderForced() {
+    this.hide();
+  }
+
+  private hide() {
     this.isVisible = false;
     clearInterval(this.interval);
   }

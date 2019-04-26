@@ -861,7 +861,8 @@ export class ComprehensiveService {
         }
         subItemsArray.push({
             id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-            path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+            path: (enquiry.hasDependents !== null && enquiry.hasDependents !== false)
+                ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
             title: 'Number of Dependant',
             value: noOfDependants,
             completed: enquiry.hasDependents !== null
@@ -1130,7 +1131,7 @@ export class ComprehensiveService {
                     title: 'Long-Term Care',
                     value: longTermCareValue,
                     completed: isCompleted,
-                    hidden: (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) >=
+                    hidden: (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) <
                         COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)
                 }
             ]
