@@ -67,11 +67,9 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       this.userDetails = this.cmpService.getMyProfile();
       if (!this.userDetails || !this.userDetails.firstName) {
-        this.loaderService.showLoader({ title: 'Fetching Data' });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
           const cmpData = data.objectList[0];
           this.cmpService.setComprehensiveSummary(cmpData);
-          this.loaderService.hideLoader();
           const action = this.appService.getAction();
           if (action === 'GET_PROMO_CODE') {
             this.getPromoCode();
