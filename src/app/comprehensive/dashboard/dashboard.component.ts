@@ -36,7 +36,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
-    this.items = [0, 1, 2, 3, 4];
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
@@ -57,8 +56,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           const reportDateAPI = new Date();
           this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
           this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
-            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null)
-            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : 'new';
+            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nation)
+            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
           if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             this.comprehensivePlanning = 3;
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
