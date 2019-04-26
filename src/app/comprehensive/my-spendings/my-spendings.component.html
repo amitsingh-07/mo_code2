@@ -39,7 +39,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #monthlyLivingExpenses formControlName="monthlyLivingExpenses"
                 value="0">
@@ -66,7 +66,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="6" #adHocExpenses formControlName="adHocExpenses"
                 value="0">
@@ -93,7 +93,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCPF formControlName="HLMortgagePaymentUsingCPF"
                 value="0">
@@ -105,7 +105,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #HLMortgagePaymentUsingCash formControlName="HLMortgagePaymentUsingCash"
                 value="0">
@@ -170,7 +170,7 @@
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
                   </div>
                   <div class="flex-col-6">
-                  <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePaymentUsingCPF.invalid}">
+                  <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCPF.invalid}">
                     <i>$</i>
                     <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCPF formControlName="mortgagePaymentUsingCPF"
                     value="0">
@@ -182,7 +182,7 @@
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
                   </div>
                   <div class="flex-col-6">
-                  <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
+                  <div class="form-control" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
                     <i>$</i>
                     <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash"
                     value="0">
@@ -243,7 +243,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #carLoanPayment formControlName="carLoanPayment"
                 value="0">
@@ -270,7 +270,7 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="form-control">
+              <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                 <i>$</i>
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="5" #otherLoanPayment
                 formControlName="otherLoanPayment" value="0">

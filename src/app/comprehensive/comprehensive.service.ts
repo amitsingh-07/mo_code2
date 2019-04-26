@@ -882,7 +882,7 @@ export class ComprehensiveService {
                     if (!Util.isEmptyOrNull(item.location)) {
                         tempPrefsList.push(item);
                     }
-                    if (item.endowmentMaturityYears !== null) {
+                    if (!Util.isEmptyOrNull(item.endowmentMaturityYears)) {
                         hasEndowmentAmount = true;
                     }
                     prefsList.push({
@@ -1539,7 +1539,7 @@ export class ComprehensiveService {
             completedStatus = false;
         }*/
         Object.keys(progressData.subItems).forEach((completedData) => {
-            if (!progressData.subItems[completedData].completed) {
+            if (!progressData.subItems[completedData].completed && !progressData.subItems[completedData].hidden) {
                 completedStatus = false;
             }
         });

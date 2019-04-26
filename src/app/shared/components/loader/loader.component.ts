@@ -24,12 +24,14 @@ export class LoaderComponent implements OnInit, OnChanges {
     this.loaderService.loaderParamChange.subscribe((param) => {
       if (param) {
         this.params = param;
-        if (typeof param.hideForced !== 'undefined') {
+        if (typeof param.hideForced !== 'undefined' && param.hideForced) {
           this.hideLoaderForced();
           return;
         } else {
           if (typeof param.autoHide !== 'undefined') {
             this.autoHide = param.autoHide;
+          } else {
+            this.autoHide = true;
           }
           this.showLoader();
         }

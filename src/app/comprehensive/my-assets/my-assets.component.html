@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" maxLength="7" class="input-control" appCurrencyInput #cashInBank
                 formControlName="cashInBank">
@@ -54,7 +54,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" maxLength="7" class="input-control" appCurrencyInput #savingsBonds
                 formControlName="savingsBonds">
@@ -83,7 +83,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control" [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
                 [ngClass]="{'readonly-disabled': cpfFromMyInfo}" appCurrencyInput maxLength="7" #cpfOrdinaryAccount
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control" [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
                 [ngClass]="{'readonly-disabled': cpfFromMyInfo}" appCurrencyInput maxLength="7" #cpfSpecialAccount
@@ -113,7 +113,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control" [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
                 [ngClass]="{'readonly-disabled': cpfFromMyInfo}" appCurrencyInput maxLength="7" #cpfMediSaveAccount
@@ -149,7 +149,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput #homeMarketValue maxLength="7"
                 formControlName="homeMarketValue">
@@ -190,7 +190,7 @@
             </div>
             <div class="flex-col-6">
               <div class="form-control"
-                [ngClass]="{'inline-error': submitted && addAssetsValid.investmentPropertiesValue.invalid}">
+                [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addAssetsValid.investmentPropertiesValue.invalid}">
                 <i>$</i>
                 <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentPropertiesValue
                   formControlName="investmentPropertiesValue" value="0">
@@ -262,7 +262,7 @@
               </div>
               <div class="flex-col-6">
                 <div class="form-control"
-                  [ngClass]="{'inline-error': submitted && otherInvestment['controls'].investmentAmount.invalid}">
+                  [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && otherInvestment['controls'].investmentAmount.invalid}">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="8" #investmentAmount
                     formControlName="investmentAmount" value="0">
@@ -304,7 +304,7 @@
             </div>
           </div>
           <div class="flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssetsValue
                 formControlName="otherAssetsValue" value="0">

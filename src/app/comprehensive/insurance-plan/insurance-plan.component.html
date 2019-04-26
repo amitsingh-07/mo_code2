@@ -94,7 +94,7 @@
             </label>
           </div>
           <div class="pr0 flex-col-6">
-            <div class="form-control form-control-right">
+            <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput formControlName="lifeProtectionAmount" value="">
               <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
@@ -145,7 +145,7 @@
             </label>
           </div>
           <div class="pr0 flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4"
                 formControlName="homeProtectionCoverageAmount" value="0">
@@ -169,7 +169,7 @@
             </label>
           </div>
           <div class="pr0 flex-col-6">
-            <div class="form-control">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="4"
                 formControlName="otherLifeProtectionCoverageAmount" value="0">
@@ -196,7 +196,7 @@
                 </label>
               </div>
               <div class="pr0 flex-col-6">
-                <div class="form-control">
+                <div class="form-control" [ngClass]="{'view-mode': viewMode}">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="4"
                     formControlName="criticalIllnessCoverageAmount" value="0">
@@ -225,7 +225,7 @@
                 </label>
               </div>
               <div class="pr0 flex-col-6">
-                <div class="form-control form-control-right">
+                <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput
                     formControlName="disabilityIncomeCoverageAmount" [value]="">

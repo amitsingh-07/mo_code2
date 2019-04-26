@@ -54,7 +54,7 @@
                       </label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
+                      <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}" >
                         <i>$</i>
                         <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash"  >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
@@ -69,7 +69,7 @@
                       </label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control form-control-right" [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
+                      <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
                         <i>$</i>
                         <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput maxLength="4"  #regularPaidByCPF formControlName="regularPaidByCPF" >
                         <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
