@@ -155,7 +155,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loaderService.showLoader({ title: 'Signing in' });
     this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
       this.loginForm.value.captchaValue).subscribe((data) => {
-        this.loaderService.hideLoader();
         if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
           try {
             if (data.objectList[0].customerId) {
@@ -172,9 +171,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             const investmentStatus = this.signUpService.getInvestmentStatus();
             const redirect_url = this.signUpService.getRedirectUrl();
             if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+              this.loaderService.showLoader({ title: 'Loading', autoHide: false });
               this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
             } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
               this.willWritingService.getExecTrusteeInfo().length > 0) {
+              this.loaderService.hideLoader();
               if (!this.willWritingService.getIsWillCreated()) {
                 this.willWritingApiService.createWill().subscribe((willData) => {
                   if (willData.responseMessage && willData.responseMessage.responseCode >= 6000) {

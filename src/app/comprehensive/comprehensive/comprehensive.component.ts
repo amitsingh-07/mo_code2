@@ -67,11 +67,10 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       this.userDetails = this.cmpService.getMyProfile();
       if (!this.userDetails || !this.userDetails.firstName) {
-        this.loaderService.showLoader({ title: 'Fetching Data' });
+        this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
           const cmpData = data.objectList[0];
           this.cmpService.setComprehensiveSummary(cmpData);
-          this.loaderService.hideLoader();
           const action = this.appService.getAction();
           if (action === 'GET_PROMO_CODE') {
             this.getPromoCode();
@@ -103,6 +102,10 @@ export class ComprehensiveComponent implements OnInit {
       && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
+
+    setTimeout(() => {
+      this.loaderService.hideLoaderForced();
+    }, 500);
   }
 
   buildPromoCodeForm() {
