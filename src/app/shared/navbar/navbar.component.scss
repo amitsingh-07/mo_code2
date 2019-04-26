@@ -174,3 +174,25 @@
         text-decoration: underline !important;
     }
 }
+.comprehensive-desktop-header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    background: $white-color;
+    min-height:50px;
+    text-align: center;
+    font-family: $muli-bold;
+    font-size: 18px;
+    line-height: 50px;
+    z-index: 1020;
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+    .prg-trck-icon {
+        position: absolute;
+        right: 20px;
+        top: 13px;
+        cursor: pointer;
+    }
+    .page-title {
+        color: $app-backgrnd-color;
+    }
+  }

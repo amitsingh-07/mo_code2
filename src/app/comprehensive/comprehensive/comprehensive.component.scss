@@ -11,10 +11,10 @@ app-comprehensive {
     }
   }
   .video-section {
-    margin: 0 -20px;
+    margin: 0;
   }
   .intro-box {
-    padding: 20px 0;
+    padding: 20px;
     &__heading {
       font-family: $muli-bold;
       font-size: 28px;
@@ -53,7 +53,7 @@ app-comprehensive {
   }
   .how-it-works {
     border-top: 1px solid $separator-color;
-    padding: 20px 0;
+    padding: 10px;
     &__heading {
       font-family: $muli-bold;
       font-size: 28px;
