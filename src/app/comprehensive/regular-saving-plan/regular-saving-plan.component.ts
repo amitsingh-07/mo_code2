@@ -145,12 +145,13 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   selectInvest(status, i) {
     const investment = status ? status : '';
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.regularUnitTrust.setValue(investment);
+    this.RSPForm.get('comprehensiveRegularSavingsList').markAsDirty();
   }
   goToNext(form) {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-      if (!form.pristine) {
+      if (!form.pristine || form.value.hasRegularSavings === null) {
         if (this.validateRegularSavings(form)) {
           this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
           this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
