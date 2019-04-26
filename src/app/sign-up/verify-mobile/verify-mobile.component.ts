@@ -30,6 +30,7 @@ export class VerifyMobileComponent implements OnInit {
   verifyMobileForm: FormGroup;
   mobileNumber: any;
   mobileNumberVerifiedMessage: string;
+  showCodeSentText = false;
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
@@ -143,6 +144,7 @@ export class VerifyMobileComponent implements OnInit {
     this.signUpApiService.requestNewOTP().subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
+      this.showCodeSentText = true;
     });
   }
 

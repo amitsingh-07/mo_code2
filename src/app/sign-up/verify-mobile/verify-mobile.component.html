@@ -73,6 +73,9 @@
             {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
             <div class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</div>
           </div>
+          <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
+            {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}
+         </div>
         </form>
       </div>
     </div>

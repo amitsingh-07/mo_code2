@@ -64,7 +64,7 @@ export class SignUpApiService {
     return {
       customer: {
         countryCode: getAccountInfo.countryCode,
-        mobileNumber: getAccountInfo.mobileNumber,
+        mobileNumber: getAccountInfo.mobileNumber.toString(),
         firstName: getAccountInfo.firstName,
         lastName: getAccountInfo.lastName,
         emailAddress: getAccountInfo.email,
