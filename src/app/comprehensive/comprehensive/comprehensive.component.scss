@@ -1,11 +1,20 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-comprehensive {
-  .comprehensive-section {
-    background-color: #FFFFFF !important;
+  
+  .comprehensive  {
+    &.container-fluid {
+      padding-top: 0;
+    }
+    &.white-bg {
+      background-color: #FFFFFF !important;
+    }
+  }
+  .video-section {
+    margin: 0 -20px;
   }
   .intro-box {
-    padding: 20px;
+    padding: 20px 0;
     &__heading {
       font-family: $muli-bold;
       font-size: 28px;
@@ -44,7 +53,7 @@ app-comprehensive {
   }
   .how-it-works {
     border-top: 1px solid $separator-color;
-    padding: 20px;
+    padding: 20px 0;
     &__heading {
       font-family: $muli-bold;
       font-size: 28px;
@@ -170,6 +179,11 @@ app-comprehensive {
     left: 0;
     right: 0;
     background: $white-color;
+      @include desktop {
+        width: 600px;
+        left: 50%;
+        margin-left: -300px; /* Half of the width */
+      }
     &__inner {
       @extend .flex;
       justify-content: space-between;
