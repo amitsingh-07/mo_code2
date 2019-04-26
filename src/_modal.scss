@@ -955,4 +955,11 @@ body.modal-open::-webkit-scrollbar {
   .footer-cta {
     padding: 0 10px;
   }
+  @include desktop {
+    .modal-body {
+      height: 100vh;
+      overflow-y: auto;
+      padding-bottom: 50px;
+    }
+  }
 }
