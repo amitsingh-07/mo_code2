@@ -10,6 +10,7 @@ import { IBeneficiary } from '../will-writing-types';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
+import {AuthenticationService} from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -34,7 +35,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     public footerService: FooterService,
     public navbarService: NavbarService,
     private willWritingApiService: WillWritingApiService,
-    private router: Router) {
+    private router: Router,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_4');
@@ -79,7 +81,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   goNext() {
     if (this.willWritingService.checkDuplicateUinAll()) {
-      if (this.willWritingService.isUserLoggedIn()) {
+      if (this.authService.isSignedUser()) {
         let createUpdateWill;
         if (!this.willWritingService.getIsWillCreated()) {
           createUpdateWill = this.willWritingApiService.createWill();
