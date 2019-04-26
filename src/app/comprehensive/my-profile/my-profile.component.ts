@@ -48,6 +48,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     viewMode: boolean;
     hospitalPlanList: IHospitalPlanList[];
     menuClickSubscription: Subscription;
+    subscription: Subscription;
     public showToolTip = false;
 
     public onCloseClick(): void {
@@ -73,10 +74,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
-        configDate.minDate = { year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MAX_YEAR,
-            month: today.getMonth() + 1, day: today.getDate() };
-        configDate.maxDate = { year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MIN_YEAR,
-            month: today.getMonth() + 1, day: today.getDate() };
+        configDate.minDate = {
+            year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MAX_YEAR,
+            month: today.getMonth() + 1, day: today.getDate()
+        };
+        configDate.maxDate = {
+            year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MIN_YEAR,
+            month: today.getMonth() + 1, day: today.getDate()
+        };
         configDate.outsideDays = 'collapsed';
         this.pageId = this.activatedRoute.routeConfig.component.name;
         this.configService.getConfig().subscribe((config: any) => {
@@ -115,6 +120,18 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.progressService.show();
             }
         });
+
+        this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+            if (event && event !== '') {
+                const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
+                if (previousUrl !== null) {
+                    this.router.navigate([previousUrl]);
+                } else {
+                    this.navbarService.goBack();
+                }
+            }
+        });
+
         if (!this.comprehensiveService.isProgressToolTipShown()) {
             setTimeout(() => {
                 this.showToolTip = true;
@@ -133,8 +150,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.navbarService.unsubscribeMenuItemClick();
+        this.subscription.unsubscribe();
         this.menuClickSubscription.unsubscribe();
+        this.navbarService.unsubscribeBackPress();
+        this.navbarService.unsubscribeMenuItemClick();
     }
 
     setPageTitle(title: string) {
