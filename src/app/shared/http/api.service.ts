@@ -71,8 +71,12 @@ export class ApiService {
       );
   }
 
-  getHospitalPlanList() {
-    return this.http.get(apiConstants.endpoint.getHospitalPlanList)
+  getHospitalPlanList(queryParam?: string) {
+    let query = '';
+    if (queryParam) {
+      query = '?' + queryParam;
+    }
+    return this.http.get(apiConstants.endpoint.getHospitalPlanList + query)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -799,9 +803,9 @@ export class ApiService {
   // Comprehensive Module
   getPersonalDetails() {
     return this.http.get(apiConstants.endpoint.comprehensive.getPersonalDetails)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
   downloadStatement(data) {
     return this.http.getBlob(apiConstants.endpoint.investment.getStatement + '?' + data)
@@ -868,4 +872,3 @@ export class ApiService {
       );
   }
 }
-

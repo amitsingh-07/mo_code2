@@ -111,4 +111,3 @@ export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Ro
     }
   }
 }
-

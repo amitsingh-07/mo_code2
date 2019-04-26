@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -22,10 +23,12 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   viewMode: boolean;
+  reportStatus: string;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
-    private progressService: ProgressTrackerService, private comprehensiveService: ComprehensiveService) {
+    private progressService: ProgressTrackerService, private comprehensiveService: ComprehensiveService,
+    private comprehensiveApiService: ComprehensiveApiService) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -36,10 +39,23 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-
     // tslint:disable-next-line:radix
     this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.reportStatus = this.comprehensiveService.getReportStatus();
+    const currentStep = this.comprehensiveService.getMySteps();
+    const stepCalculated = this.step - 1;
+    if (this.step > 1 && this.step < 4 && (stepCalculated > currentStep)) {
+      const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
+      if ( stepCheck.status ) {
+        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated  };
+        this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
+          this.comprehensiveService.setMySteps(stepCalculated);
+        });
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + stepCheck.stepIndicate]);
+      }
+    }
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

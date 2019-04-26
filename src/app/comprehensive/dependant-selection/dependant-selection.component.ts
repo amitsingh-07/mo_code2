@@ -77,7 +77,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     this.buildMyDependantSelectionForm();
   }
 
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();

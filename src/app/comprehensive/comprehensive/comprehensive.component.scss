@@ -1,7 +1,202 @@
 @import '../../../variables';
 @import '../../../mixins';
-
-
-.comprehensive-section {
-  background: #fff;
+app-comprehensive {
+  
+  .comprehensive  {
+    &.container-fluid {
+      padding-top: 0;
+    }
+    &.white-bg {
+      background-color: #FFFFFF !important;
+    }
+  }
+  .video-section {
+    margin: 0;
+  }
+  .intro-box {
+    padding: 20px;
+    &__heading {
+      font-family: $muli-bold;
+      font-size: 28px;
+      color: $black-color;
+      padding-bottom: 20px;
+      line-height: 35px;
+    }
+    ul {
+      padding: 0 0 15px 0;
+      li {
+        font-family: $muli-regular;
+        color: $black-color;
+        font-size: 16px;
+        line-height: 25px;
+        list-style-type: none;
+        margin-bottom: 5px;
+          &.report, &.national-scheme, &.meeting {
+            background-image: url('../../../assets/images/comprehensive/homepage/report.svg');
+            background-repeat: no-repeat;
+            padding-left: 40px;
+            background-position: 0 1px;
+            height: 30px;
+          }
+          &.national-scheme {
+            background-image: url('../../../assets/images/comprehensive/homepage/national-scheme.svg');
+          }
+          &.meeting {
+            background-image: url('../../../assets/images/comprehensive/homepage/meeting.svg');
+          }
+      }
+    }
+    &__desc {
+      color: $text-color-secondary;
+      padding-bottom: 10px;
+    }
+  }
+  .how-it-works {
+    border-top: 1px solid $separator-color;
+    padding: 10px;
+    &__heading {
+      font-family: $muli-bold;
+      font-size: 28px;
+      color: $black-color;
+      padding-bottom: 20px;
+    }
+    &__box {
+        border-radius: 6px;
+        box-shadow: 0 3px 6px 0 rgba(179, 179, 179, 0.5);
+        background-color: $white-color;
+        padding: 20px;
+        margin-bottom: 15px;
+      &__heading {
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        color: $black-color;
+      }
+      &__content {
+        color: $btn-comprehensive;
+        font-size: 14px;
+      }
+      &__caption--info-gathering, &__caption--report, &__caption--meeting, &__caption--review  {
+        padding-top: 20px;
+        background-image: url("../../../assets/images/comprehensive/homepage/info-gathering.svg");
+        background-repeat: no-repeat;
+        background-position: right 100%;
+        height: 100px;
+      }
+      &__caption--report {
+        background-image: url("../../../assets/images/comprehensive/homepage/3-in-1.svg");
+      }
+      &__caption--meeting {
+        background-image: url("../../../assets/images/comprehensive/homepage/meeting-big.svg");
+      }
+      &__caption--review {
+        background-image: url("../../../assets/images/comprehensive/homepage/review.svg");
+      }
+      ul {
+        padding: 10px 0 0 20px;
+        li {
+          list-style-type: disc;
+          font-size: 20px;
+          line-height: 20px;
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .desc-box {
+    padding: 15px 30px;
+    font-size: 16px;
+    &__heading {
+      color: $advisory-heading;
+      border-bottom: 1px solid $advisory-heading;
+      margin-bottom: 10px;
+    }
+    &__free-text {
+      @extend .flex;
+      justify-content: space-between;
+      color: $black-color;
+      position: relative;
+      span.free {
+        color: $text-free;
+        font-family: $muli-bold;
+      }
+    }
+    &__limited-time {
+      color: $limited-text;
+    }
+  }
+  .strikethrough {
+    position: relative;
+    margin-right: 10px;
+  }
+  .strikethrough:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: inherit;
+    -webkit-transform:rotate(10deg);
+    -moz-transform:rotate(10deg);
+    -ms-transform:rotate(10deg);
+    -o-transform:rotate(10deg);
+    transform:rotate(10deg);
+  }
+  .promo-code-box {
+    text-align: center;
+    padding: 0 30px;
+    padding-bottom: 150px;
+    input {
+      text-align: center;
+    }
+    input::placeholder {
+      color: $limited-text !important;
+      font-family: $muli-light-italic;
+    }
+    &__promo-input {
+      padding: 0 15%;
+    }
+    &__no-promo {
+      color: $dark-teal-color;
+      font-size: 14px;
+      margin: 15px 0 30px 0;
+    }
+    &__get-now {
+      color: $dark-teal-color;
+      font-family: $muli-bold;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .onetime-free-box {
+    box-shadow: 0 1px 11px 3px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $white-color;
+      @include desktop {
+        width: 600px;
+        left: 50%;
+        margin-left: -300px; /* Half of the width */
+      }
+    &__inner {
+      @extend .flex;
+      justify-content: space-between;
+      color: $black-color;
+      font-family: $muli-bold;
+      &__limited {
+        color: $limited;
+        font-size: 18px;
+        font-family: $muli-regular;
+      }
+      .btn {
+        font-size: 14px;
+      }
+    }
+  }
 }
