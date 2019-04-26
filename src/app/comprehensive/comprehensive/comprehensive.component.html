@@ -1,97 +1,107 @@
-<div class="comprehensive-section">
-  <div class="text-center">
-    <iframe [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
-  </div>
-  <div class="intro-box">
-    <div class="intro-box__heading">
-      <ul>
-        <li class="report"> {{ 'CMP.COMPREHENSIVE.SUB_HEADER_1' | translate}}</li>
-        <li class="meeting">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_2' | translate}} </li>
-        <li class="national-scheme">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_3' | translate}}</li>
-      </ul>
+<div class="container-fluid comprehensive white-bg">
+  <div class="comprehensive-section">
+    <div class="text-center video-section">
+      <iframe [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
     </div>
-    <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC1' | translate}}</div>
-    <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC2' | translate}}
-    </div>
-    <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC3' | translate}}</div>
-    <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC4' | translate}}</div>
-  </div>
-  <div class="how-it-works">
-    <div class="how-it-works__heading">
-        {{ 'CMP.COMPREHENSIVE.DESC_TITLE' | translate}}
-    </div>
-    <div class="how-it-works__box">
-      <p class="how-it-works__box__heading">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_1' | translate}}
-      </p>
-      <p class="how-it-works__box__content">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_1' | translate}}
-      </p>
-      <p class="how-it-works__box__caption--info-gathering"></p>
-    </div>
-    <div class="how-it-works__box">
-      <p class="how-it-works__box__heading">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_2' | translate}}
-      </p>
-      <div class="how-it-works__box__content">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2' | translate}}
+    <div class="intro-box">
+      <div class="intro-box__heading">
+        <div class="intro-box__heading">{{ 'CMP.COMPREHENSIVE.HEADER' | translate}}</div>
         <ul>
-          <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_1' | translate}} </span> </li>
-          <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_2' | translate}}</span></li>
-          <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_3' | translate}}</span></li>
+          <li class="report"> {{ 'CMP.COMPREHENSIVE.SUB_HEADER_1' | translate}}</li>
+          <li class="meeting">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_2' | translate}} </li>
+          <li class="national-scheme">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_3' | translate}}</li>
         </ul>
       </div>
-      <p class="how-it-works__box__caption--report"></p>
-    </div>
-    <div class="how-it-works__box">
-      <p class="how-it-works__box__heading">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_3' | translate}}
-      </p>
-      <p class="how-it-works__box__content">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_3' | translate}}
-      </p>
-      <p class="how-it-works__box__caption--meeting"></p>
-    </div>
-    <div class="how-it-works__box">
-      <p class="how-it-works__box__heading">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_4' | translate}}
-      </p>
-      <p class="how-it-works__box__content">
-          {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_4' | translate}}
-      </p>
-      <p class="how-it-works__box__caption--review"></p>
-    </div>
-  </div>
-  <div class="desc-box">
-    <div class="desc-box__heading"> {{ 'CMP.COMPREHENSIVE.DESCRIPTION' | translate}}</div>
-    <div class="desc-box__free-text">
-      <div>{{ 'CMP.COMPREHENSIVE.ROBOADVISORY' | translate}}</div>
-      <div><span class="strikethrough">$500</span><span class="free">{{ 'CMP.COMPREHENSIVE.FREE' | translate}}</span></div>
-    </div>
-    <div class="desc-box__limited-time">{{'CMP.COMPREHENSIVE.FREE' | translate}} {{ 'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}} </div>
-  </div>
-  <div class="text-center promo-code-box">
-    <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm"
-      class="promoCodeForm">
-      <div class="promo-code-box__promo-input">
-        <input type="text" id="promoCodeInpt" class="form-control promo-code"
-          formControlName="comprehensivePromoCodeToken" placeholder="Enter your promocode">
+      <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC1' | translate}}</div>
+      <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC2' | translate}}
       </div>
-      <div [hidden]="promoCodeValidated" (click)="getPromoCode()" class="promo-code-box__no-promo"> {{ 'CMP.COMPREHENSIVE.NO_PROMO' | translate}}<span
-          class="promo-code-box__get-now">{{ 'CMP.COMPREHENSIVE.GET_NEW' | translate}}</span></div>
-     
-    </form>
-    <button class="start-now-btn btn-block btn btn-primary-dark"
-    (click)="getStarted()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
-  </div>
-  <div class="onetime-free-box">
-    <div class="onetime-free-box__inner">
-      <div>
-        <div><span class="strikethrough">$500</span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}} </div>
-        <div class="onetime-free-box__inner__limited"><span class="text-bold">{{'CMP.COMPREHENSIVE.FREE' | translate}}</span> {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
-      </div>
-      <div>
-        <button [hidden]="promoCodeValidated" class="btn-block btn btn-primary-dark" (click)="getPromoCode()">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
-      </div>
+      <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC3' | translate}}</div>
+      <div class="intro-box__desc">{{ 'CMP.COMPREHENSIVE.DESC4' | translate}}</div>
     </div>
-  </div>
+    <div class="how-it-works">
+      <div class="how-it-works__heading">
+        {{ 'CMP.COMPREHENSIVE.DESC_TITLE' | translate}}
+      </div>
+
+      <div class="how-it-works">
+        <div class="how-it-works__box">
+          <p class="how-it-works__box__heading">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_1' | translate}}
+          </p>
+          <p class="how-it-works__box__content">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_1' | translate}}
+          </p>
+          <p class="how-it-works__box__caption--info-gathering"></p>
+        </div>
+        <div class="how-it-works__box">
+          <p class="how-it-works__box__heading">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_2' | translate}}
+          </p>
+          <div class="how-it-works__box__content">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2' | translate}}
+            <ul>
+              <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_1' | translate}} </span> </li>
+              <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_2' | translate}}</span></li>
+              <li><span> {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_2_SUB_POINT_3' | translate}}</span></li>
+            </ul>
+          </div>
+          <p class="how-it-works__box__caption--report"></p>
+        </div>
+        <div class="how-it-works__box">
+          <p class="how-it-works__box__heading">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_3' | translate}}
+          </p>
+          <p class="how-it-works__box__content">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_3' | translate}}
+          </p>
+          <p class="how-it-works__box__caption--meeting"></p>
+        </div>
+        <div class="how-it-works__box">
+          <p class="how-it-works__box__heading">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_TITLE_4' | translate}}
+          </p>
+          <p class="how-it-works__box__content">
+            {{ 'CMP.COMPREHENSIVE.DESC_SUB_ABOUT_4' | translate}}
+          </p>
+          <p class="how-it-works__box__caption--review"></p>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-box__heading"> {{ 'CMP.COMPREHENSIVE.DESCRIPTION' | translate}}</div>
+        <div class="desc-box__free-text">
+          <div>{{ 'CMP.COMPREHENSIVE.ROBOADVISORY' | translate}}</div>
+          <div><span class="strikethrough">$500</span><span
+              class="free">{{ 'CMP.COMPREHENSIVE.FREE' | translate}}</span></div>
+        </div>
+        <div class="desc-box__limited-time">{{'CMP.COMPREHENSIVE.FREE' | translate}}
+          {{ 'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}} </div>
+      </div>
+      <div class="text-center promo-code-box">
+        <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm"
+          class="promoCodeForm">
+          <div class="promo-code-box__promo-input">
+            <input type="text" id="promoCodeInpt" class="form-control promo-code"
+              formControlName="comprehensivePromoCodeToken" placeholder="Enter your promocode">
+          </div>
+          <div [hidden]="promoCodeValidated" (click)="getPromoCode()" class="promo-code-box__no-promo">
+            {{ 'CMP.COMPREHENSIVE.NO_PROMO' | translate}}<span
+              class="promo-code-box__get-now">{{ 'CMP.COMPREHENSIVE.GET_NEW' | translate}}</span></div>
+
+        </form>
+        <button class="start-now-btn btn-block btn btn-primary-dark"
+          (click)="getStarted()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
+      </div>
+      <div class="onetime-free-box">
+        <div class="onetime-free-box__inner">
+          <div>
+            <div><span class="strikethrough">$500</span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}} </div>
+            <div class="onetime-free-box__inner__limited"><span
+                class="text-bold">{{'CMP.COMPREHENSIVE.FREE' | translate}}</span>
+              {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
+          </div>
+          <div>
+            <button [hidden]="promoCodeValidated" class="btn-block btn btn-primary-dark"
+              (click)="getPromoCode()">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
+          </div>
+        </div>
+      </div>
