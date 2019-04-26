@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SecurePipe } from '../shared/Pipes/secure.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { ComprehensiveModule } from './../comprehensive/comprehensive.module';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
@@ -57,6 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
     SignUpRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    ComprehensiveModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

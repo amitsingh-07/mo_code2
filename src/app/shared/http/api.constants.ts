@@ -119,7 +119,10 @@ export let apiConstants = {
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
             getPromoCode: ACCOUNT_API_BASE_URL + 'customer/comprehensive/requestComprehensivePromoCode',
             validatePromoCode: ACCOUNT_API_BASE_URL + 'customer/comprehensive/validateComprehensivePromoCode',
-            downloadComprehensiveReport: ''
+            downloadComprehensiveReport: '',
+            saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
+            generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport'
         }
     }
 };
+

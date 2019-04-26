@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
@@ -11,11 +12,11 @@ import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class ComprehensiveDashboardComponent implements OnInit {
   userName: string;
   comprehensivePlanning: number;
   userDetails: IMyProfile;
@@ -39,18 +40,6 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
-
-    this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-        if (data) {
-          this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-          this.userDetails = this.comprehensiveService.getMyProfile();
-          this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
-          this.userName = this.userDetails.firstName;
-        }
-      });
-  }
-
-  ngOnInit() {
     /**
      * 0 - Waiting for report
      * 1 - Completed & View Report
@@ -58,39 +47,34 @@ export class DashboardComponent implements OnInit {
      * 3 - Not Completed
      */
     this.comprehensivePlanning = 4;
-    this.advisorStatus = false;
-    const reportDateAPI = new Date();
-    this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
-    this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.reportStatus
-                        && this.getComprehensiveSummary.reportStatus !== null) ? this.getComprehensiveSummary.reportStatus : 'new' ;
-    if (this.reportStatus === 'new') {
-      this.comprehensivePlanning = 3;
-    } else if (this.reportStatus === 'submitted') {
-      this.comprehensivePlanning = 0;
-    } else if (this.reportStatus === 'ready') {
-      this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
-    }
-
-// tslint:disable-next-line: no-commented-code
-    /*this.getComprehensiveSummaryEnquiry = this.getComprehensiveSummary.comprehensiveEnquiry;
-    if ( this.getComprehensiveSummaryEnquiry.hasComprehensive === true &&
-        this.getComprehensiveSummaryEnquiry.hasDependents === true &&
-        this.getComprehensiveSummaryEnquiry.hasEndowments === true &&
-        this.getComprehensiveSummaryEnquiry.hasRegularSavingsPlans === true
-      ) {
-        if ( this.reportStatus === 1 ) {
-          this.comprehensivePlanning = 0;
-        } else if ( this.reportStatus === 2) {
-          this.comprehensivePlanning = (this.advisorStatus === true) ? 2 : 1;
-        } else {
-          this.comprehensivePlanning = 3;
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+        if (data) {
+          this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+          this.userDetails = this.comprehensiveService.getMyProfile();
+          this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
+          this.userName = this.userDetails.firstName;
+          this.advisorStatus = false;
+          const reportDateAPI = new Date();
+          this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+          this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
+            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null)
+            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : 'new';
+          if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+            this.comprehensivePlanning = 3;
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+            this.comprehensivePlanning = 0;
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+            this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
+          }
+          this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
+            && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null )
+            ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
         }
-    }
-    Object.keys(this.stepDetails).forEach((key) => {
-      this.currentStep = this.stepDetails[key];
-     });*/
-    this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.stepCompleted
-                        && this.getComprehensiveSummary.stepCompleted !== null ) ? this.getComprehensiveSummary.stepCompleted : 0;
+      });
+  }
+
+  ngOnInit() {
+
   }
 
   goToEditProfile() {
@@ -100,11 +84,28 @@ export class DashboardComponent implements OnInit {
   goToCurrentStep() {
     if (this.currentStep >= 0  && this.currentStep < 4 ) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+    } else if (this.currentStep === 4) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    this.comprehensiveService.setViewableMode(viewMode);
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.comprehensiveService.setViewableMode(true);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+      this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
+        if (data) {
+          this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+            if (summaryData) {
+              this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            }
+          });
+        }
+      });
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    }
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {

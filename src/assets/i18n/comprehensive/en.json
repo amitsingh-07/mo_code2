@@ -542,8 +542,13 @@
       "STEP_3":"Customise and implement your financial plan with your adviser.",
       "DASHBOARD":"Dashboard",
        "TOOLTIP_TITLE":"Sorry, you are unable to access the previous page.",
-       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."
-
+       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."      
+    },
+    "VALIDATE_RESULT":{
+      "TITLE": "Result",
+      "DESC":"Uh-oh! It seems you have reached a roadblock.",
+      "ABOUT": "As you have not filled in any fields under Your Finances, we are unable to generate your reports. Please review your inputs.",
+      "FINANCE": "Go to Your Finances"
     },
     "ENQUIRY":{
       "TITLE":"Wait for our call!",
@@ -553,40 +558,6 @@
        "EMAIL":"enquiries@moneyowl.com.sg",
        "BACK_DASHBOARD":"Back To DashBoard"
        
-    },
-    "DASHBOARD":{
-      "WELCOME_TITLE": "Welcome back,",
-      "EDIT_PROFILE" : "Edit Profile",
-      "COMPREHENSIVE_PLANNING_TITLE": "Comprehensive Planning",
-      "COMPREHENSIVE_PLANNING_VIEW": "View",
-      "COMPREHENSIVE_PLANNING_EDIT": "Edit",
-      "COMPREHENSIVE_PLANNING_COMPLETED_DESC": "Your comprehensive planning is completed!",
-      "COMPREHENSIVE_PLANNING_CALCULATE_REPORT": "We are preparing your report!",
-      "COMPREHENSIVE_PLANNING_ESTIMATE":"Estimated time: 1-2 working day(s)",
-      "COMPREHENSIVE_PLANNING_VIEW_REPORT": "View Report",
-      "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated 28 Jan' 18",
-      "COMPREHENSIVE_PLANNING_NEXT_STEP": "Next step:",
-      "COMPREHENSIVE_PLANNING_NEXT_STEP_DESC":"You can set up a face-to-face consultation with our client advisers to go through your report as well as implement a customised plan to achieve your financial goals.",
-      "COMPREHENSIVE_PLANNING_ADVISOR": "I want my adviser to contact me",
-      "COMPREHENSIVE_PLANNING_PENDING_DESC":"You are almost there! Complete your journey and get your financial report!",
-      "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
-      "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
-      "INSURANCE": "Insurance",
-      "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
-      "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
-      "INSURANCE_ACCESS_MY_NEEDS_ESTIMATE": "Estimated 5 mins",
-      "INSURANCE_NEED_MY_PLAN": "I know my needs, find my plan.",
-      "INVESTMENT": "Investment",
-      "INVESTMENT_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
-      "INVESTMENT_PORTFOLIO": "Add Portfolio",
-      "INVESTMENT_PORTFOLIO_ESTIMATED": "Estimated 3 mins",
-      "WILL_WRITING": "Will Writing",
-      "WILL_WRITING_DESC": "Write a legally-binding Will online, anytime & anywhere!",
-      "WILL_WRITING_START": "Start Writing",
-      "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
-      "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
-      "DEFAULT_START": "Start Planning",
-      "DEFAULT_ESTIMATED": "Estimated 20 mins"
     }
   }
 }

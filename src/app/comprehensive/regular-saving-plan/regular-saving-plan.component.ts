@@ -153,7 +153,10 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
         this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
         this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+          this.comprehensiveService.clearBadMoodFund();
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
         });
+      } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
       }
     }
