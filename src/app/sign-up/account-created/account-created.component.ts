@@ -18,7 +18,6 @@ import { SignUpApiService } from './../sign-up.api.service';
 })
 export class AccountCreatedComponent implements OnInit {
 
-  duplicateError: string;
   resendEmail: boolean;
   emailTriggered = false;
 
@@ -33,9 +32,6 @@ export class AccountCreatedComponent implements OnInit {
     private router: Router,
     private signUpApiService: SignUpApiService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-    });
   }
   // constonts
   @HostListener('window:popstate', ['$event'])

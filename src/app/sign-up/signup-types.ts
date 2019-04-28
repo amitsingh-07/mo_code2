@@ -43,12 +43,6 @@ export interface IVerifyCode {
     code: string;
 }
 
-export interface ISelectedProducts {
-    customerRef: string;
-    isNewCustomer: boolean;
-    selectedProducts: IPlan[];
-}
-
 export interface IResendEmail {
     mobileNumber: string;
     emailAddress: string;
