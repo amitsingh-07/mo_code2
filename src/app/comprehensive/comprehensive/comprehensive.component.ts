@@ -147,7 +147,11 @@ export class ComprehensiveComponent implements OnInit {
         this.redirect();
       } else {
         this.comprehensiveApiService.getPromoCode().subscribe((data) => {
+          setTimeout(() => {
+            this.loaderService.hideLoaderForced();
+          }, 500);
           this.showSuccessPopup();
+
         }, (err) => {
 
         });
