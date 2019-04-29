@@ -26,12 +26,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
   advisorStatus: boolean;
   reportDate: any;
   currentStep: number;
-  stepDetails = {hasDependents: 1, hasEndowments: 2};
+  stepDetails = { hasDependents: 1, hasEndowments: 2 };
   items: any;
+  isLoadComplete = false;
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService,
-              private configService: ConfigService, private comprehensiveService: ComprehensiveService,
-              private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe,
-              private navbarService: NavbarService) {
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService,
+    private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe,
+    private navbarService: NavbarService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -47,29 +48,31 @@ export class ComprehensiveDashboardComponent implements OnInit {
      */
     this.comprehensivePlanning = 4;
     this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-        if (data) {
-          this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-          this.userDetails = this.comprehensiveService.getMyProfile();
-          this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
-          this.userName = this.userDetails.firstName;
-          this.advisorStatus = false;
-          const reportDateAPI = new Date();
-          this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
-          this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
-            && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nation)
-            ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
-          if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-            this.comprehensivePlanning = 3;
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-            this.comprehensivePlanning = 0;
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-            this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
-          }
-          this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
-            && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null )
-            ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
+      if (data) {
+        this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+        this.userDetails = this.comprehensiveService.getMyProfile();
+        this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
+        this.userName = this.userDetails.firstName;
+        this.advisorStatus = false;
+        const reportDateAPI = new Date();
+        this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+        this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
+          && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nation)
+          ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
+        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+          this.comprehensivePlanning = 3;
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+          this.comprehensivePlanning = 0;
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
         }
-      });
+        this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
+          && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null)
+          ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
+
+        this.isLoadComplete = true;
+      }
+    });
   }
 
   ngOnInit() {
@@ -81,7 +84,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   goToCurrentStep() {
-    if (this.currentStep >= 0  && this.currentStep < 4 ) {
+    if (this.currentStep >= 0 && this.currentStep < 4) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
     } else if (this.currentStep === 4) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
@@ -108,13 +111,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
-    for ( const i in this.stepDetails ) {
-      if (this.getComprehensiveSummaryEnquiry[i] !== true) {
-        break;
-      } else {
-        this.currentStep = this.stepDetails[i];
+      for (const i in this.stepDetails) {
+        if (this.getComprehensiveSummaryEnquiry[i] !== true) {
+          break;
+        } else {
+          this.currentStep = this.stepDetails[i];
+        }
       }
-    }
     }
   }
 }

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ConfigService } from '../../config/config.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -27,7 +28,8 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     private configService: ConfigService, private router: Router,
     private progressService: ProgressTrackerService,
     private comprehensiveService: ComprehensiveService,
-    private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveApiService: ComprehensiveApiService,
+    private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -66,6 +68,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
           if (currentStep === 4) {
             this.initiateReport();
           } else {
+            this.loaderService.showLoader({ title: 'Loading' });
             const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
             this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
               this.comprehensiveService.setMySteps(stepCalculated);
@@ -99,6 +102,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
       this.comprehensiveService.setViewableMode(true);
+      this.loaderService.hideLoader();
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     });
   }

@@ -1,6 +1,10 @@
 @import '../../../variables';
 @import '../../../mixins';
 .comprehensive {
+    .hidden {
+        display: none;
+    }
+
     &.container-fluid {
         padding-top: 20px;
     }
@@ -94,5 +98,13 @@
     }
     .form-group-with-bg--header {
         padding: 15px 20px 5px;
+    }
+
+    .ajax-loader-card-inline {
+        min-height: 210px; 
+        text-align: center;
+        img {
+            margin-top: 90px;
+        }
     }
 }

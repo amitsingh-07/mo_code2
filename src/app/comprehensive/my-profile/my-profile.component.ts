@@ -117,6 +117,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.navbarService.setNavbarComprehensive(true);
         this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
             if (this.pageId === pageId) {
+                this.onCloseClick();
                 this.progressService.show();
             }
         });
