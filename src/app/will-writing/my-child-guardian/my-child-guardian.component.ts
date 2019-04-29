@@ -121,7 +121,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
       Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]]
+      uin: ['', [Validators.required]]
     });
   }
 

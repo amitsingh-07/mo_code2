@@ -192,15 +192,15 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword, captcha) {
-    let enqId;
-    let journeyType;
+    let enqId = -1;
+    let journeyType = 'direct';
     const sessionId = this.authService.getSessionId();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
       enqId = this.willWritingService.getEnquiryId();
       journeyType = 'will-writing';
-    } else {
-      enqId = this.authService.getEnquiryId();
+    } else if (this.authService.getEnquiryId()) {
+      enqId = Number(this.authService.getEnquiryId());
       journeyType = 'investment';
     }
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType);
