@@ -155,35 +155,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } as IChildEndowment;
   }
 
-  getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
-    const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-    const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-    COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
-
-    let preferenceSelected = true;
-    if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
-      preferenceSelected = (dependant.isInsuranceNeeded === null || dependant.isInsuranceNeeded);
-    } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
-      preferenceSelected = true;
-    }
-
-    return {
-      id: 0, // #childEndowment.id,
-      dependentId: dependant.id,
-      name: dependant.name,
-      dateOfBirth: dependant.dateOfBirth,
-      gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
-      location: childEndowment.location,
-      educationCourse: childEndowment.educationCourse,
-      endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
-      endowmentMaturityYears: childEndowment.endowmentMaturityYears,
-      age: maturityAge,
-      preferenceSelection: preferenceSelected,
-      nation: dependant.nation
-    } as IChildEndowment;
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   buildChildEndowmentFormArray() {
 
