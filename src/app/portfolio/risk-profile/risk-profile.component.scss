@@ -102,6 +102,7 @@ app-risk-profile {
   }
 
   .risk-profile-block {
+    @include continue-button;
     .web-title {
       font-family: $muli-semi-bold;
       font-size: 36px;

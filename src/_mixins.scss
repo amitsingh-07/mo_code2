@@ -536,3 +536,21 @@ line-height: lineHeightRem($size);
 		}
 	}
 }
+
+/**
+* form button design for investment-account and portfolio, 
+* 1. confirm/save/apply button set to width of 360 - desktop view
+* 2. confirm/save/apply button set to width of 320 - tablet view
+*/ 
+@mixin continue-button {
+  div.text-center {
+    .btn-ftr-get-started {
+      @include desktop {
+        width: 360px;
+      }
+      @include tablet { 
+        width: 320px;
+      }
+		}
+  }
+}
