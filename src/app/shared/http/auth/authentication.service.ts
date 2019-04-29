@@ -30,7 +30,7 @@ export class AuthenticationService {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
 
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: string, journeyType?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
