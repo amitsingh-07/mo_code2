@@ -8,7 +8,6 @@ import {
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
-import { DownloadWillComponent } from './download-will/download-will.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
@@ -107,10 +106,6 @@ const routes: Routes = [
     path: WILL_WRITING_ROUTES.VALIDATE_YOUR_WILL,
     component: ValidateYourWillComponent,
     canActivate: [WillWritingAccessGuard]
-  },
-  {
-    path: WILL_WRITING_ROUTES.DOWNLOAD_WILL,
-    component: DownloadWillComponent
   }
 ];
 
