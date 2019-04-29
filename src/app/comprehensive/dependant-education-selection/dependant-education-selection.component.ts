@@ -116,7 +116,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+        COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
@@ -136,7 +137,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     }
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      21 : 19);
+    COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
     return {
       id: 0,
       dependentId: dependant.id,
@@ -154,35 +155,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } as IChildEndowment;
   }
 
-  getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
-    const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-    const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      21 : 19);
-
-    let preferenceSelected = true;
-    if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
-      preferenceSelected = (dependant.isInsuranceNeeded === null || dependant.isInsuranceNeeded);
-    } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
-      preferenceSelected = true;
-    }
-
-    return {
-      id: 0, // #childEndowment.id,
-      dependentId: dependant.id,
-      name: dependant.name,
-      dateOfBirth: dependant.dateOfBirth,
-      gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
-      location: childEndowment.location,
-      educationCourse: childEndowment.educationCourse,
-      endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
-      endowmentMaturityYears: childEndowment.endowmentMaturityYears,
-      age: maturityAge,
-      preferenceSelection: preferenceSelected,
-      nation: dependant.nation
-    } as IChildEndowment;
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   buildChildEndowmentFormArray() {
 
@@ -190,11 +162,12 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ?  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+       COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
-            const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
+            const thisEndowment = this.comprehensiveService.getExistingEndowmentItem(childEndowment, dependant);
             // Filter the array to avoid duplicates
             if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === thisEndowment.dependentId).length === 0) {
               tempChildEndowmentArray.push(thisEndowment);

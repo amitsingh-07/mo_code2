@@ -53,6 +53,13 @@ export class SignUpApiService {
       userInfo = this.guideMeService.getUserInfo();
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
       journey = this.appService.getJourneyType();
+      userInfo = {
+        gender: 'male',
+        dob: '',
+        customDob: '',
+        smoker: '',
+        dependent: 0,
+      };
     } else {
       journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
       userInfo = {

@@ -207,11 +207,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
           this.signUpService.removeCaptchaSessionId();
         } else if (data.responseMessage.responseCode === 5016) {
+          this.loaderService.hideLoader();
           this.loginForm.controls['captchaValue'].reset();
           this.loginForm.controls['loginPassword'].reset();
           this.openErrorModal(data.responseMessage.responseDescription);
           this.refreshCaptcha();
         } else {
+          this.loaderService.hideLoader();
           this.loginForm.controls['captchaValue'].reset();
           this.loginForm.controls['loginPassword'].reset();
           this.openErrorModal(data.responseMessage.responseDescription);
