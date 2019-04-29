@@ -682,14 +682,14 @@ body{
             }
             @include LargeDevice{
                 position: absolute;
-                bottom: 29px;
-                left: 45px;
+                bottom: 25px;
+                left: 40px;
             }
             @include tablet{
                 position: absolute;
-                bottom: -15px;
-                left: 50px;
-                right: 50px;
+                bottom: -40px;
+                left: 40px;
+                right: 40px;
             }
             span{
                 text-decoration: underline;
