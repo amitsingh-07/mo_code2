@@ -296,6 +296,10 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         }
       }
     } else {
+      const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
+      .filter((item: IChildEndowment) => item.preferenceSelection);
+      this.comprehensiveService.setEndowment(form.value.hasEndowments);
+      this.comprehensiveService.setChildEndowment(selectedChildArray);
       this.gotoNextPage(form);
     }
   }

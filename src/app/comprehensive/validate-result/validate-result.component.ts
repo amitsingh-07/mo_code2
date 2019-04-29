@@ -54,13 +54,13 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
-    if (this.comprehensiveService.checkResultData()) {
-      const currentStep = this.comprehensiveService.getMySteps();
-      const stepCalculated = 5;
-      const reportStatus = this.comprehensiveService.getReportStatus();
-      if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-      } else if (currentStep === 3 || currentStep === 4) {
+    } else if (this.comprehensiveService.checkResultData()) {
+      const currentStep = this.comprehensiveService.getMySteps();
+      const stepCalculated = 4;
+      if (currentStep === 3 || currentStep === 4) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
           if (currentStep === 4) {

@@ -1517,7 +1517,7 @@ export class ComprehensiveService {
         let goToStep = 0;
         let stepStatus = true;
         const stepIndicator = this.getMySteps();
-        if (stepIndicator !== currentStep - 1) {
+        if (stepIndicator > currentStep) {
             stepStatus = false;
             goToStep = stepIndicator + 1;
         } else {
