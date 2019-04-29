@@ -5,13 +5,14 @@
     <div class="custom-modal--icon">
       <div class="loader-outer">
         <div class="loader" *ngIf="!mobileNumberVerified"></div>
-        <img *ngIf="!mobileNumberVerified" src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
+        <img *ngIf="!mobileNumberVerified" src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1" />
       </div>
       <img *ngIf="mobileNumberVerified" src="../../../assets/images/owl_tick.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
-        <button *ngIf="mobileNumberVerified" class="btn btn-primary" (click)="redirectToPasswordPage()">{{ 'COMMON.CONTINUE' | translate }}</button>
+        <button *ngIf="mobileNumberVerified" class="btn btn-primary" (click)="redirectToPasswordPage()">{{
+          'COMMON.CONTINUE' | translate }}</button>
       </div>
     </div>
     <!-- <div class="custom-modal-content">
@@ -23,60 +24,60 @@
 </div>
 <!--Custom Modal /-->
 <div class="container-fluid max-width--1024">
-    <div class="content">
-      <div class="row">
-        <div class="col-lg-7 col-md-6">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
           <h2 class="signup-wrapper__title order1 sm-order2 ml10">{{ 'VERIFY_MOBILE.TITLE' | translate }}</h2>
           <div class="signup-wrapper__description order2 mb30">
-              {{ 'VERIFY_MOBILE.SUB_TITLE' | translate }}
-            </div>
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
+            {{ 'VERIFY_MOBILE.SUB_TITLE' | translate }}
           </div>
+          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
         </div>
-        <div class="col-lg-5 col-md-6">
-          <form id="verifyMobileForm" name="verifyMobileForm" [formGroup]="verifyMobileForm">
-            <div class="verify-mobile-block">
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <form id="verifyMobileForm" name="verifyMobileForm" [formGroup]="verifyMobileForm">
+          <div class="verify-mobile-block">
             <div class="text-center verify-mobile-block__otp__title mb15">
               {{ 'VERIFY_MOBILE.FORM.INSTRUCTION' | translate}}
             </div>
 
             <div class="mb50 text-center">
-                <div class="verify-mobile-block__phone-number">
-                  {{mobileNumber.code}} {{mobileNumber.number}}
-                </div>
-                <div>
-                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber()">{{ 'VERIFY_MOBILE.FORM.EDIT_NUMBER' | translate }}</div> 
-                </div>
+              <div class="verify-mobile-block__phone-number">
+                {{mobileNumber.code}} {{mobileNumber.number}}
               </div>
+              <div *ngIf="showEditMobileNo">
+                <div class="verify-mobile-block__edit-link link-white" (click)="editNumber()">{{
+                  'VERIFY_MOBILE.FORM.EDIT_NUMBER' | translate }}</div>
+              </div>
+            </div>
             <div class="verify-mobile-block__otp">
-                
-                <input type="number" step="0.01" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="onlyNumber(otp1,otp2)" size="1">
-                <input type="number" step="0.01" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="onlyNumber(otp2,otp3)" size="1">
-                <input type="number" step="0.01" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="onlyNumber(otp3,otp4)" size="1">
-                <input type="number" step="0.01" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="onlyNumber(otp4,otp5)" size="1">
-                <input type="number" step="0.01" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="onlyNumber(otp5,otp6)" size="1">
-                <input type="number" step="0.01"   class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6, 'undefined')" size="1">  
-              </div>
-            <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.VERIFY' | translate }}</button>
-             </div>
-             <div class="verify-mobile-block__otp__not-received text-center mt20">
-              {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
-              <div class="info-text" *ngIf="!isRetryEnabled">{{ 'VERIFY_MOBILE.FORM.RETRY_IN' | translate }} <span>{{retryDuration}}</span>{{ 'VERIFY_MOBILE.FORM.SECONDS_SUFFIX' | translate }}</div>
-              <div class="retry-counter-wrapper" *ngIf="!isRetryEnabled">
-                  <div class="spinner">
-                      <span><em></em></span>
-                      <span><em></em></span>
-                  </div>
-                  <div class="seconds-count">{{retrySecondsLeft}}</div>
-              </div>
-              <div *ngIf="isRetryEnabled" class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</div>
-             </div>
-             <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
-              {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}
-           </div>
-          </form>
-        </div>   
+
+              <input type="number" step="0.01" class="input-control text-align-center" #otp1 formControlName="otp1"
+                (keyup)="onlyNumber(otp1,otp2)" size="1">
+              <input type="number" step="0.01" class="input-control text-align-center" #otp2 formControlName="otp2"
+                (keyup)="onlyNumber(otp2,otp3)" size="1">
+              <input type="number" step="0.01" class="input-control text-align-center" #otp3 formControlName="otp3"
+                (keyup)="onlyNumber(otp3,otp4)" size="1">
+              <input type="number" step="0.01" class="input-control text-align-center" #otp4 formControlName="otp4"
+                (keyup)="onlyNumber(otp4,otp5)" size="1">
+              <input type="number" step="0.01" class="input-control text-align-center" #otp5 formControlName="otp5"
+                (keyup)="onlyNumber(otp5,otp6)" size="1">
+              <input type="number" step="0.01" class="input-control text-align-center" #otp6 formControlName="otp6"
+                (keyup)="onlyNumber(otp6, 'undefined')" size="1">
+            </div>
+            <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+              'COMMON.VERIFY' | translate }}</button>
+          </div>
+          <div class="verify-mobile-block__otp__not-received text-center mt20">
+            {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
+            <div class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</div>
+          </div>
+          <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
+            {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}
+         </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
