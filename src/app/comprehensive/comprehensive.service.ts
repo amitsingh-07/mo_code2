@@ -1131,8 +1131,8 @@ export class ComprehensiveService {
                     title: 'Long-Term Care',
                     value: longTermCareValue,
                     completed: isCompleted,
-                    hidden: (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) <
-                        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)
+                    hidden: this.getMyProfile().dateOfBirth ? (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) <
+                        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) : true
                 }
             ]
         };
