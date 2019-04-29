@@ -126,6 +126,9 @@ export class ComprehensiveComponent implements OnInit {
           this.cmpService.setPromoCodeValidation(true);
           this.redirect();
         }, (err) => {
+          setTimeout(() => {
+            this.loaderService.hideLoaderForced();
+          }, 500);
         });
       }
     } else {
@@ -147,7 +150,11 @@ export class ComprehensiveComponent implements OnInit {
         this.redirect();
       } else {
         this.comprehensiveApiService.getPromoCode().subscribe((data) => {
+          setTimeout(() => {
+            this.loaderService.hideLoaderForced();
+          }, 500);
           this.showSuccessPopup();
+
         }, (err) => {
 
         });

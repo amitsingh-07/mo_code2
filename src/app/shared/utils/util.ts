@@ -47,7 +47,13 @@ export class Util {
     public static isEmptyOrNull(obj: any): boolean {
         let isEmpty = false;
         try {
-            isEmpty = Object.keys(obj).length === 0;
+            if (obj === null) {
+                isEmpty = true;
+            } else if (typeof obj === 'object') {
+                isEmpty = Object.keys(obj).length === 0;
+            } else {
+                isEmpty = typeof obj === 'undefined' || obj.length <= 0;
+            }
         } catch (e) {
             isEmpty = true;
         }
