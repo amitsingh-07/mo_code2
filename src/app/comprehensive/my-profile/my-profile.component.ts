@@ -117,6 +117,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.navbarService.setNavbarComprehensive(true);
         this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
             if (this.pageId === pageId) {
+                this.onCloseClick();
                 this.progressService.show();
             }
         });
@@ -204,6 +205,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                         cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
                         cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
                         this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                        this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
                         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                     });
                 } else {

@@ -167,7 +167,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
-            const thisEndowment = this.getExistingEndowmentItem(childEndowment, dependant);
+            const thisEndowment = this.comprehensiveService.getExistingEndowmentItem(childEndowment, dependant);
             // Filter the array to avoid duplicates
             if (tempChildEndowmentArray.filter((item: IChildEndowment) => item.dependentId === thisEndowment.dependentId).length === 0) {
               tempChildEndowmentArray.push(thisEndowment);

@@ -235,17 +235,17 @@ export class ComprehensiveService {
         const enquiry: IComprehensiveEnquiry = comprehensiveDetails.comprehensiveEnquiry;
         if (enquiry !== null && enquiry.hasDependents && (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')) {
             if (comprehensiveDetails.dependentsList && comprehensiveDetails.dependentEducationPreferencesList) {
-                comprehensiveDetails.dependentEducationPreferencesList.forEach((eduPref) => {
+                comprehensiveDetails.dependentEducationPreferencesList.forEach((eduPref, index) => {
                     comprehensiveDetails.dependentsList.forEach((dependant) => {
                         if (dependant.id === eduPref.dependentId) {
-                            eduPref.dateOfBirth = dependant.dateOfBirth;
-                            eduPref.name = dependant.name;
-                            eduPref.enquiryId = this.getEnquiryId();
+                            comprehensiveDetails.dependentEducationPreferencesList[index]
+                                = this.getExistingEndowmentItem(eduPref, dependant);
                         }
                     });
                 });
             }
         }
+
         this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
     }
 
@@ -289,6 +289,36 @@ export class ComprehensiveService {
         this.updateComprehensiveSummary();
         this.commit();
     }
+
+    getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
+        const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+        const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
+            21 : 19);
+
+        let preferenceSelected = true;
+        if (this.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
+            preferenceSelected = (dependant.isInsuranceNeeded === null || dependant.isInsuranceNeeded);
+        } else if (this.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
+            preferenceSelected = true;
+        }
+
+        return {
+            id: 0, // #childEndowment.id,
+            dependentId: dependant.id,
+            name: dependant.name,
+            dateOfBirth: dependant.dateOfBirth,
+            gender: dependant.gender,
+            enquiryId: dependant.enquiryId,
+            location: childEndowment.location,
+            educationCourse: childEndowment.educationCourse,
+            endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
+            endowmentMaturityYears: childEndowment.endowmentMaturityYears,
+            age: maturityAge,
+            preferenceSelection: preferenceSelected,
+            nation: dependant.nation
+        } as IChildEndowment;
+    }
+
     getMyLiabilities() {
         if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
             this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities = {} as IMyLiabilities;
@@ -1517,7 +1547,7 @@ export class ComprehensiveService {
         let goToStep = 0;
         let stepStatus = true;
         const stepIndicator = this.getMySteps();
-        if (stepIndicator !== currentStep - 1) {
+        if (stepIndicator > currentStep) {
             stepStatus = false;
             goToStep = stepIndicator + 1;
         } else {

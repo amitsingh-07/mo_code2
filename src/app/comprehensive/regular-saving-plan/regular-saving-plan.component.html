@@ -7,7 +7,7 @@
   <form name="RSPForm" [formGroup]="RSPForm">
       <div class="form-group-single-column  flex-col">
         <div class="checkbox-button one-label">
-          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='true' class="field radio">
+          <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='true' class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
           <label for="RSPInpt1">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
           </label>
@@ -82,14 +82,14 @@
           </section>
         </div>
         <div class="checkbox-button one-label">
-          <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='false' class="field radio">
+          <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="RSPInpt2" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='false' class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
           <label for="RSPInpt2">
             <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
           </label>
         </div>
         <div class="footer-cta">
         <button type="button" (click)="goToNext(RSPForm)" class="btn btn-primary width100"
-        id="moDpdnt2BtnFooter">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.CONTINUE'|translate)}}
+        id="moDpdnt2BtnFooter">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
         </button>
       </div>
       </div>
