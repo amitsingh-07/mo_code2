@@ -23,6 +23,12 @@
     position: fixed;
     width: calc(100% - 15px);
     padding-right: 15px;
+    @include desktop {
+        position: fixed;
+        width: 600px;
+        left: 50%;
+        margin-left: -300px;  
+    }
 
     &:before {
         content: '';
