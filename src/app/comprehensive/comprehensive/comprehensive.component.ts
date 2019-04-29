@@ -126,6 +126,9 @@ export class ComprehensiveComponent implements OnInit {
           this.cmpService.setPromoCodeValidation(true);
           this.redirect();
         }, (err) => {
+          setTimeout(() => {
+            this.loaderService.hideLoaderForced();
+          }, 500);
         });
       }
     } else {
