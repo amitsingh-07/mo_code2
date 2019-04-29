@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { appConstants } from './app.constants';
 import { ComprehensiveService } from './comprehensive/comprehensive.service';
@@ -29,6 +30,8 @@ export class AppService {
     id: ''
   };
 
+  private journeyTypeSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  journeyType$: Observable<string>;
   constructor(
     private directService: DirectService,
     private guideMeService: GuideMeService,
@@ -38,7 +41,9 @@ export class AppService {
     private topupAndWithDrawService: TopupAndWithDrawService,
     private willWritingService: WillWritingService,
     private comprehensiveService: ComprehensiveService
-  ) { }
+  ) {
+    this.journeyType$ = this.journeyTypeSubject.asObservable();
+  }
 
   commit(key, data) {
     if (window.sessionStorage) {
@@ -70,6 +75,7 @@ export class AppService {
 
   setJourneyType(type: string) {
     this.journeyType = type;
+    this.journeyTypeSubject.next(type);
     this.commit(SESSION_STORAGE_KEY, this.journeyType);
   }
 
@@ -77,6 +83,7 @@ export class AppService {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
+    this.journeyTypeSubject.next(this.journeyType);
     return this.journeyType;
   }
 
