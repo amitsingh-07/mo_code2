@@ -133,10 +133,12 @@ export class AddUpdateBankComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-              response.objectList.serverStatus &&
-              response.objectList.serverStatus.errors.length
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
-              const errorResponse = response.objectList;
+              const errorResponse = response.objectList[response.objectList.length - 1];
               const errorList = errorResponse.serverStatus.errors;
               this.showIfastErrorModal(errorList);
             } else if (response.responseMessage && response.responseMessage.responseDescription) {
@@ -170,10 +172,12 @@ export class AddUpdateBankComponent implements OnInit {
           if (data.responseMessage.responseCode < 6000) {
             if (
               data.objectList &&
-              data.objectList.serverStatus &&
-              data.objectList.serverStatus.errors.length
+              data.objectList.length &&
+              data.objectList[data.objectList.length - 1].serverStatus &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors.length
             ) {
-            const errorResponse = data.objectList;
+            const errorResponse = data.objectList[data.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showIfastErrorModal(errorList);
             } else if (data.responseMessage && data.responseMessage.responseDescription) {
