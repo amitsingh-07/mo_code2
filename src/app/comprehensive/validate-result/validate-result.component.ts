@@ -89,7 +89,10 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
   goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS], { skipLocationChange: true });
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    if (reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS], { skipLocationChange: true });
+    }
   }
   initiateReport() {
     const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
