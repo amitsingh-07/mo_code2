@@ -23,6 +23,7 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { Util } from '../utils/util';
 
 @Component({
   selector: 'app-navbar',
@@ -80,6 +81,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
 
+  showComprehensiveTitle = false;
   // Signed In
   isLoggedIn = false;
   userInfo: any;
@@ -89,7 +91,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   pageId: any;
 
   journeyType: string;
-  journeyPathType: boolean;
+  isComprehensivePath: boolean;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -138,6 +140,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     this.constants = appConstants;
     this.journeyType = this.appService.getJourneyType();
+    this.appService.journeyType$.subscribe((type: string) => {
+      if (type && type !== '') {
+        this.journeyType = type;
+      }
+    });
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -152,14 +159,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => {
-        this.pageTitle = title;
-      });
+      this.pageTitle = title;
+      // Workaround for delayed title text load. Trigger onPageChanged();
+      this.onPageChanged();
+    });
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => {
       this.subTitle = subTitle;
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
-      });
+    });
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
@@ -183,8 +192,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        const currentPath = val.url;
-        this.journeyPathType = (currentPath.indexOf('comprehensive') !== -1);
+        this.onPageChanged();
         if (this.router.url !== this.currentUrl) {
           this.currentUrl = this.router.url;
           this.hideMenu();
@@ -216,6 +224,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.showNavShadow = showNavShadow;
       this.cdr.detectChanges();
     });
+  }
+
+  onPageChanged() {
+    this.isComprehensivePath = (window.location.href.indexOf('#/comprehensive') !== -1);
+    this.showComprehensiveTitle = this.isComprehensiveEnabled && this.isComprehensivePath
+      && this.journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE
+      && !Util.isEmptyOrNull(this.pageTitle);
   }
 
   // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
@@ -306,8 +321,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
       this.isNotificationHidden = true;
-      }
     }
+  }
 
   // Notification Methods
   getRecentNotifications() {
@@ -318,9 +333,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         message.time = parseInt(message.time, 10);
       });
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   toggleRecentNotification() {
@@ -328,14 +343,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (!this.isNotificationHidden) { // When Opened
       if (this.recentMessages && this.recentMessages.length) {
         this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
-        }
+      }
     } else { // When closed
       this.getRecentNotifications();
     }
     // Checking navbar collapsed
     if (!this.isNavbarCollapsed && innerWidth < this.mobileThreshold) {
       this.isNavbarCollapsed = true;
-      }
+    }
   }
 
   updateNotifications(messages, type) {
@@ -352,7 +367,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     return (
       this.router.url === DASHBOARD_PATH ||
       this.router.url === EDIT_PROFILE_PATH
-      );
+    );
   }
 
   clearNotifications() {
