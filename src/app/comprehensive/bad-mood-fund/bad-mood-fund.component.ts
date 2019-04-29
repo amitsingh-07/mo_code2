@@ -117,7 +117,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
 
     if (this.hospitalPlanList.length === 0) {
-      this.apiService.getHospitalPlanList('type=comprehensive').subscribe((hospitalPlanData: any) => {
+      this.apiService.getHospitalPlanList('hospitalType=comprehensive').subscribe((hospitalPlanData: any) => {
         this.hospitalPlanList = hospitalPlanData.objectList;
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });

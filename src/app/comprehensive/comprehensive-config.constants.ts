@@ -9,6 +9,10 @@ export const COMPREHENSIVE_CONST = {
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
     },
+    CHILD_ENDOWMENT: {
+    MALE_MATURITY_AGE: 21,
+    FEMALE_MATURITY_AGE: 19
+    },
     YOUR_FINANCES: {
         YOUR_EARNINGS: {
             API_KEY: 'comprehensiveIncome',

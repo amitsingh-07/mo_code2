@@ -116,7 +116,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-        const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+        COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
@@ -136,7 +137,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     }
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      21 : 19);
+    COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
     return {
       id: 0,
       dependentId: dependant.id,
@@ -157,7 +158,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   getExistingEndowmentItem(childEndowment: IChildEndowment, dependant: IDependantDetail) {
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-      21 : 19);
+      20 : 18);
 
     let preferenceSelected = true;
     if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '2') {
@@ -190,7 +191,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ? 21 : 19;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ?  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+       COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
