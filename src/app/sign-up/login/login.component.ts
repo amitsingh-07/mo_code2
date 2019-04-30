@@ -218,12 +218,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         // ERROR SCENARIO
         if (
           userInfo.objectList &&
-          userInfo.objectList.serverStatus &&
-          userInfo.objectList.serverStatus.errors.length
+          userInfo.objectList.length &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
         ) {
           this.showCustomErrorModal(
             'Error!',
-            userInfo.objectList.serverStatus.errors[0].msg
+            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
           );
         } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
           const errorResponse = userInfo.responseMessage.responseDescription;
