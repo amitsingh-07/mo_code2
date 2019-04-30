@@ -45,7 +45,6 @@ export class ComprehensiveFormError {
                 },
                 pattern: {
                     errorTitle: this.invalidName,
-                    // tslint:disable-next-line:max-line-length
                     errorMessage: this.invalidNameCharacters
                 },
                 minlength: {
@@ -142,12 +141,6 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Please Select the hospital Plan',
                     errorMessage: 'Please Select the hospital Plan'
-                }
-            },
-            badMoodMonthlyAmount: {
-                required: {
-                    errorTitle: 'Invalid Amount',
-                    errorMessage: 'Invalid Amount'
                 }
             },
         }
