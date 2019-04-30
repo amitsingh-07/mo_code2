@@ -1016,7 +1016,7 @@ export class ComprehensiveService {
             path: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
             title: 'Regular Savings Plan',
             value: '',
-            completed: this.hasRegularSavings() !== null,
+            completed: this.hasRegularSavings() !== null || !Util.isEmptyOrNull(this.getRegularSavingsList()),
             hidden: true
         });
 
