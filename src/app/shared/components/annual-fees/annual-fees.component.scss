@@ -6,7 +6,6 @@
     .title{
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       letter-spacing: -0.3px;
       padding-bottom: 14px;
     }
@@ -25,7 +24,6 @@
         .announcement{
           display: flex;
           color: #000000;
-          font-weight: bold;
           line-height: normal;
           font-family: $muli-bold;
           font-style: italic;
@@ -55,7 +53,7 @@
         }
         .fee_value{
           color: $teal-color;
-          font-weight: bold;
+         font-family:$muli-bold;
         }
       }
     }

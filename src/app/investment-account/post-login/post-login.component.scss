@@ -27,7 +27,7 @@ app-post-login {
     height: 57px;
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
+   
     letter-spacing: -0.2px;
     text-align: center;
     color: $teal-color;
@@ -35,8 +35,7 @@ app-post-login {
 
   .no-login-but {
     font-size: 18px;
-    font-family: $muli;
-    font-weight: bold;
+    font-family: $muli-bold;
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
@@ -49,7 +48,6 @@ app-post-login {
   .prelogin-wrapper__title {
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: bold;
     width: 327px;
     letter-spacing: -0.3px;
     color: $white-color;
@@ -98,7 +96,6 @@ app-post-login {
       .autofill-text {
         font-family: $muli-bold;
         font-size: 18px;
-        font-weight: bold;
         color: $inline-error-border-color;
         font-size: 21px;
         padding: 0;
@@ -113,7 +110,7 @@ app-post-login {
         display: flex;
         font-family: $muli-semi-bold;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
@@ -136,7 +133,6 @@ app-post-login {
       .widget-title {
         font-family: $muli-bold;
         font-size: 21px;
-        font-weight: bold;
         letter-spacing: -0.2px;
         color: $post-login-widget-title;
         background-color: $white-color;

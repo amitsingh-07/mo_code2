@@ -10,7 +10,7 @@ app-allocation{
     .bond_progress_container {
       font-family: $muli-semi-bold;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 400;
       line-height: 1.44;
       letter-spacing: -0.3px;
       color: $teal-color;
@@ -51,7 +51,6 @@ app-allocation{
         padding: 14px 20px 13px;
         font-family: $muli-bold;
         font-size: 18px;
-        font-weight: bold;
         .arrow {
           border: solid $white-color;
           border-width: 0 3px 3px 0;
@@ -123,7 +122,6 @@ app-allocation{
             justify-content: space-between;
           }
           .rating_value {
-            font-weight: bold;
             color: $teal-color;
             font-family: $muli-bold;
             text-align: right;
@@ -134,7 +132,7 @@ app-allocation{
   }
   .btn-view {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.2px;
     color: #006d75;
     border-top-left-radius: 0;
