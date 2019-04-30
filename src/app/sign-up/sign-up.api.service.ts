@@ -202,6 +202,14 @@ export class SignUpApiService {
     } else if (this.authService.getEnquiryId()) {
       enqId = Number(this.authService.getEnquiryId());
       journeyType = 'investment';
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+      if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+        journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
+          'insurance-direct' : 'insurance-guided';
+        enqId = insuranceEnquiry.enquiryId;
+      }
     }
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType);
   }
