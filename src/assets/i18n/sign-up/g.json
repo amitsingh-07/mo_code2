@@ -12,6 +12,8 @@
   },
   "SIGNUP_ERRORS": {
     "TITLE": "You have an account with us!",
+    "LOGIN_EMAIL_TITLE": "Oops, verify your email to login!",
+    "LOGIN_EMAIL_MESSAGE": "Okay, Got it",
     "ACCOUNT_EXIST_MESSAGE": "Seems like you may have an existing account with Moneyowl. Login now!",
     "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!",
     "VERIFY_EMAIL_OTP": "Seems like you have previously started on account but has yet to complete account verification. Let us bring  you through again!"
@@ -34,7 +36,7 @@
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
-      "DIDNT_RECIEVE": "Didn't Recieve it?",
+      "DIDNT_RECIEVE": "Didn't recieve it?",
       "REQUEST_NEW_CODE": "Resend OTP",
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
