@@ -91,7 +91,6 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
-                    this.auth.clearSession();
                     this.errorHandler.handleAuthError(err);
                     this.signUpService.logoutUser();
                 } else
