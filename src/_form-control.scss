@@ -1300,6 +1300,7 @@ input::placeholder {
     color: $app-backgrnd-color !important;
     border: solid 1px rgba(0, 135, 134, 0.4) !important;
     cursor: not-allowed !important;
+    pointer-events: none;
 
     &.earn-btn-dropdown {
       color: $white-color !important;
@@ -1308,31 +1309,38 @@ input::placeholder {
   .btn-outline-primary.view-mode {
     cursor: not-allowed !important;
     border: solid 1px rgba(0, 135, 134, 0.4) !important;
+    pointer-events: none;
   }
   .form-control.view-mode input:disabled {
     background-color: transparent;
+    pointer-events: none;
   }
   .btn-outline-primary:hover.active.view-mode {
     background-color: rgba(0, 167, 167, 0.15) !important;
+    pointer-events: none;
   }
 
   .btn-outline-primary.view-mode {
     cursor: not-allowed !important;
+    pointer-events: none;
   }
 
   .btn-outline-primary:hover.view-mode {
     background: $white-color !important;
+    pointer-events: none;
   }
 
   .dropdown-toggle:disabled::after {
     color: $app-backgrnd-color !important;
     opacity: 1 !important;
+    pointer-events: none;
   }
 
   .datepicker-control .input-group.view-mode .form-control {
     background-color: rgba(0, 167, 167, 0.15) !important;
     color: $app-backgrnd-color !important;
     cursor: not-allowed !important;
+    pointer-events: none;
   }
 
   .btn.btn-primary:disabled {
