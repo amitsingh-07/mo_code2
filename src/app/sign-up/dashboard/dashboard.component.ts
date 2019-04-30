@@ -147,7 +147,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
   }
 
   goToEditProfile() {
