@@ -32,7 +32,6 @@
   },
   "VERIFY_MOBILE": {
     "TITLE": "Verify Your Mobile",
-    "SUB_TITLE": "So that our advisers can contact you.",
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
