@@ -66,9 +66,10 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
           if (currentStep === 4) {
+            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
             this.initiateReport();
           } else {
-            this.loaderService.showLoader({ title: 'Loading' });
+            this.loaderService.showLoader({ title: 'Loading' , autoHide: false});
             const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
             this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
               this.comprehensiveService.setMySteps(stepCalculated);
@@ -102,7 +103,6 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
       this.comprehensiveService.setViewableMode(true);
-      this.loaderService.hideLoader();
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     });
   }

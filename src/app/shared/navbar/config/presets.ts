@@ -103,7 +103,7 @@ export class NavbarConfig {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
       showMenu: true,
-      showLogin: false,
+      showLogin: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,

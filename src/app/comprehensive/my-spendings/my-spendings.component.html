@@ -198,12 +198,12 @@
                       <div class="btn-group--toggle"  ngbRadioGroup name="mortgageTypeOfHome" formControlName="mortgageTypeOfHome">
                       <div class="flex-row mb0">
                         <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid}" >
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid, 'view-mode': viewMode}" >
                             <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
                           </label>
                         </div>
                         <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid}">
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid, 'view-mode': viewMode}">
                             <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
                             translate}}
                           </label>
@@ -218,7 +218,7 @@
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
                   </div>
                   <div class="flex-col-6">
-                  <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid}">
+                  <div class="form-control" [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid, 'view-mode': viewMode}">
                     <input  appComprehensiveViewMode="{{viewMode}}" mode=1  type="text" placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}"  class="input-control text-left" #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
                   </div>
                   </div>  
