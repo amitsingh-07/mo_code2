@@ -3,7 +3,11 @@
 .comprehensive {
   background: #fff;
   height: 100%!important;
-
+  @include desktop {
+    &.container-fluid {
+      padding: 90px 20px 20px 20px;
+    }
+  }
   .header {
     color: #066360;
     font-size: 24px;
@@ -53,6 +57,9 @@
       font-size: 14px;
       font-family: $muli-light-italic;
       margin-bottom: 15px;
+      @include desktop {
+        height: 50px;
+      }
       &.report {
         background: url(../../../assets/images/comprehensive/report.svg) no-repeat;
         padding-left: 60px;
