@@ -52,7 +52,7 @@ app-upload-document-bo {
       .sub-title-desc {
         font-family: $muli-semi-bold;
         color: $upload-sub-title-desc-color;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: -0.3px;
       }
       .upload-file {
@@ -121,7 +121,7 @@ app-upload-document-bo {
             &.title {
               font-family: $muli-semi-bold;
               font-size: 18px;
-              font-weight: 600;
+              font-weight: 400;
             }
             &.sub-text {
               color: $upload-sub-title-desc-color;

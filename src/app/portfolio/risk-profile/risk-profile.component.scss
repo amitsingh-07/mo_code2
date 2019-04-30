@@ -102,10 +102,10 @@ app-risk-profile {
   }
 
   .risk-profile-block {
+    @include continue-button;
     .web-title {
       font-family: $muli-semi-bold;
       font-size: 36px;
-      font-weight: 600;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
@@ -162,7 +162,7 @@ app-risk-profile {
             z-index: 1;
           }
           &.secondPortfolio{
-            margin-right: 0px !important;
+            margin-right: 20px !important;
            }
          }
       }
@@ -232,7 +232,6 @@ app-risk-profile {
       line-height: normal;
       letter-spacing: -0.17px;
       color: $teal-color;
-      font-weight: bold;
       text-align: center;
       margin: 0;
       padding-top: 13px;
@@ -255,13 +254,13 @@ app-risk-profile {
     .btn-proceed {
       font-family: $muli-bold !important;
       font-size: 24px;
-      font-weight: bold;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
       letter-spacing: -0.25px;
       text-align: center;
       color: $white-color;
+      font-weight: normal;
      }
      .portfolio_btn_produced{
       border-radius: 6px;
@@ -269,7 +268,6 @@ app-risk-profile {
       background-color: #ffffff;
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       letter-spacing: -0.3px;
       color: #00a7a7;
       @include allmobiles{
@@ -323,7 +321,6 @@ app-risk-profile {
   .risk-head {
     font-size: 19px;
     font-family: $muli-bold;
-    font-weight: bold;
     letter-spacing: -0.18px;
     margin-bottom: 10px;
   }

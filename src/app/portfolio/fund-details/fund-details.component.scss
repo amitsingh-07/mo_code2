@@ -6,7 +6,7 @@ app-fund-details {
     text-align: center;
     font-family: $muli-semi-bold;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.3px;
     text-align: center;
     color: $teal-color;
@@ -90,7 +90,6 @@ app-fund-details {
           margin-top: 22px;
           font-family: $muli-bold;
           font-size: 16px;
-          font-weight: bold;
           letter-spacing: -0.1px;
         }
       }
@@ -98,7 +97,6 @@ app-fund-details {
     .btn-orange {
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       letter-spacing: -0.1px;
       text-align: center;
       color: $secondary-action-color;
@@ -138,7 +136,7 @@ app-fund-details {
   .fund-heading {
     font-family: $muli-semi-bold;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.3px;
     color: $black-color;
     padding: 20px;

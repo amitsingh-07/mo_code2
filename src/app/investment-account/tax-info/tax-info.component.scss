@@ -132,7 +132,6 @@ app-tax-info {
     .add-tax-text {
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       color: $inline-error-border-color;
      // padding-top: 10px;
     }
@@ -200,7 +199,7 @@ app-tax-info {
         background-color: #f4fafb;
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: -0.34px;
         color: #2d8289;
         border-bottom-left-radius: 6px;
