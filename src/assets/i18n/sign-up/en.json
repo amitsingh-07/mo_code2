@@ -231,6 +231,7 @@
       "TOTAL_PORTFOLIO": "Total Portfolio Value",
       "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
       "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
+      "REF_CODE": "Ref Code: ",
       "TOTAL_RETURNS": "Total Returns",
       "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
       "UPDATE": "Upload Documents",

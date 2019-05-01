@@ -199,7 +199,7 @@ app-dashboard{
                             padding-top: 11px;
                             color: #2d8289;
                             .flex-col{
-                                justify-content: space-between;
+                                // justify-content: space-between;
                                 &.col-5{
                                     .portfolio_footer_value{
                                         color: #11b600;
@@ -207,6 +207,11 @@ app-dashboard{
                                     .negativeValue {
                                         color: $red-color;
                                       }
+                                }
+                                .portfolio_ref_code {
+                                    color: $invest-ref-code-color;
+                                    font-size: 14px;
+                                    font-family: $muli;
                                 }
                                 .portfolio_footer_value{
                                     font-size: 16px;
