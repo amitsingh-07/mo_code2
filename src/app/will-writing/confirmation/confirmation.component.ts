@@ -10,6 +10,7 @@ import { IBeneficiary } from '../will-writing-types';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
+import {AuthenticationService} from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -27,6 +28,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   willWritingConfig = WILL_WRITING_CONFIG;
   willEstateDistribution = { spouse: [], children: [], others: [] };
   willBeneficiary: IBeneficiary[];
+  createWillTriggered = false;
 
   constructor(
     private translate: TranslateService,
@@ -34,7 +36,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     public footerService: FooterService,
     public navbarService: NavbarService,
     private willWritingApiService: WillWritingApiService,
-    private router: Router) {
+    private router: Router,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_4');
@@ -78,8 +81,9 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   }
 
   goNext() {
-    if (this.willWritingService.checkDuplicateUinAll()) {
-      if (this.willWritingService.isUserLoggedIn()) {
+    if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
+      this.createWillTriggered = true;
+      if (this.authService.isSignedUser()) {
         let createUpdateWill;
         if (!this.willWritingService.getIsWillCreated()) {
           createUpdateWill = this.willWritingApiService.createWill();
@@ -87,6 +91,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
           createUpdateWill = this.willWritingApiService.updateWill();
         }
         createUpdateWill.subscribe((data) => {
+          this.createWillTriggered = false;
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.willWritingService.setIsWillCreated(true);
             this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
@@ -95,7 +100,15 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
           }
         });
       } else {
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);
+        this.willWritingApiService.createWill().subscribe((data) => {
+          this.createWillTriggered = false;
+          if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.willWritingService.setWillCreatedPrelogin();
+            this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);
+          } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+            this.willWritingService.openToolTipModal('', this.duplicateError);
+          }
+        });
       }
     }
   }

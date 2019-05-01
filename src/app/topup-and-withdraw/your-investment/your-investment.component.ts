@@ -121,12 +121,14 @@ export class YourInvestmentComponent implements OnInit {
         }
       } else if (
         data.objectList &&
-        data.objectList.serverStatus &&
-        data.objectList.serverStatus.errors.length
+        data.objectList.length &&
+        data.objectList[data.objectList.length - 1].serverStatus &&
+        data.objectList[data.objectList.length - 1].serverStatus.errors &&
+        data.objectList[data.objectList.length - 1].serverStatus.errors.length
       ) {
         this.showCustomErrorModal(
           'Error!',
-          data.objectList.serverStatus.errors[0].msg
+          data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
         );
       } else if (data.responseMessage && data.responseMessage.responseDescription) {
         const errorResponse = data.responseMessage.responseDescription;

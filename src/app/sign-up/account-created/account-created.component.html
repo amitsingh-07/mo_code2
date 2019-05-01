@@ -1,4 +1,4 @@
-<div class="account-created-success-modal">
+<div class="account-created-success-modal" *ngIf="!resendEmail">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
@@ -8,6 +8,24 @@
         <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_CREATED.TITLE' | translate}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}} </p>
         <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
+      </div>
+  </div>
+</div>
+<!-- verify e-mail -->
+<div class="verify-mail-modal" *ngIf="resendEmail">
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper drop-off">
+    <div class="custom-modal--icon drop-off">
+        <img src="assets/images/drop-off.svg" id="custModalImg1" />
+    </div>
+      <div class="custom-modal--content">
+        <p class="custom-modal--title drop-off" id="custModalTitle">Verify Your Email</p>
+        <div class="custom-modal--desc" id="custModalDesc">We have sent an email to you. Please verify your email address to get started!
+          <div class="custom-modal--sub--desc">
+            <div>Didn’t receive it?</div>
+            <div class="link-white" (click)="resendEmailVerification()">Resend Verification Email</div>
+          </div>
+        </div>
       </div>
   </div>
 </div>

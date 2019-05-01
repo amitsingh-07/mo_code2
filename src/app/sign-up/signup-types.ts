@@ -1,10 +1,9 @@
 export interface ISignUp {
     customer: ICustomer;
-    enquiryId: number;
-    selectedProducts: IPlan[];
-    captcha: any;
     sessionId: any;
+    captcha: string;
     journeyType: string;
+    enquiryId: number;
 }
 
 export interface IEnquiryUpdate {
@@ -25,18 +24,13 @@ export interface IPremium {
 }
 
 export interface ICustomer {
-    id: number;
-    isSmoker: boolean;
-    givenName: string;
-    surName: string;
-    email: string;
-    mobileNumber: string;
-    notificationByEmail: boolean;
     countryCode: string;
-    notificationByPhone: boolean;
-    dateOfBirth: string;
-    gender: string;
-    acceptMarketEmails: boolean;
+    mobileNumber: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+    password: string;
+    acceptMarketingNotifications: boolean;
 }
 
 export interface IVerifyRequestOTP {
@@ -45,17 +39,13 @@ export interface IVerifyRequestOTP {
     editProfile?: boolean;
 }
 
-export interface ISetPassword {
-    customerRef: string;
-    password: string;
-    callbackUrl: string;
-    resetType: string;
-    resetCode: string;
-    selectedProducts: IPlan[];
-    journeyType: string;
-    sessionId: string;
-}
-
 export interface IVerifyCode {
     code: string;
+}
+
+export interface IResendEmail {
+    mobileNumber: string;
+    emailAddress: string;
+    callbackUrl: string;
+    hostedServerName: string;
 }

@@ -56,6 +56,34 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
+        confirmEmail: {
+                required : {
+                        errorTitle: 'Invalid Confirm E-mail',
+                        errorMessage: 'Please enter your confirm email address'
+                },
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
+                }
+        },
+        password: {
+                required : {
+                        errorTitle: 'Invalid Password',
+                        errorMessage: 'Please enter your password'
+                },
+                length : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                numberSymbol : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                upperLower : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+        },
         termsOfConditions: {
                 required : {
                         errorTitle: '',
@@ -117,6 +145,10 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid password',
                         // tslint:disable-next-line:max-line-length
                         errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                },
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
                 }
         },
         newPassword: {

@@ -1,122 +1,129 @@
 {
-    "COMMON": {
-        "CONTINUE": "Continue",
-        "VERIFY": "Verify",
-        "LOGIN": "Log In",
-        "CREATE_ACCOUNT": "Create Account",
-        "TRY_AGAIN": "Try Again",
-        "CAPTCHA": "Enter image text",
-        "CAPTCHA_TITLE": "Enter the characters shown in the image",
-        "TRY_ANOTHER_TEXT": "Try another text",
-        "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
-    },
-    "CREATE_ACCOUNT": {
-        "TITLE": "Create Your Account",
-        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
-        "FORM": {
-            "MOBILE_NUMBER": "Mobile Number",
-            "FIRST_NAME": "First Name",
-            "LAST_NAME": "Last Name",
-            "EMAIL": "Email Address",
-            "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
-            "MARKETING_ACCEPTANCE": "I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same."
-        }
-    },
-    "VERIFY_MOBILE": {
-        "TITLE": "Verify Your Mobile",
-        "SUB_TITLE": "So that our advisers can contact you.",
-        "FORM": {
-            "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
-            "EDIT_NUMBER": "Edit Number",
-            "DIDNT_RECIEVE": "Didn't Recieve it?",
-            "REQUEST_NEW_CODE": "Request New Code",
-            "CODE_SENT": "Code sent!",
-            "RETRY_IN": "Retry in",
-            "SECONDS_SUFFIX": "s"
-        },
-        "ERROR_MODAL": {
-            "ERROR_TITLE": "Incorrect OTP Code",
-            "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
-        },
-        "EXPIRED_ERROR_MODAL": {
-            "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
-        },
-        "LOADING": {
-            "VERIFYING": "Verifying...",
-            "VERIFIED": "Mobile Verified!",
-            "SENDING": "Sending New OTP"
-        }
-    },
-    "PASSWORD": {
-        "TITLE": "Create Password",
-        "SUB_TITLE": "You may use Mobile Number / Email Address as your Login ID.",
-        "FORM": {
-            "PASSWORD": "Password",
-            "CONFIRM_PASSWORD": "Confirm Password"
-        },
-        "ERROR_MESSAGE": {
-            "TITLE": "Password Criteria",
-            "LENGTH": "8 - 20 Alphanumeric Characters",
-            "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
-            "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
-            "MATCH": "Passwords do not match"
-        }
-    },
-    "EMAIL_VERIFICATION": {
-        "LOADING": {
-            "VERIFYING": "Verifying...",
-            "VERIFIED": "Email Verified!"
-        }
-    },
-    "ACCOUNT_CREATED": {
-        "TITLE": "Account Created!",
-        "SUB_TITLE1": "A verification link has been sent to your email address.",
-        "SUB_TITLE2": "Please verify your email address before logging in."
-    },
-    "LOGIN": {
-        "WELCOME_LBL": "Welcome to MoneyOwl!",
-        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
-        "FORM": {
-            "USERNAME": "Mobile No. / Email Address",
-            "PASSWORD": "Password",
-            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
-        },
-        "FORGOT_PASSWORD": "Forgot your password?",
-        "CLICK_HERE": "Click Here"
-    },
-    "FORGOTPASSWORD": {
-        "SUBMIT": "Submit",
-        "EMAIL": "Email Address",
-        "BACK_TO": "Back To Login",
-        "EMAIL_SENT": "Email Sent!",
-        "CHECK_EMAIL": "Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
-        "DESCRIPTION": "Enter your email to receive your password reset instructions.",
-        "TITLE": "Forgot Password",
-        "EMAIL_NOT_FOUND": "Email Not Found",
-        "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again."
-    },
-    "PRELOGIN": {
-        "TITLE": "Are you an existing MoneyOwl user?",
-        "YES_LOGIN": "Yes, Log In Now",
-        "CREATE_ACCOUNT": "No, Create Account"
-    },
-    "DASHBOARD": {
-        "PROFILE": {
-            "WELCOME": "Welcome back,",
-            "EDIT_PROFILE": "Edit Profile",
-            "YOUR_ADVISOR": "Your Advisor"
-        },
-        "WILL_WRITING": {
-            "TITLE": "Will Writing",
-            "EDIT_WILL": "Edit Will",
-            "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
-            "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
-            "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
-            "START_WRITING": "Start Writing",
-            "ESTIMATED_TIME": "Estimated 10 mins",
-            "DOWNLOAD_WILL": "Download Will",
-            "CONTINUE_WRITING": "Continue Writing",
-            "LAST_UPDATED": "Last Updated"
-        }
+  "COMMON": {
+    "CONTINUE": "Continue",
+    "VERIFY": "Verify",
+    "LOGIN": "Log In",
+    "CREATE_ACCOUNT": "Create Account",
+    "TRY_AGAIN": "Try Again",
+    "CAPTCHA": "Enter image text",
+    "CAPTCHA_TITLE": "Enter the characters shown in the image",
+    "TRY_ANOTHER_TEXT": "Try another text",
+    "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
+  },
+  "SIGNUP_ERRORS": {
+    "TITLE": "You have an account with us!",
+    "LOGIN_EMAIL_TITLE": "Oops, verify your email to login!",
+    "LOGIN_EMAIL_MESSAGE": "Okay, Got it",
+    "ACCOUNT_EXIST_MESSAGE": "Seems like you may have an existing account with Moneyowl. Login now!",
+    "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!",
+    "VERIFY_EMAIL_OTP": "Seems like you have previously started on account but has yet to complete account verification. Let us bring  you through again!"
+  },
+  "CREATE_ACCOUNT": {
+    "TITLE": "Create Your Account",
+    "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+    "FORM": {
+      "MOBILE_NUMBER": "Mobile Number",
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email Address",
+      "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
+      "MARKETING_ACCEPTANCE": "I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same."
     }
+  },
+  "VERIFY_MOBILE": {
+    "TITLE": "Verify Your Mobile",
+    "FORM": {
+      "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
+      "EDIT_NUMBER": "Edit Number",
+      "DIDNT_RECIEVE": "Didn't recieve it?",
+      "REQUEST_NEW_CODE": "Resend OTP",
+      "CODE_SENT": "Code sent!",
+      "RETRY_IN": "Retry in",
+      "SECONDS_SUFFIX": "s"
+    },
+    "ERROR_MODAL": {
+      "ERROR_TITLE": "Incorrect OTP Code",
+      "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+    },
+    "EXPIRED_ERROR_MODAL": {
+      "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
+    },
+    "LOADING": {
+      "VERIFYING": "Verifying...",
+      "VERIFIED": "Mobile Verified!",
+      "SENDING": "Sending New OTP"
+    }
+  },
+  "PASSWORD": {
+    "TITLE": "Create Password",
+    "SUB_TITLE": "You may use Mobile Number / Email Address as your Login ID.",
+    "FORM": {
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password"
+    },
+    "ERROR_MESSAGE": {
+      "TITLE": "Password Criteria",
+      "LENGTH": "8 - 20 Alphanumeric Characters",
+      "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
+      "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
+      "MATCH": "Passwords do not match"
+    }
+  },
+  "EMAIL_VERIFICATION": {
+    "LOADING": {
+      "VERIFYING": "Verifying...",
+      "VERIFIED": "Email Verified!"
+    }
+  },
+  "ACCOUNT_CREATED": {
+    "TITLE": "Account Created!",
+    "SUB_TITLE1": "A verification link has been sent to your email address.",
+    "SUB_TITLE2": "Please verify your email address before logging in."
+  },
+  "LOGIN": {
+    "WELCOME_LBL": "Welcome to MoneyOwl!",
+    "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+    "FORM": {
+      "USERNAME": "Mobile No. / Email Address",
+      "PASSWORD": "Password",
+      "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+    },
+    "FORGOT_PASSWORD": "Forgot your password?",
+    "CLICK_HERE": "Click Here"
+  },
+  "FORGOTPASSWORD": {
+    "SUBMIT": "Submit",
+    "EMAIL": "Email Address",
+    "BACK_TO": "Back To Login",
+    "EMAIL_SENT": "Email Sent!",
+    "CHECK_EMAIL": "Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
+    "DESCRIPTION": "Enter your email to receive your password reset instructions.",
+    "TITLE": "Forgot Password",
+    "EMAIL_NOT_FOUND": "Email Not Found",
+    "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again."
+  },
+  "PRELOGIN": {
+    "TITLE": "Are you an existing MoneyOwl user?",
+    "YES_LOGIN": "Yes, Log In Now",
+    "CREATE_ACCOUNT": "No, Create Account"
+  },
+  "DASHBOARD": {
+    "PROFILE": {
+      "WELCOME": "Welcome back,",
+      "EDIT_PROFILE": "Edit Profile",
+      "YOUR_ADVISOR": "Your Advisor"
+    },
+    "WILL_WRITING": {
+      "TITLE": "Will Writing",
+      "EDIT_WILL": "Edit Will",
+      "CREATE_YOUR_WILL_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+      "EXISTING_WILL_DESC": "Congratulations on completing your Will!",
+      "CONTINUE_WILL_DESC": "Almost there! Click on the button to complete your Will.",
+      "START_WRITING": "Start Writing",
+      "ESTIMATED_TIME": "Estimated 10 mins",
+      "DOWNLOAD_WILL": "Download Will",
+      "CONTINUE_WRITING": "Continue Writing",
+      "LAST_UPDATED": "Last Updated"
+    }
+  }
 }
