@@ -423,7 +423,9 @@
   height: 14px !important;
   border: none !important;
 }
-
+  [disabled].noUi-target {
+    opacity: .5;
+  }
 .noUi-connects {
   border-radius: 15px !important;
 }

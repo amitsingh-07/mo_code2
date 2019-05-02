@@ -1942,6 +1942,7 @@ a.link-white {
       left: 50%;
       margin-left: -300px;
       top: 165px;
+      box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
     }
   }
   .delete-icon {
@@ -2019,8 +2020,9 @@ a.link-white {
 .bucket-notes-dollar {
   font-size: 20px;
 }
+
 .slider-dark {
-  .nouislider .noUi-horizontal .noUi-handle {
+  .noUi-horizontal .noUi-handle {
     width: 30px !important;
     height: 30px !important;
     top: -6px !important;
@@ -2037,6 +2039,20 @@ a.link-white {
     height: 18px !important;
     border-radius: 10px !important;
   }
+  [disabled].noUi-target {
+    opacity: 1;
+  }
+  [disabled].noUi-target {
+      .noUi-connects {
+        opacity: .5;
+      }
+      .noUi-handle {
+        opacity: .8;
+      }
+      .noUi-base {
+        background-color: #339090 !important;
+      }
+    }
   }
 }
 
