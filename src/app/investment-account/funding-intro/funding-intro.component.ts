@@ -19,6 +19,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
   animateStaticModal = false;
   hideStaticModal = false;
   pageTitle: string;
+  time: any;
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -29,7 +30,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     public footerService: FooterService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
   ngOnInit() {
     this.navbarService.setNavbarMode(6);
@@ -41,7 +42,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (this.investmentAccountService.getAccountSuccussModalCounter() === 0) {
       this.investmentAccountService.setAccountSuccussModalCounter(1);
-      setTimeout(() => {
+      this.time = setTimeout(() => {
         this.animateStaticModal = true;
       }, 3000);
 
@@ -51,6 +52,10 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     } else {
       this.hideStaticModal = true;
     }
+  }
+  dismissFlashScreen() {
+    clearTimeout(this.time);
+    this.animateStaticModal = true;
   }
   goNext() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);

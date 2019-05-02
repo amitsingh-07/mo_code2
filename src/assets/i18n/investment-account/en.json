@@ -359,7 +359,7 @@
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
     "BACK": "Proceed",
-    "SUCCESS": "Investment Account Setup Successful"
+    "SUCCESS": "Investment Account <br>Setup Successful"
   },
   "ACCOUNT_CREATION_STATUS": {
     "ADDITIONAL_DECLARATION_SUBMITTED": {
