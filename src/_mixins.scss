@@ -520,6 +520,13 @@ line-height: lineHeightRem($size);
 }
 
 /**
+* fix for Flex basis in Internet explorer
+*/
+_:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
+  flex-basis: auto;
+}
+
+/**
  * Design for stepper indicator, 
  * Additional space inbetween the stepper for Desktop view
  */
@@ -550,7 +557,10 @@ line-height: lineHeightRem($size);
       }
       @include tablet { 
         width: 320px;
-      }
+			}
+			@include phablet {
+				width: 100%;
+			}
 		}
   }
 }
