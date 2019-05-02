@@ -92,11 +92,11 @@
     }
 
     &.drop-off {
-      font-family: $muli-semi-bold;
+      font-family: $muli-bold;
       padding-bottom: 26px;
 
       @include allmobiles {
-        padding-bottom: 6px;
+        padding-bottom: 20px;
       }
     }
   }
@@ -124,6 +124,7 @@
         color: $white-color;
         text-decoration: underline;
         letter-spacing: -0.14px;
+        font-size: 16px;
       }
     }
   }

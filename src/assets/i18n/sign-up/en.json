@@ -92,7 +92,11 @@
   "ACCOUNT_CREATED": {
     "TITLE": "Account Created!",
     "SUB_TITLE1": "A verification link has been sent to your email address.",
-    "SUB_TITLE2": "Please verify your email address before logging in."
+    "SUB_TITLE2": "Please verify your email address before logging in.",
+    "VERIFY_EMAIL_TITLE": "Verify Your Email",
+    "VERIFY_EMAIL_SUB_TITLE": "We have sent an email to you. Please verify your email address to get started!",
+    "DIDNOT_RECEIVE_IT": "Didn’t receive it?",
+    "RESEND_VERIFICATION_EMAIL": "Resend Verification Email"
   },
   "ACCOUNT_UPDATED": {
     "TITLE": "Account Updated!",
