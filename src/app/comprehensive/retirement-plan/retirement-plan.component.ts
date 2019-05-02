@@ -107,10 +107,11 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
     const containerRef = this.eleRef.nativeElement.querySelector('.noUi-value:last-child');
     this.renderer.setProperty(containerRef, 'innerHTML', '62 or later');
     this.renderer.addClass(containerRef, 'lastSliderPips');
-    if (this.sliderValue > 61) {
+    /*if (this.sliderValue > 61) {
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
-    } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
+    } else */
+    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
       this.sliderValue = Math.ceil(this.userAge / 5) * 5;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
@@ -131,10 +132,11 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   onSliderChange(value): void {
     this.sliderValue = value;
     this.retirementValueChanges = true;
-    if (this.sliderValue > 61) {
+    /*if (this.sliderValue > 61) {
       this.sliderValue = 62;
       this.ciMultiplierSlider.writeValue(65);
-    } else if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
+    } else */
+    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
       this.sliderValue = Math.ceil(this.userAge / 5) * 5;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
@@ -150,7 +152,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
         const retirementData = {
           enquiryId : this.comprehensiveService.getEnquiryId(),
-          retirementAge : (this.sliderValue > 60 ) ? '62 or later' : this.sliderValue.toString()
+          retirementAge : this.sliderValue.toString()
         };
         this.comprehensiveApiService.saveRetirementPlanning(retirementData).subscribe((data: any) => {
           this.comprehensiveService.setRetirementPlan(retirementData);
