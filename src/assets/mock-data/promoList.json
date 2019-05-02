@@ -149,5 +149,29 @@
         "date_expiry": "1561910399000",
         "tag": ["Insurance", "Protection"],
         "external": false
+    },
+    { 
+        "promoId": 13,
+        "type": 1,
+        "owner": "Aviva",
+        "title": "5% Premium Discount for Aviva MyProtector Term Plan & MyProtector Term Plan II",
+        "thumbnail": "/assets/promotions/images/13/thumbnail.jpg",
+        "desc": "5% premium discount for coverage above $1.1 mil.",
+        "date_created": "1556208000000",
+        "date_expiry": "1561910399000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 14,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,500 CapitaVouchers when you show your care to your loved one",
+        "thumbnail": "/assets/promotions/images/14/thumbnail.jpg",
+        "desc": "Receive up to $1500 CapitaVoucher with purchase of selected NTUC Income's plans",
+        "date_created": "1556553600000",
+        "date_expiry": "1559577599000",
+        "tag": ["Insurance", "Protection"],
+        "external": false
     }
 ]
