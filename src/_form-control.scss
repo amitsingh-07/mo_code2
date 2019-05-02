@@ -343,7 +343,7 @@ input[type='radio']+label {
 input[type='radio']:checked+label {
   background-image: url("./assets/images/radio-select.svg");
 }
-input[type='radio']:disabled+label {
+input[type='radio']:checked:disabled+label {
   background-image: url("./assets/images/comprehensive/disabled-control/icon_radio_disabled.svg");
 }
 
@@ -358,7 +358,7 @@ input[type='checkbox']+label {
 input[type='checkbox']:checked+label {
   background-image: url("./assets/images/check-box-select.svg");
 }
-input[type='checkbox']:disabled+label {
+input[type='checkbox']:checked:disabled+label {
   background-image: url("./assets/images/comprehensive/disabled-control/icon_checkbox_disabled.svg");
 }
 input[type="radio"],

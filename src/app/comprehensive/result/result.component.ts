@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ConfigService } from '../../config/config.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -28,7 +29,8 @@ export class ResultComponent implements OnInit, OnDestroy {
               private translate: TranslateService,
               private configService: ConfigService, private router: Router,
               private progressService: ProgressTrackerService,
-              private comprehensiveService: ComprehensiveService, private signUpService: SignUpService) {
+              private comprehensiveService: ComprehensiveService, private signUpService: SignUpService,
+              private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -50,6 +52,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(true);
     this.navbarService.setNavbarComprehensive(true);
