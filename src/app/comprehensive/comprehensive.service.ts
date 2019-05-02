@@ -1243,7 +1243,7 @@ export class ComprehensiveService {
             if (Array.isArray(inputObject[key])) {
                 inputObject[key].forEach((objDetails: any, index) => {
                     Object.keys(objDetails).forEach((innerKey) => {
-                        if (innerKey !== 'enquiryId' && removeKey.indexOf(innerKey) < 0) {
+                        if (innerKey !== 'enquiryId' && innerKey !== 'customerId' && innerKey !== 'id' && removeKey.indexOf(innerKey) < 0) {
                             const Regexp = new RegExp('[,]', 'g');
                             let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
                             thisValue = parseInt(objDetails[innerKey], 10);
