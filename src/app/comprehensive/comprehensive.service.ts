@@ -673,7 +673,7 @@ export class ComprehensiveService {
                     // 'getting-started'
                     case 0:
                         // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
-                        if (!cmpSummary.comprehensiveEnquiry.enquiryId) {
+                        if (!cmpSummary.comprehensiveEnquiry.enquiryId || !cmpSummary.comprehensiveEnquiry.isValidatedPromoCode) {
                             accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
                         }
                         break;
