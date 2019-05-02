@@ -18,7 +18,7 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveIncome',
             API_TOTAL_BUCKET_KEY: 'totalAnnualIncomeBucket',
             MONTHLY_INPUT_CALC : ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome',
             'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
         },
@@ -28,13 +28,13 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC : ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
             'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
-            'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil']
+            'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil', 'customerId', 'id']
         },
         YOUR_ASSETS: {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC : [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
             'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
         },
@@ -42,7 +42,7 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveLiabilities',
             API_TOTAL_BUCKET_KEY: 'totalAnnualLiabilities',
             MONTHLY_INPUT_CALC : [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount',
             'otherPropertyLoanOutstandingAmount']
         },
