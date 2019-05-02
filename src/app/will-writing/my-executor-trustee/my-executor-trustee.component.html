@@ -89,7 +89,7 @@
                     </div>
                     <div class="flex-col-6">
                       <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.uin.invalid}" id="myFamilyFormInpt2"
-                        class="form-control" #uin formControlName="uin">
+                        class="form-control" #uin formControlName="uin" maxLength="15">
                     </div>
                   </div>
                   <div class="flex-row add-beneficiary save" *ngIf="isEdit">

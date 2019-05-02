@@ -15,7 +15,6 @@ import {
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
-import { DownloadWillComponent } from './download-will/download-will.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
@@ -73,8 +72,7 @@ export function createTranslateLoader(http: HttpClient) {
     MyEstateDistributionComponent,
     ConfirmationComponent,
     ValidateYourWillComponent,
-    SignUpComponent,
-    DownloadWillComponent
+    SignUpComponent
   ],
   providers: [WillWritingAccessGuard]
 })
