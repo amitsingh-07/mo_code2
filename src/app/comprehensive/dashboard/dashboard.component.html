@@ -10,8 +10,8 @@
               </div>
             </div>
             <div class="flex-col-2">
-                <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
-                <div class="form-group-with-bg--header-label plan-view-icon text-right" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)" (click)="goToEditComprehensivePlan(false)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
+                <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view" [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
+                <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)" (click)="goToEditComprehensivePlan(false)">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
             </div>
           </div>
         </div>

@@ -140,7 +140,7 @@
       "NO_PROMO":"No promo code?",
       "GET_NEW":" Get one now!",
       "ONE_TIME_FEE":"One-time fee",
-      "GET_PROMO":"Get Promocode",
+      "GET_PROMO":"Get Promo code",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw"
     },
     "COMPREHENSIVE_STEPS": {
@@ -514,9 +514,9 @@
      "DISABILITY_INSURANCE":"Disability Income Insurance",
      "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
      "LONG_TERM_INSURANCE":"Long-Term Care Insurance",
-     "LONG_TERM_INSURANCE_LABEL":"Do you have Eldershield?",
+     "LONG_TERM_INSURANCE_LABEL":"Do you have ElderShield?",
      "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
-     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",
+     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 /mth payout",
      "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
      "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
       "TOOLTIP":{
@@ -536,7 +536,7 @@
       }
     },
     "RESULT":{
-      "READY":"Your report is ready soon!",
+      "READY":"Congratulations! Your report will be ready soon!",
       "DESC":"We are analysing your needs using proprietary models now…",
       "ABOUT":"Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
       "STEP_TITLE":"What’s Next?",
