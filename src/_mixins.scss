@@ -564,3 +564,17 @@ _:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
 		}
   }
 }
+
+/* firefox only - CSS code for dropdown with ellipsis within flex-col width 
+*  add 'flex-col-moz' to flex-col-* in columns of flex-row
+*/
+@mixin dropdown-ellipsis() {
+	@supports ( -moz-appearance:none ) {
+		.flex-col-moz {
+			flex-basis: auto;
+			.dropdown-control {
+				width: 100%;
+			}
+		}
+	}
+}

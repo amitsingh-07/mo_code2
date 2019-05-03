@@ -210,4 +210,5 @@ app-tax-info {
       font-family: $muli-bold !important;
     }
   }
+  @include dropdown-ellipsis();
 }

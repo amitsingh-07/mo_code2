@@ -158,6 +158,7 @@
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "IDENTITY_VERIFICATION": "For identity verifications, upload the required documents.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
     "PROOF_OF_IDENTITY_BO": "Proof Of Beneficial Owner's Identity",
     "NRIC": "NRIC",
@@ -173,10 +174,10 @@
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
-    "SPECIFICATION": "Specifications for documents to be uploaded:",
+    "SPECIFICATION": "Please ensure each document upload:",
     "FILE_LESS-THAN": "File less than",
     "TEN_MB": "10MB",
-    "FILE_TYPE": "File types:",
+    "FILE_TYPE": "Allowed file types:",
     "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
     "VERIFICATION_DOC": "Verification Document",
     "MODAL": {
