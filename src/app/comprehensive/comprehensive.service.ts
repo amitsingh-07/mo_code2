@@ -1293,7 +1293,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if (location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR')) {
+            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singaporean PR')) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
@@ -1349,7 +1349,7 @@ export class ComprehensiveService {
         let homeSalary = 0;
         let homeCpfSalary = 0;
         if (earningDetails && earningDetails !== null && earningDetails.totalAnnualIncomeBucket > 0) {
-            if (baseProfile && baseProfile.nation === 'Foreigner') {
+            if (baseProfile && baseProfile.nation === 'Others') {
                 homeSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {

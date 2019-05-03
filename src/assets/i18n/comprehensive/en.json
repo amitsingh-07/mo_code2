@@ -177,8 +177,8 @@
         "value": "singaporean_pr"
       },
       {
-        "text": "Foreigner",
-        "value": "foreigner"
+        "text": "Others",
+        "value": "Others"
       }
     ],
     "GENDER": ["Male", "Female"],
