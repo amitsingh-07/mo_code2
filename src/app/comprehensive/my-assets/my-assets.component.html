@@ -208,7 +208,8 @@
         <div class="flex-row ">
           <div class="flex-col-12 with-help-icon">
             <div class="form-group-with-bg--header-label">{{'CMP.MY_ASSETS.INVESTMENTS'|translate}}<div
-                class="form-group-with-bg--header-sub-label"></div>
+              class="form-group-with-bg--header-sub-label">{{
+              'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
             </div>
 
           </div>
@@ -256,7 +257,7 @@
             </div>
             <div class="flex-row">
               <div class="flex-col-6">
-                <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.OTHERS' | translate}}<div
+                <div class="form-group-with-bg--content-label" for="name">{{ (i>0)?('CMP.MY_ASSETS.OTHERS' | translate) : ('CMP.FORM_LABEL.AMOUNT' | translate)}}<div
                     class="form-group-with-bg--content-sub-label"></div>
                 </div>
               </div>
@@ -307,7 +308,7 @@
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssetsValue
-                formControlName="otherAssetsValue" value="0">
+                formControlName="otherAssetsValue" value="0" >
             </div>
           </div>
         </div>
