@@ -80,7 +80,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
-    
+
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
@@ -110,7 +110,6 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeMenuItemClick();
   }
 
-
   SelectEarningsType(earningsType, earningFlag) {
     this[earningsType] = earningFlag;
     const otherEarningsControl = this.myEarningsForm.controls[this.incomeDetailsDyn[earningsType]];
@@ -121,7 +120,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
         otherEarningsControl.setValidators([]);
         otherEarningsControl.updateValueAndValidity();
       } else {
-        otherEarningsControl.setValidators([ Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
+        otherEarningsControl.setValidators([Validators.required, Validators.pattern('^0*[1-9]\\d*$')]);
         otherEarningsControl.updateValueAndValidity();
       }
     }
@@ -132,14 +131,14 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   buildMyEarningsForm() {
     this.myEarningsForm = this.formBuilder.group({
-      employmentType: [{value: (this.employmentType) ? this.employmentType : '', disabled: this.viewMode}, []],
-      monthlySalary: [{value: this.earningDetails ? this.earningDetails.monthlySalary : '', disabled: this.viewMode}, []],
-      monthlyRentalIncome: [{value: this.earningDetails ? this.earningDetails.monthlyRentalIncome : '', disabled: this.viewMode}],
-      otherMonthlyWorkIncome: [{value: this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : '', disabled: this.viewMode}],
-      otherMonthlyIncome: [{value: this.earningDetails ? this.earningDetails.otherMonthlyIncome : '', disabled: this.viewMode}],
-      annualBonus: [{value: this.earningDetails ? this.earningDetails.annualBonus : '', disabled: this.viewMode}, []],
-      annualDividends: [{value: this.earningDetails ? this.earningDetails.annualDividends : '', disabled: this.viewMode}],
-      otherAnnualIncome: [{value: this.earningDetails ? this.earningDetails.otherAnnualIncome : '', disabled: this.viewMode}]
+      employmentType: [{ value: (this.employmentType) ? this.employmentType : '', disabled: this.viewMode }, []],
+      monthlySalary: [{ value: this.earningDetails ? this.earningDetails.monthlySalary : '', disabled: this.viewMode }, []],
+      monthlyRentalIncome: [{ value: this.earningDetails ? this.earningDetails.monthlyRentalIncome : '', disabled: this.viewMode }],
+      otherMonthlyWorkIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : '', disabled: this.viewMode }],
+      otherMonthlyIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyIncome : '', disabled: this.viewMode }],
+      annualBonus: [{ value: this.earningDetails ? this.earningDetails.annualBonus : '', disabled: this.viewMode }, []],
+      annualDividends: [{ value: this.earningDetails ? this.earningDetails.annualDividends : '', disabled: this.viewMode }],
+      otherAnnualIncome: [{ value: this.earningDetails ? this.earningDetails.otherAnnualIncome : '', disabled: this.viewMode }]
     });
   }
   selectEmploymentType(employmentType) {
@@ -164,7 +163,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
             this.loaderService.hideLoader();
-            this.comprehensiveService.clearBadMoodFund();
+            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+              this.comprehensiveService.saveBadMoodFund();
+            }
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
           });
         } else {

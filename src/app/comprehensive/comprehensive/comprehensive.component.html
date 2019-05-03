@@ -1,7 +1,7 @@
 <div class="container-fluid comprehensive white-bg">
   <div class="comprehensive-section">
     <div class="text-center video-section">
-      <iframe [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
+      <iframe id ="comprehensiveIframe" [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
     </div>
     <div class="intro-box">
       <div class="intro-box__heading">
@@ -81,7 +81,7 @@
           class="promoCodeForm">
           <div class="promo-code-box__promo-input">
             <input type="text" id="promoCodeInpt" class="form-control promo-code"
-              formControlName="comprehensivePromoCodeToken" placeholder="Enter your promocode">
+              formControlName="comprehensivePromoCodeToken" placeholder="{{ 'CMP.COMPREHENSIVE.ENTER_PROMO' | translate}}">
           </div>
           <div [hidden]="promoCodeValidated" (click)="getPromoCode()" class="promo-code-box__no-promo">
             {{ 'CMP.COMPREHENSIVE.NO_PROMO' | translate}}<span

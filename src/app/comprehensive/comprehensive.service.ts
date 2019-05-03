@@ -20,6 +20,7 @@ import {
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
 import { RoutingService } from './../shared/Services/routing.service';
+import { ComprehensiveApiService } from './comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
@@ -56,7 +57,7 @@ export class ComprehensiveService {
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
         private routingService: RoutingService, private router: Router,
-        private navbarService: NavbarService, private ageUtil: AboutAge) {
+        private navbarService: NavbarService, private ageUtil: AboutAge, private comprehensiveApiService: ComprehensiveApiService) {
         this.getComprehensiveFormData();
     }
 
@@ -394,10 +395,14 @@ export class ComprehensiveService {
         this.commit();
     }
     clearBadMoodFund() {
-        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck.badMoodMonthlyAmount = null;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck.badMoodMonthlyAmount = 0;
         this.commit();
     }
-
+    saveBadMoodFund() {
+        this.clearBadMoodFund();
+        this.comprehensiveApiService.saveDownOnLuck(this.getDownOnLuck()).subscribe((data) => {
+        });
+    }
     hasBadMoodFund() {
         const maxBadMoodFund = Math.floor((this.getMyEarnings().totalAnnualIncomeBucket
             - this.getMySpendings().totalAnnualExpenses) / 12);
