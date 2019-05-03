@@ -4,7 +4,6 @@
         <ellipse id="c" cx="27.49" cy="28.983" rx="27" ry="28"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#2D8289" d="M0 0h370v280H0z"/>
         <path fill="#00BCBC" d="M191.23 269C126.398 269 56 222.16 56 158.539c0-63.622 58.058-105.48 118.734-110.969C235.41 42.081 324 76.266 324 147.63 324 218.995 256.062 269 191.23 269z"/>
         <g transform="translate(56 -24)">
             <mask id="b" fill="#fff">
