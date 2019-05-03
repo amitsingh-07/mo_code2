@@ -323,7 +323,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       // Confirm E-mail
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
-      } else if (emailInput.value !== emailConfirmationInput.value) {
+      } else if (emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
