@@ -14,6 +14,7 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ForwardPricingModalComponent } from '../forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -188,13 +189,32 @@ export class WithdrawalTypeComponent implements OnInit {
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
+    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
       this.saveWithdrawal();
       // confirmed
     });
+    ref.componentInstance.showLearnMore.subscribe(() => {
+      ref.close();
+      this.showLearnMoreModal(form);
+    });
     this.dismissPopup(ref);
+  }
+
+  showLearnMoreModal(form) {
+    const learnMoreRef = this.modal.open(ForwardPricingModalComponent, {
+      centered: true,
+      backdrop : 'static',
+      keyboard : false
+    });
+    learnMoreRef.result.then((data) => {
+    }, (reason) => {
+      learnMoreRef.close();
+      this.showConfirmWithdrawModal(form);
+      // on dismiss
+    });
   }
 
   dismissPopup(ref: NgbModalRef) {

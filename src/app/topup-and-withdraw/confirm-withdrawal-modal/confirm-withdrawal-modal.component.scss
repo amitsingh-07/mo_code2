@@ -22,6 +22,59 @@ app-confirm-withdrawal-modal {
           font-weight: bold;
         }
       }
+
+      .forward-pricing-info {
+        background-color:#00a7a7;
+        margin:15px -40px 15px -25px;
+        font-size: 13px;
+        color:#fff;
+        padding: 20px 25px;
+        div {
+          padding-left:30px;
+          position:relative;
+          img {
+            position:absolute;
+            left:0px;
+            top:0px;
+          }
+          span.head {
+            font-weight:bold;
+            display:block;
+            margin-bottom:2px;
+          }
+          span.link {
+            font-weight:bold;
+            white-space: nowrap;
+            cursor:pointer;
+          }
+        }
+      }
+
+      .withdraw-details {
+        margin: 25px 0px;
+        font-family: $muli;
+        span.head {
+          font-size: 14px;
+          font-weight: bold;
+          color: #000;
+          margin-bottom: 15px;
+          display:block;
+        }
+        .caption-values {
+          .caption {
+            display:block;
+            font-size: 14px;
+            color: #5e5e5e;
+          }
+          .values {
+            display:block;
+            color: #00a7a7;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom:10px;
+          }
+        }
+      }
     }
 
     .strong {
