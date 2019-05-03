@@ -102,7 +102,7 @@ app-my-financials {
 
   .btn {
     &:hover {
-      background-color: #3bbcbc !important;
+      background-color: $btn-disabled-light-bg !important;
     }
     &:disabled {
       background-color: $btn-disabled-light-bg;

@@ -22,7 +22,7 @@
     <div class="risk-profile-block__content">
       <div class="text-center">
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">
-          <div class="web-title hidden-sm-md cont">Your Recommendation</div>
+          <div class="web-title hidden-sm-md cont"> {{ 'RISK_PROFILE.TITLE' | translate}}</div>
           <div class="portfolio-img">
             <img [class.secondPortfolio]="!selectedRiskProfile.alternateRiskProfileType" src={{iconImage}} id="riskProfileImg" />
             <img src={{secondIcon}} id="secondRiskProfileImg" />
@@ -61,7 +61,7 @@
             <div class="portfolio_bts">
               <span>
                 <img class="portfolio-btn" src={{iconImage}} id="secondRiskProfileImg" />
-                <span>View {{selectedRiskProfile.riskProfileName}} Portfolio</span>
+                <span [innerHTML]="'RISK_PROFILE.PORTFOLIO_FIRST_BTN' | translate:portfolioButtonLabel"></span>
               </span>
               <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
                   alt="" />
@@ -72,7 +72,7 @@
             <div class="portfolio_bts">
               <span>
                 <img class="portfolio-btn" src={{secondIcon}} id="secondRiskProfileImg" />
-                <span>View {{selectedRiskProfile.alternateRiskProfileType}} Portfolio</span>
+                <span [innerHTML]="'RISK_PROFILE.PORTFOLIO_SECOND_BTN' | translate:portfolioButtonLabel"></span>
               </span>
               <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
                   alt="" />

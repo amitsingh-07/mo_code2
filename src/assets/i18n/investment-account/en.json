@@ -5,7 +5,8 @@
       "CONTINUE": "Continue",
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
-      "SAVE_AND_CONTINUE": "Save and Continue"
+      "SAVE_AND_CONTINUE": "Save and Continue",
+      "PROCEED":"Proceed"
     }
   },
   "POSTLOGIN": {
@@ -297,7 +298,8 @@
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please complete this page only if you or any of your family member is a Politically Exposed Person (\"PEP\")",
     "PEP_MORE_DETAILS": "Just a Few More Questions",
-    "YOUR_OFFICE_ADDRESS": "PEP’s office address:"
+    "YOUR_OFFICE_ADDRESS": "PEP’s office address:",
+    "INVESTMENTS":"Investments"
   },
   "ACKNOWLEDGEMENT": {
     "TITLE": "IMPORTANT NOTICE",

@@ -35,7 +35,7 @@
                   <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
                   <label for="1" id="c1">
                     <div class="input-label-black"> {{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}}</div>
-                    <div class="input-label-normal">Min. $100</div>
+                    <div class="input-label-normal"> {{ 'MY_FINANCIALS.MIN_100' | translate}}</div>
                   </label>
                 </div>
                 <div class="flex-col-6">
@@ -53,7 +53,7 @@
                   <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox" name="secondChkBox" (change)="secondChkBoxChange()">
                   <label for="2" id="c2">
                     <div class="input-label-black"> {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
-                    <div class="input-label-normal">Min. $50</div>
+                    <div class="input-label-normal">{{ 'MY_FINANCIALS.MIN_50' | translate}}</div>
                   </label>
                 </div>
                 <div class="flex-col-6">
