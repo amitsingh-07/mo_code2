@@ -179,7 +179,10 @@
     "WITHDRAW_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the withdraw request"
-    }
+    },
+    "MIN_WITHDRAWAL_INFO": "Please note that minimum withdrawal amount is ${{MIN_WITHDRAW_AMOUNT}}.",
+    "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all.",
+    "AFTER_WITHDRAWAL": "After Withdrawal:"
   },
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",

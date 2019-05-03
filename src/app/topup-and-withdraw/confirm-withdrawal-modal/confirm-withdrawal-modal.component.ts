@@ -24,7 +24,6 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
 
   ngOnInit() {
     this.WITHDRAW_CONSTANTS = TOPUPANDWITHDRAW_CONFIG.WITHDRAW;
-    this.portfolioMinBalance();
   }
 
   confirmWithdrawal() {
@@ -32,14 +31,5 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   }
   learnMore() {
     this.showLearnMore.emit();
-  }
-  portfolioMinBalance() {
-    this.minBalance = this.portfolio.currentValue - this.withdrawAmount;
-    if (this.minBalance <= 50) {
-      this.showWarningMessage = true;
-    } else {
-      this.showWarningMessage = false;
-    }
-
   }
 }
