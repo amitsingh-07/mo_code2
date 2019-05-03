@@ -1606,6 +1606,13 @@ h6 {
     //opacity: 1 !important;
     right: 15px !important;
   }
+
+  &.back {
+    background: url("/assets/images/modal-back.png") !important;
+    opacity: 1 !important;
+    width:16px;
+    height:16px;
+  }
 }
 
 a.link-white {
