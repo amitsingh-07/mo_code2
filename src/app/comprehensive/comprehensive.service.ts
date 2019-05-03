@@ -1179,7 +1179,8 @@ export class ComprehensiveService {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
-            retirementAgeValue = cmpSummary.comprehensiveRetirementPlanning.retirementAge + ' yrs old';
+            const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
+            retirementAgeValue = (( retireAgeVal > 60) ? '62 or later' : retireAgeVal) + ' yrs old';
         }
         return {
             title: 'Financial Independence',
