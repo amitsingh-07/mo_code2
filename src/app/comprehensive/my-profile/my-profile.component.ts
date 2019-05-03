@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { IComprehensiveEnquiry, IHospitalPlanList } from './../comprehensive-types';
+import { IComprehensiveEnquiry } from './../comprehensive-types';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -46,7 +46,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     myProfileShow = true;
     DOBAlert = false;
     viewMode: boolean;
-    hospitalPlanList: IHospitalPlanList[];
     menuClickSubscription: Subscription;
     subscription: Subscription;
     public showToolTip = false;
