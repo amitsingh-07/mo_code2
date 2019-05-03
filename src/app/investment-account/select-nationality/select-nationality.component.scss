@@ -1,6 +1,10 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-select-nationality {
+  h2{
+    font-size: 30px;
+    margin-bottom: 11px
+  }
   .banner-image {
     img {
       padding-top: 1vh;

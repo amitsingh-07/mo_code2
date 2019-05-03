@@ -2,6 +2,10 @@
 @import '../../../mixins';
 
 app-my-financials {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
   .container-fluid {
    // padding-top: 70px;
   @include minPhabletmaxTablet{
