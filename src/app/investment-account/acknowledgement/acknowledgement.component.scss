@@ -9,7 +9,7 @@ app-acknowledgement {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 76px;
+      top: 10px;
       @include allmobiles{
         top: 60px;
       }
@@ -20,7 +20,9 @@ app-acknowledgement {
       @include stepindicator-desktop-extraspace;
     }
     
-
+.container-fluid{
+  padding-top: 20px;
+}
     .acknowledgement_text {
       font-family: $muli-regular;
       font-size: 16px;
