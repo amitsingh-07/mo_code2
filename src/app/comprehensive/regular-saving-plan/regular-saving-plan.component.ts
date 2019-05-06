@@ -153,9 +153,9 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     } else {
       if (!form.pristine) {
         if (this.validateRegularSavings(form)) {
-          this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
-          this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
           this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+            this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
+            this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
@@ -168,29 +168,29 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     }
   }
 
-    validateRegularSavings(form: FormGroup) {
+  validateRegularSavings(form: FormGroup) {
 
-      this.submitted = true;
-      if (this.validationFlag && form.value.hasRegularSavings === 'true') {
-        if (!form.valid) {
-          const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
-            this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
-          this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
-          );
-          return false;
-        }
-      } else {
-        this.submitted = false;
+    this.submitted = true;
+    if (this.validationFlag && form.value.hasRegularSavings) {
+      if (!form.valid) {
+        const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
+          this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
+        this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
+        );
+        return false;
       }
-
-      return true;
-    }
-    showToolTipModal(toolTipTitle, toolTipMessage) {
-      const toolTipParams = {
-        TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
-        DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
-      };
-      this.comprehensiveService.openTooltipModal(toolTipParams);
+    } else {
+      this.submitted = false;
     }
 
+    return true;
   }
+  showToolTipModal(toolTipTitle, toolTipMessage) {
+    const toolTipParams = {
+      TITLE: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipTitle),
+      DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
+    };
+    this.comprehensiveService.openTooltipModal(toolTipParams);
+  }
+
+}

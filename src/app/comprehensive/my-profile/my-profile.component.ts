@@ -197,9 +197,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (this.validateMoGetStrdForm(form) && !this.validateDOB(form.value.ngbDob)) {
                 form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
                 form.value.firstName = this.userDetails.firstName;
-                this.comprehensiveService.setMyProfile(form.value);
                 if (!form.pristine) {
                     this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
+                        this.comprehensiveService.setMyProfile(form.value);
                         const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
                         cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
                         cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();

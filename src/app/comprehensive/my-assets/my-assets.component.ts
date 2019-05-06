@@ -312,10 +312,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
           delete this.assetDetails['investmentAmount_' + index];
         });
-        this.comprehensiveService.setMyAssets(this.assetDetails);
         this.loaderService.showLoader({ title: 'Saving' });
         this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
           this.loaderService.hideLoader();
+          this.comprehensiveService.setMyAssets(this.assetDetails);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
         });
       } else {

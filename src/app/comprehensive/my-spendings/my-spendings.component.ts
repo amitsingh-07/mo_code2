@@ -168,10 +168,10 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           this.spendingDetails = form.value;
           this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
           this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.comprehensiveService.setMySpendings(this.spendingDetails);
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
             this.loaderService.hideLoader();
+            this.comprehensiveService.setMySpendings(this.spendingDetails);
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }

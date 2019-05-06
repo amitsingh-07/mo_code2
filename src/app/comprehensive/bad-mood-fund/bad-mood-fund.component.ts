@@ -160,11 +160,11 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         form.value.badMoodMonthlyAmount = this.sliderValue;
         form.value.hospitalPlanName = this.downOnLuck.hospitalPlanName;
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-        this.comprehensiveService.setDownOnLuck(form.value);
         this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
           any) => {
+            this.comprehensiveService.setDownOnLuck(form.value);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
         });
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
       } else {
         const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);
         this.comprehensiveService.openErrorModal(

@@ -169,8 +169,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
 
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.comprehensiveService.setInsurancePlanningList(form.value);
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+          this.comprehensiveService.setInsurancePlanningList(form.value);
           this.showSummaryModal();
         });
       } else {
