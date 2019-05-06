@@ -143,6 +143,9 @@
               <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
                 <div class="navbar--text">Contact Us</div>
               </button>
+              <button class="dropdown-item" (click)="goToExternal('https://moneyowl.recruiterpal.com/career/jobs')">
+                <div class="navbar--text">Careers</div>
+              </button>
               </div>
             </li>
           <li *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="nav-item dropdown notification hidden-sm-md" ngbDropdown #id00="ngbDropdown" (mouseover)="openDropdown(id00);" (mouseleave)="closeDropdown(id00);">
