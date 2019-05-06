@@ -69,6 +69,7 @@ import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.c
 import {
     ConfirmationModalComponent
 } from './shared/modal/confirmation-modal/confirmation-modal.component';
+import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
@@ -102,6 +103,7 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
+
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -131,6 +133,7 @@ export function tokenGetterFn() {
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
     ExistingCoverageModalComponent,
+    DiyModalComponent,
     PopupModalComponent,
     SuccessModalComponent,
     RestrictAlphabetsDirective,
@@ -202,7 +205,7 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent]

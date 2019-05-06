@@ -2,14 +2,13 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
-
 @Component({
-  selector: 'app-popup-modal',
-  templateUrl: './popup-modal.component.html',
-  styleUrls: ['./popup-modal.component.scss'],
+  selector: 'app-diy-modal',
+  templateUrl: './diy-modal.component.html',
+  styleUrls: ['./diy-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PopupModalComponent implements OnInit {
+export class DiyModalComponent implements OnInit {
   @Input() popupTitle: any;
   @Input() popupMessage: any;
 
@@ -23,10 +22,4 @@ export class PopupModalComponent implements OnInit {
         this.activeModal.dismiss();
       });
   }
-
-  externalLink() {
-    window.open('https://www.eventbrite.sg/e/moneyowl-investment-symposium-registration-60702740531', '_blank');
-    this.activeModal.dismiss();
-  }
-
 }
