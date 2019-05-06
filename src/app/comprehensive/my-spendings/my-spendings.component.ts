@@ -41,6 +41,9 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   validationFlag: boolean;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
   viewMode: boolean;
+  homeTypeList: any[];
+  mortgageTypeOfHome = '';
+  HLTypeOfHome = '';
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -55,11 +58,14 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.spendDesc = this.translate.instant('CMP.MY_SPENDINGS.SPEND_DESC');
         this.spendTitle = this.translate.instant('CMP.MY_SPENDINGS.SPEND_TITLE');
+        this.homeTypeList = this.translate.instant('CMP.HOME_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_SPENDINGS.OPTIONAL_VALIDATION_FLAG');
       });
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
+    this.mortgageTypeOfHome = this.spendingDetails.mortgageTypeOfHome ? this.spendingDetails.mortgageTypeOfHome : '';
+    this.HLTypeOfHome = this.spendingDetails.HLtypeOfHome ? this.spendingDetails.HLtypeOfHome : '';
     this.viewMode = this.comprehensiveService.getViewableMode();
   }
   // tslint:disable-next-line:cognitive-complexity
@@ -103,7 +109,18 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
 
     this.onTotalAnnualSpendings();
   }
+  selectHLHomeType(homeType: any) {
 
+    this.HLTypeOfHome = homeType;
+    this.mySpendingsForm.controls['HLtypeOfHome'].setValue(homeType);
+    this.mySpendingsForm.markAsDirty();
+  }
+  selectMortgageHomeType(homeType: any) {
+
+    this.mortgageTypeOfHome = homeType;
+    this.mySpendingsForm.controls['mortgageTypeOfHome'].setValue(homeType);
+    this.mySpendingsForm.markAsDirty();
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
