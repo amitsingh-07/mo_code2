@@ -321,9 +321,9 @@
       "TIME": "Estimate about 5 mins"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Autofill Forms Via MyInfo",
-      "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
-      "BTN-TEXT": "Yes, Proceed"
+      "TITLE": "Login to MyInfo",
+      "DESCRIPTION": "By signing in to MyInfo, the<strong> following information that you have previously entered will be overwritten</strong>.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div><br/>Would you like to proceed?",
+      "BTN-TEXT": "Proceed"
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Login to MyInfo",

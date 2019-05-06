@@ -95,7 +95,7 @@ export class SingPassComponent implements OnInit {
       ref.componentInstance.errorTitle = this.modelTitle;
       ref.componentInstance.errorMessageHTML = this.modelMessge;
       ref.componentInstance.primaryActionLabel = this.modelBtnText;
-      ref.componentInstance.warningIcon = true;
+      ref.componentInstance.lockIcon = true;
     } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
