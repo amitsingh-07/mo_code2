@@ -186,4 +186,7 @@ app-residential-address {
   .btn__footer--fixed {
     font-family: $muli-bold !important;
   }
+
+  /* firefox only CSS code for dropdown with ellipsis */
+  @include dropdown-ellipsis();
 }

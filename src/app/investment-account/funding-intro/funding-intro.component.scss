@@ -62,11 +62,28 @@ app-funding-intro {
   }
   .custom-modal--icon {
     width: 100%;
-    height: 100%;
+   // height: 100%;
     position: absolute;
+    @include allmobiles{
+      height: 67%;
+    }
     img{
-      width: 358px;
-      height: 353px;
+      @include desktop{
+        width: 266px;
+        height: 200px;
+      }
+      @include allmobiles{
+        width: 285px;
+        height: 200px;
+      }
+   }
+    .width30{
+      width: 30%;
+      margin-top: 30px;
+      @include desktop{
+        width: 340px;
+        height: 60px;
+      }
     }
   }
   .custom-modal--title {
@@ -149,7 +166,7 @@ app-funding-intro {
           max-width: 80%;
         }
       }
-    }
+ }
     .intro-block__content__desc {
       font-style: normal;
       font-stretch: normal;
@@ -177,4 +194,19 @@ app-funding-intro {
       }
     }
   }
+  .text-center{
+    text-align: center;
+    button {
+    @include allmobiles{
+      width: 100%;
+    }
+   @include tablet{
+     width: 30%;
+   }
+   @include desktop{
+    width: 337px;
+    height: 60px;
+   }
+  }
+}
 }

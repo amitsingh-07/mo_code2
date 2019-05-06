@@ -2,6 +2,10 @@
 @import '../../../_mixins.scss';
 
 app-post-login {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
   .container-fluid {
     padding-top: 50px !important;
     @include allmobiles {
@@ -63,6 +67,7 @@ app-post-login {
     padding-left: 30px;
     @include allmobiles{
       padding-bottom: 0;
+      padding-left: 0;
     }
   .signup-wrapper__header-icon {
     @include allmobiles {

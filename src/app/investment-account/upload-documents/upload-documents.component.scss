@@ -30,6 +30,14 @@ app-upload-documents {
       @include allmobiles{
         padding-top: 80px;
       }
+      .title-small {
+        font-family: $muli-bold;
+        font-size: 16px;
+        line-height: 1.38;
+        letter-spacing: -0.2px;
+        color: $white-color;
+        margin-bottom: 20px;
+      }
     }
     .doc-upload-instructions {
       background: $review-block-bg;

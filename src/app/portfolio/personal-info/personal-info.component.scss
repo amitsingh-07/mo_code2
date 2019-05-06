@@ -17,8 +17,13 @@ app-ci-assessment {
     min-width: 100% !important;
   }
 }
+
 app-personal-info {
-  .container-fluid {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
+ .container-fluid {
     @include allmobiles {
       padding-top: 68px;
     }

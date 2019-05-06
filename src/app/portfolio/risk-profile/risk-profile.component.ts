@@ -36,6 +36,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   showNoPortfolio = false;
   time;
   selectedRiskProfileId;
+  portfolioButtonLabel;
 
   constructor(
     public readonly translate: TranslateService,
@@ -64,6 +65,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
   }
     this.showButton();
+    this. buttonLabel();
   }
 
   ngAfterViewInit() {
@@ -83,7 +85,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   dismissFlashScreen() {
     clearTimeout(this.time);
     this.animateStaticModal = true;
-    }
+   }
 
   goToNext(RiskProfileID) {
     this.portfolioService.setSelectedRiskProfileId(RiskProfileID);
@@ -110,5 +112,11 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     } else {
       this.showSinglePortfolio = true;
     }
+  }
+  buttonLabel() {
+    this.portfolioButtonLabel = {
+      firstPortfolio: this.selectedRiskProfile.riskProfileName,
+      secondPortfolio: this.selectedRiskProfile.alternateRiskProfileType,
+     };
   }
 }

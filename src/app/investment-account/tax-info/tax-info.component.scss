@@ -50,11 +50,11 @@ app-tax-info {
       }
     }
     .fixed-btn--sm {
-      color: #51c2c2;
+      color: $form-backgrnd-color;
       &.active {
-        border: 1px solid #FFFFFF !important;
-        color: #FFFFFF !important;
-        background: #51c2c2 !important;
+        border: 1px solid $white-color !important;
+        color: $white-color !important;
+        background: $form-backgrnd-color !important;
       }
     }
     .text {
@@ -184,10 +184,10 @@ app-tax-info {
         }
       }
       .widget-title{
-        background-color: #ffffff;
+        background-color: $white-color;
         font-family: $muli-bold;
         letter-spacing: -0.3px;
-        color: #000000;
+        color: $black-color;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         padding: 25px 30px;
@@ -196,12 +196,12 @@ app-tax-info {
       }
       .widget-body{
         padding: 20px 30px 35px;
-        background-color: #f4fafb;
+        background-color: $bond-container-bg;
         font-family: $muli-semi-bold;
         font-size: 18px;
         font-weight: 400;
         letter-spacing: -0.34px;
-        color: #2d8289;
+        color: $dark-teal-color;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
       }
@@ -210,4 +210,5 @@ app-tax-info {
       font-family: $muli-bold !important;
     }
   }
+  @include dropdown-ellipsis();
 }

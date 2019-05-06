@@ -6,7 +6,7 @@
   @include allmobiles{
     padding: 15px;
   }
-  background-color: #00717e;
+  background-color: $portfolio-allocation-details-bg ;
   border-radius: 6px 6px 0 0 ;
   
 }
@@ -21,7 +21,7 @@
   font-style: italic;
   line-height: 1.31;
   letter-spacing: -0.1px;
-  color: #ffffff;
+  color: $white-color;
 
   .portfolio-type-details-title {
     font-family: $muli-bold;
@@ -33,7 +33,7 @@
   }
 
   .portfolio-type-details-desc {
-    color: #b3d6d6;
+    color: $review-text-color;
   }
 }
 
@@ -48,7 +48,7 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #ffffff;
+    color: $white-color;
     padding-top: 30px;
     position: relative;
 
@@ -167,7 +167,7 @@
   font-size: 14px;
   font-style: italic;
   letter-spacing: -0.1px;
-  color: #b3d6d6;
+  color: $review-text-color;
 
   .web-flex{
     display: flex;
@@ -211,15 +211,15 @@
       margin-right: 8px;
 
       &.best {
-        background-color: #55ffa0;
+        background-color: $portfolio-recommend-best;
       }
 
       &.median {
-        background-color: #00d42f;
+        background-color: $portfolio-recommend-median;
       }
 
       &.worst {
-        background-color: #015168;
+        background-color: $portfolio-recommend-worst;
       }
     }
   }
@@ -244,7 +244,7 @@
     line-height: normal;
     padding-bottom: 10px;
     border-radius: 6px;
-    background-color: #167f8b;
+    background-color: $portfolio-recommend-bg;
     padding: 16px 22px;
     text-align: left;
     @include allmobiles{
