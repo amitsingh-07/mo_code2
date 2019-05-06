@@ -18,6 +18,7 @@ export class TopUpAndWithdrawFormData {
   withdrawPortfolio: any;
   withdrawMode: string;
   withdrawBank: any;
+  isRedeemAll: boolean;
 
   userPortfolios: any;
   selectedPortfolioForTopup: any;
