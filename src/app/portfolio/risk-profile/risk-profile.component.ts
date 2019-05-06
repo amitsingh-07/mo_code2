@@ -85,6 +85,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   dismissFlashScreen() {
     clearTimeout(this.time);
     this.animateStaticModal = true;
+    this.hideStaticModal = true;
    }
 
   goToNext(RiskProfileID) {

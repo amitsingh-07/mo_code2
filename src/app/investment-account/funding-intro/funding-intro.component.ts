@@ -56,7 +56,8 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
   dismissFlashScreen() {
     clearTimeout(this.time);
     this.animateStaticModal = true;
-  }
+    this.hideStaticModal = true;
+   }
   goNext() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
