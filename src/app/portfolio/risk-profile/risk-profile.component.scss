@@ -4,6 +4,7 @@
 app-risk-profile {
   .hide-custom-modal {
     display: none;
+   
   }
 
   .fade-out-animation {
@@ -13,6 +14,8 @@ app-risk-profile {
     opacity: 0;
     z-index: 9999;
     position: fixed;
+    left: 0;
+    right: 0;
   }
 
   /* Chrome, Safari, Opera */
@@ -49,7 +52,7 @@ app-risk-profile {
   }
 
   .custom-modal-wrapper {
-    top: 30px;
+    //top: 30px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -296,11 +299,14 @@ app-risk-profile {
         background-color: $white-color !important;
         color: $teal-color !important;
       }
-      .portfolio_bts{
+      .portfolio_btn{
         display: flex;
         justify-content: space-between;
         text-align: center;
         align-items: center;
+        .flex-row{
+          align-items: center;
+        }
         @include allmobiles{
           padding: 0px;
         }
