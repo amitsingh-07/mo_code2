@@ -19,11 +19,7 @@
         <div class="amt">{{withdrawAmount | currency}}</div>
         <div class="lbl">{{ 'WITHDRAW.WITHDRAWAL_AMOUNT' | translate}}</div>
       </div>
-      <div class="warning" *ngIf="showWarningMessage">
-        <div class="warning-heading">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.GUIDELINE_HEADING' | translate}}</div>
-        <div>{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.GUIDELINE_FOR_PORTFOLIO_MIN' | translate}}</div>
-      </div>
-      <div class="forward-pricing-info">
+      <div class="forward-pricing-info" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">
         <div>
           <img src="../../../assets/images/info-orange.png" alt="" />
           <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_INFO.TITLE' | translate}}</span>
@@ -33,10 +29,10 @@
       <div class="withdraw-details">
         <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.WITHDRAW_DETAILS' | translate}}</span>
         <div class="caption-values">
-          <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}} </span>
-          <span class="values">{{portfolio.productName}}</span>
-          <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_REF_NO' | translate}} </span>
-          <span class="values">{{portfolio.productCode}}</span>
+          <span class="caption" *ngIf="portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}} </span>
+          <span class="values" *ngIf="portfolio && portfolio.riskProfile">{{portfolio.riskProfile.type}}</span>
+          <span class="caption" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && userInfo && userInfo.investementDetails && userInfo.investementDetails.account">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}} </span>
+          <span class="values" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && userInfo && userInfo.investementDetails && userInfo.investementDetails.account">{{userInfo.investementDetails.account.refNo}}</span>
           <span class="caption" *ngIf="bankAccountNo">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
         </div>
