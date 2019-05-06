@@ -48,7 +48,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   event1 = true;
   event2 = true;
   iconImage;
- userInputSubtext;
+  userInputSubtext;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -127,9 +127,9 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructUpdateInvestmentParams(data) {
@@ -168,13 +168,13 @@ export class PortfolioRecommendationComponent implements OnInit {
         period: this.portfolio.investmentPeriod
       };
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructgetAllocationParams() {
-    const selectedRiskId  = this.portfolioService.getSelectedRiskProfileId();
+    const selectedRiskId = this.portfolioService.getSelectedRiskProfileId();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: selectedRiskId.riskProfileId,
@@ -200,27 +200,8 @@ export class PortfolioRecommendationComponent implements OnInit {
   }
 
   showLoginOrSignupModal() {
-    const errorMessage = this.translate.instant('PRELOGIN_MODAL.DESC');
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.imgType = 1;
-    ref.componentInstance.errorMessageHTML = errorMessage;
-    ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'PRELOGIN_MODAL.LOG_IN'
-    );
-    ref.componentInstance.secondaryActionLabel = this.translate.instant(
-      'PRELOGIN_MODAL.CREATE_ACCOUNT'
-    );
-    ref.componentInstance.secondaryActionDim = true;
-    ref.componentInstance.primaryAction.subscribe(() => {
-      // Login
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-    });
-    ref.componentInstance.secondaryAction.subscribe(() => {
-      // Sign up
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
-    });
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 
   constructFundingParams(data) {
@@ -275,9 +256,9 @@ export class PortfolioRecommendationComponent implements OnInit {
           }
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     } else {
       this.showLoginOrSignupModal();
     }
