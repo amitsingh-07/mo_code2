@@ -36,8 +36,8 @@
               </label>
             </div>
             <div class=" flex-col-7">
-              <textarea appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}" id="moDpdnt2InptName"
-                class="form-control" #name formControlName="name" placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}" 
+              <textarea appComprehensiveViewMode="{{viewMode}}" mode=1 [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}" id="moDpdnt2InptName"
+                class="form-control dependant-name-wrap" #name formControlName="name" placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}" 
                 (keyup)="getWrapText(name)" maxlength="100"></textarea>
             </div>
           </div>
