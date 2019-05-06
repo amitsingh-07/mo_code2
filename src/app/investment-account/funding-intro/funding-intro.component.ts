@@ -53,7 +53,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
       this.hideStaticModal = true;
     }
   }
-  dismissFlashScreen() {
+  dismissFlashScreen()  {
     clearTimeout(this.time);
     this.animateStaticModal = true;
     this.hideStaticModal = true;
