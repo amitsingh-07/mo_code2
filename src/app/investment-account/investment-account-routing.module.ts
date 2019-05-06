@@ -29,27 +29,27 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
     redirectTo: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
     pathMatch: 'full',
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
     component: PostLoginComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
     component: SelectNationalityComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO,
     component: PersonalInfoComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS,
     component: ResidentialAddressComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
@@ -59,57 +59,57 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,
     component: FinanicalDetailsComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.TAX_INFO,
     component: TaxInfoComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS,
     component: UploadDocumentsComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SETUP_PENDING,
     component: AccountSetupPendingComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONAL_DECLARATION_SCREEN_2,
     component: AdditionalDeclarationScreen2Component,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
     component: AdditionalDeclarationInfoComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclarationStep1Component,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
-    canActivate: [InvestmentGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FUND_INTRO,

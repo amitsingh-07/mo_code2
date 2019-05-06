@@ -87,7 +87,6 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.animateStaticModal = true;
     this.hideStaticModal = true;
    }
-
   goToNext(RiskProfileID) {
     this.portfolioService.setSelectedRiskProfileId(RiskProfileID);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
