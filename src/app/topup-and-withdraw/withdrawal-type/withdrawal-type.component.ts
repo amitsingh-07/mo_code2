@@ -126,8 +126,9 @@ export class WithdrawalTypeComponent implements OnInit {
     );
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       if (value) {
-      this.isRedeemAll = value.currentValue <
-                        (TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT + TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT);
+      this.isRedeemAll = (value.currentValue <
+                        (TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT + TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT)
+                        && value.currentValue > 0);
       this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl( {
@@ -142,7 +143,7 @@ export class WithdrawalTypeComponent implements OnInit {
           ])
         );
       this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
-        this.isRedeemAll = amtValue == value.currentValue;
+        this.isRedeemAll = ( (amtValue == value.currentValue) && value.currentValue > 0 );
       });
       } else {
         this.withdrawForm.removeControl('withdrawAmount');
@@ -161,8 +162,9 @@ export class WithdrawalTypeComponent implements OnInit {
     );
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       if (value) {
-        this.isRedeemAll = value.currentValue <
-                          (TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT + TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT);
+        this.isRedeemAll = (value.currentValue <
+                          (TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT + TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT)
+                          && value.currentValue > 0 );
         this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl({
@@ -177,7 +179,7 @@ export class WithdrawalTypeComponent implements OnInit {
           ])
         )
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
-          this.isRedeemAll = amtValue == value.currentValue;
+          this.isRedeemAll = ( (amtValue == value.currentValue) && value.currentValue > 0 );
         });
       } else { 
         this.withdrawForm.removeControl('withdrawAmount');
@@ -189,7 +191,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   buildFormForCashToBank() {
-    this.isRedeemAll = this.cashBalance < TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT;
+    this.isRedeemAll = ( this.cashBalance < TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT && this.cashBalance > 0 );
     this.withdrawForm.addControl(
       'withdrawAmount',
       new FormControl({
@@ -201,7 +203,7 @@ export class WithdrawalTypeComponent implements OnInit {
       ])
     );
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
-      this.isRedeemAll = amtValue == this.cashBalance;
+      this.isRedeemAll =  ( (amtValue == this.cashBalance) && this.cashBalance > 0 );
     });
     this.withdrawForm.removeControl('withdrawPortfolio');
   }
