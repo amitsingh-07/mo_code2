@@ -148,6 +148,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     if (this.userBankList && this.userBankList.length) {
       ref.componentInstance.bankAccountNo = this.userBankList[0].accountNumber;
     }
+    ref.componentInstance.userInfo = this.userInfo;
     ref.componentInstance.confirmed.subscribe((data) => {
       ref.close();
       this.saveWithdrawal();
