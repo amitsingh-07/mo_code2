@@ -164,7 +164,7 @@
         "FORWARD_PRICING_INFO": {
           "TITLE": "Amount may be different due to price forwarding",
           "DESC": "There may be slight difference to the amount you redeem at as the exact price of the funds you transact is not known at the point of placing your order.",
-          "LEARN_MORE": "Learn More."
+          "LEARN_MORE": "Learn More"
         },
         "FORWARD_PRICING_MODAL": {
           "TITLE": "Difference in actual withdrawal amount due to price forwarding",
@@ -173,6 +173,7 @@
         "WITHDRAW_DETAILS": "Withdraw Details",
         "PORTFOLIO_NAME": "Portfolio Name:",
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
+        "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :"
       }
     },

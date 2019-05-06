@@ -1,20 +1,25 @@
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
-import { ConfirmWithdrawalModalComponent } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { FooterService } from '../../shared/footer/footer.service';
-import { HeaderService } from '../../shared/header/header.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { HeaderService } from '../../shared/header/header.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
+import {
+    ConfirmWithdrawalModalComponent
+} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+    ForwardPricingModalComponent
+} from '../forward-pricing-modal/forward-pricing-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { TranslateService } from '@ngx-translate/core';
-import { ForwardPricingModalComponent } from '../forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -43,7 +48,8 @@ export class WithdrawalTypeComponent implements OnInit {
     public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -224,6 +230,7 @@ export class WithdrawalTypeComponent implements OnInit {
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
     ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
+    ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
