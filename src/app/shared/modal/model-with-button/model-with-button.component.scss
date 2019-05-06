@@ -62,3 +62,25 @@
     margin: 0;
   }
 }
+.my_info_details{
+  font-family: $muli-regular;
+  font-size: 16px;
+  line-height: 1.31;
+  letter-spacing: -0.2px;
+  color: $teal-color;
+  padding-top: 18px;
+}
+
+.modal-body-title {
+  display: flex;
+  div {
+    flex-grow: 0;
+    flex-basis: auto;
+  }
+  span.lock {
+    padding-left: 5px;
+    img {
+      vertical-align: initial !important;
+    }
+  }
+}

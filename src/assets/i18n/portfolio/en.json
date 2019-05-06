@@ -143,7 +143,7 @@
     "YOUR_RISK_APPETITE": "Your Risk Appetite",
     "YOUR_PORTFOLIO_RECOMMENDATION": "Your Portfolio Recommendation",
     "PORTFOLIO_FIRST_BTN":"View {{firstPortfolio}} Portfolio",
-    "PORTFOLIO_SECOND_BTN":" View {{secondPortfolio}} Portfolio"
+    "PORTFOLIO_SECOND_BTN":"View {{secondPortfolio}} Portfolio"
   },
   "PRELOGIN_MODAL": {
     "DESC": "To continue, please log in or create a MoneyOwl account.",
