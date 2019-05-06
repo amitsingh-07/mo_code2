@@ -150,7 +150,7 @@ export class TaxInfoComponent implements OnInit {
     if (flag) {
       formgroup.addControl(
         'tinNumber',
-        new FormControl(data ? data.tinNumber : '', [
+        new FormControl(data ? data.tinNumber.toUpperCase() : '', [
           Validators.required,
           this.validateTin.bind(this)
         ])

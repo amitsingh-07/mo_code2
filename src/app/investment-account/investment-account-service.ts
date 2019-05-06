@@ -580,11 +580,11 @@ export class InvestmentAccountService {
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
     if (data.uin) {
-      this.investmentAccountFormData.nricNumber = data.uin;
+      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
       this.disableAttributes.push('nricNumber');
     }
     if (data.passportnumber && data.passportnumber.value) {
-      this.investmentAccountFormData.passportNumber = data.passportnumber.value;
+      this.investmentAccountFormData.passportNumber = data.passportnumber.value.toUpperCase();
       this.disableAttributes.push('passportNumber');
     }
     if (data.passportexpirydate && data.passportexpirydate.value) {
@@ -1448,7 +1448,7 @@ export class InvestmentAccountService {
       'salutation'
     );
     this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
-    this.investmentAccountFormData.nricNumber = identityDetails.nricNumber;
+    this.investmentAccountFormData.nricNumber = identityDetails.nricNumber ? identityDetails.nricNumber.toUpperCase() : '';
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
       identityDetails.customer.dateOfBirth
     );
@@ -1463,7 +1463,7 @@ export class InvestmentAccountService {
       identityDetails.customer.race,
       'race'
     );
-    this.investmentAccountFormData.passportNumber = identityDetails.passportNumber;
+    this.investmentAccountFormData.passportNumber = identityDetails.passportNumber ? identityDetails.passportNumber.toUpperCase() : '';
     this.investmentAccountFormData.passportExpiry = this.dateFormatFromApi(
       identityDetails.passportExpiryDate
     );
@@ -1577,7 +1577,7 @@ export class InvestmentAccountService {
       const taxInfo = {
         taxCountry: this.getCountryFromCountryCode(item.taxCountry.countryCode),
         radioTin: item.tinNumber ? true : false,
-        tinNumber: item.tinNumber,
+        tinNumber: item.tinNumber ? item.tinNumber.toUpperCase() : '',
         noTinReason: this.getPropertyFromId(parseInt(item.noTinReason, 10), 'noTinReason')
       };
       taxList.push(taxInfo);
@@ -1609,22 +1609,27 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
-      this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
-        pepDetails.pepAddress.country.countryCode
-      );
-      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
-      this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
-      this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
-      this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
-      this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
-      this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
-      if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
-        this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      } else {
-        this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+      if (pepDetails.pepAddress && pepDetails.pepAddress.country && pepDetails.pepAddress.country.countryCode) {
+        this.setPepAddress(pepDetails);
       }
       this.commit();
+    }
+  }
+  setPepAddress(pepDetails) {
+    this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
+      pepDetails.pepAddress.country.countryCode
+    );
+    this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
+    this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
+    this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
+    this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
+    this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
+    this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
+    if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
+      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    } else {
+      this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
     }
   }
   setDueDiligence2FromApi(pepDetails) {

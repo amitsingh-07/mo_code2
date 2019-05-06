@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import {
-    UnsupportedDeviceModalComponent
+  UnsupportedDeviceModalComponent
 } from '../shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
@@ -23,6 +23,9 @@ const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 const REDIRECT_URL_KEY = 'app_redirect_url';
 const IS_CAPTCHA_SHOWN = 'is_captcha';
 const CAPTCHA_SESSION_ID = 'captcha_session_id';
+
+const USER_MOBILE = 'user_mobile';
+const FROM_LOGIN_PAGE = 'from_login_page';
 
 @Injectable({
   providedIn: 'root'
@@ -168,7 +171,8 @@ export class SignUpService {
     errors.errorMessages = [];
     errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
     for (const name in controls) {
-      if (controls[name].invalid) {
+      if (controls[name].invalid &&
+        this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage) {
         errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
       }
     }
@@ -338,13 +342,13 @@ export class SignUpService {
     const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
     return this.apiService.requestEditPassword(data);
   }
-  updateBankInfo(bank, fullName , accountNum , id) {
+  updateBankInfo(bank, fullName, accountNum, id) {
     // API Call here
-    const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
+    const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBank(data);
   }
   // tslint:disable-next-line:no-identical-functions
-  constructUpdateBankPayload(bank , fullName , accountNum , id) {
+  constructUpdateBankPayload(bank, fullName, accountNum, id) {
     if (bank) {
       delete bank.accountNoMaxLength;
     }
@@ -396,7 +400,7 @@ export class SignUpService {
     if (messages === null) {
       return null;
     } else {
-      return messages.map( (message) =>  message.messageId);
+      return messages.map((message) => message.messageId);
     }
   }
 
@@ -510,7 +514,7 @@ export class SignUpService {
   }
 
   isMobileDevice() {
-    if ( navigator.userAgent.match(/Android/i)
+    if (navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/BlackBerry/i)
@@ -520,5 +524,45 @@ export class SignUpService {
     } else {
       return false;
     }
+  }
+
+  showUnsupportedDeviceModal() {
+    const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('UNSUPPORTED_DEVICE_MODAL.DESC');
+    return false;
+  }
+
+  setUnsupportedNoteShownFlag() {
+    this.signUpFormData.isUnsupportedNoteShown = true;
+    this.commit();
+  }
+
+  getUnsupportedNoteShownFlag() {
+    return this.signUpFormData.isUnsupportedNoteShown;
+  }
+
+  setUserMobileNo(mobile) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(USER_MOBILE, mobile);
+    }
+  }
+
+  getUserMobileNo() {
+    return sessionStorage.getItem(USER_MOBILE);
+  }
+
+  setFromLoginPage() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FROM_LOGIN_PAGE, 'true');
+    }
+  }
+
+  getFromLoginPage() {
+    return sessionStorage.getItem(FROM_LOGIN_PAGE);
+  }
+
+  removeFromLoginPage() {
+    sessionStorage.removeItem(FROM_LOGIN_PAGE);
   }
 }

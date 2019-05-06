@@ -52,7 +52,7 @@ export class PromotionLandingComponent implements OnInit {
     this.promotionApiService.getPromoList().subscribe((promotions) => {
       this.promotionApiService.getPromoCategory().subscribe((categories) => {
           this.promoList = this.promotionService.processPromoList(promotions, categories);
-          console.log(this.promoList);
+          // console.log(this.promoList);
           this.genCategoryList();
         });
     });
@@ -78,12 +78,7 @@ export class PromotionLandingComponent implements OnInit {
     this.getCategory(this.categorySelect);
   }
 
-  goToPromo(url) {
-    const urlSplit = url.split('#');
-    const newUrlSplit  = Object.assign([], urlSplit);
-    newUrlSplit.shift();
-    const base = urlSplit[0];
-    const extra = {fragment: newUrlSplit[0]} as NavigationExtras;
-    this.router.navigate([base], extra);
+  goToExternal(url) {
+    window.open(url, '_blank');
   }
 }

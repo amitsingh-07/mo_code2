@@ -14,6 +14,7 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ForwardPricingModalComponent } from '../forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -188,13 +189,32 @@ export class WithdrawalTypeComponent implements OnInit {
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
+    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
       this.saveWithdrawal();
       // confirmed
     });
+    ref.componentInstance.showLearnMore.subscribe(() => {
+      ref.close();
+      this.showLearnMoreModal(form);
+    });
     this.dismissPopup(ref);
+  }
+
+  showLearnMoreModal(form) {
+    const learnMoreRef = this.modal.open(ForwardPricingModalComponent, {
+      centered: true,
+      backdrop : 'static',
+      keyboard : false
+    });
+    learnMoreRef.result.then((data) => {
+    }, (reason) => {
+      learnMoreRef.close();
+      this.showConfirmWithdrawModal(form);
+      // on dismiss
+    });
   }
 
   dismissPopup(ref: NgbModalRef) {
@@ -228,12 +248,14 @@ export class WithdrawalTypeComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
-            response.objectList.serverStatus &&
-            response.objectList.serverStatus.errors.length
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].serverStatus &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors.length
           ) {
             this.showCustomErrorModal(
               'Error!',
-              response.objectList.serverStatus.errors[0].msg
+              response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
             );
           } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;

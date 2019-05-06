@@ -79,6 +79,7 @@
     "CASH_ACCOUNT": " to your cash account.",
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit",
+    "CONTINUE": "Continue",
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the topup request"
@@ -159,7 +160,20 @@
         "TO_YOUR": "to your",
         "CASH": "cash",
         "ACCOUNT": "account",
-        "SUBMIT": "Confirm"
+        "SUBMIT": "Submit",
+        "FORWARD_PRICING_INFO": {
+          "TITLE": "Amount may be different due to price forwarding",
+          "DESC": "There may be slight difference to the amount you redeem at as the exact price of the funds you transact is not known at the point of placing your order.",
+          "LEARN_MORE": "Learn More."
+        },
+        "FORWARD_PRICING_MODAL": {
+          "TITLE": "Difference in actual withdrawal amount due to price forwarding",
+          "HTML_DESC": "<p>As with most unit trusts, buy and sell orders for the funds making up the portfolio are transacted at end-of-day prices. </p><p>The exact price at which you will transact is therefore not known at the point of your placing an order. </p><p>The price of the fund that you see on screen is from the previous one or two business days before, depending on the fund, not the actual price at which you will transact. </p><p>The actual price at which you will transact will only be known one or two business days later.</p><span>For example:</span><p>You redeem $100 of the portfolio (T day). </p><p>The indicative price of one of the portfolio’s underlying funds, Fund A, is $1 on T day. </p><p>Based on this indicative price, you will redeem $100 / $1 = 100 units. </p><p>The actual price of the fund at the end of T day is $1.01. This price is only reflected on T+1 day. </p><p>You will transact at $1.01 and your redemption proceeds will be $1.01 x 100 = $101.</p>"
+        },
+        "WITHDRAW_DETAILS": "Withdraw Details",
+        "PORTFOLIO_NAME": "Portfolio Name:",
+        "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
+        "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :"
       }
     },
     "WITHDRAW_REQUEST_LOADER": {

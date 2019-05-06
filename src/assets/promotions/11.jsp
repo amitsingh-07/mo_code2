@@ -4,13 +4,14 @@
     <div class="promo__table">
     <table class="promo__inner-table table-bordered">
         <tr>
-            <td rowspan="2" class="cell--header">
-                <strong>Qualitfying Products</strong>
+            <td width="33%" rowspan="2" class="cell--header text--center">
+                <strong>Qualifying Products</strong>
+                <p></p> 
             </td>
-            <td class="cell--header text--center">
+            <td width="33%" class="cell--header text--center">
                 <strong>Qualifying Criteria</strong> 
             </td>
-            <td rowspan="2" class="cell--header text--center">
+            <td width="33%" rowspan="2" class="cell--header text--center">
                 <strong>Premium Cashback (based on % of annualised premiums)</strong>
             </td>
         </tr>
@@ -21,8 +22,10 @@
         </tr>
         <tr>
             <td> 
-                <strong><u>Protection Series</u> </strong>
-                <p>My Protector-Legacy</p>
+                <strong><u>Protection Series</u></strong>
+                <p>MyProtector - Legacy</p>
+                <p>MyProtector - Term Plan II</p>
+                <p>MyProtector - Decreasing</p>
             </td>
             <td class="text--center">
                 S$1,800 - S$5,000
@@ -32,32 +35,29 @@
             </td>
         </tr>
         <tr>
-            <td colspan="4"></td>
-        </tr>
-        <tr>
             <td>
-                <strong><u>Critical Illness Series</u></strong> 
+                <strong><u>Critical Illness Series</u></strong>
+                <p>MyCoreCI Plan</p> 
+                <p>MyMultiPay Critical Illness PLan III</p>
+                <p>MyEarly Critical Illness Plan</p>
             </td>
-            <td rowspan="4" class="text--center">
+            <td class="text--center">
                 <p>S$5,001 & above</p>
             </td>
-            <td rowspan="4" class="text--center"> 
+            <td class="text--center"> 
                 <p>12%</p>
             </td>
         </tr>
         <tr>
-            <td> 
-                MyCoreCI Plan
+            <td>
+                <strong>MyWholeLife Plan III</strong> 
             </td>
-        </tr> 
-        <tr>
-            <td>MyMultiPay Critical Illness PLan III</td> 
-        </tr>
-        <tr>
-            <td>MyEarly Critical Illness Plan</td> 
-        </tr>
-        <tr>
-            <td colspan="3"></td>
+            <td class="text--center">
+                S$1,800 & above
+            </td>
+            <td class="text--center">
+                3%
+            </td>
         </tr>
         <tr>
             <td rowspan="2">
