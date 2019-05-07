@@ -91,6 +91,7 @@ app-your-portfolio {
       top: 60px;
       right: 120px;
       max-width: 85px;
+      z-index: 1;
       @include allmobiles {
         top: 60px;
         max-width: 85px;
@@ -122,7 +123,7 @@ app-your-portfolio {
     padding: 0.25rem 1.5rem;
     clear: both;
     font-size: 16px;
-    font-weight: bold;
+    font-family: $muli-bold;
     text-align: inherit;
     white-space: nowrap !important;
     background-color: transparent;
@@ -187,7 +188,6 @@ app-your-portfolio {
   .total_values {
     font-family: $muli-bold;
     font-size: 30px;
-    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -212,7 +212,6 @@ app-your-portfolio {
   .total_return_value {
     font-family: $muli-bold;
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
@@ -274,7 +273,6 @@ app-your-portfolio {
     background-color: $white-color;
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
@@ -304,7 +302,6 @@ app-your-portfolio {
     background-color: $review-block-bg;
     font-family: $muli-bold;
     font-size: 18px;
-    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
@@ -345,7 +342,7 @@ app-your-portfolio {
   }
   .fund-account-btn {
     font-size: 21px;
-    font-weight: bold;
+    font-family: $muli-bold;
     letter-spacing: -0.2px;
     color: $secondary-action-color;
   }
