@@ -10,7 +10,6 @@ app-holdings {
       padding: 16px 26px 26px 26px;
       font-family: $muli-bold;
       font-size: 16px;
-      font-weight: bold;
     }
     .form-group-with-bg--content {
       border-radius: 6px;
@@ -29,12 +28,10 @@ app-holdings {
     }
     .text_bold {
       font-family: $muli-bold;
-      font-weight: bold;
     }
     .value {
       font-family: $muli-bold;
       font-size: 14px;
-      font-weight: bold;
       line-height: 1.64;
       letter-spacing: -0.1px;
       color: $teal-color;
