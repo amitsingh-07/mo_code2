@@ -49,7 +49,6 @@ import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-gu
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
 import { WillDisclaimerComponent } from './shared/components/will-disclaimer/will-disclaimer.component';
-import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
@@ -135,8 +134,7 @@ export function tokenGetterFn() {
         FundDetailsComponent,
         UnsupportedDeviceModalComponent,
         SummaryModalComponent,
-        DiyModalComponent,
-        NumberOnlyDirective
+        DiyModalComponent
     ],
     imports: [
         BrowserModule,
