@@ -40,15 +40,22 @@
             {
                 "NAME": "Harry CH’NG, CA, CFA",
                 "DP": "harry.jpg",
-                "TITLE": "Head, Finance and Corporate Affairs",
-                "CV": "<p>Harry Ch’ng has almost twenty years of experience across multiple finance disciplines including financial accounting, financial planning and analysis (FP&A), tax, transfer pricing, treasury and business partnering. As Head of Finance and Corporate Affairs, Harry oversees the financial controlling, human resource, operations and administration functions in MoneyOwl. Harry started his career in Arthur Andersen before moving on to leadership positions in finance and treasury functions across diverse industries. More recently, he was Head of Finance for Asia at Unity Technologies, a global leader in game engine and developer services. Harry is also concurrently Senior Vice President, Finance and Corporate Services at NTUC Link Pte Ltd where he leads the controlling, business analysis, compliance and pricing functions.</p><p>Harry has a Bachelor of Accountancy (Honours) degree from Nanyang Technological University. He holds the Chartered Accountant (CA) and Chartered Financial Analyst (CFA) designations.</p>"
+                "TITLE": "Chief Financial Officer/ Senior Vice President, Investment",
+                "CV": "<p>Harry Ch’ng has almost twenty years of experience across multiple finance disciplines including financial accounting, financial planning and analysis tax, transfer pricing, treasury and business partnering. As the Chief Financial Officer & Senior Vice President, Investments, Harry is responsible for the finance, investment, human resource and administration functions in MoneyOwl. Harry started his career in Arthur Andersen before moving on to leadership positions in finance and treasury functions across diverse industries. More recently, he was Senior Vice President, Finance and Corporate Services at NTUC Link Pte Ltd. Prior to that, he was the Head of Finance for Asia at Unity Technologies, a global leader in game engine and developer services, and also spent time as the Global Treasury Director at Dystar, a solutions provider for textile colorants and auxiliary chemicals. Harry has a Bachelor of Accountancy (Honours) degree from Nanyang Technological University. He holds the Chartered Accountant (CA) and Chartered Financial Analyst (CFA) designations.</p>"
             },
             {
                 "NAME": "Justin TAN, FLMI, IBFA",
                 "DP": "justin.jpg",
                 "TITLE": "Head, Compliance",
                 "CV": "<p>Justin Tan has more than ten years of experience in compliance and risk management. He started his career in the life insurance industry and has been in the financial advisory industry for the past decade. Justin believes that every company should build and grow its business centred on a strong ethical core. He was a developer of courses on ethics and rules and regulations accredited by the Singapore College of Insurance. </p><p>Justin has a Bachelor of Science degree in Business from the University of London. He holds a Diploma in Compliance from the International Compliance Association. He is also a Fellow of the Life Management Institute (FLMI).</p>"
-            }]
+            },
+            {
+                "NAME": "Pauline SOH",
+                "DP": "pauline.jpg",
+                "TITLE": "Head, Corporate Business",
+                "CV": "<p>Pauline has 15 years of experience across the diverse areas of marketing, event management and operations. She has over 10 years of marketing experience in the finance industry. Pauline was the Assistant General Manager in Securities Investors Association Singapore (SIAS), in which role she led the team’s fund raising initiatives, organised numerous flagship events for corporates and investor education programmes for SIAS members and retail investors, and managed office operations and administration.</p><p>Pauline holds a Bachelor of Science (2nd Upper Honors), Marketing from University of Bradford, UK as well as a Professional Diploma in Digital Marketing from Lithan.</p>"
+            }
+            ]
         }
     },
     "CUSTOMER_REVIEWS": {
@@ -119,9 +126,8 @@
             "SUB_TITLE": "We are here for you",
             "DESCRIPTION": "Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance. Your privacy is our priority and all information shared will be kept confidential.",
             "FORM" : {
-                "PLACEHOLDER": "Your Message and Contact Details Here",
+                "PLACEHOLDER": "Your Message Here",
                 "SUCCESS_MSG": "Your Enquiry has been sent successfully",
-                "SUB_TEXT": "Do leave us your contact details if you would like us to contact you.",
                 "SEND_MESSAGE": "Send Message"
             },
             "INFO": {

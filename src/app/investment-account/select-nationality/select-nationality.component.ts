@@ -113,8 +113,7 @@ export class SelectNationalityComponent implements OnInit {
 
   setNationlityFormData(form) {
     const singaporeanResident = form.controls.singaporeanResident
-      ? form.controls.singaporeanResident.value
-      : false;
+      ? form.controls.singaporeanResident.value : true;
     this.investmentAccountService.setNationality(
       this.nationalityList,
       this.countryList,

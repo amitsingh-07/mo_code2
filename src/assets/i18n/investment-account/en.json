@@ -23,8 +23,8 @@
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
     "FULL_NAME": "Full Name",
-    "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name (Family Name)",
+    "FULL_NAME_NRIC": "(as per NRIC)",
+    "FULL_NAME_PASSPORT": "(as per Passport)",
     "NRIC_NUMBER": "NRIC Number",
     "PASSPORT_NUMBER": "Passport Number",
     "PASSPORT_EXPIRY": "Passport Expiry",
@@ -288,14 +288,16 @@
     "TITLE": "Additional Declaration",
     "YES": "Yes",
     "NO": "No",
+    "PEP_FULL_NAME":"Full Name",
+    "AS_PER_NRIC_PASSPORT":"(as per NRIC/ Passport)",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please complete this page only if you or any of your family member is a Politically Exposed Person (\"PEP\")",
     "PEP_MORE_DETAILS": "Just a Few More Questions",
-    "YOUR_OFFICE_ADDRESS": "Your office address:"
+    "YOUR_OFFICE_ADDRESS": "PEP’s office address:"
   },
   "ACKNOWLEDGEMENT": {
-    "TITLE": "Acknowledgement",
+    "TITLE": "IMPORTANT NOTICE",
     "AGREE": "I Agree"
   },
   "ACCOUNT_SETUP_COMPLETE": {

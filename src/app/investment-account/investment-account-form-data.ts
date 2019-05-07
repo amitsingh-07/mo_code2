@@ -1,8 +1,6 @@
 export class InvestmentAccountFormData {
   // Personal Information
   fullName: string;
-  firstName: string;
-  lastName: string;
   nricNumber: any;
   passportNumber: any;
   passportExpiry: any;
@@ -89,12 +87,12 @@ export class InvestmentAccountFormData {
   sourceOfIncome: any;
   ExistingEmploye: any;
   pep: any;
+  oldPep: boolean;
   beneficial: any;
 
   // financial details
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: any;
-  salaryRange: any;
 
   source: string;
   expectedNumberOfTransation: number;
@@ -107,8 +105,7 @@ export class InvestmentAccountFormData {
   durationInvestment: number;
 
   // Additional declaration PEP
-  fName: string;
-  lName: string;
+  pepFullName: string;
   cName: string;
   pepoccupation: string;
   pepOtherOccupation: string;

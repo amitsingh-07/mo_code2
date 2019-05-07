@@ -55,7 +55,7 @@ export class WithdrawalTypeComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
@@ -187,6 +187,7 @@ export class WithdrawalTypeComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
+    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
@@ -227,13 +228,18 @@ export class WithdrawalTypeComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
-            response.objectList.serverStatus &&
-            response.objectList.serverStatus.errors.length
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].serverStatus &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors.length
           ) {
             this.showCustomErrorModal(
               'Error!',
-              response.objectList.serverStatus.errors[0].msg
+              response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
           } else {
             this.investmentAccountService.showGenericErrorModal();
           }
@@ -286,13 +292,16 @@ export class WithdrawalTypeComponent implements OnInit {
         } else {
           isValid = c.value <= amount;
         }
+        if (c.value <= 0) {
+          return { MinValue: true };
+        }
 
         if (isValid) {
           return null;
         } else if (type === 'CONTROL') {
           return { portfolioToBank: true };
-        } else  {
-          return {PortfolioToCash: true };
+        } else {
+          return { PortfolioToCash: true };
         }
       }
     };

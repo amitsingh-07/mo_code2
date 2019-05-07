@@ -142,6 +142,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.formValues.withdrawAmount;
     ref.componentInstance.withdrawType = this.formValues.withdrawType;
+    ref.componentInstance.portfolioValue = this.currentPortfolioValue();
     ref.componentInstance.confirmed.subscribe((data) => {
       ref.close();
       this.saveWithdrawal();
@@ -149,6 +150,12 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     this.dismissPopup(ref);
   }
+  currentPortfolioValue() {
+    if (this.formValues.withdrawPortfolio) {
+      const portfolioValue = this.formValues.withdrawPortfolio.currentValue;
+      return portfolioValue;
+    }
+   }
 
   showNewBankFormModal() {
     const ref = this.modal.open(AddBankModalComponent, {
@@ -161,12 +168,23 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
-        } else {
+        } else if (
+          response.objectList &&
+          response.objectList.length &&
+          response.objectList[response.objectList.length - 1].serverStatus &&
+          response.objectList[response.objectList.length - 1].serverStatus.errors &&
+          response.objectList[response.objectList.length - 1].serverStatus.errors.length
+        ) {
           this.showCustomErrorModal(
             'Error!',
-            response.objectList.serverStatus.errors[0].msg + '('
-            + response.objectList.serverStatus.errors[0].code + ')'
+            response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
+            + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
           );
+        } else if (response.responseMessage && response.responseMessage.responseDescription) {
+          const errorResponse = response.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
         }
       },
         (err) => {
@@ -187,13 +205,18 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         if (response.responseMessage.responseCode < 6000) {
           if (
             response.objectList &&
-            response.objectList.serverStatus &&
-            response.objectList.serverStatus.errors.length
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].serverStatus &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors.length
           ) {
             this.showCustomErrorModal(
               'Error!',
-              response.objectList.serverStatus.errors[0].msg
+              response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
             );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
           } else {
             this.investmentAccountService.showGenericErrorModal();
           }

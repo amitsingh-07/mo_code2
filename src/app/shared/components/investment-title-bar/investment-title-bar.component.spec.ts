@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DownloadWillComponent } from './download-will.component';
+import { InvestmentTitleBarComponent } from './investment-title-bar.component';
 
-describe('DownloadWillComponent', () => {
-  let component: DownloadWillComponent;
-  let fixture: ComponentFixture<DownloadWillComponent>;
+describe('InvestmentTitleBarComponent', () => {
+  let component: InvestmentTitleBarComponent;
+  let fixture: ComponentFixture<InvestmentTitleBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DownloadWillComponent ]
+      declarations: [ InvestmentTitleBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DownloadWillComponent);
+    fixture = TestBed.createComponent(InvestmentTitleBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
