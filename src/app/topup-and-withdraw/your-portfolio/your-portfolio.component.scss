@@ -91,6 +91,7 @@ app-your-portfolio {
       top: 60px;
       right: 120px;
       max-width: 85px;
+      z-index: 1;
       @include allmobiles {
         top: 60px;
         max-width: 85px;

@@ -73,6 +73,7 @@ app-your-investment {
       top: 40px;
       right: 120px;
       max-width: 85px;
+      z-index: 1;
       @include iphone5 {
         top: 28px;
       }
