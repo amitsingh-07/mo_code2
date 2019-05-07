@@ -35,7 +35,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   validationFlag: boolean;
   financeModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled =  false;
+  routerEnabled = false;
   bucketImage: string;
   viewMode: boolean;
   constructor(
@@ -57,7 +57,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
       this.financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
       if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-        this.routerEnabled =  !this.summaryRouterFlag;
+        this.routerEnabled = !this.summaryRouterFlag;
         this.showSummaryModal();
       }
     });
@@ -86,11 +86,11 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
 
     this.buildMyLiabilitiesForm();
     this.onTotalOutstanding();
-    if ( this.liabilitiesDetails && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
+    if (this.liabilitiesDetails && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
       && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount !== null
       && this.liabilitiesDetails.otherPropertyLoanOutstandingAmount > 0) {
-        this.addPropertyLoan();
-      }
+      this.addPropertyLoan();
+    }
   }
 
   ngOnDestroy() {
@@ -119,19 +119,27 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   buildMyLiabilitiesForm() {
     this.myLiabilitiesForm = this.formBuilder.group({
-      homeLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '',
-                                  disabled: this.viewMode}, []],
-      otherPropertyLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
-                                          : '', disabled: this.viewMode}],
-      otherLoanOutstandingAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount : '',
-                                  disabled: this.viewMode}, []],
-      carLoansAmount: [{value: this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '',
-                      disabled: this.viewMode}, []],
+      homeLoanOutstandingAmount: [{
+        value: this.liabilitiesDetails ? this.liabilitiesDetails.homeLoanOutstandingAmount : '',
+        disabled: this.viewMode
+      }, []],
+      otherPropertyLoanOutstandingAmount: [{
+        value: this.liabilitiesDetails ? this.liabilitiesDetails.otherPropertyLoanOutstandingAmount
+          : '', disabled: this.viewMode
+      }],
+      otherLoanOutstandingAmount: [{
+        value: this.liabilitiesDetails ? this.liabilitiesDetails.otherLoanOutstandingAmount : '',
+        disabled: this.viewMode
+      }, []],
+      carLoansAmount: [{
+        value: this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '',
+        disabled: this.viewMode
+      }, []],
 
     });
   }
   goToNext(form: FormGroup) {
-    if ( this.viewMode ) {
+    if (this.viewMode) {
       this.showSummaryModal();
     } else {
       if (this.validateLiabilities(form)) {
@@ -141,12 +149,13 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
           this.liabilitiesDetails = form.value;
           this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
           this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
+
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
-             this.loaderService.hideLoader();
-             this.showSummaryModal();
+            this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
+            this.loaderService.hideLoader();
+            this.showSummaryModal();
           });
         } else {
           this.showSummaryModal();
@@ -199,7 +208,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.summaryModalDetails = {
         setTemplateModal: 2,
         contentObj: this.financeModal,
-        liabilitiesEmergency: ( liquidCash > 0 ),
+        liabilitiesEmergency: (liquidCash > 0),
         liabilitiesLiquidCash: liquidCash,
         liabilitiesMonthlySpareCash: spareCash,
         nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',

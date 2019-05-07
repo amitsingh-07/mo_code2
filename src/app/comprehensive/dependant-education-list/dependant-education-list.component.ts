@@ -151,7 +151,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   }
   // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
-    if (this.viewMode) {
+    if (this.viewMode || form.pristine ) {
       this.showSummaryModal();
     } else {
       const dependantArray = [];
@@ -163,7 +163,12 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             this.endowmentArrayPlan[index].endowmentMaturityYears = '';
           }
         });
-        this.showSummaryModal();
+        this.comprehensiveApiService.saveChildEndowment({
+          hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
+          this.endowmentArrayPlan
+        }).subscribe((data: any) => {
+          this.showDependantSummary( this.endowmentArrayPlan);
+        });
       } else {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
           const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
@@ -177,9 +182,8 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             dependantArray.push({
               userName: preferenceDetails.name,
               userAge: preferenceDetails.age,
-              // tslint:disable-next-line: max-line-length
-              userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course, preferenceDetails.age, preferenceDetails.nation)
-              // userEstdependantArrayimatedCost: preferenceDetails.endowmentMaturityAmount
+              userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course,
+                preferenceDetails.age, preferenceDetails.nation)
             });
           } else {
             otherPropertyControl['endowmentMaturityAmount'].setValidators([]);

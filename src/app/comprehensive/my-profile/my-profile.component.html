@@ -105,9 +105,9 @@
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d._model)" >
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" appComprehensiveViewMode="{{viewMode}}" mode=1>
-                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid || !submitted"
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid && !submitted && !DOBAlert"
                       src="./assets/images/calendar-normal.svg" />
-                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted"
+                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
                       src="./assets/images/calendar-error.svg" />
                   </button>
                 </div>
