@@ -20,6 +20,7 @@ import {
     IProgressTrackerSubItemList
 } from './../shared/modal/progress-tracker/progress-tracker.types';
 import { RoutingService } from './../shared/Services/routing.service';
+import { ComprehensiveApiService } from './comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
@@ -56,7 +57,7 @@ export class ComprehensiveService {
         private http: HttpClient, private modal: NgbModal, private location: Location,
         private aboutAge: AboutAge, private currencyPipe: CurrencyPipe,
         private routingService: RoutingService, private router: Router,
-        private navbarService: NavbarService, private ageUtil: AboutAge) {
+        private navbarService: NavbarService, private ageUtil: AboutAge, private comprehensiveApiService: ComprehensiveApiService) {
         this.getComprehensiveFormData();
     }
 
@@ -394,10 +395,14 @@ export class ComprehensiveService {
         this.commit();
     }
     clearBadMoodFund() {
-        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck.badMoodMonthlyAmount = null;
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck.badMoodMonthlyAmount = 0;
         this.commit();
     }
-
+    saveBadMoodFund() {
+        this.clearBadMoodFund();
+        this.comprehensiveApiService.saveDownOnLuck(this.getDownOnLuck()).subscribe((data) => {
+        });
+    }
     hasBadMoodFund() {
         const maxBadMoodFund = Math.floor((this.getMyEarnings().totalAnnualIncomeBucket
             - this.getMySpendings().totalAnnualExpenses) / 12);
@@ -673,7 +678,7 @@ export class ComprehensiveService {
                     // 'getting-started'
                     case 0:
                         // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
-                        if (!cmpSummary.comprehensiveEnquiry.enquiryId) {
+                        if (!cmpSummary.comprehensiveEnquiry.enquiryId || !cmpSummary.comprehensiveEnquiry.isValidatedPromoCode) {
                             accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
                         }
                         break;
@@ -1179,7 +1184,8 @@ export class ComprehensiveService {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
-            retirementAgeValue = cmpSummary.comprehensiveRetirementPlanning.retirementAge + ' yrs old';
+            const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
+            retirementAgeValue = (( retireAgeVal > 60) ? '62 or later' : retireAgeVal) + ' yrs old';
         }
         return {
             title: 'Financial Independence',
@@ -1243,7 +1249,7 @@ export class ComprehensiveService {
             if (Array.isArray(inputObject[key])) {
                 inputObject[key].forEach((objDetails: any, index) => {
                     Object.keys(objDetails).forEach((innerKey) => {
-                        if (innerKey !== 'enquiryId' && removeKey.indexOf(innerKey) < 0) {
+                        if (innerKey !== 'enquiryId' && innerKey !== 'customerId' && innerKey !== 'id' && removeKey.indexOf(innerKey) < 0) {
                             const Regexp = new RegExp('[,]', 'g');
                             let thisValue: any = (objDetails[innerKey] + '').replace(Regexp, '');
                             thisValue = parseInt(objDetails[innerKey], 10);
@@ -1287,7 +1293,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if (location === 'Singapore' && (nation === 'Foreigner' || nation === 'Singaporean PR')) {
+            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singaporean PR')) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
@@ -1343,7 +1349,7 @@ export class ComprehensiveService {
         let homeSalary = 0;
         let homeCpfSalary = 0;
         if (earningDetails && earningDetails !== null && earningDetails.totalAnnualIncomeBucket > 0) {
-            if (baseProfile && baseProfile.nation === 'Foreigner') {
+            if (baseProfile && baseProfile.nation === 'Others') {
                 homeSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {

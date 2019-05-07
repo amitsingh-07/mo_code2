@@ -140,13 +140,13 @@
       "NO_PROMO":"No promo code?",
       "GET_NEW":" Get one now!",
       "ONE_TIME_FEE":"One-time fee",
-      "GET_PROMO":"Get Promocode",
+      "GET_PROMO":"Get Promo code",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw"
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
       "STEP_1_TITLE": "What's On Your Shoulders",
-      "STEP_1_DESC": "Your family commitments will impact on your financial planning. Let's list it down now.",
+      "STEP_1_DESC": "Your family commitments will impact your financial planning. Let's list it down now.",
       "STEP_2_TITLE": "Your Finances",
       "STEP_2_DESC": "This information helps us to estimate what you can save and invest, your protection needs, and your financial health.",
       "STEP_3_TITLE": "Your Current Fireproofing",
@@ -177,8 +177,8 @@
         "value": "singaporean_pr"
       },
       {
-        "text": "Foreigner",
-        "value": "foreigner"
+        "text": "Others",
+        "value": "Others"
       }
     ],
     "GENDER": ["Male", "Female"],
@@ -195,7 +195,7 @@
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
-      "OPTIONS": ["yes, I do", "No, but i need insurance payout to cover my child's education in case i pass away", "No, I don't"]
+      "OPTIONS": ["yes, I do", "No, but I need an insurance payout to cover education expenses in case I pass away", "No, I don't"]
     },
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
@@ -265,7 +265,7 @@
       "MORTAGE_PAYMENT_CPF": "Mortgage Payment using CPF",
       "MORTAGE_PAYMENT_CASH": "Mortgage Payment using Cash",
       "HOME_TYPE": "Type of Home",
-      "TO_PAY_OFF": "To Pay Off",
+      "TO_PAY_OFF": "To Pay Off By",
       "ADD_OTHER_MORTAGE": "Add Other Mortgage Repayment",
       "OTHER_MORTAGE_PAYMENT": "Other Mortgage Repayment",
       "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car Loan Payment",
@@ -329,7 +329,7 @@
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "Whose education would you like to fund?",
-      "NO_LABEL": "No, but i need an insurance payout to cover education expenses in case i pass away",
+      "NO_LABEL": "No, but I need an insurance payout to cover education expenses in case I pass away",
       "NO_DESC": "Select which child you will like to cover for.",
       "ALERT":"Please select at least one child."
     },
@@ -514,9 +514,9 @@
      "DISABILITY_INSURANCE":"Disability Income Insurance",
      "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
      "LONG_TERM_INSURANCE":"Long-Term Care Insurance",
-     "LONG_TERM_INSURANCE_LABEL":"Do you have Eldershield?",
+     "LONG_TERM_INSURANCE_LABEL":"Do you have ElderShield?",
      "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
-     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 p.m. payout",
+     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 /mth payout",
      "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
      "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
       "TOOLTIP":{
@@ -536,7 +536,7 @@
       }
     },
     "RESULT":{
-      "READY":"Your report is ready soon!",
+      "READY":"Congratulations! Your report will be ready soon!",
       "DESC":"We are analysing your needs using proprietary models now…",
       "ABOUT":"Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
       "STEP_TITLE":"What’s Next?",

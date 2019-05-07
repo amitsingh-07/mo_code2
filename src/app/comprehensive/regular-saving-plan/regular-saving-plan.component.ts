@@ -117,18 +117,18 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   buildRSPDetailsForm(value) {
     return this.formBuilder.group({
-      regularUnitTrust: [value.regularUnitTrust, [Validators.required]],
-      regularPaidByCash: [value.regularPaidByCash, [Validators.required]],
-      regularPaidByCPF: [value.regularPaidByCPF, [Validators.required]],
+      regularUnitTrust: [value.regularUnitTrust],
+      regularPaidByCash: [value.regularPaidByCash],
+      regularPaidByCPF: [value.regularPaidByCPF],
       enquiryId: this.enquiryId
 
     });
   }
   buildEmptyRSPForm() {
     return this.formBuilder.group({
-      regularUnitTrust: ['', [Validators.required]],
-      regularPaidByCash: ['', [Validators.required]],
-      regularPaidByCPF: ['', [Validators.required]],
+      regularUnitTrust: [''],
+      regularPaidByCash: [''],
+      regularPaidByCPF: [''],
       enquiryId: this.enquiryId
 
     });
@@ -151,12 +151,14 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-      if (!form.pristine || form.value.hasRegularSavings === null) {
+      if (!form.pristine) {
         if (this.validateRegularSavings(form)) {
           this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
           this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
           this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
-            this.comprehensiveService.clearBadMoodFund();
+            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+              this.comprehensiveService.saveBadMoodFund();
+            }
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
           });
         }

@@ -158,7 +158,7 @@ export class ComprehensiveComponent implements OnInit {
         }, (err) => {
 
         });
-      }
+     }
 
     } else {
       this.showLoginOrSignUpModal();
