@@ -708,7 +708,7 @@ export class ComprehensiveService {
 
                     // 'dependant-details/summary'
                     case 5:
-                        if (!this.hasChildDependant()) {
+                        if (!this.hasChildDependant() && enquiry.hasDependents) {
                             accessibleUrl = urlList[index];
                         }
                         break;

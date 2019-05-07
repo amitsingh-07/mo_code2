@@ -1,15 +1,20 @@
 @import '../../../variables';
 @import '../../../mixins';
 .myDependant {
-    .myDependantFormArray {
-    background: #f0ffff!important;
-    color:#005960 !important;
-    border-radius:10px;
-    h5{
-        color:#000!important;
+  .myDependantFormArray {
+    background: #f0ffff !important;
+    color: #005960 !important;
+    border-radius: 10px;
+
+    h5 {
+      color: #000 !important;
     }
   }
+  .dependant-name-wrap {
+    resize: none;
+  }
 }
+
 .comprehensive .form-group-with-bg {
-    padding: 0;
+  padding: 0;
 }

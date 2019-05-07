@@ -117,24 +117,22 @@
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
               </div>
               <div class="flex-col-6">
-              <div class="">
-                  <div class="btn-group--toggle"  ngbRadioGroup name="HLtypeOfHome" formControlName="HLtypeOfHome">
-                  <div class="flex-row mb0">
-                    <div class="flex-col-6">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'view-mode': viewMode}">
-                        <input  appComprehensiveViewMode="{{viewMode}}" mode=1  id="HLtypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
-                      </label>
-                    </div>
-                    <div class="flex-col-6">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'view-mode': viewMode}">
-                        <input  appComprehensiveViewMode="{{viewMode}}" mode=1  id="HLtypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
-                        translate}}
-                      </label>
+                <div class="dropdown-control" >
+                  <div  ngbDropdown id="homeTypeDropDown" placement="top-right">
+                    <button   type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
+                      <span class="grey-text" *ngIf="HLTypeOfHome === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                      <span *ngIf="HLTypeOfHome !== ''">{{HLTypeOfHome}}</span>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownHomeType">
+                    
+                      <button  type="button" class="dropdown-item" *ngFor="let homeType of homeTypeList; let i=index"
+                        (click)="selectHLHomeType(homeType)">
+                        {{homeType}}
+                      </button>
                     </div>
                   </div>
                 </div>
-              </div>
-              </div>  
+              </div> 
             </div>
             <div class="flex-row">
               <div class="flex-col-6">
@@ -194,24 +192,22 @@
                   <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div class="form-group-with-bg--content-sub-label"></div></div>
                   </div>
                   <div class="flex-col-6">
-                  <div class="">
-                      <div class="btn-group--toggle"  ngbRadioGroup name="mortgageTypeOfHome" formControlName="mortgageTypeOfHome">
-                      <div class="flex-row mb0">
-                        <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid, 'view-mode': viewMode}" >
-                            <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomeHDB" ngbButton type="radio" value="HDB">{{ 'CMP.FORM_LABEL.HDB' | translate}}
-                          </label>
-                        </div>
-                        <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && addSpendValid.mortgageTypeOfHome.invalid, 'view-mode': viewMode}">
-                            <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="mortgageTypeOfHomePrivate" ngbButton type="radio" value="Private">{{ 'CMP.FORM_LABEL.PRIVATE' |
-                            translate}}
-                          </label>
+                    <div class="dropdown-control" >
+                      <div  ngbDropdown id="homeTypeDropDown" placement="top-right">
+                        <button   type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
+                          <span class="grey-text" *ngIf="mortgageTypeOfHome === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="mortgageTypeOfHome !== ''">{{mortgageTypeOfHome}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownHomeType">
+                        
+                          <button  type="button" class="dropdown-item" *ngFor="let homeType of homeTypeList; let i=index"
+                            (click)="selectMortgageHomeType(homeType)">
+                            {{homeType}}
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  </div>  
+                  </div> 
                 </div>
                 <div class="flex-row">
                   <div class="flex-col-6">

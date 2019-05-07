@@ -116,7 +116,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-        const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+        const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
         COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
@@ -162,7 +162,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ?  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : 
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ?  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
        COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
@@ -234,8 +234,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       } else {
         const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
           .filter((item: IChildEndowment) => item.preferenceSelection);
-        this.comprehensiveService.setEndowment(form.value.hasEndowments);
-        this.comprehensiveService.setChildEndowment(selectedChildArray);
         if (!form.pristine) {
 
           this.loaderService.showLoader({ title: 'Saving' });
@@ -244,7 +242,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             hasEndowments: form.value.hasEndowments,
             endowmentDetailsList: selectedChildArray
           }).subscribe((data: IServerResponse) => {
-
+            this.comprehensiveService.setEndowment(form.value.hasEndowments);
+            this.comprehensiveService.setChildEndowment(selectedChildArray);
             // RESET Insurance Needed
             this.dependantDetailsArray.forEach((dependant: IDependantDetail, i: number) => {
               this.dependantDetailsArray[i].isInsuranceNeeded = false;
