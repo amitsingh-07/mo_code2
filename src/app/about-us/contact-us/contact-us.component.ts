@@ -28,6 +28,8 @@ export class ContactUsComponent implements OnInit {
   contactUsErrorMessage: string;
   subjectList: any;
   subjectPreset = 'Choose a Subject*';
+  emailErrorMessage = {};
+  contactNumberErrorMessage = {};
 
   public subjectItems: any;
   public sendSuccess = false;
@@ -53,6 +55,14 @@ export class ContactUsComponent implements OnInit {
 
       this.translate.get('COMMON').subscribe((result: string) => {
         this.contactUsErrorMessage = this.translate.instant('ERROR.CONTACT_US.EMPTY_TEXT');
+        this.emailErrorMessage = {
+          required: this.translate.instant('ERROR.CONTACT_US.EMAIL_REQUIRED'),
+          email: this.translate.instant('ERROR.CONTACT_US.EMAIL_PATTERN')
+        };
+        this.contactNumberErrorMessage = {
+          required: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_REQUIRED'),
+          pattern: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_PATTERN')
+        };
         // meta tag and title
         this.seoService.setTitle(this.translate.instant('CONTACT_US.TITLE'));
         this.seoService.setBaseSocialMetaTags(this.translate.instant('CONTACT_US.TITLE'),
@@ -61,9 +71,12 @@ export class ContactUsComponent implements OnInit {
                                               );
       });
       this.contactUsFormValues = this.aboutUsService.getContactUs();
+      const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
       this.contactUsForm = new FormGroup({
         subject: new FormControl(this.contactUsFormValues.subject),
-        email: new FormControl(this.contactUsFormValues.email),
+        emailAddress: new FormControl(this.contactUsFormValues.email, [Validators.required, Validators.email]),
+        contactNumber: new FormControl(this.contactUsFormValues.contactNumber,
+          [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]),
         message: new FormControl(this.contactUsFormValues.message, [Validators.required])
       });
     }
@@ -91,6 +104,8 @@ export class ContactUsComponent implements OnInit {
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
       if (data.responseMessage.responseDescription === 'Successful response') {
         this.sendSuccess = true;
+        this.contactUsForm.reset();
+        this.subject = 'Choose a Subject*';
       } else {
         this.sendSuccess = false;
       }

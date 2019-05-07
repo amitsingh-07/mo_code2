@@ -1,0 +1,28 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+// robo2-web
+.invest-title{
+  padding: 10px;
+  background: #fff;
+  color: #00a7a7;
+  text-align: center;
+  height: 76px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: $muli-semi-bold;
+  border-bottom: 1px solid #e1e1e1;
+  .super-title{
+    font-size: 18px;
+    margin-bottom: -8px;
+  }
+  .page-title{
+    font-size: 24px;
+  }
+}

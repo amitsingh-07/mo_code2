@@ -48,3 +48,16 @@
     font-weight: bold;
     color: #ff9c39;
 }
+
+.login-mail{
+    line-height: 20px;
+    text-align: center;
+    padding: 10px;
+    color: $teal-color;
+    margin-top: 20px;
+    letter-spacing: -0.16px;
+    a{
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+}

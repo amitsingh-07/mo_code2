@@ -161,9 +161,11 @@ export class UpdateUserIdComponent implements OnInit {
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
         }
-      } else {
+      } else if (data.responseMessage && data.responseMessage.responseDescription) {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
       }
     });
   }

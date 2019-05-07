@@ -26,7 +26,6 @@ export class FinanicalDetailsComponent implements OnInit {
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
   annualHouseHoldIncomeRanges: any;
-  salaryRanges: any;
   numberOfHouseHoldMembersList = Array(11)
     .fill(0)
     .map((x, i) => i);
@@ -67,8 +66,7 @@ export class FinanicalDetailsComponent implements OnInit {
       numberOfHouseHoldMembers: [
         this.formValues.numberOfHouseHoldMembers,
         Validators.required
-      ],
-      salaryRange: [this.formValues.salaryRange, Validators.required]
+      ]
     });
   }
   setPageTitle(title: string) {
@@ -77,7 +75,6 @@ export class FinanicalDetailsComponent implements OnInit {
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
-      this.salaryRanges = data.objectList.salaryRange;
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
@@ -90,9 +87,6 @@ export class FinanicalDetailsComponent implements OnInit {
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
     this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
-  }
-  setSalaryRange(range) {
-    this.financialDetails.controls['salaryRange'].setValue(range);
   }
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;

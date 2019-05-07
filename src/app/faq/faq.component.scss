@@ -29,18 +29,50 @@
     }
 
     .faq-category__header{
-        h2{
-            color:$black-color;
-            text-align: center;
-            }
-        margin-bottom:45px;
+        position: relative;
+        display:none;
+        width:100%;
+        max-width:1024px;
+        margin:0px auto;
+        padding:20px 0px;
+        &.active{
+            display:block;
+        }
         @include minMobilemaxPhablet{
-            h2{
-                font-size:28px;
-                }
-            margin-bottom:20px;
-            }
+            margin:20px 0px 0px 0px;
+            padding:0px 20px;
+        }
     }
+    .faq-disclaimer{
+        color:$dark-grey-color;
+        font-size:16px;
+        font-family:$muli;
+        .disclaimer--sub-title{
+            font-size:20px;
+            font-family:$muli-bold;
+            color:$black-color;
+            text-transform: uppercase;
+            @include minMobilemaxPhablet{
+                font-family:$muli-semi-bold;
+            }
+        }
+        p{
+            margin-bottom:12px;
+            line-height:1.2;
+            @include minMobilemaxPhablet{
+                font-size:15px;
+            }
+        }
+        a{
+            color: $orange-color !important;
+            font-family:$muli-bold;
+            word-wrap: break-word;
+            @include minMobilemaxPhablet{
+                font-size:13px;
+            }
+        }
+        
+    } 
     .faq-category__body{
         position: relative;
         display:none;
@@ -312,7 +344,6 @@
         }
     }
 }
-
 
 .faq-img {
     margin-top:26px;

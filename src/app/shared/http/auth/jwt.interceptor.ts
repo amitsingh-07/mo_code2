@@ -55,6 +55,13 @@ export class JwtInterceptor implements HttpInterceptor {
                     Authorization: `${this.auth.getToken()}`
                 })
             });
+        } else if (request.url.indexOf('authenticate') > -1) { // for login{
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': `${this.auth.getAppSecretKey()}`
+                })
+            });
         } else {
             request = request.clone({
                 headers: new HttpHeaders({

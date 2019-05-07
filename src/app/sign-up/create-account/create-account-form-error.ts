@@ -56,6 +56,34 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
+        confirmEmail: {
+                required : {
+                        errorTitle: 'Invalid Confirm E-mail',
+                        errorMessage: 'Please enter your confirm email address'
+                },
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
+                }
+        },
+        password: {
+                required : {
+                        errorTitle: 'Invalid Password',
+                        errorMessage: 'Please enter your password'
+                },
+                length : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                numberSymbol : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                upperLower : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+        },
         termsOfConditions: {
                 required : {
                         errorTitle: '',
@@ -117,6 +145,10 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid password',
                         // tslint:disable-next-line:max-line-length
                         errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                },
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
                 }
         },
         newPassword: {
@@ -144,34 +176,34 @@ export class CreateAccountFormError {
         bank: {
                 required : {
                         errorTitle: 'Bank Name required',
-                        errorMessage: 'Please select your Bank Name.'
+                        errorMessage: 'Select your Bank Name.'
                 }
         },
         accountNo: {
                 required : {
                         errorTitle: 'Account Number required',
-                        errorMessage: 'Please enter your Account Number.'
+                        errorMessage: 'Enter your Account Number.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Account Number',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter valid Account Number.'
+                        errorMessage: 'Enter valid Account Number.'
                 },
                 validAccountNo : {
                         errorTitle: 'Invalid Account Number',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter valid Account Number.'
+                        errorMessage: 'Enter valid Account Number.'
                 }
         },
         accountHolderName: {
                 required : {
                         errorTitle: 'Account Holder Name required',
-                        errorMessage: 'Please enter your Name.'
+                        errorMessage: 'Enter your Name.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Name',
                         // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Please enter your name.'
+                        errorMessage: 'Enter valid Name.'
                 }
         },
     };

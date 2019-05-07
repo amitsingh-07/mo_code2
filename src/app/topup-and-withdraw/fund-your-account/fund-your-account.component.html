@@ -1,4 +1,5 @@
-<div class="fund-your-account clearfix container-fluid max-width--1024">
+<app-investment-title-bar></app-investment-title-bar>
+<div class="fund-your-account clearfix container-fluid max-width--1024 invest-web-pt-90">
   <div class="content" *ngIf="bankDetails && paynowDetails">
     <!-- FUND SUMMARY -->
     <div class="fund-summary">
@@ -31,7 +32,7 @@
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
         <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
         <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_PORTFOLIO' | translate }}</div>
-        <div class="strong">{{fundDetails.portfolio.productName}}</div>
+        <div class="strong">{{fundDetails.portfolio.riskProfile.type}}</div>
       </div>
     </div>
     <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">Please transfer the following amount using your
@@ -107,11 +108,15 @@
                 {{ bankDetails.bankAccountNumber }}
               </div>
               <label>{{ 'FUND_YOUR_ACCOUNT.REFERENCE_CODE' | translate }}</label>
-              <div class="value">
-                {{ bankDetails.referenceNumber }}
+              <div class="value ref_num">
+                <u>{{ bankDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-            <p class="sub-text">{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</p>
+            
             <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
@@ -179,12 +184,15 @@
                 <img (click)="showPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
               </div>
               <label>{{ 'FUND_YOUR_ACCOUNT.REFERENCE_CODE' | translate }}</label>
-              <div class="value">
-                {{ paynowDetails.referenceNumber }}
+              <div class="value ref_num">
+                <u>{{ paynowDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-            <p class="sub-text">{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</p>
-            <!-- <div class="setup-auto-deposit">
+           <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
                 </div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
@@ -16,6 +17,7 @@ import { AllocationComponent } from './components/allocation/allocation.componen
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
+import { InvestmentTitleBarComponent } from './components/investment-title-bar/investment-title-bar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
@@ -37,6 +39,7 @@ import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { RoundPipe } from './Pipes/round.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
@@ -50,6 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     NgbModule.forRoot(),
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -82,22 +86,13 @@ export function createTranslateLoader(http: HttpClient) {
     AnnualFeesComponent,
     PortfolioInfoComponent,
     NumberOnlyDirective,
-    ProgressTrackerModalComponent
+    ProgressTrackerModalComponent,
+    InvestmentTitleBarComponent,
+    RoundPipe
   ],
-  declarations: [
-    CurrencyInputDirective,
-    PlanWidgetComponent,
-    StepIndicatorComponent,
-    SettingsWidgetComponent,
-    PlanFilterPipe,
-    OrderByPipe,
-    GroupByPipe,
-    FormatDatePipe,
-    RecommendationsModalComponent,
-    ProductDetailComponent,
-    PlanDetailsWidgetComponent,
-    LoaderComponent,
-    ConfirmationModalComponent,
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
+    OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
     DisclosuresComponent,
@@ -117,13 +112,18 @@ export function createTranslateLoader(http: HttpClient) {
     NumberOnlyDirective,
     ProgressTrackerComponent,
     ProgressTrackerModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    InvestmentTitleBarComponent,
+    RoundPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     ProgressTrackerModalComponent,
     IfastErrorModalComponent],
-  providers: [ProgressTrackerService]
+  providers: [
+    ProgressTrackerService,
+    RoundPipe
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -133,3 +133,4 @@ export class SharedModule {
     };
   }
 }
+

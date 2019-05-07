@@ -24,4 +24,9 @@ export class PopupModalComponent implements OnInit {
       });
   }
 
+  externalLink() {
+    window.open('https://www.eventbrite.sg/e/moneyowl-investment-symposium-registration-60702740531', '_blank');
+    this.activeModal.dismiss();
+  }
+
 }

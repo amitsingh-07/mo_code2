@@ -130,6 +130,8 @@ export class AppService {
       sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
       // Clear comprehensive promo code
       this.clearPromoCode();
+      // User mobile no for resend email verification link
+      sessionStorage.removeItem('user_mobile');
     }
   }
 
@@ -171,4 +173,5 @@ export class AppService {
     return this.getCustomer().id;
   }
 }
+
 

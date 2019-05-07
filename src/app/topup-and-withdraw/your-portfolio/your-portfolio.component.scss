@@ -11,6 +11,7 @@ app-your-portfolio {
     }
   }
   .portfolio-bg {
+    padding-top: 60px;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
@@ -52,9 +53,9 @@ app-your-portfolio {
     }
     .flex-col-4 {
       position: absolute;
-      right: 29px;
       top: 60px;
       right: 230px;
+      max-width: 200px;
       @include allmobiles {
         top: 60px;
         max-width: 85px;
@@ -148,6 +149,8 @@ app-your-portfolio {
     .your_total_value {
       background-color: $top-up-your-portfolio-your-total-value-bg;
       padding: 20px 20px 17px;
+      border-bottom-left-radius: 8px; // Remove when total returns section is shown
+      border-bottom-right-radius: 8px; // Remove when total returns section is shown
     }
   }
   .total_values {

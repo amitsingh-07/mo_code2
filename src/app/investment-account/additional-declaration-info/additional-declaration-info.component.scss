@@ -2,6 +2,7 @@
 @import '../../../_mixins.scss';
 app-additional-declaration-info {
   .container-fluid{
+    padding-top: 50px !important;
     @include allmobiles{
       padding-left: 0 !important;
       padding-right: 0 !important;

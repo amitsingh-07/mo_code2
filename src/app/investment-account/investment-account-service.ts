@@ -1,7 +1,6 @@
 import {
   IAddress,
   IEmployment,
-  IFinancial,
   IHousehold,
   IPersonalDeclaration,
   IPersonalInfo,
@@ -275,6 +274,9 @@ export class InvestmentAccountService {
   getPepData() {
     return this.investmentAccountFormData.pep;
   }
+  getOldPepData() {
+    return this.investmentAccountFormData.oldPep;
+  }
   getBOStatus() {
     return this.investmentAccountFormData.beneficial;
   }
@@ -321,10 +323,6 @@ export class InvestmentAccountService {
     if (data.fullName) {
       this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
     }
-    this.investmentAccountFormData.firstName = data.firstName ? data.firstName.toUpperCase() : '';
-    if (data.lastName) {
-      this.investmentAccountFormData.lastName = data.lastName.toUpperCase();
-    }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
     }
@@ -349,8 +347,6 @@ export class InvestmentAccountService {
   getPersonalInfo() {
     return {
       fullName: this.investmentAccountFormData.fullName,
-      firstName: this.investmentAccountFormData.firstName,
-      lastName: this.investmentAccountFormData.lastName,
       nricNumber: this.investmentAccountFormData.nricNumber,
       passportNumber: this.investmentAccountFormData.passportNumber,
       passportExpiry: this.investmentAccountFormData.passportExpiry,
@@ -450,8 +446,7 @@ export class InvestmentAccountService {
   }
   // Additional info pep data
   setAdditionalInfoFormData(data) {
-    this.investmentAccountFormData.fName = data.fName;
-    this.investmentAccountFormData.lName = data.lName;
+    this.investmentAccountFormData.pepFullName = data.pepFullName;
     this.investmentAccountFormData.cName = data.cName;
     this.investmentAccountFormData.pepoccupation = data.pepoccupation;
     this.investmentAccountFormData.pepOtherOccupation = data.pepOtherOccupation;
@@ -516,15 +511,13 @@ export class InvestmentAccountService {
     }
     this.investmentAccountFormData.numberOfHouseHoldMembers =
       data.numberOfHouseHoldMembers;
-    this.investmentAccountFormData.salaryRange = data.salaryRange;
     this.commit();
   }
   getFinancialFormData() {
     return {
       annualHouseHoldIncomeRange: this.investmentAccountFormData
         .annualHouseHoldIncomeRange,
-      numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
-      salaryRange: this.investmentAccountFormData.salaryRange
+      numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers
     };
   }
 
@@ -583,11 +576,11 @@ export class InvestmentAccountService {
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
     if (data.uin) {
-      this.investmentAccountFormData.nricNumber = data.uin;
+      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
       this.disableAttributes.push('nricNumber');
     }
     if (data.passportnumber && data.passportnumber.value) {
-      this.investmentAccountFormData.passportNumber = data.passportnumber.value;
+      this.investmentAccountFormData.passportNumber = data.passportnumber.value.toUpperCase();
       this.disableAttributes.push('passportNumber');
     }
     if (data.passportexpirydate && data.passportexpirydate.value) {
@@ -654,7 +647,7 @@ export class InvestmentAccountService {
       }
     }
     if (data.mailadd) {
-        this.setMyInfoEmailAddress(data);
+      this.setMyInfoEmailAddress(data);
     }
   }
 
@@ -695,10 +688,8 @@ export class InvestmentAccountService {
     }
     if (emailAddressExist) {
       this.investmentAccountFormData.isMailingAddressSame = false;
-      this.disableAttributes.push('isMailingAddressSame');
     } else {
       this.investmentAccountFormData.isMailingAddressSame = true;
-      this.disableAttributes.push('isMailingAddressSame');
     }
   }
 
@@ -815,7 +806,6 @@ export class InvestmentAccountService {
     request.mailingAddress = null;
     request.employmentDetails = null;
     request.householdDetails = null;
-    request.financialDetails = null;
     request.taxDetails = null;
     request.sameAsMailingAddress = null;
     request.personalDeclarations = this.getPersonalDecReqData(payload);
@@ -833,7 +823,6 @@ export class InvestmentAccountService {
     request.mailingAddress = this.getMailingAddressReqData(payload);
     request.employmentDetails = this.getEmploymentDetailsReqData(payload);
     request.householdDetails = this.getHouseholdDetailsReqData(payload);
-    request.financialDetails = this.getFinancialDetailsReqData(payload);
     request.taxDetails = this.getTaxDetailsReqData(payload);
     request.personalDeclarations = this.getPersonalDecReqData(payload);
     return request;
@@ -848,8 +837,6 @@ export class InvestmentAccountService {
     return {
       nationalityCode: data.nationalityCode,
       fullName: data.fullName,
-      firstName: data.firstName,
-      lastName: data.lastName,
       nricNumber: data.nricNumber ? data.nricNumber : null,
       passportNumber: data.passportNumber ? data.passportNumber : null,
       passportExpiryDate: data.passportExpiry
@@ -891,7 +878,7 @@ export class InvestmentAccountService {
         addressLine1: data.mailAddress1,
         addressLine2: data.mailAddress2,
         floor: data.mailFloor,
-        unitNumber: data.unitNo,
+        unitNumber: data.mailUnitNo,
         townName: null, // todo - not available in client
         city: data.mailCity,
         reasonId: data.reason.id,
@@ -945,19 +932,13 @@ export class InvestmentAccountService {
     };
   }
 
-  getFinancialDetailsReqData(data): IFinancial {
-    return {
-      incomeRange: data.salaryRange ? data.salaryRange.value : null
-    };
-  }
-
   getTaxDetailsReqData(data) {
     const taxInfo = [];
     if (data.taxObj && data.taxObj.addTax) {
       data.taxObj.addTax.map((item) => {
         taxInfo.push({
           taxCountryId: item.taxCountry ? item.taxCountry.id : null,
-          tinNumber: item.radioTin ? item.tinNumber : null,
+          tinNumber: item.radioTin ? item.tinNumber.toUpperCase() : null,
           noTinReason: item.noTinReason && !item.radioTin ? item.noTinReason.id : null
         });
       });
@@ -973,8 +954,7 @@ export class InvestmentAccountService {
       politicallyExposed: data.pep,
       connectedToInvestmentFirm: data.ExistingEmploye,
       pepDeclaration: {
-        firstName: data.fName,
-        lastName: data.lName,
+        firstName: data.pepFullName,
         companyName: data.cName,
         occupationId: data.pepoccupation ? data.pepoccupation.id : null,
         otherOccupation: data.pepOtherOccupation ? data.pepOtherOccupation : null,
@@ -1472,7 +1452,8 @@ export class InvestmentAccountService {
       identityDetails.customer.salutation,
       'salutation'
     );
-    this.investmentAccountFormData.nricNumber = identityDetails.nricNumber;
+    this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
+    this.investmentAccountFormData.nricNumber = identityDetails.nricNumber ? identityDetails.nricNumber.toUpperCase() : '';
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
       identityDetails.customer.dateOfBirth
     );
@@ -1487,7 +1468,7 @@ export class InvestmentAccountService {
       identityDetails.customer.race,
       'race'
     );
-    this.investmentAccountFormData.passportNumber = identityDetails.passportNumber;
+    this.investmentAccountFormData.passportNumber = identityDetails.passportNumber ? identityDetails.passportNumber.toUpperCase() : '';
     this.investmentAccountFormData.passportExpiry = this.dateFormatFromApi(
       identityDetails.passportExpiryDate
     );
@@ -1593,10 +1574,6 @@ export class InvestmentAccountService {
       customer && customer.houseHoldDetail && customer.houseHoldDetail.numberOfMembers
         ? customer.houseHoldDetail.numberOfMembers
         : null;
-    this.investmentAccountFormData.salaryRange =
-      income && income.incomeRange
-        ? this.getPropertyFromValue(income.incomeRange, 'salaryRange')
-        : null;
     this.commit();
   }
   setTaxInfoFromApi(taxDetails) {
@@ -1605,7 +1582,7 @@ export class InvestmentAccountService {
       const taxInfo = {
         taxCountry: this.getCountryFromCountryCode(item.taxCountry.countryCode),
         radioTin: item.tinNumber ? true : false,
-        tinNumber: item.tinNumber,
+        tinNumber: item.tinNumber ? item.tinNumber.toUpperCase() : '',
         noTinReason: this.getPropertyFromId(parseInt(item.noTinReason, 10), 'noTinReason')
       };
       taxList.push(taxInfo);
@@ -1625,6 +1602,7 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.ExistingEmploye =
         additionalDetails.connectedToInvestmentFirm;
       this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
+      this.investmentAccountFormData.oldPep = additionalDetails.politicallyExposed;
       this.investmentAccountFormData.beneficial = additionalDetails.beneficialOwner;
     }
 
@@ -1632,27 +1610,31 @@ export class InvestmentAccountService {
   }
   setDueDiligence1FromApi(pepDetails) {
     if (pepDetails) {
-      this.investmentAccountFormData.fName = pepDetails.firstName;
-      this.investmentAccountFormData.lName = pepDetails.lastName;
+      this.investmentAccountFormData.pepFullName = pepDetails.firstName;
       this.investmentAccountFormData.cName = pepDetails.companyName;
       this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
       this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
-      this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
-        pepDetails.pepAddress.country.countryCode
-      );
-      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
-      this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
-      this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
-      this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
-      this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
-      this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
-      if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
-        this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
-      } else {
-        this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+      if (pepDetails.pepAddress && pepDetails.pepAddress.country && pepDetails.pepAddress.country.countryCode) {
+        this.setPepAddress(pepDetails);
       }
       this.commit();
+    }
+  }
+  setPepAddress(pepDetails) {
+    this.investmentAccountFormData.pepCountry = this.getCountryFromCountryCode(
+      pepDetails.pepAddress.country.countryCode
+    );
+    this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
+    this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
+    this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
+    this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
+    this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
+    this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
+    if (this.isCountrySingapore(pepDetails.pepAddress.country)) {
+      this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+    } else {
+      this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
     }
   }
   setDueDiligence2FromApi(pepDetails) {
