@@ -253,4 +253,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     }
   }
+  getWrapText(name: any) {
+    name.value = name.value.replace(/\n/g, '');
+  }
 }
