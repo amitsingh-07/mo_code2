@@ -25,6 +25,7 @@ import { ApiService } from 'src/app/shared/http/api.service';
 import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { Formatter } from '../../shared/utils/formatter.util';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -235,9 +236,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      ref.componentInstance.resendEmail.subscribe(($e) => {
-        this.resendEmailVerification();
-      });
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          };
+        });
     }
     this.refreshCaptcha();
     this.createAccountForm.controls['password'].reset();
@@ -272,9 +278,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {
-
-    });
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
   }
 
   onlyNumber(el) {
@@ -333,7 +337,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       // Confirm E-mail
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
-      } else if (emailInput.value !== emailConfirmationInput.value) {
+      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);

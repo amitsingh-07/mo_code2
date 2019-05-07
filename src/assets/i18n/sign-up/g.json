@@ -16,7 +16,7 @@
     "LOGIN_EMAIL_MESSAGE": "Okay, Got it",
     "ACCOUNT_EXIST_MESSAGE": "Seems like you may have an existing account with Moneyowl. Login now!",
     "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!",
-    "VERIFY_EMAIL_OTP": "Seems like you have previously started on account but has yet to complete account verification. Let us bring  you through again!"
+    "VERIFY_EMAIL_OTP": "Seems like you have previously created an account but has yet to complete the account verification. Let us guide you through it."
   },
   "CREATE_ACCOUNT": {
     "TITLE": "Create Your Account",
@@ -78,7 +78,11 @@
   "ACCOUNT_CREATED": {
     "TITLE": "Account Created!",
     "SUB_TITLE1": "A verification link has been sent to your email address.",
-    "SUB_TITLE2": "Please verify your email address before logging in."
+    "SUB_TITLE2": "Please verify your email address before logging in.",
+    "VERIFY_EMAIL_TITLE": "Verify Your Email",
+    "VERIFY_EMAIL_SUB_TITLE": "We have sent an email to you. Please verify your email address to get started!",
+    "DIDNOT_RECEIVE_IT": "Didn’t receive it?",
+    "RESEND_VERIFICATION_EMAIL": "Resend Verification Email"
   },
   "LOGIN": {
     "WELCOME_LBL": "Welcome to MoneyOwl!",

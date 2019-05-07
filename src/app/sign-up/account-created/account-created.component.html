@@ -19,11 +19,12 @@
         <img src="assets/images/drop-off.svg" id="custModalImg1" />
     </div>
       <div class="custom-modal--content">
-        <p class="custom-modal--title drop-off" id="custModalTitle">Verify Your Email</p>
-        <div class="custom-modal--desc" id="custModalDesc">We have sent an email to you. Please verify your email address to get started!
+        <p class="custom-modal--title drop-off mb10" id="custModalTitle">{{'ACCOUNT_CREATED.VERIFY_EMAIL_TITLE' | translate}}</p>
+        <div class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.VERIFY_EMAIL_SUB_TITLE' | translate}}
           <div class="custom-modal--sub--desc">
-            <div>Didn’t receive it?</div>
-            <div class="link-white" (click)="resendEmailVerification()">Resend Verification Email</div>
+            <div>{{'ACCOUNT_CREATED.DIDNOT_RECEIVE_IT' | translate}}</div>
+            <div class="link-white" (click)="resendEmailVerification()">{{'ACCOUNT_CREATED.RESEND_VERIFICATION_EMAIL' | translate}}</div>
+            <p *ngIf="emailSent" class="mt10"><span>Email Sent</span></p>
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@ import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.consta
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { WillWritingApiService } from './../../will-writing/will-writing.api.service';
 import { LoginFormError } from './login-form-error';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -324,15 +325,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      ref.componentInstance.resendEmail.subscribe(($e) => {
-        this.resendEmailVerification();
-      });
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          };
+        });
     }
   }
 
   resendEmailVerification() {
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
-    this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail).subscribe(() => { });
+    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
   }
 
   openErrorModal(error) {

@@ -1520,8 +1520,9 @@ h6 {
           }
           &.youtube-icon {
             background-image: url('/assets/images/youtube-icon.svg');
-            width: 22px;
-            height: 16px;
+            width: 16px;
+            height: 12px;
+            margin-top: 2px;
           }
         }
   
@@ -1612,6 +1613,13 @@ h6 {
     z-index: 9;
     //opacity: 1 !important;
     right: 15px !important;
+  }
+
+  &.back {
+    background: url("/assets/images/modal-back.png") !important;
+    opacity: 1 !important;
+    width:16px;
+    height:16px;
   }
 }
 

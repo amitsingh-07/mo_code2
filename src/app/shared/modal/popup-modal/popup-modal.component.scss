@@ -1,0 +1,76 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.popup-modal-dialog{
+    @include minMobilemaxPhablet{
+       height:calc(100% - 50px);
+    }
+    .modal-dialog{
+        max-width:895px;
+        height:600px;
+        @include minMobilemaxPhablet{
+            height:100%;
+        }
+    }
+    .modal-content{
+        width:895px;
+        height:600px;
+        @include minMobilemaxPhablet{
+            display:block;
+            height:100%;
+        }
+    }    
+}
+app-popup-modal{
+    height:100%;
+    background-color:$white-color;
+    border-radius:6px;
+    overflow:hidden;
+.modal-body-message{
+    max-height:none;
+    @include minMobilemaxPhablet{
+        max-height: none;
+    }
+}
+.modal-popup{
+    position: relative;
+    display:flex;
+    background-image:url('/assets/events/MOIS_WebBanner.jpg');
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    width:100%;
+    height:580px !important;
+    justify-content: center;
+    @include minMobilemaxPhablet{
+        height:100% !important;
+        background-image:url('/assets/events/MOIS_MobileBanner.jpg');
+        padding-bottom:60px;
+        }
+    .external_btn{
+        position: absolute;
+        display:flex; 
+        width:200px;
+        height:50px;
+        background-color:$teal-color;
+        color:$white-color;
+        border-radius:5px;
+        text-align:center;
+        font-family:$muli-bold;
+        font-size:18px;
+        justify-content: center;
+        align-items: center;
+        bottom:30px;
+        left:50%;
+        cursor: pointer;
+        transform:translateX(-50%);
+        transition:0.3s;
+        &:hover{
+            opacity:0.8;
+            }
+        @include minMobilemaxPhablet{
+            bottom:-50px;
+            }
+        }
+        
+    }
+}
