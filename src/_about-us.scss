@@ -6,7 +6,7 @@
     display:flex;
     width:100%;
     justify-content: center;
-    background-color:$lighter-aqua-color;
+    background-color:#F2F6F7;
     overflow:hidden;
     padding:0px 20px;
     .about-us__header--bg{
@@ -22,7 +22,7 @@
         background-color:$white-color;
         @include minMobilemaxPhablet{
             height:130px;
-            background-position-y:0px;
+            background-position-y:20px;
         }
     }
     .about-us__header--inner{
@@ -41,7 +41,7 @@
                 padding:0px 20px 20px 20px;
             }
             @include minMobilemaxPhablet{
-                padding:20px;
+                padding:20px 0px;
                 margin:0px;
             }
         }

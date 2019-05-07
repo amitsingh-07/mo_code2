@@ -22,6 +22,23 @@
       .flex-row{
         justify-content: space-between;
         padding-bottom: 18px;
+        .announcement{
+          display: flex;
+          color: #000000;
+          font-weight: bold;
+          line-height: normal;
+          font-family: $muli-bold;
+          font-style: italic;
+          letter-spacing: -0.13px;
+          font-size: 14px;
+          background-color: #e3f0f0;
+          border-radius: 8px;
+          padding: 17px 13px 17px 14px;
+          align-items: center;
+          span{
+            padding-right: 10px;
+          }
+        }
         &:last-child{
           font-family: $muli-bold;
           padding-bottom: 0;

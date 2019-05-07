@@ -35,7 +35,7 @@
                         </label>
                       </div>
                       <div class="pr0 col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin">
+                        <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin" maxLength="15">
                       </div>
                     </div>
                   </div>
@@ -61,7 +61,7 @@
                         </label>
                       </div>
                       <div class="pr0 col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && children.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin">
+                        <input type="text" [ngClass]="{'inline-error': submitted && children.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin" maxLength="15">
                       </div>
                     </div>
                     <div class="flex-row">

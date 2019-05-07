@@ -28,7 +28,6 @@ import {
 } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
-import { PasswordComponent } from './password/password.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
@@ -73,7 +72,6 @@ export function createTranslateLoader(http: HttpClient) {
     CreateAccountComponent,
     EmailVerificationComponent,
     VerifyMobileComponent,
-    PasswordComponent,
     LoginComponent,
     ForgotPasswordComponent,
     ForgotPasswordResultComponent,

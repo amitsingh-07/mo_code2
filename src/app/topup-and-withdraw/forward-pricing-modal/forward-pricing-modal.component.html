@@ -1,0 +1,16 @@
+<div class="forward-pricing-modal">
+  <div class="modal-header">
+    <div class="modal-title popup-header-icon">
+    </div>
+  </div>
+  <div class="modal-body white-bg">
+    <div class="modal-body-title">
+        {{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_MODAL.TITLE' | translate}}
+    </div>
+    <button type="button" class="close back" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="modal-body-message" [innerHTML]="this.translate.instant('WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_MODAL.HTML_DESC')">
+    </div>
+  </div>
+</div>

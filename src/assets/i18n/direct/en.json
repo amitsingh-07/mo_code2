@@ -96,10 +96,10 @@
       "PAYOUT_DURATION": "Payout Duration",
       "PAYOUT_FEATURE": "Payout Feature",
       "PAYOUT_DURATION_LIST": [ "Limited Years" ],
-      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
+      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable"],
       "FIXED_TOOLTIP": {
           "TITLE": "Payout Feature",
-          "MESSAGE": "<p><strong>Fixed payouts:</strong> These monthly payouts are guaranteed amounts that you will receive.</p><p><strong>Variable payouts:</strong> These monthly payouts consist of a guaranteed amount that you will receive and a non-guaranteed amount that is dependent on the performance of the insurer’s participating fund.</p><p><strong>Increasing payout:</strong> These monthly payouts can increase yearly.</p>"
+          "MESSAGE": "<p><strong>Fixed payouts:</strong> These monthly payouts are guaranteed amounts that you will receive.</p><p><strong>Variable payouts:</strong> These monthly payouts consist of a guaranteed amount that you will receive and a non-guaranteed amount that is dependent on the performance of the insurer’s participating fund.</p>"
       },
       "VARIABLE_TOOLTIP": {
           "TITLE": "Variable payouts",

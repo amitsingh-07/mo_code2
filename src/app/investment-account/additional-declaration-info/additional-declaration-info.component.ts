@@ -6,7 +6,10 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { InvestmentAccountFormData } from '../investment-account-form-data';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account-service';
+
 
 @Component({
   selector: 'app-additional-declaration-info',
@@ -16,23 +19,33 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 })
 export class AdditionalDeclarationInfoComponent implements OnInit {
   pageTitle: string;
+  addInfoFormValues;
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService
+    public footerService: FooterService,
+    private investmentAccountService: InvestmentAccountService,
+
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
   ngOnInit() {
     this.navbarService.setNavbarMode(6);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    this.addInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+
   }
   goNext() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
+    if (this.addInfoFormValues.pep) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
+    }
+
   }
 }

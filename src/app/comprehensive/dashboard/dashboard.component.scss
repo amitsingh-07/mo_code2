@@ -1,6 +1,9 @@
 @import '../../../variables';
 @import '../../../mixins';
 .comprehensive {
+    .comprehensive-plan-view{
+        cursor: pointer;
+    }
     .hidden {
         display: none;
     }

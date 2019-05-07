@@ -41,11 +41,6 @@ app-sing-pass {
       @include max360 {
         padding: 10px 14px;
       }
-      .flex-row {
-        &.flex-col-12 {
-          justify-content: space-evenly;
-        }
-      }
       .autofill-text {
         font-size: 21px;
         padding: 0;
@@ -92,8 +87,6 @@ app-sing-pass {
     justify-content: center;
     flex-direction: column;
     padding: 15px 34px;
-    position: absolute;
-    left: 0px;
     z-index: 9999;
   }
   .loader-image {

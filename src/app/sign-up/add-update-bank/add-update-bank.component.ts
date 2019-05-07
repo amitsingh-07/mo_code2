@@ -93,11 +93,10 @@ export class AddUpdateBankComponent implements OnInit {
     }
     this.updateId = this.formValues.id;
     this.bankForm = this.formBuilder.group({
-      accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.SymbolAlphabets)]],
+      accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       bank: [this.formValues.bank, [Validators.required]],
       accountNo: [this.formValues.accountNumber, [Validators.required]]
     });
-    this.bankForm.controls.accountHolderName.disable();
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
@@ -132,10 +131,22 @@ export class AddUpdateBankComponent implements OnInit {
         this.topupAndWithDrawService.saveNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
-            // ERROR SCENARIO
-            const errorResponse = response.objectList;
-            const errorList = errorResponse.serverStatus.errors;
-            this.showIfastErrorModal(errorList);
+            if (
+              response.objectList &&
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
+            ) {
+              const errorResponse = response.objectList[response.objectList.length - 1];
+              const errorList = errorResponse.serverStatus.errors;
+              this.showIfastErrorModal(errorList);
+            } else if (response.responseMessage && response.responseMessage.responseDescription) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
@@ -155,14 +166,26 @@ export class AddUpdateBankComponent implements OnInit {
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
         this.signUpService.updateBankInfo(form.value.bank,
-          form.getRawValue().accountHolderName, accountNum, this.updateId).subscribe((data) => {
+          form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
           this.loaderService.hideLoader();
           // tslint:disable-next-line:triple-equals
           if (data.responseMessage.responseCode < 6000) {
-            // ERROR SCENARIO
-            const errorResponse = data.objectList;
+            if (
+              data.objectList &&
+              data.objectList.length &&
+              data.objectList[data.objectList.length - 1].serverStatus &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors.length
+            ) {
+            const errorResponse = data.objectList[data.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showIfastErrorModal(errorList);
+            } else if (data.responseMessage && data.responseMessage.responseDescription) {
+              const errorResponse = data.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
@@ -189,5 +212,11 @@ export class AddUpdateBankComponent implements OnInit {
     const ref = this.modal.open(IfastErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorList = errorList;
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 }
