@@ -153,7 +153,7 @@ app-your-investment {
     padding: 0.25rem 1.5rem;
     clear: both;
     font-size: 16px;
-    font-weight: bold;
+    font-family: $muli-bold;
     text-align: inherit;
     white-space: nowrap !important;
     background-color: transparent;
@@ -176,7 +176,6 @@ app-your-investment {
   .total_values {
     font-family: $muli-bold;
     font-size: 30px;
-    font-weight: bold;
     letter-spacing: -0.4px;
     text-align: center;
     color: $white-color;
@@ -200,7 +199,6 @@ app-your-investment {
   .start_investment_value {
     font-family: $muli-bold;
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
@@ -219,7 +217,6 @@ app-your-investment {
   .total_return_value {
     font-family: $muli-bold;
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
     color: $teal-color;
@@ -322,7 +319,6 @@ app-your-investment {
   .portfolio_value {
     font-family: $muli-bold;
     font-size: 20px;
-    font-weight: bold;
     letter-spacing: -0.3px;
     color: $teal-color;
     word-break: break-all;
@@ -342,7 +338,6 @@ app-your-investment {
     background-color: $btn-primary-backgrnd-color;
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
