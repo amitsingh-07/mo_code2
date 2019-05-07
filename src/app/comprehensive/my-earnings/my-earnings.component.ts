@@ -159,9 +159,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
           this.earningDetails = form.value;
           this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY] = this.totalAnnualIncomeBucket;
           this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.comprehensiveService.setMyEarnings(this.earningDetails);
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
+            this.comprehensiveService.setMyEarnings(this.earningDetails);
             this.loaderService.hideLoader();
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();

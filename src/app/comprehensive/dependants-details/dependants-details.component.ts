@@ -202,7 +202,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
         if (!form.pristine) {
-          this.comprehensiveService.setMyDependant(form.value.dependentMappingList);
           this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
           form.value.hasDependents = this.hasDependant;
           this.loaderService.showLoader({ title: 'Saving Details' });
