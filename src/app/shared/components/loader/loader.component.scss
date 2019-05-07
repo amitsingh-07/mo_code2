@@ -38,6 +38,7 @@
   font-family: $muli;
   color: #5e5e5e;
   text-align: center;
+  width:inherit;
 
   .loader-title {
     font-size: 22px;
@@ -52,5 +53,6 @@
 
   .loader-desc {
     font-size: 16px;
+    padding:0 20px;
   }
 }
