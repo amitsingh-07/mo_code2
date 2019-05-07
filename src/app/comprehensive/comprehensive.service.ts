@@ -117,7 +117,8 @@ export class ComprehensiveService {
             23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
             24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
             25: COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
-            26: COMPREHENSIVE_ROUTE_PATHS.RESULT
+            26: COMPREHENSIVE_ROUTE_PATHS.REVIEW,
+            27: COMPREHENSIVE_ROUTE_PATHS.RESULT
         };
 
         Object.keys(urlList).forEach((key) => {
@@ -816,6 +817,7 @@ export class ComprehensiveService {
                     // 'result'
                     case 25:
                     case 26:
+                    case 27:
                         if (retirementProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
@@ -1293,7 +1295,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singaporean PR')) {
+            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singapore PR')) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
