@@ -166,7 +166,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
       .subscribe((data: any) => {
         const responseCode = [6000, 6008, 5006];
-        if (responseCode.includes(data.responseMessage.responseCode)) {
+        if (responseCode.indexOf(data.responseMessage.responseCode) >= 0) {
           if (data.responseMessage.responseCode === 6000 ||
             data.responseMessage.responseCode === 6008) {
             this.signUpService.setCustomerRef(data.objectList[0].customerRef);

@@ -2,7 +2,7 @@
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md mt10">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
           <h2>{{ 'MY_FINANCIALS.YOUR_INVESTMENT' | translate}}</h2>
           <h6>{{ 'MY_FINANCIALS.HOW_MUCH_INVEST' | translate}}</h6>
           <div class="banner-image">
@@ -167,12 +167,12 @@
                 </div>
               </div>
               <!-- buttons -->
-              <div class="flex-row">
-                <div class="flex-col-7">
+              <div class="flex-row emergency-fund">
+                <div class="flex-col-12">
                   <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="suffEmergencyFund">
-                    <div class="flex-row">
+                    <div class="flex-row space-between">
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="my_financial_yes_lab">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_yes_lab">
                           <input ngbButton type="radio" value="yes" id="my_financial_yes_btn"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
                         </label>
                       </div>
