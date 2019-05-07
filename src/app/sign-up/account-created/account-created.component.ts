@@ -20,6 +20,7 @@ export class AccountCreatedComponent implements OnInit {
 
   resendEmail: boolean;
   emailTriggered = false;
+  emailSent = false;
 
   constructor(
     private translate: TranslateService,
@@ -60,6 +61,7 @@ export class AccountCreatedComponent implements OnInit {
       this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
         if (data.responseMessage.responseCode === 6007) {
           this.emailTriggered = false;
+          this.emailSent = true;
         }
       });
     }

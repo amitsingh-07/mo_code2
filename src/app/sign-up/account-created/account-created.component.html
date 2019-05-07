@@ -24,6 +24,7 @@
           <div class="custom-modal--sub--desc">
             <div>{{'ACCOUNT_CREATED.DIDNOT_RECEIVE_IT' | translate}}</div>
             <div class="link-white" (click)="resendEmailVerification()">{{'ACCOUNT_CREATED.RESEND_VERIFICATION_EMAIL' | translate}}</div>
+            <p *ngIf="emailSent" class="mt10"><span>Email Sent</span></p>
           </div>
         </div>
       </div>
