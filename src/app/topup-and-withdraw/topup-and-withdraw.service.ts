@@ -239,10 +239,11 @@ export class TopupAndWithDrawService {
     return errors;
   }
 
-  setWithdrawalTypeFormData(data) {
+  setWithdrawalTypeFormData(data, isRedeemAll) {
     this.topUpAndWithdrawFormData.withdrawType = data.withdrawType;
     this.topUpAndWithdrawFormData.withdrawAmount = data.withdrawAmount;
     this.topUpAndWithdrawFormData.withdrawPortfolio = data.withdrawPortfolio;
+    this.topUpAndWithdrawFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
 
@@ -285,6 +286,7 @@ export class TopupAndWithDrawService {
     request['customerBankDetail'] = {
       accountNumber: data.bank ? data.bank.accountNumber : null
     };
+    request['redeemAll'] = data.isRedeemAll;
     return request;
   }
   // ONE-TIME INVESTMENT PAYLOAD

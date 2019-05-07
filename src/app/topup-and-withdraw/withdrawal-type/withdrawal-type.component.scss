@@ -37,5 +37,20 @@ app-withdrawal-type {
       font-size: 22px;
       font-family: $muli-bold;
     }
+    .withdraw-error {
+      padding-left: 30px;
+      position:relative;
+
+      img {
+        position:absolute;
+        left:0px;
+        top:5px;
+      }
+      span {
+        font-family: $muli-italic;
+        color:#fff;
+        font-size: 16px;
+      }
+    }
   }
 }

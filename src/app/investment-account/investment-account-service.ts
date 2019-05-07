@@ -942,7 +942,7 @@ export class InvestmentAccountService {
       data.taxObj.addTax.map((item) => {
         taxInfo.push({
           taxCountryId: item.taxCountry ? item.taxCountry.id : null,
-          tinNumber: item.radioTin ? item.tinNumber : null,
+          tinNumber: item.radioTin ? item.tinNumber.toUpperCase() : null,
           noTinReason: item.noTinReason && !item.radioTin ? item.noTinReason.id : null
         });
       });
