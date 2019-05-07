@@ -6,7 +6,10 @@ app-upload-documents {
       background-color: $white-color;
       padding: 10px 0px;
       position: relative;
-      top: 60px;
+      top: 76px;
+      @include allmobiles{
+        top: 60px;
+      }
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
@@ -17,11 +20,6 @@ app-upload-documents {
         font-family: $muli;
         margin-bottom: 10px;
         text-align: center;
-      }
-    }
-    @media (min-width: 768px) {
-      .step-indicator-container {
-        top: 0px;
       }
     }
     .doc-upload-instructions {

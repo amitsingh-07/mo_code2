@@ -70,13 +70,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE ) {
       this.longTermInsurance = false;
     }
-    this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
-    if (this.hospitalPlanList.length === 0) {
-      this.apiService.getHospitalPlanList().subscribe((hospitalPlanData: any) => {
-        this.hospitalPlanList = hospitalPlanData.objectList;
-        this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
-      });
-    }
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.buildInsuranceForm();
@@ -167,17 +160,17 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if(form.value.haveCPFDependentsProtectionScheme === 0) {
+        if (form.value.haveCPFDependentsProtectionScheme === 0) {
           form.value.lifeProtectionAmount = 0;
         }
 
-        if(form.value.haveCPFDependentsProtectionScheme !== 0) {
+        if (form.value.haveCPFDependentsProtectionScheme !== 0) {
           form.value.lifeProtectionAmount = 0;
         }
 
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.comprehensiveService.setInsurancePlanningList(form.value);
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+          this.comprehensiveService.setInsurancePlanningList(form.value);
           this.showSummaryModal();
         });
       } else {

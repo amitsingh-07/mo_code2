@@ -40,8 +40,8 @@
               </div>
             <p class="promo-card--title">{{promoCard.title}}</p>
             <div class="promo-card--desc">
-                <p class="promo-card--summary">{{promoCard.desc}}</p>
-                <button *ngIf="promoCard.external" class="promo-card--btn" (click)="goToPromo(promoCard.url)">{{'PROMO_LANDING.MORE_DETAILS' | translate}}</button>
+                <p class="promo-card--summary" innerHTML="{{promoCard.desc}}"></p>
+                <button *ngIf="promoCard.external" class="promo-card--btn" (click)="goToExternal(promoCard.url)">{{promoCard.button_label}}</button>
                 <button *ngIf="!promoCard.external" class="promo-card--btn" routerLink="/promotions/{{promoCard.promoId}}">
                   {{'PROMO_LANDING.MORE_DETAILS' | translate}}
                   </button>  

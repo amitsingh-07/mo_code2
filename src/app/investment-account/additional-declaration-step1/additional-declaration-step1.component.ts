@@ -69,13 +69,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   buildForm() {
     return new FormGroup({
       radioPEP: new FormControl({ value: this.addInfoFormValues.pep, disabled: true }),
-      fName: new FormControl(this.addInfoFormValues.fName, [
+      pepFullName: new FormControl(this.addInfoFormValues.pepFullName, [
         Validators.required,
-        Validators.pattern(RegexConstants.OnlyAlpha)
-      ]),
-      lName: new FormControl(this.addInfoFormValues.lName, [
-        Validators.required,
-        Validators.pattern(RegexConstants.OnlyAlpha)
+        Validators.pattern(RegexConstants.NameWithSymbol)
       ]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
       pepoccupation: new FormControl(

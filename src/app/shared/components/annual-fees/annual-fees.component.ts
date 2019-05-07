@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ConfigService, IConfig } from './../../../config/config.service';
 
 @Component({
   selector: 'app-annual-fees',
@@ -8,8 +9,13 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AnnualFeesComponent implements OnInit {
   @Input('feeDetails') feeDetails;
+  isInvestmentEnabled = false;
 
-  constructor() { }
+  constructor(private configService: ConfigService) {
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isInvestmentEnabled = config.investmentEnabled;
+    });
+  }
 
   ngOnInit() {
     console.log(this.feeDetails);

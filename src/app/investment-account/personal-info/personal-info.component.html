@@ -1,10 +1,11 @@
+<app-investment-title-bar></app-investment-title-bar>
 <div class="personal-info" *ngIf="optionList">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024">
+    <div class="container-fluid max-width--1024 invest-web-width">
       <app-step-indicator [count]="9" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-width">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -42,26 +43,16 @@
               <!-- Salutation end -->
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
+                  <label for="name" id="invPersInfoLbl1">
+                    <div>{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</div>
+                    <div class="sub-label" id="invPersInfoSubLbl1">
+                      <span *ngIf="showNric">{{ 'PERSONAL_INFO.FULL_NAME_NRIC' | translate}}</span>
+                      <span *ngIf="showPassport">{{ 'PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
+                    </div>
+                  </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
                   <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName" maxLength="30">
-                </div>
-              </div>
-              <div class="flex-row">
-                <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl2">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
-                </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('firstName').enabled && !invPersonalInfoForm.get('firstName').valid && !invPersonalInfoForm.get('firstName').pristine}">
-                  <input type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
-                </div>
-              </div>
-              <div class="flex-row">
-                <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl3">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
-                </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('lastName').enabled && !invPersonalInfoForm.get('lastName').valid && !invPersonalInfoForm.get('lastName').pristine}">
-                  <input type="text" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
                 </div>
               </div>
               <div class="flex-row" *ngIf="showNric">

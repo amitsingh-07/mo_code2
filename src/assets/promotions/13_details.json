@@ -1,0 +1,12 @@
+{ 
+    "promoId": 13,
+    "type": 1,
+    "owner": "Aviva",
+    "title": "5% Premium Discount for Aviva MyProtector Term Plan & MyProtector Term Plan II",
+    "thumbnail": "/assets/promotions/images/13/thumbnail.jpg",
+    "desc": "5% premium discount for coverage above $1.1 mil.",
+    "date_created": "1556208000000",
+    "date_expiry": "1561910399000",
+    "tag": ["Insurance", "Protection"],
+    "external": false
+}

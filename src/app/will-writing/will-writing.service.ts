@@ -23,6 +23,7 @@ import { WILL_WRITING_CONFIG } from './will-writing.constants';
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
 const IS_WILL_CREATED = 'is_will_created';
+const WILL_CREATED_PRELOGIN = 'will_created_prelogin';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,7 @@ export class WillWritingService {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(FROM_CONFIRMATION_PAGE);
       sessionStorage.removeItem(IS_WILL_CREATED);
+      sessionStorage.removeItem(WILL_CREATED_PRELOGIN);
     }
   }
 
@@ -716,8 +718,23 @@ export class WillWritingService {
         will.beneficiary.push(JSON.parse(JSON.stringify(members)));
       }
     }
+    if (will.execTrustee[0].isAlt) {
+      const [altExecutor, mainExecutor] = will.execTrustee;
+      will.execTrustee[0] = mainExecutor;
+      will.execTrustee[1] = altExecutor;
+    }
     this.willWritingFormData = will;
     this.commit();
+  }
+
+  setWillCreatedPrelogin() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(WILL_CREATED_PRELOGIN, 'true');
+    }
+  }
+
+  getWillCreatedPrelogin() {
+    return sessionStorage.getItem(WILL_CREATED_PRELOGIN);
   }
 
 }

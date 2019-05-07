@@ -1,16 +1,15 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up.service';
-import { ConfigService, IConfig } from './../../config/config.service';
+import { ConfigService } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
+import { SignUpApiService } from './../sign-up.api.service';
 
 @Component({
   selector: 'app-account-created',
@@ -19,8 +18,9 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 })
 export class AccountCreatedComponent implements OnInit {
 
-  willWritingEnabled = false;
-  duplicateError: string;
+  resendEmail: boolean;
+  emailTriggered = false;
+  emailSent = false;
 
   constructor(
     private translate: TranslateService,
@@ -28,15 +28,11 @@ export class AccountCreatedComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private signUpService: SignUpService, private configService: ConfigService,
-    private router: Router) {
+    private signUpService: SignUpService, 
+    private configService: ConfigService,
+    private router: Router,
+    private signUpApiService: SignUpApiService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-    });
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      this.willWritingEnabled = config.willWritingEnabled;
-    });
   }
   // constonts
   @HostListener('window:popstate', ['$event'])
@@ -46,19 +42,8 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
-    if (this.willWritingEnabled && this.willWritingService.getWillWritingFormData().enquiryId
-      && !this.willWritingService.getIsWillCreated()) {
-      this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
-        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-          this.willWritingService.setIsWillCreated(true);
-        } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = '';
-          ref.componentInstance.errorMessage = this.duplicateError;
-        }
-      });
-      sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
-      this.signUpService.clearData();
+    if (this.signUpService.getUserMobileNo()) {
+      this.resendEmail = true;
     }
   }
 
@@ -67,6 +52,19 @@ export class AccountCreatedComponent implements OnInit {
    */
   redirectToLogin() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+  }
+
+  resendEmailVerification() {
+    if (!this.emailTriggered) {
+      this.emailTriggered = true;
+      const mobile = this.signUpService.getUserMobileNo();
+      this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
+        if (data.responseMessage.responseCode === 6007) {
+          this.emailTriggered = false;
+          this.emailSent = true;
+        }
+      });
+    }
   }
 
 }

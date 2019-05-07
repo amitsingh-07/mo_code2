@@ -7,12 +7,11 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { ISignUp, IResendEmail, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
 import { DirectService } from './../direct/direct.service';
-import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
@@ -43,67 +42,42 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  createAccountBodyRequest(captchaValue): ISignUp {
-    const selectedPlan: IPlan[] = [];
-    let userInfo: UserInfo;
-    let journey = 'insurance';
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
-      userInfo = this.directService.getUserInfo();
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      userInfo = this.guideMeService.getUserInfo();
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-      journey = this.appService.getJourneyType();
-      userInfo = {
-        gender: 'male',
-        dob: '',
-        customDob: '',
-        smoker: '',
-        dependent: 0,
-      };
-    } else {
-      journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
-      userInfo = {
-        gender: 'male',
-        dob: '',
-        customDob: '',
-        smoker: '',
-        dependent: 0,
-      };
-    }
+  createAccountBodyRequest(captcha: string, pwd: string): ISignUp {
     const getAccountInfo = this.signUpService.getAccountInfo();
-    let selectedPlanData;
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-      selectedPlanData = { enquiryId: this.willWritingService.getEnquiryId(), plans: [] };
-    } else {
-      selectedPlanData = { enquiryId: 0, plans: [] };
+    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+    let journeyType = this.appService.getJourneyType();
+    let enquiryId = -1;
+
+    if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && (insuranceEnquiry &&
+        insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+      enquiryId = insuranceEnquiry.enquiryId;
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getWillCreatedPrelogin()) {
+      enquiryId = this.willWritingService.getEnquiryId();
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_INVESTMENT) {
+      enquiryId = Number(this.authService.getEnquiryId());
     }
-    const formatDob = userInfo.dob;
-    const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
-    const customDob = formatDob ? formatDob.year + '-' + formatDob.month + '-' + formatDob.day : '';
+
+    // If the journeyType is not set, default it to 'signup'
+    if(Util.isEmptyOrNull(journeyType)) {
+      journeyType = 'signup';
+    }
 
     return {
       customer: {
-        id: 0,
-        isSmoker: (userInfo.smoker === 'non-smoker') ? false : true,
-        givenName: getAccountInfo.firstName,
-        surName: getAccountInfo.lastName,
-        email: getAccountInfo.email,
-        mobileNumber: getAccountInfo.mobileNumber,
-        notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
-        notificationByPhone: true,
-        dateOfBirth: customDob,
-        gender: userInfo.gender,
-        acceptMarketEmails: getAccountInfo.marketingAcceptance
+        mobileNumber: getAccountInfo.mobileNumber.toString(),
+        firstName: getAccountInfo.firstName,
+        lastName: getAccountInfo.lastName,
+        emailAddress: getAccountInfo.email,
+        password: this.cryptoService.encrypt(pwd),
+        acceptMarketingNotifications: getAccountInfo.marketingAcceptance
       },
-      enquiryId: selectedPlanData.enquiryId ? selectedPlanData.enquiryId : investmentEnqId,
-      selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
-      captcha: captchaValue,
-      journeyType: journey
+      captcha,
+      journeyType,
+      enquiryId
     };
   }
 
@@ -145,30 +119,6 @@ export class SignUpApiService {
   }
 
   /**
-   * form set password request.
-   */
-  setPasswordBodyRequest(pwd: string): ISetPassword {
-    const custRef = this.signUpService.getCustomerRef();
-    const resCode = this.signUpService.getResetCode();
-    let selectedPlanData = { enquiryId: 0, plans: [] };
-    let journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      journey = 'insurance';
-      selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    }
-    return {
-      customerRef: custRef,
-      password: this.cryptoService.encrypt(pwd),
-      callbackUrl: Util.getCurrentServerBaseUrl() + '/#/account/email-verification',
-      resetType: 'New',
-      selectedProducts: selectedPlanData.plans,
-      resetCode: resCode,
-      journeyType: journey
-    };
-  }
-
-  /**
    * form verify email request.
    */
   verifyEmailBodyRequest(verifyCode): IVerifyCode {
@@ -181,8 +131,8 @@ export class SignUpApiService {
    * create user account.
    * @param code - verification code.
    */
-  createAccount(captcha) {
-    const payload = this.createAccountBodyRequest(captcha);
+  createAccount(captcha: string, pwd: string) {
+    const payload = this.createAccountBodyRequest(captcha, pwd);
     return this.apiService.createAccount(payload);
   }
 
@@ -210,15 +160,6 @@ export class SignUpApiService {
   verifyOTP(otp, editProfile?) {
     const payload = this.verifyOTPBodyRequest(otp, editProfile);
     return this.apiService.verifyOTP(payload);
-  }
-
-  /**
-   * set password.
-   * @param pwd - password.
-   */
-  setPassword(pwd) {
-    const payload = this.setPasswordBodyRequest(pwd);
-    return this.apiService.setPassword(payload);
   }
 
   /**
@@ -254,9 +195,26 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword, captcha) {
+    let enqId = -1;
+    let journeyType = 'direct';
     const sessionId = this.authService.getSessionId();
-    const invEnqId = this.authService.getEnquiryId();
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getWillCreatedPrelogin()) {
+      enqId = this.willWritingService.getEnquiryId();
+      journeyType = 'will-writing';
+    } else if (this.authService.getEnquiryId()) {
+      enqId = Number(this.authService.getEnquiryId());
+      journeyType = 'investment';
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+      if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+        journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
+          'insurance-direct' : 'insurance-guided';
+        enqId = insuranceEnquiry.enquiryId;
+      }
+    }
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType);
   }
 
   logout() {
@@ -269,5 +227,15 @@ export class SignUpApiService {
 
   checkEmailValidity(payload) {
     return this.apiService.emailValidityCheck(payload);
+  }
+
+  resendEmailVerification(value: any, isEmail: boolean) {
+    const payload = {
+      mobileNumber: isEmail ? '' : value,
+      emailAddress: isEmail ? value : '',
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      hostedServerName: window.location.hostname
+    } as IResendEmail;
+    return this.apiService.resendEmailVerification(payload);
   }
 }

@@ -1,6 +1,7 @@
 export const RegexConstants = {
     PassportNumber: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
     OnlyAlpha: /^[a-zA-Z\s]{2,40}$/, // Only alpha values with space
+    AlphaWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]{2,40}$/,
     Alphanumeric: /^[a-zA-Z0-9]*$/,
     AlphanumericSpace: /^[a-zA-Z0-9\s]*$/,
     CharactersLimit: /\w{10,15}/, // Characters length should be 10 to 15
@@ -18,7 +19,7 @@ export const RegexConstants = {
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
     OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
     NameWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]+$/,
-    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9}$/,
+    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9,15}$/,
     ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
     Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
     NRIC: /^[STst][a-zA-Z0-9]{8}$/,

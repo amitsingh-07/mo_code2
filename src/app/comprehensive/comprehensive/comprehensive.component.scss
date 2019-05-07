@@ -9,7 +9,12 @@ app-comprehensive {
     &.white-bg {
       background-color: #FFFFFF !important;
     }
+    .start-now-btn{
+      font-size: 18px!important;
+    }
+   
   }
+
   .video-section {
     margin: 0;
   }
@@ -195,7 +200,7 @@ app-comprehensive {
       font-family: $muli-bold;
       &__limited {
         color: $limited;
-        font-size: 18px;
+        font-size: 16px;
         font-family: $muli-regular;
       }
       .btn {

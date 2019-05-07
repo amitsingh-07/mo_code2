@@ -14,6 +14,7 @@ export class PercentageInputDirective implements AfterViewInit {
         private el: ElementRef, private currencyPipe: CurrencyPipe,
         private control: NgControl,
         private decimalPipe: DecimalPipe) {
+            this.el.nativeElement.type = 'tel';
     }
     ngAfterViewInit() {
         this.formatCurrency();

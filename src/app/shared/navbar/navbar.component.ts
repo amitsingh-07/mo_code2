@@ -17,13 +17,14 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { TransactionModalComponent } from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { Util } from '../utils/util';
 import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
+import { DefaultErrors } from './../modal/error-modal/default-errors';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
-import { Util } from '../utils/util';
 
 @Component({
   selector: 'app-navbar',
@@ -43,6 +44,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
   showMenu = true;  // Show Menu Feature
   showLogin = true; // Show Login Feature
+  showLogout = true; // Show Logout Feature only
   showNavShadow = true; // Navbar Show Shadow
   showSearchBar = false; // Navbar Show Search
   showNotifications = false; // Show Notifications Feature
@@ -102,6 +104,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
     private appService: AppService,
+    public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService) {
     this.browserCheck();
     this.matrixResolver();
@@ -262,6 +265,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showHeaderBackBtn = config.showHeaderBackBtn;
     this.showMenu = config.showMenu;
     this.showLogin = config.showLogin;
+    this.showLogout = config.showLogout;
     this.showNavShadow = config.showNavShadow;
     this.showSearchBar = config.showSearchBar;
     this.showNotifications = config.showNotifications;
@@ -290,6 +294,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else {
       this.navbarService.goBack();
     }
+  }
+
+  goToExternal(url) {
+    window.open(url, '_blank');
   }
 
   goToHome(in_fragment?: string) {
