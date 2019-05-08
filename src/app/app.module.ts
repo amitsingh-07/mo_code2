@@ -74,7 +74,6 @@ import { SummaryModalComponent } from './shared/modal/summary-modal/summary-moda
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
@@ -123,7 +122,6 @@ export function tokenGetterFn() {
         RestrictAlphabetsDirective,
         jqxSliderComponent,
         HeaderComponent,
-        NavbarComponent,
         FooterComponent,
         CallBackComponent,
         HomeComponent,

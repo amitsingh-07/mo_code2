@@ -1,3 +1,4 @@
+import { ProgressTrackerComponent } from './../modal/progress-tracker/progress-tracker.component';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -6,7 +7,8 @@ import {
   HostListener,
   OnInit,
   Renderer2,
-  ViewChild
+  ViewChild,
+  NgModule
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
