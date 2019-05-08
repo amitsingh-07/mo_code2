@@ -65,6 +65,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();

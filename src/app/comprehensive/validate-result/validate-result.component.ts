@@ -85,6 +85,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
