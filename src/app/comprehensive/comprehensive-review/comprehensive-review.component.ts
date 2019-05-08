@@ -13,11 +13,11 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 
 @Component({
-  selector: 'app-validate-result',
-  templateUrl: './validate-result.component.html',
-  styleUrls: ['./validate-result.component.scss']
+  selector: 'app-comprehensive-review',
+  templateUrl: './comprehensive-review.component.html',
+  styleUrls: ['./comprehensive-review.component.scss']
 })
-export class ValidateResultComponent implements OnInit, OnDestroy {
+export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
   menuClickSubscription: Subscription;
@@ -36,18 +36,19 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-        this.pageTitle = this.translate.instant('CMP.VALIDATE_RESULT.TITLE');
+        this.pageTitle = this.translate.instant('CMP.REVIEW.TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
-        this.goToNext();
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
       }
     });
   }
 
   ngOnInit() {
+    this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(true);
     this.navbarService.setNavbarComprehensive(true);
@@ -59,29 +60,8 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-    } else if (this.comprehensiveService.checkResultData()) {
-      const currentStep = this.comprehensiveService.getMySteps();
-      const stepCalculated = 4;
-      if (currentStep === 3 || currentStep === 4) {
-        const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
-        if (stepCheck.status) {
-          if (currentStep === 4) {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            this.initiateReport();
-          } else {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
-            this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-              this.comprehensiveService.setMySteps(stepCalculated);
-              this.initiateReport();
-            });
-          }
-        } else {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + stepCheck.stepIndicate]);
-        }
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
-      }
+    } else if (!this.comprehensiveService.checkResultData()) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
   }
   ngOnDestroy() {
@@ -92,13 +72,31 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
   setPageTitle(title: string) {
     this.navbarService.setPageTitleWithIcon(title, { id: this.pageId, iconClass: 'navbar__menuItem--journey-map' });
   }
+  goToReviewInput() {
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+  }
   goToNext() {
     const reportStatus = this.comprehensiveService.getReportStatus();
-    if (reportStatus !== COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS]);
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+    } else if (this.comprehensiveService.checkResultData()) {
+      const currentStep = this.comprehensiveService.getMySteps();
+      if (currentStep === 4) {
+        this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+        this.initiateReport();
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
+      }
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
   }
   initiateReport() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW]);
+    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
+      this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
+      this.comprehensiveService.setViewableMode(true);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+    });
   }
 }

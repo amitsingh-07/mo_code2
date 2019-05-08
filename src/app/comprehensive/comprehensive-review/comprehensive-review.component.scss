@@ -1,7 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
-.comprehensive.validate-result {
+.comprehensive.review {
   background: #fff;
   height: 95vh !important;
 
@@ -17,8 +17,8 @@
     font-family: $muli-bold;
   }
 
-  .resultValidateImg {
-    background: url("/assets/images/comprehensive/result-finance.svg") no-repeat;
+  .reviewImg {
+    background: url("/assets/images/comprehensive/comprehensive_review.svg") no-repeat;
     display: inline-block;
     width: 218px;
     height: 150px;
@@ -36,5 +36,13 @@
     font-size: 16px;
     color: #066360;
     font-family: $muli-regular;
+  }
+
+  .reviewInput {
+    margin: 0px !important;
+    border-radius: 6px;
+    border: solid 1px $btn-primary-backgrnd-color;
+    background-color: $white-color;
+    color: $modal-txt-highlight-color;
   }
 }

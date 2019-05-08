@@ -670,6 +670,7 @@ export class ComprehensiveService {
         const financeProgressData = this.getFinancesProgressData();
         const fireProofingProgressData = this.getFireproofingProgressData();
         const retirementProgressData = this.getRetirementProgressData();
+        const reportStatusData = this.getReportStatus();
 
         for (let index = currentUrlIndex; index >= 0; index--) {
             if (accessibleUrl !== '') {
@@ -817,8 +818,13 @@ export class ComprehensiveService {
                     // 'result'
                     case 25:
                     case 26:
-                    case 27:
                         if (retirementProgressData.subItems[0].completed) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+                    case 27:
+                        if (retirementProgressData.subItems[0].completed
+                            && reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -1187,7 +1193,7 @@ export class ComprehensiveService {
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
             const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
-            retirementAgeValue = (( retireAgeVal > 60) ? '62 or later' : retireAgeVal) + ' yrs old';
+            retirementAgeValue = ((retireAgeVal > 60) ? '62 or later' : retireAgeVal + ' yrs old');
         }
         return {
             title: 'Financial Independence',
