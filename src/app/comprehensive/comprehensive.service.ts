@@ -117,7 +117,8 @@ export class ComprehensiveService {
             23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
             24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
             25: COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
-            26: COMPREHENSIVE_ROUTE_PATHS.RESULT
+            26: COMPREHENSIVE_ROUTE_PATHS.REVIEW,
+            27: COMPREHENSIVE_ROUTE_PATHS.RESULT
         };
 
         Object.keys(urlList).forEach((key) => {
@@ -669,6 +670,7 @@ export class ComprehensiveService {
         const financeProgressData = this.getFinancesProgressData();
         const fireProofingProgressData = this.getFireproofingProgressData();
         const retirementProgressData = this.getRetirementProgressData();
+        const reportStatusData = this.getReportStatus();
 
         for (let index = currentUrlIndex; index >= 0; index--) {
             if (accessibleUrl !== '') {
@@ -817,6 +819,12 @@ export class ComprehensiveService {
                     case 25:
                     case 26:
                         if (retirementProgressData.subItems[0].completed) {
+                            accessibleUrl = urlList[index];
+                        }
+                        break;
+                    case 27:
+                        if (retirementProgressData.subItems[0].completed
+                            && reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -1185,7 +1193,7 @@ export class ComprehensiveService {
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
             const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
-            retirementAgeValue = (( retireAgeVal > 60) ? '62 or later' : retireAgeVal) + ' yrs old';
+            retirementAgeValue = ((retireAgeVal > 60) ? '62 or later' : retireAgeVal + ' yrs old');
         }
         return {
             title: 'Financial Independence',
@@ -1293,7 +1301,7 @@ export class ComprehensiveService {
         const summaryConst = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
         Object.keys(summaryConst).forEach((expenseInput) => {
             let locationChange = location;
-            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singaporean PR')) {
+            if (location === 'Singapore' && (nation === 'Others' || nation === 'Singapore PR')) {
                 locationChange = nation;
             }
             const expenseConfig = summaryConst[expenseInput];
