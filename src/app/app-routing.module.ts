@@ -24,9 +24,8 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 
 const routes: Routes = [
   {
-    path: '',
-   //  canDeactivate: [PendingChangesGuard],
-     children: [
+    path: '', canDeactivate: [PendingChangesGuard],
+    children: [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },

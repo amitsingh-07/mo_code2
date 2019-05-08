@@ -26,8 +26,7 @@ import { ValidateResultComponent } from './validate-result/validate-result.compo
 
 const routes: Routes = [
     {
-        path: '',
-     //   canActivate: [ComprehensiveEnableGuard],
+        path: '', canActivate: [ComprehensiveEnableGuard],
         children: [
             { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
