@@ -27,39 +27,39 @@
                 <td class="cell--header text--center">11 years and above</td>
             </tr>
             <tr>
-                <td>$150</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td> 
-                <td>$50</td> 
+                <td class="text--center">$150</td>
+                <td class="text--center">-</td>
+                <td class="text--center">-</td>
+                <td class="text--center">-</td> 
+                <td class="text--center">$50</td> 
             </tr>
             <tr>
-                <td>$300</td>
-                <td>-</td>
-                <td>$75</td>
-                <td>$100</td>
-                <td>$150</td>
+                <td class="text--center">$300</td>
+                <td class="text--center">-</td>
+                <td class="text--center">$75</td>
+                <td class="text--center">$100</td>
+                <td class="text--center">$150</td>
             </tr>
             <tr>
-                <td>$500</td>
-                <td>$150</td>
-                <td>$200</td>
-                <td>$250</td>
-                <td>$300</td>
+                <td class="text--center">$500</td>
+                <td class="text--center">$150</td>
+                <td class="text--center">$200</td>
+                <td class="text--center">$250</td>
+                <td class="text--center">$300</td>
             </tr>
             <tr>
-                <td>$1,200</td>
-                <td>$500</td>
-                <td>$750</td>
-                <td>$600</td>
-                <td>$900</td>
+                <td class="text--center">$1,200</td>
+                <td class="text--center">$500</td>
+                <td class="text--center">$750</td>
+                <td class="text--center">$600</td>
+                <td class="text--center">$900</td>
             </tr>
             <tr>
-                <td>$2,000</td>
-                <td>$1,000</td>
-                <td>$1,500</td>
-                <td>$1,000</td>
-                <td>$1,500</td>
+                <td class="text--center">$2,000</td>
+                <td class="text--center">$1,000</td>
+                <td class="text--center">$1,500</td>
+                <td class="text--center">$1,000</td>
+                <td class="text--center">$1,500</td>
             </tr>
             </table>
             </div>
