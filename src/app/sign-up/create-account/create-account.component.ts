@@ -232,7 +232,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
             ref.componentInstance.emailSent = true;
-          };
+          } else if (data.responseMessage.responseCode === 5114) {
+            ref.close();
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+          }
         });
     }
     this.refreshCaptcha();

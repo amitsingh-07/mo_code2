@@ -237,7 +237,7 @@ export class ApiService {
       );
   }
 
-  getCustomerInsuranceDetails(){
+  getCustomerInsuranceDetails() {
     return this.http.get(apiConstants.endpoint.getCustomerInsuranceDetails)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -670,7 +670,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
+  // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
@@ -692,7 +692,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
@@ -793,10 +793,10 @@ export class ApiService {
 
   // Resend Email Verification Link
   resendEmailVerification(payload) {
-    return this.http.post(apiConstants.endpoint.resendEmailVerification, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+    return this.http.post(apiConstants.endpoint.resendEmailVerification + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
 }
