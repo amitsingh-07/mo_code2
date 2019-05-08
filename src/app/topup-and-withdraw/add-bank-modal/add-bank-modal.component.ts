@@ -25,7 +25,6 @@ export class AddBankModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.banks = this.signUpService.addMaxLengthInfoForAccountNo(this.banks);
     this.addBankForm = new FormGroup({
       accountHolderName: new FormControl(this.fullName, [
         Validators.required,
@@ -34,8 +33,7 @@ export class AddBankModalComponent implements OnInit {
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [
         Validators.required,
-        Validators.pattern(RegexConstants.NumericOnly),
-        this.signUpService.validateAccNoMaxLength
+        this.signUpService.validateBankAccNo
       ])
     });
   }
@@ -66,9 +64,6 @@ export class AddBankModalComponent implements OnInit {
       // INVALID FORM
       this.markAllFieldsDirty(form);
     } else {
-      if (form.value.bank) {
-        delete form.value.bank.accountNoMaxLength;
-      }
       this.saved.emit(this.addBankForm.getRawValue());
     }
   }
