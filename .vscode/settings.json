@@ -5,7 +5,7 @@
     "prefs"
   ],
   "files.autoSave": "off",
-  "workbench.colorTheme": "Default Light+",
+  "workbench.colorTheme": "Visual Studio Light",
   "git.enableSmartCommit": true,
   "team.showWelcomeMessage": false,
   "files.exclude": {
@@ -24,5 +24,6 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true
   },
-  "eslint.provideLintTask": true
+  "eslint.provideLintTask": true,
+  "editor.formatOnSave": true
 }

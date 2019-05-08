@@ -41,9 +41,8 @@ export class AboutUsComponent implements OnInit {
               });
             }
 
-  ngOnInit() {
+ngOnInit() {
     this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
   }

@@ -1,3 +1,4 @@
+<app-investment-title-bar></app-investment-title-bar>
 <!-- popup -->
 <div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
   <div class="custom-modal-backdrop"></div>
@@ -13,7 +14,7 @@
 </div>
 <!-- popUp -->
 <div class="risk-profile-block">
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024 invest-web-width">
     <div class="risk-profile-block__content">
       <div class="text-center">
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">

@@ -237,10 +237,11 @@ export class TopupAndWithDrawService {
     return errors;
   }
 
-  setWithdrawalTypeFormData(data) {
+  setWithdrawalTypeFormData(data, isRedeemAll) {
     this.topUpAndWithdrawFormData.withdrawType = data.withdrawType;
     this.topUpAndWithdrawFormData.withdrawAmount = data.withdrawAmount;
     this.topUpAndWithdrawFormData.withdrawPortfolio = data.withdrawPortfolio;
+    this.topUpAndWithdrawFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
 
@@ -283,6 +284,7 @@ export class TopupAndWithDrawService {
     request['customerBankDetail'] = {
       accountNumber: data.bank ? data.bank.accountNumber : null
     };
+    request['redeemAll'] = data.isRedeemAll;
     return request;
   }
   // ONE-TIME INVESTMENT PAYLOAD
@@ -350,11 +352,8 @@ export class TopupAndWithDrawService {
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = 12 * (toYear - fromYear) + to.getMonth();
-    const initMonth = (from.getDate() <= TOPUPANDWITHDRAW_CONFIG.STATEMENT_CUT_OFF_DAY
-                       && from < new Date())
-                        ? from.getMonth()
-                        : from.getMonth() + 1;
+    const diffYear = 12 * (toYear - fromYear) +  to.getMonth();
+    const initMonth = from.getMonth();
     for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({
         monthName: monthNames[i % 12],

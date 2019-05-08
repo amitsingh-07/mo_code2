@@ -126,7 +126,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         [Validators.required, Validators.minLength(2), Validators.maxLength(100),
         Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].uin : '',
-        [Validators.required, Validators.pattern(RegexConstants.UIN)]],
+        [Validators.required]],
       });
     }
     return this.formBuilder.group({});
@@ -140,7 +140,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
           this.childrenFormValues[index].name : '', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
           Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.childrenFormValues.length > index ?
-          this.childrenFormValues[index].uin : '', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
+          this.childrenFormValues[index].uin : '', [Validators.required]],
         dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
       });
     }

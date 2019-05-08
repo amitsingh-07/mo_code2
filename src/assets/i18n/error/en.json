@@ -1,9 +1,13 @@
 {
-"ERROR": {
-    "CONTACT_US": {
-        "EMPTY_TEXT": "*Please input your message.",
-        "EMPTY_SUBJECT": "Please input your subject",
-        "PENDING": "Your enquiry is being sent. Please hold on."
+    "ERROR": {
+        "CONTACT_US": {
+            "EMPTY_TEXT": "*Please input your message.",
+            "EMPTY_SUBJECT": "Please input your subject",
+            "PENDING": "Your enquiry is being sent. Please hold on.",
+            "EMAIL_REQUIRED": "*Please enter your e-mail address",
+            "EMAIL_PATTERN": "*Please enter a valid email address in the format yourname@example.com",
+            "CONTACT_NUMBER_REQUIRED": "*Please enter your contact number",
+            "CONTACT_NUMBER_PATTERN": "*Invalid Contact Number"
+            }
         }
     }
-}

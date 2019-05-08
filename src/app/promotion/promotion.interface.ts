@@ -10,5 +10,6 @@ export interface IPromotion {
     tag: any;
     external: boolean;
     url ?: string;
+    button_label ?: string;
     logo ?: string;
 }

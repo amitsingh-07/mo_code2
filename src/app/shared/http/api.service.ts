@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { IEnquiryUpdate, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { LoaderService } from './../components/loader/loader.service';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
@@ -195,7 +195,9 @@ export class ApiService {
     const payload = {
       toEmail: data.email,
       subject: data.subject,
-      body: data.message
+      body: data.message,
+      custEmail: data.emailAddress,
+      custContactNo: data.contactNumber.toString()
     };
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
       .pipe(
@@ -239,6 +241,13 @@ export class ApiService {
 
   getRecommendations(payload: IRecommendationRequest) {
     return this.http.post(apiConstants.endpoint.getRecommendations, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getCustomerInsuranceDetails() {
+    return this.http.get(apiConstants.endpoint.getCustomerInsuranceDetails)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -326,27 +335,6 @@ export class ApiService {
 
   emailValidityCheck(payload) {
     return this.http.post(apiConstants.endpoint.emailValidityCheck + this.handleErrorFlag, payload);
-  }
-
-  setPassword(payload: ISetPassword) {
-    return this.http.post(apiConstants.endpoint.setPassword, payload)
-      .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error(this.errorTag, error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError(this.errorTryAgain);
-        })
-      );
   }
 
   verifyEmail(payload) {
@@ -771,15 +759,15 @@ export class ApiService {
       );
   }
 
-  getWill(payload) {
-    return this.http.post(apiConstants.endpoint.willWriting.getWill, payload)
+  getWill() {
+    return this.http.get(apiConstants.endpoint.willWriting.getWill)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  downloadWill(payload): Observable<any> {
-    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false, false)
+  downloadWill(): Observable<any> {
+    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, false, false)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -866,9 +854,17 @@ export class ApiService {
    * @memberof ApiService
    */
   downloadComprehensiveReport(payload): Observable<any> {
-    return this.http.postForBlob(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false, false)
+    return this.http.postForBlob(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // Resend Email Verification Link
+  resendEmailVerification(payload) {
+    return this.http.post(apiConstants.endpoint.resendEmailVerification, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

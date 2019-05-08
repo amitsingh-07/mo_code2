@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="widgets">
-            <div class="widget insurance">
+            <div class="widget insurance" *ngIf="showInsuranceSection">
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>
@@ -30,7 +30,9 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span>{{'DASHBOARD.INSURANCE.DESC' | translate}}</span>
+                        <span *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span *ngIf="insurance.hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{
+                            insurance.lastTransactionDate | date: 'dd MMM yyyy'}}.</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
@@ -60,13 +62,14 @@
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-5">
+                      <div class="flex-col col-5" *ngIf="false"> <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
                         <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0" class="portfolio_footer_value">
                           {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
                       </div>
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
+                        <div class="portfolio_ref_code" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">({{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}})</div>
                         <div class="portfolio_footer_value">
                           {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>

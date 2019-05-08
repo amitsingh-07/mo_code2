@@ -59,6 +59,7 @@ import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
+import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
@@ -87,6 +88,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -131,7 +133,8 @@ export function tokenGetterFn() {
         FAQComponent,
         FundDetailsComponent,
         UnsupportedDeviceModalComponent,
-        SummaryModalComponent
+        SummaryModalComponent,
+        DiyModalComponent
     ],
     imports: [
         BrowserModule,
@@ -155,7 +158,7 @@ export function tokenGetterFn() {
             config: {
                 tokenGetter: tokenGetterFn
             }
-        }),
+        })
     ],
     providers: [
         NgbActiveModal,
@@ -212,3 +215,4 @@ export class AppModule {
         routingService.loadRouting();
     }
 }
+

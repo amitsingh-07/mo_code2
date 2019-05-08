@@ -1,17 +1,20 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 /*Modal styles*/
-.account-created-success-modal {
-.custom-modal-backdrop {
+.account-created-success-modal,
+.verify-mail-modal {
+  .custom-modal-backdrop {
     background: $dark-teal-color;
     position: fixed;
-    opacity:1;
+    opacity: 1;
     width: 100%;
     height: 100%;
     z-index: 9999;
     top: 0;
     left: 0;
   }
+
   .custom-modal-wrapper {
     top: 0;
     left: 0;
@@ -22,26 +25,58 @@
     text-align: center;
     padding: 40px 0 80px;
     overflow: auto;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-top: 40px;
     }
+
+    &.drop-off {
+      padding-top: 85px;
+    }
   }
+
   .custom-modal-content {
     width: 100%;
     height: 100%;
+
     img {
       width: 80%;
       height: 80%;
     }
   }
+
   .custom-modal--icon {
     margin: 0 auto;
-    img{
-      @include allmobiles{
+
+    img {
+      @include allmobiles {
         width: 80%;
       }
     }
+
+    &.drop-off {
+      width: 230px;
+      height: 143px;
+      margin-bottom: 58px;
+
+      @include allmobiles {
+        width: 132px;
+        height: 82px;
+        margin-bottom: 31px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+
+        @include allmobiles {
+          width: 100%;
+        }
+      }
+    }
   }
+
   .custom-modal--title {
     color: $white-color;
     font-family: $muli-bold;
@@ -50,11 +85,22 @@
     line-height: 0.56;
     margin: 0;
     padding: 12px 0 14px;
+
     @include allmobiles {
       font-size: 20px;
       letter-spacing: -0.2px;
     }
+
+    &.drop-off {
+      font-family: $muli-bold;
+      padding-bottom: 26px;
+
+      @include allmobiles {
+        padding-bottom: 20px;
+      }
+    }
   }
+
   .custom-modal--desc {
     color: $white-color;
     font-size: 18px;
@@ -63,88 +109,120 @@
     font-family: $muli-regular;
     max-width: 476px;
     margin: 0 auto;
+
     @include allmobiles {
       padding: 0 30px;
     }
+
+    .custom-modal--sub--desc {
+      margin-top: 38px;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.16px;
+
+      a {
+        color: $white-color;
+        text-decoration: underline;
+        letter-spacing: -0.14px;
+        font-size: 16px;
+      }
+    }
   }
+
   .btn-primary {
     width: 275px;
   }
+
   @include allmobiles {
-  .btn__footer--fixed {
-    width: 100%;
+    .btn__footer--fixed {
+      width: 100%;
+    }
   }
- }
 }
 
 // will-writing
 
 .section {
-    border-radius: 6px;
-    background-color: #005960;
-    padding: 10px;
-    width: 588px;
-    padding-left: 44px;
-    padding-top: 15px; 
-    margin: 0 auto;
-    text-align: left;
-    font-family: $muli-regular;
-    font-size: 16px;
-    font-weight: normal !important;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 22px;
-    letter-spacing: -0.14px;
-    color: #e8e8e8;
-    margin-bottom: 16px;
-    ol {
-      padding: 0 18px;
-      .instruction {
-        span{
-          font-family: $muli-bold;
-          font-weight: bold;
-          color: #ff9600;
-          text-decoration: underline;
-        }
-      }
-      li{
-        &:last-child{
-          padding-top: 18px;
-          padding-bottom: 39px;
-          list-style-type: none;
-        }
+  border-radius: 6px;
+  background-color: #005960;
+  padding: 10px;
+  width: 588px;
+  padding-left: 44px;
+  padding-top: 15px;
+  margin: 0 auto;
+  text-align: left;
+  font-family: $muli-regular;
+  font-size: 16px;
+  font-weight: normal !important;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 22px;
+  letter-spacing: -0.14px;
+  color: #e8e8e8;
+  margin-bottom: 16px;
+
+  ol {
+    padding: 0 18px;
+
+    .instruction {
+      span {
+        font-family: $muli-bold;
+        font-weight: bold;
+        color: #ff9600;
+        text-decoration: underline;
       }
     }
+
+    li {
+      &:last-child {
+        padding-top: 18px;
+        padding-bottom: 39px;
+        list-style-type: none;
+      }
+    }
+  }
+
+  @include allmobiles {
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    padding-left: 17px;
+    padding-top: 13px;
+    margin-bottom: 12px;
+    width: 326px
+  }
+
+  @include iphone5 {
+    width: 300px;
+  }
+
+  .title {
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: underline;
+    font-family: $muli-semi-bold;
+    line-height: 24px;
 
     @include allmobiles {
       font-size: 14px;
       letter-spacing: -0.1px;
-      padding-left: 17px;
-      padding-top: 13px;
-      margin-bottom: 12px;
-      width: 326px
     }
-    @include iphone5 {
-      width: 300px;
-    }
-    .title {
-      font-size: 18px;
-      color: #ffffff;
-      text-decoration: underline;
-      font-family: $muli-semi-bold;
-      line-height: 24px;
-      @include allmobiles {
-        font-size: 14px;
-        letter-spacing: -0.1px;
-      }
-    }
-    .sub-title{
-      font-family: $muli-bold;
-      line-height: 24px;
-      font-weight: bold;
-      color: #e8e8e8;
-    }
-    .description{
-      color: #e8e8e8;
-    }
+  }
+
+  .sub-title {
+    font-family: $muli-bold;
+    line-height: 24px;
+    font-weight: bold;
+    color: #e8e8e8;
+  }
+
+  .description {
+    color: #e8e8e8;
+  }
+}
+
+.link-white {
+  text-decoration: underline;
+  cursor: pointer;
+  float: none;
+  font-size: 18px;
 }
