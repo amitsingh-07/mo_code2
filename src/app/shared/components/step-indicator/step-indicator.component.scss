@@ -1,13 +1,6 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
 
-@mixin stepcolor {
-    opacity: 0.2;
-    &.active {
-        background-color: #31e5db;
-        opacity: 1;
-    }
-}
 .step-container{
     display:flex;
     width:100%;
@@ -18,19 +11,8 @@
         margin: 0px 2px 0px 2px;
         flex-grow: 1;
         flex-basis: 0;
-        @include desktop {
-            @include stepcolor;
-        } 
-        
-        @include tablet {
-            @include stepcolor;
-        }
-
-        @include allmobiles {
-            &.active {
-                opacity: 1;
-                background-color: $step-indicator-active;
-            }
-        }
+    }
+    .step-item.active{
+        background-color: $step-indicator-active;
     }
 }
