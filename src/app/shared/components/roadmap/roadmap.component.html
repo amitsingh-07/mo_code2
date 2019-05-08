@@ -2,10 +2,10 @@
   <div class="main-title">{{roadmapData.title}}</div>
   <div class="roadmap-item-container">
     <ng-container *ngFor="let item of roadmapData.items; let i = index">
-    <div class="roadmap-item">
+    <div class="roadmap-item" [ngClass]="item.status">
       <div class="roadmap-icon">
         <span class="line"></span>
-        <span class="icon" [ngClass]="item.status"></span>
+        <span class="icon"></span>
       </div>
       <div class="roadmap-item-title">{{item.title}}</div>
     </div>
