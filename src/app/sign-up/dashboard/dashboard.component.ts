@@ -84,6 +84,10 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
+    if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+      this.investmentAccountService.setUserPortfolioExistStatus(false);
+      // Show portfolio exist
+    }
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         // ERROR SCENARIO
