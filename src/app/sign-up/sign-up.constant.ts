@@ -28,18 +28,18 @@ export let SIGN_UP_CONFIG = {
         EDD_CHECK_CLEARED: 'EDD_CHECK_CLEARED',
         ACCOUNT_FUNDED: 'ACCOUNT_FUNDED'
     },
-    ACCOUNT_NUMBER_MAX_LENGTH_INFO: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
-        'Bank of China': 15,
-        'Standard Chartered Bank': 10,
-        'DBS': 10,
-        'Citibank': 10,
-        'MayBank': 11,
-        'OCBC': 10,
-        'RHB Bank': 11,
-        'UOB': 10,
-        'ANZ Bank': 10,
-        'CIMB': 10,
-        'HSBC': 12,
-        'POSB': 9
+    BANK_KEYS: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
+        BANK_OF_CHINA: 'Bank of China',
+        STANDARD_CHARTED_BANK: 'Standard Chartered Bank',
+        DBS: 'DBS',
+        CITIBANK: 'Citibank',
+        MAYBANK: 'MayBank',
+        OCBC: 'OCBC',
+        RHB_BANK: 'RHB Bank',
+        UOB: 'UOB',
+        ANZ_BANK: 'ANZ Bank',
+        CIMB: 'CIMB',
+        HSBC: 'HSBC',
+        POSB: 'POSB'
     }
 };

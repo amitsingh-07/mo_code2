@@ -237,10 +237,11 @@ export class TopupAndWithDrawService {
     return errors;
   }
 
-  setWithdrawalTypeFormData(data) {
+  setWithdrawalTypeFormData(data, isRedeemAll) {
     this.topUpAndWithdrawFormData.withdrawType = data.withdrawType;
     this.topUpAndWithdrawFormData.withdrawAmount = data.withdrawAmount;
     this.topUpAndWithdrawFormData.withdrawPortfolio = data.withdrawPortfolio;
+    this.topUpAndWithdrawFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
 
@@ -259,9 +260,6 @@ export class TopupAndWithDrawService {
 
   constructSaveNewBankRequest(data) {
     const request = {};
-    if (data.bank) {
-      delete data.bank.accountNoMaxLength;
-    }
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
@@ -283,6 +281,7 @@ export class TopupAndWithDrawService {
     request['customerBankDetail'] = {
       accountNumber: data.bank ? data.bank.accountNumber : null
     };
+    request['redeemAll'] = data.isRedeemAll;
     return request;
   }
   // ONE-TIME INVESTMENT PAYLOAD

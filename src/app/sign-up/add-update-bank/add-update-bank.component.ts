@@ -80,17 +80,13 @@ export class AddUpdateBankComponent implements OnInit {
 
     this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
       this.bankForm.get('accountNo').setValidators([Validators.required,
-        Validators.pattern(RegexConstants.NumericOnly),
-        this.signUpService.validateAccNoMaxLength]);
+        this.signUpService.validateBankAccNo]);
       this.bankForm.get('accountNo').updateValueAndValidity();
       this.isAccountEdited = true;
     });
   }
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
-    if (this.formValues.bank) {
-      this.formValues.bank.accountNoMaxLength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[this.formValues.bank.key];
-    }
     this.updateId = this.formValues.id;
     this.bankForm = this.formBuilder.group({
       accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -133,10 +129,12 @@ export class AddUpdateBankComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-              response.objectList.serverStatus &&
-              response.objectList.serverStatus.errors.length
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
-              const errorResponse = response.objectList;
+              const errorResponse = response.objectList[response.objectList.length - 1];
               const errorList = errorResponse.serverStatus.errors;
               this.showIfastErrorModal(errorList);
             } else if (response.responseMessage && response.responseMessage.responseDescription) {
@@ -170,10 +168,12 @@ export class AddUpdateBankComponent implements OnInit {
           if (data.responseMessage.responseCode < 6000) {
             if (
               data.objectList &&
-              data.objectList.serverStatus &&
-              data.objectList.serverStatus.errors.length
+              data.objectList.length &&
+              data.objectList[data.objectList.length - 1].serverStatus &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors.length
             ) {
-            const errorResponse = data.objectList;
+            const errorResponse = data.objectList[data.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
             this.showIfastErrorModal(errorList);
             } else if (data.responseMessage && data.responseMessage.responseDescription) {
@@ -197,7 +197,6 @@ export class AddUpdateBankComponent implements OnInit {
   getLookupList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
-      this.banks = this.signUpService.addMaxLengthInfoForAccountNo(this.banks);
     });
   }
 

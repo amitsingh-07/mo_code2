@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,12 +7,15 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { WillWritingService } from './../../will-writing/will-writing.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -26,14 +30,13 @@ export class VerifyMobileComponent implements OnInit {
   verifyMobileForm: FormGroup;
   mobileNumber: any;
   mobileNumberVerifiedMessage: string;
-  showCodeSentText: boolean;
+  showCodeSentText = false;
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
-  isRetryEnabled: boolean;
-  retryDuration = 30; // in seconds
-  retrySecondsLeft;
   editProfile: boolean;
+  fromLoginPage: string;
+  showEditMobileNo = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,11 +46,16 @@ export class VerifyMobileComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
-    private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
+    private translate: TranslateService,
+    private errorHandler: CustomErrorHandlerService,
+    public authService: AuthenticationService,
+    private selectedPlansService: SelectedPlansService,
+    private willWritingService: WillWritingService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
       this.errorModal['message'] = result.ERROR_MODAL.ERROR_MESSAGE;
+      this.errorModal['expiredTitle'] = result.EXPIRED_ERROR_MODAL.ERROR_TITLE;
       this.errorModal['expiredMessage'] = result.EXPIRED_ERROR_MODAL.ERROR_MESSAGE;
       this.loading['verifying'] = result.LOADING.VERIFYING;
       this.loading['verified'] = result.LOADING.VERIFIED;
@@ -57,15 +65,22 @@ export class VerifyMobileComponent implements OnInit {
 
   ngOnInit() {
     this.progressModal = false;
-    this.showCodeSentText = false;
     this.mobileNumberVerified = false;
     this.editProfile = this.signUpService.getAccountInfo().editContact;
-    this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
-    this.startRetryCounter();
+    this.fromLoginPage = this.signUpService.getFromLoginPage();
+    if (this.fromLoginPage) {
+      this.mobileNumber = {
+        code: '+65',
+        number: this.signUpService.getUserMobileNo()
+      };
+      this.showEditMobileNo = false;
+    } else {
+      this.mobileNumber = this.signUpService.getMobileNumber();
+    }
   }
 
   /**
@@ -109,16 +124,14 @@ export class VerifyMobileComponent implements OnInit {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
-        this.signUpService.setResetCode(data.objectList[0].resetCode);
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
-        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : '';
+        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
         this.openErrorModal(title, message, showErrorButton);
       } else {
         this.progressModal = false;
         this.errorHandler.handleCustomError(data, true);
-        this.startRetryCounter();
       }
     });
   }
@@ -133,7 +146,6 @@ export class VerifyMobileComponent implements OnInit {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
-      this.startRetryCounter();
     });
   }
 
@@ -146,8 +158,23 @@ export class VerifyMobileComponent implements OnInit {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
+      this.resendEmailVerification();
     }
+  }
+
+  resendEmailVerification() {
+    const mobileNo = this.mobileNumber.number.toString();
+    this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
+      if (data.responseMessage.responseCode === 6007) {
+        this.signUpService.clearData();
+        this.selectedPlansService.clearData();
+        this.willWritingService.clearServiceData();
+        if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
+          this.signUpService.removeFromLoginPage();
+        }
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+      }
+    });
   }
 
   /**
@@ -199,22 +226,6 @@ export class VerifyMobileComponent implements OnInit {
     }).catch((e) => {
       this.verifyMobileForm.reset();
     });
-  }
-
-  /**
-   * Run Animated counter for 30s.
-   */
-  startRetryCounter() {
-    this.isRetryEnabled = false;
-    this.retrySecondsLeft = this.retryDuration;
-    const self = this;
-    const downloadTimer = setInterval(() => {
-      --self.retrySecondsLeft;
-      if (self.retrySecondsLeft <= 0) {
-        clearInterval(downloadTimer);
-        this.isRetryEnabled = true;
-      }
-    }, 1000);
   }
 
 }

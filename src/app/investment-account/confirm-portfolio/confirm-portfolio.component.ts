@@ -277,8 +277,10 @@ export class ConfirmPortfolioComponent implements OnInit {
           // ERROR SCENARIO
           if (
             response.objectList &&
-            response.objectList.serverStatus &&
-            response.objectList.serverStatus.errors.length
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].serverStatus &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors.length
           ) {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;
@@ -326,8 +328,10 @@ export class ConfirmPortfolioComponent implements OnInit {
           // ERROR SCENARIO
           if (
             response.objectList &&
-            response.objectList.serverStatus &&
-            response.objectList.serverStatus.errors.length
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].serverStatus &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors &&
+            response.objectList[response.objectList.length - 1].serverStatus.errors.length
           ) {
             const errorResponse = response.objectList[response.objectList.length - 1];
             const errorList = errorResponse.serverStatus.errors;

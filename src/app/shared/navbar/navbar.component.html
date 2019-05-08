@@ -2,8 +2,8 @@
     <!-- Browser Detection (Error if IE11 or below) -->
     <div *ngIf="browserError" class="navbar-wrapper error">
         <div class="navbar__inner-wrapper">
-          <span>{{defaultErrors.errorList['browser'].title}}</span>
-          <span>{{defaultErrors.errorList['browser'].message}}</span>
+          <span>{{defaultError.errorList['browser'].title}}</span>
+          <span>{{defaultError.errorList['browser'].message}}</span>
           <div class="close-btn" (click)="closeBrowserError()"></div>
         </div>
       </div>
@@ -119,8 +119,10 @@
             (mouseleave)="closeDropdown(id02);">
             <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
-              <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
-              <button class="dropdown-item" [routerLink]="['/articles/category/all']">All Articles</button>
+              <button class="dropdown-item" (click)="goToExternal('https://advice.moneyowl.com.sg/investment/')">Learn About Investments</button>
+              <button class="dropdown-item" (click)="goToExternal('https://advice.moneyowl.com.sg/articles/insurance/')">Learn About Insurance</button>
+              <button class="dropdown-item" (click)="goToExternal('https://advice.moneyowl.com.sg/articles/estate_planning/')">Learn About Estate Planning</button>
+              <button class="dropdown-item" (click)="goToExternal('https://advice.moneyowl.com.sg/')">Read All Articles</button>
             </div>
           </li>
           <li *ngIf="showMenu" class="nav-item" [routerLink]="['/faq']">
@@ -137,6 +139,9 @@
               </button>
               <button class="dropdown-item" [routerLink]="['/about-us/why-moneyowl']">
                 <div class="navbar--text">Why MoneyOwl</div>
+              </button>
+              <button class="dropdown-item" (click)="goToExternal('https://moneyowl.recruiterpal.com/career/jobs')">
+                <div class="navbar--text">Careers</div>
               </button>
               <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
                 <div class="navbar--text">Contact Us</div>

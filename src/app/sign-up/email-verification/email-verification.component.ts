@@ -1,12 +1,11 @@
-import { ConfigService, IConfig } from './../../config/config.service';
+import { ConfigService } from './../../config/config.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
-import { SignUpService } from './../sign-up.service';
 
 @Component({
   selector: 'app-email-verification',
@@ -16,19 +15,15 @@ import { SignUpService } from './../sign-up.service';
 export class EmailVerificationComponent implements OnInit {
   email: string;
   emailVerified: boolean;
-  willWritingEnabled = false;
+
   constructor(
     private signUpApiService: SignUpApiService,
-    private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
     private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      this.willWritingEnabled = config.willWritingEnabled;
-    });
   }
 
   /**

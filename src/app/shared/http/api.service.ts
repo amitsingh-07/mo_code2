@@ -8,7 +8,7 @@ import { UserInfo } from './../../guide-me/get-started/get-started-form/user-inf
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { IEnquiryUpdate, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
@@ -186,7 +186,9 @@ export class ApiService {
     const payload = {
       toEmail: data.email,
       subject: data.subject,
-      body: data.message
+      body: data.message,
+      custEmail: data.emailAddress,
+      custContactNo: data.contactNumber.toString()
     };
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
       .pipe(
@@ -235,7 +237,7 @@ export class ApiService {
       );
   }
 
-  getCustomerInsuranceDetails(){
+  getCustomerInsuranceDetails() {
     return this.http.get(apiConstants.endpoint.getCustomerInsuranceDetails)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -324,27 +326,6 @@ export class ApiService {
 
   emailValidityCheck(payload) {
     return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
-  }
-
-  setPassword(payload: ISetPassword) {
-    return this.http.post(apiConstants.endpoint.setPassword, payload)
-      .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
-      );
   }
 
   verifyEmail(payload) {
@@ -689,7 +670,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
+  // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
@@ -711,7 +692,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
@@ -805,6 +786,14 @@ export class ApiService {
 
   downloadStatement(data) {
     return this.http.getBlob(apiConstants.endpoint.investment.getStatement + '?' + data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Resend Email Verification Link
+  resendEmailVerification(payload) {
+    return this.http.post(apiConstants.endpoint.resendEmailVerification + '?handleError=true', payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

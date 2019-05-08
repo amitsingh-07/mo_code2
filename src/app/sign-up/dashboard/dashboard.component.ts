@@ -89,12 +89,14 @@ export class DashboardComponent implements OnInit {
         // ERROR SCENARIO
         if (
           userInfo.objectList &&
-          userInfo.objectList.serverStatus &&
-          userInfo.objectList.serverStatus.errors.length
+          userInfo.objectList.length &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
         ) {
           this.showCustomErrorModal(
             'Error!',
-            userInfo.objectList.serverStatus.errors[0].msg
+            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
           );
         } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
           const errorResponse = userInfo.responseMessage.responseDescription;
@@ -145,7 +147,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
   }
 
   goToEditProfile() {

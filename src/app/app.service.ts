@@ -83,6 +83,8 @@ export class AppService {
       sessionStorage.removeItem('app_guided_session');
       // Insurance results
       sessionStorage.removeItem('insurance_results_counter');
+      // User mobile no for resend email verification link
+      sessionStorage.removeItem('user_mobile');
     }
   }
 
