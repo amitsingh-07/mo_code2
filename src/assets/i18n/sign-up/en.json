@@ -29,7 +29,7 @@
   },
   "CREATE_ACCOUNT": {
     "TITLE": "Create Your Account",
-    "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+    "DESCRIPTION": "Please fill in your details",
     "FORM": {
       "MOBILE_NUMBER": "Mobile Number",
       "FIRST_NAME": "First Name",
