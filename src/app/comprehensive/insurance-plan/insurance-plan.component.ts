@@ -160,12 +160,12 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme === 0) {
+        if (form.value.haveCPFDependentsProtectionScheme !== 0) {
           form.value.lifeProtectionAmount = 0;
         }
 
-        if (form.value.haveCPFDependentsProtectionScheme !== 0) {
-          form.value.lifeProtectionAmount = 0;
+        if (form.value.haveHDBHomeProtectionScheme !== 0) {
+          form.value.homeProtectionCoverageAmount = 0;
         }
 
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
