@@ -535,15 +535,39 @@ _:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
 		.container-fluid {
 			padding: 0px 25px 0 50px;
 			.step-item {
-				margin-right: 30px !important;
+				margin-right: 28px !important;
+				@include stepcolor;
+
 				&:last-child {
 						margin-right: 0 !important;
 				}
 			}
 		}
 	}
+		.step-item {
+			@include tablet {
+				@include stepcolor;
+			}
+		}
+	@include allmobiles {
+	.step-item {
+		&.active {
+		   	opacity: 1;
+				 background-color: $step-indicator-active;
+		  }
+	  }
+	 }
 }
 
+// STEP INDICATOR FOR INVESTMENT
+
+@mixin stepcolor {
+  opacity: 0.2;
+ &.active {
+    background-color: #31e5db !important;
+    opacity: 1;
+  }
+}
 /**
 * form button design for investment-account and portfolio, 
 * 1. confirm/save/apply button set to width of 360 - desktop view
