@@ -260,9 +260,6 @@ export class TopupAndWithDrawService {
 
   constructSaveNewBankRequest(data) {
     const request = {};
-    if (data.bank) {
-      delete data.bank.accountNoMaxLength;
-    }
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
