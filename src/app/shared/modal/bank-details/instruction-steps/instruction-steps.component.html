@@ -1,0 +1,153 @@
+<!--  Bank Transfer: -->
+<div class="instruction-content" *ngIf="showBankTransferIns">
+  <div class="steps-title">{{'TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate}}</div>
+  <ul class="list-none">
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.STEP_1' | translate}}a</div>
+        <div class="sub-section"
+          innerHTML="{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.LBL_STEP_1' | translate}}">
+        </div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.STEP_2' | translate}}</div>
+        <div class="sub-section"
+          innerHTML="{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.LBL_STEP_2' | translate}}">
+        </div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.STEP_3' | translate}}</div>
+        <div class="sub-section">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.LBL_STEP_3' | translate}}</div>
+        <div class="bank-details">
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
+            </div>
+            <div><strong>{{bankDetails?.receipientName}}</strong></div>
+          </div>
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}</div>
+            <div><strong>{{bankDetails?.bankName}}</strong></div>
+          </div>
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}</div>
+            <div><strong>{{bankDetails?.bankAccountNumber}}</strong></div>
+          </div>
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.REFERENCE_CODE' | translate}}
+            </div>
+            <div><strong class="ref_num"><u>{{bankDetails?.referenceNumber}}</u></strong></div>
+          </div>
+          <div class="ref_code_info">
+            <span><img src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+            <span>{{ 'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.STEP_4' | translate}}</div>
+        <div class="sub-section">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.LBL_STEP_4' | translate}}</div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">
+          {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.STEP_5' | translate}}</div>
+        <div class="sub-section"
+          innerHTML="{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.LBL_STEP_5' | translate}}">
+        </div>
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="setup-auto-deposit">
+    <div class="head">
+      {{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.SETUP_AUTO_DEPOSIT' | translate}}</div>
+    <p>{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_BANK_TRANSCTIONS.DESC_SETUP_AUTO_DEPOSIT' | translate}}</p>
+  </div> -->
+  <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="investment">For more information, visit our
+      FAQs.</a></div>
+</div>
+
+<!--  PayNow: -->
+<div class="instruction-content" *ngIf="!showBankTransferIns">
+    <div class="steps-title">{{'TRANSFER_INSTRUCTION.STEPS_TITLE_PAYNOW' | translate}}</div>
+  <ul class="list-none">
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.STEP_1' | translate}}
+        </div>
+        <div class="sub-section"
+          innerHTML="{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.LBL_STEP_1' | translate}}"></div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.STEP_2' | translate}}
+        </div>
+        <div class="sub-section"
+          innerHTML="{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.LBL_STEP_2' | translate}}"></div>
+        <div class="bank-details">
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}</div>
+            <div><strong>{{paynowDetails.bankAccountNumber}}</strong></div>
+          </div>
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}</div>
+            <div><strong>{{paynowDetails.receipientName}}</strong></div>
+          </div>
+          <div class="flex-col">
+            <div class="bank-details-title">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.REFERENCE_CODE' | translate}}</div>
+            <div><strong class="ref_num"><u>{{paynowDetails.referenceNumber}}</u></strong></div>
+          </div>
+          <div class="ref_code_info">
+            <span><img src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+            <span>{{ 'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.STEP_3' | translate}}
+        </div>
+        <div class="sub-section">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.LBL_STEP_3' | translate}}
+        </div>
+      </div>
+    </li>
+    <li class="flex">
+      <div class="circle"></div>
+      <div class="section">
+        <div class="sub-section step">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.STEP_4' | translate}}
+        </div>
+        <div class="sub-section">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.LBL_STEP_4' | translate}}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="setup-auto-deposit">
+    <div class="head">{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.SETUP_AUTO_DEPOSIT' | translate}}
+    </div>
+    <p>{{'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOW_PAYNOW.DESC_SETUP_AUTO_DEPOSIT' | translate}}</p>
+  </div> -->
+  <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="investment">For more information, visit our
+      FAQs.</a></div>
+</div>

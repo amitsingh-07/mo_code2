@@ -1,0 +1,148 @@
+@import '../../../../../variables';
+
+.instruction-content {
+  padding-top: 20px;
+  color: $dark-grey-color;
+  line-height: 22px;
+  letter-spacing: -0.16px;
+
+  .steps-title {
+    font-family: $muli-bold;
+    font-size: 21px;
+    line-height: 1.48;
+    letter-spacing: -0.2px;
+    color: $watercourse-color;
+    padding: 15px;
+  }
+
+  .list-none {
+    padding: 10px;
+    margin: 0;
+  }
+
+  li {
+    &:last-child {
+      .section {
+        border-left: none;
+      }
+    }
+
+    .section {
+      border-left: 1px solid $teal-color;
+      margin-left: -10px;
+      padding-bottom: 25px;
+      font-size: 16px;
+
+      .sub-section {
+        margin-left: 19.5px;
+
+        &.step {
+          color: $teal-color;
+          font-size: 18px;
+        }
+
+        strong {
+          font-family: $muli-bold;
+        }
+
+      }
+    }
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+    background-color: $teal-color;
+    border-radius: 50%;
+    padding: 10px;
+  }
+
+  .bank-details {
+    margin-left: 19.5px;
+    margin-top: 20px;
+    .flex-col {
+      padding-bottom: 20px;
+      div {
+        &:last-child {
+          font-family: $muli-semi-bold;
+        }
+      }
+    }
+    &-title {
+      font-family: $muli-semi-bold;
+      color: $dark-teal-color;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+    }
+
+    .ref_code_info {
+      display: flex;
+      justify-content: space-between;
+      color: #e57300;
+      font-weight: bold;
+      font-family: $muli-bold;
+      letter-spacing: -0.12px;
+      font-size: 14px;
+
+      span {
+        padding: 0px 8px 0px 0px;
+      }
+    }
+
+    .ref_num {
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.16px;
+      color: #ff872f;
+      line-height: 22px;
+    }
+  }
+
+  .setup-auto-deposit {
+    border: 1.5px solid $dark-teal-color;
+    border-radius: 6px;
+    padding: 25px;
+    position: relative;
+    margin: 0px 18px 20px;
+    display: flex;
+    justify-content: center;
+
+    .head {
+      font-family: $muli-bold;
+      font-size: 16px;
+      text-align: center;
+      color: $teal-color;
+      position: absolute;
+      top: -18px;
+      padding: 5px 15px 5px 55px;
+      display: flex;
+      flex: 1;
+      background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
+      background-color: $white-color;
+      background-position: 15px 4px;
+    }
+
+    p {
+      color: $black-color;
+      text-align: center;
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  .faq-link {
+    text-align: center;
+    padding-bottom: 20px;
+
+    a {
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $secondary-action-color;
+      text-decoration: none;
+    }
+  }
+}
