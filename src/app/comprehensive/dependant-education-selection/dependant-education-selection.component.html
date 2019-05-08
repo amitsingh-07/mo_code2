@@ -61,16 +61,16 @@
         </section>
       </div>
       <div class="checkbox-button one-label">
-        <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="dependant_selection_no" name="hasEndowments" formControlName="hasEndowments"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="dependantEducationSelectionFormLblNo" name="hasEndowments" formControlName="hasEndowments"
           type="radio" value='0' class="field radio">
-        <label for="dependant_selection_no">
+        <label for="dependantEducationSelectionFormLblNo">
           <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
         </label>
       </div>
     </div>
     <div class="footer-cta"> 
     <button [disabled]="educationPreference && !education_plan_selection" type="button" (click)="goToNext(dependantEducationSelectionForm)" class="btn btn-primary width100"
-    id="moDpdnt2BtnFooter">  {{
+    id="dependantEducationSelectionFormBtnFooter">  {{
       (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
     </button>
   </div>

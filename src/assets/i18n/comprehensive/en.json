@@ -1,6 +1,6 @@
 {
   "CMP": {
-    "HOME_TYPE_LIST": ["HDB", "Private"],
+    "HOME_TYPE_LIST": ["New HDB","Resale HDB", "Private"],
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promo code, please log in or create a MoneyOwl account.",
       "PROMO_CODE_SUCCESS":"Hurray! Your promo code is sent to your email ",
@@ -134,7 +134,7 @@
       "DESC_SUB_ABOUT_3":"When you are ready, our Client Adviser will meet you for a fuller consultation of up to two hours, where we can discuss your Financial Health report, refine your analysis and goals and customise your plan further. We will also help you to implement the plan through specific product recommendations, if you choose to do so.",
       "DESC_SUB_ABOUT_4":"Financial planning is an ongoing process. We will prompt you to review your plan once a year. For a limited period, our clients will not be charged for the first-year review. ",
       "DESCRIPTION":"Description",
-      "ROBOADVISORY":"Roboadvisory",
+      "ROBOADVISORY":"Robo advisory",
       "FREE":"Free ",
       "FREE_LIMITED":"for a limited time only!",
       "ENTER_PROMO":"Enter your promo code",
