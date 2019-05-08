@@ -233,7 +233,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           if (data.responseMessage.responseCode === 6007) {
             ref.componentInstance.emailSent = true;
           } else if (data.responseMessage.responseCode === 5114) {
-            ref.close();
+            ref.close('close');
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
         });
