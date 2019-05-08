@@ -1723,4 +1723,13 @@ export class InvestmentAccountService {
   loadDDCRoadmap() {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC_ROADMAP);
   }
+
+  setUserPortfolioExistStatus(status) {
+    this.investmentAccountFormData.portfolioExist = status;
+    this.commit();
+  }
+
+  getUserPortfolioExistStatus() {
+    return this.investmentAccountFormData.portfolioExist;
+  }
 }
