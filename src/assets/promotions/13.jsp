@@ -1,5 +1,5 @@
 <div class="promo-content__container">
-    <p>To qualify for the premium discount for Aviva MyProtector Term Plan nd MyProtector Term Plan II</p>
+    <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline</p>
     <div class="promo__table">
     <table class="promo__inner-table table-bordered">
         <tr>
