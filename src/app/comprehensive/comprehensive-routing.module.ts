@@ -4,6 +4,7 @@ import { ProgressTrackerComponent } from './../shared/modal/progress-tracker/pro
 
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
 import { ComprehensiveEnableGuard } from './comprehensive-enable-guard';
+import { ComprehensiveReviewComponent } from './comprehensive-review/comprehensive-review.component';
 import { COMPREHENSIVE_ROUTES } from './comprehensive-routes.constants';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
@@ -57,7 +58,8 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.INSURANCE_PLAN_SUMMARY + '/:summary', component: InsurancePlanComponent },
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
-            { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent }
+            { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent },
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent }
         ]
     }
 ];

@@ -381,7 +381,7 @@ input::placeholder {
   background: $inline-error-bg-color;
   border-radius: 4px;
 
-  * {
+  &.dropdown-control, .form-control, &.form-group-floating-label, .btn-dropdown {
     background: $inline-error-bg-color !important;
   }
 
@@ -402,7 +402,6 @@ input::placeholder {
   input {
     color: $inline-error-border-color !important;
   }
-
 }
 
 .form__col--mid {
