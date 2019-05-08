@@ -376,12 +376,15 @@ input::placeholder {
 /*Inline Error Styles*/
 
 .inline-error {
-  color: $inline-error-border-color;
+  color: $inline-error-border-color !important;
   border: 1px solid $inline-error-border-color !important;
   background: $inline-error-bg-color;
   border-radius: 4px;
+  &.form-control i, &.form-control::placeholder, &.form-control i.right, &.dropdown-control .btn-dropdown {
+    color: $inline-error-border-color;
+  }
 
-  &.dropdown-control, .form-control, &.form-group-floating-label, .btn-dropdown {
+  &.dropdown-control, .form-control, &.form-group-floating-label, .btn-dropdown, .input-control, .input-group-append .btn-primary {
     background: $inline-error-bg-color !important;
   }
 
