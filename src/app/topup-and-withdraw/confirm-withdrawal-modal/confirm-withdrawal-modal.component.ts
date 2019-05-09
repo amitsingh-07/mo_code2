@@ -14,27 +14,23 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   showWarningMessage = false;
   @Input() withdrawAmount: any;
   @Input() withdrawType: any;
-  @Input() portfolioValue: any;
+  @Input() portfolio: any;
+  @Input() bankAccountNo: any;
+  @Input() userInfo: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
+  @Output() showLearnMore: EventEmitter<any> = new EventEmitter();
   WITHDRAW_CONSTANTS;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.WITHDRAW_CONSTANTS = TOPUPANDWITHDRAW_CONFIG.WITHDRAW;
-    this.portfolioMinBalance();
   }
 
   confirmWithdrawal() {
     this.confirmed.emit();
   }
-  portfolioMinBalance() {
-    this.minBalance = this.portfolioValue - this.withdrawAmount;
-    if (this.minBalance <= 50) {
-      this.showWarningMessage = true;
-    } else {
-      this.showWarningMessage = false;
-    }
-
+  learnMore() {
+    this.showLearnMore.emit();
   }
 }

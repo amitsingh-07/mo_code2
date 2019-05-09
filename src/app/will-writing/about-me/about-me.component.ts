@@ -103,7 +103,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.aboutMeForm = this.formBuilder.group({
       name: [this.formValues.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100),
       Validators.pattern(RegexConstants.NameWithSymbol)]],
-      uin: [this.formValues.uin, [Validators.required, Validators.pattern(RegexConstants.UIN)]],
+      uin: [this.formValues.uin, [Validators.required]],
       gender: [this.formValues.gender, [Validators.required]],
       maritalStatus: [this.formValues.maritalStatus, [Validators.required]],
       noOfChildren: [this.formValues.noOfChildren, [Validators.required]]

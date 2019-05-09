@@ -1,4 +1,3 @@
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -15,8 +14,11 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { AddBankModalComponent } from '../add-bank-modal/add-bank-modal.component';
 import {
-  ConfirmWithdrawalModalComponent
+    ConfirmWithdrawalModalComponent
 } from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+    ForwardPricingModalComponent
+} from '../forward-pricing-modal/forward-pricing-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -142,14 +144,37 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.formValues.withdrawAmount;
     ref.componentInstance.withdrawType = this.formValues.withdrawType;
-    ref.componentInstance.portfolioValue = this.currentPortfolioValue();
+    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
+    if (this.userBankList && this.userBankList.length) {
+      ref.componentInstance.bankAccountNo = this.userBankList[0].accountNumber;
+    }
+    ref.componentInstance.userInfo = this.userInfo;
     ref.componentInstance.confirmed.subscribe((data) => {
       ref.close();
       this.saveWithdrawal();
       // confirmed
     });
+    ref.componentInstance.showLearnMore.subscribe(() => {
+      ref.close();
+      this.showLearnMoreModal();
+    });
     this.dismissPopup(ref);
   }
+
+  showLearnMoreModal() {
+    const learnMoreRef = this.modal.open(ForwardPricingModalComponent, {
+      centered: true,
+      backdrop : 'static',
+      keyboard : false
+    });
+    learnMoreRef.result.then((data) => {
+    }, (reason) => {
+      learnMoreRef.close();
+      this.showConfirmWithdrawModal();
+      // on dismiss
+    });
+  }
+
   currentPortfolioValue() {
     if (this.formValues.withdrawPortfolio) {
       const portfolioValue = this.formValues.withdrawPortfolio.currentValue;

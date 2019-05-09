@@ -5,18 +5,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
-import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
+import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { appConstants } from '../../app.constants';
+import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/shared/http/api.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { IEnquiryUpdate } from '../signup-types';
+import { Formatter } from '../../shared/utils/formatter.util';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -34,6 +42,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   editNumber;
   captchaSrc: any = '';
+  isPasswordValid = true;
+
+  confirmEmailFocus = false;
+  confirmPwdFocus = false;
+  passwordFocus = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,8 +59,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
-    private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService,
+    private appService: AppService,
+    private apiService: ApiService,
+    private selectedPlansService: SelectedPlansService,
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -89,10 +106,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
+      confirmEmail: [this.formValues.email],
+      password: ['', [Validators.required, ValidatePassword]],
+      confirmPassword: [''],
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       captcha: ['', [Validators.required]]
-    });
+    }, { validator: this.validateMatchPasswordEmail() });
   }
 
   /**
@@ -105,9 +125,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         form.get(key).markAsDirty();
       });
       const error = this.signUpService.getSignupFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
+      if (error.errorMessages.length > 0) {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.title;
+        ref.componentInstance.errorMessageList = error.errorMessages;
+      }
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
@@ -146,17 +168,114 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    this.signUpApiService.createAccount(this.createAccountForm.value.captcha).subscribe((data: any) => {
-      if (data.responseMessage.responseCode === 6000) {
-        this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        //sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      } else {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-        this.refreshCaptcha();
+    this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
+      .subscribe((data: any) => {
+        const responseCode = [6000, 6008, 5006];
+        if (responseCode.includes(data.responseMessage.responseCode)) {
+          if (data.responseMessage.responseCode === 6000 ||
+            data.responseMessage.responseCode === 6008) {
+            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+          }
+          const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+          if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+            (insuranceEnquiry &&
+              insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+            const redirect = data.responseMessage.responseCode === 6000;
+            this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
+          } else if (data.responseMessage.responseCode === 6000) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+          } else if (data.responseMessage.responseCode === 6008 ||
+            data.responseMessage.responseCode === 5006) {
+            this.callErrorModal(data);
+          }
+        } else {
+          this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+        }
+      });
+  }
+
+  callErrorModal(data: any) {
+    if (data.responseMessage.responseCode === 6008) {
+      this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+        this.translate.instant('COMMON.VERIFY_NOW'),
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+    } else if (data.objectList[0].accountAlreadyCreated) {
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
+        this.translate.instant('COMMON.LOG_IN'),
+        SIGN_UP_ROUTE_PATHS.LOGIN, false);
+    } else if (!data.objectList[0].emailVerified) {
+      this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
+      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
+        this.translate.instant('COMMON.LOG_IN'),
+        SIGN_UP_ROUTE_PATHS.LOGIN, true);
+    }
+  }
+
+  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorMessage = message;
+    ref.result.then((data) => {
+      if (!data && redirect) {
+        this.router.navigate([redirect]);
       }
     });
+    if (title) {
+      ref.componentInstance.errorTitle = title;
+      ref.componentInstance.buttonLabel = buttonLabel;
+    }
+    if (emailResend) {
+      ref.componentInstance.enableResendEmail = true;
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          } else if (data.responseMessage.responseCode === 5114) {
+            ref.close('close');
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+          }
+        });
+    }
+    this.refreshCaptcha();
+    this.createAccountForm.controls['password'].reset();
+    this.createAccountForm.controls['confirmPassword'].reset();
+  }
+
+  updateInsuranceEnquiry(insuranceEnquiry, data: any, redirect: boolean) {
+    const payload: IEnquiryUpdate = {
+      customerId: data.objectList[0].customerRef,
+      enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      selectedProducts: insuranceEnquiry.plans
+    };
+    this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
+      if (redirect) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      } else {
+        this.callErrorModal(data);
+      }
+    });
+  }
+
+  onPasswordInputChange() {
+    if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty
+      && this.createAccountForm.controls.password.value) {
+      this.isPasswordValid = false;
+    } else {
+      const _self = this;
+      setTimeout(() => {
+        _self.isPasswordValid = true;
+      }, 500);
+    }
+  }
+
+  resendEmailVerification() {
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
   }
 
   onlyNumber(el) {
@@ -179,5 +298,57 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   refreshCaptcha() {
     this.createAccountForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
+  }
+
+  /**
+   * show / hide password field.
+   * @param el - selected element.
+   */
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
+
+  /**
+   * validate confirm password.
+   */
+  private validateMatchPasswordEmail() {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls['password'];
+      const passwordConfirmationInput = group.controls['confirmPassword'];
+      const emailInput = group.controls['email'];
+      const emailConfirmationInput = group.controls['confirmEmail'];
+
+      // Confirm Password
+      if (!passwordConfirmationInput.value) {
+        passwordConfirmationInput.setErrors({ required: true });
+      } else if (passwordInput.value !== passwordConfirmationInput.value) {
+        passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        passwordConfirmationInput.setErrors(null);
+      }
+
+      // Confirm E-mail
+      if (!emailConfirmationInput.value) {
+        emailConfirmationInput.setErrors({ required: true });
+      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
+        emailConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        emailConfirmationInput.setErrors(null);
+      }
+    };
+  }
+
+  showValidity(from) {
+    if (from === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (from === 'confirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
+    }
   }
 }

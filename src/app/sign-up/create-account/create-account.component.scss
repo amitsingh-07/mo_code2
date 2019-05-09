@@ -1,18 +1,23 @@
 @import '../../../variables';
 @import '../../../mixins';
-.checkbox-button a {
-  color: $white-color;
-  text-decoration: underline;
-}
-input[type='checkbox']+label {
-   background-position:left top;
- }
- .dropdown-menu.show {
+
+app-create-account {
+  .checkbox-button a {
+    color: $white-color;
+    text-decoration: underline;
+  }
+
+  input[type='checkbox']+label {
+    background-position: left top;
+  }
+
+  .dropdown-menu.show {
     height: 200px;
     overflow-y: auto;
-}
-.back-btn {
-	background-image: url("../../../assets/images/back-web.svg");
+  }
+
+  .back-btn {
+    background-image: url("../../../assets/images/back-web.svg");
     width: 43px;
     height: 43px;
     cursor: pointer;
@@ -20,16 +25,58 @@ input[type='checkbox']+label {
     top: 5%;
     left: 20px;
     background-repeat: no-repeat;
-}
-.form-group-captcha-wrapper {
-  display: flex;
-  align-items: center;
-  height: 60%;
-}
+  }
 
-.link-white {
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 13px;
-  margin-top: 10px;
+  .form-group-captcha-wrapper {
+    display: flex;
+    align-items: center;
+    height: 60%;
+  }
+
+  .link-white {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .dropdown-control {
+    &.form-control-left {
+      .btn-dropdown {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .form-group-floating-label .error-tooltip {
+    position: absolute;
+    bottom: 56px;
+    z-index: 1060;
+    width: 100%;
+  }
+
+  .form-control:focus+.form-control-placeholder,
+  .form-control:valid+.form-control-placeholder,
+  .form-control:read-only+.form-control-placeholder {
+    font-size: 10px;
+    transform: translate3d(0, -50%, 0);
+    opacity: 1;
+    color: #5e5e5e;
+    z-index: 999;
+  }
+
+  .inline-error {
+    .show-password{
+      background: url("../../../assets/images/show-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+    .hide-password {
+      background-image: url("../../../assets/images/hide-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+  }
 }

@@ -82,7 +82,7 @@
                   </label>
                 </div>
                 <div class="flex-col-8">
-                  <div class="form-control">
+                  <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawAmount)}">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
                       <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
@@ -91,16 +91,52 @@
                   </div>
                 </div>
               </div>
-              <div class="cash-balance flex-row">
-                <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:</span>
-                <span *ngIf="!isFromPortfolio">{{cashBalance | currency}}</span>
-                <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:</span>
-                <span *ngIf="isFromPortfolio">
-                  <span *ngIf="withdrawForm.controls.withdrawPortfolio.value.currentValue">{{withdrawForm.controls.withdrawPortfolio.value.currentValue
-                    | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                  <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value.currentValue"> {{ 0|
-                    currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                </span>
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="withdraw-error" *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinWithdrawal">
+                    <img src="../../../assets/images/info-orange.png" alt="" />
+                    <span [innerHTML]="'WITHDRAW.MIN_WITHDRAWAL_INFO' | translate:translateParams"> </span>
+                  </div>
+                  <div class="withdraw-error" *ngIf="isFromPortfolio && (isRedeemAll || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
+                    <img src="../../../assets/images/info-orange.png" alt="" />
+                    <span [innerHTML]="'WITHDRAW.REDEEM_ALL_INFO' | translate:translateParams"> </span>
+                  </div>
+                </div>
+              </div>
+              <div class="cash-balance">
+                  <div class="row mb15  " *ngIf="!isFromPortfolio">
+                      <div class="col-7">
+                          {{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:
+                      </div>
+                      <div class="col-5 text-right">
+                          {{cashBalance | currency}}
+                      </div>
+                  </div>
+                  <div class="row mb15" *ngIf="isFromPortfolio">
+                      <div class="col-7">
+                          {{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:
+                      </div>
+                      <div class="col-5 text-right">
+                          <span *ngIf="withdrawForm.controls.withdrawPortfolio.value.currentValue">{{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency }}</span>
+                            <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value.currentValue"> {{ 0 | currency }}</span>
+                      </div>
+                  </div>
+                  <div class="row" *ngIf="!isRedeemAll && isFromPortfolio && withdrawForm.valid">
+                      <div class="col-7">
+                          {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
+                      </div>
+                      <div class="col-5 text-right">
+                          {{withdrawForm.controls.withdrawPortfolio.value.currentValue - withdrawForm.controls.withdrawAmount.value | currency}}
+                      </div>
+                  </div>
+                  <div class="row" *ngIf="!isRedeemAll && !isFromPortfolio && withdrawForm.valid">
+                      <div class="col-7">
+                          {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
+                      </div>
+                      <div class="col-5 text-right">
+                          {{cashBalance - withdrawForm.controls.withdrawAmount.value | currency}}
+                      </div>
+                  </div>
               </div>
             </div>
           </form>
