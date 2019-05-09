@@ -88,9 +88,9 @@ export class DashboardComponent implements OnInit {
     if (this.investmentAccountService.getUserPortfolioExistStatus()) {
       this.investmentAccountService.setUserPortfolioExistStatus(false);
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_DESC');
-      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_BTN_TITLE');
+      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
       ref.componentInstance.portfolioExist = true;
       ref.componentInstance.primaryAction.subscribe((emittedValue) => {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);

@@ -250,9 +250,9 @@
       "SET_UP_ACCOUNT": "Set-Up Account",
       "SUSPENDED_INVESTMENT_ACCOUNT": "Your account has been suspended. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
-      "PORTFOLIO_EXIT_TITLE":"Portfolio Already Exist",
-      "PORTFOLIO_EXIT_DESC":"You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
-      "PORTFOLIO_EXIT_BTN_TITLE":"Proceed To Portfolio"
+      "PORTFOLIO_EXIST_TITLE":"Portfolio Already Exist",
+      "PORTFOLIO_EXIST_DESC":"You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
+      "PORTFOLIO_EXIST_BTN_LABEL":"Proceed To Portfolio"
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",
