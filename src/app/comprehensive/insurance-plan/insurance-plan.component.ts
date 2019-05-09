@@ -61,13 +61,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (cmpSummary.comprehensiveSpending.HLtypeOfHome === 'HDB'
-        || cmpSummary.comprehensiveSpending.mortgageTypeOfHome === 'HDB') {
+      if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+        || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
         this.haveHDB = true;
       }
     });
     if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
-    COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE ) {
+      COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
       this.longTermInsurance = false;
     }
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
@@ -101,8 +101,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
       }, [Validators.required]],
-      criticalIllnessCoverageAmount: [{value: this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
-        '',  disabled: this.viewMode}, [Validators.required]],
+      criticalIllnessCoverageAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
+          '', disabled: this.viewMode
+      }, [Validators.required]],
       disabilityIncomeCoverageAmount: [{
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode
