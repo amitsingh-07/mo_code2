@@ -27,6 +27,12 @@
       }
     }
 
+    .text-black {
+      .sub-section {
+        color: $black-color;
+      }
+    }
+
     .section {
       border-left: 1px solid $teal-color;
       margin-left: -10px;
