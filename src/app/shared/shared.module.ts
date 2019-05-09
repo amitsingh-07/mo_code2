@@ -44,6 +44,7 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [{ prefix: './assets/i18n/app/', suffix: '.json' }]);
@@ -88,7 +89,8 @@ export function createTranslateLoader(http: HttpClient) {
     NumberOnlyDirective,
     ProgressTrackerModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    NavbarComponent
   ],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
@@ -114,7 +116,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProgressTrackerModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    NavbarComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
