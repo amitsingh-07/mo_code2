@@ -26,12 +26,25 @@ app-popup-modal{
     background-color:$white-color;
     border-radius:6px;
     overflow:hidden;
+.close_btn{
+    position: absolute !important;
+    right: 15px !important;
+    top: 25px !important;
+    text-shadow: none !important;
+    background: url("/assets/images/close-button-dark.svg") !important;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat !important;
+    z-index:5;
+    cursor: pointer;
+}
 .modal-body-message{
     max-height:none;
     @include minMobilemaxPhablet{
         max-height: none;
     }
 }
+
 .modal-popup{
     position: relative;
     display:flex;
@@ -46,6 +59,7 @@ app-popup-modal{
         background-image:url('/assets/events/MOIS_MobileBanner.jpg');
         padding-bottom:60px;
         }
+    
     .external_btn{
         position: absolute;
         display:flex; 

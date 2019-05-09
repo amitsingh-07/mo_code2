@@ -4,6 +4,10 @@ app-forward-pricing-modal {
   .forward-pricing-modal {
     font-family: $muli;
 
+    .modal-body-title {
+      margin-right:25px;  
+    }
+
     .modal-body-message {
       margin-top:20px;
       padding-bottom: 40px;
