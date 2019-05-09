@@ -102,7 +102,9 @@
       position: absolute;
       top: -24px;
       text-align: left;
-     
+      @include max360{
+        top: -30px;
+      }
       span {
         padding: 23px 10px 7px;
         &:nth-child(2){
