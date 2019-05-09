@@ -260,9 +260,6 @@ export class TopupAndWithDrawService {
 
   constructSaveNewBankRequest(data) {
     const request = {};
-    if (data.bank) {
-      delete data.bank.accountNoMaxLength;
-    }
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
@@ -352,7 +349,7 @@ export class TopupAndWithDrawService {
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = 12 * (toYear - fromYear) +  to.getMonth();
+    const diffYear = 12 * (toYear - fromYear) +  to.getMonth() - 1;
     const initMonth = from.getMonth();
     for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({
