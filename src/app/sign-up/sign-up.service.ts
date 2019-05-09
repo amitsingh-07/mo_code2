@@ -16,6 +16,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { RegexConstants } from '../shared/utils/api.regex.constants';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -349,9 +350,6 @@ export class SignUpService {
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
-    if (bank) {
-      delete bank.accountNoMaxLength;
-    }
     const request = {};
     request['id'] = id;
     request['bank'] = bank;
@@ -493,24 +491,59 @@ export class SignUpService {
     return errors;
   }
 
-  addMaxLengthInfoForAccountNo(banks) {
-    banks.forEach((bank) => {
-      const maxLength = SIGN_UP_CONFIG.ACCOUNT_NUMBER_MAX_LENGTH_INFO[bank.key];
-      bank.accountNoMaxLength = maxLength ? maxLength : null;
-    });
-    return banks;
-  }
-
-  validateAccNoMaxLength(control: AbstractControl) {
+  validateBankAccNo(control: AbstractControl) {
     const value = control.value;
+    let isValid;
     if (control.value) {
-      const validAccountNo =
-        (value.length === control.parent.controls['bank'].value.accountNoMaxLength);
-      if (control.parent.controls['bank'].value.accountNoMaxLength && !validAccountNo) {
-        return { validAccountNo: true };
+      const bankKey = control.parent.controls['bank'].value.key;
+      switch (bankKey) {
+        case SIGN_UP_CONFIG.BANK_KEYS.BANK_OF_CHINA:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.BANK_OF_CHINA).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.STANDARD_CHARTED_BANK:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.STANDARD_CHARTED_BANK).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.DBS:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.DBS).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.CITIBANK:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.CITIBANK).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.MAYBANK:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.MAYBANK).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.OCBC).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.RHB_BANK:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.RHB_BANK).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.UOB:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.UOB).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.ANZ_BANK:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.ANZ_BANK).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.CIMB:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.CIMB).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.HSBC:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.HSBC).test(value);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.POSB:
+          isValid = new RegExp(RegexConstants.BankAccountNumber.POSB).test(value);
+          break;
+        default:
+          isValid = true;
+          break;
       }
     }
-    return null;
+
+    if (!isValid) {
+      return { validAccountNo: true }
+    } else {
+      return null;
+    }
   }
 
   isMobileDevice() {
