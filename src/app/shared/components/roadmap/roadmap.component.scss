@@ -16,8 +16,8 @@
             padding-left: 45px;
             position:relative;
             min-height:50px;
-            color:#81d2d2;
-            font-family:$muli;
+            color: #c8e7e7;
+            font-family:$muli-regular;
             font-size:15px;
 
             .roadmap-icon {
@@ -40,7 +40,7 @@
                     background-repeat: no-repeat;
                     background-position: center top;
                     position: absolute;
-                    top: 4px;
+                    top: 1px;
                     left: 0px;
                     right: 0px;
                     bottom: 0px;
@@ -53,18 +53,34 @@
                     }
                 }
             }
-            .roadmap-item-title{
+            &.not-started{
+                .roadmap-icon {
+                    .icon {
+                        background-image:url('../../../../assets/images/roadmap/not-started.png');
+                    }
+                }
+            }
+            &.in-progress{
+                .roadmap-icon {
+                    .icon {
+                        background-image:url('../../../../assets/images/roadmap/in-progress.png');
+                        top:-7px !important;      
+                    }
+                }
+                .roadmap-item-title{
+                    font-family: $muli-bold;
+                    color: #81d2d2;
+                }
+            }
+            &.completed{
+                .roadmap-icon {
+                    .icon {
+                        background-image:url('../../../../assets/images/roadmap/completed.png');
+                        top: -1px !important;
+                    }
+                }
             }
         }
     }
-    .not-started{
-        background:url('../../../../assets/images/roadmap/not-started.png');
-    }
-    .in-progress{
-        background:url('../../../../assets/images/roadmap/in-progress.png');
-        top:-7px !important;
-    }
-    .completed{
-        background:url('../../../../assets/images/roadmap/completed.png');
-    }
+    
 }

@@ -118,6 +118,7 @@ app-allocation{
           display: flex;
           flex-direction: column;
           justify-content: center;
+          flex:1;
           .flex-row {
             justify-content: space-between;
           }
