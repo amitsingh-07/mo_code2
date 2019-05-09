@@ -1135,7 +1135,7 @@ export class ComprehensiveService {
         }
 
         return {
-            title: 'Your Current Fireproofing',
+            title: 'Risk-Proof Your Journey',
             expanded: true,
             completed: false,
             customStyle: this.getStartedStyle,
