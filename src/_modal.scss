@@ -926,6 +926,13 @@ body.modal-open::-webkit-scrollbar {
       font-family: $muli-bold;
       font-size: 16px;
     }
+    @include allmobiles {
+      &--label {
+        width: 290px;
+        word-break: break-word;
+        padding-right: 15px;
+      }
+    }
   }
 
   &__box-content {
