@@ -45,6 +45,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   captchaSrc: any = '';
   isPasswordValid = true;
 
+  confirmEmailFocus = false;
+  confirmPwdFocus = false;
+  passwordFocus = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal, private loaderService: LoaderService,
@@ -242,7 +246,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
             ref.componentInstance.emailSent = true;
-          };
+          } else if (data.responseMessage.responseCode === 5114) {
+            ref.close('close');
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+          }
         });
     }
     this.refreshCaptcha();
@@ -343,6 +350,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  showValidity(from) {
+    if (from === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (from === 'confirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
+    }
   }
 }
 
