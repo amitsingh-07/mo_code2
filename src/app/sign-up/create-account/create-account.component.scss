@@ -66,4 +66,16 @@ app-create-account {
     color: #5e5e5e;
     z-index: 999;
   }
+
+  .signup-wrapper__header-icon{
+   width: 300px !important;
+   height: 267px !important ;
+   @include allmobiles {
+    width: 138px;
+    margin-bottom: 15px;
+    max-width: 138px;
+    max-height: 138px;
+    height: auto;
+   }
+  }
 }
