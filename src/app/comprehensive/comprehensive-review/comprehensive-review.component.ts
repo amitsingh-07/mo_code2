@@ -50,7 +50,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-    this.progressService.setReadOnly(true);
+    this.progressService.setReadOnly(false);
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
       if (this.pageId === pageId) {

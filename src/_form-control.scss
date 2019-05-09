@@ -352,7 +352,7 @@ input[type='checkbox']+label {
   clear: none;
   padding: 0px 0 0px 35px;
   cursor: pointer;
-  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
+  background: url("./assets/images/error-icon/icon_checkbox_error.svg") left center no-repeat;
 }
 
 input[type='checkbox']:checked+label {
@@ -383,7 +383,15 @@ input::placeholder {
   &.form-control i, &.form-control::placeholder, &.form-control i.right, &.dropdown-control .btn-dropdown {
     color: $inline-error-border-color;
   }
-
+  .btn-dropdown:after {
+    background-image: url('./assets/images/error-icon/icon_dropdown_error.svg') !important;
+    width: 20px !important;
+    height: 17px !important;
+    border: none !important;
+    position: absolute;
+    top: 15px !important;
+    right: 10px !important;
+  }
   &.dropdown-control, .form-control, &.form-group-floating-label, .btn-dropdown, .input-control, .input-group-append .btn-primary {
     background: $inline-error-bg-color !important;
   }

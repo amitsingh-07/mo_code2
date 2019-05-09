@@ -185,11 +185,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     let inc = 0;
     if (this.assetDetails.assetsInvestmentSet && this.assetDetails.assetsInvestmentSet.length > 0) {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
-        if (otherInvest.typeOfInvestment !== '' || otherInvest.investmentAmount > 0) {
-          otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
-          this.investType[inc] = otherInvest.typeOfInvestment;
-          inc++;
-        }
+        //if (otherInvest.typeOfInvestment !== '' || otherInvest.investmentAmount > 0) {
+        otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
+        this.investType[inc] = otherInvest.typeOfInvestment;
+        inc++;
+        //}
       });
     } else {
       otherInvestFormArray.push(this.buildInvestmentForm('', 0));
@@ -299,30 +299,30 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.viewMode) {
-         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
-         } else {
-    if (this.validateAssets(form)) {
-      const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
-      if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
-        this.assetDetails = form.value;
-        this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
-        this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
-        this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-        this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
-          this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
-          delete this.assetDetails['investmentAmount_' + index];
-        });
-        this.loaderService.showLoader({ title: 'Saving' });
-        this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
-          this.loaderService.hideLoader();
-          this.comprehensiveService.setMyAssets(this.assetDetails);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+    } else {
+      if (this.validateAssets(form)) {
+        const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
+        if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
+          this.assetDetails = form.value;
+          this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
+          this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
+          this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
+          this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
+            this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
+            delete this.assetDetails['investmentAmount_' + index];
+          });
+          this.loaderService.showLoader({ title: 'Saving' });
+          this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
+            this.loaderService.hideLoader();
+            this.comprehensiveService.setMyAssets(this.assetDetails);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+          });
+        } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
-        });
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+        }
       }
     }
-  }
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {

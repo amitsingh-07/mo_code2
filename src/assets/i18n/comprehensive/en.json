@@ -1,12 +1,12 @@
 {
   "CMP": {
-    "HOME_TYPE_LIST": ["New HDB","Resale HDB", "Private"],
+    "HOME_TYPE_LIST": ["New HDB", "Resale HDB", "Private"],
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promo code, please log in or create a MoneyOwl account.",
-      "PROMO_CODE_SUCCESS":"Hurray! Your promo code is sent to your email ",
-      "PROMO_CODE_VALIDATED":"Content Will Be updated",
-      "FINANCES_MODAL":{
-        "TITLE": "Step 2",        
+      "PROMO_CODE_SUCCESS": "Hurray! Your promo code is sent to your email ",
+      "PROMO_CODE_VALIDATED": "Content Will Be updated",
+      "FINANCES_MODAL": {
+        "TITLE": "Step 2",
         "TITLE_IMAGE": "finances.svg",
         "TITLE_DESC": "Completed",
         "CONTENT_TITLE": "Do you know?",
@@ -21,93 +21,93 @@
         "EMERGENCY_BELOW_NOTE_TITLE": "Next Steps",
         "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement."
       },
-      "INSURANCE_PLANNING_MODAL":{
-        "NO_DEPENDANTS" : {
-                "TITLE": "Step 3",        
-                "TITLE_IMAGE": "insurance.svg",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is the estimated cost of ",
-                "CONTENT_DESC1": "ESTIMATED_COST life coverage",
-                "CONTENT_DESC2": " for you, using:",
-                "CONTENT_BODY1": "Term Insurance",
-                "CONTENT_BODY1_DESC":"Till age 65",
-                "CONTENT_BODY2": "Whole Life",
-                "CONTENT_BODY2_DESC":"Pay to age 99",
-                "PER_YEAR":"per year",
-                "SUB_TITLE": "Explanation",
-                "SUB_CONTENT_IMAGE": "insurance-explain.svg",
-                "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
-                "SUB_TITLE_NOTE": "Not drawn to scale. For illustration purposes only.",
-                "SUB_CONTENT_DESC1": "When you buy a whole life plan, the bulk of your premiums goes to paying for a low-return investment. With this allocation, you will never fully cover yourself with expensive whole life policies.",
-                "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
-                "NEXT": "Next",
-                "INVESTMENT_STATISTIC_LABEL": "Investments",                
-                "INVESTMENT_STATISTIC_VALUE": "$0.80",
-                "INSURANCE_STATISTIC_LABEL": "Insurance",
-                "INSURANCE_STATISTIC_VALUE": "$0.20"
-          },
-        "DEPENDANTS" : {
-                "TITLE": "Step 3",        
-                "TITLE_IMAGE": "insurance.svg",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "Some types of medical insurance are needed for limited years and some are needed for life, for example:",                
-                "SUB_TITLE": "In a Medical Crisis",
-                "SUB_CONTENT_TITLE_1": "Loss of Income",                
-                "SUB_CONTENT_IMAGE_1": "loss-of-income.svg",
-                "SUB_CONTENT_TITLE_DESC_1": "Until retirement age or when we have no more dependants",
-                "SUB_CONTENT_TITLE_2": "Medical Expenses",               
-                "SUB_CONTENT_IMAGE_2": "medical-expenses.svg",
-                "SUB_CONTENT_TITLE_DESC_2": "As long as possible",
-                "SUB_CONTENT_DESC11": "Disability income insurance",
-                "SUB_CONTENT_DESC12": "Critical illness insurance (3-5 years’ recuperation)",                
-                "SUB_CONTENT_DESC21": "Hospitalisation (e.g. Shield)",
-                "SUB_CONTENT_DESC22": "Long-Term Care",
-                "NEXT": "Next"
-        }              
-      },
-      "RETIREMENT_MODAL" : {
-         "TITLE": "Step 4",        
-          "TITLE_IMAGE": "retirement.svg",
+      "INSURANCE_PLANNING_MODAL": {
+        "NO_DEPENDANTS": {
+          "TITLE": "Step 3",
+          "TITLE_IMAGE": "insurance.svg",
           "TITLE_DESC": "Completed",
           "CONTENT_TITLE": "Do you know?",
-          "CONTENT_DESC": "There 3 “must haves” in retirement:",  
-          "SUB_CONTENT_TITLE_1": "A fully paid-up home",          
-          "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
-          "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability",
-          "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, ElderShield, CareShield, other annuities)",
-          "SUB_CONTENT_DESC_22": "2. Additional income for better lifestyle",
-          "SUB_CONTENT_TITLE_3": "Medical Insurance to Cover Large Hospital Bills",
-          "SUB_CONTENT_TITLE_3_DESC": "(e.g. MediShield Life, Private Integrated Shield Plans)",
-          "SUB_CONTENT_NOTE": "Let’s plan together!",
+          "CONTENT_DESC": "This is the estimated cost of ",
+          "CONTENT_DESC1": "ESTIMATED_COST life coverage",
+          "CONTENT_DESC2": " for you, using:",
+          "CONTENT_BODY1": "Term Insurance",
+          "CONTENT_BODY1_DESC": "Till age 65",
+          "CONTENT_BODY2": "Whole Life",
+          "CONTENT_BODY2_DESC": "Pay to age 99",
+          "PER_YEAR": "per year",
+          "SUB_TITLE": "Explanation",
+          "SUB_CONTENT_IMAGE": "insurance-explain.svg",
+          "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
+          "SUB_TITLE_NOTE": "Not drawn to scale. For illustration purposes only.",
+          "SUB_CONTENT_DESC1": "When you buy a whole life plan, the bulk of your premiums goes to paying for a low-return investment. With this allocation, you will never fully cover yourself with expensive whole life policies.",
+          "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
+          "NEXT": "Next",
+          "INVESTMENT_STATISTIC_LABEL": "Investments",
+          "INVESTMENT_STATISTIC_VALUE": "$0.80",
+          "INSURANCE_STATISTIC_LABEL": "Insurance",
+          "INSURANCE_STATISTIC_VALUE": "$0.20"
+        },
+        "DEPENDANTS": {
+          "TITLE": "Step 3",
+          "TITLE_IMAGE": "insurance.svg",
+          "TITLE_DESC": "Completed",
+          "CONTENT_TITLE": "Do you know?",
+          "CONTENT_DESC": "Some types of medical insurance are needed for limited years and some are needed for life, for example:",
+          "SUB_TITLE": "In a Medical Crisis",
+          "SUB_CONTENT_TITLE_1": "Loss of Income",
+          "SUB_CONTENT_IMAGE_1": "loss-of-income.svg",
+          "SUB_CONTENT_TITLE_DESC_1": "Until retirement age or when we have no more dependants",
+          "SUB_CONTENT_TITLE_2": "Medical Expenses",
+          "SUB_CONTENT_IMAGE_2": "medical-expenses.svg",
+          "SUB_CONTENT_TITLE_DESC_2": "As long as possible",
+          "SUB_CONTENT_DESC11": "Disability income insurance",
+          "SUB_CONTENT_DESC12": "Critical illness insurance (3-5 years’ recuperation)",
+          "SUB_CONTENT_DESC21": "Hospitalisation (e.g. Shield)",
+          "SUB_CONTENT_DESC22": "Long-Term Care",
           "NEXT": "Next"
+        }
       },
-      "CHILDREN_EDUCATION_MODAL":{
-        "NO_DEPENDANTS" : {
-                "TITLE": "Step 1",        
-                "TITLE_IMAGE": "education-without-dependant.svg",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much things may cost in 10 years’ time.",
-                "CONTENT_BODY1": "Monthly living costs of LIVING_COST",
-                "CONTENT_BODY1_DESC": "Includes PERCENT% inflation",
-                "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",  
-                "CONTENT_BODY2_DESC": "Includes AGE_VAL% inflation",              
-                "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
-                "NEXT": "Next"
-          },
-        "DEPENDANTS" : {
-                "TITLE": "Step 1",        
-                "TITLE_IMAGE": "education-with-dependant.svg",
-                "TITLE_DESC": "Completed",
-                "CONTENT_TITLE": "Do you know?",
-                "CONTENT_DESC": "This is how much university may cost you in future:",
-                "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",                
-                "CONTENT_NOTE": "It’s great that you are planning now!",
-                "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
-                "NEXT": "Next"
-        }              
+      "RETIREMENT_MODAL": {
+        "TITLE": "Step 4",
+        "TITLE_IMAGE": "retirement.svg",
+        "TITLE_DESC": "Completed",
+        "CONTENT_TITLE": "Do you know?",
+        "CONTENT_DESC": "There 3 “must haves” in retirement:",
+        "SUB_CONTENT_TITLE_1": "A fully paid-up home",
+        "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
+        "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability",
+        "SUB_CONTENT_DESC_21_NOTE": "(e.g. CPF LIFE, ElderShield, CareShield, other annuities)",
+        "SUB_CONTENT_DESC_22": "2. Additional income for better lifestyle",
+        "SUB_CONTENT_TITLE_3": "Medical Insurance to Cover Large Hospital Bills",
+        "SUB_CONTENT_TITLE_3_DESC": "(e.g. MediShield Life, Private Integrated Shield Plans)",
+        "SUB_CONTENT_NOTE": "Let’s plan together!",
+        "NEXT": "Next"
+      },
+      "CHILDREN_EDUCATION_MODAL": {
+        "NO_DEPENDANTS": {
+          "TITLE": "Step 1",
+          "TITLE_IMAGE": "education-without-dependant.svg",
+          "TITLE_DESC": "Completed",
+          "CONTENT_TITLE": "Do you know?",
+          "CONTENT_DESC": "This is how much things may cost in 10 years’ time.",
+          "CONTENT_BODY1": "Monthly living costs of LIVING_COST",
+          "CONTENT_BODY1_DESC": "Includes PERCENT% inflation",
+          "CONTENT_BODY2": "Medical bill of MEDICAL_BILL",
+          "CONTENT_BODY2_DESC": "Includes AGE_VAL% inflation",
+          "CONTENT_NOTE": "That’s why you must save and grow your assets and get proper insurance coverage. It’s great that you are planning now!",
+          "NEXT": "Next"
+        },
+        "DEPENDANTS": {
+          "TITLE": "Step 1",
+          "TITLE_IMAGE": "education-with-dependant.svg",
+          "TITLE_DESC": "Completed",
+          "CONTENT_TITLE": "Do you know?",
+          "CONTENT_DESC": "This is how much university may cost you in future:",
+          "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",
+          "CONTENT_NOTE": "It’s great that you are planning now!",
+          "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
+          "NEXT": "Next"
+        }
       }
     },
     "COMPREHENSIVE": {
@@ -115,33 +115,33 @@
       "HEADER": "Our Bionic Journey Together",
       "START": "Let’s Go",
       "SUB_HEADER_1": "3-in-1 Analysis Report",
-      "SUB_HEADER_2":"2 Hours face-to-face advisory",
-      "SUB_HEADER_3":"A financial plan integrated with national schemes ",
-      "DESC1":"As Singapore’s first Bionic Financial Adviser, MoneyOwl will journey with you using both technology and personalised advice.",
-      "DESC2":"In comprehensive planning, we will focus on your financial health, achieveing your core financial goals of retirement and children’s education, and fireproofing your plan.",
-      "DESC3":"We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.",
-      "DESC4":"This tool is currently available only for those aged 18 to 54 years old.",
-      "DESC_TITLE":"How it works",
-      "DESC_SUB_TITLE_1":"Information gathering",
-      "DESC_SUB_TITLE_2":"Get your 3-in-1 Analysis Report",
-      "DESC_SUB_TITLE_3":"Face-to-Face: Client Adviser Time (2 hrs) and Implementation Plan",
-      "DESC_SUB_TITLE_4":"Prompt: Review",
-      "DESC_SUB_ABOUT_1":"To get the most of out of your comprehensive financial planning journey and a suitable action plan, please fill in as many of the applicable fields as possible to the best of your ability. Every piece of information matters as the quality of the evaluation is very much dependent on the information you provide us.",
-      "DESC_SUB_ABOUT_2":"You can acess your 3-in-1 Analysis Report on your MoneyOwl Account Dashboard within 1-2 working days. The report will comprise:",
-      "DESC_SUB_ABOUT_2_SUB_POINT_1":"Your Financial Health Check",
-      "DESC_SUB_ABOUT_2_SUB_POINT_2":"Your Protection Needs Analysis",
-      "DESC_SUB_ABOUT_2_SUB_POINT_3":"Your Retirement and Children’s Education Plan",
-      "DESC_SUB_ABOUT_3":"When you are ready, our Client Adviser will meet you for a fuller consultation of up to two hours, where we can discuss your Financial Health report, refine your analysis and goals and customise your plan further. We will also help you to implement the plan through specific product recommendations, if you choose to do so.",
-      "DESC_SUB_ABOUT_4":"Financial planning is an ongoing process. We will prompt you to review your plan once a year. For a limited period, our clients will not be charged for the first-year review. ",
-      "DESCRIPTION":"Description",
-      "ROBOADVISORY":"Robo advisory",
-      "FREE":"Free ",
-      "FREE_LIMITED":"for a limited time only!",
-      "ENTER_PROMO":"Enter your promo code",
-      "NO_PROMO":"No promo code?",
-      "GET_NEW":" Get one now!",
-      "ONE_TIME_FEE":"One-time fee",
-      "GET_PROMO":"Get Promo code",
+      "SUB_HEADER_2": "2 Hours face-to-face advisory",
+      "SUB_HEADER_3": "A financial plan integrated with national schemes ",
+      "DESC1": "As Singapore’s first Bionic Financial Adviser, MoneyOwl will journey with you using both technology and personalised advice.",
+      "DESC2": "In comprehensive planning, we will focus on your financial health, achieveing your core financial goals of retirement and children’s education, and risk-proofing your plan.",
+      "DESC3": "We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.",
+      "DESC4": "This tool is currently available only for those aged 18 to 54 years old.",
+      "DESC_TITLE": "How it works",
+      "DESC_SUB_TITLE_1": "Information gathering",
+      "DESC_SUB_TITLE_2": "Get your 3-in-1 Analysis Report",
+      "DESC_SUB_TITLE_3": "Face-to-Face: Client Adviser Time (2 hrs) and Implementation Plan",
+      "DESC_SUB_TITLE_4": "Prompt: Review",
+      "DESC_SUB_ABOUT_1": "To get the most of out of your comprehensive financial planning journey and a suitable action plan, please fill in as many of the applicable fields as possible to the best of your ability. Every piece of information matters as the quality of the evaluation is very much dependent on the information you provide us.",
+      "DESC_SUB_ABOUT_2": "You can acess your 3-in-1 Analysis Report on your MoneyOwl Account Dashboard within 1-2 working days. The report will comprise:",
+      "DESC_SUB_ABOUT_2_SUB_POINT_1": "Your Financial Health Check",
+      "DESC_SUB_ABOUT_2_SUB_POINT_2": "Your Protection Needs Analysis",
+      "DESC_SUB_ABOUT_2_SUB_POINT_3": "Your Retirement and Children’s Education Plan",
+      "DESC_SUB_ABOUT_3": "When you are ready, our Client Adviser will meet you for a fuller consultation of up to two hours, where we can discuss your Financial Health report, refine your analysis and goals and customise your plan further. We will also help you to implement the plan through specific product recommendations, if you choose to do so.",
+      "DESC_SUB_ABOUT_4": "Financial planning is an ongoing process. We will prompt you to review your plan once a year. For a limited period, our clients will not be charged for the first-year review. ",
+      "DESCRIPTION": "Description",
+      "ROBOADVISORY": "Robo advisory",
+      "FREE": "Free ",
+      "FREE_LIMITED": "for a limited time only!",
+      "ENTER_PROMO": "Enter your promo code",
+      "NO_PROMO": "No promo code?",
+      "GET_NEW": " Get one now!",
+      "ONE_TIME_FEE": "One-time fee",
+      "GET_PROMO": "Get Promo code",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw"
     },
     "COMPREHENSIVE_STEPS": {
@@ -150,15 +150,15 @@
       "STEP_1_DESC": "Your family commitments will impact your financial planning. Let's list it down now.",
       "STEP_2_TITLE": "Your Finances",
       "STEP_2_DESC": "This information helps us to estimate what you can save and invest, your protection needs, and your financial health.",
-      "STEP_3_TITLE": "Your Current Fireproofing",
+      "STEP_3_TITLE": "Risk-Proof Your Journey",
       "STEP_3_DESC": "Let's find out how protected you are in face of unexpected events.",
-      "STEP_4_TITLE_NAV":"Retirement Planning",
+      "STEP_4_TITLE_NAV": "Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire and we will examine how you could reach this goal during your advisory session",
       "STEP_5_TITLE": "Congratulations!",
       "STEP_5_DESC": "Report Generation",
       "STEP_5_DESC2": "Your data is submitted.",
-      "STEP_5_TITLE_NAV":"Result"
+      "STEP_5_TITLE_NAV": "Result"
 
     },
     "MY_PROFILE": {
@@ -201,7 +201,7 @@
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
       "DESCRIPTION": "Do have any existing education endowment plan?",
-	    "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
+      "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
       "TOOLTIP_TITLE": "Education Endowment",
       "TOOLTIP_MESSAGE": "An education endowment plan is typically an insurance policy that matures and pays out around the time of the child’s entry into university.<br/><br/>If you bought a plan to fund more than one child’s education expenses, please allocate the maturity value for a more accurate analysis.",
       "MALE_ABOUT_YEAR": 21,
@@ -219,7 +219,7 @@
       "BUCKET_TITLE": "Your Annual Income Bucket",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
-      "ANNUAL_BONUS_DESC":"Bonuses, dividends and other income you earn each year also fill up your bucket!",
+      "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
       "OTHER_WORK_INCOME": "Other Monthly Work Income",
       "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
@@ -227,10 +227,10 @@
       "ANNUAL_DIVIDENDS": "Annual Dividends",
       "OTHER_ANNUAL_INCOME": "Other Annual Income",
       "ADD_MONTHLY_INCOME": "Add other monthly income",
-      "ADD_MONTHLY_INCOME_NOTE":"You have added all types of income",
+      "ADD_MONTHLY_INCOME_NOTE": "You have added all types of income",
       "ADD_DIVIDENDS": "Add dividends & other annual income",
-      "ADD_DIVIDENDS_NOTE":"You have added all types of annual income",
-      "BUCKET_NOTE":"Your annual income bucket",
+      "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
+      "BUCKET_NOTE": "Your annual income bucket",
       "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
@@ -240,9 +240,9 @@
           "value": "selfEmployed"
         }
       ],
-      "EMPTY_BUCKET_IMAGE":"empty-earnings-bucket.svg",
-      "FILLED_BUCKET_IMAGE":"filled-earnings-bucket.svg",
-      "TOOLTIP":{
+      "EMPTY_BUCKET_IMAGE": "empty-earnings-bucket.svg",
+      "FILLED_BUCKET_IMAGE": "filled-earnings-bucket.svg",
+      "TOOLTIP": {
         "MONTHLY_SALARY_TITLE": "Monthly Salary",
         "MONTHLY_SALARY_MESSAGE": "Your total monthly gross salary, including the portion that goes into your CPF.",
         "ANNUAL_BONUS_TITLE": "Annual Bonus",
@@ -273,10 +273,10 @@
       "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Loan Payment",
       "SPEND_TITLE1": "You spend ",
       "SPEND_TITLE2": " per year",
-      "SPEND_DESC1": "There is ",      
+      "SPEND_DESC1": "There is ",
       "SPEND_DESC2": " left in your annual bucket",
-      "BUCKET_NOTE":"Your annual expenses",
-      "TOOLTIP":{
+      "BUCKET_NOTE": "Your annual expenses",
+      "TOOLTIP": {
         "OTHER_LOAN_TITLE": "Other Loan Payments",
         "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
         "LIVING_EXPENSES_TITLE": "Living Expenses",
@@ -287,7 +287,7 @@
         "HOME_LOAN_MESSAGE": "This is your share of the monthly mortgage payment for the home you stay in."
       },
       "OPTIONAL_VALIDATION_FLAG": false,
-      "ENTER_YEAR":"Enter Year"
+      "ENTER_YEAR": "Enter Year"
     },
     "GETTING_STARTED": {
       "TITLE": "Get Started",
@@ -322,9 +322,9 @@
       "YES": "Yes, I do",
       "NO": "No, I don't",
       "COVERAGE_AMOUNT": "Coverage Amount",
-      "NOT_SURE":"Not Sure",
-      "YES_LABEL":"Yes",
-      "NO_LABEL":"No"
+      "NOT_SURE": "Not Sure",
+      "YES_LABEL": "Yes",
+      "NO_LABEL": "No"
     },
 
     "DEPENDANT_EDUCATION_SELECTION": {
@@ -332,7 +332,7 @@
       "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but I need an insurance payout to cover education expenses in case I pass away",
       "NO_DESC": "Select which child you will like to cover for.",
-      "ALERT":"Please select at least one child."
+      "ALERT": "Please select at least one child."
     },
 
     "RSP": {
@@ -344,42 +344,42 @@
       "PAID_BY_CASH": "Paid By Cash",
       "PAID_BY_CPF": "Paid By CPF",
       "MONTH": "mth",
-      "TOOLTIP":{
+      "TOOLTIP": {
         "RSP_TITLE": "Regular Saving Plan",
-        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."       
+        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
     "INVESTMENT_TYPE_LIST": [{
-          "text": "Equities",
-          "value": "equities"
-        },
-        {
-          "text": "Bonds",
-          "value": "bonds"
-        },
-        {
-          "text": "Balanced",
-          "value": "balanced"
-        },
-        {
-          "text": "Multi Assets",
-          "value": "multiAssets"
-        },
-        {
-          "text": "Alternatives",
-          "value": "alternatives"
-        },
-        {
-          "text": "Others",
-          "value": "others"
-        }
-      ],
+        "text": "Equities",
+        "value": "equities"
+      },
+      {
+        "text": "Bonds",
+        "value": "bonds"
+      },
+      {
+        "text": "Balanced",
+        "value": "balanced"
+      },
+      {
+        "text": "Multi Assets",
+        "value": "multiAssets"
+      },
+      {
+        "text": "Alternatives",
+        "value": "alternatives"
+      },
+      {
+        "text": "Others",
+        "value": "others"
+      }
+    ],
     "MY_ASSETS": {
       "TITLE": "What You Own",
       "HEADER": "You may have already stored up some buckets over time. Some of these assets can grow and help fund your future goals.",
       "ASSETS_BUCKETS": "Your Assets Buckets",
-      "ASSETS_BUCKETS_NOTE": "Your assets bucket",      
+      "ASSETS_BUCKETS_NOTE": "Your assets bucket",
       "TOTAL": "in total",
       "CASH": "Your Cash",
       "CASH_IN_BANK": "Cash in bank",
@@ -424,8 +424,8 @@
           "value": "others"
         }
       ],
-      "AUTO_FILL":"Autofill Your CPF via ",
-      "TOOLTIP":{
+      "AUTO_FILL": "Autofill Your CPF via ",
+      "TOOLTIP": {
         "CASH_TITLE": "Cash",
         "CASH_MESSAGE": "This is cash that you can spend, save or invest. By the way, we do not recommend keeping it under the mattress! Consider bank deposits or Singapore Savings Bonds for your cash.",
         "YOUR_HOME_TITLE": "Your Home",
@@ -434,16 +434,16 @@
         "INVESTMENT_PROPERTIES_MESSAGE": "Property that you purchased with the purpose expectation of earning a return, either through the future resale of the property, rental income or both.",
         "OTHER_PROPERTIES_TITLE": "Other Properties",
         "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate.",
-        "OTHER_ASSETS_TITLE" :"Other Assets",
-        "OTHER_ASSETS_MESSAGE":"Content Will be Updated",
-        "OTHER_INVESTMENT_TITLE":"Other Investments",
-        "OTHER_INVESTMENT_MESSAGE":"Other forms of committing money with the expectation of obtaining an profit or additional income other than putting money into stocks, bonds, mutual funds, ETFs, real estate."
+        "OTHER_ASSETS_TITLE": "Other Assets",
+        "OTHER_ASSETS_MESSAGE": "Content Will be Updated",
+        "OTHER_INVESTMENT_TITLE": "Other Investments",
+        "OTHER_INVESTMENT_MESSAGE": "Other forms of committing money with the expectation of obtaining an profit or additional income other than putting money into stocks, bonds, mutual funds, ETFs, real estate."
 
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "LOCATION_LIST":[ "Singapore","USA", "United Kingdom", "Australia"],
-    "COURSE_LIST":["Medicine","Non-Medicine"],
+    "LOCATION_LIST": ["Singapore", "USA", "United Kingdom", "Australia"],
+    "COURSE_LIST": ["Medicine", "Non-Medicine"],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
@@ -454,11 +454,11 @@
       "OTHER_LOANS_AMOUNT_OUTSTANDING": "Other Loans Amount OutStanding",
       "CAR_LOANS": "Car Loans",
       "LIABILITIES_BUCKETS_TOTAL": "in total",
-      "LIABILITIES_BUCKETS_NOTE":"Your liabilities bucket",
-      "FORM":{
-       "LOAN_PLACEHOLDER": "Enter Amount"
+      "LIABILITIES_BUCKETS_NOTE": "Your liabilities bucket",
+      "FORM": {
+        "LOAN_PLACEHOLDER": "Enter Amount"
       },
-      "TOOLTIP":{
+      "TOOLTIP": {
         "HOME_LOAN_OUTSTANDING_TITLE": "Home Loan Outstanding",
         "HOME_LOAN_OUTSTANDING_MESSAGE": "This is the total outstanding loan for the home you live in that has yet to be paid off, not the monthly instalment.",
         "OTHER_LOAN_TITLE": "Other Loans",
@@ -470,107 +470,114 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "YOUR_FINANCES":{
-         "HEADER":"How You Spend When Down On Luck",
-         "ABOUT":"Sometimes life throws you a curve ball.",
-         "TITLE":"Bad Mood Fund",
-         "DESC":"Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
-         "LABEL_DESC":"Your monthly allocation to your Bad Mood Fund.",
-         "MONTHLY_AMOUNT":"Monthly Amount",
-         "HOSPITAL_CHOICE":"Hospital Choice",
-         "HOSPITAL_CHOICE_DESC":"If you are ill or injured, which hospital ward will you choose?",
-         "BAD_MOOD_FUND_BUCKET":"down-on-luck.svg",
-         "BAD_MOOD_FUND_ALERT":"It appears that your spendings is currently more than your earnings. Review your expenses so that you have spare cash to set aside for bad mood days as well as save up for your financial goals.",
-         "TOOLTIP":{
-          "TITLE": "Bad Mood Fund",
-          "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
-        }
+    "YOUR_FINANCES": {
+      "HEADER": "How You Spend When Down On Luck",
+      "ABOUT": "Sometimes life throws you a curve ball.",
+      "TITLE": "Bad Mood Fund",
+      "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
+      "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
+      "MONTHLY_AMOUNT": "Monthly Amount",
+      "HOSPITAL_CHOICE": "Hospital Choice",
+      "HOSPITAL_CHOICE_DESC": "If you are ill or injured, which hospital ward will you choose?",
+      "BAD_MOOD_FUND_BUCKET": "down-on-luck.svg",
+      "BAD_MOOD_FUND_ALERT": "It appears that your spendings is currently more than your earnings. Review your expenses so that you have spare cash to set aside for bad mood days as well as save up for your financial goals.",
+      "TOOLTIP": {
+        "TITLE": "Bad Mood Fund",
+        "DESCRIPTION": "Your Bad Mood Fund allocation should not exceed your monthly surplus. Your monthly surplus is your monthly take home salary minus your monthly cash expenses and loan repayments. It excludes all annual income and ad-hoc/yearly expenses."
+      }
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{"name":"Dependant Details 1"}, {"name":"Dependant Details 2"},{"name":"Dependant Details 3"}, {"name":"Dependant Details 4"},{"name":"Dependant Details 5"}],
+      "DEPENDANT_DETAIL": [{
+        "name": "Dependant Details 1"
+      }, {
+        "name": "Dependant Details 2"
+      }, {
+        "name": "Dependant Details 3"
+      }, {
+        "name": "Dependant Details 4"
+      }, {
+        "name": "Dependant Details 5"
+      }],
       "MY_LIABILITIES": "MY LIABILITIES",
-	    "MY_EARNINGS": "Your Earnings",
+      "MY_EARNINGS": "Your Earnings",
       "MY_SPENDINGS": "Your Spendings",
       "REGULAR_SAVINGS": "Regular Savings Plan",
       "MY_ASSETS": "My Assets"
     },
-    "RETIREMENT_PLAN":{
-    "SUB_TITLE":"We're almost done! Tell us when would you like to retire.",
-    "ABOUT":"I want to retire by age ",
-    "YOUR_AGE":"Your Age"
+    "RETIREMENT_PLAN": {
+      "SUB_TITLE": "We're almost done! Tell us when would you like to retire.",
+      "ABOUT": "I want to retire by age ",
+      "YOUR_AGE": "Your Age"
 
     },
-    "INSURANCE_PLAN":{
-     "SUB_TITLE":" Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current fireproofing.",
-     "HOSPITAL_PLAN":"Hospital Plan",
-     "HOSPITAL_PLAN_DESC":"You want to stay in a ",
-     "HOSPITAL_PLAN_DESC_END":"when down-on-luck and hospitalised.",
-     "HOSPITAL_PLAN_LABEL":"Do you have a hospitalisation plan that pays for this?",
-     "LIFE_PROTECTION":"Life Protection (Death)",
-     "LIFE_PROTECTION_LABEL_1":"Do you have CPF Dependants’ Protection Scheme?",
-     "LIFE_PROTECTION_LABEL_2":"Do you have HDB Home Protection Scheme (HPS) coverage?",
-     "LIFE_PROTECTION_LABEL_3": "Other life insurance coverage",
-     "CRITICAL_ILLNESS":"Critical Illness Insurance",
-     "DISABILITY_INSURANCE":"Disability Income Insurance",
-     "HDB":"Do you have HDB Home Protection Scheme (HPS) coverage?",
-     "LONG_TERM_INSURANCE":"Long-Term Care Insurance",
-     "LONG_TERM_INSURANCE_LABEL":"Do you have ElderShield?",
-     "LONG_TERM_INSURANCE_VALUE_1":" I have $300 /mth payout",
-     "LONG_TERM_INSURANCE_VALUE_2":"I have $400 /mth payout",
-     "LONG_TERM_INSURANCE_VALUE_3":"No, i have no coverage",
-     "LONG_TERM_INSURANCE_VALUE_4":"I am not sure",
-      "TOOLTIP":{
+    "INSURANCE_PLAN": {
+      "SUB_TITLE": "Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current risk-proofing.",
+      "HOSPITAL_PLAN": "Hospital Plan",
+      "HOSPITAL_PLAN_DESC": "You want to stay in a ",
+      "HOSPITAL_PLAN_DESC_END": "when down-on-luck and hospitalised.",
+      "HOSPITAL_PLAN_LABEL": "Do you have a hospitalisation plan that pays for this?",
+      "LIFE_PROTECTION": "Life Protection (Death)",
+      "LIFE_PROTECTION_LABEL_1": "Do you have CPF Dependants’ Protection Scheme?",
+      "LIFE_PROTECTION_LABEL_2": "Do you have HDB Home Protection Scheme (HPS) coverage?",
+      "LIFE_PROTECTION_LABEL_3": "Other life insurance coverage",
+      "CRITICAL_ILLNESS": "Critical Illness Insurance",
+      "DISABILITY_INSURANCE": "Disability Income Insurance",
+      "HDB": "Do you have HDB Home Protection Scheme (HPS) coverage?",
+      "LONG_TERM_INSURANCE": "Long-Term Care Insurance",
+      "LONG_TERM_INSURANCE_LABEL": "Do you have ElderShield?",
+      "LONG_TERM_INSURANCE_VALUE_1": " I have $300 /mth payout",
+      "LONG_TERM_INSURANCE_VALUE_2": "I have $400 /mth payout",
+      "LONG_TERM_INSURANCE_VALUE_3": "No, i have no coverage",
+      "LONG_TERM_INSURANCE_VALUE_4": "I am not sure",
+      "TOOLTIP": {
         "CPF_TITLE": "CPF Dependants’ Protection Scheme",
         "CPF_MESSAGE": "A basic term insurance that provides CPF members and their families a sum of money should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It provides a maximum sum assured of $46,000 up to 60 years old. Premiums can be paid from the CPF Ordinary Account.",
-        "HOME_PROTECTION_SCHEME_TITLE":"Home Protection Scheme",
-        "HOME_PROTECTION_SCHEME_MESSAGE":"A mortgage reducing term insurance that protects CPF members and their families from losing their HDB flat should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It pays off the member's share of the outstanding mortgage loan. Premiums can be paid from the CPF Ordinary Account.​",
+        "HOME_PROTECTION_SCHEME_TITLE": "Home Protection Scheme",
+        "HOME_PROTECTION_SCHEME_MESSAGE": "A mortgage reducing term insurance that protects CPF members and their families from losing their HDB flat should the insured member pass away, suffer from Terminal Illness or Total Permanent Disability. It pays off the member's share of the outstanding mortgage loan. Premiums can be paid from the CPF Ordinary Account.​",
         "OTHER_LIFE_INSURANCE_TITLE": "Other Life Insurance Coverage",
         "OTHER_LIFE_INSURANCE_MESSAGE": "The total benefit payable to you or your loved ones from all your insurance policies in the event of death, Terminal Illness or Total Permanent Disability.",
-        "DISABILITY_INCOME_INSURANCE_TITLE":"Disability Income Insurance",
-        "DISABILITY_INCOME_INSURANCE_MESSAGE":"The monthly payout you can receive in the event you are not able to perform your current occupation due to a disability.",
-        "LONG_TERM_CARE_INSURANCE_TITLE":"Long Term Care Insurance",
-        "LONG_TERM_CARE_INSURANCE_MESSAGE":"The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
-        "CRITICAL_INSURANCE_TITLE":"Critical Illness Insurance",
-        "CRITICAL_INSURANCE_MESSAGE":"The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
+        "DISABILITY_INCOME_INSURANCE_TITLE": "Disability Income Insurance",
+        "DISABILITY_INCOME_INSURANCE_MESSAGE": "The monthly payout you can receive in the event you are not able to perform your current occupation due to a disability.",
+        "LONG_TERM_CARE_INSURANCE_TITLE": "Long Term Care Insurance",
+        "LONG_TERM_CARE_INSURANCE_MESSAGE": "The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
+        "CRITICAL_INSURANCE_TITLE": "Critical Illness Insurance",
+        "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
 
       }
     },
-    "RESULT":{
-      "READY":"Congratulations! Your report will be ready soon!",
-      "DESC":"We are analysing your needs using proprietary models now…",
-      "ABOUT":"Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
-      "STEP_TITLE":"What’s Next?",
-      "STEP_1":"Keep a lookout for our notification mail!",
-      "STEP_2":"Set up an appointment with a MoneyOwl client adviser to go through your report.",
-      "STEP_3":"Customise and implement your financial plan with your adviser.",
-      "DASHBOARD":"Dashboard",
-       "TOOLTIP_TITLE":"Sorry, you are unable to access the previous page.",
-       "TOOLTIP_MESSAGE":"As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."      
+    "RESULT": {
+      "READY": "Congratulations! Your report will be ready soon!",
+      "DESC": "We are analysing your needs using proprietary models now…",
+      "ABOUT": "Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
+      "STEP_TITLE": "What’s Next?",
+      "STEP_1": "Keep a lookout for our notification mail!",
+      "STEP_2": "Set up an appointment with a MoneyOwl client adviser to go through your report.",
+      "STEP_3": "Customise and implement your financial plan with your adviser.",
+      "DASHBOARD": "Dashboard",
+      "TOOLTIP_TITLE": "Sorry, you are unable to access the previous page.",
+      "TOOLTIP_MESSAGE": "As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."
     },
-    "VALIDATE_RESULT":{
+    "VALIDATE_RESULT": {
       "TITLE": "Result",
-      "DESC":"Uh-oh! It seems you have reached a roadblock.",
+      "DESC": "Uh-oh! It seems you have reached a roadblock.",
       "ABOUT": "As you have not filled in any fields under Your Finances, we are unable to generate your reports. Please review your inputs.",
       "FINANCE": "Go to Your Finances"
     },
-    "ENQUIRY":{
-      "TITLE":"Wait for our call!",
-      "DESC":"We seek for your understanding and patience for our advisors will be contacting you within 2-3 working days.",
-      "SUB_DESC":"For further enquries, feel free to contact us!",
-       "PHONE_NO":"(65) 6329 9188",
-       "EMAIL":"enquiries@moneyowl.com.sg",
-       "BACK_DASHBOARD":"Back To DashBoard"
-       
+    "ENQUIRY": {
+      "TITLE": "Wait for our call!",
+      "DESC": "We seek for your understanding and patience for our advisors will be contacting you within 2-3 working days.",
+      "SUB_DESC": "For further enquries, feel free to contact us!",
+      "PHONE_NO": "(65) 6329 9188",
+      "EMAIL": "enquiries@moneyowl.com.sg",
+      "BACK_DASHBOARD": "Back To DashBoard"
+
     },
-    "REVIEW":{
+    "REVIEW": {
       "TITLE": "Review",
-      "ABOUT":"Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm"
     }
   }
 }
-
-
-
