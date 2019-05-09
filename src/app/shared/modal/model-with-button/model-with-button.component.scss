@@ -84,3 +84,16 @@
     }
   }
 }
+.journey-wrapper{
+  text-align: center;
+ .img-fluid {
+  width: 195.7px;
+  height: 150px;
+  text-align: center;
+  @include allmobiles{
+    width: 175px;
+    height: 165px;
+    margin: 46px auto 0;
+  }
+ }
+}

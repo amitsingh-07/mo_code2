@@ -9,6 +9,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -84,6 +85,18 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
+    if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+      this.investmentAccountService.setUserPortfolioExistStatus(false);
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_DESC');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIT_BTN_TITLE');
+      ref.componentInstance.portfolioExist = true;
+      ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+       });
+    }
+
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         // ERROR SCENARIO
@@ -110,9 +123,9 @@ export class DashboardComponent implements OnInit {
         this.getDashboardList();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
 
     // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {

@@ -16,8 +16,12 @@
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
+  <div class="journey-wrapper" *ngIf="portfolioExist">
+      <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
+    </div>
   <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"  [innerHTML]="errorMessage"></div>
   <div class="modal-body-message " *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
+  
   <div class="row">
     <div class="col-12" *ngIf="primaryActionLabel">
       <button type="button" class="action-button " (click)="primaryActionSelected()" id="errorModeButton">
