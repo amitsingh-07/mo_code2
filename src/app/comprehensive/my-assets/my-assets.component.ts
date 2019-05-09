@@ -185,11 +185,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     let inc = 0;
     if (this.assetDetails.assetsInvestmentSet && this.assetDetails.assetsInvestmentSet.length > 0) {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
-        if ((otherInvest.typeOfInvestment !== '' && otherInvest.typeOfInvestment !== null) || otherInvest.investmentAmount > 0 || i === 0) {
-          otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
-          this.investType[inc] = otherInvest.typeOfInvestment;
-          inc++;
-        }
+        //if (otherInvest.typeOfInvestment !== '' || otherInvest.investmentAmount > 0) {
+        otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
+        this.investType[inc] = otherInvest.typeOfInvestment;
+        inc++;
+        //}
       });
     } else {
       otherInvestFormArray.push(this.buildInvestmentForm('', 0));
