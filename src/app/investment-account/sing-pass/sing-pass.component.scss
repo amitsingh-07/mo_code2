@@ -27,7 +27,7 @@ app-sing-pass {
       align-items: center;
       font-family: $muli-bold;
       font-size: 18px;
-     color: $inline-error-border-color;
+      color: $inline-error-border-color;
       padding-right: 15px;
       padding-bottom: 7px;
     }
@@ -55,7 +55,6 @@ app-sing-pass {
         display: flex;
         font-family: $muli-semi-bold;
         font-size: 14px;
-        font-weight: 400;
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
