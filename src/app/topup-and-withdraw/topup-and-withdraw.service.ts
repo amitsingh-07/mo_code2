@@ -349,7 +349,7 @@ export class TopupAndWithDrawService {
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = 12 * (toYear - fromYear) +  to.getMonth();
+    const diffYear = 12 * (toYear - fromYear) +  to.getMonth() - 1;
     const initMonth = from.getMonth();
     for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({
