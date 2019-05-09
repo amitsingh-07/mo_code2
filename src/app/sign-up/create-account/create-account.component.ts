@@ -44,6 +44,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   captchaSrc: any = '';
   isPasswordValid = true;
 
+  confirmEmailFocus = false;
+  confirmPwdFocus = false;
+  passwordFocus = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -336,5 +340,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  showValidity(from) {
+    if (from === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (from === 'confirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
+    }
   }
 }
