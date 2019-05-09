@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -12,9 +13,15 @@ export class InstructionStepsComponent implements OnInit {
   @Input() paynowDetails;
   @Input() showBankTransferIns;
 
-  constructor(public readonly translate: TranslateService) { }
+  @Output() showToolTip: EventEmitter<any> = new EventEmitter();
+
+  constructor(public readonly translate: TranslateService,
+              private modal: NgbModal) { }
 
   ngOnInit() {
   }
 
+  showToolTipModal() {
+    this.showToolTip.emit();
+  }
 }

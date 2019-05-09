@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,8 @@ export class TransferInstructionsModalComponent implements OnInit {
 
   @Input() bankDetails;
   @Input() paynowDetails;
+  @Output() closeModal: EventEmitter<any> = new EventEmitter();
+  @Output() openModal: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService) {
@@ -26,6 +28,14 @@ export class TransferInstructionsModalComponent implements OnInit {
 
   selectFundingMethod(mode) {
     this.activeMode = mode;
+  }
+
+  modalClose() {
+    this.closeModal.emit();
+  }
+
+  showTipModal() {
+    this.openModal.emit();
   }
 
 }
