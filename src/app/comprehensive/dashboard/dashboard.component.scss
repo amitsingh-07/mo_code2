@@ -1,15 +1,29 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .comprehensive {
+    .widget {
+        background:$white-color;
+        margin: 0px 15px 20px;
+        border-radius: 6px;
+        box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25)
+    }
     .comprehensive-plan-view{
         cursor: pointer;
     }
     .hidden {
         display: none;
     }
-
+    .form-group-with-bg--header-label {
+        font-family: $muli-bold;
+        font-size: 22px;
+    }
     &.container-fluid {
         padding-top: 20px;
+        @include allmobiles {
+            padding: 0 !important
+        }
+        width: auto;
     }
     .welcome-title {
         font-size: 20px;        
