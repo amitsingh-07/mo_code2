@@ -70,4 +70,9 @@
     background-repeat: no-repeat;
     padding-left: 35px;
   }
+  .form-group-with-bg--content-white--title {
+    @include allmobiles {
+      font-size: 17px;
+    }
+  }
 }
