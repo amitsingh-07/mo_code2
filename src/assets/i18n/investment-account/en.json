@@ -67,7 +67,8 @@
     "POSTALCODE_NOT_FOUND_ERROR": {
       "TITLE": "Invalid Postal Code",
       "MESSAGE": "Please enter valid postal code."
-    }
+    },
+    "SELECT_COUNTRY": "Select Country"
   },
   "EMPLOYMENT_DETAILS": {
     "TITLE": "Employment Details",
