@@ -45,30 +45,24 @@
       width: 100%;
     }
   }
-  .hospital-plan {
+  .hospital-plan, .life-protection, .critical-illness, .disability-income, .long-term-care {
     background-image: url('../../../assets/images/comprehensive/insurance-plan/hospital-plan.svg');
     background-repeat: no-repeat;
     padding-left: 35px;
+    height: 30px;
+    line-height: 30px;
   }
   .life-protection {
     background-image: url('../../../assets/images/comprehensive/insurance-plan/life-protection.svg');
-    background-repeat: no-repeat;
-    padding-left: 35px;
   }
   .critical-illness {
     background-image: url('../../../assets/images/comprehensive/insurance-plan/critical-illness.svg');
-    background-repeat: no-repeat;
-    padding-left: 35px;
   }
   .disability-income {
     background-image: url('../../../assets/images/comprehensive/insurance-plan/disability-income.svg');
-    background-repeat: no-repeat;
-    padding-left: 35px;
   }
   .long-term-care {
     background-image: url('../../../assets/images/comprehensive/insurance-plan/long-term-care.svg');
-    background-repeat: no-repeat;
-    padding-left: 35px;
   }
   .form-group-with-bg--content-white--title {
     @include allmobiles {
