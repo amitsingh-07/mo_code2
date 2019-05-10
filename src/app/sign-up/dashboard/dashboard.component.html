@@ -30,7 +30,8 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span
+                          *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
                         <span *ngIf="insurance.hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{
                             insurance.lastTransactionDate | date: 'dd MMM yyyy'}}.</span>
                       </div>
@@ -62,14 +63,19 @@
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-5" *ngIf="false"> <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
+                      <div class="flex-col col-5" *ngIf="false">
+                        <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0" class="portfolio_footer_value">
+                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0"
+                          class="portfolio_footer_value">
                           {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
                       </div>
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_ref_code" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">({{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}})</div>
+                        <div class="portfolio_ref_code"
+                          *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">
+                          ({{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}})
+                        </div>
                         <div class="portfolio_footer_value">
                           {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
@@ -171,7 +177,7 @@
               </div>
             </div>
             <!-- End of Investment widget -->
-            
+
             <app-comprehensive-dashboard></app-comprehensive-dashboard>
             <div class="widget will-writing" *ngIf="showWillWritingSection">
               <div class="widget-title">
@@ -187,7 +193,8 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
+                        <span
+                          *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
                         <span *ngIf="wills.hasWills && !wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC'
                           | translate}}</span>
                         <span *ngIf="wills.hasWills && wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC'
@@ -200,12 +207,13 @@
                       </div>
                     </div>
                     <div class="flex">
-                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWills" (click)="redirectTo('start')">
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!wills.hasWills"
+                        (click)="redirectTo('start')">
                         <div>{{'DASHBOARD.WILL_WRITING.START_WRITING' | translate}}</div>
                         <div>{{'DASHBOARD.WILL_WRITING.ESTIMATED_TIME' | translate}}</div>
                       </button>
-                      <button type="button" class="btn btn-primary col-12" *ngIf="wills.hasWills && !wills.completedWill"
-                        (click)="redirectTo('edit')">
+                      <button type="button" class="btn btn-primary col-12"
+                        *ngIf="wills.hasWills && !wills.completedWill" (click)="redirectTo('edit')">
                         <div>{{'DASHBOARD.WILL_WRITING.CONTINUE_WRITING' | translate}}</div>
                       </button>
                       <button type="button" class="btn btn-ghost col-12" *ngIf="wills.hasWills && wills.completedWill"

@@ -29,7 +29,7 @@
       padding-bottom: 10px;
       font-size: 18px;
       @include allmobiles {
-        width: 290px;
+        //width: 290px;
         word-break: break-word;
       }
     }
@@ -356,7 +356,15 @@ input[type='checkbox']+label {
   clear: none;
   padding: 0px 0 0px 35px;
   cursor: pointer;
-  background: url("./assets/images/error-icon/icon_checkbox_error.svg") left center no-repeat;
+  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
+}
+
+input[type='checkbox']+label.checkbox-error  {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 35px;
+    cursor: pointer;
+    background: url("./assets/images/comprehensive/error-icon/icon_checkbox_error.svg") left center no-repeat;
 }
 
 input[type='checkbox']:checked+label {
@@ -388,7 +396,7 @@ input::placeholder {
     color: $inline-error-border-color;
   }
   .btn-dropdown:after {
-    background-image: url('./assets/images/error-icon/icon_dropdown_error.svg') !important;
+    background-image: url('./assets/images/comprehensive/error-icon/icon_dropdown_error.svg') !important;
     width: 20px !important;
     height: 17px !important;
     border: none !important;
@@ -1377,10 +1385,17 @@ input::placeholder {
   }
   //Long text wrap fix
   @include allmobiles {
-    .title, .input-label-grey {
-      display: block;
-      width: 290px;
-      word-break: break-word;
-    }
+      .title, .input-label-grey {
+        display: block;
+        //width: 260px;
+        word-break: break-word;
+      }
+  }
+  @include desktop {
+      .title, .input-label-grey {
+        display: block;
+        //width: 500px;
+        word-break: break-word;
+      }
   }
 }
