@@ -11,10 +11,6 @@
   
 }
 
-.portfolio-desc {
- // padding: 0 15px !important;
-}
-
 .portfolio-type-details {
   font-family: $muli-italic;
   font-size: 16px;
@@ -59,7 +55,6 @@
     @include max360{
         width: 315px;
         width: 100%;
-      
       }
       img {
         max-width: 100%;
@@ -114,13 +109,15 @@
           padding: 0 10px;
           margin-bottom: 4px;
           margin-top: 8px;
+          @include ie11 {
+            margin-top: 30px !important;
+          }
         }
       }
     }
     @media(min-width:$col-md) {
       .graph_values {
         top: -29px;
-  
         span {
           &:nth-child(2){
             margin-top: -2px;
@@ -133,8 +130,7 @@
     }
     @media(min-width:$col-lg) {
       .graph_values {
-        top: -24px;
-  
+        top: -24px; 
         span {
           &:nth-child(2){
             margin-top: 17px;
@@ -145,6 +141,7 @@
         }
       }
     }
+   
     .time-lapse{
       justify-content: space-between;
       font-family: $muli-regular;
@@ -153,9 +150,6 @@
       letter-spacing: -0.2px;
       padding-top: 9.8px; 
       span{
-        &:first-child{
-
-        }
         &:last-child{
           font-family: $muli-bold;
         }

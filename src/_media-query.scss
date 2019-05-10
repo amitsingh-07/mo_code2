@@ -215,7 +215,7 @@
 }
 
 //IE11 Modal Fix
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@include ie11 {
   .modal.show .modal-dialog {
     top: 30%;
   }

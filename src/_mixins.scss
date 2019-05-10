@@ -235,6 +235,14 @@ line-height: lineHeightRem($size);
     @content;
   }
 }
+
+/* IE 11 mixin */
+
+@mixin ie11 {
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+		@content;
+	}
+}
 // Flex box mixins
 //================
 @mixin flex-align($position) {
