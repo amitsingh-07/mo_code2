@@ -58,7 +58,8 @@
                   <input appComprehensiveViewMode="{{viewMode}}" mode=1 [attr.disabled]="isFormControlDisabled"
                     id="educationSupportNo{{i}}" name="name" formControlName="preferenceSelection" type="checkbox"
                     class="field checkbox" value="">
-                  <label for="educationSupportNo{{i}}">
+                  <label for="educationSupportNo{{i}}"
+                    [ngClass]="{'checkbox-error': educationPreference && !education_plan_selection}">
                     <div class="title">{{educationPlan.get('name').value}}</div>
                   </label>
                 </div>
