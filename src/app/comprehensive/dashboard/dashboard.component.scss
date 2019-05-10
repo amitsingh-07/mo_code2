@@ -16,10 +16,10 @@
     }
     .form-group-with-bg--header-label {
         font-family: $muli-bold;
-        font-size: 22px;
+        font-size: 22px !important;
     }
     &.container-fluid {
-        padding-top: 20px;
+        padding-top: 0;
         @include allmobiles {
             padding: 0 !important
         }
