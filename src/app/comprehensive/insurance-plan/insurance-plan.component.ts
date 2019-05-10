@@ -169,7 +169,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         if (form.value.haveHDBHomeProtectionScheme !== 0) {
           form.value.homeProtectionCoverageAmount = 0;
         }
-        if (form.value.haveLongTermElderShield !== 0) {
+  if (form.value.haveLongTermElderShield !== 0) {
           form.value.longTermElderShieldAmount = null;
         }
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
