@@ -109,7 +109,7 @@
           padding: 0 10px;
           margin-bottom: 4px;
           margin-top: 8px;
-          @include ie11 {
+          @include ieSpecific {
             margin-top: 30px !important;
           }
         }
