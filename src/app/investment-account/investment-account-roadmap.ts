@@ -38,7 +38,7 @@ export let INVESTMENT_ACCOUNT_ROADMAP: IRoadmap = {
   notStartedClass: 'not-started',
   inProgressClass: 'in-progress',
   completedClass: 'completed'
-}
+};
 
 export let INVESTMENT_ACCOUNT_DDC_ROADMAP: IRoadmap = {
   title: 'Due Diligence Check',
@@ -57,4 +57,18 @@ export let INVESTMENT_ACCOUNT_DDC_ROADMAP: IRoadmap = {
   notStartedClass: 'not-started',
   inProgressClass: 'in-progress',
   completedClass: 'completed'
-}
+};
+
+export let INVESTMENT_ACCOUNT_DDC2_ROADMAP: IRoadmap = {
+  title: 'Due Diligence Check',
+  items: [
+    {
+      title: 'Investments',
+      path: [INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2],
+      status: ERoadmapStatus.NOT_STARTED
+    }
+  ],
+  notStartedClass: 'not-started',
+  inProgressClass: 'in-progress',
+  completedClass: 'completed'
+};

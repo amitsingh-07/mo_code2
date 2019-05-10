@@ -13,17 +13,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 import { PortfolioService } from '../portfolio/portfolio.service';
+import { ERoadmapStatus } from '../shared/components/roadmap/roadmap.interface';
+import { RoadmapService } from '../shared/components/roadmap/roadmap.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
+import { INVESTMENT_ACCOUNT_DDC2_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP, INVESTMENT_ACCOUNT_ROADMAP } from './investment-account-roadmap';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from './investment-account-routes.constants';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import { PersonalInfo } from './personal-info/personal-info';
-import { RoadmapService } from '../shared/components/roadmap/roadmap.service';
-import { INVESTMENT_ACCOUNT_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP } from './investment-account-roadmap';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from './investment-account-routes.constants';
-import { ERoadmapStatus } from '../shared/components/roadmap/roadmap.interface';
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 
@@ -1722,6 +1722,10 @@ export class InvestmentAccountService {
 
   loadDDCRoadmap() {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC_ROADMAP);
+  }
+
+  loadDDCInvestmentRoadmap() {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
   }
 
   setUserPortfolioExistStatus(status) {
