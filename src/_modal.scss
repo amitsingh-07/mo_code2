@@ -928,7 +928,7 @@ body.modal-open::-webkit-scrollbar {
     }
     @include allmobiles {
       &--label {
-        width: 290px;
+        //width: 290px;
         word-break: break-word;
         padding-right: 15px;
       }
