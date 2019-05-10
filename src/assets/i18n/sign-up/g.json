@@ -20,7 +20,7 @@
   },
   "CREATE_ACCOUNT": {
     "TITLE": "Create Your Account",
-    "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+    "DESCRIPTION": "Please fill in your details below.",
     "FORM": {
       "MOBILE_NUMBER": "Mobile Number",
       "FIRST_NAME": "First Name",
@@ -46,7 +46,8 @@
       "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
     },
     "EXPIRED_ERROR_MODAL": {
-      "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
+      "ERROR_TITLE": "Expired OTP Code",
+      "ERROR_MESSAGE": "Your OTP is expired. Please click on Resend OTP link to get new OTP"
     },
     "LOADING": {
       "VERIFYING": "Verifying...",

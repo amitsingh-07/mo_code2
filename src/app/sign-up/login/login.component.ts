@@ -31,6 +31,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -321,15 +322,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      ref.componentInstance.resendEmail.subscribe(($e) => {
-        this.resendEmailVerification();
-      });
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          };
+        });
     }
   }
 
   resendEmailVerification() {
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
-    this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail).subscribe(() => { });
+    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
   }
 
   openErrorModal(error) {

@@ -24,6 +24,7 @@ import { ApiService } from 'src/app/shared/http/api.service';
 import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { Formatter } from '../../shared/utils/formatter.util';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -42,6 +43,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   editNumber;
   captchaSrc: any = '';
   isPasswordValid = true;
+
+  confirmEmailFocus = false;
+  confirmPwdFocus = false;
+  passwordFocus = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -225,9 +230,17 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      ref.componentInstance.resendEmail.subscribe(($e) => {
-        this.resendEmailVerification();
-      });
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          } else if (data.responseMessage.responseCode === 5114) {
+            ref.close('close');
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+          }
+        });
     }
     this.refreshCaptcha();
     this.createAccountForm.controls['password'].reset();
@@ -262,9 +275,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {
-
-    });
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
   }
 
   onlyNumber(el) {
@@ -329,5 +340,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  showValidity(from) {
+    if (from === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (from === 'confirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
+    }
   }
 }

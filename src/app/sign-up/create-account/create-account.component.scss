@@ -78,4 +78,16 @@ app-create-account {
     height: auto;
    }
   }
+  .inline-error {
+    .show-password{
+      background: url("../../../assets/images/show-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+    .hide-password {
+      background-image: url("../../../assets/images/hide-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+  }
 }
