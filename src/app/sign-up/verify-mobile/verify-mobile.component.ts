@@ -1,3 +1,4 @@
+import { EditMobileNumberComponent } from './../../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { browser } from 'protractor';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -184,7 +185,10 @@ export class VerifyMobileComponent implements OnInit {
     if (this.editProfile) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+      const ref = this.modal.open(EditMobileNumberComponent, { centered: true });
+      ref.componentInstance.updateMobileNumber.subscribe(($e) => {
+        
+      });
     }
   }
 

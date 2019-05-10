@@ -43,6 +43,7 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { EditMobileNumberComponent } from './modal/edit-mobile-number/edit-mobile-number.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -70,7 +71,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -92,7 +93,8 @@ export function createTranslateLoader(http: HttpClient) {
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    EditMobileNumberComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

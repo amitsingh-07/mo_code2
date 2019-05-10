@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon" id="error_message_owl_img"><img src="./assets/images/owl.svg" /></div>
+</div>
+<div class="modal-body white-bg" id="edit_mobile_no_popup">
+  <div class="modal-body-title" id="title">Edit Mobile Number</div>
+  <button type="button" class="close" aria-label="Close" id="error_cross_img" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  <div class="modal-body-message" id="modal_form">
+    <input type="number" class="form-control" maxlength="15" #mobileNumber="ngModel" [(ngModel)]="value" pattern="^(8|9)\d{7}$" required />
+  </div>
+  <button type="button" [disabled]="mobileNumber.invalid" id="update_mobile_no" class="btn btn-primary width100 mt10" (click)="updateMobileNo(mobileNumber.value)">Update</button>
+</div>
+
