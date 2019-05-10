@@ -87,13 +87,14 @@
 .journey-wrapper{
   text-align: center;
  .img-fluid {
-  width: 195.7px;
-  height: 150px;
+  width: 126px;
+  height: 127px;
   text-align: center;
+  margin: 10px 0;
   @include allmobiles{
     width: 175px;
     height: 165px;
-    margin: 46px auto 0;
+    margin: 10px auto 10;
   }
  }
 }
