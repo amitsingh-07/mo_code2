@@ -29,4 +29,54 @@ app-start-journey {
     letter-spacing: -0.25px;
     font-size: 24px;
   }
+  .offer-code{
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 2.5;
+    letter-spacing: -0.15px;
+    text-align: center;
+    color: $teal-color;
+    padding: 0 50px;
+    margin-bottom: 60px;
+    .brdr-btm{
+        border: 1px solid $teal-color;
+        margin-bottom: 35px !important;
+    }
+    .promo-code-lbl {
+        line-height: normal;
+        position: relative;
+        top: 30px;
+        width: 70%;
+        padding: 5px 10px;
+        background: $white-color;
+        margin: 0 auto;        
+      .promo-sub-lbl{
+        font-family: $muli-regular;
+        font-size: 12px;
+        line-height: normal;
+        letter-spacing: -0.11px;
+        text-align: center;
+        color: $promo-sub-lbl-color;
+      }
+    }
+    input{
+      border-radius: 6px;
+      font-family: $muli-bold;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $teal-color;
+      border: solid 1px $promo-input-brdr-color;
+      padding: 18px 35px;
+      width: 247px;
+      height: 54px;
+    }
+    input::placeholder{
+      font-family: $muli-light;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: #a4a4a4 !important;
+    }
+  }
 }
