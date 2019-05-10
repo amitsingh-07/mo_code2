@@ -44,8 +44,12 @@
         padding-right: 40px;
 
         &.step {
+          font-family: $muli-bold;  
+          letter-spacing: -0.3px;
           color: $teal-color;
           font-size: 18px;
+          top: -4px;
+          position: relative;
         }
 
 
@@ -104,21 +108,21 @@
     .info-text {
       position: relative;
       display: block;
-      margin-right: 10px;
+      margin-right: 5px;
 
       img {
-        width: 18px;
-        height: 18px;
+        width: 15px;
+        height: 15px;
         margin-top: 7px;
         vertical-align: inherit;
       }
 
       &-content {
         position: absolute;
-        top: 6px;
-        left: 7px;
+        top: 4px;
+        left: 6px;
         color: $white-color;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
       }
     }
