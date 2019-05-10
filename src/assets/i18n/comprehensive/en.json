@@ -134,7 +134,7 @@
       "DESC_SUB_ABOUT_3": "When you are ready, our Client Adviser will meet you for a fuller consultation of up to two hours, where we can discuss your Financial Health report, refine your analysis and goals and customise your plan further. We will also help you to implement the plan through specific product recommendations, if you choose to do so.",
       "DESC_SUB_ABOUT_4": "Financial planning is an ongoing process. We will prompt you to review your plan once a year. For a limited period, our clients will not be charged for the first-year review. ",
       "DESCRIPTION": "Description",
-      "ROBOADVISORY": "Robo advisory",
+      "COMPREHENSIVE_PLAN": "Comprehensive Financial Planning",
       "FREE": "Free ",
       "FREE_LIMITED": "for a limited time only!",
       "ENTER_PROMO": "Enter your promo code",
@@ -292,9 +292,9 @@
     "GETTING_STARTED": {
       "TITLE": "Get Started",
       "HI": "Hi",
-      "HEADER": "Welcome to MoneyOwl <br> robo advisory!",
+      "HEADER": "Thank you for using MoneyOwl’s Comprehensive Financial Planning service!",
       "WELCOME_BACK": "Welcome Back",
-      "DESC": "Let’s kickstart your financial plan by <br> helping us to get to know you better.",
+      "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Some tips for you",
       "TOOL_TIP_DESC": "You can check your progress here!",
       "TOOL_TIP_CLOSE": "X"

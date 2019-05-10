@@ -48,18 +48,18 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       }
     },
     pips: {
-        mode: 'values',
-        values: [45, 50, 55, 60, 65],
-        density: 4
+      mode: 'values',
+      values: [45, 50, 55, 60, 65],
+      density: 4
     }
   };
   userAge: number;
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-              private translate: TranslateService,
-              private formBuilder: FormBuilder, private configService: ConfigService,
-              private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-              private router: Router, private route: ActivatedRoute, private aboutAge: AboutAge,
-              private eleRef: ElementRef, private renderer: Renderer2) {
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
+    private router: Router, private route: ActivatedRoute, private aboutAge: AboutAge,
+    private eleRef: ElementRef, private renderer: Renderer2) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
@@ -100,7 +100,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       }
     });
 
-    this.sliderValue = this.comprehensiveService.getRetirementPlan() ? parseInt(this.comprehensiveService.getRetirementPlan().retirementAge) : 45;
+    this.sliderValue = this.comprehensiveService.getRetirementPlan() ?
+      parseInt(this.comprehensiveService.getRetirementPlan().retirementAge) : 45;
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
@@ -151,8 +152,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
         const retirementData = {
-          enquiryId : this.comprehensiveService.getEnquiryId(),
-          retirementAge : this.sliderValue.toString()
+          enquiryId: this.comprehensiveService.getEnquiryId(),
+          retirementAge: this.sliderValue.toString()
         };
         this.comprehensiveApiService.saveRetirementPlanning(retirementData).subscribe((data: any) => {
           this.comprehensiveService.setRetirementPlan(retirementData);
