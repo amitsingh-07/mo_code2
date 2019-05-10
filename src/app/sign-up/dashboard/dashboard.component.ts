@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
   showInsuranceSection = false;
   insurance: any = {};
 
+  // transfer instructions
   bankDetails;
   paynowDetails;
   transferInstructionModal;
@@ -344,6 +345,9 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
+ /*
+  * Method to get transfer details
+  */
   getTransferDetails() {
     this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
       this.setBankPayNowDetails(data.objectList[0]);
@@ -353,6 +357,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /*
+  * Method to get details based on bank or paynow
+  */
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter(
       (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
@@ -362,6 +369,9 @@ export class DashboardComponent implements OnInit {
     )[0];
   }
 
+  /*
+  * Method to show transfer instruction steps modal
+  */
   showTransferInstructionModal() {
     this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
       size: 'sm',
@@ -377,6 +387,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /*
+  * Method to show recipients/entity name instructions modal
+  */
   showPopUp() {
     this.transferInstructionModal.dismiss();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

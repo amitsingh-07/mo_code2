@@ -13,6 +13,7 @@ import { InstructionStepsComponent } from '../bank-details/instruction-steps/ins
 export class TransferInstructionsModalComponent implements OnInit {
   FUND_YOUR_ACCOUNT;
   activeMode = 'BANK';
+  showBankTransferSteps = true;
 
   @Input() bankDetails;
   @Input() paynowDetails;

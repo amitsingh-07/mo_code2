@@ -23,11 +23,11 @@
     <div class="tab-content-container">
       <!-- TAB 1 -->
       <div class="tab-content" [class.active]="activeMode == 'BANK'">
-        <app-instruction-steps [showBankTransferIns]="true" [bankDetails]="bankDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
+        <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
       </div>
       <!-- TAB 2 -->
       <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
-        <app-instruction-steps [showBankTransferIns]="false" [paynowDetails]="paynowDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
+        <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
       </div>
     </div>
   </div>
