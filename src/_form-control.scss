@@ -1383,6 +1383,15 @@ input::placeholder {
     background: $btn-comprehensive-disabled-bg !important;
     color: $white-color !important;
   }
+  .view-mode .input-group-append {
+    margin-left: 0;
+  }
+  .earn-btn-dropdown:disabled {
+    border: none !important;
+  }
+  textarea:disabled {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+  }
   //Long text wrap fix
   @include allmobiles {
       .title, .input-label-grey {
