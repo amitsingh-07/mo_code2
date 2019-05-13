@@ -36,6 +36,7 @@ export class TaxInfoComponent implements OnInit {
   selectedCountries: any;
   formCount: number;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+  showNricHint = false;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -110,6 +111,7 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
+    this.showNricHint = country.countryCode === this.translate.instant('TAX_INFO.SG_COUNTRY_CODE');
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.updateValueAndValidity();
       if (country.countryCode === 'SG') {
