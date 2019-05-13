@@ -143,9 +143,10 @@ app-your-investment {
     border: 0;
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
-  }
-  .dropdown-item:first-child {
     border-bottom: 1px solid $teal-color !important;
+  }
+  .dropdown-item:last-child {
+    border-bottom: none;
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;

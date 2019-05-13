@@ -35,8 +35,9 @@ export let TOPUPANDWITHDRAW_CONFIG = {
   },
   INVESTMENT_OVERVIEW: {
     MORE_LIST: [
-      { id: 1, name: 'Transactions', value: 'TRANSACTIONS' },
-      { id: 2, name: 'Withdrawal', value: 'WITHDRAWAL' }
+      { id: 1, name: 'Top Up', value: 'TOPUP' },
+      { id: 2, name: 'Transactions', value: 'TRANSACTIONS' },
+      { id: 3, name: 'Withdrawal', value: 'WITHDRAWAL' }
     ],
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal'
