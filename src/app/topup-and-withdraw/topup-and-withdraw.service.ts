@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
@@ -17,7 +19,8 @@ export class TopupAndWithDrawService {
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private router: Router
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
@@ -389,5 +392,26 @@ export class TopupAndWithDrawService {
 
   downloadStatement(data) {
     return this.apiService.downloadStatement(data);
+  }
+
+
+  /*
+  * Method to navigate to topup, transactions and withdraw based on menu selection
+  */
+  showMenu(option) {
+    switch (option.id) {
+      case 1: {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+        break;
+      }
+      case 2: {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 3: {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
+        break;
+      }
+    }
   }
 }

@@ -111,7 +111,7 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
-    this.showNricHint = country.countryCode === this.translate.instant('TAX_INFO.SG_COUNTRY_CODE');
+    this.showNricHint = country.countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE;
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.updateValueAndValidity();
       if (country.countryCode === 'SG') {
