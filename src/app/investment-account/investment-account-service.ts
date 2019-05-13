@@ -1716,7 +1716,7 @@ export class InvestmentAccountService {
         status: ERoadmapStatus.NOT_STARTED
       });
     } else {
-      this.roadmapService.removeItem(INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS);
+      this.roadmapService.removeItem([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
     }
   }
 
