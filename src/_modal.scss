@@ -919,6 +919,7 @@ body.modal-open::-webkit-scrollbar {
     &--label {
       font-size: 14px;
       text-align: left;
+      word-break: break-word;
     }
 
     &--value {
