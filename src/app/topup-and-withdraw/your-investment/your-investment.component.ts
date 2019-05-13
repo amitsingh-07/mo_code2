@@ -47,7 +47,7 @@ export class YourInvestmentComponent implements OnInit {
   riskProfileImg: any;
   portfolio;
   productCode;
-  
+
   // transfer instructions
   bankDetails;
   paynowDetails;
@@ -239,11 +239,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.noClickAction.subscribe(() => { });
   }
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
