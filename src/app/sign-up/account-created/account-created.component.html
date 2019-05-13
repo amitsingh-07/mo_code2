@@ -25,6 +25,7 @@
             <div>{{'ACCOUNT_CREATED.DIDNOT_RECEIVE_IT' | translate}}</div>
             <div class="link-white" (click)="resendEmailVerification()">{{'ACCOUNT_CREATED.RESEND_VERIFICATION_EMAIL' | translate}}</div>
             <p *ngIf="emailSent" class="email-sent"><span>Email Sent!</span></p>
+            <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
           </div>
         </div>
       </div>
