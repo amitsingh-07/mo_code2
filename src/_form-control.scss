@@ -28,6 +28,7 @@
       color: #000000;
       padding-bottom: 10px;
       font-size: 18px;
+      word-break: break-word;
       @include allmobiles {
         //width: 290px;
         word-break: break-word;
@@ -1383,6 +1384,20 @@ input::placeholder {
     background: $btn-comprehensive-disabled-bg !important;
     color: $white-color !important;
   }
+  .view-mode .input-group-append {
+    margin-left: 0;
+  }
+  .earn-btn-dropdown:disabled {
+    border: none !important;
+  }
+  textarea:disabled {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+  }
+  //ios fix
+  .form-control:disabled , textarea:disabled, .input-control:disabled , .form-control.view-mode{
+    -webkit-text-fill-color: #00a7a7;
+    opacity: 1;
+  }
   //Long text wrap fix
   @include allmobiles {
       .title, .input-label-grey {
@@ -1398,4 +1413,11 @@ input::placeholder {
         word-break: break-word;
       }
   }
+  @include tablet {
+    .title, .input-label-grey {
+      display: block;
+      //width: 500px;
+      word-break: break-word;
+    }
+}
 }

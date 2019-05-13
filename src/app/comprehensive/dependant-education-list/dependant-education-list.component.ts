@@ -151,7 +151,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   }
   // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
-    if (this.viewMode || form.pristine ) {
+    if (this.viewMode || form.pristine) {
       this.showSummaryModal();
     } else {
       const dependantArray = [];
@@ -165,9 +165,9 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
         });
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
-          this.endowmentArrayPlan
+            this.endowmentArrayPlan
         }).subscribe((data: any) => {
-          this.showDependantSummary( this.endowmentArrayPlan);
+          this.showDependantSummary(this.endowmentArrayPlan);
         });
       } else {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
