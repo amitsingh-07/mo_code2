@@ -340,6 +340,7 @@
     }
   },
   "INVESTMENT_ACCOUNT_COMMON": {
+    "SELECT_COUNTRY": "Select Country",
     "ACCOUNT_CREATION_ERROR_MODAL": {
       "TITLE": "Error !",
       "DESCRIPTION": "Please fix the below list of errors and then proceed."

@@ -1,11 +1,12 @@
+
 <div ngbDropdown (openChange)="toggleDropdown($event)" [formGroup]="form" [placement]="placement">
   <button [disabled]="disabled" class="btn btn-dropdown without-border" id="birth-country-drpdown_{{randomNo}}"
     ngbDropdownToggle>
-    <span *ngIf="!form.controls[controlName].value">
+    <span *ngIf="!selectedValue">
         {{placeholderText}}
     </span>
-    <span *ngIf="form.controls[controlName].value">
-        {{ form.controls[controlName].value[displayKey] | titlecase }}
+    <span *ngIf="selectedValue">
+        {{ selectedValue | titlecase }}
     </span>                        
   </button>
   <div class="search-input-container" [class.show]="isDropdownOpen">
