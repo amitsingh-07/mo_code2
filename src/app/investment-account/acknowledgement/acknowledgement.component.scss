@@ -22,7 +22,16 @@ app-acknowledgement {
     
 .container-fluid{
   padding-top: 20px;
+  @include allmobiles{
+    padding-top: 80px;
+  }
 }
+    .acknowledgement-title{
+      font-family: $muli-semi-bold;
+      font-size: 30px;
+      color: $teal-color;
+      text-align: center;
+    }
     .acknowledgement_text {
       font-family: $muli-regular;
       font-size: 16px;

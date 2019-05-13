@@ -61,7 +61,7 @@ export class UploadDocumentBOComponent implements OnInit {
     this.uploadForm = new FormGroup({
       passportImage: new FormControl(this.formValues.passportImageBO, Validators.required)
     });
-    this.investmentAccountService.loadInvestmentAccountRoadmap();
+    this.investmentAccountService.loadInvestmentAccountRoadmap(true);
   }
 
   openFileDialog(elem) {

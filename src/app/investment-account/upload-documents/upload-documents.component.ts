@@ -65,7 +65,7 @@ export class UploadDocumentsComponent implements OnInit {
       ? this.buildFormForSingapore()
       : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddressproof();
-    this.investmentAccountService.loadInvestmentAccountRoadmap();
+    this.investmentAccountService.loadInvestmentAccountRoadmap(true);
   }
 
   buildFormForSingapore(): FormGroup {

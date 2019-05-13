@@ -1707,9 +1707,9 @@ export class InvestmentAccountService {
     }
   }
 
-  loadInvestmentAccountRoadmap() {
+  loadInvestmentAccountRoadmap(showUploadDocs?) {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_ROADMAP);
-    if (!this.getMyInfoStatus()) {
+    if (showUploadDocs) {
       this.roadmapService.addItem({
         title: 'Upload Documents',
         path: [INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS, INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO],
