@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.loginForm.controls['loginPassword'].reset();
         error = { errorMessage: 'User ID and/or password does not match.' };
         this.signUpService.setCaptchaCount();
-        if (this.signUpService.getCaptchaShown() || this.signUpService.getCaptchaCount() >= 3) {
+        if (this.signUpService.getCaptchaShown() || this.signUpService.getCaptchaCount() >= 2) {
           this.signUpService.setCaptchaShown();
           this.loginForm.controls['captchaValue'].reset();
           this.setCaptchaValidator();
