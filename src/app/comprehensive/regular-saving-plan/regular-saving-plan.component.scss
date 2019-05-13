@@ -39,4 +39,9 @@
     .delete-icon {
         margin-left: 10px;
     }
+    @include desktop {
+        .help-icon {
+            height: 20px !important;
+        }
+    }
 }
