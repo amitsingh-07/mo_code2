@@ -136,6 +136,7 @@
           border-left: 2px solid #ff872f;
           position: relative;
           padding-bottom: 15px;
+          cursor: pointer;
 
           &.complete {
             padding-top: 0;
@@ -195,6 +196,9 @@
             li {
               border-left: none;
             }
+          }
+          span {
+            word-break: break-word;
           }
         }
       }

@@ -23,6 +23,9 @@
         @include allmobiles {
             padding: 0 !important
         }
+        @include tablet {
+            padding: 0 !important
+        }
         width: auto;
     }
     .welcome-title {
