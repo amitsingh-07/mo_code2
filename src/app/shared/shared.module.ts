@@ -32,8 +32,10 @@ import { TermsComponent } from './components/terms/terms.component';
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { InstructionStepsComponent } from './modal/bank-details/instruction-steps/instruction-steps.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { TransferInstructionsModalComponent } from './modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
@@ -43,6 +45,8 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
+import { FilterPipe } from './utils/filter.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -70,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe,
+    DropdownWithSearchComponent, FilterPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -92,11 +97,17 @@ export function createTranslateLoader(http: HttpClient) {
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent,
+    DropdownWithSearchComponent,
+    FilterPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent
   ],
   providers: [ RoundPipe ]
 })

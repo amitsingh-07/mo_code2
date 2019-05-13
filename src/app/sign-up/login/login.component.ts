@@ -156,9 +156,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loginForm.controls['loginPassword'].reset();
         error = { errorMessage: 'User ID and/or password does not match.' };
-        if (this.signUpService.getCaptchaShown()) {
+        this.signUpService.setCaptchaCount();
+        if (this.signUpService.getCaptchaShown() || this.signUpService.getCaptchaCount() >= 2) {
+          this.signUpService.setCaptchaShown();
           this.loginForm.controls['captchaValue'].reset();
-          this.refreshCaptcha();
+          this.setCaptchaValidator();
         }
       }
       ref.componentInstance.errorMessage = error.errorMessage;
