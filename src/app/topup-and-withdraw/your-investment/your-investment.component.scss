@@ -21,6 +21,16 @@ app-your-investment {
       width: 100%;
     }
   }
+
+  .ref-code {
+    color: $invest-ref-code-color;
+    font-size: 14px;
+    font-family: $muli;
+    &-text {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
   .background_img {
     display: none;
     @include allmobiles{
