@@ -185,24 +185,30 @@ export class VerifyMobileComponent implements OnInit {
     if (this.editProfile) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
     } else {
-      const ref = this.modal.open(EditMobileNumberComponent, { centered: true });
+      const ref = this.modal.open(EditMobileNumberComponent, {
+        centered: true, backdrop: 'static',
+        keyboard: false
+      });
       ref.componentInstance.updateMobileNumber.subscribe((data) => {
         const request = {
-          email : this.signUpService.getAccountInfo().email,
-          mobileNumber: data,
-          countryCode :  this.mobileNumber.code
+          email: this.signUpService.getAccountInfo().email,
+          mobileNumber: data.toString(),
+          countryCode: this.mobileNumber.code
         }
         this.signUpApiService.updateAccount(request).subscribe(() => {
           if (data.responseMessage.responseCode === 6000) {
+            this.mobileNumber.number = data;
+            this.signUpService.setContactDetails(this.mobileNumber.code,
+              data, this.signUpService.getAccountInfo().email);
             if (data.objectList[0] && data.objectList[0].customerRef) {
               this.signUpService.setCustomerRef(data.objectList[0].customerRef);
             }
           } else {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+            const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+            Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
           }
+          ref.close();
         });
-        ref.close();
       });
     }
   }
