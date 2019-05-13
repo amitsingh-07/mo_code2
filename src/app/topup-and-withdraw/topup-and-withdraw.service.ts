@@ -399,7 +399,7 @@ export class TopupAndWithDrawService {
 
 
   /*
-  * Method to show topup, transactions and withdraw menu
+  * Method to navigate to topup, transactions and withdraw based on menu selection
   */
   showMenu(option) {
     switch (option.id) {
