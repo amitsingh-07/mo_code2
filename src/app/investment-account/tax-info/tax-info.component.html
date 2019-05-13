@@ -95,7 +95,7 @@
               </div>
             </div>
           </div>
-          <div *ngIf="showNricHint && taxInfoItem.controls.radioTin.value === true">{{ 'TAX_INFO.NRIC_HINT' | translate}}</div>
+          <div class="mt15" *ngIf="showNricHint && taxInfoItem.controls.radioTin.value === true">{{ 'TAX_INFO.NRIC_HINT' | translate}}</div>
           <div class="thumb-close-icon" (click)="removeTaxForm(taxInfoForm , x)">
             <img src="../../../assets/images/close-button-dark.svg" alt="x" />
           </div>
