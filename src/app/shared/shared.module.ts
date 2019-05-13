@@ -45,6 +45,8 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
+import { FilterPipe } from './utils/filter.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -72,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe,
+    DropdownWithSearchComponent, FilterPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -96,7 +99,9 @@ export function createTranslateLoader(http: HttpClient) {
     InvestmentTitleBarComponent,
     RoundPipe,
     TransferInstructionsModalComponent,
-    InstructionStepsComponent
+    InstructionStepsComponent,
+    DropdownWithSearchComponent,
+    FilterPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,

@@ -235,7 +235,12 @@
     "API_FAILED": {
       "TITLE": "Oops !",
       "DESC": "Something went wrong. Please try again."
-    }
+    },
+    "NO_RESULT": "No result found."
+  },
+  "DROPDOWN": {
+    "SELECT": "Select",
+    "SEARCH": "Search"
   },
   "SUBSCRIBE_SIDE": {
     "TITLE": "Join our Mailing List and get wiser!",

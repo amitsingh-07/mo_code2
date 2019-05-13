@@ -117,21 +117,14 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
-                    <div ngbDropdown placement="top-right">
-                      <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="birth-country-drpdown"
-                        ngbDropdownToggle>
-                        <span *ngIf="!invPersonalInfoForm.controls.birthCountry.value">
-                            {{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}
-                        </span>
-                        <span *ngIf="invPersonalInfoForm.controls.birthCountry.value">
-                            {{invPersonalInfoForm.controls.birthCountry.value.name | titlecase}}
-                        </span>                        
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="birth-country-drpdown">
-                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event, 'birthCountry', country, i)"
-                          id="birth-country-option-{{i}}">{{country.name | titlecase}}</button>
-                      </div>
-                    </div>
+                    <app-dropdown-with-search 
+                      controlName="birthCountry"
+                      [optionList]="countries"
+                      displayKey="name"
+                      placement="top-right"
+                      placeholderText="{{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}"
+                      (itemSelected)="setDropDownValue($event, 'birthCountry', $event)">
+                    </app-dropdown-with-search>
                   </div>
                 </div>
               </div>
@@ -153,21 +146,14 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportIssuedCountry').enabled && !invPersonalInfoForm.get('passportIssuedCountry').valid && !invPersonalInfoForm.get('passportIssuedCountry').pristine}">
-                    <div ngbDropdown placement="top-right">
-                      <button class="btn btn-dropdown without-border" id="passport-issued-country-drpdown"
-                        ngbDropdownToggle>
-                        <span *ngIf="!invPersonalInfoForm.controls.passportIssuedCountry.value">
-                            {{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}
-                        </span>
-                        <span *ngIf="invPersonalInfoForm.controls.passportIssuedCountry.value">
-                            {{invPersonalInfoForm.controls.passportIssuedCountry.value.name | titlecase}}
-                        </span>
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="passport-issued-country-drpdown">
-                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue($event,'passportIssuedCountry', country, i)"
-                          id="passport-issued-country-option-{{i}}">{{country.name | titlecase}}</button>
-                      </div>
-                    </div>
+                    <app-dropdown-with-search 
+                      controlName="passportIssuedCountry"
+                      [optionList]="countries"
+                      displayKey="name"
+                      placement="top-right"
+                      placeholderText="{{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}"
+                      (itemSelected)="setDropDownValue($event, 'passportIssuedCountry', $event)">
+                    </app-dropdown-with-search>
                   </div>
                 </div>
               </div>
