@@ -21,15 +21,15 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.country)}">
-                    <div ngbDropdown>
-                      <button [disabled]="isDisabled('country')" class="btn btn-dropdown without-border" id="residentialAddress-country-drpdown"
-                        ngbDropdownToggle>{{addressForm.controls.country.value.name | titlecase}}
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country, i)"
-                          id="residentialAddress-country-option-{{i}}">{{country.name | titlecase}}</button>
-                      </div>
-                    </div>
+                    <app-dropdown-with-search 
+                      [disabled]="isDisabled('country')"
+                      controlName="country"
+                      [optionList]="countries"
+                      displayKey="name"
+                      placement="bottom"
+                      placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                      (itemSelected)="setDropDownValue('country',$event, i)">
+                    </app-dropdown-with-search>
                   </div>
                 </div>
               </div>
@@ -213,14 +213,24 @@
                   </div>
                   <div class="flex-col-7">
                     <div class="dropdown-control">
-                      <div ngbDropdown>
+                      <!-- <div ngbDropdown>
                         <button [disabled]="isDisabled('mailCountry')" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown" ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value.name | titlecase}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',country, 'mailingAddress')"
                             id="residentialAddress-country-option-{{i}}">{{country.name | titlecase}}</button>
                         </div>
-                      </div>
+                      </div> -->
+                      <app-dropdown-with-search 
+                        [disabled]="isDisabled('mailCountry')"
+                        controlName="mailCountry"
+                        nestedControlName="mailingAddress"
+                        [optionList]="countries"
+                        displayKey="name"
+                        placement="bottom"
+                        placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                        (itemSelected)="setNestedDropDownValue('mailCountry',$event, 'mailingAddress')">
+                      </app-dropdown-with-search>
                     </div>
                   </div>
                 </div>

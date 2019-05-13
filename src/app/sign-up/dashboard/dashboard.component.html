@@ -69,7 +69,8 @@
                       </div>
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_ref_code" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">({{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}})</div>
+                        <div class="portfolio_ref_code" (click)="showTransferInstructionModal()" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">(<span class="portfolio_ref_code_text">{{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}}</span>)</div>
+
                         <div class="portfolio_footer_value">
                           {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
