@@ -61,7 +61,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+
+      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
         || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
         this.haveHDB = true;
       }
