@@ -235,7 +235,12 @@
     "API_FAILED": {
       "TITLE": "Oops !",
       "DESC": "Something went wrong. Please try again."
-    }
+    },
+    "NO_RESULT": "No result found."
+  },
+  "DROPDOWN": {
+    "SELECT": "Select",
+    "SEARCH": "Search"
   },
   "SUBSCRIBE_SIDE": {
     "TITLE": "Join our Mailing List and get wiser!",
@@ -260,6 +265,48 @@
   "COMMON_LOADER": {
     "TITLE": "Loading",
     "DESC": "Please wait while we load the data"
+  },
+  "TRANSFER_INSTRUCTION": {
+    "INSTITUTION_TYPE_BANK": "bank",
+    "INSTITUTION_TYPE_PAY_NOW": "PayNow",
+    "TRANSFER_FUND_TITLE": "Transfer Funds to your Cash Account",
+    "TRANSFER_FUND_DESCRIPTION": "Simply follow the instructions below to transfer funds to your cash account. Bank transfer and PayNow are available.",
+    "STEPS_TITLE_BANK": "Steps via Bank Transfer",
+    "STEPS_TITLE_PAYNOW": "Steps via PayNow Transfer",
+    "FUND_YOUR_ACCOUNT": {
+      "VIA_BANK": "Bank Transfer",
+      "VIA_PAYNOW": "PayNow",
+      "ADD_REFERENCE_CODE_INFO": "You <span class='ref-code-bold'>MUST</span> indicate this Reference Code in the <span class='ref-code-quote'>“Remarks / Descriptions / Comments”</span>.",
+      "MODAL": {
+        "SHOW_TRANSACTION_STEPS": {
+          "STEP_1": "STEP 1",
+          "STEP_2": "STEP 2",
+          "STEP_3": "STEP 3",
+          "STEP_4": "STEP 4",
+          "STEP_5": "STEP 5",
+          "STEP_6": "STEP 6",
+          "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
+          "LBL_STEP_2": "Select an <span class='sub-section-bold'>account of your own (registered under your name)</span> to transfer from and <span class='sub-section-bold'>enter the amount</span> to transfer.",
+          "LBL_STEP_3": "Enter transfer information.",
+          "LBL_STEP_4": "Enter reference code.",
+          "LBL_STEP_5": "Verify and confirm the transaction details.",
+          "LBL_STEP_6": "We will notify you once your funds have been received."
+        },
+        "SHOW_BANK_TRANSCTIONS": {
+          "RECIPENTS_NAME": "Recipient's Name",
+          "BANK_NAME": "Bank Name",
+          "BANK_ACC_NO": "Bank Account No."
+        },
+        "SHOW_PAYNOW": {
+          "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+          "ENTITY_NAME": "Entity Name"
+        },
+        "SHOWPOPUP": {
+          "TITLE": "Recipient’s / Entity Name",
+          "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+        }
+      }
+    }
   }
 }
 
