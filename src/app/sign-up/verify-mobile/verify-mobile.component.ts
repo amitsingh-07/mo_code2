@@ -186,8 +186,8 @@ export class VerifyMobileComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
     } else {
       const ref = this.modal.open(EditMobileNumberComponent, { centered: true });
-      ref.componentInstance.updateMobileNumber.subscribe(($e) => {
-        
+      ref.componentInstance.updateMobileNumber.subscribe((data) => {
+        ref.close();
       });
     }
   }
