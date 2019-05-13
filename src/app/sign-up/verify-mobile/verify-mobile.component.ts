@@ -187,6 +187,21 @@ export class VerifyMobileComponent implements OnInit {
     } else {
       const ref = this.modal.open(EditMobileNumberComponent, { centered: true });
       ref.componentInstance.updateMobileNumber.subscribe((data) => {
+        const request = {
+          email : this.signUpService.getAccountInfo().email,
+          mobileNumber: data,
+          countryCode :  this.mobileNumber.code
+        }
+        this.signUpApiService.updateAccount(request).subscribe(() => {
+          if (data.responseMessage.responseCode === 6000) {
+            if (data.objectList[0] && data.objectList[0].customerRef) {
+              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            }
+          } else {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+          }
+        });
         ref.close();
       });
     }
