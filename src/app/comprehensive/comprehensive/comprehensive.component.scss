@@ -6,6 +6,11 @@ app-comprehensive {
     &.container-fluid {
       padding-top: 0;
     }
+    @include tablet {
+      &.container-fluid {
+        padding: 0 !important;
+      }
+    }
     &.white-bg {
       background-color: #FFFFFF !important;
     }
