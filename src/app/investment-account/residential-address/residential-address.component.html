@@ -22,13 +22,13 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.country)}">
                     <app-dropdown-with-search 
+                      [disabled]="isDisabled('country')"
                       controlName="country"
                       [optionList]="countries"
-                      [disabled]="isDisabled('country')"
                       displayKey="name"
                       placement="bottom"
-                      placeholderText="{{ 'RESIDENTIAL_ADDRESS.SELECT_COUNTRY' | translate }}"
-                      (itemSelected)="setDropDownValue('country',$event, i)">
+                      placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                      (itemSelected)="setDropDownValue('country',$event)">
                     </app-dropdown-with-search>
                   </div>
                 </div>
@@ -222,13 +222,14 @@
                         </div>
                       </div> -->
                       <app-dropdown-with-search 
-                        controlName="passportIssuedCountry"
-                        [optionList]="countries"
                         [disabled]="isDisabled('mailCountry')"
+                        controlName="mailCountry"
+                        nestedControlName="mailingAddress"
+                        [optionList]="countries"
                         displayKey="name"
-                        placement="top-right"
-                        placeholderText="{{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}"
-                        (itemSelected)="setDropDownValue($event, 'passportIssuedCountry', $event)">
+                        placement="bottom"
+                        placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                        (itemSelected)="setNestedDropDownValue('mailCountry',$event, 'mailingAddress')">
                       </app-dropdown-with-search>
                     </div>
                   </div>
