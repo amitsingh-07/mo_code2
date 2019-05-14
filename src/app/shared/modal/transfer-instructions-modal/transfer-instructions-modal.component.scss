@@ -18,7 +18,10 @@
     color: $teal-color;
     background-color: $white-color;
     margin: 0;
-    padding: 20px 40px 15px 25px;
+    padding: 20px 40px 15px 25px; 
+    @include allmobiles {
+      margin-top: 1px;
+    }
   }
 
   &-message {
@@ -30,9 +33,6 @@
     line-height: 1.33;
     letter-spacing: -0.2px;
     color: $black-color;
-    @include allmobiles {
-      margin-top: -1px;
-    }
   }
 
   .close {
