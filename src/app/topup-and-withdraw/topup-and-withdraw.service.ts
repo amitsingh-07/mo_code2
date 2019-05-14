@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
@@ -10,23 +12,35 @@ import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { TransferInstructionsModalComponent } from '../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
   providedIn: 'root'
 })
 export class TopupAndWithDrawService {
+
+  // transfer instructions
+  bankDetails;
+  paynowDetails;
+  transferInstructionModal;
+  activeModal;
+
   constructor(
+    public readonly translate: TranslateService,
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private modal: NgbModal
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
     this.getTopupInvestmentList();
     this.topUpAndWithdrawFormData.withdrawMode =
       TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
+    this.activeModal = TOPUPANDWITHDRAW_CONFIG.TRANSFER_INSTRUCTION.MODE;
   }
   private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
@@ -394,7 +408,6 @@ export class TopupAndWithDrawService {
     return this.apiService.downloadStatement(data);
   }
 
-
   /*
   * Method to navigate to topup, transactions and withdraw based on menu selection
   */
@@ -405,13 +418,70 @@ export class TopupAndWithDrawService {
         break;
       }
       case 2: {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+        this.bankDetails && this.paynowDetails ? this.showTransferInstructionModal() : '';
         break;
       }
       case 3: {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 4: {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
         break;
       }
     }
+  }
+
+  /*
+  * Method to get details based on bank or paynow
+  */
+ setBankPayNowDetails(data) {
+  this.bankDetails = data.filter(
+    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
+  )[0];
+  this.paynowDetails = data.filter(
+    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
+  )[0];
+}
+
+  /*
+  * Method to show transfer instruction steps modal
+  */
+  showTransferInstructionModal() {
+    this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
+            windowClass : 'transfer-steps-modal custom-full-height'
+    });
+    this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
+    this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
+    this.transferInstructionModal.componentInstance.activeMode = this.activeModal;
+    this.transferInstructionModal.componentInstance.closeModal.subscribe(() => {
+      this.transferInstructionModal.dismiss();
+    });
+    this.transferInstructionModal.componentInstance.openModal.subscribe(() => {
+      this.showPopUp();
+    });
+
+    this.transferInstructionModal.componentInstance.activeTab.subscribe((res) => {
+      this.activeModal = res;
+    });
+  }
+
+  /*
+  * Method to show recipients/entity name instructions modal
+  */
+  showPopUp() {
+    this.transferInstructionModal.dismiss();
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE'
+    );
+    const recipientName = this.activeModal === 'BANK' ? this.bankDetails.receipientName : this.paynowDetails.receipientName;
+    ref.componentInstance.errorMessage = recipientName + this.translate.instant(
+      'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE'
+    );
+    ref.result.then((result) => {
+    }, (reason) => {
+      this.showTransferInstructionModal();
+    });
   }
 }
