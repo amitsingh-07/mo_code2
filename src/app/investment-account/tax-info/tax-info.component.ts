@@ -84,6 +84,7 @@ export class TaxInfoComponent implements OnInit {
   addTaxForm(data): void {
     const control = this.taxInfoForm.controls['addTax'] as FormArray;
     const newFormGroup = this.createForm(data);
+    this.showHint(newFormGroup.controls.taxCountry.value.countryCode, newFormGroup);
     control.push(newFormGroup);
     if (data) {
       this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
@@ -95,7 +96,8 @@ export class TaxInfoComponent implements OnInit {
     let formGroup;
     formGroup = this.formBuilder.group({
       radioTin: new FormControl(data ? data.radioTin : '', Validators.required),
-      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required)
+      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required),
+      showTinHint: new FormControl(false)
     });
     return formGroup;
   }
@@ -111,7 +113,6 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
-    this.showNricHint = country.countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE;
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.updateValueAndValidity();
       if (country.countryCode === 'SG') {
@@ -120,6 +121,15 @@ export class TaxInfoComponent implements OnInit {
         this.singPlaceHolder = '';
       }
     }
+    this.showHint(country.countryCode, taxInfoItem);
+  }
+
+  /*
+  * Method to show TIN hint based on country code if singapore
+  */
+  showHint(countryCode, taxInfoItem) {
+    this.showNricHint = countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE;
+    taxInfoItem.controls.showTinHint.setValue(this.showNricHint);
   }
 
   selectReason(reasonObj, taxInfoItem) {
