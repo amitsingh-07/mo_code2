@@ -39,7 +39,19 @@ export class StartJourneyComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+
+    this.authService.authenticate().subscribe((token) => {
+    });
+    this.promoCodeForm = this.formBuilder.group({
+      promoCode: [promoCodeValue, [Validators.pattern(RegexConstants.SixDigitPromo)]]
+    });
   }
+
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.promoCodeRef.nativeElement.value = this.promoCodeRef.nativeElement.value.toUpperCase();
+  }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
@@ -48,5 +60,26 @@ export class StartJourneyComponent implements OnInit {
   }
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+  }
+
+  verifyPromoCode(promoCode) {
+    promoCode = promoCode.toUpperCase();
+    this.isDisabled = true;
+    this.willWritingApiService.verifyPromoCode(promoCode).subscribe((data) => {
+      this.promoCode = data.responseMessage;
+      if (this.promoCode.responseCode === 6005) {
+        this.willWritingService.setPromoCode(promoCode);
+        this.willWritingService.setEnquiryId(data.objectList[0].enquiryId);
+        this.openTermsOfConditions();
+      } else if (this.promoCode.responseCode === 5017) {
+        this.willWritingService.openToolTipModal('', this.errorMsg);
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = false;
+        return false;
+      }
+    }, (error) => {
+      this.isDisabled = false;
+    });
   }
 }
