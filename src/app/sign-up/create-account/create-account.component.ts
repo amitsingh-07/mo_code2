@@ -196,6 +196,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
+        }, (err) => {
+          this.createAccountTriggered = false;
         });
     }
   }
