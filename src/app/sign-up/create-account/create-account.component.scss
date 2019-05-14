@@ -66,4 +66,17 @@ app-create-account {
     color: #5e5e5e;
     z-index: 999;
   }
+
+  .inline-error {
+    .show-password{
+      background: url("../../../assets/images/show-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+    .hide-password {
+      background-image: url("../../../assets/images/hide-password.svg") !important;
+      background-repeat:no-repeat !important;
+      background-color:transparent !important;
+    }
+  }
 }

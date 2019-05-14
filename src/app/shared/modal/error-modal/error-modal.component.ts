@@ -27,6 +27,7 @@ export class ErrorModalComponent implements OnInit {
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
+  @Input() emailSent: boolean;
 
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
@@ -55,6 +56,5 @@ export class ErrorModalComponent implements OnInit {
 
   resendEmailVerification() {
     this.resendEmail.emit();
-    this.activeModal.close('resend');
   }
 }
