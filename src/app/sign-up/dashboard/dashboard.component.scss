@@ -209,6 +209,7 @@ app-dashboard{
                                       }
                                 }
                                 .portfolio_ref_code {
+                                    cursor: pointer;
                                     color: $invest-ref-code-color;
                                     font-size: 14px;
                                     font-family: $muli;

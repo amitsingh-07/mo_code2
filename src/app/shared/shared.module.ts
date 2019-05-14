@@ -32,8 +32,10 @@ import { TermsComponent } from './components/terms/terms.component';
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { InstructionStepsComponent } from './modal/bank-details/instruction-steps/instruction-steps.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { TransferInstructionsModalComponent } from './modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
@@ -96,12 +98,16 @@ export function createTranslateLoader(http: HttpClient) {
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
     RoundPipe,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent,
     DropdownWithSearchComponent,
     FilterPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent
   ],
   providers: [ RoundPipe ]
 })

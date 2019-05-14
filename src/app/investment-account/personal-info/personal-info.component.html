@@ -118,6 +118,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
                     <app-dropdown-with-search 
+                      [disabled]="isDisabled()"
                       controlName="birthCountry"
                       [optionList]="countries"
                       displayKey="name"

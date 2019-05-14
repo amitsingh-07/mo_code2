@@ -124,11 +124,7 @@ export class YourPortfolioComponent implements OnInit {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
   }
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
