@@ -41,7 +41,7 @@
 
       .sub-section {
         margin-left: 19.5px;
-        padding-right: 40px;
+        padding-right: 25px;
 
         &.step {
           font-family: $muli-bold;  
@@ -87,8 +87,13 @@
     }
 
     &-content {
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+      color: $black-color;
       strong {
         margin-right: 15px;
+        font-weight: 600;
       }
     }
   }
@@ -102,8 +107,8 @@
     color: $red-color;
     border-radius: 6px;
     border: 1px solid $red-color;
-    margin: 20px 0 10px;
-    max-width: 230px;
+    margin: 20px 20px 10px 20px;
+    // max-width: 230px;
 
     .info-text {
       position: relative;
@@ -192,6 +197,10 @@
     color: $secondary-action-color;
     text-decoration: none;
   }
+}
+
+:host /deep/ .ref-code-context {
+  color: $black-color;
 }
 
 :host /deep/ .ref-code-bold {
