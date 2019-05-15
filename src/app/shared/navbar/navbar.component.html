@@ -188,11 +188,23 @@
           </div>
         </li>
 
-        <li class="nav-item hidden-sm-md" *ngIf="showComprehensiveTitle">
+        <!--li class="nav-item hidden-sm-md" *ngIf="showComprehensiveTitle">
           <div class="progress-tracker-container ">
-            <div class="{{menuItemClass}} prg-trck-icon" *ngIf="showMenuItem" (mouseover)="onMenuItemClicked()">
+            <div class="{{menuItemClass}} prg-trck-icon" *ngIf="showMenuItem" (click)="onMenuItemClicked()">
               <div class="tooltip-icon"></div>
             </div>
+          </div>
+        </li>-->
+
+        <li *ngIf="showComprehensiveTitle" class="nav-item hidden-sm-md" ngbDropdown #id06="ngbDropdown"
+          (mouseover)="openDropdown(id06);reloadProgressTracker();" (mouseleave)="closeDropdown(id06);">
+          <div class="progress-tracker-container " ngbDropdownToggle>
+            <div class="{{menuItemClass}} prg-trck-icon" *ngIf="showMenuItem">
+              <div class="tooltip-icon"></div>
+            </div>
+          </div>
+          <div class="nav-progress-container right" ngbDropdownMenu aria-labelledby="id06">
+            <app-progress-tracker></app-progress-tracker>
           </div>
         </li>
 
