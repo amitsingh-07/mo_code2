@@ -12,6 +12,7 @@ app-your-investment {
   }
   .investment-bg {
     padding-top: 60px;
+    position: relative;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
@@ -401,5 +402,78 @@ app-your-investment {
     bottom: -17px;
     right: 43px;
     position: absolute;
+  }
+	
+  .toast-msg {
+    color: #efa621;
+    background: #fff;
+    padding: 25px 0px;
+    position: relative;
+    top: 61px;
+    padding-left:75px;
+    background-color:#fff1e3;
+    border-top:1px solid #dfdfdf;
+    font-family: $muli-bold;
+    font-size:18px;
+
+    img {
+      position:absolute;
+      left:30px;
+      top:25px;
+    }
+  }
+
+  .action-section {
+    border-top:1px solid #eaeaea;
+    color:#8a9ba9;
+    flex-grow:1;
+    display:flex;
+    margin-top:10px;
+    margin-left:-25px;
+    margin-right:-25px;
+    padding-left:25px;
+    padding-right:25px;
+    .action-item{
+      flex: 1 1 0;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right:0px;
+      }
+    }
+  }
+
+  .btn-transparent {
+    border-radius: 6px;
+    background-color:transparent;
+    border: 1px solid #eaeaea;
+    color:#9b9b9b;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size:18px;
+    width: 100%;
+    font-family: $muli-bold;
+
+    &.orange {
+      color:#ff872f;
+    }
+  }
+
+  .no-portfolio {
+    padding: 30px 28px;
+    text-align: center;
+
+    .msg {
+      display:block;
+      color:#5e5e5e;
+      font-size:15px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    img {
+      margin-bottom:20px;
+    }
+
   }
 }

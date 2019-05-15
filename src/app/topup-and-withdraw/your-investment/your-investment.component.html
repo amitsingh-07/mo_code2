@@ -1,5 +1,9 @@
 <app-investment-title-bar></app-investment-title-bar>
 <div class="container-fluid max-width--1024 invest-web-pt-90">
+<div class="toast-msg" *ngIf="isToastMessageShown">
+  <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
+  {{toastMsg}}
+</div>
 <div class="flex-col-12">
   <div class="investment-bg">
     <img id="edit_profile_bg_img" id="investment_overview_background_img" class="background_img" src="assets/images/investment_header.svg" />
@@ -109,10 +113,19 @@
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>
+              <div class="action-section" *ngIf="portfolio.currentValue <= 0">
+                  <div class="action-item">
+                      <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-transparent">{{'YOUR_INVESTMENT.DELETE'
+                          | translate}}</button>
+                  </div>
+                  <div class="action-item">
+                    <button type="button" (click)="investAgain(portfolio)" class="btn btn-transparent orange">Invest Again</button>
+                  </div>
+                </div>
             </div>
           </div>
           <!-- NON-FUNDED PORTFOLIO  -->
-          <div *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus !== 'PURCHASED'">
+          <div *ngIf="portfolio && portfolio.portfolioStatus && portfolio.portfolioStatus !== 'PURCHASED'">
             <div class="form-group-with-bg--header your_portfolio_value">
               <div class="flex-row" (click)="yourPortfolio(portfolio)">
                 <div class="conserve-icon">
@@ -163,6 +176,13 @@
             </div>
           </div>
         </div>
+        <div class="form-group-with-bg no-portfolio" *ngIf="!portfolioList || portfolioList.length == 0">
+          <span class="msg">You do not have any portfolios.</span>
+          <img src="../../../assets/images/no-portfolio-icon.png" alt="" />
+          <button type="button" class="btn btn-primary width100" id="add_portfolio" (click)="startPortfolio()">
+              {{'YOUR_INVESTMENT.START_PORTFOLIO' | translate}} </button>
+        </div>
+
         <button *ngIf="false" type="button" class="btn-with-icon mt10" id="add_portfolio" (click)="addPortfolio()">
           <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" />
           {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>

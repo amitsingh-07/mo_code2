@@ -52,6 +52,8 @@ export class YourInvestmentComponent implements OnInit {
   bankDetails;
   paynowDetails;
   transferInstructionModal;
+  isToastMessageShown;
+  toastMsg;
 
   constructor(
     public readonly translate: TranslateService,
@@ -218,7 +220,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   deletePortfolio(portfolio) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_INVESTMENT.DELETE_TXT'
@@ -227,7 +229,11 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.yesClickAction.subscribe(() => {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          const translateParams = {
+            portfolioName: portfolio.riskProfile.type
+          };
+          const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
+          this.showToastMessage(toastMsg);
         } else {
           this.investmentAccountService.showGenericErrorModal();
         }
@@ -238,6 +244,7 @@ export class YourInvestmentComponent implements OnInit {
     });
     ref.componentInstance.noClickAction.subscribe(() => { });
   }
+
   selectOption(option) {
     this.topupAndWithDrawService.showMenu(option);
   }
@@ -311,4 +318,23 @@ showPopUp() {
   });
 }
 
+  showToastMessage(msg) {
+    this.isToastMessageShown = true;
+    this.toastMsg = msg;
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1);
+    setTimeout(() => {
+      this.isToastMessageShown = false;
+    }, 3000);
+  }
+
+  investAgain(portfolio) {
+    this.topupAndWithDrawService.setPortfolioValues(portfolio);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+
+  startPortfolio() {
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
+  }
 }
