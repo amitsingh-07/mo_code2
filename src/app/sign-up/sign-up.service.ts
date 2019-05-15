@@ -618,4 +618,10 @@ export class SignUpService {
     }
   }
 
+  updateMobileNumber(countryCode, mobileNumber) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.commit();
+  }
+
 }
