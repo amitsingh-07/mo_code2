@@ -7,8 +7,7 @@
       <span aria-hidden="true"></span>
     </button>
   <div class="modal-body-message" id="modal_form">
-    <input type="number" name="mobileNumber" class="form-control" maxlength="15" #mobileNumber [(ngModel)]="value" pattern="^(8|9)\d{7}$" required />
-    {{ mobileNumber.focus() }}
+    <input type="number" class="form-control" maxlength="15" #mobileNumber="ngModel" [(ngModel)]="mobileNo" pattern="^(8|9)\d{7}$" required />
   </div>
   <button type="button" [disabled]="mobileNumber.invalid" id="update_mobile_no" class="btn btn-primary width100 mt10" (click)="updateMobileNo(mobileNumber.value)">Update</button>
 </div>
