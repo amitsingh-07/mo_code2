@@ -85,8 +85,7 @@
             <div class="form-group-with-bg--header your_portfolio_value" (click)="yourPortfolio(portfolio)">
               <div class="flex-row">
                 <div class="conserve-icon">
-                  <img id="investment_overview_growth_icons" src="../../../assets/images/investment-account/growth_icon.svg"
-                    alt="" />
+                    <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
                 </div>
                 <div class="portfolio_heading" id="investment_overview_portfolio_name">{{portfolio.riskProfile.type}}</div>
               </div>
@@ -116,7 +115,7 @@
             <div class="form-group-with-bg--header your_portfolio_value">
               <div class="flex-row" (click)="yourPortfolio(portfolio)">
                 <div class="conserve-icon">
-                  <img [src]="getImg(i)" alt="" />
+                  <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
                 </div>
                 <div class="portfolio_heading">{{portfolio.riskProfile.type}}</div>
               </div>
