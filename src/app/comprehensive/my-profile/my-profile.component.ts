@@ -170,7 +170,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
 
     setUserProfileData() {
-        this.nationality = this.userDetails.nation ? this.userDetails.nation : '';
+        this.nationality = this.userDetails.nationalityStatus ? this.userDetails.nationalityStatus : '';
         this.userDetails.ngbDob = this.parserFormatter.parse(this.userDetails.dateOfBirth);
     }
 
@@ -182,7 +182,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.moGetStrdForm = this.formBuilder.group({
             firstName: [this.userDetails ? this.userDetails.firstName : ''],
             gender: [this.userDetails && this.userDetails.gender ? this.userDetails.gender.toLocaleLowerCase() : '', [Validators.required]],
-            nation: [this.userDetails ? this.userDetails.nation : '', [Validators.required]],
+            nationalityStatus: [this.userDetails ? this.userDetails.nationalityStatus : '', [Validators.required]],
             dateOfBirth: [this.userDetails ? this.userDetails.dateOfBirth : ''],
             ngbDob: [this.userDetails ? this.userDetails.ngbDob : '', [Validators.required]]
         });
@@ -215,12 +215,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         }
     }
     selectNationality(nationality: any) {
-        if (this.nationality && this.nationality !== 'Select') {
-            this.nationalityAlert = true;
-        }
         nationality = nationality ? nationality : { text: '', value: '' };
         this.nationality = nationality.text;
-        this.moGetStrdForm.controls['nation'].setValue(nationality.text);
+        this.moGetStrdForm.controls['nationalityStatus'].setValue(nationality.text);
         this.moGetStrdForm.markAsDirty();
     }
     validateDOB(date) {

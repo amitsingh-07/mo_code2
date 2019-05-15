@@ -689,7 +689,7 @@ export class ComprehensiveService {
                     case 1:
                     // 'dependant-selection'
                     case 2:
-                        if (profileData.nation) {
+                        if (profileData.nationalityStatus) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -1192,6 +1192,7 @@ export class ComprehensiveService {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
+            // tslint:disable-next-line:radix
             const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
             retirementAgeValue = ((retireAgeVal > 60) ? '62 or later' : retireAgeVal + ' yrs old');
         }
@@ -1357,7 +1358,7 @@ export class ComprehensiveService {
         let homeSalary = 0;
         let homeCpfSalary = 0;
         if (earningDetails && earningDetails !== null && earningDetails.totalAnnualIncomeBucket > 0) {
-            if (baseProfile && baseProfile.nation === 'Others') {
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
                 homeSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {
