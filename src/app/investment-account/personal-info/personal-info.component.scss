@@ -75,6 +75,7 @@ app-inv-personal-info {
       }
     }
     .input-group-append {
+     
       .btn-primary {
         box-shadow: none !important;
         &:disabled {
@@ -82,6 +83,7 @@ app-inv-personal-info {
           background-color: $inv-btn-disabled-bg !important;
           opacity: 1 !important;
         }
+        box-shadow: none !important;
       }
     }
     .btn {
