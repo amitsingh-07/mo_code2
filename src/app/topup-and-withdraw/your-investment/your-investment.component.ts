@@ -47,7 +47,7 @@ export class YourInvestmentComponent implements OnInit {
   riskProfileImg: any;
   portfolio;
   productCode;
-  
+
   // transfer instructions
   bankDetails;
   paynowDetails;
@@ -239,11 +239,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.noClickAction.subscribe(() => { });
   }
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -255,64 +251,30 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  /*
-  * Method to get transfer details
-  */
+/*
+* Method to get transfer details
+*/
  getTransferDetails() {
   this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
-    this.setBankPayNowDetails(data.objectList[0]);
+    this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
   },
   (err) => {
     this.investmentAccountService.showGenericErrorModal();
   });
  }
 
-  /*
-  * Method to get details based on bank or paynow
-  */
- setBankPayNowDetails(data) {
-  this.bankDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
-  )[0];
-  this.paynowDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
-  )[0];
-}
-
 /*
 * Method to show transfer instruction steps modal
 */
 showTransferInstructionModal() {
-  this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
-    size: 'sm',
-    windowClass : 'transfer-steps-modal'
-  });
-  this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
-  this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
-  this.transferInstructionModal.componentInstance.closeModal.subscribe(() => {
-    this.transferInstructionModal.dismiss();
-  });
-  this.transferInstructionModal.componentInstance.openModal.subscribe(() => {
-    this.showPopUp();
-  });
+  this.topupAndWithDrawService.showTransferInstructionModal();
 }
 
 /*
 * Method to show recipients/entity name instructions modal
 */
 showPopUp() {
-  this.transferInstructionModal.dismiss();
-  const ref = this.modal.open(ErrorModalComponent, { centered: true });
-  ref.componentInstance.errorTitle = this.translate.instant(
-    'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE'
-  );
-  ref.componentInstance.errorMessage = this.translate.instant(
-    'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE'
-  );
-  ref.result.then((result) => {
-  }, (reason) => {
-    this.showTransferInstructionModal();
-  });
+  this.topupAndWithDrawService.showPopUp();
 }
 
 }

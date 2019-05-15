@@ -69,6 +69,7 @@ export class YourPortfolioComponent implements OnInit {
       ? this.portfolioValues.yearlyReturns
       : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
+    this.getTransferDetails();
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
@@ -81,9 +82,9 @@ export class YourPortfolioComponent implements OnInit {
         this.constructFundingParams(this.portfolio);
         this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   constructFundingParams(data) {
@@ -124,13 +125,21 @@ export class YourPortfolioComponent implements OnInit {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
   }
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
+  }
+
+  /*
+  * Method to get transfer details
+  */
+  getTransferDetails() {
+    this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
+      this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 }

@@ -204,9 +204,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
+            this.signUpService.setCaptchaCount();
             if (data.objectList[0] && data.objectList[0].sessionId) {
               this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-            } else if (data.objectList[0].attempt >= 3) {
+            } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
               this.signUpService.setCaptchaShown();
               this.setCaptchaValidator();
             }
