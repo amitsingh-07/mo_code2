@@ -13,6 +13,8 @@ export class EditMobileNumberComponent implements OnInit {
 
   @Output() updateMobileNumber: EventEmitter<any> = new EventEmitter();
 
+  mobileNo;
+
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
   ngOnInit() {
