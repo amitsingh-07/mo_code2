@@ -16,14 +16,16 @@
   </div>
   <!--Moneyown Logo /-->
   <!--Page heading-->
-  <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }} 
+  <div class="comprehensive__page-heading" id="moGetStrdUser">{{'CMP.GETTING_STARTED.HI'|translate }}
     {{userDetails ?userDetails.firstName : ''}} </div>
   <!--Page heading /-->
   <!--Page sub-heading-->
-  <div  class="comprehensive__page-sub-heading--center" id="moGetStrdWelcomeMsg" [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
-  <!--Page sub-heading /-->  
+  <div class="comprehensive__page-sub-heading--center" id="moGetStrdWelcomeMsg"
+    [innerHTML]="'CMP.GETTING_STARTED.HEADER'|translate"></div>
+  <!--Page sub-heading /-->
   <!--Page desc-->
-  <div class="comprehensive__page-content--center" id="moGetStrdPageCont" [innerHTML]="'CMP.GETTING_STARTED.DESC'|translate"></div>
+  <div class="comprehensive__page-content--center" id="moGetStrdPageCont"
+    [innerHTML]="'CMP.GETTING_STARTED.DESC'|translate"></div>
   <!--Page desc /-->
   <!--Page form-->
   <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
@@ -40,7 +42,7 @@
             </label>
           </div>
           <div class="flex-col-7">
-              {{userDetails ? userDetails.firstName : ''}}    
+            {{userDetails ? userDetails.firstName : ''}}
           </div>
         </div>
         <!--Flex row 1 /-->
@@ -50,16 +52,20 @@
             <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
           </div>
           <div class="flex-col-7">
-            <div class="btn-group--toggle"  ngbRadioGroup name="radioGender" formControlName="gender">
+            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
               <div class="flex-row mb0">
                 <div class="flex-col-6">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
-                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioMale" ngbButton type="radio" value="male">{{ 'LABEL.MALE' | translate}}
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
+                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioMale" ngbButton type="radio"
+                      value="male">{{ 'LABEL.MALE' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-6">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive" [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
-                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioFemale" ngbButton type="radio" value="female">{{ 'LABEL.FEMALE' |
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
+                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
+                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioFemale" ngbButton
+                      type="radio" value="female">{{ 'LABEL.FEMALE' |
                     translate}}
                   </label>
                 </div>
@@ -75,14 +81,15 @@
           </div>
           <div class="flex-col-7">
             <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
-              <div  ngbDropdown id="nationalityDropDown" placement="top-right">
-                <button   type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
+              <div ngbDropdown id="nationalityDropDown" placement="top-right">
+                <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle
+                  appComprehensiveViewMode="{{viewMode}}" mode=1>
                   <span class="grey-text" *ngIf="nationality === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
-                
-                  <button  type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
+
+                  <button type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
                     (click)="selectNationality(nationality)">
                     {{nationality.text}}
                   </button>
@@ -92,7 +99,8 @@
           </div>
         </div>
         <!--Flex row 3 /-->
-        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}</div>
+        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}
+        </div>
         <!--Flex row 4-->
         <div class="flex-row  mb0">
           <div class="flex-col-5">
@@ -100,14 +108,20 @@
           </div>
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert, 'view-mode': viewMode}">
-                <input appComprehensiveViewMode="{{viewMode}}" mode=1 readonly (click)="d.toggle();" class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
-                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB" (ngModelChange)="validateDOB( d._model)" >
+              <div class="input-group date-picker mb0"
+                [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert, 'view-mode': viewMode}">
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 readonly (click)="d.toggle();"
+                  class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
+                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB"
+                  (ngModelChange)="validateDOB( d._model)">
                 <div class="input-group-append">
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker" appComprehensiveViewMode="{{viewMode}}" mode=1>
-                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="moGetStrdForm.get('ngbDob').valid && !submitted && !DOBAlert"
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker"
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1"
+                      *ngIf="moGetStrdForm.get('ngbDob').valid && !submitted && !DOBAlert"
                       src="./assets/images/calendar-normal.svg" />
-                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1" *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
+                    <img class="date-picker-image--invalid" id="moGetStrdFormImg1"
+                      *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
                       src="./assets/images/calendar-error.svg" />
                   </button>
                 </div>
@@ -116,14 +130,17 @@
           </div>
         </div>
         <!--Flex row 4 /-->
-        <div [hidden]="!DOBAlert" class="flex-row info-msg mt20">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
+        <div [hidden]="!DOBAlert" class="flex-row info-msg mt20 dob-valid-error">
+          <span class='dob-alert-icon'></span><span class='dob-alert-text'>
+            {{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</span></div>
       </div>
       <!--Form Content-->
     </div>
     <!--Form group-->
     <!--Footer CTA-->
     <div class="footer-cta">
-      <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary width100" id="prfBtn1">{{
+      <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary width100"
+        id="prfBtn1">{{
         (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
       </button>
     </div>
