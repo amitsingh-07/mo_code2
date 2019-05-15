@@ -189,17 +189,13 @@ export class VerifyMobileComponent implements OnInit {
         centered: true, backdrop: 'static',
         keyboard: false
       });
-      ref.componentInstance.updateMobileNumber.subscribe((data) => {
-        const request = {
-          email: this.signUpService.getAccountInfo().email,
-          mobileNumber: data.toString(),
-          countryCode: this.mobileNumber.code
-        }
-        this.signUpApiService.updateAccount(request).subscribe(() => {
+      ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
+        this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
+          ref.close();
           if (data.responseMessage.responseCode === 6000) {
-            this.mobileNumber.number = data;
-            this.signUpService.setContactDetails(this.mobileNumber.code,
-              data, this.signUpService.getAccountInfo().email);
+            this.mobileNumber.number = mobileNo.toString();
+            this.signUpService.updateMobileNumber(this.mobileNumber.code,
+              mobileNo.toString());
             if (data.objectList[0] && data.objectList[0].customerRef) {
               this.signUpService.setCustomerRef(data.objectList[0].customerRef);
             }
@@ -207,7 +203,6 @@ export class VerifyMobileComponent implements OnInit {
             const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
             Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
           }
-          ref.close();
         });
       });
     }

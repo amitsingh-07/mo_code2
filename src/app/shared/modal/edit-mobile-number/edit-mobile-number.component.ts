@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 })
 export class EditMobileNumberComponent implements OnInit {
 
-  @Output() updateMobileNumber: EventEmitter<any> = new EventEmitter()
+  @Output() updateMobileNumber: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 

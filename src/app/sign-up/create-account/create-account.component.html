@@ -164,7 +164,7 @@
               <div class="title">{{ 'CREATE_ACCOUNT.FORM.MARKETING_ACCEPTANCE' | translate }}</div>
             </label>
           </div>
-          <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button"
+          <button id="nextDependentBtn" [disabled]="createAccountTriggered" (click)="save(createAccountForm)" type="button"
             class="btn btn__footer--fixed btn-primary width100">{{
             'COMMON.CONTINUE' | translate }}</button>
         </form>
