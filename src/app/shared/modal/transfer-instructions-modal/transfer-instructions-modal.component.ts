@@ -3,8 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InstructionStepsComponent } from '../bank-details/instruction-steps/instruction-steps.component';
-
 @Component({
   selector: 'app-transfer-instructions-modal',
   templateUrl: './transfer-instructions-modal.component.html',
@@ -17,6 +15,7 @@ export class TransferInstructionsModalComponent implements OnInit {
 
   @Input() bankDetails;
   @Input() paynowDetails;
+  @Output() activeTab: EventEmitter<any> = new EventEmitter();
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
   @Output() openModal: EventEmitter<any> = new EventEmitter();
 
@@ -25,10 +24,12 @@ export class TransferInstructionsModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activeTab.emit(this.activeMode);
   }
 
   selectFundingMethod(mode) {
     this.activeMode = mode;
+    this.activeTab.emit(mode);
   }
 
   modalClose() {

@@ -24,6 +24,7 @@ import { ApiService } from 'src/app/shared/http/api.service';
 import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { Formatter } from '../../shared/utils/formatter.util';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -42,6 +43,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   editNumber;
   captchaSrc: any = '';
   isPasswordValid = true;
+  createAccountTriggered = false;
+
+  confirmEmailFocus = false;
+  confirmPwdFocus = false;
+  passwordFocus = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -163,31 +169,37 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
-      .subscribe((data: any) => {
-        const responseCode = [6000, 6008, 5006];
-        if (responseCode.includes(data.responseMessage.responseCode)) {
-          if (data.responseMessage.responseCode === 6000 ||
-            data.responseMessage.responseCode === 6008) {
-            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+    if (!this.createAccountTriggered) {
+      this.createAccountTriggered = true;
+      this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
+        .subscribe((data: any) => {
+          this.createAccountTriggered = false;
+          const responseCode = [6000, 6008, 5006];
+          if (responseCode.includes(data.responseMessage.responseCode)) {
+            if (data.responseMessage.responseCode === 6000 ||
+              data.responseMessage.responseCode === 6008) {
+              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            }
+            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+            if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+              this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+              (insuranceEnquiry &&
+                insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+              const redirect = data.responseMessage.responseCode === 6000;
+              this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
+            } else if (data.responseMessage.responseCode === 6000) {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+            } else if (data.responseMessage.responseCode === 6008 ||
+              data.responseMessage.responseCode === 5006) {
+              this.callErrorModal(data);
+            }
+          } else {
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
-          const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-          if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-            (insuranceEnquiry &&
-              insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
-            const redirect = data.responseMessage.responseCode === 6000;
-            this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
-          } else if (data.responseMessage.responseCode === 6000) {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-          } else if (data.responseMessage.responseCode === 6008 ||
-            data.responseMessage.responseCode === 5006) {
-            this.callErrorModal(data);
-          }
-        } else {
-          this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
-        }
-      });
+        }, (err) => {
+          this.createAccountTriggered = false;
+        });
+    }
   }
 
   callErrorModal(data: any) {
@@ -225,9 +237,17 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      ref.componentInstance.resendEmail.subscribe(($e) => {
-        this.resendEmailVerification();
-      });
+      ref.componentInstance.resendEmail.pipe(
+        flatMap(($e) =>
+          this.resendEmailVerification()))
+        .subscribe((data) => {
+          if (data.responseMessage.responseCode === 6007) {
+            ref.componentInstance.emailSent = true;
+          } else if (data.responseMessage.responseCode === 5114) {
+            ref.close('close');
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
+          }
+        });
     }
     this.refreshCaptcha();
     this.createAccountForm.controls['password'].reset();
@@ -262,9 +282,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true).subscribe(() => {
-
-    });
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
   }
 
   onlyNumber(el) {
@@ -323,11 +341,21 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       // Confirm E-mail
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
-      } else if (emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
+      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  showValidity(from) {
+    if (from === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (from === 'confirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
+    }
   }
 }

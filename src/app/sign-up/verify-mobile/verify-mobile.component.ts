@@ -55,6 +55,7 @@ export class VerifyMobileComponent implements OnInit {
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
       this.errorModal['message'] = result.ERROR_MODAL.ERROR_MESSAGE;
+      this.errorModal['expiredTitle'] = result.EXPIRED_ERROR_MODAL.ERROR_TITLE;
       this.errorModal['expiredMessage'] = result.EXPIRED_ERROR_MODAL.ERROR_MESSAGE;
       this.loading['verifying'] = result.LOADING.VERIFYING;
       this.loading['verified'] = result.LOADING.VERIFIED;
@@ -124,7 +125,7 @@ export class VerifyMobileComponent implements OnInit {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
-        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : '';
+        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
         this.openErrorModal(title, message, showErrorButton);

@@ -1,11 +1,12 @@
 <div class="modal-body">
-  <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
-  <div class="modal-body-message">
-    {{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_DESCRIPTION' | translate }}</div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true"></span>
-  </button>
-
+  <div class="title-container">
+    <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
+    <div class="modal-body-message">
+      {{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_DESCRIPTION' | translate }}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
   <!-- TRANSFER DETAILS -->
   <div class="transfer-details">
     <div class="tab-container">

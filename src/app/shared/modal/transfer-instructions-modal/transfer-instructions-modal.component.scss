@@ -10,15 +10,19 @@
   }
   background-color: $app-backgrnd-color;
 
+  .title-container {
+    background-color: $white-color;
+  }
+
   &-title {
     font-family: $muli-bold;
     line-height: 1.14;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.26px;
     font-size: 28px;
     color: $teal-color;
     background-color: $white-color;
     margin: 0;
-    padding: 20px 35px 15px 25px;
+    padding: 20px 40px 15px 25px;
   }
 
   &-message {
@@ -33,7 +37,7 @@
   }
 
   .close {
-    right: 15px !important;
+    right: 13px !important;
     top: 25px !important;
   }
 
@@ -44,7 +48,6 @@
     @include allmobiles {
       padding-bottom: 80px;
     }
-
     .tab-container {
       display: flex;
 
@@ -67,7 +70,7 @@
           font-family: $muli-bold;
           line-height: 1.17;
           letter-spacing: -0.2px;
-          padding: 15px 35px;
+          padding: 15px 25px;
           text-align: center;
           align-items: center;
           justify-content: center;
@@ -110,7 +113,7 @@
 
   .btn-primary {
     font-size: 24px;
-    font-family: $muli-bold;  
+    font-family: $muli-bold;
     letter-spacing: -0.2px;
   }
 }
