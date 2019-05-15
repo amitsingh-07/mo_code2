@@ -29,9 +29,15 @@ export class ComprehensiveDashboardComponent implements OnInit {
   stepDetails = { hasDependents: 1, hasEndowments: 2 };
   items: any;
   isLoadComplete = false;
-  constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService,
-    private configService: ConfigService, private comprehensiveService: ComprehensiveService,
-    private comprehensiveApiService: ComprehensiveApiService, private datePipe: DatePipe,
+  // tslint:disable-next-line:cognitive-complexity
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private translate: TranslateService,
+    private configService: ConfigService,
+    private comprehensiveService: ComprehensiveService,
+    private comprehensiveApiService: ComprehensiveApiService,
+    private datePipe: DatePipe,
     private navbarService: NavbarService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -57,7 +63,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
         const reportDateAPI = new Date();
         this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
         this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
-          && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nation)
+          && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
         if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
           this.comprehensivePlanning = 3;

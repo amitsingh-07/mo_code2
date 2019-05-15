@@ -36,7 +36,7 @@ export interface IMyProfile {
     id: string;
     firstName: string;
     dateOfBirth: any;
-    nation: string;
+    nationalityStatus: string;
     gender: string;
     ngbDob: any;
 }
@@ -205,4 +205,3 @@ export interface IRetirementPlan {
     enquiryId: number;
     retirementAge: string;
 }
-

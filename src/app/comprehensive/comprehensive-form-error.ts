@@ -20,7 +20,7 @@ export class ComprehensiveFormError {
                     errorMessage: 'Date of Birth'
                 }
             },
-            nation: {
+            nationalityStatus: {
                 required: {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'
