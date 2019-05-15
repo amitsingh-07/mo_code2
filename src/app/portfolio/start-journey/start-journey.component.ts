@@ -1,14 +1,21 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { AppService } from './../../app.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 
+import { appConstants } from '../../app.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-start-journey',
@@ -18,20 +25,31 @@ import { PortfolioService } from '../portfolio.service';
 })
 export class StartJourneyComponent implements OnInit {
   pageTitle: string;
+  isDisabled: boolean;
+  promoCode;
+  errorMsg: string;
+  promoCodeForm: FormGroup;
+  @ViewChild('promoCode') promoCodeRef: ElementRef;
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
+    private loaderService: LoaderService,
+    private appService: AppService,
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
     public footerService: FooterService,
+    public authService: AuthenticationService,
     private _location: Location,
+    private formBuilder: FormBuilder,
     private modal: NgbModal
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = 'Welcome';
+      this.pageTitle = this.translate.instant('START.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
+      this.errorMsg = this.translate.instant('START.PROMO_ERROR');
     });
   }
 
@@ -43,7 +61,7 @@ export class StartJourneyComponent implements OnInit {
     this.authService.authenticate().subscribe((token) => {
     });
     this.promoCodeForm = this.formBuilder.group({
-      promoCode: [promoCodeValue, [Validators.pattern(RegexConstants.SixDigitPromo)]]
+      promoCode: ['', [Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
   }
 
@@ -59,27 +77,49 @@ export class StartJourneyComponent implements OnInit {
     this._location.back();
   }
   goNext() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
+    if (this.promoCodeForm.controls.promoCode.value) {
+      this.verifyPromoCode(this.promoCodeForm.controls.promoCode.value);
+    } else {
+      this.authService.saveEnquiryId(null);
+      this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+    }
   }
 
   verifyPromoCode(promoCode) {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'COMMON_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'COMMON_LOADER.DESC'
+      )
+    });
     promoCode = promoCode.toUpperCase();
     this.isDisabled = true;
-    this.willWritingApiService.verifyPromoCode(promoCode).subscribe((data) => {
+    this.portfolioService.verifyPromoCode(promoCode).subscribe((data) => {
+      this.loaderService.hideLoader();
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
-        this.willWritingService.setPromoCode(promoCode);
-        this.willWritingService.setEnquiryId(data.objectList[0].enquiryId);
-        this.openTermsOfConditions();
+        this.authService.saveEnquiryId(data.objectList[0].enquiryId);
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
       } else if (this.promoCode.responseCode === 5017) {
-        this.willWritingService.openToolTipModal('', this.errorMsg);
+        this.showErrorModal();
         this.isDisabled = false;
       } else {
         this.isDisabled = false;
         return false;
       }
     }, (error) => {
+      this.loaderService.hideLoader();
       this.isDisabled = false;
     });
+  }
+
+  showErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Error';
+    ref.componentInstance.errorDescription = this.errorMsg;
+    return false;
   }
 }
