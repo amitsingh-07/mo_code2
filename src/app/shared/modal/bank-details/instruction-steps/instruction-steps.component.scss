@@ -113,7 +113,7 @@
     .info-text {
       position: relative;
       display: block;
-      margin-right: 5px;
+      margin-right: 10px;
 
       img {
         width: 15px;
@@ -124,8 +124,8 @@
 
       &-content {
         position: absolute;
-        top: 4px;
-        left: 6px;
+        top: 0.18rem;
+        left: 0.37rem;
         color: $white-color;
         font-size: 11px;
         font-weight: bold;
