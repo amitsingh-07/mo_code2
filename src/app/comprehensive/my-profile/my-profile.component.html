@@ -80,7 +80,8 @@
             <label for="nationality">{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</label>
           </div>
           <div class="flex-col-7">
-            <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  myProfileControls.nation.invalid}">
+            <div class="dropdown-control"
+              [ngClass]="{'inline-error': submitted &&  myProfileControls.nationalityStatus.invalid}">
               <div ngbDropdown id="nationalityDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle
                   appComprehensiveViewMode="{{viewMode}}" mode=1>
@@ -99,8 +100,6 @@
           </div>
         </div>
         <!--Flex row 3 /-->
-        <div [hidden]="!nationalityAlert" class="flex-row info-msg">{{ 'CMP.MY_PROFILE.NATIONALITY_ALERT' | translate}}
-        </div>
         <!--Flex row 4-->
         <div class="flex-row  mb0">
           <div class="flex-col-5">
@@ -149,3 +148,4 @@
   <!--Page form /-->
 </div>
 <!--Container fluid /-->
+
