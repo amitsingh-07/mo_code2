@@ -1,3 +1,4 @@
+import { appConstants } from './../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -251,15 +252,16 @@ export class PortfolioService {
   }
   constructInvObjectiveRequest() {
     const formData = this.getPortfolioFormData();
+    const enquiryIdValue = Number(this.authService.getEnquiryId());
     return {
       investmentPeriod: formData.investmentPeriod,
       monthlyIncome: formData.monthlyIncome,
       initialInvestment: formData.initialInvestment,
       monthlyInvestment: formData.monthlyInvestment,
-      // dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
-      totalLiabilities: formData.totalLiabilities
+      totalLiabilities: formData.totalLiabilities,
+      enquiryId: enquiryIdValue
     };
   }
 
@@ -330,5 +332,15 @@ export class PortfolioService {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY);
     }
+  }
+
+  verifyPromoCode(promoCodeData) {
+    const investJourneyType = appConstants.JOURNEY_TYPE_INVESTMENT;
+    const promoCode = {
+        promoCode: promoCodeData,
+        sessionId: this.authService.getSessionId(),
+        journeyType: investJourneyType
+    };
+    return this.apiService.verifyPromoCode(promoCode);
   }
 }
