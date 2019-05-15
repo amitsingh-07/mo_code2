@@ -153,7 +153,7 @@
     "TAX_OTHER_COUNTRY":"Are you paying tax in another country?",
     "ADD_TAX_RESIDENCE":"Add Tax Residence",
     "SG_COUNTRY_CODE": "SG",
-    "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC"
+    "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC."
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",

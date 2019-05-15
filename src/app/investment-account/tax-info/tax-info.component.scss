@@ -5,6 +5,12 @@ app-tax-info {
     .flex-row {
       align-items: center;
     }
+
+    .tin-hint {
+      font-size: 14px;
+      font-family: $muli-italic;
+    }
+    
     .dropdown-control {
       .dependent-count {
         margin-left: 4px;
