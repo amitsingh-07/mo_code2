@@ -76,6 +76,7 @@ app-inv-personal-info {
     }
     .input-group-append {
       .btn-primary {
+        box-shadow: none !important;
         &:disabled {
           color: $teal-color !important;
           background-color: $inv-btn-disabled-bg !important;
