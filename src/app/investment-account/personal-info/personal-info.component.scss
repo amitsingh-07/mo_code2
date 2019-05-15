@@ -75,12 +75,14 @@ app-inv-personal-info {
       }
     }
     .input-group-append {
+     
       .btn-primary {
         &:disabled {
           color: $teal-color !important;
           background-color: $inv-btn-disabled-bg !important;
           opacity: 1 !important;
         }
+        box-shadow: none !important;
       }
     }
     .btn {
