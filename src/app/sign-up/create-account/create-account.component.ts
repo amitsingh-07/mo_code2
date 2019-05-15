@@ -40,7 +40,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
-  editNumber;
   captchaSrc: any = '';
   isPasswordValid = true;
   createAccountTriggered = false;
@@ -68,9 +67,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private selectedPlansService: SelectedPlansService,
   ) {
     this.translate.use('en');
-    this.route.params.subscribe((params) => {
-      this.editNumber = params.editNumber;
-    });
   }
 
   /**

@@ -40,6 +40,7 @@ import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 import {
     ViewAllNotificationsComponent
 } from './view-all-notifications/view-all-notifications.component';
+import { EditMobileNumberComponent } from '../shared/modal/edit-mobile-number/edit-mobile-number.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -88,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     AccountUpdatedComponent,
     AddUpdateBankComponent
   ],
-  providers: [SignUpAccessGuard, AuthGuardService]
+  providers: [SignUpAccessGuard, AuthGuardService],
+  entryComponents: [EditMobileNumberComponent]
 })
 export class SignUpModule { }
