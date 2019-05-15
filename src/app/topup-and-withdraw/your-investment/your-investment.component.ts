@@ -205,7 +205,7 @@ export class YourInvestmentComponent implements OnInit {
   }
 
   getImg(i) {
-    const riskProfileImg = ProfileIcons[i]['icon'];
+    const riskProfileImg = ProfileIcons[i - 1]['icon'];
     return riskProfileImg;
   }
 
