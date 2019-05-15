@@ -335,11 +335,11 @@ export class PortfolioService {
   }
 
   verifyPromoCode(promoCodeData) {
-    const investJourneyType = appConstants.JOURNEY_TYPE_INVESTMENT;
+    const promoCodeType = appConstants.INVESTMENT_PROMO_CODE_TYPE;
     const promoCode = {
         promoCode: promoCodeData,
         sessionId: this.authService.getSessionId(),
-        journeyType: investJourneyType
+        promoCodeCat: promoCodeType
     };
     return this.apiService.verifyPromoCode(promoCode);
   }
