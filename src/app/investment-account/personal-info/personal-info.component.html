@@ -190,22 +190,14 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('race').enabled && !invPersonalInfoForm.get('race').valid && !invPersonalInfoForm.get('race').pristine}">
-                    <div ngbDropdown placement="top-right">
-                      <button class="btn btn-dropdown without-border" id="race-drpdown"
-                        ngbDropdownToggle>
-                        <span *ngIf="!invPersonalInfoForm.controls.race.value">
-                            {{ 'PERSONAL_INFO.SELECT_RACE' | translate }}
-                        </span>
-                        <span *ngIf="invPersonalInfoForm.controls.race.value">
-                            {{invPersonalInfoForm.controls.race.value.name | titlecase}}
-                        </span>                        
-                      </button>
-                      <!-- show-up -->
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="race-drpdown">
-                        <button class="dropdown-item" *ngFor="let race of raceList; let i = index;" (click)="setDropDownValue($event, 'race', race, i)"
-                          id="race-option-{{i}}">{{race.name | titlecase}}</button>
-                      </div>
-                    </div>
+                    <app-dropdown-with-search 
+                      controlName="race"
+                      [optionList]="raceList"
+                      displayKey="name"
+                      placement="top-right"
+                      placeholderText="{{ 'PERSONAL_INFO.SELECT_RACE' | translate }}"
+                      (itemSelected)="setDropDownValue($event, 'race', $event)">
+                    </app-dropdown-with-search>
                   </div>
                 </div>
               </div>
