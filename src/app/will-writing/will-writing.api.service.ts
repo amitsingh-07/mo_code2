@@ -53,6 +53,7 @@ export class WillWritingApiService {
         const promoCode = {
             promoCode: promoCodeData,
             sessionId: this.authService.getSessionId(),
+            promoCodeCat: 'WILLS'
         };
         return this.apiService.verifyPromoCode(promoCode);
     }
@@ -72,11 +73,13 @@ export class WillWritingApiService {
             genderCode: this.gender.get(will.aboutMe.gender),
             maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
-            promoCode: will.promoCode
+            promoCode: will.promoCode,
+            promoCodeCat: 'WILLS'
         };
 
         if (this.willWritingService.getIsWillCreated()) {
             delete willProfile.promoCode;
+            delete willProfile.promoCodeCat;
         }
 
         const willProfileMembers: IWillProfileMembers[] = [];
