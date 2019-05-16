@@ -68,7 +68,6 @@ export interface IwillProfile {
     maritalStatusCode: string;
     noOfChildren: number;
     promoCode?: IPromoCode;
-    promoCodeCat?: string;
 }
 
 export interface IWillProfileMembers {
