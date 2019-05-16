@@ -14,8 +14,8 @@
       <input type="search" (click)="preventPropogation($event)" class="search-control" [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
   </div>
   <div class="dropdown with-search" autocomplete="off" ngbDropdownMenu>
-      <ng-container *ngIf="optionList | filter : form.controls[searchControlName].value : displayKey as result;">
-      <button class="dropdown-item" *ngFor="let option of result | filter : form.controls[searchControlName].value : displayKey; let i = index;"
+      <ng-container *ngIf="optionList | startsWith : form.controls[searchControlName].value : displayKey as result;">
+      <button class="dropdown-item" *ngFor="let option of result | startsWith : form.controls[searchControlName].value : displayKey; let i = index;"
         (click)="emitSelected(option)" id="dropdown-w-search-option-{{randomNo}}_{{i}}">{{ option[displayKey] | titlecase}}</button>
       
       
