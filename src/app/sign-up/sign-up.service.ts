@@ -451,9 +451,6 @@ export class SignUpService {
       userInfo.investementDetails.portfolios ? userInfo.investementDetails.portfolios.length : 0;
     if ((investmentStatus === null || !investmentStatus) && portfoliosLength > 0) {
       investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
-    } else if ((investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED) && portfoliosLength <= 0) {
-      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.START_INVESTING.toUpperCase();
     }
     return investmentStatus;
   }
