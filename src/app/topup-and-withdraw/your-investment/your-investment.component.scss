@@ -403,18 +403,26 @@ app-your-investment {
     right: 43px;
     position: absolute;
   }
+
+  .toast-msg-container {
+    background-color:#fff;
+    padding-bottom: 10px;
+    top: 61px;
+    position: relative;
+  }
 	
   .toast-msg {
-    color: #efa621;
+    color: #e57300;
     background: #fff;
     padding: 25px 0px;
-    position: relative;
-    top: 61px;
     padding-left:75px;
     background-color:#fff1e3;
     border-top:1px solid #dfdfdf;
     font-family: $muli-bold;
     font-size:18px;
+    -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
 
     img {
       position:absolute;

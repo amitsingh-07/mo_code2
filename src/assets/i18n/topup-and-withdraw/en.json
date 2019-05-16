@@ -112,7 +112,9 @@
     "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days",
     "REF_CODE": "Ref Code: ",
     "PORTFOLIO_DELETE_MESSAGE": "{{portfolioName}} Portfolio Deleted",
-    "START_PORTFOLIO": "Start a Portfolio"
+    "START_PORTFOLIO": "Start a Portfolio",
+    "INVEST_AGAIN": "Invest Again",
+    "NO_PORTFOLIO": "You do not have any portfolios."
 
   },
   "YOUR_PORTFOLIO": {

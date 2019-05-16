@@ -21,7 +21,8 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 import { TransferInstructionsModalComponent } from 'src/app/shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
-
+import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
+import { SignUpApiService } from 'src/app/sign-up/sign-up.api.service';
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -68,7 +69,8 @@ export class YourInvestmentComponent implements OnInit {
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpApiService: SignUpApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -234,6 +236,8 @@ export class YourInvestmentComponent implements OnInit {
           };
           const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
           this.showToastMessage(toastMsg);
+          this.getInvestmentOverview();
+          this.getUserProfileInfo();
         } else {
           this.investmentAccountService.showGenericErrorModal();
         }
@@ -336,5 +340,35 @@ showPopUp() {
 
   startPortfolio() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
+  }
+
+  getUserProfileInfo() {
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      if (userInfo.responseMessage.responseCode < 6000) {
+        // ERROR SCENARIO
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.length &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
   }
 }
