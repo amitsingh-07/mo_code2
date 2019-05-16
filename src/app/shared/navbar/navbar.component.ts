@@ -1,3 +1,4 @@
+
 import { ProgressTrackerComponent } from './../modal/progress-tracker/progress-tracker.component';
 import {
   AfterViewInit,
@@ -27,6 +28,9 @@ import { DefaultErrors } from './../modal/error-modal/default-errors';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { ProgressTrackerService } from './../modal/progress-tracker/progress-tracker.service';
+import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -107,7 +111,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private modal: NgbModal,
     private appService: AppService,
     public defaultError: DefaultErrors,
-    private investmentAccountService: InvestmentAccountService) {
+    private investmentAccountService: InvestmentAccountService,
+    private progressTrackerService: ProgressTrackerService,
+    private comprehensiveService: ComprehensiveService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -425,6 +431,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   closeBrowserError() {
     this.browserError = false;
+  }
+  reloadProgressTracker() {
+    this.progressTrackerService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+    //this.progressTrackerService.refresh();
   }
 }
 

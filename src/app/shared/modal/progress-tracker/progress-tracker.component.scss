@@ -7,6 +7,11 @@
   width: 100% !important;
   overflow-y: hidden !important;
   z-index: 1061 !important;
+
+  @include desktop {
+    top: 25px !important;
+    left: 145px;
+  }
 }
 
 .modal-backdrop.fade.show.progress-tracker-backdrop {
@@ -17,6 +22,10 @@
   margin-left: 15px;
   border-radius: 5px 5px 0 0;
   z-index: 1061 !important;
+
+  @include desktop {
+    display: none;
+  }
 }
 
 .progress-tracker-tooltip {
@@ -27,7 +36,7 @@
   @include desktop {
     position: fixed;
     width: 600px;
-    left: 50%;
+    left: 59%;
     margin-left: -300px;
   }
 
@@ -197,6 +206,7 @@
               border-left: none;
             }
           }
+
           span {
             word-break: break-word;
           }
