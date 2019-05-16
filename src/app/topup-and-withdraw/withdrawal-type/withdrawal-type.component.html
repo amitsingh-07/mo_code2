@@ -1,9 +1,16 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="withdraw">
-  <div class="container-fluid max-width--1024 invest-web-pt-90">
+  <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-6 col-md-6 hidden-sm-md">
+          <h2>Withdrawal</h2>
+          <h6>You may withdraw money from your cash account after transferring funds from your portfolio.</h6>
+          <div class="banner-image">
+            <img src="assets/images/investment-account/withdraw.svg"/>
+          </div>
+          <div class="info-txt">For more information, visit our FAQs.</div>
+        </div>
+        <div class="col-lg-6 col-md-6">
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- TYPE -->
             <div class="form-group">
@@ -140,11 +147,11 @@
               </div>
             </div>
           </form>
+          <button type="button" [disabled]="!withdrawForm.get('withdrawType').value" (click)="goToNext(withdrawForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            id="portfolioRecommendationNextBtn">{{
+            'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
-      <button type="button" [disabled]="!withdrawForm.get('withdrawType').value" (click)="goToNext(withdrawForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-        id="portfolioRecommendationNextBtn">{{
-        'LABEL.CONTINUE' | translate}}</button>
     </div>
   </div>
 </div>
