@@ -60,7 +60,7 @@ export let INVESTMENT_ACCOUNT_DDC_ROADMAP: IRoadmap = {
 };
 
 export let INVESTMENT_ACCOUNT_DDC2_ROADMAP: IRoadmap = {
-  title: 'Due Diligence Check',
+  title: 'Additional Declaration',
   items: [
     {
       title: 'Investments',
