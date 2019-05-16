@@ -73,13 +73,11 @@ export class WillWritingApiService {
             genderCode: this.gender.get(will.aboutMe.gender),
             maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
-            promoCode: will.promoCode,
-            promoCodeCat: 'WILLS'
+            promoCode: will.promoCode
         };
 
         if (this.willWritingService.getIsWillCreated()) {
             delete willProfile.promoCode;
-            delete willProfile.promoCodeCat;
         }
 
         const willProfileMembers: IWillProfileMembers[] = [];
