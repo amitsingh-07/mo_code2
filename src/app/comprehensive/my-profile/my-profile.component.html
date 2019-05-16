@@ -100,7 +100,6 @@
           </div>
         </div>
         <!--Flex row 3 /-->
-
         <!--Flex row 4-->
         <div class="flex-row  mb0">
           <div class="flex-col-5">
@@ -130,7 +129,9 @@
           </div>
         </div>
         <!--Flex row 4 /-->
-        <div [hidden]="!DOBAlert" class="flex-row info-msg mt20">{{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</div>
+        <div [hidden]="!DOBAlert" class="flex-row info-msg mt20 dob-valid-error">
+          <span class='dob-alert-icon'></span><span class='dob-alert-text'>
+            {{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</span></div>
       </div>
       <!--Form Content-->
     </div>
@@ -147,3 +148,4 @@
   <!--Page form /-->
 </div>
 <!--Container fluid /-->
+
