@@ -384,6 +384,14 @@
                         "QUESTION": "Who is iFAST Financial Pte Ltd?",
                         "ANSWER": "iFAST Financial Pte Ltd provides custodial services to MoneyOwl. <br/> Please refer to <a href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
                     },
+                    {
+                        "QUESTION": "What happens if iFAST Financial Pte Ltd ceases operation?",
+                        "ANSWER": "<p>All investors' money are protected and held in trust's account under our custodian’s iFAST Financial Pte Ltd - Client Trust, which are subjected to MAS regulations. In the unlikely event that iFAST ceases operations, your investment holdings held under custody with iFAST will not be affected as they will either be returned to the investors or transferred to another agent of your choice. iFAST has the responsibility to ensure that all liabilities and obligations to all clients have been fully discharged or provided for, and that proper arrangements have been put in place.</p>"
+                    },
+                    {
+                        "QUESTION": "I already have an existing iFAST account before starting my MoneyOwl Investment Account. Do I still need to open a new iFAST account?",
+                        "ANSWER": "<p>Yes, you are required to open a new iFAST account if you wish to start your MoneyOwl Investment Account.</p>"
+                    },
                     { 
                         "QUESTION": "How can I get help when I need it?",
                         "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a>.</p>"
@@ -395,6 +403,10 @@
                     { 
                         "QUESTION": "Full redemptions of portfolio holdings",
                         "ANSWER": "<p>Outstanding fees on a pro-rated basis apply and will be deducted prior to redemption, if you choose to redeem all your portfolio holdings.</p>"
+                    },
+                    {
+                        "QUESTION": "Fund Holidays",
+                        "ANSWER": "<p>On fund holidays, Dimensional Funds will not be priced. Transactions on a non-valuation day will be processed the following business day. For a full list of dates please see <a target=\"_blank\" href=\"./assets/docs/faq/Dimensional_fund_holidays_2019_16_May_2019.pdf\">Dimensional Fund Holidays 2019</a></p>"
                     }
                 ]
             }
