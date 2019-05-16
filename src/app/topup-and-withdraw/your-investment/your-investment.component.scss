@@ -1,25 +1,30 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
+
 app-your-investment {
-  .container-fluid{
-    &.max-width--1024{
+  .container-fluid {
+    &.max-width--1024 {
       top: 0 !important;
       padding-top: 0;
-      @include allmobiles{
+
+      @include allmobiles {
         padding: 0 !important;
         margin-top: 0 !important
       }
     }
   }
+
   .investment-bg {
     position: absolute;
     background: #3bbfbf;
     width: 100%;
     left: 0;
     right: 0;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-top: 60px;
       width: 100%;
+      max-height: 230px;
     }
   }
 
@@ -27,45 +32,55 @@ app-your-investment {
     color: $invest-ref-code-color;
     font-size: 14px;
     font-family: $muli;
+
     &-text {
       cursor: pointer;
       text-decoration: underline;
     }
   }
+
   .background_img {
     float: right;
-    @include allmobiles{
+
+    @include allmobiles {
       object-fit: contain;
       position: relative;
       width: 100%;
     }
-    &.web_bg{
-      @include allmobiles{
+
+    &.web_bg {
+      @include allmobiles {
         display: none;
       }
     }
-    &.mobile_bg{
+
+    &.mobile_bg {
       display: none;
-      @include allmobiles{
+
+      @include allmobiles {
         display: block;
       }
     }
   }
+
   .user_content {
-    position: absolute;
+    position: relative;
     padding: 0 75px;
-    top:60px;
+    top: -180px;
     max-width: 1024px;
     left: 0;
     right: 0;
     margin: 0 auto;
-    @include allmobiles{
-      top: 100px;
+
+    @include allmobiles {
+      top: -200px;
       padding: 0;
     }
-    @include phablet{
-      top: 85px;
+
+    @include phablet {
+      top: -200px;
     }
+
     .user_summary {
       font-family: $muli-regular;
       font-size: 18px;
@@ -74,33 +89,41 @@ app-your-investment {
       padding: 0 29px 0 15px;
       position: relative;
       max-width: 400px;
-      @include allmobiles{
+
+      @include allmobiles {
         padding: 0 29px 0 28px;
       }
     }
+
     .flex-col-4 {
       position: absolute;
       top: 40px;
       right: 120px;
       max-width: 85px;
       z-index: 1;
+
       @include iphone5 {
         top: 28px;
       }
+
       @include allmobiles {
         top: 60px;
         max-width: 85px;
         right: 29px;
       }
+
       @include iphone5 {
         top: 40px;
       }
+
       @include iphone6plus {
         top: 72px;
       }
+
       @include iphone6 {
         top: 55px;
       }
+
       @include phablet {
         top: 40px;
         max-width: 85px;
@@ -108,6 +131,7 @@ app-your-investment {
       }
     }
   }
+
   p {
     padding: 20px;
     text-align: center;
@@ -117,6 +141,7 @@ app-your-investment {
     text-align: center;
     color: $text-color-secondary;
   }
+
   .dropdown-control .btn-dropdown:after {
     background-image: url('/assets/images/dropdown_white.svg');
     width: 16px;
@@ -127,15 +152,18 @@ app-your-investment {
     right: 5px;
     background-repeat: no-repeat;
   }
+
   .dropdown-control .btn-dropdown.grey {
     color: $white-color;
     background-color: $withdrawal-amount-panel-bg-color;
   }
+
   .container-fluid {
     position: relative;
     top: 120px;
     padding-left: 45px;
     padding-right: 45px;
+
     @include allmobiles {
       padding-left: 20px !important;
       padding-right: 20px !important;
@@ -144,20 +172,33 @@ app-your-investment {
       padding-bottom: 20px;
       top: 250px;
     }
-    @include max360{
+
+    @include max360 {
       top: 210px;
     }
-    @include iphone6{
+
+    @include iphone6 {
       top: 220px;
     }
+
     @include phablet {
       top: 140px;
     }
+
+    &.toast-container {
+      top: 200px;
+
+      @include allmobiles {
+        top: 320px;
+      }
+    }
   }
+
   .dropdown-control .dropdown-menu.show {
     left: auto !important;
     right: 0;
   }
+
   .dropdown-item {
     display: block;
     width: 100%;
@@ -173,18 +214,22 @@ app-your-investment {
     color: $dark-teal-color !important;
     border-bottom: 1px solid $teal-color !important;
   }
+
   .dropdown-item:last-child {
     border-bottom: none;
   }
+
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
     background-color: $white-color;
     margin-bottom: 30px;
+
     .your_total_value {
       background-color: $withdrawal-amount-panel-bg-color;
       padding: 20px 20px 17px;
     }
   }
+
   .total_values {
     font-family: $muli-bold;
     font-size: 30px;
@@ -193,6 +238,7 @@ app-your-investment {
     color: $white-color;
     word-break: break-all;
   }
+
   .total_values_label {
     font-family: $muli-regular;
     font-size: 16px;
@@ -202,30 +248,36 @@ app-your-investment {
     color: $white-color;
     margin-top: 6px;
   }
+
   .start_investment_label {
     font-size: 13px;
     line-height: 1.62;
     letter-spacing: -0.1px;
     color: $text-color-secondary;
   }
+
   .start_investment_value {
     font-family: $muli-bold;
     font-size: 16px;
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
+
     &.negativeValue {
       color: $red-color;
     }
   }
+
   .form-group-with-bg .form-group-with-bg--content .flex-row:not(:last-child) {
     margin-bottom: 0px;
   }
+
   .total_return_label {
     color: $text-color-secondary;
     font-size: 16px;
     color: $dark-teal-color;
   }
+
   .total_return_value {
     font-family: $muli-bold;
     font-size: 16px;
@@ -233,26 +285,31 @@ app-your-investment {
     text-align: right;
     color: $teal-color;
     word-break: break-all;
+
     &.txt-bold {
       font-size: 18px;
     }
   }
+
   .your_portfolio_container {
     padding: 20px;
     align-items: baseline;
   }
+
   .your_portfolio_label {
     font-size: 21px;
     letter-spacing: -0.2px;
     color: $white-color;
     padding-left: 12px;
   }
+
   .your_portfolio_number {
     font-size: 15px;
     letter-spacing: -0.3px;
     color: $white-color;
     padding-top: 5px;
   }
+
   .your_portfolio_value {
     position: relative;
     background-color: $top-up-your-portfolio-value-bg !important;
@@ -260,27 +317,34 @@ app-your-investment {
     align-items: center;
     justify-content: space-between;
     padding-bottom: 11px !important;
+
     .flex-row {
       align-items: center !important;
+
       .conserve-icon {
         width: 35px;
         height: 35px;
+
         img {
           max-width: 100%;
           height: auto;
         }
       }
     }
+
     .forward_img {
       margin-right: 5px;
       padding-left: 25px;
     }
   }
+
   .form-group-with-bg--content {
     padding: 20px 28px 16px 27px !important;
+
     .flex-row {
       align-items: flex-start;
     }
+
     &.your_portfolio_value_content {
       padding: 0 0 10px !important;
       font-family: $muli-regular;
@@ -289,28 +353,34 @@ app-your-investment {
       letter-spacing: -0.14px;
       text-align: center;
       color: $text-color-secondary;
+
       .flex-row {
         padding: 15px 20px;
       }
+
       .portfolio_footer {
         padding: 10px 13px 0;
         border-top: 1px solid $top-up-your-portfolio-value-content-bg;
+
         .btn-primary {
           background-color: $white-color;
           border: 1px solid $top-up-your-portfolio-value-content-bg;
           color: $light-grey-color;
           font-size: 18px;
           letter-spacing: -0.18px;
+
           &:hover {
             background-color: $action-btn-active-bg !important;
             border-color: $portfolio-footer-btn-brdr-color !important;
             color: $white-color !important;
           }
+
           &:active {
             background-color: $action-btn-active-bg !important;
             border-color: $portfolio-footer-btn-brdr-color !important;
             color: $white-color !important;
           }
+
           &:focus {
             background-color: $white-color !important;
             border-color: $portfolio-footer-btn-brdr-color !important;
@@ -320,6 +390,7 @@ app-your-investment {
       }
     }
   }
+
   .portfolio_heading {
     font-family: $muli-bold;
     font-size: 18px;
@@ -328,6 +399,7 @@ app-your-investment {
     padding-left: 15px;
     max-width: 180px;
   }
+
   .portfolio_value {
     font-family: $muli-bold;
     font-size: 20px;
@@ -335,15 +407,18 @@ app-your-investment {
     color: $teal-color;
     word-break: break-all;
   }
+
   .portfolio_label {
     font-size: 16px;
     line-height: 1.31;
     letter-spacing: -0.1px;
     color: $withdrawal-modal-lbl-color;
   }
+
   .top_alert {
     position: relative;
   }
+
   .btn-with-icon {
     border-radius: 6px;
     box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow !important;
@@ -357,22 +432,27 @@ app-your-investment {
     width: 100%;
     padding: 21px 0px;
     border-width: 0px;
+
     &:active {
       outline: none;
       background-color: $btn-primary-backgrnd-color;
     }
+
     &:hover {
       outline: none;
     }
+
     &:focus {
       outline: none;
       background-color: $btn-primary-backgrnd-color;
     }
+
     img {
       margin-left: 8px;
       margin-top: -1px;
     }
   }
+
   .Remember {
     font-family: $muli-regular;
     font-size: 16px;
@@ -381,6 +461,7 @@ app-your-investment {
     margin-bottom: 13px;
     width: 243px;
   }
+
   .Fund_your_account {
     width: 203px;
     height: 20px;
@@ -389,6 +470,7 @@ app-your-investment {
     letter-spacing: -0.2px;
     color: $secondary-action-color;
   }
+
   .close {
     position: absolute !important;
     right: 25px !important;
@@ -398,12 +480,14 @@ app-your-investment {
     width: 18px;
     height: 18px;
     background-repeat: no-repeat !important;
+
     @include allmobiles {
       top: 14px !important;
       z-index: 9;
       right: 14px !important;
     }
   }
+
   .callout-content {
     padding: 10px 23px;
     background-color: $withdrawal-amount-panel-bg-color;
@@ -414,6 +498,7 @@ app-your-investment {
     bottom: 54px;
     min-height: 108.7px;
   }
+
   .callout-arrow {
     width: 0;
     height: 0;
@@ -424,5 +509,97 @@ app-your-investment {
     bottom: -17px;
     right: 43px;
     position: absolute;
+  }
+
+  .toast-msg-container {
+    background-color: #fff;
+    padding-bottom: 10px;
+    // top: 61px;
+    position: relative;
+
+    .container-fluid {
+      padding: 0 !important;
+    }
+  }
+
+  .toast-msg {
+    color: #e57300;
+    background: #fff;
+    padding: 25px 0px;
+    padding-left: 75px;
+    background-color: #fff1e3;
+    border-top: 1px solid #dfdfdf;
+    font-family: $muli-bold;
+    font-size: 18px;
+    -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+
+    @include allmobiles {
+      padding-left: 0;
+    }
+
+    img {
+      // position:absolute;
+      // left:30px;
+      // top:25px;
+      padding-left: 30px;
+      padding-right: 10px;
+    }
+  }
+
+  .action-section {
+    border-top: 1px solid #eaeaea;
+    color: #8a9ba9;
+    flex-grow: 1;
+    display: flex;
+    margin-top: 10px;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    .action-item {
+      flex: 1 1 0;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .btn-transparent {
+    border-radius: 6px;
+    background-color: transparent;
+    border: 1px solid #eaeaea;
+    color: #9b9b9b;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 18px;
+    width: 100%;
+    font-family: $muli-bold;
+
+    &.orange {
+      color: #ff872f;
+    }
+  }
+
+  .no-portfolio {
+    padding: 30px 28px;
+    text-align: center;
+
+    .msg {
+      display: block;
+      color: #5e5e5e;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
   }
 }
