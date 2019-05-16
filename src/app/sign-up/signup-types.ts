@@ -49,3 +49,9 @@ export interface IResendEmail {
     callbackUrl: string;
     hostedServerName: string;
 }
+
+export interface IUpdateMobileNumber {
+    customerRef: string;
+    mobileNumber: string;
+    countryCode: string;
+}

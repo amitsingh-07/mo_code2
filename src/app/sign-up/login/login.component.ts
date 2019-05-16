@@ -156,9 +156,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loginForm.controls['loginPassword'].reset();
         error = { errorMessage: 'User ID and/or password does not match.' };
-        if (this.signUpService.getCaptchaShown()) {
+        this.signUpService.setCaptchaCount();
+        if (this.signUpService.getCaptchaShown() || this.signUpService.getCaptchaCount() >= 2) {
+          this.signUpService.setCaptchaShown();
           this.loginForm.controls['captchaValue'].reset();
-          this.refreshCaptcha();
+          this.setCaptchaValidator();
         }
       }
       ref.componentInstance.errorMessage = error.errorMessage;
@@ -202,9 +204,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
+            this.signUpService.setCaptchaCount();
             if (data.objectList[0] && data.objectList[0].sessionId) {
               this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-            } else if (data.objectList[0].attempt >= 3) {
+            } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
               this.signUpService.setCaptchaShown();
               this.setCaptchaValidator();
             }

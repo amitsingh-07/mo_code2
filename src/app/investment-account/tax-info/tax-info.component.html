@@ -6,7 +6,7 @@
   </div>
   <div class="container-fluid max-width--1024">
     <div class="content">
-        <div class="title-big hidden-sm-md">{{ 'TAX_INFO.TITLE' | translate}}</div>
+      <div class="title-big hidden-sm-md">{{ 'TAX_INFO.TITLE' | translate}}</div>
       <div class="row">
         <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>
@@ -19,9 +19,10 @@
                 <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}"
                   *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
                   <div class="widget-title">
-                    <span>Tax Residence</span> 
-                  <span  *ngIf="x !== 0"><img (click)="removeTaxForm(taxInfoForm , x)" src="../../../assets/images/investment-account/delete.svg" alt=""  /></span>
-                </div>
+                    <span>Tax Residence</span>
+                    <span *ngIf="x !== 0"><img (click)="removeTaxForm(taxInfoForm , x)"
+                        src="../../../assets/images/investment-account/delete.svg" alt="" /></span>
+                  </div>
                   <div class="widget-body" [formGroupName]="x">
                     <div class="flex-row">
                       <div class="flex-col-4">
@@ -31,23 +32,11 @@
                       <div class="flex-col-8">
                         <div class="dropdown-control"
                           [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
-                          <div ngbDropdown>
-                            <button class="btn btn-dropdown" ngbDropdownToggle>
-                              <span *ngIf="taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
-                                id="tax_Info_dropdown_country">{{
-                              taxInfoItem.controls.taxCountry.value.name | titlecase }}</span>
-                              <span *ngIf="!taxInfoItem.controls.taxCountry.value" class="dependent-count dropdown_text"
-                                id="tax_Info_dropdown_country">{{
-                              'TAX_INFO.SELECT_COUNTRY' | translate}}</span>
-                            </button>
-                            <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                              <button class="dropdown-item" *ngFor="let country of countries; let i = index;"
-                                (click)="selectCountry(country , taxInfoItem)"
-                                id="selectNationality-country-option-{{i}}">
-                                {{country.name | titlecase}}
-                              </button>
-                            </div>
-                          </div>
+                          <app-dropdown-with-search [form]="taxInfoItem" controlName="taxCountry"
+                            [optionList]="countries" displayKey="name" placement="bottom"
+                            placeholderText="{{'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate}}"
+                            (itemSelected)="selectCountry($event, taxInfoItem)">
+                          </app-dropdown-with-search>
                         </div>
                       </div>
                     </div>
@@ -129,6 +118,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="mt15 tin-hint"
+                      *ngIf="taxInfoItem.controls.showTinHint.value === true && taxInfoItem.controls.radioTin.value === true">
+                      {{ 'TAX_INFO.NRIC_HINT' | translate}}</div>
                     <div class="thumb-close-icon" (click)="removeTaxForm(taxInfoForm , x)">
                       <img src="../../../assets/images/close-button-dark.svg" alt="x" />
                     </div>
@@ -146,7 +138,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

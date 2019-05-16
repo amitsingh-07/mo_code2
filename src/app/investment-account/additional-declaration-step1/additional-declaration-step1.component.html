@@ -148,29 +148,27 @@
                         <label for="residentialAddress-mailcountry-drpdown" id="addtion-declaration-country-lbl">{{
                 'EMPLOYMENT_DETAILS.COUNTRY'
                 | translate}}</label>
-                      </div>
-                      <div class="flex-col-7">
-                        <div class="dropdown-control">
-                          <div ngbDropdown>
-                            <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border"
-                              id="pep_Info_residentialAddress-country-drpdown"
-                              ngbDropdownToggle>{{addInfoForm.controls.pepCountry.value.name | titlecase}}
-                            </button>
-                            <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                              <button class="dropdown-item" *ngFor="let country of countries; let i = index;"
-                                (click)="setDropDownValue('pepCountry',country, i)"
-                                id="pep_Info_residentialAddress-country-option-{{i}}">{{country.name | titlecase}}</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- POSTAL CODE -->
-                  <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
-                    <div class="flex-row">
-                      <div class="flex-col-5">
-                        <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
+            </div>
+            <div class="flex-col-7">
+              <div class="dropdown-control">
+                <app-dropdown-with-search 
+                  [disabled]="isUserNationalitySingapore"
+                  controlName="pepCountry"
+                  [optionList]="countries"
+                  displayKey="name"
+                  placement="bottom"
+                  placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                  (itemSelected)="setDropDownValue('pepCountry',$event)">
+                </app-dropdown-with-search>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POSTAL CODE -->
+        <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
                 'EMPLOYMENT_DETAILS.POSTAL_CODE'
                 | translate}}</label>
                       </div>

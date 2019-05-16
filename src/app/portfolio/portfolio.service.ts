@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { appConstants } from './../app.constants';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -73,7 +74,7 @@ export class PortfolioService {
   getSelectedRiskProfileId() {
     return {
       riskProfileId: this.portfolioFormData.selectedriskProfileId
-      };
+    };
   }
 
   currentFormError(form) {
@@ -98,9 +99,9 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-          PORTFOLIO_CONFIG.my_financials.min_initial_amount &&
+        PORTFOLIO_CONFIG.my_financials.min_initial_amount &&
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-          PORTFOLIO_CONFIG.my_financials.min_monthly_amount
+        PORTFOLIO_CONFIG.my_financials.min_monthly_amount
       ) {
         return this.personalFormError.formFieldErrors['financialValidations']['one'];
       } else if (
@@ -146,10 +147,10 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.initialInvestment)) >
-        Number(this.removeCommas(form.value.totalAssets)) &&
+      Number(this.removeCommas(form.value.totalAssets)) &&
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-        (Number(this.removeCommas(form.value.percentageOfSaving)) *
-          Number(this.removeCommas(form.value.monthlyIncome)) / 100)
+      (Number(this.removeCommas(form.value.percentageOfSaving)) *
+        Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
@@ -193,7 +194,7 @@ export class PortfolioService {
   getQuestionsList() {
     return this.apiService.getQuestionsList();
   }
-  constructGetQuestionsRequest() {}
+  constructGetQuestionsRequest() { }
 
   getSelectedOptionByIndex(index) {
     return this.portfolioFormData['riskAssessQuest' + index];
@@ -264,15 +265,16 @@ export class PortfolioService {
   }
   constructInvObjectiveRequest() {
     const formData = this.getPortfolioFormData();
+    const enquiryIdValue = Number(this.authService.getEnquiryId());
     return {
       investmentPeriod: formData.investmentPeriod,
       monthlyIncome: formData.monthlyIncome,
       initialInvestment: formData.initialInvestment,
       monthlyInvestment: formData.monthlyInvestment,
-      // dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
-      totalLiabilities: formData.totalLiabilities
+      totalLiabilities: formData.totalLiabilities,
+      enquiryId: enquiryIdValue
     };
   }
 
@@ -336,15 +338,24 @@ export class PortfolioService {
     }
   }
 
-  buildQueryString(parameters){
+  buildQueryString(parameters) {
     let qs = '';
     Object.keys(parameters).forEach((key) => {
       const value = parameters[key];
       qs += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
     });
-    if (qs.length > 0){
+    if (qs.length > 0) {
       qs = qs.substring(0, qs.length - 1);
     }
     return '?' + qs;
+  }
+  verifyPromoCode(promoCodeData) {
+    const promoCodeType = appConstants.INVESTMENT_PROMO_CODE_TYPE;
+    const promoCode = {
+      promoCode: promoCodeData,
+      sessionId: this.authService.getSessionId(),
+      promoCodeCat: promoCodeType
+    };
+    return this.apiService.verifyPromoCode(promoCode);
   }
 }

@@ -20,6 +20,8 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
+import { TransferInstructionsModalComponent } from 'src/app/shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -45,6 +47,11 @@ export class YourInvestmentComponent implements OnInit {
   riskProfileImg: any;
   portfolio;
   productCode;
+
+  // transfer instructions
+  bankDetails;
+  paynowDetails;
+  transferInstructionModal;
 
   constructor(
     public readonly translate: TranslateService,
@@ -77,6 +84,7 @@ export class YourInvestmentComponent implements OnInit {
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.getTransferDetails();
 
   }
   getMoreList() {
@@ -197,7 +205,7 @@ export class YourInvestmentComponent implements OnInit {
   }
 
   getImg(i) {
-    const riskProfileImg = ProfileIcons[i]['icon'];
+    const riskProfileImg = ProfileIcons[i - 1]['icon'];
     return riskProfileImg;
   }
 
@@ -231,11 +239,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.noClickAction.subscribe(() => { });
   }
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -246,5 +250,31 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
+
+/*
+* Method to get transfer details
+*/
+ getTransferDetails() {
+  this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
+    this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+  },
+  (err) => {
+    this.investmentAccountService.showGenericErrorModal();
+  });
+ }
+
+/*
+* Method to show transfer instruction steps modal
+*/
+showTransferInstructionModal() {
+  this.topupAndWithDrawService.showTransferInstructionModal();
+}
+
+/*
+* Method to show recipients/entity name instructions modal
+*/
+showPopUp() {
+  this.topupAndWithDrawService.showPopUp();
+}
 
 }
