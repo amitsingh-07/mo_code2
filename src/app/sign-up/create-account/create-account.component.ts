@@ -40,7 +40,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
-  editNumber;
   captchaSrc: any = '';
   isPasswordValid = true;
   createAccountTriggered = false;
@@ -68,9 +67,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private selectedPlansService: SelectedPlansService,
   ) {
     this.translate.use('en');
-    this.route.params.subscribe((params) => {
-      this.editNumber = params.editNumber;
-    });
   }
 
   /**
@@ -78,9 +74,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   ngOnInit() {
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-        this.refreshCaptcha();
-      });
+      this.refreshToken();
     }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -91,6 +85,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.refreshCaptcha();
+  }
+
+  refreshToken() {
+    this.authService.authenticate().subscribe((token) => {
+      this.refreshCaptcha();
+    });
   }
 
   /**
@@ -303,8 +303,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   refreshCaptcha() {
-    this.createAccountForm.controls['captcha'].reset();
-    this.captchaSrc = this.authService.getCaptchaUrl();
+    if (!this.authService.isAuthenticated()) {
+      this.refreshToken();
+    } else {
+      this.createAccountForm.controls['captcha'].reset();
+      this.captchaSrc = this.authService.getCaptchaUrl();
+    }
   }
 
   /**
