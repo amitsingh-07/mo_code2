@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
+import { FormControl, Validators } from '@angular/forms';
+import { RegexConstants } from '../../utils/api.regex.constants';
 
 @Component({
   selector: 'app-edit-mobile-number',
@@ -12,8 +14,11 @@ import { filter } from 'rxjs/operators';
 export class EditMobileNumberComponent implements OnInit {
 
   @Output() updateMobileNumber: EventEmitter<any> = new EventEmitter();
+  @Input() existingMobile: string;
+  duplicateMobileNo = false;
 
-  mobileNo;
+  mobileNo = new FormControl('',
+    [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]);
 
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
@@ -26,7 +31,15 @@ export class EditMobileNumberComponent implements OnInit {
       });
   }
 
-  updateMobileNo(mobileNumber: number) {
-    this.updateMobileNumber.emit(mobileNumber);
+  onMobileNoInputChange() {
+    if (this.existingMobile === this.mobileNo.value.toString()) {
+      this.duplicateMobileNo = true;
+    } else {
+      this.duplicateMobileNo = false;
+    }
+  }
+
+  updateMobileNo() {
+    this.updateMobileNumber.emit(this.mobileNo.value.toString());
   }
 }

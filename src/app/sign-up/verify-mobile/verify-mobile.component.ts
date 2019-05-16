@@ -189,6 +189,7 @@ export class VerifyMobileComponent implements OnInit {
         centered: true, backdrop: 'static',
         keyboard: false
       });
+      ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
       ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
         this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
           ref.close();
