@@ -906,7 +906,7 @@ export class ComprehensiveService {
             id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
             path: (enquiry.hasDependents !== null && enquiry.hasDependents !== false)
                 ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-            title: 'Number of Dependant',
+            title: 'Number of Dependant(s)',
             value: noOfDependants,
             completed: enquiry.hasDependents !== null
         });
@@ -986,7 +986,7 @@ export class ComprehensiveService {
             }
         }
         return {
-            title: 'What\'s on your shoulders',
+            title: 'What\'s On Your Shoulders',
             expanded: true,
             completed: hasDependants,
             customStyle: 'dependant',
