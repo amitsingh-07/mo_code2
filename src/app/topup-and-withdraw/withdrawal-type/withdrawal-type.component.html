@@ -3,13 +3,15 @@
     <div class="content">
       <div class="row">
         <div class="col-lg-6 col-md-6 hidden-sm-md">
-          <h2>Withdrawal</h2>
-          <h6>You may withdraw money from your cash account after transferring funds from your portfolio.</h6>
-          <div class="banner-image">
+          <h2>{{pageTitle}}</h2>
+          <h6> {{'WITHDRAW.WITHDRAW_TYPE_DESC' | translate}}</h6>
+        <div class="banner-image">
             <img src="assets/images/investment-account/withdraw.svg"/>
           </div>
-          <div class="info-txt">For more information, visit our FAQs.</div>
-        </div>
+         <div class="faq_link">
+            <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            </div>
+         </div>
         <div class="col-lg-6 col-md-6">
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- TYPE -->

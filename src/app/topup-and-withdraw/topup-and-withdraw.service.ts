@@ -267,6 +267,20 @@ export class TopupAndWithDrawService {
     request['accountNumber'] = data.accountNo;
     return request;
   }
+  updateBankInfo(bank, fullName, accountNum, id) {
+    // API Call here
+    const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
+    return this.apiService.saveNewBank(data);
+  }
+  // tslint:disable-next-line:no-identical-functions
+  constructUpdateBankPayload(bank, fullName, accountNum, id) {
+    const request = {};
+    request['id'] = id;
+    request['bank'] = bank;
+    request['accountName'] = fullName;
+    request['accountNumber'] = accountNum;
+    return request;
+  }
 
   sellPortfolio(data) {
     const payload = this.constructSellPortfolioRequestParams(data);
@@ -342,7 +356,7 @@ export class TopupAndWithDrawService {
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = 12 * (toYear - fromYear) +  to.getMonth() - 1;
+    const diffYear = 12 * (toYear - fromYear) + to.getMonth() - 1;
     const initMonth = from.getMonth();
     for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({
