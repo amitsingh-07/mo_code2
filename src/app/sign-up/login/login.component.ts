@@ -258,9 +258,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
           this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-        } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
-          journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
-          journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
+        } else if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
