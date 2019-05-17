@@ -305,7 +305,7 @@ showPopUp() {
   }
 
   startPortfolio() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
   getUserProfileInfo() {
