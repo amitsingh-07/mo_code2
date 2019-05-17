@@ -59,8 +59,8 @@ app-your-investment {
     }
     .flex-col-4 {
       position: absolute;
-      top: 45px;
-      right: 230px;
+      top: 0px;
+      right: 75px;
       max-width: 200px;
       @include iphone5 {
         top: 28px;
