@@ -89,6 +89,9 @@ app-start-journey {
       @include iphone5{
         width:100%;
       }
+      @include iphone6{
+        width:100%;
+      }
     }
     input::placeholder{
       font-family: $muli-light;
