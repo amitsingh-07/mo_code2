@@ -549,17 +549,17 @@ app-your-investment {
   }
 
   .action-section {
-    border-top: 1px solid #eaeaea;
-    color: #8a9ba9;
-    flex-grow: 1;
-    display: flex;
-    margin-top: 10px;
-    margin-left: -25px;
-    margin-right: -25px;
-    padding-left: 25px;
-    padding-right: 25px;
-
-    .action-item {
+    border-top:1px solid #eaeaea;
+    color:#8a9ba9;
+    flex-grow:1;
+    display:flex;
+    margin-top:10px;
+    margin-left:-25px;
+    margin-right:-25px;
+    padding-left:25px;
+    padding-right:25px;
+    justify-content: space-evenly;
+    .action-item{
       flex: 1 1 0;
       margin-right: 10px;
 
@@ -582,6 +582,14 @@ app-your-investment {
 
     &.orange {
       color: #ff872f;
+    }
+
+    @include max360 {
+      font-size: 16px;
+    }
+
+    @include iphone6 {
+      font-size: 16px;
     }
   }
 
