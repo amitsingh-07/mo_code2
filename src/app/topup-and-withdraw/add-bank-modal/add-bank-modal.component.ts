@@ -15,6 +15,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class AddBankModalComponent implements OnInit {
   @Input() banks;
   @Input() fullName;
+  @Input() bankDetails;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   addBankForm: FormGroup;
 
@@ -22,7 +23,7 @@ export class AddBankModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
@@ -30,11 +31,11 @@ export class AddBankModalComponent implements OnInit {
         Validators.required,
         Validators.pattern(RegexConstants.NameWithSymbol)
       ]),
-      bank: new FormControl('', Validators.required),
-      accountNo: new FormControl('', [
+      bank: new FormControl( this.bankDetails ? this.bankDetails.bank : '', Validators.required),
+      accountNo: new FormControl(this.bankDetails ? this.bankDetails.accountNumber : '', [
         Validators.required,
         this.signUpService.validateBankAccNo
-      ])
+        ])
     });
   }
 
@@ -67,4 +68,4 @@ export class AddBankModalComponent implements OnInit {
       this.saved.emit(this.addBankForm.getRawValue());
     }
   }
-}
+ }

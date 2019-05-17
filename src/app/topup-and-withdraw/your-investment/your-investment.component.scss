@@ -308,6 +308,11 @@ app-your-investment {
     letter-spacing: -0.3px;
     color: $white-color;
     padding-top: 5px;
+    text-align: right;
+    padding-right: 16px;
+    @include allmobiles{
+      text-align: left;
+    }
   }
 
   .your_portfolio_value {
