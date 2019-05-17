@@ -305,6 +305,7 @@ showPopUp() {
   }
 
   startPortfolio() {
+    this.authService.saveEnquiryId(null);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
