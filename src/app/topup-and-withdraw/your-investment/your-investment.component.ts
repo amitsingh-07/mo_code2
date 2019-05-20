@@ -231,6 +231,7 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.yesClickAction.subscribe(() => {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
+          this.authService.saveEnquiryId(null);
           const translateParams = {
             portfolioName: portfolio.riskProfile.type
           };
@@ -305,6 +306,7 @@ showPopUp() {
   }
 
   startPortfolio() {
+    this.authService.saveEnquiryId(null);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
