@@ -47,7 +47,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 import { EditMobileNumberComponent } from './modal/edit-mobile-number/edit-mobile-number.component';
 import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
-import { FilterPipe } from './utils/filter.pipe';
+import { StartsWithPipe } from './utils/starts-with.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -76,7 +76,7 @@ export function createTranslateLoader(http: HttpClient) {
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
-    DropdownWithSearchComponent, FilterPipe],
+    DropdownWithSearchComponent, StartsWithPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -103,7 +103,7 @@ export function createTranslateLoader(http: HttpClient) {
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
     DropdownWithSearchComponent,
-    FilterPipe
+    StartsWithPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
