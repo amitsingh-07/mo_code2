@@ -185,17 +185,11 @@
                           </div>
                           <div class="flex-col-7">
                             <div class="dropdown-control">
-                              <div ngbDropdown>
-                                <button class="btn btn-dropdown without-border" id="residentialAddress-country-drpdown"
-                                  ngbDropdownToggle>{{employementDetailsForm.controls.employeaddress.controls.empCountry.value.name
-                                      | titlecase}}
-                                </button>
-                                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                                  <button class="dropdown-item" *ngFor="let country of countries; let i = index;"
-                                    (click)="setDropDownValue('empCountry', country,'employeaddress')"
-                                    id="employment_details-country-option-{{i}}">{{country.name| titlecase}}</button>
-                                </div>
-                              </div>
+                              <app-dropdown-with-search controlName="empCountry" nestedControlName="employeaddress"
+                                [optionList]="countries" displayKey="name" placement="bottom"
+                                placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                                (itemSelected)="setDropDownValue('empCountry',$event, 'employeaddress')">
+                              </app-dropdown-with-search>
                             </div>
                           </div>
                         </div>

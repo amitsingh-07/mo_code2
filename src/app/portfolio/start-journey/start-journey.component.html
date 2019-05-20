@@ -1,20 +1,31 @@
 <div class="container-fluid max-width--1024 invest-web-width full-height white-bg">
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
-  <div class="content">
-    <div class="row">
-      <div class="col-12">
-        <div class="journey-wrapper">
-          <img class="img-fluid" src="assets/images/createAccount-icon.svg" />
+  <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
+    <div class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="journey-wrapper">
+            <img class="img-fluid" src="assets/images/createAccount-icon.svg" />
+          </div>
+        </div>
+        <div class="col-12 journey-content">
+          <p>{{'START.DESC1' | translate}}</p>
+          <p>{{'START.DESC2' | translate}}</p>
+          <p>{{'START.DESC3' | translate}}</p>
+          <div class="offer-code">
+            <div class="promo-code-lbl">Enter Promo Code
+              <div class="promo-sub-lbl">(If applicable)</div>
+            </div>
+            <div class="brdr-btm"></div>
+            <div>
+              <input type="text" placeholder="Enter your promo code" #promoCode formControlName="promoCode"
+                id="intro-promo-text-field" />
+            </div>
+          </div>
+          <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" class="btn btn__footer--fixed btn-primary width100"
+            (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
         </div>
       </div>
-      <div class="col-12 journey-content">
-        <p>{{'START.DESC1' | translate}}</p>
-        <p>{{'START.DESC2' | translate}}</p>
-        <p>{{'START.DESC3' | translate}}</p>
-        <div class="btn-center">
-            <button type="button" class="btn btn__footer--fixed btn-primary" (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
-        </div>
-       </div>
     </div>
-  </div>
+  </form>
 </div>

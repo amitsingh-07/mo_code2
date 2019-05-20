@@ -38,6 +38,7 @@ export class TaxInfoComponent implements OnInit {
   selectedCountries: any;
   formCount: number;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+  showNricHint = false;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -86,6 +87,7 @@ export class TaxInfoComponent implements OnInit {
   addTaxForm(data): void {
     const control = this.taxInfoForm.controls['addTax'] as FormArray;
     const newFormGroup = this.createForm(data);
+    this.showHint(newFormGroup.controls.taxCountry.value.countryCode, newFormGroup);
     control.push(newFormGroup);
     if (data) {
       this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
@@ -97,7 +99,8 @@ export class TaxInfoComponent implements OnInit {
     let formGroup;
     formGroup = this.formBuilder.group({
       radioTin: new FormControl(data ? data.radioTin : '', Validators.required),
-      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required)
+      taxCountry: new FormControl(data ? data.taxCountry : '', Validators.required),
+      showTinHint: new FormControl(false)
     });
     return formGroup;
   }
@@ -121,6 +124,15 @@ export class TaxInfoComponent implements OnInit {
         this.singPlaceHolder = '';
       }
     }
+    this.showHint(country.countryCode, taxInfoItem);
+  }
+
+  /*
+  * Method to show TIN hint based on country code if singapore
+  */
+  showHint(countryCode, taxInfoItem) {
+    this.showNricHint = countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE;
+    taxInfoItem.controls.showTinHint.setValue(this.showNricHint);
   }
 
   selectReason(reasonObj, taxInfoItem) {
@@ -230,9 +242,9 @@ export class TaxInfoComponent implements OnInit {
     const value = control.value;
     let isValidTin;
     if (value !== undefined) {
-      if(control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
+      if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
         const countryCode = control.parent.controls['taxCountry'].value.countryCode;
-        switch(countryCode) {
+        switch (countryCode) {
           case INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE:
             isValidTin = this.investmentAccountCommon.isValidNric(value);
             break;
