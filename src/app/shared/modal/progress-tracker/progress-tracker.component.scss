@@ -128,12 +128,18 @@
           right: 15px;
           top: 10px;
           background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
+          transform: rotate(180deg);
 
           &.active {
             background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
             height: 10px;
             width: 16px;
-            transform: rotate(180deg);
+            transform: rotate(0deg);
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
           }
         }
       }
@@ -213,24 +219,24 @@
         }
       }
     }
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #066360; 
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $dark-teal-color; 
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $app-backgrnd-secondary-color; 
+    }
   }
-}
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #066360; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $dark-teal-color; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $app-backgrnd-secondary-color; 
 }
