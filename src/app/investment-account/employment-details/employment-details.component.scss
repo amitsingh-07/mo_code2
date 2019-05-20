@@ -80,8 +80,11 @@ app-employment-details {
     }
     .container-fluid {
       padding-top: 16px;
+      &.invest-web-pt-90{
+        padding-top: 90px;
+      }
       @include allmobiles{
-      padding-top: 80px;
+      padding-top: 80px;     
     }
   }
 

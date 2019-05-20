@@ -1,3 +1,4 @@
+<app-investment-title-bar *ngIf="isEditProfile"></app-investment-title-bar>
 <div class="employement-details">
   <div class="step-indicator-container" *ngIf="!isEditProfile">
     <div class="container-fluid max-width--1024">
@@ -5,21 +6,21 @@
     </div>
   </div>
   <!--  [class.invest-web-width]="!isEditProfile" [class.invest-web-pt-90]="isEditProfile" -->
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid max-width--1024" [class.invest-web-pt-90]="isEditProfile">
     <div class="content">
-      <div class="title-big hidden-sm-md">{{'EMPLOYMENT_DETAILS.TITLE' | translate}}</div>
+      <div class="title-big hidden-sm-md" *ngIf="!isEditProfile">{{'EMPLOYMENT_DETAILS.TITLE' | translate}}</div>
       <div class="row">
-        <div class="col-md-4 hidden-sm-md">
+        <div class="col-md-4 hidden-sm-md" *ngIf="!isEditProfile">
           <app-roadmap></app-roadmap>
         </div>
-        <div class="col-md-8">
+        <div [ngClass] = "{'col-md-8' : !isEditProfile, 'col-md-12' : isEditProfile}">
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
-              <div class="flex-col-12">
+              <div class="flex-col-12" *ngIf="!isEditProfile">
                 <app-sing-pass></app-sing-pass>
               </div>
-              <div class="or-block">
+              <div class="or-block" *ngIf="!isEditProfile">
                 <hr>
                 <div class="or-circle">{{'COMMON.LABEL.OR'  | translate}}</div>
               </div>
