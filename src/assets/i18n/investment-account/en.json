@@ -6,7 +6,8 @@
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue",
-      "PROCEED":"Proceed"
+      "PROCEED":"Proceed",
+      "OR":"OR"
     }
   },
   "POSTLOGIN": {
@@ -121,6 +122,8 @@
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "CONTINUE": "Continue",
+    "BEFORE_WE_PROCEED":"Before We Proceed...",
+    "WHATS_YOUR_NATIONALITY":"What's your nationality?",
     "blockedNationality": {
       "blockedNationalityTitle": "Oops, Unable To Proceed",
       "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
