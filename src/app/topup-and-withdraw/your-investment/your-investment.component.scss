@@ -370,7 +370,7 @@ app-your-investment {
         .btn-primary {
           background-color: $white-color;
           border: 1px solid $top-up-your-portfolio-value-content-bg;
-          color: $light-grey-color;
+          color: $dusty-grey-color;
           font-size: 18px;
           letter-spacing: -0.18px;
 
@@ -389,7 +389,7 @@ app-your-investment {
           &:focus {
             background-color: $white-color !important;
             border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $light-grey-color !important;
+            color: $dusty-grey-color !important;
           }
         }
       }
