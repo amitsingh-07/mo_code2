@@ -6,11 +6,11 @@
   <button type="button"  class="close" aria-label="Close" id="error_cross_img" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
-  <div class="modal-body-message" id="modal_form">
-    <input autofocus type="number" class="form-control" maxlength="15" #mobileNumber [formControl]="mobileNo" (keyup)="onMobileNoInputChange()" />
+  <div class="modal-body-message edit-number-block" id="modal_form">
+    <input autofocus type="number" class="form-control edit-number" maxlength="15" #mobileNumber [value]="existingMobile" [formControl]="mobileNo" (keyup)="onMobileNoInputChange()" />
     {{mobileNumber.focus()}}
   </div>
-  <button type="button" [disabled]="mobileNo.invalid || duplicateMobileNo" id="update_mobile_no" class="btn btn-primary width100 mt10" (click)="updateMobileNo()">Update</button>
+  <button type="button" [disabled]="mobileNo.invalid || duplicateMobileNo" id="update_mobile_no" class="btn btn-primary update-btn width100 mt10" (click)="updateMobileNo()">Update</button>
   <p *ngIf="duplicateMobileNo" class="modal-body-message duplicate-mobile-no mt15"><span>Mobile number entered may not be the same!</span></p>
 </div>
 

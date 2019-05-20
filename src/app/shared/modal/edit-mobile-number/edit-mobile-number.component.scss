@@ -1,7 +1,32 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.modal-body-message{
+    &.edit-number-block{
+        .form-control{
+            &.edit-number{
+                color:rgb(0,167,167);
+                &:focus{
+                    border: 2px solid rgb(6,99,96);
+                }
+            }
+            
+        }
+    }
+}
+    
 .duplicate-mobile-no {
     text-align: center;
     font-weight: bolder;
+}
+
+.btn-primary{
+    &.update-btn{
+        &:disabled{
+            color: $white-color;
+            opacity: 0.3 !important;
+            border: 1px solid #00a7a7;
+            background: rgb(0,167,167);
+        }
+    }
 }
