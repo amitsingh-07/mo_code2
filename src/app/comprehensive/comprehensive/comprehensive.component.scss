@@ -12,7 +12,7 @@ app-comprehensive {
       }
     }
     &.white-bg {
-      background-color: #FFFFFF !important;
+      background-color: $white-color !important;
     }
     .start-now-btn{
       font-size: 18px!important;
@@ -26,12 +26,15 @@ app-comprehensive {
   .intro-box {
       padding: 20px;
       padding-bottom: 0;
-    &__heading {
+    &__heading, &__heading-blue {
       font-family: $muli-bold;
       font-size: 28px;
       color: $black-color;
       padding-bottom: 20px;
       line-height: 35px;
+    }
+    &__heading-blue {
+      color: $app-backgrnd-color;
     }
     ul {
       padding: 0 0 15px 0;
