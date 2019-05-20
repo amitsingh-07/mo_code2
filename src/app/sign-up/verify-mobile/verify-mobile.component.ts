@@ -37,7 +37,6 @@ export class VerifyMobileComponent implements OnInit {
   newCodeRequested: boolean;
   editProfile: boolean;
   fromLoginPage: string;
-  showEditMobileNo = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -78,7 +77,6 @@ export class VerifyMobileComponent implements OnInit {
         code: '+65',
         number: this.signUpService.getUserMobileNo()
       };
-      this.showEditMobileNo = false;
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
