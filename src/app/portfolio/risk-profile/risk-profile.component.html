@@ -1,15 +1,19 @@
-<app-investment-title-bar></app-investment-title-bar>
 <!-- popup -->
 <div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/investment-account/successtickowl.svg" id="portfolioRecommenadtionCustModalImg1" />
+      <img src="../../../assets/images/portfolio/flash_recommended.svg"
+        id="portfolioRecommenadtionCustModalImg1" />
       <div class="custom-modal--content">
-        <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
-        <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
+        <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">
+          {{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
+        <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">
+          {{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
       </div>
-    </div>
+      <button type="button" class="btn btn-primary width50" (click)="dismissFlashScreen()"  
+      id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+   </div>
   </div>
 </div>
 <!-- popUp -->
@@ -18,23 +22,64 @@
     <div class="risk-profile-block__content">
       <div class="text-center">
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">
-          <div class="banner-image"><img src={{iconImage}} id="riskProfileImg" /></div>
-          <p class="risk-profile-block__content__title" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
-        </div>
+          <div class="web-title hidden-sm-md cont"> {{ 'RISK_PROFILE.TITLE' | translate}}</div>
+          <div class="portfolio-img">
+            <img [class.secondPortfolio]="!selectedRiskProfile.alternateRiskProfileType" src={{iconImage}} id="riskProfileImg" />
+            <img src={{secondIcon}} id="secondRiskProfileImg" />
+          </div>
+          <span class="risk-profile-block__content__title"
+            id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</span>
+            <span class="risk-profile-block__content__title" *ngIf="selectedRiskProfile.alternateRiskProfileType"
+            id="riskProfileTitle"> / {{selectedRiskProfile.alternateRiskProfileType}}</span>
+           </div>
         <div class="risk-profile-block__content__desc">
-          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.desc" *ngIf="selectedRiskProfile.htmlDescription.desc"></div>
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
+            [innerHTML]="selectedRiskProfile.htmlDescription.desc" *ngIf="selectedRiskProfile.htmlDescription.desc">
+          </div>
           <div class="risk-head" *ngIf="selectedRiskProfile.htmlDescription.riskAppetiteDesc && canProceed()">
             {{ 'RISK_PROFILE.YOUR_RISK_APPETITE' | translate}}
           </div>
-          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.riskAppetiteDesc" *ngIf="selectedRiskProfile.htmlDescription.riskAppetiteDesc"></div>
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
+            [innerHTML]="selectedRiskProfile.htmlDescription.riskAppetiteDesc"
+            *ngIf="selectedRiskProfile.htmlDescription.riskAppetiteDesc"></div>
           <div class="risk-head" *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc">
             {{ 'RISK_PROFILE.YOUR_PORTFOLIO_RECOMMENDATION' | translate}}
           </div>
-          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc" *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
-          <button type="button" *ngIf="canProceed()" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
-            id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
-            <button type="button" *ngIf="!canProceed()" (click)="goToHomepage()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
-            id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
+          <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
+            [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc"
+            *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
+          <div class="text-center">
+            <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext(selectedRiskProfile.riskProfileId)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
+            <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
+          </div>
+          <!-- buttons -->
+          <button type="button" class="btn portfolio_btn_produced width100 mb20" *ngIf="showTwoPortfolio"  (click)="goToNext(selectedRiskProfile.riskProfileId)">
+            <div class="portfolio_btn">
+              <span class="flex-row">
+                <img class="portfolio-btn" src={{iconImage}} id="secondRiskProfileImg" />
+                <span [innerHTML]="'RISK_PROFILE.PORTFOLIO_FIRST_BTN' | translate:portfolioButtonLabel"></span>
+              </span>
+              <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
+                  alt="" />
+              </span>
+            </div>
+          </button>
+          <button type="button" class="btn portfolio_btn_produced width100" *ngIf="showTwoPortfolio"  (click)="goToNext(selectedRiskProfile.alternateRiskProfileId)">
+            <div class="portfolio_btn">
+              <span class="flex-row">
+                <img class="portfolio-btn" src={{secondIcon}} id="secondRiskProfileImg" />
+                <span [innerHTML]="'RISK_PROFILE.PORTFOLIO_SECOND_BTN' | translate:portfolioButtonLabel"></span>
+              </span>
+              <span><img class="forward_img" src="../../../assets/images/investment-account/forward_portfolio.svg"
+                  alt="" />
+              </span>
+            </div>
+          </button>
+          <!-- buttons -->
         </div>
       </div>
     </div>

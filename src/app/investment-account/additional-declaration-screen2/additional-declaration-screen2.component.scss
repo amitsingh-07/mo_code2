@@ -2,18 +2,26 @@
 @import '../../../_mixins.scss';
 app-additional-declaration-screen2 {
   .step-indicator-container {
-    background-color: $white-color;
-    padding: 10px 0px;
+    padding: 20px 0px;
     position: relative;
-    top: 76px;
+    // top: 76px;
     @include allmobiles{
+      background-color: $white-color;
+      padding: 10px 0px;
       top: 60px;
     }
     .container-fluid {
       padding-top: 0px;
       padding-bottom: 0px;
     }
+    @include stepindicator-desktop-extraspace;
   }
+  .container-fluid {
+    padding-top: 16px;
+    @include allmobiles{
+    padding-top: 80px;
+  }
+}
   .label-font {
     font-size: 18px;
     letter-spacing: -0.3px;
@@ -36,14 +44,14 @@ app-additional-declaration-screen2 {
     font-size: 17px !important ;
     letter-spacing: -0.3px;
     text-align: right;
-    color: $light-grey-color !important;
+    color: $dusty-grey-color !important;
   }
   .dropdown-control .btn-dropdown {
     padding-right: 28px;
     
 }
   .form-control-right {
-    padding-left: 0;
+    //padding-left: 0;
     padding-right: 18px;
     text-align: right;
   }

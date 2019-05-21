@@ -218,7 +218,44 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
     this.dismissPopup(ref);
   }
-
+  showEditBankFormModal(index) {
+    const ref = this.modal.open(AddBankModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.bankDetails = this.userBankList[index];
+    ref.componentInstance.fullName = this.fullName;
+    ref.componentInstance.banks = this.banks;
+    ref.componentInstance.saved.subscribe((data) => {
+      ref.close();
+      this.topupAndWithDrawService.updateBankInfo(data.bank, data.accountHolderName,
+         data.accountNo,  this.userBankList[index].id).subscribe((response) => {
+        if (response.responseMessage.responseCode >= 6000) {
+          this.getUserBankList(); // refresh updated bank list
+        } else if (
+          response.objectList &&
+          response.objectList.length &&
+          response.objectList[response.objectList.length - 1].serverStatus &&
+          response.objectList[response.objectList.length - 1].serverStatus.errors &&
+          response.objectList[response.objectList.length - 1].serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
+            + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
+          );
+        } else if (response.responseMessage && response.responseMessage.responseDescription) {
+          const errorResponse = response.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    });
+    this.dismissPopup(ref);
+   }
   saveWithdrawal() {
     this.loaderService.showLoader({
       title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),

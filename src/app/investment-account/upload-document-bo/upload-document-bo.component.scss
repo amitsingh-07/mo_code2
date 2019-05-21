@@ -1,14 +1,16 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 app-upload-document-bo {
   .upload-doc-nric {
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
-      position: relative;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
+        background-color: $white-color;
+        padding: 10px 0px;
         top: 60px;
+        position: relative;
       }
       .container-fluid {
         padding-top: 0px;
@@ -21,7 +23,15 @@ app-upload-document-bo {
         margin-bottom: 10px;
         text-align: center;
       }
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+        padding-top: 80px;
+      }
+    }
+
     .sub-title-block {
       display: flex;
       flex-direction: column;
@@ -42,7 +52,7 @@ app-upload-document-bo {
       .sub-title-desc {
         font-family: $muli-semi-bold;
         color: $upload-sub-title-desc-color;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: -0.3px;
       }
       .upload-file {
@@ -111,7 +121,7 @@ app-upload-document-bo {
             &.title {
               font-family: $muli-semi-bold;
               font-size: 18px;
-              font-weight: 600;
+              font-weight: 400;
             }
             &.sub-text {
               color: $upload-sub-title-desc-color;

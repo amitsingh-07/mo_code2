@@ -2,22 +2,31 @@
 @import '../../../mixins';
 
 app-risk-assessment {
-  .question-info {
-    position: relative;
-    top: 75px;
-    background-color: $white-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 35px;
-    line-height: 35px;
-    font-family: $muli-bold;
-    font-size: 14px;
-    font-weight: bold;
-    border-top: 1px solid $question-info-brdr-color;
-    color: $teal-color;
+  .col-lg-7{
+    padding-right: 35px;
+  }
+  .col-lg-5{
+    padding-left: 35px;
     @include allmobiles{
+      padding-left: 15px;
+    }
+  }
+  .question-info {
+    font-family: $muli-bold;
+    font-size: 16px;
+    color: $white-color;
+    @include allmobiles{
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       top: 60px;
+      background-color: $white-color;
+      min-height: 35px;
+      line-height: 35px;
+      font-size: 14px;
+      border-top: 1px solid $question-info-brdr-color;
+      color: $teal-color;
     }
   }
 
@@ -42,7 +51,7 @@ app-risk-assessment {
   .form-group-single-column .checkbox-button .input-label-grey {
     color: $form-block-title-color;
     font-family: $muli-semi-bold;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 18px;
   }
 
@@ -56,7 +65,7 @@ app-risk-assessment {
         border-bottom: 1px solid $teal-color;
         background-color: $risk-table-cell-bg-color;
         color: $risk-table-cell-color;
-        padding: 12px;
+        padding: 12px 10px;
         vertical-align: middle;
         text-align: center;
         font-family: $muli-semi-bold;

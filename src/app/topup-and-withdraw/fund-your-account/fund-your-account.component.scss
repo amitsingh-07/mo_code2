@@ -76,27 +76,35 @@ app-fund-your-account {
       margin: 25px 0px;
       color: $teal-color;
       .tab-links {
-        display: flex;
-        width: 100%;
-        background-color: $white-color;
-        border-radius: 6px 6px 0px 0px;
-        letter-spacing: -0.2px;
+         display: flex;
+         width: 100%;
+         letter-spacing: -0.2px;
         .tab-link-item {
           display: flex;
           flex-grow: 1;
           flex-basis: 0;
-          color: $fund-account-tab-color;
+          color: #2e9e9e;
           font-size: 18px;
-          font-weight: bold;
           font-family: $muli-bold;
           padding: 15px 20px;
-          border-bottom: 3px solid $white-color;
           text-align: center;
           align-items: center;
-          &.active {
-            color: $secondary-action-color;
-            border-bottom: 3px solid $secondary-action-color;
+          background-color: #c4e5ea;
+          margin-right: 9px;
+          border-radius: 10px 10px 0 0;
+          justify-content: center;
+          img{
+            width: 85px;
           }
+          &:first-child{
+           flex-direction: column;
+          }
+          &:last-child{
+            margin: 0px;
+          }
+           &.active {
+            background-color: #ffffff;
+           }
         }
       }
       .tab-content-container {
@@ -107,6 +115,14 @@ app-fund-your-account {
           display: none;
           &.active {
             display: block;
+          }
+          .tab-content-title{
+            font-family: $muli-bold;
+            font-size: 24px;
+            line-height: 0.92;
+            letter-spacing: -0.2px;
+            color: #ff872f;
+            margin-bottom: 22px;
           }
         }
       }
@@ -174,8 +190,7 @@ app-fund-your-account {
          display: flex;
          justify-content: space-between;
          color:#e57300;
-         font-weight: bold;
-         line-height: 1.38;
+         line-height: 22px;
          font-family: $muli-bold;
          letter-spacing: -0.1px;
          font-size: 14px;

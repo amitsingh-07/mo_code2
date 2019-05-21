@@ -10,20 +10,33 @@ app-allocation{
     .bond_progress_container {
       font-family: $muli-semi-bold;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 400;
       line-height: 1.44;
       letter-spacing: -0.3px;
       color: $teal-color;
       padding: 0px 0 12px;
       .equity_bar {
         align-items: center;
-        .flex-col{
+        justify-content: space-between;
+       .flex-col{
           padding-left: 5px;
         }
       }
       .bar-container {
         background-color: $bar-container-bg;
-      }
+        @include allmobiles{
+          width :50% ;
+          flex-basis: 50% ;
+         }
+        @media(min-width:$col-md){
+          width :70% ;
+          flex-basis: 70% ;
+         }
+         @media(min-width:$col-lg){
+          width :80% ;
+          flex-basis: 80% ;
+         }
+       }
       .bar {
         height: 12px;
       }
@@ -38,7 +51,6 @@ app-allocation{
         padding: 14px 20px 13px;
         font-family: $muli-bold;
         font-size: 18px;
-        font-weight: bold;
         .arrow {
           border: solid $white-color;
           border-width: 0 3px 3px 0;
@@ -106,11 +118,11 @@ app-allocation{
           display: flex;
           flex-direction: column;
           justify-content: center;
+          flex:1;
           .flex-row {
             justify-content: space-between;
           }
           .rating_value {
-            font-weight: bold;
             color: $teal-color;
             font-family: $muli-bold;
             text-align: right;
@@ -121,12 +133,13 @@ app-allocation{
   }
   .btn-view {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.2px;
-    color: $allocation-btn-view-color;
+    color:$top-up-your-portfolio-your-total-value-bg;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: $bond-container-bg;
+    font-family: $muli-bold;
   }
 }
 }
