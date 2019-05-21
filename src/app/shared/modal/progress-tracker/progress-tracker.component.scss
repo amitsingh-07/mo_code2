@@ -120,6 +120,18 @@
           background-repeat: no-repeat;
         }
 
+        &.risk-proof {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/risk-proofing.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
+        }
+
+        &.retirement-icon {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/retirement-icon.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
+        }
+
         &__arrow {
           height: 10px;
           width: 16px;
@@ -219,6 +231,7 @@
         }
       }
     }
+
     /* width */
     &::-webkit-scrollbar {
       width: 10px;
@@ -226,17 +239,17 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background: #066360; 
+      background: #066360;
     }
-    
+
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: $dark-teal-color; 
+      background: $dark-teal-color;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: $app-backgrnd-secondary-color; 
+      background: $app-backgrnd-secondary-color;
     }
   }
 }
