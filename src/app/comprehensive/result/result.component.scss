@@ -1,17 +1,21 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .comprehensive {
   background: #fff;
-  height: 100%!important;
+  height: 100% !important;
+
   @include desktop {
     &.container-fluid {
       padding: 90px 20px 20px 20px;
     }
   }
+
   .header {
     color: #066360;
     font-size: 24px;
     font-family: $muli-bold;
+
   }
 
   .resultImg {
@@ -26,8 +30,10 @@
       font-size: 14px;
       color: #9f9f9f;
       font-family: $muli-italic;
+      font-style: italic;
     }
   }
+
   .about {
     font-size: 16px;
     color: #066360;
@@ -44,6 +50,7 @@
     background-color: #00a7a7;
     width: 100%;
     padding: 30px;
+
     &--title {
       font-size: 16px;
       font-family: $muli-bold-italic;
@@ -53,21 +60,26 @@
       line-height: 24px;
       margin-bottom: 15px;
     }
+
     li {
       font-size: 14px;
       font-family: $muli-light-italic;
       margin-bottom: 15px;
+
       @include desktop {
         height: 50px;
       }
+
       &.report {
         background: url(../../../assets/images/comprehensive/report.svg) no-repeat;
         padding-left: 60px;
       }
+
       &.choose {
         background: url(../../../assets/images/comprehensive/choose.svg) no-repeat;
         padding-left: 60px;
       }
+
       &.meeting-white {
         background: url(../../../assets/images/comprehensive/meeting-white.svg) no-repeat;
         padding-left: 60px;
@@ -75,5 +87,5 @@
     }
   }
 
- 
+
 }

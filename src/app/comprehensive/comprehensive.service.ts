@@ -841,7 +841,7 @@ export class ComprehensiveService {
         this.progressData = {} as IProgressTrackerData;
         this.progressData = {
             title: 'Your Progress Tracker',
-            subTitle: 'Time Taken: 20 mins',
+            subTitle: 'Est. Time Required: 20 mins',
             properties: {
                 disabled: false
             },
@@ -868,7 +868,7 @@ export class ComprehensiveService {
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
                     path: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
-                    title: 'Tell us about you',
+                    title: 'Tell us about yourself',
                     value: myProfile.firstName,
                     completed: typeof myProfile.firstName !== 'undefined'
                 }
@@ -1072,7 +1072,7 @@ export class ComprehensiveService {
             title: 'Your Finances',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'finances',
             subItems: subItemsArray
         };
     }
@@ -1138,7 +1138,7 @@ export class ComprehensiveService {
             title: 'Risk-Proof Your Journey',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'risk-proof',
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
@@ -1200,7 +1200,7 @@ export class ComprehensiveService {
             title: 'Financial Independence',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'retirement-icon',
             subItems: [{
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
