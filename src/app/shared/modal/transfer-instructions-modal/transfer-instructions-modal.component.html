@@ -1,0 +1,38 @@
+<div class="modal-body">
+  <div class="title-container">
+    <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
+    <div class="modal-body-message">
+      {{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_DESCRIPTION' | translate }}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+  <!-- TRANSFER DETAILS -->
+  <div class="transfer-details">
+    <div class="tab-container">
+      <div class="tab-links">
+        <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
+          {{ 'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.VIA_BANK' | translate }}
+        </div>
+      </div>
+      <div class="tab-links">
+        <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
+          <img src="../../../../assets/images/topupwithdraw/paynow.png">
+        </div>
+      </div>
+    </div>
+    <div class="tab-content-container">
+      <!-- TAB 1 -->
+      <div class="tab-content" [class.active]="activeMode == 'BANK'">
+        <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
+      </div>
+      <!-- TAB 2 -->
+      <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
+        <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails" (showToolTip)="showTipModal()"></app-instruction-steps>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> Okay, Got It!</button>  
+</div>

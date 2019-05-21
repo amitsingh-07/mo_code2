@@ -20,6 +20,9 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
+import { TransferInstructionsModalComponent } from 'src/app/shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
+import { SignUpApiService } from 'src/app/sign-up/sign-up.api.service';
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -46,6 +49,13 @@ export class YourInvestmentComponent implements OnInit {
   portfolio;
   productCode;
 
+  // transfer instructions
+  bankDetails;
+  paynowDetails;
+  transferInstructionModal;
+  isToastMessageShown;
+  toastMsg;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -59,7 +69,8 @@ export class YourInvestmentComponent implements OnInit {
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpApiService: SignUpApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -77,6 +88,7 @@ export class YourInvestmentComponent implements OnInit {
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.getTransferDetails();
 
   }
   getMoreList() {
@@ -197,7 +209,7 @@ export class YourInvestmentComponent implements OnInit {
   }
 
   getImg(i) {
-    const riskProfileImg = ProfileIcons[i]['icon'];
+    const riskProfileImg = ProfileIcons[i - 1]['icon'];
     return riskProfileImg;
   }
 
@@ -210,7 +222,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   deletePortfolio(portfolio) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_INVESTMENT.DELETE_TXT'
@@ -219,7 +231,14 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.yesClickAction.subscribe(() => {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          this.authService.saveEnquiryId(null);
+          const translateParams = {
+            portfolioName: portfolio.riskProfile.type
+          };
+          const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
+          this.showToastMessage(toastMsg);
+          this.getInvestmentOverview();
+          this.getUserProfileInfo();
         } else {
           this.investmentAccountService.showGenericErrorModal();
         }
@@ -230,12 +249,9 @@ export class YourInvestmentComponent implements OnInit {
     });
     ref.componentInstance.noClickAction.subscribe(() => { });
   }
+
   selectOption(option) {
-    if (option.id === 1) {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
-    } else {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
-    }
+    this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -247,4 +263,80 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
+/*
+* Method to get transfer details
+*/
+ getTransferDetails() {
+  this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
+    this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+  },
+  (err) => {
+    this.investmentAccountService.showGenericErrorModal();
+  });
+ }
+
+/*
+* Method to show transfer instruction steps modal
+*/
+showTransferInstructionModal() {
+  this.topupAndWithDrawService.showTransferInstructionModal();
+}
+
+/*
+* Method to show recipients/entity name instructions modal
+*/
+showPopUp() {
+  this.topupAndWithDrawService.showPopUp();
+}
+
+  showToastMessage(msg) {
+    this.isToastMessageShown = true;
+    this.toastMsg = msg;
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1);
+    setTimeout(() => {
+      this.isToastMessageShown = false;
+    }, 3000);
+  }
+
+  investAgain(portfolio) {
+    this.topupAndWithDrawService.setPortfolioValues(portfolio);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+
+  startPortfolio() {
+    this.authService.saveEnquiryId(null);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+  }
+
+  getUserProfileInfo() {
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      if (userInfo.responseMessage.responseCode < 6000) {
+        // ERROR SCENARIO
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.length &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
 }

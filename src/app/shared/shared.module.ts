@@ -11,7 +11,7 @@ import { BreakdownAccordionComponent } from '../shared/components/breakdown-acco
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from '../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import {
   IfastErrorModalComponent
@@ -32,8 +32,10 @@ import { TermsComponent } from './components/terms/terms.component';
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { InstructionStepsComponent } from './modal/bank-details/instruction-steps/instruction-steps.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { TransferInstructionsModalComponent } from './modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
@@ -43,6 +45,9 @@ import { TruncatePipe } from './Pipes/truncate.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { EditMobileNumberComponent } from './modal/edit-mobile-number/edit-mobile-number.component';
+import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
+import { StartsWithPipe } from './utils/starts-with.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -70,7 +75,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent, InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
+    DropdownWithSearchComponent, StartsWithPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -92,12 +98,19 @@ export function createTranslateLoader(http: HttpClient) {
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
-    RoundPipe
+    RoundPipe,
+    EditMobileNumberComponent,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent,
+    DropdownWithSearchComponent,
+    StartsWithPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    IfastErrorModalComponent
+    IfastErrorModalComponent,
+    TransferInstructionsModalComponent,
+    InstructionStepsComponent
   ],
-  providers: [ RoundPipe ]
+  providers: [RoundPipe]
 })
 export class SharedModule { }

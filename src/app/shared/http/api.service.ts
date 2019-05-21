@@ -799,4 +799,12 @@ export class ApiService {
       );
   }
 
+  // Update Mobile Number
+  editMobileNumber(payload) {
+    return this.http.post(apiConstants.endpoint.editMobileNumber + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

@@ -27,6 +27,7 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
 const USER_MOBILE = 'user_mobile';
 const FROM_LOGIN_PAGE = 'from_login_page';
+const CAPTACHA_COUNT = 'captcha_count';
 
 @Injectable({
   providedIn: 'root'
@@ -325,6 +326,7 @@ export class SignUpService {
   removeCaptchaSessionId() {
     sessionStorage.removeItem(CAPTCHA_SESSION_ID);
     sessionStorage.removeItem(IS_CAPTCHA_SHOWN);
+    sessionStorage.removeItem(CAPTACHA_COUNT);
   }
 
   getEditProfileInfo() {
@@ -449,9 +451,6 @@ export class SignUpService {
       userInfo.investementDetails.portfolios ? userInfo.investementDetails.portfolios.length : 0;
     if ((investmentStatus === null || !investmentStatus) && portfoliosLength > 0) {
       investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
-    } else if ((investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED) && portfoliosLength <= 0) {
-      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.START_INVESTING.toUpperCase();
     }
     return investmentStatus;
   }
@@ -598,4 +597,28 @@ export class SignUpService {
   removeFromLoginPage() {
     sessionStorage.removeItem(FROM_LOGIN_PAGE);
   }
+
+  getCaptchaCount() {
+    let captchaCount;
+    if (window.sessionStorage && sessionStorage.getItem(CAPTACHA_COUNT)) {
+      captchaCount = JSON.parse(sessionStorage.getItem(CAPTACHA_COUNT));
+    } else {
+      captchaCount = 0;
+    }
+    return Number(captchaCount);
+  }
+
+  setCaptchaCount() {
+    if (window.sessionStorage) {
+      const captchaCount = this.getCaptchaCount() + 1;
+      sessionStorage.setItem(CAPTACHA_COUNT, captchaCount.toString());
+    }
+  }
+
+  updateMobileNumber(countryCode, mobileNumber) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.commit();
+  }
+
 }

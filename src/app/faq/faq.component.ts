@@ -44,6 +44,11 @@ export class FAQComponent implements OnInit {
                   this.route.fragment.subscribe((fragment) => {
                     this.goToRoute(fragment);
                   });
+                  this.route.queryParams.subscribe((params) => {
+                    if (params['category']) {
+                      this.goToSection(params['category']);
+                    }
+                  });
                 });
               }
 

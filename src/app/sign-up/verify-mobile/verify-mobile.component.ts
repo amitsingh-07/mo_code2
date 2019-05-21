@@ -1,3 +1,4 @@
+import { EditMobileNumberComponent } from './../../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { browser } from 'protractor';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -36,7 +37,6 @@ export class VerifyMobileComponent implements OnInit {
   newCodeRequested: boolean;
   editProfile: boolean;
   fromLoginPage: string;
-  showEditMobileNo = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -77,7 +77,6 @@ export class VerifyMobileComponent implements OnInit {
         code: '+65',
         number: this.signUpService.getUserMobileNo()
       };
-      this.showEditMobileNo = false;
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
@@ -184,7 +183,27 @@ export class VerifyMobileComponent implements OnInit {
     if (this.editProfile) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+      const ref = this.modal.open(EditMobileNumberComponent, {
+        centered: true, backdrop: 'static',
+        keyboard: false
+      });
+      ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
+      ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
+        this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
+          ref.close();
+          if (data.responseMessage.responseCode === 6000) {
+            this.mobileNumber.number = mobileNo.toString();
+            this.signUpService.updateMobileNumber(this.mobileNumber.code,
+              mobileNo.toString());
+            if (data.objectList[0] && data.objectList[0].customerRef) {
+              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            }
+          } else {
+            const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+            Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+          }
+        });
+      });
     }
   }
 
