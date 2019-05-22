@@ -12,6 +12,9 @@
     color: #066360;
     font-size: 24px;
     font-family: $muli-bold;
+    @include allmobiles {
+      padding: 0 15px;
+    }
   }
 
   .resultImg {
@@ -26,6 +29,9 @@
       font-size: 14px;
       color: #9f9f9f;
       font-family: $muli-italic;
+      @include allmobiles {
+        padding: 0 14%;
+      }
     }
   }
   .about {
