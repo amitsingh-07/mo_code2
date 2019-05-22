@@ -304,6 +304,16 @@ export class ComprehensiveFormError {
                     errorMessage: 'Monthly Car Loan Payment'
                 }
             },
+            carLoanPayoffUntil: {
+                required: {
+                    errorTitle: this.InvalidPayOff,
+                    errorMessage: 'car  Loan Payment - Invalid To Pay Off'
+                },
+                pattern: {
+                    errorTitle: this.InvalidPayOff,
+                    errorMessage: 'car  Loan Payment - Invalid To Pay Off'
+                }
+            },
             otherLoanPayment: {
                 required: {
                     errorTitle: 'Invalid Monthly Other Loan Payment',

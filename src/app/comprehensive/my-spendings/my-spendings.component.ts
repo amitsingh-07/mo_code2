@@ -170,6 +170,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
       mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
       carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
+      carLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.carLoanPayoffUntil : '', [this.payOffYearValid]],
       otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
       otherLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
       [this.payOffYearValid]]
