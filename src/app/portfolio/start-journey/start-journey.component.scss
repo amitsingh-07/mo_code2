@@ -23,10 +23,83 @@ app-start-journey {
     line-height: 21px;
     letter-spacing: -0.16px;
     color: $dark-grey-color;
+    text-align: center;
+    p{
+      text-align: left;
+    }
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
     letter-spacing: -0.25px;
     font-size: 24px;
+    @include desktop{
+      width: 245px;
+    }
+    @include tablet{
+      width: 245px;
+    }
   }
+  .offer-code{
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 2.5;
+    letter-spacing: -0.15px;
+    text-align: center;
+    color: $teal-color;
+    padding: 0 50px;
+    margin-bottom: 1px;
+    @include max360{
+      padding: 0 25px;
+    }
+    @include allmobiles{
+      margin-bottom: 0;
+    }
+    .brdr-btm{
+        border: 1px solid $teal-color;
+        margin-bottom: 35px !important;
+    }
+    .promo-code-lbl {
+        line-height: normal;
+        position: relative;
+        top: 30px;
+        width: 70%;
+        padding: 5px 10px;
+        background: $white-color;
+        margin: 0 auto;        
+      .promo-sub-lbl{
+        font-family: $muli-regular;
+        font-size: 12px;
+        line-height: normal;
+        letter-spacing: -0.11px;
+        text-align: center;
+        color: $promo-sub-lbl-color;
+      }
+    }
+    input{
+      border-radius: 6px;
+      font-family: $muli-bold;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $teal-color;
+      border: solid 1px $promo-input-brdr-color;
+      padding: 18px 35px;
+      width: 245px;
+      height: 54px;
+      @include iphone5{
+        width:100%;
+      }
+      @include iphone6{
+        width:100%;
+      }
+    }
+    input::placeholder{
+      font-family: $muli-light;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: #a4a4a4 !important;
+    }
+  }
+  
 }

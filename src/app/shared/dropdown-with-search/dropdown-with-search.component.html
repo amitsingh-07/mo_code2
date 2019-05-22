@@ -1,0 +1,27 @@
+
+<div ngbDropdown (openChange)="toggleDropdown($event)" [formGroup]="form" [placement]="placement">
+  <button [disabled]="disabled" class="btn btn-dropdown without-border" id="birth-country-drpdown_{{randomNo}}"
+    ngbDropdownToggle>
+    <span *ngIf="!selectedValue">
+        {{placeholderText}}
+    </span>
+    <span *ngIf="selectedValue">
+        {{ selectedValue | titlecase }}
+    </span>                        
+  </button>
+  <div class="search-input-container" [class.show]="isDropdownOpen">
+      <img src="../../../assets/images/search-icon.svg" alt="" />
+      <input type="search" (click)="preventPropogation($event)" class="search-control" [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
+  </div>
+  <div class="dropdown with-search" autocomplete="off" ngbDropdownMenu>
+      <ng-container *ngIf="optionList | startsWith : form.controls[searchControlName].value : displayKey as result;">
+      <button class="dropdown-item" *ngFor="let option of result | startsWith : form.controls[searchControlName].value : displayKey; let i = index;"
+        (click)="emitSelected(option)" id="dropdown-w-search-option-{{randomNo}}_{{i}}">{{ option[displayKey] | titlecase}}</button>
+      
+      
+      <ng-container *ngIf="!result.length" [ngTemplateOutlet]="noItems">
+        <div class="no-result" (click)="preventPropogation($event)">{{'COMMON_ERRORS.NO_RESULT' | translate}}</div>
+      </ng-container>
+    </ng-container>
+    </div>
+</div>

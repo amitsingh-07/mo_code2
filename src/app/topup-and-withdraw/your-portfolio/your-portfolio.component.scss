@@ -100,9 +100,10 @@ app-your-portfolio {
     border: 0;
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
-  }
-  .dropdown-item:first-child {
     border-bottom: solid 1px $teal-color !important;
+  }
+  .dropdown-item:last-child {
+    border-bottom: none;
   }
   .dropdown-control .btn-dropdown:after {
     background-image: url('/assets/images/dropdown_white.svg');

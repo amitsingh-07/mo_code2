@@ -1,5 +1,11 @@
 <app-investment-title-bar></app-investment-title-bar>
 <div class="container-fluid max-width--1024 invest-web-pt-90">
+  <div class="toast-msg-container" *ngIf="isToastMessageShown">
+    <div class="toast-msg">
+      <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
+      {{toastMsg}}
+    </div>
+  </div>
 <div class="flex-col-12">
   <div class="investment-bg">
     <img id="edit_profile_bg_img" id="investment_overview_background_img" class="background_img" src="assets/images/investment_header.svg" />
@@ -65,6 +71,7 @@
                 </div>
               </div>
             </div>
+            <div class="ref-code" (click)="showTransferInstructionModal()">(<span class="ref-code-text">{{'YOUR_INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}}</span>)</div>
           </div>
         </div>
         <!-- your portfolio label -->
@@ -84,8 +91,7 @@
             <div class="form-group-with-bg--header your_portfolio_value" (click)="yourPortfolio(portfolio)">
               <div class="flex-row">
                 <div class="conserve-icon">
-                  <img id="investment_overview_growth_icons" src="../../../assets/images/investment-account/growth_icon.svg"
-                    alt="" />
+                    <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
                 </div>
                 <div class="portfolio_heading" id="investment_overview_portfolio_name">{{portfolio.riskProfile.type}}</div>
               </div>
@@ -100,22 +106,34 @@
                 <div class="flex-col-8">
                   <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES'
                     | translate}}</div>
-                  <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">{{portfolio.currentValue
-                    | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">
+                    <span *ngIf="portfolio.currentValue">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                    <span *ngIf="!portfolio.currentValue">{{0 | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                  </div>
                 </div>
                 <div class="flex-col-4" *ngIf="false">  <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
                   <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage * 100)}}{{portfolio.totalReturnsPercentage * 100
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>
+              <div class="action-section" *ngIf="portfolio.currentValue <= 0">
+                  <div class="action-item">
+                      <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-transparent">{{'YOUR_INVESTMENT.DELETE'
+                          | translate}}</button>
+                  </div>
+                  <div class="action-item">
+                    <button type="button" (click)="investAgain(portfolio)" class="btn btn-transparent orange">{{'YOUR_INVESTMENT.INVEST_AGAIN'
+                        | translate}}</button>
+                  </div>
+                </div>
             </div>
           </div>
           <!-- NON-FUNDED PORTFOLIO  -->
-          <div *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus !== 'PURCHASED'">
+          <div *ngIf="portfolio && portfolio.portfolioStatus && portfolio.portfolioStatus !== 'PURCHASED'">
             <div class="form-group-with-bg--header your_portfolio_value">
               <div class="flex-row" (click)="yourPortfolio(portfolio)">
                 <div class="conserve-icon">
-                  <img [src]="getImg(i)" alt="" />
+                  <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
                 </div>
                 <div class="portfolio_heading">{{portfolio.riskProfile.type}}</div>
               </div>
@@ -162,6 +180,14 @@
             </div>
           </div>
         </div>
+        <div class="form-group-with-bg no-portfolio" *ngIf="!portfolioList || portfolioList.length == 0">
+          <span class="msg">{{'YOUR_INVESTMENT.NO_PORTFOLIO'
+              | translate}}</span>
+          <img src="../../../assets/images/no-portfolio-icon.png" alt="" />
+          <button type="button" class="btn btn-primary width100" id="add_portfolio" (click)="startPortfolio()">
+              {{'YOUR_INVESTMENT.START_PORTFOLIO' | translate}} </button>
+        </div>
+
         <button *ngIf="false" type="button" class="btn-with-icon mt10" id="add_portfolio" (click)="addPortfolio()">
           <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" />
           {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>

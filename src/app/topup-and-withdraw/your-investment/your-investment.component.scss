@@ -12,6 +12,7 @@ app-your-investment {
   }
   .investment-bg {
     padding-top: 60px;
+    position: relative;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
@@ -19,6 +20,16 @@ app-your-investment {
     @include phablet{
       padding-top: 105px;
       width: 100%;
+    }
+  }
+
+  .ref-code {
+    color: $invest-ref-code-color;
+    font-size: 14px;
+    font-family: $muli;
+    &-text {
+      cursor: pointer;
+      text-decoration: underline;
     }
   }
   .background_img {
@@ -48,9 +59,10 @@ app-your-investment {
     }
     .flex-col-4 {
       position: absolute;
-      top: 45px;
-      right: 230px;
-      max-width: 200px;
+      top: 55px;
+      right: 95px;
+      max-width: 85px;
+      z-index:1;
       @include iphone5 {
         top: 28px;
       }
@@ -70,11 +82,6 @@ app-your-investment {
       }
       @include phablet {
         top: 40px;
-        max-width: 85px;
-        right: 230px;
-      }
-      @include tablet {
-        right: 230px;
       }
     }
   }
@@ -133,9 +140,10 @@ app-your-investment {
     border: 0;
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
-  }
-  .dropdown-item:first-child {
     border-bottom: 1px solid $teal-color !important;
+  }
+  .dropdown-item:last-child {
+    border-bottom: none;
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -390,5 +398,95 @@ app-your-investment {
     bottom: -17px;
     right: 43px;
     position: absolute;
+  }
+
+  .toast-msg-container {
+    background-color:#fff;
+    padding-bottom: 10px;
+    top: 61px;
+    position: relative;
+  }
+	
+  .toast-msg {
+    color: #e57300;
+    background: #fff;
+    padding: 25px 0px;
+    padding-left:75px;
+    background-color:#fff1e3;
+    border-top:1px solid #dfdfdf;
+    font-family: $muli-bold;
+    font-size:18px;
+    -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+
+    img {
+      position:absolute;
+      left:30px;
+      top:25px;
+    }
+  }
+
+  .action-section {
+    border-top:1px solid #eaeaea;
+    color:#8a9ba9;
+    flex-grow:1;
+    display:flex;
+    margin-top:10px;
+    margin-left:-25px;
+    margin-right:-25px;
+    padding-left:25px;
+    padding-right:25px;
+    justify-content: space-evenly;
+    .action-item{
+      flex: 1 1 0;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right:0px;
+      }
+    }
+  }
+
+  .btn-transparent {
+    border-radius: 6px;
+    background-color:transparent;
+    border: 1px solid #eaeaea;
+    color:#9b9b9b;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size:18px;
+    width: 100%;
+    font-family: $muli-bold;
+
+    &.orange {
+      color:#ff872f;
+    }
+
+    @include max360 {
+      font-size: 16px;
+    }
+
+    @include iphone6 {
+      font-size: 16px;
+    }
+  }
+
+  .no-portfolio {
+    padding: 30px 28px;
+    text-align: center;
+
+    .msg {
+      display:block;
+      color:#5e5e5e;
+      font-size:15px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    img {
+      margin-bottom:20px;
+    }
+
   }
 }
