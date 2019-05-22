@@ -618,6 +618,9 @@ export class SignUpService {
   updateMobileNumber(countryCode, mobileNumber) {
     this.signUpFormData.countryCode = countryCode;
     this.signUpFormData.mobileNumber = mobileNumber;
+    if (window.sessionStorage && sessionStorage.getItem(USER_MOBILE)) {
+      this.setUserMobileNo(mobileNumber);
+    }
     this.commit();
   }
 
