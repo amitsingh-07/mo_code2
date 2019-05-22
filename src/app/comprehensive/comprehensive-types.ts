@@ -150,6 +150,7 @@ export interface IMySpendings {
     mortgageTypeOfHome: string;
     mortgagePayOffUntil: number;
     carLoanPayment: number;
+    carLoanPayoffUntil: number;
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
     totalAnnualExpenses: number;
