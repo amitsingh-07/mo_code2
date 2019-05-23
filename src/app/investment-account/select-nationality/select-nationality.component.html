@@ -18,13 +18,7 @@
   <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
     <!-- <div class="text mb20" id="select_nationality_text" *ngIf="selectNationalityForm.controls.nationality.value">{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY_LAB2' | translate}}
     </div> -->
-    <div class="flex-col-12">
-      <app-sing-pass></app-sing-pass>
-    </div>
-    <div class="or-block">
-      <hr>
-      <div class="or-circle">{{'COMMON.LABEL.OR'  | translate}}</div>
-    </div>
+    <app-sing-pass></app-sing-pass>
     <div class="flex-row">
       <div class="flex-col-5">
         <label for="name" id="select_nationality_lab">{{ 'SELECT_NATIONALITY.NATIONALITY_LEB' | translate}}</label>

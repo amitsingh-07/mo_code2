@@ -17,13 +17,7 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
-              <div class="flex-col-12" *ngIf="!isEditProfile">
-                <app-sing-pass></app-sing-pass>
-              </div>
-              <div class="or-block" *ngIf="!isEditProfile">
-                <hr>
-                <div class="or-circle">{{'COMMON.LABEL.OR'  | translate}}</div>
-              </div>
+              <app-sing-pass></app-sing-pass>
               <form id="employement_details_form" name="employeDetailsFrom" [formGroup]="employementDetailsForm">
                 <!-- EMPLOyeMENT STATUS -->
                 <div class="form-group">
