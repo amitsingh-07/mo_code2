@@ -7,13 +7,14 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { PortfolioService } from '../portfolio/portfolio.service';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { TransferInstructionsModalComponent } from '../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
-import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
-import { TransferInstructionsModalComponent } from '../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -32,6 +33,7 @@ export class TopupAndWithDrawService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
+    public portfolioService: PortfolioService,
     private router: Router,
     private modal: NgbModal
   ) {
@@ -282,6 +284,20 @@ export class TopupAndWithDrawService {
     request['accountNumber'] = data.accountNo;
     return request;
   }
+  updateBankInfo(bank, fullName, accountNum, id) {
+    // API Call here
+    const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
+    return this.apiService.saveNewBank(data);
+  }
+  // tslint:disable-next-line:no-identical-functions
+  constructUpdateBankPayload(bank, fullName, accountNum, id) {
+    const request = {};
+    request['id'] = id;
+    request['bank'] = bank;
+    request['accountName'] = fullName;
+    request['accountNumber'] = accountNum;
+    return request;
+  }
 
   sellPortfolio(data) {
     const payload = this.constructSellPortfolioRequestParams(data);
@@ -335,17 +351,8 @@ export class TopupAndWithDrawService {
   }
 
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.portfolioService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {
@@ -366,7 +373,7 @@ export class TopupAndWithDrawService {
     let durationMonths = [];
     const fromYear = from.getFullYear();
     const toYear = to.getFullYear();
-    const diffYear = 12 * (toYear - fromYear) +  to.getMonth() - 1;
+    const diffYear = 12 * (toYear - fromYear) + to.getMonth() - 1;
     const initMonth = from.getMonth();
     for (let i = initMonth; i <= diffYear; i++) {
       durationMonths.unshift({

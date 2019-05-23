@@ -74,6 +74,11 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     },
     );
     this.addAndRemoveSourseFields();
+    if (this.formValues.pep) {
+      this.investmentAccountService.loadDDCRoadmap();
+    } else {
+      this.investmentAccountService.loadDDCInvestmentRoadmap();
+    }
   }
 
   addAndRemoveSourseFields() {

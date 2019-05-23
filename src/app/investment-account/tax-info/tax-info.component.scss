@@ -1,5 +1,6 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
+
 app-tax-info {
   .app-tax-info {
     .flex-row {
@@ -54,8 +55,14 @@ app-tax-info {
         padding-right: 41px;
       }
     }
+    
     .fixed-btn--sm {
-      color: $white-color;
+      color: $form-backgrnd-color;
+      &.active {
+        border: 1px solid $white-color !important;
+        color: $white-color !important;
+        background: $form-backgrnd-color !important;
+      }
     }
     .text {
       font-family: $muli-regular;
@@ -67,49 +74,57 @@ app-tax-info {
       padding-right: 14px;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+      padding: 20px 0px;
       position: relative;
-      top: 76px;
       @include allmobiles{
         top: 60px;
+        background-color: $white-color;
+        padding: 10px 0px;
       }
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .tooltip-icon {
-      background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
+      background: url('../../../assets/images/tooltip-icon.svg') no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
       display: block;
     }
     .country_text {
-      font-family: $muli-semi-bold;
-      font-size: 18px;
-      font-weight: 600;
-      color: $white-color;
+      // font-family: $muli-semi-bold;
+      // font-size: 18px;
+      // font-weight: 600;
+      // color: $white-color;
       margin: 0px 10px 0px 0px;
     }
     .tin_question_text {
-      font-family: $muli-semi-bold;
-      font-size: 18px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.3px;
-      color: $white-color;
+      // font-family: $muli-semi-bold;
+      // font-size: 18px;
+      // font-weight: 600;
+      // font-style: normal;
+      // font-stretch: normal;
+      // line-height: normal;
+      // letter-spacing: -0.3px;
+      // color: $white-color;
       margin-top: 12px;
       margin-bottom: 12px;
     }
     input::placeholder {
       color: $teal-grey-color !important;
     }
+   
     .add-tax-box {
-      padding: 30px 20px;
+      padding: 18px;
       border-radius: 6px;
       box-shadow: 0 8px 12px 0 $post-login-shadow;
       background-color: $white-color;
@@ -124,26 +139,37 @@ app-tax-info {
     .add-tax-text {
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       color: $inline-error-border-color;
-      padding-top: 10px;
+     // padding-top: 10px;
     }
     .tax-form {
-      padding: 60px 0px 25px;
+      //padding: 0px 0px 35px;
       position: relative;
-      @include allmobiles{
-        padding: 60px 0px 25px; 
+      border-radius: 6px;
+      margin-top: 20px;
+      // @include allmobiles{
+      //   padding: 60px 0px 25px; 
+      // }
+      .tax-lbl{
+        color: $white-color;
+        padding-top: 24px;
+        display: none;
       }
       &:first-child {
-        padding-top: 30px;
+        //padding-top: 0px;
+        margin-top: 0px;
         .thumb-close-icon {
           display: none;
         }
+        .tax-lbl{
+          display: flex;
+        }
       }
       &.brdr-btm {
-        border-bottom: 1px solid $white-color;
+        //border-bottom: 1px solid $white-color;
       }
       .thumb-close-icon {
+        display: none !important;
         position: absolute;
         border-radius: 100%;
         background-color: $white-color;
@@ -164,9 +190,32 @@ app-tax-info {
           height: 14px;
         }
       }
+      .widget-title{
+        background-color: $white-color;
+        font-family: $muli-bold;
+        letter-spacing: -0.3px;
+        color: $black-color;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .widget-body{
+        padding: 20px 30px 35px;
+        background-color: $bond-container-bg;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.34px;
+        color: $dark-teal-color;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
     }
     .btn__footer--fixed {
       font-family: $muli-bold !important;
     }
   }
+  @include dropdown-ellipsis();
 }

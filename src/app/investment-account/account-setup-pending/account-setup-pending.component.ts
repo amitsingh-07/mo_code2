@@ -20,7 +20,9 @@ export class AccountSetupPendingComponent implements OnInit {
   status: string;
   pageTitle: string;
   pageDesc: string;
-
+  showAccountCreationpending = false;
+  showDocumentsPending = false;
+  
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -46,6 +48,7 @@ export class AccountSetupPendingComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending.toUpperCase()) {
+        this.showAccountCreationpending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE'
         );
@@ -53,6 +56,7 @@ export class AccountSetupPendingComponent implements OnInit {
           'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.DESC'
         );
       } else if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONFIG.status.documents_pending.toUpperCase()) {
+        this.showDocumentsPending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.TITLE'
         );
@@ -60,6 +64,7 @@ export class AccountSetupPendingComponent implements OnInit {
           'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC'
         );
       } else {
+        this.showAccountCreationpending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE'
         );
@@ -73,5 +78,4 @@ export class AccountSetupPendingComponent implements OnInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
-  
 }

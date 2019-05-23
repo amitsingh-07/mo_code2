@@ -24,7 +24,9 @@ export class PortfolioFormData {
   riskProfileId: number;
   riskProfileName: string;
   htmlDescription: string;
-
+  alternateRiskProfileId: number;
+  alternateRiskProfileType: string;
   fundDetails;
+  selectedriskProfileId: number;
   // SELECTNATIONLITY
 }

@@ -146,4 +146,7 @@ export class InvestmentAccountFormData {
 
   // Account Creation Status
   accountCreationStatus: string;
+
+  // Portfolio availability status
+  portfolioExist: boolean;
 }

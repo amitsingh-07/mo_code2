@@ -27,10 +27,8 @@ app-sing-pass {
       align-items: center;
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       color: $inline-error-border-color;
       padding-right: 15px;
-      padding-bottom: 7px;
     }
     .autofill-estimation {
       display: none;
@@ -43,7 +41,6 @@ app-sing-pass {
       }
       .autofill-text {
         font-size: 21px;
-        padding: 0;
         justify-content: flex-start;
         padding-right: 10px;
         padding-bottom: 7px;
@@ -56,7 +53,6 @@ app-sing-pass {
         display: flex;
         font-family: $muli-semi-bold;
         font-size: 14px;
-        font-weight: 600;
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
