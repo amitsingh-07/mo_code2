@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,7 +46,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     private portfolioService: PortfolioService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -81,6 +82,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     } else {
       this.hideStaticModal = true;
     }
+    this.cd.detectChanges();
   }
   dismissFlashScreen() {
     clearTimeout(this.time);
@@ -108,7 +110,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     if (this.selectedRiskProfile.riskProfileId === PORTFOLIO_CONFIG.risk_profile.should_not_invest_id) {
       this.showNoPortfolio = true;
     } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
-      this.showTwoPortfolio = true;
+       // #this.showTwoPortfolio = true;
+        this.showSinglePortfolio = true;
     } else {
       this.showSinglePortfolio = true;
     }

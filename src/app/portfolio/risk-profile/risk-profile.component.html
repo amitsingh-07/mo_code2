@@ -24,14 +24,14 @@
         <div class="risk-profile-title-block" [class.invert]="!canProceed()">
           <div class="web-title hidden-sm-md cont"> {{ 'RISK_PROFILE.TITLE' | translate}}</div>
           <div class="portfolio-img">
-            <img [class.secondPortfolio]="!selectedRiskProfile.alternateRiskProfileType" src={{iconImage}} id="riskProfileImg" />
-            <img src={{secondIcon}} id="secondRiskProfileImg" />
+            <img [class.secondPortfolio]="showTwoPortfolio" src={{iconImage}} id="riskProfileImg" />
+            <img *ngIf="selectedRiskProfile.alternateRiskProfileType && showTwoPortfolio" src={{secondIcon}} id="secondRiskProfileImg" />
           </div>
           <span class="risk-profile-block__content__title"
-            id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</span>
-            <span class="risk-profile-block__content__title" *ngIf="selectedRiskProfile.alternateRiskProfileType"
-            id="riskProfileTitle"> / {{selectedRiskProfile.alternateRiskProfileType}}</span>
-           </div>
+            id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}
+            <span *ngIf="selectedRiskProfile.alternateRiskProfileType && showTwoPortfolio"
+            id="riskProfileTitle"> / {{selectedRiskProfile.alternateRiskProfileType}}</span></span>
+            </div>
         <div class="risk-profile-block__content__desc">
           <div class="risk-profile-block__content__sub-title" id="riskProfileSubTitle"
             [innerHTML]="selectedRiskProfile.htmlDescription.desc" *ngIf="selectedRiskProfile.htmlDescription.desc">

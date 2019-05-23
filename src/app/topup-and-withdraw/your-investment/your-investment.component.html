@@ -157,7 +157,7 @@
                   <div *ngIf="selected === i">
                     <div class="callout-content" *ngIf="showAlretPopUp">
                       <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
-                        {{portfolio.expiryDate}}.</div>
+                        <span>{{portfolio.expiryDate}}</span>.</div>
                       <div class="Fund_your_account">
                         <u (click)="ViewTransferInst(portfolio.productCode)" id="fund_your_account_link">
                           {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>

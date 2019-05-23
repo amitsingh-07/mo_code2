@@ -465,21 +465,31 @@ app-your-investment {
     color: $white-color;
     margin-bottom: 13px;
     width: 243px;
+    margin-right: 45px;
+    @include allmobiles{
+      margin-right: 0;
+    }
+    span{
+      text-decoration: underline;
+    }
   }
 
   .Fund_your_account {
     width: 203px;
     height: 20px;
-    font-family: $muli-regular;
+    font-family: $muli-bold;
     font-size: 16px;
     letter-spacing: -0.2px;
     color: $secondary-action-color;
+    u{
+      text-decoration: none;
+    }
   }
 
   .close {
     position: absolute !important;
-    right: 25px !important;
-    top: 15px !important;
+    top: 11px !important;
+    right: 14px !important;
     text-shadow: none !important;
     background: url('/assets/images/close-button-dark.svg') !important;
     width: 18px;
@@ -498,10 +508,12 @@ app-your-investment {
     background-color: $withdrawal-amount-panel-bg-color;
     color: $black-color;
     position: absolute;
-    left: 5px;
     right: 5px;
     bottom: 54px;
     min-height: 108.7px;
+    @include allmobiles{
+      left: 5px;
+    } 
   }
 
   .callout-arrow {
@@ -511,8 +523,8 @@ app-your-investment {
     border-right: 18px solid transparent;
     border-top: 18px solid $withdrawal-amount-panel-bg-color;
     left: auto;
-    bottom: -17px;
-    right: 43px;
+    bottom: -12px;
+    right: 48px;
     position: absolute;
   }
 
