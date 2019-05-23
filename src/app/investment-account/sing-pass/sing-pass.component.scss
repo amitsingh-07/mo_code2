@@ -61,6 +61,11 @@ app-sing-pass {
       }
     }
   }
+
+  .autofill-link.postlogin + .or-block {
+    display: none;
+  }
+
   .backdrop {
     background: url('../../../assets/images/investment-account/transparent-black.png') repeat;
     position: fixed;
