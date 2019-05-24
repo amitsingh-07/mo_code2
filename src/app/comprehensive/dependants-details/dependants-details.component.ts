@@ -265,6 +265,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
   onKeyPressEvent(event: any, dependentName: any) {
-    return (event.which !== 13 && dependentName.length <= 100);
+    return (event.which !== 13 && dependentName.length < 100);
   }
 }
