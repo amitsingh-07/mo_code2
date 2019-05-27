@@ -99,6 +99,7 @@ app-allocation{
       .bond_desc {
         color: $black-color;
         border-bottom: 1px solid $teal-color;
+        font-size: 14px;
         .rating_type {
           padding: 16px 17px 13px;
           border-right: 1px solid $teal-color;
@@ -111,7 +112,6 @@ app-allocation{
         }
         .rating {
           font-family: $muli-regular;
-          font-size: 14px;
           line-height: 1.64;
           letter-spacing: -0.1px;
           padding: 10px 9px;
