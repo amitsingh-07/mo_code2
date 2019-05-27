@@ -61,11 +61,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-
-      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
-        || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
-        this.haveHDB = true;
+      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
+        if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+          || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
+          this.haveHDB = true;
+        }
       }
+
     });
     if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
       COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
@@ -163,14 +165,14 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme !== 0) {
+        if (form.value.haveCPFDependentsProtectionScheme !== 1) {
           form.value.lifeProtectionAmount = 0;
         }
 
-        if (form.value.haveHDBHomeProtectionScheme !== 0) {
+        if (form.value.haveHDBHomeProtectionScheme !== 1) {
           form.value.homeProtectionCoverageAmount = 0;
         }
-        if (form.value.haveLongTermElderShield !== 0) {
+        if (form.value.haveLongTermElderShield !== 1) {
           form.value.longTermElderShieldAmount = null;
         }
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();

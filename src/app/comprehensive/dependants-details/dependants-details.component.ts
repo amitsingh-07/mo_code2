@@ -46,6 +46,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
+
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
@@ -79,7 +80,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
     this.buildDependantForm();
-
   }
 
   ngOnInit() {
@@ -255,5 +255,16 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   getWrapText(name: any) {
     name.value = name.value.replace(/\n/g, '');
+  }
+  setDependentName(name: any, i: number) {
+    if (name !== undefined) {
+      name = name.replace(/\n/g, '');
+      this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.name.setValue(name);
+      this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
+      return name;
+    }
+  }
+  onKeyPressEvent(event: any, dependentName: any) {
+    return (event.which !== 13 && dependentName.length < 100);
   }
 }
