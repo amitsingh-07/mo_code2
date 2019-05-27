@@ -57,6 +57,7 @@ app-risk-assessment {
 
   .table-view {
     display: table;
+    position: relative;
     .table-row {
       display: table-row;
       .table-cell {
@@ -82,13 +83,14 @@ app-risk-assessment {
       &.table-head {
         .table-cell {
           background-color: $white-color;
-          font-size: 16px;
+          font-size: 14px;
           color: $form-block-title-color;
           font-family: $muli-regular;
           line-height: 15px;
         }
         .table-cell:first-child {
           border-radius: 6px 0px 0px 0px;
+          font-size: 16px;
         }
         .table-cell:last-child {
           border-radius: 0px 6px 0px 0px;
@@ -106,7 +108,7 @@ app-risk-assessment {
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
-    font-size: 24px;
+    font-size: 22px;
     &:disabled{
       background-color: $btn-disabled-light-bg;
       color: $disabled-teal-color;
