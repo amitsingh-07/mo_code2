@@ -258,6 +258,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      newCustomer : true,
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
