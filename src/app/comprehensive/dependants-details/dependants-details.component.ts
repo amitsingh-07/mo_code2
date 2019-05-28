@@ -46,7 +46,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
-  dependentNameList = [];
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -119,11 +118,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (this.dependantDetails.length > 0) {
       this.dependantDetails.forEach((dependant) => {
         dependantFormArray.push(this.buildDependantDetailsForm(dependant));
-        this.dependentNameList.push(dependant.name);
       });
     } else {
       dependantFormArray.push(this.buildEmptyForm());
-      this.dependentNameList.push('');
     }
     this.myDependantForm = this.formBuilder.group({
       dependentMappingList: this.formBuilder.array(dependantFormArray),
@@ -262,7 +259,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   setDependentName(name: any, i: number) {
     if (name !== undefined) {
       name = name.replace(/\n/g, '');
-      this.dependentNameList[i] = name;
       this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.name.setValue(name);
       this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
       return name;
@@ -279,9 +275,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     const arr = id.split('-');
     const dependentName = event.target.innerText;
     if (dependentName.length > maxLength) {
-      this.dependentNameList[arr[1]] = dependentName.substring(0, maxLength);
-      event.target.innerText = this.dependentNameList[arr[1]];
-      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(this.dependentNameList[arr[1]]);
+      const dependentNameList = dependentName.substring(0, maxLength);
+      event.target.innerText = dependentNameList;
+      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
       this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
       const el = document.querySelector("#" + id);//document.getElementById(id);
       this.setCaratTo(el, maxLength);
