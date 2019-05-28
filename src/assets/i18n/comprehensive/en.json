@@ -1,6 +1,10 @@
 {
   "CMP": {
-    "HOME_TYPE_LIST": ["New HDB", "Resale HDB", "Private"],
+    "HOME_TYPE_LIST": [
+      "New HDB",
+      "Resale HDB",
+      "Private"
+    ],
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promo code, please log in or create a MoneyOwl account.",
       "PROMO_CODE_SUCCESS": "Hurray! Your promo code is sent to your email ",
@@ -111,7 +115,6 @@
       }
     },
     "COMPREHENSIVE": {
-
       "HEADER": "Our Bionic Journey Together",
       "START": "Let’s Go",
       "SUB_HEADER_1": "3-in-1 Analysis Report",
@@ -159,7 +162,6 @@
       "STEP_5_DESC": "Report Generation",
       "STEP_5_DESC2": "Your data is submitted.",
       "STEP_5_TITLE_NAV": "Result"
-
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
@@ -168,8 +170,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -182,7 +184,10 @@
         "value": "Others"
       }
     ],
-    "GENDER": ["Male", "Female"],
+    "GENDER": [
+      "Male",
+      "Female"
+    ],
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you have any dependants?",
@@ -192,11 +197,21 @@
       "ABOUT": "About your dependants",
       "DESC": "Tell us more about those you need to take care of and we will include their needs in your financial plan.",
       "PLACEHOLDER_NAME": "Enter Name",
-      "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "Sibling", "Others"]
+      "RELATIONSHIP_LIST": [
+        "Spouse",
+        "Child",
+        "Parent",
+        "Sibling",
+        "Others"
+      ]
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
-      "OPTIONS": ["yes, I do", "No, but I need an insurance payout to cover education expenses in case I pass away", "No, I don't"]
+      "OPTIONS": [
+        "yes, I do",
+        "No, but I need an insurance payout to cover education expenses in case I pass away",
+        "No, I don't"
+      ]
     },
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
@@ -206,12 +221,10 @@
       "TOOLTIP_MESSAGE": "An education endowment plan is typically an insurance policy that matures and pays out around the time of the child’s entry into university.<br/><br/>If you bought a plan to fund more than one child’s education expenses, please allocate the maturity value for a more accurate analysis.",
       "MALE_ABOUT_YEAR": 21,
       "FEMALE_ABOUT_YEAR": 19
-
     },
     "EDUCATION_PREFERENCE": {
       "HEADER": "Tell us your preferences for their education.",
       "ABOUT": "About"
-
     },
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
@@ -231,7 +244,8 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -327,7 +341,6 @@
       "NO_LABEL": "No",
       "AS_ID": "(as per NRIC)"
     },
-
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "Whose education would you like to fund?",
@@ -335,7 +348,6 @@
       "NO_DESC": "Select which child you will like to cover for.",
       "ALERT": "Please select at least one child."
     },
-
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans (RSP)?",
       "HEADER": "Regular Saving Plan",
@@ -351,7 +363,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "Equities",
         "value": "equities"
       },
@@ -394,13 +407,14 @@
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
       "INVESTMENT_PROPERTIES": "Investment Properties",
       "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of investment",
+      "INVESTMENT_TYPE": "Type of Investment",
       "OTHERS": "Others",
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "Equities",
           "value": "equities"
         },
@@ -437,14 +451,21 @@
         "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate.",
         "OTHER_ASSETS_TITLE": "Other Assets",
         "OTHER_ASSETS_MESSAGE": "Content Will be Updated",
-        "OTHER_INVESTMENT_TITLE": "Other Investments",
-        "OTHER_INVESTMENT_MESSAGE": "Other forms of committing money with the expectation of obtaining an profit or additional income other than putting money into stocks, bonds, mutual funds, ETFs, real estate."
-
+        "INVESTMENT_TITLE": "Investments",
+        "INVESTMENT_MESSAGE": "Financial instruments you purchased with the expectation of obtaining an income or profit. Capital and returns are not guaranteed. Generally, the higher the expected return, the higher the level of risk."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "LOCATION_LIST": ["Singapore", "USA", "United Kingdom", "Australia"],
-    "COURSE_LIST": ["Medicine", "Non-Medicine"],
+    "LOCATION_LIST": [
+      "Singapore",
+      "USA",
+      "United Kingdom",
+      "Australia"
+    ],
+    "COURSE_LIST": [
+      "Medicine",
+      "Non-Medicine"
+    ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
@@ -466,14 +487,14 @@
         "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
         "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
-        "CAR_LOANS_TITLE": "Car Loans",
+        "CAR_LOANS_TITLE": "Car Loan Outstanding",
         "CAR_LOANS_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
     "YOUR_FINANCES": {
       "HEADER": "How You Spend When Down On Luck",
-      "ABOUT": "Sometimes life throws you a curve ball.",
+      "ABOUT": "Sometimes life throws you a curveball.",
       "TITLE": "Bad Mood Fund",
       "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
       "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
@@ -489,17 +510,23 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
-        "name": "Dependant Details 1"
-      }, {
-        "name": "Dependant Details 2"
-      }, {
-        "name": "Dependant Details 3"
-      }, {
-        "name": "Dependant Details 4"
-      }, {
-        "name": "Dependant Details 5"
-      }],
+      "DEPENDANT_DETAIL": [
+        {
+          "name": "Dependant Details 1"
+        },
+        {
+          "name": "Dependant Details 2"
+        },
+        {
+          "name": "Dependant Details 3"
+        },
+        {
+          "name": "Dependant Details 4"
+        },
+        {
+          "name": "Dependant Details 5"
+        }
+      ],
       "MY_LIABILITIES": "MY LIABILITIES",
       "MY_EARNINGS": "Your Earnings",
       "MY_SPENDINGS": "Your Spendings",
@@ -510,7 +537,6 @@
       "SUB_TITLE": "We're almost done! Tell us when would you like to retire.",
       "ABOUT": "I want to retire by age ",
       "YOUR_AGE": "Your Age"
-
     },
     "INSURANCE_PLAN": {
       "SUB_TITLE": "Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current risk-proofing.",
@@ -544,7 +570,6 @@
         "LONG_TERM_CARE_INSURANCE_MESSAGE": "The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
         "CRITICAL_INSURANCE_TITLE": "Critical Illness Insurance",
         "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
-
       }
     },
     "RESULT": {
@@ -572,7 +597,6 @@
       "PHONE_NO": "(65) 6329 9188",
       "EMAIL": "enquiries@moneyowl.com.sg",
       "BACK_DASHBOARD": "Back To DashBoard"
-
     },
     "REVIEW": {
       "TITLE": "Review",

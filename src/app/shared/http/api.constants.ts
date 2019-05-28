@@ -114,7 +114,7 @@ export let apiConstants = {
             saveSpendings: FINANCE_API_BASE_URL + 'saveExpenses',
             saveDownOnLuck: FINANCE_API_BASE_URL + 'saveDownOnLuck',
             saveRegularSavings: FINANCE_API_BASE_URL + 'saveRegularSavings',
-            saveInsurancePlan: INSURANCE_API_BASE_URL  + 'saveInsurancePlanning',
+            saveInsurancePlan: INSURANCE_API_BASE_URL + 'saveInsurancePlanning',
             saveRetirementPlan: INSURANCE_API_BASE_URL + 'saveRetirementPlanning',
             saveAssets: FINANCE_API_BASE_URL + 'saveComprehensiveAssets',
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',

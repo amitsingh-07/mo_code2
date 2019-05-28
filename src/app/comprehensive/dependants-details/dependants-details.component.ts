@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -46,6 +46,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
+
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
@@ -79,7 +80,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
     this.buildDependantForm();
-
   }
 
   ngOnInit() {
@@ -255,5 +255,49 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   getWrapText(name: any) {
     name.value = name.value.replace(/\n/g, '');
+  }
+  setDependentName(name: any, i: number) {
+    if (name !== undefined) {
+      name = name.replace(/\n/g, '');
+      this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.name.setValue(name);
+      this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
+      return name;
+    }
+  }
+  onKeyPressEvent(event: any, dependentName: any) {
+    //return (event.which !== 13 && dependentName.length < 100);
+    return (event.which !== 13);
+  }
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    const maxLength = event.target.attributes.maxlength.value;
+    const arr = id.split('-');
+    const dependentName = event.target.innerText;
+    if (dependentName.length > 100) {
+      const dependentNameList = dependentName.substring(0, 100);
+      //event.target.innerText = dependentNameList;
+      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
+      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
+      const el = document.querySelector("#" + id);//document.getElementById(id);
+      this.setCaratTo(el, 100, dependentNameList);
+    } else if (dependentName.length > 0) {
+      const el = document.querySelector("#" + id);//document.getElementById(id);
+      this.setCaratTo(el, dependentName.length, dependentName);
+    }
+  }
+  setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }
