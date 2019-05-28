@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -265,6 +265,35 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
   onKeyPressEvent(event: any, dependentName: any) {
-    return (event.which !== 13 && dependentName.length < 100);
+    //return (event.which !== 13 && dependentName.length < 100);
+    return (event.which !== 13);
+  }
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    const maxLength = event.target.attributes.maxlength.value;
+    const arr = id.split('-');
+    const dependentName = event.target.innerText;
+    if (dependentName.length > maxLength) {
+      const dependentNameList = dependentName.substring(0, maxLength);
+      event.target.innerText = dependentNameList;
+      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
+      this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
+      const el = document.querySelector("#" + id);//document.getElementById(id);
+      this.setCaratTo(el, maxLength);
+    }
+  }
+  setCaratTo(contentEditableElement, position) {
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }

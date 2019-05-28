@@ -88,7 +88,6 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
-
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(http, [
