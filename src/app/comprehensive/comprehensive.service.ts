@@ -1038,7 +1038,9 @@ export class ComprehensiveService {
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Bad Mood Fund',
             value: this.getDownOnLuck().badMoodMonthlyAmount
-                ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
+                ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' :
+                (typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+                    ? this.transformAsCurrency(0) : ''),
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined',
             hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
         });
