@@ -468,7 +468,7 @@
     ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
-      "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
+      "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities Have to be repaid over time",
       "LIABILITIES_BUCKETS": "Your Liabilities Buckets",
       "HOME_LOAN_OUTSTANDING": "Home Loan Outstanding",
       "ADD_OTHER_PROPERTY_lOAN": "Add other Property Loan",
