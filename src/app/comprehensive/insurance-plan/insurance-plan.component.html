@@ -65,14 +65,14 @@
               <div class="flex-col-4 ">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input id="myProfileRadioMale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.YES_LABEL' |
+                  <input id="myProfileRadioMale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL' |
                     translate}}
                 </label>
               </div>
               <div class="flex-col-4">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.NO_LABEL' |
+                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                 </label>
               </div>
@@ -86,7 +86,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value === 0" class="flex-row mb20">
+        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value === 1" class="flex-row mb20">
           <div class="flex-col-5 pr5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
@@ -116,14 +116,14 @@
                 <div class="flex-col-4 ">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                     [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input id="myProfileRadioMale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.YES_LABEL' |
+                    <input id="myProfileRadioMale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL' |
                     translate}}
                   </label>
                 </div>
                 <div class="flex-col-4">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                     [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.NO_LABEL' |
+                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                   </label>
                 </div>
@@ -138,7 +138,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === 0" class="flex-row">
+        <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === 1" class="flex-row">
           <div class="flex-col-5 pr5">
             <label for="name" id="myDependantFormLb1">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
@@ -262,7 +262,7 @@
                   <div class="flex-col-4 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                      <input id="myProfileRadioMale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.YES_LABEL'
+                      <input id="myProfileRadioMale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL'
                         |
                         translate}}
                     </label>
@@ -270,7 +270,7 @@
                   <div class="flex-col-4">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                      <input id="myProfileRadioFemale" ngbButton type="radio" [value]="1">{{
+                      <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{
                         'CMP.FORM_LABEL.NO_LABEL' |
                         translate}}
                     </label>

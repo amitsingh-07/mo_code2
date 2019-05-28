@@ -9,7 +9,7 @@
   <div class="comprehensive__page-content">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
   <!--Income bucket-->
   <div class='income-bucket-panel'>
-    <!-- <div class="income-bucket-panel__img finance-assets {{ bucketImage }}"></div> -->
+
     <div class="income-bucket-panel__img finance-assets"><img src="./assets/images/comprehensive/finance-assets.svg" />
     </div>
     <div class="income-bucket-panel__content" style="margin-top:5%;">{{'CMP.MY_ASSETS.ASSETS_BUCKETS'|translate}}</div>
@@ -212,6 +212,7 @@
                 class="form-group-with-bg--header-sub-label">{{
               'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
             </div>
+            <span class="help-icon" (click)="showToolTipModal('INVESTMENT_TITLE','INVESTMENT_MESSAGE')"></span>
 
           </div>
         </div>
@@ -225,8 +226,7 @@
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.OTHER_INVESTMENT' | translate}} {{i}}<div class="form-group-with-bg--content-sub-label">{{
                   'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
-                <span class="help-icon"
-                  (click)="showToolTipModal('OTHER_INVESTMENT_TITLE','OTHER_INVESTMENT_MESSAGE')"></span>
+
                 <span *ngIf="!viewMode" class="delete-icon" (click)="removeInvestment(i)"> </span>
               </div>
             </div>
@@ -279,8 +279,7 @@
           <div class="flex-col-12 mt15 mb0">
             <div class="with-help-icon" for="name"><span class="add-invest-link" (click)="addInvestment()">{{
                 'CMP.MY_ASSETS.ADD_INVESTMENT' | translate}}</span>
-              <span class="help-icon"
-                (click)="showToolTipModal('OTHER_INVESTMENT_TITLE','OTHER_INVESTMENT_MESSAGE')"></span>
+
             </div>
           </div>
         </div>
