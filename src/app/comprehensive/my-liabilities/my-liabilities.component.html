@@ -6,22 +6,26 @@
   <div class="comprehensive__page-content">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
     <!-- <div class="income-bucket-panel__img  finance-liabilities {{ bucketImage }}"></div> -->
-    <div class="income-bucket-panel__img finance-liabilities"><img src="./assets/images/comprehensive/finance-liabilities.svg" /> </div>
-    <div class="income-bucket-panel__content"  style="margin-top:5%;">{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</div>
+    <div class="income-bucket-panel__img finance-liabilities"><img
+        src="./assets/images/comprehensive/finance-liabilities.svg" /> </div>
+    <div class="income-bucket-panel__content" style="margin-top:5%;">
+      {{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS'|translate}}</div>
     <div class="income-bucket-panel__desc"><span class='income-bucket-panel__value'>{{ totalOutstanding |
         currency:'USD':'symbol-narrow':'1.0-2' }} </span>{{'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_TOTAL'|translate}}
     </div>
   </div>
-  <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm" class="myLiabilitiesForm form-group">
+  <form [formGroup]="myLiabilitiesForm" id="myLiabilitiesForm" name="myLiabilitiesForm"
+    class="myLiabilitiesForm form-group">
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row ">
           <div class="flex-col-12 with-help-icon">
-            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_LIABILITIES.HOME_LOAN_OUTSTANDING' | translate}}<div
-                class="form-group-with-bg--header-sub-label"></div>
+            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_LIABILITIES.HOME_LOAN_OUTSTANDING' | translate}}
+              <div class="form-group-with-bg--header-sub-label"></div>
             </div>
-            <span class="help-icon" (click)="showToolTipModal('HOME_LOAN_OUTSTANDING_TITLE','HOME_LOAN_OUTSTANDING_MESSAGE')"></span>
+            <span class="help-icon"
+              (click)="showToolTipModal('HOME_LOAN_OUTSTANDING_TITLE','HOME_LOAN_OUTSTANDING_MESSAGE')"></span>
           </div>
         </div>
       </div>
@@ -46,18 +50,21 @@
           <div class="flex-col-12 mt15 ">
             <div class="with-help-icon" for="name"><u (click)="addPropertyLoan()">{{
                 'CMP.MY_LIABILITIES.ADD_OTHER_PROPERTY_lOAN' | translate}}</u>
-              <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
+              <span class="help-icon"
+                (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
             </div>
           </div>
         </div>
         <div [hidden]="propertyLoan" class="liabilities investmentProperties">
           <div class="flex-row mt30">
             <div class="flex-col-12">
-              <div class="with-help-icon form-group-with-bg--content-label mr0" for="name" [ngClass]="{'both-icon': !viewMode}"><b>{{
+              <div class="with-help-icon form-group-with-bg--content-label mr0 otherTypeLoanLabel" for="name"
+                [ngClass]="{'both-icon': !viewMode}"><b>{{
                   'CMP.MY_LIABILITIES.OTHER_PROPERTY_LOAN' | translate}}</b>
                 <div>
-                <span class="help-icon" (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
-                <span *ngIf="!viewMode" class="delete-icon" (click)="addPropertyLoan()"> </span>
+                  <span class="help-icon"
+                    (click)="showToolTipModal('OTHER_PROPERTY_LOAN_TITLE','OTHER_PROPERTY_LOAN_MESSAGE')"></span>
+                  <span *ngIf="!viewMode" class="delete-icon" (click)="addPropertyLoan()"> </span>
                 </div>
               </div>
             </div>
@@ -69,10 +76,11 @@
               </div>
             </div>
             <div class="flex-col-6">
-              <div class="form-control"  [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addLiabilitiesValid.otherPropertyLoanOutstandingAmount.invalid}">
+              <div class="form-control"
+                [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addLiabilitiesValid.otherPropertyLoanOutstandingAmount.invalid}">
                 <i>$</i>
-                <input type="text" class="input-control" maxLength="7" appCurrencyInput #otherPropertyLoanOutstandingAmount
-                  formControlName="otherPropertyLoanOutstandingAmount" value="">
+                <input type="text" class="input-control" maxLength="7" appCurrencyInput
+                  #otherPropertyLoanOutstandingAmount formControlName="otherPropertyLoanOutstandingAmount" value="">
               </div>
             </div>
           </div>
@@ -95,7 +103,8 @@
       <div class="form-group-with-bg--content">
         <div class="flex-row">
           <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
           <div class="flex-col-6">
@@ -113,7 +122,8 @@
       <div class="form-group-with-bg--header">
         <div class="flex-row ">
           <div class="flex-col-12 with-help-icon">
-            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_LIABILITIES.CAR_LOANS' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            <div class="form-group-with-bg--header-label">{{ 'CMP.MY_LIABILITIES.CAR_LOANS' | translate}}<div
+                class="form-group-with-bg--header-sub-label"></div>
             </div>
             <span class="help-icon" (click)="showToolTipModal('CAR_LOANS_TITLE','CAR_LOANS_MESSAGE')"></span>
           </div>
@@ -123,14 +133,15 @@
       <div class="form-group-with-bg--content">
         <div class="flex-row">
           <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div class="form-group-with-bg--content-sub-label"></div>
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
           <div class="flex-col-6">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoansAmount formControlName="carLoansAmount"
-                value="">
+              <input type="text" class="input-control" appCurrencyInput maxLength="6" #carLoansAmount
+                formControlName="carLoansAmount" value="">
             </div>
           </div>
         </div>
@@ -140,16 +151,17 @@
       <div class="flex-row">
         <div class="flex-col-12">
           <div class="footer-cta">
-          <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary width100" id="prfBtn1">{{
+            <button type="button" (click)="goToNext(myLiabilitiesForm)" class="btn btn-primary width100" id="prfBtn1">{{
             (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </form>
   <div class="flex-row footer-notes btn__footer--fixed width100 p-3" id="prfBtn1">
     <div class="flex-col-7 text-left bucket-notes">{{ 'CMP.MY_LIABILITIES.LIABILITIES_BUCKETS_NOTE'|translate}}</div>
-    <div class="flex-col-5 text-right bucket-notes-dollar"> {{totalOutstanding | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+    <div class="flex-col-5 text-right bucket-notes-dollar">
+      {{totalOutstanding | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
   </div>
 
 

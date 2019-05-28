@@ -50,15 +50,15 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
       this.endowmentDetail.forEach((dependant: any) => {
-        if (dependant.endowmentMaturityAmount > 0) {
-          this.summaryFlag = false;
-          this.dependantSummaryCons.push({
-            userName: dependant.name,
-            userAge: dependant.age,
-            // tslint:disable-next-line: max-line-length
-            userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
-          });
-        }
+        //if (dependant.endowmentMaturityAmount > 0) {
+        this.summaryFlag = false;
+        this.dependantSummaryCons.push({
+          userName: dependant.name,
+          userAge: dependant.age,
+          // tslint:disable-next-line: max-line-length
+          userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
+        });
+        //}
       });
     }
     this.configService.getConfig().subscribe((config: any) => {

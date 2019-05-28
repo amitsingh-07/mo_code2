@@ -58,6 +58,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService
   ) {
+    this.totalAnnualIncomeBucket = 0;
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);

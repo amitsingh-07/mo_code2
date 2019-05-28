@@ -40,11 +40,16 @@
             </label>
           </div>
           <div class=" flex-col-7">
-            <textarea appComprehensiveViewMode="{{viewMode}}" mode=1
+            <div contenteditable="true" *ngIf="!viewMode"
               [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}"
-              id="moDpdnt2InptName" class="form-control dependant-name-wrap" #name formControlName="name"
-              placeholder="{{'CMP.DEPENDANT_DETAILS.PLACEHOLDER_NAME' | translate}}" (keyup)="getWrapText(name)"
-              maxlength="100"></textarea>
+              id="moDpdnt2InptName-{{i}}" [textContent]="dependentMappingList.get('name').value"
+              (input)="model=setDependentName($event.target.textContent, i);" maxlength="100"
+              (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+              placeholder="Enter Name">
+            </div>
+            <div *ngIf="viewMode" class="content-editable view-mode">
+              {{ dependentMappingList.get('name').value }}
+            </div>
           </div>
         </div>
         <div class="flex-row">
