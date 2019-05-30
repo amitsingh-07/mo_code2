@@ -297,7 +297,9 @@
   padding-left: 20px !important;
   padding-right: 20px !important;
 }
-
+.pall15 {
+  padding: 15px !important;
+}
 //Base Styles for mobile only
 @include min568max767{
   .pab-mb15{
