@@ -365,6 +365,22 @@
     },
     "INVESTMENT_TYPE_LIST": [
       {
+        "text": "MoneyOwl - Equity",
+        "value": "MoneyOwl - Equity"
+      },
+      {
+        "text": "MoneyOwl - Growth",
+        "value": "MoneyOwl - Growth"
+      },
+      {
+        "text": "MoneyOwl - Balanced",
+        "value": "MoneyOwl - Balanced"
+      },
+      {
+        "text": "MoneyOwl - Conservative",
+        "value": "MoneyOwl - Conservative"
+      },
+      {
         "text": "Equities",
         "value": "equities"
       },
@@ -383,10 +399,6 @@
       {
         "text": "Alternatives",
         "value": "alternatives"
-      },
-      {
-        "text": "Others",
-        "value": "others"
       }
     ],
     "MY_ASSETS": {
@@ -414,6 +426,22 @@
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
       "INVESTMENT_TYPE_LIST": [
+        {
+          "text": "MoneyOwl - Equity",
+          "value": "MoneyOwl - Equity"
+        },
+        {
+          "text": "MoneyOwl - Growth",
+          "value": "MoneyOwl - Growth"
+        },
+        {
+          "text": "MoneyOwl - Balanced",
+          "value": "MoneyOwl - Balanced"
+        },
+        {
+          "text": "MoneyOwl - Conservative",
+          "value": "MoneyOwl - Conservative"
+        },
         {
           "text": "Equities",
           "value": "equities"
@@ -468,7 +496,7 @@
     ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
-      "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
+      "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities have to be repaid over time.",
       "LIABILITIES_BUCKETS": "Your Liabilities Buckets",
       "HOME_LOAN_OUTSTANDING": "Home Loan Outstanding",
       "ADD_OTHER_PROPERTY_lOAN": "Add other Property Loan",
@@ -483,7 +511,7 @@
       "TOOLTIP": {
         "HOME_LOAN_OUTSTANDING_TITLE": "Home Loan Outstanding",
         "HOME_LOAN_OUTSTANDING_MESSAGE": "This is the total outstanding loan for the home you live in that has yet to be paid off, not the monthly instalment.",
-        "OTHER_LOAN_TITLE": "Other Loans",
+        "OTHER_LOAN_TITLE": "Other Loan Outstanding",
         "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
         "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",

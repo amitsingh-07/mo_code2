@@ -1104,13 +1104,13 @@ export class ComprehensiveService {
 
             const haveCPFDependentsProtectionScheme = cmpSummary.comprehensiveInsurancePlanning.haveCPFDependentsProtectionScheme;
             if (!Util.isEmptyOrNull(haveCPFDependentsProtectionScheme)) {
-                if (haveCPFDependentsProtectionScheme === 0) {
+                if (haveCPFDependentsProtectionScheme === 1) {
                     const otherLifeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.otherLifeProtectionCoverageAmount;
                     const lifeProtectionAmount = cmpSummary.comprehensiveInsurancePlanning.lifeProtectionAmount;
                     const homeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.homeProtectionCoverageAmount;
                     cpfDependantProtectionSchemeValue = this.transformAsCurrency(Util.toNumber(otherLifeProtectionCoverageAmount)
                         + Util.toNumber(lifeProtectionAmount) + Util.toNumber(homeProtectionCoverageAmount));
-                } else if (haveCPFDependentsProtectionScheme === 1) {
+                } else if (haveCPFDependentsProtectionScheme === 0) {
                     cpfDependantProtectionSchemeValue = 'No';
                 } else if (haveCPFDependentsProtectionScheme === 2) {
                     cpfDependantProtectionSchemeValue = 'Not Sure';
@@ -1126,9 +1126,9 @@ export class ComprehensiveService {
             }
 
             if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield)) {
-                if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
+                if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
                     longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
-                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
+                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
                     longTermCareValue = 'No';
                 } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 2) {
                     longTermCareValue = 'Not Sure';
