@@ -26,6 +26,11 @@ app-personal-declaration {
         padding-bottom: 30px;
       }
     }
+    .btn-group--toggle{
+      label{
+        font-size: 16px;
+      }
+    }
     .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
@@ -47,7 +52,7 @@ app-personal-declaration {
       z-index: 1001;
       &:disabled {
         background-color: $btn-disabled-light-bg;
-        color: $teal-color;
+        color: $disabled-teal-color;
       }
     }
     .fixed-btn--sm {
