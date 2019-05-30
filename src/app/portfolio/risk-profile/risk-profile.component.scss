@@ -205,10 +205,13 @@ app-risk-profile {
         padding: 35px 30px 65px !important;
         top: 205px;
       }
-      @include iPadLandscape {
-        top: 260px;
+      @include tablet {
+        top: 270px !important;
       }
-      @include minPhabletmaxTablet {
+      @include iPadLandscape {
+        top: 270px !important;
+      }
+      @include phablet {
         top: 166px !important;
       }
     }

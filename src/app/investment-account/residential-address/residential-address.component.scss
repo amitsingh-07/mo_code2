@@ -113,7 +113,7 @@ app-residential-address {
         background-color: $secondary-action-color;
         color: $white-color;
         border: none;
-        font-family: $muli;
+        font-family: $muli-semi-bold;
         &.right {
           float: right;
         }
@@ -159,7 +159,7 @@ app-residential-address {
       white-space: normal;
     }
     .your-mailing-address {
-      font-family: $muli-regular;
+      font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.2px;
       color: $white-color;

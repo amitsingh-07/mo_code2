@@ -33,13 +33,13 @@
                     <div class="btn-group--toggle" ngbRadioGroup name="radioPep" formControlName="radioPEP">
                       <div class="flex-row">
                         <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
                             <input ngbButton type="radio" id="pep_Info_tin_yes"
                               [value]=true>{{'ADDITIONAL_DECLARATION.YES' | translate}}
                           </label>
                         </div>
                         <div class="flex-col-6">
-                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                          <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
                             <input ngbButton type="radio" id="pep_Info_tin_no"
                               [value]=false>{{'ADDITIONAL_DECLARATION.NO' | translate}}</label>
                         </div>
@@ -50,7 +50,7 @@
                 <!-- Provide details of PEP  -->
                 <div class="flex-row">
                   <div class="flex-col-12">
-                    <div class="tin_question_text" id="pep_Info_question-one">
+                    <div class="pep_text" id="pep_Info_question-one">
                       <span *ngIf="addInfoFormValues.pep">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}</span>
                       <span *ngIf="!addInfoFormValues.pep">{{ 'ADDITIONAL_DECLARATION.PEP_INFO_NO' | translate}}</span>
                     </div>
@@ -63,10 +63,10 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <div class="full_name">
-                          <div for="pepFullName" id="pep_Info_invPersInfoLbl1">
-                            {{ 'ADDITIONAL_DECLARATION.PEP_FULL_NAME' | translate}}</div>
-                          <div class="full_name_sub" for="nric_passport_name" id="pep_Info_as_per_nric_passport">
-                            {{ 'ADDITIONAL_DECLARATION.AS_PER_NRIC_PASSPORT' | translate}}</div>
+                          <label for="pepFullName" id="pep_Info_invPersInfoLbl1">
+                            {{ 'ADDITIONAL_DECLARATION.PEP_FULL_NAME' | translate}}</label>
+                          <label class="full_name_sub" for="nric_passport_name" id="pep_Info_as_per_nric_passport">
+                            {{ 'ADDITIONAL_DECLARATION.AS_PER_NRIC_PASSPORT' | translate}}</label>
                         </div>
                       </div>
                       <div class="flex-col-7"
