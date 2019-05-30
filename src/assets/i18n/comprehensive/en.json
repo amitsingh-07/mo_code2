@@ -407,7 +407,7 @@
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
       "INVESTMENT_PROPERTIES": "Investment Properties",
       "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of investment",
+      "INVESTMENT_TYPE": "Type of Investment",
       "OTHERS": "Others",
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
@@ -451,8 +451,8 @@
         "OTHER_PROPERTIES_MESSAGE": " Other forms of committing money with the expectation of obtaining an profit or additional income or profit other than putting money into stocks, bonds, mutual funds, ETFs, real estate.",
         "OTHER_ASSETS_TITLE": "Other Assets",
         "OTHER_ASSETS_MESSAGE": "Content Will be Updated",
-        "OTHER_INVESTMENT_TITLE": "Other Investments",
-        "OTHER_INVESTMENT_MESSAGE": "Other forms of committing money with the expectation of obtaining an profit or additional income other than putting money into stocks, bonds, mutual funds, ETFs, real estate."
+        "INVESTMENT_TITLE": "Investments",
+        "INVESTMENT_MESSAGE": "Financial instruments you purchased with the expectation of obtaining an income or profit. Capital and returns are not guaranteed. Generally, the higher the expected return, the higher the level of risk."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
@@ -468,7 +468,7 @@
     ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
-      "HEADER": "Sometimes, we borrow to find our assets or spending. These Liabilities Have to be repaid over time",
+      "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities Have to be repaid over time",
       "LIABILITIES_BUCKETS": "Your Liabilities Buckets",
       "HOME_LOAN_OUTSTANDING": "Home Loan Outstanding",
       "ADD_OTHER_PROPERTY_lOAN": "Add other Property Loan",
@@ -487,14 +487,14 @@
         "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
         "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
-        "CAR_LOANS_TITLE": "Car Loans",
+        "CAR_LOANS_TITLE": "Car Loan Outstanding",
         "CAR_LOANS_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
     "YOUR_FINANCES": {
       "HEADER": "How You Spend When Down On Luck",
-      "ABOUT": "Sometimes life throws you a curve ball.",
+      "ABOUT": "Sometimes life throws you a curveball.",
       "TITLE": "Bad Mood Fund",
       "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
       "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
