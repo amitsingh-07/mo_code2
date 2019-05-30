@@ -18,8 +18,8 @@
         "CONTENT_BODY1": "Your Liquid Cash",
         "CONTENT_BODY2": "Your Annual Spare Cash",
         "HOW_DO_WE_CALCULATE": "How do we calculate this?",
-        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus a Emergency Cash pool of 6 months’ of expenses and loan payments. Emergency Cash is important in case you lose your job or incur unexpected expenses.",
-        "HOW_DO_WE_CALCULATE_DESC2": "Monthly Spare Cash is your take home income minus your expenses and loan repayments minus your bad mood fund allocation",
+        "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus an Emergency Cash pool of 6 months’ of expenses and loan payments. Emergency Cash is important in case you lose your job or incur unexpected expenses.",
+        "HOW_DO_WE_CALCULATE_DESC2": "Monthly Spare Cash is your take home income minus your expenses and loan repayments minus your bad mood fund allocation.",
         "NEXT": "Next",
         "EMERGENCY_BELOW_DESC": "Oh no, your liquid cash is less than 6 months' of expenses. Save before you invest.",
         "EMERGENCY_BELOW_NOTE_TITLE": "Next Steps",
@@ -365,6 +365,22 @@
     },
     "INVESTMENT_TYPE_LIST": [
       {
+        "text": "MoneyOwl - Equity",
+        "value": "MoneyOwl - Equity"
+      },
+      {
+        "text": "MoneyOwl - Growth",
+        "value": "MoneyOwl - Growth"
+      },
+      {
+        "text": "MoneyOwl - Balanced",
+        "value": "MoneyOwl - Balanced"
+      },
+      {
+        "text": "MoneyOwl - Conservative",
+        "value": "MoneyOwl - Conservative"
+      },
+      {
         "text": "Equities",
         "value": "equities"
       },
@@ -383,10 +399,6 @@
       {
         "text": "Alternatives",
         "value": "alternatives"
-      },
-      {
-        "text": "Others",
-        "value": "others"
       }
     ],
     "MY_ASSETS": {
@@ -415,6 +427,22 @@
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
       "INVESTMENT_TYPE_LIST": [
         {
+          "text": "MoneyOwl - Equity",
+          "value": "MoneyOwl - Equity"
+        },
+        {
+          "text": "MoneyOwl - Growth",
+          "value": "MoneyOwl - Growth"
+        },
+        {
+          "text": "MoneyOwl - Balanced",
+          "value": "MoneyOwl - Balanced"
+        },
+        {
+          "text": "MoneyOwl - Conservative",
+          "value": "MoneyOwl - Conservative"
+        },
+        {
           "text": "Equities",
           "value": "equities"
         },
@@ -433,10 +461,6 @@
         {
           "text": "Alternatives",
           "value": "alternatives"
-        },
-        {
-          "text": "Others",
-          "value": "others"
         }
       ],
       "AUTO_FILL": "Autofill Your CPF via ",
@@ -468,7 +492,7 @@
     ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
-      "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities Have to be repaid over time",
+      "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities have to be repaid over time.",
       "LIABILITIES_BUCKETS": "Your Liabilities Buckets",
       "HOME_LOAN_OUTSTANDING": "Home Loan Outstanding",
       "ADD_OTHER_PROPERTY_lOAN": "Add other Property Loan",
@@ -483,7 +507,7 @@
       "TOOLTIP": {
         "HOME_LOAN_OUTSTANDING_TITLE": "Home Loan Outstanding",
         "HOME_LOAN_OUTSTANDING_MESSAGE": "This is the total outstanding loan for the home you live in that has yet to be paid off, not the monthly instalment.",
-        "OTHER_LOAN_TITLE": "Other Loans",
+        "OTHER_LOAN_TITLE": "Other Loan Outstanding",
         "OTHER_LOAN_MESSAGE": "Add up your outstanding renovation loan, credit lines etc. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
         "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
