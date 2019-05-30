@@ -461,10 +461,6 @@
         {
           "text": "Alternatives",
           "value": "alternatives"
-        },
-        {
-          "text": "Others",
-          "value": "others"
         }
       ],
       "AUTO_FILL": "Autofill Your CPF via ",
