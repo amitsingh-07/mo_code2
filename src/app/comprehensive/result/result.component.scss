@@ -13,8 +13,8 @@
     font-size: 24px;
     font-family: $muli-bold;
     @include allmobiles {
-      padding: 0 15px;
-    }
+          padding: 0 15px;
+       }
   }
 
   .resultImg {
@@ -81,3 +81,4 @@
     }
   }
 }
+
