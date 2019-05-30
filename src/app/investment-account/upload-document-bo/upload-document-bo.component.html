@@ -16,7 +16,18 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
-              <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
+              <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm"> 
+                <div class="title-small hidden-sm-md">
+                    {{ 'UPLOAD_DOCUMENTS.IDENTITY_VERIFICATION' | translate }}
+                </div>
+                <div class="col-12 doc-upload-instructions">
+                  <div class="sub-title">
+                    {{ 'UPLOAD_DOCUMENTS.SPECIFICATION' | translate}}</div>
+                  <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_LESS-THAN' | translate}}</span><span>{{
+                    'UPLOAD_DOCUMENTS.TEN_MB' | translate}}</span></div>
+                  <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_TYPE' | translate}}</span><span>{{
+                    'UPLOAD_DOCUMENTS.SUPPORTED_FILES' | translate}}</span></div>
+                </div>
                 <div class="row">
                   <div class="col-12 sub-title-block">
                     <div class="sub-title">

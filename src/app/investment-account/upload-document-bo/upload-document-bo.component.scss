@@ -30,8 +30,39 @@ app-upload-document-bo {
       @include allmobiles{
         padding-top: 80px;
       }
+      .title-small {
+        font-family: $muli-bold;
+        font-size: 16px;
+        line-height: 1.38;
+        letter-spacing: -0.2px;
+        color: $white-color;
+        margin-bottom: 20px;
+      }
     }
-
+    .doc-upload-instructions {
+      background: $review-block-bg;
+      padding: 11px 17px 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 21px;
+      font-family: $muli-bold;
+      line-height: 18px;
+      .sub-title {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        margin-bottom: 3px;
+      }
+      .file-logs {
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: $upload-file-log-color;
+        span {
+          &:first-child {
+            font-family: $muli-semi-bold;
+            padding-right: 4px;
+          }
+        }
+      }
+    }
     .sub-title-block {
       display: flex;
       flex-direction: column;
