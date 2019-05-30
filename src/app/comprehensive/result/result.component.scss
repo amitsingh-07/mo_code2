@@ -12,7 +12,9 @@
     color: #066360;
     font-size: 24px;
     font-family: $muli-bold;
-    line-height:36px;
+    @include allmobiles {
+          padding: 0 15px;
+       }
   }
 
   .resultImg {
