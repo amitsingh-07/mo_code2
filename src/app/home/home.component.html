@@ -85,11 +85,11 @@
       </div>
     </div>
     <div class="home__section" #investment>
-      <div class="home__section--img tertiary" *ngIf="!isInvestmentEnabled">
+      <div class="home__section--img tertiary" *ngIf="isInvestmentEnabled">
         <img class="robo" src="assets/images/home-page/home-investment-robo.svg">
         <img class="human" src="assets/images/home-page/home-investment.jpg" />
       </div>
-      <div class="home__section--img tertiary white-bg" *ngIf="isInvestmentEnabled">
+      <div class="home__section--img tertiary white-bg" *ngIf="false">
         <img class="robo" src="assets/images/home-page/home-investment.svg">
       </div>
       <div class="home__invest-promo tertiary bg-white" *ngIf="isInvestmentEnabled" innerHTML="{{'INVESTMENT.PROMO_TEXT' | translate}}"></div>
