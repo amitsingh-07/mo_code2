@@ -18,6 +18,7 @@ import { CustomErrorHandlerService } from '../custom-error-handler.service';
 import { RequestCache } from '../http-cache.service';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
+import { EMPTY } from 'rxjs';
 
 const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
@@ -30,6 +31,9 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (!request.url) {
+            return EMPTY;
+        }
         const cachedResponse = this.cache.get(request);
         return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
