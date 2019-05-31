@@ -9,11 +9,12 @@ import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { HospitalPlan, IHospitalPlanList, IInsurancePlan } from '../comprehensive-types';
+import { HospitalPlan, IHospitalPlanList, IInsurancePlan, IMyLiabilities } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+
 
 @Component({
   selector: 'app-insurance-plan',
@@ -38,6 +39,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
   viewMode: boolean;
+  liabilitiesDetails: IMyLiabilities;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -75,6 +77,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     }
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
+    this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
@@ -97,7 +100,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : this.liabilitiesDetails.homeLoanOutstandingAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{

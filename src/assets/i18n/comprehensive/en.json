@@ -512,7 +512,7 @@
         "OTHER_PROPERTY_LOAN_TITLE": "Other Property Loans",
         "OTHER_PROPERTY_LOAN_MESSAGE": "Add up the outstanding loan amounts for all other properties. This is the total loan amount that have yet to be paid off, not the monthly instalments.",
         "CAR_LOANS_TITLE": "Car Loan Outstanding",
-        "CAR_LOANS_MESSAGE": " The remaining amount you had borrowed sum of money you owe the lender whom you had borrowed in order to purchase a car."
+        "CAR_LOANS_MESSAGE": "This is the total outstanding loan for any motor vehicle you own that has yet to be paid off, not the monthly instalment."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
