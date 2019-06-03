@@ -247,7 +247,9 @@ export class PortfolioRecommendationComponent implements OnInit {
         } else {
           this.signUpService.setUserProfileInfo(userInfo.objectList);
           const investmentStatus = this.signUpService.getInvestmentStatus();
-          if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
+          if (!investmentStatus) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
             const fundingParams = this.constructFundingParams(this.portfolio);
             this.topupAndWithDrawService.setFundingDetails(fundingParams);
             this.topUpOneTime();
