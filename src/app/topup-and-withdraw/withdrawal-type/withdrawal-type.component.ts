@@ -37,6 +37,7 @@ export class WithdrawalTypeComponent implements OnInit {
   cashBalance;
   isRedeemAll;
   translateParams;
+  isRequestSubmitted = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -281,40 +282,45 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   saveWithdrawal() {
-    this.loaderService.showLoader({
-      title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),
-      desc: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.DESC')
-    });
-    this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe(
-      (response) => {
-        this.loaderService.hideLoader();
-        if (response.responseMessage.responseCode < 6000) {
-          if (
-            response.objectList &&
-            response.objectList.length &&
-            response.objectList[response.objectList.length - 1].serverStatus &&
-            response.objectList[response.objectList.length - 1].serverStatus.errors &&
-            response.objectList[response.objectList.length - 1].serverStatus.errors.length
-          ) {
-            this.showCustomErrorModal(
-              'Error!',
-              response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
-            );
-          } else if (response.responseMessage && response.responseMessage.responseDescription) {
-            const errorResponse = response.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
+    if(!this.isRequestSubmitted) {
+      this.isRequestSubmitted = true;
+      this.loaderService.showLoader({
+        title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),
+        desc: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.DESC')
+      });
+      this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe(
+        (response) => {
+          this.isRequestSubmitted = false;
+          this.loaderService.hideLoader();
+          if (response.responseMessage.responseCode < 6000) {
+            if (
+              response.objectList &&
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
+            ) {
+              this.showCustomErrorModal(
+                'Error!',
+                response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
+              );
+            } else if (response.responseMessage && response.responseMessage.responseDescription) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
-            this.investmentAccountService.showGenericErrorModal();
+            this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
           }
-        } else {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+        },
+        (err) => {
+          this.isRequestSubmitted = false;
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
         }
-      },
-      (err) => {
-        this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
-      }
-    );
+      );
+    }
   }
 
   showCustomErrorModal(title, desc) {

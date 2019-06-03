@@ -94,6 +94,7 @@
     "WORST": "Worst",
     "CAPITAL_INVESTED": "Capital Invested",
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "GRAPH_SUB_TEXT_A": "All projections are net of all fees",
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Your Portfolio Details",
     "PORTFOLIO": "Portfolio",
