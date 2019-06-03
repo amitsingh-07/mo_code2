@@ -42,7 +42,7 @@ export class CustomErrorHandlerService {
     const customError: IError = {
       error: [],
       message: error.error.message || 'Your session has unexpectedly expired. Please login again'
-    }; 
+    };
     this.helper.showCustomErrorModal(customError);
     // navigate back to the login page
     this.router.navigate([appConstants.loginPageUrl]);
