@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
@@ -55,8 +55,7 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
   };
   userAge: number;
   constructor(private navbarService: NavbarService, private progressService: ProgressTrackerService,
-    private translate: TranslateService,
-    private formBuilder: FormBuilder, private configService: ConfigService,
+    private translate: TranslateService, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private router: Router, private route: ActivatedRoute, private aboutAge: AboutAge,
     private eleRef: ElementRef, private renderer: Renderer2) {
@@ -113,8 +112,8 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.ciMultiplierSlider.writeValue(65);
     } else */
     if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
-      this.ciMultiplierSlider.writeValue(this.sliderValue);
+      const sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.ciMultiplierSlider.writeValue(sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }

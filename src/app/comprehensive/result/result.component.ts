@@ -6,7 +6,6 @@ import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SIGN_UP_ROUTES } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
@@ -26,11 +25,11 @@ export class ResultComponent implements OnInit, OnDestroy {
   alertMessage: string;
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
-              private translate: TranslateService,
-              private configService: ConfigService, private router: Router,
-              private progressService: ProgressTrackerService,
-              private comprehensiveService: ComprehensiveService, private signUpService: SignUpService,
-              private loaderService: LoaderService) {
+    private translate: TranslateService,
+    private configService: ConfigService, private router: Router,
+    private progressService: ProgressTrackerService,
+    private comprehensiveService: ComprehensiveService, private signUpService: SignUpService,
+    private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
