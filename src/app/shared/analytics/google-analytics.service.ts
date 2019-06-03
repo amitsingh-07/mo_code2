@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 declare var ga: any;
+declare var gtag: any;
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class GoogleAnalyticsService {
         console.log(e);
       }
     });
+  }
+
+  public emitConversionsTracker(trackingId: string) {
+    gtag('event', 'conversion', {send_to: trackingId});
   }
 
   public emitEvent(eventCategory: string,
