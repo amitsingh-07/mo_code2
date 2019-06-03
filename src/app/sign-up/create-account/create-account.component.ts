@@ -1,30 +1,30 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { flatMap } from 'rxjs/operators';
+import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/shared/http/api.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { appConstants } from '../../app.constants';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { IEnquiryUpdate } from '../signup-types';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { WillWritingService } from 'src/app/will-writing/will-writing.service';
-import { appConstants } from '../../app.constants';
-import { AppService } from 'src/app/app.service';
-import { ApiService } from 'src/app/shared/http/api.service';
-import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
-import { IEnquiryUpdate } from '../signup-types';
-import { Formatter } from '../../shared/utils/formatter.util';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -65,6 +65,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.use('en');
   }
@@ -258,6 +259,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      newCustomer: true,
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
@@ -308,6 +310,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     } else {
       this.createAccountForm.controls['captcha'].reset();
       this.captchaSrc = this.authService.getCaptchaUrl();
+      this.changeDetectorRef.detectChanges();
     }
   }
 

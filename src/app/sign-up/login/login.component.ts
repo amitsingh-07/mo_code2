@@ -1,13 +1,15 @@
+import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { flatMap } from 'rxjs/operators';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import {
@@ -31,7 +33,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
-import { flatMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.project-g';
 
 @Component({
   selector: 'app-login',
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
+    private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
@@ -71,7 +74,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private investmentAccountService: InvestmentAccountService) {
+    private investmentAccountService: InvestmentAccountService,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -169,6 +173,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            if (environment.gtagPropertyId) {
+              this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/axAbCJ74s50BEP_VqfUC');
+            }
             try {
               if (data.objectList[0].customerId) {
                 this.appService.setCustomerId(data.objectList[0].customerId);
@@ -247,11 +254,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         const journeyType = this.appService.getJourneyType();
         if (redirect_url) {
           this.signUpService.clearRedirectUrl();
-          if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+          if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentRoutes.includes(redirect_url) &&
+          } else if (investmentRoutes.indexOf(redirect_url) >= 0 &&
             investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+            this.investmentAccountService.setUserPortfolioExistStatus(true);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else {
             this.router.navigate([redirect_url]);
           }
@@ -377,6 +385,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   refreshCaptcha() {
     this.captchaSrc = this.authService.getCaptchaUrl();
+    this.changeDetectorRef.detectChanges();
   }
 
   showCustomErrorModal(title, desc) {

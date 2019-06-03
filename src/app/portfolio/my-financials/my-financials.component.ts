@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -42,7 +42,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
     const self = this;
@@ -113,6 +114,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     if (!this.monthlyInvestmentChkBoxVal) {
       this.secondChkBoxChange();
     }
+    this.cd.detectChanges();
   }
 
   showEmergencyFundModal() {

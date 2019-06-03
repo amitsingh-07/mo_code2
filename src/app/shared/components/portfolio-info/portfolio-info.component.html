@@ -3,14 +3,16 @@
     <div class="portfolio-type-details">
       <div class="portfolio-type-details-title">{{portfolio.riskProfile.type}} {{ 'PORTFOLIO_RECOMMENDATION.PORTFOLIO' |
         translate}}</div>
-      <div class="portfolio-type-details-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.PORTFOLIO_PROJECTION_SUBTEXT' | translate:portfolioProjectionSubText">
+      <div class="portfolio-type-details-desc"
+        [innerHTML]="'PORTFOLIO_RECOMMENDATION.PORTFOLIO_PROJECTION_SUBTEXT' | translate:portfolioProjectionSubText">
       </div>
     </div>
     <div class="portfolio-graph-block">
       <div class="portfolio-graph-container">
         <div class="flex-col-12">
             <div class="graph">
-              <img src="../../../assets/images/investment-account/recommend_graph.svg" />
+              <img class="small" src="../../../assets/images/investment-account/recommend_graph.svg" />
+              <img class="big" src="../../../assets/images/investment-account/recommend_graph_big.svg" />
               <div class="flex-col graph_values">
                 <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
                 <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
@@ -20,24 +22,29 @@
               <div class="flex-row time-lapse">
                 <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
                   'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
-              </div>
             </div>
+          </div>
+
         </div>
 
       </div>
       <div class="portfolio-graph-indicator">
-        <div class="flex-row indicators">
-          <div class="flex-row"><span class="circle best"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.BEST' | translate}}</span></div>
-          <div class="flex-row"><span class="circle median"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.MEDIAN' |
+        <div class="web-flex">
+          <div class="flex-row indicators">
+            <div class="flex-row"><span
+                class="circle best"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.BEST' | translate}}</span></div>
+            <div class="flex-row"><span class="circle median"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.MEDIAN' |
               translate}}</span></div>
-          <div class="flex-row"><span class="circle worst"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.WORST' |
+            <div class="flex-row"><span class="circle worst"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.WORST' |
               translate}}</span></div>
-        </div>
-        <div class="flex-row capital">
-          <span><img class="img-fluid" src="../../../assets/images/investment-account/orangedots.svg" /></span>
-          <span>{{ 'PORTFOLIO_RECOMMENDATION.CAPITAL_INVESTED' | translate}}</span>
+          </div>
+          <div class="flex-row capital">
+            <span><img class="img-fluid" src="../../../assets/images/investment-account/orangedots.svg" /></span>
+            <span>{{ 'PORTFOLIO_RECOMMENDATION.CAPITAL_INVESTED' | translate}}</span>
+          </div>
         </div>
         <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate"></div>
+        <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT_A' | translate"></div>
       </div>
     </div>
   </div>

@@ -80,11 +80,14 @@ import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.comp
 import {
     RecommendationsModalComponent
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
+
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+
 import {
     TransactionModalComponent
 } from './shared/modal/transaction-modal/transaction-modal.component';
+
 import {
     UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';

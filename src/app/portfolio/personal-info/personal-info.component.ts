@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -48,7 +48,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     private modal: NgbModal,
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -117,6 +118,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     }, 1);
     this.isSufficientInvYears =
       value > PORTFOLIO_CONFIG.personal_info.min_investment_period ? true : false;
+    this.cd.detectChanges();
   }
 
   setSliderDescByRange(value) {

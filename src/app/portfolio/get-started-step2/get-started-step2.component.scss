@@ -24,17 +24,18 @@ app-get-started-step2 {
       box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
       cursor: pointer;
       font-family: $muli-bold;
+      font-weight: normal !important;
       font-size: 22px;
-      font-weight: bold;
       letter-spacing: -0.2px;
       text-align: center;
       color: $teal-color;
+      width: 370px;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto 54px;
       @include allmobiles {
-        position: fixed;
         width: 100%;
-        bottom: 0px;
-        left: 0px;
-        border-radius: 0px;
+        margin-bottom: 0;
       }
     }
   }

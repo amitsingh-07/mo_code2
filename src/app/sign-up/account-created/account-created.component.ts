@@ -10,6 +10,7 @@ import { ConfigService } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-account-created',
@@ -28,7 +29,7 @@ export class AccountCreatedComponent implements OnInit {
     private googleAnalyticsService: GoogleAnalyticsService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private signUpService: SignUpService, 
+    private signUpService: SignUpService,
     private configService: ConfigService,
     private router: Router,
     private signUpApiService: SignUpApiService) {
@@ -41,7 +42,12 @@ export class AccountCreatedComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Environment
+    if (environment.gtagPropertyId) {
+      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/axAbCJ74s50BEP_VqfUC');
+    }
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
+
     if (this.signUpService.getUserMobileNo()) {
       this.resendEmail = true;
     }

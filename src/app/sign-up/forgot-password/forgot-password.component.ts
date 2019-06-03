@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -47,7 +47,8 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     private router: Router,
     private _location: Location,
     private translate: TranslateService,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -119,5 +120,6 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   refreshCaptcha() {
     this.forgotPasswordForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
+    this.changeDetectorRef.detectChanges();
   }
 }
