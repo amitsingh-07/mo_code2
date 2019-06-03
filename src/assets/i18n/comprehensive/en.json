@@ -170,8 +170,7 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [
-      {
+    "NATIONALITY": [{
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -229,7 +228,7 @@
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
       "ABOUT": "Every month, you fill your bucket as you bring home an income!",
-      "BUCKET_TITLE": "Your Annual Income Bucket",
+      "BUCKET_TITLE": "Your Annual Income Bucket (Take-Home)",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
@@ -244,8 +243,7 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket",
-      "EMPLOYMENT_TYPE_LIST": [
-        {
+      "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
         },
@@ -286,9 +284,9 @@
       "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car Loan Payment",
       "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Loan Payment",
       "SPEND_TITLE1": "You spend ",
-      "SPEND_TITLE2": " per year",
+      "SPEND_TITLE2": " per year (excluding CPF deductions)",
       "SPEND_DESC1": "There is ",
-      "SPEND_DESC2": " left in your annual bucket",
+      "SPEND_DESC2": " left in your annual bucket (take-home)",
       "BUCKET_NOTE": "Your annual expenses",
       "TOOLTIP": {
         "OTHER_LOAN_TITLE": "Other Loan Payments",
@@ -363,8 +361,7 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [
-      {
+    "INVESTMENT_TYPE_LIST": [{
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -425,8 +422,7 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [
-        {
+      "INVESTMENT_TYPE_LIST": [{
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -534,8 +530,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [
-        {
+      "DEPENDANT_DETAIL": [{
           "name": "Dependant Details 1"
         },
         {

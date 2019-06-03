@@ -1244,9 +1244,15 @@ export class ComprehensiveService {
                 const popInputBucket = financeData.POP_FORM_INPUT;
                 const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
                 const inputParams = financeData.MONTHLY_INPUT_CALC;
-                const inputTotal = this.additionOfCurrency(filterInput, inputParams);
-                this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
-                    = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                if (financeInput === 'YOUR_EARNINGS') {
+                    const inputTotal = this.getTotalEarningsBucket(filterInput);
+                    this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+                        = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                } else {
+                    const inputTotal = this.additionOfCurrency(filterInput, inputParams);
+                    this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+                        = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                }
             }
         });
     }
@@ -1609,5 +1615,48 @@ export class ComprehensiveService {
     }
     getReportStatus() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
+    }
+    /**
+     * Compute Take Home Earnings
+     */
+    getTotalEarningsBucket(earningDetails: any) {
+        const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
+        const baseProfile = this.getMyProfile();
+        let homeSalary = 0;
+        let annualSalary = 0;
+        let homeCpfSalary = 0;
+        if (earningDetails && earningDetails !== null) {
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
+                homeSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                annualSalary += this.getValidAmount(earningDetails.annualBonus);
+            } else {
+                const cpfDetails = {
+                    amountLimitCpf: summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN,
+                    cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT
+                };
+                if (earningDetails.employmentType === 'Employed') {
+                    cpfDetails.amountLimitCpf = summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN;
+                    cpfDetails.cpfPercent = summaryConfig.HOME_PAY_CPF_EMPLOYED_PERCENT;
+                }
+                homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                homeCpfSalary *= 12;
+                homeCpfSalary += this.getValidAmount(earningDetails.annualBonus);
+                if (homeCpfSalary > cpfDetails.amountLimitCpf) {
+                    annualSalary += (cpfDetails.amountLimitCpf * cpfDetails.cpfPercent) + (homeCpfSalary - cpfDetails.amountLimitCpf);
+                } else {
+                    annualSalary += (homeCpfSalary * cpfDetails.cpfPercent);
+                }
+            }
+            homeSalary += this.getValidAmount(earningDetails.monthlyRentalIncome);
+            homeSalary += this.getValidAmount(earningDetails.otherMonthlyIncome);
+
+            homeSalary *= 12;
+            annualSalary += this.getValidAmount(earningDetails.annualDividends);
+            annualSalary += this.getValidAmount(earningDetails.otherAnnualIncome);
+            homeSalary += annualSalary;
+        }
+        return (Math.floor(homeSalary));
     }
 }
