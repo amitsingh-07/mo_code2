@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,6 @@ import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ProgressTrackerUtil } from '../../shared/modal/progress-tracker/progress-tracker-util';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -158,7 +157,7 @@ export class ComprehensiveComponent implements OnInit {
         }, (err) => {
 
         });
-     }
+      }
 
     } else {
       this.showLoginOrSignUpModal();

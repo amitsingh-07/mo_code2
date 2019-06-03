@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,7 +31,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
   isLoadComplete = false;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
     private configService: ConfigService,
