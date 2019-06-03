@@ -93,7 +93,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : '', disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 0, disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
@@ -105,15 +105,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{
         value: this.insurancePlanFormValues ?
-          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
+          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : 0, disabled: this.viewMode
       }, [Validators.required]],
       criticalIllnessCoverageAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
-          '', disabled: this.viewMode
+          0, disabled: this.viewMode
       }, [Validators.required]],
       disabilityIncomeCoverageAmount: [{
         value: this.insurancePlanFormValues ?
-          this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode
+          this.insurancePlanFormValues.disabilityIncomeCoverageAmount : 0, disabled: this.viewMode
       }, [Validators.required]],
       haveLongTermElderShield: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
@@ -121,7 +121,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       }, [Validators.required]],
       longTermElderShieldAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
-          : '', disabled: this.viewMode
+          : 0, disabled: this.viewMode
       }, [Validators.required]],
     });
   }
@@ -168,15 +168,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme !== 1) {
+        if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
           form.value.lifeProtectionAmount = 0;
         }
 
-        if (form.value.haveHDBHomeProtectionScheme !== 1) {
+        if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
           form.value.homeProtectionCoverageAmount = 0;
         }
-        if (form.value.haveLongTermElderShield !== 1) {
-          form.value.longTermElderShieldAmount = null;
+        if (form.value.haveLongTermElderShield !== 1 || form.value.longTermElderShieldAmount == '') {
+          form.value.longTermElderShieldAmount = 0;
         }
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
