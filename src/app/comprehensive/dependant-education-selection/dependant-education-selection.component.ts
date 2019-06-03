@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -117,7 +117,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
         const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
         const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
-        COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
+          COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
         if (getAge < maxAge) {
           const newEndowment = this.getNewEndowmentItem(dependant);
           this.childEndowmentArray.push(newEndowment);
@@ -137,7 +137,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     }
     const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
-    COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
+      COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
     return {
       id: 0,
       dependentId: dependant.id,
@@ -162,8 +162,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
       const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
-      const maxAge = (dependant.gender.toLowerCase() === 'male') ?  COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
-       COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
+      const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
+        COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
       if (getAge < maxAge) {
         for (const childEndowment of this.childEndowmentArray) {
           if (childEndowment.dependentId === dependant.id) {
@@ -200,7 +200,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
   educationSelection(form) {
     let educationPreferenceAlert = true;
-    form.endowmentDetailsList.forEach((dependant: IChildEndowment, index) => {
+    form.endowmentDetailsList.forEach((dependant: IChildEndowment) => {
       if (dependant.preferenceSelection) {
         educationPreferenceAlert = !dependant.preferenceSelection;
       }

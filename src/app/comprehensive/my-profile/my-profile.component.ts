@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { IComprehensiveEnquiry } from './../comprehensive-types';
+
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -39,7 +39,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     moGetStrdForm: FormGroup;
     nationality = '';
     nationalityList: string;
-    submitted: boolean;
+    submitted=false;
     nationalityAlert = false;
     pageId: string;
     genderDisabled = false;
