@@ -41,7 +41,7 @@ export class CustomErrorHandlerService {
     // or show a modal
     const customError: IError = {
       error: [],
-      message: error.error.message || 'Your session has unexpectedly expired. Please login again'
+      message: (error.error && error.error.message) ? error.error.message : 'Your session has unexpectedly expired. Please login again'
     };
     this.helper.showCustomErrorModal(customError);
     // navigate back to the login page
