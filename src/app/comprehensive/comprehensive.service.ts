@@ -1350,7 +1350,8 @@ export class ComprehensiveService {
         const regularSavingTotal = this.getRegularSaving('cash', true);
         const badMoodTotal = this.getBadMoodFund();
         const expenseTotal = this.getHomeExpenses('cash', true);
-        const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
+        const annualBonusCheck = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
+        const annualBonus = (annualBonusCheck > 0) ? this.getAnnualBonus(earningDetails, summaryConfig) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
         spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
             + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
@@ -1658,5 +1659,54 @@ export class ComprehensiveService {
             homeSalary += annualSalary;
         }
         return (Math.floor(homeSalary));
+    }
+    /**
+     * Compute Annual Bonus for step2 summary
+     */
+    getAnnualBonus(earningDetails: any, summaryConfig: any) {
+        const baseProfile = this.getMyProfile();
+        let homeSalary = 0;
+        let annualSalary = 0;
+        let homeCpfSalary = 0;
+        if (earningDetails && earningDetails !== null) {
+            const annualBonus = this.getValidAmount(earningDetails.annualBonus);
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
+                annualSalary += annualBonus;
+            } else {
+                const cpfDetails = {
+                    amountLimitCpf: summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN,
+                    cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT,
+                    salaryCeilCpf: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN
+                };
+                if (earningDetails.employmentType === 'Employed') {
+                    cpfDetails.amountLimitCpf = summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN;
+                    cpfDetails.cpfPercent = summaryConfig.HOME_PAY_CPF_EMPLOYED_PERCENT;
+                    cpfDetails.salaryCeilCpf = summaryConfig.HOME_PAY_CPF_EMPLOYED_BREAKDOWN;
+                }
+                homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                if (homeCpfSalary > cpfDetails.salaryCeilCpf) {
+                    homeSalary += cpfDetails.salaryCeilCpf;
+                } else {
+                    homeSalary += homeCpfSalary;
+                }
+                //console.log("A" + homeSalary);
+                const cutOffSalary = cpfDetails.amountLimitCpf - (homeSalary * 12);
+                //console.log("B" + cutOffSalary); console.log("AB" + annualBonus);
+                let eligibleAnnualBonus = 0;
+                let notEligibleAnnualBonus = 0;
+                if (cutOffSalary > annualBonus) {
+                    eligibleAnnualBonus = annualBonus;
+                    notEligibleAnnualBonus = 0;
+                } else {
+                    eligibleAnnualBonus = cutOffSalary;
+                    notEligibleAnnualBonus = annualBonus - eligibleAnnualBonus;
+                }
+                //console.log("C" + eligibleAnnualBonus); console.log("D" + notEligibleAnnualBonus);
+                annualSalary = (eligibleAnnualBonus * cpfDetails.cpfPercent) + notEligibleAnnualBonus;
+            }
+        }
+        //console.log("E" + annualSalary);
+        return (Math.floor(annualSalary));
     }
 }
