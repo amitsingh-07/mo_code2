@@ -83,6 +83,12 @@
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the topup request"
+    },
+    "CONFIRM_OVERWRITE_MODAL": {
+      "TITLE": "Confirm",
+      "DESC": "Please note that you have an existing monthly order of {{existingOrderAmount}}. By clicking continue, you understand that this monthly order of {{newOrderAmount}} will overwrite your existing order of {{existingOrderAmount}}",
+      "YES": "Yes",
+      "NO": "No"
     }
   },
   "TOPUP_REQUEST": {
