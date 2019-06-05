@@ -157,7 +157,7 @@ export class ComprehensiveComponent implements OnInit {
         }, (err) => {
 
         });
-      }
+     }
 
     } else {
       this.showLoginOrSignUpModal();
@@ -174,3 +174,4 @@ export class ComprehensiveComponent implements OnInit {
     this.modalRef.componentInstance.title = this.loginModalTitle;
   }
 }
+

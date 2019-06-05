@@ -116,7 +116,7 @@
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker"
                     appComprehensiveViewMode="{{viewMode}}" mode=1>
-                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="!DOBAlert"
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="!submitted && !DOBAlert"
                       src="./assets/images/calendar-normal.svg" />
                     <img class="date-picker-image--invalid" id="moGetStrdFormImg1"
                       *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
