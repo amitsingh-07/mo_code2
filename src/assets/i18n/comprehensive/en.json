@@ -170,7 +170,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -243,7 +244,8 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -288,6 +290,7 @@
       "SPEND_DESC1": "There is ",
       "SPEND_DESC2": " left in your annual bucket (take-home)",
       "BUCKET_NOTE": "Your annual expenses",
+      "SPEND_SUB_TITLE": "(excluding CPF deductions)",
       "TOOLTIP": {
         "OTHER_LOAN_TITLE": "Other Loan Payments",
         "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
@@ -307,8 +310,8 @@
       "HEADER": "Thank you for using MoneyOwl’s Comprehensive Financial Planning service!",
       "WELCOME_BACK": "Welcome Back",
       "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
-      "TOOL_TIP_TITLE": "Some tips for you",
-      "TOOL_TIP_DESC": "You can check your progress here!",
+      "TOOL_TIP_TITLE": "Progress Tracker",
+      "TOOL_TIP_DESC": "Check your progress here!",
       "TOOL_TIP_CLOSE": "X"
     },
     "FORM_LABEL": {
@@ -361,7 +364,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -401,7 +405,7 @@
     "MY_ASSETS": {
       "TITLE": "What You Own",
       "HEADER": "You may have already stored up some buckets over time. Some of these assets can grow and help fund your future goals.",
-      "ASSETS_BUCKETS": "Your Assets Buckets",
+      "ASSETS_BUCKETS": "Your Assets Bucket",
       "ASSETS_BUCKETS_NOTE": "Your assets bucket",
       "TOTAL": "in total",
       "CASH": "Your Cash",
@@ -422,7 +426,8 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -489,7 +494,7 @@
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities have to be repaid over time.",
-      "LIABILITIES_BUCKETS": "Your Liabilities Buckets",
+      "LIABILITIES_BUCKETS": "Your Liabilities Bucket",
       "HOME_LOAN_OUTSTANDING": "Home Loan Outstanding",
       "ADD_OTHER_PROPERTY_lOAN": "Add other Property Loan",
       "OTHER_PROPERTY_LOAN": "Other Property Loan",
@@ -530,7 +535,8 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
+      "DEPENDANT_DETAIL": [
+        {
           "name": "Dependant Details 1"
         },
         {
