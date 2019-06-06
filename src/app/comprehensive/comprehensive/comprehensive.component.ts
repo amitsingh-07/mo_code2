@@ -117,7 +117,7 @@ export class ComprehensiveComponent implements OnInit {
     }
 
     if (this.authService.isSignedUser()) {
-      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId() };
+      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: "COMPRE" };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();
       } else {
@@ -157,7 +157,7 @@ export class ComprehensiveComponent implements OnInit {
         }, (err) => {
 
         });
-     }
+      }
 
     } else {
       this.showLoginOrSignUpModal();

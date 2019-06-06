@@ -20,10 +20,10 @@ export class ComprehensiveApiService {
     ) { }
 
     getComprehensiveSummary() {
-        const sessionId = this.authService.getSessionId();
+        const sessionId = { sessionId: this.authService.getSessionId() };
 
         return this.http
-            .get(`${apiConstants.endpoint.comprehensive.getComprehensiveSummary}?sessionId=${sessionId}`)
+            .post(apiConstants.endpoint.comprehensive.getComprehensiveSummary, sessionId)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 
