@@ -243,7 +243,7 @@
       "ADD_MONTHLY_INCOME_NOTE": "You have added all types of income",
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
-      "BUCKET_NOTE": "Your annual income bucket",
+      "BUCKET_NOTE": "Your annual income bucket (Take-Home)",
       "EMPLOYMENT_TYPE_LIST": [
         {
           "text": "Employed",
@@ -286,9 +286,9 @@
       "MONTHLY_CAR_LOAN_PAYMENT": "Monthly Car Loan Payment",
       "MONTHLY_OTHER_CAR_LOAN_PAYMENT": "Monthly Other Loan Payment",
       "SPEND_TITLE1": "You spend ",
-      "SPEND_TITLE2": " per year (excluding CPF deductions)",
+      "SPEND_TITLE2": " per year",
       "SPEND_DESC1": "There is ",
-      "SPEND_DESC2": " left in your annual bucket (take-home)",
+      "SPEND_DESC2": " left in your annual bucket",
       "BUCKET_NOTE": "Your annual expenses",
       "SPEND_SUB_TITLE": "(excluding CPF deductions)",
       "TOOLTIP": {
@@ -568,7 +568,8 @@
       "HOSPITAL_PLAN": "Hospital Plan",
       "HOSPITAL_PLAN_DESC": "You want to stay in a ",
       "HOSPITAL_PLAN_DESC_END": "when down-on-luck and hospitalised.",
-      "HOSPITAL_PLAN_LABEL": "Do you have a hospitalisation plan that pays for this?",
+      "HOSPITAL_PLAN_LABEL_1": "Do you have a hospitalisation plan that pays for this?",
+      "HOSPITAL_PLAN_LABEL_2": "Does this Hospitalization plan include a rider?",
       "LIFE_PROTECTION": "Life Protection (Death)",
       "LIFE_PROTECTION_LABEL_1": "Do you have CPF Dependants’ Protection Scheme?",
       "LIFE_PROTECTION_LABEL_2": "Do you have HDB Home Protection Scheme (HPS) coverage?",
