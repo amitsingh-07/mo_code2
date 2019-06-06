@@ -1,13 +1,15 @@
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { flatMap } from 'rxjs/operators';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import {
@@ -31,7 +33,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
+    private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
@@ -71,7 +73,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private investmentAccountService: InvestmentAccountService) {
+    private investmentAccountService: InvestmentAccountService,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -377,6 +380,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   refreshCaptcha() {
     this.captchaSrc = this.authService.getCaptchaUrl();
+    this.changeDetectorRef.detectChanges();
   }
 
   showCustomErrorModal(title, desc) {

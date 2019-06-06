@@ -9,6 +9,7 @@ export interface ISignUp {
 export interface IEnquiryUpdate {
     customerId: string;
     enquiryId: number;
+    newCustomer?: boolean;
     selectedProducts: IPlan[];
 }
 

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -65,6 +65,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.use('en');
   }
@@ -258,6 +259,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      newCustomer: true,
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
@@ -308,6 +310,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     } else {
       this.createAccountForm.controls['captcha'].reset();
       this.captchaSrc = this.authService.getCaptchaUrl();
+      this.changeDetectorRef.detectChanges();
     }
   }
 
