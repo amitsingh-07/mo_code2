@@ -192,6 +192,7 @@ export interface IRegularSavings {
 export interface IInsurancePlan {
     enquiryId: number;
     haveHospitalPlan: boolean;
+    haveHospitalPlanWithRider: number;
     haveCPFDependentsProtectionScheme: number;
     haveHDBHomeProtectionScheme: number;
     homeProtectionCoverageAmount: number;

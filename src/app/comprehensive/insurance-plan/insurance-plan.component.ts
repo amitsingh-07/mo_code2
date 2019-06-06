@@ -88,6 +88,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
           : '', disabled: this.viewMode
       }, [Validators.required]],
+      haveHospitalPlanWithRider: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlanWithRider
+          : '', disabled: this.viewMode
+      }, [Validators.required]],
       haveCPFDependentsProtectionScheme: [{
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
