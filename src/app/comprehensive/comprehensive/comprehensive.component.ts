@@ -22,6 +22,7 @@ import {
   LoginCreateAccountModelComponent
 } from './../../shared/modal/login-create-account-model/login-create-account-model.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-comprehensive',
@@ -71,9 +72,9 @@ export class ComprehensiveComponent implements OnInit {
           const cmpData = data.objectList[0];
           this.cmpService.setComprehensiveSummary(cmpData);
           const action = this.appService.getAction();
-          if (action === 'GET_PROMO_CODE') {
+          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
             this.getPromoCode();
-          } else if (action === 'VALIDATE_PROMO_CODE') {
+          } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
             this.getStarted();
           } else {
             this.redirect();
@@ -111,13 +112,13 @@ export class ComprehensiveComponent implements OnInit {
     });
   }
   getStarted() {
-    this.appService.setAction('VALIDATE_PROMO_CODE');
+    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
     if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
       this.appService.setPromoCode(this.promoCodeForm.value.comprehensivePromoCodeToken);
     }
 
     if (this.authService.isSignedUser()) {
-      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: "COMPRE" };
+      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();
       } else {
@@ -143,7 +144,7 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   getPromoCode() {
-    this.appService.setAction('GET_PROMO_CODE');
+    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
     if (this.authService.isSignedUser()) {
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();

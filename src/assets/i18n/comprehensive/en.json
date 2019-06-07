@@ -229,7 +229,7 @@
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
       "ABOUT": "Every month, you fill your bucket as you bring home an income!",
-      "BUCKET_TITLE": "Your Annual Income Bucket (Take-Home)",
+      "BUCKET_TITLE": "Your Annual Income Bucket (Take-home)",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
@@ -243,7 +243,7 @@
       "ADD_MONTHLY_INCOME_NOTE": "You have added all types of income",
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
-      "BUCKET_NOTE": "Your annual income bucket (Take-Home)",
+      "BUCKET_NOTE": "Your annual income bucket (take-home)",
       "EMPLOYMENT_TYPE_LIST": [
         {
           "text": "Employed",
