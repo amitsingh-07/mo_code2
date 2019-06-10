@@ -49,6 +49,7 @@ import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -106,7 +107,8 @@ export function createTranslateLoader(http: HttpClient) {
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
     DropdownWithSearchComponent,
-    StartsWithPipe
+    StartsWithPipe,
+    SecurityPolicyComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
