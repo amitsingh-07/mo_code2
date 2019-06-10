@@ -1,7 +1,8 @@
 export const COMPREHENSIVE_CONST = {
-    PROMO_ACTION_TYPE: {
+    PROMO_CODE: {
         GET: 'GET_PROMO_CODE',
         VALIDATE: 'VALIDATE_PROMO_CODE',
+        TYPE: 'COMPRE'
     },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
@@ -29,7 +30,7 @@ export const COMPREHENSIVE_CONST = {
                 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
                 'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil', 'customerId', 'id',
-                'HLMortgagePaymentUsingCPF', 'mortgagePaymentUsingCPF']
+                'HLMortgagePaymentUsingCPF', 'mortgagePaymentUsingCPF', 'carLoanPayoffUntil']
         },
         YOUR_ASSETS: {
             API_KEY: 'comprehensiveAssets',
