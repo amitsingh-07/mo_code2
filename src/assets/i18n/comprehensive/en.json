@@ -44,7 +44,7 @@
           "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
           "SUB_TITLE_NOTE": "Not drawn to scale. For illustration purposes only.",
           "SUB_CONTENT_DESC1": "When you buy a whole life plan, the bulk of your premiums goes to paying for a low-return investment. With this allocation, you will never fully cover yourself with expensive whole life policies.",
-          "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed",
+          "SUB_CONTENT_DESC2": "Term insurance is fit-for-purpose for most of us. We only need coverage when we still have dependants or when our earned income is needed.",
           "NEXT": "Next",
           "INVESTMENT_STATISTIC_LABEL": "Investments",
           "INVESTMENT_STATISTIC_VALUE": "$0.80",
@@ -76,7 +76,7 @@
         "TITLE_IMAGE": "retirement.svg",
         "TITLE_DESC": "Completed",
         "CONTENT_TITLE": "Do you know?",
-        "CONTENT_DESC": "There 3 “must haves” in retirement:",
+        "CONTENT_DESC": "The 3 “must haves” in retirement:",
         "SUB_CONTENT_TITLE_1": "A fully paid-up home",
         "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
         "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability",
@@ -229,7 +229,7 @@
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
       "ABOUT": "Every month, you fill your bucket as you bring home an income!",
-      "BUCKET_TITLE": "Your Annual Income Bucket (Take-Home)",
+      "BUCKET_TITLE": "Your Annual Income Bucket (Take-home)",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
@@ -243,7 +243,7 @@
       "ADD_MONTHLY_INCOME_NOTE": "You have added all types of income",
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
-      "BUCKET_NOTE": "Your annual income bucket (Take-Home)",
+      "BUCKET_NOTE": "Your annual income bucket (take-home)",
       "EMPLOYMENT_TYPE_LIST": [
         {
           "text": "Employed",
