@@ -1,0 +1,23 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-security-policy{
+    .legal__section--inner{
+        .legal__info{
+            color: $black-color;
+        }
+        ol{
+            padding-left : 20px;
+            li{
+                display : list-item;
+                padding-left : 10px;
+                &:before{
+                    display : none;
+                }
+                & ~ p{
+                    margin-left : -20px;
+                }
+            }
+        }
+    }
+}

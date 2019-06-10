@@ -48,6 +48,7 @@ import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widg
 import { EditMobileNumberComponent } from './modal/edit-mobile-number/edit-mobile-number.component';
 import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
 import { StartsWithPipe } from './utils/starts-with.pipe';
+import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -103,7 +104,8 @@ export function createTranslateLoader(http: HttpClient) {
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
     DropdownWithSearchComponent,
-    StartsWithPipe
+    StartsWithPipe,
+    SecurityPolicyComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
