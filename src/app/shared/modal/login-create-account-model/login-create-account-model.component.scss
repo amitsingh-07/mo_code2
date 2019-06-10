@@ -1,7 +1,8 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-login-create-account-model {
-.selected-count {
+  .selected-count {
     background-color: #ff872f;
     width: 39px;
     height: 26px;
@@ -14,12 +15,14 @@ app-login-create-account-model {
     color: #ffffff;
     padding-bottom: 3px;
     margin-right: 10px;
+
     @include allmobiles {
       float: left;
       margin-left: 10px;
       //margin-top: 10px;
     }
   }
+
   .lbl-selected {
     font-family: $muli-regular;
     font-size: 18px;
@@ -27,21 +30,24 @@ app-login-create-account-model {
     letter-spacing: -0.2px;
     color: #5e5e5e;
     margin-right: 100px;
+
     @include allmobiles {
       margin-right: 0;
       padding-top: 10px;
       float: left;
     }
   }
-  .choose_ops{
-      color:#5e5e5e;
-      font-family: $muli-bold;
-      text-align: center;
-      margin-top: 20px;
+
+  .choose_ops_title {
+    color: #5e5e5e;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: Muli;
   }
 
   .back {
-    display:flex;
+    display: flex;
     background: url("../../../../assets/images/back-mobile.png") no-repeat;
     width: 20px;
     height: 20px;
@@ -52,10 +58,12 @@ app-login-create-account-model {
     margin-top: 6px;
     cursor: pointer;
   }
+
   .modal-body {
     position: relative;
+
     .separator {
-      border-bottom: 1px solid rgba(141,154,168,0.35);
+      border-bottom: 1px solid rgba(141, 154, 168, 0.35);
       position: absolute;
       top: 70px;
       width: 100%;
