@@ -12,4 +12,5 @@ export interface INavbarConfig {
         'primary': string;
         'secondary' ?: string;
         };
+    showExitCheck?: false;
     }
