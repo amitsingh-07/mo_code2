@@ -111,7 +111,7 @@ export class YourInvestmentComponent implements OnInit {
       if (data.responseMessage.responseCode >= 6000) {
         this.investmentoverviewlist = data.objectList;
         this.totalReturns = this.investmentoverviewlist.data.totalReturns
-          ? this.investmentoverviewlist.data.totalReturns * 100
+          ? this.investmentoverviewlist.data.totalReturns
           : 0;
         this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
