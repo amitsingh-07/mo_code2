@@ -86,11 +86,13 @@ app-start-journey {
       padding: 18px 35px;
       width: 245px;
       height: 54px;
-      @include iphone5{
-        width:100%;
+      @include iphone5 {
+        width: 100%;
+        padding: 18px 25px;
       }
-      @include iphone6{
-        width:100%;
+      @include iphone6 {
+        width: 100%;
+        padding: 18px 30px;
       }
     }
     input::placeholder{
