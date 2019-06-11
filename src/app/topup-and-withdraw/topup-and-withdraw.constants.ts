@@ -38,10 +38,15 @@ export let TOPUPANDWITHDRAW_CONFIG = {
   },
   INVESTMENT_OVERVIEW: {
     MORE_LIST: [
-      { id: 1, name: 'Transactions', value: 'TRANSACTIONS' },
-      { id: 2, name: 'Withdrawal', value: 'WITHDRAWAL' }
+      { id: 1, name: 'Top Up', value: 'TOPUP' },
+      { id: 2, name: 'Transfer Instructions', value: 'TRANSFER_INSTRUCTIONS' },
+      { id: 3, name: 'Transactions', value: 'TRANSACTIONS' },
+      { id: 4, name: 'Withdrawal', value: 'WITHDRAWAL' }
     ],
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal'
+  },
+  TRANSFER_INSTRUCTION : {
+    MODE: 'BANK'
   }
 };

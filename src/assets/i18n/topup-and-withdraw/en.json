@@ -109,7 +109,12 @@
     "DELETE": "Delete Portfolio",
     "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
     "EXPIRED": "Your portfolio has expired.",
-    "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days"
+    "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days",
+    "REF_CODE": "Ref Code: ",
+    "PORTFOLIO_DELETE_MESSAGE": "{{portfolioName}} Portfolio Deleted",
+    "START_PORTFOLIO": "Start a Portfolio",
+    "INVEST_AGAIN": "Invest Again",
+    "NO_PORTFOLIO": "You do not have any portfolios."
 
   },
   "YOUR_PORTFOLIO": {

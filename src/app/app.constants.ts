@@ -11,6 +11,7 @@ export let appConstants = {
     homePageUrl: '',
     accessTokenServer: '',
     MY_INFO_CALLBACK_URL: 'myinfo',
+    INVESTMENT_PROMO_CODE_TYPE: 'INVEST',
     JOURNEY_TYPE_INVESTMENT: 'investment',
     JOURNEY_TYPE_DIRECT: 'DIRECT',
     JOURNEY_TYPE_GUIDED: 'GUIDED',
