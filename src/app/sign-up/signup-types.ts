@@ -9,6 +9,7 @@ export interface ISignUp {
 export interface IEnquiryUpdate {
     customerId: string;
     enquiryId: number;
+    newCustomer?: boolean;
     selectedProducts: IPlan[];
 }
 
@@ -48,4 +49,10 @@ export interface IResendEmail {
     emailAddress: string;
     callbackUrl: string;
     hostedServerName: string;
+}
+
+export interface IUpdateMobileNumber {
+    customerRef: string;
+    mobileNumber: string;
+    countryCode: string;
 }

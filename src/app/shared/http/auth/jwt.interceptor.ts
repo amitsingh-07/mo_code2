@@ -20,6 +20,7 @@ import { CustomErrorHandlerService } from '../custom-error-handler.service';
 import { RequestCache } from '../http-cache.service';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
+import { EMPTY } from 'rxjs';
 
 const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
@@ -32,6 +33,9 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (!request.url) {
+            return EMPTY;
+        }
         const cachedResponse = this.cache.get(request);
         return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
@@ -98,8 +102,9 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
-                    this.errorHandler.handleAuthError(err);
+                    this.auth.clearSession();
                     this.signUpService.logoutUser();
+                    this.errorHandler.handleAuthError(err);
                 } else
                     if (err.message.match('I/O error on PUT request')) {
                         this.errorHandler.handleSubscribeError(err);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -38,7 +38,8 @@ export class SelectNationalityComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private cdr: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -85,6 +86,7 @@ export class SelectNationalityComponent implements OnInit {
   buildAdditionalControls() {
     this.selectNationalityForm.removeControl('unitedStatesResident');
     this.selectNationalityForm.removeControl('singaporeanResident');
+    this.cdr.detectChanges();
     const selectedNationality = this.selectNationalityForm.controls.nationality.value;
     const selectedNationalityName = this.selectNationalityForm.controls.nationality.value &&
       this.selectNationalityForm.controls.nationality.value.name ?

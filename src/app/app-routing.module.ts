@@ -16,6 +16,7 @@ import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
+import { SecurityPolicyComponent } from './shared/components/security-policy/security-policy.component';
 import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
@@ -87,7 +88,8 @@ const routes: Routes = [
       { path: 'terms-of-use', component: TermsOfUseComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'disclosures', component: DisclosuresComponent },
-      { path: 'fair-dealing', component: FairDealingComponent }
+      { path: 'fair-dealing', component: FairDealingComponent },
+      { path: 'security-policy', component: SecurityPolicyComponent }
     ]
   }
 ];

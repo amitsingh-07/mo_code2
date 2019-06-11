@@ -1,5 +1,5 @@
 <app-investment-title-bar></app-investment-title-bar>
-<div class="fund-your-account clearfix container-fluid max-width--1024 invest-web-pt-90">
+<div class="fund-your-account container-fluid max-width--1024 invest-web-pt-90">
   <div class="content" *ngIf="bankDetails && paynowDetails">
     <!-- FUND SUMMARY -->
     <div class="fund-summary">
@@ -212,7 +212,7 @@
     }}</p>
   <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUND_YOUR_ACCOUNT.SUCCESSFUL_TOPUP' | translate
     }}</p>
-  <button *ngIf="fundDetails.source == 'TOPUP'" type="button" (click)="buyPortfolio()"
+  <button *ngIf="fundDetails.source == 'TOPUP'" [disabled]="isRequestSubmitted" type="button" (click)="buyPortfolio()"
     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">
     Submit
   </button>
