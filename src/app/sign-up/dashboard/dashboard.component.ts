@@ -221,7 +221,7 @@ export class DashboardComponent implements OnInit {
       investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ?
-        this.userProfileInfo.investementDetails.totalReturns * 100 : 0;
+        this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.account &&
         this.userProfileInfo.investementDetails.account.cashAccountBalance ?
         this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;

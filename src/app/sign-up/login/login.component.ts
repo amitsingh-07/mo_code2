@@ -1,9 +1,9 @@
-import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +33,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
-import { environment } from 'src/environments/environment.project-g';
 
 @Component({
   selector: 'app-login',
@@ -173,9 +172,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-            if (environment.gtagPropertyId) {
-              this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/axAbCJ74s50BEP_VqfUC');
-            }
             try {
               if (data.objectList[0].customerId) {
                 this.appService.setCustomerId(data.objectList[0].customerId);
