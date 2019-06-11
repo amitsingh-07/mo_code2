@@ -125,14 +125,15 @@ export class NavbarConfig {
     '7': object = {
       showNavBackBtn: true,
       showHeaderBackBtn: true,
-      showMenu: true,
-      showLogin: true,
+      showMenu: false,
+      showLogin: false,
+      showLogout: true,
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: false,
       showHeaderNavbar: true,
       showLabel: {
-        primary: ''
+        primary: 'Comprehensive Planning'
       }
     };
 }

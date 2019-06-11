@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,6 @@ import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ProgressTrackerUtil } from '../../shared/modal/progress-tracker/progress-tracker-util';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -23,6 +22,7 @@ import {
   LoginCreateAccountModelComponent
 } from './../../shared/modal/login-create-account-model/login-create-account-model.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-comprehensive',
@@ -72,9 +72,9 @@ export class ComprehensiveComponent implements OnInit {
           const cmpData = data.objectList[0];
           this.cmpService.setComprehensiveSummary(cmpData);
           const action = this.appService.getAction();
-          if (action === 'GET_PROMO_CODE') {
+          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
             this.getPromoCode();
-          } else if (action === 'VALIDATE_PROMO_CODE') {
+          } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
             this.getStarted();
           } else {
             this.redirect();
@@ -112,13 +112,13 @@ export class ComprehensiveComponent implements OnInit {
     });
   }
   getStarted() {
-    this.appService.setAction('VALIDATE_PROMO_CODE');
+    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
     if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
       this.appService.setPromoCode(this.promoCodeForm.value.comprehensivePromoCodeToken);
     }
 
     if (this.authService.isSignedUser()) {
-      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId() };
+      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();
       } else {
@@ -144,7 +144,7 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   getPromoCode() {
-    this.appService.setAction('GET_PROMO_CODE');
+    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
     if (this.authService.isSignedUser()) {
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();
@@ -158,7 +158,7 @@ export class ComprehensiveComponent implements OnInit {
         }, (err) => {
 
         });
-     }
+      }
 
     } else {
       this.showLoginOrSignUpModal();
@@ -175,3 +175,4 @@ export class ComprehensiveComponent implements OnInit {
     this.modalRef.componentInstance.title = this.loginModalTitle;
   }
 }
+

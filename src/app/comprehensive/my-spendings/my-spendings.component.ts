@@ -170,6 +170,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
       mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
       carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
+      carLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.carLoanPayoffUntil : '', [this.payOffYearValid]],
       otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
       otherLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.otherLoanPayoffUntil : '',
       [this.payOffYearValid]]
@@ -252,12 +253,14 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     const spendingValues = this.mySpendingsForm.value;
     const spendingFormObject = {
       monthlyLivingExpenses: spendingValues.monthlyLivingExpenses,
-      adHocExpenses: spendingValues.adHocExpenses, HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF,
-      HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCPF:
-        spendingValues.mortgagePaymentUsingCPF, mortgagePaymentUsingCash:
+      adHocExpenses: spendingValues.adHocExpenses,
+      HLMortgagePaymentUsingCash: spendingValues.HLMortgagePaymentUsingCash, mortgagePaymentUsingCash:
         spendingValues.mortgagePaymentUsingCash, carLoanPayment: spendingValues.carLoanPayment,
       otherLoanPayment: spendingValues.otherLoanPayment
     };
+    // tslint:disable-next-line: no-commented-code
+    // mortgagePaymentUsingCPF: spendingValues.mortgagePaymentUsingCPF
+    // HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
     if (this.totalSpending <= 0 && this.totalBucket > 0) {

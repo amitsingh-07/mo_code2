@@ -145,6 +145,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     employmentType = employmentType ? employmentType : { text: '', value: '' };
     this.employmentType = employmentType.text;
     this.myEarningsForm.controls['employmentType'].setValue(employmentType.text);
+    this.onTotalAnnualIncomeBucket();
     if (!this.viewMode) {
       this.myEarningsForm.markAsDirty();
     }
@@ -205,8 +206,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
 
   onTotalAnnualIncomeBucket() {
-    const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
-    this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
+    //const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
+    //this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
+    this.totalAnnualIncomeBucket = this.comprehensiveService.getTotalEarningsBucket(this.myEarningsForm.value);
     const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
     const earningInput = this.myEarningsForm.value;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);

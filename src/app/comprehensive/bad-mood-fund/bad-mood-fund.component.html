@@ -7,56 +7,66 @@
   <!--Step indicator /-->
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
-  <div class="text-center mt20 mb20"><img  src="./assets/images/{{ bucketImage }}"/></div>
+  <div class="text-center mt20 mb20"><img src="./assets/images/{{ bucketImage }}" /></div>
   <div class="comprehensive__page-sub-heading-big">{{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.DESC' | translate}}</div>
   <!--Page form-->
-    <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
-        <div class="form-group-with-bg">
-        <div class="form-group-with-bg--header">
-          <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span class="help-icon" (click)="showToolTipModal('TITLE','DESCRIPTION')"></span></div>
-        </div>
-        <div class="form-group form-group-with-bg--content">
-          <div >{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</div>          
-          <div class="flex-row">
-            <div class="flex-col-6 mnth-amt">
-              {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
-            </div>
-            <div class="flex-col-6">
-              <input id="downOnLuckSliderInpt" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1  [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg" formControlName="badMoodMonthlyAmount" [value]="sliderValue | currency:'USD':'symbol-narrow':'1.0-2' "/>
-            </div>
-            <div class="width100">
-              <nouislider id="downOnLuckSlider" [disabled]="(viewMode || !hasBadMoodFund)?true:false" #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]="( maxBadMoodFund>0 ) ? maxBadMoodFund : 1"
-                  [step]="100"></nouislider>
-                <div class="min-max-val">
-                  <div class="min-val">$0<span class="min-text">Min</span></div>
-                  <div class="max-val" [hidden]="!hasBadMoodFund" >${{maxBadMoodFund}}<span class="max-text">Max.</span></div>
-                </div>
+  <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
+    <div class="form-group-with-bg">
+      <div class="form-group-with-bg--header">
+        <div class="form-group-with-bg--header-label with-tooltip"> {{'CMP.YOUR_FINANCES.TITLE' | translate}}<span
+            class="help-icon" (click)="showToolTipModal('TITLE','DESCRIPTION')"></span></div>
+      </div>
+      <div class="form-group form-group-with-bg--content">
+        <div class="mb20">{{'CMP.YOUR_FINANCES.LABEL_DESC' | translate}}</div>
+        <div class="flex-row">
+          <div class="flex-col-6 mnth-amt">
+            {{'CMP.YOUR_FINANCES.MONTHLY_AMOUNT' | translate}}
+          </div>
+          <div class="flex-col-6">
+            <input id="downOnLuckSliderInpt" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
+              [readonly]="true" name="badMoodMonthlyAmount" class="form-control with-bg"
+              formControlName="badMoodMonthlyAmount" [value]="sliderValue | currency:'USD':'symbol-narrow':'1.0-2' " />
+          </div>
+          <div class="width100">
+            <nouislider id="downOnLuckSlider" [disabled]="(viewMode || !hasBadMoodFund)?true:false" #ciMultiplierSlider
+              (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0"
+              [max]="( maxBadMoodFund>0 ) ? maxBadMoodFund : 1" [step]="100"></nouislider>
+            <div class="min-max-val">
+              <div class="min-val">$0<span class="min-text">Min</span></div>
+              <div class="max-val" [hidden]="!hasBadMoodFund">${{maxBadMoodFund}}<span class="max-text">Max.</span>
+              </div>
             </div>
           </div>
-          <div  [hidden]="hasBadMoodFund" class='minus-bad-mood'>
-            {{'CMP.YOUR_FINANCES.BAD_MOOD_FUND_ALERT'|translate}}
-             </div>
         </div>
+        <div [hidden]="hasBadMoodFund" class='minus-bad-mood'>
+          {{'CMP.YOUR_FINANCES.BAD_MOOD_FUND_ALERT'|translate}}
+        </div>
+      </div>
     </div>
     <div class="comprehensive__page-sub-heading-big"> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</div>
     <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</div>
     <div class="form-group mb0 flex-col flex__box--sm-horz mrg-minus10">
-    <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
-        <input id="downOnLuckRadioHospitalPlan" appComprehensiveViewMode="{{viewMode}}" mode=1 id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlanId"
-          formControlName="hospitalPlanId" type="radio" class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
+      <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
+        <input id="downOnLuckRadioHospitalPlan" appComprehensiveViewMode="{{viewMode}}" mode=1 id="hospitalPlan_{{i+1}}"
+          (change)="validateForm(hospitalPlanData)" name="hospitalPlanId" formControlName="hospitalPlanId" type="radio"
+          class="field radio" value="{{hospitalPlanData.id}}" tabindex="{{i+1}}" />
         <label for="hospitalPlan_{{i+1}}">
           <div class="input-label-white">{{hospitalPlanData.hospitalClass}}</div>
           <div class="input-label-normal">{{hospitalPlanData.hospitalClassDescription}}</div>
         </label>
       </div>
-     </div>
-      <div class="mb100 footer-cta">
-        <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary width100"
-      id="downOnLuckSubmitBtn">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
-    </button>
-      </div>
-      <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1"><div class="flex-col-7 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div> <div  class="flex-col-5 text-right bucket-notes-dollar"> {{ totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div></div>
-    </form>
+    </div>
+    <div class="footer-cta">
+      <button type="button" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary width100"
+        id="downOnLuckSubmitBtn">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
+      </button>
+    </div>
+    <!-- <div class="flex-row footer-notes btn__footer--fixed width100 p-3 income-value " id="prfBtn1">
+      <div class="flex-col-7 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div>
+      <div class="flex-col-5 text-right bucket-notes-dollar">
+        {{ totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+    </div> -->
+  </form>
   <!--Form bg-->
 </div>

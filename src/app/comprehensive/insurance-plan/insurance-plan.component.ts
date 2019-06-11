@@ -9,11 +9,12 @@ import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { HospitalPlan, IHospitalPlanList, IInsurancePlan } from '../comprehensive-types';
+import { HospitalPlan, IHospitalPlanList, IInsurancePlan, IMyLiabilities } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+
 
 @Component({
   selector: 'app-insurance-plan',
@@ -38,6 +39,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
   viewMode: boolean;
+  liabilitiesDetails: IMyLiabilities;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -61,10 +63,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
-        || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
-        this.haveHDB = true;
+      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
+        if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+          || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
+          this.haveHDB = true;
+        }
       }
+
     });
     if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
       COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
@@ -72,6 +77,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     }
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
+    this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
@@ -82,40 +88,44 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
           : '', disabled: this.viewMode
       }, [Validators.required]],
+      haveHospitalPlanWithRider: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlanWithRider
+          : '', disabled: this.viewMode
+      }, [Validators.required]],
       haveCPFDependentsProtectionScheme: [{
         value: this.insurancePlanFormValues ?
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : '', disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 0, disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : '',
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : this.liabilitiesDetails.homeLoanOutstandingAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{
         value: this.insurancePlanFormValues ?
-          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : '', disabled: this.viewMode
+          this.insurancePlanFormValues.otherLifeProtectionCoverageAmount : 0, disabled: this.viewMode
       }, [Validators.required]],
       criticalIllnessCoverageAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.criticalIllnessCoverageAmount :
-          '', disabled: this.viewMode
+          0, disabled: this.viewMode
       }, [Validators.required]],
       disabilityIncomeCoverageAmount: [{
         value: this.insurancePlanFormValues ?
-          this.insurancePlanFormValues.disabilityIncomeCoverageAmount : '', disabled: this.viewMode
-      }, [Validators.required]],
+          this.insurancePlanFormValues.disabilityIncomeCoverageAmount : 0, disabled: this.viewMode
+      }],
       haveLongTermElderShield: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveLongTermElderShield :
           '', disabled: this.viewMode
       }, [Validators.required]],
       longTermElderShieldAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
-          : '', disabled: this.viewMode
+          : 0, disabled: this.viewMode
       }, [Validators.required]],
     });
   }
@@ -162,14 +172,16 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme !== 0) {
+        if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
           form.value.lifeProtectionAmount = 0;
         }
 
-        if (form.value.haveHDBHomeProtectionScheme !== 0) {
+        if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
           form.value.homeProtectionCoverageAmount = 0;
         }
-
+        if (form.value.haveLongTermElderShield !== 1 || form.value.longTermElderShieldAmount == '') {
+          form.value.longTermElderShieldAmount = 0;
+        }
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           this.comprehensiveService.setInsurancePlanningList(form.value);

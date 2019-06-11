@@ -36,7 +36,7 @@ export interface IMyProfile {
     id: string;
     firstName: string;
     dateOfBirth: any;
-    nation: string;
+    nationalityStatus: string;
     gender: string;
     ngbDob: any;
 }
@@ -150,6 +150,7 @@ export interface IMySpendings {
     mortgageTypeOfHome: string;
     mortgagePayOffUntil: number;
     carLoanPayment: number;
+    carLoanPayoffUntil: number;
     otherLoanPayment: number;
     otherLoanPayoffUntil: number;
     totalAnnualExpenses: number;
@@ -191,6 +192,7 @@ export interface IRegularSavings {
 export interface IInsurancePlan {
     enquiryId: number;
     haveHospitalPlan: boolean;
+    haveHospitalPlanWithRider: number;
     haveCPFDependentsProtectionScheme: number;
     haveHDBHomeProtectionScheme: number;
     homeProtectionCoverageAmount: number;
@@ -205,4 +207,3 @@ export interface IRetirementPlan {
     enquiryId: number;
     retirementAge: string;
 }
-

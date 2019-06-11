@@ -20,7 +20,7 @@ export class ComprehensiveFormError {
                     errorMessage: 'Date of Birth'
                 }
             },
-            nation: {
+            nationalityStatus: {
                 required: {
                     errorTitle: 'Invalid Nationality',
                     errorMessage: 'Nationality'
@@ -302,6 +302,16 @@ export class ComprehensiveFormError {
                 required: {
                     errorTitle: 'Invalid Monthly Car Loan Payment',
                     errorMessage: 'Monthly Car Loan Payment'
+                }
+            },
+            carLoanPayoffUntil: {
+                required: {
+                    errorTitle: this.InvalidPayOff,
+                    errorMessage: 'Monthly Car Loan Payment - Invalid To Pay Off'
+                },
+                pattern: {
+                    errorTitle: this.InvalidPayOff,
+                    errorMessage: 'Monthly Car Loan Payment - Invalid To Pay Off'
                 }
             },
             otherLoanPayment: {

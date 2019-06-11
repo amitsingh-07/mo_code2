@@ -7,6 +7,11 @@
   width: 100% !important;
   overflow-y: hidden !important;
   z-index: 1061 !important;
+
+  @include desktop {
+    top: 25px !important;
+    left: 145px;
+  }
 }
 
 .modal-backdrop.fade.show.progress-tracker-backdrop {
@@ -17,6 +22,10 @@
   margin-left: 15px;
   border-radius: 5px 5px 0 0;
   z-index: 1061 !important;
+
+  @include desktop {
+    display: none;
+  }
 }
 
 .progress-tracker-tooltip {
@@ -111,6 +120,18 @@
           background-repeat: no-repeat;
         }
 
+        &.risk-proof {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/risk-proofing.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
+        }
+
+        &.retirement-icon {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/retirement-icon.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
+        }
+
         &__arrow {
           height: 10px;
           width: 16px;
@@ -119,12 +140,18 @@
           right: 15px;
           top: 10px;
           background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
+          transform: rotate(180deg);
 
           &.active {
             background: url('../../../../assets/images/comprehensive/progress-tracker/expand-arrow-icon.svg');
             height: 10px;
             width: 16px;
-            transform: rotate(180deg);
+            transform: rotate(0deg);
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
           }
         }
       }
@@ -136,6 +163,7 @@
           border-left: 2px solid #ff872f;
           position: relative;
           padding-bottom: 15px;
+          cursor: pointer;
 
           &.complete {
             padding-top: 0;
@@ -196,8 +224,32 @@
               border-left: none;
             }
           }
+
+          span {
+            word-break: break-word;
+          }
         }
       }
+    }
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #066360;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $dark-teal-color;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $app-backgrnd-secondary-color;
     }
   }
 }

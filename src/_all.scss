@@ -179,6 +179,9 @@ h6 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    @include tablet {
+      flex-wrap: nowrap;
+    }
     align-items: center;
     width: 100%;
     max-width: 1024px;
@@ -1921,10 +1924,11 @@ a.link-white {
     z-index: 1062;
     box-shadow: 0 2px 7px 0 rgba(68, 68, 68, 0.4);
     @include desktop {
-      width: 600px;
+      width: 400px;
+      right: 200px;
+      top: 0;
+      position: fixed;
       left: 50%;
-      margin-left: -300px; /* Half of the width */
-      top: 145px;
     }
     &__inner {
       position: relative;
@@ -1943,6 +1947,18 @@ a.link-white {
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-bottom: 10px solid #066360;
+      }
+      @include desktop {
+        &:before {
+          content: '';
+          position: absolute;
+          top: 30px;
+          right: -19px;
+          border-top: 10px solid transparent;
+          border-left: 10px solid #066360;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+        }
       }
       &__close {
         position: absolute;
@@ -2051,7 +2067,7 @@ a.link-white {
         font-size: 24px;
     }
     &__content {
-        font-family: $muli-bold;
+        font-family: $muli;
         font-size: 16px;
     }
 }

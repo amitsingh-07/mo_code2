@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { TranslateService } from '@ngx-translate/core';
@@ -50,15 +50,15 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
       this.endowmentDetail.forEach((dependant: any) => {
-        if (dependant.endowmentMaturityAmount > 0) {
-          this.summaryFlag = false;
-          this.dependantSummaryCons.push({
-            userName: dependant.name,
-            userAge: dependant.age,
-            // tslint:disable-next-line: max-line-length
-            userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
-          });
-        }
+        //if (dependant.endowmentMaturityAmount > 0) {
+        this.summaryFlag = false;
+        this.dependantSummaryCons.push({
+          userName: dependant.name,
+          userAge: dependant.age,
+          // tslint:disable-next-line: max-line-length
+          userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
+        });
+        //}
       });
     }
     this.configService.getConfig().subscribe((config: any) => {
@@ -151,7 +151,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   }
   // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
-    if (this.viewMode || form.pristine ) {
+    if (this.viewMode || form.pristine) {
       this.showSummaryModal();
     } else {
       const dependantArray = [];
@@ -165,16 +165,17 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
         });
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
-          this.endowmentArrayPlan
+            this.endowmentArrayPlan
         }).subscribe((data: any) => {
-          this.showDependantSummary( this.endowmentArrayPlan);
+          this.showDependantSummary(this.endowmentArrayPlan);
         });
       } else {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
           const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
           if (preferenceDetails.endowmentPlanShow) {
             otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
-            otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
+            otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required,
+            this.payOffYearValid(preferenceDetails.age)]);
             otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
             otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
             this.endowmentArrayPlan[index].endowmentMaturityAmount = toInteger(preferenceDetails.endowmentMaturityAmount);
@@ -247,20 +248,19 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     }
     return true;
   }
-
-  payOffYearValid(payOffYearVal) {
+  payOffYearValid(age: number): ValidatorFn {
     const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    let validCheck: boolean;
-    if (payOffYearVal.value === null || payOffYearVal.value === '') {
-      validCheck = true;
-    } else {
-      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
-    }
-    if (validCheck) {
+    const min = currentDate.getFullYear();
+    const max = min + age;
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (control.value === null || control.value === '') {
+        return null;
+      }
+      if (control.value !== undefined && (isNaN(control.value) || control.value < min || control.value >= max)) {
+        return { pattern: true };
+      }
       return null;
-    }
-    return { pattern: true };
+    };
   }
   showSummaryModal() {
     if (this.routerEnabled) {

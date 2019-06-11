@@ -1,11 +1,11 @@
 <div class="container-fluid comprehensive white-bg">
   <div class="comprehensive-section">
     <div class="text-center video-section">
-      <iframe id ="comprehensiveIframe" [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
+      <iframe id="comprehensiveIframe" [src]='safeURL' frameborder="0" style="width: 100%; height: 364px"></iframe>
     </div>
     <div class="intro-box">
       <div class="intro-box__heading">
-        <div class="intro-box__heading">{{ 'CMP.COMPREHENSIVE.HEADER' | translate}}</div>
+        <div class="intro-box__heading-blue">{{ 'CMP.COMPREHENSIVE.HEADER' | translate}}</div>
         <ul>
           <li class="report"> {{ 'CMP.COMPREHENSIVE.SUB_HEADER_1' | translate}}</li>
           <li class="meeting">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_2' | translate}} </li>
@@ -69,7 +69,7 @@
       <div [hidden]="promoCodeValidated" class="desc-box">
         <div class="desc-box__heading"> {{ 'CMP.COMPREHENSIVE.DESCRIPTION' | translate}}</div>
         <div class="desc-box__free-text">
-          <div>{{ 'CMP.COMPREHENSIVE.ROBOADVISORY' | translate}}</div>
+          <div>{{ 'CMP.COMPREHENSIVE.COMPREHENSIVE_PLAN' | translate}}</div>
           <div><span class="strikethrough">$500</span><span
               class="free">{{ 'CMP.COMPREHENSIVE.FREE' | translate}}</span></div>
         </div>
@@ -81,7 +81,8 @@
           class="promoCodeForm">
           <div class="promo-code-box__promo-input">
             <input type="text" id="promoCodeInpt" class="form-control promo-code"
-              formControlName="comprehensivePromoCodeToken" placeholder="{{ 'CMP.COMPREHENSIVE.ENTER_PROMO' | translate}}">
+              formControlName="comprehensivePromoCodeToken"
+              placeholder="{{ 'CMP.COMPREHENSIVE.ENTER_PROMO' | translate}}">
           </div>
           <div [hidden]="promoCodeValidated" (click)="getPromoCode()" class="promo-code-box__no-promo">
             {{ 'CMP.COMPREHENSIVE.NO_PROMO' | translate}}<span
@@ -91,7 +92,7 @@
         <button class="start-now-btn btn-block btn btn-primary-dark"
           (click)="getStarted()">{{'CMP.COMPREHENSIVE.START' | translate}}</button>
       </div>
-      <div  *ngIf="!promoCodeValidated" class="onetime-free-box">
+      <div *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
             <div><span class="strikethrough">$500</span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}} </div>
@@ -100,7 +101,7 @@
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
           </div>
           <div>
-            <button  class="btn-block btn btn-primary-dark"
+            <button class="btn-block btn btn-primary-dark"
               (click)="getPromoCode()">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
           </div>
         </div>

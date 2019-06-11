@@ -58,6 +58,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService
   ) {
+    this.totalAnnualIncomeBucket = 0;
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -162,8 +163,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
         this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
           any) => {
-            this.comprehensiveService.setDownOnLuck(form.value);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
+          this.comprehensiveService.setDownOnLuck(form.value);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
         });
       } else {
         const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.DOWN_ON_LUCK);

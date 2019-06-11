@@ -173,5 +173,3 @@ export class AppService {
     return this.getCustomer().id;
   }
 }
-
-

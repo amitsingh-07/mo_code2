@@ -689,7 +689,7 @@ export class ComprehensiveService {
                     case 1:
                     // 'dependant-selection'
                     case 2:
-                        if (profileData.nation) {
+                        if (profileData.nationalityStatus) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -841,7 +841,7 @@ export class ComprehensiveService {
         this.progressData = {} as IProgressTrackerData;
         this.progressData = {
             title: 'Your Progress Tracker',
-            subTitle: 'Time Taken: 20 mins',
+            subTitle: 'Est. Time Required: 20 mins',
             properties: {
                 disabled: false
             },
@@ -868,7 +868,7 @@ export class ComprehensiveService {
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
                     path: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
-                    title: 'Tell us about you',
+                    title: 'Tell us about yourself',
                     value: myProfile.firstName,
                     completed: typeof myProfile.firstName !== 'undefined'
                 }
@@ -906,7 +906,7 @@ export class ComprehensiveService {
             id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
             path: (enquiry.hasDependents !== null && enquiry.hasDependents !== false)
                 ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-            title: 'Number of Dependant',
+            title: 'Number of Dependant(s)',
             value: noOfDependants,
             completed: enquiry.hasDependents !== null
         });
@@ -986,7 +986,7 @@ export class ComprehensiveService {
             }
         }
         return {
-            title: 'What\'s on your shoulders',
+            title: 'What\'s On Your Shoulders',
             expanded: true,
             completed: hasDependants,
             customStyle: 'dependant',
@@ -1038,7 +1038,9 @@ export class ComprehensiveService {
             path: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
             title: 'Bad Mood Fund',
             value: this.getDownOnLuck().badMoodMonthlyAmount
-                ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' : '',
+                ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) + '' :
+                (typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+                    ? this.transformAsCurrency(0) : ''),
             completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined',
             hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
         });
@@ -1072,7 +1074,7 @@ export class ComprehensiveService {
             title: 'Your Finances',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'finances',
             subItems: subItemsArray
         };
     }
@@ -1102,13 +1104,13 @@ export class ComprehensiveService {
 
             const haveCPFDependentsProtectionScheme = cmpSummary.comprehensiveInsurancePlanning.haveCPFDependentsProtectionScheme;
             if (!Util.isEmptyOrNull(haveCPFDependentsProtectionScheme)) {
-                if (haveCPFDependentsProtectionScheme === 0) {
+                if (haveCPFDependentsProtectionScheme === 1) {
                     const otherLifeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.otherLifeProtectionCoverageAmount;
                     const lifeProtectionAmount = cmpSummary.comprehensiveInsurancePlanning.lifeProtectionAmount;
                     const homeProtectionCoverageAmount = cmpSummary.comprehensiveInsurancePlanning.homeProtectionCoverageAmount;
                     cpfDependantProtectionSchemeValue = this.transformAsCurrency(Util.toNumber(otherLifeProtectionCoverageAmount)
                         + Util.toNumber(lifeProtectionAmount) + Util.toNumber(homeProtectionCoverageAmount));
-                } else if (haveCPFDependentsProtectionScheme === 1) {
+                } else if (haveCPFDependentsProtectionScheme === 0) {
                     cpfDependantProtectionSchemeValue = 'No';
                 } else if (haveCPFDependentsProtectionScheme === 2) {
                     cpfDependantProtectionSchemeValue = 'Not Sure';
@@ -1124,9 +1126,9 @@ export class ComprehensiveService {
             }
 
             if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield)) {
-                if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
+                if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
                     longTermCareValue = this.transformAsCurrency(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount);
-                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) {
+                } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 0) {
                     longTermCareValue = 'No';
                 } else if (cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 2) {
                     longTermCareValue = 'Not Sure';
@@ -1138,7 +1140,7 @@ export class ComprehensiveService {
             title: 'Risk-Proof Your Journey',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'risk-proof',
             subItems: [
                 {
                     id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
@@ -1192,6 +1194,7 @@ export class ComprehensiveService {
         const cmpSummary = this.getComprehensiveSummary();
         const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
         if (isCompleted && cmpSummary.comprehensiveRetirementPlanning.retirementAge) {
+            // tslint:disable-next-line:radix
             const retireAgeVal = parseInt(cmpSummary.comprehensiveRetirementPlanning.retirementAge);
             retirementAgeValue = ((retireAgeVal > 60) ? '62 or later' : retireAgeVal + ' yrs old');
         }
@@ -1199,7 +1202,7 @@ export class ComprehensiveService {
             title: 'Financial Independence',
             expanded: true,
             completed: false,
-            customStyle: this.getStartedStyle,
+            customStyle: 'retirement-icon',
             subItems: [{
                 id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
                 path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
@@ -1241,9 +1244,15 @@ export class ComprehensiveService {
                 const popInputBucket = financeData.POP_FORM_INPUT;
                 const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
                 const inputParams = financeData.MONTHLY_INPUT_CALC;
-                const inputTotal = this.additionOfCurrency(filterInput, inputParams);
-                this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
-                    = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                if (financeInput === 'YOUR_EARNINGS') {
+                    const inputTotal = this.getTotalEarningsBucket(filterInput);
+                    this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+                        = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                } else {
+                    const inputTotal = this.additionOfCurrency(filterInput, inputParams);
+                    this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][financeData.API_TOTAL_BUCKET_KEY]
+                        = (!isNaN(inputTotal) && inputTotal > 0) ? inputTotal : 0;
+                }
             }
         });
     }
@@ -1341,7 +1350,8 @@ export class ComprehensiveService {
         const regularSavingTotal = this.getRegularSaving('cash', true);
         const badMoodTotal = this.getBadMoodFund();
         const expenseTotal = this.getHomeExpenses('cash', true);
-        const annualBonus = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
+        const annualBonusCheck = (earningDetails && earningDetails.annualBonus) ? this.getValidAmount(earningDetails.annualBonus) : 0;
+        const annualBonus = (annualBonusCheck > 0) ? this.getAnnualBonus(earningDetails, summaryConfig) : 0;
         const annualDividend = (earningDetails && earningDetails.annualDividends) ? this.getValidAmount(earningDetails.annualDividends) : 0;
         spareCash = (summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT * (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal))
             + (summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend));
@@ -1357,7 +1367,7 @@ export class ComprehensiveService {
         let homeSalary = 0;
         let homeCpfSalary = 0;
         if (earningDetails && earningDetails !== null && earningDetails.totalAnnualIncomeBucket > 0) {
-            if (baseProfile && baseProfile.nation === 'Others') {
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
                 homeSalary += this.getValidAmount(earningDetails.monthlySalary);
                 homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
             } else {
@@ -1606,5 +1616,97 @@ export class ComprehensiveService {
     }
     getReportStatus() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
+    }
+    /**
+     * Compute Take Home Earnings
+     */
+    getTotalEarningsBucket(earningDetails: any) {
+        const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
+        const baseProfile = this.getMyProfile();
+        let homeSalary = 0;
+        let annualSalary = 0;
+        let homeCpfSalary = 0;
+        if (earningDetails && earningDetails !== null) {
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
+                homeSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                annualSalary += this.getValidAmount(earningDetails.annualBonus);
+            } else {
+                const cpfDetails = {
+                    amountLimitCpf: summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN,
+                    cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT
+                };
+                if (earningDetails.employmentType === 'Employed') {
+                    cpfDetails.amountLimitCpf = summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN;
+                    cpfDetails.cpfPercent = summaryConfig.HOME_PAY_CPF_EMPLOYED_PERCENT;
+                }
+                homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                homeCpfSalary *= 12;
+                homeCpfSalary += this.getValidAmount(earningDetails.annualBonus);
+                if (homeCpfSalary > cpfDetails.amountLimitCpf) {
+                    annualSalary += (cpfDetails.amountLimitCpf * cpfDetails.cpfPercent) + (homeCpfSalary - cpfDetails.amountLimitCpf);
+                } else {
+                    annualSalary += (homeCpfSalary * cpfDetails.cpfPercent);
+                }
+            }
+            homeSalary += this.getValidAmount(earningDetails.monthlyRentalIncome);
+            homeSalary += this.getValidAmount(earningDetails.otherMonthlyIncome);
+
+            homeSalary *= 12;
+            annualSalary += this.getValidAmount(earningDetails.annualDividends);
+            annualSalary += this.getValidAmount(earningDetails.otherAnnualIncome);
+            homeSalary += annualSalary;
+        }
+        return (Math.floor(homeSalary));
+    }
+    /**
+     * Compute Annual Bonus for step2 summary
+     */
+    getAnnualBonus(earningDetails: any, summaryConfig: any) {
+        const baseProfile = this.getMyProfile();
+        let homeSalary = 0;
+        let annualSalary = 0;
+        let homeCpfSalary = 0;
+        if (earningDetails && earningDetails !== null) {
+            const annualBonus = this.getValidAmount(earningDetails.annualBonus);
+            if (baseProfile && baseProfile.nationalityStatus === 'Others') {
+                annualSalary += annualBonus;
+            } else {
+                const cpfDetails = {
+                    amountLimitCpf: summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN,
+                    cpfPercent: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_PERCENT,
+                    salaryCeilCpf: summaryConfig.HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN
+                };
+                if (earningDetails.employmentType === 'Employed') {
+                    cpfDetails.amountLimitCpf = summaryConfig.ANNUAL_PAY_CPF_BREAKDOWN;
+                    cpfDetails.cpfPercent = summaryConfig.HOME_PAY_CPF_EMPLOYED_PERCENT;
+                    cpfDetails.salaryCeilCpf = summaryConfig.HOME_PAY_CPF_EMPLOYED_BREAKDOWN;
+                }
+                homeCpfSalary += this.getValidAmount(earningDetails.monthlySalary);
+                homeCpfSalary += this.getValidAmount(earningDetails.otherMonthlyWorkIncome);
+                if (homeCpfSalary > cpfDetails.salaryCeilCpf) {
+                    homeSalary += cpfDetails.salaryCeilCpf;
+                } else {
+                    homeSalary += homeCpfSalary;
+                }
+                //console.log("A" + homeSalary);
+                const cutOffSalary = cpfDetails.amountLimitCpf - (homeSalary * 12);
+                //console.log("B" + cutOffSalary); console.log("AB" + annualBonus);
+                let eligibleAnnualBonus = 0;
+                let notEligibleAnnualBonus = 0;
+                if (cutOffSalary > annualBonus) {
+                    eligibleAnnualBonus = annualBonus;
+                    notEligibleAnnualBonus = 0;
+                } else {
+                    eligibleAnnualBonus = cutOffSalary;
+                    notEligibleAnnualBonus = annualBonus - eligibleAnnualBonus;
+                }
+                //console.log("C" + eligibleAnnualBonus); console.log("D" + notEligibleAnnualBonus);
+                annualSalary = (eligibleAnnualBonus * cpfDetails.cpfPercent) + notEligibleAnnualBonus;
+            }
+        }
+        //console.log("E" + annualSalary);
+        return (Math.floor(annualSalary));
     }
 }

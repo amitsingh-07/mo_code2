@@ -5,15 +5,16 @@
     color: #2d8289;
     font-size: 17px;
     font-family: "Muli Semi Bold", sans-serif;
+    word-break: break-word;
 }
 .promo-success{
-    color: #2d8289;
+    color: #5e5e5e;
     font-size: 17px;
-    font-family: "Muli Semi Bold", sans-serif;
+    font-family: $muli-regular, sans-serif;
 }
 .email-promo{
-    color: #00a7a7;
-    font-family: $muli-regular;
+    color: #00aaa8;
+    font-family: $muli-bold;
 }
 .yes_r_no {
     display: flex;

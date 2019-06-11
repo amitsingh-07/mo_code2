@@ -28,6 +28,11 @@
       color: #000000;
       padding-bottom: 10px;
       font-size: 18px;
+      word-break: break-word;
+      @include allmobiles {
+        //width: 290px;
+        word-break: break-word;
+      }
     }
 
     .form-group-with-bg--header-single-label {
@@ -352,7 +357,15 @@ input[type='checkbox']+label {
   clear: none;
   padding: 0px 0 0px 35px;
   cursor: pointer;
-  background: url("./assets/images/error-icon/icon_checkbox_error.svg") left center no-repeat;
+  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
+}
+
+input[type='checkbox']+label.checkbox-error  {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 35px;
+    cursor: pointer;
+    background: url("./assets/images/comprehensive/error-icon/icon_checkbox_error.svg") left center no-repeat;
 }
 
 input[type='checkbox']:checked+label {
@@ -380,11 +393,11 @@ input::placeholder {
   border: 1px solid $inline-error-border-color !important;
   background: $inline-error-bg-color;
   border-radius: 4px;
-  &.form-control i, &.form-control::placeholder, &.form-control i.right, &.dropdown-control .btn-dropdown {
+  &.form-control i, &.form-control::placeholder, &.form-control i.right, &.dropdown-control .btn-dropdown, .grey-text {
     color: $inline-error-border-color;
   }
   .btn-dropdown:after {
-    background-image: url('./assets/images/error-icon/icon_dropdown_error.svg') !important;
+    background-image: url('./assets/images/comprehensive/error-icon/icon_dropdown_error.svg') !important;
     width: 20px !important;
     height: 17px !important;
     border: none !important;
@@ -395,7 +408,9 @@ input::placeholder {
   &.dropdown-control, .form-control, &.form-group-floating-label, .btn-dropdown, .input-control, .input-group-append .btn-primary {
     background: $inline-error-bg-color !important;
   }
-
+  .btn-dropdown {
+    border: none !important;
+  }
   input::placeholder {
     color: $inline-error-border-color !important;
   }
@@ -1369,4 +1384,40 @@ input::placeholder {
     background: $btn-comprehensive-disabled-bg !important;
     color: $white-color !important;
   }
+  .view-mode .input-group-append {
+    margin-left: 0;
+  }
+  .earn-btn-dropdown:disabled {
+    border: none !important;
+  }
+  textarea:disabled {
+    background-color: rgba(0, 167, 167, 0.15) !important;
+  }
+  //ios fix
+  .form-control:disabled , textarea:disabled, .input-control:disabled , .form-control.view-mode{
+    -webkit-text-fill-color: #00a7a7;
+    opacity: 1;
+  }
+  //Long text wrap fix
+  @include allmobiles {
+      .title, .input-label-grey {
+        display: block;
+        //width: 260px;
+        word-break: break-word;
+      }
+  }
+  @include desktop {
+      .title, .input-label-grey {
+        display: block;
+        //width: 500px;
+        word-break: break-word;
+      }
+  }
+  @include tablet {
+    .title, .input-label-grey {
+      display: block;
+      //width: 500px;
+      word-break: break-word;
+    }
+}
 }

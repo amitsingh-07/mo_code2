@@ -2,7 +2,7 @@
 @import '../../../mixins';
 .comprehensive {
   background: #fff;
-  height: 100%!important;
+  height: 100% !important;
   @include desktop {
     &.container-fluid {
       padding: 90px 20px 20px 20px;
@@ -12,6 +12,9 @@
     color: #066360;
     font-size: 24px;
     font-family: $muli-bold;
+    @include allmobiles {
+          padding: 0 15px;
+       }
   }
 
   .resultImg {
@@ -25,7 +28,10 @@
     &__about {
       font-size: 14px;
       color: #9f9f9f;
-      font-family: $muli-italic;
+      font-family: $muli-light-italic;
+      @include allmobiles {
+        padding: 0 14%;
+      }
     }
   }
   .about {
@@ -74,6 +80,5 @@
       }
     }
   }
-
- 
 }
+

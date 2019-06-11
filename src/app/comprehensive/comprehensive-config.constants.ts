@@ -1,7 +1,8 @@
 export const COMPREHENSIVE_CONST = {
-    PROMO_ACTION_TYPE: {
-     GET: 'GET_PROMO_CODE',
-     VALIDATE: 'VALIDATE_PROMO_CODE',
+    PROMO_CODE: {
+        GET: 'GET_PROMO_CODE',
+        VALIDATE: 'VALIDATE_PROMO_CODE',
+        TYPE: 'COMPRE'
     },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
@@ -10,46 +11,47 @@ export const COMPREHENSIVE_CONST = {
         DATE_PICKER_MAX_YEAR: 100
     },
     CHILD_ENDOWMENT: {
-    MALE_MATURITY_AGE: 21,
-    FEMALE_MATURITY_AGE: 19
+        MALE_MATURITY_AGE: 21,
+        FEMALE_MATURITY_AGE: 19
     },
     YOUR_FINANCES: {
         YOUR_EARNINGS: {
             API_KEY: 'comprehensiveIncome',
             API_TOTAL_BUCKET_KEY: 'totalAnnualIncomeBucket',
-            MONTHLY_INPUT_CALC : ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
+            MONTHLY_INPUT_CALC: ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome',
-            'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
+                'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
         },
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
             API_TOTAL_BUCKET_KEY: 'totalAnnualExpenses',
-            MONTHLY_INPUT_CALC : ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCPF', 'HLMortgagePaymentUsingCash',
-            'mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
+            MONTHLY_INPUT_CALC: ['monthlyLivingExpenses', 'HLMortgagePaymentUsingCash',
+                'mortgagePaymentUsingCash', 'carLoanPayment', 'otherLoanPayment'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualExpenses', 'HLtypeOfHome', 'homeLoanPayOffUntil',
-            'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil', 'customerId', 'id']
+                'mortgageTypeOfHome', 'mortgagePayOffUntil', 'otherLoanPayoffUntil', 'customerId', 'id',
+                'HLMortgagePaymentUsingCPF', 'mortgagePaymentUsingCPF', 'carLoanPayoffUntil']
         },
         YOUR_ASSETS: {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
-            MONTHLY_INPUT_CALC : [],
+            MONTHLY_INPUT_CALC: [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-            'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
+                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
         },
         YOUR_LIABILITIES: {
             API_KEY: 'comprehensiveLiabilities',
             API_TOTAL_BUCKET_KEY: 'totalAnnualLiabilities',
-            MONTHLY_INPUT_CALC : [],
+            MONTHLY_INPUT_CALC: [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualLiabilities', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['homeLoanOutstandingAmount', 'otherLoanOutstandingAmount', 'carLoansAmount',
-            'otherPropertyLoanOutstandingAmount']
+                'otherPropertyLoanOutstandingAmount']
         },
     },
     INSURANCE_PLAN: {
         LONG_TERM_INSURANCE_AGE: 40
-        },
+    },
     SUMMARY_CALC_CONST: {
         EDUCATION_ENDOWMENT: {
             DEPENDANT: {
@@ -123,7 +125,8 @@ export const COMPREHENSIVE_CONST = {
             HOME_PAY_CPF_SELF_EMPLOYED_BREAKDOWN: 6000,
             HOME_PAY_CPF_SELF_EMPLOYED_PERCENT: 0.96,
             SPARE_CASH_EARN_SPEND_PERCENT: 0.75,
-            SPARE_CASH_ANNUAL_PERCENT: 0.50
+            SPARE_CASH_ANNUAL_PERCENT: 0.50,
+            ANNUAL_PAY_CPF_BREAKDOWN: 102000
         }
     },
     PAY_OFF_YEAR: 50,
