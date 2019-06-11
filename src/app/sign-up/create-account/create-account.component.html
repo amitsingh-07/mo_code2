@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="flex-col-7 stretch" [formGroup]="createAccountForm">
-              <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
+              <div class="form-group-floating-label">
                 <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder"
@@ -41,16 +41,14 @@
           <div class="flex-row mb10">
             <div class="flex-col-5 stretch mr15" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required
-                  [readonly]="editNumber">
+                <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
                 <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' |
                   translate}}</label>
               </div>
             </div>
             <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required
-                  [readonly]="editNumber">
+                <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
               </div>
@@ -59,8 +57,7 @@
           <div class="flex-row mb10">
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required
-                  [readonly]="editNumber">
+                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
               </div>
@@ -70,7 +67,7 @@
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
               <div [ngClass]="{'inline-error': !confirmEmailFocus && !createAccountForm.controls.email.errors && createAccountForm.controls.confirmEmail.dirty && createAccountForm.controls.confirmEmail.errors && confirmEmail.value.length}" class="form-group-floating-label">
                 <input type="text" id="crtAccInpt5" (blur)="showValidity('confirmEmail')" (focus)="showValidity('confirmEmail')" class="form-control" #confirmEmail formControlName="confirmEmail"
-                  required [readonly]="editNumber">
+                  required>
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL' | translate}}</label>
                 <div class="error-tooltip"
@@ -140,7 +137,7 @@
             <span class="mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
               <div class="form-group-captcha-wrapper">
-                <img [src]="captchaSrc | secure | async" class="captcha-img" />
+                <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
               </div>
             </div>
             <div class="flex-col-6 stretch">
@@ -167,7 +164,7 @@
               <div class="title">{{ 'CREATE_ACCOUNT.FORM.MARKETING_ACCEPTANCE' | translate }}</div>
             </label>
           </div>
-          <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button"
+          <button id="nextDependentBtn" [disabled]="createAccountTriggered" (click)="save(createAccountForm)" type="button"
             class="btn btn__footer--fixed btn-primary width100">{{
             'COMMON.CONTINUE' | translate }}</button>
         </form>

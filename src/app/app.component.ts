@@ -53,9 +53,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         if (!this.initRoute) {
           if (val.url === '/home#diy') {
             this.triggerDiyPopup();
-          } else {
-            this.triggerPopup();
           }
+          /*
+          else {
+            this.triggerPopup();
+          }*/
           this.initRoute = true;
         } else {
           if (this.modalRef) {

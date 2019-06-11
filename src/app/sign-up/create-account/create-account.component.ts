@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -41,9 +41,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
-  editNumber;
   captchaSrc: any = '';
   isPasswordValid = true;
+  createAccountTriggered = false;
 
   confirmEmailFocus = false;
   confirmPwdFocus = false;
@@ -66,11 +66,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.use('en');
-    this.route.params.subscribe((params) => {
-      this.editNumber = params.editNumber;
-    });
   }
 
   /**
@@ -78,9 +76,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   ngOnInit() {
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-        this.refreshCaptcha();
-      });
+      this.refreshToken();
     }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -100,6 +96,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
     }
+  }
+
+  refreshToken() {
+    this.authService.authenticate().subscribe((token) => {
+      this.refreshCaptcha();
+    });
   }
 
   /**
@@ -178,31 +180,37 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
-      .subscribe((data: any) => {
-        const responseCode = [6000, 6008, 5006];
-        if (responseCode.includes(data.responseMessage.responseCode)) {
-          if (data.responseMessage.responseCode === 6000 ||
-            data.responseMessage.responseCode === 6008) {
-            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+    if (!this.createAccountTriggered) {
+      this.createAccountTriggered = true;
+      this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
+        .subscribe((data: any) => {
+          this.createAccountTriggered = false;
+          const responseCode = [6000, 6008, 5006];
+          if (responseCode.includes(data.responseMessage.responseCode)) {
+            if (data.responseMessage.responseCode === 6000 ||
+              data.responseMessage.responseCode === 6008) {
+              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            }
+            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+            if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+              this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+              (insuranceEnquiry &&
+                insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+              const redirect = data.responseMessage.responseCode === 6000;
+              this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
+            } else if (data.responseMessage.responseCode === 6000) {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+            } else if (data.responseMessage.responseCode === 6008 ||
+              data.responseMessage.responseCode === 5006) {
+              this.callErrorModal(data);
+            }
+          } else {
+            this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
-          const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-          if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-            this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-            (insuranceEnquiry &&
-              insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
-            const redirect = data.responseMessage.responseCode === 6000;
-            this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
-          } else if (data.responseMessage.responseCode === 6000) {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-          } else if (data.responseMessage.responseCode === 6008 ||
-            data.responseMessage.responseCode === 5006) {
-            this.callErrorModal(data);
-          }
-        } else {
-          this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
-        }
-      });
+        }, (err) => {
+          this.createAccountTriggered = false;
+        });
+    }
   }
 
   callErrorModal(data: any) {
@@ -261,6 +269,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      newCustomer: true,
       selectedProducts: insuranceEnquiry.plans
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
@@ -306,8 +315,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   refreshCaptcha() {
-    this.createAccountForm.controls['captcha'].reset();
-    this.captchaSrc = this.authService.getCaptchaUrl();
+    if (!this.authService.isAuthenticated()) {
+      this.refreshToken();
+    } else {
+      this.createAccountForm.controls['captcha'].reset();
+      this.captchaSrc = this.authService.getCaptchaUrl();
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
   /**

@@ -67,7 +67,8 @@
     "POSTALCODE_NOT_FOUND_ERROR": {
       "TITLE": "Invalid Postal Code",
       "MESSAGE": "Please enter valid postal code."
-    }
+    },
+    "SELECT_COUNTRY": "Select Country"
   },
   "EMPLOYMENT_DETAILS": {
     "TITLE": "Employment Details",
@@ -150,7 +151,9 @@
     "COUNTRY_ERROR_MSG": "Please check your selected countries",
     "SELECT_COUNTRY": "Select Country",
     "TAX_OTHER_COUNTRY":"Are you paying tax in another country?",
-    "ADD_TAX_RESIDENCE":"Add Tax Residence"
+    "ADD_TAX_RESIDENCE":"Add Tax Residence",
+    "SG_COUNTRY_CODE": "SG",
+    "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC."
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
@@ -214,7 +217,7 @@
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
     "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Do you have any beneficial owners of this account?",
+    "QUESTION3": "Is someone else the actual beneficial owner of this account?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
@@ -275,6 +278,7 @@
     "WORST": "Worst",
     "CAPITAL_INVESTED": "Capital Invested",
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "GRAPH_SUB_TEXT_A": "All projections are net of all fees.",
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Confirm Portfolio",
     "PORTFOLIO": "Portfolio",
@@ -339,6 +343,7 @@
     }
   },
   "INVESTMENT_ACCOUNT_COMMON": {
+    "SELECT_COUNTRY": "Select Country",
     "ACCOUNT_CREATION_ERROR_MODAL": {
       "TITLE": "Error !",
       "DESCRIPTION": "Please fix the below list of errors and then proceed."

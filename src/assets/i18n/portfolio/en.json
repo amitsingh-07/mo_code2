@@ -10,7 +10,9 @@
     "DESC1": "Investments can help to grow your savings beyond bank deposit rates.",
     "DESC2": "But you need to be able to ride out the ups and downs and stay invested to capture this higher return.",
     "DESC3": "In the following steps, we help you discover your Risk Profile – your ability and willingness to take risks – and recommend the most suitable portfolio for you.",
-    "GETSTARTED": "Get Started"
+    "GETSTARTED": "Get Started",
+    "PAGE_TITLE": "Welcome",
+    "PROMO_ERROR": "Invalid promo code. Please try again."
   },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
@@ -92,6 +94,7 @@
     "WORST": "Worst",
     "CAPITAL_INVESTED": "Capital Invested",
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "GRAPH_SUB_TEXT_A": "All projections are net of all fees.",
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Your Portfolio Details",
     "PORTFOLIO": "Portfolio",

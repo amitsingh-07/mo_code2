@@ -165,6 +165,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.navbarService.getNavbarDetails();
     this.cdr.detectChanges();
+    this.route.queryParams.subscribe((params) => {
+      if (params['category']) {
+        setTimeout(() => {
+          this.goToRoute(params['category']);
+        }, 500);
+      }
+    });
   }
 
   setPageTitle(title: string) {
