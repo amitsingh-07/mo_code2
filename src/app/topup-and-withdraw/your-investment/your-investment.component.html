@@ -112,7 +112,7 @@
                   </div>
                 </div>
                 <div class="flex-col-4"> 
-                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage)}}{{portfolio.totalReturnsPercentage
+                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturns && portfolio.totalReturns < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturns)}}{{portfolio.totalReturns
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>
