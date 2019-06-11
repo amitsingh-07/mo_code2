@@ -48,9 +48,6 @@
                   | translate}}
                   <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
                 </div>
-                <div class="start_investment_label" for="name" id="investment_overview_investment_start_labl">{{'YOUR_INVESTMENT.FROM_START_OF_INVESTMENT'
-                  | translate}}
-                </div>
               </div>
               <div class="flex-col-6">
                 <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{formatReturns(totalReturns)}}{{totalReturns

@@ -48,12 +48,6 @@
                 <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">{{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%</div>
               </div>
             </div>
-            <div class="flex-row">
-              <div class="flex-col-7">
-                <div id="your_portfolio_start_value_lbl" class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
-                </div>
-              </div>
-            </div>
             <div class="flex-row mt20" *ngIf="yearlyReturns">
               <div class="flex-col-7">
                 <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return ">{{'YOUR_PORTFOLIO.ANNUALIZED_RETURNS' | translate}}
@@ -94,12 +88,6 @@
               </div>
               <div class="flex-col-3">
                 <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">0%
-                </div>
-              </div>
-            </div>
-            <div class="flex-row">
-              <div class="flex-col-8">
-                <div id="your_portfolio_start_value_lbl" class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
                 </div>
               </div>
             </div>
