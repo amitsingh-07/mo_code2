@@ -580,7 +580,7 @@ export class ApiService {
   }
 
   createInvestmentAccount() {
-    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + '?handleError=true')
+    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -672,7 +672,7 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -687,7 +687,7 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
   monthlyInvestment(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -695,7 +695,7 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
