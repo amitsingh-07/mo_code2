@@ -53,6 +53,7 @@ export class WillWritingApiService {
         const promoCode = {
             promoCode: promoCodeData,
             sessionId: this.authService.getSessionId(),
+            promoCodeCat: 'WILLS'
         };
         return this.apiService.verifyPromoCode(promoCode);
     }

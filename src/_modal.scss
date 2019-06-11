@@ -927,6 +927,7 @@ body.modal-open::-webkit-scrollbar {
       font-family: $muli-bold;
       font-size: 16px;
     }
+
     @include allmobiles {
       &--label {
         //width: 290px;
@@ -1023,4 +1024,3 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
-

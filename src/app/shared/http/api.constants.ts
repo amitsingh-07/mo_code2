@@ -39,6 +39,7 @@ export let apiConstants = {
         detailCustomerSummary: 'account/account-microservice/api/getDetailedCustomerSummary',
         getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails',
         resendEmailVerification: 'account/account-microservice/api/resendEmailVerification',
+        editMobileNumber: 'account/account-microservice/api/update-mobileno',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -71,13 +72,13 @@ export let apiConstants = {
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             saveNationality: 'invest/investment-microservice/customer/setNationality',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
-            createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
-            verifyAML: ACCOUNT_API_BASE_URL + 'verifyAML?handleError=true',
+            createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount?handleError=true',
+            verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
-            buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
+            buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy?handleError=true',
             deletePortfolio: INVESTMENT_API_BASE_URL + 'customer/portfolios',
-            monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment',
-            sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
+            monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment?handleError=true',
+            sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell?handleError=true',
             investmentoverview: 'invest/investment-microservice/portfolio/holdings?handleError=true',
             porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
@@ -126,4 +127,3 @@ export let apiConstants = {
         }
     }
 };
-

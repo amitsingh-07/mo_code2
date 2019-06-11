@@ -584,7 +584,7 @@ export class ApiService {
   }
 
   createInvestmentAccount() {
-    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + this.handleErrorFlag)
+    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -676,7 +676,7 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + this.handleErrorFlag, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -691,7 +691,7 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
   monthlyInvestment(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + this.handleErrorFlag, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -699,7 +699,7 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + this.handleErrorFlag, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -862,6 +862,14 @@ export class ApiService {
   // Resend Email Verification Link
   resendEmailVerification(payload) {
     return this.http.post(apiConstants.endpoint.resendEmailVerification + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Update Mobile Number
+  editMobileNumber(payload) {
+    return this.http.post(apiConstants.endpoint.editMobileNumber + '?handleError=true', payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

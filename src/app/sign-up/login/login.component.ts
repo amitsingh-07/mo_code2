@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { flatMap } from 'rxjs/operators';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
@@ -27,10 +28,10 @@ import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
 import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
+import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { WillWritingApiService } from './../../will-writing/will-writing.api.service';
 import { LoginFormError } from './login-form-error';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -57,6 +58,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
+    private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
@@ -71,7 +73,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private investmentAccountService: InvestmentAccountService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -156,9 +159,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loginForm.controls['loginPassword'].reset();
         error = { errorMessage: 'User ID and/or password does not match.' };
-        if (this.signUpService.getCaptchaShown()) {
+        this.signUpService.setCaptchaCount();
+        if (this.signUpService.getCaptchaShown() || this.signUpService.getCaptchaCount() >= 2) {
+          this.signUpService.setCaptchaShown();
           this.loginForm.controls['captchaValue'].reset();
-          this.refreshCaptcha();
+          this.setCaptchaValidator();
         }
       }
       ref.componentInstance.errorMessage = error.errorMessage;
@@ -202,9 +207,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
+            this.signUpService.setCaptchaCount();
             if (data.objectList[0] && data.objectList[0].sessionId) {
               this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-            } else if (data.objectList[0].attempt >= 3) {
+            } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
               this.signUpService.setCaptchaShown();
               this.setCaptchaValidator();
             }
@@ -245,8 +251,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
           this.loaderService.showLoader({ title: 'Loading', autoHide: false });
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
-        }
-        else if (redirect_url) {
+        } else if (redirect_url) {
           this.signUpService.clearRedirectUrl();
           if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
@@ -329,7 +334,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
             ref.componentInstance.emailSent = true;
-          };
+          }
         });
     }
   }
@@ -376,6 +381,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   refreshCaptcha() {
     this.captchaSrc = this.authService.getCaptchaUrl();
+    this.changeDetectorRef.detectChanges();
   }
 
   showCustomErrorModal(title, desc) {

@@ -24,6 +24,9 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 // Insurance
 import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
 
+import { TransferInstructionsModalComponent } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -57,6 +60,11 @@ export class DashboardComponent implements OnInit {
   showInsuranceSection = false;
   insurance: any = {};
 
+  // transfer instructions
+  bankDetails;
+  paynowDetails;
+  transferInstructionModal;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -69,7 +77,8 @@ export class DashboardComponent implements OnInit {
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
     private guideMeApiService: GuideMeApiService,
-    public modal: NgbModal
+    public modal: NgbModal,
+    public topupAndWithDrawService: TopupAndWithDrawService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -138,6 +147,8 @@ export class DashboardComponent implements OnInit {
         this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
       }
     });
+
+    this.getTransferDetails();
   }
 
   loadOptionListCollection() {
@@ -197,7 +208,7 @@ export class DashboardComponent implements OnInit {
       investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ?
-        this.userProfileInfo.investementDetails.totalReturns * 100 : 0;
+        this.userProfileInfo.investementDetails.totalReturns : 0;
       this.availableBalance = this.userProfileInfo.investementDetails.account &&
         this.userProfileInfo.investementDetails.account.cashAccountBalance ?
         this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
@@ -332,6 +343,32 @@ export class DashboardComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
+  }
+
+ /*
+  * Method to get transfer details
+  */
+  getTransferDetails() {
+    this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
+      this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  /*
+  * Method to show transfer instruction steps modal
+  */
+  showTransferInstructionModal() {
+    this.topupAndWithDrawService.showTransferInstructionModal();
+  }
+
+  /*
+  * Method to show recipients/entity name instructions modal
+  */
+  showPopUp() {
+    this.topupAndWithDrawService.showPopUp();
   }
 
 }
