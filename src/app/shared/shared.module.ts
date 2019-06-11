@@ -27,6 +27,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
@@ -49,7 +50,6 @@ import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
