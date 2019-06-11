@@ -271,20 +271,20 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    if (id !== "") {
+    if (id !== '') {
       const arr = id.split('-');
       const dependentName = event.target.innerText;
-      if (dependentName.length > 100) {
+      if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
         //event.target.innerText = dependentNameList;
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
         const el = document.querySelector("#" + id);//document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
-      } else if (dependentName.length > 0) {
+      }/* else if (dependentName.length > 0) {
         const el = document.querySelector("#" + id);//document.getElementById(id);
         this.setCaratTo(el, dependentName.length, dependentName);
-      }
+      }*/
     }
   }
   setCaratTo(contentEditableElement, position, dependentName) {

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { TranslateService } from '@ngx-translate/core';
@@ -174,7 +174,8 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           const otherPropertyControl = this.endowmentListForm.controls.endowmentPlan['controls'][index]['controls'];
           if (preferenceDetails.endowmentPlanShow) {
             otherPropertyControl['endowmentMaturityAmount'].setValidators([Validators.required, , Validators.pattern('^0*[1-9]\\d*$')]);
-            otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required, this.payOffYearValid]);
+            otherPropertyControl['endowmentMaturityYears'].setValidators([Validators.required,
+            this.payOffYearValid(preferenceDetails.age)]);
             otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
             otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
             this.endowmentArrayPlan[index].endowmentMaturityAmount = toInteger(preferenceDetails.endowmentMaturityAmount);
@@ -247,20 +248,19 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     }
     return true;
   }
-
-  payOffYearValid(payOffYearVal) {
+  payOffYearValid(age: number): ValidatorFn {
     const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    let validCheck: boolean;
-    if (payOffYearVal.value === null || payOffYearVal.value === '') {
-      validCheck = true;
-    } else {
-      validCheck = (payOffYearVal.value >= currentYear) ? true : false;
-    }
-    if (validCheck) {
+    const min = currentDate.getFullYear();
+    const max = min + age;
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (control.value === null || control.value === '') {
+        return null;
+      }
+      if (control.value !== undefined && (isNaN(control.value) || control.value < min || control.value >= max)) {
+        return { pattern: true };
+      }
       return null;
-    }
-    return { pattern: true };
+    };
   }
   showSummaryModal() {
     if (this.routerEnabled) {
