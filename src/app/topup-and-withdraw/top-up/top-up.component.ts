@@ -154,7 +154,9 @@ export class TopUpComponent implements OnInit {
     }
   }
   setOnetimeMinAmount(data) {
-    if (data[0].name === 'One-time Investment') {
+    if (this.formValues.Investment === 'Monthly Investment') {
+      this.topupAndWithDrawService.setInvestmentValue(data[1].value);
+    } else {
       this.topupAndWithDrawService.setInvestmentValue(data[0].value);
     }
   }

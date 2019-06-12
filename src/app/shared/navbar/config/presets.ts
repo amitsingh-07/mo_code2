@@ -34,7 +34,8 @@ export class NavbarConfig {
       showLogin: false,
       showSearchBar: false,
       showNotifications: false,
-      showHeaderNavbar: false
+      showHeaderNavbar: false,
+      showExitCheck: true,
     };
 
     // Edit Profile
@@ -46,6 +47,7 @@ export class NavbarConfig {
       showSearchBar: false,
       showNotifications: true,
       showHeaderNavbar: true,
+      showExitCheck: true,
     };
 
     // Topup and Withdraw
@@ -58,7 +60,8 @@ export class NavbarConfig {
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: true,
-      showHeaderNavbar: true
+      showHeaderNavbar: true,
+      showExitCheck: true,
     };
 
     // ------ Features -----
@@ -71,7 +74,8 @@ export class NavbarConfig {
       showNavShadow: true,
       showSearchBar: false,
       showNotifications: true,
-      showHeaderNavbar: false
+      showHeaderNavbar: false,
+      showExitCheck: false
     };
 
     // Direct/ Guide Me Journey (Robo1)
@@ -87,7 +91,8 @@ export class NavbarConfig {
       showLabel: {
         primary: 'Insurance Adviser',
         secondary: 'powered by DIYInsurance'
-      }
+      },
+      showExitCheck: true
     };
 
     // Will-Writing (Robo1.5)
@@ -103,7 +108,8 @@ export class NavbarConfig {
       showHeaderNavbar: false,
       showLabel: {
         primary: 'Will Writing'
-      }
+      },
+      showExitCheck: true
     };
 
     // Investment (Robo2)
@@ -119,6 +125,7 @@ export class NavbarConfig {
       showHeaderNavbar: true,
       showLabel: {
         primary: 'Investment'
-      }
+      },
+      showExitCheck: true
     };
 }
