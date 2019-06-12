@@ -39,7 +39,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     moGetStrdForm: FormGroup;
     nationality = '';
     nationalityList: string;
-    submitted=false;
+    submitted = false;
     nationalityAlert = false;
     pageId: string;
     genderDisabled = false;
@@ -48,6 +48,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     viewMode: boolean;
     menuClickSubscription: Subscription;
     subscription: Subscription;
+    disableDOB: boolean;
     public showToolTip = false;
 
     public onCloseClick(): void {
@@ -162,7 +163,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-
+        this.disableDOB = this.userDetails.dobUpdateable;
         this.setUserProfileData();
         this.buildProfileForm();
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);
