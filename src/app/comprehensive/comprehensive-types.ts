@@ -39,6 +39,7 @@ export interface IMyProfile {
     nationalityStatus: string;
     gender: string;
     ngbDob: any;
+    dobUpdateable:boolean;
 }
 
 export interface IDependantDetail {
