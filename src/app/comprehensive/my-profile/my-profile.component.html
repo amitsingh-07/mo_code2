@@ -56,14 +56,14 @@
               <div class="flex-row mb0">
                 <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
+                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode || disableDOB}">
                     <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioMale" ngbButton type="radio"
                       value="male">{{ 'LABEL.MALE' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-6">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode}">
+                    [ngClass]="{'inline-error': submitted && myProfileControls.gender.invalid, 'view-mode': viewMode ||disableDOB}">
                     <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="myProfileRadioFemale" ngbButton
                       type="radio" value="female">{{ 'LABEL.FEMALE' |
                     translate}}
@@ -108,18 +108,16 @@
           <div #usrFrmDp class="flex-col-7">
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0"
-                [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert, 'view-mode': viewMode}">
-                <input appComprehensiveViewMode="{{viewMode}}" mode=1 readonly (click)="d.toggle();"
+                [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert, 'view-mode': viewMode || disableDOB}">
+                <input appComprehensiveViewMode="{{viewMode || disableDOB}}" mode=1 readonly (click)="d.toggle();"
                   class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
                   name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB"
                   (ngModelChange)="validateDOB( d._model)">
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker"
-                    appComprehensiveViewMode="{{viewMode}}" mode=1>
-                    <img class="date-picker-image--valid" id="moGetStrdFormImg1"
-                      *ngIf="(moGetStrdForm.get('ngbDob').valid  || !submitted ) 
-                      && !DOBAlert"
-                      src="./assets/images/calendar-normal.svg" />
+                    appComprehensiveViewMode="{{viewMode || disableDOB}}" mode=1>
+                    <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="(moGetStrdForm.get('ngbDob').valid  || !submitted ) 
+                      && !DOBAlert" src="./assets/images/calendar-normal.svg" />
                     <img class="date-picker-image--invalid" id="moGetStrdFormImg1"
                       *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
                       src="./assets/images/calendar-error.svg" />
