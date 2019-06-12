@@ -87,6 +87,7 @@ app-edit-profile{
     text-align: center;
     color: $post-login-widget-title;
     margin-top: 9px;
+    word-wrap: break-word;
   }
   .grid-wrapper{
     @extend .flex;
