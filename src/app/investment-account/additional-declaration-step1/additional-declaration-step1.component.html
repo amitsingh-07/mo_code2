@@ -61,7 +61,7 @@
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
               <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #pepFullName
-                formControlName="pepFullName">
+                formControlName="pepFullName" maxLength="100">
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
                 id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
-              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName">
+              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName" maxLength="100">
             </div>
           </div>
         </div>
