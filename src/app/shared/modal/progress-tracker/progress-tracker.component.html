@@ -6,7 +6,7 @@
       <span class="mr10">{{data.subTitle}}</span>
       <img src="../../../assets/images/comprehensive/progress-tracker/icon_20minsTimer.svg" alt="">
     </div>
-    <div *ngIf="data.items" class="progress-tracker-accordion mt30">
+    <div *ngIf="data.items" class="progress-tracker-accordion mt35">
       <div *ngFor="let item of data.items">
         <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="toggle(item)">
           {{item.title}}
