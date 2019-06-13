@@ -3,7 +3,7 @@ import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.ser
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 
 import { Location } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -54,6 +54,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   captchaSrc: any = '';
   showCaptcha: boolean;
   hideForgotPassword = false;
+  @ViewChild("welcomeTitle") welcomeTitle: ElementRef;
+
+  onResize(event) {
+    if (/Android|Windows/.test(navigator.userAgent)) {
+      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
   constructor(
     // tslint:disable-next-line
