@@ -1,0 +1,44 @@
+<div class="edit-investment-modal">
+  <div class="modal-header">
+    <div class="modal-title popup-header-icon">
+      <img src="./assets/images/owl.svg" />
+    </div>
+  </div>
+  <div class="modal-body white-bg">
+    <div class="modal-body-title">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TITLE' | translate}}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="modal-body-message">
+      <p></p>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}"></span><br />
+      <div class="amount-section">
+        <img src="../../../../assets/images/topupwithdraw/wallet.svg" alt="" />
+        <div class="amt">{{withdrawAmount | currency}}</div>
+        <div class="lbl">{{ 'WITHDRAW.WITHDRAWAL_AMOUNT' | translate}}</div>
+      </div>
+      <div class="forward-pricing-info" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">
+        <div>
+          <img src="../../../assets/images/info-orange.png" alt="" />
+          <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_INFO.TITLE' | translate}}</span>
+          {{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_INFO.DESC' | translate}} <span class="link" (click)="learnMore()">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.FORWARD_PRICING_INFO.LEARN_MORE' | translate}}</span>
+        </div>
+      </div>
+      <div class="withdraw-details">
+        <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.WITHDRAW_DETAILS' | translate}}</span>
+        <div class="caption-values">
+          <span class="caption" *ngIf="portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}} </span>
+          <span class="values" *ngIf="portfolio && portfolio.riskProfile">{{portfolio.riskProfile.type}}</span>
+          <span class="caption" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && userInfo && userInfo.investementDetails && userInfo.investementDetails.account">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}} </span>
+          <span class="values" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && userInfo && userInfo.investementDetails && userInfo.investementDetails.account">{{userInfo.investementDetails.account.refNo}}</span>
+          <span class="caption" *ngIf="bankAccountNo">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
+          <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
+        </div>
+      </div>
+    <button type="button" (click)="confirmWithdrawal()" class="btn btn-primary width100 mt5" id="incomeBtn">{{
+      'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
+  </div>
+</div>
+</div>
