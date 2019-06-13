@@ -120,14 +120,15 @@ export class TopUpComponent implements OnInit {
     if (this.formValues.Investment === TOPUPANDWITHDRAW_CONFIG.TOPUP.MONTHLY_INVESTMENT) {
       this.topForm.addControl(
         'MonthlyInvestmentAmount',
-        new FormControl('')
+        new FormControl('', Validators.required)
       );
       this.topForm.removeControl('oneTimeInvestmentAmount');
       this.showOnetimeInvestmentAmount = false;
       this.showmonthlyInvestmentAmount = true;
       this.ExceedAmountMonthly();
-      if (!this.currentMonthlyInvAmount) { // If new monthly investment, dont allow zero
-        this.topForm.get('MonthlyInvestmentAmount').setValidators([Validators.required]);
+      if (this.currentMonthlyInvAmount) { // If monthly investment already exists, allow zero
+        this.topForm.get('MonthlyInvestmentAmount').clearValidators();
+        this.topForm.get('MonthlyInvestmentAmount').updateValueAndValidity();
       }
     } else {
       this.topForm.addControl(
@@ -207,8 +208,8 @@ export class TopUpComponent implements OnInit {
       source: TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.TOPUP,
       portfolio: this.formValues.portfolio,
       oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
-      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, // topup
-      fundingType: this.formValues.MonthlyInvestmentAmount
+      monthlyInvestment: this.formValues.MonthlyInvestmentAmount ? this.formValues.MonthlyInvestmentAmount : 0, // topup
+      fundingType: this.formValues.Investment === 'Monthly Investment'
         ? TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY
         : TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME,
       isAmountExceedBalance: this.isAmountExceedBalance,
@@ -220,7 +221,11 @@ export class TopUpComponent implements OnInit {
   getMonthlyInvestmentInfo() {
     this.topupAndWithDrawService.getMonthlyInvestmentInfo().subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
-        this.currentMonthlyInvAmount = 100;
+        this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
+        if (this.currentMonthlyInvAmount) { // If monthly investment already exists, allow zero
+          this.topForm.get('MonthlyInvestmentAmount').clearValidators();
+          this.topForm.get('MonthlyInvestmentAmount').updateValueAndValidity();
+        }
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -234,7 +239,7 @@ export class TopUpComponent implements OnInit {
     const translateParams = {
       existingOrderAmount: this.currencyPipe.transform(this.currentMonthlyInvAmount, 'USD', 'symbol-narrow', '1.2-2'),
       newOrderAmount: this.currencyPipe.transform(
-        this.topForm.get('MonthlyInvestmentAmount').value ? this.topForm.get('MonthlyInvestmentAmount').value  : 0, 
+        this.topForm.get('MonthlyInvestmentAmount').value ? this.topForm.get('MonthlyInvestmentAmount').value  : 0,
         'USD',
         'symbol-narrow',
         '1.2-2'

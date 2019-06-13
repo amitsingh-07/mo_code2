@@ -84,7 +84,7 @@ export let apiConstants = {
             addNewBank: INVESTMENT_API_BASE_URL + '/api/customer/bank?handleError=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
             getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
-            monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + 'groupedCountryList' // TODO: Change endpoint
+            monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent',
