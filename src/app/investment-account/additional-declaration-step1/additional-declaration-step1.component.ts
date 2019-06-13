@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -274,4 +274,68 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       }
     });
   }
+  
+setPepName(pepFullName: any, i: number) {
+    if (pepFullName !== undefined) {
+      pepFullName = pepFullName.replace(/\n/g, '');
+      this.addInfoForm.controls.pepFullName.setValue(pepFullName);
+     // this.addInfoForm.controls.markAsDirty();
+      return pepFullName;
+    }
+  }
+  setCompanyName(cName: any, i: number) {
+    if (cName !== undefined) {
+      cName = cName.replace(/\n/g, '');
+      this.addInfoForm.controls.cName.setValue(cName);
+     // this.addInfoForm.controls.markAsDirty();
+     console.log(i);
+      return cName;
+    }
+  }
+
+  onKeyPressEvent(event: any, dependentName: any) {
+    //return (event.which !== 13 && dependentName.length < 100);
+    return (event.which !== 13);
+  }
+
+  
+ @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+     if (id !== "") {
+      const arr = id.split('-');
+      const dependentName = event.target.innerText;
+      if (dependentName.length >= 100 && arr[0] === 'pepFullName' ) {
+          const dependentNameList = dependentName.substring(0, 100);
+          this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
+          //  this.addInfoForm.controls.cName.setValue(dependentNameList);
+          const el = document.querySelector("#" + id);//document.getElementById(id);
+          this.setCaratTo(el, 100, dependentNameList);
+        } 
+      }
+     if (dependentName.length >= 100 && arr[0] ==='cName') {
+          const dependentNameList = dependentName.substring(0, 100);
+          this.addInfoForm.controls.cName.setValue(dependentNameList);
+          //  this.addInfoForm.controls.cName.setValue(dependentNameList);
+          const el = document.querySelector("#" + id);//document.getElementById(id);
+          this.setCaratTo(el, 100, dependentNameList);
+        
+      }
+  }
+
+  setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+
 }
