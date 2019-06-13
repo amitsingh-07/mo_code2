@@ -268,11 +268,7 @@ export class PortfolioRecommendationComponent implements OnInit {
           } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
             const fundingParams = this.constructFundingParams(this.portfolio);
             this.topupAndWithDrawService.setFundingDetails(fundingParams);
-            if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
-              this.topUpOneTime();
-            } else {
-              this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-            }
+            this.topUpOneTime();
           } else {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
           }
