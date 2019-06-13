@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   hideForgotPassword = false;
   @ViewChild("welcomeTitle") welcomeTitle: ElementRef;
 
+  @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
