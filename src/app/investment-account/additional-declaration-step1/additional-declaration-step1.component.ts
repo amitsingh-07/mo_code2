@@ -288,8 +288,7 @@ setPepName(pepFullName: any, i: number) {
       cName = cName.replace(/\n/g, '');
       this.addInfoForm.controls.cName.setValue(cName);
      // this.addInfoForm.controls.markAsDirty();
-     console.log(i);
-      return cName;
+    return cName;
     }
   }
 
@@ -301,27 +300,25 @@ setPepName(pepFullName: any, i: number) {
   
  @HostListener('input', ['$event'])
   onChange(event) {
-    const id = event.target.id;
+        const id = event.target.id;
+        const dependentName = event.target.innerText;
+        const arr = id.split('-');
      if (id !== "") {
-      const arr = id.split('-');
-      const dependentName = event.target.innerText;
-      if (dependentName.length >= 100 && arr[0] === 'pepFullName' ) {
-          const dependentNameList = dependentName.substring(0, 100);
-          this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
-          //  this.addInfoForm.controls.cName.setValue(dependentNameList);
-          const el = document.querySelector("#" + id);//document.getElementById(id);
-          this.setCaratTo(el, 100, dependentNameList);
-        } 
+        if (dependentName.length >= 100 && arr[0] === 'pepFullName' ) {
+              const dependentNameList = dependentName.substring(0, 100);
+              this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
+              //  this.addInfoForm.controls.cName.setValue(dependentNameList);
+              const el = document.querySelector("#" + id);//document.getElementById(id);
+              this.setCaratTo(el, 100, dependentNameList);
+        } else if (dependentName.length >= 100 && arr[0] ==='cName') {
+                  const dependentNameList = dependentName.substring(0, 100);
+                  this.addInfoForm.controls.cName.setValue(dependentNameList);
+                  const el = document.querySelector("#" + id);//document.getElementById(id);
+                  this.setCaratTo(el, 100, dependentNameList);
+              }
+          }
       }
-     if (dependentName.length >= 100 && arr[0] ==='cName') {
-          const dependentNameList = dependentName.substring(0, 100);
-          this.addInfoForm.controls.cName.setValue(dependentNameList);
-          //  this.addInfoForm.controls.cName.setValue(dependentNameList);
-          const el = document.querySelector("#" + id);//document.getElementById(id);
-          this.setCaratTo(el, 100, dependentNameList);
-        
-      }
-  }
+  
 
   setCaratTo(contentEditableElement, position, dependentName) {
     contentEditableElement.innerText = dependentName;
