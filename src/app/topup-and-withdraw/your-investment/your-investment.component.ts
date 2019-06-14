@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { SignUpApiService } from 'src/app/sign-up/sign-up.api.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
@@ -14,15 +15,10 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-
-import { TransferInstructionsModalComponent } from 'src/app/shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
-import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
-import { SignUpApiService } from 'src/app/sign-up/sign-up.api.service';
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -111,7 +107,7 @@ export class YourInvestmentComponent implements OnInit {
       if (data.responseMessage.responseCode >= 6000) {
         this.investmentoverviewlist = data.objectList;
         this.totalReturns = this.investmentoverviewlist.data.totalReturns
-          ? this.investmentoverviewlist.data.totalReturns * 100
+          ? this.investmentoverviewlist.data.totalReturns
           : 0;
         this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance

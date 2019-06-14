@@ -149,6 +149,13 @@
         "MAIN": "Fair Dealing"
       },
       "TITLE": "Fair Dealing"
+    },
+    "SECURITY_POLICY": {
+      "SUB_NAV": {
+        "PRIMARY": "Home",
+        "MAIN": "Security Policy"
+      },
+      "TITLE": "Security Policy"
     }
   },
   "RECOMMENDATIONS": {
@@ -226,6 +233,9 @@
         },
         "FAIR_DEALING": {
           "LABEL": "Fair Dealing"
+        },
+        "SECURITY_POLICY": {
+          "LABEL": "Security Policy"
         }
       },
       "ALL_RIGHTS_RESERVED": "© 2018-2019 MoneyOwl Pte Ltd. All Rights Reserved."

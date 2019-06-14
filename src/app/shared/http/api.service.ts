@@ -807,4 +807,12 @@ export class ApiService {
       );
   }
 
+  // Get User's monthly investment Information
+  getMonthlyInvestmentInfo() {
+    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

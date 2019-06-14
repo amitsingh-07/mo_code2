@@ -87,6 +87,7 @@ app-edit-profile{
     text-align: center;
     color: $post-login-widget-title;
     margin-top: 9px;
+    word-wrap: break-word;
   }
   .grid-wrapper{
     @extend .flex;
@@ -163,6 +164,7 @@ app-edit-profile{
     line-height: 24px;
     letter-spacing: -0.18px;
     color: $dark-teal-color;
+    word-wrap: break-word;
   }
   .section-margin{
    padding: 13px 10px 0;
