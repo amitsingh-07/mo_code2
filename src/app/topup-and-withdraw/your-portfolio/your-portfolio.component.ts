@@ -62,8 +62,8 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.totalReturnsPercentage = this.portfolioValues.totalReturnsPercentage
-      ? this.portfolioValues.totalReturnsPercentage * 100
+    this.totalReturnsPercentage = this.portfolioValues.totalReturns
+      ? this.portfolioValues.totalReturns
       : 0;
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns

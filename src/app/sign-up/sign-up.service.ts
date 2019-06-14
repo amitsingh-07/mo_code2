@@ -233,27 +233,6 @@ export class SignUpService {
   }
 
   /**
-   * get reset password info.
-   * @param data - user account details.
-   */
-  getResetPasswordInfo() {
-    return {
-      resetPassword1: this.signUpFormData.resetPassword1,
-      confirmPassword: this.signUpFormData.confirmPassword
-    };
-  }
-
-  /**
-   * set reset password info.
-   * @param data - user account details.
-   */
-  // tslint:disable-next-line:no-identical-functions
-  setResetPasswordInfo(password, key) {
-    // API Call here
-    const data = this.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
-    return this.apiService.requestResetPassword(data);
-  }
-  /**
    * construct the json for reset password.
    * @param data - email and redirect uri.
    */
