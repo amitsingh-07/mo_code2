@@ -10,8 +10,12 @@
           </div>
           <div class="flex-col-12">
             <div>
-              <input type="text" class="form-control input-control" formControlName="accountHolderName"
-                id="account_holder" maxLength="100">
+             <div contenteditable="true"
+                       id="fullname-{{i}}" [textContent]="bankForm.get('accountHolderName').value"
+                       (input)="model=setAccountHolderName($event.target.textContent, i);" maxlength="100"
+                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                        placeholder="Enter AccountHolder Name">
+                     </div>
             </div>
           </div>
         </div>
