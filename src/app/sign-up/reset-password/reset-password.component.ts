@@ -15,6 +15,7 @@ import { SignUpService } from '../sign-up.service';
 import { APP_ROUTES } from './../../app-routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
+import { ValidatePassword } from '../create-account/password.validator';
 
 @Component({
   selector: 'app-reset-password',
@@ -27,6 +28,10 @@ export class ResetPasswordComponent implements OnInit {
   formValues: any;
   queryParams;
   token;
+
+  passwordFocus = false;
+  confirmPwdFocus = false;
+  isPasswordValid = true;
 
   constructor(
     // tslint:disable-next-line
@@ -46,13 +51,12 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
   buildResetPasswordForm() {
-    this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      resetPassword1: [this.formValues.resetPassword1, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
+      resetPassword: ['', [Validators.required, ValidatePassword]],
       // tslint:disable-next-line:max-line-length
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
-    });
+      resetConfirmPassword: ['']
+    }, { validator: this.validateMatchPassword() });
   }
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
@@ -90,29 +94,66 @@ export class ResetPasswordComponent implements OnInit {
       el.type = 'password';
     }
   }
-  resetPassword(form: any) {
+
+  save(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
       const error = this.signUpService.currentFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      return false;
-    } else if (form.value.resetPassword1 !== form.value.confirmpassword) {
-      const error = this.signUpService.currentFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Passwords do not match';
+      if (error.errorMessage) {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.errorTitle;
+        ref.componentInstance.errorMessage = error.errorMessage;
+      }
       return false;
     } else {
-      this.signUpService.setResetPasswordInfo(form.value.confirmpassword, this.token).subscribe((data) => {
+      this.signUpApiService.resetPassword(form.value.resetPassword, this.token).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
           this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
         }
       });
+    }
+  }
+
+  /**
+   * validate confirm password.
+   */
+  private validateMatchPassword() {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls['resetPassword'];
+      const passwordConfirmationInput = group.controls['resetConfirmPassword'];
+
+      // Confirm Password
+      if (!passwordConfirmationInput.value) {
+        passwordConfirmationInput.setErrors({ required: true });
+      } else if (passwordInput.value !== passwordConfirmationInput.value) {
+        passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        passwordConfirmationInput.setErrors(null);
+      }
+    };
+  }
+
+  onPasswordInputChange() {
+    if (this.resetPasswordForm.controls.resetPassword.errors && this.resetPasswordForm.controls.resetPassword.dirty
+      && this.resetPasswordForm.controls.resetPassword.value) {
+      this.isPasswordValid = false;
+    } else {
+      const _self = this;
+      setTimeout(() => {
+        _self.isPasswordValid = true;
+      }, 500);
+    }
+  }
+
+  showValidity(from) {
+    if (from === 'resetConfirmPassword') {
+      this.confirmPwdFocus = !this.confirmPwdFocus;
+    } else {
+      this.passwordFocus = !this.passwordFocus;
     }
   }
 }

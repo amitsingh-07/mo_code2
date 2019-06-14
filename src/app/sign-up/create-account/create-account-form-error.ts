@@ -108,26 +108,32 @@ export class CreateAccountFormError {
                         errorMessage: 'Please enter your password'
                 }
         },
-        resetPassword1: {
+        resetPassword: {
                 required : {
-                        errorTitle: 'Password required',
+                        errorTitle: 'Invalid Password',
                         errorMessage: 'Please enter your password'
                 },
-                pattern : {
-                        errorTitle: 'Invalid password',
-                        // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
-                }
+                length : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                numberSymbol : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
+                upperLower : {
+                        errorTitle: '',
+                        errorMessage: ''
+                },
         },
-        confirmpassword: {
+        resetConfirmPassword: {
                 required : {
                         errorTitle: 'Password required',
-                        errorMessage: 'Please enter your password'
+                        errorMessage: 'Please enter your confirm password'
                 },
-                pattern : {
-                        errorTitle: 'Invalid password',
-                        // tslint:disable-next-line:max-line-length
-                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                notEquivalent: {
+                        errorTitle: '',
+                        errorMessage: ''
                 }
         },
         captcha: {

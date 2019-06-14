@@ -244,4 +244,9 @@ export class SignUpApiService {
     } as IUpdateMobileNumber;
     return this.apiService.editMobileNumber(payload);
   }
+
+  resetPassword(password, key) {
+    const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
+    return this.apiService.requestResetPassword(data);
+  }
 }
