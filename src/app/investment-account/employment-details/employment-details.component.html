@@ -47,8 +47,8 @@
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('companyName').enabled && !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
                   <div [attr.contenteditable]="!isDisabled('companyName')"
-              id="companyName-{{i}}" [textContent]="employementDetailsForm.get('companyName').value"
-              (input)="model=setCompnayName($event.target.textContent, i);" maxlength="100"
+              id="companyName" [textContent]="employementDetailsForm.get('companyName').value"
+              (input)="setCompnayName($event.target.textContent);" maxlength="100"
               (keypress)="onKeyPressEvent($event, $event.target.textContent)" 
               class="content-editable" [class.company-disabled]="isDisabled('companyName')"
               placeholder="Company Name">

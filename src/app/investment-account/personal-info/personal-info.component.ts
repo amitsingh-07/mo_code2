@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener,OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -355,7 +355,7 @@ export class PersonalInfoComponent implements OnInit {
   isDisabled(fieldName) {
     return this.investmentAccountService.isDisabled(fieldName);
   }
-  setFullName(fullName: any, i: number) {
+  setFullName(fullName: any) {
     if (fullName !== undefined) {
       fullName = fullName.replace(/\n/g, '');
       this.invPersonalInfoForm.controls.fullName.setValue(fullName);
@@ -368,23 +368,23 @@ export class PersonalInfoComponent implements OnInit {
     return (event.which !== 13);
   }
 
-  
- @HostListener('input', ['$event'])
+
+  @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    if (id !== "") {
-      const arr = id.split('-');
+    if (id !== '') {
+      const arr = id;
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        //event.target.innerText = dependentNameList;
-      this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
-       const el = document.querySelector("#" + id);//document.getElementById(id);
+        // #event.target.innerText = dependentNameList;
+        this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
+        const el = document.querySelector("#" + id); // #document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
       }
     }
   }
-   setCaratTo(contentEditableElement, position, dependentName) {
+  setCaratTo(contentEditableElement, position, dependentName) {
     contentEditableElement.innerText = dependentName;
     if (document.createRange) {
       const range = document.createRange();
