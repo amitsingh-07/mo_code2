@@ -236,14 +236,11 @@ setAccountHolderName(accountHolderName: any) {
     if (id !== '') {
       const arr = id;
       const dependentName = event.target.innerText;
-      if (dependentName.length > 100) {
+      if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
         this.bankForm.controls.accountHolderName.setValue(dependentNameList);
         const el = document.querySelector('#' + id); // #document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
-      } else if (dependentName.length > 0) {
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
-        this.setCaratTo(el, dependentName.length, dependentName);
       }
     }
   }
