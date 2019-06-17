@@ -61,8 +61,8 @@
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
               <div contenteditable="true" 
-                       id="pepFullName-{{i}}" [textContent]="addInfoForm.get('pepFullName').value"
-                       (input)="model=setPepName($event.target.textContent, i);" maxlength="100"
+                       id="pepFullName" [textContent]="addInfoForm.get('pepFullName').value"
+                       (input)="setPepName($event.target.textContent);" maxlength="100"
                        (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                         placeholder="Full Name">
                      </div>
@@ -78,8 +78,8 @@
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
             <div contenteditable="true"
-                       id="cName-{{i}}" [textContent]="addInfoForm.get('cName').value"
-                       (input)="model=setCompanyName($event.target.textContent, i);" maxlength="100"
+                       id="cName" [textContent]="addInfoForm.get('cName').value"
+                       (input)="setCompanyName($event.target.textContent);" maxlength="100"
                        (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                         placeholder="Company Name">
                      </div>

@@ -67,36 +67,33 @@ export class AddBankModalComponent implements OnInit {
       this.saved.emit(this.addBankForm.getRawValue());
     }
   }
-  setAccountHolderName(accountHolderName: any, i: number) {
+  setAccountHolderName(accountHolderName: any) {
     if (accountHolderName !== undefined) {
       accountHolderName = accountHolderName.replace(/\n/g, '');
       this.addBankForm.controls.accountHolderName.setValue(accountHolderName);
-     // this.addInfoForm.controls.markAsDirty();
       return accountHolderName;
     }
   }
 
   onKeyPressEvent(event: any, dependentName: any) {
-    //return (event.which !== 13 && dependentName.length < 100);
-    return (event.which !== 13);
+   return (event.which !== 13);
   }
 
   
  @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    if (id !== "") {
-      const arr = id.split('-');
+    if (id !== '') {
+      const arr = id;
       const dependentName = event.target.innerText;
       if (dependentName.length > 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        //event.target.innerText = dependentNameList;
-      this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
-      // this.invPersonalInfoForm.controls.markAsDirty();
-        const el = document.querySelector("#" + id);//document.getElementById(id);
+        this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
+      // #this.invPersonalInfoForm.controls.markAsDirty();
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
       } else if (dependentName.length > 0) {
-        const el = document.querySelector("#" + id);//document.getElementById(id);
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
         this.setCaratTo(el, dependentName.length, dependentName);
       }
     }
