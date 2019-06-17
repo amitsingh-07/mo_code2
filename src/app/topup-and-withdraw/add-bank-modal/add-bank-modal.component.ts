@@ -86,15 +86,12 @@ export class AddBankModalComponent implements OnInit {
     if (id !== '') {
       const arr = id;
       const dependentName = event.target.innerText;
-      if (dependentName.length > 100) {
+      if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
         this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
       // #this.invPersonalInfoForm.controls.markAsDirty();
         const el = document.querySelector('#' + id); // #document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
-      } else if (dependentName.length > 0) {
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
-        this.setCaratTo(el, dependentName.length, dependentName);
       }
     }
   }
