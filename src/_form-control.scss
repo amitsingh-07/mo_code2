@@ -45,7 +45,7 @@
 
     .form-group-with-bg--header-sub-label {
       font-family: $muli-regular;
-      color: #5e5e5e !important;
+      color: #8d9aa8  !important;
       font-size: 16px;
     }
 
@@ -1213,6 +1213,13 @@ input::placeholder {
 
     .form-group-with-bg--header-label {
       font-size: 16px;
+    
+      
+    }
+    .bg-title{
+      .form-group-with-bg--header-label {
+        color:#313644!important;
+      }
     }
 
     .form-group-with-bg--content-white {
