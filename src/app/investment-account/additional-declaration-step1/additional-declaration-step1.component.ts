@@ -193,9 +193,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   setOccupationValue(value) {
     this.addInfoForm.controls.pepoccupation.setValue(value);
@@ -274,52 +274,45 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       }
     });
   }
-  
-setPepName(pepFullName: any, i: number) {
+
+  setPepName(pepFullName: any) {
     if (pepFullName !== undefined) {
       pepFullName = pepFullName.replace(/\n/g, '');
       this.addInfoForm.controls.pepFullName.setValue(pepFullName);
-     // this.addInfoForm.controls.markAsDirty();
       return pepFullName;
     }
   }
-  setCompanyName(cName: any, i: number) {
+  setCompanyName(cName: any) {
     if (cName !== undefined) {
       cName = cName.replace(/\n/g, '');
       this.addInfoForm.controls.cName.setValue(cName);
-     // this.addInfoForm.controls.markAsDirty();
-    return cName;
+      return cName;
     }
   }
 
   onKeyPressEvent(event: any, dependentName: any) {
-    //return (event.which !== 13 && dependentName.length < 100);
     return (event.which !== 13);
   }
 
-  
- @HostListener('input', ['$event'])
-  onChange(event) {
-        const id = event.target.id;
-        const dependentName = event.target.innerText;
-        const arr = id.split('-');
-     if (id !== "") {
-        if (dependentName.length >= 100 && arr[0] === 'pepFullName' ) {
-              const dependentNameList = dependentName.substring(0, 100);
-              this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
-              //  this.addInfoForm.controls.cName.setValue(dependentNameList);
-              const el = document.querySelector("#" + id);//document.getElementById(id);
-              this.setCaratTo(el, 100, dependentNameList);
-        } else if (dependentName.length >= 100 && arr[0] ==='cName') {
-                  const dependentNameList = dependentName.substring(0, 100);
-                  this.addInfoForm.controls.cName.setValue(dependentNameList);
-                  const el = document.querySelector("#" + id);//document.getElementById(id);
-                  this.setCaratTo(el, 100, dependentNameList);
-              }
-          }
-      }
-  
 
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    const dependentName = event.target.innerText;
+    if (id !== '') {
+      if (dependentName.length >= 100 && id === 'pepFullName') {
+        const dependentNameList = dependentName.substring(0, 100);
+        this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
+        this.setCaratTo(el, 100, dependentNameList);
+      } else if (dependentName.length >= 100 && id === 'cName') {
+        const dependentNameList = dependentName.substring(0, 100);
+        this.addInfoForm.controls.cName.setValue(dependentNameList);
+        const el = document.querySelector('#' + id); // # document.getElementById(id);
+        this.setCaratTo(el, 100, dependentNameList);
+      }
+    }
+  }
   setCaratTo(contentEditableElement, position, dependentName) {
     contentEditableElement.innerText = dependentName;
     if (document.createRange) {

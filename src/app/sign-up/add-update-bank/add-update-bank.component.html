@@ -11,8 +11,8 @@
           <div class="flex-col-12">
             <div>
              <div contenteditable="true"
-                       id="fullname-{{i}}" [textContent]="bankForm.get('accountHolderName').value"
-                       (input)="model=setAccountHolderName($event.target.textContent, i);" maxlength="100"
+                       id="fullname" [textContent]="bankForm.get('accountHolderName').value"
+                       (input)="setAccountHolderName($event.target.textContent);" maxlength="100"
                        (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                         placeholder="Enter AccountHolder Name">
                      </div>
