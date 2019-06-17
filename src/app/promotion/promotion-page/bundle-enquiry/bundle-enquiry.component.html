@@ -1,0 +1,49 @@
+<div class="bundle-enquiry-form col-12">
+  <div class="col-lg-6 margin-auto">
+    <div class="form-title">Young Working Adult Bundle Enquiry</div>
+    <div class="form-sub-title">Sign up, and receive $30 NTUC FairPrice voucher   today!</div>
+    <form id="createAccountForm">
+      <div class="flex-row">
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="text" id="crtAccInpt2" class="form-control" #firstName  required>
+            <label class="form-control-placeholder" for="firstName">First Name</label>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="text" id="crtAccInpt3" class="form-control" #lastName  required>
+            <label class="form-control-placeholder"
+              for="lastName">Last Name</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+          <div class="col-lg-6 stretch">
+            <div class="form-group-floating-label">
+              <input type="text" id="crtAccInpt2" class="form-control" #firstName  required>
+              <label class="form-control-placeholder" for="firstName">Your Email</label>
+            </div>
+          </div>
+          <div class="col-lg-6 stretch">
+            <div class="form-group-floating-label">
+              <input type="text" id="crtAccInpt3" class="form-control" #lastName  required>
+              <label class="form-control-placeholder"
+                for="lastName">Your Contact</label>
+            </div>
+          </div>
+        </div>
+      <div class="col-12 checkbox-button one-label mb10" style="display:none">
+        <input id="termsOfConditions" name="termsOfConditions" type="checkbox"
+          class="field checkbox" value="I agree to MoneyOwl's Terms of Use and Privacy Policy." required>
+        <label for="termsOfConditions">
+          <div class="title" [innerHtml]="'CREATE_ACCOUNT.FORM.TERMS_OF_USE' | translate">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl</div>
+        </label>
+      </div>
+      <div class="col-12">
+      <button id="nextDependentBtn" type="button"
+        class="btn btn-primary width100">Send Enquiry</button>
+      </div>
+    </form>
+  </div>
+</div>

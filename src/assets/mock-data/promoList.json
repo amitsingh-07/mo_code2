@@ -1,5 +1,29 @@
 [
     {
+        "promoId": 15,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "Baby Bundle (Child Protection & Education)",
+        "thumbnail": "/assets/promotions/images/15/main.jpg",
+        "desc": "Receive a $50 NTUC FairPrice voucher valid till 31 August 2019!",
+        "date_created": "1547481600000",
+        "date_expiry": "1561910399000",
+        "tag": [],
+        "external": false
+    },
+    {
+        "promoId": 16,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "Young Working Adult Protection Bundle",
+        "thumbnail": "/assets/promotions/images/16/main.jpg",
+        "desc": "Receive a $30 NTUC FairPrice voucher valid till 31 August 2019!",
+        "date_created": "1556553600000",
+        "date_expiry": "1561910399000",
+        "tag": [],
+        "external": false
+    },
+    {
         "promoId": 12, 
         "type": 3,
         "owner": "MoneyOwl",
@@ -11,7 +35,7 @@
         "tag": ["Investment"],
         "external": true,
         "url": "https://www.advice.moneyowl.com.sg/investment",
-        "button_label": "Find Out More"
+        "button_label": "More Details"
     },
     {
         "promoId": 1,

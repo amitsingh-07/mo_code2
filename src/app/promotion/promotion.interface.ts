@@ -1,4 +1,5 @@
 export interface IPromotion {
+    type: number;
     promoId: number;
     owner: string;
     title: string;

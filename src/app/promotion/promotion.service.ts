@@ -33,6 +33,7 @@ export class PromotionService {
           categoryList.forEach((cat) => {
             if (cat.id === element.type) {
               promoType.title = cat.type;
+              promoType.id = cat.id;
               promoType.subTitle = cat.desc;
               promoType.promotions = [this.createPromotion(element)];
               currCategoryList.push(cat.id);
@@ -64,6 +65,7 @@ export class PromotionService {
 
   createPromotion(in_promotion): IPromotion {
     const promotion = {
+      type: in_promotion.type,
       promoId: in_promotion.promoId,
       owner: in_promotion.owner,
       title: in_promotion.title,
