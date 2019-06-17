@@ -382,6 +382,10 @@
         "value": "MoneyOwl - Conservative"
       },
       {
+        "text": "MoneyOwl - Moderate",
+        "value": "MoneyOwl - Moderate"
+      },
+      {
         "text": "Equities",
         "value": "equities"
       },
@@ -442,6 +446,10 @@
         {
           "text": "MoneyOwl - Conservative",
           "value": "MoneyOwl - Conservative"
+        },
+        {
+          "text": "MoneyOwl - Moderate",
+          "value": "MoneyOwl - Moderate"
         },
         {
           "text": "Equities",
