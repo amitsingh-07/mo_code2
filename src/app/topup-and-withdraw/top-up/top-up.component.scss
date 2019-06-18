@@ -21,6 +21,19 @@ app-top-up {
       padding-right: 40px;
     }
   }
+
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 19px;
+    a {
+      color: $white-color;
+      text-decoration: underline;
+    }
+  }
   .top-up-block{
     padding-left: 50px;
     padding-right: 0;
