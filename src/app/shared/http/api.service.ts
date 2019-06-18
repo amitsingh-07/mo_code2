@@ -807,4 +807,12 @@ export class ApiService {
       );
   }
 
+  // send bundle enquiry
+  sendBundleEnquiry(payload) {
+    return this.http.post(apiConstants.endpoint.registerBundleEnquiry + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

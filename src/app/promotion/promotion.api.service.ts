@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
+import { IBundleEnquiry } from './promotion.interface';
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,23 @@ export class PromotionApiService {
 
   getPromoTnc(id: number) {
     return this.apiService.getPromoTnc(id);
+  }
+
+  bundleEnquiryRequest(payload): IBundleEnquiry {
+    return {
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      emailAddress: payload.emailAddress,
+      contactNumber: payload.contactNumber,
+      dateOfBirth: padNumber(payload.dateOfBirth['day']) + '-' + padNumber(payload.dateOfBirth['month']) + '-' + payload.dateOfBirth['year'],
+      gender: payload.gender,
+      enquiryType: payload.enquiryType,
+      receiveMarketingEmails: payload.receiveMarketingEmails
+    };
+  }
+
+  sendBundleEnquiry(request) {
+    const payload = this.bundleEnquiryRequest(request);
+    return this.apiService.sendBundleEnquiry(payload);
   }
 }
