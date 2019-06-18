@@ -88,6 +88,12 @@ export class PromotionService {
     if (!in_promotion.external) {
       promotion.logo = this.getPartnerLogo(in_promotion.owner);
     }
+    if (in_promotion.bundle_enquiry_form_type) {
+      promotion.bundle_enquiry_form_type = in_promotion.bundle_enquiry_form_type;
+    }
+    if (in_promotion.bundle_enquiry_form_title) {
+      promotion.bundle_enquiry_form_title = in_promotion.bundle_enquiry_form_title;
+    }
     return promotion;
   }
 

@@ -23,37 +23,37 @@
         </tr>
         <tr>
           <td class="text--center">Death/Total Permanent Disability</td>
-          <td class="text--center" colspan="2">$500,000</td>
-          <td class="text--center" colspan="2">$1,000,000</td>
+          <td class="text--center extra-light-grey" colspan="2">$500,000</td>
+          <td class="text--center light-grey" colspan="2">$1,000,000</td>
         </tr>
         <tr>
           <td class="text--center">Early Critical Illness <div>Covers early stage critical illness</div></td>
-          <td class="text--center" colspan="2">$50,000 per claim (with up to another ECI claim of $50,000 each)</td>
-          <td class="text--center" colspan="2">$100,000 per claim (with up to another ECI claim of $100,000 each)</td>
+          <td class="text--center extra-light-grey" colspan="2">$50,000 per claim (with up to another ECI claim of $50,000 each)</td>
+          <td class="text--center light-grey" colspan="2">$100,000 per claim (with up to another ECI claim of $100,000 each)</td>
         </tr>
         <tr>
-          <td class="text--center">Critical Illness<div>Covers 36 critical illness such as major cancers, heart attack and
+          <td class="text--center extra-light-grey">Critical Illness<div>Covers 36 critical illness such as major cancers, heart attack and
             stroke</div></td>
-          <td class="text--center" colspan="2">$150,000 less claims made on early CI, if any (and up to 2 recurring
+          <td class="text--center extra-light-grey" colspan="2">$150,000 less claims made on early CI, if any (and up to 2 recurring
             claims
             of $75,000
             each)</td>
-          <td class="text--center" colspan="2">$300,000 less claims made on early CI, if any (and up to 2 recurring
+          <td class="text--center light-grey" colspan="2">$300,000 less claims made on early CI, if any (and up to 2 recurring
             claims
             of $150,000
             each)</td>
         </tr>
         <tr>
           <td class="text--center">Occupational Disability</td>
-          <td class="text--center occupational-data" colspan="4">$3,000 monthly pay-out during disability with 3% yearly increase in
+          <td class="text--center extra-light-grey" colspan="4">$3,000 monthly pay-out during disability with 3% yearly increase in
             pay-out
           </td>
         </tr>
         <tr>
           <td class="text--center">Hospitalisation</td>
-          <td class="text--center" colspan="2">Government Hospital, Class A
+          <td class="text--center extra-light-grey" colspan="2">Government Hospital, Class A
             (10% co-payment) </td>
-          <td class="text--center" colspan="2">Private Hospital
+          <td class="text--center light-grey" colspan="2">Private Hospital
             (10% co-payment)</td>
         </tr>
         <tr>
@@ -62,25 +62,25 @@
         </tr>
         <tr>
           <td class="text--center">Monthly Premium</td>
-          <td class="text--center"><div>$125</div>
+          <td class="text--center extra-light-grey"><div>$112</div>
           <div>(Male)</div></td>
-          <td class="text--center"><div>$164</div>
+          <td class="text--center extra-light-grey"><div>$140</div>
           <div>(Female)</div></td>
-          <td class="text--center"><div>$196</div>
+          <td class="text--center light-grey"><div>$201</div>
               <div>(Male)</div></td>
-          <td class="text--center"><div>$242</div>
+          <td class="text--center light-grey"><div>$231</div>
               <div>(Female)</div></td>
         </tr>
         <tr>
           <td class="text--center">Estimated Total Rebate
             <div>(over 3 years)</div></td>
-          <td class="text--center"><div>$598</div>
+          <td class="text--center extra-light-grey"><div>$570</div>
             <div>(Male)</div></td>
-          <td class="text--center"><div>$852</div>
+          <td class="text--center extra-light-grey"><div>$830</div>
             <div>(Female)</div></td>
-          <td class="text--center"><div>$991</div>
+          <td class="text--center light-grey"><div>$990</div>
             <div>(Male)</div></td>
-          <td class="text--center"><div>$1,290</div>
+          <td class="text--center light-grey"><div>$1,280</div>
             <div>(Female)</div></td>
         </tr>
       </table>

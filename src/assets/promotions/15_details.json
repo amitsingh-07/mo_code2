@@ -4,9 +4,11 @@
     "owner": "MoneyOwl",
     "title": "Baby Bundle (Child Protection & Education)",
     "thumbnail": "/assets/promotions/images/15/thumbnail.jpg",
-    "desc": "Receive a $50 NTUC FairPrice voucher valid till 31 August 2019!",
+    "desc": "Receive a $50 NTUC FairPrice voucher<span class='plus-icon'>+</span> valid till 31 August 2019! <br/><strong>FREE</strong> MoneyOwl towel for Good Start Bundle Members only.",
     "date_created": "1547481600000",
     "date_expiry": "1561910399000",
     "tag": [],
-    "external": false
+    "external": false,
+    "bundle_enquiry_form_type": "child-bundle",
+    "bundle_enquiry_form_title": "Baby Bundle Enquiry"    
 }

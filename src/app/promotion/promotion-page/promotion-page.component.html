@@ -26,9 +26,8 @@
                     <h1 class="promo--title">
                         {{promoDetails.title}}
                         </h1>
-                    <h2 class="promo--sub-title">
-                        {{promoDetails.desc}}
-                        </h2>
+                    <h2 class="promo--sub-title" [innerHtml]="promoDetails.desc">
+                    </h2>
                     </div>
                 <div class="promo-logo__container" *ngIf="promoDetails.type != 4">
                     <img src="{{promoDetails.logo}}"/>
@@ -41,7 +40,8 @@
         </section>
     <div class="promo-link__container">
         <div class="flex-col-12">
-            <app-bundle-enquiry></app-bundle-enquiry>
+            <app-insure-link *ngIf="promoDetails.type != 4"></app-insure-link>
+            <app-bundle-enquiry *ngIf="promoDetails.type == 4" [promoDetails]="promoDetails"></app-bundle-enquiry>
         </div>
     </div>
     <section class="promo-tnc">

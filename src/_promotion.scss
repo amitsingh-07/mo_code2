@@ -197,11 +197,20 @@
     }
     .working-bundle-desc{
         font-size: 30px;
-        letter-spacing: -0.3px;
+        letter-spacing: -0.31px;
+        line-height: normal;
         color:$dark-grey-color;
         margin: 17px auto 46px;
         @include allmobiles{
             font-size: 21px;
+            letter-spacing: -0.22px;
+        }
+        .tip{
+            color: $teal-color;
+        }
+        a{
+            text-decoration: underline;
+            cursor: pointer;
         }
     }
     .bundle-bg{
@@ -232,11 +241,11 @@
                         font-size: 14px; 
                     }
                 }
-                &:nth-child(even){
-                    background-color: #e6f8f8;
+                &.extra-light-grey{
+                    background-color: $extra-light-grayish-color;
                 }
-                &:nth-child(odd){
-                    background-color: #d0ecec;
+                &.light-grey{
+                    background-color: $light-grayish-color;
                 }
                 &.cell--header{
                     color: $white-color;
@@ -249,6 +258,27 @@
                 &.life-time-coverage{
                     background-color: #cccccc !important;
                 }
+                .bundle-icon{
+                    position: relative;
+                    top: -5px;
+                    font-size: 12px;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+    .disclaimer{
+        font-size: 14px;
+        line-height: 1.29;
+        letter-spacing: -0.1px;
+        color: #000000;
+        display: flex;
+        padding-top: 20px;
+        font-family: $muli-bold;
+        span{
+            &:first-child{                
+                letter-spacing: -0.1px;
+                padding-right: 5px;
             }
         }
     }
@@ -297,8 +327,14 @@
                     padding-right: 5px;
                 }
             }
-    }
+    } 
     td{
         padding: 10px;
+        width: 320px;
+        color: $dark-grey-color;
+        &:first-child{
+            font-family: $muli-bold;
+            font-size: 18px;
+        }
     }
 }
