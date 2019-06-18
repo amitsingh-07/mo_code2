@@ -85,8 +85,8 @@
       "DESC": "Please wait while we submit the topup request"
     },
     "CONFIRM_OVERWRITE_MODAL": {
-      "TITLE": "Confirm",
-      "DESC": "Please note that you have an existing monthly order of {{existingOrderAmount}}. By clicking continue, you understand that this monthly order of {{newOrderAmount}} will overwrite your existing order of {{existingOrderAmount}}",
+      "TITLE": "Buy Request Exist",
+      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}",
       "YES": "Yes",
       "NO": "No"
     }
