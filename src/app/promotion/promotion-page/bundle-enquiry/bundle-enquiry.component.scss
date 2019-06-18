@@ -60,6 +60,7 @@ app-bundle-enquiry{
                     }
                     .dropdown-menu{
                         &.show{
+                            left: inherit !important;
                             right: 0 !important;
                             top: 52px !important;
                         }
