@@ -16,7 +16,7 @@ export class ComprehensiveApiService {
         private authService: AuthenticationService,
         private http: BaseService,
         private httpClient: HttpClient,
-        private helperService: HelperService
+        private helperService: HelperService,
     ) { }
 
     getComprehensiveSummary() {
@@ -130,4 +130,11 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.generateComprehensiveReport, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    createReportRequest(payload) {
+
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.generateComprehensiveReport, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+
 }

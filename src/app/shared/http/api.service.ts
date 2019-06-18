@@ -357,7 +357,12 @@ export class ApiService {
         })
       );
   }
-
+  sendWelcomeEmail(payload: any) {
+    return this.http.post(apiConstants.endpoint.sendWelcomeMail + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   /** Post Login */
   updateInsuranceEnquiry(payload: IEnquiryUpdate) {
     return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)

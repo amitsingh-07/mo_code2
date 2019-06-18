@@ -76,6 +76,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
 
         this.isLoadComplete = true;
+
       }
     });
   }

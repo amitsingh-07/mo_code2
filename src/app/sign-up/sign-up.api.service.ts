@@ -246,6 +246,15 @@ export class SignUpApiService {
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }
+  sendWelcomeEmail(value: any, isEmail: boolean) {
+    const payload = {
+      mobileNumber: isEmail ? '' : value,
+      emailAddress: isEmail ? value : '',
+      callbackUrl: environment.apiBaseUrl + '/#/comprehensive',
+      hostedServerName: window.location.hostname
+    } as IResendEmail;
+    return this.apiService.sendWelcomeEmail(payload);
+  }
 
   editMobileNumber(mobileNo) {
     const payload = {
