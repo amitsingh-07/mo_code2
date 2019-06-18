@@ -249,6 +249,7 @@ export class TopUpComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.DESC', translateParams);
     ref.componentInstance.primaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.YES');
+    ref.componentInstance.isInlineButton = true;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
       this.saveAndProceed(form);
     });
