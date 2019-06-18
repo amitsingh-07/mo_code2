@@ -102,17 +102,12 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.userDetails = this.comprehensiveService.getMyProfile();
-        if (!this.userDetails || !this.userDetails.firstName) {
-            this.loaderService.showLoader({ title: 'Fetching Data' });
-            this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-
-                this.loaderService.hideLoader();
-                this.checkRedirect();
-            });
-        } else {
+        this.loaderService.showLoader({ title: 'Fetching Data' });
+        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+            this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+            this.loaderService.hideLoader();
             this.checkRedirect();
-        }
+        });
 
         this.navbarService.setNavbarComprehensive(true);
         this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
