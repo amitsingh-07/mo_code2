@@ -17,6 +17,8 @@ import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
 import { WillWritingService } from './../../will-writing/will-writing.service';
+import { AppService } from 'src/app/app.service';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -50,6 +52,7 @@ export class VerifyMobileComponent implements OnInit {
     private errorHandler: CustomErrorHandlerService,
     public authService: AuthenticationService,
     private selectedPlansService: SelectedPlansService,
+    private appService: AppService,
     private willWritingService: WillWritingService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
@@ -153,12 +156,21 @@ export class VerifyMobileComponent implements OnInit {
    */
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
+    const journeyType = this.appService.getJourneyType();
     if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
+      if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+        this.sendWelcomeEmail();
+      }
       this.resendEmailVerification();
     }
+  }
+
+  sendWelcomeEmail() {
+    const mobileNo = this.mobileNumber.number.toString();
+    this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
