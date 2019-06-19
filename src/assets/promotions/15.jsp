@@ -21,22 +21,22 @@
     <div class="promo__table">
       <table class="promo__inner-table table-bordered">
         <tr>
-          <td class="cell--header text--center">
+          <td class="cell--header text--center" width="30%">
             Protection Against Key Life-Risks
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="30%">
             Basic Package
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="30%">
             Deluxe Package
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center">Package Options</td>
-          <td class="cell--header text--center">Option 1</td>
-          <td class="cell--header text--center">Option 2</td>
-          <td class="cell--header text--center">Option 1</td>
-          <td class="cell--header text--center">Option 2</td>
+          <td class="cell--header text--center" width="30%">Package Options</td>
+          <td class="cell--header text--center" width="15%">Option 1</td>
+          <td class="cell--header text--center" width="15%">Option 2</td>
+          <td class="cell--header text--center" width="15%">Option 1</td>
+          <td class="cell--header text--center" width="15%">Option 2</td>
         </tr>
         <tr>
           <td class="text--center">Plans</td>
@@ -98,22 +98,22 @@
     <div class="promo__table">
       <table class="promo__inner-table table-bordered">
         <tr>
-          <td class="cell--header text--center">
+          <td class="cell--header text--center" width="30%">
             Child’s University Education Savings
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="30%">
             Junior Endowment<span class="bundle-icon">@</span>
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="30%">
             Junior Investment<span class="bundle-icon">#</span>
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center">Gender</td>
-          <td class="cell--header text--center">Boy</td>
-          <td class="cell--header text--center">Girl</td>
-          <td class="cell--header text--center">Boy</td>
-          <td class="cell--header text--center">Girl</td>
+          <td class="cell--header text--center" width="30%">Gender</td>
+          <td class="cell--header text--center" width="15%">Boy</td>
+          <td class="cell--header text--center" width="15%">Girl</td>
+          <td class="cell--header text--center" width="15%">Boy</td>
+          <td class="cell--header text--center" width="15%">Girl</td>
         </tr>
         <tr>
           <td class="text--center">Total Projected Payout</td>
