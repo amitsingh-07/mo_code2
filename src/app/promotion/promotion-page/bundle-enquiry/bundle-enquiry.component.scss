@@ -6,12 +6,13 @@ app-bundle-enquiry{
         background-color: #f2f6f7;
         margin: 0 auto;
         padding: 66px 0;
-        .col-lg-6{
+        .col-lg-5{
             &.margin-auto{
                 @include allmobiles{
                     padding: 0;
                 }
             }
+            
         }
         .form-title{
             font-family: $muli-bold;
@@ -28,6 +29,9 @@ app-bundle-enquiry{
             text-align: center;
             color: $dark-grey-color;
             padding-bottom: 25px;
+            @include allmobiles{
+                padding: 0 15px;
+            }
         }
         .plus-icon{
             position: relative;
@@ -86,6 +90,8 @@ app-bundle-enquiry{
         }
         .btn-primary{
             margin-top: 21px;
+            font-family: $muli-bold;
+            font-size: 22px;
         }
         .error--msg{
             color:$red-color;
@@ -94,12 +100,12 @@ app-bundle-enquiry{
             }
         }
         input::placeholder{
-            color: $light-grey-color !important;
+            color: $dusty-grey-color !important;
         }
         .btn-dropdown{
             &.form-control{
                 .grey-text{
-                    color: $light-grey-color !important;
+                    color: $dusty-grey-color !important;
                 }
             }
         }
