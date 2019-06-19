@@ -9,7 +9,7 @@
         comprise of products across insurers to suit different needs and budget.</p>
       <p class="tip">Tip: As the provider of your family’s needs, it is more important for you to be insured
         against life’s risks.
-        If unsure about the coverage you need, check out our Young Working Adult Protection bundle to find out more.
+        If unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
       </p>
     </div>
     <div class="working-bundle-title">
@@ -65,19 +65,19 @@
         </tr>
         <tr>
           <td class="text--center">Monthly Premium<span class="bundle-icon">^</span></td>
-          <td class="text--center extra-light-grey">$27</td>
-          <td class="text--center extra-light-grey">$57</td>
-          <td class="text--center light-grey">$100</td>
-          <td class="text--center light-grey">$149</td>
+          <td class="text--center extra-light-grey text-bold">$27</td>
+          <td class="text--center extra-light-grey text-bold">$57</td>
+          <td class="text--center light-grey text-bold">$100</td>
+          <td class="text--center light-grey text-bold">$149</td>
         </tr>
         <tr>
           <td class="text--center">Estimated Total Rebate
             <div>(over 3 years)</div>
           </td>
-          <td class="text--center extra-light-grey">$25</td>
-          <td class="text--center extra-light-grey">$80</td>
-          <td class="text--center light-grey">$190</td>
-          <td class="text--center light-grey">$350</td>
+          <td class="text--center extra-light-grey text-bold">$25</td>
+          <td class="text--center extra-light-grey text-bold">$80</td>
+          <td class="text--center light-grey text-bold">$190</td>
+          <td class="text--center light-grey text-bold">$350</td>
         </tr>
       </table>
       </td>
@@ -131,17 +131,17 @@
         </tr>
         <tr>
           <td class="text--center">Projected Rate of Return</td>
-          <td class="text--center extra-light-grey">2.8% p.a.</td>
-          <td class="text--center extra-light-grey">2.6% p.a.</td>
-          <td class="text--center light-grey">6.7% p.a.</td>
-          <td class="text--center light-grey">6.7% p.a.</td>
+          <td class="text--center extra-light-grey text-bold">2.8% p.a.</td>
+          <td class="text--center extra-light-grey text-bold">2.6% p.a.</td>
+          <td class="text--center light-grey text-bold">6.7% p.a.</td>
+          <td class="text--center light-grey text-bold">6.7% p.a.</td>
         </tr>
         <tr>
           <td class="text--center">Estimated Total Rebate
             <div>(over 3 years)</div>
           </td>
-          <td class="text--center extra-light-grey" colspan="2">$220 - $290
-            (from Insurance Policy)</td>
+          <td class="text--center extra-light-grey text-bold" colspan="2">$220 - $290
+            <div class="text-nrml">(from Insurance Policy)</div></td>
           <td class="text--center light-grey" colspan="2">-</td>
         </tr>
       </table>
