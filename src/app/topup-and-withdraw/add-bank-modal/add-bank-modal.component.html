@@ -21,12 +21,15 @@
               'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.ACCOUNT_HOLDER_NAME' | translate}}</label>
           </div>
           <div class="flex-col-12">
-            <div class="form-control"
-              [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
-              <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text"
-                name="accountHolderName" formControlName="accountHolderName" value="0" maxLength="30">
-            </div>
-          </div>
+              <div [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
+                <div contenteditable="true"
+                       id="accountHolderName-" [textContent]="addBankForm.get('accountHolderName').value"
+                       (input)="setAccountHolderName($event.target.textContent);" maxlength="100"
+                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                        placeholder="Account Holder's Name">
+                     </div>
+              </div> 
+         </div>
         </div>
         <!-- Content -->
         <div class="flex-row regulations">

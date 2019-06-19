@@ -71,4 +71,32 @@ app-add-bank-modal {
       }
     }
   }
+   [placeholder]:empty::before {
+  content: attr(placeholder);
+ // color: $app-backgrnd-color; 
+   color: $text-color-secondary
+}
+
+[placeholder]:empty:focus::before {
+  content: "";
+}
+  .content-editable {
+    border: 1px solid #94CCCC;
+    border-radius: 6px;
+    padding: .90rem;
+    background: $white-color;
+    color: $app-backgrnd-color;
+     word-break: break-word;
+ 
+    &.view-mode {
+      background-color: rgba(0, 167, 167, 0.15) !important;
+    }
+    &.inline-error {
+      color: #e57300 !important;
+      background: #fff3e9;
+      &[placeholder]:empty::before {
+        color: #e57300 !important;
+      }
+    }
+}
 }

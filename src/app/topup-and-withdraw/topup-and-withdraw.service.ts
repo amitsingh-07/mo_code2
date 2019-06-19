@@ -87,21 +87,20 @@ export class TopupAndWithDrawService {
     return this.apiService.getIndividualPortfolioDetails(portfolioId);
   }
 
-  doFinancialValidations(form) {
+  doFinancialValidations(form, allowMonthlyZero) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals
     if (
-      Number(form.value.oneTimeInvestmentAmount) <
-      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
-      form.value.Investment === 'One-time Investment'
+      Number(form.value.oneTimeInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup
+      && form.value.Investment === 'One-time Investment'
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
-      Number(form.value.MonthlyInvestmentAmount) <
-      this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
-      form.value.Investment === 'Monthly Investment'
+      Number(form.value.MonthlyInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup
+      && form.value.Investment === 'Monthly Investment'
+      && ( (Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -490,5 +489,9 @@ export class TopupAndWithDrawService {
     }, (reason) => {
       this.showTransferInstructionModal();
     });
+  }
+
+  getMonthlyInvestmentInfo() {
+    return this.apiService.getMonthlyInvestmentInfo();
   }
 }

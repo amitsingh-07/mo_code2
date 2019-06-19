@@ -23,13 +23,13 @@
   <div class="modal-body-message " *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
   
   <div class="row">
-    <div class="col-12" *ngIf="primaryActionLabel">
+    <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="primaryActionLabel">
       <button type="button" class="action-button " (click)="primaryActionSelected()" id="errorModeButton">
         {{primaryActionLabel}}
       </button>
     </div>
 
-    <div class="col-12" *ngIf="secondaryActionLabel">
+    <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="secondaryActionLabel">
         <button type="button" class="action-button" [class.secondary-button]="secondaryActionDim" (click)="secondaryActionSelected()" id="errorModeButton">
           {{secondaryActionLabel}}
         </button>
