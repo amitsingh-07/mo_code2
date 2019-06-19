@@ -27,6 +27,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
@@ -106,7 +107,8 @@ export function createTranslateLoader(http: HttpClient) {
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
     DropdownWithSearchComponent,
-    StartsWithPipe
+    StartsWithPipe,
+    SecurityPolicyComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

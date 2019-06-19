@@ -57,7 +57,7 @@
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-5" *ngIf="false"> <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
+                      <div class="flex-col col-5"> 
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
                         <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0" class="portfolio_footer_value">
                           {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
