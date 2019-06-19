@@ -245,7 +245,8 @@
     "TITLE": "Holdings",
     "TOTAL_VALUE": " Total Value",
     "NUMBER_OF_VALUE": "Number of Units",
-    "NAV": "NAV"
+    "NAV": "NAV",
+    "PORTFOLIO":"Portfolio"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"
