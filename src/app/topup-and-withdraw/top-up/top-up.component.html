@@ -2,12 +2,14 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-5 col-md-6 hidden-sm-md">
-        <h2>Buy Request</h2>
-        <h6>Submit a buy request and transfer money into your cash account.</h6>
+        <h2>{{this.pageTitle}}</h2>
+        <h6>{{'TOPUP.DESC' | translate}}</h6>
         <div class="banner-image">
           <img src="assets/images/topupwithdraw/topup.svg" />
         </div>
-        <div class="info-txt">For more information, visit our FAQs.</div>
+        <div class="faq_link">
+            <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+          </div>
       </div>
       <div class="col-lg-7 col-md-6">
         <div class="flex-row">
@@ -19,7 +21,7 @@
                     <div class="form-group-with-bg--header">
                       <div class="flex-row">
                         <div class="flex-col-12">
-                          <div class="form-group-with-bg--header-label" id="topup_select_portfolio">{{'TOPUP.SELECT_POTODOLIO'
+                          <div class="form-group-with-bg--header-label" id="topup_select_portfolio">{{'TOPUP.SELECT_PORTFOLIO'
                             | translate}}
                           </div>
                         </div>
@@ -53,7 +55,7 @@
                     <div class="form-group-with-bg--header">
                       <div class="flex-row">
                         <div class="flex-col-12">
-                          <div class="form-group-with-bg--header-label" id="topup_portfolio_enter_amount">{{'TOPUP.ENTER_INVERSTMENT_AMOUNT'
+                          <div class="form-group-with-bg--header-label" id="topup_portfolio_enter_amount">{{'TOPUP.ENTER_INVESTMENT_AMOUNT'
                             | translate}}
                           </div>
                         </div>
@@ -108,7 +110,7 @@
                 </div>
               </div>
             </form>
-        <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100"
+        <button type="button"  [disabled]="!topForm.valid"  (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100"
           id="myFinancialGoNextBtn">{{
             'TOPUP.CONTINUE' | translate}}</button>
           </div>
