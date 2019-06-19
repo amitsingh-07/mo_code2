@@ -30,6 +30,9 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
+    "BANK":"Bank",
+    "TRANSFER":"Transfer",
+    "DESC":"Please transfer the following amount using your preferred payment method details:",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
         "STEP_1": "STEP 1",
@@ -72,8 +75,9 @@
   },
   "TOPUP": {
     "TITLE": "Buy Request",
-    "SELECT_POTODOLIO": "1. Select Portfolio ",
-    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
+    "DESC":"Submit a buy request and transfer money into your cash account.",
+    "SELECT_PORTFOLIO": "1. Select Portfolio ",
+    "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
     "PLEASE_TOPUP": "Please transfer",
     "CASH_ACCOUNT": " to your cash account.",
@@ -83,6 +87,12 @@
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the topup request"
+    },
+    "CONFIRM_OVERWRITE_MODAL": {
+      "TITLE": "Buy Request Exist",
+      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
+      "YES": "Yes",
+      "NO": "No"
     }
   },
   "TOPUP_REQUEST": {
@@ -244,7 +254,8 @@
     "TITLE": "Holdings",
     "TOTAL_VALUE": " Total Value",
     "NUMBER_OF_VALUE": "Number of Units",
-    "NAV": "NAV"
+    "NAV": "NAV",
+    "PORTFOLIO":"Portfolio"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"

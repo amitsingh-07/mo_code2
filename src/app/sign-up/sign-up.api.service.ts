@@ -7,7 +7,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { ISignUp, IResendEmail, IVerifyCode, IVerifyRequestOTP, IUpdateMobileNumber } from '../sign-up/signup-types';
+import { IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
