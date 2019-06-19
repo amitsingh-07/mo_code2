@@ -9,8 +9,21 @@ app-fund-your-account {
     .strong {
       font-weight: bold;
     }
-    .container-fluid {
-      padding-bottom: 20px;
+    &.container-fluid {
+      &.invest-web-width{
+        max-width: 700px;
+        padding-top: 40px;
+        @include allmobiles{
+          padding-top: 90px;
+        }
+      }
+    }
+    .page-title{
+      font-family: $muli-semi-bold;
+      font-size: 32px;
+      letter-spacing: -0.33px;
+      text-align: center;
+      padding-bottom: 35px;
     }
     /* FUND SUMMARY */
     .fund-summary {
@@ -115,14 +128,6 @@ app-fund-your-account {
           display: none;
           &.active {
             display: block;
-          }
-          .tab-content-title{
-            font-family: $muli-bold;
-            font-size: 24px;
-            line-height: 0.92;
-            letter-spacing: -0.2px;
-            color: #ff872f;
-            margin-bottom: 22px;
           }
         }
       }
