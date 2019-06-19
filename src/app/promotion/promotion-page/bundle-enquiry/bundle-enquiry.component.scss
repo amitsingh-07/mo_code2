@@ -1,0 +1,107 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-bundle-enquiry{
+    .bundle-enquiry-form{
+        background-color: #f2f6f7;
+        margin: 0 auto;
+        padding: 66px 0;
+        .col-lg-6{
+            &.margin-auto{
+                @include allmobiles{
+                    padding: 0;
+                }
+            }
+        }
+        .form-title{
+            font-family: $muli-bold;
+            font-size: 30px;
+            letter-spacing: -0.3px;
+            text-align: center;
+            color: $teal-color;
+        }
+        .form-sub-title{
+            font-family: $muli-regular;
+            font-size: 18px;
+            line-height: 1.39;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: $dark-grey-color;
+            padding-bottom: 25px;
+        }
+        .plus-icon{
+            position: relative;
+            top: -5px;
+            font-family: $muli-bold;
+            font-size: 12px;
+        }
+        .form-group-floating-label{
+            border: 2px solid #bcd1d2;
+            margin-bottom: 10px;
+            padding: 0;
+            .form-control{
+                width: 100%;
+                text-align: left;
+                z-index:997;
+                &.dropdown-toggle{
+                    &::after{
+                        right: 10px;
+                        top: 20px;
+                        position: absolute;
+                    }
+                }
+            }
+            &.date-picker-above{
+                display: flex;
+                padding-top: 0;
+                .datepicker-control{
+                    width: 100%;
+                    .form-control{
+                        width: 80%;
+                    }
+                    .dropdown-menu{
+                        &.show{
+                            left: inherit !important;
+                            right: 0 !important;
+                            top: 52px !important;
+                        }
+                    }
+                    .btn-primary{
+                        max-height: 43px;
+                        margin-top: 0;
+                        box-shadow: none !important;
+                    }
+                } 
+            }
+        }
+        .checkbox-button{
+            label{
+                .title{
+                    font-family: $muli-semi-bold;
+                    font-size: 16px;
+                    letter-spacing: -0.3px;
+                    color: #5e5e5e;
+                }
+            }
+        }
+        .btn-primary{
+            margin-top: 21px;
+        }
+        .error--msg{
+            color:$red-color;
+            &.success{
+                color:$green-color;
+            }
+        }
+        input::placeholder{
+            color: $dusty-grey-color !important;
+        }
+        .btn-dropdown{
+            &.form-control{
+                .grey-text{
+                    color: $dusty-grey-color !important;
+                }
+            }
+        }
+    }
+}

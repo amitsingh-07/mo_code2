@@ -11,6 +11,7 @@ import { PromotionLandingComponent } from './promotion-landing/promotion-landing
 import { InsureLinkComponent } from './promotion-page/insure-link/insure-link.component';
 import { PromotionPageComponent } from './promotion-page/promotion-page.component';
 import { PromotionRoutingModule } from './promotion-routing.module';
+import { BundleEnquiryComponent } from './promotion-page/bundle-enquiry/bundle-enquiry.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -41,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
         PromotionLandingComponent,
         PromotionPageComponent,
         InsureLinkComponent,
+        BundleEnquiryComponent,
     ],
     providers: [PromotionEnableGuard]
 })
