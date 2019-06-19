@@ -71,8 +71,12 @@
                       </div>
                       <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
-                        <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #pepFullName
-                          formControlName="pepFullName">
+                        <div contenteditable="true" id="pepFullName"
+                          [textContent]="addInfoForm.get('pepFullName').value"
+                          (input)="setPepName($event.target.textContent);" maxlength="100"
+                          (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                          placeholder="Full Name">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -85,8 +89,11 @@
                       </div>
                       <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
-                        <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName
-                          formControlName="cName">
+                        <div contenteditable="true" id="cName" [textContent]="addInfoForm.get('cName').value"
+                          (input)="setCompanyName($event.target.textContent);" maxlength="100"
+                          (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                          placeholder="Company Name">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -148,27 +155,23 @@
                         <label for="residentialAddress-mailcountry-drpdown" id="addtion-declaration-country-lbl">{{
                 'EMPLOYMENT_DETAILS.COUNTRY'
                 | translate}}</label>
-            </div>
-            <div class="flex-col-7">
-              <div class="dropdown-control">
-                <app-dropdown-with-search 
-                  [disabled]="isUserNationalitySingapore"
-                  controlName="pepCountry"
-                  [optionList]="countries"
-                  displayKey="name"
-                  placement="bottom"
-                  placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
-                  (itemSelected)="setDropDownValue('pepCountry',$event)">
-                </app-dropdown-with-search>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- POSTAL CODE -->
-        <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
-          <div class="flex-row">
-            <div class="flex-col-5">
-              <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="dropdown-control">
+                          <app-dropdown-with-search [disabled]="isUserNationalitySingapore" controlName="pepCountry"
+                            [optionList]="countries" displayKey="name" placement="bottom"
+                            placeholderText="{{ 'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate }}"
+                            (itemSelected)="setDropDownValue('pepCountry',$event)">
+                          </app-dropdown-with-search>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- POSTAL CODE -->
+                  <div class="form-group" *ngIf="addInfoForm.get('pepPostalCode')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
                 'EMPLOYMENT_DETAILS.POSTAL_CODE'
                 | translate}}</label>
                       </div>

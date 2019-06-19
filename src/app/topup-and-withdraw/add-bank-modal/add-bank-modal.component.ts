@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -68,4 +68,47 @@ export class AddBankModalComponent implements OnInit {
       this.saved.emit(this.addBankForm.getRawValue());
     }
   }
- }
+
+  setAccountHolderName(accountHolderName: any) {
+    if (accountHolderName !== undefined) {
+      accountHolderName = accountHolderName.replace(/\n/g, '');
+      this.addBankForm.controls.accountHolderName.setValue(accountHolderName);
+      return accountHolderName;
+    }
+  }
+
+  onKeyPressEvent(event: any, dependentName: any) {
+   return (event.which !== 13);
+  }
+
+ @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    if (id !== '') {
+      const arr = id;
+      const dependentName = event.target.innerText;
+      if (dependentName.length >= 100) {
+        const dependentNameList = dependentName.substring(0, 100);
+        this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
+      // #this.invPersonalInfoForm.controls.markAsDirty();
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
+        this.setCaratTo(el, 100, dependentNameList);
+      }
+    }
+  }
+
+  setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+}

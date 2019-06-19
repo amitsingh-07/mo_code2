@@ -4,4 +4,5 @@ export interface IPromoCategory {
     title: string;
     subTitle: string;
     promotions: IPromotion[];
+    id: number;
 }
