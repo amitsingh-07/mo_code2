@@ -1,74 +1,78 @@
 <div class="medical-block">
   <div class="flex mb20"><span>*</span><span>This is the list of 11 child-related medical conditions covered:</span>
   </div>
-  <ul class="conditions-list">
-    <li>
-      <div class="flex">
-        <span>(a) </span>
-        <span>Severe Juvenile Rheumatoid Arthritis (Stills Disease)</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(b) </span>
-        <span>Severe Haemophilia</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(c) </span>
-        <span>heumatic Fever with Valvular Impairment</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(d) </span>
-        <span>Osteogenesis Imperfecta</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(e) </span>
-        <span>Insulin Dependent Diabetes Mellitus</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(f) </span>
-        <span>Kawasaki Disease</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(g) </span>
-        <span>lomerulonephritis with Nephrotic Syndrome</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(h) </span>
-        <span>Type I Juvenile Spinal Amyotrophy</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(i) </span>
-        <span>Autism of Specified Severity</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(j) </span>
-        <span>Generalised Tetanus</span>
-      </div>
-    </li>
-    <li>
-      <div class="flex">
-        <span>(k) </span>
-        <span>Rabies</span>
-      </div>
-    </li>
-  </ul>
+  <div class="conditions-block">
+    <ul class="conditions-list">
+      <li>
+        <div class="flex">
+          <span>(a) </span>
+          <span>Severe Juvenile Rheumatoid Arthritis (Stills Disease)</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(b) </span>
+          <span>Severe Haemophilia</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(c) </span>
+          <span>heumatic Fever with Valvular Impairment</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(d) </span>
+          <span>Osteogenesis Imperfecta</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(e) </span>
+          <span>Insulin Dependent Diabetes Mellitus</span>
+        </div>
+      </li>
+    </ul>
+    <ul class="conditions-list">
+      <li>
+        <div class="flex">
+          <span>(f) </span>
+          <span>Kawasaki Disease</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(g) </span>
+          <span>lomerulonephritis with Nephrotic Syndrome</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(h) </span>
+          <span>Type I Juvenile Spinal Amyotrophy</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(i) </span>
+          <span>Autism of Specified Severity</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(j) </span>
+          <span>Generalised Tetanus</span>
+        </div>
+      </li>
+      <li>
+        <div class="flex">
+          <span>(k) </span>
+          <span>Rabies</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class="illustration-block mb60">
   <div class="flex mb20"><span>@</span><span>In the illustration, there will be cash payout at different ages of the

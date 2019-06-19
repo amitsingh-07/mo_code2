@@ -42,6 +42,7 @@ app-bundle-enquiry{
             .form-control{
                 width: 100%;
                 text-align: left;
+                z-index:997;
                 &.dropdown-toggle{
                     &::after{
                         right: 10px;
@@ -66,7 +67,7 @@ app-bundle-enquiry{
                         }
                     }
                     .btn-primary{
-                        max-height: 45px;
+                        max-height: 43px;
                         margin-top: 0;
                         box-shadow: none !important;
                     }
