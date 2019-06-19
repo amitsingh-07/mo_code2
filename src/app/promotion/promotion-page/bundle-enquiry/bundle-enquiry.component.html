@@ -1,5 +1,5 @@
 <div class="bundle-enquiry-form col-12">
-  <div class="col-lg-6 margin-auto">
+  <div class="col-lg-5 margin-auto">
     <div class="form-title">{{promoDetails.bundle_enquiry_form_title}}</div>
     <div class="form-sub-title">
       <span *ngIf="promoDetails.promoId === 15">Sign up both Child Protection & Education plans, and receive $50 NTUC
@@ -15,6 +15,7 @@
           </div>
           <div *ngIf="bundleEnquiryForm.controls.firstName.invalid && bundleEnquiryForm.controls.firstName.dirty">
             <p class="error--msg" *ngIf="bundleEnquiryForm.controls.firstName.errors.required">*Please enter your first name</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.firstName.errors.pattern">*Invalid First Name</p>
           </div>
         </div>
         <div class="col-lg-6 stretch">
@@ -24,6 +25,7 @@
           </div>
           <div *ngIf="bundleEnquiryForm.controls.lastName.invalid && bundleEnquiryForm.controls.lastName.dirty">
             <p class="error--msg" *ngIf="bundleEnquiryForm.controls.lastName.errors.required">*Please enter your last name</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.lastName.errors.pattern">*Invalid Last Name</p>
           </div>
         </div>
       </div>
@@ -69,14 +71,16 @@
         </div>
         <div class="col-lg-6 stretch">
           <div class="form-group-floating-label">
-            <div ngbDropdown id="subjectDropDown">
-              <button class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
-                <span [ngClass]="{'grey-text': selectedGender === genderPlaceholder}">{{selectedGender}}</span>
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownSubject" class="flex-col-12">
-                <button class="dropdown-item" *ngFor="let gender of genderList" (click)="selectGender(gender)">
-                  <span>{{gender}}</span>
+            <div class="dropdown-control">
+              <div ngbDropdown id="subjectDropDown">
+                <button (click)="d.close()" class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
+                  <span [ngClass]="{'grey-text': selectedGender === genderPlaceholder}">{{selectedGender}}</span>
                 </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownSubject" class="flex-col-12">
+                  <button class="dropdown-item" *ngFor="let gender of genderList" (click)="selectGender(gender)">
+                    <span>{{gender}}</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

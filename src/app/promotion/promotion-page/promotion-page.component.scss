@@ -116,6 +116,15 @@
                         text-align:center;
                         letter-spacing:-0.7px;
                     }
+                    .plus-icon{
+                        font-size:21px;
+                        position: relative;
+                        left: 0;
+                        top: -13px;
+                        @include allmobiles{
+                            top: -8px;
+                        }
+                    }
                 }
                 @include minMobilemaxPhablet{
                     order:2;

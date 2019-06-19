@@ -11,13 +11,13 @@
     <div class="promo__table">
       <table class="promo__inner-table table-bordered">
         <tr>
-          <td class="cell--header text--center" >
+          <td class="cell--header text--center" width="33.33%">
             Protection Against Key Life-Risks
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="33.33%">
             Basic Package
           </td>
-          <td class="cell--header text--center" colspan="2">
+          <td class="cell--header text--center" colspan="2" width="33.33%">
             Deluxe Package
           </td>
         </tr>
@@ -61,32 +61,32 @@
             hospital plan provides you life time coverage.</td>
         </tr>
         <tr>
-          <td class="text--center">Monthly Premium</td>
-          <td class="text--center extra-light-grey"><div>$112</div>
-          <div>(Male)</div></td>
-          <td class="text--center extra-light-grey"><div>$140</div>
-          <div>(Female)</div></td>
-          <td class="text--center light-grey"><div>$201</div>
-              <div>(Male)</div></td>
-          <td class="text--center light-grey"><div>$231</div>
-              <div>(Female)</div></td>
+          <td class="text--center" width="33.33%">Monthly Premium</td>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$112</div>
+          <div class="text-nrml">(Male)</div></td>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$140</div>
+          <div class="text-nrml">(Female)</div></td>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$201</div>
+              <div class="text-nrml">(Male)</div></td>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$231</div>
+              <div class="text-nrml">(Female)</div></td>
         </tr>
         <tr>
-          <td class="text--center">Estimated Total Rebate
+          <td class="text--center" width="33.33%">Estimated Total Rebate
             <div>(over 3 years)</div></td>
-          <td class="text--center extra-light-grey"><div>$570</div>
-            <div>(Male)</div></td>
-          <td class="text--center extra-light-grey"><div>$830</div>
-            <div>(Female)</div></td>
-          <td class="text--center light-grey"><div>$990</div>
-            <div>(Male)</div></td>
-          <td class="text--center light-grey"><div>$1,280</div>
-            <div>(Female)</div></td>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$570</div>
+            <div class="text-nrml">(Male)</div></td>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$830</div>
+            <div class="text-nrml">(Female)</div></td>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$990</div>
+            <div class="text-nrml">(Male)</div></td>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$1,280</div>
+            <div class="text-nrml">(Female)</div></td>
         </tr>
       </table>
     </td>
   </div>
-  <small>
+  <div class="disclaimer">
     # The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation benefit.
-  </small>
+  </div>
 </div>
