@@ -205,6 +205,10 @@
             font-size: 21px;
             letter-spacing: -0.22px;
         }
+        @include tablet{
+            margin-right: 20px;
+            margin-left: 20px;
+        }
         .tip{
             color: $teal-color;
         }
@@ -251,12 +255,15 @@
                     color: $white-color;
                     border: 3px solid $white-color;
                     background-color: $teal-color !important;
+                    font-family: $muli-extra-bold;
                 }
                 &.occupational-data{
                     background-color: #a7cfcf;
                 }
                 &.life-time-coverage{
                     background-color: #cccccc !important;
+                    text-align: center;
+                    padding: 15px 30px;
                 }
                 .bundle-icon{
                     position: relative;

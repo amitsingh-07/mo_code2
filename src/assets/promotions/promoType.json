@@ -6,17 +6,17 @@
     },
     {
         "id": 3,
-        "type": "Investment Promotions",
+        "type": "Investment",
         "desc": "Enjoy great savings when you invest with us now"
     },
     {
         "id" : 1,
-        "type": "Insurance Promotions",
+        "type": "Insurance",
         "desc": "More discounts and goodies in addition to receiving 50% rebate in agent’s commissions"        
     },
     {
         "id": 2,
-        "type": "Will Promotions",
+        "type": "Will",
         "desc": "Enjoy these special savings when managing your estate"
     }    
 ]

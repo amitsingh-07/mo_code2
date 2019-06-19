@@ -3,6 +3,7 @@ import { PromotionApiService } from '../../promotion.api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-bundle-enquiry',
@@ -38,8 +39,8 @@ export class BundleEnquiryComponent implements OnInit {
     const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
     this.setPlaceholder();
     this.bundleEnquiryForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+      lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       emailAddress: ['', [Validators.required, Validators.email]],
       contactNumber: ['', [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]],
       dateOfBirth: ['', [Validators.required]],
