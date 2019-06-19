@@ -208,7 +208,7 @@
         .tip{
             color: $teal-color;
         }
-        a{
+        .text-underline{
             text-decoration: underline;
             cursor: pointer;
         }
@@ -264,6 +264,12 @@
                     font-size: 12px;
                     line-height: 25px;
                 }
+            }
+            .text-bold{
+                font-family:$muli-bold;
+            }
+            .text-nrml{
+                font-family:$muli-regular;
             }
         }
     }

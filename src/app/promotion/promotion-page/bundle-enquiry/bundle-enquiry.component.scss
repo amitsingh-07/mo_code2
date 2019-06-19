@@ -42,6 +42,7 @@ app-bundle-enquiry{
             .form-control{
                 width: 100%;
                 text-align: left;
+                z-index:997;
                 &.dropdown-toggle{
                     &::after{
                         right: 10px;
