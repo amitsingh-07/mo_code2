@@ -30,9 +30,8 @@ app-top-up {
     text-align: center;
     padding: 21px 0 19px;
     a {
-      color: $white-color;
-      text-decoration: underline;
-    }
+      color: $top-up-faq-link-color;
+     }
   }
   .top-up-block{
     padding-left: 50px;
@@ -222,10 +221,16 @@ app-top-up {
   }
   .btn__footer--fixed {
     font-family: $muli-bold;
-    &:disabled{
+    &:disabled {
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-      background-color: $btn-disabled-light-bg;
+      background-color: $btn-disabled-light-bg !important;
       color: $disabled-teal-color;
-    }
+     }
+     &:hover {
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+        background-color: $btn-disabled-light-bg !important;
+        color: $disabled-teal-color;
+      }
+    
   }
 }
