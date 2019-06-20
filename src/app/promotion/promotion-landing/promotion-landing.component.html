@@ -26,7 +26,7 @@
   <div class="promo-landing-content__container">
     <div class="promo-content__inner-container" *ngFor="let promoCategory of promoList; let i = index" [ngClass]="{'active': (categorySelect == i+1 || categorySelect == 0)}">
       <div class="promo-header__container">
-        <h2 class="title">{{promoCategory.title}} Promotions</h2>
+        <h2 class="title">{{promoCategory.title}}</h2>
         <h3 class="sub-title">{{promoCategory.subTitle}}</h3>
         </div>
       <div class="promo-body__container">
@@ -35,7 +35,7 @@
             <img class="promo-card--bg" src="{{promoCard.thumbnail}}"/>
           </div>
           <div class="promo-card__body">
-            <div *ngIf="!promoCard.external" class="promo-card--insurer">
+            <div *ngIf="!promoCard.external && promoCategory.id != 4" class="promo-card--insurer">
               <img src="{{promoCard.logo}}">
               </div>
             <p class="promo-card--title">{{promoCard.title}}</p>
