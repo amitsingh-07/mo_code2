@@ -87,6 +87,6 @@
     </td>
   </div>
   <div class="disclaimer">
-    # The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation benefit.
+    <span>#</span> The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation benefit.
   </div>
 </div>
