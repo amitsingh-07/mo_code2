@@ -15,6 +15,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -32,6 +33,7 @@ export class YourPortfolioComponent implements OnInit {
   assetAllocationValues;
   yearlyReturns: any;
   totalReturnsPercentage: any;
+  userProfileInfo: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -44,7 +46,8 @@ export class YourPortfolioComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public portfolioService: PortfolioService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -62,6 +65,7 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.totalReturnsPercentage = this.portfolioValues.totalReturns
       ? this.portfolioValues.totalReturns
       : 0;
