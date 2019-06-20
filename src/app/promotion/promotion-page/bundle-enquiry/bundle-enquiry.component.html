@@ -94,7 +94,7 @@
         </label>
       </div>
       <div class="col-12">
-        <div class="error--msg success" *ngIf="showSuccess">Your enquiry has been sent successfully</div>
+        <div class="error--msg success" *ngIf="showSuccess">Your enquiry has been sent successfully.</div>
         <div class="error--msg" *ngIf="invalidEmail">*Invalid Email Address</div>
         <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
           [disabled]="!bundleEnquiryForm.valid || formSubmitted" (click)="sendBundleEnquiry(bundleEnquiryForm)">Send

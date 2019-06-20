@@ -74,8 +74,8 @@ export class BundleEnquiryComponent implements OnInit {
       this.formSubmitted = false;
       if (data.responseMessage.responseCode === 6000) {
         this.showSuccess = true;
-      } else {
-        this.invalidEmail = false;
+      } else if (data.responseMessage.responseCode === 5000) {
+        this.invalidEmail = true;
       }
     });
   }
