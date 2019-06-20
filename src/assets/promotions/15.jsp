@@ -9,7 +9,7 @@
         comprise products across insurers to suit different needs and budget.</p>
       <p class="tip">Tip: As the provider of your family’s needs, it is more important for you to be insured
         against life’s risks.
-        If unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
+        If you are unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
       </p>
     </div>
     <div class="working-bundle-title">

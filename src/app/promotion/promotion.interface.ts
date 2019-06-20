@@ -4,6 +4,7 @@ export interface IPromotion {
     owner: string;
     title: string;
     thumbnail: string;
+    thumbnail_mobile ?: string;
     banner ?: string;
     desc: string;
     date_created: string;
