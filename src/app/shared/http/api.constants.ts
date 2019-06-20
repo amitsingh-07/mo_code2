@@ -36,6 +36,7 @@ export let apiConstants = {
         getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails',
         resendEmailVerification: 'account/account-microservice/api/resendEmailVerification',
         editMobileNumber: 'account/account-microservice/api/update-mobileno',
+        registerBundleEnquiry: 'account/account-microservice/api/registerBundleEnquiry',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -83,7 +84,8 @@ export let apiConstants = {
             getUserBankList: 'account/account-microservice/api/customer/banks',
             addNewBank: INVESTMENT_API_BASE_URL + '/api/customer/bank?handleError=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
-            getStatement: INVESTMENT_API_BASE_URL + '/getStatements'
+            getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
+            monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent',

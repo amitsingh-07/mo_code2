@@ -42,14 +42,11 @@
           </div>
           <!--Form Content-->
           <div class="form-group-with-bg--content">
-            <div class="flex-row mb20" *ngIf="false"> <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
+            <div class="flex-row mb20" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
               <div class="flex-col-6">
                 <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">{{'YOUR_INVESTMENT.TOTAL_RETURNS'
                   | translate}}
                   <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
-                </div>
-                <div class="start_investment_label" for="name" id="investment_overview_investment_start_labl">{{'YOUR_INVESTMENT.FROM_START_OF_INVESTMENT'
-                  | translate}}
                 </div>
               </div>
               <div class="flex-col-6">
@@ -111,8 +108,8 @@
                     <span *ngIf="!portfolio.currentValue">{{0 | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                   </div>
                 </div>
-                <div class="flex-col-4" *ngIf="false">  <!-- MO2-1710 HIDDEN TOTAL RETURNS -->
-                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturnsPercentage < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturnsPercentage * 100)}}{{portfolio.totalReturnsPercentage * 100
+                <div class="flex-col-4" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                  <div class="start_investment_value" [class.negativeValue]="portfolio.totalReturns && portfolio.totalReturns < 0" for="name" id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturns)}}{{portfolio.totalReturns
                     | number : '1.0-2'}}%</div>
                 </div>
               </div>

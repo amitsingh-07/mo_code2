@@ -807,4 +807,20 @@ export class ApiService {
       );
   }
 
+  // Get User's monthly investment Information
+  getMonthlyInvestmentInfo() {
+    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // send bundle enquiry
+  sendBundleEnquiry(payload) {
+    return this.http.post(apiConstants.endpoint.registerBundleEnquiry + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

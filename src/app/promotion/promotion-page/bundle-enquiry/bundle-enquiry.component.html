@@ -1,0 +1,105 @@
+<div class="bundle-enquiry-form col-12">
+  <div class="col-lg-5 margin-auto">
+    <div class="form-title">{{promoDetails.bundle_enquiry_form_title}}</div>
+    <div class="form-sub-title">
+      <span *ngIf="promoDetails.promoId === 15">Sign up both Child Protection & Education plans, and receive $50 NTUC
+        FairPrice voucher<span class="plus-icon">+</span> today!</span>
+      <span *ngIf="promoDetails.promoId === 16">Sign up, and receive $30 NTUC FairPrice voucher<span class="plus-icon">+</span> today!</span>
+    </div>
+    <form id="bundleEnquiryForm" name="bundleEnquiryForm" [formGroup]="bundleEnquiryForm">
+      <div class="flex-row">
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="text" class="form-control" #firstName formControlName="firstName" placeholder="Your First Name"
+              required>
+          </div>
+          <div *ngIf="bundleEnquiryForm.controls.firstName.invalid && bundleEnquiryForm.controls.firstName.dirty">
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.firstName.errors.required">*Please enter your first name</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.firstName.errors.pattern">*Invalid First Name</p>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="text" class="form-control" #lastName formControlName="lastName" placeholder="Your Last Name"
+              required>
+          </div>
+          <div *ngIf="bundleEnquiryForm.controls.lastName.invalid && bundleEnquiryForm.controls.lastName.dirty">
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.lastName.errors.required">*Please enter your last name</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.lastName.errors.pattern">*Invalid Last Name</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="text" class="form-control" #emailAddress formControlName="emailAddress"
+              placeholder="Your Email" required>
+          </div>
+          <div *ngIf="bundleEnquiryForm.controls.emailAddress.invalid && bundleEnquiryForm.controls.emailAddress.dirty">
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.emailAddress.errors.email">*Please enter a valid email address in the format yourname@example.com</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.emailAddress.errors.required">*Please enter your e-mail address</p>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <input type="number" class="form-control" #contactNumber formControlName="contactNumber"
+              placeholder="Your Contact" required>
+          </div>
+          <div
+            *ngIf="bundleEnquiryForm.controls.contactNumber.invalid && bundleEnquiryForm.controls.contactNumber.dirty">
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.contactNumber.errors.pattern">*Invalid Contact Number</p>
+            <p class="error--msg" *ngIf="bundleEnquiryForm.controls.contactNumber.errors.required">*Please enter your contact number</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label date-picker-above">
+            <div class="datepicker-control">
+              <div class="input-group date-picker mb0 ">
+                <input readonly class="form-control" [placeholder]="dobPlaceholder" formControlName="dateOfBirth"
+                  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                <div class="input-group-append">
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                    <img class="date-picker-image--valid" id="getStrdImg1"
+                      src="./assets/images/calendar-normal.svg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch">
+          <div class="form-group-floating-label">
+            <div class="dropdown-control">
+              <div ngbDropdown id="subjectDropDown">
+                <button (click)="d.close()" class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
+                  <span [ngClass]="{'grey-text': selectedGender === genderPlaceholder}">{{selectedGender}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownSubject" class="flex-col-12">
+                  <button class="dropdown-item" *ngFor="let gender of genderList" (click)="selectGender(gender)">
+                    <span>{{gender}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 checkbox-button one-label mb10">
+        <input id="receiveMarketingEmails" name="receiveMarketingEmails" type="checkbox"
+          formControlName="receiveMarketingEmails" class="field checkbox">
+        <label for="receiveMarketingEmails">
+          <div class="title">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+        </label>
+      </div>
+      <div class="col-12">
+        <div class="error--msg success" *ngIf="showSuccess">Your enquiry has been sent successfully.</div>
+        <div class="error--msg" *ngIf="invalidEmail">*Invalid Email Address</div>
+        <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
+          [disabled]="!bundleEnquiryForm.valid || formSubmitted" (click)="sendBundleEnquiry(bundleEnquiryForm)">Send
+          Enquiry</button>
+      </div>
+    </form>
+  </div>
+</div>
