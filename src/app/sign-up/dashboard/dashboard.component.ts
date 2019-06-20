@@ -93,58 +93,7 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
-    this.signUpApiService.getUserProfileInfo().subscribe((userInfo: any) => {
-      userInfo = {
-        "exception": null,
-        "objectList": {
-          "id": 95487,
-          "firstName": "Artemis",
-          "lastName": "Credit Card",
-          "dateOfBirth": "05/16/1960",
-          "emailAddress": "Buatmo1436@yopmail.com",
-          "mobileNumber": "94751436",
-          "fullName": "ARTEMIS CREDIT CARD",
-          "nationality": {
-            "nationalityCode": "DE",
-            "name": "GERMAN",
-            "listorder": 4,
-            "countries": [{
-              "id": 95,
-              "countryCode": "DE",
-              "name": "GERMANY",
-              "phoneCode": "+49"
-            }],
-            "blocked": false
-          },
-          "investementDetails": {
-            "isPoliticallyExposed": false,
-            "beneficialOwner": false,
-            "connectedToInvestmentFirm": false,
-            "portfolios": [{
-              "portfolioId": "PORTFOLIO00054",
-              "portfolioStatus": "PURCHASED"
-            }],
-            "account": {
-              "accountCreatedDate": "17-05-2019",
-              "accountStatus": "PORTFOLIO_PURCHASED",
-              "cashAccountBalance": 3500.0,
-              "trustId": "TAC1905170022",
-              "refNo": "G0006651",
-              "statementCreatedDate": "17-06-2019"
-            },
-            "totalValue": 43340.048680000014,
-            "totalReturns": 0.0,
-            "investmentReturns": null,
-            "totalInvested": 46500.0,
-            "myInfoVerified": false,
-            "showTotalReturns": true
-          }
-        },
-        "responseMessage": {
-          "responseCode": 6000,
-          "responseDescription": "Successful response"
-        }
-      };
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         // ERROR SCENARIO
         if (
