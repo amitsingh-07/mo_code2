@@ -18,7 +18,7 @@
       <li>
         <div class="flex">
           <span>(c) </span>
-          <span>heumatic Fever with Valvular Impairment</span>
+          <span>Rheumatic Fever with Valvular Impairment</span>
         </div>
       </li>
       <li>

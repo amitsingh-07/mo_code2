@@ -6,7 +6,7 @@
         have a good education and to be adequately covered for unforeseen situations.
       </p>
       <p>At MoneyOwl, we have put together a carefully designed package for your newborn’s needs. These packages
-        comprise of products across insurers to suit different needs and budget.</p>
+        comprise products across insurers to suit different needs and budget.</p>
       <p class="tip">Tip: As the provider of your family’s needs, it is more important for you to be insured
         against life’s risks.
         If unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
@@ -123,7 +123,7 @@
           <td class="text--center light-grey">$83,000</td>
         </tr>
         <tr>
-          <td class="text--center">Total Commitment over Savings Period (18 years for girl, 20 years for boy)</td>
+          <td class="text--center">Total Commitment over Savings Period <span>(18 years for girl, 20 years for boy)</span></td>
           <td class="text--center extra-light-grey">$48,000</td>
           <td class="text--center extra-light-grey">$43,200</td>
           <td class="text--center light-grey">$48,000</td>
@@ -138,7 +138,7 @@
         </tr>
         <tr>
           <td class="text--center">Estimated Total Rebate
-            <div>(over 3 years)</div>
+            <span>(over 3 years)</span>
           </td>
           <td class="text--center extra-light-grey text-bold" colspan="2">$220 - $290
             <div class="text-nrml">(from Insurance Policy)</div></td>

@@ -6,7 +6,7 @@
       packages comprise products across insurers to suit different needs and budget. </div>
     <div class="working-bundle-title"><span class="protection-icon"><img src="assets/promotions/images/protection-icon.svg" /></span> <span>Protection Plan</span></div>
     <div class="working-bundle-desc">Insurance is for protecting your income potential from the uncertainties of life
-      and ensures that your dependants will not be burdened in the event of unfortunate events. With our packages, you
+      and ensuring that your dependants will not be burdened during unfortunate events. With our packages, you
       can be adequately covered for just slightly more than $100 a month. </div>
     <div class="promo__table">
       <table class="promo__inner-table table-bordered">
@@ -32,7 +32,7 @@
           <td class="text--center light-grey" colspan="2">$100,000 per claim (with up to another ECI claim of $100,000 each)</td>
         </tr>
         <tr>
-          <td class="text--center extra-light-grey">Critical Illness<div>Covers 36 critical illness such as major cancers, heart attack and
+          <td class="text--center extra-light-grey">Critical Illness<div>Covers 36 critical illness such as major cancers, heart attack &
             stroke</div></td>
           <td class="text--center extra-light-grey" colspan="2">$150,000 less claims made on early CI, if any (and up to 2 recurring
             claims
@@ -54,14 +54,14 @@
           <td class="text--center extra-light-grey" colspan="2">Government Hospital, Class A
             (10% co-payment) </td>
           <td class="text--center light-grey" colspan="2">Private Hospital
-            (10% co-payment)</td>
+            (5% co-payment)</td>
         </tr>
         <tr>
           <td colspan="5" class="text--center life-time-coverage">The packages have term plans that covers you during your working years till age 65 and a
             hospital plan provides you life time coverage.</td>
         </tr>
         <tr>
-          <td class="text--center" width="33.33%">Monthly Premium</td>
+          <td class="text--center" width="33.33%">Monthly Premium<span class="bundle-icon">#</span></td>
           <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$112</div>
           <div class="text-nrml">(Male)</div></td>
           <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$140</div>
