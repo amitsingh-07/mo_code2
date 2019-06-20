@@ -96,7 +96,8 @@ app-bundle-enquiry{
         .error--msg{
             color:$red-color;
             &.success{
-                color:$green-color;
+                font-family: $muli-bold;
+                color:$btn-disabled-bg;
             }
         }
         input::placeholder{

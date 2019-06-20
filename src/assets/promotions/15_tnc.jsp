@@ -1,5 +1,5 @@
 <div class="medical-block">
-  <div class="flex mb20"><span>*</span><span>This is the list of 11 child-related medical conditions covered:</span>
+  <div class="flex mb20"><span class="text-bold">*</span><span>This is the list of 11 child-related medical conditions covered:</span>
   </div>
   <div class="conditions-block">
     <ul class="conditions-list">
@@ -75,7 +75,7 @@
   </div>
 </div>
 <div class="illustration-block mb60">
-  <div class="flex mb20"><span>@</span><span>In the illustration, there will be cash payout at different ages of the
+  <div class="flex mb20"><span class="text-bold">@</span><span>In the illustration, there will be cash payout at different ages of the
       child to support cost of education at different milestones of the child’s education journey. </span></div>
   <div class="promo__table">
     <table class="promo__inner-table table-bordered">
