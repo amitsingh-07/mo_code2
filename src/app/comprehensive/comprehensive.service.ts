@@ -1617,6 +1617,13 @@ export class ComprehensiveService {
     getReportStatus() {
         return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportStatus;
     }
+    setReportId(reportId: number) {
+        this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportId = reportId;
+        this.commit();
+    }
+    getReportId() {
+        return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportId;
+    }
     /**
      * Compute Take Home Earnings
      */

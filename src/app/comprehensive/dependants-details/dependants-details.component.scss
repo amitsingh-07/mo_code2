@@ -49,4 +49,7 @@
         color: #e57300 !important;
       }
     }
+    &[placeholder]:empty::before {
+       color:#9b9b9b!important;
+    }
 }
