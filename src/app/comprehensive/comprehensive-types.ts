@@ -27,6 +27,7 @@ export interface IComprehensiveEnquiry {
     promoCodeValidated?: boolean;
     reportStatus: string;
     stepCompleted: number;
+    reportId: number;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -39,7 +40,7 @@ export interface IMyProfile {
     nationalityStatus: string;
     gender: string;
     ngbDob: any;
-    dobUpdateable:boolean;
+    dobUpdateable: boolean;
 }
 
 export interface IDependantDetail {

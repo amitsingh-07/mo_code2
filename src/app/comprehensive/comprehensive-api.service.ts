@@ -114,10 +114,7 @@ export class ComprehensiveApiService {
      *
      * @memberof ComprehensiveApiService
      */
-    downloadComprehensiveReport() {
-        const payload = {
-            customerId: 0
-        };
+    downloadComprehensiveReport(payload) {
         return this.apiService.downloadComprehensiveReport(payload);
     }
     saveStepIndicator(payload) {
@@ -131,9 +128,13 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     createReportRequest(payload) {
-
         return this.http
-            .post(apiConstants.endpoint.comprehensive.generateComprehensiveReport, payload)
+            .post(apiConstants.endpoint.comprehensive.createReportRequest, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    getReport() {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.getReport)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 

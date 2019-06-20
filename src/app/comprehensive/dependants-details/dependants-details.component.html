@@ -44,8 +44,8 @@
               [ngClass]="{'inline-error': submitted && dependentMappingList['controls'].name.invalid}"
               id="moDpdnt2InptName-{{i}}" [textContent]="dependentMappingList.get('name').value"
               (input)="model=setDependentName($event.target.textContent, i);" maxlength="100"
-              (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-              placeholder="Enter Name">
+              (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable" placeholder=" Enter
+              Name">
             </div>
             <div *ngIf="viewMode" class="content-editable view-mode">
               {{ dependentMappingList.get('name').value }}

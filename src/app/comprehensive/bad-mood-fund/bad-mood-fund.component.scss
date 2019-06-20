@@ -38,4 +38,7 @@ $minus-content-color:#ff872f;
     .minus-bad-mood {
       color:$minus-content-color;
     }
+    .special-radio-button input[type='radio'] + label .compre-label{
+      font-size: 22px!important;
+    }
 }

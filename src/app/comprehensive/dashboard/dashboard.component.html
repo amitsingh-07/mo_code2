@@ -73,7 +73,7 @@
           </div>
           <div class="flex-row" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
             <div class="flex-col-12">
-              <button type="button" class="btn btn-view width100" id="prfBtn1">
+              <button (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
                 <div class="ft-18" for="name">
                   {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
                   <div class="label-grey ft-13" for="name">

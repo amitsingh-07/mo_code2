@@ -10,6 +10,7 @@ import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { FileUtil } from 'src/app/shared/utils/file.util';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -37,7 +38,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
     private datePipe: DatePipe,
-    private navbarService: NavbarService) {
+    private navbarService: NavbarService,
+    private downloadfile: FileUtil) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -70,6 +72,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.comprehensivePlanning = 0;
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
           this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
+          this.generateReport();
+
         }
         this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
           && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null)
@@ -84,7 +88,21 @@ export class ComprehensiveDashboardComponent implements OnInit {
   ngOnInit() {
 
   }
+  generateReport() {
+    this.comprehensiveApiService.getReport().subscribe((data: any) => {
+      this.comprehensiveService.setReportId(data.id);
+      const reportDateAPI = new Date(data.createdTs);
+      this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+    });
+  }
+  downloadComprehensiveReport() {
+    const payload = { reportId: this.comprehensiveService.getReportId() }
+    this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
+      this.downloadfile.saveAs(data, "fileName")
+    });
 
+
+  }
   goToEditProfile() {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
   }

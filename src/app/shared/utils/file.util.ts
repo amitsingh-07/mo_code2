@@ -4,7 +4,7 @@ export const FILE_TYPE = 'application/pdf';
 @Injectable()
 export class FileUtil {
 
-  public static saveAs(data: any, fileName: string): void {
+  public saveAs(data: any, fileName: string): void {
     const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
@@ -26,7 +26,7 @@ export class FileUtil {
     }
   }
 
-  public static downloadFile(data: any, fileName: string): void {
+  public downloadFile(data: any, fileName: string): void {
     const blob = new Blob([data], { type: FILE_TYPE });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
