@@ -70,7 +70,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private apiService: ApiService,
         private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
@@ -158,7 +157,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.disableDOB = this.userDetails.dobUpdateable;
+        this.disableDOB = !this.userDetails.dobUpdateable;
         this.setUserProfileData();
         this.buildProfileForm();
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);

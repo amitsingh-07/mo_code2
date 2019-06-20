@@ -59,6 +59,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     });
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.initiateReport();
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
@@ -97,6 +98,11 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
       this.comprehensiveService.setViewableMode(true);
+      const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
+      this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
+        this.comprehensiveService.setReportId(reportDataStatus.reportId);
+
+      });
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     });
   }
