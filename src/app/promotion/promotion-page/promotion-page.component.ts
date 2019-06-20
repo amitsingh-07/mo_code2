@@ -72,7 +72,7 @@ export class PromotionPageComponent implements OnInit {
             this.renderer.setStyle(banner,
                                 'background-image',
                                 'url(' + this.promoDetails.thumbnail + ')'
-                                  );
+                                );
           }
           // Getting promo content
           this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {

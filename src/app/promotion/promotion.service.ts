@@ -70,6 +70,7 @@ export class PromotionService {
       owner: in_promotion.owner,
       title: in_promotion.title,
       thumbnail: in_promotion.thumbnail,
+      thumbnail_mobile: in_promotion.thumbnail_mobile,
       desc: in_promotion.desc,
       date_created: in_promotion.date_created,
       date_expiry: in_promotion.date_expiry,
