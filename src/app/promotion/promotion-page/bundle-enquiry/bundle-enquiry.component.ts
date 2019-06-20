@@ -21,6 +21,7 @@ export class BundleEnquiryComponent implements OnInit {
   genderPlaceholder: string;
   formSubmitted = false;
   dobPlaceholder: string;
+  invalidEmail = false;
 
   constructor(
     public authService: AuthenticationService,
@@ -68,14 +69,14 @@ export class BundleEnquiryComponent implements OnInit {
     form.value.receiveMarketingEmails = form.value.receiveMarketingEmails ? 'Yes' : 'No';
     this.formSubmitted = true;
     this.promotionApiService.sendBundleEnquiry(form.value).subscribe(data => {
+      this.bundleEnquiryForm.reset();
+      this.setPlaceholder();
+      this.formSubmitted = false;
       if (data.responseMessage.responseCode === 6000) {
-        this.bundleEnquiryForm.reset();
-        this.setPlaceholder();
         this.showSuccess = true;
       } else {
-        this.showSuccess = false;
+        this.invalidEmail = false;
       }
-      this.formSubmitted = false;
     });
   }
 
