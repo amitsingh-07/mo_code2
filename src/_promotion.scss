@@ -287,16 +287,19 @@
         color: #000000;
         display: flex;
         padding-top: 20px;
-        font-family: $muli-bold;
+        font-family: $muli-regular;
         span{
             &:first-child{                
                 letter-spacing: -0.1px;
                 padding-right: 5px;
+                font-family: $muli-bold;
             }
         }
     }
 }
-
+.text-bold{
+    font-family:$muli-bold;
+}
 .medical-block{
     font-family: $muli-regular;
     font-size: 18px;
