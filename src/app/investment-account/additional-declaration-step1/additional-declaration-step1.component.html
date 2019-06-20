@@ -60,8 +60,12 @@
               </div>
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
-              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #pepFullName
-                formControlName="pepFullName">
+              <div contenteditable="true" 
+                       id="pepFullName" [textContent]="addInfoForm.get('pepFullName').value"
+                       (input)="setPepName($event.target.textContent);" maxlength="100"
+                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                        placeholder="Full Name">
+                     </div>
             </div>
           </div>
         </div>
@@ -73,7 +77,12 @@
                 id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
             </div>
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
-              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName">
+            <div contenteditable="true"
+                       id="cName" [textContent]="addInfoForm.get('cName').value"
+                       (input)="setCompanyName($event.target.textContent);" maxlength="100"
+                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                        placeholder="Company Name">
+                     </div>
             </div>
           </div>
         </div>

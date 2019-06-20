@@ -1,4 +1,5 @@
 export interface IPromotion {
+    type: number;
     promoId: number;
     owner: string;
     title: string;
@@ -12,4 +13,17 @@ export interface IPromotion {
     url ?: string;
     button_label ?: string;
     logo ?: string;
+    bundle_enquiry_form_type ?: string;
+    bundle_enquiry_form_title ?: string;
+}
+
+export interface IBundleEnquiry {
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+    contactNumber: string;
+    dateOfBirth: string;
+    gender: string;
+    enquiryType: string;
+    receiveMarketingEmails: string;
 }

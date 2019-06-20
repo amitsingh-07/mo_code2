@@ -1,5 +1,10 @@
 [
     {
+        "id": 4,
+        "type": "Bundle Packages",
+        "desc": "We understand that sometimes, it is difficult to decide what insurance we need and which insurance companies to buy from. So we have researched, compared, analysed and put together a special package with the best combination for your needs."
+    },
+    {
         "id": 3,
         "type": "Investment",
         "desc": "Enjoy great savings when you invest with us now"

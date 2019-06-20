@@ -150,8 +150,10 @@ app-your-portfolio {
     .your_total_value {
       background-color: $top-up-your-portfolio-your-total-value-bg;
       padding: 20px 20px 17px;
-      border-bottom-left-radius: 8px; // Remove when total returns section is shown
-      border-bottom-right-radius: 8px; // Remove when total returns section is shown
+      &.no-returns {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
     }
   }
   .total_values {

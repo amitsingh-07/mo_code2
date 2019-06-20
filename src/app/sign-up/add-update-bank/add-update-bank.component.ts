@@ -1,6 +1,6 @@
 import { distinctUntilChanged } from 'rxjs/operators';
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -213,5 +213,49 @@ export class AddUpdateBankComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
+  }
+
+
+// ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
+  
+setAccountHolderName(accountHolderName: any) {
+    if (accountHolderName !== undefined) {
+      accountHolderName = accountHolderName.replace(/\n/g, '');
+      this.bankForm.controls.accountHolderName.setValue(accountHolderName);
+      return accountHolderName;
+    }
+  }
+
+  onKeyPressEvent(event: any, dependentName: any) {
+    return (event.which !== 13);
+  }
+
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    if (id !== '') {
+      const arr = id;
+      const dependentName = event.target.innerText;
+      if (dependentName.length >= 100) {
+        const dependentNameList = dependentName.substring(0, 100);
+        this.bankForm.controls.accountHolderName.setValue(dependentNameList);
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
+        this.setCaratTo(el, 100, dependentNameList);
+      }
+    }
+  }
+    setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }
