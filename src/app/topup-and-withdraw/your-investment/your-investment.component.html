@@ -50,7 +50,7 @@
             </div>
             <!--Form Content-->
             <div class="form-group-with-bg--content">
-              <div class="flex-row mb20">
+              <div class="flex-row mb20" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
                 <div class="flex-col-6">
                   <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">{{'YOUR_INVESTMENT.TOTAL_RETURNS'
                   | translate}}
@@ -121,7 +121,7 @@
                       <span *ngIf="!portfolio.currentValue">{{0 | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                     </div>
                   </div>
-                  <div class="flex-col-4">
+                  <div class="flex-col-4" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
                     <div class="start_investment_value"
                       [class.negativeValue]="portfolio.totalReturns && portfolio.totalReturns < 0" for="name"
                       id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturns)}}{{portfolio.totalReturns
