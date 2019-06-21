@@ -13,6 +13,7 @@ app-inv-personal-info {
     .btn-group--toggle {
       label {
         padding: 0.9rem;
+        font-size: 16px;
       }
       .btn-outline-primary {
         &.disabled {
@@ -39,18 +40,26 @@ app-inv-personal-info {
       text-align: left;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+      //background-color: $white-color;
+      padding: 20px 0px;
       position: relative;
-      top: 76px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
       @include allmobiles{
         top: 60px;
+        background-color: $white-color;
+        padding: 10px 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+    padding-top: 16px;
+    @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .form-control {
       &.with-button {
         padding: 0.5rem;
@@ -67,7 +76,9 @@ app-inv-personal-info {
       }
     }
     .input-group-append {
+     
       .btn-primary {
+        box-shadow: none !important;
         &:disabled {
           color: $teal-color !important;
           background-color: $inv-btn-disabled-bg !important;

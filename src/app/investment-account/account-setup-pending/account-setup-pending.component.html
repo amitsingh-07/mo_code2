@@ -2,7 +2,8 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/investment-account/success_small.svg" id="add_submit_custModalImg2" />
+      <img *ngIf="showDocumentsPending" src="../../../assets/images/investment-account/pending-upload.svg" id="add_submit_custModalImg2" />
+      <img *ngIf="showAccountCreationpending" src="../../../assets/images/investment-account/account-creation_pending.svg" id="add_submit_custModalImg2" />
       <div class="custom-modal-content">
         <div class="pl20 pr20">
           <p class="custom-modal--title mt20" id="add_submit_custModalTitle">{{pageTitle}}</p>

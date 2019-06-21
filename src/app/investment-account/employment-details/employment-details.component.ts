@@ -86,6 +86,7 @@ export class EmploymentDetailsComponent implements OnInit {
     if (this.employementDetailsForm.get('employeaddress')) {
       this.observeEmpAddressCountryChange();
     }
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {

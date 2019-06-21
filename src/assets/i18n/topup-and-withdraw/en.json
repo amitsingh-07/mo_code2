@@ -30,6 +30,9 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
+    "BANK":"Bank",
+    "TRANSFER":"Transfer",
+    "DESC":"Please transfer the following amount using your preferred payment method details:",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
         "STEP_1": "STEP 1",
@@ -72,8 +75,9 @@
   },
   "TOPUP": {
     "TITLE": "Buy Request",
-    "SELECT_POTODOLIO": "1. Select Portfolio ",
-    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
+    "DESC":"Submit a buy request and transfer money into your cash account.",
+    "SELECT_PORTFOLIO": "1. Select Portfolio ",
+    "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
     "PLEASE_TOPUP": "Please transfer",
     "CASH_ACCOUNT": " to your cash account.",
@@ -152,6 +156,7 @@
     "TITLE": "Withdraw",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
+    "WITHDRAW_TYPE_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",
     "PORTFOLIO": "Portfolio",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "PORTFOLIO_VALUE": "Portfolio Value",
@@ -217,12 +222,15 @@
     "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
     "IF_WISH_TO_CHANGE_WRITE": "If you wish to change your mailing address, please write to us",
     "CONTACT_EMAIL": "help@moneyowl.com.sg",
+    "WITHDRAW_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",
     "ADD_BANK_MODAL": {
       "TITLE": "Add Bank Account",
+      "EDIT_TITLE": "Edit Bank Details",
       "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
       "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
       "BANK_NAME": "Bank Name",
-      "ACCOUNT_NO": "Account No."
+      "ACCOUNT_NO": "Account No.",
+      "APPLY_CHANGE":"Apply Changes"
     }
   },
   "TRANSACTIONS": {
@@ -246,7 +254,8 @@
     "TITLE": "Holdings",
     "TOTAL_VALUE": " Total Value",
     "NUMBER_OF_VALUE": "Number of Units",
-    "NAV": "NAV"
+    "NAV": "NAV",
+    "PORTFOLIO":"Portfolio"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"

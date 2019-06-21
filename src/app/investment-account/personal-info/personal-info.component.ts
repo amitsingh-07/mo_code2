@@ -92,6 +92,7 @@ export class PersonalInfoComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {

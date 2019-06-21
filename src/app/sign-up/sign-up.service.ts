@@ -472,7 +472,7 @@ export class SignUpService {
   validateBankAccNo(control: AbstractControl) {
     const value = control.value;
     let isValid;
-    if (control.value) {
+    if (control.value && control.parent) {
       const bankKey = control.parent.controls['bank'].value.key;
       switch (bankKey) {
         case SIGN_UP_CONFIG.BANK_KEYS.BANK_OF_CHINA:

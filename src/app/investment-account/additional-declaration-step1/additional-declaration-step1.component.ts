@@ -64,6 +64,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
     this.observeCountryChange();
     this.observeOccupationChange();
+    this.investmentAccountService.loadDDCRoadmap();
   }
 
   buildForm() {

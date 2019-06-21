@@ -42,17 +42,6 @@ app-add-update-bank{
     color: $white-color;
     margin-bottom: 18px;
   }
-  .postal-code-control {
-    display: flex;
-    div.control {
-      display: flex;
-      flex: 3;
-    }
-    div.button {
-      display: flex;
-      flex: 2;
-    }
-  }
   .inline-error{
     .btn{
       &.btn-secondary{

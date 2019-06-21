@@ -3,20 +3,15 @@
     <div class="welcome-user">
       <div class="flex-row">
         <div class="flex-col-12" *ngIf="userProfileInfo">
-          <div class="container-fluid widget-block">
-            <div class="overlap-grass">
-              <div class="user-profile-bg flex-col-8">
-                <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
-                <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                <div (click)="goToEditProfile()">
-                  <span class="user-edit-img">
-                    <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
-                  </span>
-                  <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
-                </div>
-              </div>
-              <div class="grass_bg">
-                <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
+          <div class="widget-block">
+            <div class="user-profile-bg col-12">
+              <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
+              <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
+              <div (click)="goToEditProfile()">
+                <span class="user-edit-img">
+                  <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
+                </span>
+                <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
               </div>
             </div>
           </div>

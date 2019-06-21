@@ -1,10 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
@@ -14,8 +13,6 @@ import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
-
-const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
 
 @Injectable({
   providedIn: 'root'
@@ -436,9 +433,7 @@ export class ApiService {
       );
   }
 
-
   getInvestmentOverview() {
-    //  const url = '../assets/mock-data/investment-overview.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -807,14 +802,6 @@ export class ApiService {
       );
   }
 
-  // Get User's monthly investment Information
-  getMonthlyInvestmentInfo() {
-    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
   // send bundle enquiry
   sendBundleEnquiry(payload) {
     return this.http.post(apiConstants.endpoint.registerBundleEnquiry + '?handleError=true', payload)
@@ -823,4 +810,11 @@ export class ApiService {
       );
   }
 
+  // Get User's monthly investment Information
+  getMonthlyInvestmentInfo() {
+    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

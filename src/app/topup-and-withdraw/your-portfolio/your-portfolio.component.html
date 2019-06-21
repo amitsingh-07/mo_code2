@@ -1,13 +1,15 @@
-<app-investment-title-bar></app-investment-title-bar>
-<div class="container-fluid max-width--1024 invest-web-pt-90">
-<div class="flex-col-12" *ngIf="portfolio">
-  <div class="portfolio-bg">
-    <img id="edit_profile_bg_img" id="your_portfolio_backgroung_img" class="background_img" src="assets/images/investment_header.svg"
-    />
+<div class="portfolio-bg" *ngIf="portfolio">
+    <div class="container-fluid max-width--1024">
+      <img id="investment_overview_background_img" class="background_img web_bg" src="assets/images/investment_header_web.svg" />
+      <img id="investment_overview_background_img" class="background_img mobile_bg" src="assets/images/investment_header_mobile.svg" />
+    </div>
     <div class="flex-row user_content flex-col-12">
-      <div class="flex-col-8 user_portfolio" id="youe_portfolio_summary">
-        <div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
-        <div id="your_portfolio_name">{{portfolioValues.riskProfile.type}}</div>
+      <div class="flex-col-8 " id="your_portfolio_summary">
+        <div class="user_portfolio_title">Your Portfolio</div>
+        <div class="user_portfolio">
+          <span>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</span>
+          <span id="your_portfolio_name">{{portfolioValues.riskProfile.type}}</span>
+        </div>
       </div>
       <div class="flex-col-4">
         <div class="dropdown-control ">
@@ -22,6 +24,8 @@
       </div>
     </div>
   </div>
+<div class="container-fluid max-width--1024">
+<div class="flex-col-12" *ngIf="portfolio">
   <div class="container-fluid">
     <!--  ALREADY FUNDED PORTFOLIO-->
     <div class="row">
