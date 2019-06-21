@@ -92,7 +92,8 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT": [{
+    "SORT": [
+      {
         "displayText": "Highest Ranking",
         "value": "premium.ranking"
       },
@@ -317,7 +318,7 @@
       "COMPREHENSIVE_PLANNING_CALCULATE_REPORT": "We are preparing your report!",
       "COMPREHENSIVE_PLANNING_ESTIMATE": "Estimated time: 1-2 working day(s)",
       "COMPREHENSIVE_PLANNING_VIEW_REPORT": "View Report",
-      "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated 28 Jan' 18",
+      "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated LAST_UPDATED_DATE",
       "COMPREHENSIVE_PLANNING_NEXT_STEP": "Next step:",
       "COMPREHENSIVE_PLANNING_NEXT_STEP_DESC": "You can set up a face-to-face consultation with our client advisers to go through your report as well as implement a customised plan to achieve your financial goals.",
       "COMPREHENSIVE_PLANNING_ADVISOR": "I want my adviser to contact me",

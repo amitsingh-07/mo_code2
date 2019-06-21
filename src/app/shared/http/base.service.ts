@@ -107,6 +107,27 @@ export class BaseService {
       });
   }
 
+  postForBlobParam(url, payload: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+
+    // // return this.httpClient
+    //   .get(`${this.apiBaseUrl}/${url}${param}`, { responseType: 'blob' })
+    //   .finally(() => {
+    //     this.helperService.hideLoader();
+    //   });
+    return this.httpClient
+      .post(`${this.apiBaseUrl}/${url}${param}`, payload, { observe: 'response', responseType: 'blob' })
+      .finally(() => {
+        this.helperService.hideLoader();
+      });
+  }
+
   delete(url, postBody: any, showLoader?: boolean, showError?: boolean) {
     if (showLoader) {
       this.helperService.showLoader();

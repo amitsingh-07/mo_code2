@@ -859,7 +859,8 @@ export class ApiService {
    * @memberof ApiService
    */
   downloadComprehensiveReport(payload): Observable<any> {
-    return this.http.postForBlob(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
+    console.log(payload);
+    return this.http.postForBlobParam(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

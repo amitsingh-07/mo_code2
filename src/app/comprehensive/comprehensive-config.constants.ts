@@ -144,5 +144,6 @@ export const COMPREHENSIVE_CONST = {
         NEW: 'new',
         SUBMITTED: 'submitted',
         READY: 'ready'
-    }
+    },
+    REPORT_PDF_NAME: 'MoneyOwl Comprehensive.pdf'
 };
