@@ -253,7 +253,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
-      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+      this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
       this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
