@@ -10,7 +10,7 @@ import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { FileUtil } from 'src/app/shared/utils/file.util';
+import { FileUtil } from '../../shared/utils/file.util';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -61,8 +61,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
         this.userName = this.userDetails.firstName;
         this.advisorStatus = false;
-        const reportDateAPI = new Date();
-        this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+        //const reportDateAPI = new Date();
+        //this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
         this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
           && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
@@ -75,6 +75,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.generateReport();
 
         }
+
         this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
           && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
@@ -86,19 +87,19 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
-      this.comprehensiveService.setReportId(data.id);
-      const reportDateAPI = new Date(data.createdTs);
+      this.comprehensiveService.setReportId(data.objectList[0].id);
+      const reportDateAPI = new Date(data.objectList[0].createdTs);
       this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+
     });
   }
   downloadComprehensiveReport() {
-    const payload = { reportId: this.comprehensiveService.getReportId() }
+    const payload = { reportId: this.comprehensiveService.getReportId() };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
-      this.downloadfile.saveAs(data, "fileName")
+      this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
 
 

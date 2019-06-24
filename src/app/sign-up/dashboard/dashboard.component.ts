@@ -119,9 +119,9 @@ export class DashboardComponent implements OnInit {
         this.getDashboardList();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
 
     // Will Writing
     this.willWritingApiService.getWill().subscribe((data) => {
@@ -345,16 +345,16 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
- /*
-  * Method to get transfer details
-  */
+  /*
+   * Method to get transfer details
+   */
   getTransferDetails() {
     this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
       this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   /*

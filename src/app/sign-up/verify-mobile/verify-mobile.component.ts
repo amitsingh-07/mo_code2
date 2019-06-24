@@ -15,10 +15,10 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { WillWritingService } from './../../will-writing/will-writing.service';
-import { AppService } from 'src/app/app.service';
-import { appConstants } from 'src/app/app.constants';
+import { AppService } from './../../../app/app.service';
+import { appConstants } from './../../../app/app.constants';
 
 @Component({
   selector: 'app-verify-mobile',
