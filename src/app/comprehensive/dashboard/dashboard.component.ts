@@ -93,12 +93,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.comprehensiveService.setReportId(data.objectList[0].id);
       const reportDateAPI = new Date(data.objectList[0].createdTs);
       this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+
     });
   }
   downloadComprehensiveReport() {
     const payload = { reportId: this.comprehensiveService.getReportId() }; //this.comprehensiveService.getReportId()
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
-      this.downloadfile.saveAs(data, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
+      this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
 
 
