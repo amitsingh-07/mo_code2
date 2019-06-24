@@ -97,7 +97,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     });
   }
   downloadComprehensiveReport() {
-    const payload = { reportId: this.comprehensiveService.getReportId() }; //this.comprehensiveService.getReportId()
+    const payload = { reportId: this.comprehensiveService.getReportId() };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });

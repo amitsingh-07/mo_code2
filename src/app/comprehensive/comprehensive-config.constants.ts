@@ -145,5 +145,5 @@ export const COMPREHENSIVE_CONST = {
         SUBMITTED: 'submitted',
         READY: 'ready'
     },
-    REPORT_PDF_NAME: 'MoneyOwl Comprehensive.pdf'
+    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf'
 };
