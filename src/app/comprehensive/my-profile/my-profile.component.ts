@@ -43,12 +43,12 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     nationalityAlert = false;
     pageId: string;
     genderDisabled = false;
-    myProfileShow = true;
+    myProfileShow = false;
     DOBAlert = false;
     viewMode: boolean;
     menuClickSubscription: Subscription;
     subscription: Subscription;
-    disableDOB: boolean;
+    disableDOB = false;
     public showToolTip = false;
 
     public onCloseClick(): void {
@@ -94,17 +94,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             });
         });
 
-        this.buildProfileForm();
         this.viewMode = this.comprehensiveService.getViewableMode();
     }
 
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.userDetails = this.comprehensiveService.getMyProfile();
         this.loaderService.showLoader({ title: 'Fetching Data' });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+
             this.loaderService.hideLoader();
+
             this.checkRedirect();
         });
 
@@ -160,6 +160,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.disableDOB = !this.userDetails.dobUpdateable;
         this.setUserProfileData();
         this.buildProfileForm();
+        this.myProfileShow = true;
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);
         this.progressService.refresh();
     }

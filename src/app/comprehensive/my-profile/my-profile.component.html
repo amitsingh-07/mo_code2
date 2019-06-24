@@ -28,7 +28,7 @@
     [innerHTML]="'CMP.GETTING_STARTED.DESC'|translate"></div>
   <!--Page desc /-->
   <!--Page form-->
-  <form [hidden]="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
+  <form *ngIf="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
     <!--Form group-->
     <div class="form-group-with-bg">
       <!--Form Content-->

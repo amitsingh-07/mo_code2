@@ -101,19 +101,18 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.sliderValue = this.comprehensiveService.getRetirementPlan() ?
       parseInt(this.comprehensiveService.getRetirementPlan().retirementAge) : 45;
+    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
+      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+    }
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
     const containerRef = this.eleRef.nativeElement.querySelector('.noUi-value:last-child');
     this.renderer.setProperty(containerRef, 'innerHTML', '62 or later');
     this.renderer.addClass(containerRef, 'lastSliderPips');
-    /*if (this.sliderValue > 61) {
-      this.sliderValue = 62;
-      this.ciMultiplierSlider.writeValue(65);
-    } else */
     if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      const sliderValue = Math.ceil(this.userAge / 5) * 5;
-      this.ciMultiplierSlider.writeValue(sliderValue);
+      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
