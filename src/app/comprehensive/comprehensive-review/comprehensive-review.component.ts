@@ -60,7 +60,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.initiateReport();
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
@@ -101,9 +100,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
       this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
         this.comprehensiveService.setReportId(reportDataStatus.reportId);
-
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       });
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+
     });
   }
 }
