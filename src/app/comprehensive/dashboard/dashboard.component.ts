@@ -10,7 +10,7 @@ import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { FileUtil } from 'src/app/shared/utils/file.util';
+import { FileUtil } from '../../shared/utils/file.util';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
