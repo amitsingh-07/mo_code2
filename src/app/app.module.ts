@@ -105,6 +105,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 // tslint:disable-next-line:max-line-length
@@ -152,7 +153,8 @@ export function tokenGetterFn() {
     TransactionModalComponent,
     FAQComponent,
     FundDetailsComponent,
-    UnsupportedDeviceModalComponent
+    UnsupportedDeviceModalComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

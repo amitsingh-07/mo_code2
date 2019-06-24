@@ -6,10 +6,13 @@ app-bundle-enquiry{
         background-color: #f2f6f7;
         margin: 0 auto;
         padding: 66px 0;
-        .col-lg-5{
+        .col-lg-7{
             &.margin-auto{
                 @include allmobiles{
                     padding: 0;
+                }
+                @include desktop{
+                    max-width: 560px;
                 }
             }
             

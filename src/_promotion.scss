@@ -260,6 +260,9 @@
                     border: 3px solid $white-color;
                     background-color: $teal-color !important;
                     font-family: $muli-extra-bold;
+                    &.text-bold{
+                        font-family:$muli-bold;
+                    }
                 }
                 &.occupational-data{
                     background-color: #a7cfcf;
