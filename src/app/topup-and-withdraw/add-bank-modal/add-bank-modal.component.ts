@@ -90,8 +90,8 @@ export class AddBankModalComponent implements OnInit {
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
         this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
-      // #this.invPersonalInfoForm.controls.markAsDirty();
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
+     
+        const el = document.querySelector('#' + id);
         this.setCaratTo(el, 100, dependentNameList);
       }
     }

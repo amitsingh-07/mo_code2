@@ -318,7 +318,7 @@ app-add-update-bank{
   }
    [placeholder]:empty::before {
   content: attr(placeholder);
- // color: $app-backgrnd-color; 
+
    color: $text-color-secondary
 }
 

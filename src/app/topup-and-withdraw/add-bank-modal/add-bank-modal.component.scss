@@ -73,7 +73,7 @@ app-add-bank-modal {
   }
    [placeholder]:empty::before {
   content: attr(placeholder);
- // color: $app-backgrnd-color; 
+
    color: $text-color-secondary
 }
 

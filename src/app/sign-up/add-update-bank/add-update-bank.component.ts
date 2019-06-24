@@ -214,11 +214,8 @@ export class AddUpdateBankComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
-
-// ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
-  
-setAccountHolderName(accountHolderName: any) {
+// #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
+ setAccountHolderName(accountHolderName: any) {
     if (accountHolderName !== undefined) {
       accountHolderName = accountHolderName.replace(/\n/g, '');
       this.bankForm.controls.accountHolderName.setValue(accountHolderName);
@@ -239,7 +236,7 @@ setAccountHolderName(accountHolderName: any) {
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
         this.bankForm.controls.accountHolderName.setValue(dependentNameList);
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
+        const el = document.querySelector('#' + id);
         this.setCaratTo(el, 100, dependentNameList);
       }
     }
