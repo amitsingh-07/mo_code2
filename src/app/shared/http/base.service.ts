@@ -115,12 +115,6 @@ export class BaseService {
     if (showError) {
       param = '?alert=' + showError;
     }
-
-    // // return this.httpClient
-    //   .get(`${this.apiBaseUrl}/${url}${param}`, { responseType: 'blob' })
-    //   .finally(() => {
-    //     this.helperService.hideLoader();
-    //   });
     return this.httpClient
       .post(`${this.apiBaseUrl}/${url}${param}`, payload, { observe: 'response', responseType: 'blob' })
       .finally(() => {
