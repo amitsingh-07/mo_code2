@@ -32,11 +32,11 @@
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center" width="30%">Package Options</td>
-          <td class="cell--header text--center" width="15%">Option 1</td>
-          <td class="cell--header text--center" width="15%">Option 2</td>
-          <td class="cell--header text--center" width="15%">Option 1</td>
-          <td class="cell--header text--center" width="15%">Option 2</td>
+          <td class="cell--header text--center text-bold" width="30%">Package Options</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 1</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 2</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 1</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 2</td>
         </tr>
         <tr>
           <td class="text--center">Plans</td>
@@ -109,11 +109,11 @@
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center" width="30%">Gender</td>
-          <td class="cell--header text--center" width="15%">Boy</td>
-          <td class="cell--header text--center" width="15%">Girl</td>
-          <td class="cell--header text--center" width="15%">Boy</td>
-          <td class="cell--header text--center" width="15%">Girl</td>
+          <td class="cell--header text--center text-bold" width="30%">Gender</td>
+          <td class="cell--header text--center text-bold" width="15%">Boy</td>
+          <td class="cell--header text--center text-bold" width="15%">Girl</td>
+          <td class="cell--header text--center text-bold" width="15%">Boy</td>
+          <td class="cell--header text--center text-bold" width="15%">Girl</td>
         </tr>
         <tr>
           <td class="text--center">Total Projected Payout</td>
