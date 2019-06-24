@@ -1814,7 +1814,7 @@ a.link-white {
       &--center {
         @extend .text-center;
         padding-bottom: 20px;
-        font-size: 17px;
+        font-size: 16px;
     }
     .help-icon {
       background: url("./assets/images/comprehensive/tool-tip-white.svg") !important;
@@ -1882,6 +1882,7 @@ a.link-white {
         }
         .road-map__step-title{
           font-size:18px;
+          font-family: $muli-bold;
         }
         span {
           background-image: url(/assets/images/comprehensive/createAccount-icon.svg);
