@@ -17,6 +17,6 @@ app-existing-coverage-modal {
     max-height: 52px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis !important;
   }
 }
