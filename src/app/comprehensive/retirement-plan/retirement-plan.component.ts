@@ -148,18 +148,14 @@ export class RetirementPlanComponent implements OnInit, AfterViewInit, OnDestroy
       this.showSummaryModal();
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (this.retirementValueChanges || cmpSummary.comprehensiveRetirementPlanning === null) {
-        const retirementData = {
-          enquiryId: this.comprehensiveService.getEnquiryId(),
-          retirementAge: this.sliderValue.toString()
-        };
-        this.comprehensiveApiService.saveRetirementPlanning(retirementData).subscribe((data: any) => {
-          this.comprehensiveService.setRetirementPlan(retirementData);
-          this.showSummaryModal();
-        });
-      } else {
+      const retirementData = {
+        enquiryId: this.comprehensiveService.getEnquiryId(),
+        retirementAge: this.sliderValue.toString()
+      };
+      this.comprehensiveApiService.saveRetirementPlanning(retirementData).subscribe((data: any) => {
+        this.comprehensiveService.setRetirementPlan(retirementData);
         this.showSummaryModal();
-      }
+      });
     }
   }
   showSummaryModal() {
