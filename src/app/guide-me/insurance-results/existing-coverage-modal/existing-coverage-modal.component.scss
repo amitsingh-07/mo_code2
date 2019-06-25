@@ -1,6 +1,13 @@
 @import '../../../../mixins';
 
 app-existing-coverage-modal {
+  .modal-header{
+    &.pt100{
+      @include allmobiles{
+        padding-top: 100px;
+      }
+    }
+  }
   .form-group {
     @include allmobiles {
       padding-bottom: 30px;
