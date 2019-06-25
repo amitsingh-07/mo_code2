@@ -123,6 +123,7 @@
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "IDENTITY_VERIFICATION": "For identity verifications, upload the required documents.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
     "NRIC": "NRIC",
     "PASSPORT": "Passport",

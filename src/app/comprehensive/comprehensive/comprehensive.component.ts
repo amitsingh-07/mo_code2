@@ -12,6 +12,7 @@ import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
@@ -22,7 +23,6 @@ import {
   LoginCreateAccountModelComponent
 } from './../../shared/modal/login-create-account-model/login-create-account-model.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-comprehensive',
@@ -175,4 +175,3 @@ export class ComprehensiveComponent implements OnInit {
     this.modalRef.componentInstance.title = this.loginModalTitle;
   }
 }
-

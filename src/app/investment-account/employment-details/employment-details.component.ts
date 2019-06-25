@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -86,6 +86,7 @@ export class EmploymentDetailsComponent implements OnInit {
     if (this.employementDetailsForm.get('employeaddress')) {
       this.observeEmpAddressCountryChange();
     }
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {
@@ -164,17 +165,17 @@ export class EmploymentDetailsComponent implements OnInit {
     this.investmentAccountService.getIndustryList().subscribe((data) => {
       this.industryList = data.objectList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   getOccupationList() {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
@@ -183,18 +184,18 @@ export class EmploymentDetailsComponent implements OnInit {
         data.objectList.employmentStatus
       );
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   setEmpDropDownValue(key, value) {
-    setTimeout( () => {
+    setTimeout(() => {
       this.employementDetailsForm.controls[key].setValue(value);
     }, 100);
   }
 
   setDropDownValue(key, value, nestedKey) {
-    setTimeout( () => {
+    setTimeout(() => {
       this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
     }, 100);
   }
@@ -336,7 +337,7 @@ export class EmploymentDetailsComponent implements OnInit {
       empAddressFormGroup.removeControl('empPostalCode');
       empAddressFormGroup.removeControl('empFloor');
       empAddressFormGroup.removeControl('empUnitNo');
-     }
+    }
   }
 
   observeEmpAddressCountryChange() {
@@ -423,9 +424,9 @@ export class EmploymentDetailsComponent implements OnInit {
               this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
             }
           },
-          (err) => {
-            this.investmentAccountService.showGenericErrorModal();
-          });
+            (err) => {
+              this.investmentAccountService.showGenericErrorModal();
+            });
       } else {
         this.investmentAccountService.setEmployeAddressFormData(form.getRawValue());
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
@@ -435,5 +436,53 @@ export class EmploymentDetailsComponent implements OnInit {
 
   isDisabled(fieldName) {
     return this.investmentAccountService.isDisabled(fieldName);
+  }
+
+
+  setCompnayName(companyName: any) {
+    if (companyName !== undefined) {
+      companyName = companyName.replace(/\n/g, '');
+      this.employementDetailsForm.controls.companyName.setValue(companyName);
+      return companyName;
+    }
+  }
+
+
+
+  onKeyPressEvent(event: any, dependentName: any) {
+    return (event.which !== 13);
+  }
+
+
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    if (id !== '') {
+      const arr = id;
+      const dependentName = event.target.innerText;
+      if (dependentName.length >= 100) {
+        const dependentNameList = dependentName.substring(0, 100);
+       // #event.target.innerText = dependentNameList;
+        this.employementDetailsForm.controls.companyName.setValue(dependentName);
+        const el = document.querySelector('#' + id); // #document.getElementById(id);
+        this.setCaratTo(el, 100, dependentNameList);
+      }
+    }
+  }
+
+
+  setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }

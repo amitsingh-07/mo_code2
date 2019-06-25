@@ -1,3 +1,4 @@
 <div class="step-container">
   <div class="step-item" *ngFor="let item of arrayOne(count); let i = index;" [ngClass]="{ 'active' : (mode == 0 && i == activeStepIndex) || (mode == 1 && i <= activeStepIndex) }"></div>
+
 </div>

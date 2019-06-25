@@ -2,6 +2,10 @@
 @import '../../../_mixins.scss';
 
 app-post-login {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
   .container-fluid {
     padding-top: 50px !important;
     @include allmobiles {
@@ -27,7 +31,7 @@ app-post-login {
     height: 57px;
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
+   
     letter-spacing: -0.2px;
     text-align: center;
     color: $teal-color;
@@ -35,8 +39,7 @@ app-post-login {
 
   .no-login-but {
     font-size: 18px;
-    font-family: $muli;
-    font-weight: bold;
+    font-family: $muli-bold;
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
@@ -49,7 +52,6 @@ app-post-login {
   .prelogin-wrapper__title {
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: bold;
     width: 327px;
     letter-spacing: -0.3px;
     color: $white-color;
@@ -62,21 +64,26 @@ app-post-login {
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
+    padding-left: 30px;
     @include allmobiles{
       padding-bottom: 0;
+      padding-left: 0;
     }
-  }
   .signup-wrapper__header-icon {
     @include allmobiles {
-      width: 99px !important;
-      height: 100px !important;
-    }
-
-    img {
+      width: 282px;
+      height: 190px;
+      max-width: 282px;
+      max-height: 190px;
+      }
+     width: 282px;
+     height: 190px;
+     img {
       width: 100%;
       height: auto;
     }
   }
+}
 
   .autofill-link {
     &.postlogin {
@@ -93,11 +100,9 @@ app-post-login {
 
       .autofill-text {
         font-family: $muli-bold;
-        font-size: 18px;
-        font-weight: bold;
         color: $inline-error-border-color;
         font-size: 21px;
-        padding: 0;
+        padding-bottom: 0;
       }
 
       .autofill-logo {
@@ -109,7 +114,6 @@ app-post-login {
         display: flex;
         font-family: $muli-semi-bold;
         font-size: 14px;
-        font-weight: 600;
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
@@ -132,7 +136,6 @@ app-post-login {
       .widget-title {
         font-family: $muli-bold;
         font-size: 21px;
-        font-weight: bold;
         letter-spacing: -0.2px;
         color: $post-login-widget-title;
         background-color: $white-color;

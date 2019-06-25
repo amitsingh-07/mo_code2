@@ -1,3 +1,5 @@
+import { ERoadmapStatus } from 'src/app/shared/components/roadmap/roadmap.interface';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -72,6 +74,7 @@ export class PersonalDeclarationComponent implements OnInit {
         Validators.required
       )
     });
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -140,5 +143,8 @@ export class PersonalDeclarationComponent implements OnInit {
     ) {
       return true;
     }
+  }
+
+  changeBoOption(value) {
   }
 }

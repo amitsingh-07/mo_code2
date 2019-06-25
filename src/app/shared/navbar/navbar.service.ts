@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ElementRef, Injectable } from '@angular/core';
+import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
@@ -91,7 +91,6 @@ export class NavbarService {
   }
 
   /* Visibility Functions */
-  // tslint:disable-next-line:no-identical-functions
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
     this.setNavbarMode(2);
@@ -146,7 +145,7 @@ export class NavbarService {
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
-    this.setInvestPageTitle(title, superTitle ? superTitle : ''); //Investment - Desktop/Tablet page tile
+    this.setInvestPageTitle(title, superTitle ? superTitle : '');
     this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);
@@ -215,5 +214,3 @@ export class NavbarService {
     this.$menuItemClick.next('');
   }
 }
-
-

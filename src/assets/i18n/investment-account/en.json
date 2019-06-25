@@ -5,7 +5,9 @@
       "CONTINUE": "Continue",
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
-      "SAVE_AND_CONTINUE": "Save and Continue"
+      "SAVE_AND_CONTINUE": "Save and Continue",
+      "PROCEED": "Proceed",
+      "OR": "OR"
     }
   },
   "POSTLOGIN": {
@@ -17,7 +19,9 @@
     "APPLY_WITHOUT_MYINFO": "Apply Without MyInfo",
     "FILL_MANUALLY": "Fill in your information manually. Takes at least 1 working day to get your account approved.",
     "MANUALLY": "Fill Form Manually",
-    "ESTIMATE_TIME": "Estimate about 10 mins"
+    "ESTIMATE_TIME": "Estimate about 10 mins",
+    "INVESTMENT_OPENING": "Investment Account Opening",
+    "START_INVESTING": "Next, set up your investment account to start investing!"
   },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
@@ -118,6 +122,8 @@
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "CONTINUE": "Continue",
+    "BEFORE_WE_PROCEED": "Before We Proceed...",
+    "WHATS_YOUR_NATIONALITY": "What's your nationality?",
     "blockedNationality": {
       "blockedNationalityTitle": "Oops, Unable To Proceed",
       "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
@@ -158,6 +164,7 @@
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "IDENTITY_VERIFICATION": "For identity verifications, upload the required documents.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
     "PROOF_OF_IDENTITY_BO": "Proof Of Beneficial Owner's Identity",
     "NRIC": "NRIC",
@@ -173,10 +180,10 @@
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
-    "SPECIFICATION": "Specifications for documents to be uploaded:",
+    "SPECIFICATION": "Please ensure each document upload:",
     "FILE_LESS-THAN": "File less than",
     "TEN_MB": "10MB",
-    "FILE_TYPE": "File types:",
+    "FILE_TYPE": "Allowed file types:",
     "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
     "VERIFICATION_DOC": "Verification Document",
     "MODAL": {
@@ -290,6 +297,7 @@
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Additional Declaration",
+    "PEP_DETAILS": "PEP Details",
     "YES": "Yes",
     "NO": "No",
     "PEP_FULL_NAME": "Full Name",
@@ -298,7 +306,8 @@
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please complete this page only if you or any of your family member is a Politically Exposed Person (\"PEP\")",
     "PEP_MORE_DETAILS": "Just a Few More Questions",
-    "YOUR_OFFICE_ADDRESS": "PEP’s office address:"
+    "YOUR_OFFICE_ADDRESS": "PEP’s office address:",
+    "INVESTMENTS": "Investments"
   },
   "ACKNOWLEDGEMENT": {
     "TITLE": "IMPORTANT NOTICE",
@@ -319,13 +328,13 @@
       "TIME": "Estimate about 5 mins"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Autofill Forms Via MyInfo",
-      "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
-      "BTN-TEXT": "Yes, Proceed"
+      "TITLE": "Login to MyInfo",
+      "DESCRIPTION": "By signing in to MyInfo, the<strong> following information that you have previously entered will be overwritten</strong>.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div><br/>Would you like to proceed?",
+      "BTN-TEXT": "Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Retrieve Details via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.",
+      "TITLE": "Login to MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div>",
       "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
@@ -367,7 +376,7 @@
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
     "BACK": "Proceed",
-    "SUCCESS": "Investment Account Setup Successful"
+    "SUCCESS": "Investment Account <br>Setup Successful"
   },
   "ACCOUNT_CREATION_STATUS": {
     "ADDITIONAL_DECLARATION_SUBMITTED": {

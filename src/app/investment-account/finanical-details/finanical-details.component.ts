@@ -68,6 +68,7 @@ export class FinanicalDetailsComponent implements OnInit {
         Validators.required
       ]
     });
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

@@ -128,7 +128,7 @@ export class AuthenticationService {
     }
 
     const decodedInfo = this.jwtHelper.decodeToken(token);
-    const isLoggedInToken = decodedInfo.roles.split(',').includes('ROLE_SIGNED_USER');
+    const isLoggedInToken = decodedInfo.roles.split(',').indexOf('ROLE_SIGNED_USER') >= 0;
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     return !isTokenExpired && isLoggedInToken;
   }

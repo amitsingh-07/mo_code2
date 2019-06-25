@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -94,6 +94,7 @@ export class PersonalInfoComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {
@@ -359,8 +360,8 @@ export class PersonalInfoComponent implements OnInit {
     }, 100);
   }
 
-  isDisabled() {
-    return this.investmentAccountService.isDisabled('birthCountry');
+  isDisabled(fieldName) {
+    return this.investmentAccountService.isDisabled(fieldName);
   }
 
   validatePersonalInfoChange(data) {
@@ -403,5 +404,45 @@ export class PersonalInfoComponent implements OnInit {
         ref.close();
       }
     });
+  }
+  setFullName(fullName: any) {
+    if (fullName !== undefined) {
+      fullName = fullName.replace(/\n/g, '');
+      this.invPersonalInfoForm.controls.fullName.setValue(fullName);
+      return fullName;
+    }
+  }
+
+  onKeyPressEvent(event: any, dependentName: any) {
+    return (event.which !== 13);
+  }
+
+  @HostListener('input', ['$event'])
+  onChange(event) {
+    const id = event.target.id;
+    if (id !== '') {
+      const arr = id;
+      const dependentName = event.target.innerText;
+      if (dependentName.length >= 100) {
+        const dependentNameList = dependentName.substring(0, 100);
+        this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
+        const el = document.querySelector('#' + id);
+        this.setCaratTo(el, 100, dependentNameList);
+      }
+    }
+  }
+  setCaratTo(contentEditableElement, position, dependentName) {
+    contentEditableElement.innerText = dependentName;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }

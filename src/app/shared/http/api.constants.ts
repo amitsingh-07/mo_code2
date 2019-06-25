@@ -9,7 +9,7 @@ const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const INSURANCE_API_BASE_URL = 'insurance/insurance-needs-microservice/api/customer/comprehensive/';
-const COMPREHENSIVE_REPORT_API_BASE_URL = "comp/comprehensive-microservice/api/"
+const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
@@ -42,6 +42,7 @@ export let apiConstants = {
         resendEmailVerification: 'account/account-microservice/api/resendEmailVerification',
         editMobileNumber: 'account/account-microservice/api/update-mobileno',
         sendWelcomeMail: 'account/account-microservice/api/sendWelcomeMail',
+        registerBundleEnquiry: 'account/account-microservice/api/registerBundleEnquiry',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -52,15 +53,15 @@ export let apiConstants = {
         },
         aboutus: {
             getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
-            sendContactUs: ACCOUNT_API_BASE_URL + 'contactus'
+            sendContactUs: ACCOUNT_API_BASE_URL + '/api/contactus'
         },
         subscription: {
             base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
         },
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
-            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'RiskAssessment',
-            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'RiskAssessment',
+            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
+            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {
@@ -89,7 +90,8 @@ export let apiConstants = {
             getUserBankList: 'account/account-microservice/api/customer/banks',
             addNewBank: INVESTMENT_API_BASE_URL + '/api/customer/bank?handleError=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
-            getStatement: INVESTMENT_API_BASE_URL + '/getStatements'
+            getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
+            monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent',
@@ -128,7 +130,6 @@ export let apiConstants = {
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
-
         }
     }
 };
