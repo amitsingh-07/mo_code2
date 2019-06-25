@@ -34,6 +34,7 @@ export class YourPortfolioComponent implements OnInit {
   yearlyReturns: any;
   totalReturnsPercentage: any;
   userProfileInfo: any;
+  canTopup = false;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -74,6 +75,10 @@ export class YourPortfolioComponent implements OnInit {
       : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
     this.getTransferDetails();
+    // CAN TOPUP ?
+    if (this.userProfileInfo.investementDetails.portfolios[0].access.showTopup) {
+      this.canTopup = true;
+    }
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;

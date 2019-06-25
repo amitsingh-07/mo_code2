@@ -40,6 +40,8 @@ export class WithdrawalTypeComponent implements OnInit {
   isRedeemAll;
   translateParams;
   isRequestSubmitted = false;
+  canWithdrawPortfolio = false;
+  userProfileInfo;
 
   constructor(
     public readonly translate: TranslateService,
@@ -71,6 +73,7 @@ export class WithdrawalTypeComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
@@ -78,6 +81,9 @@ export class WithdrawalTypeComponent implements OnInit {
       MIN_WITHDRAW_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT
     };
+    if (this.userProfileInfo.investementDetails.portfolios[0].access.showWithdraw) {
+        this.canWithdrawPortfolio = true;
+    }
     this.buildForm();
   }
 

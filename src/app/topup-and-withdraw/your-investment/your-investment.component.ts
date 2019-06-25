@@ -44,6 +44,7 @@ export class YourInvestmentComponent implements OnInit {
   riskProfileImg: any;
   portfolio;
   productCode;
+  canTopup = false;
 
   // transfer instructions
   bankDetails;
@@ -126,6 +127,10 @@ export class YourInvestmentComponent implements OnInit {
           this.topupAndWithDrawService.setUserCashBalance(
             this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           );
+        }
+        // CAN TOPUP ?
+        if (this.userProfileInfo.investementDetails.portfolios[0].access.showTopup) {
+            this.canTopup = true;
         }
       } else if (
         data.objectList &&
@@ -334,5 +339,9 @@ showPopUp() {
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
     });
+  }
+
+  getUserAccessFromPortfolioId(portfolioId) {
+    return this.topupAndWithDrawService.getUserAccessFromPortfolioId(portfolioId);
   }
 }

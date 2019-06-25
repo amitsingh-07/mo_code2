@@ -17,7 +17,7 @@
             <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
               More</button>
             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-              <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" (click)="selectOption(option)" id="your_portfolio-drpdown-option-{{i}}">{{option.name}}</button>
+              <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" [class.hide]="(option.value === 'TOPUP' && !canTopup)" (click)="selectOption(option)" id="your_portfolio-drpdown-option-{{i}}">{{option.name}}</button>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
     <!--  ALREADY FUNDED PORTFOLIO-->
     <div class="row">
       <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
-        <div class="flex-row">
+        <div class="flex-row" *ngIf="canTopup">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
             <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
           </button>

@@ -213,6 +213,10 @@ app-your-investment {
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
     border-bottom: 1px solid $teal-color !important;
+
+    &.hide {
+      display:none;
+    }
   }
 
   .dropdown-item:last-child {
@@ -351,7 +355,7 @@ app-your-investment {
     }
 
     &.your_portfolio_value_content {
-      padding: 0 0 10px !important;
+      padding: 0 0 0px !important;
       font-family: $muli-regular;
       font-size: 15px;
       line-height: 21px;
@@ -570,9 +574,7 @@ app-your-investment {
     color:#8a9ba9;
     flex-grow:1;
     display:flex;
-    margin-top:10px;
-    margin-left:-25px;
-    margin-right:-25px;
+    padding-bottom:10px;
     padding-left:25px;
     padding-right:25px;
     justify-content: space-evenly;
