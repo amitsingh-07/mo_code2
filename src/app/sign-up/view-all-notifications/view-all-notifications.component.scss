@@ -18,7 +18,7 @@
     @include desktop{
         padding: 0 75px;
     }
-    .title{
+    .web_title{
         color: $teal-color;
         padding: 28px 0 18px;
         text-align: center;
@@ -28,6 +28,22 @@
         font-weight: 600;
         letter-spacing: -0.25px;
         border-bottom: 1px solid #edeff1;
+        position: relative;
+        button{
+            position: absolute;
+            font-family: "Muli", sans-serif;
+            font-size: 14px;
+            border: 1px solid #00a7a7;
+            border-radius: 5px;
+            background-color: #ffffff;
+            cursor: pointer;
+            line-height: 1.1;
+            color: #8cd7d7;
+            padding: 8px 10px;
+            outline: none;
+            top: 31px;
+            right: 20px;
+        }
     }
 }
 .notifications-container {

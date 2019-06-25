@@ -2,7 +2,8 @@
 <!-- <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button> -->
 <div class="container-fluid max-width--1024">
   <div class="content">
-      <div class="title hidden-sm-md">Notifications</div>
+      <div class="web_title hidden-sm-md">{{pageTitle}}
+      <button (click)="clearNotifications()">{{ 'NOTIFICATIONS.CLEAR_ALL' | translate}}</button></div>
     <div>
       <div class="notifications-block">
         <!--Notifications container-->
