@@ -1736,4 +1736,29 @@ export class InvestmentAccountService {
   getUserPortfolioExistStatus() {
     return this.investmentAccountFormData.portfolioExist;
   }
+
+  // #FOR 100 CHARACTERS FIELD CURSOR POSITION
+ setCaratTo(contentEditableElement, position, dependentName) {
+  contentEditableElement.innerText = dependentName;
+  if (document.createRange) {
+    const range = document.createRange();
+    range.selectNodeContents(contentEditableElement);
+
+    range.setStart(contentEditableElement.firstChild, position);
+    range.setEnd(contentEditableElement.firstChild, position);
+
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+}
+
+// #SET THE CONTROL FOR 100 CHARACTERS FIELD
+setControlValue(value, controlName, formName) {
+  if (value !== undefined) {
+    value = value.replace(/\n/g, '');
+    formName.controls[controlName].setValue(value);
+    return value;
+  }
+}
 }

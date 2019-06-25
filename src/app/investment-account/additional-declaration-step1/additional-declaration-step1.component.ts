@@ -276,20 +276,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     });
   }
 
-  setPepName(pepFullName: any) {
-    if (pepFullName !== undefined) {
-      pepFullName = pepFullName.replace(/\n/g, '');
-      this.addInfoForm.controls.pepFullName.setValue(pepFullName);
-      return pepFullName;
+  setControlValue(value, controlName, formName) {
+    this.investmentAccountService.setControlValue(value, controlName, formName);
     }
-  }
-  setCompanyName(cName: any) {
-    if (cName !== undefined) {
-      cName = cName.replace(/\n/g, '');
-      this.addInfoForm.controls.cName.setValue(cName);
-      return cName;
-    }
-  }
 
   onKeyPressEvent(event: any, dependentName: any) {
     return (event.which !== 13);
@@ -304,29 +293,16 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       if (dependentName.length >= 100 && id === 'pepFullName') {
         const dependentNameList = dependentName.substring(0, 100);
         this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
       } else if (dependentName.length >= 100 && id === 'cName') {
         const dependentNameList = dependentName.substring(0, 100);
         this.addInfoForm.controls.cName.setValue(dependentNameList);
-        const el = document.querySelector('#' + id); // # document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
+        const el = document.querySelector('#' + id);
++       this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
       }
     }
   }
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-  }
+  
 
 }
