@@ -64,21 +64,20 @@ app-your-investment {
   }
 
   .user_content {
-    position: relative;
+    position: absolute;
     padding: 0 75px;
-    top: -180px;
+    top: 60px;
     max-width: 1024px;
     left: 0;
     right: 0;
     margin: 0 auto;
 
-    @include allmobiles {
-      top: -200px;
+    @include allmobiles{
+      top: 100px;
       padding: 0;
     }
-
-    @include phablet {
-      top: -200px;
+    @include phablet{
+      top: 85px;
     }
 
     .user_summary {
@@ -531,9 +530,11 @@ app-your-investment {
   .toast-msg-container {
     background-color: #fff;
     padding-bottom: 10px;
-    // top: 61px;
     position: relative;
-
+    @include allmobiles{
+      z-index: 1;
+      top: 61px;
+    }
     .container-fluid {
       padding: 0 !important;
     }
