@@ -435,8 +435,17 @@ app-your-investment {
     text-align: center;
     color: $white-color;
     width: 100%;
-    padding: 21px 0px;
+    padding: 18px 0px;
     border-width: 0px;
+    &.top_up_btn{
+        font-size: 18px;
+        background-color: $white-color;
+        color: $secondary-action-color;
+        &:active{
+          outline: none;
+          background-color: $white-color;
+        }
+      }
 
     &:active {
       outline: none;
@@ -455,7 +464,7 @@ app-your-investment {
     img {
       margin-left: 8px;
       margin-top: -1px;
-    }
+     }
   }
 
   .Remember {

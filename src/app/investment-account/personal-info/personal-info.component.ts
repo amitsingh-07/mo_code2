@@ -356,17 +356,12 @@ export class PersonalInfoComponent implements OnInit {
   isDisabled(fieldName) {
     return this.investmentAccountService.isDisabled(fieldName);
   }
-  setFullName(fullName: any) {
-    if (fullName !== undefined) {
-      fullName = fullName.replace(/\n/g, '');
-      this.invPersonalInfoForm.controls.fullName.setValue(fullName);
-      return fullName;
-    }
-  }
+  setControlValue(value, controlName, formName) {
+       this.investmentAccountService.setControlValue(value, controlName, formName);
+       }
 
   onKeyPressEvent(event: any, dependentName: any) {
-    //return (event.which !== 13 && dependentName.length < 100);
-    return (event.which !== 13);
+   return (event.which !== 13);
   }
 
 
@@ -378,27 +373,14 @@ export class PersonalInfoComponent implements OnInit {
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        // #event.target.innerText = dependentNameList;
+     
         this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
-        const el = document.querySelector("#" + id); // #document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService. setCaratTo(el, 100, dependentNameList);
       }
     }
   }
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-  }
+  
 
 
 }
