@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -145,4 +146,11 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [ProgressTrackerService, RoundPipe]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [ProgressTrackerService]
+    };
+  }
+}
