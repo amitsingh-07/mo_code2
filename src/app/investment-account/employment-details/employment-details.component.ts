@@ -439,13 +439,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
 
-  setCompnayName(companyName: any) {
-    if (companyName !== undefined) {
-      companyName = companyName.replace(/\n/g, '');
-      this.employementDetailsForm.controls.companyName.setValue(companyName);
-      return companyName;
-    }
-  }
+  setControlValue(value, controlName, formName) {
+      this.investmentAccountService.setControlValue(value, controlName, formName);
+      }
 
 
 
@@ -462,27 +458,13 @@ export class EmploymentDetailsComponent implements OnInit {
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-       // #event.target.innerText = dependentNameList;
-        this.employementDetailsForm.controls.companyName.setValue(dependentName);
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
+        this.employementDetailsForm.controls.companyName.setValue(dependentNameList);
+       const el = document.querySelector('#' + id);
+       this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
       }
     }
   }
 
 
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-  }
+  
 }

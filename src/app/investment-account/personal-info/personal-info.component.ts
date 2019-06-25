@@ -405,12 +405,8 @@ export class PersonalInfoComponent implements OnInit {
       }
     });
   }
-  setFullName(fullName: any) {
-    if (fullName !== undefined) {
-      fullName = fullName.replace(/\n/g, '');
-      this.invPersonalInfoForm.controls.fullName.setValue(fullName);
-      return fullName;
-    }
+  setControlValue(value, controlName, formName) {
+    this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
   onKeyPressEvent(event: any, dependentName: any) {
@@ -427,22 +423,8 @@ export class PersonalInfoComponent implements OnInit {
         const dependentNameList = dependentName.substring(0, 100);
         this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
         const el = document.querySelector('#' + id);
-        this.setCaratTo(el, 100, dependentNameList);
+        this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
       }
-    }
-  }
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
     }
   }
 }
