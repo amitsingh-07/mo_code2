@@ -30,8 +30,7 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK":"Bank",
-    "TRANSFER":"Transfer",
+    "BANK_TRANSFER":"Bank Transfer",    
     "DESC":"Please transfer the following amount using your preferred payment method details:",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {

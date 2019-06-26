@@ -21,23 +21,31 @@ app-your-portfolio {
       padding-top: 60px;
       width: 100%;
     }
-  }
-  .background_img {
-    float: right;
-    @include allmobiles{
-      object-fit: contain;
-      position: relative;
-      width: 100%;
-    }
-    &.web_bg{
-      @include allmobiles{
-        display: none;
-      }
-    }
-    &.mobile_bg{
-      display: none;
-      @include allmobiles{
-        display: block;
+    .container-fluid{
+      padding: 0;
+      top: 0;
+      .background_img {
+        float: right;
+        @include allmobiles {
+          object-fit: contain;
+          position: relative;
+          width: 100%;
+        }
+        &.web_bg {
+          position: relative;
+          @include allmobiles {
+            display: none;
+          }
+        }
+        &.mobile_bg {
+          display: none;
+          @include allmobiles {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+          }
+        }
       }
     }
   }
@@ -275,15 +283,16 @@ app-your-portfolio {
     border: 1px solid $fixed-btn-brdr-color;
     background-color: $white-color;
     font-family: $muli-bold;
-    font-size: 21px;
-    line-height: normal;
+    font-size: 18px;
+    line-height: 23px;
     letter-spacing: -0.3px;
     text-align: center;
     width: 100%;
-    padding: 21px 0px;
+    padding: 17px 0px 16px;
     color: $secondary-action-color;
     display: flex;
     justify-content: center;
+    align-items: center;
     &:active {
       outline: none;
       background-color: $white-color;
@@ -295,8 +304,14 @@ app-your-portfolio {
       outline: none;
       background-color: $white-color;
     }
-    img {
+    .topup-btn-img {
+      width:25px;
+      height: 25px;
       margin-right: 10px;
+      img{
+        width:25px;
+        height: 25px;
+      }
     }
   }
   .asset_allocation_btn {
