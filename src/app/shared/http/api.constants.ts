@@ -53,7 +53,7 @@ export let apiConstants = {
         },
         aboutus: {
             getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
-            sendContactUs: ACCOUNT_API_BASE_URL + '/api/contactus'
+            sendContactUs: ACCOUNT_API_BASE_URL + 'contactus'
         },
         subscription: {
             base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
@@ -76,7 +76,7 @@ export let apiConstants = {
             saveNationality: 'invest/investment-microservice/customer/setNationality',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount?handleError=true',
-            verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',
+            verifyAML: ACCOUNT_API_BASE_URL + 'verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy?handleError=true',
             deletePortfolio: INVESTMENT_API_BASE_URL + 'customer/portfolios',
