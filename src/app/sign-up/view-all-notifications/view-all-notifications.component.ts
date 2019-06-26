@@ -54,6 +54,9 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       }
     });
   }
+  clearNotifications() {
+    this.navbarService.clearNotification();
+  }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

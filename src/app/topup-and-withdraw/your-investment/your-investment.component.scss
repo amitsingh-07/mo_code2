@@ -26,6 +26,33 @@ app-your-investment {
       width: 100%;
       max-height: 230px;
     }
+    .container-fluid{
+      padding: 0;
+      top: 0;
+      .background_img {
+        float: right;
+        @include allmobiles {
+          object-fit: contain;
+          position: relative;
+          width: 100%;
+        }
+        &.web_bg {
+          position: relative;
+          @include allmobiles {
+            display: none;
+          }
+        }
+        &.mobile_bg {
+          display: none;
+          @include allmobiles {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
   }
 
   .ref-code {
@@ -39,46 +66,22 @@ app-your-investment {
     }
   }
 
-  .background_img {
-    float: right;
-
-    @include allmobiles {
-      object-fit: contain;
-      position: relative;
-      width: 100%;
-    }
-
-    &.web_bg {
-      @include allmobiles {
-        display: none;
-      }
-    }
-
-    &.mobile_bg {
-      display: none;
-
-      @include allmobiles {
-        display: block;
-      }
-    }
-  }
 
   .user_content {
-    position: relative;
+    position: absolute;
     padding: 0 75px;
-    top: -180px;
+    top: 60px;
     max-width: 1024px;
     left: 0;
     right: 0;
     margin: 0 auto;
 
-    @include allmobiles {
-      top: -200px;
+    @include allmobiles{
+      top: 100px;
       padding: 0;
     }
-
-    @include phablet {
-      top: -200px;
+    @include phablet{
+      top: 85px;
     }
 
     .user_summary {
@@ -439,11 +442,23 @@ app-your-investment {
     border-width: 0px;
     &.top_up_btn{
         font-size: 18px;
+        line-height: 23px;
         background-color: $white-color;
         color: $secondary-action-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &:active{
           outline: none;
           background-color: $white-color;
+        }
+        .topup-btn-img {
+          height: 25px;
+          img{
+            width:100%;
+            height: 25px;
+            margin: 0;
+          }
         }
       }
 
@@ -540,9 +555,11 @@ app-your-investment {
   .toast-msg-container {
     background-color: #fff;
     padding-bottom: 10px;
-    // top: 61px;
     position: relative;
-
+    @include allmobiles{
+      z-index: 1;
+      top: 61px;
+    }
     .container-fluid {
       padding: 0 !important;
     }
