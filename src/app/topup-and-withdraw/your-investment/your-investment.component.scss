@@ -442,11 +442,23 @@ app-your-investment {
     border-width: 0px;
     &.top_up_btn{
         font-size: 18px;
+        line-height: 23px;
         background-color: $white-color;
         color: $secondary-action-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &:active{
           outline: none;
           background-color: $white-color;
+        }
+        .topup-btn-img {
+          height: 25px;
+          img{
+            width:100%;
+            height: 25px;
+            margin: 0;
+          }
         }
       }
 
