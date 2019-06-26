@@ -328,7 +328,8 @@
     "APPLY": "Apply Changes"
   },
   "NOTIFICATIONS": {
-    "EMPTY": "No New Notifications!"
+    "EMPTY": "No New Notifications!",
+    "CLEAR_ALL":"Clear All"
   },
   "GENERAL_LOADER": {
     "TITLE": "Submitting",
