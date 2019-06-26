@@ -1,14 +1,16 @@
 /*Media Queries*/
 .navbar-collapse {
-  @include allmobiles{
-    height:0px;
-    transition:0.3s;
-    overflow:hidden;
-    &.show{
-      height:auto;
+  @include allmobiles {
+    height: 0px;
+    transition: 0.3s;
+    overflow: hidden;
+
+    &.show {
+      height: auto;
     }
   }
 }
+
 .navbar-nav {
   @include SmallDevice {
     -ms-flex-direction: row;
@@ -23,46 +25,55 @@
   @include ExtraSmallDevice {
     display: none !important;
   }
+
   @include min568max767 {
     display: none !important;
   }
 }
+
 .hidden-lg {
   @include LargeDevice {
     display: none !important;
   }
+
   @include MediumDevice {
     display: none !important;
   }
 }
-.hidden-tablet{
-  @include tablet{
+
+.hidden-tablet {
+  @include tablet {
     display: none !important;
   }
-  @include minPhabletmaxTablet{
+
+  @include minPhabletmaxTablet {
     display: none !important;
   }
 }
-.hidden-sm{
+
+.hidden-sm {
   @include ExtraSmallDevice {
     display: none !important;
   }
+
   @include allmobiles {
     display: none !important;
   }
 }
 
-.show-sm{
+.show-sm {
   @include LargeDevice {
     display: none !important;
   }
+
   @include MediumDevice {
-    display:none !important;
+    display: none !important;
   }
+
   @include minPhabletmaxTablet {
-    display:none !important;
+    display: none !important;
   }
-  
+
 }
 
 
@@ -73,25 +84,26 @@
     box-shadow: none;
     font-size: 24px !important;
     font-family: $muli-semi-bold;
+
     &.comprehensive {
       font-size: 18px !important;
       z-index: 1062;
     }
   }
+
   @include min568max767 {
     position: fixed !important;
     box-shadow: none;
     font-size: 24px !important;
     font-family: $muli-semi-bold;
   }
-
 }
 
 .navbar {
   display: flex;
-  flex-direction:row;
-  
-  &.header{
+  flex-direction: row;
+
+  &.header {
     @include allmobiles {
       justify-content: center;
       align-items: center;
@@ -99,6 +111,7 @@
       line-height: 50px;
       font-size: 20px;
     }
+
     @include min568max767 {
       justify-content: center;
       align-items: center;
@@ -106,11 +119,11 @@
       line-height: 50px;
       font-size: 20px;
     }
-  } 
+  }
 }
 
 .navbar-nav {
-  &.header{
+  &.header {
     @include allmobiles {
       flex-direction: row;
       align-items: center;
@@ -122,6 +135,7 @@
 .btn__footer--fixed {
   margin-top: 14px !important;
   font-family: $muli;
+
   @include allmobiles {
     position: fixed;
     bottom: 0;
@@ -140,12 +154,10 @@
     position: relative; //top: 35px;
     height: 100%; //bottom: 60px;
     padding: 80px 0;
+
     &.bottom-none {
       bottom: 0px;
       top: 0px;
-    }
-    &--comprehensive {
-      padding: 0px 16px 50px 16px;
     }
   }
 }
@@ -163,12 +175,15 @@
 .mobile-top-extended {
   @include allmobiles {
     top: 30px;
+
     &.more {
       top: 70px;
     }
   }
+
   @include min300max350 {
     top: 50px;
+
     &.more {
       top: 60px;
     }
@@ -191,28 +206,34 @@
     margin: 0px !important;
     max-height: 90% !important;
     z-index: 1061 !important;
+
     .modal-dialog {
       padding: 0px;
       margin: 0px;
     }
+
     .modal-body {
       border-radius: 0px !important;
       color: #000;
       padding: 30px 25px;
       background: $module-fill-color;
+
       b {
         color: $app-backgrnd-color;
       }
     }
+
     .help-modal-body {
       background: #ffffff;
       border-radius: 0px !important;
       color: #000;
       padding: 25px 25px 25px 25px !important;
+
       b {
         color: $app-backgrnd-color;
       }
     }
+
     .help-modal-image {
       border-radius: 0 !important;
       width: 100%;
@@ -223,7 +244,7 @@
 }
 
 //IE11 Modal Fix
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@include ieSpecific {
   .modal.show .modal-dialog {
     top: 30%;
   }

@@ -1,6 +1,6 @@
-import { appConstants } from './../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { appConstants } from './../app.constants';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -53,7 +53,9 @@ export class PortfolioService {
     return {
       riskProfileId: this.portfolioFormData.riskProfileId,
       riskProfileName: this.portfolioFormData.riskProfileName,
-      htmlDescription: this.portfolioFormData.htmlDescription
+      htmlDescription: this.portfolioFormData.htmlDescription,
+      alternateRiskProfileId: this.portfolioFormData.alternateRiskProfileId,
+      alternateRiskProfileType: this.portfolioFormData.alternateRiskProfileType
     };
   }
 
@@ -61,7 +63,18 @@ export class PortfolioService {
     this.portfolioFormData.riskProfileId = data.primaryRiskProfileId;
     this.portfolioFormData.riskProfileName = data.primaryRiskProfileType;
     this.portfolioFormData.htmlDescription = data.htmlDescObject;
+    this.portfolioFormData.alternateRiskProfileId = data.alternateRiskProfileId;
+    this.portfolioFormData.alternateRiskProfileType = data.alternateRiskProfileType;
+
     this.commit();
+  }
+  setSelectedRiskProfileId(RiskProfileID) {
+    this.portfolioFormData.selectedriskProfileId = RiskProfileID;
+  }
+  getSelectedRiskProfileId() {
+    return {
+      riskProfileId: this.portfolioFormData.selectedriskProfileId
+    };
   }
 
   currentFormError(form) {
@@ -86,9 +99,9 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-          PORTFOLIO_CONFIG.my_financials.min_initial_amount &&
+        PORTFOLIO_CONFIG.my_financials.min_initial_amount &&
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-          PORTFOLIO_CONFIG.my_financials.min_monthly_amount
+        PORTFOLIO_CONFIG.my_financials.min_monthly_amount
       ) {
         return this.personalFormError.formFieldErrors['financialValidations']['one'];
       } else if (
@@ -134,10 +147,10 @@ export class PortfolioService {
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.initialInvestment)) >
-        Number(this.removeCommas(form.value.totalAssets)) &&
+      Number(this.removeCommas(form.value.totalAssets)) &&
       Number(this.removeCommas(form.value.monthlyInvestment)) >
-        (Number(this.removeCommas(form.value.percentageOfSaving)) *
-          Number(this.removeCommas(form.value.monthlyIncome)) / 100)
+      (Number(this.removeCommas(form.value.percentageOfSaving)) *
+        Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
       return this.personalFormError.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
@@ -181,7 +194,7 @@ export class PortfolioService {
   getQuestionsList() {
     return this.apiService.getQuestionsList();
   }
-  constructGetQuestionsRequest() {}
+  constructGetQuestionsRequest() { }
 
   getSelectedOptionByIndex(index) {
     return this.portfolioFormData['riskAssessQuest' + index];
@@ -275,17 +288,8 @@ export class PortfolioService {
     return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   getFundDetails() {
@@ -334,12 +338,23 @@ export class PortfolioService {
     }
   }
 
+  buildQueryString(parameters) {
+    let qs = '';
+    Object.keys(parameters).forEach((key) => {
+      const value = parameters[key];
+      qs += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+    });
+    if (qs.length > 0) {
+      qs = qs.substring(0, qs.length - 1);
+    }
+    return '?' + qs;
+  }
   verifyPromoCode(promoCodeData) {
     const promoCodeType = appConstants.INVESTMENT_PROMO_CODE_TYPE;
     const promoCode = {
-        promoCode: promoCodeData,
-        sessionId: this.authService.getSessionId(),
-        promoCodeCat: promoCodeType
+      promoCode: promoCodeData,
+      sessionId: this.authService.getSessionId(),
+      promoCodeCat: promoCodeType
     };
     return this.apiService.verifyPromoCode(promoCode);
   }

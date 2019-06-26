@@ -81,10 +81,5 @@ export function createTranslateLoader(http: HttpClient) {
 export class TopupAndWithdrawModule {
 
   constructor(private signUpService: SignUpService) {
-    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
-    if (!this.signUpService.isMobileDevice() && !isUnsupportedNoteShown) {
-      this.signUpService.showUnsupportedDeviceModal();
-      this.signUpService.setUnsupportedNoteShownFlag();
-    }
   }
 }

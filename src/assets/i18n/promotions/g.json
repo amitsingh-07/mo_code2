@@ -2,7 +2,8 @@
     "PROMO_BREADCRUMBS": {
         "HOME": "Home",
         "PROMOTIONS": "Promotions",
-        "INDIVIDUAL": "Insurance Promotions"
+        "INDIVIDUAL": "Insurance Promotions",
+        "BUNDLE_PACKAGES": "Bundle Packages"
     },
     "PROMO_LANDING": {
         "TITLE": "Enjoy Greater Cost Savings",
@@ -10,7 +11,8 @@
         "MORE_DETAILS": "More Details"
     },
     "PROMO_PAGE": {
-        "TAG": "Insurance Promotions"
+        "INSURANCE_TAG": "Insurance Promotions",
+        "BUNDLE_PACKAGES_TAG": "Bundle Packages"
     },
     "INSURE_LINK": {
         "TITLE": "Get Insurance you really need",

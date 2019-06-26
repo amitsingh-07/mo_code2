@@ -5,27 +5,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { flatMap } from 'rxjs/operators';
+import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/shared/http/api.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { appConstants } from '../../app.constants';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { LoaderService } from './../../shared/components/loader/loader.service';
+import { IEnquiryUpdate } from '../signup-types';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { WillWritingService } from 'src/app/will-writing/will-writing.service';
-import { appConstants } from '../../app.constants';
-import { AppService } from 'src/app/app.service';
-import { ApiService } from 'src/app/shared/http/api.service';
-import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
-import { IEnquiryUpdate } from '../signup-types';
-import { Formatter } from '../../shared/utils/formatter.util';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account',
@@ -51,7 +50,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private modal: NgbModal, private loaderService: LoaderService,
+    private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -86,16 +85,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this.authService.isAuthenticated()) {
-      this.loaderService.showLoader({title: 'Loading'});
-      this.authService.authenticate().subscribe((token) => {
-        this.refreshCaptcha();
-        this.loaderService.hideLoader();
-      });
-    } else {
-      this.refreshCaptcha();
-      this.loaderService.hideLoader();
-    }
+    this.refreshCaptcha();
   }
 
   refreshToken() {
@@ -376,4 +366,3 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
   }
 }
-

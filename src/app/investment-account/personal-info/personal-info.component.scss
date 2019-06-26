@@ -13,6 +13,7 @@ app-inv-personal-info {
     .btn-group--toggle {
       label {
         padding: 0.9rem;
+        font-size: 16px;
       }
       .btn-outline-primary {
         &.disabled {
@@ -39,18 +40,26 @@ app-inv-personal-info {
       text-align: left;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
+   
+      padding: 20px 0px;
       position: relative;
-      top: 76px;
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
       @include allmobiles{
         top: 60px;
+        background-color: $white-color;
+        padding: 10px 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+    padding-top: 16px;
+    @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .form-control {
       &.with-button {
         padding: 0.5rem;
@@ -67,7 +76,9 @@ app-inv-personal-info {
       }
     }
     .input-group-append {
+     
       .btn-primary {
+        box-shadow: none !important;
         &:disabled {
           color: $teal-color !important;
           background-color: $inv-btn-disabled-bg !important;
@@ -115,4 +126,38 @@ app-inv-personal-info {
       font-family: $muli-bold !important;
     }
   }
+  [placeholder]:empty::before {
+  content: attr(placeholder);
+ 
+   color: $text-color-secondary
+}
+
+[placeholder]:empty:focus::before {
+  content: "";
+}
+  .content-editable {
+    border: 1px solid #94CCCC;
+    border-radius: 6px;
+    padding: .90rem;
+    background: $white-color;
+    color: $app-backgrnd-color;
+    word-break: break-word;
+    &.fullName-disabled {
+     color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+        background-color: $inv-btn-disabled-bg !important;
+        opacity: 1 !important;
+    }
+   &.view-mode {
+      background-color: rgba(0, 167, 167, 0.15) !important;
+    }
+     
+    &.inline-error {
+      color: #e57300 !important;
+      background: #fff3e9;
+      &[placeholder]:empty::before {
+        color: #e57300 !important;
+      }
+    }
+}
 }

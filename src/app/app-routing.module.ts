@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
-import { APP_ROUTES } from './app-routes.constants';
+
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
-import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
-import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
@@ -37,11 +36,6 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
-      {
-        path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
-        canActivate: [ComprehensiveEnableGuard],
-        canActivateChild: [ComprehensiveChildEnableGuard]
-      },
 
       {
         path: 'articles',
@@ -89,7 +83,8 @@ const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'disclosures', component: DisclosuresComponent },
       { path: 'fair-dealing', component: FairDealingComponent },
-      { path: 'security-policy', component: SecurityPolicyComponent }
+      { path: 'security-policy', component: SecurityPolicyComponent },
+      { path: '**', component: NotFoundComponent }
     ]
   }
 ];
@@ -114,4 +109,3 @@ export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Ro
     }
   }
 }
-

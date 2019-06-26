@@ -1,12 +1,29 @@
 @import '../../../../mixins';
+
 app-existing-coverage-modal {
-    .form-group {
-        @include allmobiles {
-            padding-bottom: 30px;
-          }
+  .modal-header{
+    &.pt100{
+      @include allmobiles{
+        padding-top: 100px;
+      }
     }
-    .dropdown-control .dropdown-menu.show {
-        right: 0 !important;
-        left: inherit !important;
+  }
+  .form-group {
+    @include allmobiles {
+      padding-bottom: 30px;
     }
+  }
+
+  .dropdown-control .dropdown-menu.show {
+    right: 0 !important;
+    left: inherit !important;
+  }
+
+  .dropdown-control .dropup .btn-dropdown {
+    padding-right: 27px;
+    max-height: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+  }
 }

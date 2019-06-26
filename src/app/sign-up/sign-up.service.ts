@@ -233,27 +233,6 @@ export class SignUpService {
   }
 
   /**
-   * get reset password info.
-   * @param data - user account details.
-   */
-  getResetPasswordInfo() {
-    return {
-      resetPassword1: this.signUpFormData.resetPassword1,
-      confirmPassword: this.signUpFormData.confirmPassword
-    };
-  }
-
-  /**
-   * set reset password info.
-   * @param data - user account details.
-   */
-  // tslint:disable-next-line:no-identical-functions
-  setResetPasswordInfo(password, key) {
-    // API Call here
-    const data = this.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
-    return this.apiService.requestResetPassword(data);
-  }
-  /**
    * construct the json for reset password.
    * @param data - email and redirect uri.
    */
@@ -493,7 +472,7 @@ export class SignUpService {
   validateBankAccNo(control: AbstractControl) {
     const value = control.value;
     let isValid;
-    if (control.value) {
+    if (control.value && control.parent) {
       const bankKey = control.parent.controls['bank'].value.key;
       switch (bankKey) {
         case SIGN_UP_CONFIG.BANK_KEYS.BANK_OF_CHINA:

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import {
+    AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,9 +11,9 @@ import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
-import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
@@ -79,6 +81,7 @@ export class TaxInfoComponent implements OnInit {
       this.addTaxForm(null);
     }
     this.singPlaceHolder = '';
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   addTaxForm(data): void {
@@ -239,9 +242,9 @@ export class TaxInfoComponent implements OnInit {
     const value = control.value;
     let isValidTin;
     if (value !== undefined) {
-      if(control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
+      if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
         const countryCode = control.parent.controls['taxCountry'].value.countryCode;
-        switch(countryCode) {
+        switch (countryCode) {
           case INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE:
             isValidTin = this.investmentAccountCommon.isValidNric(value);
             break;

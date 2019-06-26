@@ -4,6 +4,7 @@ app-your-portfolio {
   .container-fluid{
     &.max-width--1024{
       top: 0 !important;
+      padding-top: 0;
       @include allmobiles{
         padding: 0 !important;
         margin-top: 0 !important
@@ -11,51 +12,86 @@ app-your-portfolio {
     }
   }
   .portfolio-bg {
-    padding-top: 60px;
+    position: absolute;
+    background: #3bbfbf;
+    width: 100%;
+    left: 0;
+    right: 0;
     @include allmobiles{
       padding-top: 60px;
       width: 100%;
     }
-    @include phablet{
-      padding-top: 105px;
-      width: 100%;
-    }
   }
   .background_img {
-    display: none;
+    float: right;
     @include allmobiles{
       object-fit: contain;
       position: relative;
       width: 100%;
-      display: block;
+    }
+    &.web_bg{
+      @include allmobiles{
+        display: none;
+      }
+    }
+    &.mobile_bg{
+      display: none;
+      @include allmobiles{
+        display: block;
+      }
     }
   }
   .user_content {
     position: absolute;
     padding: 0 75px;
+    top:60px;
+    max-width: 1024px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     @include allmobiles{
       top: 100px;
       padding: 0;
     }
+    @include phablet{
+      top: 85px;
+    }
+    .user_portfolio_title{
+      font-size: 18px;
+      padding-left: 15px;
+      letter-spacing: -0.2px;
+      @include allmobiles{
+        padding-left: 28px;
+      }
+    }
     .user_portfolio {
       font-family: $muli-regular;
-      font-size: 30px;
-      line-height: 1.28;
-      letter-spacing: -0.3px;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.41px;
       position: relative;
-      padding: 0 29px 0 28px;
-      div {
+      padding: 0 29px 0 15px;
+      @include allmobiles{
+        padding: 0 29px 0 28px;
+        display: flex;
+        flex-direction: column;
+      }
+      span {
         &:last-child {
-          font-weight: bold;
-          letter-spacing: -0.4px;
+          font-family: $muli-bold;
+          padding-left: 10px;
+          @include allmobiles{
+            padding-left: 0;
+          }
         }
       }
     }
     .flex-col-4 {
       position: absolute;
       top: 60px;
-      right: 230px;
-      max-width: 200px;
+      right: 120px;
+      max-width: 85px;
+      z-index: 1;
       @include allmobiles {
         top: 60px;
         max-width: 85px;
@@ -73,13 +109,7 @@ app-your-portfolio {
       @include phablet {
         top: 40px;
         max-width: 85px;
-        right: 230px;
-      }
-      @include tablet {
-        top: 80px;
-      }
-      @include iPadLandscape {
-        top: 80px;
+        right: 100px;
       }
     }
   }
@@ -93,7 +123,7 @@ app-your-portfolio {
     padding: 0.25rem 1.5rem;
     clear: both;
     font-size: 16px;
-    font-weight: bold;
+    font-family: $muli-bold;
     text-align: inherit;
     white-space: nowrap !important;
     background-color: transparent;
@@ -125,23 +155,25 @@ app-your-portfolio {
   }
   .container-fluid {
     position: relative;
-    top: 100px;
+    top: 135px;
+    padding-left: 45px;
+    padding-right: 45px;
     @include allmobiles {
       padding-left: 20px !important;
       padding-right: 20px !important;
       padding: 0px;
-      top: -42px;
+      top: 250px;
       height: auto;
     }
-    @include iphone6plus {
-     top: -42px;
+    @include max360{
+      top: 225px;
     }
-    @include iphone5 {
-      top: -30px;
+    @include iphone6{
+      top: 220px;
     }
     @include phablet {
-      top: 60px;
-     }
+      top: 140px;
+    }
   }
   .form-group-with-bg {
     box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -150,14 +182,15 @@ app-your-portfolio {
     .your_total_value {
       background-color: $top-up-your-portfolio-your-total-value-bg;
       padding: 20px 20px 17px;
-      // border-bottom-left-radius: 8px; // Remove when total returns section is shown
-      // border-bottom-right-radius: 8px; // Remove when total returns section is shown
+      &.no-returns {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
     }
   }
   .total_values {
     font-family: $muli-bold;
     font-size: 30px;
-    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -182,7 +215,6 @@ app-your-portfolio {
   .total_return_value {
     font-family: $muli-bold;
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
     color: $transaction-panel-buy-color;
@@ -244,7 +276,6 @@ app-your-portfolio {
     background-color: $white-color;
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
@@ -274,7 +305,6 @@ app-your-portfolio {
     background-color: $review-block-bg;
     font-family: $muli-bold;
     font-size: 18px;
-    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
@@ -315,7 +345,7 @@ app-your-portfolio {
   }
   .fund-account-btn {
     font-size: 21px;
-    font-weight: bold;
+    font-family: $muli-bold;
     letter-spacing: -0.2px;
     color: $secondary-action-color;
   }

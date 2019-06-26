@@ -1,9 +1,24 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="app-holdings">
-  <div class="container-fluid max-width--1024 invest-web-pt-90">
+  <div class="holdings-bg">
+    <div class="container-fluid max-width--1024 pl0 pr0">
+      <img id="investment_overview_background_img" class="background_img web_bg"
+        src="assets/images/investment_header_web.svg" />
+      <img id="investment_overview_background_img" class="background_img mobile_bg"
+        src="assets/images/investment_header_mobile.svg" />
+    </div>
+    <div class="flex-row user_content flex-col-12">
+      <div class="user_summary flex-col-8" id="investment_overview_profile_dec">
+          {{'HOLDINGS.PORTFOLIO' | translate}} {{portfolioValues.riskProfile.type}}
+          <div>{{
+              'HOLDINGS.TITLE' | translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid max-width--1024 holding-blocks">
+    <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <div class="form-group-with-bg" *ngFor="let holding of holidings; let i = index">
+        <div class="form-group-with-bg" *ngFor="let holding of holdings; let i = index">
           <!--Form Header-->
           <div class="form-group-with-bg--header" *ngIf="holding.productName !== 'Discretionary Cash Account(SGD)'">
             <div id="holdings_head_label">{{holding.productName}}</div>
@@ -29,9 +44,11 @@
                 </div>
               </div>
               <div class="flex-col-7">
-                <div *ngIf="holding.availableUnits" class="value" for="name" id="investment_overview_investment_start_value">{{holding.availableUnits}}
+                <div *ngIf="holding.availableUnits" class="value" for="name"
+                  id="investment_overview_investment_start_value">{{holding.availableUnits}}
                 </div>
-                <div *ngIf="!holding.availableUnits" class="value" for="name" id="investment_overview_investment_start_value">0</div>
+                <div *ngIf="!holding.availableUnits" class="value" for="name"
+                  id="investment_overview_investment_start_value">0</div>
               </div>
             </div>
             <div class="flex-row">
@@ -41,15 +58,18 @@
                 </div>
               </div>
               <div class="flex-col-7">
-                <div *ngIf="holding.indicativePrice" class="value" for="name" id="investment_overview_total_invested__value">{{holding.indicativePrice
+                <div *ngIf="holding.indicativePrice" class="value" for="name"
+                  id="investment_overview_total_invested__value">{{holding.indicativePrice
                   | currency:'USD':'symbol-narrow':'1.0-7'}}
                 </div>
-                <div *ngIf="!holding.indicativePrice" class="value" for="name" id="investment_overview_total_invested__value">$0</div>
+                <div *ngIf="!holding.indicativePrice" class="value" for="name"
+                  id="investment_overview_total_invested__value">$0</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>

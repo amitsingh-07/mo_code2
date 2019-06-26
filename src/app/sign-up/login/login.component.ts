@@ -1,5 +1,8 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy,
+  OnInit, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -53,6 +56,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   captchaSrc: any = '';
   showCaptcha: boolean;
   hideForgotPassword = false;
+  @ViewChild("welcomeTitle") welcomeTitle: ElementRef;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (/Android|Windows/.test(navigator.userAgent)) {
+      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
   constructor(
     // tslint:disable-next-line
@@ -253,11 +264,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
         } else if (redirect_url) {
           this.signUpService.clearRedirectUrl();
-          if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+          if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentRoutes.includes(redirect_url) &&
+          } else if (investmentRoutes.indexOf(redirect_url) >= 0 &&
             investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+            this.investmentAccountService.setUserPortfolioExistStatus(true);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else {
             this.router.navigate([redirect_url]);
           }

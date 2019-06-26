@@ -22,6 +22,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
 
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
@@ -39,10 +41,9 @@ export class ConfirmPortfolioComponent implements OnInit {
   portfolio;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
   userInputSubtext;
-
+  iconImage;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
-
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
   isRequestSubmitted = false;
 
@@ -78,7 +79,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getPortfolioDetails();
-  }
+    }
 
   getPortfolioDetails() {
     const params = this.constructgetPortfolioParams();
@@ -86,6 +87,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       .getPortfolioAllocationDetails(params)
       .subscribe((data) => {
         this.portfolio = data.objectList;
+        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.topupAndWithDrawService.setFundingDetails(fundingParams);
         this.userInputSubtext = {

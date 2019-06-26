@@ -1,3 +1,4 @@
+import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -25,7 +26,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
   selector: 'app-withdrawal-type',
   templateUrl: './withdrawal-type.component.html',
   styleUrls: ['./withdrawal-type.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [DecimalPipe]
 })
 export class WithdrawalTypeComponent implements OnInit {
   pageTitle: string;
@@ -50,7 +52,8 @@ export class WithdrawalTypeComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private decimalPipe: DecimalPipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -353,9 +356,10 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   withdrawAmountValidator(balance, source): ValidatorFn {
+    balance = parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, ""));
     return (control: AbstractControl) => {
       if (control) {
-        let userInput = control.value;
+        let userInput = parseFloat(control.value);
         if (userInput <= 0) { // Not less than 0
           return { MinValue: true };
         }

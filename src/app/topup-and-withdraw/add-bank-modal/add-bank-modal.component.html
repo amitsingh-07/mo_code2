@@ -6,7 +6,10 @@
       </div>
     </div>
     <div class="modal-body white-bg">
-      <div class="modal-body-title">{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.TITLE' | translate}}</div>
+      <div class="modal-body-title" *ngIf="!bankDetails">{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.TITLE' | translate}}
+      </div>
+      <div class="modal-body-title" *ngIf="bankDetails">
+        {{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.EDIT_TITLE' | translate}}</div>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
@@ -18,9 +21,13 @@
               'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.ACCOUNT_HOLDER_NAME' | translate}}</label>
           </div>
           <div class="flex-col-12">
-              <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
-                  <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" name="accountHolderName"
-                    formControlName="accountHolderName" value="0" maxLength="30">
+              <div [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
+                <div contenteditable="true"
+                       id="accountHolderName-" [textContent]="addBankForm.get('accountHolderName').value"
+                       (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
+                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                        placeholder="Account Holder's Name">
+                     </div>
               </div> 
          </div>
         </div>
@@ -38,12 +45,13 @@
             <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.bank)}">
               <div ngbDropdown>
                 <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
-                  <span *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' | translate}}</span>
+                  <span
+                    *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' | translate}}</span>
                   <span *ngIf="addBankForm.controls.bank.value">{{addBankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="courseDropdown">
-                  <button class="dropdown-item" id="residentialAddress-country-drpdown" (click)="setDropDownValue('bank',null)">Select</button>
-                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank)"
+                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;"
+                    (click)="setDropDownValue('bank',bank)"
                     id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
                 </div>
               </div>
@@ -58,14 +66,19 @@
           </div>
           <div class="flex-col-6">
             <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountNo)}">
-              <input id="addBank-monthlyTimeInv-txt" autocomplete="off" class="input-control" type="text" name="monthlyInvestment"
-                formControlName="accountNo" value="0">
+              <input id="addBank-monthlyTimeInv-txt" autocomplete="off" class="input-control" type="text"
+                name="monthlyInvestment" formControlName="accountNo" value="0">
             </div>
           </div>
         </div>
       </div>
-      <button type="button" (click)="save(addBankForm)" class="btn btn-primary width100 mt5" id="incomeBtn">{{
+      <button type="button" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary width100 mt5"
+        id="incomeBtn">{{
         'LABEL.SAVE' | translate}}</button>
+
+      <button *ngIf="bankDetails" type="button" (click)="save(addBankForm)" class="btn btn-primary width100 mt5"
+        id="incomeBtn"> {{'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.APPLY_CHANGE' | translate}}
+      </button>
     </div>
   </form>
 </div>
