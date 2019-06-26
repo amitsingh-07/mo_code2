@@ -3,7 +3,7 @@
 <div class="container-fluid max-width--1024">
   <div class="content">
       <div class="web_title hidden-sm-md">{{pageTitle}}
-      <button (click)="clearNotifications()">{{ 'NOTIFICATIONS.CLEAR_ALL' | translate}}</button></div>
+      <button  *ngIf="allMessages && allMessages.length > 0" (click)="clearNotifications()">{{ 'NOTIFICATIONS.CLEAR_ALL' | translate}}</button></div>
     <div>
       <div class="notifications-block">
         <!--Notifications container-->
