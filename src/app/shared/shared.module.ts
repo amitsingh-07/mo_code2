@@ -10,6 +10,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { BreakdownAccordionComponent } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
+import { RoadmapComponent } from '../shared/components/roadmap/roadmap.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import {
   EditInvestmentModalComponent
@@ -55,7 +56,11 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [{ prefix: './assets/i18n/app/', suffix: '.json' }]);
+  return new MultiTranslateHttpLoader(
+    http,
+    [
+      { prefix: './assets/i18n/app/', suffix: '.json' }
+    ]);
 }
 
 @NgModule({
@@ -96,7 +101,8 @@ export function createTranslateLoader(http: HttpClient) {
     NavbarComponent,
     EditMobileNumberComponent,
     DropdownWithSearchComponent,
-    StartsWithPipe],
+    StartsWithPipe,
+    RoadmapComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -123,6 +129,7 @@ export function createTranslateLoader(http: HttpClient) {
     InvestmentTitleBarComponent,
     RoundPipe,
     NavbarComponent,
+    RoadmapComponent,
     EditMobileNumberComponent,
     TransferInstructionsModalComponent,
     InstructionStepsComponent,

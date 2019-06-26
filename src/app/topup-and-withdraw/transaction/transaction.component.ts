@@ -161,15 +161,6 @@ export class TransactionComponent implements OnInit {
 
   }
 
-  getStatementLink(month) {
-    const base_url = TOPUPANDWITHDRAW_CONFIG.STATEMENT.STATEMENT_BASE_PATH;
-    const customerId = this.userProfileInfo.id;
-    const sub_path = 'statements/' + customerId + '/';
-    const fileName =
-      month.monthName.substring(0, 3).toLowerCase() + '_' + month.year + '.pdf';
-    return base_url + sub_path + fileName;
-  }
-
   expandCollapseAccordion(groupIndex, transactionIndex) {
     const index = groupIndex.toString() + transactionIndex.toString();
     if (index !== this.activeTransactionIndex) {

@@ -8,7 +8,8 @@
                 <i class="material-icons">keyboard_arrow_right</i>
                 <span routerLink="/promotions">{{'PROMO_BREADCRUMBS.PROMOTIONS' | translate}}</span>
                 <i class="material-icons">keyboard_arrow_right</i>
-                <span>{{'PROMO_BREADCRUMBS.INDIVIDUAL' | translate}}</span>
+                <span *ngIf="promoDetails.type != 4">{{'PROMO_BREADCRUMBS.INDIVIDUAL' | translate}}</span>
+                <span *ngIf="promoDetails.type == 4">{{'PROMO_BREADCRUMBS.BUNDLE_PACKAGES' | translate}}</span>
             </div>
         </div>
     </div>
@@ -16,7 +17,8 @@
         <div class="promo-header__inner-container">
             <div class="promo-tag__container">
                 <div class="promo-tag__element">
-                    {{'PROMO_PAGE.TAG' | translate}}
+                    <span *ngIf="promoDetails.type != 4">{{'PROMO_PAGE.INSURANCE_TAG' | translate}}</span>
+                    <span *ngIf="promoDetails.type == 4">{{'PROMO_PAGE.BUNDLE_PACKAGES_TAG' | translate}}</span>
                     </div>
                 </div>
             <div class="promo-title__container">
@@ -24,11 +26,10 @@
                     <h1 class="promo--title">
                         {{promoDetails.title}}
                         </h1>
-                    <h2 class="promo--sub-title">
-                        {{promoDetails.desc}}
-                        </h2>
+                    <h2 class="promo--sub-title" [innerHtml]="promoDetails.desc">
+                    </h2>
                     </div>
-                <div class="promo-logo__container">
+                <div class="promo-logo__container" *ngIf="promoDetails.type != 4">
                     <img src="{{promoDetails.logo}}"/>
                     </div>
                 </div>
@@ -38,7 +39,10 @@
         <!-- Insert Promotion Body Here -->
         </section>
     <div class="promo-link__container">
-        <app-insure-link></app-insure-link>
+        <div class="flex-col-12">
+            <app-insure-link *ngIf="promoDetails.type != 4"></app-insure-link>
+            <app-bundle-enquiry *ngIf="promoDetails.type == 4" [promoDetails]="promoDetails"></app-bundle-enquiry>
+        </div>
     </div>
     <section class="promo-tnc">
         <!-- Insert Promotion TNC HERE -->

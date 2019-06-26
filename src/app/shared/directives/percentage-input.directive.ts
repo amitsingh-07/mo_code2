@@ -14,7 +14,7 @@ export class PercentageInputDirective implements AfterViewInit {
         private el: ElementRef, private currencyPipe: CurrencyPipe,
         private control: NgControl,
         private decimalPipe: DecimalPipe) {
-            this.el.nativeElement.type = 'tel';
+        this.el.nativeElement.type = 'tel';
     }
     ngAfterViewInit() {
         this.formatCurrency();
@@ -22,10 +22,12 @@ export class PercentageInputDirective implements AfterViewInit {
 
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
-        this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
-        if (this.el.nativeElement.value > 100) {
-            this.el.nativeElement.value = 0;
-            this.control.control.setValue(0);
+        if (event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8) {
+            this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
+            if (this.el.nativeElement.value > 100) {
+                this.el.nativeElement.value = 0;
+                this.control.control.setValue(0);
+            }
         }
     }
 

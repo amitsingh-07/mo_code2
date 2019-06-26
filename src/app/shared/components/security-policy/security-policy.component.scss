@@ -11,11 +11,15 @@ app-security-policy{
             li{
                 display : list-item;
                 padding-left : 10px;
+                font-weight: bold;
                 &:before{
                     display : none;
                 }
                 & ~ p{
                     margin-left : -20px;
+                }
+                & > *{
+                    font-weight: normal;
                 }
             }
         }
