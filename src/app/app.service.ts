@@ -22,8 +22,6 @@ const SESSION_CUSTOMER = 'app_customer_id';
 })
 export class AppService {
   journeyType: string;
-  promoCodeActionType: string;
-  promoCode: string;
   enquiryId: any;
   activeSession: string;
   customer = {
@@ -88,25 +86,27 @@ export class AppService {
   }
 
   getAction() {
+    let promoCodeActionType = '';
     if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE_ACTION_TYPE)) {
-      this.promoCodeActionType = JSON.parse(sessionStorage.getItem(PROMO_CODE_ACTION_TYPE));
+      promoCodeActionType = JSON.parse(sessionStorage.getItem(PROMO_CODE_ACTION_TYPE));
     }
-    return this.promoCodeActionType;
+    return promoCodeActionType;
 
   }
   setAction(promoCodeActionType: string) {
-    this.promoCodeActionType = promoCodeActionType;
-    this.commit(PROMO_CODE_ACTION_TYPE, this.promoCodeActionType);
+    const promoCodeActionTypeValue = promoCodeActionType;
+    this.commit(PROMO_CODE_ACTION_TYPE, promoCodeActionTypeValue);
   }
   getPromoCode() {
+    let promoCode = '';
     if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE)) {
-      this.promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
+      promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
     }
-    return this.promoCode;
+    return promoCode;
   }
   setPromoCode(promoCode: string) {
-    this.promoCode = promoCode;
-    this.commit(PROMO_CODE, this.promoCode);
+    const promoCodeValue = promoCode;
+    this.commit(PROMO_CODE, promoCodeValue);
   }
   clearPromoCode() {
     if (window.sessionStorage) {
@@ -115,6 +115,7 @@ export class AppService {
     }
   }
   clearJourneys() {
+    this.journeyType = ''
     if (window.sessionStorage) {
       // App data
       sessionStorage.removeItem(SESSION_STORAGE_KEY);

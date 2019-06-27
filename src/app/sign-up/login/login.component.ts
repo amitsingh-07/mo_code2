@@ -93,8 +93,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
+
+      const userInfo = this.signUpService.getUserProfileInfo();
+      if (userInfo) {
+        this.authService.clearSession();
+        this.signUpService.logoutUser();
+      } else {
+        this.authService.authenticate().subscribe((token) => {
+        });
+      }
+
     }
   }
 

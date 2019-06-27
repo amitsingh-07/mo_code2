@@ -163,6 +163,7 @@ export class VerifyMobileComponent implements OnInit {
     } else {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();
+        this.appService.clearPromoCode();
       }
       this.resendEmailVerification();
     }
