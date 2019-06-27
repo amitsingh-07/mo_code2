@@ -376,7 +376,7 @@ app-your-investment {
           color: $dusty-grey-color;
           font-size: 18px;
           letter-spacing: -0.18px;
-
+          box-shadow: none !important;
           &:hover {
             background-color: $action-btn-active-bg !important;
             border-color: $portfolio-footer-btn-brdr-color !important;
@@ -440,6 +440,7 @@ app-your-investment {
     width: 100%;
     padding: 18px 0px;
     border-width: 0px;
+    cursor: pointer;
     &.top_up_btn{
         font-size: 18px;
         line-height: 23px;
