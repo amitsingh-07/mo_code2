@@ -676,6 +676,12 @@ export class ComprehensiveService {
             if (accessibleUrl !== '') {
                 break;
             } else {
+                let canAccess = true;
+                dependantProgressData.subItems.forEach((subItem) => {
+                    if (!subItem.completed && subItem.hidden !== true) {
+                        canAccess = false;
+                    }
+                });
                 switch (index) {
                     // 'getting-started'
                     case 0:
@@ -753,43 +759,37 @@ export class ComprehensiveService {
                     case 11:
                     // 'my-earnings'
                     case 12:
-                        let canAccess = true;
-                        dependantProgressData.subItems.forEach((subItem) => {
-                            if (!subItem.completed && subItem.hidden !== true) {
-                                canAccess = false;
-                            }
-                        });
                         if (canAccess) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     // 'my-spendings'
                     case 13:
-                        if (financeProgressData.subItems[0].completed) {
+                        if (canAccess && financeProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     // 'regular-saving-plan'
                     case 14:
-                        if (financeProgressData.subItems[1].completed) {
+                        if (canAccess && financeProgressData.subItems[1].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     // 'bad-mood-fund'
                     case 15:
-                        if (financeProgressData.subItems[2].completed) {
+                        if (canAccess && financeProgressData.subItems[2].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     // 'my-assets'
                     case 16:
-                        if (financeProgressData.subItems[4].completed) {
+                        if (canAccess && financeProgressData.subItems[4].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     // 'my-liabilities'
                     case 17:
-                        if (financeProgressData.subItems[5].completed) {
+                        if (canAccess && financeProgressData.subItems[5].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -799,7 +799,7 @@ export class ComprehensiveService {
                     case 19:
                     // 'insurance-plan'
                     case 20:
-                        if (financeProgressData.subItems[6].completed) {
+                        if (canAccess && financeProgressData.subItems[6].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -809,7 +809,7 @@ export class ComprehensiveService {
                     case 22:
                     // 'retirement-plan'
                     case 23:
-                        if (fireProofingProgressData.subItems[0].completed) {
+                        if (canAccess && fireProofingProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
@@ -818,12 +818,12 @@ export class ComprehensiveService {
                     // 'result'
                     case 25:
                     case 26:
-                        if (retirementProgressData.subItems[0].completed) {
+                        if (canAccess && retirementProgressData.subItems[0].completed) {
                             accessibleUrl = urlList[index];
                         }
                         break;
                     case 27:
-                        if (retirementProgressData.subItems[0].completed
+                        if (canAccess && retirementProgressData.subItems[0].completed
                             && reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
                             accessibleUrl = urlList[index];
                         }
