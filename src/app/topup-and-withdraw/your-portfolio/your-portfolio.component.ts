@@ -28,8 +28,7 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   portfolioValues;
   portfolio;
-  HoldingValues;
-  holdingsDPMSData;
+  holdingValues;
   assetAllocationValues;
   yearlyReturns: any;
   totalReturnsPercentage: any;
@@ -66,6 +65,7 @@ export class YourPortfolioComponent implements OnInit {
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.holdingValues = this.topupAndWithDrawService.getHoldingValues();
     this.totalReturnsPercentage = this.portfolioValues.totalReturns
       ? this.portfolioValues.totalReturns
       : 0;

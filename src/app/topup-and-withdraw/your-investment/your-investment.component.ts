@@ -96,9 +96,7 @@ export class YourInvestmentComponent implements OnInit {
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
       this.topupAndWithDrawService.setPortfolioValues(portfolio);
-      if (portfolio.currentValue) {
-        this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
-      }
+      this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }
