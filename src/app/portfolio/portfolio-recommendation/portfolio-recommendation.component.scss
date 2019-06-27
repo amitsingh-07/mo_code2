@@ -20,8 +20,11 @@ app-portfolio-recommendation {
       // box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
       // background-color: $portfolio-allocation-details-bg;
       .portfolio-allocation-details__content {
-        margin-bottom: 30px;
+        margin-bottom: 14px;
         border-radius: 6px;
+        @include allmobiles{
+          margin-bottom: 4px;
+        }
         .portfolio-allocation-details__content__desc {
           .portfolio_img {
             text-align: center;
@@ -33,7 +36,7 @@ app-portfolio-recommendation {
           }
 
           .portfolio-allocation-details__content__block {
-            color: $modal-txt-highlight-color;
+            color: $dark-teal-color;
             background-color:$white-color;
             font-size: 18px;
             line-height: 1.5;
