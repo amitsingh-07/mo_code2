@@ -84,7 +84,7 @@
               formControlName="comprehensivePromoCodeToken"
               placeholder="{{ 'CMP.COMPREHENSIVE.ENTER_PROMO' | translate}}">
           </div>
-          <div [hidden]="promoCodeValidated" (click)="getPromoCode()" class="promo-code-box__no-promo">
+          <div [hidden]="promoCodeValidated" (click)="getPromoCode(1)" class="promo-code-box__no-promo">
             {{ 'CMP.COMPREHENSIVE.NO_PROMO' | translate}}<span
               class="promo-code-box__get-now">{{ 'CMP.COMPREHENSIVE.GET_NEW' | translate}}</span></div>
 
@@ -102,7 +102,7 @@
           </div>
           <div>
             <button class="btn-block btn btn-primary-dark"
-              (click)="getPromoCode()">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
+              (click)="getPromoCode(1)">{{'CMP.COMPREHENSIVE.GET_PROMO' | translate}}</button>
           </div>
         </div>
       </div>

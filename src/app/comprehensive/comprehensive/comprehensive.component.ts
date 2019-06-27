@@ -73,7 +73,7 @@ export class ComprehensiveComponent implements OnInit {
           this.cmpService.setComprehensiveSummary(cmpData);
           const action = this.appService.getAction();
           if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-            this.getPromoCode();
+            this.getPromoCode(2);
           } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
             this.getStarted();
           } else {
@@ -143,8 +143,9 @@ export class ComprehensiveComponent implements OnInit {
     ref.componentInstance.promoSuccess = true;
   }
 
-  getPromoCode() {
-    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
+  getPromoCode(mode: any) {
+    if (mode === 1)
+      this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
     if (this.authService.isSignedUser()) {
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();

@@ -80,6 +80,7 @@ export class AppService {
   }
 
   getJourneyType() {
+    this.journeyType = ''
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
@@ -88,6 +89,7 @@ export class AppService {
   }
 
   getAction() {
+    this.promoCodeActionType = '';
     if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE_ACTION_TYPE)) {
       this.promoCodeActionType = JSON.parse(sessionStorage.getItem(PROMO_CODE_ACTION_TYPE));
     }
@@ -99,6 +101,7 @@ export class AppService {
     this.commit(PROMO_CODE_ACTION_TYPE, this.promoCodeActionType);
   }
   getPromoCode() {
+    this.promoCode = '';
     if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE)) {
       this.promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
     }
