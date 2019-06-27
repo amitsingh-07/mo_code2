@@ -289,6 +289,7 @@ app-your-portfolio {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     &:active {
       outline: none;
       background-color: $white-color;

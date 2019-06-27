@@ -44,12 +44,6 @@ app-transaction {
         border-bottom: 6px solid $secondary-action-color;
       }
     }
-    .transaction-group {
-      border-bottom: 1px solid $question-info-brdr-color;
-    }
-    .transaction-group:last-child {
-      border-width: 0px;
-    }
     .transaction-panel__history,
     .transaction-panel__statements {
       color: $app-backgrnd-color;

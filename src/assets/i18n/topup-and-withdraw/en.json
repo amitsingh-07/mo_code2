@@ -152,7 +152,7 @@
     }
   },
   "WITHDRAW": {
-    "TITLE": "Withdraw",
+    "TITLE": "Withdrawal",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
     "WITHDRAW_TYPE_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",

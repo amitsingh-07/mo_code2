@@ -271,6 +271,7 @@ app-fund-your-account {
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       &:active {
         outline: none;
         background-color: $action-btn-active-bg;
@@ -278,11 +279,13 @@ app-fund-your-account {
       }
       &:hover {
         outline: none;
+        background-color: $action-btn-active-bg;
+        border-color: $action-btn-active-bg;
+        color: $white-color;
       }
       &:focus {
         outline: none;
-        background-color: $action-btn-active-bg;
-        color: $white-color;
+        border: none;
       }
       img {
         position: absolute;
