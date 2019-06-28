@@ -7,16 +7,17 @@ import { AbstractControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '@ngx-translate/core';
+import { ConfigService, IConfig } from '../config/config.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import {
   UnsupportedDeviceModalComponent
 } from '../shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { RegexConstants } from '../shared/utils/api.regex.constants';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
-import { RegexConstants } from '../shared/utils/api.regex.constants';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -38,15 +39,20 @@ export class SignUpService {
   userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
+  private resetPasswordUrl: string;
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
+    public configService: ConfigService,
     public cryptoService: CryptoService,
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService) {
     this.getAccountInfo();
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.resetPasswordUrl = config.resetPasswordUrl;
+    });
   }
 
   /**
@@ -210,7 +216,7 @@ export class SignUpService {
       email: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      redirectUrl: window.location.origin + '/#/account/reset-password' + '?key='
+      redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
     };
   }
   /**
