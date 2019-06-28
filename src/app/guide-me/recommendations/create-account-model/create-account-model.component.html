@@ -20,7 +20,8 @@
     </div>
     <div class="flex-row">
       <div class="flex-col-12">
-        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn" (click)="next('signup')">{{
+        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn"
+          (click)="next('signup')">{{
           'RECOMMENDATIONS.CREATE_ACCOUNT' | translate}}</button>
       </div>
     </div>
@@ -31,4 +32,41 @@
       </div>
     </div>
   </div>
+  <div class="separator"></div>
+  <form id="enquiryForm" name="enquiryForm" [formGroup]="enquiryForm">
+    <div class="flex-row mb10">
+      <div class="flex-col-5 stretch mr15" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
+          <label class="form-control-placeholder" for="firstName">First Name</label>
+        </div>
+      </div>
+      <div class="flex-col-5 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
+          <label class="form-control-placeholder" for="lastName">Last Name</label>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row mb10">
+      <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+          <label class="form-control-placeholder" for="lastName">Email Address</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 checkbox-button one-label mb10">
+      <input id="receiveMarketingEmails" name="receiveMarketingEmails" type="checkbox"
+        formControlName="receiveMarketingEmails" class="field checkbox">
+      <label for="receiveMarketingEmails">
+        <div class="title">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+      </label>
+    </div>
+    <div class="col-12">
+      <div class="error--msg" *ngIf="invalidEmail">*Invalid Email Address</div>
+      <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
+        [disabled]="!enquiryForm.valid || formSubmitted" (click)="sendBundleEnquiry(enquiryForm)">Send</button>
+    </div>
+  </form>
 </div>
