@@ -200,8 +200,26 @@ export class PortfolioRecommendationComponent implements OnInit {
   }
 
   showLoginOrSignupModal() {
-    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('PRELOGIN_MODAL.DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PRELOGIN_MODAL.LOG_IN'
+    );
+    ref.componentInstance.secondaryActionLabel = this.translate.instant(
+      'PRELOGIN_MODAL.CREATE_ACCOUNT'
+    );
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      // Login
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    });
+    ref.componentInstance.secondaryAction.subscribe(() => {
+      // Sign up
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    });
   }
 
   constructFundingParams(data) {
