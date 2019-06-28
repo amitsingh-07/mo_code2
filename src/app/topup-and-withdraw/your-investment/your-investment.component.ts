@@ -309,6 +309,9 @@ showPopUp() {
     this.authService.saveEnquiryId(null);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
+  gotoTopUp() {  // GO TO TOP-UP
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+      }
 
   getUserProfileInfo() {
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
