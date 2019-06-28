@@ -128,9 +128,9 @@ export class YourInvestmentComponent implements OnInit {
             this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           );
         }
-        /* First portfolio's entitlement is considered for now as global entitlement, 
+        /* First portfolio's entitlement is considered for now as global entitlement,
             need to change when multiple portfolio logic is implemented */
-        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolioId(this.portfolioList[0].productCode);
+        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       } else if (
         data.objectList &&
         data.objectList.length &&
@@ -336,6 +336,9 @@ showPopUp() {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
+        /* First portfolio's entitlement is considered for now as global entitlement, 
+            need to change when multiple portfolio logic is implemented */
+        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
     (err) => {
@@ -343,7 +346,7 @@ showPopUp() {
     });
   }
 
-  getEntitlementsFromPortfolioId(portfolioId) {
-    return this.topupAndWithDrawService.getEntitlementsFromPortfolioId(portfolioId);
+  getEntitlementsFromPortfolio(portfolio) {
+    return this.topupAndWithDrawService.getEntitlementsFromPortfolio(portfolio);
   }
 }

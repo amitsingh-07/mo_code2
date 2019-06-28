@@ -499,10 +499,10 @@ export class TopupAndWithDrawService {
     return this.apiService.getMonthlyInvestmentInfo();
   }
 
-  getEntitlementsFromPortfolioId(portfolioId) {
+  getEntitlementsFromPortfolio(portfolio) {
     const userProfileInfo = this.signUpService.getUserProfileInfo();
     const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
-      (portfolio) => portfolio.portfolioId === portfolioId
+      (portfolioItem) => portfolioItem.portfolioId === portfolio.productCode
     )[0];
     if (filteredPortfolio && filteredPortfolio.entitlements) {
       return filteredPortfolio.entitlements;

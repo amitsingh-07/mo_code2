@@ -77,7 +77,7 @@ export class YourPortfolioComponent implements OnInit {
     this.getTransferDetails();
     /* First portfolio's entitlement is considered for now as global entitlement, 
         need to change when multiple portfolio logic is implemented */
-    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolioId(this.portfolioValues.productCode);
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioValues);
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;

@@ -107,7 +107,7 @@
           <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index;">
 
             <!-- NEW IMPLEMENTATION -->
-            <div *ngIf="getEntitlementsFromPortfolioId(portfolio.productCode); let entitlement">
+            <div *ngIf="getEntitlementsFromPortfolio(portfolio); let entitlement">
               <!-- HEADERS -->
               <div class="form-group-with-bg--header your_portfolio_value" (click)="yourPortfolio(portfolio)">
                 <div class="flex-row">

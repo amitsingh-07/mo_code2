@@ -81,7 +81,7 @@ export class WithdrawalTypeComponent implements OnInit {
       MIN_WITHDRAW_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT
     };
-    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolioId(this.portfolioList[0].productCode)
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0])
     this.buildForm();
   }
 
