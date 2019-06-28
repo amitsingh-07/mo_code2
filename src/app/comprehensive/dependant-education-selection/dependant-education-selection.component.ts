@@ -232,7 +232,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
           this.showSummaryModal();
         });
       } else {
-        const selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
+        let selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
           .filter((item: IChildEndowment) => item.preferenceSelection);
         if (!form.pristine) {
 
@@ -253,6 +253,15 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
               if (form.value.hasEndowments === '2') {
                 this.dependantDetailsArray.forEach((dependant: IDependantDetail, i: number) => {
                   if (childItem.dependentId === dependant.id) {
+                    selectedChildArray = [{
+                      id: 0,
+                      dependentId: dependant.id,
+                      enquiryId: this.comprehensiveService.getEnquiryId(),
+                      location: null,
+                      educationCourse: null,
+                      endowmentMaturityAmount: null,
+                      endowmentMaturityYears: null
+                    } as IChildEndowment]
                     this.dependantDetailsArray[i].isInsuranceNeeded = true;
                   }
                 });
