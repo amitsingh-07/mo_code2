@@ -44,7 +44,7 @@ export class YourInvestmentComponent implements OnInit {
   riskProfileImg: any;
   portfolio;
   productCode;
-  canTopup = false;
+  entitlements: any;
 
   // transfer instructions
   bankDetails;
@@ -128,10 +128,9 @@ export class YourInvestmentComponent implements OnInit {
             this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           );
         }
-        // CAN TOPUP ?
-        if (this.userProfileInfo.investementDetails.portfolios[0].access.showTopup) {
-            this.canTopup = true;
-        }
+        /* First portfolio's entitlement is considered for now as global entitlement, 
+            need to change when multiple portfolio logic is implemented */
+        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolioId(this.portfolioList[0].productCode);
       } else if (
         data.objectList &&
         data.objectList.length &&
@@ -341,7 +340,7 @@ showPopUp() {
     });
   }
 
-  getUserAccessFromPortfolioId(portfolioId) {
-    return this.topupAndWithDrawService.getUserAccessFromPortfolioId(portfolioId);
+  getEntitlementsFromPortfolioId(portfolioId) {
+    return this.topupAndWithDrawService.getEntitlementsFromPortfolioId(portfolioId);
   }
 }

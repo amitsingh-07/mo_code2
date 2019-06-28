@@ -31,9 +31,14 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <!-- <button class="dropdown-item" (click)="setDropDownValue('withdrawType','')" id="withdraw-type-option-select">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</button> -->
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
-                          <button class="dropdown-item" [class.hide]="( (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && !canWithdrawPortfolio)" (click)="setDropDownValue('withdrawType',type, i)"
-                          id="withdraw-type-option-{{i}}">
-                          {{type.name}}
+                          <button
+                            class="dropdown-item"
+                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
+                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa) 
+                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)"
+                            (click)="setDropDownValue('withdrawType',type, i)"
+                            id="withdraw-type-option-{{i}}">
+                              {{type.name}}
                           </button>
                         </ng-container>
                       </div>

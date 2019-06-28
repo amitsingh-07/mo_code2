@@ -499,10 +499,22 @@ export class TopupAndWithDrawService {
     return this.apiService.getMonthlyInvestmentInfo();
   }
 
-  getUserAccessFromPortfolioId(portfolioId) {
+  getEntitlementsFromPortfolioId(portfolioId) {
     const userProfileInfo = this.signUpService.getUserProfileInfo();
-    return userProfileInfo.investementDetails.portfolios.filter(
+    const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
       (portfolio) => portfolio.portfolioId === portfolioId
     )[0];
+    if (filteredPortfolio && filteredPortfolio.entitlements) {
+      return filteredPortfolio.entitlements;
+    } else {
+      return {
+        showDelete: false,
+        showInvest: false,
+        showTopup: false,
+        showWithdrawPvToBa: false,
+        showWithdrawPvToCa: false,
+        showWithdrawCaToBa: false
+      };
+    }
   }
 }

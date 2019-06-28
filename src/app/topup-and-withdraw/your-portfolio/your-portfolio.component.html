@@ -17,7 +17,14 @@
             <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
               More</button>
             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-              <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" [class.hide]="(option.value === 'TOPUP' && !canTopup)" (click)="selectOption(option)" id="your_portfolio-drpdown-option-{{i}}">{{option.name}}</button>
+              <button class="dropdown-item"
+                [class.hide]="(option.value === 'TOPUP' && !entitlements.showTopup)
+                || (option.value === 'WITHDRAWAL' && (!entitlements.showWithdrawPvToBa && !entitlements.showWithdrawPvToCa && !entitlements.showWithdrawCaToBa))"
+                *ngFor="let option of moreList; let i = index;"
+                (click)="selectOption(option)"
+                id="additional_declaration_sourse-drpdown-option-{{i}}">
+                  {{option.name}}
+            </button>
             </div>
           </div>
         </div>

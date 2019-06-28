@@ -40,7 +40,7 @@ export class WithdrawalTypeComponent implements OnInit {
   isRedeemAll;
   translateParams;
   isRequestSubmitted = false;
-  canWithdrawPortfolio = false;
+  entitlements: any;
   userProfileInfo;
 
   constructor(
@@ -81,9 +81,7 @@ export class WithdrawalTypeComponent implements OnInit {
       MIN_WITHDRAW_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT
     };
-    if (this.userProfileInfo.investementDetails.portfolios[0].access.showWithdraw) {
-        this.canWithdrawPortfolio = true;
-    }
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolioId(this.portfolioList[0].productCode)
     this.buildForm();
   }
 
@@ -362,7 +360,11 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   withdrawAmountValidator(balance, source): ValidatorFn {
-    balance = parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, ""));
+    if (balance) {
+      balance = parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, ""));
+    } else {
+      balance = 0;
+    }
     return (control: AbstractControl) => {
       if (control) {
         let userInput = parseFloat(control.value);
