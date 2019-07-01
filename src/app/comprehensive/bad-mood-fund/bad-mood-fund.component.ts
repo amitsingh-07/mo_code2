@@ -52,9 +52,8 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   };
   viewMode: boolean;
   constructor(
-    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
-    private loaderService: LoaderService, private apiService: ApiService,
-    private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService, private apiService: ApiService,
+    private translate: TranslateService, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService
   ) {

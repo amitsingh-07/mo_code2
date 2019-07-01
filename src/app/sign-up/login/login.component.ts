@@ -32,7 +32,8 @@ import { GoogleAnalyticsService } from './../../shared/analytics/google-analytic
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { WillWritingApiService } from './../../will-writing/will-writing.api.service';
 import { LoginFormError } from './login-form-error';
-
+import { IError } from './../../shared/http/interfaces/error.interface';
+import { HelperService } from './../../shared/http/helper.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private pageTitle: string;
   private description: string;
   private duplicateError: string;
+
 
   loginForm: FormGroup;
   formValues: any;
@@ -74,6 +76,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private selectedPlansService: SelectedPlansService,
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
+    private helper: HelperService,
     private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -97,7 +100,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
         this.authService.clearSession();
+
         this.signUpService.logoutUser();
+        const customError: IError = {
+          error: [],
+          message: 'Your session has unexpectedly expired. Please login again'
+        };
+        this.helper.showCustomErrorModal(customError);
       } else {
         this.authService.authenticate().subscribe((token) => {
         });
