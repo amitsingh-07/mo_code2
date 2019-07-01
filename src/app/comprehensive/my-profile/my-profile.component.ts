@@ -155,7 +155,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.disableDOB = this.userDetails.dobUpdateable;
+        this.disableDOB = !this.userDetails.dobUpdateable;
         this.setUserProfileData();
         this.buildProfileForm();
         this.myProfileShow = true;
