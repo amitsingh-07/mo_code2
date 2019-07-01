@@ -27,7 +27,7 @@ app-confirm-portfolio {
           }
 
           .portfolio-allocation-details__content__block {
-            color: $modal-txt-highlight-color;
+            color: $dark-teal-color;
             background-color: $white-color;
             font-size: 18px;
             line-height: 1.5;
@@ -35,7 +35,10 @@ app-confirm-portfolio {
             text-align: center;
             border-radius: 3px;
             padding: 20px 15px;
-
+            @include allmobiles{
+              font-size: 14px;
+              padding: 20px 30px;
+            }
             strong {
               font-family: $muli-bold;
             }
