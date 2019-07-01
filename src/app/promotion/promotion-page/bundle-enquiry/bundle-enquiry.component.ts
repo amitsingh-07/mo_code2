@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { PromotionApiService } from '../../promotion.api.service';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { PromotionApiService } from '../../promotion.api.service';
 
 @Component({
   selector: 'app-bundle-enquiry',

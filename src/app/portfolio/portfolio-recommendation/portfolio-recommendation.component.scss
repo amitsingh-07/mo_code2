@@ -98,8 +98,10 @@ app-portfolio-recommendation {
     font-weight: 400;
     letter-spacing: -0.2px;
     text-align: center;
-    padding: 21px 0 50px;
-
+    padding: 21px 0 105px;
+    @include allmobiles{
+      padding: 21px 0 50px;
+    }
     a {
       color: $white-color;
       text-decoration: underline;

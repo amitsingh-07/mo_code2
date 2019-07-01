@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService, IConfig } from 'src/app/config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
-import { SeoServiceService } from './../../shared/Services/seo-service.service';
-import { ArticleApiService } from './../article.api.service';
-import { ArticleService } from './../article.service';
-import { IArticleElement } from './../articleElement.interface';
+import { ConfigService, IConfig } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SeoServiceService } from '../../shared/Services/seo-service.service';
+import { ArticleApiService } from '../article.api.service';
+import { ArticleService } from '../article.service';
+import { IArticleElement } from '../articleElement.interface';
 import { IArticleCategory } from './articleCategory.interface';
 
 @Component({
