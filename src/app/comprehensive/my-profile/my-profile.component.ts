@@ -102,9 +102,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.loaderService.showLoader({ title: 'Fetching Data' });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-
             this.loaderService.hideLoader();
-
             this.checkRedirect();
         });
 
@@ -194,6 +192,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
                 form.value.firstName = this.userDetails.firstName;
                 if (!form.pristine) {
+                    //  const userDetails = this.disableDOB ? form.getRawValue() : form.value;
                     this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(form.value);
                         const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
