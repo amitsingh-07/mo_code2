@@ -1,17 +1,21 @@
+import { flatMap } from 'rxjs/operators';
+
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy,
-  OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { flatMap } from 'rxjs/operators';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { ConfigService, IConfig } from '../../config/config.service';
+import {
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -30,8 +34,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
-import { ConfigService, IConfig } from './../../config/config.service';
-import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { WillWritingApiService } from './../../will-writing/will-writing.api.service';

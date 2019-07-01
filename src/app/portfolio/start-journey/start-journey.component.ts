@@ -1,21 +1,23 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
-import { AppService } from './../../app.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 
 import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
-import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-start-journey',
