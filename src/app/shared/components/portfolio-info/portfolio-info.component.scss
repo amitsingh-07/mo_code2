@@ -236,18 +236,19 @@
 
   .desc {
     margin-top: 30px;
-    font-size: 14px;
-    line-height: normal;
-    padding-bottom: 10px;
     border-radius: 6px;
     background-color: $portfolio-recommend-bg;
-    padding: 16px 22px;
-    text-align: left;
-    @include allmobiles{
-      margin-top: 0px;
-    }
-    strong {
-      font-weight: bold;
+    div {
+        font-size: 14px;
+        line-height: normal;
+        padding: 16px 22px;
+        text-align: left;
+        @include allmobiles {
+            margin-top: 0px;
+        }
+        strong {
+            font-weight: bold;
+        }
     }
   }
 }
