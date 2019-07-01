@@ -25,6 +25,7 @@ app-additional-declaration-info {
       text-align: center;
       color: $teal-color;
       font-weight: 400;
+      width: 370px;
       @include allmobiles {
         position: fixed;
         width: 100%;

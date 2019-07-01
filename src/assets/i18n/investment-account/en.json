@@ -334,7 +334,7 @@
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Login to MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo to retrieve your details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div>",
+      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div>",
       "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {

@@ -1,12 +1,14 @@
 @import '../../../variables.scss';
-
+@import '../../../mixins';
 app-confirm-withdrawal-modal {
   .edit-investment-modal {
     font-family: $muli;
 
     .modal-body-message {
       margin-bottom: 15px;
-      padding-bottom: 40px;
+      @include allmobiles{
+        padding-bottom: 40px;
+      }
 
       .warning {
         padding:6px 0 20px 0;
