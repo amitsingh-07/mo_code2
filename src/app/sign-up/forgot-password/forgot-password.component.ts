@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -23,6 +24,7 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 })
 export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
+  private distribution: any;
   private pageTitle: string;
   private description: string;
   emailNotFoundTitle: any;
@@ -39,6 +41,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    private configService: ConfigService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -63,6 +66,9 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       this.authService.authenticate().subscribe((token) => {
       });
     }
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.distribution = config.distribution;
+    });
   }
 
   ngOnInit() {
@@ -78,10 +84,18 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
+    if(this.distribution) {
+      this.forgotPasswordForm = this.formBuilder.group({
+        email: [this.formValues.email, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        captcha: ['', [Validators.required]]
+      });
+      return false;
+    }
     this.forgotPasswordForm = this.formBuilder.group({
       email: [this.formValues.email, [Validators.required, Validators.email]],
       captcha: ['', [Validators.required]]
     });
+    return true;
   }
 
   save(form: any) {
