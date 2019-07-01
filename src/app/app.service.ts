@@ -93,8 +93,7 @@ export class AppService {
 
   }
   setAction(promoCodeActionType: string) {
-    const promoCodeActionTypeValue = promoCodeActionType;
-    this.commit(PROMO_CODE_ACTION_TYPE, promoCodeActionTypeValue);
+    this.commit(PROMO_CODE_ACTION_TYPE, promoCodeActionType);
   }
   getPromoCode() {
     let promoCode = '';
@@ -104,8 +103,7 @@ export class AppService {
     return promoCode;
   }
   setPromoCode(promoCode: string) {
-    const promoCodeValue = promoCode;
-    this.commit(PROMO_CODE, promoCodeValue);
+    this.commit(PROMO_CODE, promoCode);
   }
   clearPromoCode() {
     if (window.sessionStorage) {
