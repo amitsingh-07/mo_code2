@@ -1,20 +1,24 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService, IConfig } from 'src/app/config/config.service';
+import { environment } from '../../../environments/environment';
+import { ConfigService, IConfig } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { environment } from './../../../environments/environment';
-import { FooterService } from './../../shared/footer/footer.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
