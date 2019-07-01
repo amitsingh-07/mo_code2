@@ -155,7 +155,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.disableDOB = !this.userDetails.dobUpdateable;
+        this.disableDOB = this.userDetails.dobUpdateable;
         this.setUserProfileData();
         this.buildProfileForm();
         this.myProfileShow = true;
@@ -189,12 +189,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
         } else {
             if (this.validateMoGetStrdForm(form) && !this.validateDOB(form.value.ngbDob)) {
-                form.value.dateOfBirth = this.parserFormatter.format(form.value.ngbDob);
-                form.value.firstName = this.userDetails.firstName;
+                this.userDetails = form.getRawValue();
+                this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
                 if (!form.pristine) {
-                    //  const userDetails = this.disableDOB ? form.getRawValue() : form.value;
-                    this.comprehensiveApiService.savePersonalDetails(form.value).subscribe((data) => {
-                        this.comprehensiveService.setMyProfile(form.value);
+                    this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
+                        this.comprehensiveService.setMyProfile(this.userDetails);
                         const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
                         cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
                         cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
