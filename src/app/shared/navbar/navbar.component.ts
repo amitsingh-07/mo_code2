@@ -1,32 +1,27 @@
-
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  NgModule,
-  OnInit,
-  Renderer2,
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-import { ProgressTrackerComponent } from './../modal/progress-tracker/progress-tracker.component';
 
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
+import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { TransactionModalComponent } from '../../shared/modal/transaction-modal/transaction-modal.component';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import {
+  TransactionModalComponent
+} from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
+import {
+  DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
+} from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { DefaultErrors } from '../modal/error-modal/default-errors';
+import { ProgressTrackerService } from '../modal/progress-tracker/progress-tracker.service';
 import { Util } from '../utils/util';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
-import { ConfigService, IConfig } from './../../config/config.service';
-import { DefaultErrors } from './../modal/error-modal/default-errors';
-import { ProgressTrackerService } from './../modal/progress-tracker/progress-tracker.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
@@ -433,7 +428,5 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   reloadProgressTracker() {
     this.progressTrackerService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-    //this.progressTrackerService.refresh();
   }
 }
-

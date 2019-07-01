@@ -1,32 +1,37 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ConfigService, IConfig } from '../../config/config.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+// Insurance
+import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    TransferInstructionsModalComponent
+} from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+// Will Writing
+import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
+import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-
-// Will Writing
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { WillWritingService } from 'src/app/will-writing/will-writing.service';
-import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-
-// Insurance
-import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
-
-import { TransferInstructionsModalComponent } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
-import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 
 @Component({
   selector: 'app-dashboard',

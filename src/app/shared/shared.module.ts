@@ -42,6 +42,7 @@ import { ProgressTrackerModalComponent } from './modal/progress-tracker/progress
 import { ProgressTrackerComponent } from './modal/progress-tracker/progress-tracker.component';
 import { ProgressTrackerService } from './modal/progress-tracker/progress-tracker.service';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
 import { TransferInstructionsModalComponent } from './modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
@@ -54,7 +55,6 @@ import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
