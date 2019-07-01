@@ -31,4 +31,5 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
       investedPercentage: this.currencyPipe.transform(this.portfolio.projectedReturnsLowEnd, 'USD', 'symbol-narrow', '1.2-2')
     };
   }
+
 }
