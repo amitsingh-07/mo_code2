@@ -23,7 +23,7 @@ app-portfolio-recommendation {
         margin-bottom: 14px;
         border-radius: 6px;
         @include allmobiles{
-          margin-bottom: 4px;
+          margin-bottom: 10px;
         }
         .portfolio-allocation-details__content__desc {
           .portfolio_img {
@@ -44,7 +44,10 @@ app-portfolio-recommendation {
             text-align: center;
             border-radius: 3px;
             padding: 20px 15px;
-
+            @include allmobiles{
+              font-size: 14px;
+              padding: 20px 30px;
+            }
             strong {
               font-family: $muli-bold;
             }

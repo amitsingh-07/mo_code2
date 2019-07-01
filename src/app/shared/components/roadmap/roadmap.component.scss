@@ -29,7 +29,7 @@
 
                 span.line {
                     display:block;
-                    width:3px;
+                    width:2px;
                     height:100%;
                     background-color:$top-up-your-portfolio-your-total-value-bg;
                     margin: 0 auto;
@@ -63,7 +63,7 @@
             &.in-progress{
                 .roadmap-icon {
                     .icon {
-                        background-image:url('../../../../assets/images/roadmap/in-progress.png');
+                        background-image:url('../../../../assets/images/roadmap/owl_head_tracker.svg');
                         top:-7px !important;      
                     }
                 }
@@ -75,7 +75,7 @@
             &.completed{
                 .roadmap-icon {
                     .icon {
-                        background-image:url('../../../../assets/images/roadmap/completed.png');
+                        background-image:url('../../../../assets/images/roadmap/completed.svg');
                         top: -1px !important;
                     }
                 }
