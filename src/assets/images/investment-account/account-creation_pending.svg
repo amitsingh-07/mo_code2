@@ -4,7 +4,6 @@
         <ellipse id="b" cx="12.309" cy="12.532" rx="12.309" ry="12.426"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#2D8289" d="M0 0h370v280H0z"/>
         <use fill="#00BCBC" transform="matrix(-1 0 0 1 304 42.606)" xlink:href="#a"/>
         <g fill="#FDC010">
             <path d="M132.518 82.809l-7.468-2.687 5.73-5.492.247-7.932 6.994 3.751 7.62-2.215-1.406 7.81 4.461 6.563-7.862 1.076-4.864 6.272z"/>

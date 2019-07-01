@@ -3,10 +3,14 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService, IConfig } from 'src/app/config/config.service';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { ConfigService, IConfig } from '../../config/config.service';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH } from '../investment-account-routes.constants';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH
+} from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
