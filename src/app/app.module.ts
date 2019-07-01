@@ -86,9 +86,14 @@ import {
 } from './shared/modal/login-create-account-model/login-create-account-model.component';
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { SummaryModalComponent } from './shared/modal/summary-modal/summary-modal.component';
+import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
-import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
-import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import {
+  TransactionModalComponent
+} from './shared/modal/transaction-modal/transaction-modal.component';
+import {
+  UnsupportedDeviceModalComponent
+} from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
@@ -213,9 +218,9 @@ export function tokenGetterFn() {
     HelpModalComponent, LoaderComponent, ErrorModalComponent,
     BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, PopupModalComponent,
+    InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent,
-    RecommendationsModalComponent,
+    RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent,
     WillDisclaimerComponent, TransactionModalComponent,
     LoginCreateAccountModelComponent, SummaryModalComponent,
