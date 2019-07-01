@@ -1,3 +1,4 @@
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
@@ -41,6 +42,7 @@ import { LoginFormError } from './login-form-error';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+  private distribution: any;
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -66,7 +68,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
-    private modal: NgbModal,
+    private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
@@ -90,6 +92,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
     });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.distribution = config.distribution;
+      });
   }
 
   /**
@@ -136,11 +141,22 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   buildLoginForm() {
     this.formValues = this.signUpService.getLoginInfo();
+    if(this.distribution) {
+      if(this.distribution.login) {
+        this.loginForm = this.formBuilder.group({
+          loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
+          loginPassword: [this.formValues.loginPassword, [Validators.required]],
+          captchaValue: ['']
+        });
+        return false;
+      }
+    }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
+    return true;
   }
 
   /**

@@ -128,7 +128,7 @@ app-upload-document-bo {
     }
     .upload-doc {
       display: flex;
-      justify-content: space-evenly;
+      justify-content:  space-between;
       flex: 1;
       padding: 0 15px;
       .upload-desc {
@@ -142,6 +142,9 @@ app-upload-document-bo {
         flex: 1;
         margin-right: 10px;
         margin-bottom: 38px;
+        @include desktop{
+          min-height: 165px;
+        }
         &:last-child {
           margin-right: 0;
         }
@@ -162,23 +165,23 @@ app-upload-document-bo {
         }
         .thumb-container {
           position: relative;
-          width: 100px;
-          height: 100px;
+          max-width: 85px;
+          max-height: 85px;
           display: flex;
           align-items: center;
-          margin-bottom: 10px;
+          padding: 10px 0 20px;
           cursor: pointer;
           .thumbnail {
             margin: 0 auto;
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 85px;
+            max-height: 85px;
           }
           .thumb-close-icon {
             position: absolute;
             padding: 1px 7px;
             border-radius: 100%;
             background-color: $white-color;
-            right: -10px;
+            right: -25px;
             top: -10px;
             img {
               width: 12px;

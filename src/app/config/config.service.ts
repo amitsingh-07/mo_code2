@@ -21,6 +21,7 @@ export interface IConfig {
   verifyEmailUrl: string;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];
+  distribution: any;
 }
 
 const CACHE_SIZE = 1;
