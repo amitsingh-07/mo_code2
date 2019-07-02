@@ -43,11 +43,10 @@
       <div *ngIf=!oneTimeOrMonthlySufficient()>
         <div class="tab-links">
           <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
-            <div>{{ 'FUND_YOUR_ACCOUNT.BANK' | translate }}</div>
-            <div>{{ 'FUND_YOUR_ACCOUNT.TRANSFER' | translate }}</div>
+           <div class="pay-tab">{{ 'FUND_YOUR_ACCOUNT.BANK_TRANSFER' | translate }}</div>
           </div>
           <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-            <img  src="../../../assets/images/topupwithdraw\paynow.png" alt="" />
+            <div class="pay-tab"><img  src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
           </div>
         </div>
         <div class="tab-content-container">

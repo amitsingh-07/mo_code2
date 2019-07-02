@@ -17,8 +17,11 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
+  resetPasswordUrl: string;
+  verifyEmailUrl: string;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];
+  distribution: any;
 }
 
 const CACHE_SIZE = 1;

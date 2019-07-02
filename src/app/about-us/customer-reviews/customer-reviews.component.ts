@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
-
-import { ConfigService } from 'src/app/config/config.service';
-import { SeoServiceService } from './../../shared/Services/seo-service.service';
-import { AboutUsApiService } from './../about-us.api.service';
-import { AboutUsService } from './../about-us.service';
+import { ConfigService } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SeoServiceService } from '../../shared/Services/seo-service.service';
+import { AboutUsApiService } from '../about-us.api.service';
+import { AboutUsService } from '../about-us.service';
 import { ICustomerReview } from './customer-reviews.interface';
 
 @Component({

@@ -1,9 +1,11 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({

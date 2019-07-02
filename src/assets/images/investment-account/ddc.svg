@@ -14,7 +14,6 @@
         <path id="l" d="M0 .21h53.067v164.94H0z"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#00A7A7" d="M0 0h350v270H0z"/>
         <ellipse cx="181" cy="214.5" fill="#118C8C" rx="128" ry="9.5"/>
         <g transform="translate(82.491 35)">
             <path fill="#D5E3E3" d="M87.018 173.375h57.265v-34H87.018z"/>
