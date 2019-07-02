@@ -114,6 +114,7 @@ button:active:focus {
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
+
     &.absolute {
       position: absolute;
       right: 10px;
@@ -252,7 +253,7 @@ button:active:focus {
       color: $white-color;
       top: 40%;
       left: 37%;
-      background-image: url(../src/assets/images/right-arrow.svg);
+      background-image: url("./assets/images/right-arrow.svg");
       width: 15px;
       height: 15px;
     }
@@ -308,7 +309,7 @@ button:active:focus {
       color: $white-color;
       top: 50%;
       left: 55%;
-      background-image: url("../src/assets/images/plus-white.svg");
+      background-image: url("./assets/images/plus-white.svg");
       background-repeat: no-repeat;
       width: 20px;
       height: 20px;
@@ -316,7 +317,7 @@ button:active:focus {
     }
 
     .addCover__block__btn--edit {
-      background-image: url("../src/assets/images/edit-white.png");
+      background-image: url("./assets/images/edit-white.png");
     }
   }
 
@@ -445,12 +446,15 @@ button:active:focus {
     line-height: 1.2;
     letter-spacing: -0.3px;
   }
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
     .result__block--title {
       width: 80%;
       height: 45px;
     }
   }
+
   .result__block--data {
     color: $teal-color;
     font-family: $muli-bold;
@@ -464,11 +468,14 @@ button:active:focus {
       @include fontSize(21px);
     }
   }
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
     .result__block--data {
-      width:60%;
+      width: 60%;
     }
   }
+
   .result__block--postfix {
     color: $dark-teal-color;
     line-height: 1.0;
@@ -607,7 +614,7 @@ button:active:focus {
         color: $white-color;
         top: 50%;
         left: 55%;
-        background-image: url(../src/assets/images/editIcon.svg);
+        background-image: url("./assets/images/editIcon.svg");
         background-repeat: no-repeat;
         width: 20px;
         height: 20px;
@@ -864,9 +871,10 @@ button:active:focus {
     }
   }
 }
+
 // dropdown-listitems with 24px gap 
 .dropdown-control {
-  .dropdown{
+  .dropdown {
     .btn-dropdown {
       padding-right: 27px;
       max-height: 52px;
@@ -875,25 +883,30 @@ button:active:focus {
       text-overflow: ellipsis;
     }
   }
+
   .dropdown-menu {
-    &.show{
+    &.show {
       right: 0 !important;
       overflow: auto;
       height: auto;
       max-height: 264px;
       padding-top: 0;
       padding-bottom: 0;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+
       .dropdown-item {
         padding: 10px 14.4px;
         white-space: normal;
         word-break: break-word;
-        &:hover{
+
+        &:hover {
           background-color: #EAFAF9;
-          border:none;
+          border: none;
         }
-        &:active{
+
+        &:active {
           background-color: #EAFAF9;
-          border:none;
+          border: none;
           color: #00a7a7;
         }
       }
@@ -989,14 +1002,6 @@ button:active:focus {
     }
   }
 }
-// .btn-comprehensive{
-//   background: #fff!important;
-//   color: #00a7a7!important; 
-// }
-// .btn-comprehensive:disabled{
-//   background: #fff!important;
-//   color: #99cfcf!important; 
-// }
 
 /*Comprehensive button styles*/
 .comprehensive {
@@ -1014,12 +1019,14 @@ button:active:focus {
     height: 50px;
     margin: 0;
     background: $white-color;
+
     //margin-bottom: 5px;
     &.active {
       border: 1px solid $app-backgrnd-color !important;
       color: $white-color !important;
       background: $app-backgrnd-color !important;
     }
+
     .acive:hover,
     &:active,
     &:focus {
@@ -1027,22 +1034,26 @@ button:active:focus {
       border-color: $app-backgrnd-color;
     }
   }
+
   .datepicker-control .input-group-append .btn-primary {
     box-shadow: none !important;
     margin: 0;
   }
+
   .btn {
     &.btn-primary {
       font-size: 18px;
       background: $btn-comprehensive;
       box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;
       margin: 30px 0 50px 0;
+
       &:disabled {
         background: $btn-comprehensive-disabled-bg;
         color: $white-color;
       }
     }
   }
+
   .fixed-button {
     position: absolute;
     bottom: 50px;

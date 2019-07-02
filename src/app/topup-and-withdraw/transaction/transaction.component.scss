@@ -3,20 +3,35 @@
 //Transaction Module Styles
 app-transaction {
   .container-fluid{
+    padding-top: 0px;
+    padding-bottom: 0PX;
     @include allmobiles{
+      padding-top: 60px;
       padding-right: 0 !important;
       padding-left: 0 !important;
     }
     @include phablet {
-      padding-top: 80px;
+      padding-top: 60px;
      }
   }
   .transaction-panel {
     min-height: 100vh;
-    background: $white-color;
+    background: #dfecec;
+    .title{
+      color: $teal-color;
+      padding: 28px 0 18px;
+      text-align: center;
+      background: $white-color;
+      font-family: $muli-semi-bold;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.25px;
+      border-bottom: 1px solid #edeff1;
+    }
     .nav-item {
       width: 50%;
       text-align: center;
+      background: $white-color;
     }
     .nav-tabs .nav-link {
       border: none;
@@ -28,12 +43,6 @@ app-transaction {
         color: $secondary-action-color;
         border-bottom: 6px solid $secondary-action-color;
       }
-    }
-    .transaction-group {
-      border-bottom: 1px solid $question-info-brdr-color;
-    }
-    .transaction-group:last-child {
-      border-width: 0px;
     }
     .transaction-panel__history,
     .transaction-panel__statements {

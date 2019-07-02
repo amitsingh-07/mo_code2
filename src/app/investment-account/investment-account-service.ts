@@ -13,14 +13,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 import { PortfolioService } from '../portfolio/portfolio.service';
+import { ERoadmapStatus } from '../shared/components/roadmap/roadmap.interface';
+import { RoadmapService } from '../shared/components/roadmap/roadmap.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
+import { INVESTMENT_ACCOUNT_DDC2_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP, INVESTMENT_ACCOUNT_ROADMAP } from './investment-account-roadmap';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from './investment-account-routes.constants';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import { PersonalInfo } from './personal-info/personal-info';
-
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 
@@ -41,7 +44,8 @@ export class InvestmentAccountService {
     public authService: AuthenticationService,
     private portfolioService: PortfolioService,
     public readonly translate: TranslateService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private roadmapService: RoadmapService
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -715,9 +719,9 @@ export class InvestmentAccountService {
     let disable: boolean;
     if (
       this.investmentAccountFormData.isMyInfoEnabled &&
-      this.investmentAccountFormData.disableAttributes.includes(fieldName)
+      this.investmentAccountFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
-      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.includes(fieldName) && this.isSingaporeResident()) {
+      if (INVESTMENT_ACCOUNT_CONFIG.DISABLE_FIELDS_FOR_NON_SG.indexOf(fieldName) >= 0 && this.isSingaporeResident()) {
         disable = false;
       } else {
         disable = true;
@@ -788,7 +792,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.constructQueryParams(params);
+    const urlParams = this.portfolioService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
   }
 
@@ -1027,15 +1031,6 @@ export class InvestmentAccountService {
     }
 
     return additionalDesc;
-  }
-
-  constructQueryParams(options) {
-    const objectKeys = Object.keys(options);
-    const params = new URLSearchParams();
-    Object.keys(objectKeys).forEach((e) => {
-      params.set(objectKeys[e], options[objectKeys[e]]);
-    });
-    return '?' + params.toString();
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -1711,4 +1706,59 @@ export class InvestmentAccountService {
       sessionStorage.removeItem(ACCOUNT_SUCCESS_COUNTER_KEY);
     }
   }
+
+  loadInvestmentAccountRoadmap(showUploadDocs?) {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_ROADMAP);
+    if (showUploadDocs) {
+      this.roadmapService.addItem({
+        title: 'Upload Documents',
+        path: [INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS, INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO],
+        status: ERoadmapStatus.NOT_STARTED
+      });
+    } else {
+      this.roadmapService.removeItem([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    }
+  }
+
+  loadDDCRoadmap() {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC_ROADMAP);
+  }
+
+  loadDDCInvestmentRoadmap() {
+    this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
+  }
+
+  setUserPortfolioExistStatus(status) {
+    this.investmentAccountFormData.portfolioExist = status;
+    this.commit();
+  }
+
+  getUserPortfolioExistStatus() {
+    return this.investmentAccountFormData.portfolioExist;
+  }
+
+  // #FOR 100 CHARACTERS FIELD CURSOR POSITION
+ setCaratTo(contentEditableElement, position, dependentName) {
+  contentEditableElement.innerText = dependentName;
+  if (document.createRange) {
+    const range = document.createRange();
+    range.selectNodeContents(contentEditableElement);
+
+    range.setStart(contentEditableElement.firstChild, position);
+    range.setEnd(contentEditableElement.firstChild, position);
+
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+}
+
+// #SET THE CONTROL FOR 100 CHARACTERS FIELD
+setControlValue(value, controlName, formName) {
+  if (value !== undefined) {
+    value = value.replace(/\n/g, '');
+    formName.controls[controlName].setValue(value);
+    return value;
+  }
+}
 }

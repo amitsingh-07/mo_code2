@@ -1,24 +1,19 @@
 <div class="modal-body white-bg">
   <div class="separator"></div>
   <div class="form-group mt0">
-    <div class="flex-row" *ngIf="data > 0">
+    <div class="flex-row">
       <div class="flex-col-3">
         <button type="button" class="back" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <div class="flex-col-8" *ngIf="data > 0">
+      <div class="flex-col-8">
         <span class="selected-count">{{data}}</span>
         <span class="lbl-selected" [hidden]="data >= 2">{{ 'COMMON.LBL_PLAN_SELECTED' | translate}}</span>
         <span class="lbl-selected" [hidden]="data < 2">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
       </div>
     </div>
-    <div class="flex-row mb0" *ngIf="data > 0">
-      <div class="flex-col-12">
-        <label class="choose_ops flex-col-12">{{ 'RECOMMENDATIONS.CHOOSE_OPTIONS' | translate}}</label>
-      </div>
-    </div>
-    <div class="flex-row mb0" *ngIf="data > 0">
+    <div class="flex-row mb0">
       <div class="flex-col-12">
         <label class="choose_ops flex-col-12">{{ 'RECOMMENDATIONS.CHOOSE_OPTIONS' | translate}}</label>
       </div>

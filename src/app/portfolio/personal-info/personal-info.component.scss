@@ -17,13 +17,27 @@ app-ci-assessment {
     min-width: 100% !important;
   }
 }
+
 app-personal-info {
-  .container-fluid {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
+ .container-fluid {
     @include allmobiles {
       padding-top: 68px;
     }
-    padding-right: 15px !important;
+    @include desktop {
+      padding-right: 75px !important;
+      padding-left: 75px !important;
+    }
+    padding-right: 20px !important;
     padding-left: 23px !important;
+    .banner-image{
+      img{
+        padding-top: 0;
+      }
+    }
   }
 
   #userInfoForm .col-sm-7 {
@@ -153,7 +167,6 @@ app-personal-info {
   .Continue {
     font-family: $muli-bold !important;
     font-size: 22px;
-    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -167,7 +180,7 @@ app-personal-info {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 18px solid transparent;
-    border-bottom: 18px solid $white-color;
+    border-bottom: 20px solid $white-color;
     right: 0px;
     left: auto;
     position: absolute;
@@ -175,7 +188,6 @@ app-personal-info {
 
   .callout h5 {
     color: $teal-color;
-    font-weight: bold;
     letter-spacing: -0.2px;
     font-family: $muli-bold;
   }
@@ -189,6 +201,11 @@ app-personal-info {
   &:disabled {
     background-color: $btn-disabled-light-bg;
     color: $disabled-teal-color;
+    &:hover{
+      background-color: $btn-disabled-light-bg !important;
+      color: $disabled-teal-color;
+
+    }
   }
 }
 .investmentSlider {

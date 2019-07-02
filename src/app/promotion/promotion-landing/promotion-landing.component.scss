@@ -218,7 +218,7 @@
                 font-family: $muli-regular;
                 font-size:21px;
                 letter-spacing:-0.06px;
-                color: $light-grey-color;
+                color: $dusty-grey-color;
                 margin-bottom:0px;
                 @include minMobilemaxPhablet{
                     text-align: center;
@@ -338,7 +338,7 @@ position: relative;
                 font-family: $muli;
                 font-size: 14px;
                 letter-spacing:-0.04px;
-                color:$light-grey-color;
+                color:$dusty-grey-color;
                 text-align: center;
             }
         }

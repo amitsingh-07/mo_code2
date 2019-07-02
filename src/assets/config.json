@@ -10,6 +10,8 @@
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": true,
+  "resetPasswordUrl": "/#/account/reset-password",
+  "verifyEmailUrl": "/#/account/email-verification",
   "hospitalPlanData": [{
     "id": 0,
     "hospitalClass": "None",

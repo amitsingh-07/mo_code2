@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { ProgressTrackerUtil } from 'src/app/shared/modal/progress-tracker/progress-tracker-util';
 
 import { appConstants } from '../app.constants';
 import { AppService } from '../app.service';
@@ -9,9 +8,10 @@ import { ConfigService, IConfig } from '../config/config.service';
 import { LoaderService } from '../shared/components/loader/loader.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up/sign-up.service';
+import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 import { ComprehensiveApiService } from './comprehensive-api.service';
-import { COMPREHENSIVE_BASE_ROUTE, COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
+import { COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
 import { ComprehensiveService } from './comprehensive.service';
 
 @Injectable()

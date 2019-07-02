@@ -56,7 +56,7 @@ export class CustomErrorHandlerService {
       console.error('An error occured do nothing let it flow');
     } else {
       console.log('Do nothing let it flow');
-    }
+      }
     return throwError(
       'Something bad happened; please try again later.');
   }

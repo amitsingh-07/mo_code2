@@ -18,13 +18,14 @@ app-additional-declaration-info {
       cursor: pointer;
       font-family: $muli-bold;
       font-size: 22px;
-      font-weight: bold;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
       letter-spacing: -0.2px;
       text-align: center;
       color: $teal-color;
+      font-weight: 400;
+      width: 370px;
       @include allmobiles {
         position: fixed;
         width: 100%;
@@ -78,7 +79,7 @@ app-additional-declaration-info {
     .intro-block__content__heading {
       font-family: $muli-semi-bold;
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 400;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;

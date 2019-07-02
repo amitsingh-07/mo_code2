@@ -1,6 +1,119 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-holdings {
+  .container-fluid {
+    &.max-width--1024 {
+      top: 0 !important;
+      padding-top: 0;
+
+      @include allmobiles {
+        padding: 0 !important;
+        margin-top: 0 !important
+      }
+    }
+  }
+  .holdings-bg {
+    position: absolute;
+    background: #3bbfbf;
+    width: 100%;
+    left: 0;
+    right: 0;
+
+    @include allmobiles {
+      padding-top: 60px;
+      width: 100%;
+      max-height: 230px;
+    }
+    .container-fluid{
+      padding: 0;
+      top: 0;
+      .background_img {
+        float: right;
+        @include allmobiles {
+          object-fit: contain;
+          position: relative;
+          width: 100%;
+        }
+        &.web_bg {
+          position: relative;
+          @include allmobiles {
+            display: none;
+          }
+        }
+        &.mobile_bg {
+          display: none;
+          @include allmobiles {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+  .user_content {
+    position: absolute;;
+    padding: 0 75px;
+    top: 60px;
+    max-width: 1024px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    @include allmobiles {
+      top: 100px;
+      padding: 0;
+    }
+
+    @include phablet {
+      top: 85px;
+    }
+
+    .user_summary {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: -0.2px;
+      padding: 0 29px 0 15px;
+      position: relative;
+      max-width: 400px;
+       @include allmobiles {
+        padding: 0 29px 0 28px;
+      }
+      div{
+        font-size: 36px;
+      }
+    }
+ }
+ 
+  .container-fluid {
+    position: relative;
+    top: 120px;
+    padding-left: 45px;
+    padding-right: 45px;
+
+    @include allmobiles {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      height: 100%;
+      padding: 0px;
+      padding-bottom: 20px;
+      top: 200px;
+    }
+
+    @include max360 {
+      top: 180px;
+    }
+
+    @include iphone6 {
+      top: 220px;
+    }
+
+    @include phablet {
+      top: 140px;
+    }
+ }
   .form-group-with-bg {
     border-radius: 6px !important;
     .form-group-with-bg--header {
@@ -10,7 +123,6 @@ app-holdings {
       padding: 16px 26px 26px 26px;
       font-family: $muli-bold;
       font-size: 16px;
-      font-weight: bold;
     }
     .form-group-with-bg--content {
       border-radius: 6px;
@@ -29,12 +141,10 @@ app-holdings {
     }
     .text_bold {
       font-family: $muli-bold;
-      font-weight: bold;
     }
     .value {
       font-family: $muli-bold;
       font-size: 14px;
-      font-weight: bold;
       line-height: 1.64;
       letter-spacing: -0.1px;
       color: $teal-color;
