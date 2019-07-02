@@ -168,6 +168,10 @@ export class YourInvestmentComponent implements OnInit {
     this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
   }
 
+  stopEventPropogation(event) {
+    event.stopPropagation();
+  }
+
   getPortfolioHoldingList(portfolioid) {   // CALLING THE API
     this.topupAndWithDrawService
       .getIndividualPortfolioDetails(portfolioid)
@@ -213,7 +217,8 @@ export class YourInvestmentComponent implements OnInit {
     return riskProfileImg;
   }
 
-  alertPopUp(i) {
+  alertPopUp(i, event) {
+    event.stopPropagation();
     this.selected = i;
     this.showAlretPopUp = true;
   }

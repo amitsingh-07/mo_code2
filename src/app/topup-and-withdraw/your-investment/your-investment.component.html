@@ -105,7 +105,6 @@
             </div>
           </div>
           <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index;">
-
             <!-- NEW IMPLEMENTATION -->
             <div *ngIf="getEntitlementsFromPortfolio(portfolio); let entitlement">
               <!-- HEADERS -->
@@ -118,7 +117,7 @@
                   </div>
                 </div>
                 <div class="flex-row">
-                    <div *ngIf="selected === i">
+                    <div *ngIf="selected === i" (click)="stopEventPropogation($event)">
                       <div class="callout-content" *ngIf="showAlretPopUp">
                         <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
                           <span>{{portfolio.expiryDate}}</span>.</div>
@@ -134,7 +133,7 @@
                     </div>
                     <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">
                       <img id="close_icon" id="investment_overview_topup_icon"
-                        src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i)" />
+                        src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i, $event)" />
                     </div>
                     <div class="forward_img" *ngIf="portfolio.portfolioStatus !== 'EXPIRED'">
                       <img id="investment_overview_forward_icon_two"
@@ -193,109 +192,6 @@
               </div>
             </div>
             <!-- / NEW IMPLEMENTATION -->
-
-
-
-
-            <!-- PURCHASED PORTFOLIO -->
-            <div *ngIf="false">
-              <div class="form-group-with-bg--header your_portfolio_value" (click)="yourPortfolio(portfolio)">
-                <div class="flex-row">
-                  <div class="conserve-icon">
-                    <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
-                  </div>
-                  <div class="portfolio_heading" id="investment_overview_portfolio_name">{{portfolio.riskProfile.type}}
-                  </div>
-                </div>
-                <div class="forward_img">
-                  <img id="investment_overview_forward_icon"
-                    src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
-                </div>
-              </div>
-              <!-- zero portfolio -->
-              <div class="form-group-with-bg--content">
-                <div class="flex-row align-items-end">
-                  <div class="flex-col-8">
-                    <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES'
-                    | translate}}</div>
-                    <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">
-                      <span
-                        *ngIf="portfolio.currentValue">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                      <span *ngIf="!portfolio.currentValue">{{0 | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                    </div>
-                  </div>
-                  <div class="flex-col-4" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-                    <div class="start_investment_value"
-                      [class.negativeValue]="portfolio.totalReturns && portfolio.totalReturns < 0" for="name"
-                      id="investment_overview_portfolio_total_returns_value">{{formatReturns(portfolio.totalReturns)}}{{portfolio.totalReturns
-                    | number : '1.0-2'}}%</div>
-                  </div>
-                </div>
-                <div class="action-section" *ngIf="portfolio.currentValue <= 0">
-                  <div class="action-item">
-                    <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-transparent">{{'YOUR_INVESTMENT.DELETE'
-                          | translate}}</button>
-                  </div>
-                  <div class="action-item">
-                    <button type="button" (click)="investAgain(portfolio)" class="btn btn-transparent orange">{{'YOUR_INVESTMENT.INVEST_AGAIN'
-                        | translate}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- NON-PURCHASED PORTFOLIO  -->
-            <div *ngIf="false">
-              <div class="form-group-with-bg--header your_portfolio_value">
-                <div class="flex-row" (click)="yourPortfolio(portfolio)">
-                  <div class="conserve-icon">
-                    <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
-                  </div>
-                  <div class="portfolio_heading">{{portfolio.riskProfile.type}}</div>
-                </div>
-                <div class="flex-row">
-                  <div *ngIf="selected === i">
-                    <div class="callout-content" *ngIf="showAlretPopUp">
-                      <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
-                        <span>{{portfolio.expiryDate}}</span>.</div>
-                      <div class="Fund_your_account">
-                        <u (click)="ViewTransferInst(portfolio.productCode)" id="fund_your_account_link">
-                          {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>
-                      </div>
-                      <button type="button" class="close" aria-label="Close" (click)="ClosedPopup()" id="close_icon">
-                        <span aria-hidden="true"></span>
-                      </button>
-                      <div class="callout-arrow"></div>
-                    </div>
-                  </div>
-                  <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">
-                    <img id="close_icon" id="investment_overview_topup_icon"
-                      src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i)" />
-                  </div>
-                  <div class="forward_img" *ngIf="portfolio.portfolioStatus !== 'EXPIRED'">
-                    <img id="investment_overview_forward_icon_two"
-                      src="../../../assets/images/investment-account/forward_portfolio.svg" alt=""
-                      (click)="yourPortfolio(portfolio)" />
-                  </div>
-                </div>
-              </div>
-              <div class="form-group-with-bg--content your_portfolio_value_content">
-                <div class="flex-row">
-                  <div class="flex-col-12">
-                    <div id="investment_recommended" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET'
-                    | translate}}</div>
-                    <div *ngIf="portfolio.portfolioStatus === 'EXPIRED'" id="investment_expired">{{'YOUR_INVESTMENT.EXPIRED'
-                    | translate}}</div>
-                    <div *ngIf="portfolio.portfolioStatus === 'FUNDED'" id="investment_funded">{{'YOUR_INVESTMENT.IN_PROGRESS'
-                    | translate}}</div>
-                  </div>
-                </div>
-                <div class="portfolio_footer"
-                  *ngIf="portfolio.portfolioStatus === 'EXPIRED' || portfolio.portfolioStatus === 'RECOMMENDED'">
-                  <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-primary width100">{{'YOUR_INVESTMENT.DELETE'
-                  | translate}}</button>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="form-group-with-bg no-portfolio" *ngIf="!portfolioList || portfolioList.length == 0">
             <span class="msg">{{'YOUR_INVESTMENT.NO_PORTFOLIO'
