@@ -2,6 +2,21 @@
 @import '../../../mixins';
 
 app-my-financials {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+  }
+  .container-fluid {
+   // padding-top: 70px;
+  @include minPhabletmaxTablet{
+   padding-top: 70px;
+  }
+}
+  .banner-image{
+    img{
+      padding-top: 0;
+    }
+  }
   .fixed-btn--sm {
     border: 1px solid $fixed-btn-brdr-color;
     color: $teal-color;
@@ -19,7 +34,7 @@ app-my-financials {
   }
 
   .form-group-with-bg--header-label {
-    font-weight: 600;
+    font-weight: 400;
   }
 
   .form-group-with-bg--content-sub-label {
@@ -27,12 +42,27 @@ app-my-financials {
   }
 
   .form-group-with-bg--content-label {
-    font-weight: 600;
+    font-weight: 400;
     line-height: 22px;
   }
-
+  .emergency-fund{
+    width: 208px !important;
+    .flex-col-12{
+      .btn-group--toggle{
+        .flex-row{
+          .flex-col-6{
+            max-width: 99px !important;
+            .btn-outline-primary{
+              background: $bond-container-bg;
+            }
+          }
+        }   
+      }
+    }
+  }
   .second-section {
     .form-group-with-bg--content {
+      
       .checkbox_instruction {
         font-family: $muli-italic;
         font-size: 14px;
@@ -50,7 +80,7 @@ app-my-financials {
         .checkbox-button {
           background: none;
           .input-label-black {
-            font-weight: 600;
+            font-weight: 400;
             letter-spacing: -0.3px;
             color: $dark-teal-color;
           }
@@ -70,6 +100,7 @@ app-my-financials {
           }
         }
       }
+      
     }
   }
 
@@ -90,6 +121,9 @@ app-my-financials {
   }
 
   .btn {
+    &:hover {
+      background-color: $btn-disabled-light-bg !important;
+    }
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $disabled-teal-color;

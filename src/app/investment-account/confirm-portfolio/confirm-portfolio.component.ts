@@ -4,23 +4,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { PortfolioService } from '../../portfolio/portfolio.service';
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { EditInvestmentModalComponent } from '../../shared/modal/edit-investment-modal/edit-investment-modal.component';
+import {
+    EditInvestmentModalComponent
+} from '../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
-import { AccountCreationErrorModalComponent } from '../account-creation-error-modal/account-creation-error-modal.component';
+import {
+    AccountCreationErrorModalComponent
+} from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
-import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -39,10 +46,9 @@ export class ConfirmPortfolioComponent implements OnInit {
   portfolio;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
   userInputSubtext;
-
+  iconImage;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
-
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
   isRequestSubmitted = false;
 
@@ -78,7 +84,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getPortfolioDetails();
-  }
+    }
 
   getPortfolioDetails() {
     const params = this.constructgetPortfolioParams();
@@ -86,6 +92,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       .getPortfolioAllocationDetails(params)
       .subscribe((data) => {
         this.portfolio = data.objectList;
+        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.topupAndWithDrawService.setFundingDetails(fundingParams);
         this.userInputSubtext = {

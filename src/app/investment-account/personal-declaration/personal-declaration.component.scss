@@ -26,6 +26,11 @@ app-personal-declaration {
         padding-bottom: 30px;
       }
     }
+    .btn-group--toggle{
+      label{
+        font-size: 16px;
+      }
+    }
     .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
@@ -47,7 +52,7 @@ app-personal-declaration {
       z-index: 1001;
       &:disabled {
         background-color: $btn-disabled-light-bg;
-        color: $teal-color;
+        color: $disabled-teal-color;
       }
     }
     .fixed-btn--sm {
@@ -63,31 +68,40 @@ app-personal-declaration {
       padding-right: 14px;
     }
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
-      position: relative;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
+        position: relative;
         top: 60px;
+        background-color: $white-color;
+      padding: 10px 0px;
       }
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
       display: block;
+      float: right;
     }
     .country_text {
       width: 100px;
       height: 69px;
       font-family: $muli-semi-bold;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
@@ -97,7 +111,7 @@ app-personal-declaration {
     .tin_question_text {
       font-family: $muli-semi-bold;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;

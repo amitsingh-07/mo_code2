@@ -23,9 +23,6 @@ export let TOPUPANDWITHDRAW_CONFIG = {
     MIN_WITHDRAW_AMOUNT: 50,
     MIN_BALANCE_AMOUNT: 50
   },
-  STATEMENT: {
-    STATEMENT_BASE_PATH: window.location.origin + '/assets/docs/portfolio/transaction/'
-  },
   FUND_YOUR_ACCOUNT: {
     ONETIME: 'ONETIME',
     MONTHLY: 'MONTHLY',

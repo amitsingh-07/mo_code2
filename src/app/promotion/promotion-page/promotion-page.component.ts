@@ -1,19 +1,21 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+    ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService } from 'src/app/config/config.service';
-import { PromotionService } from '../promotion.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
-
+import { ConfigService } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PromotionApiService } from '../promotion.api.service';
 import { IPromotion } from '../promotion.interface';
-import { PromotionApiService } from './../promotion.api.service';
+import { PromotionService } from '../promotion.service';
 
 @Component({
   selector: 'app-promotion-page',
   templateUrl: './promotion-page.component.html',
-  styleUrls: ['./promotion-page.component.scss']
+  styleUrls: ['./promotion-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class PromotionPageComponent implements OnInit {
@@ -30,7 +32,9 @@ export class PromotionPageComponent implements OnInit {
     public navbarService: NavbarService, private router: Router, private route: ActivatedRoute,
     public footerService: FooterService, private renderer: Renderer2,
     private translate: TranslateService, private configService: ConfigService,
-    private promotionService: PromotionService, private promotionApiService: PromotionApiService) { }
+    private promotionService: PromotionService, private promotionApiService: PromotionApiService,
+    private el: ElementRef,
+    private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => {
@@ -69,11 +73,12 @@ export class PromotionPageComponent implements OnInit {
             this.renderer.setStyle(banner,
                                 'background-image',
                                 'url(' + this.promoDetails.thumbnail + ')'
-                                  );
+                                );
           }
           // Getting promo content
           this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {
             this.promoContent = content;
+            this.addRedirectEvent();
           });
           // Getting promo tnc
           this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
@@ -88,5 +93,17 @@ export class PromotionPageComponent implements OnInit {
 
   getPartnerLogo(partner: string) {
     return this.promotionService.getPartnerLogo(partner);
+  }
+
+  redirect() {
+    this.router.navigate(['../promotions/16']);
+  }
+
+  addRedirectEvent() {    
+    this.cdRef.detectChanges();    
+    var el = this.el.nativeElement.querySelector('.text-underline');
+    if(el) {
+      el.addEventListener('click', this.redirect.bind(this));
+    }    
   }
 }

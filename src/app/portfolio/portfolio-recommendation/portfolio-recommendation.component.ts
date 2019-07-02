@@ -24,6 +24,7 @@ import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-with
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
+import { ProfileIcons } from './../risk-profile/profileIcons';
 import { SignUpApiService } from './../../sign-up/sign-up.api.service';
 import { SIGN_UP_CONFIG } from './../../sign-up/sign-up.constant';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from './../../topup-and-withdraw/topup-and-withdraw-routes.constants';
@@ -37,7 +38,7 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from './../../topup-and-withdraw/topup
 export class PortfolioRecommendationComponent implements OnInit {
   pageTitle: string;
   portfolio;
-  selectedRiskProfile: RiskProfile;
+  selectedRiskProfile: any;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -46,6 +47,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   buttonTitle: any;
   event1 = true;
   event2 = true;
+  iconImage;
   userInputSubtext;
 
   constructor(
@@ -81,7 +83,8 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.selectedRiskProfile = this.portfolioService.getSelectedRiskProfileId();
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
   setPageTitle(title: string) {
@@ -124,9 +127,9 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructUpdateInvestmentParams(data) {
@@ -165,16 +168,16 @@ export class PortfolioRecommendationComponent implements OnInit {
         period: this.portfolio.investmentPeriod
       };
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructgetAllocationParams() {
-    const formData = this.portfolioService.getRiskProfile();
+    const selectedRiskId = this.portfolioService.getSelectedRiskProfileId();
     const enqId = this.authService.getEnquiryId();
     return {
-      riskProfileId: formData.riskProfileId,
+      riskProfileId: selectedRiskId.riskProfileId,
       enquiryId: enqId
     };
   }
@@ -197,10 +200,9 @@ export class PortfolioRecommendationComponent implements OnInit {
   }
 
   showLoginOrSignupModal() {
-    const errorMessage = this.translate.instant('PRELOGIN_MODAL.DESC');
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.imgType = 1;
-    ref.componentInstance.errorMessageHTML = errorMessage;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('PRELOGIN_MODAL.DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'PRELOGIN_MODAL.LOG_IN'
     );
@@ -268,15 +270,19 @@ export class PortfolioRecommendationComponent implements OnInit {
           } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
             const fundingParams = this.constructFundingParams(this.portfolio);
             this.topupAndWithDrawService.setFundingDetails(fundingParams);
-            this.topUpOneTime();
+            if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
+              this.topUpOneTime();
+            } else {
+              this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+            }
           } else {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
           }
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     } else {
       this.showLoginOrSignupModal();
     }

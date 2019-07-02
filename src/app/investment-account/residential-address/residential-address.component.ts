@@ -72,6 +72,7 @@ export class ResidentialAddressComponent implements OnInit {
         this.addressForm.get('mailingAddress').get('reason').value
       );
     }
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
   getReasoneList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {

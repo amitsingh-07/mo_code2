@@ -18,7 +18,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
-  holidings;
+  holdings;
+  portfolioValues;
 
   constructor(
     public readonly translate: TranslateService,
@@ -30,7 +31,7 @@ export class HoldingsComponent implements OnInit {
     public footerService: FooterService,
     private modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService
-  ) {
+    ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('HOLDINGS.TITLE');
@@ -44,6 +45,7 @@ export class HoldingsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.holidings = this.topupAndWithDrawService.getHoldingValues();
-  }
+    this.holdings = this.topupAndWithDrawService.getHoldingValues();
+    this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+   }
 }

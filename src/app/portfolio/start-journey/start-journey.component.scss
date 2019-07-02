@@ -7,16 +7,19 @@ app-start-journey {
       min-height: calc(100vh - 84px);
     }
   }
+
   .journey-wrapper {
     width: 100%;
     height: 100%;
     margin: 0 auto;
     text-align: center;
-    @include allmobiles{
+
+    @include allmobiles {
       width: 120px;
       height: 120px;
     }
   }
+
   .journey-content {
     margin-top: 30px;
     font-size: 16px;
@@ -24,22 +27,38 @@ app-start-journey {
     letter-spacing: -0.16px;
     color: $dark-grey-color;
     text-align: center;
-    p{
+
+    p {
       text-align: left;
     }
   }
+
+  .btn-center {
+    text-align: center;
+  }
+
   .btn__footer--fixed {
     font-family: $muli-bold !important;
     letter-spacing: -0.25px;
-    font-size: 24px;
-    @include desktop{
+    font-size: 22px;
+    width: 200px;
+    padding: 13px;
+
+    @include allmobiles {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    @include desktop {
       width: 245px;
     }
-    @include tablet{
+
+    @include tablet {
       width: 245px;
     }
   }
-  .offer-code{
+
+  .offer-code {
     font-family: $muli-bold;
     font-size: 16px;
     line-height: 2.5;
@@ -48,25 +67,30 @@ app-start-journey {
     color: $teal-color;
     padding: 0 50px;
     margin-bottom: 1px;
-    @include max360{
+
+    @include max360 {
       padding: 0 25px;
     }
-    @include allmobiles{
+
+    @include allmobiles {
       margin-bottom: 0;
     }
-    .brdr-btm{
-        border: 1px solid $teal-color;
-        margin-bottom: 35px !important;
+
+    .brdr-btm {
+      border: 1px solid $teal-color;
+      margin-bottom: 35px !important;
     }
+
     .promo-code-lbl {
-        line-height: normal;
-        position: relative;
-        top: 30px;
-        width: 70%;
-        padding: 5px 10px;
-        background: $white-color;
-        margin: 0 auto;        
-      .promo-sub-lbl{
+      line-height: normal;
+      position: relative;
+      top: 30px;
+      width: 70%;
+      padding: 5px 10px;
+      background: $white-color;
+      margin: 0 auto;
+
+      .promo-sub-lbl {
         font-family: $muli-regular;
         font-size: 12px;
         line-height: normal;
@@ -75,7 +99,8 @@ app-start-journey {
         color: $promo-sub-lbl-color;
       }
     }
-    input{
+
+    input {
       border-radius: 6px;
       font-family: $muli-bold;
       font-size: 16px;
@@ -95,7 +120,8 @@ app-start-journey {
         padding: 18px 30px;
       }
     }
-    input::placeholder{
+
+    input::placeholder {
       font-family: $muli-light;
       font-size: 16px;
       font-weight: 300;

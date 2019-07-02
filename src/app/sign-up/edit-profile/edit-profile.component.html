@@ -1,6 +1,5 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="content">
-  <div class="container-fluid max-width--1024 invest-web-pt-90">
+  <div class="container-fluid max-width--1024">
   <div class="flex-row">
     <div class="flex-col-12">
       <div class="grass_bg_container white-bg">
@@ -16,25 +15,25 @@
         <div class="heading">{{fullName|titlecase}}</div>
         <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
         <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
-        <div class="flex-row">
-          <div class="flex-col-3 flex-row">
+        <div class="flex-row grid-wrapper-block">
+          <div class="flex-row">
             <div class="grid-wrapper">
               <div class="content-text">{{'EDIT_PROFILE.GENDER' | translate}}</div>
               <div class="grid-content-text">{{personalData.gender | titlecase}}</div>
             </div>
-            <div class="seperator"></div>
           </div>
-          <div class="flex-col-5 flex-row">
+            <div class="seperator"></div>
+          <div class="flex-row">
             <div class="grid-wrapper">
               <div class="content-text">{{'EDIT_PROFILE.NATIONALITY' | translate}}</div>
               <div class="grid-content-text">{{personalData.nationality | titlecase}}</div>
             </div>
-            <div class="seperator"></div>
           </div>
-          <div class="flex-col-4 flex-row">
+            <div class="seperator"></div>
+          <div class="flex-row">
             <div class="grid-wrapper">
               <div class="content-text">{{'EDIT_PROFILE.DOB' | translate}}</div>
-              <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
+              <div class="grid-content-text">{{dobFormat}}</div>
             </div>
           </div>
         </div>

@@ -92,8 +92,7 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT": [
-      {
+    "SORT": [{
         "displayText": "Highest Ranking",
         "value": "premium.ranking"
       },

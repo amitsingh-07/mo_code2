@@ -81,9 +81,15 @@
             background-color: $white-color;
           }
 
-          img {
-            width: 100%;
-            max-width: 84px;
+          .pay-tab{
+            max-width:84px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            img{
+              width: 55px;
+              height: 35px;
+            }
           }
         }
       }

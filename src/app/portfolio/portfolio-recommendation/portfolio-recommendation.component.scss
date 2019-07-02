@@ -1,45 +1,73 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 app-portfolio-recommendation {
   .container-fluid {
+    padding-bottom: 120px !important;
+
     @include allmobiles {
       padding-right: 15px !important;
       padding-left: 15px !important;
-      padding-bottom: 66px;
+      padding-bottom: 66px !important;
     }
   }
+
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
       color: $white-color;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
-      background-color: $portfolio-allocation-details-bg;
+
+      // box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
+      // background-color: $portfolio-allocation-details-bg;
       .portfolio-allocation-details__content {
-        padding: 20px 0px;
+        margin-bottom: 14px;
+        border-radius: 6px;
+        @include allmobiles{
+          margin-bottom: 10px;
+        }
         .portfolio-allocation-details__content__desc {
-          padding: 0 15px;
+          .portfolio_img {
+            text-align: center;
+            padding-top: 30px;
+            img {
+              width: 80px;
+              height: 80px;
+            }
+          }
+
           .portfolio-allocation-details__content__block {
-            font-size: 14px;
+            color: $dark-teal-color;
+            background-color:$white-color;
+            font-size: 18px;
             line-height: 1.5;
             letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
-            background-color: $portfolio-allocation-details-content-color;
             padding: 20px 15px;
+            @include allmobiles{
+              font-size: 14px;
+              padding: 20px 30px;
+            }
             strong {
               font-family: $muli-bold;
             }
           }
         }
+        
       }
+
       .review-edit {
         justify-content: center;
         align-items: center;
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: -0.2px;
         color: $review-text-color;
+        background-color: $portfolio-allocation-details-bg;
+        border-radius: 0 0 6px 6px;
+        padding: 20px;
+
         .edit_button {
           background: url('../../../assets/images/edit-icon.svg') no-repeat;
           cursor: pointer;
@@ -51,43 +79,50 @@ app-portfolio-recommendation {
       }
     }
   }
+
   .asset-allocation {
     margin-top: 33px;
+
     .title {
       font-family: $muli-bold;
-      font-size: 21px;
-      font-weight: bold;
+      font-size: 19px;
       letter-spacing: -0.4px;
       color: $white-color;
       padding-bottom: 14px;
     }
   }
+
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.2px;
     text-align: center;
-    padding: 21px 0 50px;
+    padding: 21px 0 105px;
+    @include allmobiles{
+      padding: 21px 0 50px;
+    }
     a {
       color: $white-color;
       text-decoration: underline;
     }
   }
+
   .review-block {
     padding: 20px 35px;
     background-color: $review-block-bg;
     font-family: $muli-bold;
     font-size: 18px;
-    font-weight: bold;
     line-height: 1.44;
     letter-spacing: -0.2px;
     text-align: center;
     color: $white-color;
     margin-bottom: 30px;
-    @include allmobiles{
+
+    @include allmobiles {
       margin-bottom: 0;
     }
+
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;
@@ -98,13 +133,57 @@ app-portfolio-recommendation {
       padding-top: 10px;
     }
   }
+
   .btn__footer--fixed {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
     font-size: 24px;
   }
+
   hr {
     border-color: $teal-color;
     margin: 0;
+  }
+
+  .recommend-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0 !important;
+    left: 0;
+    z-index: 999;
+    background-color: $white-color;
+    padding: 15px 30px !important;
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      .btn-primary{
+        font-size: 22px;
+        padding:10px 20px;
+      }
+    }
+
+    .text-one {
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: 1.44;
+      letter-spacing: -0.2px;
+      color:$teal-color;
+      //padding: 0 20px 5px 0px;
+      padding-bottom: 5px;
+    }
+
+    .text-two {
+      font-family: $muli-regular;
+      font-size: 13px;
+      line-height: 1.15;
+      letter-spacing: -0.1px;
+      color: $dark-teal-color;
+      padding-bottom: 5px;
+      //padding: 0 20px 5px 0px;
+    }
   }
 }

@@ -15,8 +15,6 @@ import { AuthenticationService } from './auth/authentication.service';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
 
-const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -340,21 +338,7 @@ export class ApiService {
   verifyEmail(payload) {
     return this.http.post(apiConstants.endpoint.verifyEmail, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error(this.errorTag, error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError(this.errorTryAgain);
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
   sendWelcomeEmail(payload: any) {
@@ -837,9 +821,23 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // Resend Email Verification Link
+  resendEmailVerification(payload) {
+    return this.http.post(apiConstants.endpoint.resendEmailVerification + this.handleErrorFlag, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   getSpendings() {
     return this.http.get(apiConstants.endpoint.comprehensive.getSpendings)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  // Update Mobile Number
+  editMobileNumber(payload) {
+    return this.http.post(apiConstants.endpoint.editMobileNumber  + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -864,20 +862,20 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  // Resend Email Verification Link
-  resendEmailVerification(payload) {
-    return this.http.post(apiConstants.endpoint.resendEmailVerification + '?handleError=true', payload)
+
+  // send bundle enquiry
+  sendBundleEnquiry(payload) {
+    return this.http.post(apiConstants.endpoint.registerBundleEnquiry + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  // Update Mobile Number
-  editMobileNumber(payload) {
-    return this.http.post(apiConstants.endpoint.editMobileNumber + '?handleError=true', payload)
+  // Get User's monthly investment Information
+  getMonthlyInvestmentInfo() {
+    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
 }

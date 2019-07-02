@@ -14,6 +14,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PORTFOLIO_CONFIG } from '../portfolio.constants';
 import { PortfolioService } from '../portfolio.service';
+import { QuestionIcons } from './questionicon';
 
 @Component({
   selector: 'app-risk-assessment',
@@ -31,6 +32,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionIndex: number;
   currentQuestion: any;
   isSpecialCase = false;
+  iconImage;
 
   constructor(
     private portfolioService: PortfolioService,
@@ -72,6 +74,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
         self.setCurrentQuestion();
       }
     });
+    
   }
 
   setPageTitle(title: string) {
@@ -98,6 +101,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   setCurrentQuestion() {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
+    this.iconImage = QuestionIcons[this.questionIndex - 1]['icon'];
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
     this.isSpecialCase = this.currentQuestion.listOrder === PORTFOLIO_CONFIG.risk_assessment.special_question_order ? true : false;

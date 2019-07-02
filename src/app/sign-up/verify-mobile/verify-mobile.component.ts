@@ -1,24 +1,27 @@
-import { EditMobileNumberComponent } from './../../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { browser } from 'protractor';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { CustomErrorHandlerService } from '../../shared/http/custom-error-handler.service';
+import {
+  EditMobileNumberComponent
+} from '../../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { WillWritingService } from '../../will-writing/will-writing.service';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { FooterService } from './../../shared/footer/footer.service';
-import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { SignUpApiService } from './../sign-up.api.service';
-import { SignUpService } from './../sign-up.service';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
-import { WillWritingService } from './../../will-writing/will-writing.service';
-import { AppService } from './../../../app/app.service';
+import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../../app/app.constants';
+import { AppService } from './../../../app/app.service';
 
 @Component({
   selector: 'app-verify-mobile',
