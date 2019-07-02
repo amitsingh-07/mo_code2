@@ -142,6 +142,7 @@ app-inv-personal-info {
     background: $white-color;
     color: $app-backgrnd-color;
     word-break: break-word;
+    min-height: 52px;
     &.fullName-disabled {
      color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
