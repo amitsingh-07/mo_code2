@@ -462,7 +462,7 @@ export class EmploymentDetailsComponent implements OnInit {
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
        // #event.target.innerText = dependentNameList;
-        this.employementDetailsForm.controls.companyName.setValue(dependentName);
+        this.employementDetailsForm.controls.companyName.setValue(dependentNameList);
         const el = document.querySelector('#' + id); // #document.getElementById(id);
         this.setCaratTo(el, 100, dependentNameList);
       }

@@ -21,7 +21,7 @@
               <div [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
                 <div contenteditable="true"
                        id="accountHolderName-" [textContent]="addBankForm.get('accountHolderName').value"
-                       (input)="setAccountHolderName($event.target.textContent);" maxlength="100"
+                       (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
                        (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                         placeholder="Account Holder's Name">
                      </div>
