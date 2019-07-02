@@ -1,19 +1,15 @@
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md mt10">
-          <h2>{{ 'POSTLOGIN.INVESTMENT_OPENING' | translate}}</h2>
-          <h6>{{ 'POSTLOGIN.START_INVESTING' | translate}}</h6>
-          <div class="banner-image">
-            <img src="assets/images/investment-account/openaccount.svg"/>
+      <div class="col-lg-7 col-md-6">
+        <div class="signup-wrapper">
+          <h2 class="signup-wrapper__title order1 sm-order2 hidden-sm-md">{{ 'POSTLOGIN.INVESTMENT_OPENING' | translate}}</h2>
+          <div class="signup-wrapper__description order2">
+            <p>{{ 'POSTLOGIN.START_INVESTING' | translate}}</p>
           </div>
-       </div>
-       <div class="flex-col-12 hidden-lg">
-         <div class="signup-wrapper">
-          <div class="signup-wrapper__header-icon"><img id="pos_login_img" src="assets/images/investment-account/openaccountmoble.svg" /></div>
-          <h2 class="prelogin-wrapper__title mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
-        </div> 
+          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/investment-account/openaccount.svg" />
         </div>
+      </div>
       <div class="col-lg-5 col-md-6">
         <div class="widgets">
           <div class="widget" *ngIf="showSingPass && isInvestmentMyInfoEnabled">
