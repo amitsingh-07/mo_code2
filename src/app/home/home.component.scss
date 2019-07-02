@@ -592,7 +592,9 @@ body{
                 justify-content:center;
                 align-content:flex-start;
                 min-width:255px;
-                height:57px;
+                min-height:57px;
+                line-height: normal;
+                white-space: normal;
                 box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
                 span{
                     font-family:$muli-bold;
