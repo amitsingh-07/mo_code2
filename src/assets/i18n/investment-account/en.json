@@ -355,7 +355,7 @@
     "SELECT_COUNTRY": "Select Country",
     "PERSONAL_INFO_ERROR": {
       "TITLE": "Oops, Error!",
-      "DESCRIPTION": "This will have impact in your comprehensive planning and would require to go through the comprehensive journey again and cannot access the current report.",
+      "DESCRIPTION": "We note that your personal details are different from what has been used for Comprehensive Planning. Should you proceed, please take note that your Comprehensive Planning report may be inaccurate. We encourage you to review your inputs again to ensure they are accurate.",
       "CANCEL_BTN_LBL": "Cancel",
       "PROCEED_BTN_LBL": "Proceed"
     },
