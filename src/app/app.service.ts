@@ -68,6 +68,7 @@ export class AppService {
     this.portfolioService.clearData();
     this.investmentAccountService.clearData();
     this.topupAndWithDrawService.clearData();
+    this.comprehensiveService.clearFormData();
   }
 
   setJourneyType(type: string) {

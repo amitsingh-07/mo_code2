@@ -1013,7 +1013,6 @@ h6 {
 
   @include minMobilemaxPhablet {
     position: relative;
-    ;
     display: flex;
     left: 0px;
     max-height: 45.5px;
@@ -1164,7 +1163,14 @@ h6 {
   background-repeat: no-repeat;
 }
 
-.navbar-notification-clear {
+.navbar__menuItem--journey-map {
+  background-image: url("/assets/images/road-map-icon.svg");
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+}
+
+.navbar-notification-clear{
   position: absolute;
   display: block;
   right: 10px;
