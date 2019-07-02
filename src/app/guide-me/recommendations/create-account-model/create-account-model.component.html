@@ -32,7 +32,11 @@
       </div>
     </div>
   </div>
-  <div class="separator"></div>
+  <div class="or-block">
+    <hr>
+    <div class="or-circle">or</div>
+  </div>
+  <div class="txt-bold">Receive more info on selected plans via email</div>
   <form id="enquiryForm" name="enquiryForm" [formGroup]="enquiryForm">
     <div class="flex-row mb10">
       <div class="flex-col-5 stretch mr15" [formGroup]="enquiryForm">
@@ -56,14 +60,14 @@
         </div>
       </div>
     </div>
-    <div class="col-12 checkbox-button one-label mb10">
+    <div class="flex-col-12 checkbox-button one-label mb10">
       <input id="receiveMarketingEmails" name="receiveMarketingEmails" type="checkbox"
         formControlName="receiveMarketingEmails" class="field checkbox">
       <label for="receiveMarketingEmails">
-        <div class="title">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+        <div class="title mt15">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
       </label>
     </div>
-    <div class="col-12">
+    <div class="flex-col-12">
       <div class="error--msg" *ngIf="invalidEmail">*Invalid Email Address</div>
       <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
         [disabled]="!enquiryForm.valid || formSubmitted" (click)="sendBundleEnquiry(enquiryForm)">Send</button>
