@@ -54,8 +54,9 @@
                 <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
                   <div [attr.contenteditable]="!isDisabled('fullName')"
                        id="fullname" [textContent]="invPersonalInfoForm.get('fullName').value"
-                       (focusout)="setFullName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)"  class="content-editable"
+                       (blur)="setContent($event.target.textContent, 100)" maxlength="100"
+                       (keypress)="validateContent($event, $event.target.textContent, 100)" 
+                       class="content-editable"
                        [class.fullName-disabled]="isDisabled('fullName')"
                         placeholder="Full Name">
                      </div>

@@ -12,8 +12,9 @@
             <div>
              <div contenteditable="true"
                        id="fullname" [textContent]="bankForm.get('accountHolderName').value"
-                       (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                       (blur)="setContent($event.target.textContent, 100)" maxlength="100"
+                       (keypress)="validateContent($event, $event.target.textContent, 100)"
+                       class="content-editable"
                         placeholder="Enter AccountHolder Name">
                      </div>
             </div>
