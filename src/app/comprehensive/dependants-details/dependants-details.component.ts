@@ -266,7 +266,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   onKeyPressEvent(event: any, dependentName: any) {
     //return (event.which !== 13 && dependentName.length < 100);
-    if (dependentName.length >= 100) {
+    if (dependentName.length > 100) {
       const id = event.target.id;
       const el = document.querySelector("#" + id);//document.getElementById(id);
       this.setCaratTo(el, 100, dependentName);
@@ -280,7 +280,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (id !== '') {
       const arr = id.split('-');
       const dependentName = event.target.innerText;
-      if (dependentName.length >= 100) {
+      if (dependentName.length > 100) {
         const dependentNameList = dependentName.substring(0, 100);
         //event.target.innerText = dependentNameList;
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
