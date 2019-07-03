@@ -54,6 +54,10 @@ app-my-financials {
             max-width: 99px !important;
             .btn-outline-primary{
               background: $bond-container-bg;
+              &:hover{
+                background: transparent;
+                color: $teal-color;
+              }
             }
           }
         }   
@@ -122,7 +126,7 @@ app-my-financials {
 
   .btn {
     &:hover {
-      color: $teal-color;
+      background-color: $btn-disabled-light-bg;
     }
     &:disabled {
       background-color: $btn-disabled-light-bg;
