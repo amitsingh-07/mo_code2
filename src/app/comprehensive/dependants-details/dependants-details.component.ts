@@ -266,10 +266,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
   onKeyPressEvent(event: any, dependentName: any) {
     //return (event.which !== 13 && dependentName.length < 100);
-    if (dependentName.length >= 100) {
-      const id = event.target.id;
-      const el = document.querySelector("#" + id);//document.getElementById(id);
-      this.setCaratTo(el, 100, dependentName);
+    const selection = window.getSelection();
+    if (dependentName.length >= 100 && selection.type !== 'Range') {
       event.preventDefault();
     }
     return (event.which !== 13);
