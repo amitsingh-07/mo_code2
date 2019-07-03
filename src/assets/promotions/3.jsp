@@ -1,31 +1,28 @@
 <div class="promo-content__container">
     <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
-    <div class="promo__summary">
-        <div class="promo__inner-table">
-            <div class="promo-info__element">
-                <div class="info--title">
-                    Eligible Plan
-                    </div>
-                <div class="info--details">
-                    Aviva MyProtector - Term Plan
-                    </div>
-                </div>
-            <div class="promo-info__element">
-                <div class="info--title">
-                    Min. Sum Assured
-                    </div>
-                <div class="info--details">
-                    $1,100,000
-                    </div>
-                </div>
-            <div class="promo-info__element">
-                <div class="info--title">
-                    Premium Discount
-                    </div>
-                <div class="info--details">
-                    5% off lifetime
-                    </div>
-                </div>
-        </div>
-    </div>
+    <div class="promo__table">
+        <table class="promo__inner-table">
+            <tr>
+                <td class="cell--header text--center">Eligible plan</td>
+                <td class="cell--header text--center">Min. Sum Assured</td>
+                <td class="cell--header text--center">Premium Discount</td>
+                </tr>
+            <tr>   
+                <td>
+                    <b>My Protector - Term Plan II</b><br/>
+                    (with all riders except for MultiPay CI III rider)
+                    </td>
+                <td>$1,000,000</td>
+                <td>20% off lifetime</td>
+                </tr> 
+            <tr>
+                <td>
+                    <b>My Protector - Term Plan II</b><br/>
+                    (with all riders including MultiPay CI III rider)
+                    </td>
+                <td>$1,000,000</td>
+                <td>5% off lifetime</td>
+                </tr>
+            </table>
+            </div>
 </div>
