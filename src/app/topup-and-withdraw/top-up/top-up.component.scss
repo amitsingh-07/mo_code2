@@ -227,7 +227,7 @@ app-top-up {
     padding-right: 46px;
   }
   .btn__footer--fixed {
-    font-family: $muli-bold;
+    font-family: $muli-bold !important;
     &:disabled {
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
       background-color: $btn-disabled-light-bg !important;
