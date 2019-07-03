@@ -1,6 +1,13 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-top-up {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
+  }
   .container-fluid {
     @include allmobiles{
       padding-bottom: 0 !important;
