@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -275,57 +275,34 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     });
   }
 
-  setPepName(pepFullName: any) {
-    if (pepFullName !== undefined) {
-      pepFullName = pepFullName.replace(/\n/g, '');
-      this.addInfoForm.controls.pepFullName.setValue(pepFullName);
-      return pepFullName;
-    }
-  }
-  setCompanyName(cName: any) {
-    if (cName !== undefined) {
-      cName = cName.replace(/\n/g, '');
-      this.addInfoForm.controls.cName.setValue(cName);
-      return cName;
+  setContent(content: any, maxLength, controlName) {
+    if (content !== undefined) {
+      content = content.replace(/\n/g, '');
+      content = content.substring(0, maxLength);
+      this.addInfoForm.controls[controlName].setValue(content);
     }
   }
 
-  onKeyPressEvent(event: any, dependentName: any) {
+  validateContent(event: any, content: any, maxLength) {
+    const selection = window.getSelection();
+    if (content.length >= maxLength && selection.type !== 'Range') {
+      event.preventDefault();
+    }
     return (event.which !== 13);
   }
-
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    const dependentName = event.target.innerText;
     if (id !== '') {
-      if (dependentName.length >= 100 && id === 'pepFullName') {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
-        const el = document.querySelector('#' + id); // #document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
-      } else if (dependentName.length >= 100 && id === 'cName') {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.addInfoForm.controls.cName.setValue(dependentNameList);
-        const el = document.querySelector('#' + id); // # document.getElementById(id);
-        this.setCaratTo(el, 100, dependentNameList);
+      const content = event.target.innerText;
+      if (content.length >= 100 && id === 'pepFullName') {
+        const trimContent = content.substring(0, 100);
+        this.addInfoForm.controls.pepFullName.setValue(trimContent);
+      } else if (content.length >= 100 && id === 'cName') {
+        const trimContent = content.substring(0, 100);
+        this.addInfoForm.controls.cName.setValue(trimContent);
       }
     }
   }
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-  }
-
 }

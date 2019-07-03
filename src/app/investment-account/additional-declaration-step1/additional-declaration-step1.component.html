@@ -62,8 +62,9 @@
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
               <div contenteditable="true" 
                        id="pepFullName" [textContent]="addInfoForm.get('pepFullName').value"
-                       (focusout)="setPepName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                       (blur)="setContent($event.target.textContent, 100, 'pepFullName')" maxlength="100"
+                       (keypress)="validateContent($event, $event.target.textContent, 100)"
+                       class="content-editable"
                         placeholder="Full Name">
                      </div>
             </div>
@@ -79,8 +80,9 @@
             <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
             <div contenteditable="true"
                        id="cName" [textContent]="addInfoForm.get('cName').value"
-                       (focusout)="setCompanyName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                       (blur)="setContent($event.target.textContent, 100, 'cName')" maxlength="100"
+                       (keypress)="validateContent($event, $event.target.textContent, 100)" 
+                        class="content-editable"
                         placeholder="Company Name">
                      </div>
             </div>
