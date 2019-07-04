@@ -20,7 +20,8 @@
     </div>
     <div class="flex-row">
       <div class="flex-col-12">
-        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn" (click)="next('signup')">{{
+        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn"
+          (click)="next('signup')">{{
           'RECOMMENDATIONS.CREATE_ACCOUNT' | translate}}</button>
       </div>
     </div>
@@ -31,4 +32,78 @@
       </div>
     </div>
   </div>
+  <div class="or-block">
+    <hr>
+    <div class="or-circle">or</div>
+  </div>
+  <div class="txt-bold">Receive more info on selected plans via email</div>
+  <form id="enquiryForm" name="enquiryForm" [formGroup]="enquiryForm">
+    <div class="flex-row mb10">
+      <div class="flex-col-5 stretch mr15" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
+          <label class="form-control-placeholder" for="firstName">First Name</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.firstName.invalid && enquiryForm.controls.firstName.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.firstName.errors.required">*Please enter your first name</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.firstName.errors.pattern">*Invalid First Name</p>
+        </div>
+      </div>
+      <div class="flex-col-5 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
+          <label class="form-control-placeholder" for="lastName">Last Name</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.lastName.invalid && enquiryForm.controls.lastName.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.lastName.errors.required">*Please enter your last name</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.lastName.errors.pattern">*Invalid Last Name</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row mb10">
+      <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+          <label class="form-control-placeholder" for="lastName">Email Address</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.email.invalid && enquiryForm.controls.email.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.email.errors.email">*Please enter a valid email address in
+            the format yourname@example.com</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.email.errors.required">*Please enter your e-mail address</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row mb10 txt-black" *ngIf="showCaptcha">
+      <span class="mb10">Enter the characters shown in the image</span>
+      <div class="flex-col-4 stretch">
+        <div class="form-group-captcha-wrapper">
+          <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
+        </div>
+      </div>
+      <div class="flex-col-8 stretch">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
+            required>
+          <label class="form-control-placeholder" for="lastName">Enter image text</label>
+        </div>
+        <div class="mt10 text-right">
+          <span (click)="refreshCaptcha()" class="link-white">Try another text <i class="fa fa-refresh"
+              style="margin-left: 10px;"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col-12 checkbox-button one-label mb10">
+      <input id="receiveMarketingEmails" name="receiveMarketingEmails" type="checkbox"
+        formControlName="receiveMarketingEmails" class="field checkbox">
+      <label for="receiveMarketingEmails">
+        <div class="title mt15">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+      </label>
+    </div>
+    <div class="flex-col-12">
+      <div class="error--msg" *ngIf="invalidEmail">*Invalid Email Address</div>
+      <div class="error--msg" *ngIf="invalidCaptcha">*Invalid Captcha</div>
+      <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
+        [disabled]="!enquiryForm.valid || formSubmitted" (click)="sendEnquiry(enquiryForm)">Send</button>
+    </div>
+  </form>
 </div>
