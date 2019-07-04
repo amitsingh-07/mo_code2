@@ -217,15 +217,16 @@ export class AddUpdateBankComponent implements OnInit {
 
   setContent(content: any, maxLength) {
     if (content !== undefined) {
+      const maximumLength = 100;
       content = content.replace(/\n/g, '');
-      content = content.substring(0, maxLength);
+      content = content.substring(0, maximumLength);
       this.bankForm.controls.accountHolderName.setValue(content);
     }
   }
 
   validateContent(event: any, content: any, maxLength) {
     const selection = window.getSelection();
-    const maximumLength = maxLength * 1;
+    const maximumLength = 100;
     if (content.length >= maximumLength && selection.type !== 'Range') {
       event.preventDefault();
     }
