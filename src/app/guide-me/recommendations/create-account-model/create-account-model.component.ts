@@ -84,7 +84,6 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
 
   resetEnquiryForm() {
     this.enquiryForm.controls['captchaValue'].reset();
-    this.invalidCaptcha = true;
     this.refreshCaptcha();
   }
 
@@ -94,6 +93,8 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     });
     form.value.receiveMarketingEmails = form.value.receiveMarketingEmails ? 'Yes' : 'No';
     this.formSubmitted = true;
+    this.invalidEmail = false;
+    this.invalidCaptcha = false;
     this.guideMeApiService.enquiryByEmail(form.value).subscribe((data) => {
       this.formSubmitted = false;
       if (data.responseMessage.responseCode === 6000) {
@@ -109,6 +110,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
           this.setCaptchaValidator();
         }
       } else if (data.responseMessage.responseCode === 5016) {
+        this.invalidCaptcha = true;
         this.resetEnquiryForm();
       }
     });
