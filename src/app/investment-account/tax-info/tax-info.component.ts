@@ -237,6 +237,7 @@ export class TaxInfoComponent implements OnInit {
   hasDuplicates(array) {
     return new Set(array).size !== array.length;
   }
+
   validateTin(control: AbstractControl) {
     const value = control.value;
     let isValidTin;
