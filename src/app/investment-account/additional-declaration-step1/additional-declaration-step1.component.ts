@@ -285,7 +285,8 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   validateContent(event: any, content: any, maxLength) {
     const selection = window.getSelection();
-    if (content.length >= maxLength && selection.type !== 'Range') {
+    const maximumLength = maxLength * 1;
+    if (content.length >= maximumLength && selection.type !== 'Range') {
       event.preventDefault();
     }
     return (event.which !== 13);
