@@ -108,6 +108,7 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
+import { SecurePipe } from './shared/Pipes/secure.pipe';
 
 
 // tslint:disable-next-line:max-line-length
@@ -157,7 +158,8 @@ export function tokenGetterFn() {
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
     NotFoundComponent,
-    EmailEnquirySuccessComponent
+    EmailEnquirySuccessComponent,
+    SecurePipe
   ],
   imports: [
     BrowserModule,

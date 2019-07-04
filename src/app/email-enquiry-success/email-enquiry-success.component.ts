@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { FooterService } from '../shared/footer/footer.service';
@@ -11,9 +12,15 @@ import { FooterService } from '../shared/footer/footer.service';
 })
 export class EmailEnquirySuccessComponent implements OnInit {
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.router.navigate(['/home']);
+  }
+
   constructor(
     public footerService: FooterService,
-    public navbarService: NavbarService) { }
+    public navbarService: NavbarService,
+    private router: Router) { }
 
   ngOnInit() {
     this.navbarService.setNavbarMode(2);

@@ -465,7 +465,6 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   proceedSelection() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
     const modalRef = this.modal.open(CreateAccountModelComponent, {
-      windowClass: 'position-bottom',
       centered: true
     });
     modalRef.componentInstance.data = this.state.selectedPlans.length;
