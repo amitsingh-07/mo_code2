@@ -38,6 +38,9 @@ app-fund-your-account {
         img {
           height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
@@ -68,6 +71,9 @@ app-fund-your-account {
         img {
           height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
