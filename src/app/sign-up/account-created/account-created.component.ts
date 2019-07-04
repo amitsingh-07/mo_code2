@@ -1,16 +1,16 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { WillWritingService } from 'src/app/will-writing/will-writing.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+
+import { environment } from '../../../environments/environment';
+import { ConfigService } from '../../config/config.service';
+import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
+import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
+import { WillWritingService } from '../../will-writing/will-writing.service';
+import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { ConfigService } from './../../config/config.service';
-import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
-import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
-import { SignUpApiService } from './../sign-up.api.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-account-created',

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { ConfigService } from './../../config/config.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { SeoServiceService } from './../../shared/Services/seo-service.service';
+import { ConfigService } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SeoServiceService } from '../../shared/Services/seo-service.service';
 
 @Component({
   selector: 'app-why-money-owl',

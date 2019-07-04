@@ -1,29 +1,32 @@
+import { flatMap } from 'rxjs/operators';
+
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { flatMap } from 'rxjs/operators';
-import { AppService } from 'src/app/app.service';
-import { ConfigService } from 'src/app/config/config.service';
-import { ApiService } from 'src/app/shared/http/api.service';
-import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+import { ApiService } from '../../../app/shared/http/api.service';
 import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
+import { ConfigService } from '../../config/config.service';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
+import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
+import { WillWritingService } from '../../will-writing/will-writing.service';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { FooterService } from './../../shared/footer/footer.service';
-import { SignUpApiService } from './../sign-up.api.service';
-import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 
@@ -113,20 +116,22 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (this.formValues.email) {
         email_in = this.formValues.email;
       }
-      this.createAccountForm = this.formBuilder.group({
-        countryCode: [this.formValues.countryCode, [Validators.required]],
-        mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-        firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
-        lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
-        email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-        confirmEmail: [this.formValues.email],
-        password: ['', [Validators.required, ValidatePassword]],
-        confirmPassword: [''],
-        termsOfConditions: [this.formValues.termsOfConditions],
-        marketingAcceptance: [this.formValues.marketingAcceptance],
-        captcha: ['', [Validators.required]]
-      }, { validator: this.validateMatchPasswordEmail() });
-      return false;
+      if (this.distribution.login) {
+        this.createAccountForm = this.formBuilder.group({
+          countryCode: [this.formValues.countryCode, [Validators.required]],
+          mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+          firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+          lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+          email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          confirmEmail: [this.formValues.email],
+          password: ['', [Validators.required, ValidatePassword]],
+          confirmPassword: [''],
+          termsOfConditions: [this.formValues.termsOfConditions],
+          marketingAcceptance: [this.formValues.marketingAcceptance],
+          captcha: ['', [Validators.required]]
+        }, { validator: this.validateMatchPasswordEmail() });
+        return false;
+      }
     }
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],

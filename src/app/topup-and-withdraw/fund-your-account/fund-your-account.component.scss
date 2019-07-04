@@ -36,8 +36,11 @@ app-fund-your-account {
         align-items: center;
         font-family: $muli-regular;
         img {
-          max-width: 80px;
+          height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
@@ -66,8 +69,11 @@ app-fund-your-account {
         font-family: $muli-regular;
         letter-spacing: -0.2px;
         img {
-          max-width: 55px;
+          height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
@@ -315,8 +321,8 @@ app-fund-your-account {
       }
     }
     .btn__footer--fixed {
-      font-family: $muli-bold;
-      font-size: 24px;
+      font-family: $muli-bold !important;
+      font-size: 22px;
     }
   }
 }

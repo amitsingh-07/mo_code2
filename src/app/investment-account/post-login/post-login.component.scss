@@ -5,6 +5,9 @@ app-post-login {
   h2{
     font-size:30px !important;
     margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
   }
   .container-fluid {
     padding-top: 50px !important;
@@ -62,10 +65,16 @@ app-post-login {
   }
   .signup-wrapper{
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding-bottom: 15px;
     padding-left: 30px;
     @include allmobiles{
+      padding-bottom: 0;
+      padding-left: 0;
+      text-align: center;
+      align-items: center;
+    }
+    @include tablet{
       padding-bottom: 0;
       padding-left: 0;
     }
@@ -75,9 +84,13 @@ app-post-login {
       height: 190px;
       max-width: 282px;
       max-height: 190px;
-      }
-     width: 282px;
-     height: 190px;
+    }
+    @include tablet{
+      width: 300px;
+      height: 267px;
+    }
+     width: 400px;
+     height: 270px;
      img {
       width: 100%;
       height: auto;
