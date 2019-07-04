@@ -7,6 +7,7 @@ app-allocation{
   background-color: $bond-container-bg;
   .bonds_equity_block {
     padding: 15px;
+    border-bottom: 1px solid $allocation-bonds-equity-brdr-color;
     .bond_progress_container {
       font-family: $muli-semi-bold;
       font-size: 16px;
@@ -135,7 +136,7 @@ app-allocation{
     font-size: 18px;
     font-weight: 400;
     letter-spacing: -0.2px;
-    color:$top-up-your-portfolio-your-total-value-bg;
+    color: $allocation-btn-view-color;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: $bond-container-bg;

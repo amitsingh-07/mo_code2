@@ -8,6 +8,10 @@ app-select-nationality {
   .banner-image {
     img {
       padding-top: 1vh;
+      @include desktop{
+        width:160px;
+        height:160px;
+      }
     }
   }
   .container-fluid {

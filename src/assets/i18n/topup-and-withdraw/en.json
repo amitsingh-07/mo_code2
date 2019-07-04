@@ -30,8 +30,7 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK":"Bank",
-    "TRANSFER":"Transfer",
+    "BANK_TRANSFER":"Bank Transfer",    
     "DESC":"Please transfer the following amount using your preferred payment method details:",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
@@ -154,7 +153,7 @@
     }
   },
   "WITHDRAW": {
-    "TITLE": "Withdraw",
+    "TITLE": "Withdrawal",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
     "WITHDRAW_TYPE_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",

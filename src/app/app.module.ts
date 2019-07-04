@@ -88,6 +88,8 @@ import {
     TransactionModalComponent
 } from './shared/modal/transaction-modal/transaction-modal.component';
 
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import {
     UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
@@ -152,7 +154,8 @@ export function tokenGetterFn() {
     TransactionModalComponent,
     FAQComponent,
     FundDetailsComponent,
-    UnsupportedDeviceModalComponent
+    UnsupportedDeviceModalComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -209,7 +212,7 @@ export function tokenGetterFn() {
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
-    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent]
 })

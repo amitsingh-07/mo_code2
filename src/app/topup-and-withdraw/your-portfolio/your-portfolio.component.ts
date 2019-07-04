@@ -12,10 +12,10 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -28,8 +28,7 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   portfolioValues;
   portfolio;
-  HoldingValues;
-  holdingsDPMSData;
+  holdingValues;
   assetAllocationValues;
   yearlyReturns: any;
   totalReturnsPercentage: any;
@@ -67,6 +66,7 @@ export class YourPortfolioComponent implements OnInit {
     this.getMoreList();
     this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.holdingValues = this.topupAndWithDrawService.getHoldingValues();
     this.totalReturnsPercentage = this.portfolioValues.totalReturns
       ? this.portfolioValues.totalReturns
       : 0;

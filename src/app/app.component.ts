@@ -14,6 +14,7 @@ import { GoogleAnalyticsService } from './shared/analytics/google-analytics.serv
 import { LoggerService } from './shared/logger/logger.service';
 import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
+import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { INavbarConfig } from './shared/navbar/config/navbar.config.interface';
 import { NavbarConfig } from './shared/navbar/config/presets';
 import { NavbarService } from './shared/navbar/navbar.service';
@@ -29,11 +30,12 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
+  redirect = '';
   navbarMode = null;
 
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private navbarService: NavbarService,
+    private signUpService: SignUpService, private navbarService: NavbarService, private _location: Location,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService) {
@@ -41,6 +43,18 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      if (config.distribution) {
+        if (config.distribution.notice) {
+          if (config.distribution.notice.onLoad) {
+            this.redirect = config.distribution.notice.fail;
+            if (this.location.path().indexOf('/account/email-verification') === -1 ||
+                this.location.path().indexOf('/account/reset-password')
+              ) {
+              this.openTermsOfConditions();
+              }
+            }
+          }
+        }
     });
     // Check NavbarMode
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
@@ -95,6 +109,23 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       windowClass: 'popup-modal-dialog modal-animated',
     });
   }
+
+  openTermsOfConditions() {
+    if (localStorage.getItem('onInit') !== 'true') {
+      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static'});
+      ref.result.then((data) => {
+      if (data !== 'proceed') {
+        if (this.redirect === '' || this.redirect === undefined) {
+          this._location.back();
+        } else {
+          window.location.href = this.redirect;
+          }
+        } else {
+        localStorage.setItem('onInit', 'true');
+        }
+      });
+      }
+    }
 
   checkExit() {
     const matrix = new NavbarConfig();
