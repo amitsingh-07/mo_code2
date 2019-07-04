@@ -1869,8 +1869,8 @@ export class InvestmentAccountService {
   }
 
   // #FOR 100 CHARACTERS FIELD CURSOR POSITION
- setCaratTo(contentEditableElement, position, dependentName) {
-  contentEditableElement.innerText = dependentName;
+ setCaratTo(contentEditableElement, position, content) {
+  contentEditableElement.innerText = content;
   if (document.createRange) {
     const range = document.createRange();
     range.selectNodeContents(contentEditableElement);
@@ -1884,12 +1884,25 @@ export class InvestmentAccountService {
   }
 }
 
-// #SET THE CONTROL FOR 100 CHARACTERS FIELD
+// #SET THE CONTROL VALUE
 setControlValue(value, controlName, formName) {
   if (value !== undefined) {
     value = value.replace(/\n/g, '');
+    value = value.substring(0, 100);
     formName.controls[controlName].setValue(value);
     return value;
   }
+}
+
+// #SET THE CONTROL FOR 100 CHARACTERS LIMIT
+onKeyPressEvent(event: any, content: any) {
+  const selection = window.getSelection();
+  if (content.length >= 100 && selection.type !== 'Range') {
+    const id = event.target.id;
+    const el = document.querySelector('#' + id);
+    this.setCaratTo(el, 100, content);
+    event.preventDefault();
+  }
+  return (event.which !== 13);
 }
 }
