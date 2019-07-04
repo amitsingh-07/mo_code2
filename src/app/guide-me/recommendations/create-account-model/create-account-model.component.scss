@@ -61,5 +61,57 @@ app-create-account-model {
       width: 100%;
       left: 0;
     }
+    .or-block{
+      color: #5e5e5e;
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.33;
+      letter-spacing: -0.18px;
+      padding-bottom: 30px;
+      hr{
+        border-color: #5e5e5e;
+      }
+      .or-circle{
+        background-color: #ffffff;
+        border-color: #ffffff;
+        color: #5e5e5e;
+        font-size: 18px;
+        top:1px;
+      }
+    }
+    .txt-bold{
+      font-family: $muli-bold;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: -0.16px;
+      text-align: center;
+      color: #5e5e5e;
+      max-width: 205px;
+      margin: 0 auto 20px;
+    }
+    .txt-black{
+      color: $black-color;
+    }
+    .form-group-floating-label{
+      border-radius: 6px;
+      border: 1px solid rgba(94, 94, 94, 0.3);
+      background-color: #ffffff;
+    }
+    .checkbox-button{
+      .title{
+        font-family: $muli-semi-bold;
+        font-size: 15px;
+        letter-spacing: -0.28px;
+        color: #5e5e5e;
+      }
+    }
   }
+  .error--msg{
+    color:$red-color;
+    font-size: 14px;
+    margin-bottom: 5px;
+    &.success{
+        color:$green-color;
+    }
+}
 }
