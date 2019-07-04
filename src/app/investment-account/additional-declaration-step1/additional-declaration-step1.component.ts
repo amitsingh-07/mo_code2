@@ -275,7 +275,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     });
   }
 
-  setContent(content: any, maxLength, controlName) {
+  setContent(content: any, controlName) {
     if (content !== undefined) {
       const maximumLength = 100;
       content = content.replace(/\n/g, '');
@@ -284,7 +284,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     }
   }
 
-  validateContent(event: any, content: any, maxLength) {
+  validateContent(event: any, content: any) {
     const selection = window.getSelection();
     const maximumLength = 100;
     if (content.length >= maximumLength && selection.type !== 'Range') {

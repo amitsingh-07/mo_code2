@@ -356,7 +356,7 @@ export class PersonalInfoComponent implements OnInit {
     return this.investmentAccountService.isDisabled(fieldName);
   }
 
-  setContent(content: any, maxLength) {
+  setContent(content: any) {
     if (content !== undefined) {
       const maximumLength = 100;
       content = content.replace(/\n/g, '');
@@ -365,7 +365,7 @@ export class PersonalInfoComponent implements OnInit {
     }
   }
 
-  validateContent(event: any, content: any, maxLength) {
+  validateContent(event: any, content: any) {
     const selection = window.getSelection();
     const maximumLength = 100;
     if (content.length >= maximumLength && selection.type !== 'Range') {
