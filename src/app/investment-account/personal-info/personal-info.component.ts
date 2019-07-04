@@ -356,31 +356,26 @@ export class PersonalInfoComponent implements OnInit {
   isDisabled(fieldName) {
     return this.investmentAccountService.isDisabled(fieldName);
   }
-  setControlValue(value, controlName, formName) {
-       this.investmentAccountService.setControlValue(value, controlName, formName);
-       }
 
-  onKeyPressEvent(event: any, dependentName: any) {
-   return (event.which !== 13);
+  setControlValue(value, controlName, formName) {
+    this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event , content);
+  }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-      const arr = id;
-      const dependentName = event.target.innerText;
-      if (dependentName.length >= 100) {
-        const dependentNameList = dependentName.substring(0, 100);
-     
-        this.invPersonalInfoForm.controls.fullName.setValue(dependentNameList);
+      const content = event.target.innerText;
+      if (content.length >= 100) {
+        const contentList = content.substring(0, 100);
+        this.invPersonalInfoForm.controls.fullName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.investmentAccountService. setCaratTo(el, 100, dependentNameList);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }
-  
-
-
 }
