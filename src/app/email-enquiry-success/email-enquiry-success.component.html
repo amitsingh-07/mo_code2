@@ -4,14 +4,14 @@
         <img src="../../assets/images/enquiry-bg.svg" />
       </div>
       <div class="enquiry-card">
-        <h2>Thank you!</h2>
-        <div>Your interest in the selected insurance plan(s) has been submitted. Our advisors will contact you by the end of the next working day.</div>
+        <h2>{{'EMAIL_ENQUIRY.THANKYOU' | translate}}</h2>
+        <div>{{'EMAIL_ENQUIRY.TITLE' | translate}}</div>
         <div class="contact-block">
-          <div class="txt-bold">For enquiries, please contact us at:</div>
+          <div class="txt-bold">{{'EMAIL_ENQUIRY.FOR_ENQUIRY' | translate}}</div>
           <div><span><img src="../../assets/images/icon_call.svg" /></span><span>(65) 6329 9188</span></div>
           <div><span><img src="../../assets/images/icon_email.svg" /></span><span>enquiries@moneyowl.com.sg</span></div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" [routerLink]="['/home']">Back To Home</button> 
+      <button type="button" class="btn btn-primary" [routerLink]="['/home']">{{'LABEL.BACK_TO_HOME' | translate}}</button> 
   </div>
 </div>
