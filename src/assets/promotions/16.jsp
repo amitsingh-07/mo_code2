@@ -66,21 +66,21 @@
           <div class="text-nrml">(Male)</div></td>
           <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$140</div>
           <div class="text-nrml">(Female)</div></td>
-          <td class="text--center light-grey text-bold" width="16.66%"><div>$201</div>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$195</div>
               <div class="text-nrml">(Male)</div></td>
-          <td class="text--center light-grey text-bold" width="16.66%"><div>$231</div>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$225</div>
               <div class="text-nrml">(Female)</div></td>
         </tr>
         <tr>
           <td class="text--center" width="33.33%">Estimated Total Rebate
             <div>(over 3 years)</div></td>
-          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$570</div>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$520</div>
             <div class="text-nrml">(Male)</div></td>
-          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$830</div>
+          <td class="text--center extra-light-grey text-bold" width="16.66%"><div>$690</div>
             <div class="text-nrml">(Female)</div></td>
-          <td class="text--center light-grey text-bold" width="16.66%"><div>$990</div>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$820</div>
             <div class="text-nrml">(Male)</div></td>
-          <td class="text--center light-grey text-bold" width="16.66%"><div>$1,280</div>
+          <td class="text--center light-grey text-bold" width="16.66%"><div>$1,020</div>
             <div class="text-nrml">(Female)</div></td>
         </tr>
       </table>
