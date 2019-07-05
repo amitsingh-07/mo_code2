@@ -235,13 +235,20 @@
   }
 
   .desc {
-    margin-top: 30px;
+    margin: 30px auto 0;
     border-radius: 6px;
     background-color: $portfolio-recommend-bg;
+    max-width: 720px;
+    padding: 16px 22px;
+    @include allmobiles{
+      border-radius: 0;
+      padding: 0;
+      background-color: transparent;
+    }
     div {
         font-size: 14px;
         line-height: normal;
-        padding: 16px 22px;
+        padding-bottom: 10px;
         text-align: left;
         @include allmobiles {
             margin-top: 0px;
