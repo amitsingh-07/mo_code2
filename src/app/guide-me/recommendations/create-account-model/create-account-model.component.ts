@@ -49,9 +49,10 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: ['', [Validators.required, Validators.email]],
+      confirmEmail: [''],
       acceptMarketingEmails: [''],
       captchaValue: ['']
-    });
+    }, { validator: this.validateMatchEmail() });
   }
 
   next(page) {
@@ -113,6 +114,25 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
         this.resetEnquiryForm();
       }
     });
+  }
+
+  /**
+   * validate confirm email.
+   */
+  private validateMatchEmail() {
+    return (group: FormGroup) => {
+      const emailInput = group.controls['email'];
+      const emailConfirmationInput = group.controls['confirmEmail'];
+
+      // Confirm E-mail
+      if (!emailConfirmationInput.value) {
+        emailConfirmationInput.setErrors({ required: true });
+      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
+        emailConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        emailConfirmationInput.setErrors(null);
+      }
+    };
   }
 
 }

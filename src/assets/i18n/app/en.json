@@ -190,8 +190,15 @@
       "EMAIL": {
         "LABEL": "Email Address",
         "ERROR": {
-          "REQUIRED": "*Please enter a valid email address in the format yourname@example.com",
-          "INVALID": "*Please enter your e-mail address"
+          "INVALID": "*Please enter a valid email address in the format yourname@example.com",
+          "REQUIRED": "*Please enter your e-mail address"
+        }
+      },
+      "CONFIRM_EMAIL": {
+        "LABEL": "Confirm email Address",
+        "ERROR": {
+          "INVALID": "*Email Address do not match",
+          "REQUIRED": "*Please enter your confirm e-mail address"
         }
       },
       "CAPTCHA": {
