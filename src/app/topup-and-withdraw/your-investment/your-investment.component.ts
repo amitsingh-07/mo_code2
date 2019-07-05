@@ -236,7 +236,25 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.yesClickAction.subscribe(() => {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
-        if (data.responseMessage.responseCode === 6000) {
+        if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
           this.authService.saveEnquiryId(null);
           const translateParams = {
             portfolioName: portfolio.riskProfile.type
@@ -245,8 +263,6 @@ export class YourInvestmentComponent implements OnInit {
           this.showToastMessage(toastMsg);
           this.getInvestmentOverview();
           this.getUserProfileInfo();
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
         }
       },
       (err) => {
