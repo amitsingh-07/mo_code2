@@ -1,7 +1,8 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-create-account-model {
-.selected-count {
+  .selected-count {
     background-color: #ff872f;
     width: 39px;
     height: 26px;
@@ -14,12 +15,14 @@ app-create-account-model {
     color: #ffffff;
     padding-bottom: 3px;
     margin-right: 10px;
+
     @include allmobiles {
       float: left;
       margin-left: 10px;
       //margin-top: 10px;
     }
   }
+
   .lbl-selected {
     font-family: $muli-regular;
     font-size: 18px;
@@ -27,21 +30,23 @@ app-create-account-model {
     letter-spacing: -0.2px;
     color: #5e5e5e;
     margin-right: 100px;
+
     @include allmobiles {
       margin-right: 0;
       padding-top: 10px;
       float: left;
     }
   }
-  .choose_ops{
-      color:#5e5e5e;
-      font-family: $muli-bold;
-      text-align: center;
-      margin-top: 20px;
+
+  .choose_ops {
+    color: #5e5e5e;
+    font-family: $muli-bold;
+    text-align: center;
+    margin-top: 20px;
   }
 
   .back {
-    display:flex;
+    display: flex;
     background: url("../../../../assets/images/back-mobile.png") no-repeat;
     width: 20px;
     height: 20px;
@@ -52,34 +57,41 @@ app-create-account-model {
     margin-top: 6px;
     cursor: pointer;
   }
+
   .modal-body {
     position: relative;
+
     .separator {
-      border-bottom: 1px solid rgba(141,154,168,0.35);
+      border-bottom: 1px solid rgba(141, 154, 168, 0.35);
       position: absolute;
       top: 70px;
       width: 100%;
       left: 0;
     }
-    .or-block{
+
+    .or-block {
       color: #5e5e5e;
       font-family: $muli-regular;
       font-size: 18px;
       line-height: 1.33;
       letter-spacing: -0.18px;
       padding-bottom: 30px;
-      hr{
+
+      hr {
         border-color: #5e5e5e;
       }
-      .or-circle{
+
+      .or-circle {
         background-color: #ffffff;
         border-color: #ffffff;
         color: #5e5e5e;
         font-size: 18px;
-        top:1px;
+        font-family: $muli-regular !important;
+        top: 1px;
       }
     }
-    .txt-bold{
+
+    .txt-bold {
       font-family: $muli-bold;
       font-size: 16px;
       line-height: 1.25;
@@ -89,16 +101,19 @@ app-create-account-model {
       max-width: 205px;
       margin: 0 auto 20px;
     }
-    .txt-black{
+
+    .txt-black {
       color: $black-color;
     }
-    .form-group-floating-label{
+
+    .form-group-floating-label {
       border-radius: 6px;
       border: 1px solid rgba(94, 94, 94, 0.3);
       background-color: #ffffff;
     }
-    .checkbox-button{
-      .title{
+
+    .checkbox-button {
+      .title {
         font-family: $muli-semi-bold;
         font-size: 15px;
         letter-spacing: -0.28px;
@@ -106,12 +121,22 @@ app-create-account-model {
       }
     }
   }
-  .error--msg{
-    color:$red-color;
+
+  .error--msg {
+    color: $red-color;
     font-size: 14px;
     margin-bottom: 5px;
-    &.success{
-        color:$green-color;
+
+    &.success {
+      color: $green-color;
     }
-}
+  }
+
+  .link-white {
+    font-size: 13px !important;
+  }
+
+  .btn {
+    font-family: $muli-bold;
+  }
 }
