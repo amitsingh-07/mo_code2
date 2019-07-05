@@ -1,0 +1,16 @@
+@import '../../variables';
+@import '../../mixins';
+
+/*Modal styles*/
+app-not-found {
+  .title {
+    font-size: 48px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+  }
+  .sub-title {
+    font-size: 21px;
+    letter-spacing: -0.21px;
+    line-height: 1.05;
+  }
+}

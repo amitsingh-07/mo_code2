@@ -1,12 +1,12 @@
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
-import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
-} from 'src/app/investment-account/investment-account-routes.constants';
 
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+} from '../../../investment-account/investment-account-routes.constants';
 import { ERoadmapStatus, IRoadmap, IRoadmapItem } from './roadmap.interface';
 
 const SESSION_STORAGE_KEY = 'app_roadmap';

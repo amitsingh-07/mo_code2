@@ -1,11 +1,11 @@
 <div class="portfolio-bg" *ngIf="portfolio">
-    <div class="container-fluid max-width--1024">
+    <div class="container-fluid">
       <img id="investment_overview_background_img" class="background_img web_bg" src="assets/images/investment_header_web.svg" />
       <img id="investment_overview_background_img" class="background_img mobile_bg" src="assets/images/investment_header_mobile.svg" />
     </div>
     <div class="flex-row user_content flex-col-12">
       <div class="flex-col-8 " id="your_portfolio_summary">
-        <div class="user_portfolio_title">Your Portfolio</div>
+        <div class="user_portfolio_title hidden-sm-md">{{pageTitle}}</div>
         <div class="user_portfolio">
           <span>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</span>
           <span id="your_portfolio_name">{{portfolioValues.riskProfile.type}}</span>
@@ -32,7 +32,7 @@
       <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
         <div class="flex-row">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
-            <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
+            <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
           </button>
         </div>
         <div class="form-group-with-bg">
@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <button *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+    <button *ngIf="holdingValues && portfolioValues.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>

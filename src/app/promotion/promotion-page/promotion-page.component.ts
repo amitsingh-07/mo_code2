@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import {
+    ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService } from 'src/app/config/config.service';
-import { PromotionService } from '../promotion.service';
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
-
+import { ConfigService } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PromotionApiService } from '../promotion.api.service';
 import { IPromotion } from '../promotion.interface';
-import { PromotionApiService } from './../promotion.api.service';
+import { PromotionService } from '../promotion.service';
 
 @Component({
   selector: 'app-promotion-page',

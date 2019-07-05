@@ -6,7 +6,6 @@
         <path id="f" d="M0 0h13.58v17.987H0z"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#2D8289" d="M0 0h370v280H0z"/>
         <use fill="#00BCBC" transform="matrix(-1 0 0 1 380 0)" xlink:href="#a"/>
         <mask id="c" fill="#fff">
             <use xlink:href="#b"/>

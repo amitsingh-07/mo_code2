@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../environments/environment';
+import { ConfigService, IConfig } from '../config/config.service';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -20,14 +21,18 @@ import { SignUpService } from './sign-up.service';
 })
 export class SignUpApiService {
   private signUpFormData: SignUpFormData = new SignUpFormData();
+  private emailVerifyUrl: String;
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient, private configService: ConfigService,
     private apiService: ApiService, private authService: AuthenticationService,
     private signUpService: SignUpService, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
     private directService: DirectService, private appService: AppService, private willWritingService: WillWritingService
   ) {
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.emailVerifyUrl = config.verifyEmailUrl;
+    });
   }
 
   /**
@@ -86,7 +91,7 @@ export class SignUpApiService {
       emailId: data.email,
       mobileNumber: data.mobileNumber,
       countryCode: data.countryCode,
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
       notificationByEmail: true,
       notificationByPhone: true
     };
@@ -230,7 +235,7 @@ export class SignUpApiService {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
       hostedServerName: window.location.hostname
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);

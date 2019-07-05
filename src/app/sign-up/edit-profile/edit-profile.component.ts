@@ -51,6 +51,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   pageTitle: any;
   investmentStatus: string;
   showAddbank = false;
+  dobFormat: any;
   private subscription: Subscription;
   constructor(
     // tslint:disable-next-line
@@ -148,6 +149,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           if (this.personalData && this.personalData.isSingaporeResident) {
             this.isSingaporeResident = this.personalData.isSingaporeResident;
           }
+          this.constructDate(this.personalData.dateOfBirth);
         }
       }
       // tslint:disable-next-line:max-line-length
@@ -268,5 +270,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
+  }
+  constructDate(dob) {
+    const dateArr = dob.split('/');
+    this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
   }
 }
