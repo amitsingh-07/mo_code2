@@ -346,8 +346,8 @@ export class InvestmentAccountService {
   }
 
   clearNationalityFormData() {
-    this.investmentAccountFormData.nationalityList = null;
-    this.investmentAccountFormData.countryList = null;
+    // #this.investmentAccountFormData.nationalityList = null;
+    // #this.investmentAccountFormData.countryList = null;
     this.investmentAccountFormData.nationalityCode = null;
     this.investmentAccountFormData.nationality = null;
     this.investmentAccountFormData.unitedStatesResident = null;
