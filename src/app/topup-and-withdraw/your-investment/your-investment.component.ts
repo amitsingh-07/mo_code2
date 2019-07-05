@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SignUpApiService } from 'src/app/sign-up/sign-up.api.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
@@ -13,12 +12,16 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpApiService } from '../../sign-up/sign-up.api.service';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -96,9 +99,7 @@ export class YourInvestmentComponent implements OnInit {
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
       this.topupAndWithDrawService.setPortfolioValues(portfolio);
-      if (portfolio.currentValue) {
-        this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
-      }
+      this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }

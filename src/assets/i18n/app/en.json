@@ -48,7 +48,9 @@
     "YEARS_NEEDED": "Years Needed",
     "TRY_AGAIN":"Try Again",
     "PROCEED":"Proceed",
-    "SAVE_CONTINUE": "Save and Continue"
+    "SAVE_CONTINUE": "Save and Continue",
+    "SEND": "Send",
+    "BACK_TO_HOME": "Back To Home"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",
@@ -167,7 +169,51 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Log In",
-    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life."
+    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life.",
+    "OR": "or",
+    "ENQUIRY_TITLE": "Receive more info on selected plans via email",
+    "FORM": {
+      "FIRST_NAME": {
+        "LABEL": "First Name",
+        "ERROR": {
+          "REQUIRED": "*Please enter your first name",
+          "INVALID": "*Invalid First Name"
+        }
+      },
+      "LAST_NAME": {
+        "LABEL": "Last Name",
+        "ERROR": {
+          "REQUIRED": "*Please enter your last name",
+          "INVALID": "*Invalid Last Name"
+        }
+      },
+      "EMAIL": {
+        "LABEL": "Email Address",
+        "ERROR": {
+          "INVALID": "*Please enter a valid email address in the format yourname@example.com",
+          "REQUIRED": "*Please enter your e-mail address"
+        }
+      },
+      "CONFIRM_EMAIL": {
+        "LABEL": "Confirm email Address",
+        "ERROR": {
+          "INVALID": "*Email Address do not match",
+          "REQUIRED": "*Please enter your confirm e-mail address"
+        }
+      },
+      "CAPTCHA": {
+        "TITLE": "Enter the characters shown in the image",
+        "TRY": "Try another text",
+        "LABEL": "Enter image text",
+        "ERROR": {
+          "INVALID": "*Invalid Captcha"
+        }
+      },
+      "MARKETING": {
+        "TITLE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
+      }
+    }
+
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -317,6 +363,11 @@
         }
       }
     }
+  },
+  "EMAIL_ENQUIRY": {
+    "THANKYOU": "Thank you!",
+    "TITLE": "Your interest in the selected insurance plan(s) has been submitted. Our advisors will contact you by the end of the next working day.",
+    "FOR_ENQUIRY": "For enquiries, please contact us at:"
   }
 }
 

@@ -1,10 +1,13 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -77,28 +80,35 @@ export class AddBankModalComponent implements OnInit {
     }
   }
 
-  onKeyPressEvent(event: any, dependentName: any) {
-   return (event.which !== 13);
-  }
+ 
+    onKeyPressEvent(event: any, content: any) {
+      const selection = window.getSelection();
+      if (content.length >= 100 && selection.type !== 'Range') {
+        const id = event.target.id;
+        const el = document.querySelector('#' + id);
+        this.setCaratTo(el, 100, content);
+        event.preventDefault();
+      }
+      return (event.which !== 13);
+    }
+  
 
  @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-      const arr = id;
-      const dependentName = event.target.innerText;
-      if (dependentName.length >= 100) {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.addBankForm.controls.accountHolderName.setValue(dependentNameList);
-     
+    const content = event.target.innerText;
+    if (content.length >= 100) {
+        const contentList = content.substring(0, 100);
+        this.addBankForm.controls.accountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.setCaratTo(el, 100, dependentNameList);
-      }
+        this.setCaratTo(el, 100, contentList);
+        }
     }
   }
 
-  setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
+  setCaratTo(contentEditableElement, position, content) {
+    contentEditableElement.innerText = content;
     if (document.createRange) {
       const range = document.createRange();
       range.selectNodeContents(contentEditableElement);

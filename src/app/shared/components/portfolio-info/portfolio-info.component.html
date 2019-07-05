@@ -17,7 +17,6 @@
                 <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
                 <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
                 <span>{{portfolio.projectedReturnsLowEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-                <span>{{portfolio.capitalInvested | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
               </div>
               <div class="flex-row time-lapse">
                 <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
@@ -38,14 +37,14 @@
             <div class="flex-row"><span class="circle worst"></span><span>{{ 'PORTFOLIO_RECOMMENDATION.WORST' |
               translate}}</span></div>
           </div>
-          <div class="flex-row capital">
-            <span><img class="img-fluid" src="../../../assets/images/investment-account/orangedots.svg" /></span>
-            <span>{{ 'PORTFOLIO_RECOMMENDATION.CAPITAL_INVESTED' | translate}}</span>
-          </div>
         </div>
-        <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate"></div>
-        <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT_A' | translate"></div>
+        <div class="desc">
+          <div [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate"></div>
+          <div [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT_A' | translate"></div>
+          <div [innerHTML]="'PORTFOLIO_RECOMMENDATION.MEDIAN_PROJECTED_RETURN' | translate:portfolioProjectionSubText"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

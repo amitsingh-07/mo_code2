@@ -2,13 +2,13 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 @Component({

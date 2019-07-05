@@ -1,6 +1,13 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-withdrawal-payment-method {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
+  }
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -139,9 +146,12 @@ app-withdrawal-payment-method {
     }
     .label {
       margin-top: 11px;
-      padding: 0 23px;
       text-align: center;
       color: $white-color;
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.16px;
     }
     .cheque {
       font-family: $muli-regular;

@@ -88,6 +88,8 @@ import {
     TransactionModalComponent
 } from './shared/modal/transaction-modal/transaction-modal.component';
 
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import {
     UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
@@ -105,7 +107,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 
 
 // tslint:disable-next-line:max-line-length
@@ -154,7 +156,8 @@ export function tokenGetterFn() {
     FAQComponent,
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EmailEnquirySuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -211,7 +214,7 @@ export function tokenGetterFn() {
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
-    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent]
 })

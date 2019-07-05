@@ -1,17 +1,15 @@
-import { ConfigService } from './../../config/config.service';
-import { SeoServiceService } from './../../shared/Services/seo-service.service';
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IContactUs } from './contact-us.interface';
-
 import { TranslateService } from '@ngx-translate/core';
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
 
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { AboutUsApiService } from './../about-us.api.service';
-import { AboutUsService } from './../about-us.service';
+import { ConfigService } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SeoServiceService } from '../../shared/Services/seo-service.service';
+import { AboutUsApiService } from '../about-us.api.service';
+import { AboutUsService } from '../about-us.service';
+import { IContactUs } from './contact-us.interface';
 
 @Component({
   selector: 'app-contact-us',
