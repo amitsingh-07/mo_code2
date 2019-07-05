@@ -223,36 +223,21 @@ export class AddUpdateBankComponent implements OnInit {
     }
   }
 
-  onKeyPressEvent(event: any, dependentName: any) {
-    return (event.which !== 13);
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-      const arr = id;
-      const dependentName = event.target.innerText;
-      if (dependentName.length >= 100) {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.bankForm.controls.accountHolderName.setValue(dependentNameList);
+     const content = event.target.innerText;
+     if (content.length >= 100) {
+        const contentList = content.substring(0, 100);
+        this.bankForm.controls.accountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.setCaratTo(el, 100, dependentNameList);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
-    }
-  }
-    setCaratTo(contentEditableElement, position, dependentName) {
-    contentEditableElement.innerText = dependentName;
-    if (document.createRange) {
-      const range = document.createRange();
-      range.selectNodeContents(contentEditableElement);
-
-      range.setStart(contentEditableElement.firstChild, position);
-      range.setEnd(contentEditableElement.firstChild, position);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
     }
   }
 }

@@ -1,6 +1,13 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-withdrawal-type {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
+  }
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;

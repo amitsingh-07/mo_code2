@@ -38,7 +38,7 @@
             <td>
                 <strong><u>Critical Illness Series</u></strong>
                 <p>MyCoreCI Plan</p> 
-                <p>MyMultiPay Critical Illness PLan III</p>
+                <p>MyMultiPay Critical Illness Plan III</p>
                 <p>MyEarly Critical Illness Plan</p>
             </td>
             <td class="text--center">

@@ -20,7 +20,8 @@
     </div>
     <div class="flex-row">
       <div class="flex-col-12">
-        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn" (click)="next('signup')">{{
+        <button type="button" class="btn btn__footer btn-primary-dark width100 mt5" id="createAccountBtn"
+          (click)="next('signup')">{{
           'RECOMMENDATIONS.CREATE_ACCOUNT' | translate}}</button>
       </div>
     </div>
@@ -31,4 +32,77 @@
       </div>
     </div>
   </div>
+  <div class="or-block">
+    <hr>
+    <div class="or-circle">{{'RECOMMENDATIONS.OR' | translate}}</div>
+  </div>
+  <div class="txt-bold">{{'RECOMMENDATIONS.ENQUIRY_TITLE' | translate}}</div>
+  <form id="enquiryForm" name="enquiryForm" [formGroup]="enquiryForm">
+    <div class="flex-row mb10">
+      <div class="flex-col-5 stretch mr15" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
+          <label class="form-control-placeholder" for="firstName">{{'RECOMMENDATIONS.FORM.FIRST_NAME.LABEL' | translate}}</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.firstName.invalid && enquiryForm.controls.firstName.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.firstName.errors.required">{{'RECOMMENDATIONS.FORM.FIRST_NAME.ERROR.REQUIRED' | translate}}</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.firstName.errors.pattern">{{'RECOMMENDATIONS.FORM.FIRST_NAME.ERROR.INVALID' | translate}}</p>
+        </div>
+      </div>
+      <div class="flex-col-5 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
+          <label class="form-control-placeholder" for="lastName">{{'RECOMMENDATIONS.FORM.LAST_NAME.LABEL' | translate}}</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.lastName.invalid && enquiryForm.controls.lastName.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.lastName.errors.required">{{'RECOMMENDATIONS.FORM.LAST_NAME.ERROR.REQUIRED' | translate}}</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.lastName.errors.pattern">{{'RECOMMENDATIONS.FORM.LAST_NAME.ERROR.INVALID' | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row mb10">
+      <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+          <label class="form-control-placeholder" for="lastName">{{'RECOMMENDATIONS.FORM.EMAIL.LABEL' | translate}}</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.email.invalid && enquiryForm.controls.email.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.email.errors.email">{{'RECOMMENDATIONS.FORM.EMAIL.ERROR.REQUIRED' | translate}}</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.email.errors.required">{{'RECOMMENDATIONS.FORM.EMAIL.ERROR.INVALID' | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row mb10 txt-black" *ngIf="showCaptcha">
+      <span class="mb10">{{'RECOMMENDATIONS.FORM.CAPTCHA.TITLE' | translate}}</span>
+      <div class="flex-col-4 stretch">
+        <div class="form-group-captcha-wrapper">
+          <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
+        </div>
+      </div>
+      <div class="flex-col-7 stretch">
+        <div class="form-group-floating-label">
+          <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
+            required>
+          <label class="form-control-placeholder" for="lastName">{{'RECOMMENDATIONS.FORM.CAPTCHA.LABEL' | translate}}</label>
+        </div>
+        <div class="mt10 text-right">
+          <span (click)="refreshCaptcha()" class="link-white">{{'RECOMMENDATIONS.FORM.CAPTCHA.TRY' | translate}} <i class="fa fa-refresh"
+              style="margin-left: 10px;"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col-12 checkbox-button one-label mb10">
+      <input id="acceptMarketingEmails" name="acceptMarketingEmails" type="checkbox"
+        formControlName="acceptMarketingEmails" class="field checkbox">
+      <label for="acceptMarketingEmails">
+        <div class="title mt15">{{'RECOMMENDATIONS.FORM.MARKETING.TITLE' | translate}}</div>
+      </label>
+    </div>
+    <div class="flex-col-12">
+      <div class="error--msg" *ngIf="invalidEmail">{{'RECOMMENDATIONS.FORM.EMAIL.ERROR.INVALID' | translate}}</div>
+      <div class="error--msg" *ngIf="invalidCaptcha">{{'RECOMMENDATIONS.FORM.CAPTCHA.ERROR.INVALID' | translate}}</div>
+      <button id="nextDependentBtn" type="button" class="btn btn-primary width100"
+        [disabled]="!enquiryForm.valid || formSubmitted" (click)="sendEnquiry(enquiryForm)">{{'LABEL.SEND' | translate}}</button>
+    </div>
+  </form>
 </div>
