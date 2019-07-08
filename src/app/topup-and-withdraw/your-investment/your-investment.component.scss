@@ -235,11 +235,14 @@ app-your-investment {
 
   .total_values {
     font-family: $muli-bold;
-    font-size: 30px;
+    font-size: 32px;
     letter-spacing: -0.4px;
     text-align: center;
     color: $white-color;
     word-break: break-all;
+    @include allmobiles{
+      font-size: 30px;
+    }
   }
 
   .total_values_label {
