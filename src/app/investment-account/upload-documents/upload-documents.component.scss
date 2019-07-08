@@ -1,14 +1,16 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 app-upload-documents {
   .upload-doc-nric {
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
-      position: relative;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
         top: 60px;
+        position: relative;
+        background-color: $white-color;
+      padding: 10px 0px;
       }
       .container-fluid {
         padding-top: 0px;
@@ -20,6 +22,21 @@ app-upload-documents {
         font-family: $muli;
         margin-bottom: 10px;
         text-align: center;
+      }
+      @include stepindicator-desktop-extraspace;
+    }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+        padding-top: 80px;
+      }
+      .title-small {
+        font-family: $muli-bold;
+        font-size: 16px;
+        line-height: 1.38;
+        letter-spacing: -0.2px;
+        color: $white-color;
+        margin-bottom: 20px;
       }
     }
     .doc-upload-instructions {
@@ -66,7 +83,7 @@ app-upload-documents {
       .sub-title-desc {
         font-family: $muli-semi-bold;
         color: $upload-sub-title-desc-color;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: -0.3px;
       }
       .upload-file {
@@ -111,7 +128,7 @@ app-upload-documents {
     }
     .upload-doc {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       flex: 1;
       padding: 0 15px;
       .upload-desc {
@@ -125,6 +142,9 @@ app-upload-documents {
         flex: 1;
         margin-right: 10px;
         margin-bottom: 38px;
+        @include desktop{
+          min-height: 165px;
+        }
         &:last-child {
           margin-right: 0;
         }
@@ -135,7 +155,7 @@ app-upload-documents {
             &.title {
               font-family: $muli-semi-bold;
               font-size: 18px;
-              font-weight: 600;
+              font-weight: 400;
             }
             &.sub-text {
               color: $upload-sub-title-desc-color;
@@ -145,23 +165,23 @@ app-upload-documents {
         }
         .thumb-container {
           position: relative;
-          width: 100px;
-          height: 100px;
+          max-width: 85px;
+          max-height: 85px;
           display: flex;
           align-items: center;
-          margin-bottom: 10px;
+          padding: 10px 0 20px;
           cursor: pointer;
           .thumbnail {
             margin: 0 auto;
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 85px;
+            max-height: 85px;
           }
           .thumb-close-icon {
             position: absolute;
             padding: 1px 7px;
             border-radius: 100%;
             background-color: $white-color;
-            right: -10px;
+            right: -25px;
             top: -10px;
             img {
               width: 12px;

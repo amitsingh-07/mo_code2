@@ -1,19 +1,24 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from '../../../environments/environment';
+import { ConfigService, IConfig } from '../../config/config.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { environment } from './../../../environments/environment';
-import { FooterService } from './../../shared/footer/footer.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -23,6 +28,7 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 })
 export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
+  private distribution: any;
   private pageTitle: string;
   private description: string;
   emailNotFoundTitle: any;
@@ -39,6 +45,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    private configService: ConfigService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -63,6 +70,9 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       this.authService.authenticate().subscribe((token) => {
       });
     }
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.distribution = config.distribution;
+    });
   }
 
   ngOnInit() {
@@ -78,10 +88,20 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
+    if (this.distribution) {
+      if (this.distribution.login) {
+        this.forgotPasswordForm = this.formBuilder.group({
+          email: [this.formValues.email, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          captcha: ['', [Validators.required]]
+        });
+        return false;
+      }
+    }
     this.forgotPasswordForm = this.formBuilder.group({
       email: [this.formValues.email, [Validators.required, Validators.email]],
       captcha: ['', [Validators.required]]
     });
+    return true;
   }
 
   save(form: any) {

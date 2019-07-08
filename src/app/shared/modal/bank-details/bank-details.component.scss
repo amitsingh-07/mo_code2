@@ -62,7 +62,6 @@ app-bank-details {
         display: flex;
          justify-content: space-between;
          color:#e57300;
-         font-weight: bold;
          font-family: $muli-bold;
          letter-spacing: -0.12px;
          font-size: 14px;
@@ -73,7 +72,6 @@ app-bank-details {
       .ref_num{
         font-family:$muli-bold;
        font-size: 16px;
-       font-weight: 600;
        letter-spacing: -0.16px;
        color: #ff872f;
        line-height: 22px;
@@ -119,7 +117,6 @@ app-bank-details {
       a {
         font-family: $muli-bold;
         font-size: 16px;
-        font-weight: bold;
         letter-spacing: -0.2px;
         text-align: center;
         color: $secondary-action-color;

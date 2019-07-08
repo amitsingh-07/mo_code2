@@ -252,7 +252,7 @@ button:active:focus {
       color: $white-color;
       top: 40%;
       left: 37%;
-      background-image: url(../src/assets/images/right-arrow.svg);
+      background-image: url("./assets/images/right-arrow.svg");
       width: 15px;
       height: 15px;
     }
@@ -308,7 +308,7 @@ button:active:focus {
       color: $white-color;
       top: 50%;
       left: 55%;
-      background-image: url("../src/assets/images/plus-white.svg");
+      background-image: url("./assets/images/plus-white.svg");
       background-repeat: no-repeat;
       width: 20px;
       height: 20px;
@@ -316,7 +316,7 @@ button:active:focus {
     }
 
     .addCover__block__btn--edit {
-      background-image: url("../src/assets/images/edit-white.png");
+      background-image: url("./assets/images/edit-white.png");
     }
   }
 
@@ -607,7 +607,7 @@ button:active:focus {
         color: $white-color;
         top: 50%;
         left: 55%;
-        background-image: url(../src/assets/images/editIcon.svg);
+        background-image: url("./assets/images/editIcon.svg");
         background-repeat: no-repeat;
         width: 20px;
         height: 20px;
@@ -883,6 +883,7 @@ button:active:focus {
       max-height: 264px;
       padding-top: 0;
       padding-bottom: 0;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
       .dropdown-item {
         padding: 10px 14.4px;
         white-space: normal;

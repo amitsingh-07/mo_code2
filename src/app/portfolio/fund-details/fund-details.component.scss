@@ -6,9 +6,9 @@ app-fund-details {
     text-align: center;
     font-family: $muli-semi-bold;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.3px;
-    text-align: center;
+    justify-content: center;
     color: $teal-color;
     border-bottom: 1px solid $fund-details-title-brdr;
     margin-bottom: 0;
@@ -30,9 +30,11 @@ app-fund-details {
   }
   .modal-body {
     padding: 20px 0 !important;
-    min-height: 100vh;
     max-height: 100%;
-    border-radius: 0;
+    @include allmobiles{
+      border-radius: 0;
+      min-height: 100vh;
+    }
   }
   .fund-details-content {
     .dimentional {
@@ -90,7 +92,6 @@ app-fund-details {
           margin-top: 22px;
           font-family: $muli-bold;
           font-size: 16px;
-          font-weight: bold;
           letter-spacing: -0.1px;
         }
       }
@@ -98,7 +99,6 @@ app-fund-details {
     .btn-orange {
       font-family: $muli-bold;
       font-size: 18px;
-      font-weight: bold;
       letter-spacing: -0.1px;
       text-align: center;
       color: $secondary-action-color;
@@ -138,7 +138,7 @@ app-fund-details {
   .fund-heading {
     font-family: $muli-semi-bold;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.3px;
     color: $black-color;
     padding: 20px;

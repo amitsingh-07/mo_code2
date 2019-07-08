@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>rubbish-bin-delete-button</title>
+    <desc>Created with Sketch.</desc>
+    <g id="web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.597">
+        <g id="account-opening---form-pg5-added-1-copy" transform="translate(-870.000000, -689.000000)" fill="#2D8289" fill-rule="nonzero">
+            <g id="rubbish-bin-delete-button" transform="translate(870.000000, 689.000000)">
+                <path d="M1.143,17.778 C1.143,19 2.17,20 3.429,20 L12.571,20 C13.829,20 14.857,19 14.857,17.778 L14.857,4.444 L1.143,4.444 L1.143,17.778 Z M16,1.11 L12,1.11 L10.857,0 L5.143,0 L4,1.111 L0,1.111 L0,3.333 L16,3.333 L16,1.111 L16,1.11 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

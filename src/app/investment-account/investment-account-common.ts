@@ -62,9 +62,9 @@ export class InvestmentAccountCommon {
       [selectedFile.name.split('.').length - 1].toUpperCase();
     const isValidFileSize =
       fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
-    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.includes(
+    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.indexOf(
       fileType
-    );
+    ) >= 0;
     if (isValidFileSize && isValidFileType) {
       const payloadKey = this.getPayloadKey(controlname);
       formData.append(payloadKey, selectedFile);

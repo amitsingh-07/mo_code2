@@ -9,8 +9,21 @@ app-fund-your-account {
     .strong {
       font-weight: bold;
     }
-    .container-fluid {
-      padding-bottom: 20px;
+    &.container-fluid {
+      &.invest-web-width{
+        max-width: 700px;
+        padding-top: 40px;
+        @include allmobiles{
+          padding-top: 90px;
+        }
+      }
+    }
+    .page-title{
+      font-family: $muli-semi-bold;
+      font-size: 32px;
+      letter-spacing: -0.33px;
+      text-align: center;
+      padding-bottom: 35px;
     }
     /* FUND SUMMARY */
     .fund-summary {
@@ -23,8 +36,11 @@ app-fund-your-account {
         align-items: center;
         font-family: $muli-regular;
         img {
-          max-width: 80px;
+          height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
@@ -53,8 +69,11 @@ app-fund-your-account {
         font-family: $muli-regular;
         letter-spacing: -0.2px;
         img {
-          max-width: 55px;
+          height: 80px;
           margin-bottom: 10px;
+          @include allmobiles{
+            height: 55px;
+          }
         }
         .strong {
           font-family: $muli-bold;
@@ -76,27 +95,46 @@ app-fund-your-account {
       margin: 25px 0px;
       color: $teal-color;
       .tab-links {
-        display: flex;
-        width: 100%;
-        background-color: $white-color;
-        border-radius: 6px 6px 0px 0px;
-        letter-spacing: -0.2px;
+         display: flex;
+         width: 100%;
+         letter-spacing: -0.2px;
         .tab-link-item {
           display: flex;
           flex-grow: 1;
           flex-basis: 0;
-          color: $fund-account-tab-color;
+          color: #2e9e9e;
           font-size: 18px;
-          font-weight: bold;
           font-family: $muli-bold;
-          padding: 15px 20px;
-          border-bottom: 3px solid $white-color;
+          padding: 15px 35px;
           text-align: center;
           align-items: center;
-          &.active {
-            color: $secondary-action-color;
-            border-bottom: 3px solid $secondary-action-color;
+          background-color: #c4e5ea;
+          margin-right: 9px;
+          border-radius: 10px 10px 0 0;
+          justify-content: center;
+          line-height: 1.17;
+          letter-spacing: -0.18px;
+          opacity: 0.5;
+          .pay-tab{
+            max-width:84px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            img{
+              width: 55px;
+              height: 35px;
+            }
           }
+          &:first-child{
+           flex-direction: column;
+          }
+          &:last-child{
+            margin: 0px;
+          }
+           &.active {
+            background-color: #ffffff;
+            opacity: 1;
+           }
         }
       }
       .tab-content-container {
@@ -174,8 +212,7 @@ app-fund-your-account {
          display: flex;
          justify-content: space-between;
          color:#e57300;
-         font-weight: bold;
-         line-height: 1.38;
+         line-height: 22px;
          font-family: $muli-bold;
          letter-spacing: -0.1px;
          font-size: 14px;
@@ -226,16 +263,21 @@ app-fund-your-account {
       border-radius: 6px;
       box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
       background-color: $teal-color;
-      border: solid 1px $fixed-btn-brdr-color;
+      border: 1px solid $teal-color;
       font-size: 18px;
       font-family: $muli-bold;
-      line-height: normal;
-      letter-spacing: -0.3px;
+      line-height: 1.11;
+      letter-spacing: -0.18px;
       text-align: center;
       color: $white-color;
       width: 100%;
       padding: 21px 0px;
       box-shadow: 0px 7px 15px 0px $mailing-address-text-brdr-color !important;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       &:active {
         outline: none;
         background-color: $action-btn-active-bg;
@@ -243,15 +285,17 @@ app-fund-your-account {
       }
       &:hover {
         outline: none;
+        background-color: $action-btn-active-bg;
+        border-color: $action-btn-active-bg;
+        color: $white-color;
       }
       &:focus {
         outline: none;
-        background-color: $action-btn-active-bg;
-        color: $white-color;
+        border: none;
       }
       img {
-        margin-left: 8px;
-        margin-top: -1px;
+        position: absolute;
+        right: 10px;
       }
     }
     .process-time-info {
@@ -277,8 +321,8 @@ app-fund-your-account {
       }
     }
     .btn__footer--fixed {
-      font-family: $muli-bold;
-      font-size: 24px;
+      font-family: $muli-bold !important;
+      font-size: 22px;
     }
   }
 }

@@ -1,15 +1,26 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 app-select-nationality {
+  h2{
+    font-size: 30px;
+    margin-bottom: 11px
+  }
   .banner-image {
     img {
       padding-top: 1vh;
+      @include desktop{
+        width:160px;
+        height:160px;
+      }
     }
   }
   .container-fluid {
-    padding-top: 50px !important;
+     padding-top: 20px !important;
     @include allmobiles{
-      padding-top: 20px !important;
+       padding-top: 20px !important;
+    }
+    .row{
+      justify-content: center;
     }
   }
   .flex-row {
@@ -24,6 +35,7 @@ app-select-nationality {
     }
   }
   label {
+    font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
     padding-right: 10px;
@@ -37,7 +49,7 @@ app-select-nationality {
     right: 0 !important;
     overflow: auto;
     height: auto;
-    max-height: 264px;
+    max-height: 200px;
   }
   .dropdown-item {
     white-space: normal;
@@ -65,9 +77,6 @@ app-select-nationality {
   .fixed-btn--sm {
     color: $white-color;
   }
-  .mr16 {
-    margin-right: 5px !important;
-  }
   .text {
     font-family: $muli-regular;
     font-size: 18px;
@@ -79,5 +88,11 @@ app-select-nationality {
   }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
+  }
+  .btn-primary{
+    &:disabled{
+      background-color: $btn-disabled-light-bg;
+      color: $disabled-teal-color;
+    }
   }
 }

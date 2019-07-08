@@ -20,7 +20,7 @@ export class TopupAndWithdrawGuardService implements CanActivate {
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
-    } else if (!TOPUPANDWITHDRAW_CONFIG.ALLOW_TOPUP_WITHDRAW_GUARD.includes(investmentStatus)) {
+    } else if (TOPUPANDWITHDRAW_CONFIG.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(investmentStatus) < 0 ) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     }

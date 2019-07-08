@@ -196,7 +196,7 @@
         }
     }
     .working-bundle-desc{
-        font-size: 30px;
+        font-size: 21px;
         letter-spacing: -0.31px;
         line-height: normal;
         color:$dark-grey-color;
@@ -260,6 +260,9 @@
                     border: 3px solid $white-color;
                     background-color: $teal-color !important;
                     font-family: $muli-extra-bold;
+                    &.text-bold{
+                        font-family:$muli-bold;
+                    }
                 }
                 &.occupational-data{
                     background-color: #a7cfcf;

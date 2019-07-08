@@ -1,21 +1,24 @@
-import { PORTFOLIO_ROUTE_PATHS } from 'src/app/portfolio/portfolio-routes.constants';
-import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
-import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
+import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
+    ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { flatMap } from 'rxjs/operators';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
+import { ConfigService, IConfig } from '../../config/config.service';
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -25,6 +28,7 @@ import { SelectedPlansService } from '../../shared/Services/selected-plans.servi
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
+import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -41,6 +45,7 @@ import { LoginFormError } from './login-form-error';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
+  private distribution: any;
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -66,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
-    private modal: NgbModal,
+    private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     private willWritingApiService: WillWritingApiService,
@@ -90,6 +95,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
     });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.distribution = config.distribution;
+      });
   }
 
   /**
@@ -136,11 +144,22 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   buildLoginForm() {
     this.formValues = this.signUpService.getLoginInfo();
+    if(this.distribution) {
+      if(this.distribution.login) {
+        this.loginForm = this.formBuilder.group({
+          loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
+          loginPassword: [this.formValues.loginPassword, [Validators.required]],
+          captchaValue: ['']
+        });
+        return false;
+      }
+    }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
+    return true;
   }
 
   /**
@@ -258,11 +277,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         const journeyType = this.appService.getJourneyType();
         if (redirect_url) {
           this.signUpService.clearRedirectUrl();
-          if (investmentRoutes.includes(redirect_url) && investmentStatus === null) {
+          if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentRoutes.includes(redirect_url) &&
+          } else if (investmentRoutes.indexOf(redirect_url) >= 0 &&
             investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_EXIST]);
+            this.investmentAccountService.setUserPortfolioExistStatus(true);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else {
             this.router.navigate([redirect_url]);
           }
