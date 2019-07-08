@@ -186,8 +186,7 @@ app-fund-your-account {
           margin-bottom: 10px;
           &.ref_num {
             font-family: $muli-semi-bold;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 18px;
             letter-spacing: -0.3px;
             color: #ff872f;
           }
@@ -213,9 +212,9 @@ app-fund-your-account {
          justify-content: space-between;
          color:#e57300;
          line-height: 22px;
-         font-family: $muli-bold;
          letter-spacing: -0.1px;
-         font-size: 14px;
+         font-family: $muli-regular;
+         font-size: 15px;
          span {
           padding:0px 8px 20px 0px;
         }
@@ -299,8 +298,8 @@ app-fund-your-account {
       }
     }
     .process-time-info {
-      font-family: $muli-regular;
-      font-size: 16px;
+      font-family: $muli-bold;
+      font-size: 18px;
       color: $white-color;
       text-align: center;
       margin: 15px 0px;
