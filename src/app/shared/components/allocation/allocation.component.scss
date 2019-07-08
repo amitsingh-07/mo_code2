@@ -18,9 +18,8 @@ app-allocation{
       padding: 0px 0 12px;
       .equity_bar {
         align-items: center;
-        justify-content: space-between;
        .flex-col{
-          padding-left: 5px;
+          padding-left: 18px;
         }
       }
       .bar-container {
@@ -140,7 +139,6 @@ app-allocation{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: $bond-container-bg;
-    font-family: $muli-bold;
   }
 }
 }
