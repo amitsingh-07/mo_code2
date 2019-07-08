@@ -52,8 +52,8 @@ $minus-content-color:#ff872f;
         font-size:18px!important;
     }
     .modal-body {
-        @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
-          padding: 10px 20px 100px !important;
+        @include allmobiles{
+            padding: 10px 20px 100px !important;
         }
       }
 }
