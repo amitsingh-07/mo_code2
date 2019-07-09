@@ -359,6 +359,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Route to Dashboard
   goToDashboard() {
+    if (!this.authService.isSignedUser()) {
+      this.signUpService.logoutUser();
+    }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
