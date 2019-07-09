@@ -131,11 +131,12 @@ app-transaction {
     .no-content {
       background-color: $bond-container-bg;
       min-height: calc(100vh - 222px);
+      padding-top: 10%;
       display: flex;
-      justify-content: center;
       flex-direction: column; 
       @include allmobiles{
         min-height: calc(100vh - 154px);
+        padding-top: 65px;
       }
     }
   }
