@@ -183,7 +183,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.isNotificationEnabled = false;
       }
 
-      if (this.isNotificationEnabled && this.isLoggedIn) {
+      if (this.isNotificationEnabled && this.authService.isSignedUser()) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
