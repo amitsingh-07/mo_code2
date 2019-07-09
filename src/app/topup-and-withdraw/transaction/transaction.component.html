@@ -60,7 +60,7 @@
               <div class="flex-col-12">
                 <div class="transaction-panel__statements white-bg">
                   <div *ngIf="statementMonthsList">
-                    <div *ngFor="let statementMonth of statementMonthsList">
+                    <div *ngFor="let statementMonth of statementMonthsList" class="statement-group">
                       <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
                       <div class="flex-row transaction-panel__statements--details" *ngFor="let month of statementMonth.months">
                         <div class="flex-col-6">{{month.monthName}}</div>
