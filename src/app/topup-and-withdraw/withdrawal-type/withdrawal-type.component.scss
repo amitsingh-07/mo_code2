@@ -53,7 +53,7 @@ app-withdrawal-type {
     }
     .btn__footer--fixed {
       font-size: 22px;
-      font-family: $muli-bold;
+      font-family: $muli-bold !important;
     }
     .withdraw-error {
       padding-left: 30px;
