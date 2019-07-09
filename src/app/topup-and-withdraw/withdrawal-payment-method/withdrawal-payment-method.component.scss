@@ -189,7 +189,7 @@ app-withdrawal-payment-method {
     .btn {
       &.btn-primary {
         &.btn__footer--fixed {
-          font-family: $muli-bold;
+          font-family: $muli-bold !important;
         }
       }
     }
