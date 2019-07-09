@@ -106,9 +106,8 @@
           margin-top: 7px;
           }
        &:last-child{
-          padding: 0 10px;
           margin-bottom: 4px;
-          margin-top: 8px;
+          margin-top: 0;
           @include ieSpecific {
             margin-top: 30px !important;
           }
@@ -136,7 +135,7 @@
             margin-top: 17px;
           }
           &:last-child{
-            margin-top: 16px;
+            margin-top: 10px;
           }
         }
       }
