@@ -1,128 +1,149 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="personal-declaration">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024 invest-web-width">
-      <app-step-indicator [count]="9" [activeStepIndex]="5"></app-step-indicator>
+    <div class="container-fluid max-width--1024">
+      <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024 invest-web-width">
-    <form name="personalDeclarationForm" [formGroup]="personalDeclarationForm">
-      <div class="flex-row mb30">
-        <div class="flex-col-4">
-          <div class="country_text">
-          <label for="name" id="personal-declaration-label"> {{ 'PERSONAL_DECLARATION.SOURCE' | translate}}</label>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="title-big hidden-sm-md">{{ 'PERSONAL_DECLARATION.TITLE' | translate}}</div>
+      <div class="row">
+        <div class="col-md-4 hidden-sm-md">
+          <app-roadmap></app-roadmap>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-11">
+              <form name="personalDeclarationForm" [formGroup]="personalDeclarationForm">
+                  <div class="flex-row mb30">
+                    <div class="flex-col-4">
+                      <div class="country_text">
+                        <label for="name" id="personal-declaration-label">
+                          {{ 'PERSONAL_DECLARATION.SOURCE' | translate}}</label>
+                      </div>
+                    </div>
+                    <div class="flex-col-8">
+                      <div class="dropdown-control">
+                        <div ngbDropdown>
+                          <button class="btn btn-dropdown" ngbDropdownToggle>
+                            <span class="dependent-count dropdown_text"
+                              *ngIf="!personalDeclarationForm.controls.sourceOfIncome.value"
+                              id="persoanl_declaration__dropdown_source1">{{ 'PERSONAL_DECLARATION.SELECT_SOURCE' | translate}}</span>
+                            <span class="dependent-count dropdown_text"
+                              *ngIf="personalDeclarationForm.controls.sourceOfIncome.value"
+                              id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name 
+                          }}</span>
+                          </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;"
+                              (click)="selectSource(sourceObj)" id="sourceof-income-option-{{i}}">
+                              {{sourceObj.name}}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- First question -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-11">
+                      <div class="tin_question_text" id="question-one">{{ 'PERSONAL_DECLARATION.QUESTION1' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Button part -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-12">
+                      <div class="btn-group--toggle" ngbRadioGroup name="radioEmploye" formControlName="radioEmploye">
+                        <div class="flex-row">
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
+                              <input ngbButton type="radio" id="empolye_yes" [value]=true> {{
+                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
+                            </label>
+                          </div>
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                              <input ngbButton type="radio" id="empolye_no" [value]=false>{{
+                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- second question -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-11">
+                      <div class="tin_question_text" id="question-two">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+                      </div>
+                    </div>
+                    <div class="flex-col-1">
+                      <i class="tooltip-icon" id="pepHelpIcon" (click)="showHelpModalPep()"></i>
+                    </div>
+                  </div>
+                  <!-- Button part -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-12">
+                      <div class="btn-group--toggle" ngbRadioGroup name="radioPEP" formControlName="radioPEP">
+                        <div class="flex-row">
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
+                              <input ngbButton type="radio" id="pep_yes" [value]=true> {{
+                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
+                            </label>
+                          </div>
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                              <input ngbButton type="radio" id="pep_no" [value]=false>{{
+                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- third question -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-11">
+                      <div class="tin_question_text" id="question-three">{{ 'PERSONAL_DECLARATION.QUESTION3' | translate}}
+                      </div>
+                    </div>
+                    <div class="flex-col-1">
+                      <i class="tooltip-icon" id="beneficialIcon" (click)="showHelpModalBeneficial()"></i>
+                    </div>
+                  </div>
+                  <!-- Button part -->
+                  <div class="flex-row mb15">
+                    <div class="flex-col-12">
+                      <div class="btn-group--toggle" ngbRadioGroup name="radioBeneficial" formControlName="radioBeneficial">
+                        <div class="flex-row">
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
+                              <input (change)="changeBoOption(personalDeclarationForm.controls.radioBeneficial.value)" ngbButton type="radio" id="ben_yes" [value]=true> {{
+                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
+                            </label>
+                          </div>
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                              <input (change)="changeBoOption(personalDeclarationForm.controls.radioBeneficial.value)" ngbButton type="radio" id="ben_no" [value]=false>{{
+                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="text-center">
+                  <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)"
+                    [disabled]="disableButton()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
+                    id="getStrdBtn3">{{
+                'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
+                </div>
           </div>
         </div>
-        <div class="flex-col-8">
-          <div class="dropdown-control">
-            <div ngbDropdown>
-              <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span class="dependent-count dropdown_text" *ngIf="!personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source1">{{ 'PERSONAL_DECLARATION.SELECT_SOURCE' | translate}}</span>
-                <span class="dependent-count dropdown_text" *ngIf="personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name 
-                  }}</span>
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource(sourceObj)"
-                  id="sourceof-income-option-{{i}}">
-                  {{sourceObj.name}}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+         
+       </div>
       </div>
-      <!-- First question -->
-      <div class="flex-row mb15">
-        <div class="flex-col-11">
-          <div class="tin_question_text" id="question-one">{{ 'PERSONAL_DECLARATION.QUESTION1' | translate}}
-          </div>
-        </div>
-      </div>
-      <!-- Button part -->
-      <div class="flex-row mb15">
-        <div class="flex-col-12">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioEmploye" formControlName="radioEmploye">
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                  <input ngbButton type="radio" id="empolye_yes" [value]=true > {{
-                  'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                </label>
-              </div>
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" id="empolye_no" [value]=false >{{
-                  'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- second question -->
-      <div class="flex-row mb15">
-        <div class="flex-col-11">
-          <div class="tin_question_text" id="question-two">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
-          </div>
-        </div>
-        <div class="flex-col-1">
-          <i class="tooltip-icon" id="pepHelpIcon" (click)="showHelpModalPep()"></i>
-        </div>
-      </div>
-      <!-- Button part -->
-      <div class="flex-row mb15">
-        <div class="flex-col-12">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioPEP" formControlName="radioPEP">
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                  <input ngbButton type="radio" id="pep_yes" [value]=true > {{
-                  'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                </label>
-              </div>
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" id="pep_no" [value]=false >{{
-                  'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- third question -->
-      <div class="flex-row mb15">
-        <div class="flex-col-11">
-          <div class="tin_question_text" id="question-three">{{ 'PERSONAL_DECLARATION.QUESTION3' | translate}}
-          </div>
-        </div>
-        <div class="flex-col-1">
-          <i class="tooltip-icon" id="beneficialIcon" (click)="showHelpModalBeneficial()"></i>
-        </div>
-      </div>
-      <!-- Button part -->
-      <div class="flex-row mb15">
-        <div class="flex-col-12">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioBeneficial" formControlName="radioBeneficial">
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                  <input ngbButton type="radio" id="ben_yes" [value]=true > {{
-                  'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                </label>
-              </div>
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" id="ben_no" [value]=false >{{
-                  'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()"
-      class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
-      'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
+    </div>
   </div>
 </div>

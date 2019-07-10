@@ -64,6 +64,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
     this.observeCountryChange();
     this.observeOccupationChange();
+    this.investmentAccountService.loadDDCRoadmap();
   }
 
   buildForm() {
@@ -275,35 +276,29 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     });
   }
 
-  setContent(content: any, controlName) {
-    if (content !== undefined) {
-      const maximumLength = 100;
-      content = content.replace(/\n/g, '');
-      content = content.substring(0, maximumLength);
-      this.addInfoForm.controls[controlName].setValue(content);
-    }
+  setControlValue(value, controlName, formName) {
+    this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
-  validateContent(event: any, content: any) {
-    const selection = window.getSelection();
-    const maximumLength = 100;
-    if (content.length >= maximumLength && selection.type !== 'Range') {
-      event.preventDefault();
-    }
-    return (event.which !== 13);
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event , content);
   }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
+    const content = event.target.innerText;
     if (id !== '') {
-      const content = event.target.innerText;
       if (content.length >= 100 && id === 'pepFullName') {
-        const trimContent = content.substring(0, 100);
-        this.addInfoForm.controls.pepFullName.setValue(trimContent);
+        const contentList = content.substring(0, 100);
+        this.addInfoForm.controls.pepFullName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       } else if (content.length >= 100 && id === 'cName') {
-        const trimContent = content.substring(0, 100);
-        this.addInfoForm.controls.cName.setValue(trimContent);
+        const contentList = content.substring(0, 100);
+        this.addInfoForm.controls.cName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }

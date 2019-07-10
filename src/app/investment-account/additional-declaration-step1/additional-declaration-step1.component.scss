@@ -17,6 +17,7 @@ app-additional-declaration-step1 {
     }
 
     label {
+      font-family: $muli-semi-bold;
       font-size: 18px;
       letter-spacing: -0.3px;
       padding-right: 5px;
@@ -28,16 +29,19 @@ app-additional-declaration-step1 {
       height: calc(70vh);
     }
 
+    .btn-group--toggle{
+      label{
+        font-size: 16px;
+        font-family: $muli-regular;
+      }
+    }
+
     .dropdown-item {
       white-space: normal;
     }
 
     .fixed-btn--sm {
       color: $white-color;
-    }
-
-    .mr16 {
-      margin-right: 5px !important;
     }
 
     .text {
@@ -51,18 +55,26 @@ app-additional-declaration-step1 {
     }
 
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
-      position: relative;
+      padding: 20px 0px;
       top: 76px;
       @include allmobiles{
+        background-color: $white-color;
+        padding: 10px 0px;
         top: 60px;
+        position: relative;
       }
       .container-fluid {
         padding-top: 0px;
         padding-bottom: 0px;
-      }
+      }    
+      @include stepindicator-desktop-extraspace;
     }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
     .tooltip-icon {
       background: url('../../../assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
@@ -77,7 +89,7 @@ app-additional-declaration-step1 {
       height: 69px;
       font-family: $muli-semi-bold;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
@@ -88,10 +100,14 @@ app-additional-declaration-step1 {
     .tin_question_text {
       font-family: $muli-semi-bold;
       font-size: 18px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      margin-bottom: 12px;
+    }
+
+    .pep_text {
+      font-family: $muli-regular;
+      font-size: 18px;
       letter-spacing: -0.3px;
       color: $white-color;
       margin-bottom: 12px;
@@ -180,7 +196,7 @@ app-additional-declaration-step1 {
         background-color: $secondary-action-color;
         color: $white-color;
         border: none;
-        font-family: $muli;
+        font-family: $muli-semi-bold;
 
         &.right {
           float: right;
@@ -247,9 +263,8 @@ app-additional-declaration-step1 {
 
       .autofill-text {
         width: 65%;
-        font-family: Muli;
+        font-family: $muli-bold;
         font-size: 18px;
-        font-weight: bold;
         color: $inline-error-border-color;
       }
     }
@@ -327,7 +342,7 @@ app-additional-declaration-step1 {
   }
    [placeholder]:empty::before {
   content: attr(placeholder);
- // color: $app-backgrnd-color; 
+ 
    color: $text-color-secondary
 }
 
@@ -340,8 +355,8 @@ app-additional-declaration-step1 {
     padding: .90rem;
     background: $white-color;
     color: $app-backgrnd-color;
-     word-break: break-word;
- 
+    word-break: break-word;
+    min-height: 52px;
     &.view-mode {
       background-color: rgba(0, 167, 167, 0.15) !important;
     }

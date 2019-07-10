@@ -804,7 +804,7 @@ h6 {
 
       &.right {
         right: -14px;
-        left: unset !important;
+        left: auto !important;
       }
 
       @include minMobilemaxPhablet {
@@ -1537,6 +1537,7 @@ h6 {
       padding:20px 25px;
       margin-top:60px;
       border-radius: 6px;
+      width: 100%;
       @include minMobilemaxPhablet{
         margin-top:20px;
       }
@@ -1768,4 +1769,70 @@ a.link-white {
 
 .dropdown-toggle.last::after {
   background-image: none !important;
+}
+
+// investment-account
+
+.my-info-mt66{
+  margin-top:66px;
+  @include allmobiles{
+    margin-top: 0;
+  }
+}
+.or-block{
+  padding: 25px 0 45px;
+  position: relative;
+  hr{
+    border: 1px solid #008c8c;
+    margin: 0;
+  }
+  .or-circle{
+    width: 43px;
+    height: 43px;
+    border: 5px solid #00a7a7;
+    background-color: #008c8c;
+    border-radius: 50%;
+    font-family: $muli-bold;
+    font-size: 13px;
+    letter-spacing: -0.12px;
+    color: #98dfdf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    left: 45%;
+  }
+}
+
+.title-big{
+  font-size:30px;
+  color:#fff;
+  font-family: $muli-semi-bold;
+  margin-bottom:30px;
+}
+
+.info-txt{
+  font-family: $muli-semi-bold;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.17px;
+  text-align: center;
+  color: #a7f3f1;
+}
+
+// overriding input autofill colors
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $teal-color !important;
+  background-color: $white-color !important;
+  -webkit-box-shadow: inset 0 0 0px 9999px $white-color !important;
 }

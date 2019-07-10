@@ -9,20 +9,10 @@
     <div class="autofill-estimation">{{'INVESTMENT_ACCOUNT_MYINFO.TAB_BUTTON.TIME'
       | translate}}</div>
   </div>
-  <div class="loader-modal" *ngIf="showConfirmation">
-    <div class="backdrop">
-        <div class="loader-content-wrapper">
-            <div class="loader-image mb15">
-              <img src="../../../assets/images/owl-lock.svg" id="owl-lock" />
-            </div>
-            <div class="loader-content">
-              <div id="singPassConfirmTitle" class="loader-title">{{ 'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.TITLE' |
-                translate}}</div>
-              <div id="singPassConfirmDesc" class="loader-desc" [innerHTML]="this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.DESCRIPTION')"></div>
-            </div>
-            <button id="singPassConfirmBtn" (click)="getMyInfo()" type="button" class="btn btn-primary width100 mt20">{{'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.BTN-TEXT'
-              | translate}}</button>
-          </div>
-    </div> 
+
+  <div class="or-block">
+    <hr>
+    <div class="or-circle">{{'COMMON.LABEL.OR'  | translate}}</div>
   </div>
 </div>
+

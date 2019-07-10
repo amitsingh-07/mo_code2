@@ -1169,3 +1169,23 @@ input::placeholder {
     text-align: center;
   }
 }
+
+/**
+* form button design for investment-account, 
+* 1. confirm/save/apply button set to width of 360 - desktop view
+* 2. confirm/save/apply button set to width of 320 - tablet view
+*/ 
+
+app-inv-personal-info, app-residential-address, app-employment-details,
+app-finanical-details, app-tax-info, app-personal-declaration,
+app-upload-document-bo, app-upload-documents, app-additional-declaration-screen2,
+app-additional-declaration-step1 {
+  .content {
+    @include desktop {
+      padding: 0 35px;
+    }
+    @include continue-button;
+  }
+}
+
+//

@@ -214,33 +214,29 @@ export class AddUpdateBankComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
-  setContent(content: any) {
-    if (content !== undefined) {
-      const maximumLength = 100;
-      content = content.replace(/\n/g, '');
-      content = content.substring(0, maximumLength);
-      this.bankForm.controls.accountHolderName.setValue(content);
+// #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
+ setAccountHolderName(accountHolderName: any) {
+    if (accountHolderName !== undefined) {
+      accountHolderName = accountHolderName.replace(/\n/g, '');
+      this.bankForm.controls.accountHolderName.setValue(accountHolderName);
+      return accountHolderName;
     }
   }
 
-  validateContent(event: any, content: any) {
-    const selection = window.getSelection();
-    const maximumLength = 100;
-    if (content.length >= maximumLength && selection.type !== 'Range') {
-      event.preventDefault();
-    }
-    return (event.which !== 13);
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-      const content = event.target.innerText;
-      if (content.length >= 100) {
-        const trimContent = content.substring(0, 100);
-        this.bankForm.controls.accountHolderName.setValue(trimContent);
+     const content = event.target.innerText;
+     if (content.length >= 100) {
+        const contentList = content.substring(0, 100);
+        this.bankForm.controls.accountHolderName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }

@@ -47,7 +47,9 @@ export class MyInfoService {
   }
 
   goToMyInfo() {
-    window.sessionStorage.setItem('currentUrl', window.location.hash.split(';')[0]);
+    let currentUrl = window.location.toString();
+    let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    window.sessionStorage.setItem('currentUrl', endPoint);
     const authoriseUrl = this.authApiUrl +
       '?client_id=' + this.clientId +
       '&attributes=' + this.getMyInfoAttributes() +

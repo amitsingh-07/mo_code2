@@ -1,7 +1,9 @@
-<app-investment-title-bar></app-investment-title-bar>
-<div class="fund-your-account container-fluid max-width--1024 invest-web-pt-90">
+<div class="fund-your-account container-fluid max-width--1024 invest-web-width">
   <div class="content" *ngIf="bankDetails && paynowDetails">
     <!-- FUND SUMMARY -->
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.source == 'FUNDING'">{{'FUND_YOUR_ACCOUNT.TITLE' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'ONETIME'">{{'FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'MONTHLY'">{{'FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT' | translate}}</div>
     <div class="fund-summary">
       <div class="from-account">
         <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
@@ -35,17 +37,16 @@
         <div class="strong">{{fundDetails.portfolio.riskProfile.type}}</div>
       </div>
     </div>
-    <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">Please transfer the following amount using your
-      preferred payment method details:</div>
+    <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">{{ 'FUND_YOUR_ACCOUNT.DESC' | translate }}</div>
     <!-- TRANSFER DETAILS -->
     <div class="transfer-details">
       <div *ngIf=!oneTimeOrMonthlySufficient()>
         <div class="tab-links">
           <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
-            {{ 'FUND_YOUR_ACCOUNT.VIA_BANK' | translate }}
+           <div class="pay-tab">{{ 'FUND_YOUR_ACCOUNT.BANK_TRANSFER' | translate }}</div>
           </div>
           <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-            {{ 'FUND_YOUR_ACCOUNT.VIA_PAYNOW' | translate }}
+            <div class="pay-tab"><img  src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
           </div>
         </div>
         <div class="tab-content-container">

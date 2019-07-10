@@ -235,6 +235,14 @@ line-height: lineHeightRem($size);
     @content;
   }
 }
+
+/* IE 11 mixin */
+
+@mixin ieSpecific {
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+		@content;
+	}
+}
 // Flex box mixins
 //================
 @mixin flex-align($position) {
@@ -517,4 +525,88 @@ line-height: lineHeightRem($size);
 	-webkit-flex-basis: 100%;
 	flex-basis: 100%;
 	width: 100%;
+}
+
+/**
+* fix for Flex basis in Internet explorer
+*/
+_:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
+  flex-basis: auto;
+}
+
+/**
+ * Design for stepper indicator, 
+ * Additional space inbetween the stepper for Desktop view
+ */
+@mixin stepindicator-desktop-extraspace {
+	@include desktop {
+		.container-fluid {
+			padding: 0px 25px 0 50px;
+			.step-item {
+				margin-right: 28px !important;
+				@include stepcolor;
+
+				&:last-child {
+						margin-right: 0 !important;
+				}
+			}
+		}
+	}
+		.step-item {
+			@include tablet {
+				@include stepcolor;
+			}
+		}
+	@include allmobiles {
+	.step-item {
+		&.active {
+		   	opacity: 1;
+				 background-color: $step-indicator-active;
+		  }
+	  }
+	 }
+}
+
+// STEP INDICATOR FOR INVESTMENT
+
+@mixin stepcolor {
+  opacity: 0.2;
+ &.active {
+    background-color: #31e5db !important;
+    opacity: 1;
+  }
+}
+/**
+* form button design for investment-account and portfolio, 
+* 1. confirm/save/apply button set to width of 360 - desktop view
+* 2. confirm/save/apply button set to width of 320 - tablet view
+*/ 
+@mixin continue-button {
+  div.text-center {
+    .btn-ftr-get-started {
+      @include desktop {
+        width: 360px;
+      }
+      @include tablet { 
+        width: 320px;
+			}
+			@include phablet {
+				width: 100%;
+			}
+		}
+  }
+}
+
+/* firefox only - CSS code for dropdown with ellipsis within flex-col width 
+*  add 'flex-col-moz' to flex-col-* in columns of flex-row
+*/
+@mixin dropdown-ellipsis() {
+	@supports ( -moz-appearance:none ) {
+		.flex-col-moz {
+			flex-basis: auto;
+			.dropdown-control {
+				width: 100%;
+			}
+		}
+	}
 }

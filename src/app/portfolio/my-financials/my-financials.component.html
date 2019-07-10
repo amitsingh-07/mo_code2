@@ -1,7 +1,17 @@
-<app-investment-title-bar></app-investment-title-bar>
-<div class="container-fluid max-width--1024 invest-web-width">
+
+<div class="container-fluid max-width--1024">
   <div class="content">
-    <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="myFinancialsForm">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+          <h2>{{ 'MY_FINANCIALS.YOUR_INVESTMENT' | translate}}</h2>
+          <h6>{{ 'MY_FINANCIALS.HOW_MUCH_INVEST' | translate}}</h6>
+          <div class="banner-image">
+            <img src="assets/images/investment-account/portfolio-financial.svg"/>
+          </div>
+        </div>
+      
+       <div class="col-lg-5 col-md-6">
+     <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="myFinancialsForm">
       <!-- FIRST SECTION -->
       <div class="row second-section">
         <div class="col-lg-12 col-md-12">
@@ -25,7 +35,7 @@
                   <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
                   <label for="1" id="c1">
                     <div class="input-label-black"> {{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}}</div>
-                    <div class="input-label-normal">Min. $100</div>
+                    <div class="input-label-normal"> {{ 'MY_FINANCIALS.MIN_100' | translate}}</div>
                   </label>
                 </div>
                 <div class="flex-col-6">
@@ -43,7 +53,7 @@
                   <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox" name="secondChkBox" (change)="secondChkBoxChange()">
                   <label for="2" id="c2">
                     <div class="input-label-black"> {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div>
-                    <div class="input-label-normal">Min. $50</div>
+                    <div class="input-label-normal">{{ 'MY_FINANCIALS.MIN_50' | translate}}</div>
                   </label>
                 </div>
                 <div class="flex-col-6">
@@ -157,12 +167,12 @@
                 </div>
               </div>
               <!-- buttons -->
-              <div class="flex-row">
-                <div class="flex-col-7">
+              <div class="flex-row emergency-fund">
+                <div class="flex-col-12">
                   <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="suffEmergencyFund">
-                    <div class="flex-row">
+                    <div class="flex-row space-between">
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="my_financial_yes_lab">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_yes_lab">
                           <input ngbButton type="radio" value="yes" id="my_financial_yes_btn"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
                         </label>
                       </div>
@@ -184,6 +194,8 @@
         </div>
       </div>
       <!-- end -->
-    </form>
+     </form>
+     </div>
+    </div>
   </div>
 </div>

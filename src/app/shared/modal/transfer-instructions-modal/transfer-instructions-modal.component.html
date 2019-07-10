@@ -12,12 +12,12 @@
     <div class="tab-container">
       <div class="tab-links">
         <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
-          {{ 'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.VIA_BANK' | translate }}
+            <div class="pay-tab">{{ 'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.VIA_BANK' | translate }}</div>
         </div>
       </div>
       <div class="tab-links">
         <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-          <img src="../../../../assets/images/topupwithdraw/paynow.png">
+            <div class="pay-tab"><img src="../../../../assets/images/topupwithdraw/paynow.png"></div>
         </div>
       </div>
     </div>

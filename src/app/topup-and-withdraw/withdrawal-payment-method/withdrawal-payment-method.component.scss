@@ -1,6 +1,24 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-withdrawal-payment-method {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
+  }
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 105px;
+    a {
+      color: #a7f3f1;
+     }
+  }
   .withdraw {
     .btn-group--toggle {
       &.tabs {
@@ -14,7 +32,6 @@ app-withdrawal-payment-method {
             font-family: $muli-bold;
             font-size: 22px;
             color: $white-color;
-            font-weight: bold;
             line-height: 1.22;
             letter-spacing: -0.2px;
             text-align: center;
@@ -60,6 +77,7 @@ app-withdrawal-payment-method {
       margin-bottom: 10px;
       align-items: center;
       justify-content: center;
+      position: relative;
       cursor: pointer;
       .selected_logo {
         display: none;
@@ -104,6 +122,11 @@ app-withdrawal-payment-method {
       width: 71px;
       height: 49px;
       margin-bottom: 19px;
+      .edit-bank{
+        position: absolute;
+        top: 24px;
+        right: 23px;
+      }
     }
     .add_account {
       align-items: center;
@@ -123,9 +146,12 @@ app-withdrawal-payment-method {
     }
     .label {
       margin-top: 11px;
-      padding: 0 23px;
       text-align: center;
       color: $white-color;
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.16px;
     }
     .cheque {
       font-family: $muli-regular;
@@ -151,7 +177,6 @@ app-withdrawal-payment-method {
       }
       .link {
         font-family: $muli-bold;
-        font-weight: bold;
       }
     }
     .tab-content {
@@ -164,7 +189,7 @@ app-withdrawal-payment-method {
     .btn {
       &.btn-primary {
         &.btn__footer--fixed {
-          font-family: $muli-bold;
+          font-family: $muli-bold !important;
         }
       }
     }
