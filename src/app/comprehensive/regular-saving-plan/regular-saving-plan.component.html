@@ -16,18 +16,19 @@
         <section *ngIf="RSPForm.get('hasRegularSavings').value" class="rspSelectionList">
           <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg"
             *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
-            <div class="form-group-with-bg--header pt0 pr0">
-              <div class="rsp-header">
-                <div class="">
-                  <div class="form-group-with-bg--header-label" id="moDpdnt2FrmHeading1"><span
-                      *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span
-                      *ngIf="i > 0">{{i}}</span></div>
-                </div>
-                <div class="">
-                  <div class="total"><span class="help-icon"
-                      (click)="showToolTipModal('RSP_TITLE','RSP_MESSAGE')"></span><span class="delete-icon"
-                      (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon"
+            <div class="form-group-with-bg">
+              <!--Form Header-->
+              <div class="form-group-with-bg--header rsp-border-top">
+                <div class="flex-row">
+                  <div class="flex-col-12 with-help-icon">
+                    <div class="form-group-with-bg--header-label"><span
+                        *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span
+                        *ngIf="i > 0">{{i}}</span>
+                      <div class="form-group-with-bg--header-sub-label"></div>
+                    </div>
+                    <span class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon"
                       *ngIf="!viewMode && RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></span>
+
                   </div>
                 </div>
               </div>
@@ -95,7 +96,15 @@
               </div>
             </div>
           </div>
-          <p *ngIf="!viewMode" class="add-rsp" (click)="addRSP()">{{'CMP.RSP.ADD_RSP'|translate}}</p>
+          <div class="flex-row add-rsp" *ngIf="!viewMode">
+            <div class="flex-col-12">
+              <div class="with-help-icon" for="name"><u (click)="addRSP()">{{
+                    'CMP.RSP.ADD_RSP' | translate}}</u>
+
+                <span class="help-icon" (click)="showToolTipModal('OTHER_RSP_TITLE','OTHER_RSP_MESSAGE')"></span>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
       <div class="checkbox-button one-label">
