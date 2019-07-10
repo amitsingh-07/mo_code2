@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -47,7 +47,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private renderer: Renderer2
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -71,6 +72,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
+      this.renderer.addClass(document.body, 'modal-open'); // disable scroll to body
       this.portfolioService.setPortfolioSplashModalCounter(1);
       this.time = setTimeout(() => {
         this.animateStaticModal = true;
@@ -78,6 +80,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
 
       setTimeout(() => {
         this.hideStaticModal = true;
+        this.renderer.removeClass(document.body, 'modal-open'); // enable scroll to body
       }, 4000);
     } else {
       this.hideStaticModal = true;
@@ -88,6 +91,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     clearTimeout(this.time);
     this.animateStaticModal = true;
     this.hideStaticModal = true;
+    this.renderer.removeClass(document.body, 'modal-open'); // enable scroll to body
    }
   goToNext(RiskProfileID) {
     this.portfolioService.setSelectedRiskProfileId(RiskProfileID);
