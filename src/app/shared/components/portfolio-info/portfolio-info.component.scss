@@ -239,6 +239,7 @@
     background-color: $portfolio-recommend-bg;
     max-width: 720px;
     padding: 16px 22px;
+    text-align: left;
     @include allmobiles{
       border-radius: 0;
       padding: 0;

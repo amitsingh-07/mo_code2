@@ -2,9 +2,17 @@
 @import '../../../_mixins.scss';
 
 app-risk-profile {
+  .splash-screen{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    top: 0;
+    bottom: 0;
+  }
+
   .hide-custom-modal {
-    display: none;
-   
+    display: none;   
   }
 
   .fade-out-animation {
@@ -12,11 +20,6 @@ app-risk-profile {
     /* Chrome, Safari, Opera */
     animation: fadeOut 1000ms ease-in-out;
     opacity: 0;
-    z-index: 9999;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
   }
 
   /* Chrome, Safari, Opera */
@@ -46,18 +49,20 @@ app-risk-profile {
     position: fixed;
     opacity: 0.95;
     width: 100%;
-    height: 100%;
+   // height: 100%;
+    height: 100vh;
     z-index: 9999;
     top: 0;
     left: 0;
   }
 
   .custom-modal-wrapper {
-    top: 20px;
-    left: 0;
+    //top: 20px;
+    //left: 0;
     width: 100%;
-    height: 100%;
-    position: absolute;
+    height: 100vh;
+    position: relative;
+    //position: absolute;
     z-index: 10000;
     text-align: center;
     @extend .flex;
@@ -76,7 +81,7 @@ app-risk-profile {
   }
 
   .custom-modal--icon {
-    height: 100%;
+    //height: 100%;
     .width50 {
       @include desktop {
         width: 340px;
