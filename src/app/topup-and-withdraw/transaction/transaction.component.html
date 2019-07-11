@@ -6,7 +6,7 @@
         <ngb-tab title="History">
           <ng-template ngbTabContent>
             <div class="flex-row" *ngIf="transactionHistory">
-              <div class="flex-col-12">
+              <div class="flex-col-12 transction-screen">
                 <div class="transaction-panel__history white-bg">
                   <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
@@ -57,7 +57,7 @@
         <ngb-tab class="btn width100" title="Statements">
           <ng-template ngbTabContent>
             <div class="flex-row">
-              <div class="flex-col-12">
+              <div class="flex-col-12 transction-screen">
                 <div class="transaction-panel__statements white-bg">
                   <div *ngIf="statementMonthsList">
                     <div *ngFor="let statementMonth of statementMonthsList" class="statement-group">
