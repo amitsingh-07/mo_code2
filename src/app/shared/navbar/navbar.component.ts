@@ -343,9 +343,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Logout Method
   logout() {
-    this.authService.logout().subscribe((data) => {
+    if (this.authService.isSignedUser()) {
+      this.authService.logout().subscribe((data) => {
+        this.clearLoginDetails();
+      });
+    } else {
       this.clearLoginDetails();
-    });
+    }
   }
 
   clearLoginDetails() {
@@ -360,9 +364,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // Route to Dashboard
   goToDashboard() {
     if (!this.authService.isSignedUser()) {
-      this.signUpService.logoutUser();
+      this.clearLoginDetails();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
   // Browser Error Core Methods
