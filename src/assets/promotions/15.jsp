@@ -67,7 +67,7 @@
           <td class="text--center">Monthly Premium<span class="bundle-icon">^</span></td>
           <td class="text--center extra-light-grey text-bold">$27</td>
           <td class="text--center extra-light-grey text-bold">$57</td>
-          <td class="text--center light-grey text-bold">$100</td>
+          <td class="text--center light-grey text-bold">$74</td>
           <td class="text--center light-grey text-bold">$149</td>
         </tr>
         <tr>
@@ -76,7 +76,7 @@
           </td>
           <td class="text--center extra-light-grey text-bold">$25</td>
           <td class="text--center extra-light-grey text-bold">$80</td>
-          <td class="text--center light-grey text-bold">$190</td>
+          <td class="text--center light-grey text-bold">$90</td>
           <td class="text--center light-grey text-bold">$350</td>
         </tr>
       </table>

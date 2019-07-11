@@ -194,13 +194,16 @@ app-your-portfolio {
   }
   .total_values {
     font-family: $muli-bold;
-    font-size: 30px;
+    font-size: 32px;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.4px;
     text-align: center;
     color: $white-color;
+    @include allmobiles{
+      font-size: 30px;
+    }
   }
   .total_values_label {
     font-family: $muli-regular;

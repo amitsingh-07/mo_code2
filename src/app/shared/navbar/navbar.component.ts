@@ -220,7 +220,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.isNotificationEnabled = false;
       }
 
-      if (this.isNotificationEnabled && this.isLoggedIn) {
+      if (this.isNotificationEnabled && this.authService.isSignedUser()) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
@@ -391,9 +391,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Logout Method
   logout() {
-    this.authService.logout().subscribe((data) => {
+    if (this.authService.isSignedUser()) {
+      this.authService.logout().subscribe((data) => {
+        this.clearLoginDetails();
+      });
+    } else {
       this.clearLoginDetails();
-    });
+    }
   }
 
   clearLoginDetails() {
@@ -408,15 +412,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Route to Dashboard
   goToDashboard() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    if (!this.authService.isSignedUser()) {
+      this.clearLoginDetails();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
   }
 
   // Browser Error Core Methods
   browserCheck() {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/
-    const is_ie = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
-
+    const is_ie = ua.indexOf('MSIE ') > -1 ||
+                  ua.indexOf('Trident/') > -1 ||
+                  ua.toLowerCase().indexOf('firefox') > -1;
     if (is_ie) {
       this.browserError = true;
     } else {

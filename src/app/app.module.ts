@@ -80,6 +80,7 @@ import {
 
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {
   LoginCreateAccountModelComponent
@@ -156,7 +157,8 @@ export function tokenGetterFn() {
     UnsupportedDeviceModalComponent,
     SummaryModalComponent,
     DiyModalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EmailEnquirySuccessComponent
   ],
   imports: [
     BrowserModule,

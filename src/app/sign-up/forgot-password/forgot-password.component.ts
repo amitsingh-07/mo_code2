@@ -88,12 +88,14 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
-    if(this.distribution) {
-      this.forgotPasswordForm = this.formBuilder.group({
-        email: [this.formValues.email, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-        captcha: ['', [Validators.required]]
-      });
-      return false;
+    if (this.distribution) {
+      if (this.distribution.login) {
+        this.forgotPasswordForm = this.formBuilder.group({
+          email: [this.formValues.email, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          captcha: ['', [Validators.required]]
+        });
+        return false;
+      }
     }
     this.forgotPasswordForm = this.formBuilder.group({
       email: [this.formValues.email, [Validators.required, Validators.email]],
