@@ -44,8 +44,8 @@ app-transaction {
         border-bottom: 6px solid $secondary-action-color;
       }
     }
-    .transaction-group,
-    .statement-group{
+    .transction-screen{
+      background: $white-color;
       min-height: calc(100vh - 222px);
       @include allmobiles{
         min-height: calc(100vh - 154px);
