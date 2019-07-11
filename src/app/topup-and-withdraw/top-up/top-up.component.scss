@@ -1,6 +1,13 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-top-up {
+  h2{
+    font-size:30px !important;
+    margin-bottom: 15px;
+    @include allmobiles{
+      font-size: 21px;
+    }
+  }
   .container-fluid {
     @include allmobiles{
       padding-bottom: 0 !important;
@@ -9,12 +16,39 @@ app-top-up {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 100vh;
     }
     .content {
       &:first-child {
-        margin: 0 18px;
+        @include allmobiles{
+          margin: 0 18px;
+        }
       }
+    }
+    .col-lg-5{
+      padding-right: 40px;
+    }
+  }
+
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 19px;
+    a {
+      color: $top-up-faq-link-color;
+     }
+  }
+  .top-up-block{
+    padding-left: 50px;
+    padding-right: 0;
+    @include tablet{
+      padding-left: 0px;
+    }
+    @include allmobiles{
+      margin: 0 auto; 
+      padding-left: 0px;
     }
   }
   .form-group-with-bg .form-group-with-bg--content {
@@ -71,24 +105,18 @@ app-top-up {
     //@include allmobiles {
       display: inline-grid;
       width: 50%;
-      min-height: 140px;
+     // min-height: 140px;
       &:nth-child(1) input[type='radio'] + label,
       &:nth-child(2) input[type='radio'] + label {
         margin-top: 10px;
       }
       &:nth-child(2n + 1) input[type='radio'] + label {
-        margin: 0 auto;
-        @include allmobiles{
-          margin-left: auto;
-          margin-right: 8.5px;
-        }
+        margin: 0 ;
+        margin-right: auto;
       }
       &:nth-child(2n) input[type='radio'] + label {
-        margin: 0 auto;
-        @include allmobiles{
-          margin-left: auto;
-          margin-right: 5.5px;
-        }
+        margin: 0 ;
+        margin-left: auto;
       }
     //}
     &.one-label {
@@ -99,8 +127,7 @@ app-top-up {
     }
     input[type='radio'] + label,
     input[type='checkbox'] + label {
-      width: 100%;
-      padding: 17px 15px;
+      padding: 16px 19px 13px;
       background: $white-color;
       color: $teal-color;
       font-family: $muli-bold;
@@ -110,13 +137,15 @@ app-top-up {
       border: solid 1px $light-teal-color;
       border-radius: 6px;
       //@include allmobiles {
-        width: calc(100% - 17px);
+        width: calc(100% - 10px);
         height: 104px;
         text-align: center;
-        padding: 20px 19px;
         position: relative;
         @include allmobiles{
           max-width: 163px;
+        }
+        @include tablet{
+          padding: 17px 10px;
         }
         &.ltc {
           padding: 25px 21px;
@@ -144,21 +173,21 @@ app-top-up {
         opacity: 0.8;
         letter-spacing: -0.3px;
         line-height: 1.1;
-        padding-left: 10px;
+        padding: 0 10px;
         @include allmobiles {
-          position: absolute;
+         // position: absolute;
           font-family: $muli-regular;
-          display: inline-flex;
+          //display: inline-flex;
           width: 100%;
-          left: 0px;
+         // left: 0px;
           padding: 0 10px;
           letter-spacing: -0.3px;
-          bottom: 20px;
+         // bottom: 20px;
           line-height: 1.3;
           font-size: 12px;
           text-align: center;
-          display: flex;
-          justify-content: center;
+         // display: flex;
+          //justify-content: center;
         }
         @include min300max350 {
           padding: 0 13px;
@@ -192,13 +221,23 @@ app-top-up {
   .second-section {
     @include allmobiles{
       padding-bottom: 80px;
-    }
-    .btn__footer--fixed {
-      font-family: $muli-bold;
-      font-size: 24px;
-    }
+    } 
   }
   .form-control.form-control-right input {
     padding-right: 46px;
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    &:disabled {
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+      background-color: $btn-disabled-light-bg !important;
+      color: $disabled-teal-color;
+     }
+     &:hover {
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+        background-color: $btn-disabled-light-bg !important;
+        color: $white-color;
+      }
+    
   }
 }

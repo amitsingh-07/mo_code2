@@ -2,7 +2,7 @@
 @import "../../../_mixins.scss";
 app-edit-profile{
  .container-fluid{
-  padding-top: 76px !important;
+  padding-top: 0px !important;
   @include allmobiles {
    padding-top: 60px !important;
    padding-left: 0 !important;
@@ -44,15 +44,12 @@ app-edit-profile{
     border-right: 0.5px solid $dark-teal-color;
     height: 28px;
     width: 2px;
-    margin-left: 10px;
-    display: none;
+    margin: 10px 30px;
     @include allmobiles{
-      margin-top: 10px;
-      display: flex;
+      margin: 10px 5px 0;
     }
-    @include tablet{
-      margin-top: 10px;
-      display: flex;
+    @include phablet{
+      margin: 10px 5px 0;
     }
   }
 }
@@ -81,7 +78,6 @@ app-edit-profile{
   .heading{
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
     line-height: 1.36;
     letter-spacing: -0.2px;
     text-align: center;
@@ -89,17 +85,26 @@ app-edit-profile{
     margin-top: 9px;
     word-wrap: break-word;
   }
-  .grid-wrapper{
-    @extend .flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .grid-wrapper-block{
+    justify-content: center;
     @include allmobiles{
-      flex-direction: column;
-      align-items: flex-start;
+      justify-content: space-between;
     }
     @include phablet{
+      justify-content: space-between;
+    }
+    .grid-wrapper{
+      @extend .flex;
       flex-direction: column;
       align-items: flex-start;
+      @include allmobiles{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      @include phablet{
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   }
   .content-text{
@@ -197,7 +202,6 @@ app-edit-profile{
     margin-top: 15px;
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
     letter-spacing: -0.3px;
     text-align: center;
     color:$teal-color;
@@ -228,7 +232,7 @@ app-edit-profile{
   .bank_details{
     .dots{
       .flex-row{
-        padding: 16px 0 0;
+        padding: 16px 10px 0;
       }
     }
   }
@@ -254,7 +258,6 @@ app-edit-profile{
   .mailing-address-text {
     font-family:  $muli-bold;
     font-size: 18px;
-    font-weight: bold;
     letter-spacing: -0.3px;
     color: $mailing-address-text-color;
     border-bottom: 0.5px solid $mailing-address-text-brdr-color;

@@ -42,17 +42,6 @@ app-add-update-bank{
     color: $white-color;
     margin-bottom: 18px;
   }
-  .postal-code-control {
-    display: flex;
-    div.control {
-      display: flex;
-      flex: 3;
-    }
-    div.button {
-      display: flex;
-      flex: 2;
-    }
-  }
   .inline-error{
     .btn{
       &.btn-secondary{
@@ -329,7 +318,7 @@ app-add-update-bank{
   }
    [placeholder]:empty::before {
   content: attr(placeholder);
- // color: $app-backgrnd-color; 
+
    color: $text-color-secondary
 }
 
@@ -342,8 +331,8 @@ app-add-update-bank{
     padding: .90rem;
     background: $white-color;
     color: $app-backgrnd-color;
-     word-break: break-word;
- 
+    word-break: break-word;
+    min-height: 52px;
     &.view-mode {
       background-color: rgba(0, 167, 167, 0.15) !important;
     }

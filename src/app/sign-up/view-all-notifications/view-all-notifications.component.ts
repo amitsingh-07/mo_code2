@@ -44,8 +44,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getAllNotifications();
     this.navbarService.setNavbarMode(102);
-    this.navbarService.setClearAllNotify(true);
-  }
+   }
 
   ngAfterViewInit() {
     this.navbarService.currentClearNotificationEvent.subscribe((clearAll) => {
@@ -53,6 +52,9 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
         this.clearAllNotifications();
       }
     });
+  }
+  clearNotifications() {
+    this.navbarService.clearNotification();
   }
 
   setPageTitle(title: string) {
@@ -63,6 +65,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     this.signUpService.getAllNotifications().subscribe((response) => {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
+      this.navbarService.setClearAllNotify(this.allMessages.length > 0 ? true : false);
       this.portfolioService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);

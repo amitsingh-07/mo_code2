@@ -9,7 +9,7 @@
         comprise products across insurers to suit different needs and budget.</p>
       <p class="tip">Tip: As the provider of your family’s needs, it is more important for you to be insured
         against life’s risks.
-        If you are unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
+        If unsure about the coverage you need, check out our <span class="text-underline">Young Working Adult Protection</span> bundle to find out more.
       </p>
     </div>
     <div class="working-bundle-title">
@@ -32,11 +32,11 @@
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center" width="30%">Package Options</td>
-          <td class="cell--header text--center" width="15%">Option 1</td>
-          <td class="cell--header text--center" width="15%">Option 2</td>
-          <td class="cell--header text--center" width="15%">Option 1</td>
-          <td class="cell--header text--center" width="15%">Option 2</td>
+          <td class="cell--header text--center text-bold" width="30%">Package Options</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 1</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 2</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 1</td>
+          <td class="cell--header text--center text-bold" width="15%">Option 2</td>
         </tr>
         <tr>
           <td class="text--center">Plans</td>
@@ -67,7 +67,7 @@
           <td class="text--center">Monthly Premium<span class="bundle-icon">^</span></td>
           <td class="text--center extra-light-grey text-bold">$27</td>
           <td class="text--center extra-light-grey text-bold">$57</td>
-          <td class="text--center light-grey text-bold">$100</td>
+          <td class="text--center light-grey text-bold">$74</td>
           <td class="text--center light-grey text-bold">$149</td>
         </tr>
         <tr>
@@ -76,7 +76,7 @@
           </td>
           <td class="text--center extra-light-grey text-bold">$25</td>
           <td class="text--center extra-light-grey text-bold">$80</td>
-          <td class="text--center light-grey text-bold">$190</td>
+          <td class="text--center light-grey text-bold">$90</td>
           <td class="text--center light-grey text-bold">$350</td>
         </tr>
       </table>
@@ -109,11 +109,11 @@
           </td>
         </tr>
         <tr>
-          <td class="cell--header text--center" width="30%">Gender</td>
-          <td class="cell--header text--center" width="15%">Boy</td>
-          <td class="cell--header text--center" width="15%">Girl</td>
-          <td class="cell--header text--center" width="15%">Boy</td>
-          <td class="cell--header text--center" width="15%">Girl</td>
+          <td class="cell--header text--center text-bold" width="30%">Gender</td>
+          <td class="cell--header text--center text-bold" width="15%">Boy</td>
+          <td class="cell--header text--center text-bold" width="15%">Girl</td>
+          <td class="cell--header text--center text-bold" width="15%">Boy</td>
+          <td class="cell--header text--center text-bold" width="15%">Girl</td>
         </tr>
         <tr>
           <td class="text--center">Total Projected Payout</td>

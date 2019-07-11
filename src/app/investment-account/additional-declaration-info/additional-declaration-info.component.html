@@ -3,20 +3,20 @@
     <div class="row text-center">
       <div class="col-12">
         <div class="banner-image">
-          <img src='assets/images/investment-account/diligence_check_img.svg' id="additional-introImg" />
+          <img src='assets/images/investment-account/ddc.svg' id="additional-introImg" />
         </div>
       </div>
       <div class="col-12 intro-block__content__des">
-        <div class="pl25 pr25 mt30">
+        <div class="pl25 pr25 mt15">
           <p class="intro-block__content__heading mb20" id="add-introHeading">{{ 'ADDITIONAL_DECLARATION.TITLE' |
             translate}}</p>
-          <p class="intro-block__content__title" id="add-introTitle">{{ 'ADDITIONAL_DECLARATION.PEP_MORE_DETAILS' |
+          <p class="intro-block__content__title mb40" id="add-introTitle">{{ 'ADDITIONAL_DECLARATION.PEP_MORE_DETAILS' |
             translate}}</p>
         </div>
       </div>
+      <button class="btn btn-proceed" (click)="goNext()" id="add-getStartedStep1Btn">
+        {{'COMMON.LABEL.PROCEED' | translate}}
+      </button>
     </div>
   </div>
-    <button class="btn btn-proceed width100" (click)="goNext()" id="add-getStartedStep1Btn">
-      Proceed
-    </button>
 </div>

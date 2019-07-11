@@ -27,23 +27,16 @@ app-intro-screen {
       }
     }
     .intro-block__content {
-      @include tablet {
-        .banner-image img {
-          max-width: 90%;
-        }
-      }
-      @include allmobiles {
-        .banner-image img {
-          max-width: 70%;
-        }
-      }
-      @include iPadProPortrait {
-        .banner-image img {
-          max-width: 80%;
+      .banner-image img {
+        padding-top: 85px;
+        @include allmobiles{
+          padding-top: 30px;
         }
       }
     }
     .intro-block__content__desc {
+      margin: 15px auto 0;
+      max-width: 400px;
       @include allmobiles {
         margin-top: 30px;
         text-align: center;

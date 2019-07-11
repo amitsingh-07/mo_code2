@@ -1,28 +1,28 @@
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
-  ViewChild
+    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+    ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
+import { ConfigService, IConfig } from '../../config/config.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
-  TransactionModalComponent
+    TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
+import {
+    DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
+} from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
-import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
-import { ConfigService, IConfig } from './../../config/config.service';
+import { DefaultErrors } from '../modal/error-modal/default-errors';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
-
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-
-import { DefaultErrors } from './../modal/error-modal/default-errors';
 
 @Component({
   selector: 'app-navbar',
@@ -183,7 +183,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.isNotificationEnabled = false;
       }
 
-      if (this.isNotificationEnabled && this.isLoggedIn) {
+      if (this.isNotificationEnabled && this.authService.isSignedUser()) {
         this.getRecentNotifications();
       }
       this.cdr.detectChanges();
@@ -343,9 +343,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Logout Method
   logout() {
-    this.authService.logout().subscribe((data) => {
+    if (this.authService.isSignedUser()) {
+      this.authService.logout().subscribe((data) => {
+        this.clearLoginDetails();
+      });
+    } else {
       this.clearLoginDetails();
-    });
+    }
   }
 
   clearLoginDetails() {
@@ -359,7 +363,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Route to Dashboard
   goToDashboard() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    if (!this.authService.isSignedUser()) {
+      this.clearLoginDetails();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
   }
 
   // Browser Error Core Methods

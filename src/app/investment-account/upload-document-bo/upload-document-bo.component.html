@@ -1,47 +1,79 @@
-<app-investment-title-bar></app-investment-title-bar>
 <div class="upload-doc-nric">
   <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024 invest-web-width">
-      <div class="page-caption">{{ 'UPLOAD_DOCUMENTS.PAGE_SUB_CAPTION' | translate}}</div>
-      <app-step-indicator [count]="9" [activeStepIndex]="6"></app-step-indicator>
+    <div class="container-fluid max-width--1024">
+      <div class="page-caption hidden-lg">{{ 'UPLOAD_DOCUMENTS.PAGE_SUB_CAPTION' | translate}}</div>
+      <app-step-indicator [count]="7" [activeStepIndex]="6" [mode]="1"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024 invest-web-width">
+  <div class="container-fluid max-width--1024">
     <div class="content">
-      <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
-        <div class="row">
-          <div class="col-12 sub-title-block">
-            <div class="sub-title">
-              <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_IDENTITY_BO' | translate}}
-                <span>({{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}})</span>
-              </span>
-            </div>
-          </div>
-          <div class="upload-doc">
-            <!-- PASSPORT IMAGE UPLOAD -->
-            <div class="upload-desc" (click)="openFileDialog(passport)">
-              <div class="thumb-container">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb, passport)"
-                  *ngIf="uploadForm.controls.passportImage.value">
-                  <img src="../../../assets/images/close-button.svg" alt="x" />
-                </div>
-                <img #passportThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
-              </div>
-              <div class="upload-content">
-                <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT_BO' | translate}}</div>
-                <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
-                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-                <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>
-                <input type="file" #passport (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb)"
-                  name="passport" accept="image/*, .pdf" class="is-hidden">
-                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden" formControlName="passportImage"/>
-              </div>
-            </div>
-          </div>
+      <div class="title-big hidden-sm-md" >{{ 'UPLOAD_DOCUMENTS.TITLE' | translate}}</div>
+      <div class="row">
+        <div class="col-md-4 hidden-sm-md">
+          <app-roadmap></app-roadmap>
         </div>
-        <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-          id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
-      </form>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+              <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm"> 
+                <div class="title-small hidden-sm-md">
+                    {{ 'UPLOAD_DOCUMENTS.IDENTITY_VERIFICATION' | translate }}
+                </div>
+                <div class="col-12 doc-upload-instructions">
+                  <div class="sub-title">
+                    {{ 'UPLOAD_DOCUMENTS.SPECIFICATION' | translate}}</div>
+                  <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_LESS-THAN' | translate}}</span><span>{{
+                    'UPLOAD_DOCUMENTS.TEN_MB' | translate}}</span></div>
+                  <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_TYPE' | translate}}</span><span>{{
+                    'UPLOAD_DOCUMENTS.SUPPORTED_FILES' | translate}}</span></div>
+                </div>
+                <div class="row">
+                  <div class="col-12 sub-title-block">
+                    <div class="sub-title">
+                      <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_IDENTITY_BO' | translate}}
+                        <span>({{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}})</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="upload-doc">
+                    <!-- PASSPORT IMAGE UPLOAD -->
+                    <div class="upload-desc" (click)="openFileDialog(passport)">
+                      <div class="thumb-container">
+                        <div class="thumb-close-icon"
+                          (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb, passport)"
+                          *ngIf="uploadForm.controls.passportImage.value">
+                          <img src="../../../assets/images/close-button.svg" alt="x" />
+                        </div>
+                        <img #passportThumb class="thumbnail image-fluid"
+                          src="../../../assets/images/{{defaultThumb}}" />
+                      </div>
+                      <div class="upload-content">
+                        <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT_BO' | translate}}</div>
+                        <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
+                                'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                        <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value"
+                          [innerHtml]="getFileName(passport)"></div>
+                        <input type="file" #passport
+                          (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb)"
+                          name="passport" accept="image/*, .pdf" class="is-hidden">
+                        <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden"
+                          formControlName="passportImage" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)"
+                    class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
+                    id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.SAVE_AND_CONTINUE' | translate}}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

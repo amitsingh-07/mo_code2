@@ -20,6 +20,8 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 
 const routes: Routes = [
   {
@@ -75,7 +77,9 @@ const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'disclosures', component: DisclosuresComponent },
       { path: 'fair-dealing', component: FairDealingComponent },
-      { path: 'security-policy', component: SecurityPolicyComponent }
+      { path: 'security-policy', component: SecurityPolicyComponent },
+      { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
+      { path: '**', component: NotFoundComponent }
     ]
   }
 ];

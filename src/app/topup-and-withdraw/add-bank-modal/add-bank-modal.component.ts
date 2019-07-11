@@ -1,9 +1,11 @@
-import { Component, EventEmitter,HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({
@@ -15,6 +17,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class AddBankModalComponent implements OnInit {
   @Input() banks;
   @Input() fullName;
+  @Input() bankDetails;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   addBankForm: FormGroup;
 
@@ -22,7 +25,7 @@ export class AddBankModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
@@ -30,8 +33,8 @@ export class AddBankModalComponent implements OnInit {
         Validators.required,
         Validators.pattern(RegexConstants.NameWithSymbol)
       ]),
-      bank: new FormControl('', Validators.required),
-      accountNo: new FormControl('', [
+      bank: new FormControl(this.bankDetails ? this.bankDetails.bank : '', Validators.required),
+      accountNo: new FormControl(this.bankDetails ? this.bankDetails.accountNumber : '', [
         Validators.required,
         this.signUpService.validateBankAccNo
       ])
@@ -68,19 +71,20 @@ export class AddBankModalComponent implements OnInit {
     }
   }
 
-  setContent(content: any) {
-    if (content !== undefined) {
-      const maximumLength = 100;
-      content = content.replace(/\n/g, '');
-      content = content.substring(0, maximumLength);
-      this.addBankForm.controls.accountHolderName.setValue(content);
+  setAccountHolderName(accountHolderName: any) {
+    if (accountHolderName !== undefined) {
+      accountHolderName = accountHolderName.replace(/\n/g, '');
+      this.addBankForm.controls.accountHolderName.setValue(accountHolderName);
+      return accountHolderName;
     }
   }
 
-  validateContent(event: any, content: any) {
+  onKeyPressEvent(event: any, content: any) {
     const selection = window.getSelection();
-    const maximumLength = 100;
-    if (content.length >= maximumLength && selection.type !== 'Range') {
+    if (content.length >= 100 && selection.type !== 'Range') {
+      const id = event.target.id;
+      const el = document.querySelector('#' + id);
+      this.setCaratTo(el, 100, content);
       event.preventDefault();
     }
     return (event.which !== 13);
@@ -92,9 +96,26 @@ export class AddBankModalComponent implements OnInit {
     if (id !== '') {
       const content = event.target.innerText;
       if (content.length >= 100) {
-        const trimContent = content.substring(0, 100);
-        this.addBankForm.controls.accountHolderName.setValue(trimContent);
+        const contentList = content.substring(0, 100);
+        this.addBankForm.controls.accountHolderName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.setCaratTo(el, 100, contentList);
       }
+    }
+  }
+
+  setCaratTo(contentEditableElement, position, content) {
+    contentEditableElement.innerText = content;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
   }
 }

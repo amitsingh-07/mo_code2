@@ -2,19 +2,28 @@
   /* Font Styles Start */
   @font-face {
     font-family: 'Muli';
-    src: url('/assets/fonts/muli.ttf') format('truetype');
+    src: url('/assets/fonts/muli.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Muli Regular';
-    src: url('/assets/fonts/muli-regular.ttf') format('truetype');
+    src: url('/assets/fonts/muli-regular.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-regular.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Muli Bold';
-    src: url('/assets/fonts/muli-bold.ttf') format('truetype');
+    src: url('/assets/fonts/muli-bold.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-bold.ttf') format('truetype');
+         
   }
   @font-face {
     font-family: 'Muli Semi Bold';
-    src: url('/assets/fonts/muli-semi-bold.ttf') format('truetype');
+    src: url('/assets/fonts/muli-semi-bold.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-semi-bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Muli Extra Bold';
+    src: url('/assets/fonts/muli-extrabold.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Muli Extra Bold';
@@ -22,13 +31,16 @@
   }
   @font-face {
     font-family: 'Muli Light';
-    src: url('/assets/fonts/muli-light.ttf') format('truetype');
+    src: url('/assets/fonts/muli.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-light.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Muli Italic';
-    src: url('/assets/fonts/muli-italic.ttf') format('truetype');
+    src: url('/assets/fonts/muli-italic.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-italic.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Muli Extra Light';
-    src: url('/assets/fonts/muli-extralight.ttf') format('truetype');
+    src: url('/assets/fonts/muli-extralight.eot?#iefix') format('embedded-opentype'), /* IE9 Compat Modes */
+         url('/assets/fonts/muli-extralight.ttf') format('truetype');
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -86,6 +86,7 @@ export class EmploymentDetailsComponent implements OnInit {
     if (this.employementDetailsForm.get('employeaddress')) {
       this.observeEmpAddressCountryChange();
     }
+    this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {
@@ -437,22 +438,12 @@ export class EmploymentDetailsComponent implements OnInit {
     return this.investmentAccountService.isDisabled(fieldName);
   }
 
-  setContent(content: any) {
-    if (content !== undefined) {
-      const maximumLength = 100;
-      content = content.replace(/\n/g, '');
-      content = content.substring(0, maximumLength);
-      this.employementDetailsForm.controls.companyName.setValue(content);
-    }
+  setControlValue(value, controlName, formName) {
+    this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
-  validateContent(event: any, content: any) {
-    const selection = window.getSelection();
-    const maximumLength = 100;
-    if (content.length >= maximumLength && selection.type !== 'Range') {
-      event.preventDefault();
-    }
-    return (event.which !== 13);
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event , content);
   }
 
   @HostListener('input', ['$event'])
@@ -461,8 +452,10 @@ export class EmploymentDetailsComponent implements OnInit {
     if (id !== '') {
       const content = event.target.innerText;
       if (content.length >= 100) {
-        const trimContent = content.substring(0, 100);
-        this.employementDetailsForm.controls.companyName.setValue(trimContent);
+        const contentList = content.substring(0, 100);
+        this.employementDetailsForm.controls.companyName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }
