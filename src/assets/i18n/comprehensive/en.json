@@ -170,8 +170,7 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [
-      {
+    "NATIONALITY": [{
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -244,8 +243,7 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [
-        {
+      "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
         },
@@ -360,12 +358,13 @@
       "MONTH": "mth",
       "TOOLTIP": {
         "RSP_TITLE": "Regular Saving Plan",
-        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."
+        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc.",
+        "OTHER_RSP_TITLE": "Other Regular Saving Plan",
+        "OTHER_RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [
-      {
+    "INVESTMENT_TYPE_LIST": [{
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -430,8 +429,7 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [
-        {
+      "INVESTMENT_TYPE_LIST": [{
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -543,8 +541,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [
-        {
+      "DEPENDANT_DETAIL": [{
           "name": "Dependant Details 1"
         },
         {
