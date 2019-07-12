@@ -283,7 +283,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {
-      windowClass: 'position-bottom',
       centered: true
     });
     this.modalRef.componentInstance.data = this.state.selectedPlans.length;

@@ -28,20 +28,19 @@ app-topup-request {
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 20%;
-      @include allmobiles{
         top: 40px;
-      }
     }
     .custom-modal--title {
-      font-family: $muli-bold;
-      font-size: 24px;
-      font-style: normal;
-      font-stretch: normal;
+      font-family: $muli-regular;
+      font-size: 32px;
       line-height: normal;
       letter-spacing: -0.2px;
       text-align: center;
       color: $white-color;
+      @include allmobiles{
+        font-family: $muli-bold;
+        font-size: 24px;
+      }
     }
     .custom-modal--desc {
       font-family: $muli-regular;
@@ -70,6 +69,12 @@ app-topup-request {
       font-family: $muli-bold !important;
       @include allmobiles{
         width: 100%;
+      }
+    }
+    .success-text-content {
+      padding: 0px 50px 30px;
+      @include allmobiles{
+        padding: 0px 20px 30px;
       }
     }
   }

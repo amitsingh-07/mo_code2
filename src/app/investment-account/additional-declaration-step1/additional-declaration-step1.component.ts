@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -278,31 +278,28 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   setControlValue(value, controlName, formName) {
     this.investmentAccountService.setControlValue(value, controlName, formName);
-    }
-
-  onKeyPressEvent(event: any, dependentName: any) {
-    return (event.which !== 13);
   }
 
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event , content);
+  }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    const dependentName = event.target.innerText;
+    const content = event.target.innerText;
     if (id !== '') {
-      if (dependentName.length >= 100 && id === 'pepFullName') {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.addInfoForm.controls.pepFullName.setValue(dependentNameList);
+      if (content.length >= 100 && id === 'pepFullName') {
+        const contentList = content.substring(0, 100);
+        this.addInfoForm.controls.pepFullName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
-      } else if (dependentName.length >= 100 && id === 'cName') {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.addInfoForm.controls.cName.setValue(dependentNameList);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
+      } else if (content.length >= 100 && id === 'cName') {
+        const contentList = content.substring(0, 100);
+        this.addInfoForm.controls.cName.setValue(contentList);
         const el = document.querySelector('#' + id);
-+       this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }
-  
-
 }

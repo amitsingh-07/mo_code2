@@ -8,6 +8,7 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -91,6 +92,7 @@ const routes: Routes = [
       { path: 'disclosures', component: DisclosuresComponent },
       { path: 'fair-dealing', component: FairDealingComponent },
       { path: 'security-policy', component: SecurityPolicyComponent },
+      { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
       { path: '**', component: NotFoundComponent }
     ]
   }

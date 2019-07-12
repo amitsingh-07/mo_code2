@@ -25,7 +25,8 @@
       </div>
       <div class="flex-col-7">
         <div class="dropdown-control">
-          <app-dropdown-with-search 
+          <app-dropdown-with-search
+            [disabled]="isDisabled()" 
             controlName="nationality"
             [optionList]="nationalityList"
             displayKey="name"
