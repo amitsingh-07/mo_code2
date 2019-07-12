@@ -12,7 +12,6 @@ import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enqu
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';

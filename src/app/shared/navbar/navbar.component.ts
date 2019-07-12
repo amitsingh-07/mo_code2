@@ -128,17 +128,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.authService.isSignedUser()) {
       this.isLoggedIn = true;
     }
-    // User Information Logging Out
+    // User Information
     this.signUpService.userObservable$.subscribe((data) => {
       if (data) {
-        if (data === 'LOGGED_OUT') {
-          this.isLoggedIn = false;
-          this.clearLoginDetails();
-        } else {
-          this.userInfo = data;
-          if (this.authService.isSignedUser()) {
-            this.isLoggedIn = true;
-          }
+        this.userInfo = data;
+        if (this.authService.isSignedUser()) {
+          this.isLoggedIn = true;
         }
       }
     });
@@ -148,6 +143,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.journeyType$.subscribe((type: string) => {
       if (type && type !== '') {
         this.journeyType = type;
+      }
+    });
+
+    // Log Out
+    this.navbarService.logoutObservable$.subscribe((data) => {
+      if (data === 'LOGGED_OUT') {
+        this.clearLoginDetails();
       }
     });
   }
@@ -425,8 +427,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/
     const is_ie = ua.indexOf('MSIE ') > -1 ||
-                  ua.indexOf('Trident/') > -1 ||
-                  ua.toLowerCase().indexOf('firefox') > -1;
+      ua.indexOf('Trident/') > -1 ||
+      ua.toLowerCase().indexOf('firefox') > -1;
     if (is_ie) {
       this.browserError = true;
     } else {
