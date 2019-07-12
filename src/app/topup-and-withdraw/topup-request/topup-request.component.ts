@@ -30,7 +30,7 @@ export class TopupRequestComponent implements OnInit {
     });
   }
   goToNext() {
-    this.topupAndWithDrawService.clearData();
+    this.topupAndWithDrawService.ClearTopUpDate();
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }
