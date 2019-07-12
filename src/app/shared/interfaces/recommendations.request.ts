@@ -1,3 +1,4 @@
+import { IPlan } from './../../sign-up/signup-types';
 import { IMyExpenses } from './../../guide-me/expenses/expenses.interface';
 import { IMyIncome } from './../../guide-me/income/income.interface';
 import { IExistingCoverage } from './../../guide-me/insurance-results/existing-coverage-modal/existing-coverage.interface';
@@ -105,4 +106,17 @@ export interface IRetirementIncomePlan {
     payoutStartAge: number;
     payoutDuration: string;
     payoutFeature: string;
+}
+
+export interface IEnquiryByEmail {
+    selectedProducts: IPlan[];
+    firstName: string;
+    lastName: string;
+    email: string;
+    acceptMarketingEmails: boolean;
+    validateCaptchaBean: {
+        captcha: string;
+        sessionId: string;
+    };
+    enquiryId: number;
 }

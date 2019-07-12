@@ -50,6 +50,7 @@ import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { RoundPipe } from './Pipes/round.pipe';
+import { SecurePipe } from './Pipes/secure.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
@@ -103,7 +104,8 @@ export function createTranslateLoader(http: HttpClient) {
     EditMobileNumberComponent,
     DropdownWithSearchComponent,
     StartsWithPipe,
-    RoadmapComponent],
+    RoadmapComponent,
+    SecurePipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -137,7 +139,8 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownWithSearchComponent,
     StartsWithPipe,
     SecurityPolicyComponent,
-    TermsModalComponent
+    TermsModalComponent,
+    SecurePipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,

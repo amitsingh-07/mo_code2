@@ -9,12 +9,14 @@ import {
     IFinancialStatusMapping,
     IHospitalizationNeedsData,
     ILifeProtection,
-    IRecommendationRequest
+    IRecommendationRequest,
+    IEnquiryByEmail
 } from './../shared/interfaces/recommendations.request';
 import { Formatter } from './../shared/utils/formatter.util';
 import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
+import { SelectedPlansService } from './../shared/Services/selected-plans.service';
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +27,8 @@ export class GuideMeApiService {
         private http: HttpClient, private apiService: ApiService,
         private myInfoService: MyInfoService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
-        private calculateService: GuideMeCalculateService) {
+        private calculateService: GuideMeCalculateService,
+        private selectedPlansService: SelectedPlansService) {
         this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     }
 
@@ -142,5 +145,26 @@ export class GuideMeApiService {
             dependentsData.push(thisDependent);
         }
         return dependentsData;
+    }
+
+    enquiryByEmailRequest(data: any): IEnquiryByEmail {
+        const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+        return {
+            selectedProducts: insuranceEnquiry.plans,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            acceptMarketingEmails: data.acceptMarketingEmails,
+            validateCaptchaBean: {
+                captcha: data.captchaValue,
+                sessionId: this.authService.getSessionId()
+            },
+            enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId)
+        }
+    }
+
+    enquiryByEmail(data) {
+        const payload = this.enquiryByEmailRequest(data);
+        return this.apiService.enquiryByEmail(payload);
     }
 }

@@ -878,4 +878,11 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  enquiryByEmail(payload) {
+    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

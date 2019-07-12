@@ -260,9 +260,6 @@ export class TaxInfoComponent implements OnInit {
           case INVESTMENT_ACCOUNT_CONFIG.CHINA_COUNTRY_CODE:
             isValidTin = new RegExp(RegexConstants.ChineseTin).test(value);
             break;
-          case INVESTMENT_ACCOUNT_CONFIG.PHILLIPINES_COUNTRY_CODE:
-            isValidTin = new RegExp(RegexConstants.PhillipinesTin).test(value);
-            break;
           default:
             isValidTin = true;
             break;
