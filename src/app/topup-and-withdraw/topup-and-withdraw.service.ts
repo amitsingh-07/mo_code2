@@ -137,6 +137,10 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
     this.commit();
   }
+  ClearTopDate() {
+    this.topUpAndWithdrawFormData.oneTimeInvestmentAmount = null;
+    this.topUpAndWithdrawFormData.MonthlyInvestmentAmount = null;
+  }
   setInvestmentValue(minimumBalanceOfTopup) {
     this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
     this.commit();
