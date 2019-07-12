@@ -263,10 +263,6 @@ export class SignUpService {
     this.commit();
   }
 
-  logoutUser() {
-    this.userSubject.next('LOGGED_OUT');
-  }
-
   setRedirectUrl(url) {
     if (window.sessionStorage) {
       sessionStorage.setItem(REDIRECT_URL_KEY, url);

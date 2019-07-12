@@ -114,18 +114,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.authService.isSignedUser()) {
       this.isLoggedIn = true;
     }
-    // User Information Logging Out
+    // User Information
     this.signUpService.userObservable$.subscribe((data) => {
       if (data) {
-        if (data === 'LOGGED_OUT') {
-          this.isLoggedIn = false;
-          this.clearLoginDetails();
-        } else {
-          this.userInfo = data;
-          if (this.authService.isSignedUser()) {
-            this.isLoggedIn = true;
-          }
+        this.userInfo = data;
+        if (this.authService.isSignedUser()) {
+          this.isLoggedIn = true;
         }
+      }
+    });
+
+    // Log Out
+    this.navbarService.logoutObservable$.subscribe((data) => {
+      if (data === 'LOGGED_OUT') {
+        this.clearLoginDetails();
       }
     });
   }
