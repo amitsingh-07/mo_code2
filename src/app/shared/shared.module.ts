@@ -50,13 +50,12 @@ import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { RoundPipe } from './Pipes/round.pipe';
+import { SecurePipe } from './Pipes/secure.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
-import { SecurePipe } from './Pipes/secure.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -82,7 +81,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
-<<<<<<< HEAD
     PlanFilterPipe,
     OrderByPipe,
     ProductDetailComponent,
@@ -106,14 +104,8 @@ export function createTranslateLoader(http: HttpClient) {
     EditMobileNumberComponent,
     DropdownWithSearchComponent,
     StartsWithPipe,
-    RoadmapComponent],
-=======
-    PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent,
-    InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
-    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe],
->>>>>>> ddbf44c148b278a6d9cc36b1dd64c99761ec180a
+    RoadmapComponent,
+    SecurePipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
