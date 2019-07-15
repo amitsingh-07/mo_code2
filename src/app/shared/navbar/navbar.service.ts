@@ -56,6 +56,10 @@ export class NavbarService {
 
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
+
+  // logout
+  private logoutSubject = new Subject();
+  logoutObservable$ = this.logoutSubject.asObservable();
   
 
   constructor() { }
@@ -167,5 +171,9 @@ export class NavbarService {
   unsubscribeBackPress() {
     this.isBackPressSubscribed.next(false);
     this.backListener.next('');
+  }
+
+  logoutUser() {
+    this.logoutSubject.next('LOGGED_OUT');
   }
 }

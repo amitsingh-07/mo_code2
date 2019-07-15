@@ -356,7 +356,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   withdrawAmountValidator(balance, source): ValidatorFn {
-    balance = parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, ""));
+    balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
       if (control) {
         let userInput = parseFloat(control.value);

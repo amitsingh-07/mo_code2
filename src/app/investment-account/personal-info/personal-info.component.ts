@@ -198,7 +198,7 @@ export class PersonalInfoComponent implements OnInit {
         ],
         gender: [
           {
-            value: this.formValues.gender ? this.formValues.gender : 'male',
+            value: this.formValues.gender,
             disabled: this.investmentAccountService.isDisabled('gender')
           },
           Validators.required
