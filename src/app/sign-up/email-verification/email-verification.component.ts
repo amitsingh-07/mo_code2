@@ -14,7 +14,8 @@ import { SignUpApiService } from './../sign-up.api.service';
 })
 export class EmailVerificationComponent implements OnInit {
   email: string;
-  emailVerified: boolean;
+  emailVerified: boolean = false;
+  emailVerifyFailed: boolean = false;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -30,9 +31,14 @@ export class EmailVerificationComponent implements OnInit {
    * Getting email confirmation code from URL.
    */
   ngOnInit() {
-    this.emailVerified = false;
     this.route.queryParams.subscribe((queryParams) => {
-      this.verifyEmail(queryParams.confirmation_token);
+      if (!this.authService.isAuthenticated()) {
+        this.authService.authenticate().subscribe(() => {
+          this.verifyEmail(queryParams.confirmation_token);
+        });
+      } else {
+        this.verifyEmail(queryParams.confirmation_token);
+      }
     });
   }
 
@@ -41,13 +47,13 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(verifyCode) {
-    this.authService.authenticate().subscribe((token) => {
-      this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-        if (data.responseMessage.responseCode === 6000) {
-          this.emailVerified = true;
-          this.email = data.objectList[0].email;
-        }
-      });
+    this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+      if (data.responseMessage.responseCode === 6000) {
+        this.emailVerified = true;
+        this.email = data.objectList[0].email;
+      } else if (data.responseMessage.responseCode === 5010) {
+        this.emailVerifyFailed = true;
+      }
     });
   }
 

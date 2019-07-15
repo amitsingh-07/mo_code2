@@ -2,16 +2,17 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <div class="loader-outer mt60" *ngIf="!emailVerified">
+      <div class="loader-outer mt60" *ngIf="!emailVerified && !emailVerifyFailed">
         <div class="loader"></div>
         <img  src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1" />
       </div>
-      <img *ngIf="emailVerified" src="../../../assets/images/investment-account/investment_Account_Created.svg" id="custModalImg1" />
+      <img *ngIf="emailVerified || emailVerifyFailed" src="../../../assets/images/investment-account/investment_Account_Created.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p *ngIf="emailVerified" class="custom-modal--title" id="custModalTitle">{{'EMAIL_VERIFICATION.LOADING.VERIFIED' | translate}}</p>
-        <p *ngIf="!emailVerified" class="custom-modal--email" id="custModalTitle1">{{'EMAIL_VERIFICATION.LOADING.VERIFYING' | translate}}</p>
+        <p *ngIf="!emailVerified && !emailVerifyFailed" class="custom-modal--email" id="custModalTitle1">{{'EMAIL_VERIFICATION.LOADING.VERIFYING' | translate}}</p>
         <p *ngIf="emailVerified" class="custom-modal--email" id="custModalDesc">{{email}}</p>
-        <button *ngIf="emailVerified" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
+        <p *ngIf="emailVerifyFailed" class="custom-modal--title" id="custModalTitle">{{'EMAIL_VERIFICATION.LOADING.VERIFY_FAILED' | translate}}</p>
+        <button *ngIf="emailVerified || emailVerifyFailed" (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
       </div>
     </div>
   </div>

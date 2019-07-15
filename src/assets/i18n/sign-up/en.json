@@ -87,7 +87,8 @@
   "EMAIL_VERIFICATION": {
     "LOADING": {
       "VERIFYING": "Verifying E-mail...",
-      "VERIFIED": "Email Verified!"
+      "VERIFIED": "Email Verified!",
+      "VERIFY_FAILED": "Your verification has already been completed!"
     }
   },
   "ACCOUNT_CREATED": {
