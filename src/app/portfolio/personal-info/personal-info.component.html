@@ -27,13 +27,34 @@
             <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
               <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{
-                'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+                'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>        
             </div>
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
               <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
+            </div>
+            <div><span class="underline">Note:</span> Investment period is only used for portfolio recommendation. You can withdraw your investments anytime by
+              selling the investments at the market price.</div>
+          </div>
+          <div class="time-horizon">
+            <div class="txt-nrml pb20">Stock markets can be very volatile in the short term but go up in the long term. You can have more equities if you have a longer time for recovery from a decline.</div>
+            <div class="pb20">Here’s a guide on how investment period changes portfolio asset allocation.</div>
+            <div class="desc mb20">
+              <ul class="list-none">
+                <li class="title"><div>Years</div><div>Potential Asset Allocation </div></li>
+                <li><div>Less than 4</div><div class="txt-nrml">Not recommended to invest</div></li>
+                <li><div>4 to 5</div><div class="txt-nrml">Up to 20% Equities (80% Bonds)</div></li>
+                <li><div>Up to 8</div><div class="txt-nrml">Up to 40% Equities (60% Bonds)</div></li>
+                <li><div>Up to 11</div><div class="txt-nrml">Up to 60% Equities (40% Bonds)</div></li>
+                <li><div>Up to 14</div><div class="txt-nrml">Up to 80% Equities (20% Bonds)</div></li>
+                <li><div>15 or more</div><div class="txt-nrml">Up to 100% Equities</div></li>
+              </ul>
+            </div>
+            <div class="flex align-flex-end mb25">
+              <div><img src="assets/images/investment-account/invest-recommendation.svg" /></div>
+              <div class="pl20">Our final recommendation will depend on your willingness to take risk and other factors.</div>
             </div>
           </div>
           <div>
