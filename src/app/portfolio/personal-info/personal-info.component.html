@@ -35,26 +35,25 @@
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
               <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
-            <div><span class="underline">Note:</span> Investment period is only used for portfolio recommendation. You can withdraw your investments anytime by
-              selling the investments at the market price.</div>
+            <div><span class="underline">{{'PERSONAL_INFO.NOTE' | translate}}</span>{{'PERSONAL_INFO.NOTE_DESC' | translate}}</div>
           </div>
           <div class="time-horizon">
-            <div class="txt-nrml pb20">Stock markets can be very volatile in the short term but go up in the long term. You can have more equities if you have a longer time for recovery from a decline.</div>
-            <div class="pb20">Here’s a guide on how investment period changes portfolio asset allocation.</div>
+            <div class="txt-nrml pb20">{{'PERSONAL_INFO.TIME_HORIZON_DESC' | translate}}</div>
+            <div class="pb20">{{'PERSONAL_INFO.TIME_HORIZON_GUIDE' | translate}}</div>
             <div class="desc mb20">
               <ul class="list-none">
-                <li class="title"><div>Years</div><div>Potential Asset Allocation </div></li>
-                <li><div>Less than 4</div><div class="txt-nrml">Not recommended to invest</div></li>
-                <li><div>4 to 5</div><div class="txt-nrml">Up to 20% Equities (80% Bonds)</div></li>
-                <li><div>Up to 8</div><div class="txt-nrml">Up to 40% Equities (60% Bonds)</div></li>
-                <li><div>Up to 11</div><div class="txt-nrml">Up to 60% Equities (40% Bonds)</div></li>
-                <li><div>Up to 14</div><div class="txt-nrml">Up to 80% Equities (20% Bonds)</div></li>
-                <li><div>15 or more</div><div class="txt-nrml">Up to 100% Equities</div></li>
+                <li class="title"><div>{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_YEAR' | translate}}</div><div>{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_ASSET' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_1' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_1' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_2' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_2' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_3' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_3' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_4' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_4' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_5' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_5' | translate}}</div></li>
+                <li><div>{{'PERSONAL_INFO.LIST_LBL_6' | translate}}</div><div class="txt-nrml">{{'PERSONAL_INFO.LIST_LBL_DESC_6' | translate}}</div></li>
               </ul>
             </div>
             <div class="flex align-flex-end mb25">
               <div><img src="assets/images/investment-account/invest-recommendation.svg" /></div>
-              <div class="pl20">Our final recommendation will depend on your willingness to take risk and other factors.</div>
+              <div class="pl20">{{'PERSONAL_INFO.TIME_HORIZON_ALERT' | translate}}</div>
             </div>
           </div>
           <div>
