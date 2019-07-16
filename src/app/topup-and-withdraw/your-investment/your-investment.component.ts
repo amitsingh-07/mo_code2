@@ -169,10 +169,6 @@ export class YourInvestmentComponent implements OnInit {
     this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
   }
 
-  stopEventPropogation(event) {
-    event.stopPropagation();
-  }
-
   getPortfolioHoldingList(portfolioid) {   // CALLING THE API
     this.topupAndWithDrawService
       .getIndividualPortfolioDetails(portfolioid)
