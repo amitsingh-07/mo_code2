@@ -1,100 +1,100 @@
 {
-  "GENERAL": {
-    "TITLE": "MoneyOwl",
-    "COMING_SOON": "Coming Soon",
-    "META": {
-      "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-      "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-      "META_AUTHOR": "Moneyowl Pte Ltd",
-      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    "GENERAL": {
+        "TITLE": "MoneyOwl",
+        "COMING_SOON": "Coming Soon",
+        "META": {
+            "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+            "META_AUTHOR": "Moneyowl Pte Ltd",
+            "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            }
+    },
+    "BANNER": {
+        "TITLE": "Making Wise Decisions Easy",
+        "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+        "FIND_OUT_MORE": "Find Out More"
+    },
+    "INSURANCE": {
+        "LABEL": "Insure",
+        "TITLE": "Get Insurance You Really Need",
+        "DESCRIPTION": "Analyse your insurance coverage and compare insurance easily. Receive claims support and enjoy up to 50% rebate in agent’s commissions!",
+        "LINK1": "Find Out What I Need",
+        "LINK2": "Or I Know What I Need!",
+        "TRUST_US": "355,000 users ",
+        "TRUST_US2": "have trusted us",
+        "INSURANCE": "Insurance"
+    },
+    "WILL": {
+        "LABEL": "Wills",
+        "TITLE": "Will Writing Online, Anytime and Anywhere!",
+        "DESCRIPTION": "Protect and provide for your loved ones even after you pass on. Write a legally binding, simple will in just 10 minutes!",
+        "LINK1": "Start Writing",
+        "WILL_WRITING": "Will Writing"
+    },
+    "INVESTMENT": {
+        "LABEL": "Invest",
+        "TITLE": "Invest With Whom You Can Trust",
+        "DESCRIPTION": "Achieve your financial goals and have a successful investment experience with us. Gain access to low-cost and globally diversified portfolio.",
+        "PROMO_TEXT": "*Start investing by <u>31st May 2019</u> and enjoy only 0.50% per annum advisory fee (usual 0.65% per annum) until 31st Dec 2019!",
+        "READ_MORE_DETAILS": "Read more about our investing philosophy & portfolios",
+        "LINK1": "Start Investing"
+    },
+    "COMPREHENSIVE": {
+        "LABEL": "Comprehensive",
+        "SUB_LABEL": "(integrating national schemes)",
+        "TITLE": "Comprehensive Financial Planning",
+        "SUB_TITLE": "(integrating national schemes)",
+        "DESCRIPTION": "Are you financially healthy? Get a holistic financial assessment and trusted financial advice integrated with CPF and other national schemes to reach your goals!",
+        "LINK1": "Start your Financial Journey"
+    },
+    "NEWSLETTER": {
+        "TITLE": "Join our Mailing List and get wiser!",
+        "WILL_TITLE": "Join our Mailing List &",
+        "PROMO_TITLE": "Get Promo Code for FREE Will Writing!",
+        "PLACEHOLDER": {
+            "EMAIL": "Email",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name"
+            },
+        "SUBSCRIBE": "Subscribe",
+        "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
+    },
+    "TRUSTED": {
+        "TITLE":"Why MoneyOwl?",
+        "BTN_LABEL":"Read More",
+        "REASONS": [{
+                "IMAGE":"/assets/images/value_prop/mas-licensed.svg",
+                "LABEL":"MAS-licensed"
+            },{
+                "IMAGE":"/assets/images/value_prop/high-tech.svg",
+                "LABEL":"High-tech +<br/> Human wisdom"
+            },{
+                "IMAGE":"/assets/images/value_prop/salary-advice.svg",
+                "LABEL":"Non commissioned-<br/>based Advisers"
+            },{
+                "IMAGE":"/assets/images/value_prop/national.svg",
+                "LABEL":"Integration with National Schemes"
+            },{
+                "IMAGE":"/assets/images/value_prop/secure.svg",
+                "LABEL":"Secure Platform"
+            }]
+    },
+    "REVIEWS": {
+        "TITLE": "Our Customers' Reviews",
+        "REVIEW1": {
+            "MESSAGE": "\"Very good service. Prompt and helpful.\"",
+            "RATING": 5,
+            "REVIEWER": "Melissa Wong, Manager"
+        },
+        "REVIEW2": {
+            "MESSAGE": "\"Good service, clear cut, staff is approachable and is able to answer queries within a day.\"",
+            "RATING": 5,
+            "REVIEWER": "Goh Han Cheng, Audit Senior"
+        },
+        "REVIEW3": {
+            "MESSAGE": "\"Dennis Hoe is very professional. He explained every clause of the policy and answer my questions well. Thank you for going the extra mile.\"",
+            "RATING": 5,
+            "REVIEWER": "Sim Kwee Hor, Career Coach"
+        }
     }
-  },
-  "BANNER": {
-    "TITLE": "Making Wise Decisions Easy Dev2",
-    "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-    "FIND_OUT_MORE": "Find Out More"
-  },
-  "INSURANCE": {
-    "LABEL": "Insure",
-    "TITLE": "Get Insurance You Really Need",
-    "DESCRIPTION": "Analyse your insurance coverage and compare insurance easily. Receive claims support and enjoy up to 50% rebate in agent’s commissions!",
-    "LINK1": "Find Out What I Need",
-    "LINK2": "Or I Know What I Need!",
-    "TRUST_US": "355,000 users ",
-    "TRUST_US2": "have trusted us",
-    "INSURANCE": "Insurance"
-  },
-  "WILL": {
-    "LABEL": "Wills",
-    "TITLE": "Will Writing Online, Anytime and Anywhere!",
-    "DESCRIPTION": "Protect and provide for your loved ones even after you pass on. Write a legally binding, simple will in just 10 minutes!",
-    "LINK1": "Start Writing",
-    "WILL_WRITING": "Will Writing"
-  },
-  "INVESTMENT": {
-    "LABEL": "Invest",
-    "TITLE": "Invest With Whom You Can Trust",
-    "DESCRIPTION": "Achieve your financial goals and have a successful investment experience with us. Gain access to low-cost and globally diversified portfolio.",
-    "PROMO_TEXT": "*Start investing by <u>31st May 2019</u> and enjoy only 0.50% per annum advisory fee (usual 0.65% per annum) until 31st Dec 2019!",
-    "READ_MORE_DETAILS": "Read more about our investing philosophy & portfolios",
-    "LINK1": "Start Investing"
-  },
-  "COMPREHENSIVE": {
-    "LABEL": "Comprehensive",
-    "SUB_LABEL": "(integrating national schemes)",
-    "TITLE": "Comprehensive Financial Planning",
-    "SUB_TITLE": "(integrating national schemes)",
-    "DESCRIPTION": "Are you financially healthy? Get a holistic financial assessment and trusted financial advice integrated with CPF and other national schemes to reach your goals!",
-    "LINK1": "Start your Financial Journey"
-  },
-  "NEWSLETTER": {
-    "TITLE": "Join our Mailing List and get wiser!",
-    "WILL_TITLE": "Join our Mailing List &",
-    "PROMO_TITLE": "Get Promo Code for FREE Will Writing!",
-    "PLACEHOLDER": {
-      "EMAIL": "Email",
-      "FIRST_NAME": "First Name",
-      "LAST_NAME": "Last Name"
-    },
-    "SUBSCRIBE": "Subscribe",
-    "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
-  },
-  "TRUSTED": {
-    "TITLE": "Why MoneyOwl?",
-    "BTN_LABEL": "Read More",
-    "REASONS": [{
-      "IMAGE": "/assets/images/value_prop/mas-licensed.svg",
-      "LABEL": "MAS-licensed"
-    }, {
-      "IMAGE": "/assets/images/value_prop/high-tech.svg",
-      "LABEL": "High-tech +<br/> Human wisdom"
-    }, {
-      "IMAGE": "/assets/images/value_prop/salary-advice.svg",
-      "LABEL": "Non commissioned-<br/>based Advisers"
-    }, {
-      "IMAGE": "/assets/images/value_prop/national.svg",
-      "LABEL": "Integration with National Schemes"
-    }, {
-      "IMAGE": "/assets/images/value_prop/secure.svg",
-      "LABEL": "Secure Platform"
-    }]
-  },
-  "REVIEWS": {
-    "TITLE": "Our Customers' Reviews",
-    "REVIEW1": {
-      "MESSAGE": "\"Very good service. Prompt and helpful.\"",
-      "RATING": 5,
-      "REVIEWER": "Melissa Wong, Manager"
-    },
-    "REVIEW2": {
-      "MESSAGE": "\"Good service, clear cut, staff is approachable and is able to answer queries within a day.\"",
-      "RATING": 5,
-      "REVIEWER": "Goh Han Cheng, Audit Senior"
-    },
-    "REVIEW3": {
-      "MESSAGE": "\"Dennis Hoe is very professional. He explained every clause of the policy and answer my questions well. Thank you for going the extra mile.\"",
-      "RATING": 5,
-      "REVIEWER": "Sim Kwee Hor, Career Coach"
-    }
-  }
 }
