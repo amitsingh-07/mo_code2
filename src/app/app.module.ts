@@ -107,6 +107,8 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
+import { NavbarService } from './shared/navbar/navbar.service';
 
 
 // tslint:disable-next-line:max-line-length
@@ -155,7 +157,8 @@ export function tokenGetterFn() {
     FAQComponent,
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EmailEnquirySuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -195,7 +198,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util,
     InvestmentEnableGuard,

@@ -326,7 +326,7 @@ export class ApiService {
   }
 
   verifyEmail(payload) {
-    return this.http.post(apiConstants.endpoint.verifyEmail, payload)
+    return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -813,6 +813,13 @@ export class ApiService {
   // Get User's monthly investment Information
   getMonthlyInvestmentInfo() {
     return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  enquiryByEmail(payload) {
+    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

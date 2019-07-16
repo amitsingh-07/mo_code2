@@ -235,7 +235,8 @@ app-employment-details {
     padding: .90rem;
     background: $white-color;
     color: $app-backgrnd-color;
-     word-break: break-word;
+    word-break: break-word;
+    min-height: 52px;
       &.company-disabled {
      color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;

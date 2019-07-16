@@ -272,7 +272,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeBackPress();
   }
   constructDate(dob) {
-    const dateArr = dob.split('/');
-    this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
+    this.dobFormat =  dob;
+    if (dob) {
+      const dateArr = dob.split('/');
+      if (dateArr.length === 3) {
+        this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
+     } 
+    }
   }
 }

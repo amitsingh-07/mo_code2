@@ -31,6 +31,7 @@ export class TopupRequestComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService
   ) {}
   ngOnInit() {
+    this.topupAndWithDrawService.clearTopUpData();
     this.route.params.subscribe((params) => {
       this.status = params['status'];
     });
