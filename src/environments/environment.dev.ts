@@ -10,7 +10,7 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'http://api.bfa-dev2.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://api.bfa-dev2.ntucbfa.cloud/myinfo',
+  myInfoCallbackBaseUrl: 'https://bfa-dev2.ntucbfa.cloud/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
   gaPropertyId: 'UA-125256446-1'
 };
