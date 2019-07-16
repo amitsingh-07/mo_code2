@@ -26,7 +26,7 @@
     "YEARS": "Years",
     "BORN_ON": "I was born on",
     "INVESTMENT_PERIOD":"Your Investment Period",
-    "HOW_MANY_YEARS":"How many years do you want to stay invested?",
+    "HOW_MANY_YEARS":"For how many years do you want to stay invested?",
     "SELECT_INVESTMENT_HEAD": "Select Investment Period",
     "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for.",
     "I_WANT_INVEST_LBL": "I want to invest for",
@@ -71,7 +71,7 @@
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
     "YOUR_INVESTMENT":"Your Financials",
-    "HOW_MUCH_INVEST":"How much do you want invest?",
+    "HOW_MUCH_INVEST":"How much do you want to invest?",
     "MIN_100":"Min. $100",
     "MIN_50":"Min. $50",
    "modalData": {
