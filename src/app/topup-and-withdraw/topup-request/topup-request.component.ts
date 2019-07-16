@@ -24,13 +24,13 @@ export class TopupRequestComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService
   ) {}
   ngOnInit() {
+    this.topupAndWithDrawService.clearTopUpData();
     this.route.params.subscribe((params) => {
       this.status = params['status'];
       console.log(this.status);
     });
   }
   goToNext() {
-    this.topupAndWithDrawService.ClearTopUpData();
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }

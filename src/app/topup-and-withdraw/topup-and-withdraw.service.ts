@@ -137,7 +137,7 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
     this.commit();
   }
-  ClearTopUpData() {
+  clearTopUpData() {
     this.topUpAndWithdrawFormData.portfolio = null;
     this.topUpAndWithdrawFormData.oneTimeInvestmentAmount = null;
     this.topUpAndWithdrawFormData.MonthlyInvestmentAmount = null;
