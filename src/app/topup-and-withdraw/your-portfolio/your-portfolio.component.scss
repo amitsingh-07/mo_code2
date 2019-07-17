@@ -139,6 +139,10 @@ app-your-portfolio {
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
     border-bottom: solid 1px $teal-color !important;
+    
+    &.hide {
+      display:none;
+    }
   }
   .dropdown-item:last-child {
     border-bottom: none;
