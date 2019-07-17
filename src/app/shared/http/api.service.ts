@@ -336,7 +336,7 @@ export class ApiService {
   }
 
   verifyEmail(payload) {
-    return this.http.post(apiConstants.endpoint.verifyEmail, payload)
+    return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
