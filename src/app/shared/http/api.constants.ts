@@ -57,7 +57,7 @@ export let apiConstants = {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
-            getAllocationDetails: INVESTMENT_API_BASE_URL + 'portfolio/recommend'
+            getAllocationDetails: INVESTMENT_API_BASE_URL + 'api/portfolio/recommend'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + 'api/groupedCountryList',
