@@ -24,6 +24,7 @@ export class TopupRequestComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService
   ) {}
   ngOnInit() {
+    this.topupAndWithDrawService.clearTopUpData();
     this.route.params.subscribe((params) => {
       this.status = params['status'];
       console.log(this.status);
