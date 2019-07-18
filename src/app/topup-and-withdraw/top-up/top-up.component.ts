@@ -38,6 +38,7 @@ export class TopUpComponent implements OnInit {
   cashBalance;
   fundDetails;
   currentMonthlyInvAmount; // current monthly rsp amount
+  currentOneTimeInvAmount; // current monthly rsp amount
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -66,6 +67,7 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getMonthlyInvestmentInfo();
+    this.getOneTimeInvestmentInfo();
     this.getPortfolioList();
     this.getTopupInvestmentList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
@@ -180,6 +182,7 @@ export class TopUpComponent implements OnInit {
       return false;
     } else {
       const allowZero = (this.currentMonthlyInvAmount > 0);
+      const allowOneTime = (this.currentOneTimeInvAmount > 0);
       const error = this.topupAndWithDrawService.doFinancialValidations(form, allowZero);
       console.log('error' + error);
       if (error) {
@@ -190,7 +193,12 @@ export class TopUpComponent implements OnInit {
         // tslint:disable-next-line:triple-equals
       } else {
         if (this.formValues.Investment === 'Monthly Investment' && this.currentMonthlyInvAmount) {
-          this.showConfirmOverwriteModal(form);
+          this.showConfirmOverwriteModal(form, this.currentMonthlyInvAmount, 'MonthlyInvestmentAmount',
+           'TOPUP.CONFIRM_OVERWRITE_MODAL.DESC');
+        } else if ((this.formValues.Investment === 'One-time Investment' || !this.formValues.Investment)
+         && this.currentOneTimeInvAmount) {
+          this.showConfirmOverwriteModal(form, this.currentOneTimeInvAmount, 'oneTimeInvestmentAmount',
+           'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
         } else {
           this.saveAndProceed(form);
         }
@@ -234,12 +242,24 @@ export class TopUpComponent implements OnInit {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
+  getOneTimeInvestmentInfo() {
+    this.topupAndWithDrawService.getOneTimeInvestmentInfo().subscribe((response) => {
+      if (response.responseMessage.responseCode >= 6000) {
+        this.currentOneTimeInvAmount = response.objectList.monthlyInvestment;
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
 
-  showConfirmOverwriteModal(form) {
+  showConfirmOverwriteModal(form, invAmount: number, formName: string, descText: string) {
     const translateParams = {
-      existingOrderAmount: this.currencyPipe.transform(this.currentMonthlyInvAmount, 'USD', 'symbol-narrow', '1.2-2'),
+      existingOrderAmount: this.currencyPipe.transform(invAmount, 'USD', 'symbol-narrow', '1.2-2'),
       newOrderAmount: this.currencyPipe.transform(
-        this.topForm.get('MonthlyInvestmentAmount').value ? this.topForm.get('MonthlyInvestmentAmount').value  : 0,
+        this.topForm.get(formName).value ? this.topForm.get(formName).value  : 0,
         'USD',
         'symbol-narrow',
         '1.2-2'
@@ -247,7 +267,7 @@ export class TopUpComponent implements OnInit {
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.DESC', translateParams);
+    ref.componentInstance.errorMessage = this.translate.instant(descText, translateParams);
     ref.componentInstance.primaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.YES');
     ref.componentInstance.isInlineButton = true;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {

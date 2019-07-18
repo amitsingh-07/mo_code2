@@ -494,4 +494,7 @@ export class TopupAndWithDrawService {
   getMonthlyInvestmentInfo() {
     return this.apiService.getMonthlyInvestmentInfo();
   }
+  getOneTimeInvestmentInfo() {
+    return this.apiService.getOneTimeInvestmentInfo();
+  }
 }
