@@ -124,6 +124,9 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
           ref.componentInstance.primaryActionLabel = this.buttonTitle;
           // tslint:disable-next-line:triple-equals
         } else if (data.responseMessage.responseCode == 6000) {
+          if (this.authService.isSignedUser()) {
+            this.navbarService.logoutUser();
+          }
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
         } else {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
