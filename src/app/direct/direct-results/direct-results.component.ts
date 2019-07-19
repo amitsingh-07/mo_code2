@@ -333,6 +333,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         delete this.state.filters[0];
         this.state.filters.push(payoutYears);
         this.state.filters.push(claimCriteria);
+        this.directService.setPremiumFrequencyFilter('yearly');
         break;
       case PRODUCT_CATEGORY_INDEX.EDUCATION_FUND:
         delete this.state.filters[0];
