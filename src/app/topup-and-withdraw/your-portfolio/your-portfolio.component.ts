@@ -33,6 +33,7 @@ export class YourPortfolioComponent implements OnInit {
   yearlyReturns: any;
   totalReturnsPercentage: any;
   userProfileInfo: any;
+  entitlements: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -74,6 +75,9 @@ export class YourPortfolioComponent implements OnInit {
       : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
     this.getTransferDetails();
+    /* First portfolio's entitlement is considered for now as global entitlement, 
+        need to change when multiple portfolio logic is implemented */
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioValues);
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
