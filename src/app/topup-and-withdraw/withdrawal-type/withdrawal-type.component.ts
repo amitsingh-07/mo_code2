@@ -40,6 +40,8 @@ export class WithdrawalTypeComponent implements OnInit {
   isRedeemAll;
   translateParams;
   isRequestSubmitted = false;
+  entitlements: any;
+  userProfileInfo;
 
   constructor(
     public readonly translate: TranslateService,
@@ -71,6 +73,7 @@ export class WithdrawalTypeComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
     this.cashBalance = parseFloat(this.decimalPipe.transform(this.topupAndWithDrawService.getUserCashBalance(), '1.0-2').replace(/,/g, ''));
@@ -78,6 +81,7 @@ export class WithdrawalTypeComponent implements OnInit {
       MIN_WITHDRAW_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: TOPUPANDWITHDRAW_CONFIG.WITHDRAW.MIN_BALANCE_AMOUNT
     };
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0])
     this.buildForm();
   }
 

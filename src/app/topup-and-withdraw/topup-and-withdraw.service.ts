@@ -15,6 +15,7 @@ import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -27,6 +28,12 @@ export class TopupAndWithDrawService {
   paynowDetails;
   transferInstructionModal;
   activeModal;
+  userProfileInfo;
+
+  private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
+  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
+  private topUPFormError: any = new TopUPFormError();
+  private topUpAndWithdrawFormError: any = new TopUpAndWithdrawFormError();
 
   constructor(
     public readonly translate: TranslateService,
@@ -35,7 +42,8 @@ export class TopupAndWithDrawService {
     public authService: AuthenticationService,
     public portfolioService: PortfolioService,
     private router: Router,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private signUpService: SignUpService
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
@@ -44,10 +52,6 @@ export class TopupAndWithDrawService {
       TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
     this.activeModal = TOPUPANDWITHDRAW_CONFIG.TRANSFER_INSTRUCTION.MODE;
   }
-  private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
-  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
-  private topUPFormError: any = new TopUPFormError();
-  private topUpAndWithdrawFormError: any = new TopUpAndWithdrawFormError();
 
   commit() {
     if (window.sessionStorage) {
@@ -500,5 +504,24 @@ export class TopupAndWithDrawService {
 
   getMonthlyInvestmentInfo() {
     return this.apiService.getMonthlyInvestmentInfo();
+  }
+
+  getEntitlementsFromPortfolio(portfolio) {
+    const userProfileInfo = this.signUpService.getUserProfileInfo();
+    const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
+      (portfolioItem) => portfolioItem.portfolioId === portfolio.productCode
+    )[0];
+    if (filteredPortfolio && filteredPortfolio.entitlements) {
+      return filteredPortfolio.entitlements;
+    } else {
+      return {
+        showDelete: false,
+        showInvest: false,
+        showTopup: false,
+        showWithdrawPvToBa: false,
+        showWithdrawPvToCa: false,
+        showWithdrawCaToBa: false
+      };
+    }
   }
 }
