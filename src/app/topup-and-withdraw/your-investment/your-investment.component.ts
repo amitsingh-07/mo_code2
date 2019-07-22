@@ -42,8 +42,6 @@ export class YourInvestmentComponent implements OnInit {
   PortfolioValues;
   portfolios;
   userProfileInfo;
-  showAlretPopUp = false;
-  selected;
   riskProfileImg: any;
   portfolio;
   productCode;
@@ -212,15 +210,6 @@ export class YourInvestmentComponent implements OnInit {
   getImg(i) {
     const riskProfileImg = ProfileIcons[i - 1]['icon'];
     return riskProfileImg;
-  }
-
-  alertPopUp(i, event) {
-    event.stopPropagation();
-    this.selected = i;
-    this.showAlretPopUp = true;
-  }
-  ClosedPopup() {
-    this.showAlretPopUp = false;
   }
   deletePortfolio(portfolio) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
