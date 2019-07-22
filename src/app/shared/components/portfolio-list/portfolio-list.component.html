@@ -24,25 +24,7 @@
         </div>
       </div>
       <div class="flex-row">
-          <div *ngIf="selected === i" (click)="stopEventPropogation($event)">
-            <div class="callout-content" *ngIf="showAlretPopUp">
-              <div class="Remember" id="remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}}
-                <span>{{portfolio.expiryDate}}</span>.</div>
-              <div class="Fund_your_account">
-                <u (click)="transferInst(portfolio.productCode)" id="fund_your_account_link">
-                  {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>
-              </div>
-              <button type="button" class="close" aria-label="Close" (click)="ClosedPopup()" id="close_icon">
-                <span aria-hidden="true"></span>
-              </button>
-              <div class="callout-arrow"></div>
-            </div>
-          </div>
-          <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">
-            <img id="close_icon" id="investment_overview_topup_icon"
-              src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i, $event)" />
-          </div>
-          <div class="forward_img" *ngIf="portfolio.portfolioStatus !== 'EXPIRED'">
+          <div class="forward_img">
             <img id="investment_overview_forward_icon_two"
               src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
           </div>
@@ -74,9 +56,6 @@
         <div class="flex-col-12">
           <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'" id="investment_recommended">
             {{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}
-          </div>
-          <div *ngIf="portfolio.portfolioStatus === 'EXPIRED'" id="investment_expired">
-            {{'YOUR_INVESTMENT.EXPIRED' | translate}}
           </div>
           <div *ngIf="portfolio.portfolioStatus === 'FUNDED'" id="investment_funded">
             {{'YOUR_INVESTMENT.IN_PROGRESS' | translate}}
