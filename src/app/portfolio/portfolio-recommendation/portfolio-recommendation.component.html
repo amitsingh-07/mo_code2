@@ -3,9 +3,9 @@
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content white-bg">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
-            <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
+          <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
           <div class="flex-col-12 portfolio-allocation-details__content__block"
-          [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+            [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
         </div>
       </div>
       <hr>
@@ -38,19 +38,19 @@
       <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
-  
-  <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary hidden-lg  width100">Proceed</button>
+
+  <button type="button" (click)="goToNext()"
+    class="btn btn__footer--fixed btn-primary hidden-lg  width100">Proceed</button>
 </div>
 <div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
-    <div class="footer-content container-fluid max-width--1024">
-      <div>
-        <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
-        <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}
-        </div>
-      </div>
-      <div>
-        <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
+  <div class="footer-content container-fluid max-width--1024">
+    <div>
+      <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
+      <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}
       </div>
     </div>
+    <div>
+      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">Proceed</button>
+    </div>
   </div>
-
+</div>
