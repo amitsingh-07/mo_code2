@@ -33,9 +33,8 @@
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
-              <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
-            <div><span class="underline">{{'PERSONAL_INFO.NOTE' | translate}}</span>{{'PERSONAL_INFO.NOTE_DESC' | translate}}</div>
+            <div innerHTML="{{'PERSONAL_INFO.NOTE' | translate}}"></div>
           </div>
           <div class="time-horizon">
             <div class="txt-nrml pb20">{{'PERSONAL_INFO.TIME_HORIZON_DESC' | translate}}</div>

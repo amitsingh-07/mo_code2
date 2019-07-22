@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,8 +33,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   ciAssessmentFormValues: any;
   sliderMinValue = 0;
   sliderMaxValue = PORTFOLIO_CONFIG.personal_info.max_investment_years;
-  sliderDesc: string;
-  // dob: string;
   isSufficientInvYears = false;
 
   constructor(
@@ -106,7 +104,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   }
 
   onSliderChange(value): void {
-    this.setSliderDescByRange(value);
     const self = this;
     setTimeout(() => {
       self.personalInfoForm.controls.investmentPeriod.setValue(value);
@@ -119,15 +116,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.isSufficientInvYears =
       value > PORTFOLIO_CONFIG.personal_info.min_investment_period ? true : false;
     this.cd.detectChanges();
-  }
-
-  setSliderDescByRange(value) {
-    const ranges = PORTFOLIO_CONFIG.personal_info.range_with_desc;
-    ranges.forEach((range) => {
-      if (this.isValueBetweenRange(value, range.min, range.max)) {
-        this.sliderDesc = this.translate.instant(range.content);
-      }
-    });
   }
 
   isValueBetweenRange(x, min, max) {
