@@ -12,6 +12,9 @@ import { ProfileIcons } from '../../../portfolio/risk-profile/profileIcons';
 })
 export class PortfolioListComponent implements OnInit {
 
+  selected;
+  showAlretPopUp = false;
+
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
   @Output() transferInstSelected = new EventEmitter<boolean>();
@@ -55,5 +58,14 @@ export class PortfolioListComponent implements OnInit {
 
   stopEventPropogation(event) {
     event.stopPropagation();
+  }
+
+  alertPopUp(i, event) {
+    event.stopPropagation();
+    this.selected = i;
+    this.showAlretPopUp = true;
+  }
+  ClosedPopup() {
+    this.showAlretPopUp = false;
   }
 }
