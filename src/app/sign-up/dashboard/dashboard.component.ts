@@ -32,6 +32,8 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -85,6 +87,8 @@ export class DashboardComponent implements OnInit {
     private guideMeApiService: GuideMeApiService,
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
+    public authService: AuthenticationService,
+    public errorHandler: CustomErrorHandlerService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -180,7 +184,13 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEditProfile() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    if (this.authService.isSignedUser()) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    } else {
+      this.navbarService.logoutUser();
+      this.errorHandler.handleAuthError();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
   }
 
   goToInvOverview() {
