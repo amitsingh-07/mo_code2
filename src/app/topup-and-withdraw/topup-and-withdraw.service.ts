@@ -520,7 +520,7 @@ export class TopupAndWithDrawService {
         showTopup: false,
         showWithdrawPvToBa: false,
         showWithdrawPvToCa: false,
-        showWithdrawCaToBa: false
+        showWithdrawCaToBa: true // always allowed irrespective of portfolio status
       };
     }
   }
