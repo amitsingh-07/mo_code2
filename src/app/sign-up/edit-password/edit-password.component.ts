@@ -89,8 +89,9 @@ export class EditPasswordComponent implements OnInit {
       this.signUpService.setEditPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode === 6000) {
+          this.navbarService.logoutUser();
           // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
         }
       });
     }
