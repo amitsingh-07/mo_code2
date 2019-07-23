@@ -23,6 +23,7 @@ import { DefaultErrors } from '../modal/error-modal/default-errors';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
 
 @Component({
   selector: 'app-navbar',
@@ -93,7 +94,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private modal: NgbModal,
     private appService: AppService,
     public defaultError: DefaultErrors,
-    private investmentAccountService: InvestmentAccountService) {
+    private investmentAccountService: InvestmentAccountService,
+    private errorHandler: CustomErrorHandlerService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -367,6 +369,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   goToDashboard() {
     if (!this.authService.isSignedUser()) {
       this.clearLoginDetails();
+      this.errorHandler.handleAuthError();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
