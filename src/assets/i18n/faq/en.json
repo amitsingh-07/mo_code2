@@ -347,10 +347,10 @@
                         "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
                     }
                 ],
-                "Joint or SRS (Supplementary Retirement Schemes) Accounts": [
+                "Joint or SRS Accounts": [
                   {
                       "QUESTION": "Can I open Joint or SRS Investment Accounts?",
-                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/#/invest/start\" target='_blank'>https://www.moneyowl.com.sg/#/invest/start</a> before opening your joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/#/invest/start\" target='_blank'>https://www.moneyowl.com.sg/#/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
                   },
                   {
                       "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
