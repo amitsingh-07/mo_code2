@@ -19,8 +19,193 @@
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
         [config]="ciSliderConfig" [min]="45" [max]="65" [step]="5"></nouislider>
     </div>
+    <div class="title">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
+    <div class="form-group-single-column  flex-col mt10">
+      <!--Form label-->
+      <div class="checkbox-button one-label">
+        <input id="haveRetirementIncomeYes" name="haveOtherSourceRetirementIncome"
+          formControlName="haveOtherSourceRetirementIncome" type="radio" [value]=true class="field radio"
+          appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <label id="dependantYesLabel" for="haveRetirementIncomeYes">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.YES_I_WILL'|translate}}</span>
+        </label>
+        <div class="mt20" *ngIf="retirementPlanForm.get('haveOtherSourceRetirementIncome').value">
+          <div formArrayName="retirementIncomeSet" class="regularSavings" class="form-group-with-bg"
+            *ngFor="let retirementIncomeSet of retirementPlanForm['controls'].retirementIncomeSet['controls']; let i = index;">
+            <div [hidden]="!showRetirementIncome">
+              <div class="form-group-with-bg">
+                <!--Form Header-->
+                <div class="form-group-with-bg--header retirement-border-top">
+                  <div class="flex-row">
+                    <div class="flex-col-12 with-help-icon">
+                      <div class="form-group-with-bg--header-label">
+                        {{'CMP.RETIREMENT_PLAN.RETIREMENT_INCOME'|translate}}
+                        <span>{{i + 1}}</span>
+                        <div class="form-group-with-bg--header-sub-label"></div>
+                      </div>
+                      <span class="delete-icon" (click)="openConfirmationModal(i,'retirementIncomeSet')"
+                        id="retirementDeleteIcon" *ngIf="!viewMode "></span>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-with-bg--content" [formGroupName]="i">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="name" id="myDependantFormLb1">
+                      <div>{{'CMP.RETIREMENT_PLAN.FORM_LABEL.MONTHLY_PAYOUT'|translate}}
+                      </div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control"
+                      [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  retirementIncomeSet['controls'].monthlyPayout.invalid}">
+                      <i>$</i>
+                      <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
+                        appCurrencyInput maxLength="4" #monthlyPayout formControlName="monthlyPayout">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="name" id="myDependantFormLb1">
+                      <div>{{'CMP.RETIREMENT_PLAN.FORM_LABEL.MONTHLY_PAYOUT_START_AGE'|translate}}
+                      </div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control form-control-right"
+                      [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  retirementIncomeSet['controls'].payoutStartAge.invalid}">
+                      <input id="payoutStartAge" appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                        class="input-control" [value]=" "
+                        [placeholder]="'CMP.RETIREMENT_PLAN.FORM_PLACEHOLDER_AGE'|translate" appNumberOnly maxLength="3"
+                        #payoutStartAge formControlName="payoutStartAge">
+                      <i class="right"> {{'CMP.RETIREMENT_PLAN.FORM_LABEL.AGE'|translate}}</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="unitTypeTrust"
+                      id="myDependantFormLb2">{{'CMP.RETIREMENT_PLAN.FORM_LABEL.MONTHLY_PAYOUT_DURATION'|translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="dropdown-control"
+                      [ngClass]="{'inline-error': submitted &&  retirementIncomeSet['controls'].payoutDuration.invalid}">
+                      <div ngbDropdown id="relationshipDropDown">
+                        <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle
+                          appComprehensiveViewMode="{{viewMode}}" mode=1>
+                          <span class="grey-text"
+                            *ngIf="retirementIncomeSet.get('payoutDuration'). value ==='' || retirementIncomeSet.get('payoutDuration'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span
+                            *ngIf="retirementIncomeSet.get('payoutDuration'). value !=='' && retirementIncomeSet.get('payoutDuration'). value !==null">{{retirementIncomeSet.get('payoutDuration').value}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                          <button class="dropdown-item" (click)="SelectPayoutYears('',i)">Select</button>
+                          <button type="button" class="dropdown-item" *ngFor="let payoutYears of payoutDurationYears;"
+                            (click)="SelectPayoutYears(payoutYears, i)">
+                            {{payoutYears}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="lumpSumBenefitSet" class="form-group-with-bg"
+            *ngFor="let lumpSumBenefitSet of retirementPlanForm['controls'].lumpSumBenefitSet['controls']; let i = index;">
+            <div [hidden]="!showLumpSumBenefit">
+              <div class="form-group-with-bg">
+                <!--Form Header-->
+                <div class="form-group-with-bg--header rsp-border-top">
+                  <div class="flex-row">
+                    <div class="flex-col-12 with-help-icon">
+                      <div class="form-group-with-bg--header-label">
+                        {{'CMP.RETIREMENT_PLAN.LUMP_SUM_BENEFIT'|translate}}
+                        <span>{{i + 1}}</span>
+                        <div class="form-group-with-bg--header-sub-label"></div>
+                      </div>
+                      <span class="delete-icon" (click)="openConfirmationModal(i,'lumpSumBenefitSet')"
+                        id="retirementDeleteIcon" *ngIf="!viewMode "></span>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-with-bg--content" [formGroupName]="i">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="name" id="myDependantFormLb1">
+                      <div>{{'CMP.FORM_LABEL.MATURITY_AMOUNT'|translate}}
+                      </div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control"
+                      [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  lumpSumBenefitSet['controls'].maturityAmount.invalid}">
+                      <i>$</i>
+                      <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
+                        appCurrencyInput maxLength="4" #maturityAmount formControlName="maturityAmount">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="name" id="myDependantFormLb1">
+                      <div>{{'CMP.FORM_LABEL.MATURITY_YEAR'|translate}}
+                      </div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control "
+                      [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  lumpSumBenefitSet['controls'].maturityYear.invalid}">
+                      <input id="maturityYear" appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                        class="input-control" [value]=" " [placeholder]="'CMP.MY_SPENDINGS.ENTER_YEAR'|translate"
+                        maxLength="4" #maturityYear formControlName="maturityYear">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!this.viewMode && retirementPlanForm['controls'].retirementIncomeSet['controls'].length < 5"
+            class="flex-col-12 mt20 addRetirement">
+            <div class="with-help-icon" for="name"><u (click)="addRetirementIncome()">{{
+                'CMP.RETIREMENT_PLAN.ADD_RETIREMENT' | translate}}</u>
+
+              <span class="help-icon" (click)="showToolTipModal('RENTAL_INCOME_TITLE','RENTAL_INCOME_MESSAGE')"></span>
+            </div>
+          </div>
+          <div *ngIf="!this.viewMode && retirementPlanForm['controls'].lumpSumBenefitSet['controls'].length < 5"
+            class="flex-col-12 mt20 addRetirement">
+            <div class="with-help-icon" for="name"><u (click)="addLumpSumAmount()">{{
+                'CMP.RETIREMENT_PLAN.ADD_LUMP_SUM' | translate}}</u>
+
+              <span class="help-icon" (click)="showToolTipModal('LUMP_SUMP_TITLE','LUMP_SUMP_MESSAGE')"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Form label /-->
+      <!--Form label-->
+      <div class="checkbox-button one-label">
+        <input id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
+          formControlName="haveOtherSourceRetirementIncome" type="radio" [value]=false class="field radio"
+          appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <label id="HaveRetirementIncomeLabel" for="haveRetirementIncomeNo">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.NO_I_WONT'|translate}}</span>
+        </label>
+      </div>
+      <!--Form label /-->
+    </div>
   </form>
- 
+
   <div class="footer-cta">
     <button type="button" (click)="goToNext(retirementPlanForm)" class="btn btn-primary mt30 width100"
       id="moDpdnt2BtnFooter">{{
