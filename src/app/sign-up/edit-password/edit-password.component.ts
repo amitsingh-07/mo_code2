@@ -91,7 +91,7 @@ export class EditPasswordComponent implements OnInit {
         if (data.responseMessage.responseCode === 6000) {
           this.navbarService.logoutUser();
           // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
         }
       });
     }
