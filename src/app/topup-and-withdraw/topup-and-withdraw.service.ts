@@ -506,6 +506,10 @@ export class TopupAndWithDrawService {
     return this.apiService.getMonthlyInvestmentInfo();
   }
 
+  getOneTimeInvestmentInfo() {
+    return this.apiService.getOneTimeInvestmentInfo();
+  }
+
   getEntitlementsFromPortfolio(portfolio) {
     const userProfileInfo = this.signUpService.getUserProfileInfo();
     const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
