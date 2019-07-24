@@ -326,7 +326,7 @@ export class ApiService {
   }
 
   verifyEmail(payload) {
-    return this.http.post(apiConstants.endpoint.verifyEmail, payload)
+    return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {

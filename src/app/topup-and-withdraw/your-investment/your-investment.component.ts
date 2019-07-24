@@ -42,11 +42,13 @@ export class YourInvestmentComponent implements OnInit {
   PortfolioValues;
   portfolios;
   userProfileInfo;
-  showAlretPopUp = false;
-  selected;
   riskProfileImg: any;
   portfolio;
   productCode;
+  entitlements: any;
+
+  showAlretPopUp = false;
+  selected;
 
   // transfer instructions
   bankDetails;
@@ -128,6 +130,9 @@ export class YourInvestmentComponent implements OnInit {
             this.investmentoverviewlist.data.cashAccountDetails.availableBalance
           );
         }
+        /* First portfolio's entitlement is considered for now as global entitlement,
+            need to change when multiple portfolio logic is implemented */
+        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       } else if (
         data.objectList &&
         data.objectList.length &&
@@ -209,8 +214,8 @@ export class YourInvestmentComponent implements OnInit {
     const riskProfileImg = ProfileIcons[i - 1]['icon'];
     return riskProfileImg;
   }
-
-  alertPopUp(i) {
+  alertPopUp(i, event) {
+    event.stopPropagation();
     this.selected = i;
     this.showAlretPopUp = true;
   }
@@ -227,7 +232,25 @@ export class YourInvestmentComponent implements OnInit {
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.yesClickAction.subscribe(() => {
       this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
-        if (data.responseMessage.responseCode === 6000) {
+        if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
           this.authService.saveEnquiryId(null);
           const translateParams = {
             portfolioName: portfolio.riskProfile.type
@@ -236,8 +259,6 @@ export class YourInvestmentComponent implements OnInit {
           this.showToastMessage(toastMsg);
           this.getInvestmentOverview();
           this.getUserProfileInfo();
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
         }
       },
       (err) => {
@@ -333,10 +354,17 @@ showPopUp() {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
+        /* First portfolio's entitlement is considered for now as global entitlement, 
+            need to change when multiple portfolio logic is implemented */
+        this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
     });
+  }
+
+  getEntitlementsFromPortfolio(portfolio) {
+    return this.topupAndWithDrawService.getEntitlementsFromPortfolio(portfolio);
   }
 }

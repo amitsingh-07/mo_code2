@@ -10,8 +10,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     'regadd',
     'mailadd',
     'employment',
-    'occupation',
-    'householdincome'
+    'occupation'
   ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'PORTFOLIO_PURCHASED',

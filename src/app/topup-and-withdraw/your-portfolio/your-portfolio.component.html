@@ -12,12 +12,19 @@
         </div>
       </div>
       <div class="flex-col-4">
-        <div class="dropdown-control ">
+        <div class="dropdown-control">
           <div ngbDropdown>
             <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
               More</button>
             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-              <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" (click)="selectOption(option)" id="your_portfolio-drpdown-option-{{i}}">{{option.name}}</button>
+              <button class="dropdown-item"
+                [class.hide]="(option.value === 'TOPUP' && !entitlements.showTopup)
+                || (option.value === 'WITHDRAWAL' && (!entitlements.showWithdrawPvToBa && !entitlements.showWithdrawPvToCa && !entitlements.showWithdrawCaToBa))"
+                *ngFor="let option of moreList; let i = index;"
+                (click)="selectOption(option)"
+                id="additional_declaration_sourse-drpdown-option-{{i}}">
+                  {{option.name}}
+            </button>
             </div>
           </div>
         </div>
@@ -30,7 +37,7 @@
     <!--  ALREADY FUNDED PORTFOLIO-->
     <div class="row">
       <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
-        <div class="flex-row">
+        <div class="flex-row" *ngIf="entitlements.showTopup">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
             <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
           </button>
@@ -69,11 +76,19 @@
     <div class="row">
       <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus !== 'PURCHASED'">
         <div class="flex-row mb20">
-          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus !== 'FUNDED'">
+          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus === 'RECOMMENDED' && portfolioValues.expiryDate">
             <div class="fund-account-information" id="errorModeButton">
               {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT_MESSAGE' | translate}} {{portfolioValues.expiryDate}}.
               <div class="fund-account-btn mt20" (click)="goToFundYourAccount()">
                 {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT' | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus === 'RECOMMENDED' && !portfolioValues.expiryDate">
+            <div class="fund-account-information" id="errorModeButton">
+              {{'YOUR_INVESTMENT.ONE_TIME_EXPIRED' | translate}}
+              <div class="fund-account-btn mt20" (click)="goToInvestAgain(portfolioValues)">
+                {{'YOUR_INVESTMENT.INVEST_AGAIN' | translate}}
               </div>
             </div>
           </div>

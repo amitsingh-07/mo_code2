@@ -52,6 +52,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
 import { SecurePipe } from './Pipes/secure.pipe';
+import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -81,7 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent,
     InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
-    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe],
+    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe, PortfolioListComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -112,7 +113,8 @@ export function createTranslateLoader(http: HttpClient) {
     StartsWithPipe,
     SecurityPolicyComponent,
     TermsModalComponent,
-    SecurePipe
+    SecurePipe,
+    PortfolioListComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
