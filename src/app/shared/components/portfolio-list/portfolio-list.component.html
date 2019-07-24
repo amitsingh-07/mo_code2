@@ -38,11 +38,11 @@
               <div class="callout-arrow"></div>
             </div>
           </div>
-          <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'">
+          <div class="top_alert" *ngIf="portfolio.portfolioStatus === 'RECOMMENDED' && portfolio.expiryDate">
               <img id="close_icon" id="investment_overview_topup_icon"
                 src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i, $event)" />
             </div>
-          <div class="forward_img" *ngIf="portfolio.portfolioStatus !== 'EXPIRED'">
+          <div class="forward_img">
             <img id="investment_overview_forward_icon_two"
               src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
           </div>
@@ -72,11 +72,11 @@
     <div class="form-group-with-bg--content your_portfolio_value_content" *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REDEEMED'">
       <div class="flex-row">
         <div class="flex-col-12">
-          <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED'" id="investment_recommended">
+          <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED' && portfolio.expiryDate" id="investment_recommended">
             {{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}
           </div>
-          <div *ngIf="portfolio.portfolioStatus === 'EXPIRED'" id="investment_expired">
-            {{'YOUR_INVESTMENT.EXPIRED' | translate}}
+          <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED' && !portfolio.expiryDate" id="investment_expired">
+            {{'YOUR_INVESTMENT.ONE_TIME_EXPIRED' | translate}}
           </div>
           <div *ngIf="portfolio.portfolioStatus === 'FUNDED'" id="investment_funded">
             {{'YOUR_INVESTMENT.IN_PROGRESS' | translate}}

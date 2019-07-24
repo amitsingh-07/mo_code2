@@ -150,4 +150,9 @@ export class YourPortfolioComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
+  // This Method For Onetime expiry.
+   goToInvestAgain(portfolioValues) {
+    this.topupAndWithDrawService.setPortfolioValues(portfolioValues);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
 }
