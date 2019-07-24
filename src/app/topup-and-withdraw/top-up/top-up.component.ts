@@ -245,7 +245,7 @@ export class TopUpComponent implements OnInit {
   getOneTimeInvestmentInfo() {
     this.topupAndWithDrawService.getOneTimeInvestmentInfo().subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
-        this.currentOneTimeInvAmount = response.objectList.monthlyInvestment;
+        this.currentOneTimeInvAmount = response.objectList.amount;
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }

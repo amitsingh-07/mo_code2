@@ -818,7 +818,7 @@ export class ApiService {
       );
   }
   getOneTimeInvestmentInfo() {
-    return this.http.get(apiConstants.endpoint.portfolio.setInvestmentObjective)
+    return this.http.get(apiConstants.endpoint.portfolio.setOneTimeInvestmentObjective)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
