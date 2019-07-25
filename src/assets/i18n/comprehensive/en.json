@@ -1,6 +1,10 @@
 {
   "CMP": {
-    "HOME_TYPE_LIST": ["New HDB", "Resale HDB", "Private"],
+    "HOME_TYPE_LIST": [
+      "New HDB",
+      "Resale HDB",
+      "Private"
+    ],
     "MODAL": {
       "LOGIN_SIGNUP_TITLE": "To get your promo code, please log in or create a MoneyOwl account.",
       "PROMO_CODE_SUCCESS": "Hurray! Your promo code is sent to your email ",
@@ -180,7 +184,10 @@
         "value": "Others"
       }
     ],
-    "GENDER": ["Male", "Female"],
+    "GENDER": [
+      "Male",
+      "Female"
+    ],
     "DEPENDANT_SELECTION": {
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you have any dependants?",
@@ -221,7 +228,13 @@
       "ABOUT": "About your dependants",
       "DESC": "Tell us more about those you need to take care of and we will include their needs in your financial plan.",
       "PLACEHOLDER_NAME": "Enter Name",
-      "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "Sibling", "Others"]
+      "RELATIONSHIP_LIST": [
+        "Spouse",
+        "Child",
+        "Parent",
+        "Sibling",
+        "Others"
+      ]
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
@@ -511,8 +524,16 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "LOCATION_LIST": ["Singapore", "USA", "United Kingdom", "Australia"],
-    "COURSE_LIST": ["Medicine", "Non-Medicine"],
+    "LOCATION_LIST": [
+      "Singapore",
+      "USA",
+      "United Kingdom",
+      "Australia"
+    ],
+    "COURSE_LIST": [
+      "Medicine",
+      "Non-Medicine"
+    ],
     "MY_LIABILITIES": {
       "TITLE": "What You Owe",
       "HEADER": "Sometimes, we borrow to fund our assets or spending. These liabilities have to be repaid over time.",
@@ -574,38 +595,6 @@
           "name": "Dependant Details 5"
         }
       ],
-      "RETIREMENT_INCOME": [
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        },
-        {
-          "name": "Retirement Income"
-        }
-      ],
       "MY_LIABILITIES": "MY LIABILITIES",
       "MY_EARNINGS": "Your Earnings",
       "MY_SPENDINGS": "Your Spendings",
@@ -625,7 +614,12 @@
         "MONTHLY_PAYOUT_START_AGE": "Payout Start Age",
         "MONTHLY_PAYOUT_DURATION": "Payout Duration"
       },
-      "PAYOUT_DURATION_YEARS": ["10 years", "15 years", "20 years", "Lifetime"],
+      "PAYOUT_DURATION_YEARS": [
+        "10 years",
+        "15 years",
+        "20 years",
+        "Lifetime"
+      ],
       "RETIREMENT_INCOME": "Retirement Income",
       "LUMP_SUM_BENEFIT": "Lump Sum Amount",
       "TOOLTIP": {
