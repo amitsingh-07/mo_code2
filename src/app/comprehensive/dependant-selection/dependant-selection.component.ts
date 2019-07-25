@@ -33,6 +33,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   householdIncomeList: any;
   routerEnabled = false;
   viewMode: boolean;
+  submitted:any;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
