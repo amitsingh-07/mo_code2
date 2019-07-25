@@ -38,11 +38,11 @@
         <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">
           <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1" ngbDropdownToggle>{{section.groups[0]}}</button>
           <div ngbDropdownMenu>
-            <div class="faq-selection__element" *ngFor="let group of section.groups; let isFirstRow=first" [ngClass]="{'active' : isFirstRow}" (click)="toggleSection($event)">{{group}}</div> 
+            <div class="faq-selection__element" *ngFor="let group of section.groups; let isFirstRow=first" [ngClass]="{'active' : isFirstRow}" (click)="toggleSection($event)">{{validateTitle(group, 0)}}</div>
             </div>
           </div>
         <div class="questions__panel" *ngFor="let question_set of section.questions; let questionRow=first; let i=index" [ngClass]="{'active': questionRow}">
-          <h3>{{section.groups[i]}}</h3>
+          <h3>{{validateTitle(section.groups[i], 1)}}</h3>
           <div class="question__element" *ngFor="let question of question_set">
             <div class="question"  (click)="toggleActive($event)">
               <i class="material-icons">keyboard_arrow_right</i>
