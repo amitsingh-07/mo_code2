@@ -29,6 +29,8 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
+  householdMembersList: any;
+  householdIncomeList: any;
   routerEnabled = false;
   viewMode: boolean;
   constructor(
@@ -43,6 +45,8 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
+        this.householdMembersList = this.translate.instant('CMP.DEPENDANT_SELECTION.HOUSEHOLD_MEMBERS_VALUES');
+        this.householdIncomeList = this.translate.instant('CMP.DEPENDANT_SELECTION.HOUSEHOLD_INCOME_VALUES');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
@@ -91,9 +95,20 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
     this.dependantSelectionForm = new FormGroup({
-      dependantSelection: new FormControl(this.hasDependant, Validators.required)
+      dependantSelection: new FormControl(this.hasDependant, Validators.required),
+      noOfHouseholdMembers: new FormControl('', Validators.required),
+      houseHoldIncome: new FormControl('', Validators.required),
     });
 
+  }
+  selectHouseHoldMembers(status) {
+    this.dependantSelectionForm.controls['noOfHouseholdMembers'].setValue(status);
+    this.dependantSelectionForm.markAsDirty();
+
+  }
+  selectHouseHoldIncome(status) {
+    this.dependantSelectionForm.controls['houseHoldIncome'].setValue(status);
+    this.dependantSelectionForm.markAsDirty();
   }
 
   goToNext(dependantSelectionForm) {
