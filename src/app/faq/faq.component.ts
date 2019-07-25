@@ -126,6 +126,12 @@ export class FAQComponent implements OnInit {
     } as IFAQSection;
     return section;
   }
+  validateTitle(sectionTitle: string, index: number) {
+    if (sectionTitle && sectionTitle.split('|').length === 2) {
+      return sectionTitle.split('|')[index];
+    }
+    return sectionTitle;
+  }
 
   getFAQExtra(data: any) {
     const extras = [];
