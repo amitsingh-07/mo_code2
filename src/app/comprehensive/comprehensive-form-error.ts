@@ -419,4 +419,29 @@ export class ComprehensiveFormError {
             },
         }
     };
+    retirementPlanForm: object = {
+        formFieldErrors: {
+            errorTitle: this.errorTitleDetails,
+            maturityYear: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Maturity Year'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Maturity Year'
+                }
+            },
+            payoutStartAge: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Age'
+                },
+                pattern: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Invalid Age'
+                }
+            },
+        }
+    };
 }

@@ -1,5 +1,6 @@
 import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-tracker.types';
 
+
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
     dependentsList: IDependantDetail[];
@@ -208,4 +209,17 @@ export interface IInsurancePlan {
 export interface IRetirementPlan {
     enquiryId: number;
     retirementAge: string;
+    haveOtherSourceRetirementIncome: boolean;
+    retirementIncomeSet: IRetirementIncome[];
+    lumpSumBenefitSet: ILumpSumBenefitSet[];
+}
+
+export interface IRetirementIncome {
+    monthlyPayout: number;
+    payoutStartAge: number;
+    payoutDuration: string;
+}
+export interface ILumpSumBenefitSet {
+    maturityAmount: number;
+    maturityYear: number;
 }
