@@ -523,13 +523,16 @@ export class GuideMeService {
   }
 
   convertResponseToGuideMeFormData(response: any) {
-    const data: GuideMeFormData = new GuideMeFormData();
-    data.myProfile = response.profileStatusId;
-    data.gender = response.gender;
-    data.dob = response.dob;
-    data.smoker = response.smoker ? 'smoker' : 'non-smoker';
-    data.customDob = response.customDob;
-    data.dependent = response.numberOfDependents;
+    const data: any = {};
+    data.myProfile = response.enquiryData.profileStatusId;
+
+    data.userInfo = {
+      gender: response.enquiryData.gender,
+      dob: response.enquiryData.dob,
+      smoker: response.enquiryData.smoker ? 'smoker' : 'non-smoker',
+      customDob: response.enquiryData.customDob,
+      dependent: response.enquiryData.numberOfDependents
+    };
 
     data.assets = {
       cash: response.financialStatusMapping.assets.cash,
@@ -569,35 +572,34 @@ export class GuideMeService {
       selectedEmployee: response.occupationalDisabilityNeeds.employmentStatusId === 1 ? 'Self-employed' : 'Salaried Employee'
     };
 
-    const dependents = [];
-
-    for (const dependent of response.dependentsData) {
-      const data = {
-        age: dependent.age,
-        eduFormSaved: dependent,
-        eduSupportCountry: dependent.dependentProtectionNeeds.countryOfEducation,
-        eduSupportCourse: dependent.dependentProtectionNeeds.educationCourse,
-        eduSupportNationality: dependent.dependentProtectionNeeds.nationality,
-        educationSupport: dependent,
-        gender: dependent.gender,
-        relationship: dependent.relationship,
-        supportAmount: dependent.dependentProtectionNeeds.monthlySupportAmount,
-        supportAmountValue: 0,
-        supportAmountRange: 0,
-        yearsNeeded: dependent.dependentProtectionNeeds.yearsNeeded
-      };
-
-      dependents.push(data);
-    }
     this.setProfile(response.profileStatusId);
-    this.setUserInfo({ gender: data.gender, dob: data.dob, smoker: data.smoker, customDob: data.customDob, dependent: data.dependent });
+    this.setUserInfo(data.userInfo);
     this.setMyAssets(data.assets);
     this.setMyIncome(data.income);
     this.setMyExpenses(data.expenses);
     this.setMyLiabilities(data.liabilities);
     this.setMyOcpDisability(data.occupationalDisability);
-    this.setLifeProtection({ dependents });
 
-
+    if (response.enquiryData.numberOfDependents > 0) {
+      const dependents = [];
+      for (const dependentData of response.dependentsData) {
+        const dependent = {
+          age: dependentData.age,
+          eduFormSaved: dependentData,
+          eduSupportCountry: dependentData.dependentProtectionNeeds.countryOfEducation,
+          eduSupportCourse: dependentData.dependentProtectionNeeds.educationCourse,
+          eduSupportNationality: dependentData.dependentProtectionNeeds.nationality,
+          educationSupport: dependentData,
+          gender: dependentData.gender,
+          relationship: dependentData.relationship,
+          supportAmount: dependentData.dependentProtectionNeeds.monthlySupportAmount,
+          supportAmountValue: 0,
+          supportAmountRange: 0,
+          yearsNeeded: dependentData.dependentProtectionNeeds.yearsNeeded
+        };
+        dependents.push(dependent);
+      }
+      this.setLifeProtection({ dependents });
+    }
   }
 }

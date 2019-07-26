@@ -33,7 +33,7 @@ export let apiConstants = {
         editEmployerAddress: 'account/account-microservice/api/updateEmployment',
         emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
         detailCustomerSummary: 'account/account-microservice/api/getDetailedCustomerSummary',
-        getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getCustomerInsuranceDetails',
+        getCustomerInsuranceDetails: 'recommend/recomm-microservice/api/customer/getDetailedInsuranceSummary',
         resendEmailVerification: 'account/account-microservice/api/resendEmailVerification',
         editMobileNumber: 'account/account-microservice/api/update-mobileno',
         registerBundleEnquiry: 'account/account-microservice/api/registerBundleEnquiry',
