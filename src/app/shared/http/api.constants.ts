@@ -67,7 +67,7 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'api/industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'api/occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'api/optionListCollection',
-            uploadDocument: 'account/account-microservice/saveDocuments',
+            uploadDocument: 'account/account-microservice/api/saveDocuments',
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             saveNationality: 'invest/investment-microservice/api/customer/setNationality',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
