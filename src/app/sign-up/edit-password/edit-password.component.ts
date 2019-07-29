@@ -77,13 +77,13 @@ export class EditPasswordComponent implements OnInit {
     } else if (form.value.newPassword !== form.value.confirmPassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Password should match';
+      ref.componentInstance.errorMessage = 'Password should match';
       return false;
       // tslint:disable-next-line:no-duplicated-branches
     } else if (form.value.newPassword === form.value.oldPassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'The old password and the new password can not be the same.';
+      ref.componentInstance.errorMessage = 'The old password and the new password cannot be the same.';
       return false;
     } else {
       this.signUpService.setEditPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
