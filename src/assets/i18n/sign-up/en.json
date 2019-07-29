@@ -81,7 +81,7 @@
       "LENGTH": "8 - 20 Alphanumeric Characters",
       "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
       "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
-      "MATCH": "Passwords do not match"
+      "MATCH": "Passwords do not match."
     }
   },
   "EMAIL_VERIFICATION": {
