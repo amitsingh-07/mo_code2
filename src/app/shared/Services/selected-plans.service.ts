@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { ApiService } from '../http/api.service';
+import { Formatter } from '../utils/formatter.util';
+import { SignUpService } from './../../sign-up/sign-up.service';
+import { IEnquiryUpdate } from './../../sign-up/signup-types';
 export const SESSION_STORAGE_KEY = 'app_selected_plan_session_storage_key';
 
 @Injectable({
@@ -7,7 +11,7 @@ export const SESSION_STORAGE_KEY = 'app_selected_plan_session_storage_key';
 export class SelectedPlansService {
   selectedPlanData: any;
   enquiryId;
-  constructor() { }
+  constructor(private apiService: ApiService, private signUpService: SignUpService) { }
 
   commit(data) {
     if (window.sessionStorage) {
@@ -38,5 +42,15 @@ export class SelectedPlansService {
       this.selectedPlanData = {};
     }
     return this.selectedPlanData;
+  }
+
+  updateInsuranceEnquiry() {
+    const insuranceEnquiry = this.getSelectedPlan();
+    const payload: IEnquiryUpdate = {
+      customerId: this.signUpService.getCustomerRef(),
+      enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+      selectedProducts: insuranceEnquiry.plans
+    };
+    return this.apiService.updateInsuranceEnquiry(payload);
   }
 }

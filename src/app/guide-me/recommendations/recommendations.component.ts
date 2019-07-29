@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import {
   AfterViewChecked,
@@ -53,7 +54,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router,
     private stateStoreService: StateStoreService, private route: ActivatedRoute,
-    private location: Location) {
+    private location: Location, private authService: AuthenticationService) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = this.route.routeConfig.component.name;
@@ -281,10 +282,18 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
-    this.modalRef = this.modal.open(CreateAccountModelComponent, {
-      centered: true
-    });
-    this.modalRef.componentInstance.data = this.state.selectedPlans.length;
+    if (this.authService.isSignedUser()) {
+      this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.router.navigate(['email-enquiry/success']);
+        }
+      });
+    } else {
+      this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+      this.modalRef = this.modal.open(CreateAccountModelComponent, {
+        centered: true
+      });
+      this.modalRef.componentInstance.data = this.state.selectedPlans.length;
+    }
   }
 }

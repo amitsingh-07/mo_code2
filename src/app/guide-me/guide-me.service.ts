@@ -523,14 +523,21 @@ export class GuideMeService {
   }
 
   convertResponseToGuideMeFormData(response: any) {
+    debugger;
     const data: any = {};
-    data.myProfile = response.enquiryData.profileStatusId;
-
+    let customDob = response.enquiryData.dateOfBirth.split('T')[0].split('-');
+    const dob = {
+      day: Number(customDob[0]),
+      month: Number(customDob[1]),
+      year: Number(customDob[2])
+    };
+    customDob = customDob.join('/');
+    data.myProfile = response.enquiryData.profileStatusId.toString();
     data.userInfo = {
       gender: response.enquiryData.gender,
-      dob: response.enquiryData.dob,
+      dob,
       smoker: response.enquiryData.smoker ? 'smoker' : 'non-smoker',
-      customDob: response.enquiryData.customDob,
+      customDob,
       dependent: response.enquiryData.numberOfDependents
     };
 
@@ -572,7 +579,7 @@ export class GuideMeService {
       selectedEmployee: response.occupationalDisabilityNeeds.employmentStatusId === 1 ? 'Self-employed' : 'Salaried Employee'
     };
 
-    this.setProfile(response.profileStatusId);
+    this.setProfile({ myProfile: data.myProfile });
     this.setUserInfo(data.userInfo);
     this.setMyAssets(data.assets);
     this.setMyIncome(data.income);

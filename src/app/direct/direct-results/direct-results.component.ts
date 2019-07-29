@@ -464,11 +464,19 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   proceedSelection() {
-    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
-    const modalRef = this.modal.open(CreateAccountModelComponent, {
-      centered: true
-    });
-    modalRef.componentInstance.data = this.state.selectedPlans.length;
+    if (this.authService.isSignedUser()) {
+      this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.router.navigate(['email-enquiry/success']);
+        }
+      });
+    } else {
+      this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+      const modalRef = this.modal.open(CreateAccountModelComponent, {
+        centered: true
+      });
+      modalRef.componentInstance.data = this.state.selectedPlans.length;
+    }
   }
 
   toggleComparePlans() {
