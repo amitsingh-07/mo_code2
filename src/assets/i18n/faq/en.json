@@ -343,6 +343,24 @@
                         "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
                     }
                 ],
+                "Joint or SRS Accounts | Joint or SRS(SUPPLEMENTARY RETIREMENT SCHEMES) Accounts": [
+                  {
+                      "QUESTION": "Can I open Joint or SRS Investment Accounts?",
+                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/#/invest/start\" target='_blank'>https://www.moneyowl.com.sg/#/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                  },
+                  {
+                      "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
+                      "ANSWER": "No, you can’t. You need to set up a separate Joint or SRS Investment Account. Alternatively, you can redeem all investment holdings in your Personal Investment Account and invest the proceeds into your Joint Investment Account."
+                  },
+                  {
+                      "QUESTION": "Can a person below 18 years of age open a Joint Investment Account?",
+                      "ANSWER": "Yes. However, please note that the main applicant must be above 18 years of age and we will only take instructions from the main applicant."
+                  },
+                  {
+                      "QUESTION": "Can I use SRS to invest for my Joint Investment Account?",
+                      "ANSWER": "No. Only cash can be used for Joint Investment Account investments."
+                  }
+              ],
                 "Withdrawals": [
                     {
                         "QUESTION": "How do I withdraw monies?",
