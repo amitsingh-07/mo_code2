@@ -77,7 +77,7 @@ export class EditPasswordComponent implements OnInit {
     } else if (form.value.newPassword !== form.value.confirmPassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorMessage = 'Password should match';
+      ref.componentInstance.errorMessage = 'Passwords do not match.';
       return false;
       // tslint:disable-next-line:no-duplicated-branches
     } else if (form.value.newPassword === form.value.oldPassword) {
