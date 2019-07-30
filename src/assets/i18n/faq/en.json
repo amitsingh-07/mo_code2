@@ -301,10 +301,6 @@
                         "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p><i>Please note that this list may be updated from time to time.</i></p></ol>"
                     },
                     {
-                        "QUESTION": "Can I open multiple MoneyOwl Accounts?",
-                        "ANSWER": "No. You can only create one MoneyOwl Account."
-                    },
-                    {
                         "QUESTION": "Can I invest in other currencies?",
                         "ANSWER": "No. We are currently accepting only SGD."
                     }
