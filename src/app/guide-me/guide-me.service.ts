@@ -24,6 +24,7 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
+const GUIDE_ME_FORM_DATA_LOADED = 'app_guided_form_data_loaded';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
 const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
@@ -77,6 +78,7 @@ export class GuideMeService {
   clearData() {
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(GUIDE_ME_FORM_DATA_LOADED);
     }
   }
 
@@ -606,6 +608,14 @@ export class GuideMeService {
         dependents.push(dependent);
       }
       this.setLifeProtection({ dependents });
+    }
+  }
+
+  checkGuidedDataLoaded(flag?: string) {
+    if (flag && window.sessionStorage) {
+      sessionStorage.setItem(GUIDE_ME_FORM_DATA_LOADED, flag);
+    } else if (window.sessionStorage && sessionStorage.getItem(GUIDE_ME_FORM_DATA_LOADED)) {
+      return true;
     }
   }
 }

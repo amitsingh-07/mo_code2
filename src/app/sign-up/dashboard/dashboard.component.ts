@@ -169,7 +169,7 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
         this.insurance.lastTransactionDate = data.objectList[0].enquiryData.createdTimeStamp.split('T')[0];
-        if (data.objectList[0].enquiryData.type === 'insurance-guided') {
+        if (!this.guideMeService.checkGuidedDataLoaded() && data.objectList[0].enquiryData.type === 'insurance-guided') {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
       } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {

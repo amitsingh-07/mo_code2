@@ -60,7 +60,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.componentName = this.route.routeConfig.component.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
+      if (event instanceof NavigationStart && !this.authService.isSignedUser()) {
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
 
@@ -286,7 +286,9 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
-          this.stateStoreService.clearAllStates();
+          this.selectedPlansService.clearData();
+          this.stateStoreService.clearState(this.componentName);
+          this.guideMeService.checkGuidedDataLoaded('true');
           this.router.navigate(['email-enquiry/success']);
         }
       });
