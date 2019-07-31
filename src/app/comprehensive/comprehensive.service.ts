@@ -44,7 +44,8 @@ import {
   IProgressTrackerWrapper,
   IPromoCode,
   IRegularSavings,
-  IRetirementPlan
+  IRetirementPlan,
+  IdependentsSummaryList
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -188,10 +189,10 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
   }
   getMyDependant() {
-    if (!this.comprehensiveFormData.comprehensiveDetails.dependentsList) {
-      this.comprehensiveFormData.comprehensiveDetails.dependentsList = [] as IDependantDetail[];
+    if (!this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList) {
+      this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList = [] as IDependantDetail[];
     }
-    return this.comprehensiveFormData.comprehensiveDetails.dependentsList;
+    return this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList;
   }
 
   getChildEndowment() {
@@ -273,12 +274,12 @@ export class ComprehensiveService {
       (enquiry.hasEndowments === '1' || enquiry.hasEndowments === '2')
     ) {
       if (
-        comprehensiveDetails.dependentsList &&
+        comprehensiveDetails.dependentsSummaryList.dependentsList &&
         comprehensiveDetails.dependentEducationPreferencesList
       ) {
         comprehensiveDetails.dependentEducationPreferencesList.forEach(
           (eduPref, index) => {
-            comprehensiveDetails.dependentsList.forEach(dependant => {
+            comprehensiveDetails.dependentsSummaryList.dependentsList.forEach(dependant => {
               if (dependant.id === eduPref.dependentId) {
                 comprehensiveDetails.dependentEducationPreferencesList[
                   index
@@ -302,6 +303,7 @@ export class ComprehensiveService {
   hasChildDependant(): boolean {
     let hasChildDependant = false;
     this.getMyDependant().forEach((dependant: any) => {
+      // console.log(dependant)
       const getAge = this.aboutAge.calculateAge(
         dependant.dateOfBirth,
         new Date()
@@ -327,8 +329,9 @@ export class ComprehensiveService {
   }
 
   setMyDependant(dependant: IDependantDetail[]) {
-    this.comprehensiveFormData.comprehensiveDetails.dependentsList = dependant;
+    this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList = dependant;
     this.updateComprehensiveSummary();
+    this.commit();
   }
 
   setChildEndowment(dependentEducationPreferencesList: IChildEndowment[]) {
@@ -451,6 +454,17 @@ export class ComprehensiveService {
         .comprehensiveEnquiry.hasDependents;
     }
   }
+  gethouseHoldDetails() {
+    if (!this.comprehensiveFormData.comprehensiveDetails) {
+      this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList = {} as IdependentsSummaryList;
+    }
+    return this.comprehensiveFormData.comprehensiveDetails
+      .dependentsSummaryList;
+  }
+  sethouseHoldDetails(dependantSummaryList: IdependentsSummaryList) {
+    this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList = dependantSummaryList;
+    this.commit();
+  }
   getDownOnLuck() {
     if (
       !this.comprehensiveFormData.comprehensiveDetails.comprehensiveDownOnLuck
@@ -472,13 +486,13 @@ export class ComprehensiveService {
     this.clearBadMoodFund();
     this.comprehensiveApiService
       .saveDownOnLuck(this.getDownOnLuck())
-      .subscribe(data => {});
+      .subscribe(data => { });
   }
   hasBadMoodFund() {
     const maxBadMoodFund = Math.floor(
       (this.getMyEarnings().totalAnnualIncomeBucket -
         this.getMySpendings().totalAnnualExpenses) /
-        12
+      12
     );
     return maxBadMoodFund >= 0;
   }
@@ -680,7 +694,7 @@ export class ComprehensiveService {
     });
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     ref.result.then(
-      result => {},
+      result => { },
       reason => {
         if (reason === 'dismiss' && summaryModalDetails.routerEnabled) {
           const previousUrl = this.getPreviousUrl(this.router.url);
@@ -1183,10 +1197,10 @@ export class ComprehensiveService {
       title: 'Bad Mood Fund',
       value: this.getDownOnLuck().badMoodMonthlyAmount
         ? this.transformAsCurrency(this.getDownOnLuck().badMoodMonthlyAmount) +
-          ''
+        ''
         : typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
-        ? this.transformAsCurrency(0)
-        : '',
+          ? this.transformAsCurrency(0)
+          : '',
       completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined',
       hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
     });
@@ -1219,7 +1233,7 @@ export class ComprehensiveService {
       value:
         liabilitiesData && liabilitiesData.totalAnnualLiabilities >= 0
           ? this.transformAsCurrency(liabilitiesData.totalAnnualLiabilities) +
-            ''
+          ''
           : '',
       completed: !Util.isEmptyOrNull(liabilitiesData)
     });
@@ -1271,8 +1285,8 @@ export class ComprehensiveService {
               .homeProtectionCoverageAmount;
           cpfDependantProtectionSchemeValue = this.transformAsCurrency(
             Util.toNumber(otherLifeProtectionCoverageAmount) +
-              Util.toNumber(lifeProtectionAmount) +
-              Util.toNumber(homeProtectionCoverageAmount)
+            Util.toNumber(lifeProtectionAmount) +
+            Util.toNumber(homeProtectionCoverageAmount)
           );
         } else if (haveCPFDependentsProtectionScheme === 0) {
           cpfDependantProtectionSchemeValue = 'No';
@@ -1373,9 +1387,9 @@ export class ComprehensiveService {
           completed: isCompleted,
           hidden: this.getMyProfile().dateOfBirth
             ? this.ageUtil.calculateAge(
-                this.getMyProfile().dateOfBirth,
-                new Date()
-              ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
+              this.getMyProfile().dateOfBirth,
+              new Date()
+            ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
             : true
         }
       ]
@@ -1602,7 +1616,7 @@ export class ComprehensiveService {
         : 0;
     spareCash =
       summaryConfig.SPARE_CASH_EARN_SPEND_PERCENT *
-        (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal) +
+      (homePayTotal - expenseTotal - regularSavingTotal - badMoodTotal) +
       summaryConfig.SPARE_CASH_ANNUAL_PERCENT * (annualBonus + annualDividend);
     return Math.floor(spareCash);
   }
@@ -1787,7 +1801,7 @@ export class ComprehensiveService {
       age: userAge
     };
     if (enquiry.hasDependents) {
-      getComprehensiveDetails.dependentsList.forEach(dependant => {
+      getComprehensiveDetails.dependentsSummaryList.dependentsList.forEach(dependant => {
         fireProofingDetails.dependant = true;
       });
     }
@@ -1836,7 +1850,7 @@ export class ComprehensiveService {
       getCompData.comprehensiveEnquiry.reportStatus === null ||
       getCompData.comprehensiveEnquiry.reportStatus === '' ||
       getCompData.comprehensiveEnquiry.reportStatus !==
-        COMPREHENSIVE_CONST.REPORT_STATUS.NEW
+      COMPREHENSIVE_CONST.REPORT_STATUS.NEW
     ) {
       validateFlag = false;
     }

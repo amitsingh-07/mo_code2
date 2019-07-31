@@ -3,7 +3,7 @@ import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-
 
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
-    dependentsList: IDependantDetail[];
+    dependentsSummaryList: IdependentsSummaryList;
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     comprehensiveDownOnLuck: HospitalPlan;
@@ -54,7 +54,11 @@ export interface IDependantDetail {
     enquiryId: number;
     isInsuranceNeeded: boolean;
 }
-
+export interface IdependentsSummaryList {
+    dependentsList: IDependantDetail[];
+    houseHoldIncome: string;
+    noOfHouseholdMembers: number;
+}
 export interface IChildEndowment {
     id: number;
     dependentId: number;
