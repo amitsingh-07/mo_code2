@@ -146,7 +146,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         this.cmpApiService.addDependents(payload).subscribe((data: any) => {
           this.loaderService.hideLoader();
           this.cmpService.setHasDependant(false);
-          //     this.cmpService.setMyDependant([]);
+          this.cmpService.setMyDependant([]);
           this.cmpService.clearEndowmentPlan();
           this.showSummaryModal();
         });
