@@ -75,8 +75,10 @@ export class PromotionService {
       date_created: in_promotion.date_created,
       date_expiry: in_promotion.date_expiry,
       tag: in_promotion.tags,
-      external: in_promotion.external
+      external: in_promotion.external,
+      tracking_id: in_promotion.tracking_id
     } as IPromotion;
+
     if (in_promotion.banner) {
       promotion.banner = in_promotion.banner;
     }

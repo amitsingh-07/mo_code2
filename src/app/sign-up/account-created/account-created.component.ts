@@ -44,7 +44,7 @@ export class AccountCreatedComponent implements OnInit {
   ngOnInit() {
     // Environment
     if (environment.gtagPropertyId) {
-      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/axAbCJ74s50BEP_VqfUC');
+      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
     }
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
 
