@@ -418,11 +418,26 @@ export class GuideMeService {
   }
 
   clearProtectionNeedsData() {
-    delete this.guideMeFormData.lifeProtectionData;
-    delete this.guideMeFormData.criticalIllness;
-    delete this.guideMeFormData.occupationalDisability;
-    delete this.guideMeFormData.hospitalPlanData;
-    delete this.guideMeFormData.longTermCareData;
+    const protectionNeeds = this.getProtectionNeeds().filter((data) => data.status === false);
+    for (const protectionNeed of protectionNeeds) {
+      switch (protectionNeed.protectionTypeId) {
+        case 1:
+          delete this.guideMeFormData.lifeProtectionData;
+          break;
+        case 2:
+          delete this.guideMeFormData.criticalIllness;
+          break;
+        case 3:
+          delete this.guideMeFormData.occupationalDisability;
+          break;
+        case 4:
+          delete this.guideMeFormData.hospitalPlanData;
+          break;
+        case 5:
+          delete this.guideMeFormData.longTermCareData;
+          break;
+      }
+    }
     this.commit();
   }
 

@@ -101,6 +101,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
+    this.guideMeService.clearProtectionNeedsData();
     setTimeout(() => {
       if (!this.stateStoreService.has(this.componentName) && (!this.state || !this.state.enquiryId)) {
         this.getRecommendationsFromServer();
