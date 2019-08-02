@@ -190,7 +190,7 @@ export class RetirementPlanComponent
     const retirementIncomeSet = [];
 
     if (
-      this.retirementDetails.retirementIncomeSet &&
+      this.retirementDetails &&
       this.retirementDetails.retirementIncomeSet.length > 0
     ) {
       this.showRetirementIncome = true;
@@ -206,7 +206,7 @@ export class RetirementPlanComponent
     }
     const lumpSumBenefitSet = [];
     if (
-      this.retirementDetails.lumpSumBenefitSet &&
+      this.retirementDetails &&
       this.retirementDetails.lumpSumBenefitSet.length > 0
     ) {
       this.showLumpSumBenefit = true;
@@ -317,7 +317,7 @@ export class RetirementPlanComponent
       form.value.lumpSumBenefitSet.forEach((lumpSumBenefit: any, index) => {
         const otherPropertyControl =
           form.controls.lumpSumBenefitSet['controls'][index]['controls'][
-            'maturityYear'
+          'maturityYear'
           ];
         let yearValidator = !this.showLumpSumBenefit
           ? []
@@ -328,7 +328,7 @@ export class RetirementPlanComponent
       form.value.retirementIncomeSet.forEach((retirementIncome: any, index) => {
         const otherPropertyControl =
           form.controls.retirementIncomeSet['controls'][index]['controls'][
-            'payoutStartAge'
+          'payoutStartAge'
           ];
         let ageValidator = !this.showRetirementIncome
           ? []
