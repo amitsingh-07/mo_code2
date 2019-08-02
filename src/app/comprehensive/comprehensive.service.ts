@@ -189,7 +189,7 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
   }
   getMyDependant() {
-    if (!this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList) {
+    if (!this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList) {
       this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList = [] as IDependantDetail[];
     }
     return this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList;
