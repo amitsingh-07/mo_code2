@@ -372,7 +372,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.errorHandler.handleAuthError();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      // If user is on dashboard page already, close the menu
+      if (this.router.url === DASHBOARD_PATH) {
+        this.toggleMenu();
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      }
     }
   }
 
