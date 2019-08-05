@@ -11,6 +11,7 @@ export const environment: IEnvironment = {
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
+  gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1'
 };
 /*

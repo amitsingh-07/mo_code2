@@ -12,7 +12,6 @@ export const environment: IEnvironment = {
   myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
   gAdPropertyId: 'AW-782920447',
-  gtagPropertyId: 'GTM-5JVF8LT',
   gaPropertyId: 'UA-125256446-1'
 };
 
