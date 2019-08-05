@@ -9,7 +9,10 @@
         "date_created": "1560902400000",
         "date_expiry": "1567209600000",
         "tag": [],
-        "external": false
+        "external": false,
+        "bundle_enquiry_form_type": "child-bundle",
+        "bundle_enquiry_form_title": "Baby Bundle Enquiry",
+        "tracking_id": "WsX0CIux_aUBEP_VqfUC"
     },
     {
         "promoId": 16,
@@ -21,7 +24,10 @@
         "date_created": "1560902400000",
         "date_expiry": "1567209600000",
         "tag": [],
-        "external": false
+        "external": false,
+        "bundle_enquiry_form_type": "adult-bundle",
+        "bundle_enquiry_form_title": "Young Working Adult Bundle Enquiry",
+        "tracking_id": "ITmJCNHA9aUBEP_VqfUC"
     },
     {
         "promoId": 12, 
