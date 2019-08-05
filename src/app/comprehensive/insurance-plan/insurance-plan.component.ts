@@ -97,7 +97,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 0, disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 46000, disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',

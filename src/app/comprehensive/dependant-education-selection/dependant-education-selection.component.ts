@@ -115,7 +115,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       this.buildEducationSelectionForm();
     } else {
       this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-        const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+        const getAge = this.aboutAge.calculateAgeByYear(dependant.dateOfBirth, new Date());
         const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
           COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
         if (getAge < maxAge) {
@@ -135,7 +135,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.hasEndowments === '1') {
       preferenceSelected = false;
     }
-    const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+    const getAge = this.aboutAge.calculateAgeByYear(dependant.dateOfBirth, new Date());
     const maturityAge = this.aboutAge.getAboutAge(getAge, (dependant.gender.toLowerCase() === 'male') ?
       COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE : COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE);
     return {
@@ -161,7 +161,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
-      const getAge = this.aboutAge.calculateAge(dependant.dateOfBirth, new Date());
+      const getAge = this.aboutAge.calculateAgeByYear(dependant.dateOfBirth, new Date());
       const maxAge = (dependant.gender.toLowerCase() === 'male') ? COMPREHENSIVE_CONST.CHILD_ENDOWMENT.MALE_MATURITY_AGE :
         COMPREHENSIVE_CONST.CHILD_ENDOWMENT.FEMALE_MATURITY_AGE;
       if (getAge < maxAge) {
