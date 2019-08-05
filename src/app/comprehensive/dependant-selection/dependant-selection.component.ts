@@ -123,6 +123,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       }
     } else {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
+      dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
       this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
       if (dependantSelectionForm.value.dependantSelection) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
