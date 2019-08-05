@@ -304,7 +304,7 @@ export class ComprehensiveService {
     let hasChildDependant = false;
     this.getMyDependant().forEach((dependant: any) => {
       // console.log(dependant)
-      const getAge = this.aboutAge.calculateAge(
+      const getAge = this.aboutAge.calculateAgeByYear(
         dependant.dateOfBirth,
         new Date()
       );
@@ -344,7 +344,7 @@ export class ComprehensiveService {
     childEndowment: IChildEndowment,
     dependant: IDependantDetail
   ) {
-    const getAge = this.aboutAge.calculateAge(
+    const getAge = this.aboutAge.calculateAgeByYear(
       dependant.dateOfBirth,
       new Date()
     );
@@ -1017,7 +1017,7 @@ export class ComprehensiveService {
     const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
     const dependantData: IDependantDetail[] = this.getMyDependant();
 
-    if (enquiry && enquiry.hasDependents !== null && dependantData.length > 0) {
+    if (enquiry && enquiry.hasDependents !== null && dependantData && dependantData.length > 0) {
       hasDependants = true;
     }
     if (
@@ -1045,7 +1045,7 @@ export class ComprehensiveService {
       value: noOfDependants,
       completed: enquiry.hasDependents !== null
     });
-    if (enquiry.hasDependents === null || dependantData.length > 0) {
+    if (enquiry.hasDependents === null || dependantData && dependantData.length > 0) {
       const eduPrefs: IChildEndowment[] = this.getChildEndowment();
       const eduPlan: string = this.hasEndowment();
 
@@ -1475,7 +1475,7 @@ export class ComprehensiveService {
         const filterInput = this.unSetObjectByKey(inputBucket, popInputBucket);
         const inputParams = financeData.MONTHLY_INPUT_CALC;
         if (financeInput === 'YOUR_EARNINGS') {
-          const inputTotal = this.getTotalEarningsBucket(filterInput);
+          const inputTotal = this.getTotalAnnualIncomeByEarnings(filterInput);
           this.comprehensiveFormData.comprehensiveDetails[financeData.API_KEY][
             financeData.API_TOTAL_BUCKET_KEY
           ] = !isNaN(inputTotal) && inputTotal > 0 ? inputTotal : 0;
@@ -1597,7 +1597,8 @@ export class ComprehensiveService {
     const homePayTotal = this.getTakeHomeSalary(
       earningDetails,
       summaryConfig,
-      true
+      true,
+      false
     );
     const regularSavingTotal = this.getRegularSaving('cash', true);
     const badMoodTotal = this.getBadMoodFund();
@@ -1628,7 +1629,8 @@ export class ComprehensiveService {
   getTakeHomeSalary(
     earningDetails: any,
     summaryConfig: any,
-    annualFlag: boolean
+    annualFlag: boolean,
+    summaryFlag: boolean
   ) {
     const baseProfile = this.getMyProfile();
     let homeSalary = 0;
@@ -1636,7 +1638,7 @@ export class ComprehensiveService {
     if (
       earningDetails &&
       earningDetails !== null &&
-      earningDetails.totalAnnualIncomeBucket > 0
+      (earningDetails.totalAnnualIncomeBucket > 0 || summaryFlag)
     ) {
       if (baseProfile && baseProfile.nationalityStatus === 'Others') {
         homeSalary += this.getValidAmount(earningDetails.monthlySalary);
@@ -1747,6 +1749,7 @@ export class ComprehensiveService {
     const homePayTotal = this.getTakeHomeSalary(
       earningDetails,
       summaryConfig,
+      false,
       false
     );
     const regularSavingTotal = this.getRegularSaving('cash', false);
@@ -2046,5 +2049,33 @@ export class ComprehensiveService {
     }
     //console.log("E" + annualSalary);
     return Math.floor(annualSalary);
+  }
+  /**
+   * Annual Income Updated Formula
+   * 
+   */
+  getTotalAnnualIncomeByEarnings(earningDetails: any) {
+    const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
+    let takeHomeCal = 0;
+    const homePayTotal = this.getTakeHomeSalary(
+      earningDetails,
+      summaryConfig,
+      true,
+      true
+    );
+    const annualBonusCheck =
+      earningDetails && earningDetails.annualBonus
+        ? this.getValidAmount(earningDetails.annualBonus)
+        : 0;
+    const annualBonus =
+      annualBonusCheck > 0
+        ? this.getAnnualBonus(earningDetails, summaryConfig)
+        : 0;
+    const annualDividend =
+      earningDetails && earningDetails.annualDividends
+        ? this.getValidAmount(earningDetails.annualDividends)
+        : 0;
+    takeHomeCal = homePayTotal + annualBonus + annualDividend;
+    return Math.floor(takeHomeCal);
   }
 }
