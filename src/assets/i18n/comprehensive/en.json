@@ -624,7 +624,7 @@
       "LUMP_SUM_BENEFIT": "Lump Sum Amount",
       "TOOLTIP": {
         "RENTAL_INCOME_TITLE": "Retirement Income",
-        "RENTAL_INCOME_MESSAGE": "Any monthly payout you expect to receive during your retirement from any annuity, pension, investment scheme etc. It should exclude income from CPF LIFE, rental, dividends or interest which you have keyed in under Your Finances",
+        "RENTAL_INCOME_MESSAGE": "Any monthly payout you expect to receive during your retirement from any annuity, pension, investment scheme etc. It should exclude income from CPF LIFE, rental, dividends or interest which you have keyed in under Your Finances.",
         "LUMP_SUMP_TITLE": "Lump Sum Amount",
         "LUMP_SUMP_MESSAGE": "A lump sum amount that you expect to receive to fund your retirement from any endowment policy, pension, deposits or bonds, investments etc."
       },
