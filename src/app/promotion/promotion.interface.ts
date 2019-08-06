@@ -16,6 +16,7 @@ export interface IPromotion {
     logo ?: string;
     bundle_enquiry_form_type ?: string;
     bundle_enquiry_form_title ?: string;
+    tracking_id ?: string;
 }
 
 export interface IBundleEnquiry {

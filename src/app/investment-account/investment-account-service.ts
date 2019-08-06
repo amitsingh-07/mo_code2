@@ -380,7 +380,9 @@ export class InvestmentAccountService {
   clearPersonalInfo() {
     this.investmentAccountFormData.salutation = null;
     this.investmentAccountFormData.fullName = null;
-    this.investmentAccountFormData.nricNumber = null;
+    if (!this.investmentAccountFormData.isMyInfoEnabled) {
+      this.investmentAccountFormData.nricNumber = null;
+    }
     this.investmentAccountFormData.dob = null;
     this.investmentAccountFormData.gender = null;
     this.investmentAccountFormData.birthCountry = null;

@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './../../../shared/analytics/google-analytics.service';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +29,8 @@ export class BundleEnquiryComponent implements OnInit {
     public authService: AuthenticationService,
     private promotionApiService: PromotionApiService,
     private formBuilder: FormBuilder,
-    private config: NgbDatepickerConfig
+    private config: NgbDatepickerConfig,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     const today: Date = new Date();
     config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
@@ -75,6 +77,9 @@ export class BundleEnquiryComponent implements OnInit {
       this.formSubmitted = false;
       if (data.responseMessage.responseCode === 6000) {
         this.showSuccess = true;
+        if (this.promoDetails.tracking_id) {
+          this.googleAnalyticsService.emitConversionsTracker(this.promoDetails.tracking_id);
+        }
       } else if (data.responseMessage.responseCode === 5000) {
         this.invalidEmail = true;
       }
