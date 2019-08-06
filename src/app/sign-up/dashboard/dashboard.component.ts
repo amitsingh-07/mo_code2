@@ -1,3 +1,4 @@
+import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -88,7 +89,8 @@ export class DashboardComponent implements OnInit {
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public authService: AuthenticationService,
-    public errorHandler: CustomErrorHandlerService
+    public errorHandler: CustomErrorHandlerService,
+    private guideMeService: GuideMeService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -165,8 +167,13 @@ export class DashboardComponent implements OnInit {
     this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
       this.showInsuranceSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-        this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
-        this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
+        this.insurance.hasInsurance = true;
+        this.insurance.lastTransactionDate = data.objectList[0].enquiryData.createdTimeStamp.split('T')[0];
+        if (!this.guideMeService.checkGuidedDataLoaded() && data.objectList[0].enquiryData.type === 'insurance-guided') {
+          this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
+        this.insurance.hasInsurance = false;
       }
     });
 

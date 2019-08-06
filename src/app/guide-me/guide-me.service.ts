@@ -24,6 +24,7 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
+const GUIDE_ME_FORM_DATA_LOADED = 'app_guided_form_data_loaded';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
 const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
@@ -77,6 +78,7 @@ export class GuideMeService {
   clearData() {
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(GUIDE_ME_FORM_DATA_LOADED);
     }
   }
 
@@ -416,11 +418,26 @@ export class GuideMeService {
   }
 
   clearProtectionNeedsData() {
-    delete this.guideMeFormData.lifeProtectionData;
-    delete this.guideMeFormData.criticalIllness;
-    delete this.guideMeFormData.occupationalDisability;
-    delete this.guideMeFormData.hospitalPlanData;
-    delete this.guideMeFormData.longTermCareData;
+    const protectionNeeds = this.getProtectionNeeds().filter((data) => data.status === false);
+    for (const protectionNeed of protectionNeeds) {
+      switch (protectionNeed.protectionTypeId) {
+        case 1:
+          delete this.guideMeFormData.lifeProtectionData;
+          break;
+        case 2:
+          delete this.guideMeFormData.criticalIllness;
+          break;
+        case 3:
+          delete this.guideMeFormData.occupationalDisability;
+          break;
+        case 4:
+          delete this.guideMeFormData.hospitalPlanData;
+          break;
+        case 5:
+          delete this.guideMeFormData.longTermCareData;
+          break;
+      }
+    }
     this.commit();
   }
 
@@ -520,5 +537,100 @@ export class GuideMeService {
         break;
     }
     return currentValue;
+  }
+
+  convertResponseToGuideMeFormData(response: any) {
+    const data: any = {};
+    let customDob = response.enquiryData.dateOfBirth.split('T')[0].split('-');
+    const dob = {
+      day: Number(customDob[0]),
+      month: Number(customDob[1]),
+      year: Number(customDob[2])
+    };
+    customDob = customDob.join('/');
+    data.myProfile = response.enquiryData.profileStatusId.toString();
+    data.userInfo = {
+      gender: response.enquiryData.gender,
+      dob,
+      smoker: response.enquiryData.smoker ? 'smoker' : 'non-smoker',
+      customDob,
+      dependent: response.enquiryData.numberOfDependents
+    };
+
+    data.assets = {
+      cash: response.financialStatusMapping.assets.cash,
+      cpf: response.financialStatusMapping.assets.cpf,
+      cpfFromMyInfo: response.financialStatusMapping.assets.cpf,
+      homeProperty: response.financialStatusMapping.assets.homeProperty,
+      investmentProperties: response.financialStatusMapping.assets.investmentProperties,
+      otherInvestments: response.financialStatusMapping.assets.otherInvestments,
+      otherAssets: response.financialStatusMapping.assets.otherAssets
+    };
+
+    data.income = {
+      monthlySalary: response.financialStatusMapping.income.annualSalary / 12,
+      annualBonus: response.financialStatusMapping.income.annualBonus,
+      otherIncome: response.financialStatusMapping.income.otherIncome,
+      annualSalary: response.financialStatusMapping.income.annualSalary,
+    };
+
+    data.expenses = {
+      monthlyInstallments: response.financialStatusMapping.expenses.monthlyInstallments,
+      livingExpenses: response.financialStatusMapping.expenses.livingExpenses,
+      otherExpenses: response.financialStatusMapping.expenses.otherExpenses
+    };
+
+    data.liabilities = {
+      propertyLoan: response.financialStatusMapping.liabilities.propertyLoan,
+      carLoan: response.financialStatusMapping.liabilities.carLoan,
+      otherLoan: response.financialStatusMapping.liabilities.otherLoan
+    };
+
+    data.occupationalDisability = {
+      coverageAmount: response.occupationalDisabilityNeeds.coverageAmount,
+      maxAge: response.occupationalDisabilityNeeds.maxAge,
+      percentageCoverage: response.occupationalDisabilityNeeds.percentageCoverage,
+      coverageDuration: response.occupationalDisabilityNeeds.coverageDuration,
+      employmentStatusId: response.occupationalDisabilityNeeds.employmentStatusId,
+      selectedEmployee: response.occupationalDisabilityNeeds.employmentStatusId === 1 ? 'Self-employed' : 'Salaried Employee'
+    };
+
+    this.setProfile({ myProfile: data.myProfile });
+    this.setUserInfo(data.userInfo);
+    this.setMyAssets(data.assets);
+    this.setMyIncome(data.income);
+    this.setMyExpenses(data.expenses);
+    this.setMyLiabilities(data.liabilities);
+    this.setMyOcpDisability(data.occupationalDisability);
+
+    if (response.enquiryData.numberOfDependents > 0) {
+      const dependents = [];
+      for (const dependentData of response.dependentsData) {
+        const dependent = {
+          age: dependentData.age,
+          eduFormSaved: dependentData,
+          eduSupportCountry: dependentData.dependentProtectionNeeds.countryOfEducation,
+          eduSupportCourse: dependentData.dependentProtectionNeeds.educationCourse,
+          eduSupportNationality: dependentData.dependentProtectionNeeds.nationality,
+          educationSupport: dependentData,
+          gender: dependentData.gender,
+          relationship: dependentData.relationship,
+          supportAmount: dependentData.dependentProtectionNeeds.monthlySupportAmount,
+          supportAmountValue: 0,
+          supportAmountRange: 0,
+          yearsNeeded: dependentData.dependentProtectionNeeds.yearsNeeded
+        };
+        dependents.push(dependent);
+      }
+      this.setLifeProtection({ dependents });
+    }
+  }
+
+  checkGuidedDataLoaded(flag?: string) {
+    if (flag && window.sessionStorage) {
+      sessionStorage.setItem(GUIDE_ME_FORM_DATA_LOADED, flag);
+    } else if (window.sessionStorage && sessionStorage.getItem(GUIDE_ME_FORM_DATA_LOADED)) {
+      return true;
+    }
   }
 }

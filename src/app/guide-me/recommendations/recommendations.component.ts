@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import {
   AfterViewChecked,
@@ -53,13 +54,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router,
     private stateStoreService: StateStoreService, private route: ActivatedRoute,
-    private location: Location) {
+    private location: Location, private authService: AuthenticationService) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = this.route.routeConfig.component.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
+      if (event instanceof NavigationStart && !this.authService.isSignedUser()) {
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
 
@@ -100,6 +101,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
+    this.guideMeService.clearProtectionNeedsData();
     setTimeout(() => {
       if (!this.stateStoreService.has(this.componentName) && (!this.state || !this.state.enquiryId)) {
         this.getRecommendationsFromServer();
@@ -282,9 +284,20 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
-    this.modalRef = this.modal.open(CreateAccountModelComponent, {
-      centered: true
-    });
-    this.modalRef.componentInstance.data = this.state.selectedPlans.length;
+    if (this.authService.isSignedUser()) {
+      this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.selectedPlansService.clearData();
+          this.stateStoreService.clearState(this.componentName);
+          this.guideMeService.checkGuidedDataLoaded('true');
+          this.router.navigate(['email-enquiry/success']);
+        }
+      });
+    } else {
+      this.modalRef = this.modal.open(CreateAccountModelComponent, {
+        centered: true
+      });
+      this.modalRef.componentInstance.data = this.state.selectedPlans.length;
+    }
   }
 }

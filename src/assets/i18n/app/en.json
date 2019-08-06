@@ -50,7 +50,8 @@
     "PROCEED":"Proceed",
     "SAVE_CONTINUE": "Save and Continue",
     "SEND": "Send",
-    "BACK_TO_HOME": "Back To Home"
+    "BACK_TO_HOME": "Back To Home",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",

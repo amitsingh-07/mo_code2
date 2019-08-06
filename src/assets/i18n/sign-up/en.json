@@ -319,8 +319,12 @@
     },
     "INSURANCE":{
       "TITLE": "Insurance",
-      "NO_INSURANCE_DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188.",
-      "INSURANCE_DESC": "We received your quote request on "
+      "NO_INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
+      "INSURANCE_DESC": "We received your quote request on ",
+      "ESTIMATED_MINS": "Estimated 5 mins",
+      "ASSESS_MY_NEEDS": "Assess My Needs",
+      "REASSESS_MY_NEEDS": "Reassess My Needs",
+      "DIRECT_JOURNEY": "I know my needs, find my plan."
     }
   },
   "EDIT_PROFILE": {
