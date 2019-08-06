@@ -54,12 +54,6 @@
                 <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.LABEL' |
                   translate}}</label>
               </div>
-              <div class="alert-msg flex-col-12" *ngIf="submitted && account.firstName.errors">
-                  <div *ngIf="account.firstName.errors?.required">
-                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                    <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.REQUIRED' | translate}}</span>
-                  </div>
-              </div>
             </div>
             <div class="flex-col-5 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.lastName.errors}">
