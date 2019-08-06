@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -136,6 +136,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       if (this.pageId === pageId) {
         this.progressService.show();
       }
+
+
     });
 
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
@@ -150,6 +152,12 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  resetLifeProtectionAmount() {
+
+    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(46000);
+
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
@@ -172,10 +180,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
-          form.value.lifeProtectionAmount = 46000;
-        }
-
         if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
           form.value.homeProtectionCoverageAmount = 0;
         }
