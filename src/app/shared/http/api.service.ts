@@ -817,6 +817,12 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getOneTimeInvestmentInfo() {
+    return this.http.get(apiConstants.endpoint.portfolio.setOneTimeInvestmentObjective)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   enquiryByEmail(payload) {
     return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', payload)

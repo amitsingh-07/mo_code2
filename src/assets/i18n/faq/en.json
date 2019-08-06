@@ -301,10 +301,6 @@
                         "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p><i>Please note that this list may be updated from time to time.</i></p></ol>"
                     },
                     {
-                        "QUESTION": "Can I open multiple MoneyOwl Accounts?",
-                        "ANSWER": "No. You can only create one MoneyOwl Account."
-                    },
-                    {
                         "QUESTION": "Can I invest in other currencies?",
                         "ANSWER": "No. We are currently accepting only SGD."
                     }
@@ -328,7 +324,7 @@
                     },
                     {
                         "QUESTION": "When will my top-up request expire? ",
-                        "ANSWER": "Your top-up request will expire after 21 calendar days if there are insufficient monies in your Investment Cash Account to process the order."
+                        "ANSWER": "Your top-up request will expire after 7 calendar days if there are insufficient monies in your Investment Cash Account to process the order."
                     },
                     {
                         "QUESTION": "How do I submit a monthly buy request?",
@@ -347,7 +343,7 @@
                         "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
                     }
                 ],
-                "Joint or SRS Accounts": [
+                "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [
                   {
                       "QUESTION": "Can I open Joint or SRS Investment Accounts?",
                       "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/#/invest/start\" target='_blank'>https://www.moneyowl.com.sg/#/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"

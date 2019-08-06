@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,8 +27,10 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
+import { trackingConstants } from './../../shared/analytics/tracking.constants';
 
 @Component({
   selector: 'app-create-account',
@@ -53,6 +55,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   confirmPwdFocus = false;
   passwordFocus = false;
 
+  submitted: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -71,7 +75,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     this.translate.use('en');
     this.configService.getConfig().subscribe((config) => {
@@ -103,6 +108,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     });
   }
 
+  get account() { return this.createAccountForm.controls; }
+
   /**
    * build account form.
    */
@@ -111,7 +118,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
     this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
     this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
-    if(this.distribution) {
+    if (this.distribution) {
       let email_in: string;
       if (this.formValues.email) {
         email_in = this.formValues.email;
@@ -119,7 +126,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (this.distribution.login) {
         this.createAccountForm = this.formBuilder.group({
           countryCode: [this.formValues.countryCode, [Validators.required]],
-          mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+          mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
           firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
           lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
           email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
@@ -135,7 +142,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
@@ -154,18 +161,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * @param form - user account form detail.
    */
   save(form: any) {
-    if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      const error = this.signUpService.getSignupFormError(form);
-      if (error.errorMessages.length > 0) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = error.title;
-        ref.componentInstance.errorMessageList = error.errorMessages;
-      }
-      return false;
-    } else {
+    this.submitted = true;
+    if (form.valid) {
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -221,16 +218,24 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
+              this.googleAnalyticsService.emitConversionsTracker(trackingConstants.ga.createAccount);
               this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
               this.callErrorModal(data);
             }
+          } else if (data.responseMessage.responseCode === 5016) {
+            this.refreshCaptcha();
+            this.createAccountForm.controls['captcha'].setErrors({ match: true });
+            this.createAccountForm.controls['password'].reset();
+            this.createAccountForm.controls['confirmPassword'].reset();
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
         }, (err) => {
           this.createAccountTriggered = false;
+        }).add(() => {
+          this.submitted = false;
         });
     }
   }
@@ -307,6 +312,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (this.createAccountForm.controls.password.errors && this.createAccountForm.controls.password.dirty
       && this.createAccountForm.controls.password.value) {
       this.isPasswordValid = false;
+    } else if (!this.createAccountForm.controls.password.value.length) {
+      this.isPasswordValid = true;
     } else {
       const _self = this;
       setTimeout(() => {
@@ -367,6 +374,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       const passwordConfirmationInput = group.controls['confirmPassword'];
       const emailInput = group.controls['email'];
       const emailConfirmationInput = group.controls['confirmEmail'];
+      const mobileNumberInput = group.controls['mobileNumber'];
+      const SINGAPORE_MOBILE_REGEXP = RegexConstants.MobileNumber;
 
       // Confirm Password
       if (!passwordConfirmationInput.value) {
@@ -384,6 +393,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
+      }
+
+      // Mobile Number
+      if (!mobileNumberInput.value) {
+        mobileNumberInput.setErrors({ required: true });
+      } else if (!SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
+        mobileNumberInput.setErrors({ mobileRange: true });
+      } else {
+        mobileNumberInput.setErrors(null);
       }
     };
   }
