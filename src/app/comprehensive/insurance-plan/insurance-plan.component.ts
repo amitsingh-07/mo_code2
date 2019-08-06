@@ -173,7 +173,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
         if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
-          form.value.lifeProtectionAmount = 0;
+          form.value.lifeProtectionAmount = 46000;
         }
 
         if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
