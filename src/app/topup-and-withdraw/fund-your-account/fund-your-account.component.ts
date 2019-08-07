@@ -317,7 +317,7 @@ export class FundYourAccountComponent implements OnInit {
   timeLine(fundDetails,monthlyAmount){
     let  timelineMessage ;
     if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
-      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME-INFO', monthlyAmount);
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME_INFO', monthlyAmount);
      } else if (!fundDetails.monthlyInvestment && fundDetails.oneTimeInvestment) {
       timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
       } else {
