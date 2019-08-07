@@ -49,6 +49,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: ['', [Validators.required, Validators.email]],
+      mobileNumber: ['', [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]],
       confirmEmail: [''],
       acceptMarketingEmails: [''],
       captchaValue: ['']

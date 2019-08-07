@@ -113,6 +113,7 @@ export interface IEnquiryByEmail {
     firstName: string;
     lastName: string;
     email: string;
+    mobileNumber: number;
     acceptMarketingEmails: boolean;
     validateCaptchaBean: {
         captcha: string;
