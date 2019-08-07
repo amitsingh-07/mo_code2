@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../../portfolio/risk-profile/profileIcons';
+import { SignUpService } from '../../../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -13,7 +14,9 @@ import { ProfileIcons } from '../../../portfolio/risk-profile/profileIcons';
 export class PortfolioListComponent implements OnInit {
 
   selected;
+  userProfileInfo;
   showAlretPopUp = false;
+  monthlyInvestment: any;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -23,11 +26,24 @@ export class PortfolioListComponent implements OnInit {
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
   constructor(private topupAndWithDrawService: TopupAndWithDrawService,
+              public signUpService: SignUpService,
               private investmentAccountService: InvestmentAccountService) { }
 
   ngOnInit() {
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
   }
 
+  getMonthlyInvestValidity(index: number) {
+    if (this.userProfileInfo && this.userProfileInfo.investementDetails
+       && this.userProfileInfo.investementDetails.portfolios
+       && this.userProfileInfo.investementDetails.portfolios[index]
+       && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
+       && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
+         this.monthlyInvestment = this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment;
+         return true;
+       }
+    return false;
+  }
   getEntitlementsFromPortfolio(portfolio) {
     return this.topupAndWithDrawService.getEntitlementsFromPortfolio(portfolio);
   }
