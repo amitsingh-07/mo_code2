@@ -400,21 +400,45 @@ export class RetirementPlanComponent
     };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
-  openConfirmationModal(i, array) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.unSaved = true;
-    ref.componentInstance.hasImpact = this.confirmRetirementData;
-    ref.result.then(data => {
-      if (data === 'yes') {
-        const retirementIncomeDetails = this.retirementPlanForm.get(
-          array
-        ) as FormArray;
-        retirementIncomeDetails.removeAt(i);
-        this.retirementPlanForm.get(array).markAsDirty();
-      }
-    });
-    return false;
+  openConfirmationModal() {
+    if (this.showRetirementIncome || this.showLumpSumBenefit) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.unSaved = true;
+      ref.componentInstance.hasImpact = this.confirmRetirementData;
+      ref.result.then(data => {
+        if (data === 'yes') {
+          const retirementIncomeDetails = this.retirementPlanForm.get('retirementIncomeSet') as FormArray;
+          const lumpSumBenefitSet = this.retirementPlanForm.get('lumpSumBenefitSet') as FormArray;
+          for (let i = retirementIncomeDetails.length; i > 0; i--) {
+            this.deleteRetirementDetails(i - 1, 'retirementIncomeSet');
+          }
+          for (let i = lumpSumBenefitSet.length; i > 0; i--) {
+            this.deleteRetirementDetails(i - 1, 'lumpSumBenefitSet');
+          }
+          this.retirementPlanForm.controls['haveOtherSourceRetirementIncome'].setValue(false);
+        }
+      });
+      return false;
+    }
+
   }
+  deleteRetirementDetails(i, array) {
+
+    const retirementIncomeDetails = this.retirementPlanForm.get(
+      array
+    ) as FormArray;
+    if (retirementIncomeDetails.length === 0) {
+      if (array === 'retirementIncomeSet') {
+        this.showRetirementIncome = false;
+      } else if (array === 'lumpSumBenefitSet') {
+        this.showLumpSumBenefit = false;
+      }
+    } else {
+      retirementIncomeDetails.removeAt(i);
+    }
+    this.retirementPlanForm.get(array).markAsDirty();
+  }
+
   ageValidation(form) {
     if (parseInt(form.value) < 100 && parseInt(form.value) > 0) {
       return null;
