@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -36,7 +37,8 @@ export class FundYourAccountComponent implements OnInit {
   riskProfileImg: any;
   fundAccountContent: any;
   isRequestSubmitted = false;
-
+  monthlyAmount;
+  timelineMessage;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -47,7 +49,8 @@ export class FundYourAccountComponent implements OnInit {
     public footerService: FooterService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private currencyPipe: CurrencyPipe,
   ) {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
@@ -69,6 +72,14 @@ export class FundYourAccountComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
+    this.monthlyAmount = {
+      month: this.currencyPipe.transform(
+        this.fundDetails.monthlyInvestment,
+        'USD',
+        'symbol-narrow',
+        '1.0-2'
+      )};
+    this.timelineMessage = this.timeLine(this.fundDetails, this.monthlyAmount);
     this.getTransferDetails();
     if (this.fundDetails.portfolio.riskProfile) {
       this.riskProfileImg =
@@ -303,4 +314,15 @@ export class FundYourAccountComponent implements OnInit {
     }
   }
   // tslint:disable-next-line
+  timeLine(fundDetails,monthlyAmount){
+    let  timelineMessage ;
+    if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME-INFO', monthlyAmount);
+     } else if (!fundDetails.monthlyInvestment && fundDetails.oneTimeInvestment) {
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
+      } else {
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
+     }
+    return timelineMessage;
+  }
 }
