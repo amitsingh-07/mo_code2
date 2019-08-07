@@ -64,7 +64,7 @@
       <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
         <div class="form-group-floating-label">
           <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
-          <label class="form-control-placeholder" for="lastName">{{'RECOMMENDATIONS.FORM.EMAIL.LABEL' | translate}}</label>
+          <label class="form-control-placeholder" for="email">{{'RECOMMENDATIONS.FORM.EMAIL.LABEL' | translate}}</label>
         </div>
         <div *ngIf="enquiryForm.controls.email.invalid && enquiryForm.controls.email.dirty">
           <p class="error--msg" *ngIf="enquiryForm.controls.email.errors.email">{{'RECOMMENDATIONS.FORM.EMAIL.ERROR.INVALID' | translate}}</p>
@@ -76,7 +76,7 @@
       <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
         <div class="form-group-floating-label">
           <input type="text" id="crtAccInpt4" class="form-control" #confirmEmail formControlName="confirmEmail" required>
-          <label class="form-control-placeholder" for="lastName">{{'RECOMMENDATIONS.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
+          <label class="form-control-placeholder" for="confirmEmail">{{'RECOMMENDATIONS.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
         </div>
         <div *ngIf="!enquiryForm.controls.email.errors && enquiryForm.controls.confirmEmail.dirty && enquiryForm.controls.confirmEmail.errors">
           <p class="error--msg" *ngIf="enquiryForm.controls.confirmEmail.errors.notEquivalent">{{'RECOMMENDATIONS.FORM.CONFIRM_EMAIL.ERROR.INVALID' | translate}}</p>
@@ -84,6 +84,18 @@
         </div>
       </div>
     </div>
+    <div class="flex-row mb10">
+      <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
+        <div class="form-group-floating-label">
+          <input type="number" class="form-control" #mobileNumber formControlName="mobileNumber" required>
+          <label class="form-control-placeholder" for="mobileNumber">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
+        </div>
+        <div *ngIf="enquiryForm.controls.mobileNumber.invalid && enquiryForm.controls.mobileNumber.dirty">
+          <p class="error--msg" *ngIf="enquiryForm.controls.mobileNumber.errors.pattern">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.mobileNumber.errors.required">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</p>
+       </div>
+      </div>
+    </div>    
     <div class="flex-row mb10 txt-black" *ngIf="showCaptcha">
       <span class="mb10">{{'RECOMMENDATIONS.FORM.CAPTCHA.TITLE' | translate}}</span>
       <div class="flex-col-4 stretch">

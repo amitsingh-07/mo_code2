@@ -154,6 +154,7 @@ export class GuideMeApiService {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
+            mobileNumber: data.mobileNumber,
             acceptMarketingEmails: data.acceptMarketingEmails,
             validateCaptchaBean: {
                 captcha: data.captchaValue,

@@ -202,6 +202,13 @@
           "REQUIRED": "*Please enter your confirm e-mail address"
         }
       },
+      "MOBILE_NUMBER": {
+        "LABEL": "Mobile Number",
+        "ERROR": {
+          "INVALID": "*Invalid Mobile Number",
+          "REQUIRED": "*Please enter your mobile number"
+        }
+      },
       "CAPTCHA": {
         "TITLE": "Enter the characters shown in the image",
         "TRY": "Try another text",
