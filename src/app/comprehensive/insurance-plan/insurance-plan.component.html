@@ -105,14 +105,14 @@
                     translate}}
                 </label>
               </div>
-              <div class="flex-col-4">
+              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                   <input ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                 </label>
               </div>
-              <div class="flex-col-4">
+              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                   <input ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
