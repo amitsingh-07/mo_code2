@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -13,7 +13,9 @@ import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-detai
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 

@@ -1,18 +1,20 @@
-import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
+import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../engagement-journey/engagement-journey-routes.constants';
 // Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
+import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { CustomErrorHandlerService } from '../../shared/http/custom-error-handler.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
@@ -33,8 +35,6 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -187,7 +187,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
+    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
   }
 
   goToEditProfile() {

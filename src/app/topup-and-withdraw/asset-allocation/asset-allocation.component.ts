@@ -6,13 +6,17 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-import { PortfolioService } from '../../portfolio/portfolio.service';
-import { RiskProfile } from '../../portfolio/risk-profile/riskprofile';
+import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
+import { RiskProfile } from '../../engagement-journey/recommendation/riskprofile';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -45,7 +49,7 @@ export class AssetAllocationComponent implements OnInit {
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
-    private portfolioService: PortfolioService
+    private EngagementJourneyService: EngagementJourneyService
   ) {
     this.translate.use('en');
     const self = this;
@@ -67,7 +71,7 @@ export class AssetAllocationComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const formData = this.portfolioService.getRiskProfile();
+    const formData = this.EngagementJourneyService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: formData.riskProfileId,

@@ -3,19 +3,23 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { EngagementJourneyService } from '../engagement-journey/engagement-journey.service';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
-import { PortfolioService } from '../portfolio/portfolio.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
-import { TransferInstructionsModalComponent } from '../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import {
+    TransferInstructionsModalComponent
+} from '../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { SignUpService } from '../sign-up/sign-up.service';
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
-import { SignUpService } from '../sign-up/sign-up.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -40,7 +44,7 @@ export class TopupAndWithDrawService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    public portfolioService: PortfolioService,
+    public EngagementJourneyService: EngagementJourneyService,
     private router: Router,
     private modal: NgbModal,
     private signUpService: SignUpService
@@ -361,7 +365,7 @@ export class TopupAndWithDrawService {
   }
 
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.portfolioService.buildQueryString(params);
+    const urlParams = this.EngagementJourneyService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
   }
 

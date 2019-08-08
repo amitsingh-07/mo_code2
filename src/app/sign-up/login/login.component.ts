@@ -13,11 +13,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
+import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../engagement-journey/engagement-journey-routes.constants';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';

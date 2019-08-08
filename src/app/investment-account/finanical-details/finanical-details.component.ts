@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PortfolioService } from '../../portfolio/portfolio.service';
+import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -35,7 +35,7 @@ export class FinanicalDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
-    public portfolioService: PortfolioService,
+    public EngagementJourneyService: EngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
@@ -53,7 +53,7 @@ export class FinanicalDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getIncomeRangeList();
-    this.FinancialFormData = this.portfolioService.getMyFinancials();
+    this.FinancialFormData = this.EngagementJourneyService.getMyFinancials();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.financialDetails = this.formBuilder.group({
       annualHouseHoldIncomeRange: [

@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
-import { PortfolioService } from '../portfolio/portfolio.service';
+import { EngagementJourneyService } from '../engagement-journey/engagement-journey.service';
 import { ERoadmapStatus } from '../shared/components/roadmap/roadmap.interface';
 import { RoadmapService } from '../shared/components/roadmap/roadmap.service';
 import { ApiService } from '../shared/http/api.service';
@@ -42,7 +42,7 @@ export class InvestmentAccountService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    private portfolioService: PortfolioService,
+    private EngagementJourneyService: EngagementJourneyService,
     public readonly translate: TranslateService,
     private modal: NgbModal,
     private roadmapService: RoadmapService
@@ -124,7 +124,7 @@ export class InvestmentAccountService {
       sortedCountryList.push(filteredCountry[0]);
       countryList.splice(countryList.indexOf(filteredCountry[0]), 1);
     });
-    this.portfolioService.sortByProperty(countryList, 'name', 'asc');
+    this.EngagementJourneyService.sortByProperty(countryList, 'name', 'asc');
     return sortedCountryList.concat(countryList);
   }
   setDefaultValueForFormData() {
@@ -915,7 +915,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.portfolioService.buildQueryString(params);
+    const urlParams = this.EngagementJourneyService.buildQueryString(params);
     return this.apiService.getPortfolioAllocationDetails(urlParams);
   }
 

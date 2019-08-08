@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PortfolioService } from '../../portfolio/portfolio.service';
+import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -45,7 +45,7 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public portfolioService: PortfolioService,
+    public EngagementJourneyService: EngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService
   ) {

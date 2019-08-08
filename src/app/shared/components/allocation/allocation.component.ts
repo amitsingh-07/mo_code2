@@ -2,8 +2,10 @@ import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { FundDetailsComponent } from '../../../portfolio/fund-details/fund-details.component';
-import { PortfolioService } from '../../../portfolio/portfolio.service';
+import {
+    FundDetailsComponent
+} from '../../../engagement-journey/fund-details/fund-details.component';
+import { EngagementJourneyService } from '../../../engagement-journey/engagement-journey.service';
 
 @Component({
   selector: 'app-allocation',
@@ -20,7 +22,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   event2 = true;
 
   constructor(
-    private portfolioService: PortfolioService,
+    private EngagementJourneyService: EngagementJourneyService,
     private router: Router,
     public modal: NgbModal
   ) {}
@@ -30,7 +32,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
-      this.portfolioService.sortByProperty(groupedAllocation, 'name', 'asc');
+      this.EngagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
       allocation.groupedAllocationDetails = groupedAllocation;
     });
   }
@@ -39,7 +41,7 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
-      this.portfolioService.sortByProperty(targetObj[prop], 'percentage', 'desc');
+      this.EngagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
       const classObj = {
         name: prop,
         value: targetObj[prop]
@@ -50,7 +52,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   }
 
   showFundDetails() {
-    this.portfolioService.setFundDetails(this.funds);
+    this.EngagementJourneyService.setFundDetails(this.funds);
     const ref = this.modal.open(FundDetailsComponent, {
       centered: true,
       windowClass: 'custom-full-height'

@@ -2,8 +2,8 @@ import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-wi
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { ProfileIcons } from '../../../engagement-journey/recommendation/profileIcons';
 import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
-import { ProfileIcons } from '../../../portfolio/risk-profile/profileIcons';
 
 @Component({
   selector: 'app-portfolio-list',
