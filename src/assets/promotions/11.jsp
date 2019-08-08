@@ -37,9 +37,9 @@
         <tr>
             <td>
                 <strong><u>Critical Illness Series</u></strong>
-                <p>MyCoreCI Plan</p> 
-                <p>MyMultiPay CI III</p>
-                <p>My Early CI</p>
+                <p>MyCoreCI Plan</p>
+                <p>MyMultiPay Critical Illness Plan III</p>
+                <p>MyEarly Critical Illness Plan</p>
             </td>
             <td class="text--center">
                 <p>S$5,001 & above</p>
