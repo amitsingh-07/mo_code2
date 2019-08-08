@@ -27,7 +27,7 @@
             <tr>
                 <td class="text--center">
                     <strong>LifeReady Plus</strong>
-                    <p><u>with</u> the attachement of Early Critical Care Rider(II)</p>
+                    <p><u>with</u> the attachment of Early Critical Care Rider(II)</p>
                     </td>
                 <td class="text--center">
                     10/15/20/25 years or To age 99
