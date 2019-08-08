@@ -50,7 +50,8 @@
     "PROCEED":"Proceed",
     "SAVE_CONTINUE": "Save and Continue",
     "SEND": "Send",
-    "BACK_TO_HOME": "Back To Home"
+    "BACK_TO_HOME": "Back To Home",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",
@@ -199,6 +200,13 @@
         "ERROR": {
           "INVALID": "*Email Address do not match",
           "REQUIRED": "*Please enter your confirm e-mail address"
+        }
+      },
+      "MOBILE_NUMBER": {
+        "LABEL": "Mobile Number",
+        "ERROR": {
+          "INVALID": "*Invalid Mobile Number",
+          "REQUIRED": "*Please enter your mobile number"
         }
       },
       "CAPTCHA": {

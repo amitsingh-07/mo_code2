@@ -12,7 +12,11 @@
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
         "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-        "FIND_OUT_MORE": "Find Out More"
+        "FIND_OUT_MORE": "Find Out More",
+        "SRS_PROMO": {
+            "TITLE": "Joint Account and SRS is now available!",
+            "SUB_CONTENT": "Email to <br/><a href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a><br/>to find out more!"
+        }
     },
     "INSURANCE": {
         "LABEL": "Insure",

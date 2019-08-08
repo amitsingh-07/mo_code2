@@ -247,6 +247,18 @@ app-dashboard{
                         }
                     }
                 }
+                .find-plan{
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    letter-spacing: -0.11px;
+                    text-align: center;
+                    color: $teal-color;
+                    margin-top: 12px;
+                    a{
+                        text-decoration: underline;
+                        color: $teal-color;
+                    }
+                }
             }
         }
         .circle{

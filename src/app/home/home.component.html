@@ -4,8 +4,16 @@
       <div class="banner-bg--image"></div>
     </div>
     <div class="banner-container">
-      <div class="banner-image">
-        <img src="assets/images/banner1-thumbnail.svg" />
+      <div *ngIf="!isSrsEnabled" class="banner-image" >
+      </div>
+      <div *ngIf="isSrsEnabled" class="banner-image srsPromo">
+        <div class="banner-image-content">
+          <div class="speaker"></div>
+          <div class="desc">
+            <p class="title">{{'BANNER.SRS_PROMO.TITLE' | translate}}</p>
+            <p [innerHTML]="srsPromoText"></p> 
+            </div>
+        </div>
       </div>
       <div class="banner-content">
         <div class="banner--title">

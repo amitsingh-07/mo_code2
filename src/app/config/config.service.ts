@@ -17,6 +17,7 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
+  srsEnabled: boolean;
   resetPasswordUrl: string;
   verifyEmailUrl: string;
   hospitalPlanData: HospitalPlan[];

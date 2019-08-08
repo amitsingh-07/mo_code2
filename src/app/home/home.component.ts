@@ -57,6 +57,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
+  isSrsEnabled = false;
+  srsPromoText = '';
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
@@ -81,6 +83,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
       this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
+      this.srsPromoText = this.translate.instant('BANNER.SRS_PROMO.SUB_CONTENT');
       this.setPageTitle(this.pageTitle);
       // Navbar Service
       this.navbarService.setNavbarVisibility(true);
@@ -103,6 +106,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = config.willWritingEnabled;
       this.isInvestmentEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
+      this.isSrsEnabled = config.srsEnabled;
     });
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
@@ -304,8 +308,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   startGuidedJourney() {
+    if (!this.authService.isSignedUser()) {
+      this.guidemeService.clearServiceData();
+    }
     this.stateStoreService.clearAllStates();
-    this.guidemeService.clearServiceData();
     this.router.navigate([APP_ROUTES.GUIDE_ME]);
   }
 
