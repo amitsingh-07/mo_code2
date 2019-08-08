@@ -35,6 +35,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -404,6 +405,11 @@ export class DashboardComponent implements OnInit {
   */
   showPopUp() {
     this.topupAndWithDrawService.showPopUp();
+  }
+
+  // Show SRS Joint Account Popup
+  openSRSJointAccPopup() {
+    this.modal.open(CarouselModalComponent, { centered: true });
   }
 
 }

@@ -14,6 +14,12 @@
                 <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
               </span>
             </div>
+            <div class="announcement-div" (click)="openSRSJointAccPopup()">
+              <div class="announcement-img">
+                <img src="assets/images/srs-joint-account/speaker.svg" >
+              </div>
+              <div class="announcement-txt">Click here to find out more on our new SRS & Joint Account updates!</div>
+            </div>
           </div>
           <div class="widgets">
             <div class="widget insurance" *ngIf="showInsuranceSection">
