@@ -203,5 +203,29 @@
         "date_expiry": "1559577599000",
         "tag": ["Insurance", "Protection"],
         "external": false
+    },
+    {
+        "promoId": 17,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $800 CapitalVouchers when you start today!",
+        "thumbnail": "/assets/promotions/images/17/thumbnail.jpg",
+        "desc": "Receive up to $800 CapitaVoucher with purchase of NTUC SAIL Plan",
+        "date_created": "1565193600000",
+        "date_expiry": "1567007999000",
+        "tag": ["Insurance", "Retirement"],
+        "external": false
+    },
+    {
+        "promoId": 18,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Enjoy up to 20% Premium Discount for Manulife LifeReady Plus",
+        "thumbnail": "/assets/promotions/images/18/thumbnail.jpg",
+        "desc": "Enjoy first year premium discount with purchase of Manulife LifeReady Plus",
+        "date_created": "1565193600000",
+        "date_expiry": "1569254399000",
+        "tag": ["Insurance"],
+        "external": false
     }
 ]

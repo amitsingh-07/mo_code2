@@ -38,8 +38,8 @@
             <td>
                 <strong><u>Critical Illness Series</u></strong>
                 <p>MyCoreCI Plan</p> 
-                <p>MyMultiPay Critical Illness Plan III</p>
-                <p>MyEarly Critical Illness Plan</p>
+                <p>MyMultiPay CI III</p>
+                <p>My Early CI</p>
             </td>
             <td class="text--center">
                 <p>S$5,001 & above</p>
@@ -76,6 +76,17 @@
                 0.3%
             </td>
         </tr>
+        <tr>
+            <td>
+                <strong>MyLifeSavings Plan</strong>
+            </td> 
+            <td class="text--center">
+                S$10,000 and above
+            </td>
+            <td class="text--center">
+                3.0%
+            </td> 
+        </tr> 
         </table>
         <small>
             * (Cashback value to be rounded up to S$10)<br/>
