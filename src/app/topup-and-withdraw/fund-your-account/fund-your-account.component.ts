@@ -72,14 +72,7 @@ export class FundYourAccountComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
-    this.monthlyAmount = {
-      month: this.currencyPipe.transform(
-        this.fundDetails.monthlyInvestment,
-        'USD',
-        'symbol-narrow',
-        '1.0-2'
-      )};
-    this.timelineMessage = this.timeLine(this.fundDetails, this.monthlyAmount);
+    this.timelineMessage = this.constructProcessTime(this.fundDetails);
     this.getTransferDetails();
     if (this.fundDetails.portfolio.riskProfile) {
       this.riskProfileImg =
@@ -96,9 +89,9 @@ export class FundYourAccountComponent implements OnInit {
       this.bankDetailsList = data.objectList.bankList;
       console.log(this.bankDetailsList);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   showBankTransctionDetails() {
@@ -150,9 +143,9 @@ export class FundYourAccountComponent implements OnInit {
     this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
       this.setBankPayNowDetails(data.objectList[0]);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectFundingMethod(mode) {
@@ -181,7 +174,7 @@ export class FundYourAccountComponent implements OnInit {
       (this.fundDetails.fundingType ===
         TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.ONETIME ||
         this.fundDetails.fundingType ===
-          TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY) &&
+        TOPUPANDWITHDRAW_CONFIG.FUND_YOUR_ACCOUNT.MONTHLY) &&
       !this.fundDetails.isAmountExceedBalance
     );
   }
@@ -215,7 +208,7 @@ export class FundYourAccountComponent implements OnInit {
   }
   // ONETIME INVESTMENT
   topUpOneTime() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -228,10 +221,10 @@ export class FundYourAccountComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-                response.objectList.length &&
-                response.objectList[response.objectList.length - 1].serverStatus &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors.length
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
               this.showCustomErrorModal(
                 'Error!',
@@ -265,7 +258,7 @@ export class FundYourAccountComponent implements OnInit {
   }
   // MONTHLY INVESTMENT
   topUpMonthly() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -314,15 +307,21 @@ export class FundYourAccountComponent implements OnInit {
     }
   }
   // tslint:disable-next-line
-  timeLine(fundDetails,monthlyAmount){
-    let  timelineMessage ;
-    if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
+  constructProcessTime(fundDetails) {
+    let timelineMessage;
+    if (fundDetails.monthlyInvestment) {
+      const monthlyAmount = {
+        month: this.currencyPipe.transform(
+          this.fundDetails.monthlyInvestment,
+          'USD',
+          'symbol-narrow',
+          '1.0-2'
+        )
+      };
       timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME_INFO', monthlyAmount);
-     } else if (!fundDetails.monthlyInvestment && fundDetails.oneTimeInvestment) {
+    } else {
       timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
-      } else {
-      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
-     }
+    }
     return timelineMessage;
   }
 }
