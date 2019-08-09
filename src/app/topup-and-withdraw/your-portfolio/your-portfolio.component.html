@@ -85,10 +85,16 @@
             </div>
           </div>
           <div class="fund-account" *ngIf="portfolioValues.portfolioStatus === 'RECOMMENDED' && !portfolioValues.expiryDate">
-            <div class="fund-account-information" id="errorModeButton">
+            <div *ngIf="!getMonthlyInvestValidity(0)" class="fund-account-information" id="errorModeButton">
               {{'YOUR_INVESTMENT.ONE_TIME_EXPIRED' | translate}}
               <div class="fund-account-btn mt20" (click)="goToInvestAgain(portfolioValues)">
                 {{'YOUR_INVESTMENT.INVEST_AGAIN' | translate}}
+              </div>
+            </div>
+            <div *ngIf="getMonthlyInvestValidity(0)" class="fund-account-information" id="errorModeButton">
+              {{'YOUR_INVESTMENT.MONTHLY_INVEST_ALERT' | translate:({'monthlyInvestAmount': monthlyInvestment})}}
+              <div class="fund-account-btn mt20" (click)="goToFundYourAccount()">
+                {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT' | translate}}
               </div>
             </div>
           </div>
