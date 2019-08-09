@@ -20,7 +20,7 @@ export let apiConstants = {
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
-        getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
+        getRiskAssessmentQuestions: 'investment-microservice/api/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
