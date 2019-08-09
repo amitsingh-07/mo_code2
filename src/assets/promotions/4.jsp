@@ -7,7 +7,7 @@
                     Eligible Plan
                     </div>
                 <div class="info--details">
-                    Aviva MyProtector - Legacy
+                    MyProtector - Legacy
                     </div>
                 </div>
             <div class="promo-info__element">

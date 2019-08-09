@@ -1,7 +1,7 @@
 <p class="tnc--title">Terms & Conditions:</p>
 <ol class="tnc--ordered">
     <li>
-        The Promotion period is from <strong>1 April 2019 to 30 June 2019</strong> (both dates inclusive) (the "<strong>Promotion Period</strong>"). Applications must be signed between the promotion period. The policy must be issued by Aviva by 30 September 2019 (date inclusive).
+        The Promotion period is from <strong>1 April 2019 to 30 September 2019</strong> (both dates inclusive) (the "<strong>Promotion Period</strong>"). Applications must be signed between the promotion period. The policy must be issued by Aviva by 31 December 2019 (date inclusive).
     </li>
     <li>
         Cashback will be given via one of the following modes:

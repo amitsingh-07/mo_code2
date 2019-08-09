@@ -66,6 +66,10 @@ export class NavbarService {
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
 
+  // logout
+  private logoutSubject = new Subject();
+  logoutObservable$ = this.logoutSubject.asObservable();
+
   constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
@@ -212,5 +216,9 @@ export class NavbarService {
   unsubscribeMenuItemClick() {
     this.menuItem.next(null);
     this.$menuItemClick.next('');
+  }
+
+  logoutUser() {
+    this.logoutSubject.next('LOGGED_OUT');
   }
 }
