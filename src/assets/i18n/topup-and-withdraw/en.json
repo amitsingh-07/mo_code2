@@ -21,6 +21,7 @@
     "VIEW_TRANSFER_INST": "View Transfer Instructions",
     "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
     "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_TIME_INFO":"You have a monthly investment of {{month}}.Fund 1 or 2 days before 15th of the month.",
     "RECIPENTS_NAME": "Recipient's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
