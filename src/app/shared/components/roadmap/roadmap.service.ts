@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
-} from '../../../investment-account/investment-account-routes.constants';
+    ACCOUNT_CREATION_ROUTE_PATHS, ACCOUNT_CREATION_ROUTES
+} from '../../../account-creation/account-creation-routes.constants';
 import { ERoadmapStatus, IRoadmap, IRoadmapItem } from './roadmap.interface';
 
 const SESSION_STORAGE_KEY = 'app_roadmap';

@@ -18,7 +18,7 @@ export class PortfolioExistComponent implements OnInit {
   pageTitle: string;
   constructor(
     private router: Router,
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,

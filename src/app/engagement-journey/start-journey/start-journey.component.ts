@@ -39,7 +39,7 @@ export class StartJourneyComponent implements OnInit {
     private loaderService: LoaderService,
     private appService: AppService,
     public headerService: HeaderService,
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
@@ -99,7 +99,7 @@ export class StartJourneyComponent implements OnInit {
     });
     promoCode = promoCode.toUpperCase();
     this.isDisabled = true;
-    this.EngagementJourneyService.verifyPromoCode(promoCode).subscribe((data) => {
+    this.engagementJourneyService.verifyPromoCode(promoCode).subscribe((data) => {
       this.loaderService.hideLoader();
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {

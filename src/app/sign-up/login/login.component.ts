@@ -15,9 +15,9 @@ import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../engagement-journey/engagement-journey-routes.constants';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+    ACCOUNT_CREATION_ROUTE_PATHS
+} from '../../account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private investmentAccountService: InvestmentAccountService,
+    private accountCreationService: AccountCreationService,
     private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -265,14 +265,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
 
         // Investment status
         const investmentStatus = this.signUpService.getInvestmentStatus();
-        const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
+        const investmentRoutes = [ACCOUNT_CREATION_ROUTE_PATHS.ROOT, ACCOUNT_CREATION_ROUTE_PATHS.START];
         const redirect_url = this.signUpService.getRedirectUrl();
         const journeyType = this.appService.getJourneyType();
         if (redirect_url) {
@@ -281,7 +281,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else if (investmentRoutes.indexOf(redirect_url) >= 0 &&
             investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            this.investmentAccountService.setUserPortfolioExistStatus(true);
+            this.accountCreationService.setUserPortfolioExistStatus(true);
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else {
             this.router.navigate([redirect_url]);
@@ -291,14 +291,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
           journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
           journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+          this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.START]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 

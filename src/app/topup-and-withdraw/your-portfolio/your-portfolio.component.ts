@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -45,8 +45,8 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    public EngagementJourneyService: EngagementJourneyService,
-    private investmentAccountService: InvestmentAccountService,
+    public engagementJourneyService: EngagementJourneyService,
+    private accountCreationService: AccountCreationService,
     private signUpService: SignUpService
   ) {
     this.translate.use('en');
@@ -91,7 +91,7 @@ export class YourPortfolioComponent implements OnInit {
         this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
       },
         (err) => {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         });
   }
 
@@ -136,7 +136,7 @@ export class YourPortfolioComponent implements OnInit {
     this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
-    return this.investmentAccountService.formatReturns(value);
+    return this.accountCreationService.formatReturns(value);
   }
 
   /*
@@ -147,7 +147,7 @@ export class YourPortfolioComponent implements OnInit {
       this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
   // This Method For Onetime expiry.

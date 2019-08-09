@@ -22,7 +22,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   event2 = true;
 
   constructor(
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     private router: Router,
     public modal: NgbModal
   ) {}
@@ -32,7 +32,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
-      this.EngagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
+      this.engagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
       allocation.groupedAllocationDetails = groupedAllocation;
     });
   }
@@ -41,7 +41,7 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
-      this.EngagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
+      this.engagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
       const classObj = {
         name: prop,
         value: targetObj[prop]
@@ -52,7 +52,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   }
 
   showFundDetails() {
-    this.EngagementJourneyService.setFundDetails(this.funds);
+    this.engagementJourneyService.setFundDetails(this.funds);
     const ref = this.modal.open(FundDetailsComponent, {
       centered: true,
       windowClass: 'custom-full-height'

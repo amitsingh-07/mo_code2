@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -34,8 +34,8 @@ export class TransactionComponent implements OnInit {
     private translate: TranslateService,
     private topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
-    private EngagementJourneyService: EngagementJourneyService,
-    private investmentAccountService: InvestmentAccountService,
+    private engagementJourneyService: EngagementJourneyService,
+    private accountCreationService: AccountCreationService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -89,7 +89,7 @@ export class TransactionComponent implements OnInit {
       this.loaderService.hideLoader();
       this.transactionHistory = response.objectList;
       this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
-      this.EngagementJourneyService.sortByProperty(
+      this.engagementJourneyService.sortByProperty(
         this.transactionHistory,
         'createdDate',
         'desc'
@@ -101,7 +101,7 @@ export class TransactionComponent implements OnInit {
     },
     (err) => {
       this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 
@@ -132,7 +132,7 @@ export class TransactionComponent implements OnInit {
     },
     (err) => {
       this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 

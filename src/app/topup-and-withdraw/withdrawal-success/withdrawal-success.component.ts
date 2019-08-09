@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -36,7 +36,7 @@ export class WithdrawalSuccessComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
-    private investmentAccountService: InvestmentAccountService
+    private accountCreationService: AccountCreationService
   ) {
     this.translate.use('en');
   }
@@ -64,14 +64,14 @@ export class WithdrawalSuccessComponent implements OnInit {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 

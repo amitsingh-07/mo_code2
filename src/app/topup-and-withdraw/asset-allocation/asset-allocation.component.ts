@@ -9,8 +9,8 @@ import { AppService } from '../../app.service';
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { RiskProfile } from '../../engagement-journey/recommendation/riskprofile';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
+    ACCOUNT_CREATION_ROUTE_PATHS
+} from '../../account-creation/account-creation-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -49,7 +49,7 @@ export class AssetAllocationComponent implements OnInit {
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
-    private EngagementJourneyService: EngagementJourneyService
+    private engagementJourneyService: EngagementJourneyService
   ) {
     this.translate.use('en');
     const self = this;
@@ -71,7 +71,7 @@ export class AssetAllocationComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const formData = this.EngagementJourneyService.getRiskProfile();
+    const formData = this.engagementJourneyService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: formData.riskProfileId,
@@ -110,12 +110,12 @@ export class AssetAllocationComponent implements OnInit {
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe(() => {
       // Login
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.ROOT);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     });
     ref.componentInstance.secondaryAction.subscribe(() => {
       // Sign up
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
+      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.START);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }

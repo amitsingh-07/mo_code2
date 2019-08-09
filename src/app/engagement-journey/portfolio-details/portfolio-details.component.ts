@@ -9,9 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+    ACCOUNT_CREATION_ROUTE_PATHS
+} from '../../account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -70,8 +70,8 @@ export class PortfolioDetailsComponent implements OnInit {
     public authService: AuthenticationService,
     public modal: NgbModal,
     private signUpService: SignUpService,
-    public investmentAccountService: InvestmentAccountService,
-    private EngagementJourneyService: EngagementJourneyService,
+    public accountCreationService: AccountCreationService,
+    private engagementJourneyService: EngagementJourneyService,
     private topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService
   ) {
@@ -91,7 +91,7 @@ export class PortfolioDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.EngagementJourneyService.getSelectedRiskProfileId();
+    this.selectedRiskProfile = this.engagementJourneyService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
@@ -132,11 +132,11 @@ export class PortfolioDetailsComponent implements OnInit {
 
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
-    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
+    this.accountCreationService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
@@ -158,7 +158,7 @@ export class PortfolioDetailsComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.EngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+    this.engagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
       this.userInputSubtext = {
         onetime: this.currencyPipe.transform(
@@ -177,12 +177,12 @@ export class PortfolioDetailsComponent implements OnInit {
       };
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
   constructgetAllocationParams() {
-    const selectedRiskId = this.EngagementJourneyService.getSelectedRiskProfileId();
+    const selectedRiskId = this.engagementJourneyService.getSelectedRiskProfileId();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: selectedRiskId.riskProfileId,
@@ -220,12 +220,12 @@ export class PortfolioDetailsComponent implements OnInit {
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe(() => {
       // Login
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.ROOT);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     });
     ref.componentInstance.secondaryAction.subscribe(() => {
       // Sign up
-      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
+      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.START);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }
@@ -268,7 +268,7 @@ export class PortfolioDetailsComponent implements OnInit {
             const errorResponse = userInfo.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.investmentAccountService.showGenericErrorModal();
+            this.accountCreationService.showGenericErrorModal();
           }
         } else {
           this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -284,12 +284,12 @@ export class PortfolioDetailsComponent implements OnInit {
               this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
             }
           } else {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+            this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.START]);
           }
         }
       },
         (err) => {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         });
     } else {
       this.showLoginOrSignupModal();
@@ -321,7 +321,7 @@ export class PortfolioDetailsComponent implements OnInit {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.investmentAccountService.showGenericErrorModal();
+            this.accountCreationService.showGenericErrorModal();
           }
         } else {
           this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
@@ -329,7 +329,7 @@ export class PortfolioDetailsComponent implements OnInit {
       },
       (err) => {
         this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       }
     );
   }

@@ -43,7 +43,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     public headerService: HeaderService,
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
@@ -61,7 +61,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.selectedRiskProfile = this.EngagementJourneyService.getRiskProfile();
+    this.selectedRiskProfile = this.engagementJourneyService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
     if (this.selectedRiskProfile.alternateRiskProfileId) {
     this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
@@ -71,9 +71,9 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.EngagementJourneyService.getPortfolioRecommendationModalCounter() === 0) {
+    if (this.engagementJourneyService.getPortfolioRecommendationModalCounter() === 0) {
       this.renderer.addClass(document.body, 'modal-open'); // disable scroll to body
-      this.EngagementJourneyService.setPortfolioSplashModalCounter(1);
+      this.engagementJourneyService.setPortfolioSplashModalCounter(1);
       this.time = setTimeout(() => {
         this.animateStaticModal = true;
       }, 3000);
@@ -94,7 +94,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.renderer.removeClass(document.body, 'modal-open'); // enable scroll to body
    }
   goToNext(RiskProfileID) {
-    this.EngagementJourneyService.setSelectedRiskProfileId(RiskProfileID);
+    this.engagementJourneyService.setSelectedRiskProfileId(RiskProfileID);
     this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
   goToHomepage() {

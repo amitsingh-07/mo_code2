@@ -2,8 +2,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { GuideMeService } from '../guide-me/guide-me.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account/investment-account-service';
+import { ACCOUNT_CREATION_ROUTE_PATHS } from '../account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../account-creation/account-creation-service';
 import { MyInfoService } from '../shared/Services/my-info.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,7 +19,7 @@ export class CallBackComponent implements OnInit {
   constructor(
     private router: Router, private route: ActivatedRoute, private modal: NgbModal,
     private myInfoService: MyInfoService,
-    private investmentAccountService: InvestmentAccountService,
+    private accountCreationService: AccountCreationService,
     private guideMeService: GuideMeService
     ) { }
 
@@ -31,12 +31,12 @@ export class CallBackComponent implements OnInit {
         this.myInfoService.setMyInfoValue(this.data.code);
 
         // Investment account
-        if (this.investmentAccountService.getCallBackInvestmentAccount()) {
+        if (this.accountCreationService.getCallBackInvestmentAccount()) {
           this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
-            this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
+            this.accountCreationService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.myInfoService.closeMyInfoPopup(false);
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+            this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.SELECT_NATIONALITY]);
           }, (error) => {
             this.myInfoService.closeMyInfoPopup(true);
             this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);

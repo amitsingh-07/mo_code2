@@ -3,7 +3,7 @@ import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-wi
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ProfileIcons } from '../../../engagement-journey/recommendation/profileIcons';
-import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../../account-creation/account-creation-service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -23,7 +23,7 @@ export class PortfolioListComponent implements OnInit {
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
   constructor(private topupAndWithDrawService: TopupAndWithDrawService,
-              private investmentAccountService: InvestmentAccountService) { }
+              private accountCreationService: AccountCreationService) { }
 
   ngOnInit() {
   }
@@ -33,7 +33,7 @@ export class PortfolioListComponent implements OnInit {
   }
 
   formatReturns(value) {
-    return this.investmentAccountService.formatReturns(value);
+    return this.accountCreationService.formatReturns(value);
   }
 
   detail(portfolio) {

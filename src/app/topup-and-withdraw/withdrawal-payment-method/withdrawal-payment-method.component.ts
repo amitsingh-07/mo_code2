@@ -4,7 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -50,7 +50,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     public navbarService: NavbarService,
     public topupAndWithDrawService: TopupAndWithDrawService,
     private loaderService: LoaderService,
-    private investmentAccountService: InvestmentAccountService,
+    private accountCreationService: AccountCreationService,
     private signUpService: SignUpService
   ) {
     this.translate.use('en');
@@ -74,7 +74,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       this.banks = data.objectList.bankList;
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
@@ -90,7 +90,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
@@ -111,7 +111,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
@@ -210,11 +210,11 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           const errorResponse = response.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       },
         (err) => {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         });
     });
     this.dismissPopup(ref);
@@ -248,11 +248,11 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
           const errorResponse = response.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       },
         (err) => {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         });
     });
     this.dismissPopup(ref);
@@ -284,7 +284,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.investmentAccountService.showGenericErrorModal();
+              this.accountCreationService.showGenericErrorModal();
             }
           } else {
             this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
@@ -293,7 +293,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         (err) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       );
     }

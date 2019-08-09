@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
@@ -31,9 +31,9 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public EngagementJourneyService: EngagementJourneyService,
+    public engagementJourneyService: EngagementJourneyService,
     public readonly translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService) {
+    private accountCreationService: AccountCreationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = 'Notifications';
@@ -66,12 +66,12 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
       this.navbarService.setClearAllNotify(this.allMessages.length > 0 ? true : false);
-      this.EngagementJourneyService.sortByProperty(this.allMessages, 'time', 'desc');
+      this.engagementJourneyService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 
@@ -79,7 +79,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     this.signUpService.updateNotifications(messages, type).subscribe((response) => {
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 
@@ -104,7 +104,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     this.signUpService.deleteNotifications(payload).subscribe((response) => {
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 

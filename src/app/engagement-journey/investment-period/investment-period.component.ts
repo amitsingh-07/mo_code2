@@ -42,7 +42,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     public navbarService: NavbarService,
     public footerService: FooterService,
     private config: NgbDatepickerConfig,
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     private modal: NgbModal,
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
@@ -79,7 +79,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.EngagementJourneyService.getPersonalInfo();
+    this.formValues = this.engagementJourneyService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
       investmentPeriod: ['', Validators.required],
       sliderValueSetter: ['']
@@ -128,15 +128,15 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
         form.get(key).markAsDirty();
       });
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.EngagementJourneyService.currentFormError(form)[
+      ref.componentInstance.errorTitle = this.engagementJourneyService.currentFormError(form)[
         'errorTitle'
       ];
-      ref.componentInstance.errorMessage = this.EngagementJourneyService.currentFormError(form)[
+      ref.componentInstance.errorMessage = this.engagementJourneyService.currentFormError(form)[
         'errorMessage'
       ];
       return false;
     }
-    this.EngagementJourneyService.setPersonalInfo(form.value);
+    this.engagementJourneyService.setPersonalInfo(form.value);
     return true;
   }
 

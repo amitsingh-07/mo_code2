@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -35,7 +35,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
   iconImage;
 
   constructor(
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     private route: ActivatedRoute,
     private router: Router,
     public navbarService: NavbarService,
@@ -43,7 +43,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     public log: LoggerService,
-    private investmentAccountService: InvestmentAccountService
+    private accountCreationService: AccountCreationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,7 +58,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.riskFormValues = this.EngagementJourneyService.getPortfolioFormData();
+    this.riskFormValues = this.engagementJourneyService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
@@ -90,12 +90,12 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
   }
 
   getQuestions() {
-    this.EngagementJourneyService.getQuestionsList().subscribe((data) => {
+    this.engagementJourneyService.getQuestionsList().subscribe((data) => {
       this.questionsList = data.objectList;
       this.setCurrentQuestion();
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 
@@ -105,7 +105,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
     this.isSpecialCase = this.currentQuestion.listOrder === ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
-    const selectedOption = this.EngagementJourneyService.getSelectedOptionByIndex(
+    const selectedOption = this.engagementJourneyService.getSelectedOptionByIndex(
       this.questionIndex
     );
     if (selectedOption) {
@@ -123,7 +123,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.EngagementJourneyService.setRiskAssessment(
+      this.engagementJourneyService.setRiskAssessment(
         form.controls.questSelOption.value,
         this.questionIndex
       );
@@ -135,13 +135,13 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
       } else {
         // RISK PROFILE
         // CALL API
-        this.EngagementJourneyService.saveRiskAssessment().subscribe((data) => {
-          this.EngagementJourneyService.setRiskProfile(data.objectList);
-          this.EngagementJourneyService.setPortfolioSplashModalCounter(0);
+        this.engagementJourneyService.saveRiskAssessment().subscribe((data) => {
+          this.engagementJourneyService.setRiskProfile(data.objectList);
+          this.engagementJourneyService.setPortfolioSplashModalCounter(0);
           this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_PROFILE]);
         },
         (err) => {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         });
       }
     }

@@ -38,12 +38,12 @@ export class FundDetailsComponent implements OnInit {
     private modal: NgbModal,
     public activeModal: NgbActiveModal,
     private _location: Location,
-    public EngagementJourneyService: EngagementJourneyService
+    public engagementJourneyService: EngagementJourneyService
   ) {
     this.translate.use('en');
   }
   ngOnInit() {
-    this.fundDetails = this.EngagementJourneyService.getFundDetails();
+    this.fundDetails = this.engagementJourneyService.getFundDetails();
   }
 
   showHide(el) {

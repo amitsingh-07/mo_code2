@@ -58,8 +58,8 @@ const routes: Routes = [
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'invest/account',
-        loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
+      { path: 'investment/account',
+        loadChildren: './account-creation/account-creation.module#AccountCreationModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

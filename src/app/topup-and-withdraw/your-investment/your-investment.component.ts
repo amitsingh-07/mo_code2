@@ -9,7 +9,7 @@ import {
     ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../engagement-journey/engagement-journey-routes.constants';
 import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -72,7 +72,7 @@ export class YourInvestmentComponent implements OnInit {
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
-    private investmentAccountService: InvestmentAccountService,
+    private accountCreationService: AccountCreationService,
     private signUpApiService: SignUpApiService
   ) {
     this.translate.use('en');
@@ -150,11 +150,11 @@ export class YourInvestmentComponent implements OnInit {
         const errorResponse = data.responseMessage.responseDescription;
         this.showCustomErrorModal('Error!', errorResponse);
       } else {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       }
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 
@@ -182,7 +182,7 @@ export class YourInvestmentComponent implements OnInit {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
       },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
   }
 
@@ -250,7 +250,7 @@ export class YourInvestmentComponent implements OnInit {
             const errorResponse = data.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.investmentAccountService.showGenericErrorModal();
+            this.accountCreationService.showGenericErrorModal();
           }
         } else {
           this.authService.saveEnquiryId(null);
@@ -264,7 +264,7 @@ export class YourInvestmentComponent implements OnInit {
         }
       },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
     });
     ref.componentInstance.noClickAction.subscribe(() => { });
@@ -274,7 +274,7 @@ export class YourInvestmentComponent implements OnInit {
     this.topupAndWithDrawService.showMenu(option);
   }
   formatReturns(value) {
-    return this.investmentAccountService.formatReturns(value);
+    return this.accountCreationService.formatReturns(value);
   }
 
   showCustomErrorModal(title, desc) {
@@ -291,7 +291,7 @@ export class YourInvestmentComponent implements OnInit {
     this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
   },
   (err) => {
-    this.investmentAccountService.showGenericErrorModal();
+    this.accountCreationService.showGenericErrorModal();
   });
  }
 
@@ -352,7 +352,7 @@ showPopUp() {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.investmentAccountService.showGenericErrorModal();
+          this.accountCreationService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -362,7 +362,7 @@ showPopUp() {
       }
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
 

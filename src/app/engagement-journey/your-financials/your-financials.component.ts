@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -36,13 +36,13 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   constructor(
     private router: Router,
     private modal: NgbModal,
-    private EngagementJourneyService: EngagementJourneyService,
+    private engagementJourneyService: EngagementJourneyService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService,
+    private accountCreationService: AccountCreationService,
     private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
@@ -72,7 +72,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.myFinancialsFormValues = this.EngagementJourneyService.getMyFinancials();
+    this.myFinancialsFormValues = this.engagementJourneyService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
     this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox
       ? this.myFinancialsFormValues.oneTimeInvestmentChkBox
@@ -160,7 +160,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.EngagementJourneyService.doFinancialValidations(form);
+    const error = this.engagementJourneyService.doFinancialValidations(form);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -188,16 +188,16 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     }
   }
   saveAndProceed(form: any) {
-    this.EngagementJourneyService.setMyFinancials(form.value);
+    this.engagementJourneyService.setMyFinancials(form.value);
     // CALL API
-    this.EngagementJourneyService.savePersonalInfo().subscribe((data) => {
+    this.engagementJourneyService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
         this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     },
     (err) => {
-      this.investmentAccountService.showGenericErrorModal();
+      this.accountCreationService.showGenericErrorModal();
     });
   }
   goBack() {

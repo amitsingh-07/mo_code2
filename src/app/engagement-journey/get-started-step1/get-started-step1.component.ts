@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AccountCreationService } from '../../account-creation/account-creation-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -34,7 +34,7 @@ export class GetStartedStep1Component implements OnInit {
     public headerService: HeaderService,
     public footerService: FooterService,
     public signUpService: SignUpService,
-    private investmentAccountService: InvestmentAccountService
+    private accountCreationService: AccountCreationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -53,7 +53,7 @@ export class GetStartedStep1Component implements OnInit {
       this.authService.authenticate().subscribe((token) => {
       },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.accountCreationService.showGenericErrorModal();
       });
     }
   }
