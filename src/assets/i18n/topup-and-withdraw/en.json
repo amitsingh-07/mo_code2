@@ -120,6 +120,7 @@
     "DELETE": "Delete Portfolio",
     "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
     "MONTHLY_INVEST_ALERT": "You have a monthly investment of {{monthlyInvestAmount}}. Fund 1 or 2 days before 15th of the month.",
+    "MONTHLY_INVEST_ALERT_PORTFOLIO": "Your portfolio has not been invested.",
     "ONE_TIME_EXPIRED": "As you did not transfer money to your account within the specified period, this portfolio has not been invested.",
     "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days",
     "REDEEMING": "Redemption is in progress and will be completed in 5 to 6 business days",
