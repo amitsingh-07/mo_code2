@@ -309,7 +309,7 @@ export class FundYourAccountComponent implements OnInit {
   // tslint:disable-next-line
   constructProcessTime(fundDetails) {
     let timelineMessage;
-    if (fundDetails.monthlyInvestment) {
+    if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
       const monthlyAmount = {
         month: this.currencyPipe.transform(
           this.fundDetails.monthlyInvestment,
