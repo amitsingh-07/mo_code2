@@ -119,12 +119,15 @@ export class SingPassComponent implements OnInit {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
         this.myInfoService.closeMyInfoPopup(false);
-        if (window.location.href === window.location.origin + MY_INFO_START_PATH) {
+        const currentUrl = window.location.toString();
+        const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
+        const redirectObjective = rootPoint + MY_INFO_START_PATH;
+        if (window.location.href === redirectObjective) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN], { skipLocationChange: true }).then(() => {
-            window.location.href = window.location.origin + MY_INFO_START_PATH;
+            window.location.href = redirectObjective;
           });
         } else {
-          window.location.href = window.location.origin + MY_INFO_START_PATH;
+          window.location.href = redirectObjective;
         }
       } else {
         this.myInfoService.closeMyInfoPopup(true);

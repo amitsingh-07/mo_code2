@@ -43,6 +43,7 @@ export let apiConstants = {
         editMobileNumber: 'account/account-microservice/api/update-mobileno',
         sendWelcomeMail: 'account/account-microservice/api/sendWelcomeMail',
         registerBundleEnquiry: 'account/account-microservice/api/registerBundleEnquiry',
+        enquiryByEmail: 'account/account-microservice/api/enquiryByEmail',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -60,8 +61,8 @@ export let apiConstants = {
         },
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
-            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
-            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
+            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'RiskAssessment',
+            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'RiskAssessment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {

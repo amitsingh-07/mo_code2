@@ -86,8 +86,8 @@ app-add-bank-modal {
     padding: .90rem;
     background: $white-color;
     color: $app-backgrnd-color;
-     word-break: break-word;
- 
+    word-break: break-word;
+    min-height: 52px;
     &.view-mode {
       background-color: rgba(0, 167, 167, 0.15) !important;
     }

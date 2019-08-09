@@ -127,20 +127,22 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (this.formValues.email) {
         email_in = this.formValues.email;
       }
-      this.createAccountForm = this.formBuilder.group({
-        countryCode: [this.formValues.countryCode, [Validators.required]],
-        mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-        firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
-        lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
-        email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-        confirmEmail: [this.formValues.email],
-        password: ['', [Validators.required, ValidatePassword]],
-        confirmPassword: [''],
-        termsOfConditions: [this.formValues.termsOfConditions],
-        marketingAcceptance: [this.formValues.marketingAcceptance],
-        captcha: ['', [Validators.required]]
-      }, { validator: this.validateMatchPasswordEmail() });
-      return false;
+      if (this.distribution.login) {
+        this.createAccountForm = this.formBuilder.group({
+          countryCode: [this.formValues.countryCode, [Validators.required]],
+          mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+          firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+          lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
+          email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          confirmEmail: [this.formValues.email],
+          password: ['', [Validators.required, ValidatePassword]],
+          confirmPassword: [''],
+          termsOfConditions: [this.formValues.termsOfConditions],
+          marketingAcceptance: [this.formValues.marketingAcceptance],
+          captcha: ['', [Validators.required]]
+        }, { validator: this.validateMatchPasswordEmail() });
+        return false;
+      }
     }
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -438,33 +438,25 @@ export class EmploymentDetailsComponent implements OnInit {
     return this.investmentAccountService.isDisabled(fieldName);
   }
 
-
   setControlValue(value, controlName, formName) {
-      this.investmentAccountService.setControlValue(value, controlName, formName);
-      }
-
-
-
-  onKeyPressEvent(event: any, dependentName: any) {
-    return (event.which !== 13);
+    this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
+  onKeyPressEvent(event: any, content: any) {
+    this.investmentAccountService.onKeyPressEvent(event , content);
+  }
 
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-      const arr = id;
-      const dependentName = event.target.innerText;
-      if (dependentName.length >= 100) {
-        const dependentNameList = dependentName.substring(0, 100);
-        this.employementDetailsForm.controls.companyName.setValue(dependentNameList);
-       const el = document.querySelector('#' + id);
-       this.investmentAccountService.setCaratTo(el, 100, dependentNameList);
+      const content = event.target.innerText;
+      if (content.length >= 100) {
+        const contentList = content.substring(0, 100);
+        this.employementDetailsForm.controls.companyName.setValue(contentList);
+        const el = document.querySelector('#' + id);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }
-
-
-  
 }

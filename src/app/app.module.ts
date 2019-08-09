@@ -80,6 +80,7 @@ import {
 
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {
   LoginCreateAccountModelComponent
@@ -94,6 +95,7 @@ import {
 import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
@@ -156,7 +158,8 @@ export function tokenGetterFn() {
     UnsupportedDeviceModalComponent,
     SummaryModalComponent,
     DiyModalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EmailEnquirySuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -197,7 +200,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util, FileUtil,
     InvestmentEnableGuard,

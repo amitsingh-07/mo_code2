@@ -107,7 +107,7 @@ app-additional-declaration-step1 {
 
     .pep_text {
       font-family: $muli-regular;
-      font-size: 16px;
+      font-size: 18px;
       letter-spacing: -0.3px;
       color: $white-color;
       margin-bottom: 12px;
@@ -355,8 +355,8 @@ app-additional-declaration-step1 {
     padding: .90rem;
     background: $white-color;
     color: $app-backgrnd-color;
-     word-break: break-word;
- 
+    word-break: break-word;
+    min-height: 52px;
     &.view-mode {
       background-color: rgba(0, 167, 167, 0.15) !important;
     }

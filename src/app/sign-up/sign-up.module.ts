@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
-import { SecurePipe } from '../shared/Pipes/secure.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { ComprehensiveModule } from './../comprehensive/comprehensive.module';
 import { AccountCreatedComponent } from './account-created/account-created.component';
@@ -81,7 +80,6 @@ export function createTranslateLoader(http: HttpClient) {
     DashboardComponent,
     PreLoginComponent,
     InputFocusDirective,
-    SecurePipe,
     EditProfileComponent,
     EditPasswordComponent,
     EditResidentialAddressComponent,

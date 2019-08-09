@@ -36,10 +36,10 @@ import { IEnquiryUpdate } from '../signup-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
+import { HelperService } from './../../shared/http/helper.service';
+import { IError } from './../../shared/http/interfaces/error.interface';
 import { WillWritingApiService } from './../../will-writing/will-writing.api.service';
 import { LoginFormError } from './login-form-error';
-import { IError } from './../../shared/http/interfaces/error.interface';
-import { HelperService } from './../../shared/http/helper.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private pageTitle: string;
   private description: string;
   private duplicateError: string;
-
 
   loginForm: FormGroup;
   formValues: any;
