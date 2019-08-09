@@ -60,8 +60,8 @@ export let apiConstants = {
         },
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
-            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
-            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'api/RiskAssessment',
+            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + 'RiskAssessment',
+            updateRiskAssessment: INVESTMENT_API_BASE_URL + 'RiskAssessment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {
