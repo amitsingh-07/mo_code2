@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -27,6 +28,7 @@ export class PortfolioListComponent implements OnInit {
 
   constructor(private topupAndWithDrawService: TopupAndWithDrawService,
               public signUpService: SignUpService,
+              private currencyPipe: CurrencyPipe,
               private investmentAccountService: InvestmentAccountService) { }
 
   ngOnInit() {
@@ -39,7 +41,12 @@ export class PortfolioListComponent implements OnInit {
        && this.userProfileInfo.investementDetails.portfolios[index]
        && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
        && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
-         this.monthlyInvestment = this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment;
+         this.monthlyInvestment = this.currencyPipe.transform(
+          this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
+          'USD',
+          'symbol-narrow',
+          '1.0-2'
+        );
          return true;
        }
     return false;

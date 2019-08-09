@@ -76,7 +76,7 @@
             {{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}
           </div>
           <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED' && !portfolio.expiryDate && getMonthlyInvestValidity(i)" id="investment_expired">
-            {{'YOUR_INVESTMENT.MONTHLY_INVEST_ALERT' | translate:({'monthlyInvestAmount': '$'+monthlyInvestment})}}
+            {{'YOUR_INVESTMENT.MONTHLY_INVEST_ALERT' | translate:({'monthlyInvestAmount': monthlyInvestment})}}
           </div>
           <div *ngIf="portfolio.portfolioStatus === 'RECOMMENDED' && !portfolio.expiryDate && !getMonthlyInvestValidity(i)" id="investment_expired">
             {{'YOUR_INVESTMENT.ONE_TIME_EXPIRED' | translate}}
