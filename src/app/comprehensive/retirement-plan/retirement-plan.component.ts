@@ -321,7 +321,7 @@ export class RetirementPlanComponent
           ];
         let yearValidator = !this.showLumpSumBenefit
           ? []
-          : [Validators.required, this.payOffYearValid];
+          : [this.payOffYearValid];
         otherPropertyControl.setValidators(yearValidator);
         otherPropertyControl.updateValueAndValidity();
       });
@@ -332,7 +332,7 @@ export class RetirementPlanComponent
           ];
         let ageValidator = !this.showRetirementIncome
           ? []
-          : [Validators.required, this.ageValidation];
+          : [this.ageValidation];
         otherPropertyControl.setValidators(ageValidator);
         otherPropertyControl.updateValueAndValidity();
       });
@@ -408,6 +408,7 @@ export class RetirementPlanComponent
       ref.result.then(data => {
         if (data === 'yes') {
           const retirementIncomeDetails = this.retirementPlanForm.get('retirementIncomeSet') as FormArray;
+
           const lumpSumBenefitSet = this.retirementPlanForm.get('lumpSumBenefitSet') as FormArray;
           for (let i = retirementIncomeDetails.length; i > 0; i--) {
             this.deleteRetirementDetails(i - 1, 'retirementIncomeSet');
@@ -440,9 +441,10 @@ export class RetirementPlanComponent
   }
 
   ageValidation(form) {
-    if (parseInt(form.value) < 100 && parseInt(form.value) > 0) {
+    if (parseInt(form.value) < 100 && parseInt(form.value) >= 0) {
       return null;
     }
+
     return { pattern: true };
   }
   payOffYearValid(payOffYearVal) {
