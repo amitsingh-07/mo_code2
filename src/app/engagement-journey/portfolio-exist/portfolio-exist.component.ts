@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { MANAGEMENT_ROUTE_PATHS } from '../../management/management-routes.constants';
 import { EngagementJourneyService } from '../engagement-journey.service';
 
 @Component({
@@ -41,6 +41,6 @@ export class PortfolioExistComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   proceed() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 }

@@ -6,7 +6,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { MANAGEMENT_ROUTE_PATHS } from '../../management/management-routes.constants';
 import { AccountCreationService } from '../account-creation-service';
 
 @Component({
@@ -59,6 +59,6 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.hideStaticModal = true;
    }
   goNext() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
 }

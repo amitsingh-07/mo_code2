@@ -64,7 +64,7 @@ const routes: Routes = [
         canActivateChild: [InvestmentChildEnableGuard]
       },
       { path: 'investment',
-        loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
+        loadChildren: './management/management.module#ManagementModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

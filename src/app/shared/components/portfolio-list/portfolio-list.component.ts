@@ -1,4 +1,4 @@
-import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
+import { ManagementService } from 'src/app/management/management.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -22,14 +22,14 @@ export class PortfolioListComponent implements OnInit {
   @Output() deleteSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
-  constructor(private topupAndWithDrawService: TopupAndWithDrawService,
+  constructor(private managementService: ManagementService,
               private accountCreationService: AccountCreationService) { }
 
   ngOnInit() {
   }
 
   getEntitlementsFromPortfolio(portfolio) {
-    return this.topupAndWithDrawService.getEntitlementsFromPortfolio(portfolio);
+    return this.managementService.getEntitlementsFromPortfolio(portfolio);
   }
 
   formatReturns(value) {

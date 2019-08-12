@@ -29,9 +29,9 @@ import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+    MANAGEMENT_ROUTE_PATHS
+} from '../../management/management-routes.constants';
+import { ManagementService } from '../../management/management.service';
 import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
 import { EngagementJourneyService } from '../engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
@@ -72,7 +72,7 @@ export class PortfolioDetailsComponent implements OnInit {
     private signUpService: SignUpService,
     public accountCreationService: AccountCreationService,
     private engagementJourneyService: EngagementJourneyService,
-    private topupAndWithDrawService: TopupAndWithDrawService,
+    private managementService: ManagementService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -277,11 +277,11 @@ export class PortfolioDetailsComponent implements OnInit {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
             const fundingParams = this.constructFundingParams(this.portfolio);
-            this.topupAndWithDrawService.setFundingDetails(fundingParams);
+            this.managementService.setFundingDetails(fundingParams);
             if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
               this.topUpOneTime();
             } else {
-              this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+              this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
             }
           } else {
             this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.START]);
@@ -301,8 +301,8 @@ export class PortfolioDetailsComponent implements OnInit {
       title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
       desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
     });
-    const fundDetails = this.topupAndWithDrawService.getFundingDetails();
-    this.topupAndWithDrawService.buyPortfolio(fundDetails).subscribe(
+    const fundDetails = this.managementService.getFundingDetails();
+    this.managementService.buyPortfolio(fundDetails).subscribe(
       (response) => {
         this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
@@ -324,7 +324,7 @@ export class PortfolioDetailsComponent implements OnInit {
             this.accountCreationService.showGenericErrorModal();
           }
         } else {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+          this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
         }
       },
       (err) => {

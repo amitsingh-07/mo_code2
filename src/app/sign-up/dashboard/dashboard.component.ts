@@ -24,9 +24,9 @@ import {
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+    MANAGEMENT_ROUTE_PATHS
+} from '../../management/management-routes.constants';
+import { ManagementService } from '../../management/management.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit {
     private willWritingService: WillWritingService,
     private guideMeApiService: GuideMeApiService,
     public modal: NgbModal,
-    public topupAndWithDrawService: TopupAndWithDrawService,
+    public managementService: ManagementService,
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService
@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
       ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
       ref.componentInstance.portfolioExist = true;
       ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+        this.router.navigate([MANAGEMENT_ROUTE_PATHS.YOUR_INVESTMENT]);
        });
     }
 
@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToInvOverview() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.ROOT]);
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -384,8 +384,8 @@ export class DashboardComponent implements OnInit {
   * Method to get transfer details
   */
   getTransferDetails() {
-    this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
-      this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+    this.managementService.getTransferDetails().subscribe((data) => {
+      this.managementService.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {
       this.accountCreationService.showGenericErrorModal();
@@ -396,14 +396,14 @@ export class DashboardComponent implements OnInit {
   * Method to show transfer instruction steps modal
   */
   showTransferInstructionModal() {
-    this.topupAndWithDrawService.showTransferInstructionModal();
+    this.managementService.showTransferInstructionModal();
   }
 
   /*
   * Method to show recipients/entity name instructions modal
   */
   showPopUp() {
-    this.topupAndWithDrawService.showPopUp();
+    this.managementService.showPopUp();
   }
 
 }

@@ -5,7 +5,7 @@ import { EngagementJourneyService } from './engagement-journey/engagement-journe
 import { GuideMeService } from './guide-me/guide-me.service';
 import { AccountCreationService } from './account-creation/account-creation-service';
 import { SignUpService } from './sign-up/sign-up.service';
-import { TopupAndWithDrawService } from './topup-and-withdraw/topup-and-withdraw.service';
+import { ManagementService } from './management/management.service';
 import { WillWritingService } from './will-writing/will-writing.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
@@ -29,7 +29,7 @@ export class AppService {
     private signUpService: SignUpService,
     private engagementJourneyService: EngagementJourneyService,
     private accountCreationService: AccountCreationService,
-    private topupAndWithDrawService: TopupAndWithDrawService,
+    private managementService: ManagementService,
     private willWritingService: WillWritingService
   ) { }
 
@@ -57,7 +57,7 @@ export class AppService {
     this.signUpService.clearData();
     this.engagementJourneyService.clearData();
     this.accountCreationService.clearData();
-    this.topupAndWithDrawService.clearData();
+    this.managementService.clearData();
   }
 
   setJourneyType(type: string) {
