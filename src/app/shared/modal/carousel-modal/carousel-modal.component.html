@@ -3,22 +3,22 @@
     <div ngxSlickItem *ngFor="let slide of slides, let i = index;">
       <div class="slide-item">
         <div [ngClass]="{'extra-margin-top': i==2}" class="title-div">
-          <img *ngIf="slide.titleImg" src="{{imgUrl}}{{slide.titleImg}}" class="title-img" />
-          <div class="title-txt">{{slide.title}}</div>
+          <img *ngIf="slide.TITLE_IMG" src="{{imgUrl}}{{slide.TITLE_IMG}}" class="title-img" />
+          <div class="title-txt">{{slide.TITLE}}</div>
         </div>
-        <img *ngIf="slide.img" class="img" src="{{imgUrl}}{{slide.img}}" alt="" width="100%">
-        <div *ngIf="slide.imgTitle" class="img-title" >{{slide.imgTitle}}</div>
-        <div *ngIf="slide.text" [ngClass]="{'extra-margin-top-18': i==2}" class="slide-txt">{{slide.text}}</div>
-        <div *ngIf="slide.url" class="url-txt" (click)="externalLink(slide.url)">{{slide.urlTxt}}</div>
-        <div *ngIf="slide.contact" class="contact-div">
-          <div class="contact-txt">{{slide.contact}}</div>
+        <img *ngIf="slide.IMAGE" class="img" src="{{imgUrl}}{{slide.IMAGE}}" alt="" width="100%">
+        <div *ngIf="slide.IMG_TITLE" class="img-title" >{{slide.IMG_TITLE}}</div>
+        <div *ngIf="slide.TEXT" [ngClass]="{'extra-margin-top-18': i==2}" class="slide-txt">{{slide.TEXT}}</div>
+        <div *ngIf="slide.URL" class="url-txt" (click)="externalLink(slide.URL)">{{slide.URL_TEXT}}</div>
+        <div *ngIf="slide.CONTACT" class="contact-div">
+          <div class="contact-txt">{{slide.CONTACT}}</div>
           <div class="contact-tel-div">
             <img class="margin-right" src="{{imgUrl}}phone.svg">
-            <a href="tel:{{slide.tel}}" onclick="return false;" class="contact-tel">{{slide.tel}}</a>
+            <a href="tel:{{slide.TEL}}" onclick="return false;" class="contact-tel">{{slide.TEL}}</a>
           </div>
           <div class="contact-email-div">
             <img class="margin-right" src="{{imgUrl}}email.svg">
-            <a href="mailto:{{slide.email}}" target="_top" class="contact-email">{{slide.email}}</a>
+            <a href="mailto:{{slide.EMAIL}}" target="_top" class="contact-email">{{slide.EMAIL}}</a>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <input type="image" src="{{imgUrl}}oval.svg" (click)="goToSlide(2)"/>
       </div>
       <div *ngIf="i === 0" class="btn-div">
-        <div class="dismiss-txt" (click)="closePopup()">Dismiss</div>
+        <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
         <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
       </div>
       <div *ngIf="i === 1" class="carousel-btn-div">
@@ -47,7 +47,7 @@
       </div>
       <div *ngIf="i === 2" class="last-btn-div">
         <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
-        <div class="got-it-txt" (click)="closePopup()">Got it!</div>
+        <div class="got-it-txt" (click)="closePopup()">{{endBtnTxt}}</div>
       </div>
     </div>
   </ngx-slick>

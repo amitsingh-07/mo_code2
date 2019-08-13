@@ -409,7 +409,10 @@ export class DashboardComponent implements OnInit {
 
   // Show SRS Joint Account Popup
   openSRSJointAccPopup() {
-    this.modal.open(CarouselModalComponent, { centered: true });
-  }
+    const ref = this.modal.open(CarouselModalComponent, { centered: true });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
 
+  }
 }

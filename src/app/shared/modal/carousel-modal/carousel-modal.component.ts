@@ -11,6 +11,9 @@ import { SlickComponent } from 'ngx-slick';
   encapsulation: ViewEncapsulation.None
 })
 export class CarouselModalComponent implements OnInit {
+  @Input() slides: [JSON];
+  @Input() startBtnTxt: string;
+  @Input() endBtnTxt: string;
   @ViewChild('carousel') carousel: SlickComponent;
   public imgUrl = '../assets/images/srs-joint-account/';
 
@@ -22,19 +25,6 @@ export class CarouselModalComponent implements OnInit {
     dots: false,
     infinite: false,
   };
-
-  slides = [
-    {title: 'New Updates', titleImg: 'speaker.svg', img: 'srs.svg',
-    imgTitle: 'Start Investing Your SRS!',
-    text: 'Invest your Supplementary Retirement Scheme (SRS) to get potentially higher returns while enjoying tax savings.',
-    url: 'https://www.google.com.sg', urlTxt: 'Learn More About SRS Account'},
-    {title: 'New Updates',  titleImg: 'speaker.svg', img: 'joint-account.svg',
-    imgTitle: 'Apply for a Joint Account',
-    text: 'Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.',
-    url: 'https://www.google.com.sg', urlTxt: 'Learn More About Joint Account'},
-    {title: 'Apply Now!', text: 'Please note that SRS and Joint Investment Accounts are currently handled offline.',
-    contact: 'Contact us to apply:', tel: '(65)6329 9188', email: 'enquiries@moneyowl.com.sg'}
-  ];
 
   constructor(public activeModal: NgbActiveModal, private router: Router) {
   }
