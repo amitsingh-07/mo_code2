@@ -19,18 +19,18 @@ import {
 import {
     ForwardPricingModalComponent
 } from './forward-pricing-modal/forward-pricing-modal.component';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
+import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { ManagementRoutingModule } from './management-routing.module';
-import { TopupRequestComponent } from './topup-request/topup-request.component';
-import { TransactionComponent } from './transaction/transaction.component';
+import { TopupStatusComponent } from './topup-status/topup-status.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 import {
-    WithdrawalPaymentMethodComponent
-} from './withdrawal-payment-method/withdrawal-payment-method.component';
-import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
-import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
-import { YourInvestmentComponent } from './your-investment/your-investment.component';
+    WithdrawalBankAccountComponent
+} from './withdrawal-bank-account/withdrawal-bank-account.component';
+import { WithdrawalStatusComponent } from './withdrawal-status/withdrawal-status.component';
+import { WithdrawalComponent } from './withdrawal/withdrawal.component';
+import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -60,18 +60,18 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     TopUpComponent,
-    TopupRequestComponent,
-    YourInvestmentComponent,
+    TopupStatusComponent,
+    InvestmentOverviewComponent,
     YourPortfolioComponent,
-    FundYourAccountComponent,
-    TopupRequestComponent,
+    FundingInstructionsComponent,
+    TopupStatusComponent,
     ConfirmWithdrawalModalComponent,
     ForwardPricingModalComponent,
     AddBankModalComponent,
-    WithdrawalTypeComponent,
-    WithdrawalSuccessComponent,
-    WithdrawalPaymentMethodComponent,
-    TransactionComponent,
+    WithdrawalComponent,
+    WithdrawalStatusComponent,
+    WithdrawalBankAccountComponent,
+    TransactionsComponent,
     HoldingsComponent,
     AssetAllocationComponent
   ],

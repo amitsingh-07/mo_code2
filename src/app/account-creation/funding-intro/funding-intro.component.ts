@@ -59,6 +59,6 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.hideStaticModal = true;
    }
   goNext() {
-    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
 }

@@ -281,7 +281,7 @@ export class PortfolioDetailsComponent implements OnInit {
             if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
               this.topUpOneTime();
             } else {
-              this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+              this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
             }
           } else {
             this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.START]);
@@ -324,7 +324,7 @@ export class PortfolioDetailsComponent implements OnInit {
             this.accountCreationService.showGenericErrorModal();
           }
         } else {
-          this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+          this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
         }
       },
       (err) => {

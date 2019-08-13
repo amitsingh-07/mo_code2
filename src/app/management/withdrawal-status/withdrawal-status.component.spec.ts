@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WithdrawalTypeComponent } from './withdrawal-type.component';
+import { TopupStatusComponent } from './topup-request.component';
 
-describe('WithdrawalTypeComponent', () => {
-  let component: WithdrawalTypeComponent;
-  let fixture: ComponentFixture<WithdrawalTypeComponent>;
+describe('TopupStatusComponent', () => {
+  let component: TopupStatusComponent;
+  let fixture: ComponentFixture<TopupStatusComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WithdrawalTypeComponent ]
+      declarations: [ TopupStatusComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WithdrawalTypeComponent);
+    fixture = TestBed.createComponent(TopupStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

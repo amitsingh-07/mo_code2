@@ -14,12 +14,12 @@ import { MANAGEMENT_CONSTANTS } from '../management.constants';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss'],
+  selector: 'app-transactions',
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TransactionComponent implements OnInit {
+export class TransactionsComponent implements OnInit {
   pageTitle: string;
   transactionHistory: any;
   statementMonthsList: any;

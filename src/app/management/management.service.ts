@@ -494,11 +494,11 @@ export class ManagementService {
     this.transferInstructionModal.dismiss();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
-      'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE'
+      'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.TITLE'
     );
     const recipientName = this.activeModal === 'BANK' ? this.bankDetails.receipientName : this.paynowDetails.receipientName;
     ref.componentInstance.errorMessage = recipientName + this.translate.instant(
-      'TRANSFER_INSTRUCTION.FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE'
+      'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.MESSAGE'
     );
     ref.result.then((result) => {
     }, (reason) => {

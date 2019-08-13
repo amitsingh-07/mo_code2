@@ -2,16 +2,16 @@ export const MANAGEMENT_BASE_ROUTE = '../investment/';
 export const MANAGEMENT_ROUTES = {
   ROOT: '',
   YOUR_INVESTMENT: 'overview',
-  FUND_YOUR_ACCOUNT: 'portfolio/fund-your-account',
-  TOPUP: 'portfolio/top-up',
-  TOPUP_REQUEST: 'portfolio/topup-request',
   YOUR_PORTFOLIO: 'portfolio',
-  WITHDRAWAL: 'portfolio/withdraw',
-  WITHDRAWAL_PAYMENT_METHOD: 'portfolio/withdrawal-payment-method',
-  WITHDRAWAL_SUCCESS: 'portfolio/withdrawal-success',
-  TRANSACTION: 'portfolio/transaction',
+  TOPUP: 'portfolio/top-up',
+  FUNDING_INSTRUCTIONS: 'portfolio/top-up/funding-instructions',
+  TOPUP_STATUS: 'portfolio/top-up/status',
+  WITHDRAWAL: 'portfolio/withdrawal',
+  WITHDRAWAL_PAYMENT_METHOD: 'portfolio/withdrawal/bank-account',
+  WITHDRAWAL_SUCCESS: 'portfolio/withdrawal/status',
+  TRANSACTION: 'portfolio/transactions',
   HOLDINGS: 'portfolio/holdings',
-  ASSET_ALLOCATION: 'asset-allocation',
+  ASSET_ALLOCATION: 'portfolio/asset-allocation',
   FUND_DETAILS: 'fund-details'
 };
 export const MANAGEMENT_ROUTE_PATHS = {
@@ -19,10 +19,10 @@ export const MANAGEMENT_ROUTE_PATHS = {
   YOUR_INVESTMENT: MANAGEMENT_BASE_ROUTE,
   YOUR_PORTFOLIO:
     MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.YOUR_PORTFOLIO,
-  FUND_YOUR_ACCOUNT:
-    MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.FUND_YOUR_ACCOUNT,
+  FUNDING_INSTRUCTIONS:
+    MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.FUNDING_INSTRUCTIONS,
   TOPUP: MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.TOPUP,
-  TOPUP_REQUEST: MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.TOPUP_REQUEST,
+  TOPUP_STATUS: MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.TOPUP_STATUS,
   WITHDRAWAL: MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.WITHDRAWAL,
   WITHDRAWAL_SUCCESS:
     MANAGEMENT_BASE_ROUTE + MANAGEMENT_ROUTES.WITHDRAWAL_SUCCESS,

@@ -23,12 +23,12 @@ import { MANAGEMENT_ROUTE_PATHS } from '../management-routes.constants';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-withdrawal-payment-method',
-  templateUrl: './withdrawal-payment-method.component.html',
-  styleUrls: ['./withdrawal-payment-method.component.scss'],
+  selector: 'app-withdrawal-bank-account',
+  templateUrl: './withdrawal-bank-account.component.html',
+  styleUrls: ['./withdrawal-bank-account.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalPaymentMethodComponent implements OnInit {
+export class WithdrawalBankAccountComponent implements OnInit {
   pageTitle: string;
   bankForm;
   formValues: any;

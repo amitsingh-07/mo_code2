@@ -23,13 +23,13 @@ import { MANAGEMENT_CONSTANTS } from '../management.constants';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-withdrawal-type',
-  templateUrl: './withdrawal-type.component.html',
-  styleUrls: ['./withdrawal-type.component.scss'],
+  selector: 'app-withdrawal',
+  templateUrl: './withdrawal.component.html',
+  styleUrls: ['./withdrawal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [DecimalPipe]
 })
-export class WithdrawalTypeComponent implements OnInit {
+export class WithdrawalComponent implements OnInit {
   pageTitle: string;
   withdrawForm;
   formValues;

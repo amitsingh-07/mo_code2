@@ -14,12 +14,12 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-withdrawal-success',
-  templateUrl: './withdrawal-success.component.html',
-  styleUrls: ['./withdrawal-success.component.scss'],
+  selector: 'app-withdrawal-status',
+  templateUrl: './withdrawal-status.component.html',
+  styleUrls: ['./withdrawal-status.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalSuccessComponent implements OnInit {
+export class WithdrawalStatusComponent implements OnInit {
   formValues;
   topupportfolioamount;
   topupFormValues;

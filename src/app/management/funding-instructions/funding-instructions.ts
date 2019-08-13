@@ -1,4 +1,4 @@
-export class FundDetails {
+export class FundingInstructions {
   source: string;
   oneTimeInvestment: number; // Funding
   monthlyInvestment: number; // Funding

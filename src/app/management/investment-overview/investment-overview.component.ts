@@ -25,12 +25,12 @@ import { MANAGEMENT_CONSTANTS } from '../management.constants';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-your-investment',
-  templateUrl: './your-investment.component.html',
-  styleUrls: ['./your-investment.component.scss'],
+  selector: 'app-investment-overview',
+  templateUrl: './investment-overview.component.html',
+  styleUrls: ['./investment-overview.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class YourInvestmentComponent implements OnInit {
+export class InvestmentOverviewComponent implements OnInit {
   totalPortfolio;
   welcomeInfo;
   investmentoverviewlist: any;
@@ -179,7 +179,7 @@ export class YourInvestmentComponent implements OnInit {
         this.portfolio = data.objectList;
         const fundingParams = this.constructFundingParams(data.objectList);
         this.managementService.setFundingDetails(fundingParams);
-        this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+        this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
       },
       (err) => {
         this.accountCreationService.showGenericErrorModal();

@@ -209,17 +209,17 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.managementService.setTopUp(form.value);
     this.saveFundingDetails();
-    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
   saveFundingDetails() {
     const topupValues = {
-      source: MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.TOPUP,
+      source: MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.TOPUP,
       portfolio: this.formValues.portfolio,
       oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
       monthlyInvestment: this.formValues.MonthlyInvestmentAmount ? this.formValues.MonthlyInvestmentAmount : 0, // topup
       fundingType: this.formValues.Investment === 'Monthly Investment'
-        ? MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.MONTHLY
-        : MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.ONETIME,
+        ? MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY
+        : MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME,
       isAmountExceedBalance: this.isAmountExceedBalance,
       exceededAmount: this.topupAmount
     };

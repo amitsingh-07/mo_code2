@@ -112,7 +112,7 @@ export class YourPortfolioComponent implements OnInit {
     this.managementService.setFundingDetails(FundValues);
   }
   goToFundYourAccount() {
-    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
   gotoTopUp() {
     this.router.navigate([MANAGEMENT_ROUTE_PATHS.TOPUP]);

@@ -20,12 +20,12 @@ import { ManagementService } from '../management.service';
 import { MANAGEMENT_CONSTANTS } from '../management.constants';
 
 @Component({
-  selector: 'app-fund-your-account',
-  templateUrl: './fund-your-account.component.html',
-  styleUrls: ['./fund-your-account.component.scss'],
+  selector: 'app-funding-instructions',
+  templateUrl: './funding-instructions.component.html',
+  styleUrls: ['./funding-instructions.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FundYourAccountComponent implements OnInit {
+export class FundingInstructionsComponent implements OnInit {
   uploadForm: FormGroup;
   pageTitle: string;
   formValues;
@@ -55,7 +55,7 @@ export class FundYourAccountComponent implements OnInit {
     this.fundDetails = this.managementService.getFundingDetails();
     this.translate.get('COMMON').subscribe((result: string) => {
       this.fundAccountContent = this.translate.instant(
-        'FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK'
+        'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_BANK'
       );
       this.pageTitle = this.getPageTitleBySource(
         this.fundDetails.source,
@@ -98,10 +98,10 @@ export class FundYourAccountComponent implements OnInit {
       windowClass: 'custom-full-height'
     });
     ref.componentInstance.errorTitle = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
+      'FUNDING_INSTRUCTIONS.TRANSFER_INSTRUCTION'
     );
     ref.componentInstance.errorDescription = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.VIA_BANK_ONE'
+      'FUNDING_INSTRUCTIONS.VIA_BANK_ONE'
     );
     ref.componentInstance.showBankTransctions = true;
     ref.componentInstance.setBankDetails = this.bankDetails;
@@ -113,10 +113,10 @@ export class FundYourAccountComponent implements OnInit {
       windowClass: 'custom-full-height'
     });
     ref.componentInstance.errorTitle = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.TRANSFER_INSTRUCTION'
+      'FUNDING_INSTRUCTIONS.TRANSFER_INSTRUCTION'
     );
     ref.componentInstance.errorDescription = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.VIA_PAYNOW_ONE'
+      'FUNDING_INSTRUCTIONS.VIA_PAYNOW_ONE'
     );
     ref.componentInstance.showPayNow = true;
     ref.componentInstance.setPaynowDetails = this.paynowDetails;
@@ -125,13 +125,13 @@ export class FundYourAccountComponent implements OnInit {
 
   getPageTitleBySource(source, type) {
     let pageTitle;
-    if (source === MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.FUNDING) {
-      pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TITLE');
-    } else if (source === MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.TOPUP) {
-      if (type === MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.ONETIME) {
-        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT');
+    if (source === MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.FUNDING) {
+      pageTitle = this.translate.instant('FUNDING_INSTRUCTIONS.TITLE');
+    } else if (source === MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.TOPUP) {
+      if (type === MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME) {
+        pageTitle = this.translate.instant('FUNDING_INSTRUCTIONS.ONE_TIME_INVESTMENT');
       } else {
-        pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT');
+        pageTitle = this.translate.instant('FUNDING_INSTRUCTIONS.MONTHLY_INVESTMENT');
       }
     }
     return pageTitle;
@@ -152,10 +152,10 @@ export class FundYourAccountComponent implements OnInit {
   showPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE'
+      'FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.TITLE'
     );
     ref.componentInstance.errorMessage = this.translate.instant(
-      'FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE'
+      'FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.MESSAGE'
     );
   }
   setBankPayNowDetails(data) {
@@ -170,9 +170,9 @@ export class FundYourAccountComponent implements OnInit {
   oneTimeOrMonthlySufficient() {
     return (
       (this.fundDetails.fundingType ===
-        MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.ONETIME ||
+        MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME ||
         this.fundDetails.fundingType ===
-          MANAGEMENT_CONSTANTS.FUND_YOUR_ACCOUNT.MONTHLY) &&
+          MANAGEMENT_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
       !this.fundDetails.isAmountExceedBalance
     );
   }
@@ -237,11 +237,11 @@ export class FundYourAccountComponent implements OnInit {
           } else {
             if (!this.fundDetails.isAmountExceedBalance) {
               this.router.navigate([
-                MANAGEMENT_ROUTE_PATHS.TOPUP_REQUEST + '/success'
+                MANAGEMENT_ROUTE_PATHS.TOPUP_STATUS + '/success'
               ]);
             } else {
               this.router.navigate([
-                MANAGEMENT_ROUTE_PATHS.TOPUP_REQUEST + '/pending'
+                MANAGEMENT_ROUTE_PATHS.TOPUP_STATUS + '/pending'
               ]);
             }
           }
@@ -287,11 +287,11 @@ export class FundYourAccountComponent implements OnInit {
           } else {
             if (!this.fundDetails.isAmountExceedBalance) {
               this.router.navigate([
-                MANAGEMENT_ROUTE_PATHS.TOPUP_REQUEST + '/success'
+                MANAGEMENT_ROUTE_PATHS.TOPUP_STATUS + '/success'
               ]);
             } else {
               this.router.navigate([
-                MANAGEMENT_ROUTE_PATHS.TOPUP_REQUEST + '/pending'
+                MANAGEMENT_ROUTE_PATHS.TOPUP_STATUS + '/pending'
               ]);
             }
           }

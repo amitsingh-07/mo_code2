@@ -3,17 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
+import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { ManagementGuardService as  ManagementGuard} from './management-guard.service';
 import { MANAGEMENT_ROUTES } from './management-routes.constants';
-import { TopupRequestComponent } from './topup-request/topup-request.component';
-import { TransactionComponent } from './transaction/transaction.component';
-import { WithdrawalPaymentMethodComponent } from './withdrawal-payment-method/withdrawal-payment-method.component';
-import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
-import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
-import { YourInvestmentComponent } from './your-investment/your-investment.component';
+import { TopupStatusComponent } from './topup-status/topup-status.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { WithdrawalBankAccountComponent } from './withdrawal-bank-account/withdrawal-bank-account.component';
+import { WithdrawalStatusComponent } from './withdrawal-status/withdrawal-status.component';
+import { WithdrawalComponent } from './withdrawal/withdrawal.component';
+import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
 const routes: Routes = [
@@ -28,18 +28,18 @@ const routes: Routes = [
     canActivate: [ManagementGuard]
   },
   {
-    path: MANAGEMENT_ROUTES.TOPUP_REQUEST + '/:status',
-    component: TopupRequestComponent,
+    path: MANAGEMENT_ROUTES.TOPUP_STATUS + '/:status',
+    component: TopupStatusComponent,
     canActivate: [ManagementGuard]
   },
   {
-    path: MANAGEMENT_ROUTES.FUND_YOUR_ACCOUNT,
-    component: FundYourAccountComponent,
+    path: MANAGEMENT_ROUTES.FUNDING_INSTRUCTIONS,
+    component: FundingInstructionsComponent,
     canActivate: [AuthGuard]
   },
   {
     path: MANAGEMENT_ROUTES.YOUR_INVESTMENT,
-    component: YourInvestmentComponent,
+    component: InvestmentOverviewComponent,
     canActivate: [ManagementGuard]
   },
   {
@@ -49,22 +49,22 @@ const routes: Routes = [
   },
   {
     path: MANAGEMENT_ROUTES.WITHDRAWAL,
-    component: WithdrawalTypeComponent,
+    component: WithdrawalComponent,
     canActivate: [ManagementGuard]
   },
   {
     path: MANAGEMENT_ROUTES.WITHDRAWAL_PAYMENT_METHOD,
-    component: WithdrawalPaymentMethodComponent,
+    component: WithdrawalBankAccountComponent,
     canActivate: [ManagementGuard]
   },
   {
     path: MANAGEMENT_ROUTES.WITHDRAWAL_SUCCESS,
-    component: WithdrawalSuccessComponent,
+    component: WithdrawalStatusComponent,
     canActivate: [ManagementGuard]
   },
   {
     path: MANAGEMENT_ROUTES.TRANSACTION,
-    component: TransactionComponent,
+    component: TransactionsComponent,
     canActivate: [ManagementGuard]
   },
   {

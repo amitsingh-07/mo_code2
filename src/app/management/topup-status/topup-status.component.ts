@@ -12,12 +12,12 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { ManagementService } from '../management.service';
 
 @Component({
-  selector: 'app-topup-request',
-  templateUrl: './topup-request.component.html',
-  styleUrls: ['./topup-request.component.scss'],
+  selector: 'app-topup-status',
+  templateUrl: './topup-status.component.html',
+  styleUrls: ['./topup-status.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TopupRequestComponent implements OnInit {
+export class TopupStatusComponent implements OnInit {
   status;
   constructor(
     public readonly translate: TranslateService,
