@@ -45,7 +45,8 @@
                         <div>{{'DASHBOARD.INSURANCE.ESTIMATED_MINS' | translate}}</div>
                       </button>
                       <button type="button" class="btn btn-ghost col-12"  *ngIf="insurance.hasInsurance" routerLink="/guideme">
-                        {{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}
+                        <div *ngIf="insurance.isGuidedJourney">{{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}</div>
+                        <div *ngIf="!insurance.isGuidedJourney">{{'DASHBOARD.INSURANCE.ASSESS_MY_NEEDS' | translate}}</div>
                       </button>
                     </div>
                     <div class="find-plan"><a routerLink="/direct">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' | translate}}</a></div>
