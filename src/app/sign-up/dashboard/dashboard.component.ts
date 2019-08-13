@@ -12,6 +12,7 @@ import {
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
+import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
@@ -403,4 +404,12 @@ export class DashboardComponent implements OnInit {
     this.topupAndWithDrawService.showPopUp();
   }
 
+  // Show SRS Joint Account Popup
+  openSRSJointAccPopup() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+
+  }
 }
