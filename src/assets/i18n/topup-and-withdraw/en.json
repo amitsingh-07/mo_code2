@@ -128,8 +128,8 @@
     "PORTFOLIO_DELETE_MESSAGE": "{{portfolioName}} Portfolio Deleted",
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
-    "NO_PORTFOLIO": "You do not have any portfolios."
-
+    "NO_PORTFOLIO": "You do not have any portfolios.",
+    "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard."
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
