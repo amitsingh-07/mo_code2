@@ -271,28 +271,6 @@ app-dashboard{
             }
         }
     }
-    .srs-reminder {
-        display: flex; 
-        align-items: center; 
-        margin: 0 15px; 
-        padding: 15px 45px 15px 25px; 
-        background-color: #3ec5c5;
-        @include allmobiles{
-            margin: 0; 
-            padding: 10px 30px 10px 15px; 
-        }
-        .srs-txt {
-            font-family: $muli-italic;
-            font-size: 13px;
-            font-weight: normal;
-            letter-spacing: -0.13px;
-            line-height: 1.23;
-            color: $white-color; 
-        }
-        .mail-img {
-            margin-right:20px;
-        }
-    }
     .announcement-div {
         display: flex; 
         align-items: center; 
@@ -302,11 +280,10 @@ app-dashboard{
         border: solid 3px #ffa32c;  
         background-color: rgba(0, 89, 96, 0.3);
         .announcement-img {
-            width: 30px;
-            height: 34px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
-            transform: rotate(-7deg);
-            margin-right: 17px;
+            margin-right: 8px;
         }
         .announcement-txt {
             font-family: $muli;
