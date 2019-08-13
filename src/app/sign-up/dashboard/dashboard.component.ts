@@ -1,7 +1,6 @@
-import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -13,13 +12,11 @@ import {
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
+import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
-import {
-    TransferInstructionsModalComponent
-} from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
     TOPUP_AND_WITHDRAW_ROUTE_PATHS
@@ -33,9 +30,9 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
+import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -165,7 +162,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Insurance
-    this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
+    this.guideMeApiService.getCustomerInsuranceDetails().subscribe((data) => {
       this.showInsuranceSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
