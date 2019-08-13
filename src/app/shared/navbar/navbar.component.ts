@@ -388,12 +388,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.router.url === route) {
       this.toggleMenu();
     } else {
-      // Check for Dashboard path
-      if (route === DASHBOARD_PATH) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-      } else {
-        this.router.navigate([route]);
-      }
+      this.router.navigate([route]);
     }
   }
 
