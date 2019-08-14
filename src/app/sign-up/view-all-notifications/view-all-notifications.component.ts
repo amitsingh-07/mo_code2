@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { EngagementJourneyService } from '../../investment/engagement-journey/engagement-journey.service';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';

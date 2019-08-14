@@ -5,7 +5,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../../../engagement-journey/engagement-journey.constants';
+import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../../../investment/engagement-journey/engagement-journey.constants';
 import { Formatter } from '../../../shared/utils/formatter.util';
 
 @Component({

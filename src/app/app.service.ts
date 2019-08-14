@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { DirectService } from './direct/direct.service';
-import { EngagementJourneyService } from './engagement-journey/engagement-journey.service';
+import { EngagementJourneyService } from './investment/engagement-journey/engagement-journey.service';
 import { GuideMeService } from './guide-me/guide-me.service';
-import { AccountCreationService } from './account-creation/account-creation-service';
+import { AccountCreationService } from './investment/account-creation/account-creation-service';
 import { SignUpService } from './sign-up/sign-up.service';
-import { ManagementService } from './management/management.service';
+import { ManagementService } from './investment/management/management.service';
 import { WillWritingService } from './will-writing/will-writing.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';

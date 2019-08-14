@@ -7,10 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import {
     ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../../engagement-journey/engagement-journey-routes.constants';
+} from '../../../investment/engagement-journey/engagement-journey-routes.constants';
 import {
     RecommendationComponent
-} from '../../../engagement-journey/recommendation/recommendation.component';
+} from '../../../investment/engagement-journey/recommendation/recommendation.component';
 
 @Component({
   selector: 'app-unsupported-device-modal',

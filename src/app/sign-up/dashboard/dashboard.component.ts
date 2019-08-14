@@ -4,14 +4,14 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../engagement-journey/engagement-journey-routes.constants';
+import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
 // Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
     ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+} from '../../investment/account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from '../../shared/http/custom-error-handler.service';
@@ -25,8 +25,8 @@ import {
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
     MANAGEMENT_ROUTE_PATHS
-} from '../../management/management-routes.constants';
-import { ManagementService } from '../../management/management.service';
+} from '../../investment/management/management-routes.constants';
+import { ManagementService } from '../../investment/management/management.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';

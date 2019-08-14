@@ -8,8 +8,8 @@ import { PendingChangesGuard } from './changes.guard';
 import {
     EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
-import { InvestmentChildEnableGuard } from './engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './engagement-journey/investment-enable-guard';
+import { InvestmentChildEnableGuard } from './investment/engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -54,17 +54,17 @@ const routes: Routes = [
         canActivateChild: [ArticleEnableGuard]
       },
       { path: 'investment',
-        loadChildren: './engagement-journey/engagement-journey.module#EngagementJourneyModule',
+        loadChildren: './investment/engagement-journey/engagement-journey.module#EngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       { path: 'investment/account',
-        loadChildren: './account-creation/account-creation.module#AccountCreationModule',
+        loadChildren: './investment/account-creation/account-creation.module#AccountCreationModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       { path: 'investment',
-        loadChildren: './management/management.module#ManagementModule',
+        loadChildren: './investment/management/management.module#ManagementModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

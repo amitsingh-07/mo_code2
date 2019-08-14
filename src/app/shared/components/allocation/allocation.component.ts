@@ -4,8 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     FundDetailsComponent
-} from '../../../engagement-journey/fund-details/fund-details.component';
-import { EngagementJourneyService } from '../../../engagement-journey/engagement-journey.service';
+} from '../../../investment/engagement-journey/fund-details/fund-details.component';
+import { EngagementJourneyService } from '../../../investment/engagement-journey/engagement-journey.service';
 
 @Component({
   selector: 'app-allocation',

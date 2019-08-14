@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationCommon } from '../../account-creation/account-creation-common';
-import { ACCOUNT_CREATION_ROUTE_PATHS } from '../../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
-import { ACCOUNT_CREATION_CONSTANTS } from '../../account-creation/account-creation.constant';
+import { AccountCreationCommon } from '../../investment/account-creation/account-creation-common';
+import { ACCOUNT_CREATION_ROUTE_PATHS } from '../../investment/account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+import { ACCOUNT_CREATION_CONSTANTS } from '../../investment/account-creation/account-creation.constant';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';

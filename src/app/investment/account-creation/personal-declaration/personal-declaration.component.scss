@@ -1,0 +1,125 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+app-personal-declaration {
+  .personal-declaration {
+    .flex-row {
+      align-items: center;
+    }
+    .dropdown-control {
+      .dependent-count {
+        margin-left: 4px;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+      }
+    }
+    label {
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      padding-right: 10px;
+    }
+    .form-group {
+      @include allmobiles {
+        padding-bottom: 30px;
+      }
+    }
+    .btn-group--toggle{
+      label{
+        font-size: 16px;
+      }
+    }
+    .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
+    }
+    .dropdown-item {
+      white-space: normal;
+      word-break: break-word;
+    }
+    .dropdown-control .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn {
+      z-index: 1001;
+      &:disabled {
+        background-color: $btn-disabled-light-bg;
+        color: $disabled-teal-color;
+      }
+    }
+    .fixed-btn--sm {
+      color: $white-color;
+    }
+    .text {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.17;
+      letter-spacing: -0.2px;
+      text-align: center;
+      padding-left: 17px;
+      padding-right: 14px;
+    }
+    .step-indicator-container {
+      padding: 20px 0px;
+      top: 76px;
+      @include allmobiles{
+        position: relative;
+        top: 60px;
+        background-color: $white-color;
+      padding: 10px 0px;
+      }
+      .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+      @include stepindicator-desktop-extraspace;
+    }
+    .container-fluid {
+      padding-top: 16px;
+      @include allmobiles{
+      padding-top: 80px;
+    }
+  }
+    .tooltip-icon {
+      background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      display: block;
+      float: right;
+    }
+    .country_text {
+      width: 100px;
+      height: 69px;
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+    }
+    .tin_question_text {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
+}

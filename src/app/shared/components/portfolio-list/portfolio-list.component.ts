@@ -1,9 +1,9 @@
-import { ManagementService } from 'src/app/management/management.service';
+import { ManagementService } from 'src/app/investment/management/management.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ProfileIcons } from '../../../engagement-journey/recommendation/profileIcons';
-import { AccountCreationService } from '../../../account-creation/account-creation-service';
+import { ProfileIcons } from '../../../investment/engagement-journey/recommendation/profileIcons';
+import { AccountCreationService } from '../../../investment/account-creation/account-creation-service';
 
 @Component({
   selector: 'app-portfolio-list',

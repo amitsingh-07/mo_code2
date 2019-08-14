@@ -5,8 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { ACCOUNT_CREATION_ROUTE_PATHS } from '../../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { ACCOUNT_CREATION_ROUTE_PATHS } from '../../investment/account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';

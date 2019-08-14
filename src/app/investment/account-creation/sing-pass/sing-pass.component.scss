@@ -1,0 +1,119 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+app-sing-pass {
+  .autofill-link {
+    border: 1px solid $secondary-action-color;
+    padding: 15px 20px;
+    background-color: $white-color;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 9px 19px 2px $risk-table-cell-color;
+    margin-bottom: 20px;
+    .flex-row {
+      &.flex-col-12 {
+        justify-content: center;
+      }
+    }
+    .autofill-logo {
+      width: 92px;
+      height: 35px;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .autofill-text {
+      display: flex;
+      align-items: center;
+      font-family: $muli-bold;
+      font-size: 16px;
+      color: $inline-error-border-color;
+      padding-right: 15px;
+    }
+    .autofill-estimation {
+      display: none;
+    }
+    &.postlogin {
+      box-shadow: 0 8px 12px 0 $post-login-shadow;
+      margin-bottom: 0px;
+      @include max360 {
+        padding: 10px 14px;
+      }
+      .autofill-text {
+        font-size: 21px;
+        justify-content: flex-start;
+        padding-right: 10px;
+        padding-bottom: 7px;
+      }
+      .autofill-logo {
+        width: 107px;
+        height: 40px;
+      }
+      .autofill-estimation {
+        display: flex;
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: -0.1px;
+        text-align: center;
+        color: $dark-grey-color;
+        justify-content: center;
+      }
+    }
+  }
+
+  .autofill-link.postlogin + .or-block {
+    display: none;
+  }
+
+  .backdrop {
+    background: url('/assets/images/investment-account/transparent-black.png') repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader-content-wrapper {
+    background-color: $white-color;
+    border-radius: 8px;
+    color: $question-info-brdr-color;
+    margin: 0 32px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px 34px;
+    z-index: 9999;
+  }
+  .loader-image {
+    img {
+      max-width: 110px;
+    }
+  }
+  .loader-content {
+    font-family: $muli;
+    color: $text-color-secondary;
+    text-align: center;
+    font-size: 16px;
+    .loader-title {
+      font-family: $muli-regular;
+      color: $dark-grey-color;
+      margin-bottom: 5px;
+      letter-spacing: -0.2px;
+      .dots {
+        display: inline-block;
+      }
+    }
+    .loader-desc {
+      font-style: italic;
+      line-height: 1.31;
+      letter-spacing: -0.2px;
+      color: $black-color;
+    }
+  }
+}

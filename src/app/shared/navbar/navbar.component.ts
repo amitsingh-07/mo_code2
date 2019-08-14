@@ -9,7 +9,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
     TransactionModalComponent

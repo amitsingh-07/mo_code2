@@ -2,8 +2,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { GuideMeService } from '../guide-me/guide-me.service';
-import { ACCOUNT_CREATION_ROUTE_PATHS } from '../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../account-creation/account-creation-service';
+import { ACCOUNT_CREATION_ROUTE_PATHS } from '../investment/account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../investment/account-creation/account-creation-service';
 import { MyInfoService } from '../shared/Services/my-info.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 

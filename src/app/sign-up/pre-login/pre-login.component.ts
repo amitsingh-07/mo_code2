@@ -7,7 +7,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 
 import {
   ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../account-creation/account-creation-routes.constants';
+} from '../../investment/account-creation/account-creation-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';

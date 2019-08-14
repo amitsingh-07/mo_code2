@@ -30,9 +30,9 @@ import { PendingChangesGuard } from './changes.guard';
 import {
     EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
-import { FundDetailsComponent } from './engagement-journey/fund-details/fund-details.component';
-import { InvestmentChildEnableGuard } from './engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './engagement-journey/investment-enable-guard';
+import { FundDetailsComponent } from './investment/engagement-journey/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './investment/engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {

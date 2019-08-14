@@ -7,8 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import {
   ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+} from '../../investment/account-creation/account-creation-routes.constants';
+import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
