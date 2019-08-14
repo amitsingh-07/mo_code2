@@ -53,6 +53,8 @@ import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widg
 import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
 import { SecurePipe } from './Pipes/secure.pipe';
 import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
+import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-modal.component';
+import { SlickModule } from 'ngx-slick';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -75,7 +77,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SlickModule.forRoot()
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
@@ -114,13 +117,15 @@ export function createTranslateLoader(http: HttpClient) {
     SecurityPolicyComponent,
     TermsModalComponent,
     SecurePipe,
-    PortfolioListComponent
+    PortfolioListComponent,
+    CarouselModalComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     TransferInstructionsModalComponent,
-    InstructionStepsComponent
+    InstructionStepsComponent,
+    CarouselModalComponent
   ],
   providers: [RoundPipe]
 })

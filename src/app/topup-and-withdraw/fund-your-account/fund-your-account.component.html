@@ -1,9 +1,12 @@
 <div class="fund-your-account container-fluid max-width--1024 invest-web-width">
   <div class="content" *ngIf="bankDetails && paynowDetails">
     <!-- FUND SUMMARY -->
-    <div class="hidden-sm-md page-title" *ngIf="fundDetails.source == 'FUNDING'">{{'FUND_YOUR_ACCOUNT.TITLE' | translate}}</div>
-    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'ONETIME'">{{'FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT' | translate}}</div>
-    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'MONTHLY'">{{'FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.source == 'FUNDING'">
+      {{'FUND_YOUR_ACCOUNT.TITLE' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'ONETIME'">
+      {{'FUND_YOUR_ACCOUNT.ONE_TIME_INVESTMENT' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'MONTHLY'">
+      {{'FUND_YOUR_ACCOUNT.MONTHLY_INVESTMENT' | translate}}</div>
     <div class="fund-summary">
       <div class="from-account">
         <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
@@ -43,10 +46,10 @@
       <div *ngIf=!oneTimeOrMonthlySufficient()>
         <div class="tab-links">
           <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
-           <div class="pay-tab">{{ 'FUND_YOUR_ACCOUNT.BANK_TRANSFER' | translate }}</div>
+            <div class="pay-tab">{{ 'FUND_YOUR_ACCOUNT.BANK_TRANSFER' | translate }}</div>
           </div>
           <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-            <div class="pay-tab"><img  src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
+            <div class="pay-tab"><img src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
           </div>
         </div>
         <div class="tab-content-container">
@@ -113,11 +116,11 @@
                 <u>{{ bankDetails.referenceNumber }}</u>
               </div>
               <div class="ref_code_info">
-                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span><img src="../../../assets/images/investment-account/important.svg" alt="" /></span>
                 <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-            
+
             <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
@@ -189,11 +192,11 @@
                 <u>{{ paynowDetails.referenceNumber }}</u>
               </div>
               <div class="ref_code_info">
-                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span><img src="../../../assets/images/investment-account/important.svg" alt="" /></span>
                 <span>{{ 'FUND_YOUR_ACCOUNT.ADD_REFERENCE_CODE_INFO' | translate }}</span>
               </div>
             </div>
-           <!-- <div class="setup-auto-deposit">
+            <!-- <div class="setup-auto-deposit">
                 <div class="head">
                   {{ 'FUND_YOUR_ACCOUNT.SETUP_AUTO_DEPOSIT_LBL' | translate }}
                 </div>
@@ -208,10 +211,9 @@
       </div>
     </div>
   </div>
-  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{ 'FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO' |
-    translate
-    }}</p>
-  <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUND_YOUR_ACCOUNT.SUCCESSFUL_TOPUP' | translate
+  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{timelineMessage}}
+  </p>
+ <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUND_YOUR_ACCOUNT.SUCCESSFUL_TOPUP' | translate
     }}</p>
   <button *ngIf="fundDetails.source == 'TOPUP'" [disabled]="isRequestSubmitted" type="button" (click)="buyPortfolio()"
     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">

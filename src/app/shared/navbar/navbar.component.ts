@@ -263,7 +263,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (in_fragment) {
       const extra = { fragment: in_fragment } as NavigationExtras;
       // Added check to see if current route is same
-      if (this.router.url === '/home#' + in_fragment) {
+      if (this.router.url === appConstants.HOME_ROUTE + in_fragment) {
         this.toggleMenu();
       } else {
         this.router.navigate([appConstants.homePageUrl], extra);
@@ -388,12 +388,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.router.url === route) {
       this.toggleMenu();
     } else {
-      // Check for Dashboard path
-      if (route === DASHBOARD_PATH) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-      } else {
-        this.router.navigate([route]);
-      }
+      this.router.navigate([route]);
     }
   }
 
