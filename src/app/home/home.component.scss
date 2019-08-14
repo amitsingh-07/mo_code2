@@ -124,18 +124,27 @@ body{
                     }
                     
                     @include minMobilemaxPhablet{
-                        height:365px;
-                        background-size: 560px 350px;
-                        transform: scale(0.7);
-                        margin-bottom:-65px;
-                        .speaker{
-                            margin-bottom:5px;
-                        }
+                        height:386px;
+                        transform: scale(0.60) translateY(-80px);
+                        margin-bottom:-125px;
                         .banner-image-content{
-                            right:58px;
+                            width:286px;
+                            height:245px;
                             top:25px;
+                            .speaker{
+                                margin-bottom:5px;
+                            }
+                            .desc{
+                                .title{
+                                    font-size:26px;
+                                    margin-bottom:10px;
+                                }
+                                p{
+                                    font-size:20px;
+                                    margin-bottom:0px;
+                                }
+                            }
                         }
-                        
                     }
                 }
             }
