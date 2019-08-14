@@ -41,11 +41,6 @@ export class CarouselModalComponent implements OnInit {
   closePopup() {
     this.activeModal.dismiss();
   }
-  // Open external url links and dismiss modal
-  externalLink(url) {
-    window.open(url, '_blank');
-    this.activeModal.dismiss();
-  }
   // Go to next slide
   nextSlide() {
     this.carousel.slickNext();
@@ -57,6 +52,11 @@ export class CarouselModalComponent implements OnInit {
   // Go to specific slide
   goToSlide(slide) {
     this.carousel.slickGoTo(slide);
+  }
+
+  goToFaqInvestment() {
+    this.activeModal.dismiss();
+    this.router.navigate(['faq'], {fragment: 'investment'});
   }
 
 }
