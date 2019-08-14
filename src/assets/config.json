@@ -6,6 +6,7 @@
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": false,
+  "srsEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": true,
