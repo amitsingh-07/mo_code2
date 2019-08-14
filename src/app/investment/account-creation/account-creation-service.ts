@@ -22,6 +22,7 @@ import {
     ISaveAccountCreationRequest
 } from './account-creation.request';
 import { PersonalInfo } from './personal-info/personal-info';
+import { InvestmentApiService } from '../investment-api.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -40,6 +41,7 @@ export class AccountCreationService {
     private signUpService: SignUpService,
     private http: HttpClient,
     private apiService: ApiService,
+    private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
     private engagementJourneyService: EngagementJourneyService,
     public readonly translate: TranslateService,
@@ -277,30 +279,30 @@ export class AccountCreationService {
   }
 
   getAddressUsingPostalCode(data) {
-    return this.apiService.getAddressUsingPostalCode(data);
+    return this.investmentApiService.getAddressUsingPostalCode(data);
   }
 
   getNationalityCountryList() {
-    return this.apiService.getNationalityCountryList();
+    return this.investmentApiService.getNationalityCountryList();
   }
   getNationalityList() {
-    return this.apiService.getNationalityList();
+    return this.investmentApiService.getNationalityList();
   }
   getIndustryList() {
-    return this.apiService.getIndustryList();
+    return this.investmentApiService.getIndustryList();
   }
   getOccupationList() {
-    return this.apiService.getOccupationList();
+    return this.investmentApiService.getOccupationList();
   }
   getAllDropDownList() {
-    return this.apiService.getAllDropdownList();
+    return this.investmentApiService.getAllDropdownList();
   }
   getGeneratedFrom() {
-    return this.apiService.getAllDropdownList();
+    return this.investmentApiService.getAllDropdownList();
   }
 
   getInvestmentPeriod() {
-    return this.apiService.getInvestmentPeriod();
+    return this.investmentApiService.getInvestmentPeriod();
   }
   getTaxInfo() {
     return {
@@ -587,30 +589,30 @@ export class AccountCreationService {
 
   // Upload Document
   uploadDocument(formData) {
-    return this.apiService.uploadDocument(formData);
+    return this.investmentApiService.uploadDocument(formData);
   }
 
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
-    return this.apiService.saveInvestmentAccount(payload);
+    return this.investmentApiService.saveInvestmentAccount(payload);
   }
 
   saveInvestmentAccount() {
     const payload = this.constructSaveInvestmentAccountRequest();
-    return this.apiService.saveInvestmentAccount(payload);
+    return this.investmentApiService.saveInvestmentAccount(payload);
   }
 
   // Select Nationality
   saveNationality(data) {
     const payload = this.constructSaveNationalityRequest(data);
-    return this.apiService.saveNationality(payload);
+    return this.investmentApiService.saveNationality(payload);
   }
   createInvestmentAccount() {
-    return this.apiService.createInvestmentAccount();
+    return this.investmentApiService.createInvestmentAccount();
   }
 
   verifyAML() {
-    return this.apiService.verifyAML();
+    return this.investmentApiService.verifyAML();
   }
 
   clearFinancialFormData() {
@@ -915,11 +917,11 @@ export class AccountCreationService {
   }
   getPortfolioAllocationDetails(params) {
     const urlParams = this.engagementJourneyService.buildQueryString(params);
-    return this.apiService.getPortfolioAllocationDetails(urlParams);
+    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
   }
 
   updateInvestment(params) {
-    return this.apiService.updateInvestment(params);
+    return this.investmentApiService.updateInvestment(params);
   }
 
   additionalDeclarationsRequest() {

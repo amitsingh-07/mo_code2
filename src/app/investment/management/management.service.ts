@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { EngagementJourneyService } from '../engagement-journey/engagement-journey.service';
 import { AccountCreationFormData } from '../account-creation/account-creation-form-data';
-import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
@@ -20,6 +19,8 @@ import { TopUPFormError } from './top-up/top-up-form-error';
 import { ManagementFormData } from './management-form-data';
 import { ManagementFormError } from './management-form-error';
 import { MANAGEMENT_CONSTANTS } from './management.constants';
+import { ApiService } from '../../shared/http/api.service';
+import { InvestmentApiService } from '../investment-api.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -43,6 +44,7 @@ export class ManagementService {
     public readonly translate: TranslateService,
     private http: HttpClient,
     private apiService: ApiService,
+    private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
     public engagementJourneyService: EngagementJourneyService,
     private router: Router,
@@ -76,23 +78,23 @@ export class ManagementService {
     return this.managementFormData;
   }
   getAllDropDownList() {
-    return this.apiService.getAllDropdownList();
+    return this.investmentApiService.getAllDropdownList();
   }
 
   getTopupInvestmentList() {
-    return this.apiService.getAllDropdownList();
+    return this.investmentApiService.getAllDropdownList();
   }
   getHoldingList() {
-    return this.apiService.getHoldingList();
+    return this.investmentApiService.getHoldingList();
   }
   getPortfolioList() {
-    return this.apiService.getPortfolioList();
+    return this.investmentApiService.getPortfolioList();
   }
   getMoreList() {
-    return this.apiService.getMoreList();
+    return this.investmentApiService.getMoreList();
   }
   getIndividualPortfolioDetails(portfolioId) {
-    return this.apiService.getIndividualPortfolioDetails(portfolioId);
+    return this.investmentApiService.getIndividualPortfolioDetails(portfolioId);
   }
 
   doFinancialValidations(form, allowMonthlyZero) {
@@ -166,14 +168,14 @@ export class ManagementService {
   }
 
   getTransferDetails() {
-    return this.apiService.getTransferDetails();
+    return this.investmentApiService.getTransferDetails();
   }
   getInvestmentOverview() {
-    return this.apiService.getInvestmentOverview();
+    return this.investmentApiService.getInvestmentOverview();
   }
   deletePortfolio(data) {
     const payload = this.constructDeletePortfolioParams(data);
-    return this.apiService.deletePortfolio(payload);
+    return this.investmentApiService.deletePortfolio(payload);
   }
 
   constructDeletePortfolioParams(data) {
@@ -279,11 +281,11 @@ export class ManagementService {
   }
 
   getUserBankList() {
-    return this.apiService.getUserBankList();
+    return this.investmentApiService.getUserBankList();
   }
 
   getUserAddress() {
-    return this.apiService.getUserAddress();
+    return this.investmentApiService.getUserAddress();
   }
 
   saveNewBank(data) {
@@ -315,7 +317,7 @@ export class ManagementService {
 
   sellPortfolio(data) {
     const payload = this.constructSellPortfolioRequestParams(data);
-    return this.apiService.sellPortfolio(payload);
+    return this.investmentApiService.sellPortfolio(payload);
   }
 
   constructSellPortfolioRequestParams(data) {
@@ -334,7 +336,7 @@ export class ManagementService {
   // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
-    return this.apiService.buyPortfolio(payload);
+    return this.investmentApiService.buyPortfolio(payload);
   }
 
   constructBuyPortfolioParams(data) {
@@ -349,7 +351,7 @@ export class ManagementService {
   // MONTHLY INVESTMENT PAYLOAD
   monthlyInvestment(data) {
     const payload = this.constructBuyPortfolioForMonthly(data);
-    return this.apiService.monthlyInvestment(payload);
+    return this.investmentApiService.monthlyInvestment(payload);
   }
 
   constructBuyPortfolioForMonthly(data) {
@@ -361,12 +363,12 @@ export class ManagementService {
     };
   }
   getTransactionHistory(from?, to?) {
-    return this.apiService.getTransactionHistory(from, to);
+    return this.investmentApiService.getTransactionHistory(from, to);
   }
 
   getPortfolioAllocationDetails(params) {
     const urlParams = this.engagementJourneyService.buildQueryString(params);
-    return this.apiService.getPortfolioAllocationDetails(urlParams);
+    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
   }
 
   getMonthListByPeriod(from, to) {
@@ -426,7 +428,7 @@ export class ManagementService {
   }
 
   downloadStatement(data) {
-    return this.apiService.downloadStatement(data);
+    return this.investmentApiService.downloadStatement(data);
   }
 
   /*
@@ -507,11 +509,11 @@ export class ManagementService {
   }
 
   getMonthlyInvestmentInfo() {
-    return this.apiService.getMonthlyInvestmentInfo();
+    return this.investmentApiService.getMonthlyInvestmentInfo();
   }
 
   getOneTimeInvestmentInfo() {
-    return this.apiService.getOneTimeInvestmentInfo();
+    return this.investmentApiService.getOneTimeInvestmentInfo();
   }
 
   getEntitlementsFromPortfolio(portfolio) {

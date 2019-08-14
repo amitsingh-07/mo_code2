@@ -99,15 +99,6 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     this.allMessages.splice(0);
   }
 
-  deleteNotification(messageList) {
-    const payload = this.constructDeleteNotificationRequest(messageList);
-    this.signUpService.deleteNotifications(payload).subscribe((response) => {
-    },
-    (err) => {
-      this.accountCreationService.showGenericErrorModal();
-    });
-  }
-
   constructDeleteNotificationRequest(messages) {
     return {
       messageList: messages

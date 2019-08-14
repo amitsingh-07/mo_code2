@@ -9,6 +9,7 @@ import { InvestmentPeriodFormError } from './investment-period/investment-period
 import { PersonalInfo } from './investment-period/investment-period';
 import { EngagementJourneyFormData } from './engagement-journey-form-data';
 import { ENGAGEMENT_JOURNEY_CONSTANTS } from './engagement-journey.constants';
+import { InvestmentApiService } from '../investment-api.service';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -22,6 +23,7 @@ export class EngagementJourneyService {
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
+    private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService
   ) {
     this.getPortfolioFormData();
@@ -192,7 +194,7 @@ export class EngagementJourneyService {
 
   // RISK ASSESSMENT
   getQuestionsList() {
-    return this.apiService.getQuestionsList();
+    return this.investmentApiService.getQuestionsList();
   }
   constructGetQuestionsRequest() { }
 
@@ -207,7 +209,7 @@ export class EngagementJourneyService {
   // SAVE FOR STEP 2
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
-    return this.apiService.saveRiskAssessment(data);
+    return this.investmentApiService.saveRiskAssessment(data);
   }
   constructRiskAssessmentSaveRequest() {
     const formData = this.getPortfolioFormData();
@@ -261,7 +263,7 @@ export class EngagementJourneyService {
   // SAVE FOR STEP 1
   savePersonalInfo() {
     const payload = this.constructInvObjectiveRequest();
-    return this.apiService.savePersonalInfo(payload);
+    return this.investmentApiService.savePersonalInfo(payload);
   }
   constructInvObjectiveRequest() {
     const formData = this.getPortfolioFormData();
@@ -289,7 +291,7 @@ export class EngagementJourneyService {
   }
   getPortfolioAllocationDetails(params) {
     const urlParams = this.buildQueryString(params);
-    return this.apiService.getPortfolioAllocationDetails(urlParams);
+    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
   }
 
   getFundDetails() {
