@@ -91,7 +91,19 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('COMMON').subscribe((result: string) => {
+      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+        this.investmentAccountService.setUserPortfolioExistStatus(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
+        ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
+        ref.componentInstance.portfolioExist = true;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+         });
+      }
+     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
     });
@@ -103,17 +115,6 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
-    if (this.investmentAccountService.getUserPortfolioExistStatus()) {
-      this.investmentAccountService.setUserPortfolioExistStatus(false);
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
-      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
-      ref.componentInstance.portfolioExist = true;
-      ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
-       });
-    }
 
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
