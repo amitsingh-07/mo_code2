@@ -71,6 +71,17 @@ app-carousel-modal {
     text-align: center;
   }
 
+  .slick-dots {
+    bottom: initial;
+    margin-top: 27px;
+    position: relative;
+  }
+
+  .slick-dots li {
+    height: 8px;
+    width: 8px;
+  }
+
   .slick-dots li button:before {
     font-size: 8px;
     color: #d8d8d8;
@@ -159,17 +170,6 @@ app-carousel-modal {
     align-items: center;
     justify-content: center;
     margin-top: 30px;
-  }
-
-  .last-btn-div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-  }
-
-  .btn-margin-right {
-    margin-right: 10px;
   }
 
   .img-margin-right {

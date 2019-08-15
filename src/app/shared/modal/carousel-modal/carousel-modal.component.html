@@ -1,15 +1,16 @@
 <div class="modal-body white-bg">
-  <ngx-slick class="carousel" #carousel [config]="slideConfig">
+  <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
     <div ngxSlickItem *ngFor="let slide of slides, let i = index;">
       <div class="slide-item">
         <div [ngClass]="{'extra-margin-top': i==2}" class="title-div">
           <img *ngIf="slide.TITLE_IMG" src="{{imgUrl}}{{slide.TITLE_IMG}}" class="title-img" />
           <div class="title-txt">{{slide.TITLE}}</div>
         </div>
-        <img *ngIf="slide.IMAGE" class="img" src="{{imgUrl}}{{slide.IMAGE}}" alt="" width="100%">
-        <div *ngIf="slide.IMG_TITLE" class="img-title" >{{slide.IMG_TITLE}}</div>
+        <img *ngIf="slide.IMAGE" class="img" src="{{imgUrl}}{{slide.IMAGE}}" alt="">
+        <div *ngIf="slide.IMG_TITLE" class="img-title">{{slide.IMG_TITLE}}</div>
         <div *ngIf="slide.TEXT" [ngClass]="{'extra-margin-top-18': i==2}" class="slide-txt">{{slide.TEXT}}</div>
-        <a *ngIf="slide.URL" class="url-txt" href="" onclick="return false;" (click)="goToFaqInvestment()">{{slide.URL_TEXT}}</a>
+        <a *ngIf="slide.URL" class="url-txt" href="javascript:void(0);"
+          (click)="goToFaqInvestment()">{{slide.URL_TEXT}}</a>
         <div *ngIf="slide.CONTACT" class="contact-div">
           <div class="contact-txt">{{slide.CONTACT}}</div>
           <div class="contact-tel-div">
@@ -22,33 +23,20 @@
           </div>
         </div>
       </div>
-      <div *ngIf="i === 0" class="carousel-btn-div">
-        <input type="image" src="{{imgUrl}}oval-active.svg" class="btn-margin-right" />
-        <input type="image" src="{{imgUrl}}oval.svg" class="btn-margin-right" (click)="goToSlide(1)"/>
-        <input type="image" src="{{imgUrl}}oval.svg" (click)="goToSlide(2)"/>
-      </div>
-      <div *ngIf="i === 0" class="btn-div">
-        <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
-        <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
-      </div>
-      <div *ngIf="i === 1" class="carousel-btn-div">
-        <input type="image" src="{{imgUrl}}oval.svg" class="btn-margin-right" (click)="goToSlide(0)"/>
-        <input type="image" src="{{imgUrl}}oval-active.svg" class="btn-margin-right" />
-        <input type="image" src="{{imgUrl}}oval.svg" (click)="goToSlide(2)"/>
-      </div>
-      <div *ngIf="i === 1" class="btn-div">
-        <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
-        <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
-      </div>
-      <div *ngIf="i === 2" class="last-carousel-btn-div">
-        <input type="image" src="{{imgUrl}}oval.svg" class="btn-margin-right" (click)="goToSlide(0)"/>
-        <input type="image" src="{{imgUrl}}oval.svg" class="btn-margin-right" (click)="goToSlide(1)"/>
-        <input type="image" src="{{imgUrl}}oval-active.svg" />
-      </div>
-      <div *ngIf="i === 2" class="last-btn-div">
-        <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
-        <div class="got-it-txt" (click)="closePopup()">{{endBtnTxt}}</div>
-      </div>
     </div>
   </ngx-slick>
+  <div class="btn-div">
+    <ng-container *ngIf="currentSlide === 0">
+      <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
+      <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
+    </ng-container>
+    <ng-container *ngIf="currentSlide === 1">
+      <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
+      <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
+    </ng-container>
+    <ng-container *ngIf="currentSlide === 2">
+      <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
+      <div class="got-it-txt" (click)="closePopup()">{{endBtnTxt}}</div>
+    </ng-container>
+  </div>
 </div>

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { filter } from 'rxjs/operators';
 import { SlickComponent } from 'ngx-slick';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-carousel-modal',
@@ -16,13 +16,14 @@ export class CarouselModalComponent implements OnInit {
   @Input() endBtnTxt: string;
   @ViewChild('carousel') carousel: SlickComponent;
   public imgUrl = '../assets/images/srs-joint-account/';
-
+  public currentSlide = 0;
+  // Set config for ng slick
   slideConfig = {
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: '',
     prevArrow: '',
-    dots: false,
+    dots: true,
     infinite: false,
   };
 
@@ -53,10 +54,14 @@ export class CarouselModalComponent implements OnInit {
   goToSlide(slide) {
     this.carousel.slickGoTo(slide);
   }
-
+  // Go to investment section of faq page
   goToFaqInvestment() {
     this.activeModal.dismiss();
-    this.router.navigate(['faq'], {fragment: 'investment'});
+    this.router.navigate(['faq'], { fragment: 'investment' });
+  }
+  // Setting the next slide index on beforeChange event fire
+  beforeSlideChange(e) {
+    this.currentSlide = e.nextSlide;
   }
 
 }
