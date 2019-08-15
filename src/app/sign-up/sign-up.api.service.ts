@@ -254,4 +254,19 @@ export class SignUpApiService {
     const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
     return this.apiService.requestResetPassword(data);
   }
+
+  getSrsPopStatus(customerId) {
+    const payload = {
+      customer_id: customerId
+    };
+    return this.apiService.getSrsPopStatus(payload);
+  }
+
+  setSrsPopStatus(customerId) {
+    const payload = {
+      customer_id: customerId,
+      check: true
+    };
+    return this.apiService.setSrsPopStatus(payload);
+  }
 }

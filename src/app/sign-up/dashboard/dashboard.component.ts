@@ -179,6 +179,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.getTransferDetails();
+    this.checkSRSPopStatus();
   }
 
   loadOptionListCollection() {
@@ -413,6 +414,20 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
 
+  // Check if user is first time seeing SRS popup
+  checkSRSPopStatus() {
+    const customerId = this.signUpService.getAccountInfo().userProfileInfo.id;
+    this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
+      // Check if srs_pop_status is available or false
+      if (!status.objectList['srs_pop_status']) {
+        setTimeout(() => {
+          this.openSRSJointAccPopup();
+        });
+        this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
+        }, (error) => console.log('ERROR: ', error));
+      }
+    }, (error) => console.log('ERROR: ', error));
   }
 }
