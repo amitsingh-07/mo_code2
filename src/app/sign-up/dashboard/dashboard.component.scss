@@ -281,8 +281,7 @@ app-dashboard{
         background-color: rgba(0, 89, 96, 0.3);
         .announcement-img {
             width: 40px;
-            height: 40px;
-            object-fit: contain;
+            height: auto;
             margin-right: 8px;
         }
         .announcement-txt {
