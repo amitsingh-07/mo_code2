@@ -316,7 +316,7 @@
                     },
                     {
                         "QUESTION": "What is rebalancing? How often is rebalancing done?",
-                        "ANSWER": "Portfolio rebalancing is the process of realigning the weightages of the assets in a portfolio. MoneyOwl may rebalance the portfolio quarterly in March, June, September and December, and upon review of the asset allocation of the portfolio."
+                        "ANSWER": "Portfolio rebalancing is the process of realigning the weightages of the assets back to the portfolio’s strategic asset allocation. MoneyOwl may, at its discretion, rebalance the portfolio about once a quarter, upon meaningful deviation from strategic asset allocation or upon review of the asset allocation of the portfolio."
                     },
                     {
                         "QUESTION": "How do I submit an investment top-up request?",
@@ -396,11 +396,11 @@
                 "General Questions": [
                     {
                         "QUESTION": "Who is iFAST Financial Pte Ltd?",
-                        "ANSWER": "iFAST Financial Pte Ltd provides custodial services to MoneyOwl. <br/> Please refer to <a href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
+                        "ANSWER": "iFAST Financial Pte Ltd provides custodial and transfer agent services to MoneyOwl. <br/> Please refer to <a href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
                     },
                     {
                         "QUESTION": "What happens if iFAST Financial Pte Ltd ceases operation?",
-                        "ANSWER": "<p>All investors' money are protected and held in trust's account under our custodian’s iFAST Financial Pte Ltd - Client Trust, which are subjected to MAS regulations. In the unlikely event that iFAST ceases operations, your investment holdings held under custody with iFAST will not be affected as they will either be returned to the investors or transferred to another agent of your choice. iFAST has the responsibility to ensure that all liabilities and obligations to all clients have been fully discharged or provided for, and that proper arrangements have been put in place.</p>"
+                        "ANSWER": "<p>All investors' money are protected and held in a trust account under our custodian’s iFAST Financial Pte Ltd - Client Trust, which are subjected to MAS regulations. In the unlikely event that iFAST ceases operations, your investment holdings held will either be returned to the investors or transferred to another agent of your choice. iFAST has the responsibility to ensure that all liabilities and obligations to all clients have been fully discharged or provided for, and that proper arrangements have been put in place.</p>"
                     },
                     {
                         "QUESTION": "I already have an existing iFAST account before starting my MoneyOwl Investment Account. Do I still need to open a new iFAST account?",
