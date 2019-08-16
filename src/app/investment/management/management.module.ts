@@ -11,14 +11,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
-import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
+import { AddBankModalComponent } from './withdrawal-bank-account/add-bank-modal/add-bank-modal.component';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import {
     ConfirmWithdrawalModalComponent
-} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+} from './withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
     ForwardPricingModalComponent
-} from './forward-pricing-modal/forward-pricing-modal.component';
+} from './withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';

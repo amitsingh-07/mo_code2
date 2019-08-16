@@ -12,13 +12,13 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { AddBankModalComponent } from '../add-bank-modal/add-bank-modal.component';
+import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 import {
     ConfirmWithdrawalModalComponent
-} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+} from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
     ForwardPricingModalComponent
-} from '../forward-pricing-modal/forward-pricing-modal.component';
+} from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { MANAGEMENT_ROUTE_PATHS } from '../management-routes.constants';
 import { ManagementService } from '../management.service';
 

@@ -12,7 +12,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
     AccountCreationErrorModalComponent
-} from '../account-creation-error-modal/account-creation-error-modal.component';
+} from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { ACCOUNT_CREATION_ROUTE_PATHS } from '../account-creation-routes.constants';
 import { AccountCreationService } from '../account-creation-service';
 import { ACCOUNT_CREATION_CONSTANTS } from '../account-creation.constant';

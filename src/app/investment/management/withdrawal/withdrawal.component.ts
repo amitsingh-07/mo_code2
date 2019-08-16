@@ -14,10 +14,10 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
     ConfirmWithdrawalModalComponent
-} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
     ForwardPricingModalComponent
-} from '../forward-pricing-modal/forward-pricing-modal.component';
+} from './forward-pricing-modal/forward-pricing-modal.component';
 import { MANAGEMENT_ROUTE_PATHS } from '../management-routes.constants';
 import { MANAGEMENT_CONSTANTS } from '../management.constants';
 import { ManagementService } from '../management.service';

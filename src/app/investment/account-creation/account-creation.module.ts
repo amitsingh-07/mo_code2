@@ -13,7 +13,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import {
     AccountCreationErrorModalComponent
-} from './account-creation-error-modal/account-creation-error-modal.component';
+} from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import {
     AccountStatusComponent
 } from './account-status/account-status.component';

@@ -4,9 +4,9 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { RegexConstants } from '../../../shared/utils/api.regex.constants';
-import { SignUpService } from '../../../sign-up/sign-up.service';
-import { ManagementService } from '../management.service';
+import { RegexConstants } from '../../../../shared/utils/api.regex.constants';
+import { SignUpService } from '../../../../sign-up/sign-up.service';
+import { ManagementService } from '../../management.service';
 
 @Component({
   selector: 'app-add-bank-modal',

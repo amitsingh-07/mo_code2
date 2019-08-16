@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { MANAGEMENT_CONSTANTS } from '../management.constants';
+import { MANAGEMENT_CONSTANTS } from '../../management.constants';
 
 @Component({
   selector: 'app-confirm-withdrawal-modal',
