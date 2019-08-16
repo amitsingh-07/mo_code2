@@ -1,5 +1,5 @@
 {
-  "FUND_YOUR_ACCOUNT": {
+  "FUNDING_INSTRUCTIONS": {
     "TITLE": "Fund Your Account",
     "OK_GOT_IT": "Okay, Got It!",
     "YOUR_INVESTMENT": "Your Investment",
@@ -138,7 +138,7 @@
     "YEARLY_RETURNS": "Yearly Returns",
     "ANNUALIZED_RETURNS": "Annualized Returns",
     "FUND_YOUR_ACCOUNT_MESSAGE": "Please transfer your money by",
-    "FUND_YOUR_ACCOUNT": "View Transfer Instruction",
+    "FUNDING_INSTRUCTIONS": "View Transfer Instruction",
     "PERFORMANCE": "Performance",
     "ASSET_ALLOCATION": "Asset Allocation",
     "HOLDINGS": "Holdings",

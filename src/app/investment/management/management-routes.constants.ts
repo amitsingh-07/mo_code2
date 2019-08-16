@@ -1,6 +1,6 @@
 export const MANAGEMENT_BASE_ROUTE = '../investment/';
 export const MANAGEMENT_ROUTES = {
-  ROOT: '',
+  ROOT: 'overview',
   YOUR_INVESTMENT: 'overview',
   YOUR_PORTFOLIO: 'portfolio',
   TOPUP: 'portfolio/top-up',

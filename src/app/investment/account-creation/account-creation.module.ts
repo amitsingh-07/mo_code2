@@ -47,7 +47,7 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
-    { prefix: './assets/i18n/investment-account/', suffix: '.json' }
+    { prefix: './assets/i18n/account-creation/', suffix: '.json' }
   ]);
 }
 
