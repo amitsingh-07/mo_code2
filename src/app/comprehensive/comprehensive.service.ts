@@ -1016,6 +1016,7 @@ export class ComprehensiveService {
     const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
     const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
     const dependantData: IDependantDetail[] = this.getMyDependant();
+    const dependentHouseHoldData: IdependentsSummaryList = this.gethouseHoldDetails();
 
     if (enquiry && enquiry.hasDependents !== null && dependantData && dependantData.length > 0) {
       hasDependants = true;
@@ -1035,6 +1036,20 @@ export class ComprehensiveService {
     if (dependantData) {
       noOfDependants = dependantData.length + '';
     }
+    subItemsArray.push({
+      id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+      path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+      title: 'No. of Household Members',
+      value: dependentHouseHoldData.noOfHouseholdMembers + '',
+      completed: enquiry.hasDependents !== null
+    });
+    subItemsArray.push({
+      id: '',
+      path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+      title: 'Household Income',
+      value: dependentHouseHoldData.houseHoldIncome + '',
+      completed: enquiry.hasDependents !== null
+    });
     subItemsArray.push({
       id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
       path:
