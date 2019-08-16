@@ -148,6 +148,7 @@ export class GuideMeService {
   removeProtectNeedHospitalPlanData() {
     delete this.guideMeFormData.protectionNeedData;
     delete this.guideMeFormData.hospitalPlanData;
+    delete this.guideMeFormData.longTermCareData;
     this.commit();
   }
 

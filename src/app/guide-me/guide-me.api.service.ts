@@ -154,8 +154,9 @@ export class GuideMeApiService {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
-            mobileNumber: data.mobileNumber,
+            mobileNumber: data.mobileNumber.toString(),
             acceptMarketingEmails: data.acceptMarketingEmails,
+            contactViaMobile: data.contactViaMobile,
             validateCaptchaBean: {
                 captcha: data.captchaValue,
                 sessionId: this.authService.getSessionId()

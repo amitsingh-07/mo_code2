@@ -49,11 +49,16 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]],
+      mobileNumber: ['', Validators.pattern(RegexConstants.MobileNumber)],
       confirmEmail: [''],
       acceptMarketingEmails: [''],
+      contactViaMobile: [''],
       captchaValue: ['']
     }, { validator: this.validateMatchEmail() });
+    this.setValidatorMobileNumber();
+    setTimeout(() => {
+      this.enquiryForm.get('contactViaMobile').setValue(false);
+    }, 300);
   }
 
   next(page) {
@@ -134,6 +139,20 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  setValidatorMobileNumber() {
+    const mobileNumberControl = this.enquiryForm.get('mobileNumber');
+    const contactViaMobileCtrl = this.enquiryForm.get('contactViaMobile');
+    contactViaMobileCtrl.valueChanges
+      .subscribe((checked) => {
+        if (checked) {
+          mobileNumberControl.setValidators([Validators.required, Validators.pattern(RegexConstants.MobileNumber)]);
+        } else {
+          mobileNumberControl.setValidators([Validators.pattern(RegexConstants.MobileNumber)]);
+        }
+        mobileNumberControl.updateValueAndValidity();
+      });
   }
 
 }
