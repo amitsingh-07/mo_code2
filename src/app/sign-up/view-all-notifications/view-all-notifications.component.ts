@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { EngagementJourneyService } from '../../investment/engagement-journey/engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,7 +31,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public engagementJourneyService: EngagementJourneyService,
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -66,7 +66,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
       this.navbarService.setClearAllNotify(this.allMessages.length > 0 ? true : false);
-      this.engagementJourneyService.sortByProperty(this.allMessages, 'time', 'desc');
+      this.investmentEngagementJourneyService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     },

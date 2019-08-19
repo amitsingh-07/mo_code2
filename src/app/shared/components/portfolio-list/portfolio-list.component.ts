@@ -4,7 +4,7 @@ import { ManagementService } from '../../../investment/management/management.ser
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
-import { ProfileIcons } from '../../../investment/engagement-journey/recommendation/profileIcons';
+import { ProfileIcons } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 
 @Component({

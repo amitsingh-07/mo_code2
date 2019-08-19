@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -34,7 +34,7 @@ export class TransactionsComponent implements OnInit {
     private translate: TranslateService,
     private managementService: ManagementService,
     private signUpService: SignUpService,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService
   ) {
@@ -89,7 +89,7 @@ export class TransactionsComponent implements OnInit {
       this.loaderService.hideLoader();
       this.transactionHistory = response.objectList;
       this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
-      this.engagementJourneyService.sortByProperty(
+      this.investmentEngagementJourneyService.sortByProperty(
         this.transactionHistory,
         'createdDate',
         'desc'

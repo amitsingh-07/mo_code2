@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-fund-details',
@@ -38,12 +38,12 @@ export class FundDetailsComponent implements OnInit {
     private modal: NgbModal,
     public activeModal: NgbActiveModal,
     private _location: Location,
-    public engagementJourneyService: EngagementJourneyService
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
   }
   ngOnInit() {
-    this.fundDetails = this.engagementJourneyService.getFundDetails();
+    this.fundDetails = this.investmentEngagementJourneyService.getFundDetails();
   }
 
   showHide(el) {

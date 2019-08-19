@@ -2,8 +2,8 @@ import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { FundDetailsComponent } from '../../../investment/engagement-journey/fund-details/fund-details.component';
-import { EngagementJourneyService } from '../../../investment/engagement-journey/engagement-journey.service';
+import { FundDetailsComponent } from '../../../investment/investment-engagement-journey/fund-details/fund-details.component';
+import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 
 @Component({
   selector: 'app-allocation',
@@ -20,7 +20,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   event2 = true;
 
   constructor(
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private router: Router,
     public modal: NgbModal
   ) {}
@@ -30,7 +30,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
-      this.engagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
+      this.investmentEngagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
       allocation.groupedAllocationDetails = groupedAllocation;
     });
   }
@@ -39,7 +39,7 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
-      this.engagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
+      this.investmentEngagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
       const classObj = {
         name: prop,
         value: targetObj[prop]
@@ -50,7 +50,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   }
 
   showFundDetails() {
-    this.engagementJourneyService.setFundDetails(this.funds);
+    this.investmentEngagementJourneyService.setFundDetails(this.funds);
     const ref = this.modal.open(FundDetailsComponent, {
       centered: true,
       windowClass: 'custom-full-height'

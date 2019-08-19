@@ -6,9 +6,9 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-    ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../engagement-journey/engagement-journey-routes.constants';
-import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -98,7 +98,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.moreList = MANAGEMENT_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
   }
   addPortfolio() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
@@ -327,7 +327,7 @@ showPopUp() {
 
   startPortfolio() {
     this.authService.saveEnquiryId(null);
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   gotoTopUp() {  // GO TO TOP-UP
       this.router.navigate([MANAGEMENT_ROUTE_PATHS.TOPUP]);

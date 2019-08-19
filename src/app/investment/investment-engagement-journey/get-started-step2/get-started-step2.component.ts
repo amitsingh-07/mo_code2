@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-get-started-step2',
@@ -46,6 +46,6 @@ export class GetStartedStep2Component implements OnInit {
     this._location.back();
   }
   goNext() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ASSESSMENT]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ASSESSMENT]);
   }
 }

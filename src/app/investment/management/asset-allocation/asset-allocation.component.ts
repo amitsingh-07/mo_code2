@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
-import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
-import { RiskProfile } from '../../engagement-journey/recommendation/riskprofile';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { RiskProfile } from '../../investment-engagement-journey/recommendation/riskprofile';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
@@ -49,7 +49,7 @@ export class AssetAllocationComponent implements OnInit {
     public modal: NgbModal,
     public managementService: ManagementService,
     private signUpService: SignUpService,
-    private engagementJourneyService: EngagementJourneyService
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     const self = this;
@@ -71,7 +71,7 @@ export class AssetAllocationComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const formData = this.engagementJourneyService.getRiskProfile();
+    const formData = this.investmentEngagementJourneyService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: formData.riskProfileId,

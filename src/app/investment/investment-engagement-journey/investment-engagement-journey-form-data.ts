@@ -1,4 +1,4 @@
-export class EngagementJourneyFormData {
+export class InvestmentEngagementJourneyFormData {
   // PERSONAL INFO
   dob: any;
   investmentPeriod: number;

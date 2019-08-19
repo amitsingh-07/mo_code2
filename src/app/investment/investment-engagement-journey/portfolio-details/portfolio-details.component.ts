@@ -32,8 +32,8 @@ import {
     MANAGEMENT_ROUTE_PATHS
 } from '../../management/management-routes.constants';
 import { ManagementService } from '../../management/management.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
 
@@ -71,7 +71,7 @@ export class PortfolioDetailsComponent implements OnInit {
     public modal: NgbModal,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private managementService: ManagementService,
     private loaderService: LoaderService
   ) {
@@ -91,7 +91,7 @@ export class PortfolioDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.engagementJourneyService.getSelectedRiskProfileId();
+    this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
@@ -149,16 +149,16 @@ export class PortfolioDetailsComponent implements OnInit {
   }
 
   showWhatTheRisk() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
   }
 
   showWhatFubdDetails() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
   }
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.engagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+    this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
       this.userInputSubtext = {
         onetime: this.currencyPipe.transform(
@@ -182,7 +182,7 @@ export class PortfolioDetailsComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const selectedRiskId = this.engagementJourneyService.getSelectedRiskProfileId();
+    const selectedRiskId = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     const enqId = this.authService.getEnquiryId();
     return {
       riskProfileId: selectedRiskId.riskProfileId,

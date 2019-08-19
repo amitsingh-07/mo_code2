@@ -9,7 +9,7 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EngagementJourneyGuardService implements CanActivate {
+export class InvestmentEngagementJourneyGuardService implements CanActivate {
   constructor(
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,

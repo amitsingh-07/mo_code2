@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DirectService } from './direct/direct.service';
 import { GuideMeService } from './guide-me/guide-me.service';
 import { InvestmentAccountService } from './investment/investment-account/investment-account-service';
-import { EngagementJourneyService } from './investment/engagement-journey/engagement-journey.service';
+import { InvestmentEngagementJourneyService } from './investment/investment-engagement-journey/investment-engagement-journey.service';
 import { SignUpService } from './sign-up/sign-up.service';
 import { ManagementService } from './investment/management/management.service';
 import { WillWritingService } from './will-writing/will-writing.service';
@@ -26,7 +26,7 @@ export class AppService {
     private directService: DirectService,
     private guideMeService: GuideMeService,
     private signUpService: SignUpService,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
     private managementService: ManagementService,
     private willWritingService: WillWritingService
@@ -54,7 +54,7 @@ export class AppService {
     this.guideMeService.clearServiceData();
     this.directService.clearServiceData();
     this.signUpService.clearData();
-    this.engagementJourneyService.clearData();
+    this.investmentEngagementJourneyService.clearData();
     this.investmentAccountService.clearData();
     this.managementService.clearData();
   }

@@ -5,15 +5,15 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { IMyFinancials } from './your-financials.interface';
 
 @Component({
@@ -36,7 +36,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   constructor(
     private router: Router,
     private modal: NgbModal,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -72,7 +72,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.myFinancialsFormValues = this.engagementJourneyService.getMyFinancials();
+    this.myFinancialsFormValues = this.investmentEngagementJourneyService.getMyFinancials();
     // tslint:disable-next-line:max-line-length
     this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox
       ? this.myFinancialsFormValues.oneTimeInvestmentChkBox
@@ -98,7 +98,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       ),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
       suffEmergencyFund: new FormControl(
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
       ),
       // tslint:disable-next-line:max-line-length
       firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
@@ -160,7 +160,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.engagementJourneyService.doFinancialValidations(form);
+    const error = this.investmentEngagementJourneyService.doFinancialValidations(form);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -188,12 +188,12 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     }
   }
   saveAndProceed(form: any) {
-    this.engagementJourneyService.setMyFinancials(form.value);
+    this.investmentEngagementJourneyService.setMyFinancials(form.value);
     // CALL API
-    this.engagementJourneyService.savePersonalInfo().subscribe((data) => {
+    this.investmentEngagementJourneyService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
-        this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     },
     (err) => {
@@ -201,6 +201,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     });
   }
   goBack() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
   }
 }

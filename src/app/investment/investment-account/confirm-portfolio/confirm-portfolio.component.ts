@@ -5,9 +5,9 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../engagement-journey/engagement-journey-routes.constants';
-import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
-import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -61,7 +61,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public engagementJourneyService: EngagementJourneyService,
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public managementService: ManagementService,
     public investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
@@ -228,7 +228,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   goToWhatsTheRisk() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WHATS_THE_RISK]);
   }
 
   showInvestmentAccountErrorModal(errorList) {

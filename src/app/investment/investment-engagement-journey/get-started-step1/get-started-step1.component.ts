@@ -9,7 +9,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -61,6 +61,6 @@ export class GetStartedStep1Component implements OnInit {
     this._location.back();
   }
   goNext() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

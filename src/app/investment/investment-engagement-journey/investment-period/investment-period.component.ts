@@ -5,14 +5,14 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 const assetImgPath = './assets/images/';
 
@@ -32,7 +32,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   formValues: any;
   ciAssessmentFormValues: any;
   sliderMinValue = 0;
-  sliderMaxValue = ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.max_investment_years;
+  sliderMaxValue = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.max_investment_years;
   isSufficientInvYears = false;
 
   constructor(
@@ -42,7 +42,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     public navbarService: NavbarService,
     public footerService: FooterService,
     private config: NgbDatepickerConfig,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private modal: NgbModal,
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
@@ -79,7 +79,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.engagementJourneyService.getPersonalInfo();
+    this.formValues = this.investmentEngagementJourneyService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
       investmentPeriod: ['', Validators.required],
       sliderValueSetter: ['']
@@ -114,7 +114,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       )[0].style.transform = pointerPosition;
     }, 1);
     this.isSufficientInvYears =
-      value > ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.min_investment_period ? true : false;
+      value > INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.min_investment_period ? true : false;
     this.cd.detectChanges();
   }
 
@@ -128,21 +128,21 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
         form.get(key).markAsDirty();
       });
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.engagementJourneyService.currentFormError(form)[
+      ref.componentInstance.errorTitle = this.investmentEngagementJourneyService.currentFormError(form)[
         'errorTitle'
       ];
-      ref.componentInstance.errorMessage = this.engagementJourneyService.currentFormError(form)[
+      ref.componentInstance.errorMessage = this.investmentEngagementJourneyService.currentFormError(form)[
         'errorMessage'
       ];
       return false;
     }
-    this.engagementJourneyService.setPersonalInfo(form.value);
+    this.investmentEngagementJourneyService.setPersonalInfo(form.value);
     return true;
   }
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
     }
   }
 }

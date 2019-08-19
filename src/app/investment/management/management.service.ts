@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { EngagementJourneyService } from '../engagement-journey/engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -46,7 +46,7 @@ export class ManagementService {
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
-    public engagementJourneyService: EngagementJourneyService,
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private router: Router,
     private modal: NgbModal,
     private signUpService: SignUpService
@@ -367,7 +367,7 @@ export class ManagementService {
   }
 
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.engagementJourneyService.buildQueryString(params);
+    const urlParams = this.investmentEngagementJourneyService.buildQueryString(params);
     return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
   }
 

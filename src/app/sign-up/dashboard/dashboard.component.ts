@@ -10,7 +10,7 @@ import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -185,7 +185,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
   }
 
   goToEditProfile() {

@@ -18,7 +18,7 @@ import {
    INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';

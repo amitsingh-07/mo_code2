@@ -8,8 +8,8 @@ import { PendingChangesGuard } from './changes.guard';
 import {
     EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
-import { InvestmentChildEnableGuard } from './investment/engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './investment/engagement-journey/investment-enable-guard';
+import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -54,7 +54,7 @@ const routes: Routes = [
         canActivateChild: [ArticleEnableGuard]
       },
       { path: 'investment',
-        loadChildren: './investment/engagement-journey/engagement-journey.module#EngagementJourneyModule',
+        loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

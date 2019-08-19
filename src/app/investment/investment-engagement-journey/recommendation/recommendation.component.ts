@@ -8,9 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from './profileIcons';
 import { RiskProfile } from './riskprofile';
 
@@ -43,7 +43,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     public headerService: HeaderService,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
@@ -61,7 +61,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.selectedRiskProfile = this.engagementJourneyService.getRiskProfile();
+    this.selectedRiskProfile = this.investmentEngagementJourneyService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
     if (this.selectedRiskProfile.alternateRiskProfileId) {
     this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
@@ -71,9 +71,9 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.engagementJourneyService.getPortfolioRecommendationModalCounter() === 0) {
+    if (this.investmentEngagementJourneyService.getPortfolioRecommendationModalCounter() === 0) {
       this.renderer.addClass(document.body, 'modal-open'); // disable scroll to body
-      this.engagementJourneyService.setPortfolioSplashModalCounter(1);
+      this.investmentEngagementJourneyService.setPortfolioSplashModalCounter(1);
       this.time = setTimeout(() => {
         this.animateStaticModal = true;
       }, 3000);
@@ -94,8 +94,8 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.renderer.removeClass(document.body, 'modal-open'); // enable scroll to body
    }
   goToNext(RiskProfileID) {
-    this.engagementJourneyService.setSelectedRiskProfileId(RiskProfileID);
-    this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+    this.investmentEngagementJourneyService.setSelectedRiskProfileId(RiskProfileID);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
   goToHomepage() {
     this.router.navigate(['home']);
@@ -107,11 +107,11 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
   canProceed() {
     return (
       this.selectedRiskProfile.riskProfileId !==
-      ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id
     );
   }
   showButton() {
-    if (this.selectedRiskProfile.riskProfileId === ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id) {
+    if (this.selectedRiskProfile.riskProfileId === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id) {
       this.showNoPortfolio = true;
     } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
        // #this.showTwoPortfolio = true;

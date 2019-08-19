@@ -16,8 +16,8 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-start-journey',
@@ -39,7 +39,7 @@ export class StartJourneyComponent implements OnInit {
     private loaderService: LoaderService,
     private appService: AppService,
     public headerService: HeaderService,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
@@ -84,7 +84,7 @@ export class StartJourneyComponent implements OnInit {
       this.verifyPromoCode(this.promoCodeForm.controls.promoCode.value);
     } else {
       this.authService.saveEnquiryId(null);
-      this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
     }
   }
 
@@ -99,12 +99,12 @@ export class StartJourneyComponent implements OnInit {
     });
     promoCode = promoCode.toUpperCase();
     this.isDisabled = true;
-    this.engagementJourneyService.verifyPromoCode(promoCode).subscribe((data) => {
+    this.investmentEngagementJourneyService.verifyPromoCode(promoCode).subscribe((data) => {
       this.loaderService.hideLoader();
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
         this.authService.saveEnquiryId(data.objectList[0].enquiryId);
-        this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
       } else if (this.promoCode.responseCode === 5017) {
         this.showErrorModal();
         this.isDisabled = false;

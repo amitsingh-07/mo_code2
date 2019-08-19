@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { MANAGEMENT_ROUTE_PATHS } from '../../management/management-routes.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-portfolio-exist',
@@ -18,7 +18,7 @@ export class PortfolioExistComponent implements OnInit {
   pageTitle: string;
   constructor(
     private router: Router,
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,

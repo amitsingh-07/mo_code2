@@ -1,4 +1,4 @@
-export let ENGAGEMENT_JOURNEY_CONSTANTS = {
+export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   personal_info: {
     max_investment_years: 40,
     min_investment_period: 3 // years

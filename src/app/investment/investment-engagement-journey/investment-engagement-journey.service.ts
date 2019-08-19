@@ -7,8 +7,8 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { IMyFinancials } from './your-financials/your-financials.interface';
 import { InvestmentPeriodFormError } from './investment-period/investment-period-form-error';
 import { PersonalInfo } from './investment-period/investment-period';
-import { EngagementJourneyFormData } from './engagement-journey-form-data';
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from './engagement-journey.constants';
+import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
 import { InvestmentApiService } from '../investment-api.service';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
@@ -17,8 +17,8 @@ const SESSION_STORAGE_KEY = 'app_engage_journey_session';
 @Injectable({
   providedIn: 'root'
 })
-export class EngagementJourneyService {
-  private EngagementJourneyFormData: EngagementJourneyFormData = new EngagementJourneyFormData();
+export class InvestmentEngagementJourneyService {
+  private investmentEngagementJourneyFormData: InvestmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
   private InvestmentPeriodFormError: any = new InvestmentPeriodFormError();
   constructor(
     private http: HttpClient,
@@ -31,51 +31,51 @@ export class EngagementJourneyService {
 
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.EngagementJourneyFormData));
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.investmentEngagementJourneyFormData));
     }
   }
 
-  getPortfolioFormData(): EngagementJourneyFormData {
+  getPortfolioFormData(): InvestmentEngagementJourneyFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-      this.EngagementJourneyFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+      this.investmentEngagementJourneyFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
-    return this.EngagementJourneyFormData;
+    return this.investmentEngagementJourneyFormData;
   }
 
   // GET PERSONAL INFO
   getPersonalInfo() {
     return {
-      // dob: this.EngagementJourneyFormData.dob,
-      investmentPeriod: this.EngagementJourneyFormData.investmentPeriod
+      // dob: this.investmentEngagementJourneyFormData.dob,
+      investmentPeriod: this.investmentEngagementJourneyFormData.investmentPeriod
     };
   }
 
   // Risk Profile
   getRiskProfile() {
     return {
-      riskProfileId: this.EngagementJourneyFormData.riskProfileId,
-      riskProfileName: this.EngagementJourneyFormData.riskProfileName,
-      htmlDescription: this.EngagementJourneyFormData.htmlDescription,
-      alternateRiskProfileId: this.EngagementJourneyFormData.alternateRiskProfileId,
-      alternateRiskProfileType: this.EngagementJourneyFormData.alternateRiskProfileType
+      riskProfileId: this.investmentEngagementJourneyFormData.riskProfileId,
+      riskProfileName: this.investmentEngagementJourneyFormData.riskProfileName,
+      htmlDescription: this.investmentEngagementJourneyFormData.htmlDescription,
+      alternateRiskProfileId: this.investmentEngagementJourneyFormData.alternateRiskProfileId,
+      alternateRiskProfileType: this.investmentEngagementJourneyFormData.alternateRiskProfileType
     };
   }
 
   setRiskProfile(data) {
-    this.EngagementJourneyFormData.riskProfileId = data.primaryRiskProfileId;
-    this.EngagementJourneyFormData.riskProfileName = data.primaryRiskProfileType;
-    this.EngagementJourneyFormData.htmlDescription = data.htmlDescObject;
-    this.EngagementJourneyFormData.alternateRiskProfileId = data.alternateRiskProfileId;
-    this.EngagementJourneyFormData.alternateRiskProfileType = data.alternateRiskProfileType;
+    this.investmentEngagementJourneyFormData.riskProfileId = data.primaryRiskProfileId;
+    this.investmentEngagementJourneyFormData.riskProfileName = data.primaryRiskProfileType;
+    this.investmentEngagementJourneyFormData.htmlDescription = data.htmlDescObject;
+    this.investmentEngagementJourneyFormData.alternateRiskProfileId = data.alternateRiskProfileId;
+    this.investmentEngagementJourneyFormData.alternateRiskProfileType = data.alternateRiskProfileType;
 
     this.commit();
   }
   setSelectedRiskProfileId(RiskProfileID) {
-    this.EngagementJourneyFormData.selectedriskProfileId = RiskProfileID;
+    this.investmentEngagementJourneyFormData.selectedriskProfileId = RiskProfileID;
   }
   getSelectedRiskProfileId() {
     return {
-      riskProfileId: this.EngagementJourneyFormData.selectedriskProfileId
+      riskProfileId: this.investmentEngagementJourneyFormData.selectedriskProfileId
     };
   }
 
@@ -101,33 +101,33 @@ export class EngagementJourneyService {
       // tslint:disable-next-line:max-line-length
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount &&
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount &&
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
         return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['one'];
       } else if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
         return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['two'];
       } else if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
       ) {
         return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
       ) {
         return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.secondChkBox) {
       if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
         return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['two'];
       }
@@ -188,7 +188,7 @@ export class EngagementJourneyService {
   }
 
   setPersonalInfo(data: PersonalInfo) {
-    this.EngagementJourneyFormData.investmentPeriod = data.investmentPeriod;
+    this.investmentEngagementJourneyFormData.investmentPeriod = data.investmentPeriod;
     this.commit();
   }
 
@@ -199,10 +199,10 @@ export class EngagementJourneyService {
   constructGetQuestionsRequest() { }
 
   getSelectedOptionByIndex(index) {
-    return this.EngagementJourneyFormData['riskAssessQuest' + index];
+    return this.investmentEngagementJourneyFormData['riskAssessQuest' + index];
   }
   setRiskAssessment(data, questionIndex) {
-    this.EngagementJourneyFormData['riskAssessQuest' + questionIndex] = data;
+    this.investmentEngagementJourneyFormData['riskAssessQuest' + questionIndex] = data;
     this.commit();
   }
 
@@ -236,27 +236,27 @@ export class EngagementJourneyService {
   // MY FINANCIALS
   getMyFinancials(): IMyFinancials {
     return {
-      monthlyIncome: this.EngagementJourneyFormData.monthlyIncome,
-      percentageOfSaving: this.EngagementJourneyFormData.percentageOfSaving,
-      totalAssets: this.EngagementJourneyFormData.totalAssets,
-      totalLiabilities: this.EngagementJourneyFormData.totalLiabilities,
-      initialInvestment: this.EngagementJourneyFormData.initialInvestment,
-      monthlyInvestment: this.EngagementJourneyFormData.monthlyInvestment,
-      suffEmergencyFund: this.EngagementJourneyFormData.suffEmergencyFund,
-      oneTimeInvestmentChkBox: this.EngagementJourneyFormData.oneTimeInvestmentChkBox,
-      monthlyInvestmentChkBox: this.EngagementJourneyFormData.monthlyInvestmentChkBox
+      monthlyIncome: this.investmentEngagementJourneyFormData.monthlyIncome,
+      percentageOfSaving: this.investmentEngagementJourneyFormData.percentageOfSaving,
+      totalAssets: this.investmentEngagementJourneyFormData.totalAssets,
+      totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
+      initialInvestment: this.investmentEngagementJourneyFormData.initialInvestment,
+      monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
+      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
+      oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
+      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
     };
   }
   setMyFinancials(formData) {
-    this.EngagementJourneyFormData.monthlyIncome = formData.monthlyIncome;
-    this.EngagementJourneyFormData.percentageOfSaving = formData.percentageOfSaving;
-    this.EngagementJourneyFormData.totalAssets = formData.totalAssets;
-    this.EngagementJourneyFormData.totalLiabilities = formData.totalLiabilities;
-    this.EngagementJourneyFormData.initialInvestment = formData.initialInvestment;
-    this.EngagementJourneyFormData.monthlyInvestment = formData.monthlyInvestment;
-    this.EngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
-    this.EngagementJourneyFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
-    this.EngagementJourneyFormData.monthlyInvestmentChkBox = formData.secondChkBox;
+    this.investmentEngagementJourneyFormData.monthlyIncome = formData.monthlyIncome;
+    this.investmentEngagementJourneyFormData.percentageOfSaving = formData.percentageOfSaving;
+    this.investmentEngagementJourneyFormData.totalAssets = formData.totalAssets;
+    this.investmentEngagementJourneyFormData.totalLiabilities = formData.totalLiabilities;
+    this.investmentEngagementJourneyFormData.initialInvestment = formData.initialInvestment;
+    this.investmentEngagementJourneyFormData.monthlyInvestment = formData.monthlyInvestment;
+    this.investmentEngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
+    this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox = formData.secondChkBox;
     this.commit();
   }
 
@@ -295,11 +295,11 @@ export class EngagementJourneyService {
   }
 
   getFundDetails() {
-    return this.EngagementJourneyFormData.fundDetails;
+    return this.investmentEngagementJourneyFormData.fundDetails;
   }
 
   setFundDetails(fundDetails) {
-    this.EngagementJourneyFormData.fundDetails = fundDetails;
+    this.investmentEngagementJourneyFormData.fundDetails = fundDetails;
     this.commit();
   }
 
@@ -328,7 +328,7 @@ export class EngagementJourneyService {
   }
 
   clearFormData() {
-    this.EngagementJourneyFormData = new EngagementJourneyFormData();
+    this.investmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
     this.commit();
   }
 

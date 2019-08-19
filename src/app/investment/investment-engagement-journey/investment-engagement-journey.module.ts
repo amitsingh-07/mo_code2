@@ -12,7 +12,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CurrencyInputPortfolioDirective } from '../../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
-import { EngagementJourneyRoutingModule } from './engagement-journey-routing.module';
+import { InvestmentEngagementJourneyRoutingModule } from './investment-engagement-journey-routing.module';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
@@ -34,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
-    EngagementJourneyRoutingModule,
+    InvestmentEngagementJourneyRoutingModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
     NouisliderModule,
@@ -65,7 +65,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [CurrencyPipe]
 })
 
-export class EngagementJourneyModule {
+export class InvestmentEngagementJourneyModule {
   constructor(private signUpService: SignUpService) {
   }
 }

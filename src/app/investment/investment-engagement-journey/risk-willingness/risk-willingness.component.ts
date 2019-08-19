@@ -11,9 +11,9 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../../shared/logger/logger.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../engagement-journey-routes.constants';
-import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
-import { EngagementJourneyService } from '../engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { QuestionIcons } from './questionicon';
 
 @Component({
@@ -35,7 +35,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
   iconImage;
 
   constructor(
-    private engagementJourneyService: EngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private route: ActivatedRoute,
     private router: Router,
     public navbarService: NavbarService,
@@ -58,7 +58,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.riskFormValues = this.engagementJourneyService.getPortfolioFormData();
+    this.riskFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
@@ -90,7 +90,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
   }
 
   getQuestions() {
-    this.engagementJourneyService.getQuestionsList().subscribe((data) => {
+    this.investmentEngagementJourneyService.getQuestionsList().subscribe((data) => {
       this.questionsList = data.objectList;
       this.setCurrentQuestion();
     },
@@ -104,8 +104,8 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     this.iconImage = QuestionIcons[this.questionIndex - 1]['icon'];
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
-    this.isSpecialCase = this.currentQuestion.listOrder === ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
-    const selectedOption = this.engagementJourneyService.getSelectedOptionByIndex(
+    this.isSpecialCase = this.currentQuestion.listOrder === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
+    const selectedOption = this.investmentEngagementJourneyService.getSelectedOptionByIndex(
       this.questionIndex
     );
     if (selectedOption) {
@@ -123,22 +123,22 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.engagementJourneyService.setRiskAssessment(
+      this.investmentEngagementJourneyService.setRiskAssessment(
         form.controls.questSelOption.value,
         this.questionIndex
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.router.navigate([
-          ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)
+          INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)
         ]);
       } else {
         // RISK PROFILE
         // CALL API
-        this.engagementJourneyService.saveRiskAssessment().subscribe((data) => {
-          this.engagementJourneyService.setRiskProfile(data.objectList);
-          this.engagementJourneyService.setPortfolioSplashModalCounter(0);
-          this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_PROFILE]);
+        this.investmentEngagementJourneyService.saveRiskAssessment().subscribe((data) => {
+          this.investmentEngagementJourneyService.setRiskProfile(data.objectList);
+          this.investmentEngagementJourneyService.setPortfolioSplashModalCounter(0);
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_PROFILE]);
         },
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
