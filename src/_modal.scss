@@ -628,6 +628,11 @@ body.modal-open::-webkit-scrollbar {
       padding: 39px 30px 35px !important;
     }
   }
+
+  div.modal-body.white-bg {
+    max-width: 420px;
+    max-height: 535px;
+  }
 }
 
 .custom-full-height{
