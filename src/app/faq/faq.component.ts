@@ -1,4 +1,4 @@
-import { Component,
+import {  AfterViewChecked, Component,
          ElementRef,
          OnInit,
          Renderer2,
@@ -21,7 +21,7 @@ import { IFAQSection } from './faq.interface';
   encapsulation: ViewEncapsulation.None
 })
 
-export class FAQComponent implements OnInit {
+export class FAQComponent implements OnInit, AfterViewChecked {
   public pageTitle: string;
   public sections: any;
   public extras: any;
@@ -31,6 +31,7 @@ export class FAQComponent implements OnInit {
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
+  viewChecked = false;
 
   @ViewChild('faqContainer') FaqElement: ElementRef;
 
@@ -66,6 +67,14 @@ export class FAQComponent implements OnInit {
     this.footerService.setFooterVisibility(true);
   }
 
+  ngAfterViewChecked() {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === 'srs-joint-account' && this.viewChecked === false) {
+        this.navigateToSection();
+      }
+    });
+  }
+
   goToRoute(fragment) {
     if (fragment === 'insurance') {
       this.activeSection = 0;
@@ -78,6 +87,9 @@ export class FAQComponent implements OnInit {
     } else
     if (fragment === 'comprehensive' && this.isComprehensiveEnabled) {
       this.activeSection = 3;
+    } else
+    if (fragment === 'srs-joint-account' && this.isInvestmentEnabled) {
+      this.activeSection = 2;
     } else {
       this.activeSection = 0;
     }
@@ -194,4 +206,29 @@ export class FAQComponent implements OnInit {
         this.activeSection = 0;
       }
     }
+
+  // For navigating to a specific section of faq
+  navigateToSection() {
+    setTimeout(() => {
+      if (document.getElementsByClassName('faq-category__body active')[0]) {
+        const faq_element = document.querySelectorAll('.faq-selection__element');
+        const qns_panel = document.querySelectorAll('.questions__panel');
+
+        for ( let i = 0; i < faq_element.length; i ++) {
+          faq_element[i].classList.remove('active');
+        }
+        for ( let i = 0; i < qns_panel.length; i ++) {
+          qns_panel[i].classList.remove('active');
+        }
+        for ( let i = 0; i < faq_element.length; i ++) {
+          if (faq_element[i]['innerText'] === 'Joint or SRS Accounts') {
+            faq_element[i].className += ' active';
+            qns_panel[i].className += ' active';
+          }
+        }
+        document.getElementsByClassName('faq-category__body active')[0].scrollIntoView(false);
+        this.viewChecked = true;
+      }
+    });
+  }
 }

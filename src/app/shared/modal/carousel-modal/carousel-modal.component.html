@@ -9,7 +9,7 @@
         <img *ngIf="slide.IMAGE" class="img" src="{{imgUrl}}{{slide.IMAGE}}" alt="">
         <div *ngIf="slide.IMG_TITLE" class="img-title">{{slide.IMG_TITLE}}</div>
         <div *ngIf="slide.TEXT" [ngClass]="{'extra-margin-top-18': i==2}" class="slide-txt">{{slide.TEXT}}</div>
-        <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="['/faq']" fragment="investment">{{slide.URL_TEXT}}</a>
+        <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="['/faq']" fragment="srs-joint-account">{{slide.URL_TEXT}}</a>
         <div *ngIf="slide.CONTACT" class="contact-div">
           <div class="contact-txt">{{slide.CONTACT}}</div>
           <div class="contact-tel-div">
