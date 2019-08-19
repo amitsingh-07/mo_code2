@@ -35,7 +35,7 @@ export let apiConstants = {
         editEmployerAddress: ACCOUNT_API_BASE_URL + '/updateEmployment',
         emailValidityCheck: ACCOUNT_API_BASE_URL + '/emailValidityCheck',
         detailCustomerSummary: ACCOUNT_API_BASE_URL + '/getDetailedCustomerSummary',
-        getCustomerInsuranceDetails: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/getDetailedInsuranceSummary',
+        getCustomerInsuranceDetails: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/getDetailedInsuranceSummary?handleError=true',
         resendEmailVerification: ACCOUNT_API_BASE_URL + '/resendEmailVerification',
         editMobileNumber: ACCOUNT_API_BASE_URL + '/update-mobileno',
         registerBundleEnquiry: ACCOUNT_API_BASE_URL + '/registerBundleEnquiry',

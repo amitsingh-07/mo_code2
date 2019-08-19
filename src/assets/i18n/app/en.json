@@ -218,7 +218,8 @@
         }
       },
       "MARKETING": {
-        "TITLE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        "EMAIL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
+        "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
       }
     }
 

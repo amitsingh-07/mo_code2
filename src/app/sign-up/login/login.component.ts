@@ -1,3 +1,4 @@
+import { StateStoreService } from './../../shared/Services/state-store.service';
 import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
@@ -87,7 +88,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private investmentAccountService: InvestmentAccountService,
-    private changeDetectorRef: ChangeDetectorRef) {
+    private changeDetectorRef: ChangeDetectorRef,
+    private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -319,6 +321,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.callErrorModal(data);
       } else {
         this.selectedPlansService.clearData();
+        this.stateStoreService.clearAllStates();
         this.getUserProfileInfo();
       }
     });

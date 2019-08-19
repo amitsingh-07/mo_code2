@@ -42,14 +42,16 @@
         "LABEL": "First Name",
         "ERROR": {
           "REQUIRED": "Enter first name",
-          "INVALID": "First name must be 2 - 40 characters"
+          "INVALID": "First name must not contain numbers",
+          "MIN_MAX_LENGTH": "First name must be *2 - 40 characters"
         }
       },
       "LAST_NAME": {
         "LABEL": "Last Name",
         "ERROR": {
           "REQUIRED": "Enter last name",
-          "INVALID": "Last name must be 2 - 40 characters"
+          "INVALID": "Last name must not contain numbers",
+          "MIN_MAX_LENGTH": "Last name must be *2 - 40 characters"
         }
       },
       "EMAIL": {

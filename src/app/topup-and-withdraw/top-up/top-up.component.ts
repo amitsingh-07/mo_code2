@@ -182,7 +182,6 @@ export class TopUpComponent implements OnInit {
       return false;
     } else {
       const allowZero = (this.currentMonthlyInvAmount > 0);
-      const allowOneTime = (this.currentOneTimeInvAmount > 0);
       const error = this.topupAndWithDrawService.doFinancialValidations(form, allowZero);
       console.log('error' + error);
       if (error) {
@@ -245,7 +244,7 @@ export class TopUpComponent implements OnInit {
   getOneTimeInvestmentInfo() {
     this.topupAndWithDrawService.getOneTimeInvestmentInfo().subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
-        this.currentOneTimeInvAmount = response.objectList.amount;
+        this.currentOneTimeInvAmount = response.objectList && response.objectList.amount ? response.objectList.amount : 0;
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }

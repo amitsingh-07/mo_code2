@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { SelectedPlansService } from '../../../shared/Services/selected-plans.se
 })
 export class CreateAccountModelComponent implements OnInit, AfterViewInit {
   @Input() data;
+  @ViewChild("mobileNumber") _el: ElementRef;
   enquiryForm: FormGroup;
   formSubmitted = false;
   invalidEmail = false;
@@ -49,11 +50,16 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       email: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]],
+      mobileNumber: ['', Validators.pattern(RegexConstants.MobileNumber)],
       confirmEmail: [''],
       acceptMarketingEmails: [''],
+      contactViaMobile: [''],
       captchaValue: ['']
     }, { validator: this.validateMatchEmail() });
+    this.setValidatorMobileNumber();
+    setTimeout(() => {
+      this.enquiryForm.get('contactViaMobile').setValue(false);
+    }, 300);
   }
 
   next(page) {
@@ -134,6 +140,21 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
         emailConfirmationInput.setErrors(null);
       }
     };
+  }
+
+  setValidatorMobileNumber() {
+    const mobileNumberControl = this.enquiryForm.get('mobileNumber');
+    const contactViaMobileCtrl = this.enquiryForm.get('contactViaMobile');
+    contactViaMobileCtrl.valueChanges
+      .subscribe((checked) => {
+        if (checked) {
+          mobileNumberControl.setValidators([Validators.required, Validators.pattern(RegexConstants.MobileNumber)]);
+          this._el.nativeElement.focus();
+        } else {
+          mobileNumberControl.setValidators([Validators.pattern(RegexConstants.MobileNumber)]);
+        }
+        mobileNumberControl.updateValueAndValidity();
+      });
   }
 
 }

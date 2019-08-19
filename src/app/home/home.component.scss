@@ -82,6 +82,7 @@ body{
                     height: 386px;
                     background: url("/assets/images/home-page/banner/srsPromo/banner-thumbnail.svg") no-repeat;
                     background-size:560px 386px;
+                    
                     .banner-image-content{
                         position: absolute;
                         display:flex;
@@ -123,8 +124,27 @@ body{
                     }
                     
                     @include minMobilemaxPhablet{
-                        transform: scale(0.7);
-                        margin-bottom:-56px;
+                        height:386px;
+                        transform: scale(0.60) translateY(-80px);
+                        margin-bottom:-125px;
+                        .banner-image-content{
+                            width:286px;
+                            height:245px;
+                            top:25px;
+                            .speaker{
+                                margin-bottom:5px;
+                            }
+                            .desc{
+                                .title{
+                                    font-size:26px;
+                                    margin-bottom:10px;
+                                }
+                                p{
+                                    font-size:20px;
+                                    margin-bottom:0px;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -196,6 +216,11 @@ body{
                             font-size:14px;
                             font-family:$muli-regular;
                             letter-spacing:-0.1px;
+                        }
+                    }
+                    &.mobile--hidden{
+                        @include minMobilemaxPhablet{
+                            display:none;
                         }
                     }
                 }
