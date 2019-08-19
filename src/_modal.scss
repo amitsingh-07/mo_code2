@@ -618,6 +618,18 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.srs-dashboard-modal {
+  @include allmobiles {
+    margin: 0 15px !important;
+    width: 92% !important;
+    top: 31px !important;
+    div.modal-body.white-bg {
+      border-radius: 6px !important;
+      padding: 39px 30px 35px !important;
+    }
+  }
+}
+
 .custom-full-height{
   @include allmobiles {
     max-height: calc(100vh - 56px) !important;

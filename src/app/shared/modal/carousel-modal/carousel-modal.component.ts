@@ -54,11 +54,6 @@ export class CarouselModalComponent implements OnInit {
   goToSlide(slide) {
     this.carousel.slickGoTo(slide);
   }
-  // Go to investment section of faq page
-  goToFaqInvestment() {
-    this.activeModal.dismiss();
-    this.router.navigate(['faq'], { fragment: 'investment' });
-  }
   // Setting the next slide index on beforeChange event fire
   beforeSlideChange(e) {
     this.currentSlide = e.nextSlide;
