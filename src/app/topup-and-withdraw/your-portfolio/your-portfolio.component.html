@@ -35,13 +35,13 @@
 <div class="flex-col-12" *ngIf="portfolio">
   <div class="container-fluid">
     <!--  ALREADY FUNDED PORTFOLIO-->
+    <div class="flex-row" *ngIf="entitlements.showTopup">
+      <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
+        <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
+      </button>
+    </div>
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
-        <div class="flex-row" *ngIf="entitlements.showTopup">
-          <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
-            <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
-          </button>
-        </div>
+      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'"> 
         <div class="form-group-with-bg">
           <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !userProfileInfo.investementDetails.showTotalReturn}">
             <div id="portdolio_value" class="total_values">{{portfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
