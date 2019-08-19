@@ -91,7 +91,19 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('COMMON').subscribe((result: string) => {
+      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+        this.investmentAccountService.setUserPortfolioExistStatus(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
+        ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
+        ref.componentInstance.portfolioExist = true;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+         });
+      }
+     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
     });
@@ -103,18 +115,6 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
-    if (this.investmentAccountService.getUserPortfolioExistStatus()) {
-      this.investmentAccountService.setUserPortfolioExistStatus(false);
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
-      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
-      ref.componentInstance.portfolioExist = true;
-      ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
-       });
-    }
-
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         // ERROR SCENARIO
@@ -177,6 +177,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.getTransferDetails();
+    this.checkSRSPopStatus();
   }
 
   loadOptionListCollection() {
@@ -411,6 +412,20 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
 
+  // Check if user is first time seeing SRS popup
+  checkSRSPopStatus() {
+    const customerId = this.signUpService.getAccountInfo().userProfileInfo.id;
+    this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
+      // Check if srs_pop_status is available or false
+      if (!status.objectList['srs_pop_status']) {
+        setTimeout(() => {
+          this.openSRSJointAccPopup();
+        });
+        this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
+        }, (error) => console.log('ERROR: ', error));
+      }
+    }, (error) => console.log('ERROR: ', error));
   }
 }

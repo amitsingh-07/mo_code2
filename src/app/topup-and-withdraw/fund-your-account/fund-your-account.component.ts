@@ -63,6 +63,7 @@ export class FundYourAccountComponent implements OnInit {
         this.fundDetails.fundingType
       );
       this.setPageTitle(this.pageTitle);
+      this.timelineMessage = this.constructProcessTime(this.fundDetails);
     });
   }
 
@@ -71,8 +72,6 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
-    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
-    this.timelineMessage = this.constructProcessTime(this.fundDetails);
     this.getTransferDetails();
     if (this.fundDetails.portfolio.riskProfile) {
       this.riskProfileImg =
