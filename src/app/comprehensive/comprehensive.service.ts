@@ -815,7 +815,7 @@ export class ComprehensiveService {
           case 3:
             if (
               enquiry.hasDependents === false &&
-              dependantProgressData.subItems[0].value === '0'
+              dependantProgressData.subItems[2].value === '0'
             ) {
               accessibleUrl = urlList[index];
             }
