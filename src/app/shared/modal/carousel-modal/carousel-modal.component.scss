@@ -22,7 +22,7 @@ app-carousel-modal {
     align-items: center;
 
     .title-img {
-        margin-right: 4px;
+      margin-right: 4px;
     }
 
     .title-txt {
@@ -38,7 +38,7 @@ app-carousel-modal {
     width: 260px;
     height: 115px;
     object-fit: contain;
-    margin-top: 36px;
+    margin-top: 20px;
   }
 
   .img-title {
@@ -187,25 +187,8 @@ app-carousel-modal {
     justify-content: center;
     margin-top: 65px;
   }
-}
-div.modal-body.white-bg {
-  padding: 39px 60px 35px !important;
-}
 
-@media (max-width: 567px) and (min-width: 320px) {
-    ngb-modal-window.modal.fade.show.d-block {
-        margin: 0 15px !important;
-        width: 92% !important;
-        top: 31px !important;
-    }
-    div.modal-body.white-bg {
-      border-radius: 6px !important;
-      padding: 39px 30px 35px !important;
-    }
+  div.modal-body.white-bg {
+    padding: 36px 60px 36px !important;
   }
-
-  div .modal-content {
-    max-width: 420px;
-    max-height: 535px;
-    margin: 0 auto;
-  }
+}
