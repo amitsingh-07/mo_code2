@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { SelectedPlansService } from '../../../shared/Services/selected-plans.se
 })
 export class CreateAccountModelComponent implements OnInit, AfterViewInit {
   @Input() data;
+  @ViewChild("mobileNumber") _el: ElementRef;
   enquiryForm: FormGroup;
   formSubmitted = false;
   invalidEmail = false;
@@ -148,6 +149,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       .subscribe((checked) => {
         if (checked) {
           mobileNumberControl.setValidators([Validators.required, Validators.pattern(RegexConstants.MobileNumber)]);
+          this._el.nativeElement.focus();
         } else {
           mobileNumberControl.setValidators([Validators.pattern(RegexConstants.MobileNumber)]);
         }
