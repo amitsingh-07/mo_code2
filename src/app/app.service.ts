@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { DirectService } from './direct/direct.service';
-import { EngagementJourneyService } from './investment/engagement-journey/engagement-journey.service';
 import { GuideMeService } from './guide-me/guide-me.service';
 import { AccountCreationService } from './investment/account-creation/account-creation-service';
+import { EngagementJourneyService } from './investment/engagement-journey/engagement-journey.service';
 import { SignUpService } from './sign-up/sign-up.service';
 import { ManagementService } from './investment/management/management.service';
 import { WillWritingService } from './will-writing/will-writing.service';

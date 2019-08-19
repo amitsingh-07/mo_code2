@@ -42,14 +42,16 @@
         "LABEL": "First Name",
         "ERROR": {
           "REQUIRED": "Enter first name",
-          "INVALID": "First name must be 2 - 40 characters"
+          "INVALID": "First name must not contain numbers",
+          "MIN_MAX_LENGTH": "First name must be *2 - 40 characters"
         }
       },
       "LAST_NAME": {
         "LABEL": "Last Name",
         "ERROR": {
           "REQUIRED": "Enter last name",
-          "INVALID": "Last name must be 2 - 40 characters"
+          "INVALID": "Last name must not contain numbers",
+          "MIN_MAX_LENGTH": "Last name must be *2 - 40 characters"
         }
       },
       "EMAIL": {
@@ -325,6 +327,23 @@
       "ASSESS_MY_NEEDS": "Assess My Needs",
       "REASSESS_MY_NEEDS": "Reassess My Needs",
       "DIRECT_JOURNEY": "I know my needs, find my plan."
+    },
+    "SRS_JOINT_ACCOUNT": {
+      "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
+      "SRS_JOINT_ACCOUNT_SLIDES":  [
+        {"TITLE": "New Updates", "TITLE_IMG": "speaker.svg", "IMAGE": "srs.svg",
+          "IMG_TITLE": "Start Investing Your SRS!",
+          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings.",
+          "URL": "https://www.google.com.sg", "URL_TEXT": "Learn More About SRS Account"},
+          {"TITLE": "New Updates",  "TITLE_IMG": "speaker.svg", "IMAGE": "joint-account.svg",
+          "IMG_TITLE": "Apply For A Joint Account!",
+          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
+          "URL": "https://www.google.com.sg", "URL_TEXT": "Learn More About Joint Account"},
+          {"TITLE": "Apply Now!", "TEXT": "Please note that SRS and Joint Investment Accounts are currently handled offline.",
+          "CONTACT": "Contact us to apply:", "TEL": "(65) 6329 9188", "EMAIL": "enquiries@moneyowl.com.sg"}
+      ],
+      "START_BTN": "Dismiss",
+      "END_BTN": "Got it!"
     }
   },
   "EDIT_PROFILE": {

@@ -208,9 +208,8 @@
       </div>
     </div>
   </div>
-  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{ 'FUNDING_INSTRUCTIONS.PROCESS_TIME_INFO' |
-    translate
-    }}</p>
+  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{timelineMessage}}
+  </p>
   <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUNDING_INSTRUCTIONS.SUCCESSFUL_TOPUP' | translate
     }}</p>
   <button *ngIf="fundDetails.source == 'TOPUP'" [disabled]="isRequestSubmitted" type="button" (click)="buyPortfolio()"

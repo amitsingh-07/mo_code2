@@ -67,6 +67,10 @@
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.REQUIRED' | translate}}</span>
                 </div>
+                <div *ngIf="account.firstName.errors?.minlength || account.firstName.errors?.maxlength">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
+                </div>
                 <div *ngIf="account.firstName.errors?.pattern">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.INVALID' | translate}}</span>
@@ -76,6 +80,10 @@
                 <div *ngIf="account.lastName.errors?.required">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div *ngIf="account.lastName.errors?.minlength  || account.lastName.errors?.maxlength">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
                 </div>
                 <div *ngIf="account.lastName.errors?.pattern">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>

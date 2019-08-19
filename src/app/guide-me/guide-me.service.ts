@@ -145,6 +145,13 @@ export class GuideMeService {
     this.commit();
   }
 
+  removeProtectNeedHospitalPlanData() {
+    delete this.guideMeFormData.protectionNeedData;
+    delete this.guideMeFormData.hospitalPlanData;
+    delete this.guideMeFormData.longTermCareData;
+    this.commit();
+  }
+
   getLifeProtection() {
     if (!this.guideMeFormData.lifeProtectionData) {
       this.guideMeFormData.lifeProtectionData = { dependents: [] as IDependent[] };
@@ -421,19 +428,19 @@ export class GuideMeService {
     const protectionNeeds = this.getProtectionNeeds().filter((data) => data.status === false);
     for (const protectionNeed of protectionNeeds) {
       switch (protectionNeed.protectionTypeId) {
-        case 1:
+        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
           delete this.guideMeFormData.lifeProtectionData;
           break;
-        case 2:
+        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
           delete this.guideMeFormData.criticalIllness;
           break;
-        case 3:
+        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
           delete this.guideMeFormData.occupationalDisability;
           break;
-        case 4:
+        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
           delete this.guideMeFormData.hospitalPlanData;
           break;
-        case 5:
+        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
           delete this.guideMeFormData.longTermCareData;
           break;
       }
@@ -602,6 +609,7 @@ export class GuideMeService {
     this.setMyExpenses(data.expenses);
     this.setMyLiabilities(data.liabilities);
     this.setMyOcpDisability(data.occupationalDisability);
+    this.removeProtectNeedHospitalPlanData();
 
     if (response.enquiryData.numberOfDependents > 0) {
       const dependents = [];

@@ -2,9 +2,7 @@ import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-    FundDetailsComponent
-} from '../../../investment/engagement-journey/fund-details/fund-details.component';
+import { FundDetailsComponent } from '../../../investment/engagement-journey/fund-details/fund-details.component';
 import { EngagementJourneyService } from '../../../investment/engagement-journey/engagement-journey.service';
 
 @Component({

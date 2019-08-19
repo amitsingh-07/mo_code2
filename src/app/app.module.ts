@@ -27,12 +27,6 @@ import { ArticleEnableGuard } from './article/article-enable-guard';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
-import {
-    EmailEnquirySuccessComponent
-} from './email-enquiry-success/email-enquiry-success.component';
-import { FundDetailsComponent } from './investment/engagement-journey/fund-details/fund-details.component';
-import { InvestmentChildEnableGuard } from './investment/engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './investment/engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -53,7 +47,9 @@ import {
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { FundDetailsComponent } from './investment/engagement-journey/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './investment/engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/engagement-journey/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
@@ -84,17 +80,20 @@ import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.comp
 import {
     RecommendationsModalComponent
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
+
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
-import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+
 import {
     TransactionModalComponent
 } from './shared/modal/transaction-modal/transaction-modal.component';
+
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import {
     UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
@@ -108,6 +107,9 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
+import { NavbarService } from './shared/navbar/navbar.service';
+
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {

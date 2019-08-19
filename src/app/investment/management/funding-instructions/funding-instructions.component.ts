@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -38,7 +39,8 @@ export class FundingInstructionsComponent implements OnInit {
   riskProfileImg: any;
   fundAccountContent: any;
   isRequestSubmitted = false;
-
+  monthlyAmount;
+  timelineMessage;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -49,7 +51,8 @@ export class FundingInstructionsComponent implements OnInit {
     public footerService: FooterService,
     public managementService: ManagementService,
     public accountCreationService: AccountCreationService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private currencyPipe: CurrencyPipe
   ) {
     this.translate.use('en');
     this.fundDetails = this.managementService.getFundingDetails();
@@ -62,6 +65,7 @@ export class FundingInstructionsComponent implements OnInit {
         this.fundDetails.fundingType
       );
       this.setPageTitle(this.pageTitle);
+      this.timelineMessage = this.constructProcessTime(this.fundDetails);
     });
   }
 
@@ -70,7 +74,6 @@ export class FundingInstructionsComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
-    this.fundDetails = this.managementService.getFundingDetails();
     this.getTransferDetails();
     if (this.fundDetails.portfolio.riskProfile) {
       this.riskProfileImg =
@@ -305,4 +308,21 @@ export class FundingInstructionsComponent implements OnInit {
     }
   }
   // tslint:disable-next-line
+  constructProcessTime(fundDetails) {
+    let timelineMessage;
+    if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
+      const monthlyAmount = {
+        month: this.currencyPipe.transform(
+          this.fundDetails.monthlyInvestment,
+          'USD',
+          'symbol-narrow',
+          '1.0-2'
+        )
+      };
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME_INFO', monthlyAmount);
+    } else {
+      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
+    }
+    return timelineMessage;
+  }
 }

@@ -4,9 +4,6 @@ import { Subject } from 'rxjs/internal/Subject';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import {
-    ACCOUNT_CREATION_ROUTE_PATHS, ACCOUNT_CREATION_ROUTES
-} from '../../../investment/account-creation/account-creation-routes.constants';
 import { ERoadmapStatus, IRoadmap, IRoadmapItem } from './roadmap.interface';
 
 const SESSION_STORAGE_KEY = 'app_roadmap';

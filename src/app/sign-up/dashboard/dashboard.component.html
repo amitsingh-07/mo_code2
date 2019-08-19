@@ -14,6 +14,10 @@
                 <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
               </span>
             </div>
+            <div class="announcement-div" (click)="openSRSJointAccPopup()">
+              <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg" >
+              <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}</div>
+            </div>
           </div>
           <div class="widgets">
             <div class="widget insurance" *ngIf="showInsuranceSection">
@@ -36,11 +40,11 @@
                       </div>
                     </div>
                     <div class="flex">
-                      <button type="button" class="btn btn-primary col-12"  *ngIf="!insurance.hasInsurance"  routerLink="/guideme">
+                      <button type="button" class="btn btn-primary col-12"  *ngIf="!insurance.isGuidedJourney"  routerLink="/guideme">
                         <div>{{'DASHBOARD.INSURANCE.ASSESS_MY_NEEDS' | translate}}</div>
                         <div>{{'DASHBOARD.INSURANCE.ESTIMATED_MINS' | translate}}</div>
                       </button>
-                      <button type="button" class="btn btn-ghost col-12"  *ngIf="insurance.hasInsurance" routerLink="/guideme">
+                      <button type="button" class="btn btn-ghost col-12"  *ngIf="insurance.isGuidedJourney" routerLink="/guideme">
                         {{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}
                       </button>
                     </div>

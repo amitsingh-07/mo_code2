@@ -1,3 +1,4 @@
+import { StateStoreService } from './../../shared/Services/state-store.service';
 import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
@@ -13,11 +14,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
 import {
-    ACCOUNT_CREATION_ROUTE_PATHS
+   ACCOUNT_CREATION_ROUTE_PATHS
 } from '../../investment/account-creation/account-creation-routes.constants';
 import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -87,7 +88,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private accountCreationService: AccountCreationService,
-    private changeDetectorRef: ChangeDetectorRef) {
+    private changeDetectorRef: ChangeDetectorRef,
+    private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -319,6 +321,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.callErrorModal(data);
       } else {
         this.selectedPlansService.clearData();
+        this.stateStoreService.clearAllStates();
         this.getUserProfileInfo();
       }
     });

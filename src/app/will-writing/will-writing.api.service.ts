@@ -91,7 +91,7 @@ export class WillWritingApiService {
                 relationshipCode: this.relationship.get(will.spouse[0].relationship),
                 isFamily: 'Y',
                 isBeneficiary: beneficiary ? 'Y' : 'N',
-                isGuardian: 'Y',
+                isGuardian: (will.aboutMe.noOfChildren > 0 && this.willWritingService.checkChildrenAge(will.children)) ? 'Y' : 'N',
                 isAltGuardian: 'N',
                 isTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'N' : 'Y' : 'N',
                 isAltTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'Y' : 'N' : 'N',

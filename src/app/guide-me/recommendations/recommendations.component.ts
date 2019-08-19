@@ -289,6 +289,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
         if (data.responseMessage.responseCode === 6000) {
           this.selectedPlansService.clearData();
           this.stateStoreService.clearState(this.componentName);
+          this.guideMeService.removeProtectNeedHospitalPlanData();
           this.guideMeService.checkGuidedDataLoaded('true');
           this.router.navigate(['email-enquiry/success']);
         }
