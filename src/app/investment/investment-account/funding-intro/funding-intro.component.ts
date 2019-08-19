@@ -6,7 +6,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { MANAGEMENT_ROUTE_PATHS } from '../../management/management-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
@@ -59,6 +59,6 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.hideStaticModal = true;
    }
   goNext() {
-    this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
 }

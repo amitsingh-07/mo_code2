@@ -21,7 +21,7 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { ManagementService } from '../../management/management.service';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import {
     AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
@@ -62,7 +62,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    public managementService: ManagementService,
+    public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
     private loaderService: LoaderService
@@ -94,7 +94,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
-        this.managementService.setFundingDetails(fundingParams);
+        this.manageInvestmentsService.setFundingDetails(fundingParams);
         this.userInputSubtext = {
           onetime: this.currencyPipe.transform(
             this.portfolio.initialInvestment,

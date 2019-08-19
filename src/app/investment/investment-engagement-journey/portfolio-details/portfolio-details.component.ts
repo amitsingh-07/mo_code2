@@ -29,9 +29,9 @@ import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
-    MANAGEMENT_ROUTE_PATHS
-} from '../../management/management-routes.constants';
-import { ManagementService } from '../../management/management.service';
+    MANAGE_INVESTMENTS_ROUTE_PATHS
+} from '../../manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
@@ -72,7 +72,7 @@ export class PortfolioDetailsComponent implements OnInit {
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private managementService: ManagementService,
+    private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -277,11 +277,11 @@ export class PortfolioDetailsComponent implements OnInit {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
             const fundingParams = this.constructFundingParams(this.portfolio);
-            this.managementService.setFundingDetails(fundingParams);
+            this.manageInvestmentsService.setFundingDetails(fundingParams);
             if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
               this.topUpOneTime();
             } else {
-              this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
             }
           } else {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
@@ -301,8 +301,8 @@ export class PortfolioDetailsComponent implements OnInit {
       title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
       desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
     });
-    const fundDetails = this.managementService.getFundingDetails();
-    this.managementService.buyPortfolio(fundDetails).subscribe(
+    const fundDetails = this.manageInvestmentsService.getFundingDetails();
+    this.manageInvestmentsService.buyPortfolio(fundDetails).subscribe(
       (response) => {
         this.loaderService.hideLoader();
         if (response.responseMessage.responseCode < 6000) {
@@ -324,7 +324,7 @@ export class PortfolioDetailsComponent implements OnInit {
             this.investmentAccountService.showGenericErrorModal();
           }
         } else {
-          this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
         }
       },
       (err) => {

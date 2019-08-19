@@ -18,8 +18,8 @@ import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MANAGEMENT_ROUTE_PATHS } from '../../investment/management/management-routes.constants';
-import { ManagementService } from '../../investment/management/management.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
     private willWritingService: WillWritingService,
     private guideMeApiService: GuideMeApiService,
     public modal: NgbModal,
-    public managementService: ManagementService,
+    public manageInvestmentsService: ManageInvestmentsService,
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService
@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
         ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
         ref.componentInstance.portfolioExist = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          this.router.navigate([MANAGEMENT_ROUTE_PATHS.YOUR_INVESTMENT]);
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
          });
       }
      });
@@ -199,7 +199,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToInvOverview() {
-    this.router.navigate([MANAGEMENT_ROUTE_PATHS.ROOT]);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -382,8 +382,8 @@ export class DashboardComponent implements OnInit {
   * Method to get transfer details
   */
   getTransferDetails() {
-    this.managementService.getTransferDetails().subscribe((data) => {
-      this.managementService.setBankPayNowDetails(data.objectList[0]);
+    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
+      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
@@ -394,14 +394,14 @@ export class DashboardComponent implements OnInit {
   * Method to show transfer instruction steps modal
   */
   showTransferInstructionModal() {
-    this.managementService.showTransferInstructionModal();
+    this.manageInvestmentsService.showTransferInstructionModal();
   }
 
   /*
   * Method to show recipients/entity name instructions modal
   */
   showPopUp() {
-    this.managementService.showPopUp();
+    this.manageInvestmentsService.showPopUp();
   }
 
   // Show SRS Joint Account Popup

@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { ManagementService } from '../../../investment/management/management.service';
+import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -26,7 +26,7 @@ export class PortfolioListComponent implements OnInit {
   @Output() deleteSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
-  constructor(private managementService: ManagementService,
+  constructor(private manageInvestmentsService: ManageInvestmentsService,
               public signUpService: SignUpService,
               private currencyPipe: CurrencyPipe,
               private investmentAccountService: InvestmentAccountService) { }
@@ -52,7 +52,7 @@ export class PortfolioListComponent implements OnInit {
     return false;
   }
   getEntitlementsFromPortfolio(portfolio) {
-    return this.managementService.getEntitlementsFromPortfolio(portfolio);
+    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
 
   formatReturns(value) {

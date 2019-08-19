@@ -4,7 +4,7 @@ import { GuideMeService } from './guide-me/guide-me.service';
 import { InvestmentAccountService } from './investment/investment-account/investment-account-service';
 import { InvestmentEngagementJourneyService } from './investment/investment-engagement-journey/investment-engagement-journey.service';
 import { SignUpService } from './sign-up/sign-up.service';
-import { ManagementService } from './investment/management/management.service';
+import { ManageInvestmentsService } from './investment/manage-investments/manage-investments.service';
 import { WillWritingService } from './will-writing/will-writing.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
@@ -28,7 +28,7 @@ export class AppService {
     private signUpService: SignUpService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
-    private managementService: ManagementService,
+    private manageInvestmentsService: ManageInvestmentsService,
     private willWritingService: WillWritingService
   ) { }
 
@@ -56,7 +56,7 @@ export class AppService {
     this.signUpService.clearData();
     this.investmentEngagementJourneyService.clearData();
     this.investmentAccountService.clearData();
-    this.managementService.clearData();
+    this.manageInvestmentsService.clearData();
   }
 
   setJourneyType(type: string) {
