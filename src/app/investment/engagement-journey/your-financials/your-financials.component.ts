@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ENGAGEMENT_JOURNEY_CONSTANTS } from '../engagement-journey.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -42,7 +42,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
@@ -197,7 +197,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       }
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   goBack() {

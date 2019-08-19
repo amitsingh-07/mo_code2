@@ -9,7 +9,7 @@ import {
     ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../engagement-journey/engagement-journey-routes.constants';
 import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -72,7 +72,7 @@ export class InvestmentOverviewComponent implements OnInit {
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public managementService: ManagementService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService
   ) {
     this.translate.use('en');
@@ -150,11 +150,11 @@ export class InvestmentOverviewComponent implements OnInit {
         const errorResponse = data.responseMessage.responseDescription;
         this.showCustomErrorModal('Error!', errorResponse);
       } else {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       }
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -182,7 +182,7 @@ export class InvestmentOverviewComponent implements OnInit {
         this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
       },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -250,7 +250,7 @@ export class InvestmentOverviewComponent implements OnInit {
             const errorResponse = data.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.accountCreationService.showGenericErrorModal();
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           this.authService.saveEnquiryId(null);
@@ -264,7 +264,7 @@ export class InvestmentOverviewComponent implements OnInit {
         }
       },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
     });
     ref.componentInstance.noClickAction.subscribe(() => { });
@@ -274,7 +274,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.managementService.showMenu(option);
   }
   formatReturns(value) {
-    return this.accountCreationService.formatReturns(value);
+    return this.investmentAccountService.formatReturns(value);
   }
 
   showCustomErrorModal(title, desc) {
@@ -291,7 +291,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.managementService.setBankPayNowDetails(data.objectList[0]);
   },
   (err) => {
-    this.accountCreationService.showGenericErrorModal();
+    this.investmentAccountService.showGenericErrorModal();
   });
  }
 
@@ -352,7 +352,7 @@ showPopUp() {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -362,7 +362,7 @@ showPopUp() {
       }
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

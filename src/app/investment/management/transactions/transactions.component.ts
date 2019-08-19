@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -35,7 +35,7 @@ export class TransactionsComponent implements OnInit {
     private managementService: ManagementService,
     private signUpService: SignUpService,
     private engagementJourneyService: EngagementJourneyService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -101,7 +101,7 @@ export class TransactionsComponent implements OnInit {
     },
     (err) => {
       this.loaderService.hideLoader();
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -132,7 +132,7 @@ export class TransactionsComponent implements OnInit {
     },
     (err) => {
       this.loaderService.hideLoader();
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

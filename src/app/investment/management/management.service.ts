@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { EngagementJourneyService } from '../engagement-journey/engagement-journey.service';
-import { AccountCreationFormData } from '../account-creation/account-creation-form-data';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
@@ -36,7 +36,7 @@ export class ManagementService {
   userProfileInfo;
 
   private managementFormData: ManagementFormData = new ManagementFormData();
-  private accountCreationFormData: AccountCreationFormData = new AccountCreationFormData();
+  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManagementFormError();
 

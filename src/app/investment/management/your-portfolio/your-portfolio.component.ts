@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { EngagementJourneyService } from '../../engagement-journey/engagement-journey.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -47,7 +47,7 @@ export class YourPortfolioComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     public managementService: ManagementService,
     public engagementJourneyService: EngagementJourneyService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService
   ) {
     this.translate.use('en');
@@ -108,7 +108,7 @@ export class YourPortfolioComponent implements OnInit {
         this.managementService.setSelectedPortfolio(this.portfolio);
       },
         (err) => {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         });
   }
 
@@ -153,7 +153,7 @@ export class YourPortfolioComponent implements OnInit {
     this.managementService.showMenu(option);
   }
   formatReturns(value) {
-    return this.accountCreationService.formatReturns(value);
+    return this.investmentAccountService.formatReturns(value);
   }
 
   /*
@@ -164,7 +164,7 @@ export class YourPortfolioComponent implements OnInit {
       this.managementService.setBankPayNowDetails(data.objectList[0]);
     },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
   // This Method For Onetime expiry.

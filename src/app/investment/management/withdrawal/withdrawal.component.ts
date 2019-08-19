@@ -5,7 +5,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -53,7 +53,7 @@ export class WithdrawalComponent implements OnInit {
     public footerService: FooterService,
     public managementService: ManagementService,
     private loaderService: LoaderService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
     private decimalPipe: DecimalPipe
   ) {
@@ -321,7 +321,7 @@ export class WithdrawalComponent implements OnInit {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.accountCreationService.showGenericErrorModal();
+              this.investmentAccountService.showGenericErrorModal();
             }
           } else {
             this.router.navigate([MANAGEMENT_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
@@ -330,7 +330,7 @@ export class WithdrawalComponent implements OnInit {
         (err) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       );
     }

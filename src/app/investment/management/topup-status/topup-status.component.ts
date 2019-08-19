@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
@@ -28,7 +28,7 @@ export class TopupStatusComponent implements OnInit {
     public managementService: ManagementService,
     private signUpService: SignUpService,
     private signUpApiService: SignUpApiService,
-    private accountCreationService: AccountCreationService
+    private investmentAccountService: InvestmentAccountService
   ) {}
   ngOnInit() {
     this.managementService.clearTopUpData();
@@ -57,14 +57,14 @@ export class TopupStatusComponent implements OnInit {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
       }
     },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 

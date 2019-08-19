@@ -3,7 +3,7 @@ import { ManagementService } from '../../../investment/management/management.ser
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { AccountCreationService } from '../../../investment/account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
 import { ProfileIcons } from '../../../investment/engagement-journey/recommendation/profileIcons';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 
@@ -29,7 +29,7 @@ export class PortfolioListComponent implements OnInit {
   constructor(private managementService: ManagementService,
               public signUpService: SignUpService,
               private currencyPipe: CurrencyPipe,
-              private accountCreationService: AccountCreationService) { }
+              private investmentAccountService: InvestmentAccountService) { }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -56,7 +56,7 @@ export class PortfolioListComponent implements OnInit {
   }
 
   formatReturns(value) {
-    return this.accountCreationService.formatReturns(value);
+    return this.investmentAccountService.formatReturns(value);
   }
 
   detail(portfolio) {

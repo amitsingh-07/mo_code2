@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ProfileIcons } from '../../engagement-journey/recommendation/profileIcons';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -50,7 +50,7 @@ export class FundingInstructionsComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public managementService: ManagementService,
-    public accountCreationService: AccountCreationService,
+    public investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
     private currencyPipe: CurrencyPipe
   ) {
@@ -86,12 +86,12 @@ export class FundingInstructionsComponent implements OnInit {
   }
 
   getBankDetailsList() {
-    this.accountCreationService.getAllDropDownList().subscribe((data) => {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
       console.log(this.bankDetailsList);
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -145,7 +145,7 @@ export class FundingInstructionsComponent implements OnInit {
       this.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -235,7 +235,7 @@ export class FundingInstructionsComponent implements OnInit {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.accountCreationService.showGenericErrorModal();
+              this.investmentAccountService.showGenericErrorModal();
             }
           } else {
             if (!this.fundDetails.isAmountExceedBalance) {
@@ -252,7 +252,7 @@ export class FundingInstructionsComponent implements OnInit {
         (err) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       );
     }
@@ -285,7 +285,7 @@ export class FundingInstructionsComponent implements OnInit {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.accountCreationService.showGenericErrorModal();
+              this.investmentAccountService.showGenericErrorModal();
             }
           } else {
             if (!this.fundDetails.isAmountExceedBalance) {
@@ -302,7 +302,7 @@ export class FundingInstructionsComponent implements OnInit {
         (err) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       );
     }

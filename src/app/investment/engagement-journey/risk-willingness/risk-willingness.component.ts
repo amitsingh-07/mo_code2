@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
@@ -43,7 +43,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     public log: LoggerService,
-    private accountCreationService: AccountCreationService
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -95,7 +95,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
       this.setCurrentQuestion();
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -141,7 +141,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
           this.router.navigate([ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_PROFILE]);
         },
         (err) => {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         });
       }
     }

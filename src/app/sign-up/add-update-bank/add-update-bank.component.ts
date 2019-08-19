@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -46,7 +46,7 @@ export class AddUpdateBankComponent implements OnInit {
     public navbarService: NavbarService,
     private signUpService: SignUpService,
     private modal: NgbModal,
-    public accountCreationService: AccountCreationService,
+    public investmentAccountService: InvestmentAccountService,
     public managementService: ManagementService,
     public readonly translate: TranslateService,
     private loaderService: LoaderService) {
@@ -86,7 +86,7 @@ export class AddUpdateBankComponent implements OnInit {
     });
   }
   buildBankForm() {
-    this.formValues = this.accountCreationService.getBankInfo();
+    this.formValues = this.investmentAccountService.getBankInfo();
     this.updateId = this.formValues.id;
     this.bankForm = this.formBuilder.group({
       accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -141,7 +141,7 @@ export class AddUpdateBankComponent implements OnInit {
               const errorResponse = response.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.accountCreationService.showGenericErrorModal();
+              this.investmentAccountService.showGenericErrorModal();
             }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
@@ -149,7 +149,7 @@ export class AddUpdateBankComponent implements OnInit {
         },
         (err) => {
           this.loaderService.hideLoader();
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         });
       } else {
         // tslint:disable-next-line:max-line-length
@@ -180,7 +180,7 @@ export class AddUpdateBankComponent implements OnInit {
               const errorResponse = data.responseMessage.responseDescription;
               this.showCustomErrorModal('Error!', errorResponse);
             } else {
-              this.accountCreationService.showGenericErrorModal();
+              this.investmentAccountService.showGenericErrorModal();
             }
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
@@ -188,7 +188,7 @@ export class AddUpdateBankComponent implements OnInit {
         },
         (err) => {
           this.loaderService.hideLoader();
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         });
         // Edit Bank APi here
       }
@@ -224,7 +224,7 @@ export class AddUpdateBankComponent implements OnInit {
   }
 
   onKeyPressEvent(event: any, content: any) {
-    this.accountCreationService.onKeyPressEvent(event, content);
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])
@@ -236,7 +236,7 @@ export class AddUpdateBankComponent implements OnInit {
         const contentList = content.substring(0, 100);
         this.bankForm.controls.accountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.accountCreationService.setCaratTo(el, 100, contentList);
+        this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }

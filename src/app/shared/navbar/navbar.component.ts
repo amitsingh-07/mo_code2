@@ -9,7 +9,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
     TransactionModalComponent
@@ -94,7 +94,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private modal: NgbModal,
     private appService: AppService,
     public defaultError: DefaultErrors,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private errorHandler: CustomErrorHandlerService) {
     this.browserCheck();
     this.matrixResolver();
@@ -306,7 +306,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       });
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

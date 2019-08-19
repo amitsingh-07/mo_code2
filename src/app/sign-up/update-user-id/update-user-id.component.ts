@@ -6,9 +6,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-  ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../investment/account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -49,7 +49,7 @@ export class UpdateUserIdComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
-    private accountCreationService: AccountCreationService
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -165,7 +165,7 @@ export class UpdateUserIdComponent implements OnInit {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
       } else {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       }
     });
   }

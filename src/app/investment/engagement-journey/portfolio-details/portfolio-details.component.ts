@@ -9,9 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
 import {
-    ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -70,7 +70,7 @@ export class PortfolioDetailsComponent implements OnInit {
     public authService: AuthenticationService,
     public modal: NgbModal,
     private signUpService: SignUpService,
-    public accountCreationService: AccountCreationService,
+    public investmentAccountService: InvestmentAccountService,
     private engagementJourneyService: EngagementJourneyService,
     private managementService: ManagementService,
     private loaderService: LoaderService
@@ -132,11 +132,11 @@ export class PortfolioDetailsComponent implements OnInit {
 
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
-    this.accountCreationService.updateInvestment(params).subscribe((data) => {
+    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
     },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -177,7 +177,7 @@ export class PortfolioDetailsComponent implements OnInit {
       };
     },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -220,12 +220,12 @@ export class PortfolioDetailsComponent implements OnInit {
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe(() => {
       // Login
-      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.ROOT);
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     });
     ref.componentInstance.secondaryAction.subscribe(() => {
       // Sign up
-      this.signUpService.setRedirectUrl(ACCOUNT_CREATION_ROUTE_PATHS.START);
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }
@@ -268,7 +268,7 @@ export class PortfolioDetailsComponent implements OnInit {
             const errorResponse = userInfo.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.accountCreationService.showGenericErrorModal();
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -284,12 +284,12 @@ export class PortfolioDetailsComponent implements OnInit {
               this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
             }
           } else {
-            this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.START]);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
           }
         }
       },
         (err) => {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         });
     } else {
       this.showLoginOrSignupModal();
@@ -321,7 +321,7 @@ export class PortfolioDetailsComponent implements OnInit {
             const errorResponse = response.responseMessage.responseDescription;
             this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.accountCreationService.showGenericErrorModal();
+            this.investmentAccountService.showGenericErrorModal();
           }
         } else {
           this.router.navigate([MANAGEMENT_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
@@ -329,7 +329,7 @@ export class PortfolioDetailsComponent implements OnInit {
       },
       (err) => {
         this.loaderService.hideLoader();
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       }
     );
   }

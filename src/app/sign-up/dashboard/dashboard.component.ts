@@ -7,9 +7,9 @@ import { ConfigService, IConfig } from '../../config/config.service';
 // Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import {
-    ACCOUNT_CREATION_ROUTE_PATHS
-} from '../../investment/account-creation/account-creation-routes.constants';
-import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/engagement-journey/engagement-journey-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
     public navbarService: NavbarService,
@@ -90,8 +90,8 @@ export class DashboardComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.accountCreationService.getUserPortfolioExistStatus()) {
-        this.accountCreationService.setUserPortfolioExistStatus(false);
+      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+        this.investmentAccountService.setUserPortfolioExistStatus(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
         ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
           const errorResponse = userInfo.responseMessage.responseDescription;
           this.showCustomErrorModal('Error!', errorResponse);
         } else {
-          this.accountCreationService.showGenericErrorModal();
+          this.investmentAccountService.showGenericErrorModal();
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
@@ -140,7 +140,7 @@ export class DashboardComponent implements OnInit {
       }
     },
       (err) => {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       });
 
     // Will Writing
@@ -179,8 +179,8 @@ export class DashboardComponent implements OnInit {
   }
 
   loadOptionListCollection() {
-    this.accountCreationService.getAllDropDownList().subscribe((data) => {
-      this.accountCreationService.setOptionList(data.objectList);
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.investmentAccountService.setOptionList(data.objectList);
     });
   }
 
@@ -205,33 +205,33 @@ export class DashboardComponent implements OnInit {
   // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
     this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
-      this.accountCreationService.getNationalityCountryList().subscribe((nationalityData) => {
+      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
         const nationalityList = nationalityData.objectList;
-        const countryList = this.accountCreationService.getCountryList(nationalityData.objectList);
-        this.accountCreationService.setNationalitiesCountries(nationalityList, countryList);
-        this.accountCreationService.setInvestmentAccountFormData(customerData.objectList);
+        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
         const beneficialOwner = this.userProfileInfo.investementDetails
           && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
         const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
           this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
         const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
           this.userProfileInfo.investementDetails.myInfoVerified : false;
-        this.accountCreationService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
+        this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
         if (myInfoVerified) {
           if (beneficialOwner) {
-            this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
           } else {
-            this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
           }
         } else {
-          this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
         }
       });
     });
   }
 
   goToInvestmentAccount() {
-    this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.ROOT]);
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
   getDashboardList() {
@@ -312,18 +312,18 @@ export class DashboardComponent implements OnInit {
 
   verifyCustomerDetails() {
     this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
-      this.accountCreationService.getNationalityCountryList().subscribe((nationalityData) => {
+      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
         const nationalityList = nationalityData.objectList;
-        const countryList = this.accountCreationService.getCountryList(nationalityData.objectList);
-        this.accountCreationService.setNationalitiesCountries(nationalityList, countryList);
-        this.accountCreationService.setInvestmentAccountFormData(customerData.objectList);
-        this.router.navigate([ACCOUNT_CREATION_ROUTE_PATHS.SELECT_NATIONALITY]);
+        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
       });
     });
   }
 
   formatReturns(value) {
-    return this.accountCreationService.formatReturns(value);
+    return this.investmentAccountService.formatReturns(value);
   }
 
   enableInvestment() {
@@ -386,7 +386,7 @@ export class DashboardComponent implements OnInit {
       this.managementService.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

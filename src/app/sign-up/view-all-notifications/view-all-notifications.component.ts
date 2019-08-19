@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { EngagementJourneyService } from '../../investment/engagement-journey/engagement-journey.service';
-import { AccountCreationService } from '../../investment/account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
@@ -33,7 +33,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     public authService: AuthenticationService,
     public engagementJourneyService: EngagementJourneyService,
     public readonly translate: TranslateService,
-    private accountCreationService: AccountCreationService) {
+    private investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = 'Notifications';
@@ -71,7 +71,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -79,7 +79,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     this.signUpService.updateNotifications(messages, type).subscribe((response) => {
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

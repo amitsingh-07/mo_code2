@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AccountCreationService } from '../../account-creation/account-creation-service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -49,7 +49,7 @@ export class TopUpComponent implements OnInit {
     public footerService: FooterService,
     private modal: NgbModal,
     public managementService: ManagementService,
-    private accountCreationService: AccountCreationService,
+    private investmentAccountService: InvestmentAccountService,
     private currencyPipe: CurrencyPipe
   ) {
     this.translate.use('en');
@@ -98,7 +98,7 @@ export class TopUpComponent implements OnInit {
       this.setOnetimeMinAmount(this.investmentTypeList);
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   validateAmonut(amount) {
@@ -235,11 +235,11 @@ export class TopUpComponent implements OnInit {
           this.topForm.get('MonthlyInvestmentAmount').updateValueAndValidity();
         }
       } else {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       }
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
   getOneTimeInvestmentInfo() {
@@ -247,11 +247,11 @@ export class TopUpComponent implements OnInit {
       if (response.responseMessage.responseCode >= 6000) {
         this.currentOneTimeInvAmount = response.objectList.amount;
       } else {
-        this.accountCreationService.showGenericErrorModal();
+        this.investmentAccountService.showGenericErrorModal();
       }
     },
     (err) => {
-      this.accountCreationService.showGenericErrorModal();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
