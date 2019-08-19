@@ -27,7 +27,7 @@ import { YourFinancialsComponent } from './your-financials/your-financials.compo
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
-    { prefix: './assets/i18n/engagement-journey/', suffix: '.json' }
+    { prefix: './assets/i18n/investment-engagement-journey/', suffix: '.json' }
   ]);
 }
 
