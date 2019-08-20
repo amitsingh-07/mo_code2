@@ -678,6 +678,7 @@ export class WillWritingService {
     will.guardian = [];
     will.beneficiary = [];
     will.execTrustee = [];
+    let pos = 0;
     for (const profileMembers of data.willProfileMembers) {
       const members: any = {
         name: profileMembers.name,
@@ -685,7 +686,6 @@ export class WillWritingService {
         uin: profileMembers.uin
       };
       if (profileMembers.isFamily === 'Y') {
-        let pos = 0;
         if (profileMembers.relationshipCode === 'S') {
           will.spouse.push(JSON.parse(JSON.stringify(members)));
         } else if (profileMembers.relationshipCode === 'C') {

@@ -308,8 +308,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   startGuidedJourney() {
+    if (!this.authService.isSignedUser()) {
+      this.guidemeService.clearServiceData();
+    }
     this.stateStoreService.clearAllStates();
-    this.guidemeService.clearServiceData();
     this.router.navigate([APP_ROUTES.GUIDE_ME]);
   }
 

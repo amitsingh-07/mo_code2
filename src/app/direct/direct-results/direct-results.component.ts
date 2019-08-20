@@ -1,3 +1,4 @@
+import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -57,13 +58,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService, private route: ActivatedRoute,
-    private stateStoreService: StateStoreService, private location: Location) {
+    private stateStoreService: StateStoreService, private location: Location, private guidemeService: GuideMeService) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectResultsComponent.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
+      if (event instanceof NavigationStart && !this.authService.isSignedUser()) {
         this.state.filteredResult = this.filteredResult;
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
@@ -465,10 +466,22 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   proceedSelection() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
-    const modalRef = this.modal.open(CreateAccountModelComponent, {
-      centered: true
-    });
-    modalRef.componentInstance.data = this.state.selectedPlans.length;
+    if (this.authService.isSignedUser()) {
+      this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.selectedPlansService.clearData();
+          this.directService.clearServiceData();
+          this.guidemeService.clearServiceData();
+          this.stateStoreService.clearState(this.componentName);
+          this.router.navigate(['email-enquiry/success']);
+        }
+      });
+    } else {
+      const modalRef = this.modal.open(CreateAccountModelComponent, {
+        centered: true
+      });
+      modalRef.componentInstance.data = this.state.selectedPlans.length;
+    }
   }
 
   toggleComparePlans() {

@@ -72,10 +72,10 @@
               <i class="fa fa-sign-out"></i>
               </a>
             </li>
-          <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" [routerLink]="['/account/edit-profile']">
+          <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" (click)="checkCurrentRouteAndNavigate('/account/edit-profile')">
             <a class="navbar--text" href="javascript: void(0);">Profile</a>
           </li>
-          <li *ngIf="showMenu" class="nav-item home-btn" [routerLink]="['/home']">
+          <li *ngIf="showMenu" class="nav-item home-btn" (click)="checkCurrentRouteAndNavigate('/home')">
             <a class="nav-link">Home</a>
           </li>
           <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
@@ -112,7 +112,7 @@
               <div class="tip"></div>
             </div>
           </li>
-          <li *ngIf="isPromotionEnabled && showMenu" class="nav-item" [routerLink]="['/promotions']">
+          <li *ngIf="isPromotionEnabled && showMenu" class="nav-item" (click)="checkCurrentRouteAndNavigate('/promotions')">
             <a class="nav-link">Promotions</a>
           </li>
           <li *ngIf="isArticleEnabled && showMenu" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);"
@@ -125,25 +125,25 @@
               <button class="dropdown-item" (click)="goToExternal('https://advice.moneyowl.com.sg/')">Read All Articles</button>
             </div>
           </li>
-          <li *ngIf="showMenu" class="nav-item" [routerLink]="['/faq']">
+          <li *ngIf="showMenu" class="nav-item" (click)="checkCurrentRouteAndNavigate('/faq')">
             <a class="nav-link">FAQs</a>
           </li>
           <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
             <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
-              <button class="dropdown-item" [routerLink]="['/about-us']">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us')">
                 <div class="navbar--text">About Us</div>
               </button>
-              <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/customer-reviews')">
                 <div class="navbar--text">Customer Reviews</div>
               </button>
-              <button class="dropdown-item" [routerLink]="['/about-us/why-moneyowl']">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/why-moneyowl')">
                 <div class="navbar--text">Why MoneyOwl</div>
               </button>
               <button class="dropdown-item" (click)="goToExternal('https://moneyowl.recruiterpal.com/career/jobs')">
                 <div class="navbar--text">Careers</div>
               </button>
-              <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
                 <div class="navbar--text">Contact Us</div>
               </button>
               </div>
@@ -174,7 +174,7 @@
             </div>
             </li>
           <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
-            <a class="nav-link" [routerLink]="['/account/login']"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
+            <a class="nav-link" (click)="checkCurrentRouteAndNavigate('/account/login')"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
             </li>
           <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
           (mouseleave)="closeDropdown(id05);">
@@ -184,7 +184,7 @@
                 <div class="name">{{userInfo.firstName | titlecase}}</div>
                 <div class="sub-text">My Dashboard</div>
                 </button>
-              <button class="dropdown-item" [routerLink]="['/account/edit-profile']">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/account/edit-profile')">
                 <a class="navbar--text" href="javascript: void(0);">Profile</a>
                 </button>
               <button class="dropdown-item" (click)="logout()">

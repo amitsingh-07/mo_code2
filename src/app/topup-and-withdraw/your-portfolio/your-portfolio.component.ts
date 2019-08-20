@@ -33,6 +33,8 @@ export class YourPortfolioComponent implements OnInit {
   yearlyReturns: any;
   totalReturnsPercentage: any;
   userProfileInfo: any;
+  entitlements: any;
+  monthlyInvestment: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -74,6 +76,25 @@ export class YourPortfolioComponent implements OnInit {
       : null;
     this.getPortfolioHoldingList(this.portfolioValues.productCode); // SET THE PORTFOLIO ID
     this.getTransferDetails();
+    /* First portfolio's entitlement is considered for now as global entitlement, 
+        need to change when multiple portfolio logic is implemented */
+    this.entitlements = this.topupAndWithDrawService.getEntitlementsFromPortfolio(this.portfolioValues);
+  }
+  getMonthlyInvestValidity(index: number) {
+    if (this.userProfileInfo && this.userProfileInfo.investementDetails
+       && this.userProfileInfo.investementDetails.portfolios
+       && this.userProfileInfo.investementDetails.portfolios[index]
+       && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
+       && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
+         this.monthlyInvestment = this.currencyPipe.transform(
+          this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
+          'USD',
+          'symbol-narrow',
+          '1.0-2'
+        );
+         return true;
+       }
+    return false;
   }
   getMoreList() {
     this.moreList = TOPUPANDWITHDRAW_CONFIG.INVESTMENT_OVERVIEW.MORE_LIST;
@@ -145,5 +166,10 @@ export class YourPortfolioComponent implements OnInit {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  // This Method For Onetime expiry.
+   goToInvestAgain(portfolioValues) {
+    this.topupAndWithDrawService.setPortfolioValues(portfolioValues);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
   }
 }

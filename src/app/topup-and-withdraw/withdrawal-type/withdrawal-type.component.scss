@@ -29,6 +29,10 @@ app-withdrawal-type {
     }
     .dropdown-item {
       white-space: normal;
+
+      &.hide {
+        display:none;
+      }
     }
     .amount-panel {
       padding: 30px;

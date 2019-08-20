@@ -216,6 +216,10 @@ app-your-investment {
     letter-spacing: -0.2px;
     color: $dark-teal-color !important;
     border-bottom: 1px solid $teal-color !important;
+
+    &.hide {
+      display:none;
+    }
   }
 
   .dropdown-item:last-child {
@@ -357,7 +361,7 @@ app-your-investment {
     }
 
     &.your_portfolio_value_content {
-      padding: 0 0 10px !important;
+      padding: 0 0 0px !important;
       font-family: $muli-regular;
       font-size: 15px;
       line-height: 21px;
@@ -600,9 +604,7 @@ app-your-investment {
     color:#8a9ba9;
     flex-grow:1;
     display:flex;
-    margin-top:10px;
-    margin-left:-25px;
-    margin-right:-25px;
+    padding-bottom:10px;
     padding-left:25px;
     padding-right:25px;
     justify-content: space-evenly;
@@ -656,5 +658,32 @@ app-your-investment {
       margin-bottom: 20px;
     }
 
+  }
+  .srs-reminder {
+    display: flex;
+    align-items: center;
+    padding: 0 45px 0 25px;
+    background-color: #3ec5c5;
+    height: 80px;
+
+    @include allmobiles {
+      padding: 0 30px 0 15px;
+      height: 100px;
+      width: 100vw;
+      margin: 10px 0 -20px -20px;
+    }
+
+    .srs-txt {
+      font-family: $muli-italic;
+      font-size: 13px;
+      font-weight: normal;
+      letter-spacing: -0.13px;
+      line-height: 1.23;
+      color: $white-color;
+    }
+
+    .mail-img {
+      margin-right: 20px;
+    }
   }
 }

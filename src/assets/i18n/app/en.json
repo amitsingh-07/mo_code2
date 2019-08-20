@@ -50,7 +50,8 @@
     "PROCEED":"Proceed",
     "SAVE_CONTINUE": "Save and Continue",
     "SEND": "Send",
-    "BACK_TO_HOME": "Back To Home"
+    "BACK_TO_HOME": "Back To Home",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverage",
@@ -201,6 +202,13 @@
           "REQUIRED": "*Please enter your confirm e-mail address"
         }
       },
+      "MOBILE_NUMBER": {
+        "LABEL": "Mobile Number",
+        "ERROR": {
+          "INVALID": "*Invalid Mobile Number",
+          "REQUIRED": "*Please enter your mobile number"
+        }
+      },
       "CAPTCHA": {
         "TITLE": "Enter the characters shown in the image",
         "TRY": "Try another text",
@@ -210,7 +218,8 @@
         }
       },
       "MARKETING": {
-        "TITLE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        "EMAIL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
+        "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
       }
     }
 
