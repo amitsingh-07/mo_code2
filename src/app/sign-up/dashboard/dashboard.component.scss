@@ -247,6 +247,18 @@ app-dashboard{
                         }
                     }
                 }
+                .find-plan{
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    letter-spacing: -0.11px;
+                    text-align: center;
+                    color: $teal-color;
+                    margin-top: 12px;
+                    a{
+                        text-decoration: underline;
+                        color: $teal-color;
+                    }
+                }
             }
         }
         .circle{
@@ -257,6 +269,28 @@ app-dashboard{
             margin-left: 10px;
             background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
+        }
+    }
+    .announcement-div {
+        display: flex; 
+        align-items: center; 
+        margin-top: 21px;
+        padding: 13px 16px 14px 16px; 
+        border-radius: 6px; 
+        border: solid 3px #ffa32c;  
+        background-color: rgba(0, 89, 96, 0.3);
+        .announcement-img {
+            width: 40px;
+            height: auto;
+            margin-right: 8px;
+        }
+        .announcement-txt {
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            // font-weight: 600;
+            letter-spacing: -0.16px;
+            line-height: normal;
+            color: $white-color; 
         }
     }
 }

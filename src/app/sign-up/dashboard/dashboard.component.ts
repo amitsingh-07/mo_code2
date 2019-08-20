@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -12,13 +12,11 @@ import {
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
+import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
-import {
-    TransferInstructionsModalComponent
-} from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
     TOPUP_AND_WITHDRAW_ROUTE_PATHS
@@ -32,8 +30,9 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
+import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -88,10 +87,23 @@ export class DashboardComponent implements OnInit {
     public modal: NgbModal,
     public topupAndWithDrawService: TopupAndWithDrawService,
     public authService: AuthenticationService,
-    public errorHandler: CustomErrorHandlerService
+    public errorHandler: CustomErrorHandlerService,
+    private guideMeService: GuideMeService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('COMMON').subscribe((result: string) => {
+      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
+        this.investmentAccountService.setUserPortfolioExistStatus(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
+        ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
+        ref.componentInstance.portfolioExist = true;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+         });
+      }
+     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
     });
@@ -103,18 +115,6 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.loadOptionListCollection();
-    if (this.investmentAccountService.getUserPortfolioExistStatus()) {
-      this.investmentAccountService.setUserPortfolioExistStatus(false);
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
-      ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
-      ref.componentInstance.portfolioExist = true;
-      ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
-       });
-    }
-
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         // ERROR SCENARIO
@@ -162,15 +162,22 @@ export class DashboardComponent implements OnInit {
     });
 
     // Insurance
-    this.guideMeApiService.getCustomerInsuranceDetails().subscribe(data => {
+    this.guideMeApiService.getCustomerInsuranceDetails().subscribe((data) => {
       this.showInsuranceSection = true;
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-        this.insurance.hasInsurance = data.objectList[0].hasDoneInsuranceJourney;
-        this.insurance.lastTransactionDate = data.objectList[0].lastTransactionDate;
+        this.insurance.hasInsurance = true;
+        this.insurance.isGuidedJourney  = data.objectList[0].enquiryData.type === 'insurance-guided';
+        this.insurance.lastTransactionDate = data.objectList[0].enquiryData.createdTimeStamp.split('T')[0];
+        if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
+          this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
+        this.insurance.hasInsurance = false;
       }
     });
 
     this.getTransferDetails();
+    this.checkSRSPopStatus();
   }
 
   loadOptionListCollection() {
@@ -399,4 +406,26 @@ export class DashboardComponent implements OnInit {
     this.topupAndWithDrawService.showPopUp();
   }
 
+  // Show SRS Joint Account Popup
+  openSRSJointAccPopup() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
+
+  // Check if user is first time seeing SRS popup
+  checkSRSPopStatus() {
+    const customerId = this.signUpService.getAccountInfo().userProfileInfo.id;
+    this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
+      // Check if srs_pop_status is available or false
+      if (!status.objectList['srs_pop_status']) {
+        setTimeout(() => {
+          this.openSRSJointAccPopup();
+        });
+        this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
+        }, (error) => console.log('ERROR: ', error));
+      }
+    }, (error) => console.log('ERROR: ', error));
+  }
 }

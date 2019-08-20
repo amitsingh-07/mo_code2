@@ -262,7 +262,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   goToHome(in_fragment?: string) {
     if (in_fragment) {
       const extra = { fragment: in_fragment } as NavigationExtras;
-      this.router.navigate([appConstants.homePageUrl], extra);
+      // Added check to see if current route is same
+      if (this.router.url === appConstants.HOME_ROUTE + in_fragment) {
+        this.toggleMenu();
+      } else {
+        this.router.navigate([appConstants.homePageUrl], extra);
+      }
     } else {
       this.router.navigate([appConstants.homePageUrl]);
     }
@@ -372,7 +377,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.errorHandler.handleAuthError();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      // If user is on dashboard page already, close the menu
+      this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
+    }
+  }
+
+  // Added to check if current route is same as the navigating route
+  // If its current route, close the menu else navigate as usual
+  checkCurrentRouteAndNavigate(route) {
+    if (this.router.url === route) {
+      this.toggleMenu();
+    } else {
+      this.router.navigate([route]);
     }
   }
 

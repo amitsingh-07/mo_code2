@@ -12,6 +12,9 @@
           <div><span><img src="../../assets/images/icon_email.svg" /></span><span>enquiries@moneyowl.com.sg</span></div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" [routerLink]="['/home']">{{'LABEL.BACK_TO_HOME' | translate}}</button> 
+      <button type="button" class="btn btn-primary" (click)="redirectTo()">
+        <span *ngIf="!isSignedUser">{{'LABEL.BACK_TO_HOME' | translate}}</span>
+        <span *ngIf="isSignedUser">{{'LABEL.BACK_TO_DASHBOARD' | translate}}</span>
+      </button> 
   </div>
 </div>

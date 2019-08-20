@@ -19,8 +19,9 @@
     "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
     "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
     "VIEW_TRANSFER_INST": "View Transfer Instructions",
-    "PROCESS_TIME_INFO": "Fund your account within 21 days to kickstart your investment!",
+    "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
     "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_TIME_INFO":"You have a monthly investment of {{month}}. Fund 1 or 2 days before 15th of the month.",
     "RECIPENTS_NAME": "Recipient's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
@@ -90,6 +91,7 @@
     "CONFIRM_OVERWRITE_MODAL": {
       "TITLE": "Buy Request Exist",
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
+      "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -117,14 +119,17 @@
     "HOW_TO_FUND_YOUR_ACCOUNT": "View Transfer Instruction",
     "DELETE": "Delete Portfolio",
     "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?",
-    "EXPIRED": "Your portfolio has expired.",
+    "MONTHLY_INVEST_ALERT": "You have a monthly investment of {{monthlyInvestAmount}}. Fund 1 or 2 days before 15th of the month.",
+    "MONTHLY_INVEST_ALERT_PORTFOLIO": "Your portfolio has not been invested.",
+    "ONE_TIME_EXPIRED": "As you did not transfer money to your account within the specified period, this portfolio has not been invested.",
     "IN_PROGRESS": "Transaction is in Progress and will reflect in 4 to 5 working days",
+    "REDEEMING": "Redemption is in progress and will be completed in 5 to 6 business days",
     "REF_CODE": "Ref Code: ",
     "PORTFOLIO_DELETE_MESSAGE": "{{portfolioName}} Portfolio Deleted",
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
-    "NO_PORTFOLIO": "You do not have any portfolios."
-
+    "NO_PORTFOLIO": "You do not have any portfolios.",
+    "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard."
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
