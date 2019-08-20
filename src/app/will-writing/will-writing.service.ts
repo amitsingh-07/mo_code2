@@ -723,9 +723,6 @@ export class WillWritingService {
       will.execTrustee[0] = mainExecutor;
       will.execTrustee[1] = altExecutor;
     }
-    if (will.guardian.length === 1) {
-      delete will.guardian;
-    }
     this.willWritingFormData = will;
     this.commit();
   }
