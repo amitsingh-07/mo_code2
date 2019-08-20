@@ -631,7 +631,13 @@ body.modal-open::-webkit-scrollbar {
 
   div.modal-body.white-bg {
     max-width: 420px;
-    max-height: 535px;
+    height: 535px;
+  }
+
+  .modal-dialog {
+    @media (min-width: 576px) {
+      max-width: 420px !important;
+    }
   }
 }
 
