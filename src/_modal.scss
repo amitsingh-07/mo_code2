@@ -633,6 +633,12 @@ body.modal-open::-webkit-scrollbar {
     max-width: 420px;
     height: 535px;
   }
+
+  .modal-dialog {
+    @media (min-width: 576px) {
+      max-width: 420px !important;
+    }
+  }
 }
 
 .custom-full-height{
