@@ -86,13 +86,13 @@
     </div>
     <div class="flex-row mb10">
       <div class="flex-col-12 stretch" [formGroup]="enquiryForm">
-        <div class="form-group-floating-label" [ngClass]="{'inline-error': enquiryForm.controls.mobileNumber.errors && enquiryForm.controls.mobileNumber.errors.required}">
+        <div class="form-group-floating-label" [ngClass]="{'inline-error': enquiryForm.controls.mobileNumber.errors && enquiryForm.controls.mobileNumber.errors.required && enquiryForm.controls.contactViaMobile.value}">
           <input type="number" class="form-control" #mobileNumber formControlName="mobileNumber" required>
           <label class="form-control-placeholder" for="mobileNumber">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
         </div>
         <div *ngIf="enquiryForm.controls.mobileNumber.invalid">
           <p class="error--msg" *ngIf="enquiryForm.controls.mobileNumber.errors.pattern && enquiryForm.controls.mobileNumber.dirty">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</p>
-          <p class="error--msg" *ngIf="enquiryForm.controls.mobileNumber.errors.required">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</p>
+          <p class="error--msg" *ngIf="enquiryForm.controls.mobileNumber.errors.required && enquiryForm.controls.contactViaMobile.value">{{'RECOMMENDATIONS.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</p>
        </div>
       </div>
     </div>    
