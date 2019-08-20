@@ -227,8 +227,9 @@ export class FAQComponent implements OnInit, AfterViewChecked {
         }
         const btnDropdownEle = document.getElementsByClassName('btn-dropdown');
         btnDropdownEle[2].innerHTML = jointSrsContent;
-        const scrollOption: ScrollIntoViewOptions = {behavior : 'smooth', block: 'nearest', inline: 'nearest'};
-        document.getElementsByClassName('faq-category__body active')[0].scrollIntoView(scrollOption);
+        const selectedSection = document.getElementsByClassName('faq-category__body active')[0].getBoundingClientRect();
+        const elemOffsetTop = selectedSection.top - document.getElementsByTagName('nav')[0].offsetHeight;
+        window.scrollTo({ top: elemOffsetTop, behavior: 'smooth' });
         this.viewChecked = true;
       }
     });
