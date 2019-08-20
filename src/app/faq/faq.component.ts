@@ -213,20 +213,22 @@ export class FAQComponent implements OnInit, AfterViewChecked {
       if (document.getElementsByClassName('faq-category__body active')[0]) {
         const faq_element = document.querySelectorAll('.faq-selection__element');
         const qns_panel = document.querySelectorAll('.questions__panel');
-
+        const investmentContent = this.translate.instant('FAQ.CONTENT.Investment');
+        const jointSrsContent = this.validateTitle(Object.keys(investmentContent)[2], 0);
         for ( let i = 0; i < faq_element.length; i ++) {
-          faq_element[i].classList.remove('active');
-        }
-        for ( let i = 0; i < qns_panel.length; i ++) {
-          qns_panel[i].classList.remove('active');
-        }
-        for ( let i = 0; i < faq_element.length; i ++) {
-          if (faq_element[i]['innerText'] === 'Joint or SRS Accounts') {
+          if (faq_element[i]['innerHTML'] === Object.keys(investmentContent)[0]) {
+            faq_element[i].classList.remove('active');
+            qns_panel[i].classList.remove('active');
+          }
+          if (faq_element[i]['innerHTML'] === jointSrsContent) {
             faq_element[i].className += ' active';
             qns_panel[i].className += ' active';
           }
         }
-        document.getElementsByClassName('faq-category__body active')[0].scrollIntoView(false);
+        const btnDropdownEle = document.getElementsByClassName('btn-dropdown');
+        btnDropdownEle[2].innerHTML = jointSrsContent;
+        const scrollOption: ScrollIntoViewOptions = {behavior : 'smooth', block: 'nearest', inline: 'nearest'};
+        document.getElementsByClassName('faq-category__body active')[0].scrollIntoView(scrollOption);
         this.viewChecked = true;
       }
     });
