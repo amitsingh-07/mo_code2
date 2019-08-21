@@ -108,13 +108,9 @@ export let apiConstants = {
         },
         comprehensive: {
             getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveUserSummary',
-            getPersonalDetails: ACCOUNT_API_BASE_URL + 'customer/comprehensive/getPersonalDetails',
             addPersonalDetails: ACCOUNT_API_BASE_URL + 'customer/comprehensive/addPersonalDetails',
-            getDependents: ACCOUNT_API_BASE_URL + 'customer/comprehensive/getDependents',
             addDependents: ACCOUNT_API_BASE_URL + 'customer/comprehensive/saveDependents',
-            getEndowmentPlan: ACCOUNT_API_BASE_URL + 'customer/comprehensive/getChildEndowmentPlans',
             saveEndowmentPlan: ACCOUNT_API_BASE_URL + 'customer/comprehensive/saveChildEndowmentPlans',
-            getEarnings: COMPREHENSIVE_API_BASE_URL + 'getEarnings',
             saveEarnings: FINANCE_API_BASE_URL + 'saveEarnings',
             getSpendings: COMPREHENSIVE_API_BASE_URL + 'getExpenses',
             saveSpendings: FINANCE_API_BASE_URL + 'saveExpenses',
