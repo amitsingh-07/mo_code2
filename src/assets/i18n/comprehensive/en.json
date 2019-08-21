@@ -21,7 +21,7 @@
         "HOW_DO_WE_CALCULATE_DESC1": "We take the Cash you own minus an Emergency Cash pool of 6 months’ of expenses and loan payments. Emergency Cash is important in case you lose your job or incur unexpected expenses.",
         "HOW_DO_WE_CALCULATE_DESC2": "Monthly Spare Cash is your take home income minus your expenses and loan repayments minus your bad mood fund allocation.",
         "NEXT": "Next",
-        "EMERGENCY_BELOW_DESC": "Oh no, your liquid cash is less than 6 months' of expenses. Save before you invest.",
+        "EMERGENCY_BELOW_DESC": "Your liquid cash is less than 6 months’ expenses. Please discuss with your adviser how you can save more, before you start to invest.",
         "EMERGENCY_BELOW_NOTE_TITLE": "Next Steps",
         "EMERGENCY_BELOW_NOTE_DESC": "We will analyse your financial health more fully, assess your insurance needs and recommend how you can use your CPF for retirement."
       },
@@ -75,8 +75,8 @@
         "TITLE": "Step 4",
         "TITLE_IMAGE": "retirement.svg",
         "TITLE_DESC": "Completed",
-        "CONTENT_TITLE": "Do you know?",
-        "CONTENT_DESC": "The 3 “must haves” in retirement:",
+        "CONTENT_TITLE": "Did you know?",
+        "CONTENT_DESC": "There are 3 “must haves” in retirement:",
         "SUB_CONTENT_TITLE_1": "A fully paid-up home",
         "SUB_CONTENT_TITLE_2": "Monthly income for your lifestyle",
         "SUB_CONTENT_DESC_21": "1. Safe retirement income floor to meet basic expenses & care expenses in event of disability",
@@ -169,8 +169,7 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [
-      {
+    "NATIONALITY": [{
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -274,8 +273,7 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [
-        {
+      "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
         },
@@ -398,8 +396,7 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [
-      {
+    "INVESTMENT_TYPE_LIST": [{
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -464,8 +461,7 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [
-        {
+      "INVESTMENT_TYPE_LIST": [{
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -577,8 +573,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [
-        {
+      "DEPENDANT_DETAIL": [{
           "name": "Dependant Details 1"
         },
         {
