@@ -604,7 +604,7 @@
     "RETIREMENT_PLAN": {
       "SUB_TITLE": "We're almost done! Tell us when would you like to retire.",
       "ABOUT": "I want to retire by age ",
-      "FORM_HEADER": "Do you have any existing sources of retirement income?",
+      "FORM_HEADER": "Will you have any other sources of retirement income?",
       "ADD_RETIREMENT": "Add Retirement Income",
       "ADD_LUMP_SUM": "Add Lump Sum Amount",
       "FORM_PLACEHOLDER_AGE": "Enter Age",
