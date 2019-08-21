@@ -6,6 +6,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { HelperService } from '../shared/http/helper.service';
+import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
@@ -27,26 +28,15 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 
-    getPersonalDetails() {
-        return this.apiService.getPersonalDetails();
-    }
-
     savePersonalDetails(payload) {
-        return this.apiService.addPersonalDetails(payload);
-    }
-
-    getDependents() {
-        return this.apiService.getDependents();
-    }
-
-    addDependents(payload) {
-        return this.apiService.addDependents(payload);
-    }
-    getChildEndowment() {
-        return this.http
-            .get(apiConstants.endpoint.comprehensive.getEndowmentPlan)
+        return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    addDependents(payload) {
+        return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+
     saveChildEndowment(payload) {
         return this.http
             .post(apiConstants.endpoint.comprehensive.saveEndowmentPlan, payload)
@@ -110,12 +100,15 @@ export class ComprehensiveApiService {
     }
 
     /**
-     * Download the comprehensive report as PDF and open it in a new browser tab.
-     *
-     * @memberof ComprehensiveApiService
-     */
-    downloadComprehensiveReport(payload) {
-        return this.apiService.downloadComprehensiveReport(payload);
+   * Download the comprehensive report.
+   *
+   * @param {*} payload
+   * @returns {Observable<any>}
+   * @memberof ApiService
+   */
+    downloadComprehensiveReport(payload): Observable<any> {
+        return this.http.postForBlobParam(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     saveStepIndicator(payload) {
         return this.http

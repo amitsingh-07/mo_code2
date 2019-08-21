@@ -777,13 +777,7 @@ export class ApiService {
       );
   }
 
-  // Comprehensive Module
-  getPersonalDetails() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getPersonalDetails)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+
   downloadStatement(data) {
     return this.http.getBlob(apiConstants.endpoint.investment.getStatement + '?' + data)
       .pipe(
@@ -791,36 +785,7 @@ export class ApiService {
       );
   }
 
-  addPersonalDetails(payload) {
-    return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-  getDependents() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getDependents)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-  addDependents(payload) {
-    return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-  getEarnings() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getEarnings)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-  saveEarnings(payload) {
-    return this.http.post(apiConstants.endpoint.comprehensive.saveEarnings, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+
   // Resend Email Verification Link
   resendEmailVerification(payload) {
     return this.http.post(apiConstants.endpoint.resendEmailVerification + this.handleErrorFlag, payload)
@@ -828,41 +793,13 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
-  getSpendings() {
-    return this.http.get(apiConstants.endpoint.comprehensive.getSpendings)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
   // Update Mobile Number
   editMobileNumber(payload) {
-    return this.http.post(apiConstants.endpoint.editMobileNumber  + this.handleErrorFlag, payload)
+    return this.http.post(apiConstants.endpoint.editMobileNumber + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  saveSpendings(payload) {
-    return this.http.post(apiConstants.endpoint.comprehensive.saveSpendings, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
-  /**
-   * Download the comprehensive report.
-   *
-   * @param {*} payload
-   * @returns {Observable<any>}
-   * @memberof ApiService
-   */
-  downloadComprehensiveReport(payload): Observable<any> {
-    return this.http.postForBlobParam(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
   // send bundle enquiry
   sendBundleEnquiry(payload) {
     return this.http.post(apiConstants.endpoint.registerBundleEnquiry + this.handleErrorFlag, payload)
