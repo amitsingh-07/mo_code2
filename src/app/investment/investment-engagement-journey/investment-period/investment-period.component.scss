@@ -19,10 +19,10 @@
 // }
 
 app-investment-period {
-  h2{
-    font-size:30px !important;
-    margin-bottom: 15px;
-  }
+//   h2{
+//     font-size:30px !important;
+//     margin-bottom: 15px;
+//   }
  .container-fluid {
     @include allmobiles {
       padding-top: 68px;
@@ -33,11 +33,11 @@ app-investment-period {
     }
     padding-right: 20px !important;
     padding-left: 23px !important;
-    .banner-image{
-      img{
-        padding-top: 0;
-      }
-    }
+    // .banner-image{
+    //   img{
+    //     padding-top: 0;
+    //   }
+    // }
   }
 
   // #userInfoForm .col-sm-7 {
