@@ -1,5 +1,5 @@
 <!-- Widget Header -->
-<div class="flex-row mb20">
+<!-- <div class="flex-row mb20">
   <div class="flex-col-9">
     <div class="your_portfolio_label" id="investment_overview_your_portfolios">
       {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}</div>
@@ -8,14 +8,14 @@
     <div class="your_portfolio_number" id="investment_overview_total_of">{{'YOUR_INVESTMENT.TOTAL_OF' |
     translate}} {{portfolioList.length}}</div>
   </div>
-</div>
+</div> -->
 <!-- / Widget Header -->
 
 <!-- Widget Content -->
-<div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index;">
-  <div *ngIf="getEntitlementsFromPortfolio(portfolio); let entitlement">
+<!-- <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index;">
+  <div *ngIf="getEntitlementsFromPortfolio(portfolio); let entitlement"> -->
     <!-- HEADERS -->
-    <div class="form-group-with-bg--header your_portfolio_value" (click)="detail(portfolio)">
+    <!-- <div class="form-group-with-bg--header your_portfolio_value" (click)="detail(portfolio)">
       <div class="flex-row">
         <div class="conserve-icon">
           <img [src]="getImg(portfolio.riskProfile.id)" alt="" />
@@ -47,10 +47,10 @@
               src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
           </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- CONTENT -->
-    <div class="form-group-with-bg--content" *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMED'">
+    <!-- <div class="form-group-with-bg--content" *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMED'">
       <div class="flex-row align-items-end" id="values-container">
         <div class="flex-col-8">
           <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES'
@@ -100,7 +100,119 @@
             | translate}}</button>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- / NEW IMPLEMENTATION -->
-</div>
+<!-- </div> -->
 <!-- / Widget Content-->
+
+<div class="multiple-portfolio-container">
+  <div class="container-fluid max-width--1024">
+      <div class="multiple-portfolio-block">
+          <div class="multiple-portfolio-header">Total of 7</div>
+          <div class="multiple-portfolio-content">
+              <div class="multiple-portfolio-type">
+                  <div class="multiple-portfolio-type-title">Not Yet Invested</div>
+                  <div class="portfolio-list">
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$0</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="top-up-btn">Top Up</span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$0</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="top-up-btn">Top Up</span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$0</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="top-up-btn">Top Up</span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$0</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="top-up-btn">Top Up</span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$0</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="top-up-btn">Top Up</span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="list-btn">List All (2)<img src="../assets/images/investment-account/list-down.svg" /></div>
+              </div>
+              <div class="multiple-portfolio-type">
+                  <div class="multiple-portfolio-type-title">Invested</div>
+                  <div class="portfolio-list invested">
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$76,286.00</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="total-returns">+ 8.98% </span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$76,286.00</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="total-returns">+ 8.98% </span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$76,286.00</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="total-returns negativeValue">- 2% </span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$76,286.00</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="total-returns">+ 8.98% </span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                      <div class="portfolio">
+                          <div class="portfolio-icon"><img src="../assets/images/investment-account/growth_icon.svg" /></div>
+                          <div class="portfolio-details">
+                              <div class="portfolio-name">Miya's University Fund</div>
+                              <div class="ref-code">Ref Code: G0000092</div>
+                              <div class="portfolio-value"><span>$76,286.00</span><span>1 buy request</span></div>
+                              <div class="portfolio-btn"><span class="total-returns">+ 8.98% </span><span class="cash-account-value">Cash Account: $8,000</span></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="list-btn">List All (2)<img src="../assets/images/investment-account/list-down.svg" /></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

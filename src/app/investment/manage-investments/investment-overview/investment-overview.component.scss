@@ -1,689 +1,303 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
-
 app-investment-overview {
-  .container-fluid {
-    &.max-width--1024 {
-      top: 0 !important;
-      padding-top: 0;
-
-      @include allmobiles {
-        padding: 0 !important;
-        margin-top: 0 !important
-      }
-    }
-  }
-
-  .investment-bg {
-    position: absolute;
-    background: #3bbfbf;
-    width: 100%;
-    left: 0;
-    right: 0;
-
-    @include allmobiles {
-      padding-top: 60px;
-      width: 100%;
-      max-height: 230px;
-    }
-    .container-fluid{
-      padding: 0;
-      top: 0;
-      .background_img {
-        float: right;
-        @include allmobiles {
-          object-fit: contain;
-          position: relative;
-          width: 100%;
-        }
-        &.web_bg {
-          position: relative;
-          @include allmobiles {
-            display: none;
-          }
-        }
-        &.mobile_bg {
-          display: none;
-          @include allmobiles {
-            display: block;
-            position: absolute;
-            left: 0;
-            right: 0;
-          }
-        }
-      }
-    }
-  }
-
-  .ref-code {
-    color: $invest-ref-code-color;
-    font-size: 14px;
-    font-family: $muli;
-
-    &-text {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
-
-
-  .user_content {
-    position: absolute;
-    padding: 0 75px;
-    top: 60px;
-    max-width: 1024px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-
-    @include allmobiles{
-      top: 100px;
-      padding: 0;
-    }
-    @include phablet{
-      top: 85px;
-    }
-
     .user_summary {
-      font-family: $muli-regular;
-      font-size: 18px;
-      line-height: 1.28;
-      letter-spacing: -0.2px;
-      padding: 0 29px 0 15px;
-      position: relative;
-      max-width: 325px;
-
-      @include allmobiles {
-        padding: 0 29px 0 28px;
-      }
-    }
-
-    .flex-col-4 {
-      position: absolute;
-      top: 40px;
-      right: 120px;
-      max-width: 85px;
-      z-index: 1;
-
-      @include iphone5 {
-        top: 28px;
-      }
-
-      @include allmobiles {
-        top: 60px;
-        max-width: 85px;
-        right: 29px;
-      }
-
-      @include iphone5 {
-        top: 40px;
-      }
-
-      @include iphone6plus {
-        top: 72px;
-      }
-
-      @include iphone6 {
-        top: 55px;
-      }
-
-      @include phablet {
-        top: 40px;
-        max-width: 85px;
-        right: 100px;
-      }
-    }
-  }
-
-  p {
-    padding: 20px;
-    text-align: center;
-    font-family: Muli;
-    font-size: 14px;
-    letter-spacing: -0.1px;
-    text-align: center;
-    color: $text-color-secondary;
-  }
-
-  .dropdown-control .btn-dropdown:after {
-    background-image: url('/assets/images/dropdown_white.svg');
-    width: 16px;
-    height: 10px;
-    border: none;
-    position: absolute;
-    top: 24px;
-    right: 5px;
-    background-repeat: no-repeat;
-  }
-
-  .dropdown-control .btn-dropdown.grey {
-    color: $white-color;
-    background-color: $withdrawal-amount-panel-bg-color;
-  }
-
-  .container-fluid {
-    position: relative;
-    top: 120px;
-    padding-left: 45px;
-    padding-right: 45px;
-
-    @include allmobiles {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-      height: 100%;
-      padding: 0px;
-      padding-bottom: 20px;
-      top: 250px;
-    }
-
-    @include max360 {
-      top: 210px;
-    }
-
-    @include iphone6 {
-      top: 220px;
-    }
-
-    @include phablet {
-      top: 140px;
-    }
-
-    &.toast-container {
-      top: 200px;
-
-      @include allmobiles {
-        top: 320px;
-      }
-    }
-  }
-
-  .dropdown-control .dropdown-menu.show {
-    left: auto !important;
-    right: 0;
-  }
-
-  .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 0.25rem 1.5rem;
-    clear: both;
-    font-size: 16px;
-    font-family: $muli-bold;
-    text-align: inherit;
-    white-space: nowrap !important;
-    background-color: transparent;
-    border: 0;
-    letter-spacing: -0.2px;
-    color: $dark-teal-color !important;
-    border-bottom: 1px solid $teal-color !important;
-
-    &.hide {
-      display:none;
-    }
-  }
-
-  .dropdown-item:last-child {
-    border-bottom: none;
-  }
-
-  .form-group-with-bg {
-    box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
-    background-color: $white-color;
-    margin-bottom: 30px;
-
-    .your_total_value {
-      background-color: $withdrawal-amount-panel-bg-color;
-      padding: 20px 20px 17px;
-    }
-  }
-
-  .total_values {
-    font-family: $muli-bold;
-    font-size: 32px;
-    letter-spacing: -0.4px;
-    text-align: center;
-    color: $white-color;
-    word-break: break-all;
-    @include allmobiles{
-      font-size: 30px;
-    }
-  }
-
-  .total_values_label {
-    font-family: $muli-regular;
-    font-size: 16px;
-    line-height: 0.88;
-    letter-spacing: -0.1px;
-    text-align: center;
-    color: $white-color;
-    margin-top: 6px;
-  }
-
-  .start_investment_label {
-    font-size: 13px;
-    line-height: 1.62;
-    letter-spacing: -0.1px;
-    color: $text-color-secondary;
-  }
-
-  .start_investment_value {
-    font-family: $muli-bold;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    text-align: right;
-    color: $transaction-panel-buy-color;
-
-    &.negativeValue {
-      color: $red-color;
-    }
-  }
-
-  .form-group-with-bg .form-group-with-bg--content .flex-row:not(:last-child) {
-    margin-bottom: 0px;
-  }
-
-  .total_return_label {
-    color: $text-color-secondary;
-    font-size: 16px;
-    color: $dark-teal-color;
-  }
-
-  .total_return_value {
-    font-family: $muli-bold;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    text-align: right;
-    color: $teal-color;
-    word-break: break-all;
-
-    &.txt-bold {
-      font-size: 18px;
-    }
-  }
-
-  .your_portfolio_container {
-    padding: 20px;
-    align-items: baseline;
-  }
-
-  .your_portfolio_label {
-    font-size: 21px;
-    letter-spacing: -0.2px;
-    color: $white-color;
-    padding-left: 12px;
-  }
-
-  .your_portfolio_number {
-    font-size: 15px;
-    letter-spacing: -0.3px;
-    color: $white-color;
-    padding-top: 5px;
-    text-align: right;
-    padding-right: 16px;
-    @include allmobiles{
-      text-align: left;
-    }
-  }
-
-  .your_portfolio_value {
-    position: relative;
-    background-color: $top-up-your-portfolio-value-bg !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 11px !important;
-
-    .flex-row {
-      align-items: center !important;
-
-      .conserve-icon {
-        width: 35px;
-        height: 35px;
-
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-      }
-    }
-
-    .forward_img {
-      margin-right: 5px;
-      padding-left: 25px;
-    }
-  }
-
-  .form-group-with-bg--content {
-    padding: 20px 28px 16px 27px !important;
-
-    .flex-row {
-      align-items: flex-start;
-    }
-
-    &.your_portfolio_value_content {
-      padding: 0 0 0px !important;
-      font-family: $muli-regular;
-      font-size: 15px;
-      line-height: 21px;
-      letter-spacing: -0.14px;
-      text-align: center;
-      color: $text-color-secondary;
-
-      .flex-row {
-        padding: 15px 20px;
-      }
-
-      .portfolio_footer {
-        padding: 10px 13px 0;
-        border-top: 1px solid $top-up-your-portfolio-value-content-bg;
-
-        .btn-primary {
-          background-color: $white-color;
-          border: 1px solid $top-up-your-portfolio-value-content-bg;
-          color: $dusty-grey-color;
-          font-size: 18px;
-          letter-spacing: -0.18px;
-          box-shadow: none !important;
-          &:hover {
-            background-color: $action-btn-active-bg !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $white-color !important;
-          }
-
-          &:active {
-            background-color: $action-btn-active-bg !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $white-color !important;
-          }
-
-          &:focus {
-            background-color: $white-color !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $dusty-grey-color !important;
-          }
-        }
-      }
-    }
-  }
-
-  .portfolio_heading {
-    font-family: $muli-bold;
-    font-size: 18px;
-    letter-spacing: -0.3px;
-    color: $teal-color;
-    padding-left: 15px;
-    max-width: 180px;
-  }
-
-  .portfolio_value {
-    font-family: $muli-bold;
-    font-size: 20px;
-    letter-spacing: -0.3px;
-    color: $teal-color;
-    word-break: break-all;
-  }
-
-  .portfolio_label {
-    font-size: 16px;
-    line-height: 1.31;
-    letter-spacing: -0.1px;
-    color: $withdrawal-modal-lbl-color;
-  }
-
-  .top_alert {
-    position: relative;
-  }
-
-  .btn-with-icon {
-    border-radius: 6px;
-    box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow !important;
-    background-color: $btn-primary-backgrnd-color;
-    font-family: $muli-bold;
-    font-size: 21px;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    text-align: center;
-    color: $white-color;
-    width: 100%;
-    padding: 18px 0px;
-    border-width: 0px;
-    cursor: pointer;
-    &.top_up_btn{
+        font-family: $muli-regular;
         font-size: 18px;
-        line-height: 23px;
-        background-color: $white-color;
-        color: $secondary-action-color;
+        line-height: 1.28;
+        letter-spacing: -0.2px;
+        padding: 0 15px 30px 0;
+        position: relative;
+        max-width: 300px;
+        @include allmobiles {
+            padding: 0 15px 30px 15px;
+        }
+    }
+    .your_portfolio_label {
+        font-size: 21px;
+        font-family: $muli-bold;
+        letter-spacing: -0.21px;
+        color: $white-color;
+    }
+    .add_portfolio_label {
+        font-size: 16px;
+        font-family: $muli-bold;
+        letter-spacing: -0.3px;
+        color: $white-color;
+        text-align: right;
         display: flex;
-        justify-content: center;
         align-items: center;
-        &:active{
-          outline: none;
-          background-color: $white-color;
+    }
+    .form-group-with-bg {
+        box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
+        background-color: $white-color;
+        margin-bottom: 20px;
+        .your_total_value {
+            background-color: $withdrawal-amount-panel-bg-color;
+            padding: 20px 20px 17px;
+            .total_values {
+                font-family: $muli-bold;
+                font-size: 32px;
+                letter-spacing: -0.4px;
+                text-align: center;
+                color: $white-color;
+                word-break: break-all;
+                @include allmobiles {
+                    font-size: 30px;
+                }
+            }
+            .total_values_label {
+                font-family: $muli-regular;
+                font-size: 16px;
+                line-height: 0.88;
+                letter-spacing: -0.1px;
+                text-align: center;
+                color: $white-color;
+                margin-top: 6px;
+            }
         }
-        .topup-btn-img {
-          height: 25px;
-          img{
-            width:100%;
-            height: 25px;
-            margin: 0;
-          }
+        .form-group-with-bg--content {
+            .flex-row {
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            .total_return_label {
+                color: $text-color-secondary;
+                font-size: 16px;
+                color: $dark-teal-color;
+            }
+            .start_investment_label {
+                font-size: 13px;
+                line-height: 1.62;
+                letter-spacing: -0.1px;
+                color: $text-color-secondary;
+            }
+            .start_investment_value {
+                font-family: $muli-bold;
+                font-size: 16px;
+                letter-spacing: -0.2px;
+                text-align: right;
+                color: $transaction-panel-buy-color;
+                &.negativeValue {
+                    color: $red-color;
+                }
+            }
+            .btn-with-icon {
+                border-radius: 6px;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
+                background-color: $btn-primary-backgrnd-color;
+                font-family: $muli-bold;
+                font-size: 21px;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                text-align: center;
+                color: $white-color;
+                width: 100%;
+                padding: 18px 0px;
+                border-width: 0px;
+                cursor: pointer;
+                &.top_up_btn {
+                    font-size: 18px;
+                    line-height: 23px;
+                    background-color: $white-color;
+                    color: $secondary-action-color;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &:active {
+                        outline: none;
+                        background-color: $white-color;
+                    }
+                    .topup-btn-img {
+                        height: 25px;
+                        img {
+                            width: 100%;
+                            height: 25px;
+                            margin: 0;
+                        }
+                    }
+                }
+                &:active {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                &:hover {
+                    outline: none;
+                }
+                &:focus {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                img {
+                    margin-left: 8px;
+                    margin-top: -1px;
+                }
+            }
         }
-      }
-
-    &:active {
-      outline: none;
-      background-color: $btn-primary-backgrnd-color;
     }
-
-    &:hover {
-      outline: none;
+    .multiple-portfolio-container {
+        margin-top: 10px;
+        .container-fluid {
+            &.max-width--1024 {
+                padding-top: 0 !important;
+                padding-bottom: 40px !important;
+                @include allmobiles {
+                    padding-top: 60px !important;
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                    padding-bottom: 50px !important;
+                }
+            }
+        }
+        .multiple-portfolio-block {
+            .multiple-portfolio-header {
+                font-family: $muli-regular;
+                font-size: 13px;
+                letter-spacing: -0.24px;
+                text-align: right;
+                color: #ffffff;
+                padding: 23px 30px 16px 0;
+                background-color: #3bbfbf;
+            }
+            .multiple-portfolio-content {
+                .multiple-portfolio-type {
+                    font-family: $muli-regular;
+                    .multiple-portfolio-type-title {
+                        font-size: 14px;
+                        letter-spacing: -0.15px;
+                        color: #007d7d;
+                        background-color: #e4f1f1;
+                        padding: 5px 30px;
+                    }
+                    .portfolio-list {
+                        background-color: #f7f7f7;
+                        &.invested {
+                            background-color: #ffffff;
+                        }
+                        .portfolio {
+                            font-family: $muli-regular;
+                            color: #000000;
+                            border: 1px solid #e5e5e5;
+                            padding: 24px 30px;
+                            display: flex;
+                            width: 100%;
+                            @include allmobiles {
+                                padding: 25px 15px;
+                            }
+                            .portfolio-icon {
+                                width: 32px !important;
+                                height: 32px !important;
+                                margin-right: 13px;
+                                padding-top: 8px;
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                            .portfolio-details {
+                                display: flex;
+                                flex-direction: column;
+                                width: 100%;
+                                .portfolio-name {
+                                    font-family: $muli-bold;
+                                    font-size: 16px;
+                                    letter-spacing: -0.3px;
+                                }
+                                .ref-code {
+                                    font-size: 14px;
+                                    letter-spacing: -0.26px;
+                                }
+                                .portfolio-value {
+                                    font-family: $muli-bold;
+                                    font-size: 18px;
+                                    letter-spacing: -0.19px;
+                                    color: #00a7a7;
+                                    display: inline;
+                                    span {
+                                        &:last-child {
+                                            font-family: $muli-regular;
+                                            font-size: 12px;
+                                            letter-spacing: -0.23px;
+                                            float: right;
+                                            margin-top: 9px;
+                                        }
+                                    }
+                                }
+                                .portfolio-btn {
+                                    display: inline;
+                                    font-family: $muli-bold;
+                                    font-size: 16px;
+                                    letter-spacing: -0.3px;
+                                    .top-up-btn {
+                                        color: #ff872f;
+                                    }
+                                    .total-returns {
+                                        color: #11b600;
+                                        &.negativeValue {
+                                            color: #d0021b;
+                                        }
+                                    }
+                                    .cash-account-value {
+                                        font-family: $muli-regular;
+                                        font-size: 14px;
+                                        letter-spacing: -0.26px;
+                                        float: right;
+                                        color: #9b9b9b;
+                                        margin-top: 3px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .list-btn {
+                        font-family: $muli-regular;
+                        font-size: 14px;
+                        letter-spacing: -0.15px;
+                        color: #9b9b9b;
+                        border: 1px solid #e5e5e5;
+                        background-color: #ffffff;
+                        padding: 16px;
+                        display: flex;
+                        justify-content: center;
+                        img {
+                            margin-left: 8px;
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    &:focus {
-      outline: none;
-      background-color: $btn-primary-backgrnd-color;
+    .no-portfolio {
+        padding: 30px 28px;
+        text-align: center;
+        .msg {
+            color: #5e5e5e;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .add-portfolio-icon {
+            width: 96px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 250px;
+            font-family: $muli-bold;
+            font-size: 18px;
+            letter-spacing: -0.34px;
+        }
     }
-
-    img {
-      margin-left: 8px;
-      margin-top: -1px;
-     }
-  }
-
-  .Remember {
-    font-family: $muli-regular;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    color: $white-color;
-    margin-bottom: 13px;
-    width: 243px;
-    margin-right: 45px;
-    @include allmobiles{
-      margin-right: 0;
+    .btn-primary {
+        &.scroll-btn {
+            width: 100%;
+            margin: 0 auto !important;
+            font-family: $muli-regular !important;
+            font-size: 14px;
+            letter-spacing: -0.26px;
+            text-align: center;
+            color: #3ec5c5;
+            background-color: #00a0a0;
+        }
     }
-    span{
-      text-decoration: underline;
-    }
-  }
-
-  .Fund_your_account {
-    width: 203px;
-    height: 20px;
-    font-family: $muli-bold;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    color: $secondary-action-color;
-    u{
-      text-decoration: none;
-    }
-  }
-
-  .close {
-    position: absolute !important;
-    top: 11px !important;
-    right: 14px !important;
-    text-shadow: none !important;
-    background: url('/assets/images/close-button-dark.svg') !important;
-    width: 18px;
-    height: 18px;
-    background-repeat: no-repeat !important;
-
-    @include allmobiles {
-      top: 14px !important;
-      z-index: 9;
-      right: 14px !important;
-    }
-  }
-
-  .callout-content {
-    padding: 10px 23px;
-    background-color: $withdrawal-amount-panel-bg-color;
-    color: $black-color;
-    position: absolute;
-    right: 5px;
-    bottom: 54px;
-    min-height: 108.7px;
-    @include allmobiles{
-      left: 5px;
-    } 
-  }
-
-  .callout-arrow {
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 18px solid $withdrawal-amount-panel-bg-color;
-    left: auto;
-    bottom: -12px;
-    right: 48px;
-    position: absolute;
-  }
-
-  .toast-msg-container {
-    background-color: #fff;
-    padding-bottom: 10px;
-    position: relative;
-    @include allmobiles{
-      z-index: 1;
-      top: 61px;
-    }
-    .container-fluid {
-      padding: 0 !important;
-    }
-  }
-
-  .toast-msg {
-    color: #e57300;
-    background: #fff;
-    padding: 25px 0px;
-    padding-left: 75px;
-    background-color: #fff1e3;
-    border-top: 1px solid #dfdfdf;
-    font-family: $muli-bold;
-    font-size: 18px;
-    -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
-    -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
-    box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
-
-    @include allmobiles {
-      padding-left: 0;
-    }
-
-    img {
-      // position:absolute;
-      // left:30px;
-      // top:25px;
-      padding-left: 30px;
-      padding-right: 10px;
-    }
-  }
-
-  .action-section {
-    border-top:1px solid #eaeaea;
-    color:#8a9ba9;
-    flex-grow:1;
-    display:flex;
-    padding-bottom:10px;
-    padding-left:25px;
-    padding-right:25px;
-    justify-content: space-evenly;
-    .action-item{
-      flex: 1 1 0;
-      margin-right: 10px;
-
-      &:last-child {
-        margin-right: 0px;
-      }
-    }
-  }
-
-  .btn-transparent {
-    border-radius: 6px;
-    background-color: transparent;
-    border: 1px solid #eaeaea;
-    color: #9b9b9b;
-    border-radius: 6px;
-    margin-top: 10px;
-    font-size: 18px;
-    width: 100%;
-    font-family: $muli-bold;
-
-    &.orange {
-      color: #ff872f;
-    }
-
-    @include max360 {
-      font-size: 16px;
-    }
-
-    @include iphone6 {
-      font-size: 16px;
-    }
-  }
-
-  .no-portfolio {
-    padding: 30px 28px;
-    text-align: center;
-
-    .msg {
-      display: block;
-      color: #5e5e5e;
-      font-size: 15px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    img {
-      margin-bottom: 20px;
-    }
-
-  }
-  .srs-reminder {
-    display: flex;
-    align-items: center;
-    padding: 0 45px 0 25px;
-    background-color: #3ec5c5;
-    height: 80px;
-
-    @include allmobiles {
-      padding: 0 30px 0 15px;
-      height: 100px;
-      width: 100vw;
-      margin: 10px 0 -20px -20px;
-    }
-
-    .srs-txt {
-      font-family: $muli-italic;
-      font-size: 13px;
-      font-weight: normal;
-      letter-spacing: -0.13px;
-      line-height: 1.23;
-      color: $white-color;
-    }
-
-    .mail-img {
-      margin-right: 20px;
-    }
-  }
 }
