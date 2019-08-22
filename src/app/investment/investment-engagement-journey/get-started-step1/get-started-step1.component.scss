@@ -17,26 +17,26 @@ app-get-started-step1 {
       padding-top: 0px !important;
       padding-bottom: 0px !important;
     }
-    .btn-proceed {
-      border: 0px;
-      border-radius: 6px;
-      background-color: $white-color;
-      box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
-      cursor: pointer;
-      font-family: $muli-bold;
-      font-weight: normal;
-      font-size: 22px;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: $teal-color;
-      width: 370px;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto 54px;
-      @include allmobiles {
-        width: 100%;
-        margin-bottom: 0;
-      }
-    }
+    // .btn-proceed {
+    //   border: 0px;
+    //   border-radius: 6px;
+    //   background-color: $white-color;
+    //   box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
+    //   cursor: pointer;
+    //   font-family: $muli-bold;
+    //   font-weight: normal;
+    //   font-size: 22px;
+    //   letter-spacing: -0.2px;
+    //   text-align: center;
+    //   color: $teal-color;
+    //   width: 370px;
+    //   display: flex;
+    //   justify-content: center;
+    //   margin: 0 auto 54px;
+    //   @include allmobiles {
+    //     width: 100%;
+    //     margin-bottom: 0;
+    //   }
+    // }
   }
 }

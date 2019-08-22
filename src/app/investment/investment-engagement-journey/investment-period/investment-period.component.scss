@@ -1,28 +1,28 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-app-ci-assessment {
-  .total {
-    min-width: 120px;
-  }
-  .dropdown-menu.show {
-    min-width: 100% !important;
-  }
-}
+// app-ci-assessment {
+//   .total {
+//     min-width: 120px;
+//   }
+//   .dropdown-menu.show {
+//     min-width: 100% !important;
+//   }
+// }
 
-app-ci-assessment {
-  .total {
-    min-width: 120px;
-  }
-  .dropdown-menu.show {
-    min-width: 100% !important;
-  }
-}
+// app-ci-assessment {
+//   .total {
+//     min-width: 120px;
+//   }
+//   .dropdown-menu.show {
+//     min-width: 100% !important;
+//   }
+// }
 
 app-investment-period {
-  h2{
-    font-size:30px !important;
-    margin-bottom: 15px;
-  }
+//   h2{
+//     font-size:30px !important;
+//     margin-bottom: 15px;
+//   }
  .container-fluid {
     @include allmobiles {
       padding-top: 68px;
@@ -33,89 +33,89 @@ app-investment-period {
     }
     padding-right: 20px !important;
     padding-left: 23px !important;
-    .banner-image{
-      img{
-        padding-top: 0;
-      }
-    }
+    // .banner-image{
+    //   img{
+    //     padding-top: 0;
+    //   }
+    // }
   }
 
-  #userInfoForm .col-sm-7 {
-    opacity: 1 !important;
-  }
+  // #userInfoForm .col-sm-7 {
+  //   opacity: 1 !important;
+  // }
 
-  strong {
-    font-family: $muli-semi-bold;
-    font-size: 17px;
-  }
+  // strong {
+  //   font-family: $muli-semi-bold;
+  //   font-size: 17px;
+  // }
 
-  .input-group {
-    &.inline-error {
-      .btn-primary {
-        background: transparent !important;
-        border: transparent;
-      }
-    }
-  }
+  // .input-group {
+  //   &.inline-error {
+  //     .btn-primary {
+  //       background: transparent !important;
+  //       border: transparent;
+  //     }
+  //   }
+  // }
 
-  .dropdown-control {
-    .btn-dropdown {
-      span.dependent-count {
-        color: $app-backgrnd-color;
-        margin-right: 4px;
-      }
-    }
-    .dropdown-item {
-      font-family: $muli-light;
-    }
-  }
+  // .dropdown-control {
+  //   .btn-dropdown {
+  //     span.dependent-count {
+  //       color: $app-backgrnd-color;
+  //       margin-right: 4px;
+  //     }
+  //   }
+  //   .dropdown-item {
+  //     font-family: $muli-light;
+  //   }
+  // }
 
-  #userInfoForm {
-    .flex-col-6 {
-      label {
-        white-space: normal;
-        line-height: normal;
-      }
-    }
-  }
-  .form-group {
-    &.date-picker-group {
-      margin: 0;
-      padding-bottom: 10px;
-      .flex-row {
-        margin-bottom: 0;
-      }
-      .input-group.date-picker {
-        max-height: 52px;
-        margin: 0;
-        .dropdown-menu.show {
-          @include allmobiles {
-            left: inherit !important;
-            right: 0px;
-          }
-        }
-      }
-      .input-group-append {
-        .btn-primary {
-          max-height: 52px;
-        }
-      }
-    }
-  }
-  hr {
-    margin-top: 0;
-  }
-  .get-started-image {
-    @include tablet {
-      width: 300px;
-      height: 250px;
-    }
-    background-repeat: no-repeat;
-    display: block;
-    height: 350px;
-    width: 480px;
-    margin-top: 50px;
-  }
+  // #userInfoForm {
+  //   .flex-col-6 {
+  //     label {
+  //       white-space: normal;
+  //       line-height: normal;
+  //     }
+  //   }
+  // }
+  // .form-group {
+  //   &.date-picker-group {
+  //     margin: 0;
+  //     padding-bottom: 10px;
+  //     .flex-row {
+  //       margin-bottom: 0;
+  //     }
+  //     .input-group.date-picker {
+  //       max-height: 52px;
+  //       margin: 0;
+  //       .dropdown-menu.show {
+  //         @include allmobiles {
+  //           left: inherit !important;
+  //           right: 0px;
+  //         }
+  //       }
+  //     }
+  //     .input-group-append {
+  //       .btn-primary {
+  //         max-height: 52px;
+  //       }
+  //     }
+  //   }
+  // }
+  // hr {
+  //   margin-top: 0;
+  // }
+  // .get-started-image {
+  //   @include tablet {
+  //     width: 300px;
+  //     height: 250px;
+  //   }
+  //   background-repeat: no-repeat;
+  //   display: block;
+  //   height: 350px;
+  //   width: 480px;
+  //   margin-top: 50px;
+  // }
 
   .callout {
     padding: 15px;
