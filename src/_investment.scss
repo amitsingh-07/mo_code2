@@ -1,0 +1,44 @@
+@import './variables';
+@import './mixins';
+//common styles
+.investment {
+  h2 {
+   font-size:30px !important;
+   margin-bottom: 15px;
+  }
+  .banner-image{
+    img{
+      padding-top: 0;
+    }
+  }
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    font-size: 22px;
+    &:disabled{
+      background-color: $btn-disabled-light-bg;
+      color: $disabled-teal-color;
+    }
+  }
+  .btn-proceed {
+    border: 0px;
+    border-radius: 6px;
+    background-color: $white-color;
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
+    cursor: pointer;
+    font-family: $muli-bold;
+    font-weight: normal !important;
+    font-size: 22px;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $teal-color;
+    width: 370px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 54px;
+    @include allmobiles {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+}
+  
