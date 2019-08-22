@@ -169,7 +169,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -273,7 +274,8 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -396,7 +398,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -461,7 +464,8 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -573,7 +577,8 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
+      "DEPENDANT_DETAIL": [
+        {
           "name": "Dependant Details 1"
         },
         {
@@ -661,10 +666,10 @@
       }
     },
     "RESULT": {
-      "READY": "Congratulations! Your report will be ready soon!",
-      "DESC": "We are analysing your needs using proprietary models now…",
-      "ABOUT": "Your report will be ready within the next 1-2 working day(s). Once it is ready, we will notify you via email at ",
+      "READY": "Congratulations! Your Comprehensive Financial Plan will be ready soon!",
+      "ABOUT": "Once it is ready, we will notify you via email at ",
       "STEP_TITLE": "What’s Next?",
+      "STEP_DESC": "Our adviser will analyse your needs using our proprietary models. He or she may contact you for clarifications on your inputs.",
       "STEP_1": "Keep a lookout for our notification mail!",
       "STEP_2": "Set up an appointment with a MoneyOwl client adviser to go through your report.",
       "STEP_3": "Customise and implement your financial plan with your adviser.",
