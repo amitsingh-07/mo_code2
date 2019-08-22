@@ -30,8 +30,8 @@
           "TITLE": "Step 3",
           "TITLE_IMAGE": "insurance.svg",
           "TITLE_DESC": "Completed",
-          "CONTENT_TITLE": "Do you know?",
-          "CONTENT_DESC": "This is the estimated cost of ",
+          "CONTENT_TITLE": "Term vs Whole Life",
+          "CONTENT_DESC": "Term insurance is the most cost-effective insurance for protection. Compare the cost of $100,00 life coverage for using term versus whole life insurance:",
           "CONTENT_DESC1": "ESTIMATED_COST life coverage",
           "CONTENT_DESC2": " for you, using:",
           "CONTENT_BODY1": "Term Insurance",
@@ -39,7 +39,7 @@
           "CONTENT_BODY2": "Whole Life",
           "CONTENT_BODY2_DESC": "Pay to age 99",
           "PER_YEAR": "per year",
-          "SUB_TITLE": "Explanation",
+          "SUB_TITLE": "About Whole Life Policies",
           "SUB_CONTENT_IMAGE": "insurance-explain.svg",
           "SUB_TITLE_DESC": "Each dollar whole life policy premium goes to:",
           "SUB_TITLE_NOTE": "Not drawn to scale. For illustration purposes only.",
@@ -169,8 +169,7 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [
-      {
+    "NATIONALITY": [{
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -274,8 +273,7 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [
-        {
+      "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
         },
@@ -398,8 +396,7 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [
-      {
+    "INVESTMENT_TYPE_LIST": [{
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -464,8 +461,7 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [
-        {
+      "INVESTMENT_TYPE_LIST": [{
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -577,8 +573,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [
-        {
+      "DEPENDANT_DETAIL": [{
           "name": "Dependant Details 1"
         },
         {
