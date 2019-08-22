@@ -1040,7 +1040,7 @@ export class ComprehensiveService {
       id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       title: 'No. of Household Members',
-      value: dependentHouseHoldData.noOfHouseholdMembers ? dependentHouseHoldData.noOfHouseholdMembers + '' : '',
+      value: dependentHouseHoldData.noOfHouseholdMembers == 0 || dependentHouseHoldData.noOfHouseholdMembers ? dependentHouseHoldData.noOfHouseholdMembers + '' : '',
       completed: enquiry.hasDependents !== null
     });
     subItemsArray.push({
