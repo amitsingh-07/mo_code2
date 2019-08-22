@@ -1783,19 +1783,19 @@ a.link-white {
   padding: 25px 0 45px;
   position: relative;
   hr{
-    border: 1px solid #008c8c;
+    border: 1px solid $or-seperator-brdr-color;
     margin: 0;
   }
   .or-circle{
     width: 43px;
     height: 43px;
-    border: 5px solid #00a7a7;
-    background-color: #008c8c;
+    border: 5px solid $or-circle-brdr-color;
+    background-color: $or-circle-bg-color;
     border-radius: 50%;
     font-family: $muli-bold;
     font-size: 13px;
     letter-spacing: -0.12px;
-    color: #98dfdf;
+    color: $or-circle-txt-color;
     display: flex;
     justify-content: center;
     align-items: center;

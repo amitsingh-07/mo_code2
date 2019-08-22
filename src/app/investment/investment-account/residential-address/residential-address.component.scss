@@ -19,19 +19,19 @@ app-residential-address {
         &.btn-secondary {
           &:active {
             border: none !important;
-            color: $white-color;
+            color: $form-error-btn-txt-color;
           }
-          background-color: $secondary-action-color !important;
+          background-color: $form-error-btn-bg-color !important;
         }
       }
     }
     .dropdown-control {
       .btn-dropdown {
-        color: $teal-color !important;
+        color: $form-dropdown-txt-color !important;
       }
       border-radius: 6px;
       position: relative;
-      background: $white-color;
+      background: $form-dropdown-bg-color;
       cursor: pointer;
       .dropdown-toggle {
         &:disabled {
@@ -76,12 +76,12 @@ app-residential-address {
         padding-left: 0.8rem;
       }
       &:disabled, &.disabled {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background-color: $form-control-disabled-bg-color !important;
         opacity: 1 !important;
         input {
-          background-color: $inv-btn-disabled-bg !important;    
+          background-color: $form-control-disabled-bg-color !important;    
           padding-top: 6px;
           padding-bottom: 6px;
         }
@@ -93,16 +93,16 @@ app-residential-address {
     .input-group-append {
       .btn-primary {
         &:disabled {
-          color: $teal-color !important;
-          background-color: $inv-btn-disabled-bg !important;
+          color: $inv-btn-disabled-txt-color !important;
+          background-color: $inv-btn-disabled-bg-color !important;
           opacity: 1 !important;
         }
       }
     }
     .btn {
       &:disabled {
-        color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        color: $inv-btn-disabled-txt-color !important;
+        background-color: $inv-btn-disabled-bg-color !important;
         opacity: 1 !important;
       }
     }
@@ -110,27 +110,27 @@ app-residential-address {
       &.btn-secondary {
         padding: 0.5rem;
         font-size: 16px;
-        background-color: $secondary-action-color;
-        color: $white-color;
+        background-color: $inv-btn-sec-bg-color;
+        color: $inv-btn-sec-txt-color;
         border: none;
         font-family: $muli-semi-bold;
         &.right {
           float: right;
         }
         &:hover {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
         &:focus {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
         &:active {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
       }
     }

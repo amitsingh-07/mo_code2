@@ -45,31 +45,31 @@ app-nationality {
       padding-bottom: 30px;
     }
   }
-  .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: auto;
-    max-height: 200px;
-  }
-  .dropdown-item {
-    white-space: normal;
-    word-break: break-word;
-  }
-  .dropdown-control .btn-dropdown {
-    padding-right: 27px;
-    max-height: 52px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  // .dropdown-menu.show {
+  //   right: 0 !important;
+  //   overflow: auto;
+  //   height: auto;
+  //   max-height: 200px;
+  // }
+  // .dropdown-item {
+  //   white-space: normal;
+  //   word-break: break-word;
+  // }
+  // .dropdown-control .btn-dropdown {
+  //   padding-right: 27px;
+  //   max-height: 52px;
+  //   white-space: nowrap;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
   .dropdown-control{
     .btn {
       &:disabled {
         color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        background-color: $inv-btn-disabled-bg-color !important;
         opacity: 1 !important;
         &:hover{
-          background-color: $inv-btn-disabled-bg !important;
+          background-color: $inv-btn-disabled-bg-color !important;
         }
       }
     }
@@ -77,22 +77,23 @@ app-nationality {
   .fixed-btn--sm {
     color: $white-color;
   }
-  .text {
-    font-family: $muli-regular;
-    font-size: 18px;
-    line-height: 1.17;
-    letter-spacing: -0.2px;
-    text-align: center;
-    padding-left: 17px;
-    padding-right: 14px;
-  }
+  // .text {
+  //   font-family: $muli-regular;
+  //   font-size: 18px;
+  //   line-height: 1.17;
+  //   letter-spacing: -0.2px;
+  //   text-align: center;
+  //   padding-left: 17px;
+  //   padding-right: 14px;
+  // }
   .btn__footer--fixed {
     font-family: $muli-bold !important;
-  }
-  .btn-primary{
-    &:disabled{
-      background-color: $btn-disabled-light-bg;
-      color: $disabled-teal-color;
+    &.btn-primary{
+      &:disabled{
+        background-color: $btn-disabled-light-bg;
+        color: $disabled-teal-color;
+      }
     }
   }
+ 
 }

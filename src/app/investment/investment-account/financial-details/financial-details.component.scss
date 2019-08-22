@@ -52,9 +52,9 @@ app-financial-details {
     }
     .btn {
       &:disabled {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background-color: $form-control-disabled-bg-color !important;
         opacity: 1 !important;
       }
     }

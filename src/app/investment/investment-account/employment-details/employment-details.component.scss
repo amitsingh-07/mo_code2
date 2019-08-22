@@ -49,7 +49,7 @@ app-employment-details {
     .inline-error {
       .btn {
         &.btn-secondary {
-          background-color: $secondary-action-color !important;
+          background-color: $form-error-btn-bg-color !important;
         }
       }
     }
@@ -122,13 +122,13 @@ app-employment-details {
 
       &:disabled,
       &.disabled {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background-color: $form-control-disabled-bg-color !important;
         opacity: 1 !important;
 
         input {
-          background-color: $inv-btn-disabled-bg !important;
+          background-color: $form-control-disabled-bg-color !important;
           padding-top: 6px;
           padding-bottom: 6px;
         }
@@ -142,8 +142,8 @@ app-employment-details {
     .input-group-append {
       .btn-primary {
         &:disabled {
-          color: $teal-color !important;
-          background-color: $inv-btn-disabled-bg !important;
+          color: $inv-btn-disabled-txt-color !important;
+          background-color: $inv-btn-disabled-bg-color !important;
           opacity: 1 !important;
         }
       }
@@ -151,8 +151,8 @@ app-employment-details {
 
     .btn {
       &:disabled {
-        color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        color: $inv-btn-disabled-txt-color !important;
+        background-color: $inv-btn-disabled-bg-color !important;
         opacity: 1 !important;
       }
     }
@@ -161,8 +161,8 @@ app-employment-details {
       &.btn-secondary {
         padding: 0.5rem;
         font-size: 16px;
-        background-color: $secondary-action-color;
-        color: $white-color;
+        background-color: $inv-btn-sec-bg-color;
+        color: $inv-btn-sec-txt-color;
         border: none;
         font-family: $muli-semi-bold;
 
@@ -171,21 +171,21 @@ app-employment-details {
         }
 
         &:hover {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
 
         &:focus {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
 
         &:active {
-          background-color: $secondary-action-color !important;
+          background-color: $inv-btn-sec-bg-color !important;
           border: none !important;
-          color: $white-color !important;
+          color: $inv-btn-sec-txt-color !important;
         }
       }
     }
@@ -220,38 +220,43 @@ app-employment-details {
       font-family: $muli-bold !important;
     }
   }
-   [placeholder]:empty::before {
-  content: attr(placeholder);
-  
-   color: $text-color-secondary
-}
 
-[placeholder]:empty:focus::before {
-  content: "";
-}
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
   .content-editable {
-    border: 1px solid #94CCCC;
+    border: 1px solid $content-editable-border-color;
     border-radius: 6px;
     padding: .90rem;
-    background: $white-color;
-    color: $app-backgrnd-color;
+    background: $content-editable-bg-color;
+    color: $content-editable-txt-color;
     word-break: break-word;
     min-height: 52px;
-      &.company-disabled {
-     color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
-        opacity: 1 !important;
+
+    &.company-disabled {
+      color: $content-editable-disabled-txt-color !important;
+      -webkit-text-fill-color: $content-editable-disabled-txt-color !important;
+      background-color: $content-editable-disabled-bg-color !important;
+      opacity: 1 !important;
     }
-     &.view-mode {
-      background-color: rgba(0, 167, 167, 0.15) !important;
+
+    &.view-mode {
+      background-color: $content-editable-view-mode !important;
     }
+
     &.inline-error {
-      color: #e57300 !important;
-      background: #fff3e9;
+      color: $inline-error-border-color !important;
+      background: $inline-error-bg-color;
+
       &[placeholder]:empty::before {
-        color: #e57300 !important;
+        color: $inline-error-border-color !important;
       }
     }
-}
+  }
 }

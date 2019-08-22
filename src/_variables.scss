@@ -1,17 +1,14 @@
+// font usage of muli
+$muli: 'Muli',sans-serif;   
+$muli-regular : 'Muli Regular',sans-serif;
+$muli-light: 'Muli Light',sans-serif;
+$muli-bold: 'Muli Bold',sans-serif;
+$muli-semi-bold: 'Muli Semi Bold',sans-serif;
+$muli-italic : 'Muli Italic',sans-serif;
+$muli-extra-light : 'Muli Extra Light',sans-serif;
+$muli-extra-bold : 'Muli Extra Bold',sans-serif;
+
 /* SCSS Variables */
-
-// app background
-$app-backgrnd-color: #00a7a7;
-$app-backgrnd-secondary-color: #31e5db;
-$module-fill-color: #FFFFFF;
-$btn-primary-backgrnd-color: #00c5c4;
-$btn-primary-shadow-color: #008b8b;
-$btn-secondary-backgrnd-color: #00a7a7;
-$text-color-secondary: #5e5e5e;
-
-$inline-error-border-color: #e57300;
-$inline-error-bg-color: #fff3e9;
-
 $white-color: #ffffff;
 $black-color: #000000;
 $dark-grey-color: #4a4a4a;
@@ -19,6 +16,7 @@ $dusty-grey-color: #9b9b9b;
 $border-grey-color:#e1e1e1;
 $teal-grey-color: #8d9aa8;
 $teal-color: #00a7a7;
+$darker-teal-color: #007d7d;
 $dark-teal-color: #2d8289;
 $balance-teal-color:#49bbc3;
 $light-teal-color: #99cfce;
@@ -33,20 +31,44 @@ $red-color:#d0021b;
 $green-color:#049723;
 $watercourse-color: #066360;
 $cinderella-color: #fbdbdb;
+$crusta-orange-color: #ff872f;
+$black-squeeze-grey-color: #f4fafb;
+$silver-color: #cccccc;
+$silver-grey-color: #5e5e5e;
+$swan-down-blue-color: #d4eded;
+$lagoon-blue-color: #00717e;
+$jungle-mist-blue-color: #b3d6d6;
+$persian-green-color: #009999;
+$persian-light-green-color: #009a99;
+$robins-egg-blue-color: #00c5c4;
+$botticelli-color: #c8e7e7;
+$pine-green-color: #006d75;
+$monte-carlo-color: #81d2d2;
+$persian-teal-color: #008c8c;
+$morning-glory-color: #98dfdf;
 
+// common color
+$login-shadow-color : rgba(0, 0, 0, 0.2);
+$btn-shadow-color: rgba(0, 0, 0, 0.14);
 
-$form-title-backgrnd-color:#c0eded;
-$form-title-mob-backgrnd-color:#45bbbb;
-$form-backgrnd-color:#51c2c2;
-// font usage of muli
-$muli: 'Muli',sans-serif;   
-$muli-regular : 'Muli Regular',sans-serif;
-$muli-light: 'Muli Light',sans-serif;
-$muli-bold: 'Muli Bold',sans-serif;
-$muli-semi-bold: 'Muli Semi Bold',sans-serif;
-$muli-italic : 'Muli Italic',sans-serif;
-$muli-extra-light : 'Muli Extra Light',sans-serif;
-$muli-extra-bold : 'Muli Extra Bold',sans-serif;
+// app background
+$app-backgrnd-color: #00a7a7;
+$app-backgrnd-secondary-color: #31e5db;
+$module-fill-color: #FFFFFF;
+$btn-primary-backgrnd-color: $robins-egg-blue-color;
+$btn-primary-shadow-color: #008b8b;
+$btn-secondary-backgrnd-color: #00a7a7;
+$text-color-secondary: $silver-grey-color;
+
+$inline-error-border-color: #e57300;
+$inline-error-bg-color: #fff3e9;
+
+// loader colors
+$loader-wrapper-bg-color: $white-color;
+$loader-wrapper-txt-color: $silver-color;
+$loader-content-txt-color: $silver-grey-color;
+$loader-title-txt-color: $dark-grey-color;
+$loader-desc-color: $black-color;
 
 // button colors
 $btn-disabled: #bff1f1;
@@ -61,18 +83,24 @@ $myinfo-block-btn-bg-color: #ff7f00;
 $myinfo-btn-color: #ff872f;
 $action-btn-active-bg : #0de0de;
 $disabled-teal-color : #00afaf;
+$action-btn-hover-bg : $robins-egg-blue-color;
+$action-btn-hover-brdr-color : $robins-egg-blue-color;
+
 
 // modal colors
 $modal-txt-highlight-color: #00a7a7;
-$modal-body-title-color: #009999;
+$modal-body-title-color: $persian-green-color;
 
 // custom modal colors
 $custom-modal-title-color : #00aaa8;
-$custom-modal-desc-color : #5e5e5e;
+$custom-modal-desc-color : $silver-grey-color;
 
-//Form block color
+// Form block color
 $form-block-title-color: #313644;
-$form-block-sub-title-color: #5e5e5e;
+$form-block-sub-title-color: $silver-grey-color;
+$form-title-backgrnd-color:#c0eded;
+$form-title-mob-backgrnd-color:#45bbbb;
+$form-backgrnd-color:#51c2c2;
 
 // loader color
 $brdr-teal-color : #099c9c;
@@ -83,36 +111,26 @@ $spinner-bg : #4dc1c1;
 $slider-selection-color:#ff872f;
 $accordion-link-color:#ec681c;
 $investment-slider-noui-base-bg: #007474;
-$investment-time-horizon-clr: #007d7d;
-$investment-time-horizon-desc-clr: #066360;
+$investment-time-horizon-clr: $darker-teal-color;
+$investment-time-horizon-desc-clr: $watercourse-color;
 $investment-time-horizon-desc-title-brdr-clr: #00a7a7;
 
 // step - indicator color
 $step-indicator-bg : #31e5db;
 $step-indicator-active : #00908e;
 
-// investmnent-welcome
-$promo-sub-lbl-color: #898f9c;
-$promo-input-brdr-color: #c2d9ec;
-
 // Portfolio
 $intro-block-heading-color : #8cd7d7;
 $btn-proceed-shadow-color : rgba(0, 0, 0, 0.21);
-$question-info-brdr-color : #cccccc;
+$question-info-brdr-color : $silver-color;
 $risk-table-cell-bg-color : #f2f9fa;
-$risk-table-cell-color : #007d7d;
-$portfolio-allocation-details-bg : #00717e;
-$portfolio-allocation-details-shadow : rgba(0, 0, 0, 0.14);
-$portfolio-allocation-details-content-color : #008b90;
-$review-text-color : #b3d6d6;
-$review-block-bg : #009999;
-$bond-container-bg : #f4fafb;
+$risk-table-cell-color : $darker-teal-color;
+// review block
+$review-text-color : $jungle-mist-blue-color;
+$review-block-bg : $persian-green-color;
 $bar-container-bg : #c7e9e9;
-$allocation-card-body-brdr-color : #50c2c2;
-$allocation-btn-view-color : #FF872F;
-$allocation-bonds-equity-brdr-color:#009999;
-$post-login-shadow : rgba(0, 0, 0, 0.2);
-$post-login-widget-title : #066360;
+$post-login-shadow : $login-shadow-color;
+$post-login-widget-title : $watercourse-color;
 $fund-details-title-brdr : #edeff1;
 $fund-details-dimentional-brdr : #c2d9ec;
 $fund-details-card-brdr : #c9ddee;
@@ -122,16 +140,118 @@ $portfolio-recommend-best:#55ffa0;
 $portfolio-recommend-median:#00d42f;
 $portfolio-recommend-worst:#015168;
 $portfolio-recommend-bg:#167f8b;
-//Investment Account
-$secondary-action-color:#ff872f;
-$inv-btn-disabled-bg : #d4eded;
+
+// portfolio recommendation footer
+$recommend-footer-bg-color: $white-color;
+$recommend-footer-txt1-color: $teal-color;
+$recommend-footer-txt2-color: $dark-teal-color;
+
+// portfolio allocation details
+$portfolio-allocation-container-txt-color: $white-color;
+$portfolio-allocation-container-bg-color: $lagoon-blue-color;
+$portfolio-allocation-container-shadow-color: rgba(0, 0, 0, 0.14);
+
+$portfolio-allocation-content-txt-color:  $dark-teal-color;
+$portfolio-allocation-content-bg-color: $white-color;
+
+$portfolio-allocation-review-txt-color: $jungle-mist-blue-color;
+$portfolio-allocation-review-bg-color: $lagoon-blue-color;
+
+// asset allocation
+$asset-allocation-bg-color: #3bbfbf;
+$asset-allocation-title-txt-color: $white-color;
+
+// bond container
+$bond-container-bg: $black-squeeze-grey-color;
+$bond-container-box-shadow-color: $btn-shadow-color;
+$bonds-progress-txt-color: $teal-color;
+$bonds-bar-container-bg-color: $black-squeeze-grey-color;
+$bonds-equity-bg-color: $persian-green-color;
+$bonds-equity-title-border-color: $teal-color;
+$bonds-equity-block-border-color: $persian-green-color;
+$bonds-equity-txt-color: $white-color;
+$bonds-equity-card-bg-color: $black-squeeze-grey-color;
+$bonds-equity-card-btn-color: $white-color;
+$bonds-equity-card-border-color: #50c2c2;
+$bonds-btn-txt-color: #FF872F;
+$bonds-btn-bg-color: $black-squeeze-grey-color;
+
+/**** Investmnent colors ****/
+
+/*** form colors ***/
+$form-control-disabled-txt-color: $teal-color;
+$form-control-disabled-bg-color: $swan-down-blue-color;
+// form input placeholder colors
+$form-input-txt-color: $silver-grey-color;
+$form-input-placeholder-txt-color: $silver-grey-color;
+// form dropdown colors
+$form-dropdown-bg-color: $white-color;
+$form-dropdown-txt-color: $teal-color;
+// inline-error button colors
+$form-error-btn-bg-color: $crusta-orange-color;
+$form-error-btn-txt-color: $white-color;
+
+/*** end of form colors ***/
+
+// button colors
+$inv-btn-disabled-bg-color: $swan-down-blue-color;
+$inv-btn-disabled-txt-color: $teal-color;
+$secondary-action-color: $crusta-orange-color;
+
+$inv-btn-sec-bg-color: $crusta-orange-color;
+$inv-btn-sec-txt-color: $white-color;
+
+// radio button group color
+$radio-btn-border-color: rgba(0, 135, 134, 0.4);
+$radio-btn-disabled-border-color: rgba(0, 135, 134, 0.4);
+$radio-btn-active-border-color: $white-color;
+
+// content-editable color
+$content-editable-border-color: #94CCCC;
+$content-editable-bg-color: $white-color;
+$content-editable-txt-color: $teal-color;
+$content-editable-disabled-txt-color: $teal-color;
+$content-editable-disabled-bg-color: $swan-down-blue-color;
+$content-editable-view-mode: rgba(0, 167, 167, 0.15);
+
+// Sing Pass colors
+$sing-pass-shadow-color: $login-shadow-color;
+$sing-pass-box-shadow-color: $darker-teal-color;
+$sing-pass-border-color: $crusta-orange-color;
+$sing-pass-bg-color: $white-color;
+$autofill-time-color: $dark-grey-color;
+
+// or-block
+$or-seperator-brdr-color: $persian-teal-color;
+$or-circle-brdr-color: $teal-color;
+$or-circle-bg-color: $persian-teal-color;
+$or-circle-txt-color:$morning-glory-color;
+// widget colors
+$widget-bg-color: $black-squeeze-grey-color;
+$widget-title-txt-color: $watercourse-color;
+$widget-title-bg-color: $white-color;
+$widget-body-color: $dark-teal-color;
+
+// Investmnent-welcome 
+$promo-sub-lbl-color: #898f9c;
+$promo-input-brdr-color: #c2d9ec;
+
+// Investment Account
 $upload-file-log-color : #ceebeb;
 $upload-sub-title-desc-color : #bfe9e9;
 $upload-desc-brdr-color : #66caca;
 $acknowledgement-text-color : #848484;
 
+// Investment search control
+$search-control-brdr-color: $persian-light-green-color;
+$search-control-color: $black-color;
+$search-control-bg-color: $white-color;
+
 // road map investment
-$road-map-bg:#81d2d2;
+$road-map-bg: $persian-green-color;
+$road-map-item-color: $botticelli-color;
+$road-map-line-bg: $pine-green-color;
+$road-mag-inprogress-color: $monte-carlo-color;
 
 // Edit-profile
 $edit-card-bg : #f6f6f6;
@@ -153,15 +273,15 @@ $withdrawal-modal-lbl-color : #8a9ba9;
 $top-up-portfolio-amount-color : #d00404;
 $transaction-panel-buy-color : #11b600;
 $transaction-date-bg-color : rgba(0, 167, 167, 0.11);
-$transaction-desc-bg-color : #f4fafb;
-$withdrawal-add-account-brdr-color : #98dfdf;
+$transaction-desc-bg-color : $black-squeeze-grey-color;
+$withdrawal-add-account-brdr-color : $morning-glory-color;
 $withdrawal-amount-panel-bg-color : #276f75;
 $withdrawal-cash-balance-color: #93e9e9;
 $top-up-your-portfolio-value-bg : #e7f3f3;
 $top-up-your-portfolio-value-content-bg : #eaeaea;
 $portfolio-footer-btn-brdr-color : #e4f8f8;
 $top-up-your-portfolio-asset-btn-shadow : rgb(0, 153, 153);
-$top-up-your-portfolio-your-total-value-bg: #006d75;
+$top-up-your-portfolio-your-total-value-bg: $pine-green-color;
 $tabs-font-color: #2E9E9E;
 $top-up-faq-link-color: #a7f3f1;
 

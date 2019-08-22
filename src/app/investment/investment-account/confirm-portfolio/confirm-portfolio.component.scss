@@ -10,7 +10,7 @@ app-confirm-portfolio {
   }
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
-      color: $white-color;
+      color: $portfolio-allocation-container-txt-color;
       border-radius: 6px;
 
       .portfolio-allocation-details__content {
@@ -27,8 +27,8 @@ app-confirm-portfolio {
           }
 
           .portfolio-allocation-details__content__block {
-            color: $dark-teal-color;
-            background-color: $white-color;
+            color: $portfolio-allocation-content-txt-color;
+            background-color: $portfolio-allocation-content-bg-color;
             font-size: 18px;
             line-height: 1.5;
             letter-spacing: -0.14px;
@@ -51,8 +51,8 @@ app-confirm-portfolio {
             font-size: 18px;
             font-weight: 400;
             letter-spacing: -0.2px;
-            color: $review-text-color;
-            background-color: $portfolio-allocation-details-bg;
+            color: $portfolio-allocation-review-txt-color;
+            background-color: $portfolio-allocation-review-bg-color;
             border-radius: 0 0 6px 6px;
             padding: 20px;
 
@@ -74,7 +74,7 @@ app-confirm-portfolio {
         font-family: $muli-bold;
         font-size: 21px;
         letter-spacing: -0.4px;
-        color: $white-color;
+        color: $asset-allocation-title-txt-color;
         padding-bottom: 14px;
       }
     }
@@ -135,7 +135,7 @@ app-confirm-portfolio {
     border-radius: 0 !important;
     left: 0;
     z-index: 999;
-    background-color:$white-color;
+    background-color: $recommend-footer-bg-color;
     padding: 15px 30px !important;
 
     .footer-content {
@@ -154,7 +154,7 @@ app-confirm-portfolio {
       font-size: 18px;
       line-height: 1.44;
       letter-spacing: -0.2px;
-      color: $teal-color;
+      color: $recommend-footer-txt1-color;
       //padding: 0 20px 5px 0px;
       padding-bottom: 5px;
     }
@@ -164,7 +164,7 @@ app-confirm-portfolio {
       font-size: 13px;
       line-height: 1.15;
       letter-spacing: -0.1px;
-      color: $dark-teal-color;
+      color: $recommend-footer-txt2-color;
       padding-bottom: 5px;
       //padding: 0 20px 5px 0px;
     }

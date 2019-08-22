@@ -149,11 +149,11 @@ app-additional-declaration1 {
           &.disabled {
             color: $teal-color !important;
             -webkit-text-fill-color: $teal-color !important;
-            background-color: $inv-btn-disabled-bg !important;
+            background-color: $inv-btn-disabled-bg-color !important;
             opacity: 1 !important;
 
             &:hover {
-              background-color: $inv-btn-disabled-bg !important;
+              background-color: $inv-btn-disabled-bg-color !important;
             }
           }
         }
@@ -170,15 +170,15 @@ app-additional-declaration1 {
       &.disabled {
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg !important;
+        background-color: $inv-btn-disabled-bg-color !important;
         opacity: 1 !important;
 
         &:hover {
-          background-color: $inv-btn-disabled-bg !important;
+          background-color: $inv-btn-disabled-bg-color !important;
         }
 
         input {
-          background-color: $inv-btn-disabled-bg !important;
+          background-color: $inv-btn-disabled-bg-color !important;
           padding-top: 6px;
           padding-bottom: 6px;
         }

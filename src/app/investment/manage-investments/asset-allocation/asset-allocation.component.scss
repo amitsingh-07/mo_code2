@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-asset-allocation {
   .container-fluid {
     &.max-width--1024 {
@@ -12,36 +13,44 @@ app-asset-allocation {
       }
     }
   }
+
   .asset-allocation-bg {
     position: absolute;
-    background: #3bbfbf;
+    background: $asset-allocation-bg-color;
     width: 100%;
     left: 0;
     right: 0;
 
     @include allmobiles {
-     padding-top: 28px;
+      padding-top: 28px;
       width: 100%;
       max-height: 230px;
     }
-    .container-fluid{
+
+    .container-fluid {
       padding: 0;
       top: 0;
+
       .background_img {
         float: right;
+
         @include allmobiles {
           object-fit: contain;
           position: relative;
           width: 100%;
         }
+
         &.web_bg {
           position: relative;
+
           @include allmobiles {
             display: none;
           }
         }
+
         &.mobile_bg {
           display: none;
+
           @include allmobiles {
             display: block;
             position: absolute;
@@ -52,6 +61,7 @@ app-asset-allocation {
       }
     }
   }
+
   .user_content {
     position: absolute;
     padding: 0 75px;
@@ -78,15 +88,17 @@ app-asset-allocation {
       padding: 0 29px 0 15px;
       position: relative;
       max-width: 400px;
-       @include allmobiles {
+
+      @include allmobiles {
         padding: 0 29px 0 28px;
       }
-      div{
+
+      div {
         font-size: 36px;
       }
     }
- }
- 
+  }
+
   .container-fluid {
     position: relative;
     top: 120px;
@@ -113,28 +125,31 @@ app-asset-allocation {
     @include phablet {
       top: 140px;
     }
- }
- 
+  }
+
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
       color: $white-color;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
-      background-color: $portfolio-allocation-details-bg;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-container-shadow-color;
+      background-color: $portfolio-allocation-container-bg-color;
     }
   }
+
   .asset-allocation {
-    @include allmobiles{
+    @include allmobiles {
       margin-top: 33px;
     }
+
     .title {
       font-family: $muli-bold;
       font-size: 21px;
       letter-spacing: -0.4px;
-      color: $white-color;
+      color: $asset-allocation-title-txt-color;
       padding-bottom: 14px;
     }
   }
+
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -142,6 +157,7 @@ app-asset-allocation {
     letter-spacing: -0.2px;
     text-align: center;
     padding: 21px 0 19px;
+
     a {
       color: $white-color;
       text-decoration: underline;
