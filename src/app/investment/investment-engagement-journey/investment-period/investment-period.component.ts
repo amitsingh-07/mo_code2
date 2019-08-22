@@ -142,7 +142,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
   }
 }

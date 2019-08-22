@@ -1,0 +1,46 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.second-section {
+    .form-group-with-bg--content {
+      
+      .checkbox_instruction {
+        font-family: $muli-italic;
+        font-size: 14px;
+        font-style: italic;
+        letter-spacing: -0.1px;
+        color: $text-color-secondary;
+        padding-bottom: 13px;
+      }
+      .form-group-single-column {
+        justify-content: center;
+        align-items: center;
+        input[type='checkbox'] + label {
+          padding-left: 40px;
+        }
+        .checkbox-button {
+          background: none;
+          .input-label-black {
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            color: $dark-teal-color;
+          }
+          .input-label-normal {
+            font-family: $muli-italic;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: -0.1px;
+            color: $text-color-secondary;
+          }
+        }
+        .form-control {
+          &.form-control-right {
+            input {
+              padding-right: 40px !important;
+            }
+          }
+        }
+      }
+      
+    }
+  }
