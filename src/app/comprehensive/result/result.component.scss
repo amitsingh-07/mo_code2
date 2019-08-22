@@ -59,6 +59,12 @@
       line-height: 24px;
       margin-bottom: 15px;
     }
+    &--desc{
+      font-family: $muli-regular;
+      font-size: 14px;
+      line-height: 1.21;
+      letter-spacing: -0.14px;
+    }
     li {
       font-size: 14px;
       font-family: $muli-light-italic;
