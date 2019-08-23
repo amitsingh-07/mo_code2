@@ -36,6 +36,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagem
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -281,7 +282,7 @@ export class PortfolioDetailsComponent implements OnInit {
             if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
               this.topUpOneTime();
             } else {
-              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+              this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
             }
           } else {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
@@ -324,7 +325,7 @@ export class PortfolioDetailsComponent implements OnInit {
             this.investmentAccountService.showGenericErrorModal();
           }
         } else {
-          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
         }
       },
       (err) => {

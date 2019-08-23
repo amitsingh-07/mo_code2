@@ -66,6 +66,7 @@ export function createTranslateLoader(http: HttpClient) {
 })
 
 export class InvestmentEngagementJourneyModule {
-  constructor(private signUpService: SignUpService) {
+  constructor() {
+    console.log("Engagement Journey Loaded...");
   }
 }

@@ -1,5 +1,5 @@
 // Production release path
-export const INVESTMENT_ENGAGEMENT_JOURNEY_BASE_ROUTE = '../investment/';
+export const INVESTMENT_ENGAGEMENT_JOURNEY_BASE_ROUTE = '../investment/engagement/';
 // Soft release path
 // export const INVESTMENT_ENGAGEMENT_JOURNEY_BASE_ROUTE = '../20190316invest/';
 

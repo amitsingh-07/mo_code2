@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
-import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { ManageInvestmentsGuardService as  ManageInvestmentsGuard} from './manage-investments-guard.service';
@@ -31,11 +30,6 @@ const routes: Routes = [
     path: MANAGE_INVESTMENTS_ROUTES.TOPUP_STATUS + '/:status',
     component: TopupStatusComponent,
     canActivate: [ManageInvestmentsGuard]
-  },
-  {
-    path: MANAGE_INVESTMENTS_ROUTES.FUNDING_INSTRUCTIONS,
-    component: FundingInstructionsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT,

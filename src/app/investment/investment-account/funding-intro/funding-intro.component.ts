@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-funding-intro',
@@ -59,6 +60,6 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.hideStaticModal = true;
    }
   goNext() {
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
 }

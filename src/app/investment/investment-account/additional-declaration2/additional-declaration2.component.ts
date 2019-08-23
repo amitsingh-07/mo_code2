@@ -12,7 +12,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
     AccountCreationErrorModalComponent
-} from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
+} from '../../investment-common/confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';

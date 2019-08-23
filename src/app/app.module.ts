@@ -110,7 +110,6 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 
-
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
