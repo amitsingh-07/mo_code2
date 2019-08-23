@@ -58,7 +58,9 @@ export class InvestmentOverviewComponent implements OnInit {
   transferInstructionModal;
   isToastMessageShown;
   toastMsg;
-
+  investParam = {
+    profileName: 'Miya\'s University Fund'
+  };
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -330,8 +332,8 @@ showPopUp() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   gotoTopUp() {  // GO TO TOP-UP
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-      }
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+  }
 
   getUserProfileInfo() {
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
@@ -368,5 +370,9 @@ showPopUp() {
 
   getEntitlementsFromPortfolio(portfolio) {
     return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
+  }
+
+  scrollTop() {
+    window.scrollTo(0, 0);
   }
 }

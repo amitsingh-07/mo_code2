@@ -129,7 +129,20 @@
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
     "NO_PORTFOLIO": "You do not have any portfolios.",
-    "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard."
+    "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard.",
+    "NO_PORTFOLIOS_EXIT_MSG": "You have no portfolios yet.<br>Add a portfolio to start investing!",
+    "SCROLL_TO_TOP": "Scroll To Top",
+    "TOTAL_CASH_BALANCE": "Total Cash Balance",
+    "VIEW": "View",
+    "SUCCESS_MSG": "Portfolio {{profileName}} has been added",
+    "NOT_YET_INVESTED": "Not Yet Invested",
+    "TOP_UP": "Top Up",
+    "BUY_REQUEST": "buy request",
+    "CA_LABEL": "Cash Account:",
+    "REF_LABEL": "Ref Code:",
+    "INVESTED": "Invested",
+    "LIST_ALL": "List All",
+    "SHOW_LESS": "Show Less"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",

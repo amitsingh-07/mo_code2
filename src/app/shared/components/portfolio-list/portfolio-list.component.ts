@@ -1,4 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -18,23 +19,51 @@ export class PortfolioListComponent implements OnInit {
   userProfileInfo;
   showAlretPopUp = false;
   monthlyInvestment: any;
-
+  investedList: any;
+  notInvestedList: any;
+  showAllForInvested = false;
+  showAllForNotInvested = false;
+  topClickedFlag = false;
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
+  @Input('portfolioData') portfolioData;
   @Output() transferInstSelected = new EventEmitter<boolean>();
   @Output() detailSelected = new EventEmitter<boolean>();
+  @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() deleteSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
-  constructor(private manageInvestmentsService: ManageInvestmentsService,
+  constructor(public readonly translate: TranslateService,
+              private manageInvestmentsService: ManageInvestmentsService,
               public signUpService: SignUpService,
               private currencyPipe: CurrencyPipe,
-              private investmentAccountService: InvestmentAccountService) { }
+              private investmentAccountService: InvestmentAccountService) {
+                this.translate.use('en');
+                this.translate.get('COMMON').subscribe((result: string) => {});
+              }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.portfoioSpliter();
   }
 
+  showHideToggle(elementName: string) {
+    this[elementName] = !(this[elementName]);
+  }
+  portfoioSpliter() {
+    this.notInvestedList = [];
+    this.investedList = [];
+    if (this.portfolioList) {
+      console.log('coming', this.portfolioList[0]);
+      for (const portfolio of this.portfolioList) {
+        if (portfolio.portfolioStatus === 'PURCHASED') {
+          this.investedList.push(portfolio);
+        } else {
+          this.notInvestedList.push(portfolio);
+        }
+      }
+    }
+  }
   getMonthlyInvestValidity(index: number) {
     if (this.userProfileInfo && this.userProfileInfo.investementDetails
        && this.userProfileInfo.investementDetails.portfolios
@@ -60,7 +89,14 @@ export class PortfolioListComponent implements OnInit {
   }
 
   detail(portfolio) {
-    this.detailSelected.emit(portfolio);
+    if (!this.topClickedFlag) {
+      this.detailSelected.emit(portfolio);
+    }
+    this.topClickedFlag = false;
+  }
+  gotoTopUp() {
+    this.topClickedFlag = true;
+    this.topUpSelected.emit();
   }
 
   transferInst($event) {

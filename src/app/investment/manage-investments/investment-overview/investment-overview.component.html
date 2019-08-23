@@ -1,83 +1,83 @@
 <div class="toast-msg-block" *ngIf="isToastMessageShown">
-  <div class="toast-msg-container">
-      <div class="flex-col-1">
+    <div class="toast-msg-container">
+       <div class="flex-col-1">
           <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
-      </div>
-      <div class="flex-col-8">
-          <div class="toast-msg">{{toastMsg}}Portfolio "Miya's University Fund" has been added.</div>
-      </div>
-      <div class="flex-col-3">View</div>
-  </div>
-</div>
-<section class="invest-section">
-  <div class="invest-section-items">
-      <div class="invest-section-content">
+       </div>
+       <div class="flex-col-8">
+          <div class="toast-msg">{{toastMsg}} {{'YOUR_INVESTMENT.SUCCESS_MSG' | translate:investParam}} </div>
+       </div>
+       <div class="flex-col-3">{{'YOUR_INVESTMENT.VIEW' | translate}}</div>
+    </div>
+ </div>
+ <section class="invest-section">
+    <div class="invest-section-items">
+       <div class="invest-section-content">
           <div class="invest-bg">
-              <div class="invest-bg-media">
-                  <div class="invest-bg-image"></div>
-                  <div class="invest-bg-color"></div>
-              </div>
-              <div class="invest-bg-content">
-                  <div class="flex-col user_content flex-col-12">
-                      <div class="container-fluid max-width--1024">
-                          <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
-                              {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
-                          </div>
-                          <div class="form-group-with-bg">
-                              <div class="form-group-with-bg--header your_total_value">
-                                  <div id="myFinancialLbl">
-                                      <div class="total_values" id="investment_overview_totalportfolio_value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
-                                      </div>
-                                      <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">{{'YOUR_INVESTMENT.TOTAL_VALUE' | translate}}</div>
-                                  </div>
-                              </div>
-                              <div class="form-group-with-bg--content">
-                                  <div class="flex-row mb20" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-                                      <div class="flex-col">
-                                          <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">Total Cash Balance
-                                              <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
-                                          </div>
-                                      </div>
-                                      <div class="flex-col">
-                                          <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">$2,000.00
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="flex-row">
-                                      <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
-                         <span class="topup-btn-img"><img id="top-up_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
-                       </button>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="flex-row mb20 space-btwn align-center">
-                              <div class="your_portfolio_label" id="investment_overview_your_portfolios">
-                                  {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}</div>
-                              <div class="add_portfolio_label" id="investment_overview_total_of"><img class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span>Add Portfolio</span> </div>
-                          </div>
+             <div class="invest-bg-media">
+                <div class="invest-bg-image"></div>
+                <div class="invest-bg-color"></div>
+             </div>
+             <div class="invest-bg-content">
+                <div class="flex-col user_content flex-col-12">
+                   <div class="container-fluid max-width--1024">
+                      <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
+                         {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
                       </div>
-                  </div>
-              </div>
+                      <div class="form-group-with-bg">
+                         <div class="form-group-with-bg--header your_total_value">
+                            <div id="myFinancialLbl">
+                               <div class="total_values" id="investment_overview_totalportfolio_value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
+                               </div>
+                               <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">{{'YOUR_INVESTMENT.TOTAL_VALUE' | translate}}</div>
+                            </div>
+                         </div>
+                         <div class="form-group-with-bg--content">
+                            <div class="flex-row mb20" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                               <div class="flex-col">
+                                  <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">{{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
+                                     <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+                                  </div>
+                               </div>
+                               <div class="flex-col">
+                                  <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">$2,000.00
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="flex-row">
+                               <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                               <span class="topup-btn-img"><img id="top-up_img"
+                                  src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span>
+                               <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
+                               </button>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="flex-row mb20 space-btwn align-center">
+                         <div class="your_portfolio_label" id="investment_overview_your_portfolios">
+                            {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
+                         </div>
+                         <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
           </div>
-      </div>
-  </div>
-</section>
-<app-portfolio-list [portfolioList]="portfolioList" [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)" (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
-  (transferInstSelected)="ViewTransferInst($event)">
-</app-portfolio-list>
-
-<div class="container-fluid max-width--1024" *ngIf="!portfolioList || portfolioList.length == 0">
-  <!-- *ngIf="!portfolioList || portfolioList.length == 0" -->
-  <div class="form-group-with-bg no-portfolio">
-      <div class="flex-col align-center">
-          <div class="msg">You have no portfolios yet.<br>Add a portfolio to start investing!</div>
+       </div>
+    </div>
+ </section>
+ <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList" [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)" (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
+ (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()" [portfolioData]="investmentoverviewlist.data">
+ </app-portfolio-list>
+ <div class="container-fluid max-width--1024" *ngIf="!portfolioList || portfolioList.length == 0">
+    <div class="form-group-with-bg no-portfolio">
+       <div class="flex-col align-center">
+          <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_EXIT_MSG' | translate}} </div>
           <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
           <button type="button" class="btn btn-primary" id="add_portfolio" (click)="startPortfolio()">
-        Add Portfolio </button>
-      </div>
-  </div>
-</div>
-<div class="text-center">
-  <button type="button" class="btn btn-primary scroll-btn btn__footer--fixed">Scroll To Top</button>
-</div>
+            {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+       </div>
+    </div>
+ </div>
+ <div class="text-center">
+    <button  type="button" class="btn btn-primary scroll-btn btn__footer--fixed" (click)="scrollTop()">{{'YOUR_INVESTMENT.SCROLL_TO_TOP' | translate}}</button>
+ </div>
