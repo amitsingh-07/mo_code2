@@ -1,4 +1,3 @@
-const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/api';
 const INSURANCE_API_BASE_URL = 'insurance/insurance-needs-microservice/api';
 const INSURANCE_RECOMMEND_API_BASE_URL = 'recommend/recomm-microservice/api';
 const ARTICLE_API_BASE_URL = 'product/insurance-product/api/article';
@@ -56,42 +55,6 @@ export let apiConstants = {
         },
         subscription: {
             base: SUBSCRIPTION_API_BASE_URL + '/mailinglist/subscribe'
-        },
-        portfolio: {
-            setInvestmentObjective: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
-            setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolio/awaitingTransactions',
-            getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
-            updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
-            getAllocationDetails: INVESTMENT_API_BASE_URL + '/portfolio/recommend'
-        },
-        investmentAccount: {
-            nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
-            nationalitylist: INVESTMENT_API_BASE_URL + '/countrylist',
-            lndustrylist: INVESTMENT_API_BASE_URL + '/industrylist',
-            occupationlist: INVESTMENT_API_BASE_URL + '/occupationlist',
-            allDropdownlist: INVESTMENT_API_BASE_URL + '/optionListCollection',
-            updateInvestment: INVESTMENT_API_BASE_URL + '/UpdateCustomerInvestmentObjective',
-            createInvestmentAccount: INVESTMENT_API_BASE_URL + '/createIFastAccount?handleError=true',
-            verifyAML: ACCOUNT_API_BASE_URL + '/verifyAML?handleError=true',
-            getFundTransferDetails: INVESTMENT_API_BASE_URL + '/getIFastBankDetails',
-            buyPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/buy?handleError=true',
-            deletePortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios',
-            monthlyInvestment: INVESTMENT_API_BASE_URL + '/customer/InvestmentObjective/monthlyInvestment?handleError=true',
-            sellPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/sell?handleError=true',
-            saveNationality: INVESTMENT_API_BASE_URL + '/customer/setNationality',
-            investmentoverview: INVESTMENT_API_BASE_URL + '/portfolio/holdings?handleError=true',
-            porfolioDetails: INVESTMENT_API_BASE_URL + '/portfolios/detail',
-            getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
-            uploadDocument: ACCOUNT_API_BASE_URL + '/saveDocuments',
-            saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails'
-        },
-        investment: {
-            getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
-            getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks',
-            addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?handleError=true',
-            getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
-            getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
-            monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/recent',

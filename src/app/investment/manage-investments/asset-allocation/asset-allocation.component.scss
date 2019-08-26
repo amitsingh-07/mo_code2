@@ -1,0 +1,166 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-asset-allocation {
+  .container-fluid {
+    &.max-width--1024 {
+      top: 0 !important;
+      padding-top: 0;
+
+      @include allmobiles {
+        padding: 0 !important;
+        margin-top: 0 !important
+      }
+    }
+  }
+
+  .asset-allocation-bg {
+    position: absolute;
+    background: $asset-allocation-bg-color;
+    width: 100%;
+    left: 0;
+    right: 0;
+
+    @include allmobiles {
+      padding-top: 28px;
+      width: 100%;
+      max-height: 230px;
+    }
+
+    .container-fluid {
+      padding: 0;
+      top: 0;
+
+      .background_img {
+        float: right;
+
+        @include allmobiles {
+          object-fit: contain;
+          position: relative;
+          width: 100%;
+        }
+
+        &.web_bg {
+          position: relative;
+
+          @include allmobiles {
+            display: none;
+          }
+        }
+
+        &.mobile_bg {
+          display: none;
+
+          @include allmobiles {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .user_content {
+    position: absolute;
+    padding: 0 75px;
+    top: 60px;
+    max-width: 1024px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    @include allmobiles {
+      top: 100px;
+      padding: 0;
+    }
+
+    @include phablet {
+      top: 85px;
+    }
+
+    .user_summary {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: -0.2px;
+      padding: 0 29px 0 15px;
+      position: relative;
+      max-width: 400px;
+
+      @include allmobiles {
+        padding: 0 29px 0 28px;
+      }
+
+      div {
+        font-size: 36px;
+      }
+    }
+  }
+
+  .container-fluid {
+    position: relative;
+    top: 120px;
+    padding-left: 45px;
+    padding-right: 45px;
+
+    @include allmobiles {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      height: 100%;
+      padding: 0px;
+      padding-bottom: 20px;
+      top: 200px;
+    }
+
+    @include max360 {
+      top: 180px;
+    }
+
+    @include iphone6 {
+      top: 220px;
+    }
+
+    @include phablet {
+      top: 140px;
+    }
+  }
+
+  .portfolio-allocation-details {
+    .portfolio-allocation-details__container {
+      color: $white-color;
+      border-radius: 6px;
+      box-shadow: 0 10px 14px 0 $portfolio-allocation-container-shadow-color;
+      background-color: $portfolio-allocation-container-bg-color;
+    }
+  }
+
+  .asset-allocation {
+    @include allmobiles {
+      margin-top: 33px;
+    }
+
+    .title {
+      font-family: $muli-bold;
+      font-size: 21px;
+      letter-spacing: -0.4px;
+      color: $asset-allocation-title-txt-color;
+      padding-bottom: 14px;
+    }
+  }
+
+  .faq_link {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-align: center;
+    padding: 21px 0 19px;
+
+    a {
+      color: $white-color;
+      text-decoration: underline;
+    }
+  }
+}

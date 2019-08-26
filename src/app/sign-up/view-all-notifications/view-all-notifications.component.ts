@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PortfolioService } from '../../portfolio/portfolio.service';
+import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
@@ -31,7 +31,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public portfolioService: PortfolioService,
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -66,7 +66,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
       this.navbarService.setClearAllNotify(this.allMessages.length > 0 ? true : false);
-      this.portfolioService.sortByProperty(this.allMessages, 'time', 'desc');
+      this.investmentEngagementJourneyService.sortByProperty(this.allMessages, 'time', 'desc');
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     },
@@ -97,15 +97,6 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   clearAllNotifications() {
     this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
     this.allMessages.splice(0);
-  }
-
-  deleteNotification(messageList) {
-    const payload = this.constructDeleteNotificationRequest(messageList);
-    this.signUpService.deleteNotifications(payload).subscribe((response) => {
-    },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
   }
 
   constructDeleteNotificationRequest(messages) {

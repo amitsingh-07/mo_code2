@@ -9,7 +9,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
     TransactionModalComponent
@@ -205,7 +205,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (navbarMode ? true : false && (navbarMode !== 'default')) {
       this.navbarMode = navbarMode;
       nc = matrix[navbarMode];
-      console.log('NavBar Mode: ' + navbarMode);
       // Just cos there is no automapper. FK
       this.processMatrix(nc);
     } else {

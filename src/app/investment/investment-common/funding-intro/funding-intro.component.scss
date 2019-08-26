@@ -1,0 +1,251 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-funding-intro {
+  .hide-custom-modal {
+    display: none;
+  }
+
+  .fade-out-animation {
+    -webkit-animation: fadeOut 1000ms ease-in-out;
+    /* Chrome, Safari, Opera */
+    animation: fadeOut 1000ms ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Standard syntax */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .custom-modal-backdrop {
+    background: $white-color;
+    position: fixed;
+    opacity: 0.95;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+  }
+
+  .custom-modal-wrapper {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .custom-modal--icon {
+    width: 100%;
+    // height: 100%;
+    position: absolute;
+
+    @include allmobiles {
+      height: 67%;
+    }
+
+    img {
+      @include desktop {
+        width: 266px;
+        height: 200px;
+      }
+
+      @include allmobiles {
+        width: 285px;
+        height: 200px;
+      }
+    }
+
+    .width30 {
+      width: 30%;
+      margin-top: 30px;
+
+      @include desktop {
+        width: 340px;
+        height: 60px;
+      }
+    }
+  }
+
+  .custom-modal--title {
+    color: $custom-modal-title-color;
+    font-family: $muli-regular;
+    font-size: 36px;
+    letter-spacing: -0.4px;
+    line-height: 1.11;
+    margin-top: 20px;
+    padding-top: 12px;
+  }
+
+  .custom-modal--desc {
+    color: $custom-modal-desc-color;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-regular;
+    padding: 0 35%;
+
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+
+  .container-fluid {
+    @include allmobiles {
+      padding-top: 10px;
+    }
+  }
+
+  .app-additional-declaration {
+    // .btn-proceed {
+    //   border: 0px;
+    //   border-radius: 6px;
+    //   background-color: $white-color;
+    //   box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
+    //   cursor: pointer;
+    //   font-family: $muli-bold;
+    //   font-size: 22px;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -0.2px;
+    //   text-align: center;
+    //   color: $teal-color;
+
+    //   @include allmobiles {
+    //     position: fixed;
+    //     width: 100%;
+    //     bottom: 0px;
+    //     left: 0px;
+    //     border-radius: 0px;
+    //   }
+    // }
+
+    .intro-block__tab-container {
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+
+      .intro-block__tab {
+        width: calc(50% - 10px);
+        opacity: 0.2;
+        padding-right: 10px;
+        background-color: $app-backgrnd-secondary-color;
+        min-height: 5px;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+
+    .intro-block__content {
+      @include tablet {
+        .banner-image img {
+          max-width: 90%;
+        }
+      }
+
+      @include allmobiles {
+        .banner-image img {
+          max-width: 70%;
+          padding-top: 5vh;
+        }
+      }
+
+      @include iPadProPortrait {
+        .banner-image img {
+          max-width: 80%;
+        }
+      }
+    }
+
+    .intro-block__content__desc {
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      text-align: center;
+      color: $white-color;
+
+      @include allmobiles {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      @include tablet {
+        margin-top: 30px;
+      }
+
+      .intro-block__content__heading {
+        font-family: $muli-bold;
+        font-size: 24px;
+        letter-spacing: -0.25px;
+      }
+
+      .intro-block__content__title {
+        font-family: $muli-regular;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.18px;
+        margin: 25px;
+      }
+    }
+  }
+
+  .text-center {
+    text-align: center;
+
+    button {
+      @include allmobiles {
+        width: 100%;
+      }
+
+      @include tablet {
+        width: 30%;
+      }
+
+      @include desktop {
+        width: 337px;
+        height: 60px;
+      }
+    }
+  }
+}

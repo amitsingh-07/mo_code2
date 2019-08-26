@@ -1,0 +1,30 @@
+@import '../../../../../variables.scss';
+
+app-forward-pricing-modal {
+  .forward-pricing-modal {
+    font-family: $muli;
+
+    .modal-body-title {
+      margin-right:25px;  
+    }
+
+    .modal-body-message {
+      margin-top:20px;
+      padding-bottom: 40px;
+      font-size: 16px;
+      color:#5e5e5e;
+
+      p {
+        margin-bottom:20px;
+      }
+      p:last-child {
+        margin-bottom:0px;
+      }
+      span {
+        color:#000;
+        font-family: $muli-bold;
+      }
+     }
+
+  }
+}

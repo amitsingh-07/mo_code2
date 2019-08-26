@@ -5,23 +5,29 @@ import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import {
+    EmailEnquirySuccessComponent
+} from './email-enquiry-success/email-enquiry-success.component';
+import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
-import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
-import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
-import { SecurityPolicyComponent } from './shared/components/security-policy/security-policy.component';
+import {
+    PrivacyPolicyComponent
+} from './shared/components/privacy-policy/privacy-policy.component';
+import {
+    SecurityPolicyComponent
+} from './shared/components/security-policy/security-policy.component';
 import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 
 const routes: Routes = [
   {
@@ -47,18 +53,23 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: 'invest',
-        loadChildren: './portfolio/portfolio.module#PortfolioModule',
+      { path: 'investment/engagement',
+        loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'invest/account',
-        loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
+      { path: 'investment/account',
+        loadChildren: './investment/investment-account/investment-account.module#InvestmentAccountModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
+      { path: 'investment/manage',
+        loadChildren: './investment/manage-investments/manage-investments.module#ManageInvestmentsModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       { path: 'investment',
-        loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
+        loadChildren: './investment/investment-common/investment-common.module#InvestmentCommonModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
