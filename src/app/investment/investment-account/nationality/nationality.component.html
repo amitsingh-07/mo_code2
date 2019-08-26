@@ -1,97 +1,101 @@
-<div class="container-fluid max-width--1024 invest-web-width">
-  <!-- <div class="row">
+<div class="investment-account">
+  <div class="container-fluid max-width--1024 invest-web-width">
+    <!-- <div class="row">
     <div class="col-12">
       <app-sing-pass></app-sing-pass>
     </div>
   </div> -->
-  <div class="row text-center">
-    <div class="mt10">
-      <h2>{{ 'SELECT_NATIONALITY.BEFORE_WE_PROCEED' | translate}}</h2>
-      <h6>{{ 'SELECT_NATIONALITY.WHATS_YOUR_NATIONALITY' | translate}}</h6>
-    </div>
-    <div class="col-12">
-      <div class="banner-image mb30" id="select_nationality_img">
-        <img src="assets/images/investment-account/select-nationality.svg" />
+    <div class="row text-center">
+      <div class="mt10">
+        <h2>{{ 'SELECT_NATIONALITY.BEFORE_WE_PROCEED' | translate}}</h2>
+        <h6>{{ 'SELECT_NATIONALITY.WHATS_YOUR_NATIONALITY' | translate}}</h6>
+      </div>
+      <div class="col-12">
+        <div class="banner-image mb30" id="select_nationality_img">
+          <img src="assets/images/investment-account/select-nationality.svg" />
+        </div>
       </div>
     </div>
-  </div>
-  <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
-    <!-- <div class="text mb20" id="select_nationality_text" *ngIf="selectNationalityForm.controls.nationality.value">{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY_LAB2' | translate}}
+    <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
+      <!-- <div class="text mb20" id="select_nationality_text" *ngIf="selectNationalityForm.controls.nationality.value">{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY_LAB2' | translate}}
     </div> -->
-    <app-sing-pass></app-sing-pass>
-    <div class="flex-row">
-      <div class="flex-col-5">
-        <label for="name" id="select_nationality_lab">{{ 'SELECT_NATIONALITY.NATIONALITY_LEB' | translate}}</label>
-      </div>
-      <div class="flex-col-7">
-        <div class="dropdown-control">
-          <app-dropdown-with-search
-            [disabled]="isDisabled()" 
-            controlName="nationality"
-            [optionList]="nationalityList"
-            displayKey="name"
-            placement="top-right"
-            placeholderText="{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY' | translate}}"
-            (itemSelected)="selectNationality($event)">
-          </app-dropdown-with-search>
-        </div>
-      </div>
-    </div>
-    <!-- other coutryquestion -->
-<div *ngIf="selectNationalityForm.get('unitedStatesResident')">
-      <div class="flex-row mb10">
-        <div class="flex-col-12 mt15">
-          <label class="form-group-with-bg--content-label" id="select_nationality_question-one" for="name">{{ 'SELECT_NATIONALITY.QUESTION_ONE' | translate}}
-          </label>
-        </div>
-      </div>
-      <!-- buttons -->
+      <app-sing-pass></app-sing-pass>
       <div class="flex-row">
-        <div class="flex-col-12 mb10">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="unitedStatesResident">
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                  <input ngbButton type="radio" id="select_nationlity_yes" [value]="true">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
-                </label>
-              </div>
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" id="select_nationlity_no" [value]="false">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+        <div class="flex-col-5">
+          <label for="name" id="select_nationality_lab">{{ 'SELECT_NATIONALITY.NATIONALITY_LEB' | translate}}</label>
+        </div>
+        <div class="flex-col-7">
+          <div class="dropdown-control">
+            <app-dropdown-with-search [disabled]="isDisabled()" controlName="nationality" [optionList]="nationalityList"
+              displayKey="name" placement="top-right"
+              placeholderText="{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY' | translate}}"
+              (itemSelected)="selectNationality($event)">
+            </app-dropdown-with-search>
+          </div>
+        </div>
+      </div>
+      <!-- other coutryquestion -->
+      <div *ngIf="selectNationalityForm.get('unitedStatesResident')">
+        <div class="flex-row mb10">
+          <div class="flex-col-12 mt15">
+            <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
+              for="name">{{ 'SELECT_NATIONALITY.QUESTION_ONE' | translate}}
+            </label>
+          </div>
+        </div>
+        <!-- buttons -->
+        <div class="flex-row">
+          <div class="flex-col-12 mb10">
+            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="unitedStatesResident">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
+                    <input ngbButton type="radio" id="select_nationlity_yes"
+                      [value]="true">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
+                  </label>
+                </div>
+                <div class="flex-col-6">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                    <input ngbButton type="radio" id="select_nationlity_no"
+                      [value]="false">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div *ngIf="selectNationalityForm.get('singaporeanResident')">
-      <div class="flex-row mb10">
-        <div class=flex-col-10>
-          <label class="form-group-with-bg--content-label" id="select_nationality_question-two" for="name">
-            {{ 'SELECT_NATIONALITY.QUESTION_TWO' | translate}}
-          </label>
+      <div *ngIf="selectNationalityForm.get('singaporeanResident')">
+        <div class="flex-row mb10">
+          <div class=flex-col-10>
+            <label class="form-group-with-bg--content-label" id="select_nationality_question-two" for="name">
+              {{ 'SELECT_NATIONALITY.QUESTION_TWO' | translate}}
+            </label>
+          </div>
         </div>
-      </div>
-      <!-- buttons -->
-      <div class="flex-row">
-        <div class="flex-col-12 mb10">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="singaporeanResident">
-            <div class="flex-row">
-              <div class="flex-col-6 ">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true"> {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
-                </label>
-              </div>
-              <div class="flex-col-6 ">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="select_nationlity_no1" [value]="false"> {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+        <!-- buttons -->
+        <div class="flex-row">
+          <div class="flex-col-12 mb10">
+            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="singaporeanResident">
+              <div class="flex-row">
+                <div class="flex-col-6 ">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                    <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true">
+                    {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
+                  </label>
+                </div>
+                <div class="flex-col-6 ">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                    <input ngbButton type="radio" id="select_nationlity_no1" [value]="false">
+                    {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <button type="button" [disabled]="!selectNationalityForm.valid" (click)="goToNext(selectNationalityForm)" id="select-nationality_continue_btn" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-    id="riskProfileBtn">{{ 'SELECT_NATIONALITY.CONTINUE' | translate}}</button>
+    </form>
+    <button type="button" [disabled]="!selectNationalityForm.valid" (click)="goToNext(selectNationalityForm)"
+      id="select-nationality_continue_btn" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      id="riskProfileBtn">{{ 'SELECT_NATIONALITY.CONTINUE' | translate}}</button>
+  </div>
 </div>

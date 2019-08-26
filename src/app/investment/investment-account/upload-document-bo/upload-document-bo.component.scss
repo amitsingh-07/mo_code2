@@ -4,18 +4,21 @@
 app-upload-document-bo {
   .upload-doc-nric {
     .step-indicator-container {
-      padding: 20px 0px;
-      top: 76px;
-      @include allmobiles{
-        background-color: $white-color;
-        padding: 10px 0px;
-        top: 60px;
-        position: relative;
-      }
-      .container-fluid {
-        padding-top: 0px;
-        padding-bottom: 0px;
-      }
+    //   padding: 20px 0px;
+    //   top: 76px;
+
+    //   @include allmobiles {
+    //     background-color: $white-color;
+    //     padding: 10px 0px;
+    //     top: 60px;
+    //     position: relative;
+    //   }
+
+    //   .container-fluid {
+    //     padding-top: 0px;
+    //     padding-bottom: 0px;
+    //   }
+
       .page-caption {
         color: $text-color-secondary;
         font-size: 16px;
@@ -23,22 +26,27 @@ app-upload-document-bo {
         margin-bottom: 10px;
         text-align: center;
       }
-      @include stepindicator-desktop-extraspace;
-    }
-    .container-fluid {
-      padding-top: 16px;
-      @include allmobiles{
-        padding-top: 80px;
-      }
-      .title-small {
-        font-family: $muli-bold;
-        font-size: 16px;
-        line-height: 1.38;
-        letter-spacing: -0.2px;
-        color: $white-color;
-        margin-bottom: 20px;
-      }
-    }
+
+    //   @include stepindicator-desktop-extraspace;
+     }
+
+    // .container-fluid {
+      // padding-top: 16px;
+
+      // @include allmobiles {
+      //   padding-top: 80px;
+      // }
+
+      // .title-small {
+      //   font-family: $muli-bold;
+      //   font-size: 16px;
+      //   line-height: 1.38;
+      //   letter-spacing: -0.2px;
+      //   color: $white-color;
+      //   margin-bottom: 20px;
+      // }
+    // }
+
     .doc-upload-instructions {
       background: $review-block-bg;
       padding: 11px 17px 12px 20px;
@@ -46,15 +54,18 @@ app-upload-document-bo {
       margin-bottom: 21px;
       font-family: $muli-bold;
       line-height: 18px;
+
       .sub-title {
         font-size: 16px;
         letter-spacing: -0.3px;
         margin-bottom: 3px;
       }
+
       .file-logs {
         font-size: 14px;
         letter-spacing: -0.26px;
         color: $upload-file-log-color;
+
         span {
           &:first-child {
             font-family: $muli-semi-bold;
@@ -63,10 +74,12 @@ app-upload-document-bo {
         }
       }
     }
+
     .sub-title-block {
       display: flex;
       flex-direction: column;
       margin-bottom: 16px;
+
       .sub-title {
         font-family: $muli-bold;
         font-size: 18px;
@@ -76,16 +89,19 @@ app-upload-document-bo {
         margin-bottom: 7px;
         display: flex;
         justify-content: space-between;
+
         img {
           display: inline-flex;
         }
       }
+
       .sub-title-desc {
         font-family: $muli-semi-bold;
         color: $upload-sub-title-desc-color;
         font-weight: 400;
         letter-spacing: -0.3px;
       }
+
       .upload-file {
         font-family: $muli-semi-bold;
         font-size: 16px;
@@ -94,23 +110,29 @@ app-upload-document-bo {
         margin-top: 15px;
         padding: 6px;
         display: flex;
+
         .selected-state {
           display: none;
         }
+
         .unselected-state {
           display: inline-block;
         }
+
         &.selected {
           .selected-state {
             display: inline-block;
           }
+
           .unselected-state {
             display: none;
           }
+
           button {
             background-color: $btn-primary-backgrnd-color;
           }
         }
+
         .btn {
           font-size: 16px;
           background-color: $secondary-action-color;
@@ -118,6 +140,7 @@ app-upload-document-bo {
           display: flex;
           flex: 2;
         }
+
         div {
           display: flex;
           align-self: center;
@@ -126,11 +149,13 @@ app-upload-document-bo {
         }
       }
     }
+
     .upload-doc {
       display: flex;
-      justify-content:  space-between;
+      justify-content: space-between;
       flex: 1;
       padding: 0 15px;
+
       .upload-desc {
         display: flex;
         flex-direction: column;
@@ -142,27 +167,33 @@ app-upload-document-bo {
         flex: 1;
         margin-right: 10px;
         margin-bottom: 38px;
-        @include desktop{
+
+        @include desktop {
           min-height: 165px;
         }
+
         &:last-child {
           margin-right: 0;
         }
+
         .upload-content {
           div {
             font-size: 16px;
             letter-spacing: -0.3px;
+
             &.title {
               font-family: $muli-semi-bold;
               font-size: 18px;
               font-weight: 400;
             }
+
             &.sub-text {
               color: $upload-sub-title-desc-color;
               word-break: break-all;
             }
           }
         }
+
         .thumb-container {
           position: relative;
           max-width: 85px;
@@ -171,11 +202,13 @@ app-upload-document-bo {
           align-items: center;
           padding: 10px 0 20px;
           cursor: pointer;
+
           .thumbnail {
             margin: 0 auto;
             max-width: 85px;
             max-height: 85px;
           }
+
           .thumb-close-icon {
             position: absolute;
             padding: 1px 7px;
@@ -183,6 +216,7 @@ app-upload-document-bo {
             background-color: $white-color;
             right: -25px;
             top: -10px;
+
             img {
               width: 12px;
               height: 12px;
@@ -191,6 +225,7 @@ app-upload-document-bo {
         }
       }
     }
+
     .btn__footer--fixed {
       font-family: $muli-bold !important;
     }
