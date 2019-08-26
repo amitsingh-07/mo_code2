@@ -53,7 +53,7 @@ const routes: Routes = [
         canActivate: [ArticleEnableGuard],
         canActivateChild: [ArticleEnableGuard]
       },
-      { path: 'investment',
+      { path: 'investment/engagement',
         loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
@@ -63,8 +63,13 @@ const routes: Routes = [
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'investment',
+      { path: 'investment/manage',
         loadChildren: './investment/manage-investments/manage-investments.module#ManageInvestmentsModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
+      { path: 'investment',
+        loadChildren: './investment/investment-common/investment-common.module#InvestmentCommonModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

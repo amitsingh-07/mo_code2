@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 
 @Component({
   selector: 'app-fund-details',
