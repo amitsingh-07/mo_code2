@@ -107,7 +107,7 @@
         <button *ngIf="!isInvestmentEnabled" class="btn btn-secondary home__section--btn" disabled>
           <span>{{'GENERAL.COMING_SOON' | translate}}</span>
         </button>
-        <button *ngIf="isInvestmentEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/invest">
+        <button *ngIf="isInvestmentEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/investment/engagement">
           <span>{{'INVESTMENT.LINK1' | translate}}</span>
         </button>
         <a class="home__section--subtext" target="_blank" href="https://advice.moneyowl.com.sg/investment/" *ngIf="isInvestmentEnabled">{{'INVESTMENT.READ_MORE_DETAILS' | translate}}</a>

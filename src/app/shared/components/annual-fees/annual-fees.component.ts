@@ -18,7 +18,6 @@ export class AnnualFeesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.feeDetails);
   }
 
 }

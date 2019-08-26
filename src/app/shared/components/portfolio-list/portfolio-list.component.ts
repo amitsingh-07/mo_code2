@@ -1,10 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
-import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
+import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
-import { ProfileIcons } from '../../../portfolio/risk-profile/profileIcons';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
+import { ProfileIcons } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class PortfolioListComponent implements OnInit {
   @Output() deleteSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
-  constructor(private topupAndWithDrawService: TopupAndWithDrawService,
+  constructor(private manageInvestmentsService: ManageInvestmentsService,
               public signUpService: SignUpService,
               private currencyPipe: CurrencyPipe,
               private investmentAccountService: InvestmentAccountService) { }
@@ -52,7 +52,7 @@ export class PortfolioListComponent implements OnInit {
     return false;
   }
   getEntitlementsFromPortfolio(portfolio) {
-    return this.topupAndWithDrawService.getEntitlementsFromPortfolio(portfolio);
+    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
 
   formatReturns(value) {

@@ -1,28 +1,32 @@
 @import '../../../variables';
 @import "../../../_mixins.scss";
-app-add-update-bank{
-.dots{
-     padding: 10px;
-     margin: 0 20px;
-   }
-   .bank_text{
-       margin-left: 10px;
-   }
+
+app-add-update-bank {
+  .dots {
+    padding: 10px;
+    margin: 0 20px;
+  }
+
+  .bank_text {
+    margin-left: 10px;
+  }
+
   .password-text {
-     font-family: $muli-semi-bold;
-     font-size: 22px;
-     font-weight: 600;
-     font-style: normal;
-     font-stretch: normal;
-     line-height: normal;
-     letter-spacing: -0.4px;
-     color: $white-color;
-     margin: 14px 10px 4px;
-     padding: 10px;
-     border-bottom: 0.5px solid $white-color;
-   }
-  .form-lbl{
-    font-family:  $muli-semi-bold;
+    font-family: $muli-semi-bold;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    color: $white-color;
+    margin: 14px 10px 4px;
+    padding: 10px;
+    border-bottom: 0.5px solid $white-color;
+  }
+
+  .form-lbl {
+    font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     font-style: normal;
@@ -31,7 +35,8 @@ app-add-update-bank{
     letter-spacing: -0.34px;
     color: $white-color;
   }
-  .desc-lbl{
+
+  .desc-lbl {
     font-family: $muli-regular;
     font-size: 14px;
     font-weight: normal;
@@ -42,69 +47,85 @@ app-add-update-bank{
     color: $white-color;
     margin-bottom: 18px;
   }
-  .inline-error{
-    .btn{
-      &.btn-secondary{
-        background-color:$secondary-action-color !important;
-      }  
-    }    
+
+  .inline-error {
+    .btn {
+      &.btn-secondary {
+        background-color: $secondary-action-color !important;
+      }
+    }
   }
+
   .dropdown-control {
     .btn-dropdown {
       color: $teal-color;
     }
+
     border-radius: 6px;
     position: relative;
     position: relative;
     background: $white-color;
     cursor: pointer;
+
     .dropdown-toggle {
       padding: 0.90rem;
+
       &:disabled {
         cursor: not-allowed;
+
         &:hover {
           background-color: transparent !important;
         }
       }
     }
   }
+
   label {
     font-size: 18px;
     font-family: $muli-semi-bold;
     padding-right: 10px;
   }
+
   .input-control {
     text-align: left;
     color: $teal-color;
   }
+
   .step-indicator-container {
     background-color: $white-color;
     padding: 10px 0px;
     position: relative;
     top: 60px;
     margin-bottom: 15px;
+
     .container-fluid {
       padding-top: 0px;
       padding-bottom: 0px;
     }
   }
+
   @media (min-width: 768px) {
     .step-indicator-container {
       top: 0px;
     }
   }
+
   .form-control {
-    .input-control{
+    .input-control {
       text-align: left;
     }
+
     &.with-button {
       padding: 0.50rem;
       padding-left: 0.8rem;
+
       input {
         margin-top: 6px;
       }
     }
-    &:disabled, &.disabled{
+
+    &:disabled,
+    &.disabled {
       cursor: not-allowed;
       color: $teal-color !important;
       -webkit-text-fill-color: $teal-color !important;
@@ -113,27 +134,33 @@ app-add-update-bank{
       border: 1px solid $edit-acnt-disable-brdr !important;
     }
   }
+
   .white-bg-checkbox {
     background-color: $white-color;
     padding: 10px 18px 10px 18px;
     border-radius: 6px;
     font-family: $muli;
+
     label {
       padding: 0px 0 0px 35px;
     }
+
     .option-row {
       margin-left: 0px;
     }
+
     .option-title {
       color: $black-color;
       font-size: 18px;
     }
+
     .option-desc {
       color: $dark-grey-color;
       font-family: $muli-semi-bold;
       font-size: 16px;
     }
   }
+
   .autofill-link {
     border: 1px solid $secondary-action-color;
     padding: 23px 34px;
@@ -143,172 +170,202 @@ app-add-update-bank{
     cursor: pointer;
     display: flex;
   }
+
+  .step-indicator-container {
+    background-color: $white-color;
+    padding: 10px 0px;
+    position: relative;
+    top: 60px;
+    margin-bottom: 15px;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .page-caption {
+      color: $text-color-secondary;
+      font-size: 16px;
+      font-family: $muli;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 768px) {
     .step-indicator-container {
-      background-color: $white-color;
-      padding: 10px 0px;
-      position: relative;
-      top: 60px;
-      margin-bottom: 15px;
-      .container-fluid {
-        padding-top: 0px;
-        padding-bottom: 0px;
-      }
-      .page-caption {
-        color: $text-color-secondary;
-        font-size: 16px;
-        font-family: $muli;
-        margin-bottom: 10px;
-        text-align: center;
-      }
+      top: 0px;
     }
-    @media (min-width: 768px) {
-      .step-indicator-container {
-        top: 0px;
-      }
-    }
-    .sub-title-block {
+  }
+
+  .sub-title-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    .sub-title {
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      margin-bottom: 7px;
       display: flex;
-      flex-direction: column;
-      margin-bottom: 16px;
-      .sub-title {
-        font-family: $muli-bold;
-        font-size: 18px;
-        line-height: 23px;
-        letter-spacing: -0.3px;
-        color: $white-color;
-        margin-bottom: 7px;
-        display: flex;
-        justify-content: space-between;
-        img {
-          display: inline-flex;
-        }
+      justify-content: space-between;
+
+      img {
+        display: inline-flex;
       }
-      .sub-title-desc {
-        font-family: $muli-semi-bold;
-        color: $upload-sub-title-desc-color;
-        font-weight: 600;
-        letter-spacing: -0.3px;
+    }
+
+    .sub-title-desc {
+      font-family: $muli-semi-bold;
+      color: $upload-sub-title-desc-color;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .upload-file {
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+      background: $white-color;
+      border-radius: 6px;
+      margin-top: 15px;
+      padding: 6px;
+      display: flex;
+
+      .selected-state {
+        display: none;
       }
-      .upload-file {
-        font-family: $muli-semi-bold;
-        font-size: 16px;
-        background: $white-color;
-        border-radius: 6px;
-        margin-top: 15px;
-        padding:6px;
-        display: flex;
-        .selected-state{
-            display:none;
-        }
-        .unselected-state {
+
+      .unselected-state {
+        display: inline-block;
+      }
+
+      &.selected {
+        .selected-state {
           display: inline-block;
         }
-        &.selected {
-          .selected-state {
-            display: inline-block;
-          }
-          .unselected-state {
-            display: none;
-          }
-          button{
-              background-color:$btn-primary-backgrnd-color;
-          }
+
+        .unselected-state {
+          display: none;
         }
-        .btn {
-          font-size: 16px;
-          background-color: $secondary-action-color;
-          color: $white-color;
-          display:flex;
-        flex:2;
-        }
-        label {
-          color: rgba(133, 133, 133, 0.67);
-          display:flex;
-          flex:5;
-          padding-left:10px;
-          align-self: center;
-          word-break: break-all;
-        }
-        div{
-          display:flex;
-          align-self: center;
-          padding-right:10px;
-          cursor: pointer;
+
+        button {
+          background-color: $btn-primary-backgrnd-color;
         }
       }
-    }
-    .upload-doc {
-      display: flex;
-      justify-content: space-evenly;
-      flex: 1;
-      padding: 0px;
-      .upload-desc {
+
+      .btn {
+        font-size: 16px;
+        background-color: $secondary-action-color;
+        color: $white-color;
         display: flex;
-        flex-direction: column;
+        flex: 2;
+      }
+
+      label {
+        color: rgba(133, 133, 133, 0.67);
+        display: flex;
+        flex: 5;
+        padding-left: 10px;
+        align-self: center;
+        word-break: break-all;
+      }
+
+      div {
+        display: flex;
+        align-self: center;
+        padding-right: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .upload-doc {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    padding: 0px;
+
+    .upload-desc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 14px;
+      border: 1px solid $upload-desc-brdr-color;
+      padding: 20px;
+      text-align: center;
+      flex: 1;
+      margin-right: 10px;
+      margin-bottom: 38px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .upload-content {
+        div {
+          font-size: 16px;
+          letter-spacing: -0.3px;
+
+          &.title {
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          &.sub-text {
+            color: $upload-sub-title-desc-color;
+            word-break: break-all;
+          }
+        }
+      }
+
+      .thumb-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        display: flex;
         align-items: center;
-        border-radius: 14px;
-        border: 1px solid $upload-desc-brdr-color;
-        padding: 20px;
-        text-align: center;
-        flex: 1;
-        margin-right: 10px;
-        margin-bottom: 38px;
-        &:last-child {
-          margin-right: 0;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        .thumbnail {
+          margin: 0 auto;
+          max-width: 100px;
+          max-height: 100px;
         }
-        .upload-content {
-          div {
-            font-size: 16px;
-            letter-spacing: -0.3px;
-            &.title {
-              font-family: $muli-semi-bold;
-              font-size: 18px;
-              font-weight: 600;
-            }
-            &.sub-text {
-              color: $upload-sub-title-desc-color;
-              word-break: break-all;
-            }
-          }
-        }
-        .thumb-container {
-          position: relative;
-          width: 100px;
-          height: 100px;
-          display: flex;
-          align-items: center;
-          margin-bottom: 10px;
-          cursor:pointer;
-          .thumbnail {
-            margin: 0 auto;
-            max-width: 100px;
-            max-height: 100px;
-          }
-          .thumb-close-icon {
-            position: absolute;
-            padding: 1px 7px;
-            border-radius: 100%;
-            background-color: $white-color;
-            right: -10px;
-            top: -10px;
-            img {
-              width: 12px;
-              height: 12px;
-            }
+
+        .thumb-close-icon {
+          position: absolute;
+          padding: 1px 7px;
+          border-radius: 100%;
+          background-color: $white-color;
+          right: -10px;
+          top: -10px;
+
+          img {
+            width: 12px;
+            height: 12px;
           }
         }
       }
     }
-    .dropdown-menu.show {
-      right: 0 !important;
-      overflow: auto;
-      height: auto;
-      max-height: 264px;
-        }
+  }
+
+  .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    height: auto;
+    max-height: 264px;
+  }
+
   .dropdown-item {
     white-space: normal;
     word-break: break-word;
   }
+
   .dropdown-control .btn-dropdown {
     padding-right: 27px;
     max-height: 52px;
@@ -316,32 +373,37 @@ app-add-update-bank{
     overflow: hidden;
     text-overflow: ellipsis;
   }
-   [placeholder]:empty::before {
-  content: attr(placeholder);
 
-   color: $text-color-secondary
-}
+  [placeholder]:empty::before {
+    content: attr(placeholder);
 
-[placeholder]:empty:focus::before {
-  content: "";
-}
-  .content-editable {
-    border: 1px solid #94CCCC;
-    border-radius: 6px;
-    padding: .90rem;
-    background: $white-color;
-    color: $app-backgrnd-color;
-    word-break: break-word;
-    min-height: 52px;
-    &.view-mode {
-      background-color: rgba(0, 167, 167, 0.15) !important;
-    }
-    &.inline-error {
-      color: #e57300 !important;
-      background: #fff3e9;
-      &[placeholder]:empty::before {
-        color: #e57300 !important;
-      }
-    }
-}
+    color: $text-color-secondary
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+  // .content-editable {
+  //   border: 1px solid #94CCCC;
+  //   border-radius: 6px;
+  //   padding: .90rem;
+  //   background: $white-color;
+  //   color: $app-backgrnd-color;
+  //   word-break: break-word;
+  //   min-height: 52px;
+
+  //   &.view-mode {
+  //     background-color: rgba(0, 167, 167, 0.15) !important;
+  //   }
+
+  //   &.inline-error {
+  //     color: #e57300 !important;
+  //     background: #fff3e9;
+
+  //     &[placeholder]:empty::before {
+  //       color: #e57300 !important;
+  //     }
+  //   }
+  // }
 }

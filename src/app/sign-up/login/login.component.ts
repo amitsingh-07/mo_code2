@@ -15,10 +15,10 @@ import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+   INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -274,7 +274,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Investment status
         const investmentStatus = this.signUpService.getInvestmentStatus();
-        const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN];
+        const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
         const redirect_url = this.signUpService.getRedirectUrl();
         const journeyType = this.appService.getJourneyType();
         if (redirect_url) {
@@ -293,7 +293,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
           journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
           journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }
