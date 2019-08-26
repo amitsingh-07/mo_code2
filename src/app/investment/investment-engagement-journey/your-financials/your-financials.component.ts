@@ -12,6 +12,7 @@ import {
     ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
     INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
@@ -20,7 +21,6 @@ import {
     INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-
 
 @Component({
   selector: 'app-your-financials',
@@ -49,7 +49,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private signUpService: SignUpService,
   ) {
     this.translate.use('en');
     const self = this;
@@ -79,6 +80,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
+    // if (this.isLoggedInUser()) {
+    //   this.getUserFinancialDetails();
+    // }
     this.myFinancialForm = new FormGroup({
       monthlyIncome: new FormControl(this.financialFormValue.monthlyIncome),
       percentageOfSaving: new FormControl(this.financialFormValue.percentageOfSaving),
@@ -87,10 +91,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       suffEmergencyFund: new FormControl(
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
       ),
-     });
+    });
   }
- 
-   showEmergencyFundModal() {
+  showEmergencyFundModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
@@ -105,7 +108,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
   }
-  
+
   goToNext(form) {
     if (this.myFinancialForm.controls.suffEmergencyFund.value === 'no') {
       this.showEmergencyFundModal();
@@ -129,7 +132,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         ref.componentInstance.secondaryActionDim = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-        this.goBack(form);
+          this.goBack(form);
         });
         ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
@@ -152,12 +155,21 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   goBack(form) {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
   }
+  // isLoggedInUser() {
+  //   return this.authService.isSignedUser();
+  // }
+  // getUserFinancialDetails() {
+  //   this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
+  //     const financialDetails = data.objectList;
+  //     this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
+  //   });
+  // }
 }

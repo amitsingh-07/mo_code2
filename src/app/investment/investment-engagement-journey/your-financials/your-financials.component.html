@@ -1,9 +1,8 @@
-
 <div class="container-fluid max-width--1024 investment">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>Your Financials</h2>
+        <h2>{{ 'MY_FINANCIALS.TITLE' | translate}}</h2>
         <h6>{{ 'MY_FINANCIALS.HOW_MUCH_INVEST' | translate}}</h6>
         <div class="banner-image">
           <img src="assets/images/portfolio/investment-amount.svg" />
@@ -52,7 +51,7 @@
                     </div>
                     <div class="flex-col-6">
                       <div class="form-control form-control-right">
-                        <div name="percentageOfSaving" >
+                        <div name="percentageOfSaving">
                           <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput
                             maxLength="3" #percentageOfSaving formControlName="percentageOfSaving" value="0">
                           <i id="myFinancialPersentage" class="right">%</i>
@@ -72,7 +71,7 @@
                     <div class="flex-col-6">
                       <div class="form-control">
                         <i id="myFinancialDollerSymbTwo">$</i>
-                        <div name="totalAssets" >
+                        <div name="totalAssets">
                           <input class="input-control" type="text" id="myFinancialTotalAssetInput"
                             appCurrencyInputPortfolio maxLength="7" #totalAssets formControlName="totalAssets"
                             value="0">
@@ -92,7 +91,7 @@
                     <div class="flex-col-6">
                       <div class="form-control">
                         <i id="myFinancialDollerSymbThree">$</i>
-                        <div name="totalLiabilities" >
+                        <div name="totalLiabilities">
                           <input class="input-control" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio
                             maxLength="7" #totalLiabilities formControlName="totalLiabilities" value="0">
                         </div>

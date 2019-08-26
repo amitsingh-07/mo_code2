@@ -9,18 +9,18 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-
 
 @Component({
   selector: 'app-your-investment-amount',
@@ -47,14 +47,13 @@ export class YourInvestmentAmountComponent implements OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private signUpService: SignUpService,
   ) {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
-      self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
-      self.helpData = this.translate.instant('MY_FINANCIALS.helpData');
+      self.pageTitle = this.translate.instant('INVESTMENT_AMOUNT.TITLE');
       self.translator = this.translate.instant('MY_FINANCIALS');
       this.setPageTitle(self.pageTitle);
     });
@@ -77,11 +76,9 @@ export class YourInvestmentAmountComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.investmentAmountFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
-    // tslint:disable-next-line:max-line-length
     this.oneTimeInvestmentChkBoxVal = this.investmentAmountFormValues.oneTimeInvestmentChkBox
       ? this.investmentAmountFormValues.oneTimeInvestmentChkBox
       : false;
-    // tslint:disable-next-line:max-line-length
     this.monthlyInvestmentChkBoxVal = this.investmentAmountFormValues.monthlyInvestmentChkBox
       ? this.investmentAmountFormValues.monthlyInvestmentChkBox
       : false;
@@ -151,5 +148,6 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
     }
-   }
- }
+
+  }
+}
