@@ -37,6 +37,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   translator: any;
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -88,6 +89,10 @@ export class YourInvestmentAmountComponent implements OnInit {
     if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
       this.monthlyInvestmentChkBoxVal = true;
     }
+    this.buildInvestAmountForm();
+  }
+
+  buildInvestAmountForm() {
     this.investmentAmountForm = new FormGroup({
       initialInvestment: new FormControl(
         this.investmentAmountFormValues.initialInvestment,
@@ -100,8 +105,11 @@ export class YourInvestmentAmountComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
       // tslint:disable-next-line:max-line-length
-      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal)
+      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal),
     });
+    if (this.isLoggedInUser() && this.isFirstTimeUser()) {
+      this.getUserFinancialDetails();
+    }
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
@@ -149,5 +157,21 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
     }
 
+  }
+  isLoggedInUser() {
+    return this.authService.isSignedUser();
+  }
+  getUserFinancialDetails() {
+    this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
+      const financialDetails = data.objectList;
+      this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
+    });
+  }
+  isFirstTimeUser() {
+    if (typeof this.investmentAmountFormValues.firstTimeUser === 'undefined') {
+      this.investmentAmountFormValues.firstTimeUser = true;
+      return true;
+    }
+    return false;
   }
 }

@@ -38,8 +38,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   translator: any;
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
-
-  constructor(
+  firstTimeUser = true;
+ constructor(
     private router: Router,
     private modal: NgbModal,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
@@ -80,19 +80,18 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
-    // if (this.isLoggedInUser()) {
-    //   this.getUserFinancialDetails();
-    // }
+    this.buildFrom();
+   }
+  buildFrom() {
     this.myFinancialForm = new FormGroup({
       monthlyIncome: new FormControl(this.financialFormValue.monthlyIncome),
       percentageOfSaving: new FormControl(this.financialFormValue.percentageOfSaving),
       totalAssets: new FormControl(this.financialFormValue.totalAssets),
       totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
-        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
-      ),
-    });
-  }
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund),
+     });
+ }
   showEmergencyFundModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
@@ -163,13 +162,4 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
   }
-  // isLoggedInUser() {
-  //   return this.authService.isSignedUser();
-  // }
-  // getUserFinancialDetails() {
-  //   this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
-  //     const financialDetails = data.objectList;
-  //     this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
-  //   });
-  // }
 }

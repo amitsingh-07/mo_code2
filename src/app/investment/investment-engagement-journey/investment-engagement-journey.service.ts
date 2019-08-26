@@ -244,7 +244,8 @@ export class InvestmentEngagementJourneyService {
       percentageOfSaving: this.investmentEngagementJourneyFormData.percentageOfSaving,
       totalAssets: this.investmentEngagementJourneyFormData.totalAssets,
       totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
-      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund
+      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
+     
     };
   }
   setYourFinancial(formData) {
@@ -260,8 +261,9 @@ export class InvestmentEngagementJourneyService {
       initialInvestment: this.investmentEngagementJourneyFormData.initialInvestment,
       monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
       oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
-      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
-    };
+      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox,
+      firstTimeUser: this.investmentEngagementJourneyFormData.firstTimeUser
+     };
   }
   setYourInvestmentAmount(formData) {
     this.investmentEngagementJourneyFormData.initialInvestment = formData.initialInvestment;
@@ -380,6 +382,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
     this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
     this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+    this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
 }
