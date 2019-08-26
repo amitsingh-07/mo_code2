@@ -46,10 +46,12 @@ $pine-green-color: #006d75;
 $monte-carlo-color: #81d2d2;
 $persian-teal-color: #008c8c;
 $morning-glory-color: #98dfdf;
+$polar-blue-color: #EAFAF9;
 
 // common color
 $login-shadow-color : rgba(0, 0, 0, 0.2);
 $btn-shadow-color: rgba(0, 0, 0, 0.14);
+$btn-dark-shadow-color: rgba(0, 0, 0, 0.21);
 
 // app background
 $app-backgrnd-color: #00a7a7;
@@ -121,7 +123,7 @@ $step-indicator-active : #00908e;
 
 // Portfolio
 $intro-block-heading-color : #8cd7d7;
-$btn-proceed-shadow-color : rgba(0, 0, 0, 0.21);
+$btn-proceed-shadow-color : $btn-dark-shadow-color;
 $question-info-brdr-color : $silver-color;
 $risk-table-cell-bg-color : #f2f9fa;
 $risk-table-cell-color : $darker-teal-color;
@@ -179,6 +181,7 @@ $bonds-btn-bg-color: $black-squeeze-grey-color;
 /**** Investmnent colors ****/
 
 /*** form colors ***/
+$form-group-shadow-color: $btn-dark-shadow-color;
 $form-control-disabled-txt-color: $teal-color;
 $form-control-disabled-bg-color: $swan-down-blue-color;
 // form input placeholder colors
@@ -187,6 +190,7 @@ $form-input-placeholder-txt-color: $silver-grey-color;
 // form dropdown colors
 $form-dropdown-bg-color: $white-color;
 $form-dropdown-txt-color: $teal-color;
+$form-dropdown-item-hover-bg-color: $polar-blue-color;
 // inline-error button colors
 $form-error-btn-bg-color: $crusta-orange-color;
 $form-error-btn-txt-color: $white-color;

@@ -29,8 +29,8 @@ app-additional-declaration1 {
       height: calc(70vh);
     }
 
-    .btn-group--toggle{
-      label{
+    .btn-group--toggle {
+      label {
         font-size: 16px;
         font-family: $muli-regular;
       }
@@ -54,27 +54,33 @@ app-additional-declaration1 {
       padding-right: 14px;
     }
 
-    .step-indicator-container {
-      padding: 20px 0px;
-      top: 76px;
-      @include allmobiles{
-        background-color: $white-color;
-        padding: 10px 0px;
-        top: 60px;
-        position: relative;
-      }
-      .container-fluid {
-        padding-top: 0px;
-        padding-bottom: 0px;
-      }    
-      @include stepindicator-desktop-extraspace;
-    }
-    .container-fluid {
-      padding-top: 16px;
-      @include allmobiles{
-      padding-top: 80px;
-    }
-  }
+    // .step-indicator-container {
+    //   padding: 20px 0px;
+    //   top: 76px;
+
+    //   @include allmobiles {
+    //     background-color: $white-color;
+    //     padding: 10px 0px;
+    //     top: 60px;
+    //     position: relative;
+    //   }
+
+    //   .container-fluid {
+    //     padding-top: 0px;
+    //     padding-bottom: 0px;
+    //   }
+
+    //   @include stepindicator-desktop-extraspace;
+    // }
+
+    // .container-fluid {
+    //   padding-top: 16px;
+
+    //   @include allmobiles {
+    //     padding-top: 80px;
+    //   }
+    // }
+
     .tooltip-icon {
       background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
@@ -118,15 +124,15 @@ app-additional-declaration1 {
       border-color: $fixed-btn-brdr-color;
     }
 
-    .inline-error-inv {
-      color: $inline-error-border-color;
-      border: 1px solid $inline-error-border-color !important;
-      color: $inline-error-border-color;
+    // .inline-error-inv {
+    //   color: $inline-error-border-color;
+    //   border: 1px solid $inline-error-border-color !important;
+    //   color: $inline-error-border-color;
 
-      input {
-        color: $inline-error-border-color !important;
-      }
-    }
+    //   input {
+    //     color: $inline-error-border-color !important;
+    //   }
+    // }
 
     .input-control {
       text-align: left;
@@ -222,31 +228,31 @@ app-additional-declaration1 {
       }
     }
 
-    .white-bg-checkbox {
-      background-color: $white-color;
-      padding: 10px 18px 10px 18px;
-      border-radius: 6px;
-      font-family: $muli;
+    // .white-bg-checkbox {
+    //   background-color: $white-color;
+    //   padding: 10px 18px 10px 18px;
+    //   border-radius: 6px;
+    //   font-family: $muli;
 
-      label {
-        padding: 0px 0 0px 35px;
-      }
+    //   label {
+    //     padding: 0px 0 0px 35px;
+    //   }
 
-      .option-row {
-        margin-left: 0px;
-      }
+    //   .option-row {
+    //     margin-left: 0px;
+    //   }
 
-      .option-title {
-        color: $black-color;
-        font-size: 18px;
-      }
+    //   .option-title {
+    //     color: $black-color;
+    //     font-size: 18px;
+    //   }
 
-      .option-desc {
-        color: $dark-grey-color;
-        font-family: $muli-semi-bold;
-        font-size: 16px;
-      }
-    }
+    //   .option-desc {
+    //     color: $dark-grey-color;
+    //     font-family: $muli-semi-bold;
+    //     font-size: 16px;
+    //   }
+    // }
 
     .autofill-link {
       border: 1px solid $secondary-action-color;
@@ -277,35 +283,35 @@ app-additional-declaration1 {
       }
     }
 
-    .inline-error-inv {
-      color: $inline-error-border-color;
-      border: 1px solid $inline-error-border-color !important;
-      color: $inline-error-border-color;
+    // .inline-error-inv {
+    //   color: $inline-error-border-color;
+    //   border: 1px solid $inline-error-border-color !important;
+    //   color: $inline-error-border-color;
 
-      input {
-        color: $inline-error-border-color !important;
-      }
-    }
+    //   input {
+    //     color: $inline-error-border-color !important;
+    //   }
+    // }
 
-    .dropdown-menu.show {
-      right: 0 !important;
-      overflow: auto;
-      height: auto;
-      max-height: 264px;
-    }
+    // .dropdown-menu.show {
+    //   right: 0 !important;
+    //   overflow: auto;
+    //   height: auto;
+    //   max-height: 264px;
+    // }
 
-    .dropdown-item {
-      white-space: normal;
-      word-break: break-word;
-    }
+    // .dropdown-item {
+    //   white-space: normal;
+    //   word-break: break-word;
+    // }
 
-    .dropdown-control .btn-dropdown {
-      padding-right: 27px;
-      max-height: 52px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    // .dropdown-control .btn-dropdown {
+    //   padding-right: 27px;
+    //   max-height: 52px;
+    //   white-space: nowrap;
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    // }
 
     .office-addr-lbl {
       margin-top: 25px;
@@ -340,32 +346,37 @@ app-additional-declaration1 {
       }
     }
   }
-   [placeholder]:empty::before {
-  content: attr(placeholder);
- 
-   color: $text-color-secondary
-}
 
-[placeholder]:empty:focus::before {
-  content: "";
-}
-  .content-editable {
-    border: 1px solid #94CCCC;
-    border-radius: 6px;
-    padding: .90rem;
-    background: $white-color;
-    color: $app-backgrnd-color;
-    word-break: break-word;
-    min-height: 52px;
-    &.view-mode {
-      background-color: rgba(0, 167, 167, 0.15) !important;
-    }
-    &.inline-error {
-      color: #e57300 !important;
-      background: #fff3e9;
-      &[placeholder]:empty::before {
-        color: #e57300 !important;
-      }
-    }
-}
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+
+    color: $text-color-secondary
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+  // .content-editable {
+  //   border: 1px solid #94CCCC;
+  //   border-radius: 6px;
+  //   padding: .90rem;
+  //   background: $white-color;
+  //   color: $app-backgrnd-color;
+  //   word-break: break-word;
+  //   min-height: 52px;
+
+  //   &.view-mode {
+  //     background-color: rgba(0, 167, 167, 0.15) !important;
+  //   }
+
+  //   &.inline-error {
+  //     color: #e57300 !important;
+  //     background: #fff3e9;
+
+  //     &[placeholder]:empty::before {
+  //       color: #e57300 !important;
+  //     }
+  //   }
+  // }
 }

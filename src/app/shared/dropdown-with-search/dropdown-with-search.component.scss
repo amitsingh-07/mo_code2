@@ -1,18 +1,18 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 
-.dropdown-item {
-    white-space: normal;
-    word-break: break-all;
-    // padding-bottom: 16px; 
-  }
+// .dropdown-item {
+//     white-space: normal;
+//     word-break: break-all;
+//     // padding-bottom: 16px; 
+//   }
   
   .dropdown-control .btn-dropdown {
     padding-right: 27px;
     max-height: 52px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
   }
   
   .dropdown-menu.show {

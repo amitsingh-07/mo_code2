@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-confirm-portfolio {
   .container-fluid {
     @include allmobiles {
@@ -8,6 +9,7 @@ app-confirm-portfolio {
       padding-bottom: 66px;
     }
   }
+
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
       color: $portfolio-allocation-container-txt-color;
@@ -16,10 +18,12 @@ app-confirm-portfolio {
       .portfolio-allocation-details__content {
         margin-bottom: 30px;
         border-radius: 6px;
+
         .portfolio-allocation-details__content__desc {
           .portfolio_img {
             text-align: center;
             padding-top: 30px;
+
             img {
               width: 80px;
               height: 80px;
@@ -35,10 +39,12 @@ app-confirm-portfolio {
             text-align: center;
             border-radius: 3px;
             padding: 20px 15px;
-            @include allmobiles{
+
+            @include allmobiles {
               font-size: 14px;
               padding: 20px 30px;
             }
+
             strong {
               font-family: $muli-bold;
             }
@@ -68,8 +74,10 @@ app-confirm-portfolio {
         }
       }
     }
+
     .asset-allocation {
       margin-top: 33px;
+
       .title {
         font-family: $muli-bold;
         font-size: 21px;
@@ -78,6 +86,7 @@ app-confirm-portfolio {
         padding-bottom: 14px;
       }
     }
+
     .faq_link {
       font-family: $muli-semi-bold;
       font-size: 16px;
@@ -85,9 +94,11 @@ app-confirm-portfolio {
       letter-spacing: -0.2px;
       text-align: center;
       padding: 21px 0 105px;
-      @include allmobiles{
+
+      @include allmobiles {
         padding: 21px 0 50px;
       }
+
       a {
         color: $white-color;
         text-decoration: underline;
@@ -105,9 +116,11 @@ app-confirm-portfolio {
     text-align: center;
     color: $white-color;
     margin-bottom: 30px;
-    @include allmobiles{
+
+    @include allmobiles {
       margin: 0;
     }
+
     .review-italic {
       font-family: $muli-italic;
       font-size: 11px;
@@ -118,16 +131,18 @@ app-confirm-portfolio {
       padding-top: 10px;
     }
   }
+
   .btn__footer--fixed {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
     font-size: 24px;
   }
+
   hr {
     border-color: $teal-color;
     margin: 0;
   }
-  
+
   .recommend-footer {
     position: fixed;
     bottom: 0;
@@ -143,9 +158,10 @@ app-confirm-portfolio {
       justify-content: space-around;
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-      .btn-primary{
+
+      .btn-primary {
         font-size: 22px;
-        padding:10px 20px;
+        padding: 10px 20px;
       }
     }
 
