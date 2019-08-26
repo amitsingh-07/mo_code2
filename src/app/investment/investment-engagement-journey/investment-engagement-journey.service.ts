@@ -1,28 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { appConstants } from '../../app.constants';
 
+import { appConstants } from '../../app.constants';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { IMyFinancials } from './your-financials/your-financials.interface';
-import { InvestmentPeriodFormError } from './investment-period/investment-period-form-error';
-import { PersonalInfo } from './investment-period/investment-period';
-import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentApiService } from '../investment-api.service';
+import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
+import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-journey-form-errors';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
+import { PersonalInfo } from './investment-period/investment-period';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
-
 @Injectable({
   providedIn: 'root'
 })
 export class InvestmentEngagementJourneyService {
   private investmentEngagementJourneyFormData: InvestmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
-  private InvestmentPeriodFormError: any = new InvestmentPeriodFormError();
+  private investmentEngagementJourneyFormErrors: any = new InvestmentEngagementJourneyFormErrors();
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
+    private signUpService: SignUpService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService
   ) {
@@ -92,11 +92,11 @@ export class InvestmentEngagementJourneyService {
     return this.getFormError(invalid[0], invalidFormat[0][0]);
   }
   getFormError(formCtrlName: string, validation: string): string {
-    return this.InvestmentPeriodFormError.formFieldErrors[formCtrlName][validation];
+    return this.investmentEngagementJourneyFormErrors.formFieldErrors[formCtrlName][validation];
   }
 
   // tslint:disable-next-line:cognitive-complexity
-  doFinancialValidations(form) {
+  investmentAmountValidation(form) {
     if (form.value.firstChkBox && form.value.secondChkBox) {
       // tslint:disable-next-line:max-line-length
       if (
@@ -105,70 +105,75 @@ export class InvestmentEngagementJourneyService {
         Number(this.removeCommas(form.value.monthlyInvestment)) <
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
-        return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['one'];
+        return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['one'];
       } else if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
-        return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['two'];
+        return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       } else if (
         Number(this.removeCommas(form.value.initialInvestment)) <
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
       ) {
-        return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['three'];
+        return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount
       ) {
-        return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['three'];
+        return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.secondChkBox) {
       if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
       ) {
-        return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['two'];
+        return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       }
     } else {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['four'];
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['four'];
     }
     // tslint:disable-next-line:triple-equals
     if (
       Number(this.removeCommas(form.value.initialInvestment)) === 0 &&
       Number(this.removeCommas(form.value.monthlyInvestment)) === 0
     ) {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['zero'];
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(this.removeCommas(form.value.initialInvestment)) < 100 &&
       Number(this.removeCommas(form.value.monthlyInvestment)) < 50
     ) {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['more'];
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length
-    } else if (
-      Number(this.removeCommas(form.value.initialInvestment)) >
+    } else {
+      return false;
+    }
+  }
+  financialValidation(form, investAmount) {
+    if (
+      Number(this.removeCommas(investAmount.initialInvestment)) >
       Number(this.removeCommas(form.value.totalAssets)) &&
-      Number(this.removeCommas(form.value.monthlyInvestment)) >
+      Number(this.removeCommas(investAmount.monthlyInvestment)) >
       (Number(this.removeCommas(form.value.percentageOfSaving)) *
         Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations'][
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations'][
         'moreassetandinvestment'
       ];
     } else if (
-      Number(this.removeCommas(form.value.initialInvestment)) >
+      Number(this.removeCommas(investAmount.initialInvestment)) >
       Number(this.removeCommas(form.value.totalAssets))
     ) {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations']['moreasset'];
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['moreasset'];
       // tslint:disable-next-line:max-line-length
     } else if (
-      Number(this.removeCommas(form.value.monthlyInvestment)) >
+      Number(this.removeCommas(investAmount.monthlyInvestment)) >
       (Number(this.removeCommas(form.value.percentageOfSaving)) *
         Number(this.removeCommas(form.value.monthlyIncome)) / 100)
     ) {
-      return this.InvestmentPeriodFormError.formFieldErrors['financialValidations'][
+      return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations'][
         'moreinvestment'
       ];
     } else {
@@ -233,28 +238,34 @@ export class InvestmentEngagementJourneyService {
     };
   }
 
-  // MY FINANCIALS
-  getMyFinancials(): IMyFinancials {
+  getYourFinancial() {
     return {
       monthlyIncome: this.investmentEngagementJourneyFormData.monthlyIncome,
       percentageOfSaving: this.investmentEngagementJourneyFormData.percentageOfSaving,
       totalAssets: this.investmentEngagementJourneyFormData.totalAssets,
       totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
-      initialInvestment: this.investmentEngagementJourneyFormData.initialInvestment,
-      monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
-      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
-      oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
-      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
+      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund
     };
   }
-  setMyFinancials(formData) {
+  setYourFinancial(formData) {
     this.investmentEngagementJourneyFormData.monthlyIncome = formData.monthlyIncome;
     this.investmentEngagementJourneyFormData.percentageOfSaving = formData.percentageOfSaving;
     this.investmentEngagementJourneyFormData.totalAssets = formData.totalAssets;
     this.investmentEngagementJourneyFormData.totalLiabilities = formData.totalLiabilities;
+    this.investmentEngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.commit();
+  }
+  getYourInvestmentAmount() {
+    return {
+      initialInvestment: this.investmentEngagementJourneyFormData.initialInvestment,
+      monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
+      oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
+      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
+    };
+  }
+  setYourInvestmentAmount(formData) {
     this.investmentEngagementJourneyFormData.initialInvestment = formData.initialInvestment;
     this.investmentEngagementJourneyFormData.monthlyInvestment = formData.monthlyInvestment;
-    this.investmentEngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
     this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
     this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox = formData.secondChkBox;
     this.commit();
@@ -359,5 +370,16 @@ export class InvestmentEngagementJourneyService {
       promoCodeCat: promoCodeType
     };
     return this.apiService.verifyPromoCode(promoCode);
+  }
+  // #SET THE FINANCIAL PAGE.
+  getUserFinancialDetails() {
+    return this.apiService.getUserFinancialDetails();
+  }
+  setApiFinancialDetails(financialDetails) {
+    this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
+    this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
+    this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
+    this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+    this.commit();
   }
 }
