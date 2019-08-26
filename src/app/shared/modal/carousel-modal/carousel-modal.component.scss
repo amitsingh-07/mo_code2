@@ -20,18 +20,19 @@ app-carousel-modal {
   .title-div {
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    height: 40px;
     .title-img {
       margin-right: 4px;
     }
-
-    .title-txt {
-      font-family: $muli-bold;
-      font-size: 22px;
-      color: #ff872f;
-      line-height: normal;
-      letter-spacing: normal;
-    }
+  }
+  
+  .title-txt {
+    font-family: $muli-bold;
+    font-size: 22px;
+    color: #ff872f;
+    line-height: normal;
+    letter-spacing: normal;
   }
 
   .img {
