@@ -89,7 +89,8 @@ export class PortfolioListComponent implements OnInit {
   }
 
   detail(portfolio) {
-    if (!this.topClickedFlag) {
+    const selectedFlag = window.getSelection().toString();
+    if (!this.topClickedFlag && !selectedFlag) {
       this.detailSelected.emit(portfolio);
     }
     this.topClickedFlag = false;

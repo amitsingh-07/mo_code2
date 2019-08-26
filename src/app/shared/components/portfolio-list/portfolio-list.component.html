@@ -1,4 +1,4 @@
-<!-- Widget Header -->
+<!-- Widget Content-->
 <div class="multiple-portfolio-container" *ngIf="portfolioList?.length > 0">
   <div class="container-fluid max-width--1024">
       <div class="multiple-portfolio-block">
@@ -12,9 +12,9 @@
                           <div class="portfolio-details">
                               <div class="portfolio-name">{{portfolio.productName}}</div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.productCode}}</div>
-                              <div class="portfolio-value"><span>$0</span><span (click)="gotoTopUp()">1 {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span></div>
+                              <div class="portfolio-value"><span>$0</span><span class="cursorPointer" (click)="gotoTopUp()">1 {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span></div>
                               <div class="portfolio-btn" >
-                                <span (click)="gotoTopUp()" class="top-up-btn">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
+                                <span (click)="gotoTopUp()" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
                                 <span class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolioData?.cashAccountDetails?.availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                               </div>
                           </div>
@@ -33,7 +33,7 @@
                           <div class="portfolio-details">
                               <div class="portfolio-name">{{portfolio?.productName}}</div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.productCode}}</div>
-                              <div class="portfolio-value"><span>{{portfolio?.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span (click)="gotoTopUp()">1 {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span></div>
+                              <div class="portfolio-value"><span>{{portfolio?.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="cursorPointer" (click)="gotoTopUp()">1 {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span></div>
                               <div class="portfolio-btn">
                                 <span class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
                                 <span class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolioData?.cashAccountDetails?.availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
