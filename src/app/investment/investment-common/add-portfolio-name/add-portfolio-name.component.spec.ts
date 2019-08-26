@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PortfolioNamingComponent } from './portfolio-naming.component';
+import { AddPortfolioNameComponent } from './add-portfolio-name.component';
 
-describe('PortfolioNamingComponent', () => {
-  let component: PortfolioNamingComponent;
-  let fixture: ComponentFixture<PortfolioNamingComponent>;
+describe('AddPortfolioNameComponent', () => {
+  let component: AddPortfolioNameComponent;
+  let fixture: ComponentFixture<AddPortfolioNameComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioNamingComponent ]
+      declarations: [ AddPortfolioNameComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PortfolioNamingComponent);
+    fixture = TestBed.createComponent(AddPortfolioNameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

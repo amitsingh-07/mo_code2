@@ -32,6 +32,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 import {
     AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -370,7 +371,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
               ) {
                 this.investmentAccountService.setAccountSuccussModalCounter(0);
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
+                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
               } else {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending

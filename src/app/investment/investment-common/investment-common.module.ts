@@ -9,18 +9,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../shared/shared.module';
+import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
+import { AddPortfolioStatusComponent } from './add-portfolio-status/add-portfolio-status.component';
+import {
+    AccountCreationErrorModalComponent
+} from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
+import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
+import {
+    FundingInstructionsComponent
+} from './funding-instructions/funding-instructions.component';
+import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { InvestmentCommonRoutingModule } from './investment-common-routing.module';
 
-
-import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
-import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
-import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
-
-import {
-  AccountCreationErrorModalComponent
-} from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
-import { PortfolioNamingComponent } from './portfolio-naming/portfolio-naming.component';
-import { AddPortfolioStatusComponent } from './add-portfolio-status/add-portfolio-status.component';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
@@ -50,8 +51,9 @@ export function createTranslateLoader(http: HttpClient) {
     AcknowledgementComponent,
     FundingInstructionsComponent,
     AccountCreationErrorModalComponent,
-    PortfolioNamingComponent,
-    AddPortfolioStatusComponent
+    AddPortfolioNameComponent,
+    AddPortfolioStatusComponent,
+    FundingIntroComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe]

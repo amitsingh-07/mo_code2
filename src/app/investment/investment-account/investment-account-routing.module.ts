@@ -18,7 +18,6 @@ import {
 } from './additional-declaration2/additional-declaration2.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
-import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import {
     PersonalDeclarationComponent
@@ -106,11 +105,6 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
     canActivate: [InvestmentAccountGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.FUND_INTRO,
-    component: FundingIntroComponent,
-    canActivate: [AuthGuard]
   }
 ];
 

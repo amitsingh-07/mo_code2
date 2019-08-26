@@ -47,7 +47,7 @@ import {
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
-import { FundDetailsComponent } from './investment/investment-engagement-journey/fund-details/fund-details.component';
+import { FundDetailsComponent } from './investment/investment-common/fund-details/fund-details.component';
 import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';

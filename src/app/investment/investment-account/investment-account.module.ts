@@ -25,8 +25,7 @@ import {
 } from './additional-declaration1/additional-declaration1.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
-import { FundingIntroComponent } from './funding-intro/funding-intro.component';
-import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
+import { InvestmentAccountRoutingModule } from '../investment-account/investment-account-routing.module';
 import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
@@ -81,7 +80,6 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclaration1Component,
     AccountStatusComponent,
     UploadDocumentBOComponent,
-    FundingIntroComponent
   ],
   entryComponents: [],
   providers: [CurrencyPipe]
