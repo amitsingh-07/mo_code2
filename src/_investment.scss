@@ -1,6 +1,31 @@
 @import './variables';
 @import './mixins';
 
+.container-fluid {
+
+  &.invest-web-width {
+    @include LargeDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+  }
+
+  &.invest-web-pt-90 {
+    @include LargeDevice {
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      padding-top: 90px;
+    }
+  }
+}
+
 //common styles
 .investment {
   h2 {
@@ -66,28 +91,6 @@
 
     @include allmobiles {
       padding-top: 80px;
-    }
-
-    &.invest-web-width {
-      @include LargeDevice {
-        max-width: 600px;
-        padding-top: 90px;
-      }
-
-      @include MediumDevice {
-        max-width: 600px;
-        padding-top: 90px;
-      }
-    }
-
-    &.invest-web-pt-90 {
-      @include LargeDevice {
-        padding-top: 90px;
-      }
-
-      @include MediumDevice {
-        padding-top: 90px;
-      }
     }
   }
 
