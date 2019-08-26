@@ -9,16 +9,16 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
@@ -36,10 +36,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   form: any;
   translator: any;
-  oneTimeInvestmentChkBoxVal: boolean;
-  monthlyInvestmentChkBoxVal: boolean;
-  firstTimeUser = true;
- constructor(
+  constructor(
     private router: Router,
     private modal: NgbModal,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
@@ -81,7 +78,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.footerService.setFooterVisibility(false);
     this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
     this.buildFrom();
-   }
+  }
   buildFrom() {
     this.myFinancialForm = new FormGroup({
       monthlyIncome: new FormControl(this.financialFormValue.monthlyIncome),
@@ -90,8 +87,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund),
-     });
- }
+    });
+  }
   showEmergencyFundModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
