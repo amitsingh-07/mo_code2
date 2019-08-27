@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./transfer-instructions-modal.component.scss']
 })
 export class TransferInstructionsModalComponent implements OnInit {
-  FUND_YOUR_ACCOUNT;
+  FUNDING_INSTRUCTIONS;
   activeMode = 'BANK';
   showBankTransferSteps = true;
 

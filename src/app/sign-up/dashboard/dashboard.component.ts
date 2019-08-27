@@ -8,9 +8,9 @@ import { ConfigService, IConfig } from '../../config/config.service';
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+} from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -18,10 +18,8 @@ import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -33,6 +31,7 @@ import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -85,7 +84,7 @@ export class DashboardComponent implements OnInit {
     private willWritingService: WillWritingService,
     private guideMeApiService: GuideMeApiService,
     public modal: NgbModal,
-    public topupAndWithDrawService: TopupAndWithDrawService,
+    public manageInvestmentsService: ManageInvestmentsService,
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService
@@ -100,7 +99,7 @@ export class DashboardComponent implements OnInit {
         ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
         ref.componentInstance.portfolioExist = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_INVESTMENT]);
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
          });
       }
      });
@@ -187,7 +186,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.ROOT]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
   }
 
   goToEditProfile() {
@@ -201,7 +200,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToInvOverview() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -223,7 +222,7 @@ export class DashboardComponent implements OnInit {
           if (beneficialOwner) {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
           } else {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
           }
         } else {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
@@ -384,8 +383,8 @@ export class DashboardComponent implements OnInit {
   * Method to get transfer details
   */
   getTransferDetails() {
-    this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
-      this.topupAndWithDrawService.setBankPayNowDetails(data.objectList[0]);
+    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
+      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
@@ -396,14 +395,14 @@ export class DashboardComponent implements OnInit {
   * Method to show transfer instruction steps modal
   */
   showTransferInstructionModal() {
-    this.topupAndWithDrawService.showTransferInstructionModal();
+    this.manageInvestmentsService.showTransferInstructionModal();
   }
 
   /*
   * Method to show recipients/entity name instructions modal
   */
   showPopUp() {
-    this.topupAndWithDrawService.showPopUp();
+    this.manageInvestmentsService.showPopUp();
   }
 
   // Show SRS Joint Account Popup

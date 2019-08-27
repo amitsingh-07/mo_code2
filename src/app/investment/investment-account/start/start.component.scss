@@ -1,0 +1,183 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-start {
+  h2 {
+    font-size: 30px !important;
+    margin-bottom: 15px;
+
+    @include allmobiles {
+      font-size: 21px;
+    }
+  }
+
+  .container-fluid {
+    padding-top: 50px !important;
+
+    @include allmobiles {
+      padding: 45px 0;
+    }
+  }
+
+  // .back-btn {
+  //     background-image: url('/assets/images/back-web.svg');
+  //     width: 43px;
+  //     height: 43px;
+  //     cursor: pointer;
+  //     position: absolute;
+  //     top: 5%;
+  //     left: 20px;
+  //     background-repeat: no-repeat;
+  //   }
+
+  // .yes-login-but {
+  //   border-radius: 6px;
+  //   background-color: $white-color;
+  //   box-shadow: 0 6px 7px 0 $btn-shadow-color;
+  //   width: 100%;
+  //   height: 57px;
+  //   font-family: $muli-bold;
+  //   font-size: 22px;
+
+  //   letter-spacing: -0.2px;
+  //   text-align: center;
+  //   color: $teal-color;
+  // }
+
+  // .no-login-but {
+  //   font-size: 18px;
+  //   font-family: $muli-bold;
+  //   letter-spacing: -0.2px;
+  //   text-align: center;
+  //   color: $white-color;
+  //   width: 100%;
+  //   height: 57px;
+  //   background-color: $teal-color;
+  //   border: none;
+  // }
+
+  // .prelogin-wrapper__title {
+  //   font-family: $muli-bold;
+  //   font-size: 21px;
+  //   width: 327px;
+  //   letter-spacing: -0.3px;
+  //   color: $white-color;
+  //   text-align: center;
+  //   @include allmobiles {
+  //     text-align: center;
+  //   }
+  // }
+  .signup-wrapper {
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 15px;
+    padding-left: 30px;
+
+    @include allmobiles {
+      padding-bottom: 0;
+      padding-left: 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    @include tablet {
+      padding-bottom: 0;
+      padding-left: 0;
+    }
+
+    .signup-wrapper__header-icon {
+      @include allmobiles {
+        width: 282px;
+        height: 190px;
+        max-width: 282px;
+        max-height: 190px;
+      }
+
+      @include tablet {
+        width: 300px;
+        height: 267px;
+      }
+
+      width: 400px;
+      height: 270px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .autofill-link {
+    &.postlogin {
+      border: 1px solid $sing-pass-border-color;
+      padding: 15px 20px;
+      background-color: $sing-pass-bg-color;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 12px 0 $sing-pass-shadow-color;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0px;
+
+      .autofill-text {
+        font-family: $muli-bold;
+        color: $inline-error-border-color;
+        font-size: 21px;
+        padding-bottom: 0;
+      }
+
+      .autofill-logo {
+        width: 107px;
+        height: 40px;
+      }
+
+      .autofill-estimation {
+        display: flex;
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: -0.1px;
+        text-align: center;
+        color: $autofill-time-color;
+      }
+    }
+  }
+
+  .widgets {
+    .widget {
+      background: $widget-bg-color;
+      padding-bottom: 28px;
+      border-radius: 6px;
+      margin-bottom: 11px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .widget-title {
+        font-family: $muli-bold;
+        font-size: 21px;
+        letter-spacing: -0.2px;
+        color: $widget-title-txt-color;
+        background-color: $widget-title-bg-color;
+        padding: 16px 25px 13px;
+        border-radius: 6px;
+      }
+
+      .widget-body {
+        font-family: $muli-regular;
+        font-size: 15px;
+        line-height: 1.4;
+        letter-spacing: -0.2px;
+        color: $widget-body-color;
+        padding: 0 21px;
+
+        .desc {
+          padding: 19px 0;
+        }
+      }
+    }
+  }
+}

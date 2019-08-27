@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
+import { InvestmentAccountCommon } from '../../investment/investment-account/investment-account-common';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment/investment-account/investment-account.constant';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -52,7 +52,7 @@ export class EditResidentialAddressComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
       this.setPageTitle(this.pageTitle);
-      this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
+      this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
       this.showLoader = false;
     });
   }
@@ -211,7 +211,7 @@ buildForm(): FormGroup {
     if (this.formValues.country) {
       defaultCountry = this.formValues.country;
     } else if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE);
     } else {
       defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode);
     }
@@ -281,7 +281,6 @@ getInlineErrorStatus(control) {
       return false;
     } else {
       this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
-        console.log (data);
         if (form.controls.resAddressProof && form.controls.resAddressProof.value ) {
         this.uploadDocument();
         }
