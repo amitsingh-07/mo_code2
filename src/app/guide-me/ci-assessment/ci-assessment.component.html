@@ -35,7 +35,7 @@
                           <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" 
                                     [max]="7" [step]="1" [tooltips]="[ true ]"></nouislider>
                           <div class="dash"></div>
-                          <div class="ci-note">Note: Recovery period is usually 2 to 5 years.</div>  
+                          <div class="ci-note"><u>{{ 'CI_ASSESSMENT.CI_COVERAGE_NOTE' | translate}}</u>{{ 'CI_ASSESSMENT.CI_COVERAGE_RECOVERY' | translate}}</div>  
                           <div class="flex-row mt15">
                             <div class="flex-col-9">
                               <div class="form-group-with-bg--content-label with-help-icon" for="name">{{ 'CI_ASSESSMENT.UNTIL_RETIREMENT_AGE' | translate}}

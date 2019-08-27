@@ -136,6 +136,8 @@
     "CI_COVERAGE_MULTI_SALARY": "years of my salary - ",
     "CI_COVERAGE_MULTI_ANNUAL_BONUS": " / month and annual bonus of ",
     "CI_COVERAGE_MULTI_SUFFIX": " (based on earlier inputs) during my recovery period.",
+    "CI_COVERAGE_RECOVERY": " Recovery period is usually 2 to 5 years.",
+    "CI_COVERAGE_NOTE": "Note:",
     "UNTIL_RETIREMENT_AGE": "I need to cover till the age of",
     "CI_MULTIPLIER": 4,
     "UNTIL_RETIREMENTAGE": 65,
