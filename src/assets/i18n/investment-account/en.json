@@ -316,12 +316,6 @@
       "DESCRIPTION": "Please wait while we try to create account."
     }
   },
-  "FUND_INTRO": {
-    "TITLE": "Fund Your Account",
-    "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK": "Proceed",
-    "SUCCESS": "Investment Account <br>Setup Successful"
-  },
   "ACCOUNT_CREATION_STATUS": {
     "ADDITIONAL_DECLARATION_SUBMITTED": {
       "TITLE": "Your form has been submitted",
