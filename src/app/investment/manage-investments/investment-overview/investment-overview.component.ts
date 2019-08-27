@@ -23,7 +23,7 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-
+import { ToastService } from './../../../shared/components/toast/toast.service';
 @Component({
   selector: 'app-investment-overview',
   templateUrl: './investment-overview.component.html',
@@ -75,7 +75,8 @@ export class InvestmentOverviewComponent implements OnInit {
     public activeModal: NgbActiveModal,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpApiService: SignUpApiService
+    private signUpApiService: SignUpApiService,
+    private toastService: ToastService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -94,6 +95,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.getTransferDetails();
+   // this.toastService.showToast({toastMessage:'Portfolio "Miya\'s University Fund" has been added', toastLink:'View'});
 
   }
   getMoreList() {
