@@ -2,8 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
-import { environment } from '../../../environments/environment';
 import { ConfigService } from '../../config/config.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -11,6 +9,7 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { AppConfigService } from './../../app-config.service';
 
 @Component({
   selector: 'app-account-created',
@@ -43,8 +42,8 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     // Environment
-    if (environment.gtagPropertyId) {
-      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
+    if (AppConfigService.settings.gtagPropertyId) {
+      this.googleAnalyticsService.emitConversionsTracker(AppConfigService.settings.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
     }
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
 
