@@ -5,7 +5,7 @@
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
             <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
           <div class="flex-col-12 portfolio-allocation-details__content__block"
-            [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+            [innerHTML]="'CONFIRM_PORTFOLIO.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
         </div>
       </div>
       <hr>
@@ -14,40 +14,40 @@
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
           <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{
-              'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
+              'CONFIRM_PORTFOLIO.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
         </div>
       </div>
     </div>
     <div class="flex-col-12 asset-allocation">
-      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+      <div class="title">{{ 'CONFIRM_PORTFOLIO.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
       <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
     </div>
     <div class="flex-col-12 annual-fees mt0">
-      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
+      <div class="title">{{ 'CONFIRM_PORTFOLIO.ANNUAL_FEES' | translate}}</div>
       <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
     </div>
     <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
-        'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
+        'CONFIRM_PORTFOLIO.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>
   <div class="row hidden-lg">
     <div class="flex-col-12 review-block">
-      <div>{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
-      <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
+      <div>{{ 'CONFIRM_PORTFOLIO.CONFIRM_SUB_TEXT' | translate}}</div>
+      <div class="review-italic">{{ 'CONFIRM_PORTFOLIO.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
   <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100 hidden-lg">{{
-    'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
+    'CONFIRM_PORTFOLIO.CONFIRM' | translate}}</button>
 </div>
 
 <div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
   <div class="footer-content container-fluid max-width--1024">
     <div>
-      <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
-      <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
+      <div class="text-one">{{ 'CONFIRM_PORTFOLIO.CONFIRM_SUB_TEXT' | translate}}</div>
+      <div class="text-two">{{ 'CONFIRM_PORTFOLIO.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
     <div>
-      <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100">{{'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
+      <button type="button" (click)="verifyCustomer()" class="btn btn__footer--fixed btn-primary width100">{{'CONFIRM_PORTFOLIO.CONFIRM' | translate}}</button>
     </div>
   </div>
 </div>

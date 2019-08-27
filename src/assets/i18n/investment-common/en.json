@@ -14,7 +14,7 @@
     "TITLE": "IMPORTANT NOTICE",
     "AGREE": "I Agree"
   },
-  "PORTFOLIO_RECOMMENDATION": {
+  "CONFIRM_PORTFOLIO": {
     "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
     "PROJECTED_RETURNS": "Projected Returns",
     "PROJECTED_VALUE": "Projected Value",
@@ -58,7 +58,25 @@
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+    },
+    "ACCOUNT_CREATION_ERROR_MODAL": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Please fix the below list of errors and then proceed."
+    },
+    "GENERAL_ERROR": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Sorry, Something went wrong. Please try again."
+    },
+    "CREATING_ACCOUNT_LOADER": {
+      "TITLE": "Submitting your application",
+      "DESCRIPTION": "Please wait while we try to create account."
     }
+  },
+  "FUND_INTRO": {
+    "TITLE": "Fund Your Account",
+    "DESC": "In the next step, you can select the method to fund your account.",
+    "BACK": "Proceed",
+    "SUCCESS": "Investment Account <br>Setup Successful"
   },
   "FUNDING_INSTRUCTIONS": {
     "TITLE": "Fund Your Account",
