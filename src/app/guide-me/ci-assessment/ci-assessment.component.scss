@@ -20,4 +20,12 @@ app-ci-assessment {
       top: 15px;
     }
   }
+  .ci-note{
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.13px;
+    color: $ci-note-color;
+    padding: 20px 0;
+    border-bottom: 1px dashed $ci-note-brdr-color;
+  }
 }
