@@ -1,0 +1,142 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-add-portfolio-name {
+  .portfolio-naming-modal-backdrop {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    min-height: 100vh;
+  }
+
+  .portfolio-naming-modal-wrapper {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .modal .close {
+   top: 25px !important;
+    }
+      .portfolio-naming {
+        max-width: 320px;
+        margin: auto;
+      }
+
+      .title {
+        font-family: $muli-bold;
+        font-size: 30px;
+        letter-spacing: -0.3px;
+        text-align: center;
+        color: #00aaa8;
+        padding: 40px 15px;
+
+        @include allmobiles {
+          padding: 0px 15px 30px;
+        }
+      }
+
+      .portfolio-success {
+        text-align: center;
+
+        img {
+          width: 133px;
+          height: 140px;
+        }
+      }
+
+      .input-control {
+        text-align: left;
+      }
+
+      .desc {
+        font-family: $muli-bold;
+        font-size: 18px;
+        letter-spacing: -0.34px;
+        text-align: center;
+        color: #000000;
+      }
+
+      .characters {
+        font-family: Muli;
+        font-size: 15px;
+        font-style: italic;
+        letter-spacing: -0.15px;
+        color: #74c1c1;
+        text-align: right;
+        padding: 11px 0px 10px;
+      }
+    }
+
+    input::placeholder {
+      font-family: $muli-italic;
+      font-size: 16px;
+      font-style: italic;
+      letter-spacing: -0.3px;
+      color: #c1c1c1 !important;
+    }
+
+    .error-message {
+      font-family: $muli-italic;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.31;
+      letter-spacing: -0.16px;
+      color: #e57300;
+      display: flex;
+      text-align: left;
+      padding-top: 9px;
+
+      span {
+        &:first-child {
+          padding-right: 11px;
+        }
+      }
+    }
+
+    .inline-error {
+      .btn {
+        &.btn-secondary {
+          &:active {
+            border: none !important;
+            color: $white-color;
+          }
+
+          background-color: $secondary-action-color !important;
+        }
+      }
+    }
+
+    .btn {
+      z-index: 1001;
+
+      &:disabled {
+        border-radius: 6px;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        background-color: #78e1dc !important;
+        color: #ffffff;
+      }
+
+      &:hover {
+        border-radius: 6px;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        background-color: #78e1dc !important;
+        color: #ffffff;
+      }
+
+    }
+
+    .modal.close {
+      top: 25px !important;
+      right: 25px !important;
+    }
+  }

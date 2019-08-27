@@ -284,15 +284,21 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
- 
-  getMoreList() {
+ getMoreList() {
     const url = '../assets/mock-data/moreList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getAddPortfolioName() {
+    const url = '../../../assets/mock-data/portfolio-name.json';
+    return this.http.getMock(url);
+  }
+  getPortfolioNameStatus(PortfolioName) {
+    const url = '../../../assets/mock-data/portfolio-name-status.json';
+    return this.http.post(url, PortfolioName);
+  }
 
-
+ 
 }

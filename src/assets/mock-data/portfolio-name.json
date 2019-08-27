@@ -1,0 +1,9 @@
+{
+	"objectList": {
+		"portfolio-name": "growth"
+},
+  "responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	}
+}

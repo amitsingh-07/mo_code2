@@ -304,6 +304,12 @@ export class InvestmentAccountService {
   getInvestmentPeriod() {
     return this.investmentApiService.getInvestmentPeriod();
   }
+  getAddPortfolioName() {
+    return this.investmentApiService.getAddPortfolioName();
+  }
+  getPortfolioNameStatus(portfolionamne) {
+    return this.investmentApiService.getPortfolioNameStatus(portfolionamne);
+  }
   getTaxInfo() {
     return {
       tinNumber: this.investmentAccountFormData.tinNumber,

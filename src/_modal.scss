@@ -647,6 +647,35 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+// ADD PORTFOLIO NAMING //
+  .modal-backdrop {
+    &.portfolio-naming-backdrop {
+      opacity: 0 !important;
+      background-color: transparent !important;
+      
+    }
+  }
+  .portfolio-naming {
+    &.modal {
+      min-width: 100%;
+      min-height: 100%;
+      .close{
+        top:25px !important;
+        right:25px !important;
+       }
+    }
+  .modal-dialog {
+      overflow-y: initial !important;
+      max-width: 100% !important;
+      margin: 0px;
+      height: 100% !important;
+      @include allmobiles {
+        max-width: 100% !important;
+        margin: 0px
+      }
+    }
+  }
+// ADD  PORTFOLIO NAMING //
 .full-height {
   &.modal {
     display: block !important;
