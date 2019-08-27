@@ -60,6 +60,12 @@
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
     }
   },
+  "FUND_INTRO": {
+    "TITLE": "Fund Your Account",
+    "DESC": "In the next step, you can select the method to fund your account.",
+    "BACK": "Proceed",
+    "SUCCESS": "Investment Account <br>Setup Successful"
+  },
   "FUNDING_INSTRUCTIONS": {
     "TITLE": "Fund Your Account",
     "OK_GOT_IT": "Okay, Got It!",
