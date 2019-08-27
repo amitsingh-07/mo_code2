@@ -1,4 +1,4 @@
-<!-- <div class="toast-msg-block" *ngIf="isToastMessageShown">
+<div class="toast-msg-block" *ngIf="isToastMessageShown">
     <div class="toast-msg-container">
        <div class="flex-col-1">
           <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
@@ -6,10 +6,9 @@
        <div class="flex-col-8">
           <div class="toast-msg">{{toastMsg}} {{'YOUR_INVESTMENT.SUCCESS_MSG' | translate:investParam}} </div>
        </div>
-       <div class="flex-col-3 cursor_pointer">{{'YOUR_INVESTMENT.VIEW' | translate}}</div>
+       <div class="flex-col-3 cursor_pointer" (click)="yourPortfolio({})">{{'YOUR_INVESTMENT.VIEW' | translate}}</div>
     </div>
- </div> -->
- <app-toast (linkClicked)="yourPortfolio({})"></app-toast>
+ </div>
  <section class="invest-section">
     <div class="invest-section-items">
        <div class="invest-section-content">

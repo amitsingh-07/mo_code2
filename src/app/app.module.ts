@@ -73,6 +73,7 @@ import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component'
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
+
 import {
     ModelWithButtonComponent
 } from './shared/modal/model-with-button/model-with-button.component';
@@ -82,6 +83,7 @@ import {
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
 
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
+
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 
 import {
@@ -90,6 +92,7 @@ import {
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
+
 import {
     UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
