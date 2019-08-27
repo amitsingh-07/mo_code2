@@ -32,6 +32,7 @@ import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -87,7 +88,8 @@ export class DashboardComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
-    private guideMeService: GuideMeService
+    private guideMeService: GuideMeService,
+    private selectedPlansService: SelectedPlansService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -171,6 +173,7 @@ export class DashboardComponent implements OnInit {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
       } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
+        this.selectedPlansService.setInsuranceNewUser();
         this.insurance.hasInsurance = false;
       }
     });
