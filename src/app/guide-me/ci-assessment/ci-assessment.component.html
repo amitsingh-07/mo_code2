@@ -25,28 +25,18 @@
                         </div>
                         <!--Form Content-->
                         <div class="form-group-with-bg--content">
-                          <div class="flex-row">
-                            <div class="flex-col-6">
-                            <div class="form-group-with-bg--content-label" for="name">{{ 'CI_ASSESSMENT.ANNUAL_SALARY' | translate}}</div>
-                            </div>
-                            <div class="flex-col-6">
-                              <div class="form-control">
-                              <i>$</i>
-                             <div name="annualSalary" [ngClass]="{'readonly': ciAssessmentFormValues.annualSalary != 0}"><input  class="input-control" readonly type="text" appCurrencyInput maxLength="5" #annualSalary formControlName="annualSalary" value="0"></div>
-                            </div>
-                            </div>
-                          </div>
                           <div class="flex-row mb50">
                             <div class="form-group-with-bg--content-label mb10" for="name">
                                 {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_PREFIX' | translate}}
                                 <span class="span--content-inline--underline">{{ciMultiplier}}</span>
-                                {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SUFFIX' | translate}} 
+                                {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SALARY' | translate}}{{monthlySalary  | currency:'USD':'symbol-narrow':'1.0-2'}}{{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_ANNUAL_BONUS' | translate}}{{annualBonus | currency:'USD':'symbol-narrow':'1.0-2'}}{{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SUFFIX' | translate}} 
                             </div>
                           </div> 
                           <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" 
                                     [max]="7" [step]="1" [tooltips]="[ true ]"></nouislider>
                           <div class="dash"></div>
-                          <div class="flex-row">
+                          <div class="ci-note">Note: Recovery period is usually 2 to 5 years.</div>  
+                          <div class="flex-row mt15">
                             <div class="flex-col-9">
                               <div class="form-group-with-bg--content-label with-help-icon" for="name">{{ 'CI_ASSESSMENT.UNTIL_RETIREMENT_AGE' | translate}}
                                   <span class="help-icon" (click)="showCoverageAgeModal()"></span>
