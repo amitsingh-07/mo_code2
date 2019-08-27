@@ -10,7 +10,7 @@ const SESSION_STORAGE_KEY = 'app_withdraw-session';
 export class InvestmentCommonService {
 
   constructor(
-    private investmentAccountFormData: InvestmentAccountFormData
+    
   ) {
   }
 

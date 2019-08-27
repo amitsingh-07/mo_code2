@@ -77,7 +77,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
-    public investmentCommonService:InvestmentCommonService,
+    public investmentCommonService: InvestmentCommonService,
     private signUpService: SignUpService,
     private loaderService: LoaderService
   ) {

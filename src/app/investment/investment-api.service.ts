@@ -291,14 +291,6 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getAddPortfolioName() {
-    const url = '../../../assets/mock-data/portfolio-name.json';
-    return this.http.getMock(url);
-  }
-  getPortfolioNameStatus(PortfolioName) {
-    const url = '../../../assets/mock-data/portfolio-name-status.json';
-    return this.http.post(url, PortfolioName);
-  }
-
+ 
  
 }
