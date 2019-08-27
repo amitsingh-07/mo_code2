@@ -1,0 +1,229 @@
+<div class="fund-your-account container-fluid max-width--1024 invest-web-width">
+  <div class="content" *ngIf="bankDetails && paynowDetails">
+    <!-- FUND SUMMARY -->
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.source == 'FUNDING'">{{'FUNDING_INSTRUCTIONS.TITLE' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'ONETIME'">{{'FUNDING_INSTRUCTIONS.ONE_TIME_INVESTMENT' | translate}}</div>
+    <div class="hidden-sm-md page-title" *ngIf="fundDetails.fundingType == 'MONTHLY'">{{'FUNDING_INSTRUCTIONS.MONTHLY_INVESTMENT' | translate}}</div>
+    <div class="fund-summary">
+      <div class="from-account">
+        <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
+        <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_INVESTMENT' | translate }}</div>
+        <div>
+          <div class="strong" *ngIf="fundDetails.fundingType == 'ONETIME'">{{fundDetails.oneTimeInvestment |
+              currency:'USD':'symbol-narrow':'1.0-2'}}
+          </div>
+          <div class="strong" *ngIf="fundDetails.fundingType == 'MONTHLY'">{{fundDetails.monthlyInvestment |
+              currency:'USD':'symbol-narrow':'1.0-2'}}
+            <span> / {{ 'FUNDING_INSTRUCTIONS.MONTH' | translate }}</span>
+          </div>
+        </div>
+        <div *ngIf="fundDetails.source == 'FUNDING'">
+          <div *ngIf="fundDetails.oneTimeInvestment > 0" class="strong">{{fundDetails.oneTimeInvestment |
+              currency:'USD':'symbol-narrow':'1.0-2'}}
+            <span>({{ 'FUNDING_INSTRUCTIONS.ONE_TIME' | translate }})</span></div>
+          <div *ngIf="fundDetails.monthlyInvestment > 0" class="strong">{{fundDetails.monthlyInvestment |
+              currency:'USD':'symbol-narrow':'1.0-2'}}
+            <span> / {{ 'FUNDING_INSTRUCTIONS.MONTH' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="right-arrow">
+        <img src="../../../assets/images/investment-account/arrow-right.png" alt="" />
+      </div>
+      <div class="to-account">
+        <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
+        <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+        <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div>
+        <div class="strong">{{fundDetails.portfolio.riskProfile.type}}</div>
+      </div>
+    </div>
+    <div *ngIf=!oneTimeOrMonthlySufficient() class="fund-instruction">{{ 'FUNDING_INSTRUCTIONS.DESC' | translate }}</div>
+    <!-- TRANSFER DETAILS -->
+    <div class="transfer-details">
+      <div *ngIf=!oneTimeOrMonthlySufficient()>
+        <div class="tab-links">
+          <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
+           <div class="pay-tab">{{ 'FUNDING_INSTRUCTIONS.BANK_TRANSFER' | translate }}</div>
+          </div>
+          <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
+            <div class="pay-tab"><img  src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
+          </div>
+        </div>
+        <div class="tab-content-container">
+          <!-- TAB 1 -->
+          <div class="tab-content" [class.active]="activeMode == 'BANK'">
+            <div class="instruction-txt" innerHTML="{{ 'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_BANK' | translate }}">
+            </div>
+            <!--<button class="btn btn-bordered">{{ 'FUNDING_INSTRUCTIONS.TAKE_SCREENSHOT' | translate }}</button>-->
+            <div class="account-detail">
+              <label class="transfer-detail-label">{{ 'FUNDING_INSTRUCTIONS.AMOUNT_TO_TRANSFER' | translate }}</label>
+              <div class="value">
+                <div class="investment-values" *ngIf="fundDetails.source == 'FUNDING'">
+                  <div *ngIf="fundDetails.oneTimeInvestment > 0">
+                    <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;
+                    ({{'FUNDING_INSTRUCTIONS.ONE_TIME'
+                      | translate}})</div>
+                  <div *ngIf="fundDetails.monthlyInvestment > 0">
+                    <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{
+                      'FUNDING_INSTRUCTIONS.MONTH'
+                      | translate }}
+                  </div>
+                </div>
+                <div class="investment-values" *ngIf="fundDetails.source == 'TOPUP'">
+                  <div *ngIf="fundDetails.oneTimeInvestment">
+                    <div *ngIf="fundDetails.isAmountExceedBalance">
+                      <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                      </span>
+                    </div>
+                    <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
+                      <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{
+                        'FUNDING_INSTRUCTIONS.ONE_TIME'
+                        | translate }})
+                    </div>
+                  </div>
+                  <div *ngIf="fundDetails.monthlyInvestment">
+                    <div *ngIf="fundDetails.isAmountExceedBalance">
+                      <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{
+                        'FUNDING_INSTRUCTIONS.MONTH'
+                        | translate }}
+                    </div>
+                    <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
+                      <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/
+                      {{ 'FUNDING_INSTRUCTIONS.MONTH'
+                        | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.RECIPENTS_NAME' | translate }}</label>
+              <div class="value">
+                {{ bankDetails.receipientName }}
+                <img (click)="showPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.BANK_NAME' | translate }}</label>
+              <div class="value">
+                {{ bankDetails.bankName }}
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.BANK_ACC_NO' | translate }}</label>
+              <div class="value">
+                {{ bankDetails.bankAccountNumber }}
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE' | translate }}</label>
+              <div class="value ref_num">
+                <u>{{ bankDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}</span>
+              </div>
+            </div>
+            
+            <!-- <div class="setup-auto-deposit">
+                <div class="head">
+                  {{ 'FUNDING_INSTRUCTIONS.SETUP_AUTO_DEPOSIT_LBL' | translate }}
+                </div>
+                <p>{{ 'FUNDING_INSTRUCTIONS.SETUP_AUTO_DEPOSIT_DESC' | translate }}</p>
+              </div> -->
+            <button (click)="showBankTransctionDetails()" type="button" class="btn-with-icon" id="errorModeButton">
+              {{ 'FUNDING_INSTRUCTIONS.VIEW_TRANSFER_INST' | translate }}
+              <img src="../../../assets/images/investment-account/forward.svg" alt="" />
+            </button>
+          </div>
+          <!-- TAB 2 -->
+          <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
+            <div class="instruction-txt" innerHTML="{{ 'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_PAYNOW' | translate }}">
+            </div>
+            <!--<button class="btn btn-bordered">{{ 'FUNDING_INSTRUCTIONS.TAKE_SCREENSHOT' | translate }}</button>-->
+            <div class="account-detail">
+              <label class="transfer-detail-label">{{ 'FUNDING_INSTRUCTIONS.AMOUNT_TO_TRANSFER' | translate }}</label>
+              <div class="value">
+                <div class="investment-values" *ngIf="fundDetails.source == 'FUNDING'">
+                  <div *ngIf="fundDetails.oneTimeInvestment > 0">
+                    <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp; ({{
+                      'FUNDING_INSTRUCTIONS.ONE_TIME'
+                      | translate }})
+                  </div>
+                  <div *ngIf="fundDetails.monthlyInvestment > 0">
+                    <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{
+                      'FUNDING_INSTRUCTIONS.MONTH'
+                      | translate }}
+                  </div>
+                </div>
+                <div class="investment-values" *ngIf="fundDetails.source == 'TOPUP'">
+                  <div *ngIf="fundDetails.oneTimeInvestment">
+                    <div *ngIf="fundDetails.isAmountExceedBalance">
+                      <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                      </span>
+                    </div>
+                    <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
+                      <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{
+                        'FUNDING_INSTRUCTIONS.ONE_TIME'
+                        | translate }})
+                    </div>
+                  </div>
+                  <div *ngIf="fundDetails.monthlyInvestment">
+                    <div *ngIf="fundDetails.isAmountExceedBalance">
+                      <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{
+                        'FUNDING_INSTRUCTIONS.MONTH'
+                        | translate }}
+                    </div>
+                    <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
+                      <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/
+                      {{ 'FUNDING_INSTRUCTIONS.MONTH'
+                        | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.UNIQUE_ENTITY_NO' | translate }}</label>
+              <div class="value">
+                {{ paynowDetails.bankAccountNumber }}
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.ENTITY_NAME' | translate }}</label>
+              <div class="value">
+                {{ paynowDetails.receipientName }}
+                <img (click)="showPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+              </div>
+              <label>{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE' | translate }}</label>
+              <div class="value ref_num">
+                <u>{{ paynowDetails.referenceNumber }}</u>
+              </div>
+              <div class="ref_code_info">
+                <span ><img  src="../../../assets/images/investment-account/important.svg" alt="" /></span>
+                <span>{{ 'FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}</span>
+              </div>
+            </div>
+           <!-- <div class="setup-auto-deposit">
+                <div class="head">
+                  {{ 'FUNDING_INSTRUCTIONS.SETUP_AUTO_DEPOSIT_LBL' | translate }}
+                </div>
+                <p>{{ 'FUNDING_INSTRUCTIONS.SETUP_AUTO_DEPOSIT_DESC' | translate }}</p>
+              </div> -->
+            <button (click)="showPayNowDetails()" type="button" class="btn-with-icon" id="errorModeButton">
+              {{ 'FUNDING_INSTRUCTIONS.VIEW_TRANSFER_INST' | translate }}
+              <img src="../../../assets/images/investment-account/forward.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p *ngIf=!oneTimeOrMonthlySufficient() class="process-time-info">{{timelineMessage}}
+  </p>
+  <p *ngIf=oneTimeOrMonthlySufficient() class="topup_success">{{ 'FUNDING_INSTRUCTIONS.SUCCESSFUL_TOPUP' | translate
+    }}</p>
+  <button *ngIf="fundDetails.source == 'TOPUP'" [disabled]="isRequestSubmitted" type="button" (click)="buyPortfolio()"
+    class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">
+    Submit
+  </button>
+  <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'DASHBOARD'" type="button"
+    (click)="goToNext('DASHBOARD')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+    id="portfolioRecommendationNextBtn">
+    Okay, Got It!
+  </button>
+  <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'PORTFOLIO'" type="button"
+    (click)="goToNext('PORTFOLIO')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+    id="portfolioRecommendationNextBtn">
+    Okay, Got It!
+  </button>
+</div>

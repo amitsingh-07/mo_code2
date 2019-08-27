@@ -385,9 +385,6 @@ export class SignUpService {
     }
   }
 
-  deleteNotifications(data) {
-    return this.apiService.deleteNotifications(data);
-  }
 
   // setNotificationList(data) {
   //   this.signUpFormData.notificationList = data;

@@ -1,0 +1,2 @@
+export let INVESTMENT_COMMON_CONSTANTS = {
+};

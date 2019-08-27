@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -16,7 +16,7 @@ import {
 } from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -47,7 +47,7 @@ export class AddUpdateBankComponent implements OnInit {
     private signUpService: SignUpService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
-    public topupAndWithDrawService: TopupAndWithDrawService,
+    public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     private loaderService: LoaderService) {
     this.translate.use('en');
@@ -124,7 +124,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.topupAndWithDrawService.saveNewBank(form.getRawValue()).subscribe((response) => {
+        this.manageInvestmentsService.saveNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             if (
@@ -195,7 +195,7 @@ export class AddUpdateBankComponent implements OnInit {
     }
   }
   getLookupList() {
-    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
+    this.manageInvestmentsService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
     });
   }
