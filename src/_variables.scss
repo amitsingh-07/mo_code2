@@ -28,6 +28,7 @@ $lighter-aqua-color:#f0f9fa;
 $dark-orange-color:#ff7900;
 $orange-color:#ff9c39;
 $red-color:#d0021b;
+$dark-red-color: #e50000;
 $green-color:#049723;
 $watercourse-color: #066360;
 $cinderella-color: #fbdbdb;
@@ -271,6 +272,14 @@ $no-bank-account-color : #a2cfcf;
 $edit-pwd-brdr-color : #add9d8;
 $edit-acnt-disable-bg : #d8f2f2;
 $edit-acnt-disable-brdr : #81c7c6;
+
+// transfer-instructions
+$ref-code-container-brdr-color: $red-color;
+$ref-code-container-bg: $cinderella-color;
+$ref-code-container-color: $dark-red-color;
+$ref-code-context-color: $black-color;
+$ref-code-context-must-color: $dark-red-color;
+$ref-code-context-remark-color: $red-color;
 
 // Fund-account
 $fund-account-tab-color : #d2d2d2;

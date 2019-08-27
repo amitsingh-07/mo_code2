@@ -43,6 +43,8 @@ export class FundingInstructionsComponent implements OnInit {
   isRequestSubmitted = false;
   monthlyAmount;
   timelineMessage;
+  showBankTransferSteps = true;
+  
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
