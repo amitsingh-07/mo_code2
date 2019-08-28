@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -14,11 +12,15 @@ import { BankDetailsComponent } from '../../../shared/modal/bank-details/bank-de
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import {
     MANAGE_INVESTMENTS_ROUTE_PATHS
-} from '../manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../manage-investments.service';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
+} from '../../manage-investments/manage-investments-routes.constants';
+import {
+    MANAGE_INVESTMENTS_CONSTANTS
+} from '../../manage-investments/manage-investments.constants';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -88,7 +90,6 @@ export class FundingInstructionsComponent implements OnInit {
   getBankDetailsList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
-      console.log(this.bankDetailsList);
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
@@ -319,9 +320,9 @@ export class FundingInstructionsComponent implements OnInit {
           '1.0-2'
         )
       };
-      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MONTHLY_TIME_INFO', monthlyAmount);
+      timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.MONTHLY_TIME_INFO', monthlyAmount);
     } else {
-      timelineMessage = this.translate.instant('FUND_YOUR_ACCOUNT.PROCESS_TIME_INFO');
+      timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.PROCESS_TIME_INFO');
     }
     return timelineMessage;
   }

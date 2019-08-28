@@ -53,7 +53,7 @@ export class FinancialDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getIncomeRangeList();
-    this.FinancialFormData = this.investmentEngagementJourneyService.getMyFinancials();
+    this.FinancialFormData = this.investmentEngagementJourneyService.getPortfolioFormData();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.financialDetails = this.formBuilder.group({
       annualHouseHoldIncomeRange: [

@@ -1,20 +1,26 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../investment-engagement-journey-routes.constants';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+} from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { IMyFinancials } from './your-financials.interface';
 
 @Component({
   selector: 'app-your-financials',
@@ -23,8 +29,8 @@ import { IMyFinancials } from './your-financials.interface';
   encapsulation: ViewEncapsulation.None
 })
 export class YourFinancialsComponent implements IPageComponent, OnInit {
-  myFinancialsForm: FormGroup;
-  myFinancialsFormValues: IMyFinancials;
+  myFinancialForm: FormGroup;
+  financialFormValue;
   modalData: any;
   helpData: any;
   pageTitle: string;
@@ -43,7 +49,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private signUpService: SignUpService,
   ) {
     this.translate.use('en');
     const self = this;
@@ -72,51 +79,20 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.myFinancialsFormValues = this.investmentEngagementJourneyService.getMyFinancials();
-    // tslint:disable-next-line:max-line-length
-    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox
-      ? this.myFinancialsFormValues.oneTimeInvestmentChkBox
-      : false;
-    // tslint:disable-next-line:max-line-length
-    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox
-      ? this.myFinancialsFormValues.monthlyInvestmentChkBox
-      : false;
-    if (typeof this.oneTimeInvestmentChkBoxVal === 'undefined') {
-      this.oneTimeInvestmentChkBoxVal = true;
-    }
-    if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
-      this.monthlyInvestmentChkBoxVal = true;
-    }
-    this.myFinancialsForm = new FormGroup({
-      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome),
-      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
-      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets),
-      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
-      initialInvestment: new FormControl(
-        this.myFinancialsFormValues.initialInvestment,
-        Validators.required
-      ),
-      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
+    this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
+    // if (this.isLoggedInUser()) {
+    //   this.getUserFinancialDetails();
+    // }
+    this.myFinancialForm = new FormGroup({
+      monthlyIncome: new FormControl(this.financialFormValue.monthlyIncome),
+      percentageOfSaving: new FormControl(this.financialFormValue.percentageOfSaving),
+      totalAssets: new FormControl(this.financialFormValue.totalAssets),
+      totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
         INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
       ),
-      // tslint:disable-next-line:max-line-length
-      firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
-      // tslint:disable-next-line:max-line-length
-      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal)
     });
   }
-  // tslint:disable-next-line:use-life-cycle-interface
-  ngAfterViewInit() {
-    if (!this.oneTimeInvestmentChkBoxVal) {
-      this.firstChkBoxChange();
-    }
-    if (!this.monthlyInvestmentChkBoxVal) {
-      this.secondChkBoxChange();
-    }
-    this.cd.detectChanges();
-  }
-
   showEmergencyFundModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
@@ -132,26 +108,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
   }
-  secondChkBoxChange() {
-    if (this.myFinancialsForm.controls.secondChkBox.value === true) {
-      this.myFinancialsForm.controls.monthlyInvestment.enable();
-      this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
-    } else {
-      this.myFinancialsForm.controls.monthlyInvestment.disable();
-      this.myFinancialsForm.controls.monthlyInvestment.setValue('');
-    }
-  }
-  firstChkBoxChange() {
-    if (this.myFinancialsForm.controls.firstChkBox.value === true) {
-      this.myFinancialsForm.controls.initialInvestment.enable();
-      this.myFinancialsForm.controls.initialInvestment.setValue(0);
-    } else {
-      this.myFinancialsForm.controls.initialInvestment.disable();
-      this.myFinancialsForm.controls.initialInvestment.setValue('');
-    }
-  }
+
   goToNext(form) {
-    if (this.myFinancialsForm.controls.suffEmergencyFund.value === 'no') {
+    if (this.myFinancialForm.controls.suffEmergencyFund.value === 'no') {
       this.showEmergencyFundModal();
       return;
     }
@@ -160,7 +119,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.investmentEngagementJourneyService.doFinancialValidations(form);
+    const error = this.investmentEngagementJourneyService.financialValidation(form, this.financialFormValue);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -173,7 +132,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         ref.componentInstance.secondaryActionDim = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          this.goBack();
+          this.goBack(form);
         });
         ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
@@ -188,7 +147,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     }
   }
   saveAndProceed(form: any) {
-    this.investmentEngagementJourneyService.setMyFinancials(form.value);
+    this.investmentEngagementJourneyService.setYourFinancial(form.value);
     // CALL API
     this.investmentEngagementJourneyService.savePersonalInfo().subscribe((data) => {
       if (data) {
@@ -196,11 +155,21 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
-  goBack() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIALS]);
+  goBack(form) {
+    this.investmentEngagementJourneyService.setYourFinancial(form.value);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
   }
+  // isLoggedInUser() {
+  //   return this.authService.isSignedUser();
+  // }
+  // getUserFinancialDetails() {
+  //   this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
+  //     const financialDetails = data.objectList;
+  //     this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
+  //   });
+  // }
 }

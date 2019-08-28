@@ -17,8 +17,8 @@ app-portfolio-details {
       color: $white-color;
       border-radius: 6px;
 
-      // box-shadow: 0 10px 14px 0 $portfolio-allocation-details-shadow;
-      // background-color: $portfolio-allocation-details-bg;
+      // box-shadow: 0 10px 14px 0 $portfolio-allocation-container-shadow-color;
+      // background-color: $portfolio-allocation-container-bg-color;
       .portfolio-allocation-details__content {
         margin-bottom: 14px;
         border-radius: 6px;
@@ -64,7 +64,7 @@ app-portfolio-details {
         font-weight: 400;
         letter-spacing: -0.2px;
         color: $review-text-color;
-        background-color: $portfolio-allocation-details-bg;
+        background-color: $portfolio-allocation-review-bg-color;
         border-radius: 0 0 6px 6px;
         padding: 20px;
 

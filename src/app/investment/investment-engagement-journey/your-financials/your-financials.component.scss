@@ -2,22 +2,12 @@
 @import '../../../../mixins';
 
 app-your-financials {
-  // h2{
-  //   font-size:30px !important;
-  //   margin-bottom: 15px;
-  // }
-  .container-fluid {
-   // padding-top: 70px;
-  @include minPhabletmaxTablet{
-   padding-top: 70px;
+ .container-fluid {
+  @include minPhabletmaxTablet {
+      padding-top: 70px;
+    }
   }
-}
-  // .banner-image{
-  //   img{
-  //     padding-top: 0;
-  //   }
-  // }
-  .fixed-btn--sm {
+ .fixed-btn--sm {
     border: 1px solid $fixed-btn-brdr-color;
     color: $teal-color;
     font-size: 16px;
@@ -45,70 +35,29 @@ app-your-financials {
     font-weight: 400;
     line-height: 22px;
   }
-  .emergency-fund{
+
+  .emergency-fund {
     width: 208px !important;
-    .flex-col-12{
-      .btn-group--toggle{
-        .flex-row{
-          .flex-col-6{
+  .flex-col-12 {
+      .btn-group--toggle {
+        .flex-row {
+          .flex-col-6 {
             max-width: 99px !important;
-            .btn-outline-primary{
+
+            .btn-outline-primary {
               background: $bond-container-bg;
-              &:hover{
+
+              &:hover {
                 background: transparent;
                 color: $teal-color;
               }
             }
           }
-        }   
+        }
       }
     }
   }
-  .second-section {
-    .form-group-with-bg--content {
-      
-      .checkbox_instruction {
-        font-family: $muli-italic;
-        font-size: 14px;
-        font-style: italic;
-        letter-spacing: -0.1px;
-        color: $text-color-secondary;
-        padding-bottom: 13px;
-      }
-      .form-group-single-column {
-        justify-content: center;
-        align-items: center;
-        input[type='checkbox'] + label {
-          padding-left: 40px;
-        }
-        .checkbox-button {
-          background: none;
-          .input-label-black {
-            font-weight: 400;
-            letter-spacing: -0.3px;
-            color: $dark-teal-color;
-          }
-          .input-label-normal {
-            font-family: $muli-italic;
-            font-size: 14px;
-            font-style: italic;
-            letter-spacing: -0.1px;
-            color: $text-color-secondary;
-          }
-        }
-        .form-control {
-          &.form-control-right {
-            input {
-              padding-right: 40px !important;
-            }
-          }
-        }
-      }
-      
-    }
-  }
-
-  .tooltip-icon {
+ .tooltip-icon {
     background: url('/assets/images/tooltip-icon.svg') no-repeat;
     height: 20px;
     width: 20px;
@@ -128,10 +77,12 @@ app-your-financials {
     &:hover {
       background-color: $btn-disabled-light-bg;
     }
+
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $disabled-teal-color;
     }
+
     &.btn__footer--fixed {
       font-family: $muli-bold !important;
     }

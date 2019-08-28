@@ -60,13 +60,22 @@
     "OF_LBL": "of",
     "STEP_2_LABEL": "Step 2"
   },
+  "INVESTMENT_AMOUNT": {
+    "TITLE": "Your Investment Amount",
+    "HOW_MUCH_INVEST": "How much do you want to invest? ",
+    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
+    "AT_LEAST_ONE": "Select at least one of the following.",
+    "INVESTMENT_LBL": "I want to invest",
+    "MIN_100":"Min. $100",
+    "MIN_50":"Min. $50"
+    },
   "MY_FINANCIALS": {
     "REVIEW_INPUT": "Review My Inputs",
     "PROCEED_NEXT": "Proceed To Next Step",
     "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
-    "ATLEAST_ONE": "Select at least one of the following.",
     "TITLE": "Your Financials",
     "STEP_1_LABEL": "Step 1",
     "MONTHLY_INCOME_LBL": "Monthly Income",
@@ -76,18 +85,12 @@
     "TOTAL_ASSET_SUB_LBL": "(E.g. Cash, CPF, Investment, Property)",
     "LOANS_LBL": "Total Loans",
     "LOANS_SUB_LBL": "(E.g. Car, Property)",
-    "INVESTMENT_LBL": "I want to invest",
-    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
-    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
-    "YOUR_INVESTMENT":"Your Financials",
-    "HOW_MUCH_INVEST":"How much do you want to invest?",
-    "MIN_100":"Min. $100",
-    "MIN_50":"Min. $50",
-   "modalData": {
+    "HOW_MUCH_INVEST":"How much do you want to invest?",  
+    "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
     },

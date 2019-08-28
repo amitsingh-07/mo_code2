@@ -13,6 +13,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 
@@ -183,7 +184,6 @@ export class TopUpComponent implements OnInit {
     } else {
       const allowZero = (this.currentMonthlyInvAmount > 0);
       const error = this.manageInvestmentsService.doFinancialValidations(form, allowZero);
-      console.log('error' + error);
       if (error) {
         // tslint:disable-next-line:no-commented-code
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -208,7 +208,7 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.saveFundingDetails();
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }
   saveFundingDetails() {
     const topupValues = {

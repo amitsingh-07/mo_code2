@@ -39,6 +39,7 @@ import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from 'src/app/investment/investment-common/investment-common-routes.constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -322,7 +323,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else { // Api Success
         this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
         if (data.objectList.hasInvestmentAccount) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
         } else {
           this.investmentAccountService.setUserPortfolioExistStatus(true);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
