@@ -48,7 +48,7 @@ export class SelectedPlansService {
 
   updateInsuranceEnquiry() {
     const insuranceEnquiry = this.getSelectedPlan();
-    let payload: IEnquiryUpdate = {
+    const payload: IEnquiryUpdate = {
       customerId: this.appService.getCustomerId(),
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
       selectedProducts: insuranceEnquiry.plans
