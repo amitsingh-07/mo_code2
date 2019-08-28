@@ -74,7 +74,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
+      this.pageTitle = this.translate.instant('CONFIRM_PORTFOLIO.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -238,7 +238,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
+      'CONFIRM_PORTFOLIO.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
     );
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
@@ -273,10 +273,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'CONFIRM_PORTFOLIO.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'CONFIRM_PORTFOLIO.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       const pepData = this.investmentAccountService.getPepData();
@@ -335,10 +335,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'CONFIRM_PORTFOLIO.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'CONFIRM_PORTFOLIO.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       this.investmentAccountService.createInvestmentAccount().subscribe(
