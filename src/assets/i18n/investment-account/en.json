@@ -249,52 +249,6 @@
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:",
     "OTHERS": "Please Elaborate:"
   },
-  "PORTFOLIO_RECOMMENDATION": {
-    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
-    "PROJECTED_RETURNS": "Projected Returns",
-    "PROJECTED_VALUE": "Projected Value",
-    "YEAR": "Year",
-    "ONE_TIME_INVESTMENT": "one-time investment",
-    "AND": "&",
-    "MONTHLY_INVESTMENT": "monthly investment",
-    "FOR": "for",
-    "CONFIRM": "Confirm",
-    "EDIT_INVESTMENT": {
-      "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time Investment",
-      "MONTHLY_INVESTMENT": "Monthly Investment"
-    },
-    "MODAL": {
-      "PROJECTED_RETURNS": {
-        "TITLE": "Projected Returns",
-        "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
-      }
-    },
-    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
-    "REVIEW_INPUTS": "Review My Inputs",
-    "ASSET_ALLOCATION": "Asset Allocation",
-    "ANNUAL_FEES": "Annual Fees",
-    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
-    "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
-    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
-    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
-    "NOW": "Now",
-    "YEARS": "years",
-    "BEST": "Best",
-    "MEDIAN": "Median",
-    "WORST": "Worst",
-    "CAPITAL_INVESTED": "Capital Invested",
-    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
-    "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
-    "VIEW_FUND_DETAILS": "View Fund Details",
-    "TITLE": "Confirm Portfolio",
-    "PORTFOLIO": "Portfolio",
-    "ERRORS": {
-      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
-      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
-    }
-  },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Additional Declaration",
     "PEP_DETAILS":"PEP Details",
@@ -308,10 +262,6 @@
     "PEP_MORE_DETAILS": "Just a Few More Questions",
     "YOUR_OFFICE_ADDRESS": "PEP’s office address:",
     "INVESTMENTS":"Investments"
-  },
-  "ACKNOWLEDGEMENT": {
-    "TITLE": "IMPORTANT NOTICE",
-    "AGREE": "I Agree"
   },
   "ACCOUNT_SETUP_COMPLETE": {
     "TITLE": "Investment Account Setup Complete!",
@@ -365,12 +315,6 @@
       "TITLE": "Submitting your application",
       "DESCRIPTION": "Please wait while we try to create account."
     }
-  },
-  "FUND_INTRO": {
-    "TITLE": "Fund Your Account",
-    "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK": "Proceed",
-    "SUCCESS": "Investment Account <br>Setup Successful"
   },
   "ACCOUNT_CREATION_STATUS": {
     "ADDITIONAL_DECLARATION_SUBMITTED": {

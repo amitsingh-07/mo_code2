@@ -19,7 +19,6 @@ import {
 import {
     ForwardPricingModalComponent
 } from './withdrawal/forward-pricing-modal/forward-pricing-modal.component';
-import { FundingInstructionsComponent } from './funding-instructions/funding-instructions.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { ManageInvestmentsRoutingModule } from './manage-investments-routing.module';
@@ -63,7 +62,6 @@ export function createTranslateLoader(http: HttpClient) {
     TopupStatusComponent,
     InvestmentOverviewComponent,
     YourPortfolioComponent,
-    FundingInstructionsComponent,
     TopupStatusComponent,
     ConfirmWithdrawalModalComponent,
     ForwardPricingModalComponent,
@@ -80,6 +78,7 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class ManageInvestmentsModule {
 
-  constructor(private signUpService: SignUpService) {
+  constructor() {
+    console.log("Manage Investments module loaded");
   }
 }

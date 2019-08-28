@@ -501,7 +501,6 @@ export class InvestmentAccountService {
   }
   updateEmployerAddress(data) {
     const payload = this.constructEmploymentDetailsReqData(data);
-    console.log('Update Emp Payload' + payload);
     return this.apiService.requestUpdateEmployerAddress(payload);
   }
   constructEmploymentDetailsReqData(data): IEmployment {
@@ -1408,7 +1407,6 @@ export class InvestmentAccountService {
     } else {
       request = this.constructEditContactRequest(data, postalCode);
     }
-    console.log(' Edit Residential Payload %@', request);
     return this.apiService.requestEditContact(request);
   }
   // tslint:disable-next-line:no-identical-functions

@@ -107,6 +107,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
       if (data.responseMessage.responseCode === 6000) {
         this.selectedPlansService.clearData();
         this.signUpService.removeCaptchaSessionId();
+        this.authService.clearAuthDetails();
         this.router.navigate(['email-enquiry/success']);
       } else if (data.responseMessage.responseCode === 5006) {
         this.invalidEmail = true;

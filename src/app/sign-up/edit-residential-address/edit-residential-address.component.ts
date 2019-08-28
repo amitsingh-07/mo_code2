@@ -281,7 +281,6 @@ getInlineErrorStatus(control) {
       return false;
     } else {
       this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
-        console.log (data);
         if (form.controls.resAddressProof && form.controls.resAddressProof.value ) {
         this.uploadDocument();
         }

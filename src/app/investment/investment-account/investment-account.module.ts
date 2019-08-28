@@ -12,12 +12,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import {
-    AccountCreationErrorModalComponent
-} from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
-import {
     AccountStatusComponent
 } from './account-status/account-status.component';
-import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
 } from './additional-declaration-info/additional-declaration-info.component';
@@ -27,11 +23,9 @@ import {
 import {
     AdditionalDeclaration1Component
 } from './additional-declaration1/additional-declaration1.component';
-import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
-import { FundingIntroComponent } from './funding-intro/funding-intro.component';
-import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
+import { InvestmentAccountRoutingModule } from '../investment-account/investment-account-routing.module';
 import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
@@ -82,20 +76,17 @@ export function createTranslateLoader(http: HttpClient) {
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
     AdditionalDeclaration2Component,
-    ConfirmPortfolioComponent,
-    AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
     AdditionalDeclaration1Component,
     AccountStatusComponent,
     UploadDocumentBOComponent,
-    AccountCreationErrorModalComponent,
-    FundingIntroComponent
   ],
-  entryComponents: [AccountCreationErrorModalComponent],
+  entryComponents: [],
   providers: [CurrencyPipe]
 })
 export class InvestmentAccountModule {
 
   constructor() {
+    console.log("Investment Account Loaded...");
   }
 }

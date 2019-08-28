@@ -1,0 +1,143 @@
+{
+  "COMMON": {
+    "LABEL": {
+      "SUBMIT": "Submit",
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details",
+      "SAVE_AND_CONTINUE": "Save and Continue",
+      "PROCEED":"Proceed",
+      "OR":"OR"
+    }
+  },
+  "ACKNOWLEDGEMENT": {
+    "TITLE": "IMPORTANT NOTICE",
+    "AGREE": "I Agree"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "PROJECTED_VALUE": "Projected Value",
+    "YEAR": "Year",
+    "ONE_TIME_INVESTMENT": "one-time investment",
+    "AND": "&",
+    "MONTHLY_INVESTMENT": "monthly investment",
+    "FOR": "for",
+    "CONFIRM": "Confirm",
+    "EDIT_INVESTMENT": {
+      "TITLE": "Review My Inputs",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
+    "MODAL": {
+      "PROJECTED_RETURNS": {
+        "TITLE": "Projected Returns",
+        "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
+      }
+    },
+    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
+    "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "TITLE": "Confirm Portfolio",
+    "PORTFOLIO": "Portfolio",
+    "ERRORS": {
+      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+    }
+  },
+  "FUND_INTRO": {
+    "TITLE": "Fund Your Account",
+    "DESC": "In the next step, you can select the method to fund your account.",
+    "BACK": "Proceed",
+    "SUCCESS": "Investment Account <br>Setup Successful"
+  },
+  "FUNDING_INSTRUCTIONS": {
+    "TITLE": "Fund Your Account",
+    "OK_GOT_IT": "Okay, Got It!",
+    "YOUR_INVESTMENT": "Your Investment",
+    "ONE_TIME": "one-time",
+    "MONTH": "mth",
+    "YOUR_PORTFOLIO": "Your Portfolio",
+    "VIA_BANK": "Via Bank Transfer",
+    "VIA_PAYNOW": "Via PayNow",
+    "LOGIN_TO_NETBANKING_PAYNOW": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
+    "LOGIN_TO_NETBANKING_BANK": "Please note that your investment funds must originate from <b>an account in your legal name</b> and a <b>Singapore registered bank</b>. Accounts may be suspended if any suspicious activity is detected.",
+    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
+    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
+    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+    "ENTITY_NAME": "Entity Name",
+    "REFERENCE_CODE": "Remarks (Reference Code)",
+    "ADD_REFERENCE_CODE_INFO": "Please indicate this Reference Code in the “Remarks / Descriptions / Comments” of your fund transfer.",
+    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
+    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
+    "VIEW_TRANSFER_INST": "View Transfer Instructions",
+    "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
+    "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_TIME_INFO":"You have a monthly investment of {{month}}. Fund 1 or 2 days before 15th of the month.",
+    "RECIPENTS_NAME": "Recipient's Name",
+    "BANK_NAME": "Bank Name",
+    "BANK_ACC_NO": "Bank Account No.",
+    "TRANSFER_INSTRUCTION": "Transfer Instructions",
+    "VIA_BANK_ONE": "Sending money via Bank Transfer:",
+    "TRANSER_INSTRUCTION": "Transfer Instructions",
+    "VIA_PAYNOW_ONE": "Sending money via PayNow:",
+    "ONE_TIME_INVESTMENT": "One-time Investment",
+    "MONTHLY_INVESTMENT": "Monthly Investment",
+    "BANK_TRANSFER":"Bank Transfer",    
+    "DESC":"Please transfer the following amount using your preferred payment method details:",
+    "MODAL": {
+      "SHOW_BANK_TRANSCTIONS": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "RECIPENTS_NAME": "Recipient's Name:",
+        "BANK_NAME": "Bank Name:",
+        "BANK_ACC_NO": "Bank Account No.:",
+        "REFERENCE_CODE": "Remarks (Reference Code):",
+        "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
+        "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
+        "LBL_STEP_3": "Enter the following transfer information.",
+        "LBL_STEP_4": "Verify and confirm the transaction details.",
+        "LBL_STEP_5": "We will notify you once your funds have been received.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOW_PAYNOW": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN):",
+        "ENTITY_NAME": "Entity Name:",
+        "REFERENCE_CODE": "Remarks (Reference Code):",
+        "LBL_STEP_1": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
+        "LBL_STEP_2": "Enter the following transfer information.",
+        "LBL_STEP_3": "Verify and confirm the transaction details.",
+        "LBL_STEP_4": "We will notify you once your funds have been received.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Investment - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOWPOPUP": {
+        "TITLE": "Recipient’s / Entity Name",
+        "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+      }
+    }
+  }
+}

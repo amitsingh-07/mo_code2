@@ -7,8 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 
 @Component({
   selector: 'app-acknowledgement',
@@ -24,11 +23,10 @@ export class AcknowledgementComponent implements OnInit {
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
-    private investmentAccountService: InvestmentAccountService,
-    private modal: NgbModal,
     public footerService: FooterService,
     public readonly translate: TranslateService
   ) {
+    console.log("Acknowledgement component loaded");
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
@@ -45,6 +43,6 @@ export class AcknowledgementComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   goNext() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
 }

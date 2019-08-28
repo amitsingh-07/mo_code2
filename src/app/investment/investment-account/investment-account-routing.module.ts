@@ -7,7 +7,6 @@ import {
 } from './investment-account-guard.service';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import { AccountStatusComponent } from './account-status/account-status.component';
-import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
 } from './additional-declaration-info/additional-declaration-info.component';
@@ -17,10 +16,8 @@ import {
 import {
     AdditionalDeclaration2Component
 } from './additional-declaration2/additional-declaration2.component';
-import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
-import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import {
     PersonalDeclarationComponent
@@ -95,16 +92,6 @@ const routes: Routes = [
     canActivate: [InvestmentAccountGuard]
   },
   {
-    path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
-    component: ConfirmPortfolioComponent,
-    canActivate: [InvestmentAccountGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
-    component: AcknowledgementComponent,
-    canActivate: [InvestmentAccountGuard]
-  },
-  {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
     component: AdditionalDeclarationInfoComponent,
     canActivate: [InvestmentAccountGuard]
@@ -118,11 +105,6 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
     canActivate: [InvestmentAccountGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.FUND_INTRO,
-    component: FundingIntroComponent,
-    canActivate: [AuthGuard]
   }
 ];
 
