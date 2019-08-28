@@ -93,7 +93,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.getTransferDetails();
-    this.showToastMessage('hi');
   }
   getMoreList() {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
@@ -111,41 +110,17 @@ export class InvestmentOverviewComponent implements OnInit {
   getInvestmentOverview() {
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
-        this.investmentoverviewlist = data.objectList;
-        this.totalReturns = this.investmentoverviewlist.data.totalReturns
-          ? this.investmentoverviewlist.data.totalReturns
-          : 0;
-        this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          : 0;
-        this.totalValue = this.investmentoverviewlist.data.totalValue
-          ? this.investmentoverviewlist.data.totalValue
-          : 0;
-        this.portfolioList = this.investmentoverviewlist.data.portfolios;
-        this.totalPortfolio = this.portfolioList.length;
-        this.welcomeInfo = {
-          name: this.userProfileInfo.firstName,
-          total: this.totalPortfolio
-        };
-        this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
-        if (this.investmentoverviewlist.data.cashAccountDetails) {
-          this.manageInvestmentsService.setUserCashBalance(
-            this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          );
-        }
-        /* First portfolio's entitlement is considered for now as global entitlement,
-            need to change when multiple portfolio logic is implemented */
-        this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+        this.setInvestmentData(data);
       } else if (
         data.objectList &&
-        data.objectList.length &&
-        data.objectList[data.objectList.length - 1].serverStatus &&
-        data.objectList[data.objectList.length - 1].serverStatus.errors &&
-        data.objectList[data.objectList.length - 1].serverStatus.errors.length
+        data.objectList['length'] &&
+        data.objectList[data.objectList['length'] - 1].serverStatus &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors.length
       ) {
         this.showCustomErrorModal(
           'Error!',
-          data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+          data.objectList[data.objectList['length'] - 1].serverStatus.errors[0].msg
         );
       } else if (data.responseMessage && data.responseMessage.responseDescription) {
         const errorResponse = data.responseMessage.responseDescription;
@@ -158,7 +133,33 @@ export class InvestmentOverviewComponent implements OnInit {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
-
+  setInvestmentData(data) {
+    this.investmentoverviewlist = data.objectList;
+    this.totalReturns = this.investmentoverviewlist.totalReturns
+      ? this.investmentoverviewlist.totalReturns
+      : 0;
+    this.cashAccountBalance = this.investmentoverviewlist.totalCashAccountBalance
+      ? this.investmentoverviewlist.totalCashAccountBalance
+      : 0;
+    this.totalValue = this.investmentoverviewlist.totalValue
+      ? this.investmentoverviewlist.totalValue
+      : 0;
+    this.portfolioList = this.investmentoverviewlist.portfolios;
+    this.totalPortfolio = this.portfolioList.length;
+    this.welcomeInfo = {
+      name: this.userProfileInfo.firstName,
+      total: this.totalPortfolio
+    };
+    this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
+    if (this.investmentoverviewlist.cashAccountDetails) {
+      this.manageInvestmentsService.setUserCashBalance(
+        this.investmentoverviewlist.cashAccountDetails.availableBalance
+      );
+    }
+    /* First portfolio's entitlement is considered for now as global entitlement,
+        need to change when multiple portfolio logic is implemented */
+    this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+  }
   showTotalReturnPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -213,10 +214,9 @@ export class InvestmentOverviewComponent implements OnInit {
     );
   }
 
-  getImg(i) {
-    const riskProfileImg = ProfileIcons[i - 1]['icon'];
-    return riskProfileImg;
-  }
+  // getImg(i) {
+  //   return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+  // }
   alertPopUp(i, event) {
     event.stopPropagation();
     this.selected = i;
@@ -225,51 +225,51 @@ export class InvestmentOverviewComponent implements OnInit {
   ClosedPopup() {
     this.showAlretPopUp = false;
   }
-  deletePortfolio(portfolio) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_INVESTMENT.DELETE_TXT'
-    );
-    ref.componentInstance.yesOrNoButton = 'Yes';
-    ref.componentInstance.yesClickAction.subscribe(() => {
-      this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
-        if (data.responseMessage.responseCode < 6000) {
-          if (
-            data.objectList &&
-            data.objectList.length &&
-            data.objectList[data.objectList.length - 1].serverStatus &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors.length
-          ) {
-            this.showCustomErrorModal(
-              'Error!',
-              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-            );
-          } else if (data.responseMessage && data.responseMessage.responseDescription) {
-            const errorResponse = data.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
-            this.investmentAccountService.showGenericErrorModal();
-          }
-        } else {
-          this.authService.saveEnquiryId(null);
-          const translateParams = {
-            portfolioName: portfolio.riskProfile.type
-          };
-          const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
-          this.showToastMessage(toastMsg);
-          this.getInvestmentOverview();
-          this.getUserProfileInfo();
-        }
-      },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
-    });
-    ref.componentInstance.noClickAction.subscribe(() => { });
-  }
+  // deletePortfolio(portfolio) {
+  //   const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+  //   ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
+  //   // tslint:disable-next-line:max-line-length
+  //   ref.componentInstance.errorMessage = this.translate.instant(
+  //     'YOUR_INVESTMENT.DELETE_TXT'
+  //   );
+  //   ref.componentInstance.yesOrNoButton = 'Yes';
+  //   ref.componentInstance.yesClickAction.subscribe(() => {
+  //     this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
+  //       if (data.responseMessage.responseCode < 6000) {
+  //         if (
+  //           data.objectList &&
+  //           data.objectList.length &&
+  //           data.objectList[data.objectList.length - 1].serverStatus &&
+  //           data.objectList[data.objectList.length - 1].serverStatus.errors &&
+  //           data.objectList[data.objectList.length - 1].serverStatus.errors.length
+  //         ) {
+  //           this.showCustomErrorModal(
+  //             'Error!',
+  //             data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+  //           );
+  //         } else if (data.responseMessage && data.responseMessage.responseDescription) {
+  //           const errorResponse = data.responseMessage.responseDescription;
+  //           this.showCustomErrorModal('Error!', errorResponse);
+  //         } else {
+  //           this.investmentAccountService.showGenericErrorModal();
+  //         }
+  //       } else {
+  //         this.authService.saveEnquiryId(null);
+  //         const translateParams = {
+  //           portfolioName: portfolio.riskProfile.type
+  //         };
+  //         const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
+  //         this.showToastMessage(toastMsg);
+  //         this.getInvestmentOverview();
+  //         this.getUserProfileInfo();
+  //       }
+  //     },
+  //     (err) => {
+  //       this.investmentAccountService.showGenericErrorModal();
+  //     });
+  //   });
+  //   ref.componentInstance.noClickAction.subscribe(() => { });
+  // }
 
   selectOption(option) {
     this.manageInvestmentsService.showMenu(option);

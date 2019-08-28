@@ -39,7 +39,7 @@
                                   </div>
                                </div>
                                <div class="flex-col">
-                                  <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">$2,000.00
+                                  <div [class.negativeValue]="totalReturns < 0" class="start_investment_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
                                   </div>
                                </div>
                             </div>
@@ -66,7 +66,7 @@
     </div>
  </section>
  <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList" [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)" (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
- (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()" [portfolioData]="investmentoverviewlist.data">
+ (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()" [portfolioData]="investmentoverviewlist">
  </app-portfolio-list>
  <div class="container-fluid max-width--1024" *ngIf="!portfolioList || portfolioList.length == 0">
     <div class="form-group-with-bg no-portfolio">

@@ -54,7 +54,6 @@ export class PortfolioListComponent implements OnInit {
     this.notInvestedList = [];
     this.investedList = [];
     if (this.portfolioList) {
-      console.log('coming', this.portfolioList[0]);
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED') {
           this.investedList.push(portfolio);
@@ -62,7 +61,14 @@ export class PortfolioListComponent implements OnInit {
           this.notInvestedList.push(portfolio);
         }
       }
+      this.investedList = this.sortByDate(this.investedList);
+      this.notInvestedList = this.sortByDate(this.notInvestedList);
     }
+  }
+  sortByDate(myArray) {
+   return  myArray.sort(
+      (d1, d2) => new Date(d2.createdDate).getTime() - new Date(d1.createdDate).getTime()
+    );
   }
   getMonthlyInvestValidity(index: number) {
     if (this.userProfileInfo && this.userProfileInfo.investementDetails
@@ -113,7 +119,7 @@ export class PortfolioListComponent implements OnInit {
   }
 
   getImg(i: number) {
-    return ProfileIcons[i - 1]['icon'];
+    return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
   }
 
   stopEventPropogation(event) {
