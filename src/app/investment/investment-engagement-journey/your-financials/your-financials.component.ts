@@ -37,6 +37,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   form: any;
   translator: any;
+  loaderTitle: string;
+  loaderDesc: string;
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -58,6 +60,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
       self.helpData = this.translate.instant('MY_FINANCIALS.helpData');
       self.translator = this.translate.instant('MY_FINANCIALS');
+      self.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
+      self.loaderDesc = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -80,7 +84,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.footerService.setFooterVisibility(false);
     this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
     if (this.isLoggedInUser() && this.isFirstTimeUser()) {
-      this.getUserFinancialDetails();
+      this.getFinancialDetails();
 
     }
     this.buildFrom();
@@ -93,9 +97,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       totalAssets: new FormControl(this.financialFormValue.totalAssets),
       totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
-        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund),
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund)
     });
-
   }
 
   showEmergencyFundModal() {
@@ -155,7 +158,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   saveAndProceed(form: any) {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
-    // CALL API
     this.investmentEngagementJourneyService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
@@ -176,17 +178,19 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     return this.authService.isSignedUser();
   }
 
-  getUserFinancialDetails() {
+  getFinancialDetails() {
     this.loaderService.showLoader({
-      title: this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE'),
-      desc: this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC')
+      title: this.translate.instant(this.loaderTitle),
+      desc: this.translate.instant(this.loaderDesc)
     });
     this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
       this.loaderService.hideLoader();
-      if (data.responseMessage.responseCode <= 6000) {
-        const financialDetails = data.objectList;
-        this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
-        this.setControlValues(financialDetails);
+      if (data.responseMessage.responseCode < 6000) {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      } else {
+        this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
+        this.setControlValues(data.objectList);
       }
     },
       (err) => {
@@ -197,7 +201,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   isFirstTimeUser() {
     if (typeof this.financialFormValue.firstTimeUser === 'undefined') {
-      this.financialFormValue.firstTimeUser = true;
       return true;
     }
     return false;
@@ -208,6 +211,5 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.myFinancialForm.controls.percentageOfSaving.setValue(financialDetails.incomePercentageSaved);
     this.myFinancialForm.controls.totalAssets.setValue(financialDetails.totalAssets);
     this.myFinancialForm.controls.totalLiabilities.setValue(financialDetails.totalLoans);
-
   }
 }

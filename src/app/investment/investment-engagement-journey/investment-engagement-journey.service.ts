@@ -377,7 +377,7 @@ export class InvestmentEngagementJourneyService {
   getUserFinancialDetails() {
     return this.apiService.getUserFinancialDetails();
   }
-  setApiFinancialDetails(financialDetails) {
+  setFinancialDetails(financialDetails) {
     this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
     this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
     this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;

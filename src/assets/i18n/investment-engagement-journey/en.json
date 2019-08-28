@@ -62,7 +62,7 @@
   },
   "INVESTMENT_AMOUNT": {
     "TITLE": "Your Investment Amount",
-    "HOW_MUCH_INVEST": "How much do you want to invest?",
+    "INVESTMENT_AMOUNT_LBL": "How much do you want to invest?",
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "AT_LEAST_ONE": "Select at least one of the following.",
@@ -89,10 +89,10 @@
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
-    "HOW_MUCH_OWN":"How much do you own and owe?",  
+    "MY_FINANCIAL_LBL":"How much do you own and owe?",  
     "RESPONSE_LOADER": {
       "TITLE": "Getting Request",
-      "DESC": "Please wait"
+      "DESC": "Please wait while we are loading financial deatils  "
     },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",

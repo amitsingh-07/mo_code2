@@ -105,7 +105,7 @@ export class YourInvestmentAmountComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
       // tslint:disable-next-line:max-line-length
-      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal),
+      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal)
     });
   }
   // tslint:disable-next-line:use-life-cycle-interface
