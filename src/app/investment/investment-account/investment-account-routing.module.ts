@@ -37,12 +37,12 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
     redirectTo: INVESTMENT_ACCOUNT_ROUTES.START,
     pathMatch: 'full',
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.START,
     component: StartComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
@@ -97,12 +97,12 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,

@@ -40,7 +40,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   pageTitle: string;
   formValues;
   countries;
-  isUserNationalitySingapore;
   defaultThumb;
   formData: FormData = new FormData();
   portfolio;
@@ -82,7 +81,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getPortfolioDetails();
     }
 

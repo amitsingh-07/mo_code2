@@ -534,4 +534,14 @@ export class ManageInvestmentsService {
       };
     }
   }
+
+  getAddPortfolioEntitlements() {
+    return this.investmentApiService.getAddPortfolioEntitlements();
+  }
+
+  setAddPortfolioEntitlementsFormData(data) {
+    this.manageInvestmentsFormData.canProceedEngagementJourney = data.canProceedEngagementJourney;
+    this.manageInvestmentsFormData.hasInvestmentAccount = data.hasInvestmentAccount;
+    this.commit();
+  }
 }

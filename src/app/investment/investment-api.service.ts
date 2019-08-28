@@ -294,5 +294,10 @@ export class InvestmentApiService {
       );
   }
 
-
+  getAddPortfolioEntitlements() {
+    return this.http.get(investmentApiConstants.endpoint.investment.addPortfolioEntitlements)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

@@ -31,7 +31,7 @@ import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-
+import { RestrictAddPortfolioModalComponent } from '../../investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -92,14 +92,9 @@ export class DashboardComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.investmentAccountService.getUserPortfolioExistStatus()) {
         this.investmentAccountService.setUserPortfolioExistStatus(false);
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
-        ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
-        ref.componentInstance.portfolioExist = true;
-        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
-         });
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.ADD_PORTFOLIO_NOT_ALLOWED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.ADD_PORTFOLIO_NOT_ALLOWED.MAX_PORTFOLIO_REASON');
       }
      });
     this.configService.getConfig().subscribe((config: IConfig) => {

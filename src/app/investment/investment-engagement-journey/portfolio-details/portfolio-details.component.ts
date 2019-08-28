@@ -250,6 +250,35 @@ export class PortfolioDetailsComponent implements OnInit {
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
+      this.manageInvestmentsService.getAddPortfolioEntitlements().subscribe((data: any) => {
+        data = {
+          "exception": null,
+          "objectList": {
+            "canProceedEngagementJourney": true,
+            "hasInvestmentAccount": true
+          },
+          "responseMessage": {
+            "responseCode": 6000,
+            "responseDescription": "Successful response"
+          }
+        };
+        if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
+          this.investmentAccountService.showGenericErrorModal();
+        } else { // Api Success
+          this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
+          if (data.objectList && data.objectList.hasInvestmentAccount) {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          } else {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+          }
+        }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      });
+      // tslint:disable-next-line: no-commented-code
+      /* Old Logic
       this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
         if (userInfo.responseMessage.responseCode < 6000) {
           // ERROR SCENARIO
@@ -291,6 +320,7 @@ export class PortfolioDetailsComponent implements OnInit {
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
         });
+      */
     } else {
       this.showLoginOrSignupModal();
     }

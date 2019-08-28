@@ -29,4 +29,8 @@ export class ManageInvestmentsFormData {
   assetAllocationValues;
 
   selectedPortfolio;
+
+  // ADD PORTFOLIO ENTITLEMENTS
+  canProceedEngagementJourney;
+  hasInvestmentAccount;
 }

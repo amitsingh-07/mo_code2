@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT,
     component: InvestmentOverviewComponent,
-    canActivate: [ManageInvestmentsGuard]
+    canActivate: []
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_PORTFOLIO,

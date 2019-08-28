@@ -38,6 +38,7 @@ export let investmentApiConstants = {
             getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
             getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
+            addPortfolioEntitlements: ACCOUNT_API_BASE_URL + '/customer/address' // TODO: DUMMY URL, NEEDS TO CHANGE ONCE API READY
         }
     }
 };
