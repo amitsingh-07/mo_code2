@@ -33,6 +33,7 @@ import {
     AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -251,6 +252,38 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorMessage = errorMessage;
   }
 
+  goToNext() {
+    this.manageInvestmentsService.getAddPortfolioEntitlements().map((data: any) => {
+      data = {
+        "exception": null,
+        "objectList": {
+          "canProceedEngagementJourney": true,
+          "hasInvestmentAccount": false
+        },
+        "responseMessage": {
+          "responseCode": 6000,
+          "responseDescription": "Successful response"
+        }
+      };
+      if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
+        this.investmentAccountService.setUserPortfolioExistStatus(true);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        return false;
+      } else { // Api Success
+        this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
+        if (data.objectList && data.objectList.hasInvestmentAccount) {
+          this.createInvestmentAccount();
+        } else {
+          this.verifyAML();
+        }
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  /*
   verifyCustomer() {
     const investStatus = this.signUpService.getInvestmentStatus();
     if (investStatus && investStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
@@ -265,6 +298,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.verifyAML();
     }
   }
+  */
 
   verifyAML() {
     if(!this.isRequestSubmitted) {
