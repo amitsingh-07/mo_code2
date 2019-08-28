@@ -1,12 +1,13 @@
 {
+	"responseMessage": {
+	"responseCode": 6000,
+	"responseDescription": "Successful response"
+},
 	"objectList": {
 		"monthlyIncome": 900000,
 		"incomePercentageSaved": 60,
 		"totalAssets": 800000,
 		"totalLoans": 700000
-	},
-  "responseMessage": {
-		"responseCode": 6000,
-		"responseDescription": "Successful response"
 	}
+  
 }

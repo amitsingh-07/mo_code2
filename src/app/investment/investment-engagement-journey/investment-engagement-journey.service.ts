@@ -245,6 +245,7 @@ export class InvestmentEngagementJourneyService {
       totalAssets: this.investmentEngagementJourneyFormData.totalAssets,
       totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
       suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
+      firstTimeUser: this.investmentEngagementJourneyFormData.firstTimeUser
      
     };
   }
@@ -261,8 +262,7 @@ export class InvestmentEngagementJourneyService {
       initialInvestment: this.investmentEngagementJourneyFormData.initialInvestment,
       monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
       oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
-      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox,
-      firstTimeUser: this.investmentEngagementJourneyFormData.firstTimeUser
+      monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
      };
   }
   setYourInvestmentAmount(formData) {

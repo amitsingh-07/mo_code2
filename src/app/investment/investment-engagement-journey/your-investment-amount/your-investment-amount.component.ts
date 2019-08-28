@@ -107,9 +107,6 @@ export class YourInvestmentAmountComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal),
     });
-    if (this.isLoggedInUser() && this.isFirstTimeUser()) {
-      this.getUserFinancialDetails();
-    }
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
@@ -158,20 +155,5 @@ export class YourInvestmentAmountComponent implements OnInit {
     }
 
   }
-  isLoggedInUser() {
-    return this.authService.isSignedUser();
-  }
-  getUserFinancialDetails() {
-    this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
-      const financialDetails = data.objectList;
-      this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
-    });
-  }
-  isFirstTimeUser() {
-    if (typeof this.investmentAmountFormValues.firstTimeUser === 'undefined') {
-      this.investmentAmountFormValues.firstTimeUser = true;
-      return true;
-    }
-    return false;
-  }
+
 }
