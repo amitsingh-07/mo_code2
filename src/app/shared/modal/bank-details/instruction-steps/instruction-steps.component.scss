@@ -3,7 +3,7 @@
 app-instruction-steps {
   .instruction-content {
     padding-top: 20px;
-    color: $dark-grey-color;
+    color: $instruction-content-color;
     line-height: 22px;
     letter-spacing: -0.16px;
 
@@ -12,7 +12,7 @@ app-instruction-steps {
       font-size: 21px;
       line-height: 1.48;
       letter-spacing: -0.2px;
-      color: $watercourse-color;
+      color: $instruction-content-title-color;
       padding: 10px 10px 5px 28px;
     }
 
@@ -35,7 +35,7 @@ app-instruction-steps {
       }
 
       .section {
-        border-left: 1px solid $teal-color;
+        border-left: 1px solid $instruction-section-brdr-color;
         margin-left: -10px;
         padding-bottom: 25px;
         font-size: 16px;
@@ -47,7 +47,7 @@ app-instruction-steps {
           &.step {
             font-family: $muli-bold;
             letter-spacing: -0.3px;
-            color: $teal-color;
+            color: $instruction-step-color;
             font-size: 18px;
             top: -4px;
             position: relative;
@@ -61,7 +61,7 @@ app-instruction-steps {
     .circle {
       width: 20px;
       height: 20px;
-      background-color: $teal-color;
+      background-color: $instruction-circle-bg;
       border-radius: 50%;
       padding: 10px;
     }
@@ -82,7 +82,7 @@ app-instruction-steps {
 
       &-title {
         font-family: $muli-semi-bold;
-        color: $dark-teal-color;
+        color: $bank-title-color;
         font-size: 18px;
         letter-spacing: -0.3px;
       }
@@ -91,7 +91,7 @@ app-instruction-steps {
         font-family: $muli-semi-bold;
         font-size: 16px;
         letter-spacing: -0.3px;
-        color: $black-color;
+        color: $bank-centent-color;
 
         strong {
           margin-right: 15px;
@@ -156,37 +156,37 @@ app-instruction-steps {
     }
   }
 
-  .setup-auto-deposit {
-    border: 1.5px solid $dark-teal-color;
-    border-radius: 6px;
-    padding: 25px;
-    position: relative;
-    margin: 0px 18px 20px;
-    display: flex;
-    justify-content: center;
+  // .setup-auto-deposit {
+  //   border: 1.5px solid $dark-teal-color;
+  //   border-radius: 6px;
+  //   padding: 25px;
+  //   position: relative;
+  //   margin: 0px 18px 20px;
+  //   display: flex;
+  //   justify-content: center;
 
-    .head {
-      font-family: $muli-bold;
-      font-size: 16px;
-      text-align: center;
-      color: $teal-color;
-      position: absolute;
-      top: -18px;
-      padding: 5px 15px 5px 55px;
-      display: flex;
-      flex: 1;
-      background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
-      background-color: $white-color;
-      background-position: 15px 4px;
-    }
+  //   .head {
+  //     font-family: $muli-bold;
+  //     font-size: 16px;
+  //     text-align: center;
+  //     color: $teal-color;
+  //     position: absolute;
+  //     top: -18px;
+  //     padding: 5px 15px 5px 55px;
+  //     display: flex;
+  //     flex: 1;
+  //     background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
+  //     background-color: $white-color;
+  //     background-position: 15px 4px;
+  //   }
 
-    p {
-      color: $black-color;
-      text-align: center;
-      margin: 0;
-      font-size: 16px;
-    }
-  }
+  //   p {
+  //     color: $black-color;
+  //     text-align: center;
+  //     margin: 0;
+  //     font-size: 16px;
+  //   }
+  // }
 
   .faq-link {
     text-align: center;
@@ -198,7 +198,7 @@ app-instruction-steps {
       font-weight: bold;
       letter-spacing: -0.2px;
       text-align: center;
-      color: $secondary-action-color;
+      color: $instruction-faq-color;
       text-decoration: none;
     }
   }

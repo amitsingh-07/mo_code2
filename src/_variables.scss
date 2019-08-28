@@ -48,6 +48,10 @@ $monte-carlo-color: #81d2d2;
 $persian-teal-color: #008c8c;
 $morning-glory-color: #98dfdf;
 $polar-blue-color: #EAFAF9;
+$alto-color: #d2d2d2;
+$keppel-color: #2e9e9e;
+$jagged-ice-color: #c4e5ea;
+$mango-tango-color: #e57300;
 
 // common color
 $login-shadow-color : rgba(0, 0, 0, 0.2);
@@ -63,7 +67,7 @@ $btn-primary-shadow-color: #008b8b;
 $btn-secondary-backgrnd-color: #00a7a7;
 $text-color-secondary: $silver-grey-color;
 
-$inline-error-border-color: #e57300;
+$inline-error-border-color: $mango-tango-color;
 $inline-error-bg-color: #fff3e9;
 
 // loader colors
@@ -274,16 +278,39 @@ $edit-acnt-disable-bg : #d8f2f2;
 $edit-acnt-disable-brdr : #81c7c6;
 
 // transfer-instructions
+$instruction-content-color: $dark-grey-color;
+$instruction-content-title-color: $watercourse-color;
+$instruction-section-brdr-color: $teal-color;
+$instruction-step-color: $teal-color;
+$instruction-circle-bg: $teal-color;
+$bank-title-color: $dark-teal-color;
+$bank-centent-color: $black-color;
 $ref-code-container-brdr-color: $red-color;
 $ref-code-container-bg: $cinderella-color;
 $ref-code-container-color: $dark-red-color;
 $ref-code-context-color: $black-color;
 $ref-code-context-must-color: $dark-red-color;
 $ref-code-context-remark-color: $red-color;
+$instruction-faq-color: $secondary-action-color;
 
 // Fund-account
-$fund-account-tab-color : #d2d2d2;
+$fund-account-tab-color : $alto-color;
+$fund-cash-account-color: $white-color;
+$fund-investment-value-color: $crusta-orange-color;
+$fund-cash-balance-color: $black-color;
+$fund-ref-color: $crusta-orange-color;
+$fund-ref-brdr-color: $teal-color;
+$fund-ref-bg-color:$white-color;
+$fund-cash-note-color: $dark-grey-color;
+$fund-account-detail-ref-num-color: $crusta-orange-color;
+$fund-account-detail-ref-code-info-color: $mango-tango-color;
 
+
+// TRANSFER DETAILS in fund-account
+$fund-transfer-details-color: $teal-color;
+$fund-tab-link-color: $keppel-color; 
+$fund-tab-link-bg: $jagged-ice-color;
+$fund-tab-link-active-bg: $white-color;
 // notifications
 $notification-title-bg: #dfecec;
 
@@ -301,7 +328,7 @@ $top-up-your-portfolio-value-content-bg : #eaeaea;
 $portfolio-footer-btn-brdr-color : #e4f8f8;
 $top-up-your-portfolio-asset-btn-shadow : rgb(0, 153, 153);
 $top-up-your-portfolio-your-total-value-bg: $pine-green-color;
-$tabs-font-color: #2E9E9E;
+$tabs-font-color: $keppel-color;
 $top-up-faq-link-color: #a7f3f1;
 
 // Post Login Dashboard
