@@ -20,6 +20,8 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { DirectService } from './../../direct/direct.service';
+import { GuideMeService } from './../../guide-me/guide-me.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -53,7 +55,9 @@ export class VerifyMobileComponent implements OnInit {
     private errorHandler: CustomErrorHandlerService,
     public authService: AuthenticationService,
     private selectedPlansService: SelectedPlansService,
-    private willWritingService: WillWritingService) {
+    private willWritingService: WillWritingService,
+    private directService: DirectService,
+    private guidemeService: GuideMeService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -171,6 +175,8 @@ export class VerifyMobileComponent implements OnInit {
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
         this.willWritingService.clearServiceData();
+        this.directService.clearServiceData();
+        this.guidemeService.clearServiceData();
         if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
           this.signUpService.removeFromLoginPage();
         }
