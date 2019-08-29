@@ -9,8 +9,8 @@
   "srsEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
-  "maintenanceEnabled": true,
-  "marqueeEnabled": false,
+  "maintenanceEnabled": false,
+  "marqueeEnabled": true,
   "resetPasswordUrl": "/#/account/reset-password",
   "verifyEmailUrl": "/#/account/email-verification",
   "hospitalPlanData": [{
