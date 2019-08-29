@@ -606,8 +606,8 @@ export class InvestmentAccountService {
     const payload = this.constructSaveNationalityRequest(data);
     return this.investmentApiService.saveNationality(payload);
   }
-  createInvestmentAccount() {
-    return this.investmentApiService.createInvestmentAccount();
+  createInvestmentAccount(params) {
+    return this.investmentApiService.createInvestmentAccount(params);
   }
 
   verifyAML() {
@@ -914,9 +914,8 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
-  getPortfolioAllocationDetails(params) {
-    const urlParams = this.investmentEngagementJourneyService.buildQueryString(params);
-    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
+  getPortfolioAllocationDetailsWithAuth(params) {
+    return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 
   updateInvestment(params) {
@@ -1860,13 +1859,29 @@ export class InvestmentAccountService {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
   }
 
-  setUserPortfolioExistStatus(status) {
-    this.investmentAccountFormData.portfolioExist = status;
+  setInitialMessageToShowDashboard(initialMessageInfo) {
+    if (initialMessageInfo) {
+      this.investmentAccountFormData.show = initialMessageInfo.show;
+      this.investmentAccountFormData.title = initialMessageInfo.title;
+      this.investmentAccountFormData.desc = initialMessageInfo.desc;
+    } else {
+      this.investmentAccountFormData.show = false;
+      this.investmentAccountFormData.title = '';
+      this.investmentAccountFormData.desc = '';
+    }
     this.commit();
   }
 
-  getUserPortfolioExistStatus() {
-    return this.investmentAccountFormData.portfolioExist;
+  getInitialMessageToShowDashboard() {
+    if(this.investmentAccountFormData.title) {
+      return {
+        show: this.investmentAccountFormData.show,
+        title: this.investmentAccountFormData.title,
+        desc: this.investmentAccountFormData.desc
+      };
+    } else {
+      return null;
+    }
   }
 
   // #FOR 100 CHARACTERS FIELD CURSOR POSITION

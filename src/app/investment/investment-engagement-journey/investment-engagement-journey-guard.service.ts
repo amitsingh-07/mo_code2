@@ -7,6 +7,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { ManageInvestmentsService } from '../manage-investments/manage-investments.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './investment-engagement-journey-routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Injectable({
@@ -19,7 +20,8 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
     private route: Router,
     private authService: AuthenticationService,
     private router: Router,
-    private manageInvestmentsService: ManageInvestmentsService
+    private manageInvestmentsService: ManageInvestmentsService,
+    private translate: TranslateService
   ) {}
   canActivate() {
     // const userInfo = this.signUpService.getUserProfileInfo();
@@ -29,40 +31,33 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
     //   userInfo.investementDetails.portfolios &&
     //   userInfo.investementDetails.portfolios.length > 0
     // ) {
-    //   this.investmentAccountService.setUserPortfolioExistStatus(true);
+    //   this.investmentAccountService.setInitialMessageToShowDashboard(true);
     //   this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     //   return false;
     // }
     if (this.authService.isSignedUser()) {
-      return this.manageInvestmentsService.getAddPortfolioEntitlements().map((data: any) => {
-        data = {
-          "exception": null,
-          "objectList": {
-            "canProceedEngagementJourney": true,
-            "hasInvestmentAccount": false
-          },
-          "responseMessage": {
-            "responseCode": 6000,
-            "responseDescription": "Successful response"
-          }
-        };
+      return this.manageInvestmentsService.getFirstInvAccountCreationStatus().map((data: any) => {
+        //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
         if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
-          this.investmentAccountService.setUserPortfolioExistStatus(true);
           this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          return false;
         } else { // Api Success
-          this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
-          if (data.objectList && data.objectList.canProceedEngagementJourney) {
+          if (data.objectList && data.objectList.allowEngagementJourney) {
             return true;
           } else {
-            this.investmentAccountService.setUserPortfolioExistStatus(true);
+            const dashboardMessage = {
+              show: true,
+              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
+              desc: data.objectList.portfolioLimitExceeded
+                    ? this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
+                    : this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
+            };
+            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
             this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
             return false;
           }
         }
       },
       (err) => {
-        this.investmentAccountService.setUserPortfolioExistStatus(true);
         this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         return false;
       });

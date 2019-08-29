@@ -19,12 +19,12 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_COMMON_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,

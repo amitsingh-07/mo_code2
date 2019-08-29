@@ -92,11 +92,12 @@ export class DashboardComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
-        this.investmentAccountService.setUserPortfolioExistStatus(false);
+      const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
+      if (initialMessage.show) {
+        this.investmentAccountService.setInitialMessageToShowDashboard(null);
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.ADD_PORTFOLIO_NOT_ALLOWED.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.ADD_PORTFOLIO_NOT_ALLOWED.MAX_PORTFOLIO_REASON');
+        ref.componentInstance.errorTitle = initialMessage.title;
+        ref.componentInstance.errorMessage = initialMessage.desc;
       }
      });
     this.configService.getConfig().subscribe((config: IConfig) => {

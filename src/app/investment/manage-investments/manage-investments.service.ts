@@ -535,13 +535,13 @@ export class ManageInvestmentsService {
     }
   }
 
-  getAddPortfolioEntitlements() {
-    return this.investmentApiService.getAddPortfolioEntitlements();
+  getFirstInvAccountCreationStatus() {
+    return this.investmentApiService.getFirstInvAccountCreationStatus();
   }
 
-  setAddPortfolioEntitlementsFormData(data) {
-    this.manageInvestmentsFormData.canProceedEngagementJourney = data.canProceedEngagementJourney;
-    this.manageInvestmentsFormData.hasInvestmentAccount = data.hasInvestmentAccount;
-    this.commit();
-  }
+  // setAddPortfolioEntitlementsFormData(data) {
+  //   this.manageInvestmentsFormData.canProceedEngagementJourney = data.canProceedEngagementJourney;
+  //   this.manageInvestmentsFormData.hasInvestmentAccount = data.hasInvestmentAccount;
+  //   this.commit();
+  // }
 }

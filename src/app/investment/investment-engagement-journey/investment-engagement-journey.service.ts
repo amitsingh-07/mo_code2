@@ -301,8 +301,13 @@ export class InvestmentEngagementJourneyService {
     return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.buildQueryString(params);
-    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
+    return this.investmentApiService.getPortfolioAllocationDetails(params);
+  }
+
+  constructPortfolioDetailsReq() {
+    return {
+
+    }
   }
 
   getFundDetails() {

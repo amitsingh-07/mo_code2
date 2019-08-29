@@ -93,7 +93,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   getPortfolioDetails() {
     const params = this.constructgetPortfolioParams();
     this.investmentAccountService
-      .getPortfolioAllocationDetails(params)
+      .getPortfolioAllocationDetailsWithAuth(params)
       .subscribe((data) => {
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -137,7 +137,9 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   constructgetPortfolioParams() {
-    return {};
+    return {
+
+    };
   }
 
   getInlineErrorStatus(control) {
@@ -253,25 +255,12 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   goToNext() {
-    this.manageInvestmentsService.getAddPortfolioEntitlements().map((data: any) => {
-      data = {
-        "exception": null,
-        "objectList": {
-          "canProceedEngagementJourney": true,
-          "hasInvestmentAccount": false
-        },
-        "responseMessage": {
-          "responseCode": 6000,
-          "responseDescription": "Successful response"
-        }
-      };
+    this.manageInvestmentsService.getFirstInvAccountCreationStatus().subscribe((data: any) => {
+      //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
       if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
-        this.investmentAccountService.setUserPortfolioExistStatus(true);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-        return false;
+        this.investmentAccountService.showGenericErrorModal();
       } else { // Api Success
-        this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
-        if (data.objectList && data.objectList.hasInvestmentAccount) {
+        if (data.objectList && data.objectList.investmentAccountExists) {
           this.createInvestmentAccount();
         } else {
           this.verifyAML();
@@ -363,6 +352,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   createInvestmentAccount() {
+    const params = this.constructCreateInvAccountParams();
     if(!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
@@ -373,7 +363,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
-      this.investmentAccountService.createInvestmentAccount().subscribe(
+      this.investmentAccountService.createInvestmentAccount(params).subscribe(
         (response) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
@@ -419,6 +409,12 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.investmentAccountService.showGenericErrorModal();
         }
       );
+    }
+  }
+
+  constructCreateInvAccountParams() {
+    return {
+      customerPortfolioId: this.portfolio.customerPortfolioId
     }
   }
 }

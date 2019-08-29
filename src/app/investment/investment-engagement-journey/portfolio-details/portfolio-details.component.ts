@@ -183,11 +183,9 @@ export class PortfolioDetailsComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const selectedRiskId = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
-    const enqId = this.authService.getEnquiryId();
+    //const selectedRiskId = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     return {
-      riskProfileId: selectedRiskId.riskProfileId,
-      enquiryId: enqId
+      enquiryId: this.authService.getEnquiryId()
     };
   }
 
@@ -251,22 +249,11 @@ export class PortfolioDetailsComponent implements OnInit {
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
-      this.manageInvestmentsService.getAddPortfolioEntitlements().subscribe((data: any) => {
-        data = {
-          "exception": null,
-          "objectList": {
-            "canProceedEngagementJourney": true,
-            "hasInvestmentAccount": true
-          },
-          "responseMessage": {
-            "responseCode": 6000,
-            "responseDescription": "Successful response"
-          }
-        };
+      this.manageInvestmentsService.getFirstInvAccountCreationStatus().subscribe((data: any) => {
+        //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
         if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
           this.investmentAccountService.showGenericErrorModal();
         } else { // Api Success
-          this.manageInvestmentsService.setAddPortfolioEntitlementsFormData(data.objectList);
           if (data.objectList && data.objectList.hasInvestmentAccount) {
             this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
           } else {
