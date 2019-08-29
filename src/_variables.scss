@@ -1,5 +1,5 @@
 // font usage of muli
-$muli: 'Muli',sans-serif;   
+$muli: 'Muli',sans-serif;
 $muli-regular : 'Muli Regular',sans-serif;
 $muli-light: 'Muli Light',sans-serif;
 $muli-bold: 'Muli Bold',sans-serif;
@@ -164,7 +164,7 @@ $portfolio-allocation-container-txt-color: $white-color;
 $portfolio-allocation-container-bg-color: $lagoon-blue-color;
 $portfolio-allocation-container-shadow-color: rgba(0, 0, 0, 0.14);
 
-$portfolio-allocation-content-txt-color:  $dark-teal-color;
+$portfolio-allocation-content-txt-color: $dark-teal-color;
 $portfolio-allocation-content-bg-color: $white-color;
 
 $portfolio-allocation-review-txt-color: $jungle-mist-blue-color;
@@ -305,12 +305,16 @@ $fund-cash-note-color: $dark-grey-color;
 $fund-account-detail-ref-num-color: $crusta-orange-color;
 $fund-account-detail-ref-code-info-color: $mango-tango-color;
 
-
 // TRANSFER DETAILS in fund-account
 $fund-transfer-details-color: $teal-color;
-$fund-tab-link-color: $keppel-color; 
+$fund-tab-link-color: $keppel-color;
 $fund-tab-link-bg: $jagged-ice-color;
 $fund-tab-link-active-bg: $white-color;
+$fund-tab-content-bg: $bond-container-bg;
+$fund-instruction-txt-color: $silver-grey-color;
+$fund-process-info-bg: $persian-green-color;
+$fund-process-info-color: $white-color;
+
 // notifications
 $notification-title-bg: #dfecec;
 
