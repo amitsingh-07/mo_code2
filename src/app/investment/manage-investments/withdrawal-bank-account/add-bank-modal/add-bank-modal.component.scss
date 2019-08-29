@@ -1,10 +1,13 @@
 @import '../../../../../variables';
+
 app-add-bank-modal {
   .add-bank-modal {
     font-family: $muli;
+
     .dropdown-control {
       position: relative;
     }
+
     .modal-body .form-group {
       label {
         font-family: $muli-semi-bold;
@@ -14,13 +17,16 @@ app-add-bank-modal {
         color: #2d8289;
       }
     }
-    .form-control{
+
+    .form-control {
       .input-control {
         text-align: left;
       }
+
       &.input-control {
         text-align: left;
-        &.disabled{
+
+        &.disabled {
           font-size: 16px;
           cursor: not-allowed;
           font-size: 16px;
@@ -31,32 +37,40 @@ app-add-bank-modal {
           border: 1px solid $edit-acnt-disable-brdr !important;
         }
       }
-    } 
+    }
+
     .dropdown-control .dropdown-menu.show {
       right: 0 !important;
       overflow: auto;
     }
+
     .dropdown-item {
       white-space: normal;
     }
+
     .dropdown-control {
       .btn-dropdown {
         color: $teal-color;
       }
+
       position: relative;
       position: relative;
       background: $white-color;
       cursor: pointer;
+
       .dropdown-toggle {
         padding: 0.9rem;
+
         &:disabled {
           cursor: not-allowed;
+
           &:hover {
             background-color: transparent !important;
           }
         }
       }
     }
+
     .regulations {
       font-family: $muli-regular;
       font-size: 13px;
@@ -64,6 +78,7 @@ app-add-bank-modal {
       letter-spacing: -0.1px;
       color: $text-color-secondary;
     }
+
     .btn {
       &.btn-primary {
         font-size: 24px;
@@ -71,32 +86,37 @@ app-add-bank-modal {
       }
     }
   }
-   [placeholder]:empty::before {
-  content: attr(placeholder);
 
-   color: $text-color-secondary
-}
+  [placeholder]:empty::before {
+    content: attr(placeholder);
 
-[placeholder]:empty:focus::before {
-  content: "";
-}
-  .content-editable {
-    border: 1px solid #94CCCC;
-    border-radius: 6px;
-    padding: .90rem;
-    background: $white-color;
-    color: $app-backgrnd-color;
-    word-break: break-word;
-    min-height: 52px;
-    &.view-mode {
-      background-color: rgba(0, 167, 167, 0.15) !important;
-    }
-    &.inline-error {
-      color: #e57300 !important;
-      background: #fff3e9;
-      &[placeholder]:empty::before {
-        color: #e57300 !important;
-      }
-    }
-}
+    color: $text-color-secondary
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+  // .content-editable {
+  //   border: 1px solid #94CCCC;
+  //   border-radius: 6px;
+  //   padding: .90rem;
+  //   background: $white-color;
+  //   color: $app-backgrnd-color;
+  //   word-break: break-word;
+  //   min-height: 52px;
+
+  //   &.view-mode {
+  //     background-color: rgba(0, 167, 167, 0.15) !important;
+  //   }
+
+  //   &.inline-error {
+  //     color: #e57300 !important;
+  //     background: #fff3e9;
+
+  //     &[placeholder]:empty::before {
+  //       color: #e57300 !important;
+  //     }
+  //   }
+  // }
 }

@@ -1,24 +1,54 @@
 @import './variables';
 @import './mixins';
+
+.container-fluid {
+
+  &.invest-web-width {
+    @include LargeDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+  }
+
+  &.invest-web-pt-90 {
+    @include LargeDevice {
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      padding-top: 90px;
+    }
+  }
+}
+
 //common styles
 .investment {
   h2 {
-   font-size:30px !important;
-   margin-bottom: 15px;
+    font-size: 30px !important;
+    margin-bottom: 15px;
   }
-  .banner-image{
-    img{
+
+  .banner-image {
+    img {
       padding-top: 0;
     }
   }
+
   .btn__footer--fixed {
     font-family: $muli-bold !important;
     font-size: 22px;
-    &:disabled{
+
+    &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $disabled-teal-color;
     }
   }
+
   .btn-proceed {
     border: 0px;
     border-radius: 6px;
@@ -35,9 +65,134 @@
     display: flex;
     justify-content: center;
     margin: 0 auto 54px;
+
     @include allmobiles {
       width: 100%;
       margin-bottom: 0;
+    }
+  }
+
+  .container-fluid {
+    .title-small {
+      font-family: $muli-bold;
+      font-size: 16px;
+      line-height: 1.38;
+      letter-spacing: -0.2px;
+      color: $white-color;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// investment-account module
+.investment-account {
+  .container-fluid {
+    padding-top: 16px;
+
+    @include allmobiles {
+      padding-top: 80px;
+    }
+  }
+
+  // step indicator
+  .step-indicator-container {
+    padding: 20px 0px;
+    position: relative;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    @include allmobiles {
+      top: 60px;
+      background-color: $white-color;
+      padding: 10px 0px;
+    }
+
+    .page-caption {
+      color: $text-color-secondary;
+      font-size: 16px;
+      font-family: $muli;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    @include stepindicator-desktop-extraspace;
+  }
+
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+  // content editable
+  .content-editable {
+    border: 1px solid $content-editable-border-color;
+    border-radius: 6px;
+    padding: .90rem;
+    background: $content-editable-bg-color;
+    color: $content-editable-txt-color;
+    word-break: break-word;
+    min-height: 52px;
+
+    &.fullName-disabled {
+      color: $content-editable-disabled-txt-color !important;
+      -webkit-text-fill-color: $content-editable-disabled-txt-color !important;
+      background-color: $content-editable-disabled-bg-color !important;
+      opacity: 1 !important;
+    }
+
+    &.company-disabled {
+      color: $content-editable-disabled-txt-color !important;
+      -webkit-text-fill-color: $content-editable-disabled-txt-color !important;
+      background-color: $content-editable-disabled-bg-color !important;
+      opacity: 1 !important;
+    }
+
+    &.view-mode {
+      background-color: $content-editable-view-mode !important;
+    }
+
+    &.inline-error {
+      color: $inline-error-border-color !important;
+      background: $inline-error-bg-color;
+
+      &[placeholder]:empty::before {
+        color: $inline-error-border-color !important;
+      }
+    }
+  }
+
+  // button proceed
+  .btn-proceed {
+    border: 0px;
+    border-radius: 6px;
+    background-color: $white-color;
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
+    cursor: pointer;
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $teal-color;
+    font-weight: 400;
+    width: 370px;
+
+    @include allmobiles {
+      position: fixed;
+      width: 100%;
+      bottom: 0px;
+      left: 0px;
+      border-radius: 0px;
     }
   }
 }

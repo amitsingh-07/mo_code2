@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES } from './investment-engagement-journey-routes.constants';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
-import { InvestmentEngagementJourneyGuardService as InvestmentEngagementJourneyGuard } from './investment-engagement-journey-guard.service';
+import {
+    InvestmentEngagementJourneyGuardService as InvestmentEngagementJourneyGuard
+} from './investment-engagement-journey-guard.service';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
+} from './investment-engagement-journey-routes.constants';
 import { InvestmentPeriodComponent } from './investment-period/investment-period.component';
 import { PortfolioDetailsComponent } from './portfolio-details/portfolio-details.component';
 import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
@@ -12,6 +16,9 @@ import { RecommendationComponent } from './recommendation/recommendation.compone
 import { RiskWillingnessComponent } from './risk-willingness/risk-willingness.component';
 import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { YourFinancialsComponent } from './your-financials/your-financials.component';
+import {
+    YourInvestmentAmountComponent
+} from './your-investment-amount/your-investment-amount.component';
 
 const routes: Routes = [
   {
@@ -32,7 +39,12 @@ const routes: Routes = [
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
-    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.MY_FINANCIALS,
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.INVESTMENT_AMOUNT,
+    component: YourInvestmentAmountComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.MY_FINANCIAL,
     component: YourFinancialsComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },

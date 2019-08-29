@@ -1,27 +1,32 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 app-sing-pass {
   .autofill-link {
-    border: 1px solid $secondary-action-color;
+    border: 1px solid $sing-pass-border-color;
     padding: 15px 20px;
-    background-color: $white-color;
+    background-color: $sing-pass-bg-color;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0px 9px 19px 2px $risk-table-cell-color;
+    box-shadow: 0px 9px 19px 2px $sing-pass-box-shadow-color;
     margin-bottom: 20px;
+
     .flex-row {
       &.flex-col-12 {
         justify-content: center;
       }
     }
+
     .autofill-logo {
       width: 92px;
       height: 35px;
+
       img {
         width: 100%;
         height: auto;
       }
     }
+
     .autofill-text {
       display: flex;
       align-items: center;
@@ -30,25 +35,31 @@ app-sing-pass {
       color: $inline-error-border-color;
       padding-right: 15px;
     }
+
     .autofill-estimation {
       display: none;
     }
+
     &.postlogin {
       box-shadow: 0 8px 12px 0 $post-login-shadow;
       margin-bottom: 0px;
+
       @include max360 {
         padding: 10px 14px;
       }
+
       .autofill-text {
         font-size: 21px;
         justify-content: flex-start;
         padding-right: 10px;
         padding-bottom: 7px;
       }
+
       .autofill-logo {
         width: 107px;
         height: 40px;
       }
+
       .autofill-estimation {
         display: flex;
         font-family: $muli-semi-bold;
@@ -56,12 +67,12 @@ app-sing-pass {
         line-height: 1.5;
         letter-spacing: -0.1px;
         text-align: center;
-        color: $dark-grey-color;
+        color: $autofill-time-color;
         justify-content: center;
       }
     }
   }
-
+  
   .autofill-link.postlogin + .or-block {
     display: none;
   }
@@ -78,10 +89,11 @@ app-sing-pass {
     align-items: center;
     justify-content: center;
   }
+
   .loader-content-wrapper {
-    background-color: $white-color;
+    background-color: $loader-wrapper-bg-color;
     border-radius: 8px;
-    color: $question-info-brdr-color;
+    color: $loader-wrapper-txt-color;
     margin: 0 32px;
     align-items: center;
     display: flex;
@@ -90,30 +102,35 @@ app-sing-pass {
     padding: 15px 34px;
     z-index: 9999;
   }
+
   .loader-image {
     img {
       max-width: 110px;
     }
   }
+
   .loader-content {
     font-family: $muli;
-    color: $text-color-secondary;
+    color: $loader-content-txt-color;
     text-align: center;
     font-size: 16px;
+
     .loader-title {
       font-family: $muli-regular;
-      color: $dark-grey-color;
+      color: $loader-title-txt-color;
       margin-bottom: 5px;
       letter-spacing: -0.2px;
+
       .dots {
         display: inline-block;
       }
     }
+
     .loader-desc {
       font-style: italic;
       line-height: 1.31;
       letter-spacing: -0.2px;
-      color: $black-color;
+      color: $loader-desc-color;
     }
   }
 }

@@ -5,9 +5,6 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -21,13 +18,21 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+    InvestmentEngagementJourneyService
+} from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import {
     AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -175,10 +180,10 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showPortfolioAssetModal() {
     const errorTitle = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.TITLE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.TITLE'
     );
     const errorMessage = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.MESSAGE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.MESSAGE'
     );
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.imgType = 1;
@@ -233,7 +238,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
+      'PORTFOLIO_RECOMMENDATION.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
     );
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
@@ -268,10 +273,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       const pepData = this.investmentAccountService.getPepData();
@@ -330,10 +335,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       this.investmentAccountService.createInvestmentAccount().subscribe(
@@ -366,7 +371,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
               ) {
                 this.investmentAccountService.setAccountSuccussModalCounter(0);
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
+                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
               } else {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending

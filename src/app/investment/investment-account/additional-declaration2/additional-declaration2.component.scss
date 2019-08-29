@@ -1,70 +1,86 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 app-additional-declaration2 {
-  .step-indicator-container {
-    padding: 20px 0px;
-    position: relative;
-    // top: 76px;
-    @include allmobiles{
-      background-color: $white-color;
-      padding: 10px 0px;
-      top: 60px;
-    }
-    .container-fluid {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-    @include stepindicator-desktop-extraspace;
-  }
-  .container-fluid {
-    padding-top: 16px;
-    @include allmobiles{
-    padding-top: 80px;
-  }
-}
+  // .step-indicator-container {
+  //   padding: 20px 0px;
+  //   position: relative;
+
+  //   // top: 76px;
+  //   @include allmobiles {
+  //     background-color: $white-color;
+  //     padding: 10px 0px;
+  //     top: 60px;
+  //   }
+
+  //   .container-fluid {
+  //     padding-top: 0px;
+  //     padding-bottom: 0px;
+  //   }
+
+  //   @include stepindicator-desktop-extraspace;
+  // }
+
+  // .container-fluid {
+  //   padding-top: 16px;
+
+  //   @include allmobiles {
+  //     padding-top: 80px;
+  //   }
+  // }
+
   .label-font {
     font-size: 18px;
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
     font-weight: normal;
   }
+
   .form-group-with-bg--content-label {
     font-size: 18px;
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
   }
+
   .lable {
     font-size: 18px;
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
     font-weight: normal;
   }
+
   .year {
     font-family: $muli-regular;
-    font-size: 17px !important ;
+    font-size: 17px !important;
     letter-spacing: -0.3px;
     text-align: right;
     color: $dusty-grey-color !important;
   }
+
   .dropdown-control .btn-dropdown {
     padding-right: 28px;
-    
-}
+
+  }
+
   .form-control-right {
     //padding-left: 0;
     padding-right: 18px;
     text-align: right;
   }
+
   .form-control.form-control-right input {
     padding-right: 43px;
   }
+
   .form-control.form-control-right.investment-duration input {
     padding-right: 54px;
   }
+
   .btn__footer--fixed {
     font-family: $muli-bold !important;
   }
-  .text-right{
+
+  .text-right {
     text-align: left !important;
   }
 }

@@ -47,7 +47,7 @@ import {
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
-import { FundDetailsComponent } from './investment/investment-engagement-journey/fund-details/fund-details.component';
+import { FundDetailsComponent } from './investment/investment-common/fund-details/fund-details.component';
 import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
@@ -112,7 +112,6 @@ import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-e
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { NavbarService } from './shared/navbar/navbar.service';
-
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {

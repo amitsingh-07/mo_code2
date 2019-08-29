@@ -1,60 +1,68 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-.annual-fees{
-    padding-top: 33px !important;
-    .title{
-      font-family: $muli-bold;
-      font-size: 18px;
-      letter-spacing: -0.3px;
-      padding-bottom: 14px;
-    }
-    .annual-fee-desc{
-      border-radius: 6px;
-      box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
-      background-color: $bond-container-bg;
-      padding: 26px;
-      font-family: $muli-regular;
-      font-size: 14px;
-      letter-spacing: -0.1px;
-      color: $black-color;
-      .flex-row{
-        justify-content: space-between;
-        padding-bottom: 18px;
-        .announcement{
-          display: flex;
-          color: $black-color;
-          line-height: normal;
-          font-family: $muli-bold;
-          font-style: italic;
-          letter-spacing: -0.13px;
-          font-size: 14px;
-          background-color: $announcement-backgrnd_color;
-          border-radius: 8px;
-          padding: 17px 13px 17px 14px;
-          align-items: center;
-          border-radius: 6px;
-          margin-top: 9px;
-          span{
-            padding-right: 10px;
-          }
+.annual-fees {
+  padding-top: 33px !important;
+
+  .title {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    padding-bottom: 14px;
+  }
+
+  .annual-fee-desc {
+    border-radius: 6px;
+    box-shadow: 0 10px 14px 0 $annual-fee-desc-shadow-color;
+    background-color: $annual-fee-desc-bg-color;
+    padding: 26px;
+    font-family: $muli-regular;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    color: $annual-fee-desc-text-color;
+
+    .flex-row {
+      justify-content: space-between;
+      padding-bottom: 18px;
+
+      .announcement {
+        display: flex;
+        color: $announcement-text-color;
+        line-height: normal;
+        font-family: $muli-bold;
+        font-style: italic;
+        letter-spacing: -0.13px;
+        font-size: 14px;
+        background-color: $announcement-bg-color;
+        border-radius: 8px;
+        padding: 17px 13px 17px 14px;
+        align-items: center;
+        border-radius: 6px;
+        margin-top: 9px;
+
+        span {
+          padding-right: 10px;
         }
-        &:last-child{
-          font-family: $muli-bold;
-          padding-bottom: 0;
+      }
+
+      &:last-child {
+        font-family: $muli-bold;
+        padding-bottom: 0;
+      }
+
+      .flex-col {
+        .text-lyt {
+          font-size: 13px;
+          color: $text-color-secondary;
         }
-        .flex-col{
-          .text-lyt{
-            font-size: 13px;
-            color: $text-color-secondary;
-          }
-          
-          
-        }
-        .fee_value{
-          color: $teal-color;
-         font-family:$muli-bold;
-        }
+
+
+      }
+
+      .fee_value {
+        color: $teal-color;
+        font-family: $muli-bold;
       }
     }
   }
+}
