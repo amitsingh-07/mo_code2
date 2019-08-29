@@ -6,7 +6,7 @@ body{
 }
 @keyframes marquee {
     0% { transform: translate(0,0) }
-    100% { transform: translate(-222%,0)}
+    100% { transform: translate(-2842.7px,0)}
   }
 .home__wrapper{
     .marquee-wrapper{
@@ -66,12 +66,10 @@ body{
                     font-family:$muli-regular;
                     font-size: 14px;
                     
-                    
                     @include minMobilemaxPhablet{
-                        width:200%;
+                        width:2842.7px;
                         white-space: nowrap;
-                        padding-left:50%;
-                        animation: marquee 20s linear infinite;
+                        animation: marquee 30s linear infinite;
                     }
                     span{
                         &:last-child {
@@ -81,8 +79,8 @@ body{
                             br{
                                 display:none;
                             }
-                            width:50%;
-                            margin-right:25%;
+                            width:568.54px;
+                            margin-left:284.27px;
                             &:last-child {
                                 display:inline-block;
                             }
