@@ -10,6 +10,7 @@ export interface IConfig {
   language: string;
   useMyInfo: boolean;
   maintenanceEnabled: boolean;
+  marqueeEnabled: boolean;
   promotionEnabled: boolean;
   articleEnabled: boolean;
   willWritingEnabled: boolean;

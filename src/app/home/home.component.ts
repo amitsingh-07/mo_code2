@@ -58,7 +58,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
   isSrsEnabled = false;
+  isMarqueeEnabled = false;
   srsPromoText = '';
+  marqueePromoText = '';
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
@@ -84,6 +86,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
       this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
       this.srsPromoText = this.translate.instant('BANNER.SRS_PROMO.SUB_CONTENT');
+      this.marqueePromoText = this.translate.instant('BANNER.MARQUEE_PROMO.CONTENT');
       this.setPageTitle(this.pageTitle);
       // Navbar Service
       this.navbarService.setNavbarVisibility(true);
@@ -107,6 +110,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.isInvestmentEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
       this.isSrsEnabled = config.srsEnabled;
+      this.isMarqueeEnabled = config.marqueeEnabled;
     });
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
@@ -306,7 +310,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
   }
-
+  openNewTab(url) {
+    window.open(url, '_blank');
+  }
   startGuidedJourney() {
     if (!this.authService.isSignedUser()) {
       this.guidemeService.clearServiceData();
