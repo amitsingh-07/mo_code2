@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
   isSrsEnabled = false;
+  isMarqueeEnabled = false;
   srsPromoText = '';
 
   constructor(
@@ -107,6 +108,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.isInvestmentEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
       this.isSrsEnabled = config.srsEnabled;
+      this.isMarqueeEnabled = config.marqueeEnabled;
     });
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
@@ -306,7 +308,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
   }
-
+  openNewTab(url) {
+    window.open(url, '_blank');
+  }
   startGuidedJourney() {
     if (!this.authService.isSignedUser()) {
       this.guidemeService.clearServiceData();
