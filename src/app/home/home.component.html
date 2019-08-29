@@ -4,8 +4,8 @@
       <div class="noti-icon"></div>
       <div class="marquee-inner">
          <div class="marquee-slide" (click)="openNewTab('https://advice.moneyowl.com.sg/ntuc-income-capital-plus-guaranteed-capital-returns-of-2-3-p-a-and-srs-approved/')">
-            <span>Are you looking for a <strong>SRS approved short-term 3 year savings plan</strong> with guaranteed capital +2.3% p.a. returns?<br/> Click here! Act fast as it is on a first-come, first-served basis.</span>
-            <span>Are you looking for a <strong>SRS approved short-term 3 year savings plan</strong> with guaranteed capital +2.3% p.a. returns?<br/> Click here! Act fast as it is on a first-come, first-served basis.</span>
+            <span [innerHTML]="marqueePromoText"></span>
+            <span [innerHTML]="marqueePromoText"></span>
           </div>
       </div>
       <div class="close-btn" (click)="isMarqueeEnabled = false;"></div>
