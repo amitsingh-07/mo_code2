@@ -24,6 +24,7 @@ import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
+import { SelectedPlansService } from './../Services/selected-plans.service';
 
 @Component({
   selector: 'app-navbar',
@@ -95,7 +96,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService,
-    private errorHandler: CustomErrorHandlerService) {
+    private errorHandler: CustomErrorHandlerService,
+    private selectedPlansService: SelectedPlansService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -366,6 +368,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.authService.clearAuthDetails();
     this.appService.clearData();
     this.appService.startAppSession();
+    this.selectedPlansService.clearData();
     this.router.navigate([appConstants.homePageUrl]);
   }
 

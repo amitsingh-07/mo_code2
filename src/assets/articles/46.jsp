@@ -335,7 +335,7 @@
  <p>There is not much time left so act soon and contribute to your SRS to enjoy tax-savings next year.</p>
  <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="../assets/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
 -->

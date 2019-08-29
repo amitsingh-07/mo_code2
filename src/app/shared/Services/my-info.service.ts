@@ -60,7 +60,7 @@ export class MyInfoService {
 
   goToUAT1MyInfo() {
     window.sessionStorage.setItem('currentUrl', window.location.hash.split(';')[0]);
-    const authoriseUrl = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
+    const authoriseUrl = 'https://bfa-uat.ntucbfa.com/9462test-myinfo?project=robo2';
     this.newWindow(authoriseUrl);
   }
 

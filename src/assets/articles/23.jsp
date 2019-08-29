@@ -131,12 +131,12 @@
 <br><br>You are advised to  speak to a financial advisor to advise you on your unique insurance needs before purchasing a product. </p>
 <br><h4 class="primary-color"><strong>Further reads: </strong></h4>
 <p>
-	<a href="https://www.moneyowl.com.sg/#/articles/entry/26">Life stage insurance planning</a><br>
-	<a href="https://www.moneyowl.com.sg/#/direct">Compare Plans</a>
+	<a href="https://www.moneyowl.com.sg/articles/entry/26">Life stage insurance planning</a><br>
+	<a href="https://www.moneyowl.com.sg/direct">Compare Plans</a>
  </p>
  <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme/">
 	<img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

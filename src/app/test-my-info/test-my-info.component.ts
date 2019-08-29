@@ -52,7 +52,7 @@ export class TestMyInfoComponent implements OnInit {
             this.closeMyInfoPopup();
             window.opener.postMessage(myinfoObj.authorizeCode, '*');
             // tslint:disable-next-line:max-line-length
-            // window.location.href = 'https://bfa-uat2.ntucbfa.com/#/myinfo?code=' + myinfoObj.authorizeCode + '&scope=occupation%20mailadd%20passportnumber%20nationality%20dob%20name%20regadd%20passportexpirydate%20householdincome%20sex%20employment&iss=https%3A%2F%2Fstg-home.singpass.gov.sg%2Fconsent%2Foauth2%2Fconsent%2Fmyinfo-com&state=149&client_id=myinfo';
+            // window.location.href = 'https://bfa-uat2.ntucbfa.com/myinfo?code=' + myinfoObj.authorizeCode + '&scope=occupation%20mailadd%20passportnumber%20nationality%20dob%20name%20regadd%20passportexpirydate%20householdincome%20sex%20employment&iss=https%3A%2F%2Fstg-home.singpass.gov.sg%2Fconsent%2Foauth2%2Fconsent%2Fmyinfo-com&state=149&client_id=myinfo';
           } else {
             this.myInfoService.getMyInfoData().subscribe((data) => {
               if (this.project === 'robo2') {

@@ -180,10 +180,10 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showPortfolioAssetModal() {
     const errorTitle = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.TITLE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.TITLE'
     );
     const errorMessage = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.MESSAGE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.MESSAGE'
     );
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.imgType = 1;
@@ -238,7 +238,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
+      'PORTFOLIO_RECOMMENDATION.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
     );
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
@@ -273,10 +273,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       const pepData = this.investmentAccountService.getPepData();
@@ -335,10 +335,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       this.investmentAccountService.createInvestmentAccount().subscribe(
