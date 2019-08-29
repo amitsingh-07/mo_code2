@@ -72,7 +72,7 @@
               <i class="fa fa-sign-out"></i>
               </a>
             </li>
-          <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" (click)="checkCurrentRouteAndNavigate('/account/edit-profile')">
+          <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
             <a class="navbar--text" href="javascript: void(0);">Profile</a>
           </li>
           <li *ngIf="showMenu" class="nav-item home-btn" (click)="checkCurrentRouteAndNavigate('/home')">
@@ -174,7 +174,7 @@
             </div>
             </li>
           <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
-            <a class="nav-link" (click)="checkCurrentRouteAndNavigate('/account/login')"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
+            <a class="nav-link" (click)="checkCurrentRouteAndNavigate('/accounts/login')"><img src="/assets/images/nav/login-icon.svg"/>Login</a>
             </li>
           <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item dropdown profile hidden-sm-md" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);"
           (mouseleave)="closeDropdown(id05);">
@@ -184,7 +184,7 @@
                 <div class="name">{{userInfo.firstName | titlecase}}</div>
                 <div class="sub-text">My Dashboard</div>
                 </button>
-              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/account/edit-profile')">
+              <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
                 <a class="navbar--text" href="javascript: void(0);">Profile</a>
                 </button>
               <button class="dropdown-item" (click)="logout()">

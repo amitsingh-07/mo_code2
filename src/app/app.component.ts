@@ -47,8 +47,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         if (config.distribution.notice) {
           if (config.distribution.notice.onLoad) {
             this.redirect = config.distribution.notice.fail;
-            if (this.location.path().indexOf('/account/email-verification') === -1 ||
-                this.location.path().indexOf('/account/reset-password')
+            if (this.location.path().indexOf('/accounts/email-verification') === -1 ||
+                this.location.path().indexOf('/accounts/reset-password')
               ) {
               this.openTermsOfConditions();
               }
