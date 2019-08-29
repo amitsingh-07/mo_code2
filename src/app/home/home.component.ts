@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isSrsEnabled = false;
   isMarqueeEnabled = false;
   srsPromoText = '';
+  marqueePromoText = '';
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
@@ -85,6 +86,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
       this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
       this.srsPromoText = this.translate.instant('BANNER.SRS_PROMO.SUB_CONTENT');
+      this.marqueePromoText = this.translate.instant('BANNER.MARQUEE_PROMO.CONTENT');
       this.setPageTitle(this.pageTitle);
       // Navbar Service
       this.navbarService.setNavbarVisibility(true);
