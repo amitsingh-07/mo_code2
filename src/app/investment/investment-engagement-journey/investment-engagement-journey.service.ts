@@ -246,7 +246,7 @@ export class InvestmentEngagementJourneyService {
       totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
       suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
       firstTimeUser: this.investmentEngagementJourneyFormData.firstTimeUser
-     
+
     };
   }
   setYourFinancial(formData) {
@@ -263,7 +263,7 @@ export class InvestmentEngagementJourneyService {
       monthlyInvestment: this.investmentEngagementJourneyFormData.monthlyInvestment,
       oneTimeInvestmentChkBox: this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox,
       monthlyInvestmentChkBox: this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox
-     };
+    };
   }
   setYourInvestmentAmount(formData) {
     this.investmentEngagementJourneyFormData.initialInvestment = formData.initialInvestment;
@@ -375,7 +375,7 @@ export class InvestmentEngagementJourneyService {
   }
   // #SET THE FINANCIAL PAGE.
   getUserFinancialDetails() {
-    return this.apiService.getUserFinancialDetails();
+    return this.investmentApiService.getUserFinancialDetails();
   }
   setFinancialDetails(financialDetails) {
     this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;

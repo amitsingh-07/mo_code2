@@ -180,15 +180,12 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   getFinancialDetails() {
     this.loaderService.showLoader({
-      title: this.translate.instant(this.loaderTitle),
-      desc: this.translate.instant(this.loaderDesc)
+      title: this.loaderTitle,
+      desc: this.loaderDesc
     });
     this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
       this.loaderService.hideLoader();
-      if (data.responseMessage.responseCode < 6000) {
-        this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
-      } else {
+      if (data.responseMessage.responseCode >= 6000) {
         this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
         this.setControlValues(data.objectList);
       }
@@ -207,9 +204,11 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   }
 
   setControlValues(financialDetails) {
+    if (financialDetails) {
     this.myFinancialForm.controls.monthlyIncome.setValue(financialDetails.monthlyIncome);
     this.myFinancialForm.controls.percentageOfSaving.setValue(financialDetails.incomePercentageSaved);
     this.myFinancialForm.controls.totalAssets.setValue(financialDetails.totalAssets);
     this.myFinancialForm.controls.totalLiabilities.setValue(financialDetails.totalLoans);
+    }
   }
 }
