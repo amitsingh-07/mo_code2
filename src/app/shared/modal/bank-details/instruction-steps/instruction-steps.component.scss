@@ -109,12 +109,12 @@ app-instruction-steps {
       align-items: center;
       // height: 50px;
       background-color: $ref-code-container-bg;
-      padding: 13px 10px;
+      padding: 13px 20px !important;
       color: $ref-code-container-color;
       border-radius: 6px;
       border: 1px solid $ref-code-container-brdr-color;
       margin: 20px 20px 10px 20px;
-      max-width: 230px;
+      max-width: 155px;
 
       .info-text {
         // position: relative;
@@ -229,12 +229,8 @@ app-instruction-steps {
 
     span {
       font-family: $muli-bold;
-      color: $ref-code-context-remark-color;
+      color: $ref-code-context-must-color;
       letter-spacing: -0.15px;
-
-      u {
-        color: $ref-code-context-must-color;
-      }
     }
   }
 }
