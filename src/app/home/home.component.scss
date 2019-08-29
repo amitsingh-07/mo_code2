@@ -4,7 +4,113 @@
 body{
     background-color:$white-color;    
 }
+@keyframes marquee {
+    0% { transform: translate(0,0) }
+    100% { transform: translate(-222%,0)}
+  }
 .home__wrapper{
+    .marquee-wrapper{
+        position: relative;
+        display:flex;
+        width:100%;
+        z-index: 500;
+        background-color:rgba(0, 167, 167, 1.0);
+        flex-direction:row;
+        justify-content:center;
+        align-content:center;
+        min-height:45px;
+        padding:12px 0px;
+        
+        @include minMobilemaxPhablet{
+            padding:5px 0px;
+        }
+
+        .marquee{
+            display: flex;
+            width:100%;
+            max-width:1024px;
+            flex-direction:row;
+            align-items:flex-start;
+            @include minMobilemaxPhablet{
+                align-items: center;
+            }
+            .noti-icon{
+                position: relative;
+                display:block;
+                width:35px;
+                height:35px;
+                margin-right:5px;
+                background:url('/assets/images/home-page/banner/marquee-icon.svg') no-repeat;
+                background-size:35px 35px;
+                margin-left:60px;
+                margin-right:15px;
+                @include minMobilemaxPhablet{
+                    width:25px;
+                    height:25px;
+                    margin-left:5px;
+                    margin-right:5px;
+                    background-size:25px 25px;
+                }
+            }
+            .marquee-inner{
+                position: relative;
+                width:100%; 
+                padding:0px 5px;
+                overflow:hidden;
+                margin-top:-2px;
+                .marquee-slide{
+                    position: relative;
+                    width: 100%;
+                    cursor: pointer;
+                    display: inline-block;
+                    font-family:$muli-regular;
+                    font-size: 14px;
+                    
+                    
+                    @include minMobilemaxPhablet{
+                        width:200%;
+                        white-space: nowrap;
+                        padding-left:50%;
+                        animation: marquee 15s linear infinite;
+                    }
+                    span{
+                        &:last-child {
+                            display:none;
+                        }
+                        @include minMobilemaxPhablet{
+                            br{
+                                display:none;
+                            }
+                            width:50%;
+                            margin-right:25%;
+                            &:last-child {
+                                display:inline-block;
+                            }
+                        }
+                        a{
+                            color:$white-color;
+                        }
+                    }
+                }
+            }
+            .close-btn{
+                position: relative;
+                display:block;
+                width:20px;
+                height:20px;
+                transform: translate(-20px, -10px);
+                align-self: center;
+                background: url("/assets/images/close-btn-white.png") no-repeat;
+                background-size:15px,15px;
+                background-color:$teal-color;
+                cursor: pointer;
+                @include minMobilemaxPhablet{
+                    right:0px;
+                    transform: translate(-5px, 1px);
+                }
+            }
+        }
+    }
     .banner{
         position: relative;
         display:flex;
