@@ -8,7 +8,7 @@
         <div class="user_portfolio_title hidden-sm-md">{{pageTitle}}</div>
         <div class="user_portfolio">
           <span>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</span>
-          <span id="your_portfolio_name">{{portfolioValues?.riskProfile?.type}}</span>
+          <span id="your_portfolio_name">{{portfolioValues?.riskProfileType}}</span>
         </div>
       </div>
       <div class="flex-col-4">
@@ -41,10 +41,10 @@
       </button>
     </div>
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'"> 
+      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
         <div class="form-group-with-bg">
           <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !userProfileInfo.investementDetails.showTotalReturn}">
-            <div id="portdolio_value" class="total_values">{{portfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div id="portdolio_value" class="total_values">{{portfolioValues.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
             <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
           </div>
           <!--Form Content-->

@@ -56,7 +56,7 @@
                          <div class="your_portfolio_label" id="investment_overview_your_portfolios">
                             {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
                          </div>
-                         <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
+                         <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span class="cursor_pointer">{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
                       </div>
                    </div>
                 </div>
@@ -71,7 +71,7 @@
  <div class="container-fluid max-width--1024" *ngIf="!portfolioList || portfolioList.length == 0">
     <div class="form-group-with-bg no-portfolio">
        <div class="flex-col align-center">
-          <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_EXIT_MSG' | translate}} </div>
+          <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br> {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
           <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
           <button type="button" class="btn btn-primary" id="add_portfolio" (click)="startPortfolio()">
             {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>

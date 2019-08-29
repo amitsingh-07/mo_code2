@@ -31,7 +31,7 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK_TRANSFER":"Bank Transfer",    
+    "BANK_TRANSFER":"Bank Transfer",
     "DESC":"Please transfer the following amount using your preferred payment method details:",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
@@ -130,7 +130,8 @@
     "INVEST_AGAIN": "Invest Again",
     "NO_PORTFOLIO": "You do not have any portfolios.",
     "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard.",
-    "NO_PORTFOLIOS_EXIT_MSG": "You have no portfolios yet.<br>Add a portfolio to start investing!",
+    "NO_PORTFOLIOS_YET": "You have no portfolios yet.",
+    "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
     "TOTAL_CASH_BALANCE": "Total Cash Balance",
     "VIEW": "View",
