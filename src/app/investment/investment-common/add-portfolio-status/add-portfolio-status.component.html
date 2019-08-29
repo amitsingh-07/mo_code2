@@ -1,15 +1,16 @@
 <div class="portfolio-naming-success-modal-backdrop"></div>
 <div class="portfolio-naming-success-modal-wrapper">
   <div class="portfolio-naming">
-    <div class="title">Portfolio created successfully!</div>
+    <div class="title">{{
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_STATUS.TITLE' | translate}}</div>
     <div class="portfolio-success mb60">
-      <img class=portfolio-img src={{iconImage}} id="riskProfileImg" />
-      <img class=success-tick src="../../../assets/images/investment-account/success-tick.svg" />
-    </div>
+      <img  src={{iconImage}} id="riskProfileImg" />
+      </div>
     <div class="portfolio-naming--content">
        <div class="flex-col-12" >
-          <div class="desc">Jason’s Education Fund
-            <div>been added to your account.</div>
+          <div class="desc">{{portfolioName}}
+            <div>{{
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_STATUS.ADD_PORTFOLIO_NAME_LAB' | translate}}</div>
           </div>
         </div>
         <button type="button" class="btn btn-primary width100 pt10 mt30" id="prfBtn1" (click)="portfolioNameSuccessfully()">Continue</button>

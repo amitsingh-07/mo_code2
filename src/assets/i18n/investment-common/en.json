@@ -58,7 +58,17 @@
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
-    }
+    },
+     "ADD_PORTFOLIO_NAME": {
+      "TITLE": "Your portfolio is almost ready.",
+      "ADD_PORTFOLIO_NAME_LAB": "Let’s give it a unique name!",
+      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
+   },
+     "ADD_PORTFOLIO_STATUS": {
+      "TITLE": "Portfolio created successfully!",
+      "ADD_PORTFOLIO_NAME": "Jason’s Education Fund",
+      "ADD_PORTFOLIO_NAME_LAB": "has been added to your account."
+       }
   },
   "FUNDING_INSTRUCTIONS": {
     "TITLE": "Fund Your Account",

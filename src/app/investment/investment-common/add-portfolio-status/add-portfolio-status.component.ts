@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
+import { SuccessIcons } from './successIcon';
 
 @Component({
   selector: 'app-add-portfolio-status',
@@ -13,13 +13,15 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 })
 export class AddPortfolioStatusComponent implements OnInit {
   iconImage;
+  @Input() riskProfileId;
+  @Input() portfolioName;
   @Output() createdNameSuccessfully = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
               private router: Router, ) { }
 
   ngOnInit() {
-    this.iconImage = ProfileIcons[4 - 1]['icon'];
+    this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
 
   }
   portfolioNameSuccessfully(value) {

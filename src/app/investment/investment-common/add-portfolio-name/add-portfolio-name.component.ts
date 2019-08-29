@@ -16,45 +16,40 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 
 })
 export class AddPortfolioNameComponent implements OnInit {
-
-  iconImage;
+  profileIcon;
   characterLength;
-  defaultPortfolioName;
   portfolioNameFormGroup: FormGroup;
-  @Input() portfolio;
-  @Output() createdPortfolioName = new EventEmitter<any>();
-  @Output() portfolioNaming = new EventEmitter<any>();
+  @Input() riskProfileId;
+  @Input() defaultPortfolioName;
+  @Input() userPortfolioName;
+  @Input() showErrorMessage;
+  @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
-              private router: Router,
               private formBuilder: FormBuilder) { }
   ngOnInit() {
-    this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-
-    // #this.router.events
-    //   .pipe(filter((event) => event instanceof NavigationEnd))
-    //   .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-    //     // dismiss all bootstrap modal dialog
-    //     this.activeModal.dismiss();
-    //   });
+    this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
     this.portfolioNameFormGroup = this.formBuilder.group({
-      portfolioNaming: new FormControl(this.portfolio.riskProfile.name,
-         [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
+      portfolioName: new FormControl(this.userPortfolioName,
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
     });
   }
-  portfolioName(value) {
-    this.createdPortfolioName.emit(value);
+
+  addPortfolioName(portfolioName) {
+    this.addPortfolioBtn.emit(portfolioName);
     this.activeModal.close();
   }
-  onKey(event) {
+
+  showLength(event) {
     this.characterLength = event.currentTarget.value.length;
-    }
-  getInlineErrorStatus(control) {
-    return !control.pristine && !control.valid;
-  }
-  getDefaultPortfolioName() {
-    const defaultPortfolioName = this.portfolio.riskProfile.type;
-    return 'Suggestion:' + defaultPortfolioName + ' Portfolio';
   }
 
+  getInlineErrorStatus(control) {
+    return this.showErrorMessage;
+  }
+
+  getDefaultPortfolioName() {
+    const defaultPortfolioName = this.defaultPortfolioName.name;
+    return 'Suggestion:' + defaultPortfolioName;
+  }
 }
