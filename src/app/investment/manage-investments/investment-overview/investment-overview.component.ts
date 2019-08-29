@@ -214,9 +214,6 @@ export class InvestmentOverviewComponent implements OnInit {
     );
   }
 
-  // getImg(i) {
-  //   return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
-  // }
   alertPopUp(i, event) {
     event.stopPropagation();
     this.selected = i;
@@ -225,52 +222,6 @@ export class InvestmentOverviewComponent implements OnInit {
   ClosedPopup() {
     this.showAlretPopUp = false;
   }
-  // deletePortfolio(portfolio) {
-  //   const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-  //   ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-  //   // tslint:disable-next-line:max-line-length
-  //   ref.componentInstance.errorMessage = this.translate.instant(
-  //     'YOUR_INVESTMENT.DELETE_TXT'
-  //   );
-  //   ref.componentInstance.yesOrNoButton = 'Yes';
-  //   ref.componentInstance.yesClickAction.subscribe(() => {
-  //     this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
-  //       if (data.responseMessage.responseCode < 6000) {
-  //         if (
-  //           data.objectList &&
-  //           data.objectList.length &&
-  //           data.objectList[data.objectList.length - 1].serverStatus &&
-  //           data.objectList[data.objectList.length - 1].serverStatus.errors &&
-  //           data.objectList[data.objectList.length - 1].serverStatus.errors.length
-  //         ) {
-  //           this.showCustomErrorModal(
-  //             'Error!',
-  //             data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-  //           );
-  //         } else if (data.responseMessage && data.responseMessage.responseDescription) {
-  //           const errorResponse = data.responseMessage.responseDescription;
-  //           this.showCustomErrorModal('Error!', errorResponse);
-  //         } else {
-  //           this.investmentAccountService.showGenericErrorModal();
-  //         }
-  //       } else {
-  //         this.authService.saveEnquiryId(null);
-  //         const translateParams = {
-  //           portfolioName: portfolio.riskProfile.type
-  //         };
-  //         const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
-  //         this.showToastMessage(toastMsg);
-  //         this.getInvestmentOverview();
-  //         this.getUserProfileInfo();
-  //       }
-  //     },
-  //     (err) => {
-  //       this.investmentAccountService.showGenericErrorModal();
-  //     });
-  //   });
-  //   ref.componentInstance.noClickAction.subscribe(() => { });
-  // }
-
   selectOption(option) {
     this.manageInvestmentsService.showMenu(option);
   }
@@ -357,7 +308,7 @@ showPopUp() {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        /* First portfolio's entitlement is considered for now as global entitlement, 
+        /* First portfolio's entitlement is considered for now as global entitlement,
             need to change when multiple portfolio logic is implemented */
         this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }

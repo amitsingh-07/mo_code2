@@ -17,13 +17,13 @@ export class PortfolioListComponent implements OnInit {
 
   selected;
   userProfileInfo;
-  showAlretPopUp = false;
+  showAlretPopUp: boolean;
   monthlyInvestment: any;
   investedList: any;
   notInvestedList: any;
-  showAllForInvested = false;
-  showAllForNotInvested = false;
-  topClickedFlag = false;
+  showAllForInvested: boolean;
+  showAllForNotInvested: boolean;
+  topClickedFlag: boolean;
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
   @Input('portfolioData') portfolioData;
@@ -120,18 +120,5 @@ export class PortfolioListComponent implements OnInit {
 
   getImg(i: number) {
     return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
-  }
-
-  stopEventPropogation(event) {
-    event.stopPropagation();
-  }
-
-  alertPopUp(i, event) {
-    event.stopPropagation();
-    this.selected = i;
-    this.showAlretPopUp = true;
-  }
-  ClosedPopup() {
-    this.showAlretPopUp = false;
   }
 }
