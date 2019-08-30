@@ -377,10 +377,12 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.getUserFinancialDetails();
   }
   setFinancialDetails(financialDetails) {
-    this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
-    this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
-    this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
-    this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+    if (financialDetails) {
+      this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
+      this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
+      this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
+      this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+    }
     this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
