@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-
-import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { SuccessIcons } from './successIcon';
@@ -17,15 +15,15 @@ export class AddPortfolioStatusComponent implements OnInit {
   @Input() portfolioName;
   @Output() createdNameSuccessfully = new EventEmitter<any>();
 
-  constructor(public activeModal: NgbActiveModal,
-              private router: Router, ) { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
 
   }
-  portfolioNameSuccessfully(value) {
-    this.createdNameSuccessfully.emit(value);
+
+  portfolioNameSuccess() {
+    this.createdNameSuccessfully.emit(this.portfolioName);
     this.activeModal.close();
   }
 }
