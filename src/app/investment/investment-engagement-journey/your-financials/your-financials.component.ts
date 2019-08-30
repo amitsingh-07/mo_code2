@@ -4,21 +4,22 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
@@ -36,9 +37,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   form: any;
   translator: any;
-  oneTimeInvestmentChkBoxVal: boolean;
-  monthlyInvestmentChkBoxVal: boolean;
-
+  loaderTitle: string;
+  loaderDesc: string;
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -51,6 +51,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     private investmentAccountService: InvestmentAccountService,
     private cd: ChangeDetectorRef,
     private signUpService: SignUpService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     const self = this;
@@ -59,6 +60,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
       self.helpData = this.translate.instant('MY_FINANCIALS.helpData');
       self.translator = this.translate.instant('MY_FINANCIALS');
+      self.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
+      self.loaderDesc = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -80,19 +83,24 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.financialFormValue = this.investmentEngagementJourneyService.getPortfolioFormData();
-    // if (this.isLoggedInUser()) {
-    //   this.getUserFinancialDetails();
-    // }
+    if (this.isLoggedInUser() && this.isFirstTimeUser()) {
+      this.getFinancialDetails();
+
+    }
+    this.buildFrom();
+  }
+
+  buildFrom() {
     this.myFinancialForm = new FormGroup({
       monthlyIncome: new FormControl(this.financialFormValue.monthlyIncome),
       percentageOfSaving: new FormControl(this.financialFormValue.percentageOfSaving),
       totalAssets: new FormControl(this.financialFormValue.totalAssets),
       totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
-        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
-      ),
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund)
     });
   }
+
   showEmergencyFundModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
@@ -102,6 +110,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       this.router.navigate(['home']);
     });
   }
+
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
@@ -146,9 +155,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       this.saveAndProceed(form);
     }
   }
+
   saveAndProceed(form: any) {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
-    // CALL API
     this.investmentEngagementJourneyService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
@@ -159,17 +168,48 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
+
   goBack(form) {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
   }
-  // isLoggedInUser() {
-  //   return this.authService.isSignedUser();
-  // }
-  // getUserFinancialDetails() {
-  //   this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
-  //     const financialDetails = data.objectList;
-  //     this.investmentEngagementJourneyService.setApiFinancialDetails(financialDetails);
-  //   });
-  // }
+
+  isLoggedInUser() {
+    return this.authService.isSignedUser();
+  }
+
+  getFinancialDetails() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
+    this.investmentEngagementJourneyService.getUserFinancialDetails().subscribe((data) => {
+      this.loaderService.hideLoader();
+      if (data.responseMessage.responseCode >= 6000) {
+        this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
+        this.setControlValues(data.objectList);
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  isFirstTimeUser() {
+    if (typeof this.financialFormValue.firstTimeUser === 'undefined') {
+      this.financialFormValue.firstTimeUser = true;
+      return true;
+    }
+    return false;
+  }
+
+  setControlValues(financialDetails) {
+    if (financialDetails) {
+    this.myFinancialForm.controls.monthlyIncome.setValue(financialDetails.monthlyIncome);
+    this.myFinancialForm.controls.percentageOfSaving.setValue(financialDetails.incomePercentageSaved);
+    this.myFinancialForm.controls.totalAssets.setValue(financialDetails.totalAssets);
+    this.myFinancialForm.controls.totalLiabilities.setValue(financialDetails.totalLoans);
+    }
+  }
 }

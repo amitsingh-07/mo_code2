@@ -252,6 +252,14 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+ // #GET FINANCIAL DETAILS
+  // tslint:disable-next-line:no-identical-functions
+  getUserFinancialDetails() {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.getFinancialDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   getInvestmentPeriod() {
     const url = '../assets/mock-data/investmentPeriod.json';

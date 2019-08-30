@@ -591,10 +591,6 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  // #GET FINANCIAL DETAILS
-  // tslint:disable-next-line:no-identical-functions
-  getUserFinancialDetails() {
-    const url = '../../../assets/mock-data/financial.json';
-    return this.http.getMock(url);
-  }
+ 
+ 
 }

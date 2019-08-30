@@ -1,6 +1,7 @@
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/api';
 const ACCOUNT_API_BASE_URL = 'account/account-microservice/api';
 
+
 export let investmentApiConstants = {
     endpoint: {
         portfolio: {
@@ -8,6 +9,7 @@ export let investmentApiConstants = {
             setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolio/awaitingTransactions',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
+            getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend'
         },
         investmentAccount: {
