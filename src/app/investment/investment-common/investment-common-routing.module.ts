@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
-    canActivate: []
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.FUND_INTRO,
     component: FundingIntroComponent,
-    canActivate: []
+    canActivate: [AuthGuard]
   }
 ];
 

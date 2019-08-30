@@ -99,7 +99,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclaration1Component,
-    canActivate: []
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
