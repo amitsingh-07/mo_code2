@@ -24,8 +24,9 @@ export class AddPortfolioStatusComponent implements OnInit {
     this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
 
   }
-  portfolioNameSuccessfully(value) {
-    this.createdNameSuccessfully.emit(value);
+
+  portfolioNameSuccess() {
+    this.createdNameSuccessfully.emit(this.portfolioName);
     this.activeModal.close();
   }
 }
