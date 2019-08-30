@@ -26,8 +26,8 @@ export class InvestmentCommonService {
     
   ) {
   }
-  addPortfolioName(data) {
-    return this.investmentApiService.addPortfolioName(data);
+  savePortfolioName(data) {
+    return this.investmentApiService.savePortfolioName(data);
   }
 
   confirmPortfolio(customerPortfolioId) {

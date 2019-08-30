@@ -65,7 +65,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   isRequestSubmitted = false;
 
   defaultPortfolioName;
-  portfolioNameStatus;
   confirmPortfolioValue;
   portfolioName;
   showErrorMessage = false;
@@ -106,312 +105,30 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   getPortfolioDetails() {
-    const data = {
-      "exception": null,
-      "objectList": {
-        "investmentPeriod": 11,
-        "projectedValue": null,
-        "portfolioId": "PORTFOLIO00054",
-        "portfolioName": "Balanced",
-        "tenure": "11",
-        "projectedReturnsHighEnd": 414958.6541425717,
-        "projectedReturnsMedian": 352049.9803641115,
-        "reviewedProjectedReturnsMedian": "5.15%",
-        "projectedReturnsLowEnd": 300785.8908365605,
-        "portfolioType": null,
-        "portfolioStatus": "PROPOSED",
-        "portfolioMaturityYear": "2030",
-        "initialInvestment": 1994,
-        "monthlyInvestment": 1994,
-        "riskProfile": {
-          "id": 3,
-          "type": "Balanced",
-          "order": 1
-        },
-        "feeDetails": [
-          {
-            "id": 9,
-            "feeName": "MoneyOwl Advisory Fee",
-            "percentage": "0.65%*",
-            "comments": "*Or your special promo rate",
-            "listing_order": 1
-          },
-          {
-            "id": 10,
-            "feeName": "Platform Fee",
-            "percentage": "0.18%",
-            "comments": "Paid to iFAST",
-            "listing_order": 2
-          },
-          {
-            "id": 11,
-            "feeName": "Fund Expense Ratio",
-            "percentage": "0.34%",
-            "comments": "Paid to DFA",
-            "listing_order": 3
-          },
-          {
-            "id": 12,
-            "feeName": "Total Fee",
-            "percentage": "1.17%",
-            "comments": null,
-            "listing_order": 4
-          }
-        ],
-        "capitalInvested": 263208,
-        "sectorAllocations": [
-          {
-            "id": 1,
-            "name": "Emerging Markets Equity",
-            "sectorId": "SECTOR00012",
-            "type": {
-              "id": 1,
-              "type": "Equities",
-              "holdingsCount": 8554
-            },
-            "riskRating": 9,
-            "groupedAllocationDetails": {
-              "Class Allocation": [
-                {
-                  "id": 4,
-                  "sectorTitle": "Class Allocation",
-                  "sectorRegion": "Developed Markets",
-                  "percentage": 88
-                },
-                {
-                  "id": 5,
-                  "sectorTitle": "Class Allocation",
-                  "sectorRegion": "Emerging Markets",
-                  "percentage": 12
-                }
-              ],
-              "Sector Allocation": [
-                {
-                  "id": 14,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Consumer Disc",
-                  "percentage": 13.3
-                },
-                {
-                  "id": 19,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Consumer Staples",
-                  "percentage": 6.7
-                },
-                {
-                  "id": 20,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "REITs",
-                  "percentage": 3.4
-                },
-                {
-                  "id": 12,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Financials",
-                  "percentage": 17.8
-                },
-                {
-                  "id": 17,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Materials",
-                  "percentage": 7
-                },
-                {
-                  "id": 21,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Other",
-                  "percentage": 6
-                },
-                {
-                  "id": 16,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Health Care",
-                  "percentage": 9.6
-                },
-                {
-                  "id": 13,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Industrials",
-                  "percentage": 16.4
-                },
-                {
-                  "id": 18,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Energy",
-                  "percentage": 7
-                },
-                {
-                  "id": 15,
-                  "sectorTitle": "Sector Allocation",
-                  "sectorRegion": "Info Technology",
-                  "percentage": 12.9
-                }
-              ],
-              "Regional Allocation": [
-                {
-                  "id": 8,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Europe",
-                  "percentage": 18.8
-                },
-                {
-                  "id": 10,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Africa",
-                  "percentage": 0.7
-                },
-                {
-                  "id": 7,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Asia Pacific",
-                  "percentage": 21.3
-                },
-                {
-                  "id": 6,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "North America",
-                  "percentage": 57.4
-                },
-                {
-                  "id": 11,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Middle East",
-                  "percentage": 0.3
-                },
-                {
-                  "id": 9,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Latin America",
-                  "percentage": 1.5
-                }
-              ]
-            },
-            "allocationPercentage": 60,
-            "holdingsCount": null
-          },
-          {
-            "id": 2,
-            "name": "Fixed Income",
-            "sectorId": "SECTOR00002",
-            "type": {
-              "id": 2,
-              "type": "Fixed Income",
-              "holdingsCount": 202
-            },
-            "riskRating": 4,
-            "groupedAllocationDetails": {
-              "Credit Rating Allocation": [
-                {
-                  "id": 24,
-                  "sectorTitle": "Credit Rating Allocation",
-                  "sectorRegion": "A",
-                  "percentage": 21.7
-                },
-                {
-                  "id": 22,
-                  "sectorTitle": "Credit Rating Allocation",
-                  "sectorRegion": "AAA",
-                  "percentage": 21
-                },
-                {
-                  "id": 23,
-                  "sectorTitle": "Credit Rating Allocation",
-                  "sectorRegion": "AA",
-                  "percentage": 57.3
-                }
-              ],
-              "Regional Allocation": [
-                {
-                  "id": 26,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "North America",
-                  "percentage": 30.8
-                },
-                {
-                  "id": 27,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Supranational",
-                  "percentage": 11.3
-                },
-                {
-                  "id": 28,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Asia Pacific",
-                  "percentage": 9.3
-                },
-                {
-                  "id": 25,
-                  "sectorTitle": "Regional Allocation",
-                  "sectorRegion": "Europe",
-                  "percentage": 48.7
-                }
-              ]
-            },
-            "allocationPercentage": 40,
-            "holdingsCount": null
-          }
-        ],
-        "funds": [
-          {
-            "id": "DIM033",
-            "name": "Dimensional Emerging Markets Large Cap Core Equity Acc SGD",
-            "type": "UT",
-            "sectorName": "Emerging Markets Equity",
-            "prospectusLink": null,
-            "percentage": 7,
-            "factSheetLink": "DIM033-FS.pdf|DIM033-P.pdf",
-            "htmlDesc": "The fund is managed on a discretionary basis and invests in shares, both ordinary shares and preference shares, as well as depositary receipts (financial certificates representing the shares of these companies and which are bought and sold globally), of larger sized companies which are associated with emerging markets countries, including countries which are in the early stages of economic development. The fund does not focus on any particular industry or market sector.",
-            "description": "The fund is managed on a discretionary basis and invests in shares, both ordinary shares and preference shares, as well as depositary receipts (financial certificates representing the shares of these companies and which are bought and sold globally), of larger sized companies which are associated with emerging markets countries, including countries which are in the early stages of economic development. The fund does not focus on any particular industry or market sector."
-          },
-          {
-            "id": "DIM035",
-            "name": "Dimensional Global Short Fixed Income Acc SGD-H",
-            "type": "UT",
-            "sectorName": "Fixed Income",
-            "prospectusLink": null,
-            "percentage": 40,
-            "factSheetLink": "DIM035-FS.pdf|DIM035-P.pdf",
-            "htmlDesc": "The fund is managed on a discretionary basis and invests in high quality debt such as bonds, commercial paper, bank and corporate debt with a maturity of five years or less. The fund will generally maintain an average maturity of its investments to five years or less. This debt is issued by governments, other public bodies and companies from developed countries and, at the time of purchase, this debt is generally rated at least AA- or Aa3 long term by the major rating agencies. If the investments are downgraded below this level, they may be sold if in the best interests of the Fund.",
-            "description": "The fund is managed on a discretionary basis and invests in high quality debt such as bonds, commercial paper, bank and corporate debt with a maturity of five years or less. The fund will generally maintain an average maturity of its investments to five years or less. This debt is issued by governments, other public bodies and companies from developed countries and, at the time of purchase, this debt is generally rated at least AA- or Aa3 long term by the major rating agencies. If the investments are downgraded below this level, they may be sold if in the best interests of the Fund."
-          },
-          {
-            "id": "DIM034",
-            "name": "Dimensional Global Core Equity Acc SGD",
-            "type": "UT",
-            "sectorName": "Global Equity",
-            "prospectusLink": null,
-            "percentage": 53,
-            "factSheetLink": "DIM034-FS.pdf|DIM034-P.pdf",
-            "htmlDesc": "The fund is managed on a discretionary basis and primarily invests in shares of companies listed on the principal stock exchanges in developed countries around the world. The fund has a general exposure to the market with a greater allocation to shares of smaller sized companies and value companies. Value companies are defined as companies where, at the time of purchase, the share price is low compared to the accounting value of the company.",
-            "description": "The fund is managed on a discretionary basis and primarily invests in shares of companies listed on the principal stock exchanges in developed countries around the world. The fund has a general exposure to the market with a greater allocation to shares of smaller sized companies and value companies. Value companies are defined as companies where, at the time of purchase, the share price is low compared to the accounting value of the company."
-          }
-        ]
-      },
-      "responseMessage": {
-        "responseCode": 6000,
-        "responseDescription": "Successful response"
-      }
-    };
-    this.portfolio = data.objectList;
-    this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-    const fundingParams = this.constructFundingParams(data.objectList);
-    this.manageInvestmentsService.setFundingDetails(fundingParams);
-    this.userInputSubtext = {
-      onetime: this.currencyPipe.transform(
-        this.portfolio.initialInvestment,
-        'USD',
-        'symbol-narrow',
-        '1.0-2'
-      ),
-      monthly: this.currencyPipe.transform(
-        this.portfolio.monthlyInvestment,
-        'USD',
-        'symbol-narrow',
-        '1.0-2'
-      ),
-      period: this.portfolio.investmentPeriod
-    };
-
+    const params = this.constructgetPortfolioParams();
+    this.investmentAccountService
+      .getPortfolioAllocationDetails(params)
+      .subscribe((data) => {
+        this.portfolio = data.objectList;
+        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        const fundingParams = this.constructFundingParams(data.objectList);
+        this.manageInvestmentsService.setFundingDetails(fundingParams);
+        this.userInputSubtext = {
+          onetime: this.currencyPipe.transform(
+            this.portfolio.initialInvestment,
+            'USD',
+            'symbol-narrow',
+            '1.0-2'
+          ),
+          monthly: this.currencyPipe.transform(
+            this.portfolio.monthlyInvestment,
+            'USD',
+            'symbol-narrow',
+            '1.0-2'
+          ),
+          period: this.portfolio.investmentPeriod
+        };
+      });
   }
 
   constructFundingParams(data) {
@@ -547,20 +264,23 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   verifyCustomer() {
-    this.confirmPortfolio(this.portfolio.portfolioId);
+    this.confirmPortfolio(this.portfolio.customerPortfolioId);
   }
 
- confirmPortfolio(param) {
-     this.investmentCommonService.confirmPortfolio(param).subscribe((data) => {  // confirm portfolio api calling
+  confirmPortfolio(param) {
+    this.investmentCommonService.confirmPortfolio(param).subscribe((data) => {  // confirm portfolio api calling
       if (data.responseMessage.responseCode === 6000) {
-        this.showAddPortfolioName(data.objectList);
+        this.showAddPortfolioNameModal(data.objectList[this.portfolio.customerPortfolioId]);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
-  showAddPortfolioName(defaultPortfolioName,userPortfolioName?) {
+  showAddPortfolioNameModal(defaultPortfolioName) {
     const ref = this.modal.open(AddPortfolioNameComponent, {
       centered: true,
       backdropClass: 'portfolio-naming-backdrop',
@@ -568,31 +288,54 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
-  //  ref.componentInstance.userPortfolioName = userPortfolioName ? userPortfolioName : '';
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
-    ref.componentInstance.userPortfolioName =this.investmentAccountService.getConfirmPortfolioName();
+    ref.componentInstance.userPortfolioName = this.investmentAccountService.getConfirmPortfolioName();
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
       this.investmentAccountService.setConfirmPortfolioName(portfolioName);
-      this.addPortfolioName(portfolioName);
+      this.savePortfolioName(portfolioName);
+      
     });
   }
+  constructSavePortfolioName(data) {
+  return {
+      customerPortfolioId: this.portfolio.customerPortfolioId,
+      portfolioName: data
+    }
 
-  addPortfolioName(portfolioName) {
-    this.investmentCommonService.addPortfolioName(portfolioName).subscribe((response) => { // sending portfolio name
-      if (response.responseMessage.responseCode === 6000) {
-        this.portfolioNameStatus = response.objectList;
-        this.AddPortfolioNameStatus(portfolioName);
+  }
+
+  savePortfolioName(portfolioName) {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'loading...'
+      ),
+      desc: this.translate.instant(
+        'please wait.'
+      )
+    });
+    const param = this.constructSavePortfolioName(portfolioName);
+    this.investmentCommonService.savePortfolioName(param).subscribe((response) => { // sending portfolio name
+      /* TODO: ONCE API START WORKING, MOVE ERROR CODES TO SUCCESS AND VICEVERSA */
+      this.loaderService.hideLoader();
+      this.investmentAccountService.showGenericErrorModal();
+    },
+    (err) => {
+      const response = {"exception":null,"objectList":null,"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
+      if (response.responseMessage.responseCode >= 6000) {
+        this.showAddPortfolioStatusModal(portfolioName);
         this.showErrorMessage = false;
-      } else if (response.responseMessage.responseCode === 5000) {
-        this.showAddPortfolioName(portfolioName);
+      } else if (response.responseMessage.responseCode === 5120) {
+        this.showAddPortfolioNameModal(portfolioName);
         this.showErrorMessage = true;
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
-      });
+      this.loaderService.hideLoader();
+      
+    });
   }
-
-  AddPortfolioNameStatus(portfolioName) {
+ 
+  showAddPortfolioStatusModal(portfolioName) {
     const reference = this.modal.open(AddPortfolioStatusComponent, {
       centered: true,
       backdropClass: 'portfolio-naming-backdrop',

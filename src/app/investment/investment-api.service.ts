@@ -11,6 +11,7 @@ import { BaseService } from '../shared/http/base.service';
 import { IServerResponse } from '../shared/http/interfaces/server-response.interface';
 import { DirectFormData } from './../direct/direct-form-data';
 
+const newLocal = 'EnquiryId';
 @Injectable({
   providedIn: 'root'
 })
@@ -292,19 +293,23 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  addPortfolioName(data) {
-   const url = '../../../assets/mock-data/add-portfolio-name.json';
-   return this.http.getMock(url);
+  savePortfolioName(param) {
+  //  #const url = '../../../assets/mock-data/add-portfolio-name.json';
+  //  return this.http.getMock(url);
+  return this.http.post(investmentApiConstants.endpoint.investmentAccount.savePortfolioName, param)
+   .pipe(
+     catchError((error: HttpErrorResponse) => this.handleError(error))
+   );
   }
  
    // tslint:disable-next-line:no-identical-functions
    confirmPortfolio(customerPortfolioId) {
-    const url = '../../../assets/mock-data/confirm-portfolio.json';
-    return this.http.getMock(url);
-
-  //   #return this.http.get(investmentApiConstants.endpoint.investmentAccount.confirmPortfolio + customerPortfolioId + '/accept')
-  //     .pipe(
-  //       catchError((error: HttpErrorResponse) => this.handleError(error))
-  //     );
+    // #const url = '../../../assets/mock-data/confirm-portfolio.json';
+    // return this.http.getMock(url);
+   // tslint:disable-next-line:max-line-length
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.confirmPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
     }
   }

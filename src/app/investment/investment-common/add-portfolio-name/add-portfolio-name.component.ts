@@ -49,7 +49,6 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   getDefaultPortfolioName() {
-    const defaultPortfolioName = this.defaultPortfolioName.name;
-    return 'Suggestion:' + defaultPortfolioName;
+    return 'Suggestion: ' + this.defaultPortfolioName;
   }
 }
