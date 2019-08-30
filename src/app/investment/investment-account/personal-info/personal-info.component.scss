@@ -86,34 +86,35 @@ app-inv-personal-info {
         }
       }
 
-      &:disabled {
-        color: $form-control-disabled-txt-color !important;
-        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
-        background-color: $form-control-disabled-bg-color !important;
-        opacity: 1 !important;
-      }
+      // &:disabled {
+      //   color: $form-control-disabled-txt-color !important;
+      //   -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+      //   background-color: $form-control-disabled-bg-color !important;
+      //   opacity: 1 !important;
+      // }
     }
 
-    .input-group-append {
+    // calendar button
+    // .input-group-append {
 
-      .btn-primary {
-        box-shadow: none !important;
+    //   .btn-primary {
+    //     box-shadow: none !important;
 
-        &:disabled {
-          color: $inv-btn-disabled-txt-color !important;
-          background-color: $inv-btn-disabled-bg-color !important;
-          opacity: 1 !important;
-        }
-      }
-    }
+    //     &:disabled {
+    //       color: $inv-btn-disabled-txt-color !important;
+    //       background-color: $inv-btn-disabled-bg-color !important;
+    //       opacity: 1 !important;
+    //     }
+    //   }
+    // }
 
-    .btn {
-      &:disabled {
-        color: $inv-btn-disabled-txt-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
-      }
-    }
+    // .btn {
+    //   &:disabled {
+    //     color: $inv-btn-disabled-txt-color !important;
+    //     background-color: $inv-btn-disabled-bg-color !important;
+    //     opacity: 1 !important;
+    //   }
+    // }
 
     input::placeholder {
       color: $form-input-placeholder-txt-color !important;
