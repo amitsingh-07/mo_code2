@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,8 +16,6 @@ import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
@@ -30,19 +28,18 @@ import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { AddPortfolioNameComponent } from '../add-portfolio-name/add-portfolio-name.component';
 import {
   AddPortfolioStatusComponent
 } from '../add-portfolio-status/add-portfolio-status.component';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { InvestmentCommonService } from '../investment-common.service';
 import {
   AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-import { InvestmentCommonService } from '../investment-common.service';
-import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -74,7 +71,6 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     private currencyPipe: CurrencyPipe,
     public headerService: HeaderService,
@@ -84,7 +80,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
-    private signUpService: SignUpService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService
   ) {
@@ -267,21 +262,17 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorMessage = errorMessage;
   }
 
-  verifyCustomer() {
-    this.confirmPortfolio(this.portfolio.customerPortfolioId);
-  }
-
-  confirmPortfolio(param) {
-    this.investmentCommonService.confirmPortfolio(param).subscribe((data) => {  // confirm portfolio api calling
+  confirmPortfolio() {
+    this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000) {
         this.showAddPortfolioNameModal(data.objectList[this.portfolio.customerPortfolioId]);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   showAddPortfolioNameModal(defaultPortfolioName) {
@@ -302,28 +293,19 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   constructSavePortfolioName(data) {
     return {
-        customerPortfolioId: this.portfolio.customerPortfolioId,
-        portfolioName: data
+      customerPortfolioId: this.portfolio.customerPortfolioId,
+      portfolioName: data
     };
   }
 
   savePortfolioName(portfolioName) {
     this.loaderService.showLoader({
-      title: this.translate.instant(
-        'loading...'
-      ),
-      desc: this.translate.instant(
-        'please wait.'
-      )
+      title: 'Loading...',
+      desc: 'Please wait.'
     });
     const param = this.constructSavePortfolioName(portfolioName);
-    this.investmentCommonService.savePortfolioName(param).subscribe((response) => { // sending portfolio name
-      /* TODO: ONCE API START WORKING, MOVE ERROR CODES TO SUCCESS AND VICEVERSA */
+    this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
-    },
-    (err) => {
-      const response = {"exception":null,"objectList":null,"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
       if (response.responseMessage.responseCode >= 6000) {
         this.showAddPortfolioStatusModal(portfolioName);
         this.showErrorMessage = false;
@@ -333,11 +315,13 @@ export class ConfirmPortfolioComponent implements OnInit {
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
-      this.loaderService.hideLoader();
-      
-    });
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
- 
+
   showAddPortfolioStatusModal(portfolioName) {
     const reference = this.modal.open(AddPortfolioStatusComponent, {
       centered: true,
@@ -350,7 +334,6 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.reDirectToNextScreen();
     });
   }
-
 
   reDirectToNextScreen() {
     this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
@@ -494,7 +477,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       desc: 'Your Portfolio has been added',
       link_label: 'View',
       link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
-    }
+    };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
   }
@@ -502,6 +485,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructCreateInvAccountParams() {
     return {
       customerPortfolioId: this.portfolio.customerPortfolioId
-    }
+    };
   }
 }
