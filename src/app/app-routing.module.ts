@@ -90,7 +90,7 @@ const routes: Routes = [
       { path: 'fair-dealing', component: FairDealingComponent },
       { path: 'security-policy', component: SecurityPolicyComponent },
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
-      { path: '**', component: NotFoundComponent }
+      { path: '404', component: NotFoundComponent }
     ]
   }
 ];
