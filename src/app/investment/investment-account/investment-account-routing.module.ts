@@ -34,27 +34,27 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
     redirectTo: INVESTMENT_ACCOUNT_ROUTES.START,
     pathMatch: 'full',
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.START,
     component: StartComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
     component: NationalityComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO,
     component: PersonalInfoComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS,
     component: ResidentialAddressComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
@@ -64,49 +64,50 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,
     component: FinancialDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.TAX_INFO,
     component: TaxInfoComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS,
     component: UploadDocumentsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SETUP_PENDING,
     component: AccountStatusComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONAL_DECLARATION_SCREEN_2,
     component: AdditionalDeclaration2Component,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
     component: AdditionalDeclarationInfoComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclaration1Component,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

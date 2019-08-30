@@ -16,6 +16,8 @@ export class InvestmentAccountGuardService implements CanActivate {
     private authService: AuthenticationService
   ) {}
   canActivate(): boolean {
+    // tslint:disable-next-line: no-commented-code
+    /*
     const investmentStatus = this.signUpService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
@@ -24,6 +26,12 @@ export class InvestmentAccountGuardService implements CanActivate {
       INVESTMENT_ACCOUNT_CONSTANTS.INVESTMENT_ACCOUNT_GUARD_STATUS.indexOf(investmentStatus) >= 0
     ) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
+    */
+
+   if (!this.authService.isSignedUser()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     }
     return true;
