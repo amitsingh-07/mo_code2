@@ -1,6 +1,6 @@
 <img src="/assets/articles/images/46/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
-<p><a href="#/articles/entry/45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
+<p><a href="/articles/entry/45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
 <br>
 <h3 class="primary-color"><strong>A: If you are looking for a product that pays a stream of income for life</strong></h3>
 <br>

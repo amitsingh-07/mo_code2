@@ -11,8 +11,8 @@
   "articleEnabled": true,
   "maintenanceEnabled": false,
   "marqueeEnabled": true,
-  "resetPasswordUrl": "/#/account/reset-password",
-  "verifyEmailUrl": "/#/account/email-verification",
+  "resetPasswordUrl": "/account/reset-password",
+  "verifyEmailUrl": "/account/email-verification",
   "hospitalPlanData": [{
     "id": 0,
     "hospitalClass": "None",

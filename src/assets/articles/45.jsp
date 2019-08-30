@@ -1,6 +1,6 @@
 <img src="/assets/articles/images/45/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="old couple cycling image">
 
-<p>This article follows from our earlier piece on <a href="#/articles/entry/44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
+<p>This article follows from our earlier piece on <a href="/articles/entry/44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
 <br/>
 <p>Funds in the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Supplementary Retirement Scheme (SRS)</a> can be invested into a wide range of instruments such as shares, unit trusts, insurance, bonds and fixed deposits. Or you can simply leave your SRS monies in cash, which is not a wise financial decision due to the current low interest rates of 0.05% offered by the banks. </p>
 <p>&nbsp;</p>
