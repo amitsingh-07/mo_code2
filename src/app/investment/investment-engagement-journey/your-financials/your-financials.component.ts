@@ -198,6 +198,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   isFirstTimeUser() {
     if (typeof this.financialFormValue.firstTimeUser === 'undefined') {
+      this.financialFormValue.firstTimeUser = true;
       return true;
     }
     return false;

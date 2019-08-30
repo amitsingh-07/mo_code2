@@ -91,8 +91,8 @@
     "MY_FINANCIALS_LBL": "My Finances",
     "MY_FINANCIAL_LBL":"How much do you own and owe?",  
     "RESPONSE_LOADER": {
-      "TITLE": "Getting Request",
-      "DESC": "Please wait while we are loading financial deatils  "
+      "TITLE": "loading...",
+      "DESC": "Please wait loading financial details."
     },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
