@@ -1,17 +1,32 @@
 [
     {
-        "promoId": 15,
+        "promoId": 19,
         "type": 4,
         "owner": "MoneyOwl",
-        "title": "Baby Bundle (Child Protection & Education)",
-        "thumbnail": "/assets/promotions/images/15/main.jpg",
-        "desc": "Receive a $50 NTUC FairPrice voucher valid till 31 December 2019!",
+        "title": "Child Protection Bundle",
+        "thumbnail": "/assets/promotions/images/19/main.jpg",
+        "desc": "Receive a MoneyOwl Towel upon successful application",
         "date_created": "1560902400000",
         "date_expiry": "1577730600000",
         "tag": [],
         "external": false,
-        "bundle_enquiry_form_type": "child-bundle",
-        "bundle_enquiry_form_title": "Baby Bundle Enquiry",
+        "bundle_enquiry_form_type": "child-protection-bundle",
+        "bundle_enquiry_form_title": "Child Protection Bundle Enquiry",
+        "tracking_id": "WsX0CIux_aUBEP_VqfUC"
+    },
+    {
+        "promoId": 15,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "Child Education Bundle",
+        "thumbnail": "/assets/promotions/images/15/main.jpg",
+        "desc": "Receive a MoneyOwl Towel upon successful application",
+        "date_created": "1560902400000",
+        "date_expiry": "1577730600000",
+        "tag": [],
+        "external": false,
+        "bundle_enquiry_form_type": "child-education-bundle",
+        "bundle_enquiry_form_title": "Child Education Bundle Enquiry",
         "tracking_id": "WsX0CIux_aUBEP_VqfUC"
     },
     {
