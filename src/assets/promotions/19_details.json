@@ -1,15 +1,15 @@
 {
-    "promoId": 15,
+    "promoId": 19,
     "type": 4,
     "owner": "MoneyOwl",
-    "title": "Child Education Bundle",
-    "thumbnail": "/assets/promotions/images/15/main.jpg",
+    "title": "Child Protection Bundle",
+    "thumbnail": "/assets/promotions/images/19/main.jpg",
     "desc": "Receive a FREE MoneyOwl towel when you successfully sign up for the bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.",
     "date_created": "1547481600000",
     "date_expiry": "1577730600000",
     "tag": [],
     "external": false,
     "bundle_enquiry_form_type": "child-bundle",
-    "bundle_enquiry_form_title": "Child Education Bundle Enquiry",
+    "bundle_enquiry_form_title": "Baby Bundle Enquiry",
     "tracking_id": "WsX0CIux_aUBEP_VqfUC"
 }
