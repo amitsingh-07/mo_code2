@@ -14,7 +14,7 @@ app-investment-overview {
         }
     }
     .cursor_pointer {
-      cursor: pointer;
+        cursor: pointer;
     }
     .your_portfolio_label {
         font-size: 21px;
@@ -263,8 +263,8 @@ app-investment-overview {
                         img {
                             margin-left: 8px;
                         }
-                        .show-less{
-                          transform: rotate(180deg);
+                        .show-less {
+                            transform: rotate(180deg);
                         }
                     }
                 }
@@ -305,9 +305,9 @@ app-investment-overview {
             background-color: #00a0a0 !important;
             &:hover,
             &:active,
-            &:focus{
-              color: #3ec5c5 !important;
-              background-color: #00a0a0 !important;
+            &:focus {
+                color: #3ec5c5 !important;
+                background-color: #00a0a0 !important;
             }
         }
     }

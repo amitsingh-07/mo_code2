@@ -2,7 +2,6 @@
 @import './mixins';
 
 .container-fluid {
-
   &.invest-web-width {
     @include LargeDevice {
       max-width: 600px;
@@ -45,7 +44,7 @@
 
     &:disabled {
       background-color: $btn-disabled-light-bg;
-      color: $disabled-teal-color;
+      color: $btn-disabled-teal-color;
     }
   }
 
@@ -121,7 +120,6 @@
     @include stepindicator-desktop-extraspace;
   }
 
-
   [placeholder]:empty::before {
     content: attr(placeholder);
     color: $form-input-placeholder-txt-color;
@@ -129,44 +127,6 @@
 
   [placeholder]:empty:focus::before {
     content: "";
-  }
-
-  // content editable
-  .content-editable {
-    border: 1px solid $content-editable-border-color;
-    border-radius: 6px;
-    padding: .90rem;
-    background: $content-editable-bg-color;
-    color: $content-editable-txt-color;
-    word-break: break-word;
-    min-height: 52px;
-
-    &.fullName-disabled {
-      color: $content-editable-disabled-txt-color !important;
-      -webkit-text-fill-color: $content-editable-disabled-txt-color !important;
-      background-color: $content-editable-disabled-bg-color !important;
-      opacity: 1 !important;
-    }
-
-    &.company-disabled {
-      color: $content-editable-disabled-txt-color !important;
-      -webkit-text-fill-color: $content-editable-disabled-txt-color !important;
-      background-color: $content-editable-disabled-bg-color !important;
-      opacity: 1 !important;
-    }
-
-    &.view-mode {
-      background-color: $content-editable-view-mode !important;
-    }
-
-    &.inline-error {
-      color: $inline-error-border-color !important;
-      background: $inline-error-bg-color;
-
-      &[placeholder]:empty::before {
-        color: $inline-error-border-color !important;
-      }
-    }
   }
 
   // button proceed
@@ -193,6 +153,78 @@
       bottom: 0px;
       left: 0px;
       border-radius: 0px;
+    }
+  }
+
+  .postal-code-control {
+    display: flex;
+
+    div.control {
+      display: flex;
+      flex: 3;
+    }
+
+    div.button {
+      display: flex;
+      flex: 2;
+    }
+  }
+
+  // date picker
+  .datepicker-control {
+    .date-picker {
+      .input-group-append {
+        .btn-primary {
+          box-shadow: none !important;
+  
+          &:disabled {
+            color: $form-control-disabled-txt-color !important;
+            background-color: $form-control-disabled-bg-color !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+  }
+
+  // dropdown
+  .dropdown-control {
+    .btn-dropdown {
+      color: $form-dropdown-txt-color !important;
+      
+      &:disabled, 
+      &.disabled {
+        cursor: not-allowed;
+        color: $form-control-disabled-txt-color !important;
+        background-color: $form-control-disabled-bg-color !important;
+        opacity: 1 !important;
+        
+        &:hover {
+          background-color: $form-control-disabled-bg-color !important;
+        }
+      }
+    }
+  }
+
+
+  // form-control 
+  .form-control {
+    &:disabled,
+    &.disabled {
+      color: $form-control-disabled-txt-color !important;
+      -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+      background-color: $form-control-disabled-bg-color !important;
+      opacity: 1 !important;
+
+      &:hover {
+        background-color: $form-control-disabled-bg-color !important;
+      }
+
+      input {
+        background-color: $form-control-disabled-bg-color !important;
+        padding-top: 6px;
+        padding-bottom: 6px;
+      }
     }
   }
 }

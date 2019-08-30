@@ -58,8 +58,8 @@
                 <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED'
-                  | translate}}</span>
+                <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW'
+                  | translate}}<span *ngIf="userProfileInfo?.investementDetails?.portfolios?.length > 1"> ({{userProfileInfo?.investementDetails?.portfolios?.length}})</span></span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -71,15 +71,8 @@
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-5" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0" class="portfolio_footer_value">
-                          {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
-                      </div>
-                      <div class="flex-col col-7" [ngClass]="{'col-12': !userProfileInfo.investementDetails.showTotalReturn}">
-                        <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_ref_code" (click)="showTransferInstructionModal()" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">(<span class="portfolio_ref_code_text">{{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}}</span>)</div>
-
+                      <div class="flex-col col-12" [ngClass]="{'col-12': !userProfileInfo.investementDetails.showTotalReturn}">
+                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_ACCOUNT_BALANCE' | translate}}</div>
                         <div class="portfolio_footer_value">
                           {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
