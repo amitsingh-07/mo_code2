@@ -25,7 +25,7 @@ export let investmentApiConstants = {
             monthlyInvestment: INVESTMENT_API_BASE_URL + '/customer/InvestmentObjective/monthlyInvestment?handleError=true',
             sellPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/sell?handleError=true',
             saveNationality: INVESTMENT_API_BASE_URL + '/customer/setNationality',
-            investmentoverview: INVESTMENT_API_BASE_URL + '/portfolio/holdings?handleError=true',
+            investmentoverview: INVESTMENT_API_BASE_URL + '/customers/investment-profile?handleError=true',
             porfolioDetails: INVESTMENT_API_BASE_URL + '/portfolios/detail',
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
             uploadDocument: ACCOUNT_API_BASE_URL + '/saveDocuments',
