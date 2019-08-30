@@ -148,22 +148,22 @@ app-additional-declaration1 {
         }
       }
 
-      .dropdown-control {
-        .btn {
+      // .dropdown-control {
+      //   .btn {
 
-          &:disabled,
-          &.disabled {
-            color: $teal-color !important;
-            -webkit-text-fill-color: $teal-color !important;
-            background-color: $inv-btn-disabled-bg-color !important;
-            opacity: 1 !important;
+      //     &:disabled,
+      //     &.disabled {
+      //       color: $teal-color !important;
+      //       -webkit-text-fill-color: $teal-color !important;
+      //       background-color: $inv-btn-disabled-bg-color !important;
+      //       opacity: 1 !important;
 
-            &:hover {
-              background-color: $inv-btn-disabled-bg-color !important;
-            }
-          }
-        }
-      }
+      //       &:hover {
+      //         background-color: $inv-btn-disabled-bg-color !important;
+      //       }
+      //     }
+      //   }
+      // }
     }
 
     .form-control {
@@ -174,17 +174,17 @@ app-additional-declaration1 {
 
       &:disabled,
       &.disabled {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
+        // color: $teal-color !important;
+        // -webkit-text-fill-color: $teal-color !important;
+        // background-color: $inv-btn-disabled-bg-color !important;
+        // opacity: 1 !important;
 
-        &:hover {
-          background-color: $inv-btn-disabled-bg-color !important;
-        }
+        // &:hover {
+        //   background-color: $inv-btn-disabled-bg-color !important;
+        // }
 
         input {
-          background-color: $inv-btn-disabled-bg-color !important;
+          // background-color: $inv-btn-disabled-bg-color !important;
           padding-top: 6px;
           padding-bottom: 6px;
         }
@@ -195,38 +195,38 @@ app-additional-declaration1 {
       }
     }
 
-    .btn {
-      &.btn-secondary {
-        padding: 0.5rem;
-        font-size: 16px;
-        background-color: $secondary-action-color;
-        color: $white-color;
-        border: none;
-        font-family: $muli-semi-bold;
+    // .btn {
+    //   &.btn-secondary {
+    //     padding: 0.5rem;
+    //     font-size: 16px;
+    //     background-color: $secondary-action-color;
+    //     color: $white-color;
+    //     border: none;
+    //     font-family: $muli-semi-bold;
 
-        &.right {
-          float: right;
-        }
+    //     &.right {
+    //       float: right;
+    //     }
 
-        &:hover {
-          background-color: $secondary-action-color !important;
-          border: none !important;
-          color: $white-color !important;
-        }
+    //     &:hover {
+    //       background-color: $secondary-action-color !important;
+    //       border: none !important;
+    //       color: $white-color !important;
+    //     }
 
-        &:focus {
-          background-color: $secondary-action-color !important;
-          border: none !important;
-          color: $white-color !important;
-        }
+    //     &:focus {
+    //       background-color: $secondary-action-color !important;
+    //       border: none !important;
+    //       color: $white-color !important;
+    //     }
 
-        &:active {
-          background-color: $secondary-action-color !important;
-          border: none !important;
-          color: $white-color !important;
-        }
-      }
-    }
+    //     &:active {
+    //       background-color: $secondary-action-color !important;
+    //       border: none !important;
+    //       color: $white-color !important;
+    //     }
+    //   }
+    // }
 
     // .white-bg-checkbox {
     //   background-color: $white-color;
@@ -275,13 +275,13 @@ app-additional-declaration1 {
       }
     }
 
-    .inline-error {
-      .btn {
-        &.btn-secondary {
-          background-color: $secondary-action-color !important;
-        }
-      }
-    }
+    // .inline-error {
+    //   .btn {
+    //     &.btn-secondary {
+    //       background-color: $secondary-action-color !important;
+    //     }
+    //   }
+    // }
 
     // .inline-error-inv {
     //   color: $inline-error-border-color;
@@ -319,32 +319,32 @@ app-additional-declaration1 {
       font-size: 18px;
     }
 
-    .postal-code-control {
-      display: flex;
+    // .postal-code-control {
+    //   display: flex;
 
-      div.control {
-        display: flex;
-        flex: 3;
-      }
+    //   div.control {
+    //     display: flex;
+    //     flex: 3;
+    //   }
 
-      div.button {
-        display: flex;
-        flex: 2;
-      }
-    }
+    //   div.button {
+    //     display: flex;
+    //     flex: 2;
+    //   }
+    // }
 
-    .inline-error {
-      .btn {
-        &.btn-secondary {
-          &:active {
-            border: none !important;
-            color: $white-color;
-          }
+    // .inline-error {
+    //   .btn {
+    //     &.btn-secondary {
+    //       &:active {
+    //         border: none !important;
+    //         color: $white-color;
+    //       }
 
-          background-color: $secondary-action-color !important;
-        }
-      }
-    }
+    //       background-color: $secondary-action-color !important;
+    //     }
+    //   }
+    // }
   }
 
   [placeholder]:empty::before {

@@ -3,42 +3,42 @@
 
 app-residential-address {
   .residential-address {
-    .postal-code-control {
-      display: flex;
-      div.control {
-        display: flex;
-        flex: 3;
-      }
-      div.button {
-        display: flex;
-        flex: 2;
-      }
-    }
-    .inline-error {
-      .btn {
-        &.btn-secondary {
-          &:active {
-            border: none !important;
-            color: $form-error-btn-txt-color;
-          }
-          background-color: $form-error-btn-bg-color !important;
-        }
-      }
-    }
-    .dropdown-control {
-      .btn-dropdown {
-        color: $form-dropdown-txt-color !important;
-      }
-      border-radius: 6px;
-      position: relative;
-      background: $form-dropdown-bg-color;
-      cursor: pointer;
-      .dropdown-toggle {
-        &:disabled {
-          cursor: not-allowed;
-        }
-      }
-    }
+    // .postal-code-control {
+    //   display: flex;
+    //   div.control {
+    //     display: flex;
+    //     flex: 3;
+    //   }
+    //   div.button {
+    //     display: flex;
+    //     flex: 2;
+    //   }
+    // }
+    // .inline-error {
+    //   .btn {
+    //     &.btn-secondary {
+    //       &:active {
+    //         border: none !important;
+    //         color: $form-error-btn-txt-color;
+    //       }
+    //       background-color: $form-error-btn-bg-color !important;
+    //     }
+    //   }
+    // }
+    // .dropdown-control {
+    //   .btn-dropdown {
+    //     color: $form-dropdown-txt-color !important;
+    //   }
+    //   border-radius: 6px;
+    //   position: relative;
+    //   background: $form-dropdown-bg-color;
+    //   cursor: pointer;
+    //   .dropdown-toggle {
+    //     &:disabled {
+    //       cursor: not-allowed;
+    //     }
+    //   }
+    // }
     label {
       font-size: 18px;
       font-family: $muli-semi-bold;
@@ -76,12 +76,12 @@ app-residential-address {
         padding-left: 0.8rem;
       }
       &:disabled, &.disabled {
-        color: $form-control-disabled-txt-color !important;
-        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
-        background-color: $form-control-disabled-bg-color !important;
-        opacity: 1 !important;
+        // color: $form-control-disabled-txt-color !important;
+        // -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        // background-color: $form-control-disabled-bg-color !important;
+        // opacity: 1 !important;
         input {
-          background-color: $form-control-disabled-bg-color !important;    
+          // background-color: $form-control-disabled-bg-color !important;    
           padding-top: 6px;
           padding-bottom: 6px;
         }
@@ -99,41 +99,41 @@ app-residential-address {
     //     }
     //   }
     // }
-    .btn {
-      &:disabled {
-        color: $inv-btn-disabled-txt-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
-      }
-    }
-    .btn {
-      &.btn-secondary {
-        padding: 0.5rem;
-        font-size: 16px;
-        background-color: $inv-btn-sec-bg-color !important;
-        color: $inv-btn-sec-txt-color !important;
-        border: none !important;
-        font-family: $muli-semi-bold;
-        // &.right {
-        //   float: right;
-        // }
-        // &:hover {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
-        // &:focus {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
-        // &:active {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
-      }
-    }
+    // .btn {
+    //   &:disabled {
+    //     color: $form-control-disabled-txt-color !important;
+    //     background-color: $form-control-disabled-bg-color !important;
+    //     opacity: 1 !important;
+    //   }
+    // }
+    // .btn {
+    //   &.btn-secondary {
+    //     padding: 0.5rem;
+    //     font-size: 16px;
+    //     background-color: $inv-btn-sec-bg-color !important;
+    //     color: $inv-btn-sec-txt-color !important;
+    //     border: none !important;
+    //     font-family: $muli-semi-bold;
+    //     &.right {
+    //       float: right;
+    //     }
+    //     &:hover {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
+    //     &:focus {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
+    //     &:active {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
+    //   }
+    // }
     // .white-bg-checkbox {
     //   background-color: $white-color;
     //   padding: 10px 18px 10px 18px;

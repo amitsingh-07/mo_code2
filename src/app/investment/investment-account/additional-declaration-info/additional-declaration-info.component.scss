@@ -39,71 +39,89 @@ app-additional-declaration-info {
     //   }
     // }
 
-    .intro-block__tab-container {
-      @extend .flex;
-      @extend .space-btwn;
-      width: 100%;
+    // .intro-block__tab-container {
+    //   @extend .flex;
+    //   @extend .space-btwn;
+    //   width: 100%;
 
-      .intro-block__tab {
-        width: calc(50% - 10px);
-        opacity: 0.2;
-        padding-right: 10px;
-        background-color: $app-backgrnd-secondary-color;
-        min-height: 5px;
+    //   .intro-block__tab {
+    //     width: calc(50% - 10px);
+    //     opacity: 0.2;
+    //     padding-right: 10px;
+    //     background-color: $app-backgrnd-secondary-color;
+    //     min-height: 5px;
 
-        &.active {
-          opacity: 1;
-        }
-      }
-    }
+    //     &.active {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
 
     .intro-block__content {
-      @include tablet {
-        .banner-image img {
-          max-width: 90%;
+      // @include tablet {
+      //   .banner-image img {
+      //     max-width: 90%;
+      //   }
+      // }
+
+      // @include allmobiles {
+      //   .banner-image img {
+      //     max-width: 70%;
+      //     padding-top: 5vh;
+      //   }
+      // }
+
+      // @include iPadProPortrait {
+      //   .banner-image img {
+      //     max-width: 80%;
+      //   }
+      // }
+      .banner-image {
+        img {
+          @include tablet {
+            max-width: 90%;
+          }
+
+          @include allmobiles {
+            max-width: 70%;
+            padding-top: 5vh;
+          }
+
+          @include iPadProPortrait {
+            max-width: 80%;
+          }
         }
       }
 
-      @include allmobiles {
-        .banner-image img {
-          max-width: 70%;
-          padding-top: 5vh;
+      .intro-block__content__desc {
+        color: $intro-block-content-desc-color;
+
+        @include allmobiles {
+          margin-top: 30px;
+          text-align: center;
+        }
+
+        @include tablet {
+          margin-top: 30px;
+        }
+
+        .intro-block__content__heading {
+          font-family: $muli-semi-bold;
+          font-size: 24px;
+          letter-spacing: -0.25px;
+          text-align: center;
+          color: $white-color;
+        }
+
+        .intro-block__content__title {
+          font-family: $muli-regular;
+          font-size: 18px;
+          line-height: 22px;
+          letter-spacing: -0.18px;
+          text-align: center;
+          // color: $white-color;
         }
       }
-
-      @include iPadProPortrait {
-        .banner-image img {
-          max-width: 80%;
-        }
-      }
-    }
-
-    .intro-block__content__desc {
-      @include allmobiles {
-        margin-top: 30px;
-        text-align: center;
-      }
-
-      @include tablet {
-        margin-top: 30px;
-      }
-    }
-
-    .intro-block__content__heading {
-      font-family: $muli-semi-bold;
-      font-size: 24px;
-      letter-spacing: -0.25px;
-      text-align: center;
-      color: $white-color;
-    }
-
-    .intro-block__content__title {
-      font-family: $muli-regular;
-      font-size: 18px;
-      line-height: 22px;
-      letter-spacing: -0.18px;
-      text-align: center;
-      color: $white-color;
     }
   }
 }
