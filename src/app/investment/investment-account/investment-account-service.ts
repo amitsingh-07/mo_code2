@@ -606,8 +606,8 @@ export class InvestmentAccountService {
     const payload = this.constructSaveNationalityRequest(data);
     return this.investmentApiService.saveNationality(payload);
   }
-  createInvestmentAccount() {
-    return this.investmentApiService.createInvestmentAccount();
+  createInvestmentAccount(params) {
+    return this.investmentApiService.createInvestmentAccount(params);
   }
 
   verifyAML() {
@@ -914,9 +914,8 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
-  getPortfolioAllocationDetails(params) {
-    const urlParams = this.investmentEngagementJourneyService.buildQueryString(params);
-    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
+  getPortfolioAllocationDetailsWithAuth(params) {
+    return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 
   updateInvestment(params) {
@@ -1860,13 +1859,29 @@ export class InvestmentAccountService {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
   }
 
-  setUserPortfolioExistStatus(status) {
-    this.investmentAccountFormData.portfolioExist = status;
+  setInitialMessageToShowDashboard(initialMessageInfo) {
+    if (initialMessageInfo) {
+      this.investmentAccountFormData.dashboardInitMessageShow = initialMessageInfo.show;
+      this.investmentAccountFormData.dashboardInitMessageTitle = initialMessageInfo.title;
+      this.investmentAccountFormData.dashboardInitMessageDesc = initialMessageInfo.desc;
+    } else {
+      this.investmentAccountFormData.dashboardInitMessageShow = false;
+      this.investmentAccountFormData.dashboardInitMessageTitle = '';
+      this.investmentAccountFormData.dashboardInitMessageDesc = '';
+    }
     this.commit();
   }
 
-  getUserPortfolioExistStatus() {
-    return this.investmentAccountFormData.portfolioExist;
+  getInitialMessageToShowDashboard() {
+    if(this.investmentAccountFormData.dashboardInitMessageTitle) {
+      return {
+        dashboardInitMessageShow: this.investmentAccountFormData.dashboardInitMessageShow,
+        dashboardInitMessageTitle: this.investmentAccountFormData.dashboardInitMessageTitle,
+        dashboardInitMessageDesc: this.investmentAccountFormData.dashboardInitMessageDesc
+      };
+    } else {
+      return null;
+    }
   }
 
   // #FOR 100 CHARACTERS FIELD CURSOR POSITION

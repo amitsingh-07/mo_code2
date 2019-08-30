@@ -534,4 +534,18 @@ export class ManageInvestmentsService {
       };
     }
   }
+
+  setToastMessage(toastMessage) {
+    this.manageInvestmentsFormData.toastMessage = toastMessage;
+    this.commit();
+  }
+
+  activateToastMessage() {
+    this.manageInvestmentsFormData.toastMessage.isShown = true;
+    this.commit();
+  }
+
+  clearToastMessage() {
+    this.manageInvestmentsFormData.toastMessage = null;
+  }
 }
