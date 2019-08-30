@@ -75,7 +75,7 @@ export class YourPortfolioComponent implements OnInit {
     this.yearlyReturns = this.portfolioValues.yearlyReturns
       ? this.portfolioValues.yearlyReturns
       : null;
-    this.getPortfolioHoldingList(this.portfolioValues.refNo); // SET THE PORTFOLIO ID
+    this.getPortfolioHoldingList(this.portfolioValues.portfolioId); // SET THE PORTFOLIO ID
     this.getTransferDetails();
     /* First portfolio's entitlement is considered for now as global entitlement,
         need to change when multiple portfolio logic is implemented */
