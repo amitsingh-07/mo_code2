@@ -1861,23 +1861,23 @@ export class InvestmentAccountService {
 
   setInitialMessageToShowDashboard(initialMessageInfo) {
     if (initialMessageInfo) {
-      this.investmentAccountFormData.show = initialMessageInfo.show;
-      this.investmentAccountFormData.title = initialMessageInfo.title;
-      this.investmentAccountFormData.desc = initialMessageInfo.desc;
+      this.investmentAccountFormData.dashboardInitMessageShow = initialMessageInfo.show;
+      this.investmentAccountFormData.dashboardInitMessageTitle = initialMessageInfo.title;
+      this.investmentAccountFormData.dashboardInitMessageDesc = initialMessageInfo.desc;
     } else {
-      this.investmentAccountFormData.show = false;
-      this.investmentAccountFormData.title = '';
-      this.investmentAccountFormData.desc = '';
+      this.investmentAccountFormData.dashboardInitMessageShow = false;
+      this.investmentAccountFormData.dashboardInitMessageTitle = '';
+      this.investmentAccountFormData.dashboardInitMessageDesc = '';
     }
     this.commit();
   }
 
   getInitialMessageToShowDashboard() {
-    if(this.investmentAccountFormData.title) {
+    if(this.investmentAccountFormData.dashboardInitMessageTitle) {
       return {
-        show: this.investmentAccountFormData.show,
-        title: this.investmentAccountFormData.title,
-        desc: this.investmentAccountFormData.desc
+        dashboardInitMessageShow: this.investmentAccountFormData.dashboardInitMessageShow,
+        dashboardInitMessageTitle: this.investmentAccountFormData.dashboardInitMessageTitle,
+        dashboardInitMessageDesc: this.investmentAccountFormData.dashboardInitMessageDesc
       };
     } else {
       return null;

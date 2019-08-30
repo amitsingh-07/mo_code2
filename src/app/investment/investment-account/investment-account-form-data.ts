@@ -148,7 +148,7 @@ export class InvestmentAccountFormData {
   accountCreationStatus: string;
 
   // Initial Message for Dashboard
-  show: boolean;
-  title: string;
-  desc: string;
+  dashboardInitMessageShow: boolean;
+  dashboardInitMessageTitle: string;
+  dashboardInitMessageDesc: string;
 }

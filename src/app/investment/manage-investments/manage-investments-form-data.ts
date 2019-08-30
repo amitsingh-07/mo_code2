@@ -30,7 +30,4 @@ export class ManageInvestmentsFormData {
 
   selectedPortfolio;
 
-  // ADD PORTFOLIO ENTITLEMENTS
-  canProceedEngagementJourney;
-  hasInvestmentAccount;
 }

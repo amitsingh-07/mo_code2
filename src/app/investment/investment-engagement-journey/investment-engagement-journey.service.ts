@@ -304,12 +304,6 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.getPortfolioAllocationDetails(params);
   }
 
-  constructPortfolioDetailsReq() {
-    return {
-
-    }
-  }
-
   getFundDetails() {
     return this.investmentEngagementJourneyFormData.fundDetails;
   }

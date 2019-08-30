@@ -71,7 +71,7 @@ export function createTranslateLoader(http: HttpClient) {
     WithdrawalBankAccountComponent,
     TransactionsComponent,
     HoldingsComponent,
-    AssetAllocationComponent,
+    AssetAllocationComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent],
   providers: [CurrencyPipe]

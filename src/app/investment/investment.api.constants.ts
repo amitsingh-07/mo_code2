@@ -8,7 +8,7 @@ export let investmentApiConstants = {
             setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolio/awaitingTransactions',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
-            getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$' + '/portfolios/recommend'
+            getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',

@@ -534,14 +534,4 @@ export class ManageInvestmentsService {
       };
     }
   }
-
-  getFirstInvAccountCreationStatus() {
-    return this.investmentApiService.getFirstInvAccountCreationStatus();
-  }
-
-  // setAddPortfolioEntitlementsFormData(data) {
-  //   this.manageInvestmentsFormData.canProceedEngagementJourney = data.canProceedEngagementJourney;
-  //   this.manageInvestmentsFormData.hasInvestmentAccount = data.hasInvestmentAccount;
-  //   this.commit();
-  // }
 }

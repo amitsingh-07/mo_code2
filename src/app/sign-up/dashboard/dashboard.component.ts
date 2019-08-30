@@ -93,11 +93,11 @@ export class DashboardComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
-      if (initialMessage.show) {
+      if (initialMessage && initialMessage.dashboardInitMessageShow) {
         this.investmentAccountService.setInitialMessageToShowDashboard(null);
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = initialMessage.title;
-        ref.componentInstance.errorMessage = initialMessage.desc;
+        ref.componentInstance.errorTitle = initialMessage.dashboardInitMessageTitle;
+        ref.componentInstance.errorMessage = initialMessage.dashboardInitMessageDesc;
       }
      });
     this.configService.getConfig().subscribe((config: IConfig) => {

@@ -40,6 +40,7 @@ import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from 'src/app/investment/investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -91,7 +92,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private changeDetectorRef: ChangeDetectorRef,
     private stateStoreService: StateStoreService,
-    private manageInvestmentsService: ManageInvestmentsService) {
+    private investmentCommonService: InvestmentCommonService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -284,7 +285,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           } else if (investmentRoutes.indexOf(redirect_url) >= 0) /* Logging from investment journey */ {
-            this.redirectToInvestment();
+            this.investmentCommonService.redirectToInvestmentFromLogin();
           } else {
             this.router.navigate([redirect_url]);
           }
@@ -298,44 +299,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-
-  redirectToInvestment() {
-    this.manageInvestmentsService.getFirstInvAccountCreationStatus().subscribe((data: any) => {
-      //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
-      if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
-        this.investmentAccountService.showGenericErrorModal();
-      } else {
-        if (data.objectList.investmentAccountExists) { // SECOND PORTFOLIO
-          if (data.objectList.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-            const dashboardMessage = {
-              show: true,
-              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
-            };
-            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else {
-            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-          }
-        } else { // FIRST PORTFOLIO
-          if (data.objectList.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-          } else {
-            const dashboardMessage = {
-              show: true,
-              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
-            };
-            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          }
-        }
-      }
-    },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
   }
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
