@@ -26,24 +26,31 @@ app-investment-overview {
       width: 100%;
       max-height: 230px;
     }
-    .container-fluid{
+
+    .container-fluid {
       padding: 0;
       top: 0;
+
       .background_img {
         float: right;
+
         @include allmobiles {
           object-fit: contain;
           position: relative;
           width: 100%;
         }
+
         &.web_bg {
           position: relative;
+
           @include allmobiles {
             display: none;
           }
         }
+
         &.mobile_bg {
           display: none;
+
           @include allmobiles {
             display: block;
             position: absolute;
@@ -76,11 +83,12 @@ app-investment-overview {
     right: 0;
     margin: 0 auto;
 
-    @include allmobiles{
+    @include allmobiles {
       top: 100px;
       padding: 0;
     }
-    @include phablet{
+
+    @include phablet {
       top: 85px;
     }
 
@@ -157,8 +165,8 @@ app-investment-overview {
   }
 
   .dropdown-control .btn-dropdown.grey {
-    color: $white-color;
-    background-color: $withdrawal-amount-panel-bg-color;
+    color: $form-dropdown-grey-txt-color;
+    background-color: $form-dropdown-grey-bg-color;
   }
 
   .container-fluid {
@@ -211,14 +219,14 @@ app-investment-overview {
     font-family: $muli-bold;
     text-align: inherit;
     white-space: nowrap !important;
-    background-color: transparent;
+    background-color: $form-dropdown-item-bg-color;
     border: 0;
     letter-spacing: -0.2px;
-    color: $dark-teal-color !important;
-    border-bottom: 1px solid $teal-color !important;
+    color: $form-dropdown-item-text-color !important;
+    border-bottom: 1px solid $form-dropdown-item-border-color !important;
 
     &.hide {
-      display:none;
+      display: none;
     }
   }
 
@@ -227,12 +235,12 @@ app-investment-overview {
   }
 
   .form-group-with-bg {
-    box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
-    background-color: $white-color;
+    box-shadow: 0 10px 14px 0 $wgt-shadow-color;
+    background-color: $wgt-bg-color;
     margin-bottom: 30px;
 
     .your_total_value {
-      background-color: $withdrawal-amount-panel-bg-color;
+      background-color: $portfolio-panel-bg-color;
       padding: 20px 20px 17px;
     }
   }
@@ -242,9 +250,10 @@ app-investment-overview {
     font-size: 32px;
     letter-spacing: -0.4px;
     text-align: center;
-    color: $white-color;
+    color: $portfolio-total-value-txt-color;
     word-break: break-all;
-    @include allmobiles{
+
+    @include allmobiles {
       font-size: 30px;
     }
   }
@@ -255,26 +264,26 @@ app-investment-overview {
     line-height: 0.88;
     letter-spacing: -0.1px;
     text-align: center;
-    color: $white-color;
+    color: $portfolio-total-value-label-color;
     margin-top: 6px;
   }
 
-  .start_investment_label {
-    font-size: 13px;
-    line-height: 1.62;
-    letter-spacing: -0.1px;
-    color: $text-color-secondary;
-  }
+  // .start_investment_label {
+  //   font-size: 13px;
+  //   line-height: 1.62;
+  //   letter-spacing: -0.1px;
+  //   color: $text-color-secondary;
+  // }
 
   .start_investment_value {
     font-family: $muli-bold;
     font-size: 16px;
     letter-spacing: -0.2px;
     text-align: right;
-    color: $transaction-panel-buy-color;
+    color: $portfolio-total-returns-txt-color;
 
     &.negativeValue {
-      color: $red-color;
+      color: $portfolio-total-returns-neg-txt-color;
     }
   }
 
@@ -285,7 +294,7 @@ app-investment-overview {
   .total_return_label {
     color: $text-color-secondary;
     font-size: 16px;
-    color: $dark-teal-color;
+    color: $portfolio-total-returns-label-color;
   }
 
   .total_return_value {
@@ -293,7 +302,7 @@ app-investment-overview {
     font-size: 16px;
     letter-spacing: -0.2px;
     text-align: right;
-    color: $teal-color;
+    color: $portfolio-total-returns-value-color;
     word-break: break-all;
 
     &.txt-bold {
@@ -306,134 +315,6 @@ app-investment-overview {
     align-items: baseline;
   }
 
-  .your_portfolio_label {
-    font-size: 21px;
-    letter-spacing: -0.2px;
-    color: $white-color;
-    padding-left: 12px;
-  }
-
-  .your_portfolio_number {
-    font-size: 15px;
-    letter-spacing: -0.3px;
-    color: $white-color;
-    padding-top: 5px;
-    text-align: right;
-    padding-right: 16px;
-    @include allmobiles{
-      text-align: left;
-    }
-  }
-
-  .your_portfolio_value {
-    position: relative;
-    background-color: $top-up-your-portfolio-value-bg !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 11px !important;
-
-    .flex-row {
-      align-items: center !important;
-
-      .conserve-icon {
-        width: 35px;
-        height: 35px;
-
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-      }
-    }
-
-    .forward_img {
-      margin-right: 5px;
-      padding-left: 25px;
-    }
-  }
-
-  .form-group-with-bg--content {
-    padding: 20px 28px 16px 27px !important;
-
-    .flex-row {
-      align-items: flex-start;
-    }
-
-    &.your_portfolio_value_content {
-      padding: 0 0 0px !important;
-      font-family: $muli-regular;
-      font-size: 15px;
-      line-height: 21px;
-      letter-spacing: -0.14px;
-      text-align: center;
-      color: $text-color-secondary;
-
-      .flex-row {
-        padding: 15px 20px;
-      }
-
-      .portfolio_footer {
-        padding: 10px 13px 0;
-        border-top: 1px solid $top-up-your-portfolio-value-content-bg;
-
-        .btn-primary {
-          background-color: $white-color;
-          border: 1px solid $top-up-your-portfolio-value-content-bg;
-          color: $dusty-grey-color;
-          font-size: 18px;
-          letter-spacing: -0.18px;
-          box-shadow: none !important;
-          &:hover {
-            background-color: $action-btn-active-bg !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $white-color !important;
-          }
-
-          &:active {
-            background-color: $action-btn-active-bg !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $white-color !important;
-          }
-
-          &:focus {
-            background-color: $white-color !important;
-            border-color: $portfolio-footer-btn-brdr-color !important;
-            color: $dusty-grey-color !important;
-          }
-        }
-      }
-    }
-  }
-
-  .portfolio_heading {
-    font-family: $muli-bold;
-    font-size: 18px;
-    letter-spacing: -0.3px;
-    color: $teal-color;
-    padding-left: 15px;
-    max-width: 180px;
-  }
-
-  .portfolio_value {
-    font-family: $muli-bold;
-    font-size: 20px;
-    letter-spacing: -0.3px;
-    color: $teal-color;
-    word-break: break-all;
-  }
-
-  .portfolio_label {
-    font-size: 16px;
-    line-height: 1.31;
-    letter-spacing: -0.1px;
-    color: $withdrawal-modal-lbl-color;
-  }
-
-  .top_alert {
-    position: relative;
-  }
-
   .btn-with-icon {
     border-radius: 6px;
     box-shadow: 0 10px 14px 0 $btn-shadow-color !important;
@@ -443,36 +324,40 @@ app-investment-overview {
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
-    color: $white-color;
+    color: $btn-primary-txt-color;
     width: 100%;
     padding: 18px 0px;
     border-width: 0px;
     cursor: pointer;
-    &.top_up_btn{
-        font-size: 18px;
-        line-height: 23px;
-        background-color: $white-color;
-        color: $secondary-action-color;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:active{
-          outline: none;
-          background-color: $white-color;
-        }
-        .topup-btn-img {
+
+    &.top_up_btn {
+      font-size: 18px;
+      line-height: 23px;
+      background-color: $topup-btn-bg-color;
+      color: $topup-btn-text-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:active {
+        outline: none;
+        background-color: $topup-btn-active-bg-color;
+      }
+
+      .topup-btn-img {
+        height: 25px;
+
+        img {
+          width: 100%;
           height: 25px;
-          img{
-            width:100%;
-            height: 25px;
-            margin: 0;
-          }
+          margin: 0;
         }
       }
+    }
 
     &:active {
       outline: none;
-      background-color: $btn-primary-backgrnd-color;
+      background-color: $btn-primary-active-color;
     }
 
     &:hover {
@@ -481,164 +366,53 @@ app-investment-overview {
 
     &:focus {
       outline: none;
-      background-color: $btn-primary-backgrnd-color;
+      background-color: $btn-primary-focus-color;
     }
 
     img {
       margin-left: 8px;
       margin-top: -1px;
-     }
-  }
-
-  .Remember {
-    font-family: $muli-regular;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    color: $white-color;
-    margin-bottom: 13px;
-    width: 243px;
-    margin-right: 45px;
-    @include allmobiles{
-      margin-right: 0;
     }
-    span{
-      text-decoration: underline;
-    }
-  }
-
-  .Fund_your_account {
-    width: 203px;
-    height: 20px;
-    font-family: $muli-bold;
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    color: $secondary-action-color;
-    u{
-      text-decoration: none;
-    }
-  }
-
-  .close {
-    position: absolute !important;
-    top: 11px !important;
-    right: 14px !important;
-    text-shadow: none !important;
-    background: url('/assets/images/close-button-dark.svg') !important;
-    width: 18px;
-    height: 18px;
-    background-repeat: no-repeat !important;
-
-    @include allmobiles {
-      top: 14px !important;
-      z-index: 9;
-      right: 14px !important;
-    }
-  }
-
-  .callout-content {
-    padding: 10px 23px;
-    background-color: $withdrawal-amount-panel-bg-color;
-    color: $black-color;
-    position: absolute;
-    right: 5px;
-    bottom: 54px;
-    min-height: 108.7px;
-    @include allmobiles{
-      left: 5px;
-    } 
-  }
-
-  .callout-arrow {
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 18px solid $withdrawal-amount-panel-bg-color;
-    left: auto;
-    bottom: -12px;
-    right: 48px;
-    position: absolute;
   }
 
   .toast-msg-container {
     background-color: #fff;
     padding-bottom: 10px;
     position: relative;
-    @include allmobiles{
+
+    @include allmobiles {
       z-index: 1;
       top: 61px;
     }
+
     .container-fluid {
       padding: 0 !important;
     }
-  }
 
-  .toast-msg {
-    color: #e57300;
-    background: #fff;
-    padding: 25px 0px;
-    padding-left: 75px;
-    background-color: #fff1e3;
-    border-top: 1px solid #dfdfdf;
-    font-family: $muli-bold;
-    font-size: 18px;
-    -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
-    -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
-    box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+    .toast-msg {
+      color: #e57300;
+      background: #fff;
+      padding: 25px 0px;
+      padding-left: 75px;
+      background-color: #fff1e3;
+      border-top: 1px solid #dfdfdf;
+      font-family: $muli-bold;
+      font-size: 18px;
+      -webkit-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+      -moz-box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
+      box-shadow: 0px 1px 6px 1px rgb(187, 187, 187);
 
-    @include allmobiles {
-      padding-left: 0;
-    }
-
-    img {
-      // position:absolute;
-      // left:30px;
-      // top:25px;
-      padding-left: 30px;
-      padding-right: 10px;
-    }
-  }
-
-  .action-section {
-    border-top:1px solid #eaeaea;
-    color:#8a9ba9;
-    flex-grow:1;
-    display:flex;
-    padding-bottom:10px;
-    padding-left:25px;
-    padding-right:25px;
-    justify-content: space-evenly;
-    .action-item{
-      flex: 1 1 0;
-      margin-right: 10px;
-
-      &:last-child {
-        margin-right: 0px;
+      @include allmobiles {
+        padding-left: 0;
       }
-    }
-  }
 
-  .btn-transparent {
-    border-radius: 6px;
-    background-color: transparent;
-    border: 1px solid #eaeaea;
-    color: #9b9b9b;
-    border-radius: 6px;
-    margin-top: 10px;
-    font-size: 18px;
-    width: 100%;
-    font-family: $muli-bold;
-
-    &.orange {
-      color: #ff872f;
-    }
-
-    @include max360 {
-      font-size: 16px;
-    }
-
-    @include iphone6 {
-      font-size: 16px;
+      img {
+        // position:absolute;
+        // left:30px;
+        // top:25px;
+        padding-left: 30px;
+        padding-right: 10px;
+      }
     }
   }
 
@@ -657,8 +431,8 @@ app-investment-overview {
     img {
       margin-bottom: 20px;
     }
-
   }
+
   .srs-reminder {
     display: flex;
     align-items: center;

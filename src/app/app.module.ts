@@ -110,6 +110,8 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 
+import { RestrictAddPortfolioModalComponent } from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
+
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -157,7 +159,8 @@ export function tokenGetterFn() {
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
     NotFoundComponent,
-    EmailEnquirySuccessComponent
+    EmailEnquirySuccessComponent,
+    RestrictAddPortfolioModalComponent
   ],
   imports: [
     BrowserModule,
@@ -216,7 +219,7 @@ export function tokenGetterFn() {
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
-    FundDetailsComponent, UnsupportedDeviceModalComponent]
+    FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent]
 })
 
 export class AppModule {

@@ -1,0 +1,251 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.your_portfolio_label {
+  font-size: 21px;
+  letter-spacing: -0.2px;
+  color: $white-color;
+  padding-left: 12px;
+}
+
+.your_portfolio_number {
+  font-size: 15px;
+  letter-spacing: -0.3px;
+  color: $white-color;
+  padding-top: 5px;
+  text-align: right;
+  padding-right: 16px;
+
+  @include allmobiles {
+    text-align: left;
+  }
+}
+
+.your_portfolio_value {
+  position: relative;
+  background-color: $top-up-your-portfolio-value-bg !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 11px !important;
+
+  .flex-row {
+    align-items: center !important;
+
+    .conserve-icon {
+      width: 35px;
+      height: 35px;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .forward_img {
+    margin-right: 5px;
+    padding-left: 25px;
+  }
+}
+
+.portfolio_heading {
+  font-family: $muli-bold;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  color: $portfolio-wgt-header-text-color;
+  padding-left: 15px;
+  max-width: 180px;
+}
+
+.portfolio_value {
+  font-family: $muli-bold;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: $portfolio-wgt-content-text-color;
+  word-break: break-all;
+}
+
+.portfolio_label {
+  font-size: 16px;
+  line-height: 1.31;
+  letter-spacing: -0.1px;
+  color: $portfolio-wgt-content-label-color;
+}
+
+.top_alert {
+  position: relative;
+}
+
+.Remember {
+  font-family: $muli-regular;
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  color: $white-color;
+  margin-bottom: 13px;
+  width: 243px;
+  margin-right: 45px;
+
+  @include allmobiles {
+    margin-right: 0;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+}
+
+.Fund_your_account {
+  width: 203px;
+  height: 20px;
+  font-family: $muli-bold;
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  color: $secondary-action-color;
+
+  u {
+    text-decoration: none;
+  }
+}
+
+.form-group-with-bg--content {
+  padding: 20px 28px 16px 27px !important;
+
+  .flex-row {
+    align-items: flex-start;
+  }
+
+  &.your_portfolio_value_content {
+    padding: 0 0 0px !important;
+    font-family: $muli-regular;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: $form-group-content-text-color;
+
+    .flex-row {
+      padding: 15px 20px;
+    }
+
+    // .portfolio_footer {
+    //   padding: 10px 13px 0;
+    //   border-top: 1px solid $top-up-your-portfolio-value-content-bg;
+
+    //   .btn-primary {
+    //     background-color: $white-color;
+    //     border: 1px solid $top-up-your-portfolio-value-content-bg;
+    //     color: $dusty-grey-color;
+    //     font-size: 18px;
+    //     letter-spacing: -0.18px;
+    //     box-shadow: none !important;
+
+    //     &:hover {
+    //       background-color: $action-btn-active-bg !important;
+    //       border-color: $portfolio-footer-btn-brdr-color !important;
+    //       color: $white-color !important;
+    //     }
+
+    //     &:active {
+    //       background-color: $action-btn-active-bg !important;
+    //       border-color: $portfolio-footer-btn-brdr-color !important;
+    //       color: $white-color !important;
+    //     }
+
+    //     &:focus {
+    //       background-color: $white-color !important;
+    //       border-color: $portfolio-footer-btn-brdr-color !important;
+    //       color: $dusty-grey-color !important;
+    //     }
+    //   }
+    // }
+  }
+}
+
+
+.close {
+  position: absolute !important;
+  top: 11px !important;
+  right: 14px !important;
+  text-shadow: none !important;
+  background: url('/assets/images/close-button-dark.svg') !important;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat !important;
+
+  @include allmobiles {
+    top: 14px !important;
+    z-index: 9;
+    right: 14px !important;
+  }
+}
+
+.callout-content {
+  padding: 10px 23px;
+  background-color: $withdrawal-amount-panel-bg-color;
+  color: $black-color;
+  position: absolute;
+  right: 5px;
+  bottom: 54px;
+  min-height: 108.7px;
+
+  @include allmobiles {
+    left: 5px;
+  }
+}
+
+.callout-arrow {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 18px solid $withdrawal-amount-panel-bg-color;
+  left: auto;
+  bottom: -12px;
+  right: 48px;
+  position: absolute;
+}
+
+.action-section {
+  border-top: 1px solid #eaeaea;
+  color: #8a9ba9;
+  flex-grow: 1;
+  display: flex;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  justify-content: space-evenly;
+
+  .action-item {
+    flex: 1 1 0;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.btn-transparent {
+  border-radius: 6px;
+  background-color: $btn-trns-bg-color;
+  border: 1px solid $btn-trns-border-color;
+  color: $btn-trns-text-color;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 18px;
+  width: 100%;
+  font-family: $muli-bold;
+
+  &.orange {
+    color: $crusta-orange-color;
+  }
+
+  @include max360 {
+    font-size: 16px;
+  }
+
+  @include iphone6 {
+    font-size: 16px;
+  }
+}

@@ -56,7 +56,15 @@ export class InvestmentApiService {
   }
 
   getPortfolioAllocationDetails(param) {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.getAllocationDetails + param)
+    const url = investmentApiConstants.endpoint.portfolio.getAllocationDetails.replace('$ENQUIRY_ID$', param.enquiryId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getPortfolioDetailsWithAuth() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuth)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -152,7 +160,7 @@ export class InvestmentApiService {
       );
   }
 
-  createInvestmentAccount() {
+  createInvestmentAccount(params) {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -302,5 +310,10 @@ export class InvestmentApiService {
       );
   }
 
-
+  getFirstInvAccountCreationStatus() {
+    return this.http.get(investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

@@ -62,18 +62,18 @@ app-nationality {
   //   overflow: hidden;
   //   text-overflow: ellipsis;
   // }
-  .dropdown-control{
-    .btn {
-      &:disabled {
-        color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
-        &:hover{
-          background-color: $inv-btn-disabled-bg-color !important;
-        }
-      }
-    }
-  }
+  // .dropdown-control{
+  //   .btn {
+  //     &:disabled {
+  //       color: $teal-color !important;
+  //       background-color: $inv-btn-disabled-bg-color !important;
+  //       opacity: 1 !important;
+  //       &:hover{
+  //         background-color: $inv-btn-disabled-bg-color !important;
+  //       }
+  //     }
+  //   }
+  // }
   .fixed-btn--sm {
     color: $white-color;
   }
@@ -91,7 +91,7 @@ app-nationality {
     &.btn-primary{
       &:disabled{
         background-color: $btn-disabled-light-bg;
-        color: $disabled-teal-color;
+        color: $btn-disabled-teal-color;
       }
     }
   }

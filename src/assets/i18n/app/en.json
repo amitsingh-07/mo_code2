@@ -377,6 +377,11 @@
     "THANKYOU": "Thank you!",
     "TITLE": "Your interest in the selected insurance plan(s) has been submitted. Our advisors will contact you by the end of the next working day.",
     "FOR_ENQUIRY": "For enquiries, please contact us at:"
+  },
+  "INVESTMENT_ADD_PORTFOLIO_ERROR": {
+    "TITLE": "Portfolio can not be added.",
+    "MAX_PORTFOLIO_LIMIT_ERROR": "You have just reached the maximum number of 20 portfolios limit and You can try another recommendation or delete any portfolio(s) that are not yet invested in",
+    "ACCOUNT_CREATION_PENDING_ERROR": "At least you must have one ifast account to add subsequent portfolios. Please proceed to complete your first Investment account set up"
   }
 }
 

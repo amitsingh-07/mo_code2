@@ -25,59 +25,59 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.GET_STARTED_STEP1,
     component: GetStartedStep1Component,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   { path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_EXIST, component: PortfolioExistComponent },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PERSONAL_INFO,
     component: InvestmentPeriodComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.INVESTMENT_AMOUNT,
     component: YourInvestmentAmountComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.MY_FINANCIAL,
     component: YourFinancialsComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.GET_STARTED_STEP2,
     component: GetStartedStep2Component,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/1',
     pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/:id',
     component: RiskWillingnessComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_PROFILE,
     component: RecommendationComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_RECOMMENDATION,
     component: PortfolioDetailsComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     component: StartJourneyComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: []
   }
 ];
 
