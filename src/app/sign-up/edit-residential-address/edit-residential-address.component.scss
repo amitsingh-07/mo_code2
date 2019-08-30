@@ -28,13 +28,13 @@
     padding: 10px;
     border-bottom: 0.5px solid #ffffff;
 }
-  .inline-error{
-    .btn{
-      &.btn-secondary{
-        background-color:#ff872f !important;
-      }  
-    }    
-  }
+  // .inline-error{
+  //   .btn{
+  //     &.btn-secondary{
+  //       background-color:#ff872f !important;
+  //     }  
+  //   }    
+  // }
 
 
   .dropdown-control {
@@ -103,59 +103,59 @@
 
   }
 
-  .btn {
-    &.btn-secondary {
-      padding: 0.50rem;
-      font-size: 16px;
-      background-color: #ff872f;
-      color: #fff;
-      border: none;
-      font-family: $muli-semi-bold;
+  // .btn {
+  //   &.btn-secondary {
+  //     padding: 0.50rem;
+  //     font-size: 16px;
+  //     background-color: #ff872f;
+  //     color: #fff;
+  //     border: none;
+  //     font-family: $muli-semi-bold;
 
-      &.right {
-        float: right;
-      }
+  //     &.right {
+  //       float: right;
+  //     }
 
-      &:focus {
-        background-color: #ff730c !important;
-        color: #fff !important;
-      }
+  //     &:focus {
+  //       background-color: #ff730c !important;
+  //       color: #fff !important;
+  //     }
 
-      &:active {
-        background-color: #ff730c !important;
-        color: #fff !important;
-      }
+  //     &:active {
+  //       background-color: #ff730c !important;
+  //       color: #fff !important;
+  //     }
 
-    }
-  }
+  //   }
+  // }
 
 
-  .white-bg-checkbox {
-    background-color: #fff;
-    padding: 10px 18px 10px 18px;
-    border-radius: 6px;
-    font-family: $muli;
+  // .white-bg-checkbox {
+  //   background-color: #fff;
+  //   padding: 10px 18px 10px 18px;
+  //   border-radius: 6px;
+  //   font-family: $muli;
 
-    label {
+  //   label {
 
-      padding: 0px 0 0px 35px;
-    }
+  //     padding: 0px 0 0px 35px;
+  //   }
 
-    .option-row {
-      margin-left: 0px;
-    }
+  //   .option-row {
+  //     margin-left: 0px;
+  //   }
 
-    .option-title {
-      color: #000;
-      font-size: 18px;
-    }
+  //   .option-title {
+  //     color: #000;
+  //     font-size: 18px;
+  //   }
 
-    .option-desc {
-      color: #4a4a4a;
-      font-family: $muli-semi-bold;
-      font-size: 16px;
-    }
-  }
+  //   .option-desc {
+  //     color: #4a4a4a;
+  //     font-family: $muli-semi-bold;
+  //     font-size: 16px;
+  //   }
+  // }
 
 
   .autofill-link {

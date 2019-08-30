@@ -8,8 +8,7 @@ export let investmentApiConstants = {
             setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolio/awaitingTransactions',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
-            getAllocationDetails: INVESTMENT_API_BASE_URL + '/portfolio/recommend'
-           
+            getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -32,7 +31,8 @@ export let investmentApiConstants = {
             uploadDocument: ACCOUNT_API_BASE_URL + '/saveDocuments',
             saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails',
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept',
-            savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName'
+            savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName',
+            getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
@@ -41,6 +41,7 @@ export let investmentApiConstants = {
             getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
             getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
+            getFirstInvAccountCreationStatus: INVESTMENT_API_BASE_URL + '/customer/investmentAccount/actions'
         }
     }
 };

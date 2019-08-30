@@ -36,10 +36,13 @@ import {
   AddPortfolioStatusComponent
 } from '../add-portfolio-status/add-portfolio-status.component';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
-import { InvestmentCommonService } from '../investment-common.service';
 import {
   AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { InvestmentCommonService } from '../investment-common.service';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -52,7 +55,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   pageTitle: string;
   formValues;
   countries;
-  isUserNationalitySingapore;
   defaultThumb;
   formData: FormData = new FormData();
   portfolio;
@@ -63,6 +65,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   isAllocationOpen = false;
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
   isRequestSubmitted = false;
+  isSubsequentPortfolio = false;
 
   defaultPortfolioName;
   confirmPortfolioValue;
@@ -81,9 +84,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
-    public investmentCommonService: InvestmentCommonService,
     private signUpService: SignUpService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -100,14 +103,13 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getPortfolioDetails();
   }
 
   getPortfolioDetails() {
     const params = this.constructgetPortfolioParams();
     this.investmentAccountService
-      .getPortfolioAllocationDetails(params)
+      .getPortfolioAllocationDetailsWithAuth(params)
       .subscribe((data) => {
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -148,7 +150,9 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   constructgetPortfolioParams() {
-    return {};
+    return {
+
+    };
   }
 
   getInlineErrorStatus(control) {
@@ -190,10 +194,10 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showPortfolioAssetModal() {
     const errorTitle = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.TITLE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.TITLE'
     );
     const errorMessage = this.translate.instant(
-      'CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.MESSAGE'
+      'PORTFOLIO_RECOMMENDATION.MODAL.PROJECTED_RETURNS.MESSAGE'
     );
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.imgType = 1;
@@ -248,7 +252,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant(
-      'INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
+      'PORTFOLIO_RECOMMENDATION.ACCOUNT_CREATION_ERROR_MODAL.TITLE'
     );
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
@@ -293,15 +297,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
       this.investmentAccountService.setConfirmPortfolioName(portfolioName);
       this.savePortfolioName(portfolioName);
-      
     });
   }
-  constructSavePortfolioName(data) {
-  return {
-      customerPortfolioId: this.portfolio.customerPortfolioId,
-      portfolioName: data
-    }
 
+  constructSavePortfolioName(data) {
+    return {
+        customerPortfolioId: this.portfolio.customerPortfolioId,
+        portfolioName: data
+    };
   }
 
   savePortfolioName(portfolioName) {
@@ -348,19 +351,16 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
   }
 
+
   reDirectToNextScreen() {
-    const investStatus = this.signUpService.getInvestmentStatus();
-    if (investStatus && investStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
-      const pepData = this.investmentAccountService.getPepData();
-      const OldPepData = this.investmentAccountService.getOldPepData();
-      if (pepData && !OldPepData) {
-        this.goToAdditionalDeclaration();
-      } else {
+    this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
+      if (data && data.investmentAccountExists) {
+        this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
+      } else {
+        this.verifyAML();
       }
-    } else {
-      this.verifyAML();
-    }
+    });
   }
 
   verifyAML() {
@@ -368,10 +368,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
       const pepData = this.investmentAccountService.getPepData();
@@ -426,17 +426,18 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   createInvestmentAccount() {
+    const params = this.constructCreateInvAccountParams();
     if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
         desc: this.translate.instant(
-          'INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION'
+          'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
-      this.investmentAccountService.createInvestmentAccount().subscribe(
+      this.investmentAccountService.createInvestmentAccount(params).subscribe(
         (response) => {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
@@ -465,8 +466,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
               ) {
-                this.investmentAccountService.setAccountSuccussModalCounter(0);
-                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+                this.handleAccountCreationSuccess();
               } else {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
@@ -482,6 +482,26 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.investmentAccountService.showGenericErrorModal();
         }
       );
+    }
+  }
+
+  handleAccountCreationSuccess() {
+    if (this.isSubsequentPortfolio) {
+      this.investmentAccountService.setAccountSuccussModalCounter(0);
+    }
+    const toastMessage: IToastMessage = {
+      isShown: false,
+      desc: 'Your Portfolio has been added',
+      link_label: 'View',
+      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
+    }
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  constructCreateInvAccountParams() {
+    return {
+      customerPortfolioId: this.portfolio.customerPortfolioId
     }
   }
 }

@@ -158,6 +158,34 @@ button:active:focus {
       background-color: transparent !important;
     }
   }
+
+  // retrieve button - postal code
+  &.btn-orange {
+    padding: 0.5rem;
+    font-size: 16px;
+    background-color: $btn-orange-bg-color !important;
+    color: $btn-orange-txt-color !important;
+    border: none !important;
+    font-family: $muli-semi-bold;
+
+    &:hover {
+      background-color: $btn-orange-hover-bg-color !important;
+      border: none !important;
+      color: $btn-orange-hover-txt-color !important;
+    }
+
+    &:focus {
+      background-color: $btn-orange-focus-bg-color !important;
+      border: none !important;
+      color: $btn-orange-focus-txt-color !important;
+    }
+
+    &:active {
+      background-color: $btn-orange-active-bg-color !important;
+      border: none !important;
+      color: $btn-orange-active-txt-color !important;
+    }
+  }
 }
 
 .btn.active.focus,

@@ -21,6 +21,7 @@ import {
     MANAGE_INVESTMENTS_CONSTANTS
 } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -183,6 +184,7 @@ export class FundingInstructionsComponent implements OnInit {
   goToNext(target) {
     switch (target) {
       case 'PORTFOLIO':
+        this.manageInvestmentsService.activateToastMessage();
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT], {
           replaceUrl: true
         });

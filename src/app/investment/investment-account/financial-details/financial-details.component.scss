@@ -55,14 +55,14 @@ app-financial-details {
       }
     }
 
-    .btn {
-      &:disabled {
-        color: $form-control-disabled-txt-color !important;
-        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
-        background-color: $form-control-disabled-bg-color !important;
-        opacity: 1 !important;
-      }
-    }
+    // .btn {
+    //   &:disabled {
+    //     color: $form-control-disabled-txt-color !important;
+    //     -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+    //     background-color: $form-control-disabled-bg-color !important;
+    //     opacity: 1 !important;
+    //   }
+    // }
 
     // .white-bg-checkbox {
     //   background-color: $white-color;

@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-holdings {
   .container-fluid {
     &.max-width--1024 {
@@ -12,9 +13,10 @@ app-holdings {
       }
     }
   }
+
   .holdings-bg {
     position: absolute;
-    background: #3bbfbf;
+    background: $holdings-bg-color;
     width: 100%;
     left: 0;
     right: 0;
@@ -24,24 +26,31 @@ app-holdings {
       width: 100%;
       max-height: 230px;
     }
-    .container-fluid{
+
+    .container-fluid {
       padding: 0;
       top: 0;
+
       .background_img {
         float: right;
+
         @include allmobiles {
           object-fit: contain;
           position: relative;
           width: 100%;
         }
+
         &.web_bg {
           position: relative;
+
           @include allmobiles {
             display: none;
           }
         }
+
         &.mobile_bg {
           display: none;
+
           @include allmobiles {
             display: block;
             position: absolute;
@@ -52,8 +61,9 @@ app-holdings {
       }
     }
   }
+
   .user_content {
-    position: absolute;;
+    position: absolute;
     padding: 0 75px;
     top: 60px;
     max-width: 1024px;
@@ -78,15 +88,17 @@ app-holdings {
       padding: 0 29px 0 15px;
       position: relative;
       max-width: 400px;
-       @include allmobiles {
+
+      @include allmobiles {
         padding: 0 29px 0 28px;
       }
-      div{
+
+      div {
         font-size: 36px;
       }
     }
- }
- 
+  }
+
   .container-fluid {
     position: relative;
     top: 120px;
@@ -113,43 +125,51 @@ app-holdings {
     @include phablet {
       top: 140px;
     }
- }
+  }
+
   .form-group-with-bg {
     border-radius: 6px !important;
+
     .form-group-with-bg--header {
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
-      background-color: $review-block-bg;
+      background-color: $form-group-header-bg-color;
       padding: 16px 26px 26px 26px;
       font-family: $muli-bold;
       font-size: 16px;
     }
+
     .form-group-with-bg--content {
       border-radius: 6px;
-      background-color: $bond-container-bg;
+      background-color: $form-group-content-bg-color;
       margin-bottom: 22px;
     }
+
     .flex-row {
       margin-bottom: 14px;
     }
+
     .value_lab {
       font-family: $muli-regular;
       font-size: 14px;
       line-height: 1.64;
       letter-spacing: -0.1px;
-      color: $black-color;
+      color: $holding-label-color;
     }
+
     .text_bold {
       font-family: $muli-bold;
     }
+
     .value {
       font-family: $muli-bold;
       font-size: 14px;
       line-height: 1.64;
       letter-spacing: -0.1px;
-      color: $teal-color;
+      color: $holding-value-color;
       text-align: right;
     }
+
     .flex-row:not(:last-child) {
       margin-bottom: 14px !important;
     }

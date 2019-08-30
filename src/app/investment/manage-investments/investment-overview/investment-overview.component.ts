@@ -370,4 +370,8 @@ showPopUp() {
   getEntitlementsFromPortfolio(portfolio) {
     return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
+
+  addNewPortfolio() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+  }
 }
