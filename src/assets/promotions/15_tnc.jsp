@@ -55,13 +55,13 @@
   <p class="tnc--title"><span class="plus-icon">+</span>Terms & Conditions:</p>
   <ol class="tnc--ordered">
     <li>
-      Each client is entitled to receive a MoneyOwl towel for every successful application on this Bundle.
+      Each client is entitled to receive a MoneyOwl towel for every successful application on this bundle.
     </li>
     <li>
       Receive a $50 NTUC Fairprice Vocher and a MoneyOwl towel if you successfully signed up for the both Child Protection & Child Education Bundle.
     </li>
     <li>
-      Monthly Premium for the protection must be at least $100.
+      The Education saving commitment must be at least $200 monthly.
     </li>
     <li>
       Each client is entitled to redeem 1 voucher per package.
