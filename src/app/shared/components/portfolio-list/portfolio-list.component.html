@@ -12,7 +12,11 @@
                           <div class="portfolio-details">
                               <div class="portfolio-name">{{portfolio.portfolioName}}</div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
-                              <div class="portfolio-value"><span>$0</span><span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoTopUp()">{{portfolio?.buyRequestCount}} {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span></div>
+                              <div class="portfolio-value">
+                                  <span *ngIf="!portfolio?.portfolioValue">$0</span>
+                                  <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                                <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoTopUp()">{{portfolio?.buyRequestCount}} {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                              </div>
                               <div class="portfolio-btn" >
                                 <span (click)="gotoTopUp()" *ngIf="!portfolio?.buyRequestCount" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
                                 <span *ngIf="!portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>

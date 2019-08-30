@@ -301,8 +301,14 @@ app-investment-overview {
             letter-spacing: -0.26px;
             border-radius: 0px;
             text-align: center;
-            color: #3ec5c5;
-            background-color: #00a0a0;
+            color: #3ec5c5 !important;
+            background-color: #00a0a0 !important;
+            &:hover,
+            &:active,
+            &:focus{
+              color: #3ec5c5 !important;
+              background-color: #00a0a0 !important;
+            }
         }
     }
 }

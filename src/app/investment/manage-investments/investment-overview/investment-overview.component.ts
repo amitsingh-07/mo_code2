@@ -1,29 +1,23 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-investment-overview',
@@ -49,7 +43,6 @@ export class InvestmentOverviewComponent implements OnInit {
   portfolio;
   productCode;
   entitlements: any;
-
   showAlretPopUp = false;
   selected;
 
@@ -59,16 +52,15 @@ export class InvestmentOverviewComponent implements OnInit {
   transferInstructionModal;
   isToastMessageShown;
   toastMsg;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
-    private formBuilder: FormBuilder,
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
     public footerService: FooterService,
-    private currencyPipe: CurrencyPipe,
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -81,9 +73,11 @@ export class InvestmentOverviewComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
@@ -93,12 +87,15 @@ export class InvestmentOverviewComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.getTransferDetails();
   }
+
   getMoreList() {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
   }
+
   addPortfolio() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
+
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
       this.manageInvestmentsService.setPortfolioValues(portfolio);
@@ -106,6 +103,7 @@ export class InvestmentOverviewComponent implements OnInit {
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }
+
   getInvestmentOverview() {
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
@@ -128,10 +126,11 @@ export class InvestmentOverviewComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
+
   setInvestmentData(data) {
     this.investmentoverviewlist = data.objectList;
     this.totalReturns = this.investmentoverviewlist.totalReturns
@@ -159,15 +158,7 @@ export class InvestmentOverviewComponent implements OnInit {
         need to change when multiple portfolio logic is implemented */
     this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
   }
-  showTotalReturnPopUp() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE'
-    );
-  }
+
   ViewTransferInst(productCode) {
     this.productCode = productCode;
     this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
@@ -182,9 +173,9 @@ export class InvestmentOverviewComponent implements OnInit {
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   constructFundingParams(data) {   // SET FUND DETAILS VAlUES
@@ -202,7 +193,7 @@ export class InvestmentOverviewComponent implements OnInit {
       exceededAmount: 0
     };
   }
-  // tslint:disable-next-line
+
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -218,12 +209,15 @@ export class InvestmentOverviewComponent implements OnInit {
     this.selected = i;
     this.showAlretPopUp = true;
   }
+
   ClosedPopup() {
     this.showAlretPopUp = false;
   }
+
   selectOption(option) {
     this.manageInvestmentsService.showMenu(option);
   }
+
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
@@ -234,31 +228,31 @@ export class InvestmentOverviewComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-/*
-* Method to get transfer details
-*/
- getTransferDetails() {
-  this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-    this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-  },
-  (err) => {
-    this.investmentAccountService.showGenericErrorModal();
-  });
- }
+  /*
+  * Method to get transfer details
+  */
+  getTransferDetails() {
+    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
+      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
 
-/*
-* Method to show transfer instruction steps modal
-*/
-showTransferInstructionModal() {
-  this.manageInvestmentsService.showTransferInstructionModal();
-}
+  /*
+  * Method to show transfer instruction steps modal
+  */
+  showTransferInstructionModal() {
+    this.manageInvestmentsService.showTransferInstructionModal();
+  }
 
-/*
-* Method to show recipients/entity name instructions modal
-*/
-showPopUp() {
-  this.manageInvestmentsService.showPopUp();
-}
+  /*
+  * Method to show recipients/entity name instructions modal
+  */
+  showPopUp() {
+    this.manageInvestmentsService.showPopUp();
+  }
 
   showToastMessage(msg) {
     this.isToastMessageShown = true;
@@ -280,6 +274,7 @@ showPopUp() {
     this.authService.saveEnquiryId(null);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
+
   gotoTopUp() {  // GO TO TOP-UP
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
@@ -312,9 +307,9 @@ showPopUp() {
         this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getEntitlementsFromPortfolio(portfolio) {
