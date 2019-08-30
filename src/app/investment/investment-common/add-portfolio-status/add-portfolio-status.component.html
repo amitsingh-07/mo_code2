@@ -1,3 +1,21 @@
-<p>
-  add-portfolio-status works!
-</p>
+<div class="portfolio-naming-success-modal-backdrop"></div>
+<div class="portfolio-naming-success-modal-wrapper">
+  <div class="portfolio-naming">
+    <div class="title">{{
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_STATUS.TITLE' | translate}}</div>
+    <div class="portfolio-success mb60">
+      <img src={{iconImage}} id="riskProfileImg" />
+    </div>
+    <div class="portfolio-naming--content">
+      <div class="flex-col-12">
+        <div class="desc">{{portfolioName}}
+          <div>{{
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_STATUS.ADD_PORTFOLIO_NAME_LAB' | translate}}</div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary width100 pt10 mt30" id="prfBtn1"
+        (click)="portfolioNameSuccessfully()">{{
+          'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_STATUS.CONTINUE' | translate}}</button>
+    </div>
+  </div>
+</div>

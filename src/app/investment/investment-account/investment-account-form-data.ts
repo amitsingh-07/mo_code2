@@ -147,6 +147,10 @@ export class InvestmentAccountFormData {
   // Account Creation Status
   accountCreationStatus: string;
 
-  // Portfolio availability status
-  portfolioExist: boolean;
+// #Portfolioname confirm portfolio
+  portfolioName: string;
+  // Initial Message for Dashboard
+  dashboardInitMessageShow: boolean;
+  dashboardInitMessageTitle: string;
+  dashboardInitMessageDesc: string;
 }

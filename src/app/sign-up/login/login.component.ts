@@ -38,7 +38,9 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { LoginFormError } from './login-form-error';
-
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from 'src/app/investment/investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -89,7 +91,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private selectedPlansService: SelectedPlansService,
     private investmentAccountService: InvestmentAccountService,
     private changeDetectorRef: ChangeDetectorRef,
-    private stateStoreService: StateStoreService) {
+    private stateStoreService: StateStoreService,
+    private investmentCommonService: InvestmentCommonService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -281,19 +284,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.signUpService.clearRedirectUrl();
           if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentRoutes.indexOf(redirect_url) >= 0 &&
-            investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            this.investmentAccountService.setUserPortfolioExistStatus(true);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          } else if (investmentRoutes.indexOf(redirect_url) >= 0) /* Logging from investment journey */ {
+            this.investmentCommonService.redirectToInvestmentFromLogin();
           } else {
             this.router.navigate([redirect_url]);
           }
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
           this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-        } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase() &&
-          journeyType !== appConstants.JOURNEY_TYPE_DIRECT && journeyType !== appConstants.JOURNEY_TYPE_GUIDED &&
-          journeyType !== appConstants.JOURNEY_TYPE_WILL_WRITING) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }

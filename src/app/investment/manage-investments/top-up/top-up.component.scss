@@ -231,7 +231,7 @@ app-top-up {
     &:disabled {
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
       background-color: $btn-disabled-light-bg !important;
-      color: $disabled-teal-color;
+      color: $btn-disabled-teal-color;
      }
      &:hover {
         box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
