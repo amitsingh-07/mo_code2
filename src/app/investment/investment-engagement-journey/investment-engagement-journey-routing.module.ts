@@ -51,7 +51,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.GET_STARTED_STEP2,
     component: GetStartedStep2Component,
-    canActivate: []
+    canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT,
