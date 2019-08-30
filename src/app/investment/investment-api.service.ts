@@ -298,8 +298,13 @@ export class InvestmentApiService {
   }
  
    // tslint:disable-next-line:no-identical-functions
-   confirmPortfolio() {
+   confirmPortfolio(customerPortfolioId) {
     const url = '../../../assets/mock-data/confirm-portfolio.json';
     return this.http.getMock(url);
-   }
+
+  //   #return this.http.get(investmentApiConstants.endpoint.investmentAccount.confirmPortfolio + customerPortfolioId + '/accept')
+  //     .pipe(
+  //       catchError((error: HttpErrorResponse) => this.handleError(error))
+  //     );
+    }
   }

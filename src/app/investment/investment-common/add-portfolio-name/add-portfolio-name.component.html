@@ -27,7 +27,7 @@
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ERROR_MESSAGE' | translate}}</span>
           </div>
         </div>
-        <div class="characters">{{characterLength ? characterLength :0}} / 50 characters{{portfolioStatus}}</div>
+        <div class="characters">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} / 50 characters</div>
         <button type="button" [disabled]="!portfolioNameFormGroup.controls.portfolioName.value"
           class="btn btn-primary width100 pt10 mt20" (click)="addPortfolioName(portfolioNameFormGroup.controls.portfolioName.value)"
           id="prfBtn1">Done</button>

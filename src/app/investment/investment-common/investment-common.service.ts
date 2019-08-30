@@ -10,6 +10,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import {
     InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { InvestmentCommonFormData } from './investment-common-form-data';
 
 
 
@@ -22,13 +23,14 @@ const SESSION_STORAGE_KEY = 'app_withdraw-session';
 export class InvestmentCommonService {
  constructor(
     private investmentApiService: InvestmentApiService
+    
   ) {
   }
   addPortfolioName(data) {
     return this.investmentApiService.addPortfolioName(data);
   }
 
-  confirmPortfolio() {
-    return this.investmentApiService.confirmPortfolio();
+  confirmPortfolio(customerPortfolioId) {
+    return this.investmentApiService.confirmPortfolio(customerPortfolioId);
   }
 }

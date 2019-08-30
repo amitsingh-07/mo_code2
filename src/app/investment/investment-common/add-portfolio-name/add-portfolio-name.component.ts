@@ -41,7 +41,7 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   showLength(event) {
-    this.characterLength = event.currentTarget.value.length;
+   this.characterLength = event.currentTarget.value.length;
   }
 
   getInlineErrorStatus(control) {

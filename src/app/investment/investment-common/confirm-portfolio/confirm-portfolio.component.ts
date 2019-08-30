@@ -547,11 +547,11 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   verifyCustomer() {
-    this.confirmPortfolio();
+    this.confirmPortfolio(this.portfolio.portfolioId);
   }
 
-  confirmPortfolio() {
-    this.investmentCommonService.confirmPortfolio().subscribe((data) => {  // confirm portfolio api calling
+ confirmPortfolio(param) {
+     this.investmentCommonService.confirmPortfolio(param).subscribe((data) => {  // confirm portfolio api calling
       if (data.responseMessage.responseCode === 6000) {
         this.showAddPortfolioName(data.objectList);
       } else {
@@ -568,25 +568,27 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
-    ref.componentInstance.userPortfolioName = userPortfolioName ? userPortfolioName : '';
+  //  ref.componentInstance.userPortfolioName = userPortfolioName ? userPortfolioName : '';
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
+    ref.componentInstance.userPortfolioName =this.investmentAccountService.getConfirmPortfolioName();
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-      this.addPortfolioName(portfolioName,userPortfolioName);
+      this.investmentAccountService.setConfirmPortfolioName(portfolioName);
+      this.addPortfolioName(portfolioName);
     });
   }
 
-  addPortfolioName(portfolioName,userPortfolioName) {
-    // Pass userPortfolioName name - TODO
-    this.investmentCommonService.addPortfolioName(portfolioName,userPortfolioName).subscribe((response) => { // sending portfolio name
+  addPortfolioName(portfolioName) {
+    this.investmentCommonService.addPortfolioName(portfolioName).subscribe((response) => { // sending portfolio name
       if (response.responseMessage.responseCode === 6000) {
         this.portfolioNameStatus = response.objectList;
         this.AddPortfolioNameStatus(portfolioName);
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5000) {
-        this.showAddPortfolioName(portfolioName, userPortfolioName);
+        this.showAddPortfolioName(portfolioName);
         this.showErrorMessage = true;
       } else {
         this.investmentAccountService.showGenericErrorModal();
+      }
       });
   }
 

@@ -1,7 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-app-add-portfolio-status{
+app-add-portfolio-status {
   .portfolio-naming-success-modal-backdrop {
     background-color: rgba(255, 255, 255, 0.95);
     position: fixed;
@@ -33,15 +33,15 @@ app-add-portfolio-status{
         font-size: 32px;
         letter-spacing: -0.3px;
         text-align: center;
-        color: #00aaa8;
-        padding:40px 15px 28px;
+        color: $custom-modal-title-color;
+        padding: 40px 15px 28px;
 
         @include allmobiles {
           padding: 0px 15px 30px;
         }
       }
 
-       .portfolio-success {
+      .portfolio-success {
         text-align: center;
 
         img {
@@ -55,8 +55,10 @@ app-add-portfolio-status{
         font-size: 16px;
         letter-spacing: -0.34px;
         text-align: center;
-        color: #000000;
-      }div{
+        color:$black-color;
+      }
+
+      div {
         font-family: $muli-regular;
       }
 
@@ -69,15 +71,15 @@ app-add-portfolio-status{
     &:disabled {
       border-radius: 6px;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-      background-color: #78e1dc !important;
-      color: #ffffff;
+      background-color: $portfolio-name-btn !important;
+      color:$white-color;
     }
 
     &:hover {
       border-radius: 6px;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-      background-color: #78e1dc !important;
-      color: #ffffff;
+      background-color: $portfolio-name-btn !important;
+      color:$white-color;
     }
 
   }

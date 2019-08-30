@@ -13,13 +13,13 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { InvestmentAccountFormError } from './investment-account-form-error';
 import {
-    INVESTMENT_ACCOUNT_ROADMAP, INVESTMENT_ACCOUNT_DDC2_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP
+  INVESTMENT_ACCOUNT_ROADMAP, INVESTMENT_ACCOUNT_DDC2_ROADMAP, INVESTMENT_ACCOUNT_DDC_ROADMAP
 } from './investment-account-roadmap';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from './investment-account-routes.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from './investment-account.constant';
 import {
-    IAddress, IEmployment, IHousehold, IPersonalDeclaration, IPersonalInfo,
-    ISaveAccountCreationRequest
+  IAddress, IEmployment, IHousehold, IPersonalDeclaration, IPersonalInfo,
+  ISaveAccountCreationRequest
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 import { InvestmentApiService } from '../investment-api.service';
@@ -304,7 +304,7 @@ export class InvestmentAccountService {
   getInvestmentPeriod() {
     return this.investmentApiService.getInvestmentPeriod();
   }
- 
+
   getTaxInfo() {
     return {
       tinNumber: this.investmentAccountFormData.tinNumber,
@@ -1871,40 +1871,47 @@ export class InvestmentAccountService {
   }
 
   // #FOR 100 CHARACTERS FIELD CURSOR POSITION
- setCaratTo(contentEditableElement, position, content) {
-  contentEditableElement.innerText = content;
-  if (document.createRange) {
-    const range = document.createRange();
-    range.selectNodeContents(contentEditableElement);
+  setCaratTo(contentEditableElement, position, content) {
+    contentEditableElement.innerText = content;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
 
-    range.setStart(contentEditableElement.firstChild, position);
-    range.setEnd(contentEditableElement.firstChild, position);
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
 
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+
+  // #SET THE CONTROL VALUE
+  setControlValue(value, controlName, formName) {
+    if (value !== undefined) {
+      value = value.replace(/\n/g, '');
+      value = value.substring(0, 100);
+      formName.controls[controlName].setValue(value);
+      return value;
+    }
+  }
+
+  // #SET THE CONTROL FOR 100 CHARACTERS LIMIT
+  onKeyPressEvent(event: any, content: any) {
     const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
+    if (content.length >= 100 && selection.type !== 'Range') {
+      const id = event.target.id;
+      const el = document.querySelector('#' + id);
+      this.setCaratTo(el, 100, content);
+      event.preventDefault();
+    }
+    return (event.which !== 13);
   }
-}
-
-// #SET THE CONTROL VALUE
-setControlValue(value, controlName, formName) {
-  if (value !== undefined) {
-    value = value.replace(/\n/g, '');
-    value = value.substring(0, 100);
-    formName.controls[controlName].setValue(value);
-    return value;
+  // #portfolio in confirm portfolio
+  setConfirmPortfolioName(data) {
+    this.investmentAccountFormData.portfolioName = data;
   }
-}
-
-// #SET THE CONTROL FOR 100 CHARACTERS LIMIT
-onKeyPressEvent(event: any, content: any) {
-  const selection = window.getSelection();
-  if (content.length >= 100 && selection.type !== 'Range') {
-    const id = event.target.id;
-    const el = document.querySelector('#' + id);
-    this.setCaratTo(el, 100, content);
-    event.preventDefault();
-  }
-  return (event.which !== 13);
-}
+  getConfirmPortfolioName() {
+    return this.investmentAccountFormData.portfolioName;
+    }
 }

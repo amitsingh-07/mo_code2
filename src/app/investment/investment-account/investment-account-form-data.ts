@@ -149,4 +149,7 @@ export class InvestmentAccountFormData {
 
   // Portfolio availability status
   portfolioExist: boolean;
+
+// #Portfolioname confirm portfolio
+  portfolioName: string;
 }
