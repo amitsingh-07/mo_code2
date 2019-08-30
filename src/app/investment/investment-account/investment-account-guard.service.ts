@@ -16,7 +16,6 @@ export class InvestmentAccountGuardService implements CanActivate {
     private authService: AuthenticationService
   ) {}
   canActivate(): boolean {
-    /*
     const investmentStatus = this.signUpService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
@@ -27,7 +26,6 @@ export class InvestmentAccountGuardService implements CanActivate {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     }
-    */
     return true;
   }
 }
