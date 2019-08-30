@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import {
-    InvestmentAccountGuardService as InvestmentAccountGuard
+   InvestmentAccountGuardService as InvestmentAccountGuard
 } from './investment-account-guard.service';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import { AccountStatusComponent } from './account-status/account-status.component';
@@ -34,12 +34,12 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
     redirectTo: INVESTMENT_ACCOUNT_ROUTES.START,
     pathMatch: 'full',
-    canActivate: []
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.START,
     component: StartComponent,
-    canActivate: []
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
@@ -107,6 +107,7 @@ const routes: Routes = [
     canActivate: [InvestmentAccountGuard]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

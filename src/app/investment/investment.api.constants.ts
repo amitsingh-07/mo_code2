@@ -32,6 +32,8 @@ export let investmentApiConstants = {
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
             uploadDocument: ACCOUNT_API_BASE_URL + '/saveDocuments',
             saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails',
+            confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept',
+            savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName',
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent'
         },
         investment: {

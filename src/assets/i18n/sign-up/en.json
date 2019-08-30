@@ -305,12 +305,7 @@
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "PORTFOLIO_EXIST_TITLE":"Portfolio Already Exist",
       "PORTFOLIO_EXIST_DESC":"You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
-      "PORTFOLIO_EXIST_BTN_LABEL":"Proceed To Portfolio",
-      "ADD_PORTFOLIO_NOT_ALLOWED": {
-        "TITLE": "Error !",
-        "MAX_PORTFOLIO_REASON": "Sorry !. You have already added maximum limit of portfolio to your account.",
-        "ACCOUNT_NOT_READY": "At least you must have one ifast account to add subsequent portfolios. Please proceed to complete your first Investment account set up."
-      }
+      "PORTFOLIO_EXIST_BTN_LABEL":"Proceed To Portfolio"
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",

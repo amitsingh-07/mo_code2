@@ -1,10 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+
+import { ApiService } from '../../shared/http/api.service';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+
+import {
+    InvestmentEngagementJourneyService
+} from '../investment-engagement-journey/investment-engagement-journey.service';
+
+
+
 
 import { InvestmentCommonFormData, IAccountCreationStatusInfo } from './investment-common-form-data';
 import { InvestmentApiService } from '../investment-api.service';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { Observable } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
@@ -24,7 +36,13 @@ export class InvestmentCommonService {
     private router: Router
   ) {
   }
+  savePortfolioName(data) {
+    return this.investmentApiService.savePortfolioName(data);
+  }
 
+  confirmPortfolio(customerPortfolioId) {
+    return this.investmentApiService.confirmPortfolio(customerPortfolioId);
+  }
   // Return the entire Form Data
   getInvestmentCommonFormData() {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
@@ -42,6 +60,18 @@ export class InvestmentCommonService {
         JSON.stringify(this.investmentCommonFormData)
       );
     }
+  }
+
+  clearData() {
+    this.clearInvestmentCommonFormData();
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
+  }
+
+  clearInvestmentCommonFormData() {
+    this.investmentCommonFormData = new InvestmentCommonFormData();
+    this.commit();
   }
 
   setInvAccountStatusInfoToSession(accountCreationStatusInfo: IAccountCreationStatusInfo) {
