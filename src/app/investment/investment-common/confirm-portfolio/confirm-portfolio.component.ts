@@ -35,6 +35,8 @@ import {
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -57,6 +59,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   isAllocationOpen = false;
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
   isRequestSubmitted = false;
+  isSubsequentPortfolio = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -259,6 +262,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   goToNext() {
     this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
       if (data && data.investmentAccountExists) {
+        this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
       } else {
         this.verifyAML();
@@ -369,8 +373,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
               ) {
-                this.investmentAccountService.setAccountSuccussModalCounter(0);
-                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+                this.handleAccountCreationSuccess();
               } else {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
@@ -387,6 +390,20 @@ export class ConfirmPortfolioComponent implements OnInit {
         }
       );
     }
+  }
+
+  handleAccountCreationSuccess() {
+    if (this.isSubsequentPortfolio) {
+      this.investmentAccountService.setAccountSuccussModalCounter(0);
+    }
+    const toastMessage: IToastMessage = {
+      isShown: false,
+      desc: 'Your Portfolio has been added',
+      link_label: 'View',
+      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
+    }
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
   }
 
   constructCreateInvAccountParams() {

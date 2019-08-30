@@ -30,4 +30,14 @@ export class ManageInvestmentsFormData {
 
   selectedPortfolio;
 
+  toastMessage: IToastMessage;
+
+}
+
+export interface IToastMessage {
+  /* TOAST MESSAGE */
+  isShown: boolean;
+  desc: string;
+  link_label: string;
+  link_url: any;
 }
