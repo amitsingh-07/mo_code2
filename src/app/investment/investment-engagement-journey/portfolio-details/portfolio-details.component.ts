@@ -251,7 +251,7 @@ export class PortfolioDetailsComponent implements OnInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
       this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-        if (data && data.investmentAccountExists) {
+        if (data && !data.investmentAccountExists) {
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
         } else {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);

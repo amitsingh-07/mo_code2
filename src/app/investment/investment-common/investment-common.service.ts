@@ -118,7 +118,7 @@ export class InvestmentCommonService {
       if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
         this.investmentAccountService.showGenericErrorModal();
       } else {
-        if (data.investmentAccountExists) { // SECOND PORTFOLIO
+        if (!data.investmentAccountExists) { // SECOND PORTFOLIO
           if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
             const dashboardMessage = {
               show: true,
