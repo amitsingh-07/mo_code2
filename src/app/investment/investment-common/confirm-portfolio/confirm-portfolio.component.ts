@@ -337,7 +337,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   reDirectToNextScreen() {
     this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-      if (data && data.investmentAccountExists) {
+      if (data && !data.investmentAccountExists) {
         this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
       } else {
