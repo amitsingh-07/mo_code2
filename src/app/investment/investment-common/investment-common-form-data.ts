@@ -10,5 +10,5 @@ export class InvestmentCommonFormData {
 export interface IAccountCreationStatusInfo {
     allowEngagementJourney: boolean;
     portfolioLimitExceeded: boolean;
-    investmentAccountExists: boolean;
+    showInvestmentAccountCreationForm: boolean;
 }

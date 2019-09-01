@@ -337,11 +337,11 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   reDirectToNextScreen() {
     this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-      if (data && data.investmentAccountExists) {
+      if (data && data.showInvestmentAccountCreationForm) {
+        this.verifyAML();
+      } else {
         this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
-      } else {
-        this.verifyAML();
       }
     });
   }

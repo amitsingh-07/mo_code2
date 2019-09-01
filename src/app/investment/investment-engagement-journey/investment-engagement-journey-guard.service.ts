@@ -45,7 +45,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
       });
 
       // return this.manageInvestmentsService.getFirstInvAccountCreationStatus().map((data: any) => {
-      //   //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
+      //   //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"showInvestmentAccountCreationForm":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
       //   if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
       //     this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       //   } else { // Api Success

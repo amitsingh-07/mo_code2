@@ -95,7 +95,7 @@ export class InvestmentCommonService {
           return {
             allowEngagementJourney: data.objectList.allowEngagementJourney,
             portfolioLimitExceeded: data.objectList.portfolioLimitExceeded,
-            investmentAccountExists: data.objectList.investmentAccountExists
+            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm
           };
         } else {
           this.investmentAccountService.showGenericErrorModal();
@@ -114,23 +114,10 @@ export class InvestmentCommonService {
   /* Login Redirection Logic */
   redirectToInvestmentFromLogin() {
     this.getAccountCreationStatusInfo().subscribe((data: any) => {
-      //data = {"exception":null,"objectList":{"allowEngagementJourney":false,"portfolioLimitExceeded":true,"investmentAccountExists":true},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}};
       if (data && data.responseMessage && data.responseMessage.responseCode < 6000) {
         this.investmentAccountService.showGenericErrorModal();
       } else {
-        if (data.investmentAccountExists) { // SECOND PORTFOLIO
-          if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-            const dashboardMessage = {
-              show: true,
-              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
-            };
-            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else {
-            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-          }
-        } else { // FIRST PORTFOLIO
+        if (data.showInvestmentAccountCreationForm) {// FIRST PORTFOLIO
           if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
           } else {
@@ -141,6 +128,18 @@ export class InvestmentCommonService {
             };
             this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          }
+        } else { // SECOND PORTFOLIO
+          if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
+            const dashboardMessage = {
+              show: true,
+              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
+              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
+            };
+            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          } else {
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
           }
         }
       }
