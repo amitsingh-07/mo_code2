@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { environment } from '../../environments/environment';
 import { ConfigService, IConfig } from '../config/config.service';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
@@ -8,7 +10,6 @@ import { SelectedPlansService } from '../shared/Services/selected-plans.service'
 import { CryptoService } from '../shared/utils/crypto';
 import { IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
-import { AppConfigService } from './../app-config.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
 import { DirectService } from './../direct/direct.service';
@@ -90,7 +91,7 @@ export class SignUpApiService {
       emailId: data.email,
       mobileNumber: data.mobileNumber,
       countryCode: data.countryCode,
-      callbackUrl: AppConfigService.settings.apiBaseUrl + this.emailVerifyUrl,
+      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
       notificationByEmail: true,
       notificationByPhone: true
     };
@@ -234,7 +235,7 @@ export class SignUpApiService {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: AppConfigService.settings.apiBaseUrl + this.emailVerifyUrl,
+      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
       hostedServerName: window.location.hostname
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);

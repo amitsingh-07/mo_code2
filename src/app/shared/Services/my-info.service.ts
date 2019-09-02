@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
-import { AppConfigService } from './../../app-config.service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -22,11 +23,11 @@ export class MyInfoService {
 
   changeListener = new Subject();
 
-  authApiUrl = AppConfigService.settings.myInfoAuthorizeUrl;
-  clientId = AppConfigService.settings.myInfoClientId;
+  authApiUrl = environment.myInfoAuthorizeUrl;
+  clientId = environment.myInfoClientId;
   private attributes = '';
   purpose = 'financial planning and advisory.';
-  redirectUrl = AppConfigService.settings.myInfoCallbackBaseUrl;
+  redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
