@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-
-import { environment } from './../../../environments/environment';
+import { AppConfigService } from './../../app-config.service';
 
 @Injectable()
 export class Util {
     public static getApiBaseUrl(): string {
         let apiBaseUrl = '';
         if (window.location.href.indexOf('localhost') >= 0 || window.location.port === '4200') {
-            apiBaseUrl = environment.apiBaseUrl;
+            apiBaseUrl = AppConfigService.settings.apiBaseUrl;
         }
 
         return apiBaseUrl;
