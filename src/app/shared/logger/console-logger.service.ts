@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AppConfigService } from './../../app-config.service';
+
+import { environment } from '../../../environments/environment';
 import { Logger } from './logger';
+
+export let isDebugMode = environment.isDebugMode;
 
 const noop = (): any => undefined;
 
@@ -10,7 +13,7 @@ const noop = (): any => undefined;
 export class ConsoleLoggerService implements Logger {
 
   get error() {
-    if (AppConfigService.settings.isDebugMode) {
+    if (isDebugMode) {
       return console.error.bind(console);
     } else {
       return noop;
@@ -18,8 +21,7 @@ export class ConsoleLoggerService implements Logger {
   }
 
   get info() {
-    console.log('SETTINGS ==== ', AppConfigService.settings)
-    if (AppConfigService.settings.isDebugMode) {
+    if (isDebugMode) {
       return console.info.bind(console);
     } else {
       return noop;
@@ -27,7 +29,7 @@ export class ConsoleLoggerService implements Logger {
   }
 
   get warn() {
-    if (AppConfigService.settings.isDebugMode) {
+    if (isDebugMode) {
       return console.warn.bind(console);
     } else {
       return noop;

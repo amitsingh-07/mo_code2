@@ -12,7 +12,6 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { AppConfigService } from './../../app-config.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
@@ -60,8 +59,8 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Environment
-    if (AppConfigService.settings.gtagPropertyId) {
-      this.googleAnalyticsService.emitConversionsTracker(AppConfigService.settings.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
+    if (environment.gtagPropertyId) {
+      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
     }
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
 
