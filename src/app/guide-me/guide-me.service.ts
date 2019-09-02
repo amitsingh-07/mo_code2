@@ -567,7 +567,6 @@ export class GuideMeService {
     data.assets = {
       cash: response.financialStatusMapping.assets.cash,
       cpf: response.financialStatusMapping.assets.cpf,
-      cpfFromMyInfo: response.financialStatusMapping.assets.cpf,
       homeProperty: response.financialStatusMapping.assets.homeProperty,
       investmentProperties: response.financialStatusMapping.assets.investmentProperties,
       otherInvestments: response.financialStatusMapping.assets.otherInvestments,
