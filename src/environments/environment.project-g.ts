@@ -1,4 +1,4 @@
-import { isDebugMode } from '../app/shared/logger/console-logger.service';
+// import { isDebugMode } from '../app/shared/logger/console-logger.service';
 import { IEnvironment } from './environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.

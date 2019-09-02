@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { NavigationEnd, Router} from '@angular/router';
-import { environment } from './../../../environments/environment';
+import { AppConfigService } from './../../app-config.service';
 
 declare var ga: any;
 declare var gtag: any;
@@ -8,11 +8,11 @@ declare var gtag: any;
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleAnalyticsService{
+export class GoogleAnalyticsService {
   constructor(public router: Router) {
     // Initialization for Google Pixel
     this.gtag('js', new Date());
-    this.gtag('config', environment.gAdPropertyId);
+    this.gtag('config', AppConfigService.settings.gAdPropertyId);
     console.log((<any>window).dataLayer);
 
     // Router Events
@@ -39,7 +39,7 @@ export class GoogleAnalyticsService{
   public emitConversionsTracker(trackingId: string) {
     console.log((<any>window).dataLayer);
     const url = this.router.url;
-    const updatedTrackingId: string = environment.gAdPropertyId + '/' + trackingId;
+    const updatedTrackingId: string = AppConfigService.settings.gAdPropertyId + '/' + trackingId;
     this.gtag(
       'event', 'conversion', {
       'send_to': updatedTrackingId
