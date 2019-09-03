@@ -1,26 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ApiService } from '../../shared/http/api.service';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
-
-import {
-    InvestmentEngagementJourneyService
-} from '../investment-engagement-journey/investment-engagement-journey.service';
-
-
-
-
-import { InvestmentCommonFormData, IAccountCreationStatusInfo } from './investment-common-form-data';
-import { InvestmentApiService } from '../investment-api.service';
-import { InvestmentAccountService } from '../investment-account/investment-account-service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account/investment-account-service';
+import { InvestmentApiService } from '../investment-api.service';
+import { IAccountCreationStatusInfo, InvestmentCommonFormData } from './investment-common-form-data';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -101,9 +89,9 @@ export class InvestmentCommonService {
           this.investmentAccountService.showGenericErrorModal();
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     }
   }
 
@@ -118,32 +106,39 @@ export class InvestmentCommonService {
         this.investmentAccountService.showGenericErrorModal();
       } else {
         if (data.showInvestmentAccountCreationForm) {// FIRST PORTFOLIO
-          if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-          } else {
-            const dashboardMessage = {
-              show: true,
-              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
-            };
-            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          }
+          this.goToFirstAccountCreation(data);
         } else { // SECOND PORTFOLIO
-          if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-            const dashboardMessage = {
-              show: true,
-              title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-              desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
-            };
-            this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else {
-            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-          }
+          this.goToAdditionalAccountCreation(data);
         }
       }
     });
   }
 
+  goToFirstAccountCreation(data) {
+    if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+    } else {
+      const dashboardMessage = {
+        show: true,
+        title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
+        desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
+      };
+      this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
+  }
+
+  goToAdditionalAccountCreation(data) {
+    if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
+      const dashboardMessage = {
+        show: true,
+        title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
+        desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
+      };
+      this.investmentAccountService.setInitialMessageToShowDashboard(dashboardMessage);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    } else {
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    }
+  }
 }
