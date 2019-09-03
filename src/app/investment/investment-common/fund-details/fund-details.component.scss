@@ -96,15 +96,20 @@ app-fund-details {
         }
       }
     }
-    .btn-orange {
+    .btn-white {
       font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.1px;
       text-align: center;
-      color: $secondary-action-color;
+      color: $fund-details-btn-color !important;
+      box-shadow: none !important;
       border: none;
       background: none;
       padding: 29px 29px 33px;
+      &:hover{
+        background: $fund-details-btn-hover-bg !important;
+        box-shadow: none !important;
+      }
     }
   }
 
