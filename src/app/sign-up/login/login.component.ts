@@ -1,24 +1,21 @@
-import { StateStoreService } from './../../shared/Services/state-store.service';
-import { flatMap } from 'rxjs/operators';
-
 import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
-    ViewChild, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { flatMap } from 'rxjs/operators';
 
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import {
-   INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
@@ -29,18 +26,14 @@ import { SelectedPlansService } from '../../shared/Services/selected-plans.servi
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from 'src/app/investment/investment-common/investment-common-routes.constants';
-import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,9 +43,6 @@ import { InvestmentCommonService } from 'src/app/investment/investment-common/in
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-  private pageTitle: string;
-  private description: string;
-  private duplicateError: string;
 
   loginForm: FormGroup;
   formValues: any;
@@ -62,12 +52,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   captchaSrc: any = '';
   showCaptcha: boolean;
   hideForgotPassword = false;
-  @ViewChild("welcomeTitle") welcomeTitle: ElementRef;
+  duplicateError: any;
+  @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (/Android|Windows/.test(navigator.userAgent)) {
-      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -77,7 +68,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
-    private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -89,7 +79,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private investmentAccountService: InvestmentAccountService,
     private changeDetectorRef: ChangeDetectorRef,
     private stateStoreService: StateStoreService,
     private investmentCommonService: InvestmentCommonService) {
@@ -102,7 +91,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
-      });
+    });
   }
 
   /**
@@ -149,8 +138,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   buildLoginForm() {
     this.formValues = this.signUpService.getLoginInfo();
-    if(this.distribution) {
-      if(this.distribution.login) {
+    if (this.distribution) {
+      if (this.distribution.login) {
         this.loginForm = this.formBuilder.group({
           loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
           loginPassword: [this.formValues.loginPassword, [Validators.required]],
@@ -216,7 +205,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
               this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
             } else {
-              this.getUserProfileInfo();
+              this.goToNext();
             }
           } else if (data.responseMessage.responseCode === 5016) {
             this.loginForm.controls['captchaValue'].reset();
@@ -251,54 +240,18 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  getUserProfileInfo() {
-    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-      if (userInfo.responseMessage.responseCode < 6000) {
-        // ERROR SCENARIO
-        if (
-          userInfo.objectList &&
-          userInfo.objectList.length &&
-          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
-          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
-          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
-        ) {
-          this.showCustomErrorModal(
-            'Error!',
-            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
-          );
-        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
-          const errorResponse = userInfo.responseMessage.responseDescription;
-          this.showCustomErrorModal('Error!', errorResponse);
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
-        }
-      } else {
-        this.signUpService.setUserProfileInfo(userInfo.objectList);
-
-        // Investment status
-        const investmentStatus = this.signUpService.getInvestmentStatus();
-        const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
-        const redirect_url = this.signUpService.getRedirectUrl();
-        const journeyType = this.appService.getJourneyType();
-        if (redirect_url) {
-          this.signUpService.clearRedirectUrl();
-          if (investmentRoutes.indexOf(redirect_url) >= 0 && investmentStatus === null) {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentRoutes.indexOf(redirect_url) >= 0) /* Logging from investment journey */ {
-            this.investmentCommonService.redirectToInvestmentFromLogin();
-          } else {
-            this.router.navigate([redirect_url]);
-          }
-        } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-          this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
-        } else {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-        }
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+  goToNext() {
+    const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
+    const redirect_url = this.signUpService.getRedirectUrl();
+    const journeyType = this.appService.getJourneyType();
+    if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
+      this.signUpService.clearRedirectUrl();
+      this.investmentCommonService.redirectToInvestmentFromLogin();
+    } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
   }
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
@@ -319,7 +272,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        this.getUserProfileInfo();
+        this.goToNext();
       }
     });
   }
@@ -361,7 +314,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
             ref.componentInstance.emailSent = true;
-          };
+          }
         });
     }
   }
