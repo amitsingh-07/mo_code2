@@ -1,4 +1,17 @@
 <div class="home__wrapper">
+  <div *ngIf="isMarqueeEnabled" class="marquee-wrapper">
+    <div class="marquee">
+      <div class="noti-icon"></div>
+      <div class="marquee-inner">
+         <div class="marquee-slide" (click)="openNewTab('https://advice.moneyowl.com.sg/ntuc-income-capital-plus-guaranteed-capital-returns-of-2-3-p-a-and-srs-approved/')">
+            <span [innerHTML]="marqueePromoText"></span>
+            <span [innerHTML]="marqueePromoText"></span>
+          </div>
+      </div>
+      <div class="close-btn" (click)="isMarqueeEnabled = false;"></div>
+      </div>
+      
+    </div>
   <div class="banner" #banner>
     <div class="banner-bg">
       <div class="banner-bg--image"></div>

@@ -16,6 +16,9 @@
         "SRS_PROMO": {
             "TITLE": "Joint Account and SRS are now available!",
             "SUB_CONTENT": "Email to <br/><a href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a><br/>to find out more!"
+        },
+        "MARQUEE_PROMO": {
+            "CONTENT": "Are you looking for a <strong>SRS approved short-term 3 year savings plan</strong> with guaranteed capital <strong>+2.3% p.a.</strong> returns?<br/> Click here! Act fast as it is on a first-come, first-served basis."
         }
     },
     "INSURANCE": {

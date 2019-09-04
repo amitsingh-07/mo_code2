@@ -43,7 +43,7 @@
         "ERROR": {
           "REQUIRED": "Enter first name",
           "INVALID": "First name must not contain numbers",
-          "MIN_MAX_LENGTH": "First name must be *2 - 40 characters"
+          "MIN_MAX_LENGTH": "First name must be 2 - 40 characters"
         }
       },
       "LAST_NAME": {
@@ -51,7 +51,7 @@
         "ERROR": {
           "REQUIRED": "Enter last name",
           "INVALID": "Last name must not contain numbers",
-          "MIN_MAX_LENGTH": "Last name must be *2 - 40 characters"
+          "MIN_MAX_LENGTH": "Last name must be 2 - 40 characters"
         }
       },
       "EMAIL": {
