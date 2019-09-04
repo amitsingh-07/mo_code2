@@ -10,16 +10,15 @@ import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+ } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -31,8 +30,6 @@ import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { RestrictAddPortfolioModalComponent } from '../../investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component'
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -71,6 +68,7 @@ export class DashboardComponent implements OnInit {
   bankDetails;
   paynowDetails;
   transferInstructionModal;
+  multiplePorfolioData;
 
   constructor(
     private router: Router,
@@ -174,11 +172,26 @@ export class DashboardComponent implements OnInit {
 
     this.getTransferDetails();
     this.checkSRSPopStatus();
+    this.getMultiplePortFolioData();
   }
 
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
+    });
+  }
+
+  getMultiplePortFolioData() {
+    this.investmentAccountService.getMultiplePortFolioData().subscribe((data) => {
+      if (data && data.responseMessage && data.responseMessage.responseCode === 6000 &&
+        data.objectList && data.objectList['portfolioSummary']) {
+        this.multiplePorfolioData = data.objectList['portfolioSummary'];
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
