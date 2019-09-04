@@ -141,4 +141,17 @@ export class InvestmentCommonService {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
     }
   }
+
+  setInvestmentsSummary(investmentsSummary) {
+    this.investmentCommonFormData.investmentsSummary = investmentsSummary;
+    this.commit();
+  }
+
+  getInvestmentStatus() {
+    const investmentsSummary = this.investmentCommonFormData.investmentsSummary;
+    const investmentStatus = investmentsSummary && investmentsSummary.investmentAccountStatus &&
+    investmentsSummary.investmentAccountStatus.accountCreationState ?
+    investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
+    return investmentStatus;
+  }
 }
