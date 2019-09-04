@@ -6,6 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 
 @Component({
@@ -26,6 +27,7 @@ export class AddPortfolioNameComponent implements OnInit {
   @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
+              public investmentAccountService: InvestmentAccountService,
               private formBuilder: FormBuilder) { }
   ngOnInit() {
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
@@ -33,6 +35,7 @@ export class AddPortfolioNameComponent implements OnInit {
       portfolioName: new FormControl(this.userPortfolioName,
         [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
     });
+    this.investmentAccountService.restrictBackNavigation();
   }
 
   addPortfolioName(portfolioName) {
