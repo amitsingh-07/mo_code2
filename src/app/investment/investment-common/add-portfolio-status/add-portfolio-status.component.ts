@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { SuccessIcons } from './successIcon';
 
 @Component({
@@ -15,11 +16,12 @@ export class AddPortfolioStatusComponent implements OnInit {
   @Input() portfolioName;
   @Output() createdNameSuccessfully = new EventEmitter<any>();
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal,
+              public investmentAccountService: InvestmentAccountService) { }
 
   ngOnInit() {
     this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
-
+    this.investmentAccountService.restrictBackNavigation();
   }
 
   portfolioNameSuccess() {
