@@ -477,7 +477,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     const toastMessage: IToastMessage = {
       isShown: false,
       desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.userGivenPortfolioName} ),
-      link_label: 'View',
+      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
       link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
