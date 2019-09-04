@@ -324,7 +324,7 @@ export class InvestmentApiService {
      catchError((error: HttpErrorResponse) => this.handleError(error))
    );
   }
- 
+
    // tslint:disable-next-line:no-identical-functions
    confirmPortfolio(customerPortfolioId) {
     // #const url = '../../../assets/mock-data/confirm-portfolio.json';
