@@ -298,8 +298,8 @@ export class InvestmentAccountService {
     return this.investmentApiService.getAllDropdownList();
   }
 
-  getMultiplePortFolioData() {
-    return this.investmentApiService.getMultiplePortFolioData();
+  getInvestmentsSummary() {
+    return this.investmentApiService.getInvestmentsSummary();
   }
 
   getGeneratedFrom() {

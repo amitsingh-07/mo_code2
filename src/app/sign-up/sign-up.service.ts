@@ -419,17 +419,10 @@ export class SignUpService {
     return this.apiService.getDetailedCustomerInfo();
   }
 
-  getInvestmentStatus() {
-    const userInfo = this.getUserProfileInfo();
-    let investmentStatus = userInfo && userInfo.investementDetails
-      && userInfo.investementDetails.account
-      && userInfo.investementDetails.account.accountStatus ?
-      userInfo.investementDetails.account.accountStatus.toUpperCase() : null;
-    const portfoliosLength = userInfo && userInfo.investementDetails &&
-      userInfo.investementDetails.portfolios ? userInfo.investementDetails.portfolios.length : 0;
-    if ((investmentStatus === null || !investmentStatus) && portfoliosLength > 0) {
-      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
-    }
+  getInvestmentStatus(investmentsSummary) {
+    const investmentStatus = investmentsSummary && investmentsSummary.investmentAccountStatus &&
+    investmentsSummary.investmentAccountStatus.accountCreationState ?
+    investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
     return investmentStatus;
   }
 

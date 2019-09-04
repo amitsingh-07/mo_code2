@@ -126,8 +126,8 @@ export class InvestmentApiService {
       );
   }
 
-  getMultiplePortFolioData() {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.multiplePortFolioData)
+  getInvestmentsSummary() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentsSummary)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

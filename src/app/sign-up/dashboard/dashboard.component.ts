@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
   bankDetails;
   paynowDetails;
   transferInstructionModal;
-  multiplePorfolioData;
+  investmentsSummary;
 
   constructor(
     private router: Router,
@@ -132,7 +132,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.getDashboardList();
       }
     },
       (err) => {
@@ -172,7 +171,7 @@ export class DashboardComponent implements OnInit {
 
     this.getTransferDetails();
     this.checkSRSPopStatus();
-    this.getMultiplePortFolioData();
+    this.getInvestmentsSummary();
   }
 
   loadOptionListCollection() {
@@ -181,11 +180,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getMultiplePortFolioData() {
-    this.investmentAccountService.getMultiplePortFolioData().subscribe((data) => {
-      if (data && data.responseMessage && data.responseMessage.responseCode === 6000 &&
-        data.objectList && data.objectList['portfolioSummary']) {
-        this.multiplePorfolioData = data.objectList['portfolioSummary'];
+  getInvestmentsSummary() {
+    this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
+      if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.investmentsSummary = data.objectList;
+        this.getInvestmentStatus();
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -245,22 +244,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
-  getDashboardList() {
-    const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
-      this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
-      this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ?
-        this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.availableBalance = this.userProfileInfo.investementDetails.account &&
-        this.userProfileInfo.investementDetails.account.cashAccountBalance ?
-        this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
-    }
-    this.setInvestmentDashboardStatus(investmentStatus);
+  getInvestmentStatus() {
+    const investmentStatus = this.signUpService.getInvestmentStatus(this.investmentsSummary);
+    this.showInvestmentsSummary(investmentStatus);
   }
 
-  setInvestmentDashboardStatus(investmentStatus) {
+  showInvestmentsSummary(investmentStatus) {
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {

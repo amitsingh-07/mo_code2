@@ -18,7 +18,7 @@ export let investmentApiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + '/industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + '/occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + '/optionListCollection',
-            multiplePortFolioData: INVESTMENT_API_BASE_URL + '/customers/investment-profile/summary',
+            investmentsSummary: INVESTMENT_API_BASE_URL + '/customers/investment-profile/summary',
             updateInvestment: INVESTMENT_API_BASE_URL + '/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/createIFastAccount?handleError=true',
             verifyAML: ACCOUNT_API_BASE_URL + '/verifyAML?handleError=true',
