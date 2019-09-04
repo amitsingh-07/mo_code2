@@ -30,6 +30,7 @@ app-investment-overview {
         text-align: right;
         display: flex;
         align-items: center;
+        z-index: 1;
     }
     .form-group-with-bg {
         box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
