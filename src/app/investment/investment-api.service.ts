@@ -163,7 +163,7 @@ export class InvestmentApiService {
   }
 
   createInvestmentAccount(params) {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount)
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount, params)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
