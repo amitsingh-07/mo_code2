@@ -126,8 +126,8 @@ export class InvestmentApiService {
       );
   }
 
-  getMultiplePortFolioData() {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.multiplePortFolioData)
+  getInvestmentSummary() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentSummary)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -324,7 +324,7 @@ export class InvestmentApiService {
      catchError((error: HttpErrorResponse) => this.handleError(error))
    );
   }
- 
+
    // tslint:disable-next-line:no-identical-functions
    confirmPortfolio(customerPortfolioId) {
     // #const url = '../../../assets/mock-data/confirm-portfolio.json';

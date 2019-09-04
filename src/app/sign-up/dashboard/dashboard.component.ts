@@ -172,7 +172,7 @@ export class DashboardComponent implements OnInit {
 
     this.getTransferDetails();
     this.checkSRSPopStatus();
-    this.getMultiplePortFolioData();
+    this.getInvestmentSummary();
   }
 
   loadOptionListCollection() {
@@ -181,8 +181,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getMultiplePortFolioData() {
-    this.investmentAccountService.getMultiplePortFolioData().subscribe((data) => {
+  getInvestmentSummary() {
+    this.investmentAccountService.getInvestmentSummary().subscribe((data) => {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000 &&
         data.objectList && data.objectList['portfolioSummary']) {
         this.multiplePorfolioData = data.objectList['portfolioSummary'];
