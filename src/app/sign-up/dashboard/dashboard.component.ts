@@ -1,3 +1,4 @@
+import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -76,6 +77,7 @@ export class DashboardComponent implements OnInit {
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
     public navbarService: NavbarService,
@@ -185,6 +187,7 @@ export class DashboardComponent implements OnInit {
     this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.investmentsSummary = data.objectList;
+        this.setInvestmentsSummary(this.investmentsSummary);
         this.getInvestmentStatus();
       } else {
         this.investmentAccountService.showGenericErrorModal();
@@ -245,8 +248,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
+  setInvestmentsSummary(investmentsSummary) {
+    this.investmentCommonService.setInvestmentsSummary(investmentsSummary);
+  }
+
   getInvestmentStatus() {
-    const investmentStatus = this.signUpService.getInvestmentStatus(this.investmentsSummary);
+    const investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showInvestmentsSummary(investmentStatus);
   }
 

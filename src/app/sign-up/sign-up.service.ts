@@ -419,13 +419,6 @@ export class SignUpService {
     return this.apiService.getDetailedCustomerInfo();
   }
 
-  getInvestmentStatus(investmentsSummary) {
-    const investmentStatus = investmentsSummary && investmentsSummary.investmentAccountStatus &&
-    investmentsSummary.investmentAccountStatus.accountCreationState ?
-    investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
-    return investmentStatus;
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   getFormErrorList(form) {
     const controls = form.controls;
