@@ -105,10 +105,10 @@ export let apiConstants = {
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
-            createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile?handleError=true',
-            getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
-            updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile?handleError=true',
-            downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
+            createWill: WILL_WRITING_API_BASE_URL + '/createWillProfile?handleError=true',
+            getWill: WILL_WRITING_API_BASE_URL + '/getWillProfile',
+            updateWill: WILL_WRITING_API_BASE_URL + '/updateWillProfile?handleError=true',
+            downloadWill: WILL_WRITING_API_BASE_URL + '/downloadWillDocument'
         },
         comprehensive: {
             getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveUserSummary',
