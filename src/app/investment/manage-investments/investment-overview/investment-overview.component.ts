@@ -86,6 +86,10 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.getTransferDetails();
+    this.toastMsg = this.manageInvestmentsService.getToastMessage();
+    if (this.toastMsg && this.toastMsg['isShown']) {
+      this.showToastMessage();
+    }
   }
 
   getMoreList() {
@@ -94,6 +98,13 @@ export class InvestmentOverviewComponent implements OnInit {
 
   addPortfolio() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+  }
+
+  yourPortfolioDynamic() {
+    if (this.toastMsg && this.toastMsg['portfolio']) {
+      this.manageInvestmentsService.setPortfolioValues(this.toastMsg['portfolio']);
+      this.router.navigate(this.toastMsg['link_url']);
+    }
   }
 
   yourPortfolio(portfolio) {
@@ -254,14 +265,15 @@ export class InvestmentOverviewComponent implements OnInit {
     this.manageInvestmentsService.showPopUp();
   }
 
-  showToastMessage(msg) {
+  showToastMessage() {
     this.isToastMessageShown = true;
-    this.toastMsg = msg;
+    this.manageInvestmentsService.clearToastMessage();
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 1);
     setTimeout(() => {
       this.isToastMessageShown = false;
+      this.toastMsg = null;
     }, 3000);
   }
 

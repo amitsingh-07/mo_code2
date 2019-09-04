@@ -548,4 +548,7 @@ export class ManageInvestmentsService {
   clearToastMessage() {
     this.manageInvestmentsFormData.toastMessage = null;
   }
+  getToastMessage() {
+    return this.manageInvestmentsFormData.toastMessage;
+  }
 }
