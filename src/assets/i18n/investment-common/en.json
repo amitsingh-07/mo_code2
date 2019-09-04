@@ -163,5 +163,8 @@
         "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
       }
     }
+  },
+  "TOAST_MESSAGES": {
+    "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added."
   }
 }
