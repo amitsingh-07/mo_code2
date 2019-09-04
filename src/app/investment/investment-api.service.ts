@@ -190,8 +190,10 @@ export class InvestmentApiService {
       );
   }
 
-  getTransferDetails() {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getFundTransferDetails)
+  getTransferDetails(customerPortfolioId) {
+    const url =
+      investmentApiConstants.endpoint.investmentAccount.getFundTransferDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

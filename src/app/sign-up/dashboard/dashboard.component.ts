@@ -171,8 +171,6 @@ export class DashboardComponent implements OnInit {
         this.insurance.hasInsurance = false;
       }
     });
-
-    this.getTransferDetails();
     this.checkSRSPopStatus();
   }
 
@@ -374,18 +372,6 @@ export class DashboardComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
-  }
-
- /*
-  * Method to get transfer details
-  */
-  getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-    },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
   }
 
   /*

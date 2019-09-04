@@ -21,7 +21,7 @@ export let investmentApiConstants = {
             updateInvestment: INVESTMENT_API_BASE_URL + '/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/customers/investment-accounts?handleError=true',
             verifyAML: ACCOUNT_API_BASE_URL + '/verifyAML?handleError=true',
-            getFundTransferDetails: INVESTMENT_API_BASE_URL + '/getIFastBankDetails',
+            getFundTransferDetails: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/ifast/bank-details',
             buyPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/buy?handleError=true',
             deletePortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios',
             monthlyInvestment: INVESTMENT_API_BASE_URL + '/customer/InvestmentObjective/monthlyInvestment?handleError=true',

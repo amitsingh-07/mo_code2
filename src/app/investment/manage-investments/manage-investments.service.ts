@@ -167,8 +167,8 @@ export class ManageInvestmentsService {
     return this.manageInvestmentsFormData.fundDetails;
   }
 
-  getTransferDetails() {
-    return this.investmentApiService.getTransferDetails();
+  getTransferDetails(customerPortfolioId) {
+    return this.investmentApiService.getTransferDetails(customerPortfolioId);
   }
   getInvestmentOverview() {
     return this.investmentApiService.getInvestmentOverview();

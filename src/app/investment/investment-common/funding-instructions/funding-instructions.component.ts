@@ -143,7 +143,8 @@ export class FundingInstructionsComponent implements OnInit {
   }
 
   getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
+    const customerPortfolioId = this.fundDetails.portfolio.customerPortfolioId;
+    this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.setBankPayNowDetails(data.objectList[0]);
     },
     (err) => {

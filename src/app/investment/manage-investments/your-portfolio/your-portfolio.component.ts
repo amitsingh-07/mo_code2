@@ -76,7 +76,7 @@ export class YourPortfolioComponent implements OnInit {
       ? this.portfolioValues.yearlyReturns
       : null;
     this.getPortfolioHoldingList(this.portfolioValues.portfolioId); // SET THE PORTFOLIO ID
-    this.getTransferDetails();
+    this.getTransferDetails(this.portfolioValues.customerPortfolioId);
     /* First portfolio's entitlement is considered for now as global entitlement,
         need to change when multiple portfolio logic is implemented */
     this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioValues);
@@ -160,8 +160,8 @@ export class YourPortfolioComponent implements OnInit {
   /*
   * Method to get transfer details
   */
-  getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
+  getTransferDetails(customerPortfolioId) {
+    this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
     },
       (err) => {
