@@ -10,16 +10,15 @@ import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+ } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -31,8 +30,6 @@ import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { RestrictAddPortfolioModalComponent } from '../../investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component'
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 
 @Component({
@@ -72,6 +69,7 @@ export class DashboardComponent implements OnInit {
   bankDetails;
   paynowDetails;
   transferInstructionModal;
+  investmentsSummary;
 
   constructor(
     private router: Router,
@@ -136,7 +134,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.getDashboardList();
       }
     },
       (err) => {
@@ -175,11 +172,26 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.checkSRSPopStatus();
+    this.getInvestmentsSummary();
   }
 
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
+    });
+  }
+
+  getInvestmentsSummary() {
+    this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
+      if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.investmentsSummary = data.objectList;
+        this.getInvestmentStatus();
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -233,22 +245,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
-  getDashboardList() {
-    const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
-      this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
-      this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ?
-        this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.availableBalance = this.userProfileInfo.investementDetails.account &&
-        this.userProfileInfo.investementDetails.account.cashAccountBalance ?
-        this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
-    }
-    this.setInvestmentDashboardStatus(investmentStatus);
+  getInvestmentStatus() {
+    const investmentStatus = this.signUpService.getInvestmentStatus(this.investmentsSummary);
+    this.showInvestmentsSummary(investmentStatus);
   }
 
-  setInvestmentDashboardStatus(investmentStatus) {
+  showInvestmentsSummary(investmentStatus) {
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {

@@ -126,6 +126,13 @@ export class InvestmentApiService {
       );
   }
 
+  getInvestmentsSummary() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentsSummary)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   updateInvestment(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.updateInvestment, data)
       .pipe(
@@ -319,7 +326,7 @@ export class InvestmentApiService {
      catchError((error: HttpErrorResponse) => this.handleError(error))
    );
   }
- 
+
    // tslint:disable-next-line:no-identical-functions
    confirmPortfolio(customerPortfolioId) {
     // #const url = '../../../assets/mock-data/confirm-portfolio.json';

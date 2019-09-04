@@ -4,23 +4,23 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { InvestmentApiService } from '../investment-api.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import {
     MANAGE_INVESTMENTS_ROUTE_PATHS
 } from './manage-investments-routes.constants';
-import { TopUPFormError } from './top-up/top-up-form-error';
-import { ManageInvestmentsFormData } from './manage-investments-form-data';
-import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
-import { ApiService } from '../../shared/http/api.service';
-import { InvestmentApiService } from '../investment-api.service';
+import { TopUPFormError } from './top-up/top-up-form-error';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -547,5 +547,10 @@ export class ManageInvestmentsService {
 
   clearToastMessage() {
     this.manageInvestmentsFormData.toastMessage = null;
+    this.commit();
+  }
+
+  getToastMessage() {
+    return this.manageInvestmentsFormData.toastMessage;
   }
 }
