@@ -37,6 +37,7 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -74,7 +75,8 @@ export class PortfolioDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private manageInvestmentsService: ManageInvestmentsService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     const self = this;
@@ -183,11 +185,8 @@ export class PortfolioDetailsComponent implements OnInit {
   }
 
   constructgetAllocationParams() {
-    const selectedRiskId = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
-    const enqId = this.authService.getEnquiryId();
     return {
-      riskProfileId: selectedRiskId.riskProfileId,
-      enquiryId: enqId
+      enquiryId: this.authService.getEnquiryId()
     };
   }
 
@@ -251,47 +250,13 @@ export class PortfolioDetailsComponent implements OnInit {
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
-      this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-        if (userInfo.responseMessage.responseCode < 6000) {
-          // ERROR SCENARIO
-          if (
-            userInfo.objectList &&
-            userInfo.objectList.length &&
-            userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
-            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
-            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
-          ) {
-            this.showCustomErrorModal(
-              'Error!',
-              userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
-            );
-          } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
-            const errorResponse = userInfo.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
-            this.investmentAccountService.showGenericErrorModal();
-          }
+      this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
+        if (data && data.showInvestmentAccountCreationForm) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
-          this.signUpService.setUserProfileInfo(userInfo.objectList);
-          const investmentStatus = this.signUpService.getInvestmentStatus();
-          if (!investmentStatus) {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (investmentStatus !== SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase()) {
-            const fundingParams = this.constructFundingParams(this.portfolio);
-            this.manageInvestmentsService.setFundingDetails(fundingParams);
-            if (this.portfolio.initialInvestment && this.portfolio.initialInvestment > 0) {
-              this.topUpOneTime();
-            } else {
-              this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
-            }
-          } else {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-          }
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
         }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      });
     } else {
       this.showLoginOrSignupModal();
     }

@@ -5,11 +5,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { investmentApiConstants } from '../investment/investment.api.constants';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { IServerResponse } from '../shared/http/interfaces/server-response.interface';
-import { investmentApiConstants } from '../investment/investment.api.constants';
+import { DirectFormData } from './../direct/direct-form-data';
 
+const newLocal = 'EnquiryId';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +58,15 @@ export class InvestmentApiService {
   }
 
   getPortfolioAllocationDetails(param) {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.getAllocationDetails + param)
+    const url = investmentApiConstants.endpoint.portfolio.getAllocationDetails.replace('$ENQUIRY_ID$', param.enquiryId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getPortfolioDetailsWithAuth() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuth)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -152,7 +162,7 @@ export class InvestmentApiService {
       );
   }
 
-  createInvestmentAccount() {
+  createInvestmentAccount(params) {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -244,6 +254,14 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+ // #GET FINANCIAL DETAILS
+  // tslint:disable-next-line:no-identical-functions
+  getUserFinancialDetails() {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.getFinancialDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   getInvestmentPeriod() {
     const url = '../assets/mock-data/investmentPeriod.json';
@@ -284,15 +302,37 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
- 
-  getMoreList() {
+ getMoreList() {
     const url = '../assets/mock-data/moreList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  savePortfolioName(param) {
+  //  #const url = '../../../assets/mock-data/add-portfolio-name.json';
+  //  return this.http.getMock(url);
+  return this.http.post(investmentApiConstants.endpoint.investmentAccount.savePortfolioName, param)
+   .pipe(
+     catchError((error: HttpErrorResponse) => this.handleError(error))
+   );
+  }
+ 
+   // tslint:disable-next-line:no-identical-functions
+   confirmPortfolio(customerPortfolioId) {
+    // #const url = '../../../assets/mock-data/confirm-portfolio.json';
+    // return this.http.getMock(url);
+   // tslint:disable-next-line:max-line-length
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.confirmPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    }
 
-
+  getFirstInvAccountCreationStatus() {
+    return this.http.get(investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

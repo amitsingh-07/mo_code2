@@ -33,13 +33,13 @@
                           <div class="dropdown-control">
                             <div ngbDropdown>
                               <button class="btn btn-dropdown" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
-                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.riskProfile.type :'Select
+                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.riskProfileType :'Select
                                 Portfolio'}}
                               </button>
                               <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                                 <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;"
                                   (click)="setDropDownValue('portfolio',portfolio)"
-                                  id="topup_portfolio_option-{{i}}">{{portfolio.riskProfile.type}}</button>
+                                  id="topup_portfolio_option-{{i}}">{{portfolio.riskProfileType}}</button>
                               </div>
                             </div>
                           </div>

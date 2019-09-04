@@ -62,7 +62,7 @@
   },
   "INVESTMENT_AMOUNT": {
     "TITLE": "Your Investment Amount",
-    "HOW_MUCH_INVEST": "How much do you want to invest? ",
+    "INVESTMENT_AMOUNT_LBL": "How much do you want to invest?",
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "AT_LEAST_ONE": "Select at least one of the following.",
@@ -89,7 +89,11 @@
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Finances",
-    "HOW_MUCH_INVEST":"How much do you want to invest?",  
+    "MY_FINANCIAL_LBL":"How much do you own and owe?",  
+    "RESPONSE_LOADER": {
+      "TITLE": "loading...",
+      "DESC": "Please wait loading financial details."
+    },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."

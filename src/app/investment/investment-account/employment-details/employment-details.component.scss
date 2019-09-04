@@ -3,19 +3,19 @@
 
 app-employment-details {
   .employement-details {
-    .postal-code-control {
-      display: flex;
+    // .postal-code-control {
+    //   display: flex;
 
-      div.control {
-        display: flex;
-        flex: 3;
-      }
+    //   div.control {
+    //     display: flex;
+    //     flex: 3;
+    //   }
 
-      div.button {
-        display: flex;
-        flex: 2;
-      }
-    }
+    //   div.button {
+    //     display: flex;
+    //     flex: 2;
+    //   }
+    // }
 
     .flex-row {
       align-items: center;
@@ -46,13 +46,13 @@ app-employment-details {
       padding: 21px 0 16px;
     }
 
-    .inline-error {
-      .btn {
-        &.btn-secondary {
-          background-color: $form-error-btn-bg-color !important;
-        }
-      }
-    }
+    // .inline-error {
+    //   .btn {
+    //     &.btn-secondary {
+    //       background-color: $form-error-btn-bg-color !important;
+    //     }
+    //   }
+    // }
 
     // .inline-error-inv {
     //   color: $inline-error-border-color;
@@ -122,13 +122,13 @@ app-employment-details {
 
       &:disabled,
       &.disabled {
-        color: $form-control-disabled-txt-color !important;
-        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
-        background-color: $form-control-disabled-bg-color !important;
-        opacity: 1 !important;
+        // color: $form-control-disabled-txt-color !important;
+        // -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        // background-color: $form-control-disabled-bg-color !important;
+        // opacity: 1 !important;
 
         input {
-          background-color: $form-control-disabled-bg-color !important;
+          // background-color: $form-control-disabled-bg-color !important;
           padding-top: 6px;
           padding-bottom: 6px;
         }
@@ -149,46 +149,46 @@ app-employment-details {
     //   }
     // }
 
-    .btn {
-      &:disabled {
-        color: $inv-btn-disabled-txt-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
-      }
-    }
+    // .btn {
+    //   &:disabled {
+    //     color: $inv-btn-disabled-txt-color !important;
+    //     background-color: $inv-btn-disabled-bg-color !important;
+    //     opacity: 1 !important;
+    //   }
+    // }
 
-    .btn {
-      &.btn-secondary {
-        padding: 0.5rem;
-        font-size: 16px;
-        background-color: $inv-btn-sec-bg-color !important;
-        color: $inv-btn-sec-txt-color !important;
-        border: none !important;
-        font-family: $muli-semi-bold;
+    // .btn {
+    //   &.btn-secondary {
+    //     padding: 0.5rem;
+    //     font-size: 16px;
+    //     background-color: $inv-btn-sec-bg-color !important;
+    //     color: $inv-btn-sec-txt-color !important;
+    //     border: none !important;
+    //     font-family: $muli-semi-bold;
 
-        // &.right {
-        //   float: right;
-        // }
+    //     &.right {
+    //       float: right;
+    //     }
 
-        // &:hover {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
+    //     &:hover {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
 
-        // &:focus {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
+    //     &:focus {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
 
-        // &:active {
-        //   background-color: $inv-btn-sec-bg-color !important;
-        //   border: none !important;
-        //   color: $inv-btn-sec-txt-color !important;
-        // }
-      }
-    }
+    //     &:active {
+    //       background-color: $inv-btn-sec-bg-color !important;
+    //       border: none !important;
+    //       color: $inv-btn-sec-txt-color !important;
+    //     }
+    //   }
+    // }
 
     // .white-bg-checkbox {
     //   background-color: $white-color;
