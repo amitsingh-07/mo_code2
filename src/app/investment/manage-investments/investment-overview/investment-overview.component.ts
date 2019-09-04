@@ -85,7 +85,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getTransferDetails();
   }
 
   getMoreList() {
@@ -228,17 +227,7 @@ export class InvestmentOverviewComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  /*
-  * Method to get transfer details
-  */
-  getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
-  }
+
 
   /*
   * Method to show transfer instruction steps modal
