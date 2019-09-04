@@ -97,13 +97,13 @@ app-investment-overview {
                 color: $white-color;
                 width: 100%;
                 padding: 18px 0px;
-                border-width: 0px;
                 cursor: pointer;
                 &.top_up_btn {
                     font-size: 18px;
                     line-height: 23px;
                     background-color: $white-color;
                     color: $secondary-action-color;
+                    border: 1px solid #f1f1f1;
                     display: flex;
                     justify-content: center;
                     align-items: center;
