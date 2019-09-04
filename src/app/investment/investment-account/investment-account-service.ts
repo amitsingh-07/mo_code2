@@ -297,6 +297,11 @@ export class InvestmentAccountService {
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
+
+  getInvestmentsSummary() {
+    return this.investmentApiService.getInvestmentsSummary();
+  }
+
   getGeneratedFrom() {
     return this.investmentApiService.getAllDropdownList();
   }

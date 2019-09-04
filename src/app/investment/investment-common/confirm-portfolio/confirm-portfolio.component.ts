@@ -68,6 +68,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolioValue;
   portfolioName;
   showErrorMessage = false;
+  userGivenPortfolioName;
 
   constructor(
     public readonly translate: TranslateService,
@@ -307,6 +308,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response.responseMessage.responseCode >= 6000) {
+        this.userGivenPortfolioName = portfolioName;
         this.showAddPortfolioStatusModal(portfolioName);
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
@@ -474,7 +476,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     }
     const toastMessage: IToastMessage = {
       isShown: false,
-      desc: 'Your Portfolio has been added',
+      desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.userGivenPortfolioName} ),
       link_label: 'View',
       link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
     };

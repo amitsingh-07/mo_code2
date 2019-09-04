@@ -85,7 +85,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getTransferDetails();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
     if (this.toastMsg && this.toastMsg['isShown']) {
       this.showToastMessage();
@@ -237,18 +236,6 @@ export class InvestmentOverviewComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
-  }
-
-  /*
-  * Method to get transfer details
-  */
-  getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
   }
 
   /*
