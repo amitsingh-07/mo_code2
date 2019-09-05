@@ -1,7 +1,3 @@
-import { map } from 'rxjs/operators';
-const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
-const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
-const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/api';
 const INSURANCE_API_BASE_URL = 'insurance/insurance-needs-microservice/api';
 const INSURANCE_RECOMMEND_API_BASE_URL = 'recommend/recomm-microservice/api';
@@ -11,6 +7,9 @@ const ACCOUNT_API_BASE_URL = 'account/account-microservice/api';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product/api';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/api/wills';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice/api/notifications';
+const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
+const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
+const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
