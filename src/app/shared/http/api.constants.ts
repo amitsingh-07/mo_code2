@@ -131,11 +131,7 @@ export let apiConstants = {
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
-            verifyPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validatePromoCode',
-            createWill: WILL_WRITING_API_BASE_URL + '/createWillProfile?handleError=true',
-            getWill: WILL_WRITING_API_BASE_URL + '/getWillProfile',
-            updateWill: WILL_WRITING_API_BASE_URL + '/updateWillProfile?handleError=true',
-            downloadWill: WILL_WRITING_API_BASE_URL + '/downloadWillDocument'
+            verifyPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validatePromoCode'
         }
     }
 };
