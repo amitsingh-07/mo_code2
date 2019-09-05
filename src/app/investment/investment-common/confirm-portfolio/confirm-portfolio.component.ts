@@ -141,7 +141,8 @@ export class ConfirmPortfolioComponent implements OnInit {
       monthlyInvestment: data.monthlyInvestment,
       fundingType: '',
       isAmountExceedBalance: 0,
-      exceededAmount: 0
+      exceededAmount: 0,
+      customerPortfolioId: data.customerPortfolioId
     };
   }
 
