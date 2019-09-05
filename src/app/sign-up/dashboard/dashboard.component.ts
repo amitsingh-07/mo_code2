@@ -136,6 +136,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
+        this.checkSRSPopStatus(userInfo.objectList.id);
       }
     },
       (err) => {
@@ -173,7 +174,6 @@ export class DashboardComponent implements OnInit {
         this.insurance.hasInsurance = false;
       }
     });
-    this.checkSRSPopStatus();
     this.getInvestmentsSummary();
   }
 
@@ -409,17 +409,18 @@ export class DashboardComponent implements OnInit {
   }
 
   // Check if user is first time seeing SRS popup
-  checkSRSPopStatus() {
-    const customerId = this.signUpService.getAccountInfo().userProfileInfo.id;
-    this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
-      // Check if srs_pop_status is available or false
-      if (!status.objectList['srs_pop_status']) {
-        setTimeout(() => {
-          this.openSRSJointAccPopup();
-        });
-        this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
-        }, (error) => console.log('ERROR: ', error));
-      }
-    }, (error) => console.log('ERROR: ', error));
+  checkSRSPopStatus(customerId) {
+    if (customerId) {
+      this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
+        // Check if srs_pop_status is available or false
+        if (!status.objectList['srs_pop_status']) {
+          setTimeout(() => {
+            this.openSRSJointAccPopup();
+          });
+          this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
+          }, (error) => console.log('ERROR: ', error));
+        }
+      }, (error) => console.log('ERROR: ', error));
+    }
   }
 }
