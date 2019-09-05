@@ -59,8 +59,8 @@ export class BundleEnquiryComponent implements OnInit {
   }
 
   setPlaceholder() {
-    this.dobPlaceholder = this.promoDetails.promoId === 15 ? 'Baby’s Date of Birth' : 'Date of Birth';
-    this.genderPlaceholder = this.selectedGender = this.promoDetails.promoId === 15 ? 'Baby’s Gender' : 'Gender';
+    this.dobPlaceholder = this.promoDetails.promoId === 15 ? 'Child’s Date of Birth' : 'Date of Birth';
+    this.genderPlaceholder = this.selectedGender = this.promoDetails.promoId === 15 ? 'Child’s Gender' : 'Gender';
   }
 
   sendBundleEnquiry(form: any) {
