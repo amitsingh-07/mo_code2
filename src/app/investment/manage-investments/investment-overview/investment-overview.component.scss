@@ -144,7 +144,7 @@ app-investment-overview {
         .container-fluid {
             &.max-width--1024 {
                 padding-top: 0 !important;
-                padding-bottom: 40px !important;
+                padding-bottom: 80px !important;
                 @include allmobiles {
                     padding-top: 60px !important;
                     padding-left: 0px !important;
@@ -295,6 +295,10 @@ app-investment-overview {
     }
     .btn-primary {
         &.scroll-btn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right:0;
             width: 100%;
             margin: 0 auto !important;
             font-family: $muli-regular !important;
