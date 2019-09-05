@@ -127,6 +127,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
           : 0, disabled: this.viewMode
       }, [Validators.required]],
+      otherLongTermCareInsuranceAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.otherLongTermCareInsuranceAmount
+          : 0, disabled: this.viewMode
+      }, [Validators.required]],
+
     });
   }
   ngOnInit() {

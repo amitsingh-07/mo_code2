@@ -15,6 +15,7 @@ import { TopUPFormError } from './top-up/top-up-form-error';
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
 import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -35,7 +36,8 @@ export class TopupAndWithDrawService {
     public authService: AuthenticationService,
     public portfolioService: PortfolioService,
     private router: Router,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private signUpService: SignUpService
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
@@ -87,6 +89,7 @@ export class TopupAndWithDrawService {
     return this.apiService.getIndividualPortfolioDetails(portfolioId);
   }
 
+
   doFinancialValidations(form, allowMonthlyZero) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals
@@ -100,7 +103,7 @@ export class TopupAndWithDrawService {
     } else if (
       Number(form.value.MonthlyInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup
       && form.value.Investment === 'Monthly Investment'
-      && ( (Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
+      && ((Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -441,21 +444,21 @@ export class TopupAndWithDrawService {
   /*
   * Method to get details based on bank or paynow
   */
- setBankPayNowDetails(data) {
-  this.bankDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
-  )[0];
-  this.paynowDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
-  )[0];
-}
+  setBankPayNowDetails(data) {
+    this.bankDetails = data.filter(
+      (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
+    )[0];
+    this.paynowDetails = data.filter(
+      (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
+    )[0];
+  }
 
   /*
   * Method to show transfer instruction steps modal
   */
   showTransferInstructionModal() {
     this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
-            windowClass : 'transfer-steps-modal custom-full-height'
+      windowClass: 'transfer-steps-modal custom-full-height'
     });
     this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
     this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
@@ -493,5 +496,23 @@ export class TopupAndWithDrawService {
 
   getMonthlyInvestmentInfo() {
     return this.apiService.getMonthlyInvestmentInfo();
+  }
+  getEntitlementsFromPortfolio(portfolio) {
+    const userProfileInfo = this.signUpService.getUserProfileInfo();
+    const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
+      (portfolioItem) => portfolioItem.portfolioId === portfolio.productCode
+    )[0];
+    if (filteredPortfolio && filteredPortfolio.entitlements) {
+      return filteredPortfolio.entitlements;
+    } else {
+      return {
+        showDelete: false,
+        showInvest: false,
+        showTopup: false,
+        showWithdrawPvToBa: false,
+        showWithdrawPvToCa: false,
+        showWithdrawCaToBa: true // always allowed irrespective of portfolio status
+      };
+    }
   }
 }
