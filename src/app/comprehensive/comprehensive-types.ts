@@ -209,6 +209,7 @@ export interface IInsurancePlan {
     disabilityIncomeCoverageAmount: number;
     haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
+    otherLongTermCareInsuranceAmount: number;
 }
 export interface IRetirementPlan {
     enquiryId: number;
