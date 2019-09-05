@@ -63,7 +63,7 @@
       "TITLE": "Your portfolio is almost ready.",
       "ADD_PORTFOLIO_NAME_LAB": "Let’s give it a unique name!",
       "DONE":"Done",
-      "PATTERN_VALIDATION":"Please enter  Alphabets  and Numbers only ",
+      "VALIDATION_MESSAGE":"Please enter Alphabets and Numbers only",
       "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
    },
      "ADD_PORTFOLIO_STATUS": {

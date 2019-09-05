@@ -22,7 +22,7 @@
           </div>
           <div  *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine" class="error-message">
             {{
-              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.PATTERN_VALIDATION' | translate}} 
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}} 
            </div>
           <div  *ngIf="showErrorMessage" class="error-message">
             <span><img class="success-tick"
