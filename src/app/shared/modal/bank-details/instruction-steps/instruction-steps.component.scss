@@ -1,223 +1,236 @@
 @import '../../../../../variables';
 
-.instruction-content {
-  padding-top: 20px;
-  color: $dark-grey-color;
-  line-height: 22px;
-  letter-spacing: -0.16px;
+app-instruction-steps {
+  .instruction-content {
+    padding-top: 20px;
+    color: $instruction-content-color;
+    line-height: 22px;
+    letter-spacing: -0.16px;
 
-  .steps-title {
-    font-family: $muli-bold;
-    font-size: 21px;
-    line-height: 1.48;
-    letter-spacing: -0.2px;
-    color: $watercourse-color;
-    padding: 10px 10px 5px 28px;
-  }
+    .steps-title {
+      font-family: $muli-bold;
+      font-size: 21px;
+      line-height: 1.48;
+      letter-spacing: -0.2px;
+      color: $instruction-content-title-color;
+      padding: 10px 10px 5px 28px;
+    }
 
-  .list-none {
-    padding: 10px 20px;
-    margin: 0;
-  }
+    .list-none {
+      padding: 10px 20px;
+      margin: 0;
+    }
 
-  li {
-    &:last-child {
+    li {
+      &:last-child {
+        .section {
+          border-left: none;
+        }
+      }
+
+      .text-black {
+        .sub-section {
+          color: $black-color;
+        }
+      }
+
       .section {
-        border-left: none;
-      }
-    }
+        border-left: 1px solid $instruction-section-brdr-color;
+        margin-left: -10px;
+        padding-bottom: 25px;
+        font-size: 16px;
 
-    .text-black {
-      .sub-section {
-        color: $black-color;
-      }
-    }
+        .sub-section {
+          margin-left: 19.5px;
+          padding-right: 25px;
 
-    .section {
-      border-left: 1px solid $teal-color;
-      margin-left: -10px;
-      padding-bottom: 25px;
-      font-size: 16px;
-
-      .sub-section {
-        margin-left: 19.5px;
-        padding-right: 25px;
-
-        &.step {
-          font-family: $muli-bold;  
-          letter-spacing: -0.3px;
-          color: $teal-color;
-          font-size: 18px;
-          top: -4px;
-          position: relative;
-        }
+          &.step {
+            font-family: $muli-bold;
+            letter-spacing: -0.3px;
+            color: $instruction-step-color;
+            font-size: 18px;
+            top: -4px;
+            position: relative;
+          }
 
 
-      }
-    }
-  }
-
-  .circle {
-    width: 20px;
-    height: 20px;
-    background-color: $teal-color;
-    border-radius: 50%;
-    padding: 10px;
-  }
-
-  .bank-details {
-    margin-left: 19.5px;
-    margin-top: 20px;
-
-    .flex-col {
-      padding-bottom: 20px;
-
-      div {
-        &:last-child {
-          font-family: $muli-semi-bold;
         }
       }
     }
 
-    &-title {
-      font-family: $muli-semi-bold;
-      color: $dark-teal-color;
-      font-size: 18px;
-      letter-spacing: -0.3px;
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: $instruction-circle-bg;
+      border-radius: 50%;
+      padding: 10px;
     }
 
-    &-content {
-      font-family: $muli-semi-bold;
-      font-size: 16px;
-      letter-spacing: -0.3px;
-      color: $black-color;
-      strong {
-        margin-right: 15px;
-        font-weight: 600;
+    .bank-details {
+      margin-left: 19.5px;
+      margin-top: 20px;
+
+      .flex-col {
+        padding-bottom: 20px;
+
+        div {
+          &:last-child {
+            font-family: $muli-semi-bold;
+          }
+        }
       }
-      img {
-        vertical-align: top;
-      }
-    }
-  }
 
-  .ref_code_num_container {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    background-color: $cinderella-color;
-    padding-left: 20px;
-    color: $red-color;
-    border-radius: 6px;
-    border: 1px solid $red-color;
-    margin: 20px 20px 10px 20px;
-    // max-width: 230px;
-
-    .info-text {
-      position: relative;
-      display: block;
-      margin-right: 10px;
-
-      img {
-        width: 15px;
-        height: 15px;
-        margin-top: 7px;
-        vertical-align: inherit;
+      &-title {
+        font-family: $muli-semi-bold;
+        color: $bank-title-color;
+        font-size: 18px;
+        letter-spacing: -0.3px;
       }
 
       &-content {
-        position: absolute;
-        top: 0.18rem;
-        left: 0.37rem;
-        color: $white-color;
-        font-size: 11px;
-        font-weight: bold;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        color: $bank-centent-color;
+
+        strong {
+          margin-right: 15px;
+          font-weight: 600;
+        }
+
+        img {
+          vertical-align: top;
+        }
       }
     }
 
-    .ref_num {
-      font-family: $muli-semi-bold;
+    .ref_code_num_container {
+      display: flex;
+      align-items: center;
+      // height: 50px;
+      background-color: $ref-code-container-bg;
+      padding: 13px 20px !important;
+      color: $ref-code-container-color;
+      border-radius: 6px;
+      border: 1px solid $ref-code-container-brdr-color;
+      margin: 20px 20px 10px 20px;
+      max-width: 155px;
+
+      .info-text {
+        // position: relative;
+        display: flex;
+        margin-right: 10px;
+
+        img {
+          width: 15px;
+          height: 15px;
+          // margin-top: 7px;
+          vertical-align: inherit;
+        }
+
+        // &-content {
+        //   position: absolute;
+        //   top: 0.18rem;
+        //   left: 0.37rem;
+        //   color: $white-color;
+        //   font-size: 11px;
+        //   font-weight: bold;
+        // }
+      }
+
+      .ref_num {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        letter-spacing: -0.16px;
+        line-height: 22px;
+      }
+    }
+
+    .ref-code-info {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-family: $muli-regular;
+      letter-spacing: -0.12px;
       font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.16px;
-      color: $red-color;
-      line-height: 22px;
     }
   }
 
-  .ref-code-info {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    font-family: $muli-regular;
-    letter-spacing: -0.12px;
-    font-size: 18px;
-  }
-}
+  // .setup-auto-deposit {
+  //   border: 1.5px solid $dark-teal-color;
+  //   border-radius: 6px;
+  //   padding: 25px;
+  //   position: relative;
+  //   margin: 0px 18px 20px;
+  //   display: flex;
+  //   justify-content: center;
 
-.setup-auto-deposit {
-  border: 1.5px solid $dark-teal-color;
-  border-radius: 6px;
-  padding: 25px;
-  position: relative;
-  margin: 0px 18px 20px;
-  display: flex;
-  justify-content: center;
+  //   .head {
+  //     font-family: $muli-bold;
+  //     font-size: 16px;
+  //     text-align: center;
+  //     color: $teal-color;
+  //     position: absolute;
+  //     top: -18px;
+  //     padding: 5px 15px 5px 55px;
+  //     display: flex;
+  //     flex: 1;
+  //     background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
+  //     background-color: $white-color;
+  //     background-position: 15px 4px;
+  //   }
 
-  .head {
-    font-family: $muli-bold;
-    font-size: 16px;
+  //   p {
+  //     color: $black-color;
+  //     text-align: center;
+  //     margin: 0;
+  //     font-size: 16px;
+  //   }
+  // }
+
+  .faq-link {
     text-align: center;
-    color: $teal-color;
-    position: absolute;
-    top: -18px;
-    padding: 5px 15px 5px 55px;
-    display: flex;
-    flex: 1;
-    background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
-    background-color: $white-color;
-    background-position: 15px 4px;
+    padding-bottom: 20px;
+
+    a {
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $instruction-faq-color;
+      text-decoration: none;
+    }
   }
 
-  p {
-    color: $black-color;
-    text-align: center;
-    margin: 0;
-    font-size: 16px;
+  // :host /deep/ .ref-code-context {
+  //   color: $black-color;
+  // }
+
+  // :host /deep/ .ref-code-bold {
+  //   font-family: $muli-bold;
+  //   color: $red-color;
+  //   text-decoration: underline;
+  // }
+
+  // :host /deep/ .ref-code-quote {
+  //   font-family: $muli-bold;
+  //   color: $red-color;
+  // }
+
+  // :host /deep/ .sub-section-bold {
+  //   font-family: $muli-bold;
+  //   color: $black-color;
+  // }
+
+  .ref-code-context {
+    color: $ref-code-context-color;
+    letter-spacing: -0.16px;
+
+    span {
+      font-family: $muli-bold;
+      color: $ref-code-context-must-color;
+      letter-spacing: -0.15px;
+    }
   }
-}
-
-.faq-link {
-  text-align: center;
-  padding-bottom: 20px;
-
-  a {
-    font-family: $muli-bold;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: $secondary-action-color;
-    text-decoration: none;
-  }
-}
-
-:host /deep/ .ref-code-context {
-  color: $black-color;
-}
-
-:host /deep/ .ref-code-bold {
-  font-family: $muli-bold;
-  color: $red-color;
-  text-decoration: underline;
-}
-
-:host /deep/ .ref-code-quote {
-  font-family: $muli-bold;
-  color: $red-color;
-}
-
-:host /deep/ .sub-section-bold {
-  font-family: $muli-bold;
-  color: $black-color;
 }
