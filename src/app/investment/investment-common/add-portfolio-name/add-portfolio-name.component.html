@@ -20,19 +20,24 @@
             [placeholder]="getDefaultPortfolioName()"
               formControlName="portfolioName" (keyup)="showLength($event)" maxlength="50">
           </div>
+          <div  *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine" class="error-message">
+            {{
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}} 
+           </div>
           <div  *ngIf="showErrorMessage" class="error-message">
             <span><img class="success-tick"
                 src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
             <span>{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ERROR_MESSAGE' | translate}}</span>
           </div>
-        </div>
+       </div>
         <div class="characters">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} / 50 characters</div>
-        <button type="button" [disabled]="!portfolioNameFormGroup.controls.portfolioName.value && !showErrorMessage"
-          class="btn btn-primary width100 pt10 mt20" (click)="addPortfolioName(portfolioNameFormGroup.controls.portfolioName.value)"
+        <button type="button" [disabled]="!portfolioNameFormGroup.controls.portfolioName.value && showErrorMessage"
+          class="btn btn-primary width100 pt10 mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
           id="prfBtn1">{{
             'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
       </div>
     </div>
   </form>
 </div>
+
