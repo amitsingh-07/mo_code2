@@ -33,14 +33,16 @@ export class AddPortfolioNameComponent implements OnInit {
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
     this.portfolioNameFormGroup = this.formBuilder.group({
       portfolioName: new FormControl(this.userPortfolioName,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSymbol)])
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
     });
     this.investmentAccountService.restrictBackNavigation();
   }
 
-  addPortfolioName(portfolioName) {
-    this.addPortfolioBtn.emit(portfolioName);
+  addPortfolioName(form) {
+    if (form.valid) {
+    this.addPortfolioBtn.emit(form.controls.portfolioName.value);
     this.activeModal.close();
+    }
   }
 
   showLength(event) {
