@@ -89,5 +89,8 @@
     <li>
       Each client is entitled to redeem 1 voucher per package.
     </li>
+    <li>
+      Please note that insurance policies T&Cs applies. Packages may not take into account your personal financial situation and particular needs. Speak to MoneyOwl's client advisers if you require specific financial advice. 
+    </li>
   </ol>
 </div>
