@@ -185,6 +185,7 @@ app-investment-overview {
                             padding: 24px 30px;
                             display: flex;
                             width: 100%;
+                            cursor: pointer;
                             @include allmobiles {
                                 padding: 25px 15px;
                             }
@@ -295,10 +296,6 @@ app-investment-overview {
     }
     .btn-primary {
         &.scroll-btn {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right:0;
             width: 100%;
             margin: 0 auto !important;
             font-family: $muli-regular !important;
@@ -315,5 +312,8 @@ app-investment-overview {
                 background-color: #00a0a0 !important;
             }
         }
+    }
+    .hidden {
+      display: none;
     }
 }

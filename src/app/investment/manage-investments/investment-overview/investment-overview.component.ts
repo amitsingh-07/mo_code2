@@ -269,6 +269,10 @@ export class InvestmentOverviewComponent implements OnInit {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
+  verticalScrollPresent() {
+    return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
+  }
+
   startPortfolio() {
     this.authService.saveEnquiryId(null);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
