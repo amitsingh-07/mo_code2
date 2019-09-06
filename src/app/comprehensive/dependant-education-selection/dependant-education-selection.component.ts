@@ -147,6 +147,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       enquiryId: dependant.enquiryId,
       location: null,
       educationCourse: null,
+      educationSpendingShare: null,
       endowmentMaturityAmount: 0,
       endowmentMaturityYears: null,
       age: maturityAge,
@@ -224,6 +225,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             enquiryId: this.comprehensiveService.getEnquiryId(),
             location: null,
             educationCourse: null,
+            educationSpendingShare: null,
             endowmentMaturityAmount: null,
             endowmentMaturityYears: null
           } as IChildEndowment]
@@ -259,6 +261,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
                       enquiryId: this.comprehensiveService.getEnquiryId(),
                       location: null,
                       educationCourse: null,
+                      educationSpendingShare: null,
                       endowmentMaturityAmount: null,
                       endowmentMaturityYears: null
                     } as IChildEndowment]
