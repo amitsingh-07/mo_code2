@@ -40,6 +40,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import {
   AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
+import { IAccountCreationActions } from '../investment-common-form-data';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -342,10 +343,10 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   reDirectToNextScreen() {
-    this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-      if (data && data.showInvestmentAccountCreationForm) {
+    this.investmentCommonService.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
+      if (this.investmentCommonService.isUsersFirstPortfolio(data)) { /* FIRST TIME PORTFOLIO */
         this.verifyAML();
-      } else {
+      } else { /* SUBSEQUENT PORTFOLIO */
         this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
       }

@@ -4,11 +4,12 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'  // <- ADD THIS
 })
 export class InvestmentCommonFormData {
-    accountCreationStatusInfo: IAccountCreationStatusInfo;
+    accountCreationStatusInfo: IAccountCreationActions;
     investmentsSummary: any;
 }
 
-export interface IAccountCreationStatusInfo {
+export interface IAccountCreationActions {
+    accountCreationState: string;
     allowEngagementJourney: boolean;
     portfolioLimitExceeded: boolean;
     showInvestmentAccountCreationForm: boolean;

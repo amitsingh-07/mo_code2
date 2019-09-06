@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
       if (initialMessage && initialMessage.dashboardInitMessageShow) {
-        this.investmentAccountService.setInitialMessageToShowDashboard(null);
+        this.investmentAccountService.setDashboardInitialMessage(null);
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorTitle = initialMessage.dashboardInitMessageTitle;
         ref.componentInstance.errorMessage = initialMessage.dashboardInitMessageDesc;

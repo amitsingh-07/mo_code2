@@ -250,8 +250,8 @@ export class PortfolioDetailsComponent implements OnInit {
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
-      this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-        if (data && data.showInvestmentAccountCreationForm) {
+      this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
+        if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
