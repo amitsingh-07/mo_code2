@@ -323,47 +323,49 @@
             </div>
 
           </div>
-          <div class="flex-row payout-width" *ngIf="insurancePlanForm.get('haveLongTermElderShield').value === 1">
-            <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
-              formControlName="longTermElderShieldAmount">
-              <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                  [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="300">{{
+          <div *ngIf="insurancePlanForm.get('haveLongTermElderShield').value === 1">
+            <div class="flex-row payout-width">
+              <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
+                formControlName="longTermElderShieldAmount">
+                <div class="flex-col-12 mb-3">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
+                    [ngClass]="{'inline-error': submitted}">
+                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="300">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_1' |
                     translate}}
-                </label>
-              </div>
-              <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                  [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="400">{{
+                  </label>
+                </div>
+                <div class="flex-col-12 mb-3">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
+                    [ngClass]="{'inline-error': submitted}">
+                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="400">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_2' |
                     translate}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group-with-bg--content-white--desc flex-row">
+              <div class="flex-col-1">2.</div>
+              <div class="flex-col-11"> {{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL_2' | translate}}</div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-5 pr5">
+                <label for="name" id="myDependantFormLb1">
+                  <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
+                  </div>
                 </label>
               </div>
-            </div>
-          </div>
-          <!-- <div class="form-group-with-bg--content-white--desc flex-row">
-            <div class="flex-col-1">2.</div>
-            <div class="flex-col-8"> {{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL_2' | translate}}</div>
-          </div>
-
-          <div class="flex-col-5 pr5">
-            <label for="name" id="myDependantFormLb1">
-              <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
+              <div class="pr0 flex-col-7">
+                <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
+                  <i>$</i>
+                  <input type="text" class="input-control" appCurrencyInput maxLength="8"
+                    formControlName="otherLongTermCareInsuranceAmount" value="0">
+                  <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
+                </div>
               </div>
-            </label>
-          </div>
-          <div class="pr0 flex-col-7">
-            <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
-              <i>$</i>
-              <input type="text" class="input-control" appCurrencyInput maxLength="8"
-                formControlName="disabilityIncomeCoverageAmount" value="0">
-              <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
             </div>
-          </div> -->
-
+          </div>
         </div>
       </div>
     </div>

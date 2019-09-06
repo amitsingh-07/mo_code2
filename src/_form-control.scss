@@ -1314,7 +1314,7 @@ input::placeholder {
 
   .form-control {
     color: $app-backgrnd-color;
-
+    font-family: "muli light";
     &.with-bg {
       background: $form-title-backgrnd-color !important;
     }

@@ -169,7 +169,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -258,7 +259,8 @@
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
       "ABOUT": "Every month, you fill your bucket as you bring home an income!",
-      "BUCKET_TITLE": "Your Annual Income Bucket (Take-home)",
+      "BUCKET_TITLE": "Your Annual Income Bucket <br> (Take-home)",
+      "BUCKET_DESC": "Please input your individual income information only",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
@@ -273,7 +275,8 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -402,7 +405,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -467,7 +471,8 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -563,7 +568,7 @@
     },
     "YOUR_FINANCES": {
       "HEADER": "How You Spend When Down On Luck",
-      "ABOUT": "Sometimes life throws you a curveball.",
+      "ABOUT": "Sometimes life throws you a curve ball.",
       "TITLE": "Bad Mood Fund",
       "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
       "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
@@ -579,7 +584,8 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
+      "DEPENDANT_DETAIL": [
+        {
           "name": "Dependant Details 1"
         },
         {

@@ -2276,14 +2276,20 @@ select:-webkit-autofill:focus {
     }
 
     &__desc {
-      padding-bottom: 16px;
+      padding-bottom: 16px!important;
       font-size: 16px;
     }
 
     &__value {
-      padding-bottom: 30px;
+      padding-bottom: 15px;
       font-family: $muli-bold;
       font-size: 24px;
+    }
+    &__desc-value{
+      padding-bottom: 30px;
+      font-family: $muli-regular;
+      font-style: italic;
+      font-size: 16px;
     }
 
     &__content {
