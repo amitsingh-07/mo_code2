@@ -37,22 +37,22 @@
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
         <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
         <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div>
-        <div class="strong">{{fundDetails.portfolio.riskProfile.type}}</div>
+        <div class="strong">{{PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type}}</div>
       </div>
     </div>
 
     <div class="cash-account" *ngIf="fundDetails.source == 'FUNDING'">
-      <div class="text-center mb20">Please transfer the following amount using Bank Transfer or PayNow.</div>
+      <div class="text-center mb20">{{ 'FUNDING_INSTRUCTIONS.FUNDING_DESC' | translate }}</div>
       <div class="form-group-with-bg">
         <div class="form-group-with-bg--content">
           <div class="cash-account-content">
-            <div class="investment-value">$120,800</div>
-            <div class="cash-account-balance">Cash Account Balance: $0</div>
-            <div class="ref-code">Reference Code: G0000099</div>
+            <div class="investment-value">{{(fundDetails.oneTimeInvestment + fundDetails.monthlyInvestment) |
+              currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div class="cash-account-balance">{{ 'FUNDING_INSTRUCTIONS.CASH_ACCOUNT_BALANCE_LBL' | translate }} $0</div>
+            <div class="ref-code">{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE_LBL' | translate }}{{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}</div>
             <div class="flex align-center">
               <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
-              <div class="note"><span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the
-                <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.</div>
+              <div class="note" innerHTML="{{ 'FUNDING_INSTRUCTIONS.NOTE' | translate }}"></div>
             </div>
           </div>
         </div>

@@ -141,7 +141,8 @@ export class ConfirmPortfolioComponent implements OnInit {
       monthlyInvestment: data.monthlyInvestment,
       fundingType: '',
       isAmountExceedBalance: 0,
-      exceededAmount: 0
+      exceededAmount: 0,
+      customerPortfolioId: data.customerPortfolioId
     };
   }
 
@@ -288,9 +289,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
-    ref.componentInstance.userPortfolioName = this.investmentAccountService.getConfirmPortfolioName();
+    ref.componentInstance.userPortfolioName = this.investmentCommonService.getConfirmPortfolioName();
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-      this.investmentAccountService.setConfirmPortfolioName(portfolioName);
+      this.investmentCommonService.setConfirmPortfolioName(portfolioName);
       this.savePortfolioName(portfolioName);
     });
   }

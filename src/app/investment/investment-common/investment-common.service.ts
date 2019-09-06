@@ -154,4 +154,13 @@ export class InvestmentCommonService {
     investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
     return investmentStatus;
   }
+  setConfirmPortfolioName(data) {
+    this.investmentCommonFormData.portfolioName = data;
+    this.commit();
+  }
+  getConfirmPortfolioName() {
+    return this.investmentCommonFormData.portfolioName;
+    }
 }
+
+

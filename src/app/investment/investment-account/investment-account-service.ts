@@ -1927,11 +1927,5 @@ export class InvestmentAccountService {
     }
     return (event.which !== 13);
   }
-  // #portfolio in confirm portfolio
-  setConfirmPortfolioName(data) {
-    this.investmentAccountFormData.portfolioName = data;
-  }
-  getConfirmPortfolioName() {
-    return this.investmentAccountFormData.portfolioName;
-    }
+  
 }

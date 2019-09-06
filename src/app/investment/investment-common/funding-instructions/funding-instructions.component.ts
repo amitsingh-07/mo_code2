@@ -14,6 +14,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import {
     MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
@@ -21,7 +22,7 @@ import {
     MANAGE_INVESTMENTS_CONSTANTS
 } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { InvestmentCommonService } from '../investment-common.service';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -45,6 +46,7 @@ export class FundingInstructionsComponent implements OnInit {
   monthlyAmount;
   timelineMessage;
   showBankTransferSteps = true;
+  PortfolioName: any;
   
   constructor(
     public readonly translate: TranslateService,
@@ -56,6 +58,7 @@ export class FundingInstructionsComponent implements OnInit {
     public footerService: FooterService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
+    public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
     private currencyPipe: CurrencyPipe
   ) {
@@ -84,6 +87,7 @@ export class FundingInstructionsComponent implements OnInit {
       this.riskProfileImg =
         ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
     }
+    this.PortfolioName = this.investmentCommonService.getConfirmPortfolioName();
   }
 
   setPageTitle(title: string) {
@@ -145,9 +149,9 @@ export class FundingInstructionsComponent implements OnInit {
   }
 
   getTransferDetails() {
-    const customerPortfolioId = this.fundDetails.portfolio.customerPortfolioId;
+    const customerPortfolioId = this.fundDetails.customerPortfolioId;
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
-      this.setBankPayNowDetails(data.objectList[0]);
+      this.setBankPayNowDetails(data.objectList);
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
