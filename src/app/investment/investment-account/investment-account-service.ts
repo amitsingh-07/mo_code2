@@ -1865,7 +1865,7 @@ export class InvestmentAccountService {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
   }
 
-  setInitialMessageToShowDashboard(initialMessageInfo) {
+  setDashboardInitialMessage(initialMessageInfo) {
     if (initialMessageInfo) {
       this.investmentAccountFormData.dashboardInitMessageShow = initialMessageInfo.show;
       this.investmentAccountFormData.dashboardInitMessageTitle = initialMessageInfo.title;

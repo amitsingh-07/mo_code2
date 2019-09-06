@@ -144,7 +144,7 @@ app-investment-overview {
         .container-fluid {
             &.max-width--1024 {
                 padding-top: 0 !important;
-                padding-bottom: 40px !important;
+                padding-bottom: 80px !important;
                 @include allmobiles {
                     padding-top: 60px !important;
                     padding-left: 0px !important;
@@ -185,6 +185,7 @@ app-investment-overview {
                             padding: 24px 30px;
                             display: flex;
                             width: 100%;
+                            cursor: pointer;
                             @include allmobiles {
                                 padding: 25px 15px;
                             }
@@ -311,5 +312,8 @@ app-investment-overview {
                 background-color: #00a0a0 !important;
             }
         }
+    }
+    .hidden {
+      display: none;
     }
 }
