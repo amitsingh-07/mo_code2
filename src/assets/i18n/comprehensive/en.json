@@ -370,14 +370,20 @@
       "NO_LABEL": "No",
       "AS_ID": "(as per NRIC)",
       "YES_I_WILL": "Yes, I will",
-      "NO_I_WONT": "No, I won’t"
+      "NO_I_WONT": "No, I won’t",
+      "SHARE_CHILD_EDUCATION_EXPENSES": "Share of Child’s Education Expenses",
+      "YOUR_SHARE": "Your Share"
     },
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but I need an insurance payout to cover education expenses in case I pass away",
       "NO_DESC": "Select which child you will like to cover for.",
-      "ALERT": "Please select at least one child."
+      "ALERT": "Please select at least one child.",
+      "TOOLTIP": {
+        "CHILD_EDUCATION_EXPENSES_TITLE": "Share of Child’s Education Expenses",
+        "CHILD_EDUCATION_EXPENSES_MESSAGE": "Your share of child’s education expenses excludes the portion that may be paid by your spouse or other relatives."
+      }
     },
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans (RSP)?",
