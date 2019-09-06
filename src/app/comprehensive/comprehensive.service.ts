@@ -374,6 +374,7 @@ export class ComprehensiveService {
       enquiryId: dependant.enquiryId,
       location: childEndowment.location,
       educationCourse: childEndowment.educationCourse,
+      educationSpendingShare: childEndowment.educationSpendingShare,
       endowmentMaturityAmount: childEndowment.endowmentMaturityAmount,
       endowmentMaturityYears: childEndowment.endowmentMaturityYears,
       age: maturityAge,
@@ -1085,7 +1086,8 @@ export class ComprehensiveService {
             title: item.name,
             value:
               (item.location === null ? '' : item.location) +
-              (item.educationCourse === null ? '' : ', ' + item.educationCourse)
+              (item.educationCourse === null ? '' : ', ' + item.educationCourse) //+
+              //(item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '%'
           });
         });
       }

@@ -66,6 +66,7 @@ export interface IChildEndowment {
     enquiryId: number;
     location: string;
     educationCourse: string;
+    educationSpendingShare: number;
     endowmentMaturityAmount: number;
     endowmentMaturityYears: number;
     dateOfBirth: string;
