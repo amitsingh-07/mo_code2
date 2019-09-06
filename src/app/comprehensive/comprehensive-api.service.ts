@@ -100,12 +100,12 @@ export class ComprehensiveApiService {
     }
 
     /**
-   * Download the comprehensive report.
-   *
-   * @param {*} payload
-   * @returns {Observable<any>}
-   * @memberof ApiService
-   */
+    * Download the comprehensive report.
+    *
+    * @param {*} payload
+    * @returns {Observable<any>}
+    * @memberof ApiService
+    */
     downloadComprehensiveReport(payload): Observable<any> {
         return this.http.postForBlobParam(apiConstants.endpoint.comprehensive.downloadComprehensiveReport, payload, false)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
