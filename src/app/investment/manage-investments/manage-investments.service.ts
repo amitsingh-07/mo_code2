@@ -180,7 +180,7 @@ export class ManageInvestmentsService {
 
   constructDeletePortfolioParams(data) {
     return {
-      portfolioId: data.productCode
+      portfolioId: data.portfolioId
     };
   }
 
@@ -459,12 +459,14 @@ export class ManageInvestmentsService {
   * Method to get details based on bank or paynow
   */
  setBankPayNowDetails(data) {
+   if (data) {
   this.bankDetails = data.filter(
     (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
   )[0];
   this.paynowDetails = data.filter(
     (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
   )[0];
+   }
 }
 
   /*

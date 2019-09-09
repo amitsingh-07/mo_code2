@@ -30,7 +30,6 @@ export class PortfolioListComponent implements OnInit {
   @Output() transferInstSelected = new EventEmitter<boolean>();
   @Output() detailSelected = new EventEmitter<boolean>();
   @Output() topUpSelected = new EventEmitter<boolean>();
-  @Output() deleteSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
   constructor(public readonly translate: TranslateService,
@@ -108,10 +107,6 @@ export class PortfolioListComponent implements OnInit {
 
   transferInst($event) {
     this.transferInstSelected.emit($event);
-  }
-
-  delete(portfolio) {
-    this.deleteSelected.emit(portfolio);
   }
 
   investAgain(portfolio) {

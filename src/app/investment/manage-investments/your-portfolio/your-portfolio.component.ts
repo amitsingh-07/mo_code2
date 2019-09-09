@@ -5,18 +5,20 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -172,5 +174,65 @@ export class YourPortfolioComponent implements OnInit {
    goToInvestAgain(portfolioValues) {
     this.manageInvestmentsService.setPortfolioValues(portfolioValues);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+  }
+  deletePortfolio(portfolio) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.DELETE_TXT'
+    );
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.yesClickAction.subscribe(() => {
+      this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
+        if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
+          this.authService.saveEnquiryId(null);
+          const translateParams = {
+            portfolioName: portfolio.riskProfile.type
+          };
+          const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
+          this.goToInvOverview();
+        }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+    });
+    ref.componentInstance.noClickAction.subscribe(() => { });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+  goToInvOverview() {
+    this.manageInvestmentsService.clearToastMessage();
+    const toastMessage: IToastMessage = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
+      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
+      link_url: ''
+    };
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
   }
 }

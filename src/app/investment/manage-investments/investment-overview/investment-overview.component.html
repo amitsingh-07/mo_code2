@@ -65,7 +65,7 @@
         </div>
     </div>
 </section>
-<app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList" [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)" (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
+<app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList" [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)" (investAgainSelected)="investAgain($event)"
     (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()" [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
 <div class="container-fluid max-width--1024" *ngIf="investmentoverviewlist && (!portfolioList || portfolioList.length == 0)">
