@@ -1,15 +1,18 @@
+import { Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment-account-routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
-import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments/manage-investments.constants';
 import { IAccountCreationActions, InvestmentCommonFormData } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments/manage-investments.constants';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -160,6 +163,15 @@ export class InvestmentCommonService {
     investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
     return investmentStatus;
   }
+
+  setConfirmPortfolioName(data) {
+    this.investmentCommonFormData.portfolioName = data;
+    this.commit();
+  }
+
+ getConfirmPortfolioName() {
+    return this.investmentCommonFormData.portfolioName;
+    }
 
   isUsersFirstPortfolio(data: IAccountCreationActions) {
     if (data.showInvestmentAccountCreationForm

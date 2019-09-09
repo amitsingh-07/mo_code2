@@ -85,7 +85,7 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent,
     InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
-    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe, PortfolioListComponent],
+    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe, PortfolioListComponent, InstructionStepsComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,

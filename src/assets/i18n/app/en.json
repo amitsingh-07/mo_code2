@@ -341,7 +341,7 @@
     "FUNDING_INSTRUCTIONS": {
       "VIA_BANK": "Bank Transfer",
       "VIA_PAYNOW": "PayNow",
-      "ADD_REFERENCE_CODE_INFO": "You <span class='ref-code-bold'>MUST</span> indicate this Reference Code in the <span class='ref-code-quote'>“Remarks / Descriptions / Comments”</span>.",
+      "ADD_REFERENCE_CODE_INFO": "You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span>.",
       "MODAL": {
         "SHOW_TRANSACTION_STEPS": {
           "STEP_1": "STEP 1",

@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 export class InvestmentCommonFormData {
     accountCreationStatusInfo: IAccountCreationActions;
     investmentsSummary: any;
+    portfolioName: string;
 }
 
 export interface IAccountCreationActions {
