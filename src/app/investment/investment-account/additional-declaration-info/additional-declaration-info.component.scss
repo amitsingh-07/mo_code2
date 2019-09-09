@@ -13,69 +13,9 @@ app-additional-declaration-info {
   }
 
   .app-additional-declaration {
-    // .btn-proceed {
-    //   border: 0px;
-    //   border-radius: 6px;
-    //   background-color: $white-color;
-    //   box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
-    //   cursor: pointer;
-    //   font-family: $muli-bold;
-    //   font-size: 22px;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: -0.2px;
-    //   text-align: center;
-    //   color: $teal-color;
-    //   font-weight: 400;
-    //   width: 370px;
-
-    //   @include allmobiles {
-    //     position: fixed;
-    //     width: 100%;
-    //     bottom: 0px;
-    //     left: 0px;
-    //     border-radius: 0px;
-    //   }
-    // }
-
-    // .intro-block__tab-container {
-    //   @extend .flex;
-    //   @extend .space-btwn;
-    //   width: 100%;
-
-    //   .intro-block__tab {
-    //     width: calc(50% - 10px);
-    //     opacity: 0.2;
-    //     padding-right: 10px;
-    //     background-color: $app-backgrnd-secondary-color;
-    //     min-height: 5px;
-
-    //     &.active {
-    //       opacity: 1;
-    //     }
-    //   }
-    // }
 
     .intro-block__content {
-      // @include tablet {
-      //   .banner-image img {
-      //     max-width: 90%;
-      //   }
-      // }
 
-      // @include allmobiles {
-      //   .banner-image img {
-      //     max-width: 70%;
-      //     padding-top: 5vh;
-      //   }
-      // }
-
-      // @include iPadProPortrait {
-      //   .banner-image img {
-      //     max-width: 80%;
-      //   }
-      // }
       .banner-image {
         img {
           @include tablet {
@@ -119,7 +59,6 @@ app-additional-declaration-info {
           line-height: 22px;
           letter-spacing: -0.18px;
           text-align: center;
-          // color: $white-color;
         }
       }
     }
