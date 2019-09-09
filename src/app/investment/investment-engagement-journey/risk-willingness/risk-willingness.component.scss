@@ -2,20 +2,24 @@
 @import '../../../../mixins';
 
 app-risk-willingness {
-  .col-lg-7{
+  .col-lg-7 {
     padding-right: 35px;
   }
-  .col-lg-5{
+
+  .col-lg-5 {
     padding-left: 35px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-left: 15px;
     }
   }
-  h2.question-info  {
+
+  h2.question-info {
     font-size: 16px !important;
   }
+
   .question-info {
-    @include allmobiles{
+    @include allmobiles {
       position: relative;
       display: flex;
       justify-content: center;
@@ -41,13 +45,6 @@ app-risk-willingness {
     font-size: 18px;
   }
 
-  // input[type='radio'] + label {
-  //   background: url('/assets/images/radio-normal.svg') left center no-repeat;
-  // }
-  // input[type='radio']:checked + label {
-  //   background-image: url('/assets/images/radio-select.svg');
-  // }
-
   .form-group-single-column .checkbox-button .input-label-grey {
     color: $form-block-title-color;
     font-family: $muli-semi-bold;
@@ -58,8 +55,10 @@ app-risk-willingness {
   .table-view {
     display: table;
     position: relative;
+
     .table-row {
       display: table-row;
+
       .table-cell {
         display: table-cell;
         border-right: 1px solid $teal-color;
@@ -71,15 +70,18 @@ app-risk-willingness {
         text-align: center;
         font-family: $muli-semi-bold;
         font-size: 18px;
+
         .col-head {
           font-family: $muli-bold;
           line-height: 23px;
         }
+
         label {
           color: $form-block-title-color;
           font-size: 18px;
         }
       }
+
       &.table-head {
         .table-cell {
           background-color: $white-color;
@@ -88,19 +90,23 @@ app-risk-willingness {
           font-family: $muli-regular;
           line-height: 15px;
         }
+
         .table-cell:first-child {
           border-radius: 6px 0px 0px 0px;
           font-size: 16px;
         }
+
         .table-cell:last-child {
           border-radius: 0px 6px 0px 0px;
         }
       }
     }
+
     .table-row:last-child {
       .table-cell:first-child {
         border-radius: 0px 0px 0px 6px;
       }
+
       .table-cell:last-child {
         border-radius: 0px 0px 6px 0px;
       }

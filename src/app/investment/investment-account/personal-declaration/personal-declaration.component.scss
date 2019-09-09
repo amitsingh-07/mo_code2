@@ -9,13 +9,7 @@ app-personal-declaration {
 
     .dropdown-control {
       .dependent-count {
-        // margin-left: 4px;
-        // font-size: 16px;
-        // line-height: 1.25;
         letter-spacing: -0.2px;
-        // font-weight: normal;
-        // font-style: normal;
-        // font-stretch: normal;
       }
     }
 
@@ -37,23 +31,7 @@ app-personal-declaration {
       }
     }
 
-    // .dropdown-menu.show {
-    //   right: 0 !important;
-    //   overflow: auto;
-    //   height: auto;
-    //   max-height: 264px;
-    // }
-    // .dropdown-item {
-    //   white-space: normal;
-    //   word-break: break-word;
-    // }
-    // .dropdown-control .btn-dropdown {
-    //   padding-right: 27px;
-    //   max-height: 52px;
-    //   white-space: nowrap;
-    //   overflow: hidden;
-    //   text-overflow: ellipsis;
-    // }
+
     .btn {
       z-index: 1001;
 
@@ -77,32 +55,7 @@ app-personal-declaration {
       padding-right: 14px;
     }
 
-    // .step-indicator-container {
-    //   padding: 20px 0px;
-    //   top: 76px;
 
-    //   @include allmobiles {
-    //     position: relative;
-    //     top: 60px;
-    //     background-color: $white-color;
-    //     padding: 10px 0px;
-    //   }
-
-    //   .container-fluid {
-    //     padding-top: 0px;
-    //     padding-bottom: 0px;
-    //   }
-
-    //   @include stepindicator-desktop-extraspace;
-    // }
-
-    // .container-fluid {
-    //   padding-top: 16px;
-
-    //   @include allmobiles {
-    //     padding-top: 80px;
-    //   }
-    // }
 
     .tooltip-icon {
       background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
