@@ -303,7 +303,7 @@
                         translate}}
                     </label>
                   </div>
-                  <div class="flex-col-4">
+                  <div (click)="resetLongTermShieldAmount()" class="flex-col-4">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                       <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{
@@ -311,7 +311,7 @@
                         translate}}
                     </label>
                   </div>
-                  <div class="flex-col-4 pl-1">
+                  <div (click)="resetLongTermShieldAmount()" class="flex-col-4 pl-1">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                       <input id="myProfileRadioFemale" ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
