@@ -2266,6 +2266,10 @@ select:-webkit-autofill:focus {
   .footer-notes {
     background: $btn-primary-backgrnd-color;
     padding: 20px !important;
+    position: fixed;
+    bottom: 0;
+    width: 600px;
+    z-index: 1030;
   }
 
   .income-bucket-panel {
