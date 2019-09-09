@@ -14,8 +14,9 @@
   <!--Income bucket-->
   <div class='income-bucket-panel'>
     <div class="income-bucket-panel__img {{ bucketImage }}"></div>
-    <div class="income-bucket-panel__desc">{{'CMP.MY_EARNINGS.BUCKET_TITLE'|translate}}</div>
+    <div class="income-bucket-panel__desc" [innerHtml]="'CMP.MY_EARNINGS.BUCKET_TITLE'|translate"></div>
     <div class="income-bucket-panel__value"> {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+    <div class="income-bucket-panel__value-desc mb-3">{{'CMP.MY_EARNINGS.BUCKET_DESC'|translate}}</div>
   </div>
   <!--Income bucket /-->
   <!--Page form-->

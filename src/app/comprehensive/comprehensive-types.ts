@@ -66,6 +66,7 @@ export interface IChildEndowment {
     enquiryId: number;
     location: string;
     educationCourse: string;
+    educationSpendingShare: number;
     endowmentMaturityAmount: number;
     endowmentMaturityYears: number;
     dateOfBirth: string;
@@ -209,6 +210,7 @@ export interface IInsurancePlan {
     disabilityIncomeCoverageAmount: number;
     haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
+    otherLongTermCareInsuranceAmount: number;
 }
 export interface IRetirementPlan {
     enquiryId: number;

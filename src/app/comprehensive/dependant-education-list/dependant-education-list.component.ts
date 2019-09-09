@@ -145,6 +145,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
       gender: [value.gender, []],
       location: [value.location, []],
       course: [value.educationCourse, []],
+      educationSpendingShare: [value.educationSpendingShare, []],
       nation: [value.nation]
     });
 
@@ -201,8 +202,8 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           this.endowmentDetail.forEach((details: any) => {
             educationPreferenceList.push({
               dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
-              endowmentMaturityAmount: toInteger(details.endowmentMaturityAmount), endowmentMaturityYears: details.endowmentMaturityYears,
-              enquiryId: details.enquiryId, nation: details.nation
+              educationSpendingShare: details.educationSpendingShare, endowmentMaturityAmount: toInteger(details.endowmentMaturityAmount),
+              endowmentMaturityYears: details.endowmentMaturityYears, enquiryId: details.enquiryId, nation: details.nation
             }
             );
           });

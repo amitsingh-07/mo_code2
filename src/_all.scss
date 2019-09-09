@@ -1170,7 +1170,7 @@ h6 {
   height: 25px;
 }
 
-.navbar-notification-clear{
+.navbar-notification-clear {
   position: absolute;
   display: block;
   right: 10px;
@@ -2086,7 +2086,7 @@ select:-webkit-autofill:focus {
 
       &.success {
         span {
-          background-image: url(/assets/images/comprehensive/screen-sep-sucess.svg);
+          background-image: url(/assets/images/comprehensive/step-success.svg);
           width: 30px;
           height: 30px;
           position: absolute;
@@ -2094,7 +2094,7 @@ select:-webkit-autofill:focus {
           background-color: transparent;
           border: transparent;
           background-size: 100%;
-          top: 0;
+          top: -2px;
         }
       }
 
@@ -2280,14 +2280,20 @@ select:-webkit-autofill:focus {
     }
 
     &__desc {
-      padding-bottom: 16px;
+      padding-bottom: 16px!important;
       font-size: 16px;
     }
 
     &__value {
-      padding-bottom: 30px;
+      padding-bottom: 15px;
       font-family: $muli-bold;
       font-size: 24px;
+    }
+    &__desc-value{
+      padding-bottom: 30px;
+      font-family: $muli-regular;
+      font-style: italic;
+      font-size: 16px;
     }
 
     &__content {

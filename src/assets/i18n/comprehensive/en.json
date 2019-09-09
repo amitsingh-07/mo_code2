@@ -169,7 +169,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -258,7 +259,8 @@
     "MY_EARNINGS": {
       "HEADER": "What You Earn",
       "ABOUT": "Every month, you fill your bucket as you bring home an income!",
-      "BUCKET_TITLE": "Your Annual Income Bucket (Take-home)",
+      "BUCKET_TITLE": "Your Annual Income Bucket <br> (Take-home)",
+      "BUCKET_DESC": "Please input your individual income information only",
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
@@ -273,7 +275,8 @@
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket (take-home)",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -370,14 +373,20 @@
       "NO_LABEL": "No",
       "AS_ID": "(as per NRIC)",
       "YES_I_WILL": "Yes, I will",
-      "NO_I_WONT": "No, I won’t"
+      "NO_I_WONT": "No, I won’t",
+      "SHARE_CHILD_EDUCATION_EXPENSES": "Share of Child’s Education Expenses",
+      "YOUR_SHARE": "Your Share"
     },
     "DEPENDANT_EDUCATION_SELECTION": {
       "TITLE": "Do you need to save up for any of your children's education?",
       "YES_DESC": "Whose education would you like to fund?",
       "NO_LABEL": "No, but I need an insurance payout to cover education expenses in case I pass away",
       "NO_DESC": "Select which child you will like to cover for.",
-      "ALERT": "Please select at least one child."
+      "ALERT": "Please select at least one child.",
+      "TOOLTIP": {
+        "CHILD_EDUCATION_EXPENSES_TITLE": "Share of Child’s Education Expenses",
+        "CHILD_EDUCATION_EXPENSES_MESSAGE": "Your share of child’s education expenses excludes the portion that may be paid by your spouse or other relatives."
+      }
     },
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans (RSP)?",
@@ -396,7 +405,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -461,7 +471,8 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -557,7 +568,7 @@
     },
     "YOUR_FINANCES": {
       "HEADER": "How You Spend When Down On Luck",
-      "ABOUT": "Sometimes life throws you a curveball.",
+      "ABOUT": "Sometimes life throws you a curve ball.",
       "TITLE": "Bad Mood Fund",
       "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
       "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
@@ -573,7 +584,8 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
+      "DEPENDANT_DETAIL": [
+        {
           "name": "Dependant Details 1"
         },
         {
