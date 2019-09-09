@@ -1,133 +1,316 @@
-<div class="portfolio-bg" *ngIf="portfolio">
-    <div class="container-fluid">
-      <img id="investment_overview_background_img" class="background_img web_bg" src="assets/images/investment_header_web.svg" />
-      <img id="investment_overview_background_img" class="background_img mobile_bg" src="assets/images/investment_header_mobile.svg" />
-    </div>
-    <div class="flex-row user_content flex-col-12">
-      <div class="flex-col-8 " id="your_portfolio_summary">
-        <div class="user_portfolio_title hidden-sm-md">{{pageTitle}}</div>
-        <div class="user_portfolio">
-          <span>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</span>
-          <span id="your_portfolio_name">{{portfolioValues?.riskProfileType}}</span>
-        </div>
+<div class="toast-msg-block" style="display:none;">
+  <div class="toast-msg-container">
+      <div class="flex-col-1">
+        <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
       </div>
-      <div class="flex-col-4">
-        <div class="dropdown-control">
-          <div ngbDropdown>
-            <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
-              More</button>
-            <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-              <button class="dropdown-item"
-                [class.hide]="(option.value === 'TOPUP' && !entitlements.showTopup)
-                || (option.value === 'WITHDRAWAL' && (!entitlements.showWithdrawPvToBa && !entitlements.showWithdrawPvToCa && !entitlements.showWithdrawCaToBa))"
-                *ngFor="let option of moreList; let i = index;"
-                (click)="selectOption(option)"
-                id="additional_declaration_sourse-drpdown-option-{{i}}">
-                  {{option.name}}
-            </button>
-            </div>
-          </div>
-        </div>
+      <div class="flex-col-8">
+        <div class="toast-msg">Toast Message here</div>
       </div>
-    </div>
-  </div>
-<div class="container-fluid max-width--1024">
-<div class="flex-col-12" *ngIf="portfolio">
-  <div class="container-fluid">
-    <!--  ALREADY FUNDED PORTFOLIO-->
-    <div class="flex-row" *ngIf="entitlements.showTopup">
-      <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
-        <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
-      </button>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus === 'PURCHASED'">
-        <div class="form-group-with-bg">
-          <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !userProfileInfo.investementDetails.showTotalReturn}">
-            <div id="portdolio_value" class="total_values">{{portfolioValues.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-            <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
-          </div>
-          <!--Form Content-->
-          <div class="form-group-with-bg--content" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-            <div class="flex-row">
-              <div class="flex-col-7">
-                <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
-                  <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
-                </div>
-              </div>
-              <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">{{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%</div>
-              </div>
-            </div>
-            <div class="flex-row mt20" *ngIf="yearlyReturns">
-              <div class="flex-col-7">
-                <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return ">{{'YOUR_PORTFOLIO.ANNUALIZED_RETURNS' | translate}}
-                </div>
-              </div>
-              <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="yearlyReturns < 0" for="total value">{{formatReturns(yearlyReturns)}}{{yearlyReturns | number : '1.0-2'}}%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- NOT FUNDED PORTFOLIO  -->
-    <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.portfolioStatus !== 'PURCHASED'">
-        <div class="flex-row mb20">
-          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus === 'RECOMMENDED' && portfolioValues.expiryDate">
-            <div class="fund-account-information" id="errorModeButton">
-              {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT_MESSAGE' | translate}} {{portfolioValues.expiryDate}}.
-              <div class="fund-account-btn mt20" (click)="goToFundYourAccount()">
-                {{'YOUR_PORTFOLIO.FUNDING_INSTRUCTIONS' | translate}}
-              </div>
-            </div>
-          </div>
-          <div class="fund-account" *ngIf="portfolioValues.portfolioStatus === 'RECOMMENDED' && !portfolioValues.expiryDate">
-            <div *ngIf="!getMonthlyInvestValidity(0)" class="fund-account-information" id="errorModeButton">
-              {{'YOUR_INVESTMENT.ONE_TIME_EXPIRED' | translate}}
-              <div class="fund-account-btn mt20" (click)="goToInvestAgain(portfolioValues)">
-                {{'YOUR_INVESTMENT.INVEST_AGAIN' | translate}}
-              </div>
-            </div>
-            <div *ngIf="getMonthlyInvestValidity(0)" class="fund-account-information" id="errorModeButton">
-              {{'YOUR_INVESTMENT.MONTHLY_INVEST_ALERT_PORTFOLIO' | translate }}
-              <div class="fund-account-btn mt20" (click)="goToFundYourAccount()">
-                {{'YOUR_PORTFOLIO.FUND_YOUR_ACCOUNT' | translate}}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group-with-bg mt10">
-          <div class="form-group-with-bg--header your_total_value">
-            <div id="your_portfolio_total_lb" class="total_values">$0</div>
-            <div id="your_portfolio_total_value" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
-          </div>
-          <div class="form-group-with-bg--content" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-            <div class="flex-row">
-              <div class="flex-col-9">
-                <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
-                  <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
-                </div>
-              </div>
-              <div class="flex-col-3">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">0%
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button *ngIf="holdingValues && portfolioValues.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
-      {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
-      <img src="../../../assets/images/investment-account/forward.svg" alt="" />
-    </button>
-    <button type="button" class="asset_allocation_btn mb20" id="asset_allocation_btn" (click)="goToAssetAllocation()">
-      {{'YOUR_PORTFOLIO.ASSET_ALLOCATION' | translate}}
-      <img src="../../../assets/images/investment-account/forward.svg" alt="" />
-    </button>
+      <div class="flex-col-3">Toast link here</div>
   </div>
 </div>
+<section class="invest-section" *ngIf="portfolio">
+  <div class="invest-section-items"> 
+    <div class="invest-section-content">
+      <div class="invest-bg">
+        <div class="invest-bg-media">
+            <div class="invest-bg-image"></div>
+            <div class="invest-bg-color"></div>
+        </div>
+        <div class="invest-bg-content">
+          <div class="flex-row user_content flex-col-12">
+            <div class="user_summary" id="your_portfolio_summary">
+              <div class="user_portfolio-icon">
+                <img src="../assets/images/investment-account/growth_icon.svg"/>
+              </div>
+              <div class="user_portfolio flex-col">
+                <span class="user_portfolio_lbl">{{portfolio.portfolioName}}</span>
+                <span class="portfolio-type">{{portfolio.riskProfile.type}} Portfolio</span>
+              </div>
+            </div>
+            <div class="more-menu">
+              <div class="dropdown-control">
+                <div ngbDropdown>
+                  <button class="btn btn-dropdown without-border" id="your_portfolio-drpdown" ngbDropdownToggle>
+                    More</button>
+                  <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                    <button class="dropdown-item"
+                      [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
+                      || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
+                      *ngFor="let option of moreList; let i = index;"
+                      (click)="selectOption(option)"
+                      id="additional_declaration_sourse-drpdown-option-{{i}}">
+                        {{option.name}}
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="portfolio-panel" *ngIf="portfolio">
+  <div class="container-fluid max-width--1024">
+    <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle><div>Portfolio Summary</div></ng-template>
+        <ng-template ngbTabContent>
+            <div class="flex-col-12">
+                <div class="portfolio-panel-content">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group-with-bg start-investing">
+                        <div class="form-group-with-bg--header ">
+                          <div class="start-investing-header">
+                            <span class="header-icon"><img src="../../../assets/images/investment-account/owl-talk-header.svg" /></span><span>What’s Next?</span>
+                          </div>
+                        </div>
+                        <div class="form-group-with-bg--content">
+                          <div class="start-investing-info">
+                            <div class="flex-col">
+                              <div class="pb10">Start investing in Jason’s University Fund portfolio.</div>
+                              <div class="txt-lyt">How to top up?</div>
+                            </div>
+                            <div class="topup-btn">Top Up</div>
+                          </div>
+                          <div class="flex-col">
+                            <div class="or-seperator">
+                              <div class="brdr-btm"></div>
+                              <div class="txt-lyt">Or do you want to</div>
+                            </div>
+                            <div class="try-btn">Try Another Recommendation</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  ALREADY FUNDED PORTFOLIO-->
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED'">
+                      <div class="flex-row" *ngIf="portfolio.entitlements.showTopup">
+                        <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
+                          <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
+                        </button>
+                      </div>
+                      <div class="form-group-with-bg">
+                        <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !userProfileInfo.investementDetails.showTotalReturn}">
+                          <div id="portdolio_value" class="total_values">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                        </div> 
+                        <!--Form Content-->
+                        <div class="form-group-with-bg--content" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                          <div class="flex-row">
+                            <div class="flex-col-7">
+                              <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                                <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+                              </div>
+                            </div>
+                            <div class="flex-col-5">
+                              <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">{{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%</div>
+                            </div>
+                          </div>
+                          <div class="flex-row mt20" *ngIf="yearlyReturns">
+                            <div class="flex-col-7">
+                              <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return ">{{'YOUR_PORTFOLIO.ANNUALIZED_RETURNS' | translate}}
+                              </div>
+                            </div>
+                            <div class="flex-col-5">
+                              <div id="your_portfolio_totalreturn_value" class="total_return_value" [class.negativeValue]="yearlyReturns < 0" for="total value">{{formatReturns(yearlyReturns)}}{{yearlyReturns | number : '1.0-2'}}%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- NOT FUNDED PORTFOLIO  -->
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus !== 'PURCHASED'">
+                      <div class="form-group-with-bg mt10">
+                        <div class="form-group-with-bg--header your_total_value">
+                          <div id="your_portfolio_total_lb" class="total_values">$0</div>
+                          <div id="your_portfolio_total_value" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                        </div>
+                        <div class="form-group-with-bg--content" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                          <div class="flex-row">
+                            <div class="flex-col-9">
+                              <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                                <img (click)="showTotalReturnPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+                              </div>
+                            </div>
+                            <div class="flex-col-3">
+                              <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">0%
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <button *ngIf="holdingValues && portfolio.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+                      {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
+                      <img src="../../../assets/images/investment-account/forward.svg" alt="" />
+                    </button>
+                    <button type="button" class="asset_allocation_btn mb20" id="asset_allocation_btn" (click)="goToAssetAllocation()">
+                      {{'YOUR_PORTFOLIO.ASSET_ALLOCATION' | translate}}
+                      <img src="../../../assets/images/investment-account/forward.svg" alt="" />
+                    </button>
+                </div>
+              </div>
+              
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle><div class="pending-request"><div>Pending Requests / Cash Account</div><div class="circle">2</div></div></ng-template>
+        <ng-template ngbTabContent>
+          <div class="pending-request-panel-content">
+            <div class="withdrawal">
+              <div class="form-group-with-bg">
+                <div class="form-group-with-bg--header">
+                  <div class="widthdrawal-header">
+                    <div class="flex-row">
+                      <span class="widthdrawal-icon">
+                        <img src="../../../assets/images/topupwithdraw/withdraw-hand.svg"/>
+                      </span>
+                      <span>You have withdrawals in process.</span>
+                    </div>
+                    <div><span class="downward-icon"><img src="../../../assets/images/dropdown-icon.svg" /></span></div>
+                  </div>
+                </div> 
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="widthdrawal-content">
+                    <div class="flex-col">
+                      <div class="processing-time">4 Jun 2019, 5:10PM</div>
+                      <div class="flex-col-12 flex-row">
+                        <div>Portfolio to Cash Account</div>
+                        <div class="withdraw-amt">$1,000,000</div>
+                      </div>
+                    </div>
+                    <div class="flex-col">
+                      <div class="processing-time">4 Jun 2019, 5:10PM</div>
+                      <div class="flex-col-12 flex-row">
+                        <div>Portfolio to Cash Account</div>
+                        <div class="withdraw-amt">$1,000,000</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <!-- buy request -->
+            <div class="buy-request">
+              <div class="pending-buy-rqst-lbl">You have 2 Buy Requests</div>
+              <div class="form-group-with-bg">
+                <div class="form-group-with-bg--header">
+                 <div class="invest-type">
+                    <span class="invest-type-icon">
+                      <img src="../../../assets/images/investment-account/one-time-icon.svg"/>
+                    </span>
+                    <span>One-time</span>
+                  </div>
+                </div> 
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="flex-col">
+                    <div class="processing-time">Fund by 8 Jun.</div>
+                    <div class="flex-col-12 flex-row">
+                      <div><span class="fund-state"></span><span>4 Jun, 5:10PM</span></div>
+                      <div class="fund-amt"><span>$120,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                    </div>
+                  </div>
+                  <div class="processing-state">
+                    <div class="process_lbl">Processing</div>
+                    <div class="processing-time">It will take 3 - 4 working days to complete.</div>
+                    <div class="flex-col">
+                      <div class="flex-col-12 flex-row">
+                        <div>4 Jun, 5:10PM</div>
+                        <div class="fund-amt"><span>$120,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-col">
+                    <div class="flex-col-12 flex-row">
+                      <div class="topup-btn">Top Up</div>
+                      <div class="fund-amt">$0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group-with-bg">
+                <div class="form-group-with-bg--header">
+                  <div class="invest-type">
+                    <span class="invest-type-icon">
+                      <img src="../../../assets/images/investment-account/monthly-icon.svg"/>
+                    </span>
+                    <span>Monthly</span>
+                  </div>
+                </div> 
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="flex-col">
+                    <div class="processing-time">Fund by 8 Jun.</div>
+                    <div class="flex-col-12 flex-row">
+                      <div><span class="fund-state"></span><span>4 Jun, 5:10PM</span></div>
+                      <div class="fund-amt"><span>$120,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                    </div>
+                  </div>
+                  <div class="processing-state">
+                    <div class="process_lbl">Processing</div>
+                    <div class="processing-time">It will take 3 - 4 working days to complete.</div>
+                    <div class="flex-col">
+                      <div class="flex-col-12 flex-row">
+                          <div>1 Jun, 5:10PM</div>
+                          <div class="fund-amt"><span>$10,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                      </div>
+                    </div>
+                    <div class="flex-col">
+                      <div class="flex-col-12 flex-row">
+                          <div>1 Jun, 5:10PM</div>
+                          <div class="fund-amt"><span>$10,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-col">
+                    <div class="flex-col-12 flex-row">
+                      <div class="topup-btn">Top Up</div>
+                      <div class="fund-amt">$0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- buy request -->
+            </div>
+            <!-- cash a/c -->
+            <div class="cash-account">
+                <div class="cash-account-lbl">Cash Account</div>
+                <div class="form-group-with-bg">
+                  <div class="form-group-with-bg--header">
+                    <div class="cash-account-header">
+                      <div class="flex-row">
+                        <span class="balance-amount-lbl">Balance Amount:</span>
+                        <span>$2,000</span>
+                      </div>
+                    </div>
+                  </div> 
+                  <!--Form Content-->
+                  <div class="form-group-with-bg--content">
+                    <div class="cash-account-content">
+                      <div class="ref-code">Reference Code: G0000099</div>
+                      <div class="flex align-center">
+                        <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
+                        <div class="note"><span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.</div>
+                      </div>
+                      <div class="view-transfer mt20">View Transfer Instructions</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
 </div>

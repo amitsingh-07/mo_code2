@@ -93,8 +93,8 @@ export class InvestmentApiService {
       );
   }
 
-  getIndividualPortfolioDetails(portfolioId) {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.porfolioDetails + '/' + portfolioId)
+  getCustomerPortfolioDetailsById(customerPortfolioId) {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.porfolioDetails)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -306,13 +306,6 @@ export class InvestmentApiService {
     // tslint:disable-next-line:no-commented-code
     // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
     const url = '../../../assets/mock-data/portfolioList.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
- getMoreList() {
-    const url = '../assets/mock-data/moreList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

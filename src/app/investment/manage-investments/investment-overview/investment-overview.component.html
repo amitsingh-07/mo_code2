@@ -6,7 +6,7 @@
         <div class="flex-col-8">
             <div class="toast-msg">{{toastMsg?.desc}}</div>
         </div>
-        <div class="flex-col-3 cursor_pointer" *ngIf="toastMsg?.link_label" (click)="yourPortfolioDynamic()">{{toastMsg?.link_label}}</div>
+        <div class="flex-col-3 cursor_pointer" *ngIf="toastMsg?.link_label" (click)="selectToastMessageDetail(toastMsg?.link_label)">{{toastMsg?.link_label}}</div>
     </div>
 </div>
 <section class="invest-section" *ngIf="investmentoverviewlist">
