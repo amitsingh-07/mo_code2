@@ -14,13 +14,7 @@ app-tax-info {
 
     .dropdown-control {
       .dependent-count {
-        // margin-left: 4px;
-        // font-size: 16px;
-        // line-height: 1.25;
         letter-spacing: -0.2px;
-        // font-weight: normal;
-        // font-style: normal;
-        // font-stretch: normal;
       }
     }
 
@@ -42,23 +36,6 @@ app-tax-info {
       }
     }
 
-    // .dropdown-menu.show {
-    //   right: 0 !important;
-    //   overflow: auto;
-    //   height: auto;
-    //   max-height: 264px;
-    // }
-    // .dropdown-item {
-    //   white-space: normal;
-    //   word-break: break-word;
-    // }
-    // .dropdown-control .btn-dropdown {
-    //   padding-right: 27px;
-    //   max-height: 52px;
-    //   white-space: nowrap;
-    //   overflow: hidden;
-    //   text-overflow: ellipsis;
-    // }
     .btn {
       &.btn-dropdown {
         padding-right: 41px;
@@ -91,26 +68,6 @@ app-tax-info {
       padding-right: 14px;
     }
 
-    //   .step-indicator-container {
-    //     padding: 20px 0px;
-    //     position: relative;
-    //     @include allmobiles{
-    //       top: 60px;
-    //       background-color: $white-color;
-    //       padding: 10px 0px;
-    //     }
-    //     .container-fluid {
-    //       padding-top: 0px;
-    //       padding-bottom: 0px;
-    //     }
-    //     @include stepindicator-desktop-extraspace;
-    //   }
-    //   .container-fluid {
-    //     padding-top: 16px;
-    //     @include allmobiles{
-    //     padding-top: 80px;
-    //   }
-    // }
     .tooltip-icon {
       background: url('/assets/images/tooltip-icon.svg') no-repeat;
       height: 20px;
@@ -120,22 +77,10 @@ app-tax-info {
     }
 
     .country_text {
-      // font-family: $muli-semi-bold;
-      // font-size: 18px;
-      // font-weight: 600;
-      // color: $white-color;
       margin: 0px 10px 0px 0px;
     }
 
     .tin_question_text {
-      // font-family: $muli-semi-bold;
-      // font-size: 18px;
-      // font-weight: 600;
-      // font-style: normal;
-      // font-stretch: normal;
-      // line-height: normal;
-      // letter-spacing: -0.3px;
-      // color: $white-color;
       margin-top: 12px;
       margin-bottom: 12px;
     }
@@ -162,18 +107,13 @@ app-tax-info {
       font-family: $muli-bold;
       font-size: 18px;
       color: $inline-error-border-color;
-      // padding-top: 10px;
     }
 
     .tax-form {
-      //padding: 0px 0px 35px;
       position: relative;
       border-radius: 6px;
       margin-top: 20px;
 
-      // @include allmobiles{
-      //   padding: 60px 0px 25px; 
-      // }
       .tax-lbl {
         color: $white-color;
         padding-top: 24px;
@@ -181,7 +121,6 @@ app-tax-info {
       }
 
       &:first-child {
-        //padding-top: 0px;
         margin-top: 0px;
 
         .thumb-close-icon {
@@ -193,9 +132,6 @@ app-tax-info {
         }
       }
 
-      // &.brdr-btm {
-      //   border-bottom: 1px solid $white-color;
-      // }
       .thumb-close-icon {
         display: none !important;
         position: absolute;
