@@ -5,19 +5,20 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-
+import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-your-portfolio',
   templateUrl: './your-portfolio.component.html',
@@ -172,5 +173,21 @@ export class YourPortfolioComponent implements OnInit {
    goToInvestAgain(portfolioValues) {
     this.manageInvestmentsService.setPortfolioValues(portfolioValues);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+  }
+
+  clickMe() {
+    console.log('coming');
+    const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Rename Portfolio';
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
+    ref.componentInstance.primaryActionLabel = 'Rename Portfolio'
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.DELETE_TXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+    });
+    ref.componentInstance.noClickAction.subscribe(() => { });
   }
 }
