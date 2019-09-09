@@ -1,21 +1,11 @@
-<div class="account-created-success-modal">
-  <div class="custom-modal-backdrop"></div>
-  <div class="custom-modal-wrapper">
-    <div class="custom-modal-content">
-      <div class="custom-modal--icon">
-        <img class="hidden-sm-md" src="../../../assets/images/investment-account/investment_Account_Created.svg" id="add_submit_custModalImg1" />
-        <img class="hidden-lg" src="../../../assets/images/investment-account/success_small.svg" id="add_submit_custModalImg2" />
-        <div class="success-text-content">
-          <p *ngIf="status == 'success'" class="custom-modal--title mt20" id="upload-document-later-lab">
-            {{ 'TOPUP_REQUEST.TOPUP_REQUEST_RECEIVED' | translate}} 
-          </p>
-          <p *ngIf="status == 'pending'" class="custom-modal--title mt20" id="upload-document-later-lab">
-            {{ 'TOPUP_REQUEST.REQUEST_PROCESSED' | translate}} 
-          </p>
-        </div>
-        <button (click)="goToNext()" id="upload-document-later-back_to_dash_board" type="button" class="btn btn__footer--fixed btn-primary width100">
-          {{ 'TOPUP_REQUEST.BACK_TO_DASHBOARD' | translate}} </button>
-      </div>
-    </div>
+<div class="content">
+  <div class="container">
+    <img id="" [ngClass]="sufficient ? 'success-img' : 'insufficient-success-img'" src="assets/images/investment-account/owl-success-tick.svg" alt=""/>
+    <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
+    <div class="buy-request-msg">{{ 'TOPUP_REQUEST.ONE_TIME_MSG' | translate}}</div>
   </div>
+  <button (click)="goToNext()" id="" type="button"
+    class="btn btn__footer--fixed btn-primary width100">
+    {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
+  </button>
 </div>

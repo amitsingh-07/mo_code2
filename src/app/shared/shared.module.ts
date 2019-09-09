@@ -55,6 +55,7 @@ import { SecurePipe } from './Pipes/secure.pipe';
 import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
 import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-modal.component';
 import { SlickModule } from 'ngx-slick';
+import { ReviewBuyRequestModalComponent } from '../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -118,14 +119,16 @@ export function createTranslateLoader(http: HttpClient) {
     TermsModalComponent,
     SecurePipe,
     PortfolioListComponent,
-    CarouselModalComponent
+    CarouselModalComponent,
+    ReviewBuyRequestModalComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     IfastErrorModalComponent,
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
-    CarouselModalComponent
+    CarouselModalComponent,
+    ReviewBuyRequestModalComponent
   ],
   providers: [RoundPipe]
 })

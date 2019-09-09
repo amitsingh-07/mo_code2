@@ -4,18 +4,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { ReviewBuyRequestModalComponent } from './../../../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 
 @Component({
   selector: 'app-top-up',
@@ -208,7 +207,8 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.saveFundingDetails();
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    // this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    this.showReviewBuyRequestModal();
   }
   saveFundingDetails() {
     const topupValues = {
@@ -269,6 +269,7 @@ export class TopUpComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant(descText, translateParams);
     ref.componentInstance.primaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.YES');
     ref.componentInstance.isInlineButton = true;
+    ref.componentInstance.closeBtn = false;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
       this.saveAndProceed(form);
     });
@@ -278,5 +279,12 @@ export class TopUpComponent implements OnInit {
       ref.close();
     });
 
+  }
+
+  showReviewBuyRequestModal() {
+    const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
+    ref.componentInstance.fundDetails = this.manageInvestmentsService.getFundingDetails();
+    console.log('HERE = ', this.manageInvestmentsService.getFundingDetails())
+    ref.componentInstance.cashBalance = this.manageInvestmentsService.getUserCashBalance();
   }
 }

@@ -16,8 +16,8 @@
     },
     "CONFIRM_OVERWRITE_MODAL": {
       "TITLE": "Buy Request Exist",
-      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
-      "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
+      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}},</strong> submitted on DATE. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
+      "ONE_TIME_DESC": "You have an <strong>existing one-time buy request of {{existingOrderAmount}},</strong> submitted on DATE. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
       "YES": "Yes",
       "NO": "No"
     }
@@ -25,6 +25,11 @@
   "TOPUP_REQUEST": {
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
     "REQUEST_PROCESSED": "Request will be processed once fund transfer is complete",
+    "BUY_REQUEST_SUBMITTED": "Your buy request has been submitted",
+    "ONE_TIME_MSG": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_MSG": "Your request will be processed on the 15th, it will take 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "TRANSFER_MSG": "Please transfer the following amount using Bank Transfer or PayNow.",
+    "OK_GOT_IT": "Okay, Got It!",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "YOUR_INVESTMENT": {
@@ -212,6 +217,28 @@
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
     "ANNUAL_FEES": "Annual Fees"
 
+  },
+  "REVIEW_BUY_REQUEST": {
+    "TITLE": "Review Buy Request",
+    "YOU_ARE_SUBMITTING": "You are submitting a ",
+    "REQUEST": "{{requestType}} request",
+    "PORTFOLIO": "{{portfolioType}} Portfolio.",
+    "BUY_REQUEST": "Buy Request",
+    "PORTFOLIO_TYPE": " - {{portfolioType}} Portfolio",
+    "TOP_UP_AMOUNT": "Amount to top up to your cash account:",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance:",
+    "NOTE": "Note:",
+    "MONTHLY_NOTE": ["Please fund by the 10th of the month for the recurring buy request.",
+      "This request will only be processed once your cash account has sufficient funds.",
+      "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
+      "You may submit a new monthly investment amount before the 15th to overwrite this request.",
+      "Once this request is being processed, it cannot be changed or deleted."],
+    "SUFFICIENT_ONETIME_NOTE": ["This request will only be processed once your cash account has sufficient funds.",
+      "Once this request is being processed, it cannot be changed or deleted."],
+    "INSUFFICIENT_ONETIME_NOTE": ["This request will only be processed once your cash account has sufficient funds.",
+      "This request will expire if you do not fund within 7 working days",
+      "You may submit a new one-time investment amount to overwrite this request.",
+      "Once this request is being processed, it cannot be changed or deleted."],
+    "SUBMIT_REQUEST": "Submit Request"
   }
-
 }

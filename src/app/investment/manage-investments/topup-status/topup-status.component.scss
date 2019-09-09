@@ -1,65 +1,57 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 /*Modal styles*/
+.bg-color {
+  background-color: #2d8289 !important;
+}
 app-topup-status {
-  .account-created-success-modal {
-    .custom-modal-backdrop {
-      background: $dark-teal-color;
-      position: fixed;
-      opacity: 1;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      top: 0;
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
     }
-    .custom-modal-wrapper {
-      top: 0;
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      z-index: 10000;
-      text-align: center;
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 335px;
     }
-    .custom-modal-content {
-      width: 100%;
-      height: 100%;
-    }
-    .custom-modal--icon {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-        top: 40px;
-    }
-    .custom-modal--title {
-      font-family: $muli-regular;
-      font-size: 32px;
-      line-height: normal;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: $white-color;
+    .success-img {
+      margin-top: 96px;
       @include allmobiles{
-        font-family: $muli-bold;
-        font-size: 24px;
+        margin-top: 44px;
       }
     }
-    .custom-modal--desc {
+    .insufficient-success-img {
+      width: 96.7px;
+      height: 100px;
+      margin-top: 80px;
+      @include allmobiles{
+        margin-top: 31px;
+      }
+    }
+    .buy-request-submitted {
+      font-family: $muli-bold;
+      font-size: 28px;
+      line-height: 1.21;
+      letter-spacing: -0.21px;
+      color: $white-color;
+      text-align: center;
+      margin-top: 18px;
+      @include allmobiles{
+        margin-top: 25px;
+      }
+    }
+    .buy-request-msg {
       font-family: $muli-regular;
       font-size: 16px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
       line-height: normal;
-      letter-spacing: -0.1px;
-      text-align: center;
+      letter-spacing: -0.16px;
       color: $white-color;
-      @include allmobiles {
-        padding: 0 10%;
-      }
-    }
-    .custom-modal--content {
-      @include allmobiles {
-        width: 250px;
-        margin: 0 auto;
+      text-align: center;
+      margin-top: 18px;
+      @include allmobiles{
+        margin-top: 16px;
       }
     }
     .btn-primary {
@@ -67,6 +59,7 @@ app-topup-status {
     }
     .btn__footer--fixed {
       font-family: $muli-bold !important;
+      margin-top: 28px !important;
       @include allmobiles{
         width: 100%;
       }
@@ -77,5 +70,4 @@ app-topup-status {
         padding: 0px 20px 30px;
       }
     }
-  }
 }
