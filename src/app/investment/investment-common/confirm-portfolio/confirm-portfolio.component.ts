@@ -345,13 +345,15 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   reDirectToNextScreen() {
     this.investmentCommonService.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
-      if (data.accountCreationState && data.accountCreationState === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED) {
+      if (data.accountCreationState && [SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED,
+        SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED].indexOf(data.accountCreationState) >= 0) {
+        const cddCheckFailed = (data.accountCreationState === SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED) ? true : false;
         const pepData = this.investmentAccountService.getPepData();
         const OldPepData = this.investmentAccountService.getOldPepData();
         if (pepData && !OldPepData) {
           this.goToAdditionalDeclaration();
         } else {
-          this.createInvestmentAccount(true);
+          this.createInvestmentAccount(cddCheckFailed);
         }
       } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) { /* FIRST TIME PORTFOLIO */
         this.verifyAML();
