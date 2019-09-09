@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -6,8 +8,10 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+    MANAGE_INVESTMENTS_ROUTE_PATHS
+} from '../../manage-investments/manage-investments-routes.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 
 @Component({
@@ -28,7 +32,8 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     private router: Router,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService
+    public footerService: FooterService,
+    private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -53,6 +58,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     } else {
       this.hideStaticModal = true;
     }
+    this.cd.detectChanges();
   }
   dismissFlashScreen()  {
     clearTimeout(this.time);

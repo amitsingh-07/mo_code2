@@ -40,6 +40,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import {
   AccountCreationErrorModalComponent
 } from './account-creation-error-modal/account-creation-error-modal.component';
+import { IAccountCreationActions } from '../investment-common-form-data';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -141,7 +142,8 @@ export class ConfirmPortfolioComponent implements OnInit {
       monthlyInvestment: data.monthlyInvestment,
       fundingType: '',
       isAmountExceedBalance: 0,
-      exceededAmount: 0
+      exceededAmount: 0,
+      customerPortfolioId: data.customerPortfolioId
     };
   }
 
@@ -288,9 +290,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
-    ref.componentInstance.userPortfolioName = this.investmentAccountService.getConfirmPortfolioName();
+    ref.componentInstance.userPortfolioName = this.investmentCommonService.getConfirmPortfolioName();
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-      this.investmentAccountService.setConfirmPortfolioName(portfolioName);
+      this.investmentCommonService.setConfirmPortfolioName(portfolioName);
       this.savePortfolioName(portfolioName);
     });
   }
@@ -341,10 +343,10 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   reDirectToNextScreen() {
-    this.investmentCommonService.getAccountCreationStatusInfo().subscribe((data) => {
-      if (data && data.showInvestmentAccountCreationForm) {
+    this.investmentCommonService.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
+      if (this.investmentCommonService.isUsersFirstPortfolio(data)) { /* FIRST TIME PORTFOLIO */
         this.verifyAML();
-      } else {
+      } else { /* SUBSEQUENT PORTFOLIO */
         this.isSubsequentPortfolio = true;
         this.createInvestmentAccount();
       }

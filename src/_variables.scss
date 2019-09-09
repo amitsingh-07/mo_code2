@@ -1,5 +1,5 @@
 // font usage of muli
-$muli: 'Muli',sans-serif;   
+$muli: 'Muli',sans-serif;
 $muli-regular : 'Muli Regular',sans-serif;
 $muli-light: 'Muli Light',sans-serif;
 $muli-bold: 'Muli Bold',sans-serif;
@@ -30,6 +30,7 @@ $lighter-aqua-color:#f0f9fa;
 $dark-orange-color:#ff7900;
 $orange-color:#ff9c39;
 $red-color:#d0021b;
+$dark-red-color: #e50000;
 $green-color:#049723;
 $light-green-color: #11b600;
 $watercourse-color: #066360;
@@ -276,7 +277,7 @@ $portfolio-allocation-container-txt-color: $white-color;
 $portfolio-allocation-container-bg-color: $lagoon-blue-color;
 $portfolio-allocation-container-shadow-color: rgba(0, 0, 0, 0.14);
 
-$portfolio-allocation-content-txt-color:  $dark-teal-color;
+$portfolio-allocation-content-txt-color: $dark-teal-color;
 $portfolio-allocation-content-bg-color: $white-color;
 
 $portfolio-allocation-review-txt-color: $jungle-mist-blue-color;
@@ -370,8 +371,42 @@ $edit-pwd-brdr-color : #add9d8;
 $edit-acnt-disable-bg : #d8f2f2;
 $edit-acnt-disable-brdr : #81c7c6;
 
+// transfer-instructions
+$instruction-content-color: $dark-grey-color;
+$instruction-content-title-color: $watercourse-color;
+$instruction-section-brdr-color: $teal-color;
+$instruction-step-color: $teal-color;
+$instruction-circle-bg: $teal-color;
+$bank-title-color: $dark-teal-color;
+$bank-centent-color: $black-color;
+$ref-code-container-brdr-color: $red-color;
+$ref-code-container-bg: $cinderella-color;
+$ref-code-container-color: $dark-red-color;
+$ref-code-context-color: $black-color;
+$ref-code-context-must-color: $dark-red-color;
+$instruction-faq-color: $secondary-action-color;
+
 // Fund-account
-$fund-account-tab-color : #d2d2d2;
+$fund-account-tab-color : $alto-color;
+$fund-cash-account-color: $white-color;
+$fund-investment-value-color: $crusta-orange-color;
+$fund-cash-balance-color: $black-color;
+$fund-ref-color: $crusta-orange-color;
+$fund-ref-brdr-color: $teal-color;
+$fund-ref-bg-color:$white-color;
+$fund-cash-note-color: $dark-grey-color;
+$fund-account-detail-ref-num-color: $crusta-orange-color;
+$fund-account-detail-ref-code-info-color: $mango-tango-color;
+
+// TRANSFER DETAILS in fund-account
+$fund-transfer-details-color: $teal-color;
+$fund-tab-link-color: $keppel-color;
+$fund-tab-link-bg: $jagged-ice-color;
+$fund-tab-link-active-bg: $white-color;
+$fund-tab-content-bg: $bond-container-bg;
+$fund-instruction-txt-color: $silver-grey-color;
+$fund-process-info-bg: $persian-green-color;
+$fund-process-info-color: $white-color;
 
 // notifications
 $notification-title-bg: #dfecec;
@@ -390,7 +425,7 @@ $top-up-your-portfolio-value-content-bg : #eaeaea;
 $portfolio-footer-btn-brdr-color : #e4f8f8;
 $top-up-your-portfolio-asset-btn-shadow : rgb(0, 153, 153);
 $top-up-your-portfolio-your-total-value-bg: $pine-green-color;
-$tabs-font-color: #2E9E9E;
+$tabs-font-color: $keppel-color;
 $top-up-faq-link-color: #a7f3f1;
 
 // Post Login Dashboard
