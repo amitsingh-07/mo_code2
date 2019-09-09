@@ -159,9 +159,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
 
   resetLifeProtectionAmount() {
-
     this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(46000);
-
+  }
+  resetLongTermShieldAmount() {
+    this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
+    this.insurancePlanForm.controls['otherLongTermCareInsuranceAmount'].setValue(0);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -189,8 +191,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           form.value.homeProtectionCoverageAmount = 0;
         }
         if (form.value.haveLongTermElderShield !== 1 || form.value.longTermElderShieldAmount == '') {
+
           form.value.longTermElderShieldAmount = 0;
+          if (form.value.otherLongTermCareInsuranceAmount == '') {
+            form.value.otherLongTermCareInsuranceAmount = 0;
+          }
         }
+
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           this.comprehensiveService.setInsurancePlanningList(form.value);
