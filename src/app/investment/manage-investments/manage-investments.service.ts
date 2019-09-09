@@ -477,6 +477,7 @@ export class ManageInvestmentsService {
     this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
     this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
     this.transferInstructionModal.componentInstance.activeMode = this.activeModal;
+    this.transferInstructionModal.componentInstance.numberOfPendingReq = true;
     this.transferInstructionModal.componentInstance.closeModal.subscribe(() => {
       this.transferInstructionModal.dismiss();
     });
@@ -487,6 +488,10 @@ export class ManageInvestmentsService {
     this.transferInstructionModal.componentInstance.activeTab.subscribe((res) => {
       this.activeModal = res;
     });
+    this.transferInstructionModal.componentInstance.topUpActionBtn.subscribe(() => {
+      this.transferInstructionModal.dismiss();
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+     });
   }
 
   /*

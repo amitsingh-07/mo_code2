@@ -162,7 +162,7 @@ export class YourPortfolioComponent implements OnInit {
   */
   getTransferDetails(customerPortfolioId) {
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
-      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
+      this.manageInvestmentsService.setBankPayNowDetails(data.objectList);
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
