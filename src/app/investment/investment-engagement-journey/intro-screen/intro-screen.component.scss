@@ -21,7 +21,7 @@ app-intro-screen {
         width: calc(50% - 10px);
         opacity: 0.2;
         padding-right: 10px;
-        background-color: $app-backgrnd-secondary-color;
+        background-color: $intro-block-tab-bg-color;
         min-height: 5px;
 
         &.active {
@@ -73,7 +73,6 @@ app-intro-screen {
           line-height: 1.22;
           letter-spacing: -0.2px;
           text-align: center;
-          //color: $white-color;
         }
       }
     }
