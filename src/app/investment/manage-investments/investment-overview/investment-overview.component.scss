@@ -77,28 +77,20 @@ app-investment-overview {
         justify-content: space-between;
       }
 
-      .total_return_label {
-        color: $text-color-secondary;
+      .total_cash_balance {
         font-size: 16px;
         color: $dark-teal-color;
-      }
 
-      .start_investment_label {
-        font-size: 13px;
-        line-height: 1.62;
-        letter-spacing: -0.1px;
-        color: $text-color-secondary;
-      }
+        .total_cash_label {
+          line-height: 1.31;
+          letter-spacing: -0.15px;
+        }
 
-      .start_investment_value {
-        font-family: $muli-bold;
-        font-size: 16px;
-        letter-spacing: -0.2px;
-        text-align: right;
-        color: $transaction-panel-buy-color;
-
-        &.negativeValue {
-          color: $red-color;
+        .total_cash_value {
+          font-family: $muli-bold;
+          letter-spacing: -0.2px;
+          text-align: right;
+          color: $teal-color;
         }
       }
 
