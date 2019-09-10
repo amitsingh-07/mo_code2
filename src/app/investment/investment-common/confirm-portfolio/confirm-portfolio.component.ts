@@ -134,7 +134,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructFundingParams(data) {
     return {
       source: 'FUNDING',
-      redirectTo: 'DASHBOARD',
+      redirectTo: 'YOUR_INVESTMENT',
       portfolio: {
         productName: data.portfolioName,
         riskProfile: data.riskProfile

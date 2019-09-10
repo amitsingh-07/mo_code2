@@ -37,12 +37,12 @@
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
         <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
         <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div>
-        <div class="strong">{{PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type}}</div>
+        <div class="strong">{{(PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type) | titlecase}}</div>
       </div>
     </div>
 
     <div class="cash-account" *ngIf="fundDetails.source == 'FUNDING'">
-      <div class="text-center mb20">{{ 'FUNDING_INSTRUCTIONS.FUNDING_DESC' | translate }}</div>
+      <div class="mb20">{{ 'FUNDING_INSTRUCTIONS.FUNDING_DESC' | translate }}</div>
       <div class="form-group-with-bg">
         <div class="form-group-with-bg--content">
           <div class="cash-account-content">
@@ -238,8 +238,8 @@
     Submit
   </button>
   <div class="text-center">
-    <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'DASHBOARD'" type="button"
-      (click)="goToNext('DASHBOARD')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 fund-instruction-btn"
+    <button *ngIf="fundDetails.source == 'FUNDING' && fundDetails.redirectTo == 'YOUR_INVESTMENT'" type="button"
+      (click)="goToNext('YOUR_INVESTMENT')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 fund-instruction-btn"
       id="portfolioRecommendationNextBtn">
       Okay, Got It!
     </button>

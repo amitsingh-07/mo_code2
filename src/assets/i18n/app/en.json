@@ -351,7 +351,7 @@
           "STEP_5": "STEP 5",
           "STEP_6": "STEP 6",
           "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
-          "LBL_STEP_2": "Select an <span class='sub-section-bold'>account of your own (registered under your name)</span> to transfer from and <span class='sub-section-bold'>enter the amount</span> to transfer.",
+          "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
           "LBL_STEP_3": "Enter transfer information.",
           "LBL_STEP_4": "Enter reference code.",
           "LBL_STEP_5": "Verify and confirm the transaction details.",

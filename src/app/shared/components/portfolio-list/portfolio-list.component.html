@@ -26,7 +26,7 @@
                       </div>
                   </div>
                   <div class="list-btn" *ngIf="notInvestedList.length > 5">
-                      <span *ngIf="!showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{notInvestedList.length}})<img src="../assets/images/investment-account/list-down.svg" /></span>
+                      <span *ngIf="!showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ notInvestedList.length - 5 }})<img src="../assets/images/investment-account/list-down.svg" /></span>
                       <span *ngIf="showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}} <img class="show-less" src="../assets/images/investment-account/list-down.svg" /></span>
                   </div>
               </div>
@@ -53,7 +53,7 @@
                       </div>
                   </div>
                   <div class="list-btn" *ngIf="investedList.length > 5">
-                    <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{investedList.length}})<img src="../assets/images/investment-account/list-down.svg" /></span>
+                    <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ investedList.length - 5}})<img src="../assets/images/investment-account/list-down.svg" /></span>
                     <span *ngIf="showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="../assets/images/investment-account/list-down.svg" /></span>
                   </div>
               </div>
