@@ -284,7 +284,6 @@ export class TopUpComponent implements OnInit {
   showReviewBuyRequestModal() {
     const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
     ref.componentInstance.fundDetails = this.manageInvestmentsService.getFundingDetails();
-    console.log('HERE = ', this.manageInvestmentsService.getFundingDetails())
     ref.componentInstance.cashBalance = this.manageInvestmentsService.getUserCashBalance();
   }
 }

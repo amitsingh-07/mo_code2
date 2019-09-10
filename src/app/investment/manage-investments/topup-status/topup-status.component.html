@@ -1,11 +1,56 @@
 <div class="content">
-  <div class="container">
-    <img id="" [ngClass]="sufficient ? 'success-img' : 'insufficient-success-img'" src="assets/images/investment-account/owl-success-tick.svg" alt=""/>
+  <div [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
+    <img id="" [ngClass]="status === 'success' ? 'success-img' : 'insufficient-success-img'"
+      src="assets/images/investment-account/owl-success-tick.svg" alt="" />
     <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
-    <div class="buy-request-msg">{{ 'TOPUP_REQUEST.ONE_TIME_MSG' | translate}}</div>
+    <div *ngIf="status === 'success'" class="buy-request-msg">{{oneTimeMonthlyMsg}}</div>
+
+    <div *ngIf=!oneTimeOrMonthlySufficient() class="cash-account">
+      <div class="transfer-text">{{ 'TOPUP_REQUEST.FUNDING_DESC' | translate }}</div>
+        <div class="cash-account-summary">
+          <div class="cash-account-content">
+            <div class="investment-value">{{fundDetails['exceededAmount'] | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div class="cash-account-balance">{{ 'TOPUP_REQUEST.CASH_ACCOUNT_BALANCE_LBL' | translate }} {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div class="ref-code">
+              {{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }} {{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}
+            </div>
+            <div class="flex">
+              <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
+              <div class="note" innerHTML="{{ 'TOPUP_REQUEST.NOTE' | translate }}"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- TRANSFER DETAILS -->
+    <div class="transfer-details">
+      <div *ngIf=!oneTimeOrMonthlySufficient()>
+        <div class="tab-links">
+          <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
+            <div class="pay-tab">{{ 'TOPUP_REQUEST.BANK_TRANSFER' | translate }}</div>
+          </div>
+          <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
+            <div class="pay-tab"><img src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
+          </div>
+        </div>
+        <div class="tab-content-container">
+          <!-- Bank Transfer Instruction Start -->
+          <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'">
+            <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails">
+            </app-instruction-steps>
+          </div>
+          <!-- Bank Transfer Instruction End -->
+          <!-- PayNow Transfer Instruction Start -->
+          <div class="tab-content fund-instruction" [class.active]="activeMode == 'PAYNOW'">
+            <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails">
+            </app-instruction-steps>
+          </div>
+          <!-- PayNow Transfer Instruction End -->
+        </div>
+      </div>
+    </div>
   </div>
-  <button (click)="goToNext()" id="" type="button"
-    class="btn btn__footer--fixed btn-primary width100">
+  <button (click)="goToNext()" id="" type="button" class="btn btn__footer--fixed btn-primary width100">
     {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
   </button>
 </div>

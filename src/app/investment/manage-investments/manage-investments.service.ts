@@ -343,7 +343,7 @@ export class ManageInvestmentsService {
     let oneTimeInvestment: number;
     oneTimeInvestment = data.oneTimeInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
+      portfolioId: data.portfolio.customerPortfolioId,
       investmentAmount: Number(oneTimeInvestment) // todo
     };
   }
@@ -358,7 +358,7 @@ export class ManageInvestmentsService {
     let monthlyInvestmentAmount: number;
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
+      portfolioId: data.portfolio.customerPortfolioId,
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }

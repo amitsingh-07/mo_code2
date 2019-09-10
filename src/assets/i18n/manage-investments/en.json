@@ -28,9 +28,12 @@
     "BUY_REQUEST_SUBMITTED": "Your buy request has been submitted",
     "ONE_TIME_MSG": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
     "MONTHLY_MSG": "Your request will be processed on the 15th, it will take 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-    "TRANSFER_MSG": "Please transfer the following amount using Bank Transfer or PayNow.",
     "OK_GOT_IT": "Okay, Got It!",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "FUNDING_DESC":"Please transfer the following amount using Bank Transfer or PayNow.",
+    "CASH_ACCOUNT_BALANCE_LBL":"Cash Account Balance:",
+    "REFERENCE_CODE_LBL":"Reference Code:",
+    "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments” section in your funds transfer / PayNow screen.</span>",
+    "BANK_TRANSFER":"Bank Transfer"
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",
