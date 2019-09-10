@@ -94,7 +94,8 @@ export class InvestmentApiService {
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.porfolioDetails)
+    const url = investmentApiConstants.endpoint.investmentAccount.porfolioDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

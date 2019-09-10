@@ -21,24 +21,25 @@
           <div class="flex-row user_content flex-col-12">
             <div class="user_summary" id="your_portfolio_summary">
               <div class="user_portfolio-icon">
-                <img src="../assets/images/investment-account/growth_icon.svg"/>
+                <img [src]="riskProfileImage" />
               </div>
               <div class="user_portfolio flex-col">
                 <span class="user_portfolio_lbl">{{portfolio.portfolioName}}</span>
-                <span class="portfolio-type">{{portfolio.riskProfile.type}} Portfolio</span>
+                <span class="portfolio-type">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</span>
               </div>
             </div>
             <div class="more-menu">
               <div class="dropdown-control">
                 <div ngbDropdown>
                   <button class="btn btn-dropdown without-border" id="your_portfolio-drpdown" ngbDropdownToggle>
-                    More</button>
+                    {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                     <button class="dropdown-item"
                       [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
                       || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
+                      [class.disabled]="(option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete)"
                       *ngFor="let option of moreList; let i = index;"
-                      (click)="selectOption(option)"
+                      (click)="selectMoreOption(option)"
                       id="additional_declaration_sourse-drpdown-option-{{i}}">
                         {{option.name}}
                   </button>
@@ -56,32 +57,32 @@
   <div class="container-fluid max-width--1024">
     <ngb-tabset>
       <ngb-tab>
-        <ng-template ngbTabTitle><div>Portfolio Summary</div></ng-template>
+        <ng-template ngbTabTitle><div>{{'YOUR_PORTFOLIO.PORTFOLIO_SUMMARY' | translate}}</div></ng-template>
         <ng-template ngbTabContent>
             <div class="flex-col-12">
                 <div class="portfolio-panel-content">
-                  <div class="row">
+                  <div class="row" *ngIf="true">
                     <div class="col-lg-12 col-md-12">
                       <div class="form-group-with-bg start-investing">
                         <div class="form-group-with-bg--header ">
                           <div class="start-investing-header">
-                            <span class="header-icon"><img src="../../../assets/images/investment-account/owl-talk-header.svg" /></span><span>What’s Next?</span>
+                            <span class="header-icon"><img src="../../../assets/images/investment-account/owl-talk-header.svg" /></span><span>{{'YOUR_PORTFOLIO.WHATS_NEXT' | translate}}</span>
                           </div>
                         </div>
                         <div class="form-group-with-bg--content">
                           <div class="start-investing-info">
                             <div class="flex-col">
-                              <div class="pb10">Start investing in Jason’s University Fund portfolio.</div>
-                              <div class="txt-lyt">How to top up?</div>
+                              <div class="pb10">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC' | translate: {portfolioName: portfolio.portfolioName} }}</div>
+                              <div class="txt-lyt" (click)="goToTopupInstructionLink()">{{'YOUR_PORTFOLIO.HOW_TO_TOPUP' | translate }}</div>
                             </div>
-                            <div class="topup-btn">Top Up</div>
+                            <div class="topup-btn"(click)="gotoTopUp()">{{'YOUR_PORTFOLIO.TOP_UP' | translate }}</div>
                           </div>
-                          <div class="flex-col">
+                          <div class="flex-col" *ngIf="false">
                             <div class="or-seperator">
                               <div class="brdr-btm"></div>
-                              <div class="txt-lyt">Or do you want to</div>
+                              <div class="txt-lyt">{{'YOUR_PORTFOLIO.OR_DO_YOU_WANT_TO' | translate }}</div>
                             </div>
-                            <div class="try-btn">Try Another Recommendation</div>
+                            <div class="try-btn">{{'YOUR_PORTFOLIO.TRY_ANOTHER_RECOMMENDATION' | translate }}</div>
                           </div>
                         </div>
                       </div>
@@ -90,11 +91,6 @@
                   <!--  ALREADY FUNDED PORTFOLIO-->
                   <div class="row">
                     <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED'">
-                      <div class="flex-row" *ngIf="portfolio.entitlements.showTopup">
-                        <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
-                          <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span> <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
-                        </button>
-                      </div>
                       <div class="form-group-with-bg">
                         <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !userProfileInfo.investementDetails.showTotalReturn}">
                           <div id="portdolio_value" class="total_values">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
@@ -163,7 +159,7 @@
         </ng-template>
       </ngb-tab>
       <ngb-tab>
-        <ng-template ngbTabTitle><div class="pending-request"><div>Pending Requests / Cash Account</div><div class="circle">{{portfolio.pendingRequestDTO.numberOfPendingRequests}}</div></div></ng-template>
+        <ng-template ngbTabTitle><div class="pending-request"><div>{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}</div><div class="circle">{{portfolio.pendingRequestDTO.numberOfPendingRequests}}</div></div></ng-template>
         <ng-template ngbTabContent>
           <div class="pending-request-panel-content">
             <div class="withdrawal" *ngIf="pendingSellRequests && pendingSellRequests.value">
@@ -174,7 +170,7 @@
                       <span class="widthdrawal-icon">
                         <img src="../../../assets/images/topupwithdraw/withdraw-hand.svg"/>
                       </span>
-                      <span>You have withdrawals in process.</span>
+                      <span>{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
                     </div>
                     <div><span class="downward-icon"><img src="../../../assets/images/dropdown-icon.svg" /></span></div>
                   </div>
@@ -195,22 +191,22 @@
             </div>
               <!-- buy request -->
             <div class="buy-request">
-              <div class="pending-buy-rqst-lbl">{{pendingRequestInfoText}}</div>
+              <div class="pending-buy-rqst-lbl">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: this.portfolio.pendingRequestDTO.numberOfPendingRequests} }}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
                  <div class="invest-type">
                     <span class="invest-type-icon">
                       <img src="../../../assets/images/investment-account/one-time-icon.svg"/>
                     </span>
-                    <span>One-time</span>
+                    <span>{{'YOUR_PORTFOLIO.ONE_TIME' | translate}}</span>
                   </div>
                 </div> 
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div *ngIf="pendingOnetimeBuyRequests.awaitingFundRequests.length">
+                  <div *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
                   <div class="flex-col" *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
-                    <div class="processing-time"> Fund by {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
+                    <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}} {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
                     <div class="flex-col-12 flex-row">
                       <div><span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                       <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
@@ -219,9 +215,9 @@
                 </div>
 
                   <!-- RECIEVED -->
-                  <div *ngIf="pendingOnetimeBuyRequests.recievedRequests.length">
+                  <div *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
                   <div class="flex-col" *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
-                      <div class="processing-time"> Fund recieved & will process in 1-2 working days.</div>
+                      <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                         <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
@@ -230,9 +226,9 @@
                   </div>
                   
                   <!-- PROCESSING -->
-                  <div class="processing-state" *ngIf="pendingOnetimeBuyRequests.processingRequests.length">
-                    <div class="process_lbl">Processing</div>
-                    <div class="processing-time">It will take 3 - 4 working days to complete.</div>
+                  <div class="processing-state" *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.processingRequests.length">
+                    <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
+                    <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
                     <div class="flex-col" *ngFor="let processingRequest of pendingOnetimeBuyRequests.processingRequests; let i = index;">
                       <div class="flex-col-12 flex-row">
                         <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
@@ -244,7 +240,7 @@
                   <!-- NO REQUESTS -->
                   <div class="flex-col" *ngIf="!pendingOnetimeBuyRequests">
                     <div class="flex-col-12 flex-row">
-                      <div class="topup-btn">Top Up</div>
+                      <div class="topup-btn">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
                       <div class="fund-amt">$0</div>
                     </div>
                   </div>
@@ -256,15 +252,15 @@
                     <span class="invest-type-icon">
                       <img src="../../../assets/images/investment-account/monthly-icon.svg"/>
                     </span>
-                    <span>Monthly</span>
+                    <span>{{'YOUR_PORTFOLIO.MONTHLY' | translate}}</span>
                   </div>
                 </div> 
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div *ngIf="pendingMonthlyBuyRequests.awaitingFundRequests.length">
+                  <div *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
                       <div class="flex-col" *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
-                        <div class="processing-time"> Fund by 10th of the month.</div>
+                        <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
                         <div class="flex-col-12 flex-row">
                           <div><span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                           <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
@@ -273,9 +269,9 @@
                     </div>
     
                       <!-- RECIEVED -->
-                      <div *ngIf="pendingMonthlyBuyRequests.recievedRequests.length">
+                      <div *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
                       <div class="flex-col" *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
-                          <div class="processing-time"> Fund recieved & will process in 1-2 working days.</div>
+                          <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                           <div class="flex-col-12 flex-row">
                             <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                             <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
@@ -284,9 +280,9 @@
                       </div>
                       
                       <!-- PROCESSING -->
-                      <div class="processing-state" *ngIf="pendingMonthlyBuyRequests.processingRequests.length">
-                        <div class="process_lbl">Processing</div>
-                        <div class="processing-time">It will take 3 - 4 working days to complete.</div>
+                      <div class="processing-state" *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length">
+                        <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
+                        <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
                         <div class="flex-col" *ngFor="let processingRequest of pendingMonthlyBuyRequests.processingRequests; let i = index;">
                           <div class="flex-col-12 flex-row">
                             <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
@@ -294,34 +290,10 @@
                           </div>
                         </div>
                       </div>
-                  <!--
-                  <div class="flex-col">
-                    <div class="processing-time">Fund by 8 Jun.</div>
-                    <div class="flex-col-12 flex-row">
-                      <div><span class="fund-state"></span><span>4 Jun, 5:10PM</span></div>
-                      <div class="fund-amt"><span>$120,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
-                    </div>
-                  </div>
-                  <div class="processing-state">
-                    <div class="process_lbl">Processing</div>
-                    <div class="processing-time">It will take 3 - 4 working days to complete.</div>
-                    <div class="flex-col">
-                      <div class="flex-col-12 flex-row">
-                          <div>1 Jun, 5:10PM</div>
-                          <div class="fund-amt"><span>$10,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
-                      </div>
-                    </div>
-                    <div class="flex-col">
-                      <div class="flex-col-12 flex-row">
-                          <div>1 Jun, 5:10PM</div>
-                          <div class="fund-amt"><span>$10,000</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
-                      </div>
-                    </div>
-                  </div>
-                -->
+                  
                   <div class="flex-col" *ngIf="!pendingMonthlyBuyRequests">
                     <div class="flex-col-12 flex-row">
-                      <div class="topup-btn">Top Up</div>
+                      <div class="topup-btn">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
                       <div class="fund-amt">$0</div>
                     </div>
                   </div>
@@ -331,12 +303,12 @@
             </div>
             <!-- cash a/c -->
             <div class="cash-account">
-                <div class="cash-account-lbl">Cash Account</div>
+                <div class="cash-account-lbl">{{'YOUR_PORTFOLIO.CASH_ACCOUNT' | translate}}</div>
                 <div class="form-group-with-bg">
                   <div class="form-group-with-bg--header">
                     <div class="cash-account-header">
                       <div class="flex-row">
-                        <span class="balance-amount-lbl">Balance Amount:</span>
+                        <span class="balance-amount-lbl">{{'YOUR_PORTFOLIO.BALANCE_AMOUNT' | translate}}:</span>
                         <span> {{portfolio.investmentAccountDTO.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                       </div>
                     </div>
@@ -344,12 +316,12 @@
                   <!--Form Content-->
                   <div class="form-group-with-bg--content">
                     <div class="cash-account-content">
-                      <div class="ref-code">Reference Code: {{portfolio.investmentAccountDTO.referenceCode }}</div>
+                      <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}: {{portfolio.investmentAccountDTO.referenceCode }}</div>
                       <div class="flex align-center">
                         <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
-                        <div class="note"><span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.</div>
+                        <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>
                       </div>
-                      <div class="view-transfer mt20">View Transfer Instructions</div>
+                      <div class="view-transfer mt20">{{'YOUR_PORTFOLIO.VIEW_TRANSFER_INSTRUCTIONS' | translate}}</div>
                     </div>
                   </div>
                 </div>

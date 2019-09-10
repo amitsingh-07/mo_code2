@@ -105,7 +105,7 @@ export class InvestmentOverviewComponent implements OnInit {
 
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
-     this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.portfolioId);
+     this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }

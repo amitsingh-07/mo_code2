@@ -622,6 +622,7 @@ app-your-portfolio {
                     font-size: 15px;
                     letter-spacing: -0.15px;
                     color: #9b9b9b;
+                    cursor:pointer;
                   }
                 }
                 .topup-btn{
@@ -630,6 +631,7 @@ app-your-portfolio {
                   letter-spacing: -0.16px;
                   color: #ff872f;
                   padding-top: 10px;
+                  cursor:pointer;
                   @include allmobiles{
                     padding-top: 18px;
                   }

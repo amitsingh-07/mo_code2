@@ -46,5 +46,6 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
   },
   TRANSFER_INSTRUCTION : {
     MODE: 'BANK'
-  }
+  },
+  TOPUP_INSTRUCTION_URL: 'https://advice.moneyowl.com.sg/investment/transacting'
 };

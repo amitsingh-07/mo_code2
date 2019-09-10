@@ -64,7 +64,6 @@ export class AssetAllocationComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    debugger;
     this.portfolio = this.formValues.selectedCustomerPortfolio;
   }
 

@@ -26,7 +26,6 @@ export class AllocationComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    debugger;
   }
 
   ngOnChanges() {
