@@ -170,6 +170,9 @@ export class FundingInstructionsComponent implements OnInit {
       'FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.MESSAGE'
     );
   }
+  showTipModal() {
+   this.showPopUp();
+  }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter(
       (transferType) => transferType.institutionType === 'bank'
