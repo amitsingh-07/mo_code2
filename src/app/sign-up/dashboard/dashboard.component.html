@@ -74,7 +74,7 @@
                     <div class="portfolio_footer">
                       <div class="flex-col col-12">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_footer_value">
+                        <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
                           {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                         <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">$0</div>
                       </div>
