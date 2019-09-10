@@ -139,4 +139,14 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.clearTopUpData();
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
+
+  showTipModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'TOPUP_REQUEST.SHOWPOPUP.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'TOPUP_REQUEST.SHOWPOPUP.MESSAGE'
+    );
+  }
 }

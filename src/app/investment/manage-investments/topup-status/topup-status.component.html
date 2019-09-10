@@ -36,13 +36,13 @@
         <div class="tab-content-container">
           <!-- Bank Transfer Instruction Start -->
           <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'">
-            <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails">
+            <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails" (showToolTip)="showTipModal()">
             </app-instruction-steps>
           </div>
           <!-- Bank Transfer Instruction End -->
           <!-- PayNow Transfer Instruction Start -->
           <div class="tab-content fund-instruction" [class.active]="activeMode == 'PAYNOW'">
-            <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails">
+            <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails" (showToolTip)="showTipModal()">
             </app-instruction-steps>
           </div>
           <!-- PayNow Transfer Instruction End -->

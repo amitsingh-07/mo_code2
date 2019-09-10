@@ -33,7 +33,11 @@
     "CASH_ACCOUNT_BALANCE_LBL":"Cash Account Balance:",
     "REFERENCE_CODE_LBL":"Reference Code:",
     "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments” section in your funds transfer / PayNow screen.</span>",
-    "BANK_TRANSFER":"Bank Transfer"
+    "BANK_TRANSFER":"Bank Transfer",
+    "SHOWPOPUP": {
+      "TITLE": "Recipient’s / Entity Name",
+      "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+    }
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",

@@ -229,7 +229,8 @@ export class TopUpComponent implements OnInit {
     this.manageInvestmentsService.getMonthlyInvestmentInfo().subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
         this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
-        if (this.currentMonthlyInvAmount) { // If monthly investment already exists, allow zero
+         // If monthly investment already exists, allow zero
+        if (this.currentMonthlyInvAmount && this.topForm.get('MonthlyInvestmentAmount')) {
           this.topForm.get('MonthlyInvestmentAmount').clearValidators();
           this.topForm.get('MonthlyInvestmentAmount').updateValueAndValidity();
         }
