@@ -545,6 +545,11 @@ app-your-portfolio {
             display: flex;
             align-items: center;
           }
+          &.active {
+            .circle{
+              visibility:hidden;
+            }
+          }
           .circle{
             border-radius: 50%;
             width: 16px;

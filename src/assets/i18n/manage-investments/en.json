@@ -94,7 +94,8 @@
         "TITLE": "Cash Account",
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       }
-    }
+    },
+    "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests"
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
