@@ -73,7 +73,7 @@
   </div>
 </section>
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
-  (detailSelected)="yourPortfolio($event)"
+  [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
   [portfolioData]="investmentoverviewlist">

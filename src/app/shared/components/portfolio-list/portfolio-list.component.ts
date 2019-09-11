@@ -25,6 +25,7 @@ export class PortfolioListComponent implements OnInit {
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
   @Input('portfolioList') portfolioList;
+  @Input('showTotalReturn') showTotalReturn;
   @Input('portfolioData') portfolioData;
   @Output() transferInstSelected = new EventEmitter<boolean>();
   @Output() detailSelected = new EventEmitter<boolean>();
