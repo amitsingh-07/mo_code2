@@ -25,7 +25,7 @@ app-start-journey {
     font-size: 16px;
     line-height: 21px;
     letter-spacing: -0.16px;
-    color: $dark-grey-color;
+    color: $journey-content-color;
     text-align: center;
 
     p {
@@ -87,7 +87,7 @@ app-start-journey {
       top: 30px;
       width: 70%;
       padding: 5px 10px;
-      background: $white-color;
+      background: $promo-code-lbl-bg;
       margin: 0 auto;
 
       .promo-sub-lbl {
@@ -111,10 +111,12 @@ app-start-journey {
       padding: 18px 35px;
       width: 245px;
       height: 54px;
+
       @include iphone5 {
         width: 100%;
         padding: 18px 25px;
       }
+
       @include iphone6 {
         width: 100%;
         padding: 18px 30px;
@@ -126,8 +128,8 @@ app-start-journey {
       font-size: 16px;
       font-weight: 300;
       font-style: italic;
-      color: #a4a4a4 !important;
+      color: $offer-code-placeholder-color !important;
     }
   }
-  
+
 }

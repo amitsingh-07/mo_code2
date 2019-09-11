@@ -501,7 +501,7 @@ export class ManageInvestmentsService {
   getEntitlementsFromPortfolio(portfolio) {
     const userProfileInfo = this.signUpService.getUserProfileInfo();
     const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
-      (portfolioItem) => portfolioItem.portfolioId === portfolio.productCode
+      (portfolioItem) => (portfolio && portfolioItem.portfolioId === portfolio.productCode)
     )[0];
     if (filteredPortfolio && filteredPortfolio.entitlements) {
       return filteredPortfolio.entitlements;

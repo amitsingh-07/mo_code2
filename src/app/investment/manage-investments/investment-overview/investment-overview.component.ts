@@ -138,7 +138,7 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   setInvestmentData(data) {
-    this.investmentoverviewlist = data.objectList;
+    this.investmentoverviewlist = (data.objectList) ? data.objectList : {};
     this.totalReturns = this.investmentoverviewlist.totalReturns
       ? this.investmentoverviewlist.totalReturns
       : 0;
@@ -148,7 +148,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.totalValue = this.investmentoverviewlist.totalValue
       ? this.investmentoverviewlist.totalValue
       : 0;
-    this.portfolioList = this.investmentoverviewlist.portfolios;
+    this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios: [];
     this.totalPortfolio = this.portfolioList.length;
     this.welcomeInfo = {
       name: this.userProfileInfo.firstName,
@@ -259,6 +259,10 @@ export class InvestmentOverviewComponent implements OnInit {
   investAgain(portfolio) {
     this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+  }
+
+  verticalScrollPresent() {
+    return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
   }
 
   startPortfolio() {

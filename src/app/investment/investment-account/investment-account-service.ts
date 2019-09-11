@@ -1865,7 +1865,7 @@ export class InvestmentAccountService {
     this.roadmapService.loadData(INVESTMENT_ACCOUNT_DDC2_ROADMAP);
   }
 
-  setInitialMessageToShowDashboard(initialMessageInfo) {
+  setDashboardInitialMessage(initialMessageInfo) {
     if (initialMessageInfo) {
       this.investmentAccountFormData.dashboardInitMessageShow = initialMessageInfo.show;
       this.investmentAccountFormData.dashboardInitMessageTitle = initialMessageInfo.title;
@@ -1927,11 +1927,5 @@ export class InvestmentAccountService {
     }
     return (event.which !== 13);
   }
-  // #portfolio in confirm portfolio
-  setConfirmPortfolioName(data) {
-    this.investmentAccountFormData.portfolioName = data;
-  }
-  getConfirmPortfolioName() {
-    return this.investmentAccountFormData.portfolioName;
-    }
+  
 }
