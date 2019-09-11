@@ -35,8 +35,7 @@
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
-                  <div class="flex-row mb20 total_cash_balance"
-                    *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                  <div class="flex-row mb20 total_cash_balance">
                     <div class="flex-col">
                       <div class="total_cash_label" id="investment_overview_total_returns_labl">
                         {{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
@@ -74,7 +73,7 @@
   </div>
 </section>
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
-  [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)"
+  (detailSelected)="yourPortfolio($event)"
   (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
   [portfolioData]="investmentoverviewlist">
