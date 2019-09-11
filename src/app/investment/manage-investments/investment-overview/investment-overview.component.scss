@@ -156,6 +156,15 @@ app-investment-overview {
     }
   }
 
+  .container-fluid{
+    &.max-width--1024 {
+      @include allmobiles{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+    }
+  }
+
   .multiple-portfolio-container {
     margin-top: 10px;
 
@@ -319,6 +328,10 @@ app-investment-overview {
     padding: 30px 28px;
     text-align: center;
 
+    @include allmobiles{
+      padding: 30px 15px 12px;
+    }
+
     .msg {
       color: #5e5e5e;
       font-size: 15px;
@@ -337,6 +350,9 @@ app-investment-overview {
       font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.34px;
+      @include allmobiles{
+        width: 100%;
+      }
     }
   }
 
