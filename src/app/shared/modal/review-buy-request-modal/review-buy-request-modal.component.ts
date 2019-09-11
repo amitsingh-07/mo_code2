@@ -59,31 +59,13 @@ export class ReviewBuyRequestModalComponent implements OnInit {
 
   buyPortfolio() {
     this.activeModal.close();
-    if (this.fundDetails.oneTimeInvestment) {
-      this.topUpOneTime();
-    } else {
-      this.topUpMonthly();
-    }
+    this.topUp();
   }
-  // ONETIME INVESTMENT
-  topUpOneTime() {
+  // TOP UP REQUEST
+  topUp() {
     if (!this.isRequestSubmitted) {
       this.showLoader();
-      this.manageInvestmentsService.buyPortfolio(this.fundDetails).subscribe(
-        (response) => {
-          this.successHandler(response);
-        },
-        (err) => {
-          this.errorHandler();
-        }
-      );
-    }
-  }
-  // MONTHLY INVESTMENT
-  topUpMonthly() {
-    if (!this.isRequestSubmitted) {
-      this.showLoader();
-      this.manageInvestmentsService.monthlyInvestment(this.fundDetails).subscribe(
+      this.manageInvestmentsService.topUp(this.fundDetails).subscribe(
         (response) => {
           this.successHandler(response);
         },

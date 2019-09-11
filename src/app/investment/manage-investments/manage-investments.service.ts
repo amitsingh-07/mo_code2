@@ -553,4 +553,25 @@ export class ManageInvestmentsService {
   getToastMessage() {
     return this.manageInvestmentsFormData.toastMessage;
   }
+
+  // TOP UP REQUEST
+  topUp(data) {
+    const payload = this.constructTopUpRequestParams(data);
+    return this.investmentApiService.topUpRequest(data.portfolio['customerPortfolioId'], payload);
+  }
+
+  constructTopUpRequestParams(data) {
+    let investmentAmt: number;
+    investmentAmt = data['exceededAmount'];
+    let isMonthly = false;
+    if (data['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
+      isMonthly = true;
+    }
+    return {
+      // transactionId: 1,
+      investmentAmount: Number(investmentAmt),
+      payMonthly: isMonthly,
+      // notifyInsufficientFund: true
+    };
+  }
 }

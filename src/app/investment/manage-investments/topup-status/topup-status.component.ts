@@ -47,7 +47,6 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     } else if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
       this.oneTimeMonthlyMsg = this.translate.instant('TOPUP_REQUEST.MONTHLY_MSG');
     }
-    this.getTransferDetails();
   }
   ngOnInit() {
     this.navbarService.setNavbarMode(6);
@@ -59,6 +58,7 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     this.refreshUserProfileInfo();
     document.body.classList.add('bg-color');
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
+    this.getTransferDetails();
   }
 
   ngOnDestroy() {

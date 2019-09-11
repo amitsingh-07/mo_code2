@@ -35,7 +35,8 @@ export let investmentApiConstants = {
             saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails',
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept?handleError=true',
             savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName?handleError=true',
-            getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent'
+            getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
+            topUpRequest: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/buy'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

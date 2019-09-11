@@ -344,4 +344,14 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  // Top up request
+  topUpRequest(customerProfileId, data) {
+    const url =
+      investmentApiConstants.endpoint.investmentAccount.topUpRequest.replace('$CUSTOMER_PORTFOLIO_ID$', customerProfileId);
+    return this.http.post(url, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

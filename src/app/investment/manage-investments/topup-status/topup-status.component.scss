@@ -9,6 +9,10 @@ app-topup-status {
       display: flex;
       flex-direction: column;
       align-content: center;
+      padding-bottom: 47px;
+      @include allmobiles{
+        padding-bottom: 0px;
+      }
     }
     .sufficient-container {
       display: flex;
@@ -176,7 +180,7 @@ app-topup-status {
 
     /* TRANSFER DETAILS */
     .transfer-details {
-      margin: 22px 0px;
+      margin: 22px 0px 0px;
       color: $fund-transfer-details-color;
       @include allmobiles{
         margin: 22px 0px 82px;
