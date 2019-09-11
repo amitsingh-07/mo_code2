@@ -95,6 +95,7 @@
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       },
       "RENAME_PORTFOLIO": {
+        "RENAME_PORTFOLIO_TXT": "Rename Portfolio",
         "VALIDATION_MESSAGE":"Please enter Alphabets and Numbers only",
         "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
       }

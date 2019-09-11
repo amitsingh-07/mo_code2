@@ -22,17 +22,12 @@ export class RenameInvestmentModalComponent implements OnInit {
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
   @Input() primaryActionLabel: any;
-  @Input() secondaryActionLabel: any;
-  @Input() yesOrNoButton: any;
   @Input() warningIcon: any;
   @Input() lockIcon: any;
   @Input() portfolioExist: boolean;
   @Input() secondaryActionDim: boolean;
   @Input() isInlineButton: boolean;
-  @Output() primaryAction = new EventEmitter<any>();
-  @Output() secondaryAction = new EventEmitter<any>();
-  @Output() yesClickAction = new EventEmitter<any>();
-  @Output() noClickAction = new EventEmitter<any>();
+  @Output() renamePortfolioBtn = new EventEmitter<any>();
   renameForm: FormGroup;
   characterLength: number;
   showErrorMessage: boolean;
@@ -59,23 +54,8 @@ export class RenameInvestmentModalComponent implements OnInit {
     this.showErrorMessage = false;
   }
 
-  primaryActionSelected() {
-    this.primaryAction.emit();
-    this.activeModal.close();
-  }
-
-  secondaryActionSelected() {
-    this.secondaryAction.emit();
-    this.activeModal.close();
-  }
-
-  yesButtonClick() {
-    this.yesClickAction.emit();
-    this.activeModal.close();
-  }
-
-  noButtonClick() {
-    this.noClickAction.emit();
+  renamePortfolio(renameForm) {
+    this.renamePortfolioBtn.emit(renameForm.controls.investName.value);
     this.activeModal.close();
   }
 

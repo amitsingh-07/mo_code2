@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
@@ -18,7 +20,8 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 @Component({
   selector: 'app-your-portfolio',
   templateUrl: './your-portfolio.component.html',
@@ -37,6 +40,9 @@ export class YourPortfolioComponent implements OnInit {
   userProfileInfo: any;
   entitlements: any;
   monthlyInvestment: any;
+  showErrorMessage: boolean;
+  isToastMessageShown: boolean;
+  toastMsg: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -44,6 +50,8 @@ export class YourPortfolioComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
     public footerService: FooterService,
     private currencyPipe: CurrencyPipe,
@@ -175,19 +183,65 @@ export class YourPortfolioComponent implements OnInit {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
-  clickMe() {
-    console.log('coming');
+  showRenamePortfolioNameModal(portfolioName) {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Rename Portfolio';
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.yesOrNoButton = 'Yes';
-    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
-    ref.componentInstance.primaryActionLabel = 'Rename Portfolio'
+    ref.componentInstance.userPortfolioName = portfolioName;
+    ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_INVESTMENT.DELETE_TXT'
     );
-    ref.componentInstance.primaryAction.subscribe(() => {
+    ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
+      this.investmentAccountService.setConfirmPortfolioName(renamedPortfolioName);
+      this.savePortfolioName(renamedPortfolioName);
     });
-    ref.componentInstance.noClickAction.subscribe(() => { });
+  }
+
+  constructSavePortfolioName(data) {
+    return {
+      customerPortfolioId: 26621,
+      portfolioName: data
+    };
+  }
+
+  savePortfolioName(portfolioName) {
+    this.loaderService.showLoader({
+      title: 'Loading...',
+      desc: 'Please wait.'
+    });
+    const param = this.constructSavePortfolioName(portfolioName);
+    this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
+      this.loaderService.hideLoader();
+      if (response.responseMessage.responseCode >= 6000) {
+        this.portfolio.portfolioName = portfolioName;
+        this.showToastMessage();
+        this.showErrorMessage = false;
+      } else if (response.responseMessage.responseCode === 5120) {
+        this.showRenamePortfolioNameModal(portfolioName);
+        this.showErrorMessage = true;
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  showToastMessage() {
+    this.toastMsg = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
+      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
+      link_url: ''
+    };
+    this.isToastMessageShown = true;
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1);
+    setTimeout(() => {
+      this.isToastMessageShown = false;
+      this.toastMsg = null;
+    }, 3000);
   }
 }
