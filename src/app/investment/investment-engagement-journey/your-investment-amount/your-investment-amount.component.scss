@@ -1,49 +1,63 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-.second-section {
-  .form-group-with-bg--content {
-    .checkbox_instruction {
-      font-family: $muli-italic;
-      font-size: 14px;
-      font-style: italic;
-      letter-spacing: -0.1px;
-      color: $text-color-secondary;
-      padding-bottom: 13px;
-    }
-
-    .form-group-single-column {
-      justify-content: center;
-      align-items: center;
-
-      input[type='checkbox']+label {
-        padding-left: 40px;
+app-your-investment-amount {
+  .second-section {
+    .form-group-with-bg--content {
+      .checkbox_instruction {
+        font-family: $muli-italic;
+        font-size: 14px;
+        font-style: italic;
+        letter-spacing: -0.1px;
+        color: $text-color-secondary;
+        padding-bottom: 13px;
       }
 
-      .checkbox-button {
-        background: none;
+      .form-group-single-column {
+        justify-content: center;
+        align-items: center;
 
-        .input-label-black {
-          font-weight: 400;
-          letter-spacing: -0.3px;
-          color: $dark-teal-color;
+        input[type='checkbox']+label {
+          padding-left: 40px;
         }
 
-        .input-label-normal {
-          font-family: $muli-italic;
-          font-size: 14px;
-          font-style: italic;
-          letter-spacing: -0.1px;
-          color: $text-color-secondary;
-        }
-      }
+        .checkbox-button {
+          background: none;
 
-      .form-control {
-        &.form-control-right {
-          input {
-            padding-right: 40px !important;
+          .input-label-black {
+            letter-spacing: -0.3px;
+            color: $dark-teal-color;
+          }
+
+          .input-label-normal {
+            font-family: $muli-italic;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: -0.1px;
+            color: $text-color-secondary;
           }
         }
+
+        .form-control {
+          &.form-control-right {
+            input {
+              padding-right: 40px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn {
+    &:disabled {
+      background-color: $btn-disabled-light-bg;
+      color: $btn-disabled-teal-color;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: $btn-disabled-light-bg !important;
+        color: $btn-disabled-teal-color;
+  
       }
     }
   }

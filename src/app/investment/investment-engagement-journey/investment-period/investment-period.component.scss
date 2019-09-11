@@ -21,19 +21,19 @@ app-investment-period {
 
   .callout {
     padding: 15px;
-    background-color: $white-color;
+    background-color: $callout-bg;
     border-radius: 6px;
     margin-top: 30px;
     position: relative;
     font-family: $muli-regular;
     font-size: 15px;
     letter-spacing: -0.15px;
-    color: $teal-color;
+    color: $callout-txt-color;
   }
 
   .time-horizon {
     padding: 15px;
-    background-color: $white-color;
+    background-color: $investment-time-horizon-bg;
     border-radius: 6px;
     margin-top: 10px;
     font-family: $muli-bold;
@@ -86,18 +86,6 @@ app-investment-period {
     transform: translate(-100%, 0px);
   }
 
-  .I-was-born-on {
-    font-family: $muli-semi-bold;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    color: $white-color;
-    width: 74px;
-  }
-
   .personalInfoInvestmentDesc,
   .personalInfoSliderDesc {
     font-family: $muli-italic;
@@ -148,6 +136,7 @@ app-investment-period {
   &:disabled {
     background-color: $btn-disabled-light-bg;
     color: $btn-disabled-teal-color;
+    cursor: pointer;
 
     &:hover {
       background-color: $btn-disabled-light-bg !important;
