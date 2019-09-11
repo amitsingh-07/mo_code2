@@ -204,23 +204,23 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
-                  <div class="flex-col" *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
+                  <div class="flex-col" *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
+                  <div *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
                     <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}} {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
                     <div class="flex-col-12 flex-row">
                       <div><span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
-                      <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                      <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                     </div>
                   </div>
                 </div>
 
                   <!-- RECIEVED -->
-                  <div *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
-                  <div class="flex-col" *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
+                  <div class="flex-col" *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
+                  <div *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
-                        <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                        <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
                   </div>
@@ -232,7 +232,7 @@
                     <div class="flex-col" *ngFor="let processingRequest of pendingOnetimeBuyRequests.processingRequests; let i = index;">
                       <div class="flex-col-12 flex-row">
                         <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
-                        <div class="fund-amt"><span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                        <div class="fund-amt"><span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
                   </div>
@@ -258,23 +258,23 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
-                      <div class="flex-col" *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
+                  <div class="flex-col" *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
+                      <div *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
                         <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
                         <div class="flex-col-12 flex-row">
                           <div><span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
-                          <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                          <div class="fund-amt"><span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                         </div>
                       </div>
                     </div>
     
                       <!-- RECIEVED -->
-                      <div *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
-                      <div class="flex-col" *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
+                      <div class="flex-col" *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
+                      <div *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                           <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                           <div class="flex-col-12 flex-row">
                             <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
-                            <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                           </div>
                         </div>
                       </div>
@@ -286,7 +286,7 @@
                         <div class="flex-col" *ngFor="let processingRequest of pendingMonthlyBuyRequests.processingRequests; let i = index;">
                           <div class="flex-col-12 flex-row">
                             <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
-                            <div class="fund-amt"><span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            <div class="fund-amt"><span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                           </div>
                         </div>
                       </div>
@@ -317,7 +317,7 @@
                   <div class="form-group-with-bg--content">
                     <div class="cash-account-content">
                       <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}: {{portfolio.investmentAccountDTO.referenceCode }}</div>
-                      <div class="flex align-center">
+                      <div class="flex">
                         <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
                         <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>
                       </div>

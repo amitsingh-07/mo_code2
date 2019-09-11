@@ -68,7 +68,7 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
-    this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data: any) => {
+    this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dpmsDetailsDisplay;

@@ -489,6 +489,10 @@ app-your-portfolio {
             &.hide {
               display:none;
             }
+            &.disabled {
+              color: #9b9b9b !important;
+              cursor: not-allowed;
+            }
           }
         }
       }
@@ -840,7 +844,7 @@ app-your-portfolio {
       }
 
     .pending-request-panel-content{
-      padding-top: 14px;
+      padding-top: 20px;
       .pending-buy-rqst-lbl{
         font-family: $muli-bold;
         font-size: 16px;
@@ -927,13 +931,16 @@ app-your-portfolio {
           font-size: 15px;
           letter-spacing: -0.15px;
           color: #000000;
-          padding-bottom: 20px;
+          padding-top: 13px;
           .flex-col{
             padding-top: 10px;
+            &:first-child{
+              padding-top: 0; 
+            }
           }
           .process_lbl{
             padding: 10px 20px;
-            margin:0 -20px;
+            margin: 23px -20px 15px;
             font-family: $muli-bold;
             font-size: 14px;
             line-height: 1.14;
@@ -1004,6 +1011,7 @@ app-your-portfolio {
               width: 24px;
               height: 24px;
               margin-right: 15px;
+              margin-top: 5px;
               display: flex;
             }
             .note{
