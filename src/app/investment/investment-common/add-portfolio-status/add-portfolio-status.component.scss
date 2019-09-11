@@ -21,20 +21,40 @@ app-add-portfolio-status {
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 
-    .portfolio-naming {
-      max-width: 320px;
-      margin: auto;
+    @include desktop {
+      align-items: center;
+    }
+
+    @include tablet {
+      align-items: center;
+    }
+
+    @include phablet {
+      align-items: center;
+    }
+
+    .portfolio-block {
+      @include allmobiles {
+        display: flex;
+        flex-direction: column;
+        height: 95vh;
+      }
+
+      .portfolio-naming {
+        max-width: 320px;
+        margin: auto;
+      }
+    }
 
       .title {
         font-family: $muli-bold;
-        font-size: 32px;
+        font-size: 30px;
         letter-spacing: -0.3px;
         text-align: center;
         color: $custom-modal-title-color;
         padding: 40px 15px 28px;
+        line-height: 40px;
 
         @include allmobiles {
           padding: 0px 15px 30px;
@@ -55,7 +75,7 @@ app-add-portfolio-status {
         font-size: 16px;
         letter-spacing: -0.34px;
         text-align: center;
-        color:$black-color;
+        color: $black-color;
       }
 
       div {
@@ -66,20 +86,24 @@ app-add-portfolio-status {
   }
 
   .btn {
+    &.btn-primary{
     z-index: 1001;
-      &:disabled {
+    &:disabled {
       border-radius: 6px;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
       background-color: $portfolio-name-btn !important;
-      color:$white-color;
+      color: $white-color;
     }
+
     &:hover {
       border-radius: 6px;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
       background-color: $portfolio-name-btn !important;
-      color:$white-color;
+      color: $white-color;
     }
 
   }
-
 }
+  
+
+
