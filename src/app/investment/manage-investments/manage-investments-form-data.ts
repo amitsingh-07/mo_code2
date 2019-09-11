@@ -8,7 +8,6 @@ export class ManageInvestmentsFormData {
   topupportfolioamount: number;
   topupValues: any;
   fundDetails: any;
-  PortfolioValues: any;
   minimumBalanceOfTopup: number;
   topupMode: string;
 
@@ -21,16 +20,16 @@ export class ManageInvestmentsFormData {
   isRedeemAll: boolean;
 
   userPortfolios: any;
-  selectedPortfolioForTopup: any;
   cashAccountBalance: number;
 
   // your portfolio
   holdingList;
   assetAllocationValues;
 
-  selectedPortfolio;
-
   toastMessage: IToastMessage;
+
+  selectedCustomerPortfolioId: any;
+  selectedCustomerPortfolio: any;
 
 }
 

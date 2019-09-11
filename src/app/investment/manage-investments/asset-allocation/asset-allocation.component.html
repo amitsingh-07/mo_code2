@@ -8,7 +8,7 @@
     </div>
     <div class="flex-row user_content flex-col-12">
       <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
-          {{'HOLDINGS.PORTFOLIO' | translate}} {{assetAllocation.riskProfile.type}}
+          {{'HOLDINGS.PORTFOLIO' | translate}} {{portfolio.riskProfile.type}}
           <div>{{this.pageTitle}}</div>
       </div>
     </div>
@@ -18,11 +18,11 @@
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 asset-allocation">
       <!-- bonds -->
-      <app-allocation [funds]="assetAllocation.funds" [assets]="assetAllocation.sectorAllocations" [colors]="colors"></app-allocation>
+      <app-allocation [funds]="portfolio.funds" [assets]="portfolio.sectorAllocations" [colors]="colors"></app-allocation>
     </div>
     <div class="flex-col-12 annual-fees">
       <div class="title">{{ 'ASSET_ALLOCATION.ANNUAL_FEES' | translate}}</div>
-      <app-annual-fees [feeDetails]="assetAllocation.feeDetails"></app-annual-fees>
+      <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
     </div>
     <div class="faq_link">
       <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>

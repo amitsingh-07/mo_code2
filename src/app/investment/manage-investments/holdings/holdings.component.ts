@@ -18,8 +18,9 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 })
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
+  formValues;
   holdings;
-  portfolioValues;
+  portfolio;
 
   constructor(
     public readonly translate: TranslateService,
@@ -38,14 +39,16 @@ export class HoldingsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.holdings = this.manageInvestmentsService.getHoldingValues();
-    this.portfolioValues = this.manageInvestmentsService.getPortfolioValues();
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.portfolio = this.formValues.selectedCustomerPortfolio;
    }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
 }

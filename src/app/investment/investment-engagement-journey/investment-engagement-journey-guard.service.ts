@@ -10,7 +10,6 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './investment-engageme
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentCommonService } from '../investment-common/investment-common.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
