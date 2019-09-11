@@ -35,7 +35,7 @@ export class AssetAllocationComponent implements OnInit {
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
-  assetAllocation;
+  formValues;
 
   constructor(
     private appService: AppService,
@@ -63,7 +63,8 @@ export class AssetAllocationComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.assetAllocation = this.manageInvestmentsService.getSelectedPortfolio();
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.portfolio = this.formValues.selectedCustomerPortfolio;
   }
 
   setPageTitle(title: string) {

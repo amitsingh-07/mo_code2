@@ -25,7 +25,8 @@ export class AllocationComponent implements OnInit, OnChanges {
     public modal: NgbModal
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngOnChanges() {
     this.assets.forEach((allocation) => {

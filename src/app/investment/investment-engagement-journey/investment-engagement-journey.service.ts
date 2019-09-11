@@ -337,6 +337,12 @@ export class InvestmentEngagementJourneyService {
       }
       return 0;
     });
+  };
+
+  findGroupByGroupName(groupList, groupName) {
+    return groupList.filter(
+      (group) => group.groupName === groupName
+    )[0];
   }
 
   clearFormData() {
