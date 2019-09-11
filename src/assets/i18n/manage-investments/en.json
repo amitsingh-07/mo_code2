@@ -96,6 +96,7 @@
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
+    "PENDING_NO_REQUEST_INFO": "You have no Buy Requests",
     "RISK_PROFILE_NAME": "{{riskProfileName}} Portfolio",
     "MORE": "More",
     "PORTFOLIO_SUMMARY": "Portfolio Summary",

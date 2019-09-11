@@ -129,6 +129,24 @@ export class YourPortfolioComponent implements OnInit {
     }
   }
 
+  getWithdrawType(mode) {
+    let withdrawType;
+    switch(mode.toUpperCase()) {
+      case "CASH":
+        withdrawType = "Portfolio to Cash Account"
+        break;
+      case "CHEQUE":
+        withdrawType = "Portfolio to Bank Account"
+        break;
+      case "TEST": /* TODO: the value will be given by backend team */
+        withdrawType = "Cash Account to Bank Account"
+        break;
+      default:
+        withdrawType = ""
+    }
+    return withdrawType;
+  }
+
   constructFundingParams(data) {
     const FundValues = {
       source: 'FUNDING',

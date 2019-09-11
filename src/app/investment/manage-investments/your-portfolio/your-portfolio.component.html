@@ -181,7 +181,7 @@
                     <div class="flex-col" *ngFor="let sellRequest of pendingSellRequests.value; let i = index;">
                       <div class="processing-time">{{sellRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
                       <div class="flex-col-12 flex-row">
-                        <div>{{sellRequest.paymentMode }}</div>
+                        <div>{{ getWithdrawType(sellRequest.paymentMode) }}</div>
                         <div class="withdraw-amt">{{sellRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                     </div>
@@ -191,7 +191,8 @@
             </div>
               <!-- buy request -->
             <div class="buy-request">
-              <div class="pending-buy-rqst-lbl">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: this.portfolio.pendingRequestDTO.numberOfPendingRequests} }}</div>
+              <div *ngIf="portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: portfolio.pendingRequestDTO.numberOfPendingRequests} }}</div>
+              <div *ngIf="!portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">{{'YOUR_PORTFOLIO.PENDING_NO_REQUEST_INFO' | translate }}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
                  <div class="invest-type">
@@ -219,7 +220,7 @@
                   <div *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
-                        <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
+                        <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                         <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
@@ -273,7 +274,7 @@
                       <div *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                           <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                           <div class="flex-col-12 flex-row">
-                            <div><span class="fund-state"></span><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
+                            <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                             <div class="fund-amt"><span>{{recievedRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span class="forward-icon" *ngIf="false"><img src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                           </div>
                         </div>
