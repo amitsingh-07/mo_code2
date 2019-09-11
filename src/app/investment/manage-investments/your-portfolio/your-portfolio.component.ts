@@ -15,7 +15,6 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -26,7 +25,6 @@ import { SignUpService } from 'src/app/sign-up/sign-up.service';
 export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
   moreList: any;
-  userProfileInfo;
   portfolio;
   holdingValues;
   yearlyReturns: any;
@@ -47,8 +45,7 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentAccountService: InvestmentAccountService,
-    private signUpService: SignUpService
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -67,7 +64,6 @@ export class YourPortfolioComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
-    this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
   }
 
