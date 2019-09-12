@@ -12,7 +12,7 @@
             <div class="investment-value">{{fundDetails['exceededAmount'] | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
             <div class="cash-account-balance">{{ 'TOPUP_REQUEST.CASH_ACCOUNT_BALANCE_LBL' | translate }} {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
             <div class="ref-code">
-              {{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }} {{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}
+              {{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }} {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}
             </div>
             <div class="flex">
               <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
