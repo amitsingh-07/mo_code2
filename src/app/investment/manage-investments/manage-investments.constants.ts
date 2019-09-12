@@ -36,14 +36,16 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
   INVESTMENT_OVERVIEW: {
     MORE_LIST: [
       { id: 1, name: 'Top Up', value: 'TOPUP' },
-      { id: 2, name: 'Transfer Instructions', value: 'TRANSFER_INSTRUCTIONS' },
-      { id: 3, name: 'Transactions', value: 'TRANSACTIONS' },
-      { id: 4, name: 'Withdrawal', value: 'WITHDRAWAL' }
+      { id: 2, name: 'Transactions / Statements', value: 'TRANSACTIONS_STATEMENTS' },
+      { id: 3, name: 'Rename Portfolio', value: 'RENAME_PORTFOLIO' },
+      { id: 4, name: 'Withdrawal', value: 'WITHDRAWAL' },
+      { id: 5, name: 'Delete Portfolio', value: 'DELETE_PORTFOLIO' }
     ],
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal'
   },
   TRANSFER_INSTRUCTION : {
     MODE: 'BANK'
-  }
+  },
+  TOPUP_INSTRUCTION_URL: 'https://advice.moneyowl.com.sg/investment/transacting'
 };

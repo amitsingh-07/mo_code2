@@ -40,8 +40,6 @@ export class InvestmentOverviewComponent implements OnInit {
   portfolios;
   userProfileInfo;
   riskProfileImg: any;
-  portfolio;
-  productCode;
   entitlements: any;
   showAlretPopUp = false;
   selected;
@@ -99,17 +97,15 @@ export class InvestmentOverviewComponent implements OnInit {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
-  yourPortfolioDynamic() {
+  selectToastMessageDetail(url) {
     if (this.toastMsg && this.toastMsg['portfolio']) {
-      this.manageInvestmentsService.setPortfolioValues(this.toastMsg['portfolio']);
-      this.router.navigate(this.toastMsg['link_url']);
+      this.router.navigate(url);
     }
   }
 
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
-      this.manageInvestmentsService.setPortfolioValues(portfolio);
-      this.manageInvestmentsService.setHoldingValues(portfolio.dpmsDetailsDisplay);
+     this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }
@@ -142,7 +138,7 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   setInvestmentData(data) {
-    this.investmentoverviewlist = data.objectList;
+    this.investmentoverviewlist = (data.objectList) ? data.objectList : {};
     this.totalReturns = this.investmentoverviewlist.totalReturns
       ? this.investmentoverviewlist.totalReturns
       : 0;
@@ -152,7 +148,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.totalValue = this.investmentoverviewlist.totalValue
       ? this.investmentoverviewlist.totalValue
       : 0;
-    this.portfolioList = this.investmentoverviewlist.portfolios;
+    this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios: [];
     this.totalPortfolio = this.portfolioList.length;
     this.welcomeInfo = {
       name: this.userProfileInfo.firstName,
@@ -170,22 +166,18 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   ViewTransferInst(productCode) {
-    this.productCode = productCode;
-    this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
+    this.getCustomerPortfolioDetailsById(productCode);   // SET PORTFOLIO CODE
   }
 
-  getPortfolioHoldingList(portfolioid) {   // CALLING THE API
-    this.manageInvestmentsService
-      .getIndividualPortfolioDetails(portfolioid)
-      .subscribe((data) => {
-        this.portfolio = data.objectList;
+  getCustomerPortfolioDetailsById(portfolioid) {   // CALLING THE API
+    this.manageInvestmentsService.getCustomerPortfolioDetailsById(portfolioid).subscribe((data) => {
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
   }
 
   constructFundingParams(data) {   // SET FUND DETAILS VAlUES
@@ -238,20 +230,6 @@ export class InvestmentOverviewComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  /*
-  * Method to show transfer instruction steps modal
-  */
-  showTransferInstructionModal() {
-    this.manageInvestmentsService.showTransferInstructionModal();
-  }
-
-  /*
-  * Method to show recipients/entity name instructions modal
-  */
-  showPopUp() {
-    this.manageInvestmentsService.showPopUp();
-  }
-
   showToastMessage() {
     this.isToastMessageShown = true;
     this.manageInvestmentsService.clearToastMessage();
@@ -265,7 +243,7 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   investAgain(portfolio) {
-    this.manageInvestmentsService.setPortfolioValues(portfolio);
+    this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 

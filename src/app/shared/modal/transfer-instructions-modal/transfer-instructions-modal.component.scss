@@ -12,6 +12,10 @@
 
   .title-container {
     background-color: $white-color;
+    border-radius: 6px;
+    @include allmobiles{
+      border-radius: 0px;
+    }
   }
 
   &-title {
@@ -23,6 +27,12 @@
     background-color: $white-color;
     margin: 0;
     padding: 20px 40px 15px 25px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    @include allmobiles{
+      border-radius: 0px;
+    }
+
   }
 
   &-message {
@@ -134,7 +144,7 @@
 
   /* TRANSFER DETAILS */
   .transfer-details {
-    margin: 35px 1rem 0px;
+    margin: 15px 1rem 0px;
     color: $teal-color;
     @include allmobiles {
       padding-bottom: 80px;
@@ -189,7 +199,7 @@
     .tab-content-container {
       background-color: $bond-container-bg;
       border-radius: 0px 0px 6px 6px;
-
+      margin-bottom: 16px;
       .tab-content {
         display: none;
 
@@ -201,16 +211,16 @@
   }
 }
 
-.modal-footer {
-  border: none;
-  background-color: $teal-color;
-  @include allmobiles {
-    padding: 0;
-  }
+// .modal-footer {
+//   border: none;
+//   background-color: $teal-color;
+//   @include allmobiles {
+//     padding: 0;
+//   }
 
-  .btn-primary {
-    font-size: 24px;
-    font-family: $muli-bold;
-    letter-spacing: -0.2px;
-  }
-}
+//   .btn-primary {
+//     font-size: 24px;
+//     font-family: $muli-bold;
+//     letter-spacing: -0.2px;
+//   }
+// }

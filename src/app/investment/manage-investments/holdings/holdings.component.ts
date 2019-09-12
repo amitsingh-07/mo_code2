@@ -18,8 +18,9 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 })
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
+  formValues;
   holdings;
-  portfolioValues;
+  portfolio;
 
   constructor(
     public readonly translate: TranslateService,
@@ -32,20 +33,30 @@ export class HoldingsComponent implements OnInit {
     private modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService
     ) {
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
+      this.formValues = this.manageInvestmentsService.getTopUpFormData();
+      this.portfolio = this.formValues.selectedCustomerPortfolio;
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('HOLDINGS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.holdings = this.manageInvestmentsService.getHoldingValues();
-    this.portfolioValues = this.manageInvestmentsService.getPortfolioValues();
-   }
+  }
+
+   setPageTitle(title: string) {
+    const stepLabel = this.translate.instant(this.portfolio.portfolioName);
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
+  }
 }

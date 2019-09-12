@@ -1,3 +1,9 @@
+
+<div class="modal-header hidden-sm">
+    <div class="modal-title popup-header-icon">
+      <img src="./assets/images/owl.svg" />
+    </div>
+   </div>
 <div class="modal-body">
   <div class="title-container">
     <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
@@ -54,10 +60,8 @@
         <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
           (showToolTip)="showTipModal()"></app-instruction-steps>
       </div>
+      <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> Okay, Got
+          It!</button>
     </div>
   </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> Okay, Got
-    It!</button>
 </div>

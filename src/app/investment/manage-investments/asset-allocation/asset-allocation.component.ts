@@ -30,12 +30,13 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 })
 export class AssetAllocationComponent implements OnInit {
   pageTitle: string;
+  subTitle: string;
   portfolio;
   selectedRiskProfile: RiskProfile;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
-  assetAllocation;
+  formValues;
 
   constructor(
     private appService: AppService,
@@ -51,25 +52,33 @@ export class AssetAllocationComponent implements OnInit {
     private signUpService: SignUpService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.portfolio = this.formValues.selectedCustomerPortfolio;
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('ASSET_ALLOCATION.TITLE');
       this.setPageTitle(this.pageTitle);
-    });
+      });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.assetAllocation = this.manageInvestmentsService.getSelectedPortfolio();
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    const stepLabel = this.translate.instant(this.portfolio.portfolioName);
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
-
   constructgetAllocationParams() {
     const formData = this.investmentEngagementJourneyService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
