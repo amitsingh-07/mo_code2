@@ -24,6 +24,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   riskProfileImg: string;
   noteArray;
   isRequestSubmitted = false;
+  oneTimeMonthlyLbl: string;
 
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
 
@@ -40,6 +41,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME) {
       this.requestAmount = this.fundDetails['oneTimeInvestment'];
       this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
+      this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.ONE_TIME_LBL');
       if (this.fundDetails['isAmountExceedBalance'] === true) {
         this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.INSUFFICIENT_ONETIME_NOTE');
       } else {
@@ -48,6 +50,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     } else if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
       this.requestAmount = this.fundDetails['monthlyInvestment'];
       this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT;
+      this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_LBL');
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_NOTE');
     }
     this.portfolioType = this.fundDetails['portfolio']['riskProfileType'];

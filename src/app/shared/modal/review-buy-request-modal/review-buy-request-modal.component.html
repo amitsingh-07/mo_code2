@@ -11,7 +11,7 @@
     <div class="from-account">
       <img class="coin-icon" alt="" src="assets/images/investment-account/topupcoin.svg">
       <div class="white-text white-reg">{{'REVIEW_BUY_REQUEST.BUY_REQUEST' | translate}}</div>
-      <div class="white-text margin-top2">{{requestAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+      <div class="white-text margin-top2">{{requestAmount | currency:'USD':'symbol-narrow':'1.0-2'}}&nbsp;{{oneTimeMonthlyLbl}}</div>
     </div>
     <div class="right-arrow-div">
       <img class="right-arrow" alt="" src="assets/images/investment-account/arrow-right.png">
@@ -29,7 +29,7 @@
       <div class="top-up-amt-text">{{'REVIEW_BUY_REQUEST.TOP_UP_AMOUNT' | translate}}</div>
       <div class="deduct-cash-box">
         <div class="deduct-amount">{{requestAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-        <div class="cash-account-balance">{{'REVIEW_BUY_REQUEST.CASH_ACCOUNT_BALANCE' | translate}} {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+        <div class="cash-account-balance">{{'REVIEW_BUY_REQUEST.CASH_ACCOUNT_BALANCE' | translate}}&nbsp;{{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
       </div>
     </ng-container>
     <div class="note-text">{{'REVIEW_BUY_REQUEST.NOTE' | translate}}</div>

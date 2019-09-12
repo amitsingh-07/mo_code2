@@ -44,8 +44,8 @@
                                 <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" >{{portfolio?.buyRequestCount}} {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                               </div>
                               <div class="portfolio-btn">
-                                <span *ngIf="!portfolio?.totalReturns" class="total-returns">0%</span>
-                                <span *ngIf="portfolio?.totalReturns" class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
+                                <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
+                                <span *ngIf="portfolio?.totalReturns && showTotalReturn" class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
                                 <span *ngIf="!portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                 <span *ngIf="portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                               </div>

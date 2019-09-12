@@ -16,8 +16,8 @@
     },
     "CONFIRM_OVERWRITE_MODAL": {
       "TITLE": "Buy Request Exist",
-      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}},</strong> submitted on DATE. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
-      "ONE_TIME_DESC": "You have an <strong>existing one-time buy request of {{existingOrderAmount}},</strong> submitted on DATE. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
+      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
+      "ONE_TIME_DESC": "You have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong>. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
       "YES": "Yes",
       "NO": "No"
     }
@@ -106,7 +106,31 @@
         "TITLE": "Cash Account",
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       }
-    }
+    },
+    "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
+    "PENDING_NO_REQUEST_INFO": "You have no Buy Requests",
+    "RISK_PROFILE_NAME": "{{riskProfileName}} Portfolio",
+    "MORE": "More",
+    "PORTFOLIO_SUMMARY": "Portfolio Summary",
+    "WHATS_NEXT": "What’s Next?",
+    "WHATS_NEXT_DESC": "Start investing in {{portfolioName}} portfolio.",
+    "HOW_TO_TOPUP": "How to top up?",
+    "OR_DO_YOU_WANT_TO": "Or do you want to",
+    "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
+    "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / Cash Account",
+    "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
+    "ONE_TIME": "One-time",
+    "FUND_BY": "Fund by",
+    "FUND_RECIEVED_AND_PROCESSED": "Fund received & will process in 1-2 working days.",
+    "PROCESSING": "Processing",
+    "PROCESSING_TIME": "It will take 3 - 4 working days to complete.",
+    "MONTHLY": "Monthly",
+    "MONTHLY_FUND_TIME": "Fund by 10th of the month.",
+    "CASH_ACCOUNT": "Cash Account",
+    "BALANCE_AMOUNT": "Balance Amount",
+    "REFERENCE_CODE": "Reference Code",
+    "TRANSFER_NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions"
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
@@ -231,6 +255,8 @@
     "REQUEST": "{{requestType}} request",
     "PORTFOLIO": "{{portfolioType}} Portfolio.",
     "BUY_REQUEST": "Buy Request",
+    "ONE_TIME_LBL": "(one-time)",
+    "MONTHLY_LBL": "/ mth",
     "PORTFOLIO_TYPE": " - {{portfolioType}} Portfolio",
     "TOP_UP_AMOUNT": "Amount to top up to your cash account:",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance:",
