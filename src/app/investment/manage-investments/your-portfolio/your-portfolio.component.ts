@@ -80,10 +80,10 @@ export class YourPortfolioComponent implements OnInit {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
-      this.holdingValues = this.portfolio.dpmsDetailsDisplay;
+      this.holdingValues = this.portfolio.dPMSPortfolio.dpmsDetailsDisplay;
       this.constructFundingParams(this.portfolio);
-      this.totalReturnsPercentage = this.portfolio.totalReturns ? this.portfolio.totalReturns : 0;
-      this.yearlyReturns = this.portfolio.yearlyReturns ? this.portfolio.yearlyReturns : null;
+      this.totalReturnsPercentage = this.portfolio.dPMSPortfolio.totalReturns ? this.portfolio.dPMSPortfolio.totalReturns : 0;
+      this.yearlyReturns = this.portfolio.dPMSPortfolio.yearlyReturns ? this.portfolio.dPMSPortfolio.yearlyReturns : null;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       if (this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
@@ -142,16 +142,16 @@ export class YourPortfolioComponent implements OnInit {
     let withdrawType;
     switch(mode.toUpperCase()) {
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CASH_ACCOUNT:
-        withdrawType = "Portfolio to Cash Account"
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_CASH_ACCOUNT');
         break;
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_BANK_ACCOUNT:
-        withdrawType = "Portfolio to Bank Account"
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_BANK_ACCOUNT');
         break;
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT: /* TODO: the value will be given by backend team */
-        withdrawType = "Cash Account to Bank Account"
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.CASH_ACCOUNT_TO_BANK_ACCOUNT');
         break;
       default:
-        withdrawType = ""
+        withdrawType = "";
     }
     return withdrawType;
   }
