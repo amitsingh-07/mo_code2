@@ -139,7 +139,10 @@
     "BALANCE_AMOUNT": "Balance Amount",
     "REFERENCE_CODE": "Reference Code",
     "TRANSFER_NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
-    "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions"
+    "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions",
+    "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
+    "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
+    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",

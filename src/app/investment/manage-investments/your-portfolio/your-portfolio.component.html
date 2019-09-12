@@ -93,7 +93,7 @@
                     <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED'">
                       <div class="form-group-with-bg">
                         <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
-                          <div id="portdolio_value" class="total_values">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          <div id="portdolio_value" class="total_values"><span *ngIf="portfolio.dPMSPortfolio">{{portfolio.dPMSPortfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span></div>
                           <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
                         </div> 
                         <!--Form Content-->
@@ -163,32 +163,39 @@
         <ng-template ngbTabContent>
           <div class="pending-request-panel-content">
             <div class="withdrawal" *ngIf="pendingSellRequests && pendingSellRequests.value">
-              <div class="form-group-with-bg">
-                <div class="form-group-with-bg--header">
-                  <div class="widthdrawal-header">
-                    <div class="flex-row">
-                      <span class="widthdrawal-icon">
-                        <img src="../../../assets/images/topupwithdraw/withdraw-hand.svg"/>
-                      </span>
-                      <span>{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
-                    </div>
-                    <div><span class="downward-icon"><img src="../../../assets/images/dropdown-icon.svg" /></span></div>
-                  </div>
-                </div> 
-                <!--Form Content-->
-                <div class="form-group-with-bg--content">
-                  <div class="widthdrawal-content">
-                    <div class="flex-col" *ngFor="let sellRequest of pendingSellRequests.value; let i = index;">
-                      <div class="processing-time">{{sellRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
-                      <div class="flex-col-12 flex-row">
-                        <div>{{ getWithdrawType(sellRequest.paymentMode) }}</div>
-                        <div class="withdraw-amt">{{sellRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="form-group-with-bg">
+                <ngb-accordion #acc="ngbAccordion">
+                    <ngb-panel>
+                      <ng-template ngbPanelTitle>
+                          <div class="form-group-with-bg--header">
+                              <div class="widthdrawal-header">
+                                <div class="flex-row">
+                                  <span class="widthdrawal-icon">
+                                    <img src="../../../assets/images/topupwithdraw/withdraw-hand.svg"/>
+                                  </span>
+                                  <span>{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
+                                </div>
+                                <div><span class="downward-icon"><img src="../../../assets/images/dropdown-icon.svg" /></span></div>
+                              </div>
+                            </div>
+                      </ng-template>
+                      <ng-template ngbPanelContent>
+                          <div class="form-group-with-bg--content">
+                              <div class="widthdrawal-content">
+                                <div class="flex-col" *ngFor="let sellRequest of pendingSellRequests.value; let i = index;">
+                                  <div class="processing-time">{{sellRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
+                                  <div class="flex-col-12 flex-row">
+                                    <div>{{ getWithdrawType(sellRequest.paymentMode) }}</div>
+                                    <div class="withdraw-amt">{{sellRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
                 </div>
               </div>
-            </div>
               <!-- buy request -->
             <div class="buy-request">
               <div *ngIf="portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: portfolio.pendingRequestDTO.numberOfPendingRequests} }}</div>
