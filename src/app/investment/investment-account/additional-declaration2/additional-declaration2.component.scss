@@ -2,32 +2,6 @@
 @import '../../../../_mixins.scss';
 
 app-additional-declaration2 {
-  // .step-indicator-container {
-  //   padding: 20px 0px;
-  //   position: relative;
-
-  //   // top: 76px;
-  //   @include allmobiles {
-  //     background-color: $white-color;
-  //     padding: 10px 0px;
-  //     top: 60px;
-  //   }
-
-  //   .container-fluid {
-  //     padding-top: 0px;
-  //     padding-bottom: 0px;
-  //   }
-
-  //   @include stepindicator-desktop-extraspace;
-  // }
-
-  // .container-fluid {
-  //   padding-top: 16px;
-
-  //   @include allmobiles {
-  //     padding-top: 80px;
-  //   }
-  // }
 
   .label-font {
     font-size: 18px;
@@ -63,7 +37,6 @@ app-additional-declaration2 {
   }
 
   .form-control-right {
-    //padding-left: 0;
     padding-right: 18px;
     text-align: right;
   }

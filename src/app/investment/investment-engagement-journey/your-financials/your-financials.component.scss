@@ -2,12 +2,13 @@
 @import '../../../../mixins';
 
 app-your-financials {
- .container-fluid {
-  @include minPhabletmaxTablet {
+  .container-fluid {
+    @include minPhabletmaxTablet {
       padding-top: 70px;
     }
   }
- .fixed-btn--sm {
+
+  .fixed-btn--sm {
     border: 1px solid $fixed-btn-brdr-color;
     color: $teal-color;
     font-size: 16px;
@@ -23,33 +24,23 @@ app-your-financials {
     background: $app-backgrnd-color !important;
   }
 
-  .form-group-with-bg--header-label {
-    font-weight: 400;
-  }
-
-  .form-group-with-bg--content-sub-label {
-    font-weight: 400;
-  }
-
   .form-group-with-bg--content-label {
-    font-weight: 400;
     line-height: 22px;
   }
 
   .emergency-fund {
-    width: 208px !important;
-  .flex-col-12 {
+    .flex-col-12 {
       .btn-group--toggle {
         .flex-row {
           .flex-col-6 {
             max-width: 99px !important;
 
             .btn-outline-primary {
-              background: $bond-container-bg;
+              background: $emergency-fund-btn-bg;
 
               &:hover {
                 background: transparent;
-                color: $teal-color;
+                color: $emergency-fund-hover-btn-color;
               }
             }
           }
@@ -57,7 +48,8 @@ app-your-financials {
       }
     }
   }
- .tooltip-icon {
+
+  .tooltip-icon {
     background: url('/assets/images/tooltip-icon.svg') no-repeat;
     height: 20px;
     width: 20px;
@@ -81,10 +73,6 @@ app-your-financials {
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $btn-disabled-teal-color;
-    }
-
-    &.btn__footer--fixed {
-      font-family: $muli-bold !important;
     }
   }
 }

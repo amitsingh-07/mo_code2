@@ -25,7 +25,8 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 @Component({
   selector: 'app-your-investment-amount',
   templateUrl: './your-investment-amount.component.html',
-  styleUrls: ['./your-investment-amount.component.scss']
+  styleUrls: ['./your-investment-amount.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class YourInvestmentAmountComponent implements OnInit {
   investmentAmountForm: FormGroup;
