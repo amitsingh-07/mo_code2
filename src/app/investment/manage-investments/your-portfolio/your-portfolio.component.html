@@ -145,7 +145,7 @@
                       </div>
                     </div>
                   </div>
-                    <button *ngIf="holdingValues && portfolio.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+                    <button *ngIf="portfolio.dPMSPortfolio.dpmsDetailsDisplay && portfolio.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
                       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
                       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
                     </button>
