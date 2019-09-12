@@ -6,7 +6,7 @@ export let investmentApiConstants = {
     endpoint: {
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
-            setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolio/awaitingTransactions',
+            setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolios/$CUSTOMER_PORTFOLIO_ID$/awaitingTransactions',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
@@ -23,13 +23,13 @@ export let investmentApiConstants = {
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/customers/investment-accounts?handleError=true',
             verifyAML: ACCOUNT_API_BASE_URL + '/verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/ifast/bank-details',
-            buyPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/buy?handleError=true',
+            buyPortfolio: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/buy?handleError=true',
             deletePortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios',
-            monthlyInvestment: INVESTMENT_API_BASE_URL + '/customer/InvestmentObjective/monthlyInvestment?handleError=true',
+            monthlyInvestment: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/InvestmentObjective/monthlyInvestment?handleError=true',
             sellPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/sell?handleError=true',
             saveNationality: INVESTMENT_API_BASE_URL + '/customer/setNationality',
             investmentoverview: INVESTMENT_API_BASE_URL + '/customers/investment-profile?handleError=true',
-            porfolioDetails: INVESTMENT_API_BASE_URL + '/customer/portfolios/$CUSTOMER_PORTFOLIO_ID$/summary', /* TODO: NEED TO CHANGE TO ACTUAL API */
+            porfolioDetails: INVESTMENT_API_BASE_URL + '/customer/portfolios/$CUSTOMER_PORTFOLIO_ID$/summary',
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
             uploadDocument: ACCOUNT_API_BASE_URL + '/saveDocuments',
             saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails',

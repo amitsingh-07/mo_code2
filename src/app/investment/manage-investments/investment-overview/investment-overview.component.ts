@@ -106,7 +106,7 @@ export class InvestmentOverviewComponent implements OnInit {
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }
 
@@ -148,7 +148,7 @@ export class InvestmentOverviewComponent implements OnInit {
     this.totalValue = this.investmentoverviewlist.totalValue
       ? this.investmentoverviewlist.totalValue
       : 0;
-    this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios: [];
+    this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios : [];
     this.totalPortfolio = this.portfolioList.length;
     this.welcomeInfo = {
       name: this.userProfileInfo.firstName,
@@ -162,7 +162,7 @@ export class InvestmentOverviewComponent implements OnInit {
     }
     /* First portfolio's entitlement is considered for now as global entitlement,
         need to change when multiple portfolio logic is implemented */
-    this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+    // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
   }
 
   ViewTransferInst(productCode) {
@@ -214,10 +214,6 @@ export class InvestmentOverviewComponent implements OnInit {
 
   ClosedPopup() {
     this.showAlretPopUp = false;
-  }
-
-  selectOption(option) {
-    this.manageInvestmentsService.showMenu(option);
   }
 
   formatReturns(value) {
@@ -285,7 +281,7 @@ export class InvestmentOverviewComponent implements OnInit {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         /* First portfolio's entitlement is considered for now as global entitlement,
             need to change when multiple portfolio logic is implemented */
-        this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+        // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
       (err) => {
