@@ -216,10 +216,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.showAlretPopUp = false;
   }
 
-  selectOption(option) {
-    this.manageInvestmentsService.showMenu(option);
-  }
-
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }

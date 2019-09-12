@@ -123,7 +123,7 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK_TRANSFER":"Bank Transfer",    
+    "BANK_TRANSFER":"Bank Transfer",
     "DESC":"Please transfer the following amount using your preferred payment method details:",
     "FUNDING_DESC":"Please transfer the following amount using Bank Transfer or PayNow.",
     "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
@@ -170,7 +170,6 @@
     }
   },
   "TOAST_MESSAGES": {
-    "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
-    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been deleted."
+    "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added."
   }
 }
