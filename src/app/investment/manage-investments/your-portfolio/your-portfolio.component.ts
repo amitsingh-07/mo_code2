@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -15,6 +16,7 @@ import {
     InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
+import { IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
@@ -48,6 +50,7 @@ export class YourPortfolioComponent implements OnInit {
     public readonly translate: TranslateService,
     private router: Router,
     public navbarService: NavbarService,
+    public authService: AuthenticationService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
@@ -223,7 +226,7 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 5: {
-      // this.showDeletePortfolioModal();
+      this.showDeletePortfolioModal(this.portfolio);
       break;
     }
   }
@@ -305,5 +308,61 @@ export class YourPortfolioComponent implements OnInit {
       this.isToastMessageShown = false;
       this.toastMsg = null;
     }, 3000);
+  }
+
+  showDeletePortfolioModal(portfolio) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.DELETE_TXT'
+    );
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.yesClickAction.subscribe(() => {
+      this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
+        if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
+          this.authService.saveEnquiryId(null);
+          this.goToInvOverview();
+        }
+      },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+    });
+    ref.componentInstance.noClickAction.subscribe(() => { });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+  goToInvOverview() {
+    this.manageInvestmentsService.clearToastMessage();
+    const toastMessage: IToastMessage = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
+      link_label: '',
+      link_url: ''
+    };
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
   }
 }
