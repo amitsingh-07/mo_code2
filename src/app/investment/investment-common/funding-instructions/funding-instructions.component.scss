@@ -429,10 +429,9 @@ app-funding-instructions {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-     /* autoprefixer: off */
+    /* autoprefixer: off */
     -webkit-box-orient: vertical;
-    /* autoprefixer: on */
-     max-width: 120px;
+    max-width: 120px;
      word-break: break-all;
   }
 }
