@@ -306,14 +306,13 @@ export class ManageInvestmentsService {
   // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
-    return this.investmentApiService.buyPortfolio(payload);
+    return this.investmentApiService.buyPortfolio(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioParams(data) {
     let oneTimeInvestment: number;
     oneTimeInvestment = data.oneTimeInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
       investmentAmount: Number(oneTimeInvestment) // todo
     };
   }
@@ -321,14 +320,13 @@ export class ManageInvestmentsService {
   // MONTHLY INVESTMENT PAYLOAD
   monthlyInvestment(data) {
     const payload = this.constructBuyPortfolioForMonthly(data);
-    return this.investmentApiService.monthlyInvestment(payload);
+    return this.investmentApiService.monthlyInvestment(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioForMonthly(data) {
     let monthlyInvestmentAmount: number;
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
@@ -460,8 +458,8 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getMonthlyInvestmentInfo();
   }
 
-  getOneTimeInvestmentInfo() {
-    return this.investmentApiService.getOneTimeInvestmentInfo();
+  getOneTimeInvestmentInfo(customerProfileId) {
+    return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
   }
 
   getEntitlementsFromPortfolio(portfolio) {
@@ -513,4 +511,3 @@ export class ManageInvestmentsService {
   }
 
 }
-
