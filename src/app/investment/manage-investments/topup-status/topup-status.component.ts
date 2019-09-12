@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarService } from './../../../shared/navbar/navbar.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../manage-investments-routes.constants';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 
 @Component({
@@ -17,8 +19,16 @@ import { ManageInvestmentsService } from '../manage-investments.service';
   styleUrls: ['./topup-status.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TopupStatusComponent implements OnInit {
+export class TopupStatusComponent implements OnInit, OnDestroy {
   status;
+  activeMode = 'BANK';
+  fundDetails;
+  bankDetails;
+  paynowDetails;
+  showBankTransferSteps = true;
+  cashBalance;
+  oneTimeMonthlyMsg: string;
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -28,14 +38,31 @@ export class TopupStatusComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private signUpService: SignUpService,
     private signUpApiService: SignUpApiService,
-    private investmentAccountService: InvestmentAccountService
-  ) {}
+    private investmentAccountService: InvestmentAccountService,
+    private navbarService: NavbarService
+  ) {
+    this.fundDetails = this.manageInvestmentsService.getFundingDetails();
+    if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME) {
+      this.oneTimeMonthlyMsg = this.translate.instant('TOPUP_REQUEST.ONE_TIME_MSG');
+    } else if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
+      this.oneTimeMonthlyMsg = this.translate.instant('TOPUP_REQUEST.MONTHLY_MSG');
+    }
+  }
   ngOnInit() {
+    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.manageInvestmentsService.clearTopUpData();
     this.route.params.subscribe((params) => {
       this.status = params['status'];
     });
     this.refreshUserProfileInfo();
+    document.body.classList.add('bg-color');
+    this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
+    this.getTransferDetails();
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('bg-color');
   }
 
   refreshUserProfileInfo() {
@@ -74,7 +101,52 @@ export class TopupStatusComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
+  // Transfer Details Related
+  selectFundingMethod(mode) {
+    this.activeMode = mode;
+  }
+
+  oneTimeOrMonthlySufficient() {
+    return (
+      (this.fundDetails.fundingType ===
+        MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME ||
+        this.fundDetails.fundingType ===
+          MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
+      !this.fundDetails.isAmountExceedBalance
+    );
+  }
+
+  getTransferDetails() {
+    const customerPortfolioId = this.fundDetails['portfolio']['customerPortfolioId'];
+    this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
+      this.setBankPayNowDetails(data.objectList);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  setBankPayNowDetails(data) {
+    this.bankDetails = data.filter(
+      (transferType) => transferType.institutionType === 'bank'
+    )[0];
+    this.paynowDetails = data.filter(
+      (transferType) => transferType.institutionType === 'PayNow'
+    )[0];
+  }
+
   goToNext() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    this.manageInvestmentsService.clearTopUpData();
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+  }
+
+  showTipModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'TOPUP_REQUEST.SHOWPOPUP.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'TOPUP_REQUEST.SHOWPOPUP.MESSAGE'
+    );
   }
 }

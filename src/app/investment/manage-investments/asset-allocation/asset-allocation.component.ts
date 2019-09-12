@@ -6,11 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { RiskProfile } from '../../investment-engagement-journey/recommendation/riskprofile';
-import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -20,6 +15,11 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { RiskProfile } from '../../investment-engagement-journey/recommendation/riskprofile';
 import { ManageInvestmentsService } from '../manage-investments.service';
 
 @Component({
@@ -30,6 +30,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 })
 export class AssetAllocationComponent implements OnInit {
   pageTitle: string;
+  subTitle: string;
   portfolio;
   selectedRiskProfile: RiskProfile;
   breakdownSelectionindex: number = null;
@@ -51,26 +52,33 @@ export class AssetAllocationComponent implements OnInit {
     private signUpService: SignUpService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.portfolio = this.formValues.selectedCustomerPortfolio;
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('ASSET_ALLOCATION.TITLE');
       this.setPageTitle(this.pageTitle);
-    });
+      });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    this.portfolio = this.formValues.selectedCustomerPortfolio;
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    const stepLabel = this.portfolio.portfolioName;
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
-
   constructgetAllocationParams() {
     const formData = this.investmentEngagementJourneyService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();

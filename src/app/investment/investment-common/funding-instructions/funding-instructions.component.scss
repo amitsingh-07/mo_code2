@@ -424,4 +424,14 @@ app-funding-instructions {
       }
     }
   }
+.multiline-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    max-width: 120px;
+     word-break: break-all;
+  }
 }

@@ -15,9 +15,11 @@ export class TransferInstructionsModalComponent implements OnInit {
 
   @Input() bankDetails;
   @Input() paynowDetails;
+  @Input() numberOfPendingReq;
   @Output() activeTab: EventEmitter<any> = new EventEmitter();
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
   @Output() openModal: EventEmitter<any> = new EventEmitter();
+  @Output() topUpActionBtn: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService) {
@@ -40,4 +42,8 @@ export class TransferInstructionsModalComponent implements OnInit {
     this.openModal.emit();
   }
 
+  goToTopUp() {
+    this.topUpActionBtn.emit();
+    this.activeModal.close();
+  }
 }

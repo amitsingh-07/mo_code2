@@ -216,10 +216,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.showAlretPopUp = false;
   }
 
-  selectOption(option) {
-    this.manageInvestmentsService.showMenu(option);
-  }
-
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
@@ -228,20 +224,6 @@ export class InvestmentOverviewComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
-  }
-
-  /*
-  * Method to show transfer instruction steps modal
-  */
-  showTransferInstructionModal() {
-    this.manageInvestmentsService.showTransferInstructionModal();
-  }
-
-  /*
-  * Method to show recipients/entity name instructions modal
-  */
-  showPopUp() {
-    this.manageInvestmentsService.showPopUp();
   }
 
   showToastMessage() {

@@ -37,7 +37,7 @@
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
         <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
         <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div>
-        <div class="strong">{{(PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type) | titlecase}}</div>
+        <div class="strong multiline-ellipsis">{{(PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type) | titlecase}}</div>
       </div>
     </div>
 

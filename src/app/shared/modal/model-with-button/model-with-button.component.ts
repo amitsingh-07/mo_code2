@@ -31,6 +31,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() portfolioExist: boolean;
   @Input() secondaryActionDim: boolean;
   @Input() isInlineButton: boolean;
+  @Input() closeBtn = true;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
