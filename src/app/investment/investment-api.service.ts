@@ -218,7 +218,8 @@ export class InvestmentApiService {
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   deletePortfolio(data) {
     // need to change the correct endpoint
-    return this.http.delete(investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + '?handleError=true', data)
+    return this.http.delete(
+      investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.customerPortfolioId + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
