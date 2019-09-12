@@ -253,11 +253,7 @@ export class YourPortfolioComponent implements OnInit {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
     ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_INVESTMENT.DELETE_TXT'
-    );
     ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
-      // this.investmentAccountService.setConfirmPortfolioName(portfolioName);
       this.savePortfolioName(renamedPortfolioName);
     });
   }
@@ -271,8 +267,8 @@ export class YourPortfolioComponent implements OnInit {
 
   savePortfolioName(portfolioName) {
     this.loaderService.showLoader({
-      title: 'Loading...',
-      desc: 'Please wait.'
+      title: this.translate.instant('YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.LOADING_TITLE'),
+      desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.LOADING_DESC')
     });
     const param = this.constructSavePortfolioName(portfolioName);
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
@@ -299,9 +295,7 @@ export class YourPortfolioComponent implements OnInit {
     this.toastMsg = {
       isShown: true,
       desc: this.translate.instant('TOAST_MESSAGES.RENAME_PORTFOLIO_SUCCESS',
-       {oldPortfolioName : oldName, newPortfolioName: newName} ),
-      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
-      link_url: ''
+       {oldPortfolioName : oldName, newPortfolioName: newName} )
     };
     this.isToastMessageShown = true;
     setTimeout(() => {

@@ -30,7 +30,7 @@
                       'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.ERROR_MESSAGE' | translate}}</span>
                 </div>
             </div>
-            <div class="characters col-12">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} / 50 characters</div>
+            <div class="characters col-12">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} {{'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.MAX_NUMBER_CHARACHTER' | translate}}</div>
             <div class="col-12">
                 <button type="button" class="action-button"
                  [ngClass]="{'disabled': !(!showErrorMessage && renameForm?.controls?.investName?.dirty && renameForm.get('investName').valid)}"
