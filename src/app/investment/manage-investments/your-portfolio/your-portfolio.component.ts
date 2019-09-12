@@ -3,11 +3,14 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../../shared/Pipes/group-by.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
     InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
@@ -15,6 +18,7 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -36,11 +40,16 @@ export class YourPortfolioComponent implements OnInit {
   pendingMonthlyBuyRequests;
   isWhatsNextSectionShown = false;
   riskProfileImage;
+  isToastMessageShown: boolean;
+  showErrorMessage: boolean;
+  toastMsg: any;
 
   constructor (
     public readonly translate: TranslateService,
     private router: Router,
     public navbarService: NavbarService,
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
     public footerService: FooterService,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -189,8 +198,36 @@ export class YourPortfolioComponent implements OnInit {
 
   selectMoreOption(option) {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
-    this.manageInvestmentsService.showMenu(option);
+    this.showMenu(option);
   }
+
+  /*
+  * Method to navigate to topup, transactions and withdraw based on menu selection
+  */
+ showMenu(option) {
+  switch (option.id) {
+    case 1: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+      break;
+    }
+    case 2: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+      break;
+    }
+    case 3: {
+      this.showRenamePortfolioModal();
+      break;
+    }
+    case 4: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+      break;
+    }
+    case 5: {
+      // this.showDeletePortfolioModal();
+      break;
+    }
+  }
+}
 
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -212,4 +249,61 @@ export class YourPortfolioComponent implements OnInit {
     window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
 
+  showRenamePortfolioModal() {
+    const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
+    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
+    ref.componentInstance.showErrorMessage = this.showErrorMessage;
+    ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
+      this.savePortfolioName(renamedPortfolioName);
+    });
+  }
+
+  constructSavePortfolioName(data) {
+    return {
+      customerPortfolioId: this.portfolio.customerPortfolioId,
+      portfolioName: data
+    };
+  }
+
+  savePortfolioName(portfolioName) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.LOADING_TITLE'),
+      desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.LOADING_DESC')
+    });
+    const param = this.constructSavePortfolioName(portfolioName);
+    this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
+      this.loaderService.hideLoader();
+      if (response.responseMessage.responseCode >= 6000) {
+        this.showToastMessage(this.portfolio.portfolioName, portfolioName);
+        this.portfolio.portfolioName = portfolioName;
+        this.showErrorMessage = false;
+      } else if (response.responseMessage.responseCode === 5120) {
+        this.showErrorMessage = true;
+        this.portfolio.portfolioName = portfolioName;
+        this.showRenamePortfolioModal();
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  showToastMessage(oldName, newName) {
+    this.toastMsg = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.RENAME_PORTFOLIO_SUCCESS',
+       {oldPortfolioName : oldName, newPortfolioName: newName} )
+    };
+    this.isToastMessageShown = true;
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1);
+    setTimeout(() => {
+      this.isToastMessageShown = false;
+      this.toastMsg = null;
+    }, 3000);
+  }
 }

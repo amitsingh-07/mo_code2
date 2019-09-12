@@ -402,42 +402,6 @@ export class ManageInvestmentsService {
   }
 
   /*
-  * Method to navigate to topup, transactions and withdraw based on menu selection
-  */
-  showMenu(option) {
-    switch (option.id) {
-      case 1: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-        break;
-      }
-      case 2: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
-        break;
-      }
-      case 3: {
-        this.showRenamePortfolioModal();
-        break;
-      }
-      case 4: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
-        break;
-      }
-      case 5: {
-        this.showDeletePortfolioModal();
-        break;
-      }
-    }
-  }
-
-  showRenamePortfolioModal() {
-
-  }
-
-  showDeletePortfolioModal() {
-    
-  }
-
-  /*
   * Method to get details based on bank or paynow
   */
  setBankPayNowDetails(data) {
