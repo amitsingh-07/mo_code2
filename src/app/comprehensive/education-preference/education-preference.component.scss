@@ -1,3 +1,5 @@
+@import '../../../variables';
+@import '../../../mixins';
 .comprehensive {
 
   .dependant-title {
@@ -57,8 +59,11 @@
     margin-top: 10px;
   }
 
-  .with-bg-white {
+  .with-input-style {
     background: #fff;
+    font-size: 16px;
+    color: #00a7a7;
+    font-family: $muli-regular;
   }
 
 }
