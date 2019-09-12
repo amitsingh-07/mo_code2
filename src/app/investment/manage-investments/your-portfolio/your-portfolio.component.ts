@@ -132,13 +132,13 @@ export class YourPortfolioComponent implements OnInit {
   getWithdrawType(mode) {
     let withdrawType;
     switch(mode.toUpperCase()) {
-      case "CASH":
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CASH_ACCOUNT:
         withdrawType = "Portfolio to Cash Account"
         break;
-      case "CHEQUE":
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_BANK_ACCOUNT:
         withdrawType = "Portfolio to Bank Account"
         break;
-      case "TEST": /* TODO: the value will be given by backend team */
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT: /* TODO: the value will be given by backend team */
         withdrawType = "Cash Account to Bank Account"
         break;
       default:
