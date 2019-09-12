@@ -359,7 +359,7 @@ export class YourPortfolioComponent implements OnInit {
     const toastMessage: IToastMessage = {
       isShown: true,
       desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
-      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
+      link_label: '',
       link_url: ''
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
