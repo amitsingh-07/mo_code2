@@ -16,14 +16,14 @@ export class ManageInvestmentsGuardService implements CanActivate {
     private authService: AuthenticationService
   ) {}
   canActivate(): boolean {
-    // const investmentStatus = this.investmentCommonService.getInvestmentStatus();
-    // if (!this.authService.isSignedUser()) {
-    //   this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-    //   return false;
-    // } else if (MANAGE_INVESTMENTS_CONSTANTS.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(investmentStatus) < 0 ) {
-    //   this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    //   return false;
-    // }
+    const investmentStatus = this.investmentCommonService.getInvestmentStatus();
+    if (!this.authService.isSignedUser()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      return false;
+    } else if (MANAGE_INVESTMENTS_CONSTANTS.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(investmentStatus) < 0 ) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
     return true;
   }
 }
