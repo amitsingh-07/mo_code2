@@ -241,6 +241,9 @@
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
     "ANNUAL_FEES": "Annual Fees"
 
+  },
+  "TOAST_MESSAGES": {
+    "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\"."
   }
 
 }

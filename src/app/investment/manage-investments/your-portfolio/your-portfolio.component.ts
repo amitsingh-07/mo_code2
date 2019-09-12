@@ -74,7 +74,6 @@ export class YourPortfolioComponent implements OnInit {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
-    this.showToastMessage();
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
@@ -199,8 +198,36 @@ export class YourPortfolioComponent implements OnInit {
 
   selectMoreOption(option) {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
-    this.manageInvestmentsService.showMenu(option);
+    this.showMenu(option);
   }
+
+  /*
+  * Method to navigate to topup, transactions and withdraw based on menu selection
+  */
+ showMenu(option) {
+  switch (option.id) {
+    case 1: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+      break;
+    }
+    case 2: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+      break;
+    }
+    case 3: {
+      this.showRenamePortfolioModal();
+      break;
+    }
+    case 4: {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+      break;
+    }
+    case 5: {
+      // this.showDeletePortfolioModal();
+      break;
+    }
+  }
+}
 
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -222,9 +249,9 @@ export class YourPortfolioComponent implements OnInit {
     window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
 
-  showRenamePortfolioNameModal(portfolioName) {
+  showRenamePortfolioModal() {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
-    ref.componentInstance.userPortfolioName = portfolioName;
+    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_INVESTMENT.DELETE_TXT'
@@ -251,12 +278,13 @@ export class YourPortfolioComponent implements OnInit {
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response.responseMessage.responseCode >= 6000) {
+        this.showToastMessage(this.portfolio.portfolioName, portfolioName);
         this.portfolio.portfolioName = portfolioName;
         this.showErrorMessage = false;
-        this.showToastMessage();
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
-        this.showRenamePortfolioNameModal(portfolioName);
+        this.portfolio.portfolioName = portfolioName;
+        this.showRenamePortfolioModal();
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -267,10 +295,11 @@ export class YourPortfolioComponent implements OnInit {
       });
   }
 
-  showToastMessage() {
+  showToastMessage(oldName, newName) {
     this.toastMsg = {
       isShown: true,
-      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
+      desc: this.translate.instant('TOAST_MESSAGES.RENAME_PORTFOLIO_SUCCESS',
+       {oldPortfolioName : oldName, newPortfolioName: newName} ),
       link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
       link_url: ''
     };
