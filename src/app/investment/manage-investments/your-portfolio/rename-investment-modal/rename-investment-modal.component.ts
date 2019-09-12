@@ -20,6 +20,7 @@ export class RenameInvestmentModalComponent implements OnInit {
   @Input() buttonLabel: string;
   @Input() userPortfolioName: string;
   @Input() errorMessage: any;
+  @Input() showErrorMessage: boolean;
   @Input() errorMessageHTML: any;
   @Input() primaryActionLabel: any;
   @Input() warningIcon: any;
@@ -30,7 +31,7 @@ export class RenameInvestmentModalComponent implements OnInit {
   @Output() renamePortfolioBtn = new EventEmitter<any>();
   renameForm: FormGroup;
   characterLength: number;
-  showErrorMessage: boolean;
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -51,7 +52,6 @@ export class RenameInvestmentModalComponent implements OnInit {
       investName: new FormControl(this.userPortfolioName,
         [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
     });
-    this.showErrorMessage = false;
   }
 
   renamePortfolio(renameForm) {
@@ -60,6 +60,9 @@ export class RenameInvestmentModalComponent implements OnInit {
   }
 
   showLength(event) {
+    if (this.characterLength !== event.currentTarget.value.length) {
+      this.showErrorMessage = false;
+    }
     this.characterLength = event.currentTarget.value.length;
   }
 }
