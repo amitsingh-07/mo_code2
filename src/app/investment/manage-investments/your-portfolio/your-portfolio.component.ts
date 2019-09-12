@@ -226,7 +226,7 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 5: {
-      this.showDeletePortfolioModal(this.portfolio.portfolioName);
+      this.showDeletePortfolioModal(this.portfolio);
       break;
     }
   }
