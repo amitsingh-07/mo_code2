@@ -28,7 +28,7 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "YOUR_INVESTMENT": {
-    "TITLE": "Your Investment",
+    "TITLE": "Your Investments",
     "PROFILE_DEC": "Here’s a performance summary of your investments.",
     "TOTAL_VALUE": "Total Value",
     "TOTAL_RETURNS": "Total Returns ",
@@ -36,7 +36,7 @@
     "TOTAL_INVESTED": "Total Invested",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "TOTAL_OF": "Total of",
-    "MY_PORTFOLIOS": "My Portfolio",
+    "MY_PORTFOLIOS": "My Portfolios",
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
     "ADD_PORTFOLIO": "Add Portfolio",
