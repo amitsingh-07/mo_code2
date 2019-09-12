@@ -864,3 +864,11 @@ body.modal-open::-webkit-scrollbar {
     max-height: 100% !important;
   }
 }
+
+.review-buy-request-modal {
+  .modal-dialog {
+    @media (min-width: 576px) {
+      max-width: 550px;
+    }
+  }
+}

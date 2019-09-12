@@ -95,7 +95,7 @@
                         <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
                           <div id="portdolio_value" class="total_values">{{portfolio.dPMSPortfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                           <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
-                        </div>
+                        </div> 
                         <!--Form Content-->
                         <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
                           <div class="flex-row">
@@ -155,7 +155,7 @@
                     </button>
                 </div>
               </div>
-
+              
         </ng-template>
       </ngb-tab>
       <ngb-tab>
@@ -208,7 +208,7 @@
                     </span>
                     <span>{{'YOUR_PORTFOLIO.ONE_TIME' | translate}}</span>
                   </div>
-                </div>
+                </div> 
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
@@ -232,7 +232,7 @@
                       </div>
                     </div>
                   </div>
-
+                  
                   <!-- PROCESSING -->
                   <div class="processing-state" *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.processingRequests.length">
                     <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
@@ -262,7 +262,7 @@
                     </span>
                     <span>{{'YOUR_PORTFOLIO.MONTHLY' | translate}}</span>
                   </div>
-                </div>
+                </div> 
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
@@ -275,7 +275,7 @@
                         </div>
                       </div>
                     </div>
-
+    
                       <!-- RECIEVED -->
                       <div class="flex-col" *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
                       <div *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
@@ -286,7 +286,7 @@
                           </div>
                         </div>
                       </div>
-
+                      
                       <!-- PROCESSING -->
                       <div class="processing-state" *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length">
                         <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
@@ -298,7 +298,7 @@
                           </div>
                         </div>
                       </div>
-
+                  
                   <div class="flex-col" *ngIf="!pendingMonthlyBuyRequests">
                     <div class="flex-col-12 flex-row">
                       <div class="topup-btn">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
@@ -320,7 +320,7 @@
                         <span> {{portfolio.investmentAccountDTO.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                       </div>
                     </div>
-                  </div>
+                  </div> 
                   <!--Form Content-->
                   <div class="form-group-with-bg--content">
                     <div class="cash-account-content">
