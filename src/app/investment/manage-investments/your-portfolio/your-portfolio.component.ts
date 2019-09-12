@@ -191,14 +191,14 @@ export class YourPortfolioComponent implements OnInit {
       'YOUR_INVESTMENT.DELETE_TXT'
     );
     ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
-      this.investmentAccountService.setConfirmPortfolioName(renamedPortfolioName);
+      // this.investmentAccountService.setConfirmPortfolioName(portfolioName);
       this.savePortfolioName(renamedPortfolioName);
     });
   }
 
   constructSavePortfolioName(data) {
     return {
-      customerPortfolioId: 26621,
+      customerPortfolioId: this.portfolio.customerPortfolioId,
       portfolioName: data
     };
   }
