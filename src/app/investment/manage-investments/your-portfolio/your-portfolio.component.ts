@@ -85,10 +85,14 @@ export class YourPortfolioComponent implements OnInit {
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio.dpmsDetailsDisplay;
       this.constructFundingParams(this.portfolio);
-      this.totalReturnsPercentage = this.portfolio.dPMSPortfolio.totalReturns ? this.portfolio.dPMSPortfolio.totalReturns : 0;
-      this.yearlyReturns = this.portfolio.dPMSPortfolio.yearlyReturns ? this.portfolio.dPMSPortfolio.yearlyReturns : null;
+      this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
+                                    ? this.portfolio.dPMSPortfolio.totalReturns
+                                    : 0;
+      this.yearlyReturns = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.yearlyReturns
+                           ? this.portfolio.dPMSPortfolio.yearlyReturns
+                           : null;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
-      if (this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
+      if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,
             'createdDate',
