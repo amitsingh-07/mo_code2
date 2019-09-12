@@ -17,7 +17,7 @@ import { ErrorModalComponent } from './../error-modal/error-modal.component';
 })
 export class ReviewBuyRequestModalComponent implements OnInit {
   @Input() fundDetails;
-  @Input() cashBalance: number;
+  cashBalance: number;
   requestAmount: string;
   requestType: string;
   portfolioType: string;
@@ -58,26 +58,53 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       this.riskProfileImg =
         ProfileIcons[this.fundDetails.portfolio.riskProfileId - 1]['icon'];
     }
+    this.cashBalance = this.fundDetails['portfolio']['cashAccountBalance'] || 0;
   }
 
   buyPortfolio() {
     this.activeModal.close();
-    this.topUp();
-  }
-  // TOP UP REQUEST
-  topUp() {
-    if (!this.isRequestSubmitted) {
-      this.showLoader();
-      this.manageInvestmentsService.topUp(this.fundDetails).subscribe(
-        (response) => {
-          this.successHandler(response);
-        },
-        (err) => {
-          this.errorHandler();
-        }
-      );
+    if (this.fundDetails.oneTimeInvestment) {
+      this.topUpOneTime();
+    } else {
+      this.topUpMonthly();
     }
   }
+ // ONETIME INVESTMENT
+ topUpOneTime() {
+  if(!this.isRequestSubmitted) {
+    this.isRequestSubmitted = true;
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+    this.manageInvestmentsService.buyPortfolio(this.fundDetails).subscribe(
+      (response) => {
+        this.successHandler(response);
+      },
+      (err) => {
+        this.errorHandler();
+      }
+    );
+  }
+}
+// MONTHLY INVESTMENT
+topUpMonthly() {
+  if(!this.isRequestSubmitted) {
+    this.isRequestSubmitted = true;
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+    this.manageInvestmentsService.monthlyInvestment(this.fundDetails).subscribe(
+      (response) => {
+        this.successHandler(response);
+      },
+      (err) => {
+        this.errorHandler();
+      }
+    );
+  }
+}
 
   showLoader() {
     this.isRequestSubmitted = true;

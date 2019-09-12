@@ -16,8 +16,8 @@
     },
     "CONFIRM_OVERWRITE_MODAL": {
       "TITLE": "Buy Request Exist",
-      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
-      "ONE_TIME_DESC": "You have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong>. Overwrite and submit with this new buy request of {{newOrderAmount}}?",
+      "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
+      "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
       "YES": "Yes",
       "NO": "No"
     }

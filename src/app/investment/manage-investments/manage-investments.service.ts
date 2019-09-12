@@ -306,14 +306,13 @@ export class ManageInvestmentsService {
   // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
-    return this.investmentApiService.buyPortfolio(payload);
+    return this.investmentApiService.buyPortfolio(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioParams(data) {
     let oneTimeInvestment: number;
     oneTimeInvestment = data.oneTimeInvestment;
     return {
-      portfolioId: data.portfolio.customerPortfolioId,
       investmentAmount: Number(oneTimeInvestment) // todo
     };
   }
@@ -321,14 +320,13 @@ export class ManageInvestmentsService {
   // MONTHLY INVESTMENT PAYLOAD
   monthlyInvestment(data) {
     const payload = this.constructBuyPortfolioForMonthly(data);
-    return this.investmentApiService.monthlyInvestment(payload);
+    return this.investmentApiService.monthlyInvestment(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioForMonthly(data) {
     let monthlyInvestmentAmount: number;
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
-      portfolioId: data.portfolio.customerPortfolioId,
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
@@ -494,8 +492,8 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getMonthlyInvestmentInfo();
   }
 
-  getOneTimeInvestmentInfo() {
-    return this.investmentApiService.getOneTimeInvestmentInfo();
+  getOneTimeInvestmentInfo(customerProfileId) {
+    return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
   }
 
   getEntitlementsFromPortfolio(portfolio) {
@@ -536,26 +534,6 @@ export class ManageInvestmentsService {
     return this.manageInvestmentsFormData.toastMessage;
   }
 
-  // TOP UP REQUEST
-  topUp(data) {
-    const payload = this.constructTopUpRequestParams(data);
-    return this.investmentApiService.topUpRequest(data.portfolio['customerPortfolioId'], payload);
-  }
-
-  constructTopUpRequestParams(data) {
-    let investmentAmt: number;
-    investmentAmt = data['exceededAmount'];
-    let isMonthly = false;
-    if (data['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
-      isMonthly = true;
-    }
-    return {
-      // transactionId: 1,
-      investmentAmount: Number(investmentAmt),
-      payMonthly: isMonthly,
-      // notifyInsufficientFund: true
-    };
-  }
   setSelectedCustomerPortfolioId(id) {
     this.manageInvestmentsFormData.selectedCustomerPortfolioId = id;
     this.commit();

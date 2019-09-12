@@ -208,8 +208,9 @@ export class InvestmentApiService {
   }
 
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
-  buyPortfolio(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.buyPortfolio, data)
+  buyPortfolio(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.buyPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -223,8 +224,9 @@ export class InvestmentApiService {
       );
   }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
-  monthlyInvestment(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.monthlyInvestment, data)
+  monthlyInvestment(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.monthlyInvestment.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -258,8 +260,9 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getOneTimeInvestmentInfo() {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective)
+  getOneTimeInvestmentInfo(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -334,16 +337,6 @@ export class InvestmentApiService {
 
   getFirstInvAccountCreationStatus() {
     return this.http.get(investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
-  // Top up request
-  topUpRequest(customerProfileId, data) {
-    const url =
-      investmentApiConstants.endpoint.investmentAccount.topUpRequest.replace('$CUSTOMER_PORTFOLIO_ID$', customerProfileId);
-    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

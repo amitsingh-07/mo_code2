@@ -66,8 +66,6 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.getMonthlyInvestmentInfo();
-    this.getOneTimeInvestmentInfo();
     this.getPortfolioList();
     this.getTopupInvestmentList();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
@@ -85,12 +83,16 @@ export class TopUpComponent implements OnInit {
       ]
     });
     this.buildFormInvestment();
+    // this.getMonthlyInvestmentInfo();
+    // this.getOneTimeInvestmentInfo();
+
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
+    this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
   }
   getTopupInvestmentList() {
     this.manageInvestmentsService.getTopupInvestmentList().subscribe((data) => {
@@ -242,8 +244,8 @@ export class TopUpComponent implements OnInit {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
-  getOneTimeInvestmentInfo() {
-    this.manageInvestmentsService.getOneTimeInvestmentInfo().subscribe((response) => {
+  getOneTimeInvestmentInfo(customerProfileId) {
+    this.manageInvestmentsService.getOneTimeInvestmentInfo(customerProfileId).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
         this.currentOneTimeInvAmount = response.objectList && response.objectList.amount ? response.objectList.amount : 0;
       } else {
@@ -285,6 +287,5 @@ export class TopUpComponent implements OnInit {
   showReviewBuyRequestModal() {
     const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
     ref.componentInstance.fundDetails = this.manageInvestmentsService.getFundingDetails();
-    ref.componentInstance.cashBalance = this.manageInvestmentsService.getUserCashBalance();
   }
 }
