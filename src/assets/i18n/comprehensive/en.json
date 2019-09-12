@@ -157,7 +157,7 @@
       "STEP_3_DESC": "Let's find out how protected you are in case of unexpected events.",
       "STEP_4_TITLE_NAV": "Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
-      "STEP_4_DESC": "Tell us when you want to retire and we will examine how you could reach this goal during your advisory session",
+      "STEP_4_DESC": "Tell us when you wish to retire!",
       "STEP_5_TITLE": "Congratulations!",
       "STEP_5_DESC2": "Your data is submitted.",
       "STEP_5_TITLE_NAV": "Result"
@@ -680,7 +680,7 @@
       "STEP_1": "Keep a lookout for our notification mail!",
       "STEP_2": "Set up an appointment with a MoneyOwl client adviser to go through your report.",
       "STEP_3": "Customise and implement your financial plan with your adviser.",
-      "DASHBOARD": "Dashboard",
+      "DASHBOARD": "Done! Go to Dashboard",
       "TOOLTIP_TITLE": "Sorry, you are unable to access the previous page.",
       "TOOLTIP_MESSAGE": "As your information has been sent, you will not be able to return to your previous page. For any enquiries, you may reach us at enquiries@moneyowl.com.sg."
     },
