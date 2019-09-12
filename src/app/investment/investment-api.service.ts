@@ -217,7 +217,7 @@ export class InvestmentApiService {
   deletePortfolio(data) {
     // need to change the correct endpoint
     return this.http.delete(
-      investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + '?handleError=true', {})
+      investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.customerPortfolioId + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

@@ -180,7 +180,7 @@ export class ManageInvestmentsService {
 
   constructDeletePortfolioParams(data) {
     return {
-      portfolioId: data.portfolioId
+      customerPortfolioId: data.customerPortfolioId
     };
   }
 
