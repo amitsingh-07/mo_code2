@@ -60,8 +60,7 @@
         <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
           (showToolTip)="showTipModal()"></app-instruction-steps>
       </div>
-      <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> Okay, Got
-          It!</button>
+      <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> {{ 'TRANSFER_INSTRUCTION.OKAY_GOT_IT_BTN' | translate }}</button>
     </div>
   </div>
 </div>

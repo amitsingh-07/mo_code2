@@ -338,6 +338,7 @@
     "TOP_UP":"Top Up",
     "TRANSFER_INSTRUCTION_LBL":"Please transfer using Bank Transfer or PayNow.",
     "REFERENCE_CODE_LBL":"Reference Code: ",
+    "OKAY_GOT_IT_BTN":"Okay, Got It!",
     "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
     "TRANSFER_FUND_TITLE": "Transfer Funds to your Cash Account",
     "TRANSFER_FUND_DESCRIPTION": "Simply follow the instructions below to transfer funds to your cash account. Bank transfer and PayNow are available.",
