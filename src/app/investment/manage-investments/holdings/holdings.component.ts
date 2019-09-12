@@ -33,8 +33,10 @@ export class HoldingsComponent implements OnInit {
     private modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService
     ) {
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
+      this.formValues = this.manageInvestmentsService.getTopUpFormData();
+      this.portfolio = this.formValues.selectedCustomerPortfolio;
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('HOLDINGS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
@@ -44,11 +46,17 @@ export class HoldingsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    this.portfolio = this.formValues.selectedCustomerPortfolio;
-   }
+  }
 
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+   setPageTitle(title: string) {
+    const stepLabel = this.portfolio.portfolioName;
+    this.navbarService.setPageTitle(
+      title,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      stepLabel
+    );
   }
 }

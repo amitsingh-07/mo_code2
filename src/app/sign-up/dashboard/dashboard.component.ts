@@ -386,19 +386,7 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  /*
-  * Method to show transfer instruction steps modal
-  */
-  showTransferInstructionModal() {
-    this.manageInvestmentsService.showTransferInstructionModal();
-  }
-
-  /*
-  * Method to show recipients/entity name instructions modal
-  */
-  showPopUp() {
-    this.manageInvestmentsService.showPopUp();
-  }
+  
 
   // Show SRS Joint Account Popup
   openSRSJointAccPopup() {

@@ -255,7 +255,9 @@ export class YourPortfolioComponent implements OnInit {
   goToTopupInstructionLink() {
     window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
-
+  showTransferInstructionModal() {
+  this.manageInvestmentsService.showTransferInstructionModal(this.portfolio.pendingRequestDTO.numberOfPendingRequests);
+  }
   showRenamePortfolioModal() {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
     ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;

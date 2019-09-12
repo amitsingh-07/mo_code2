@@ -145,7 +145,7 @@
                       </div>
                     </div>
                   </div>
-                    <button *ngIf="holdingValues && portfolio.portfolioStatus === 'PURCHASED'" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+                    <button *ngIf="portfolio.portfolioStatus === 'PURCHASED' && portfolio.dPMSPortfolio.dpmsDetailsDisplay" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
                       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
                       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
                     </button>
@@ -329,7 +329,7 @@
                         <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
                         <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>
                       </div>
-                      <div class="view-transfer mt20">{{'YOUR_PORTFOLIO.VIEW_TRANSFER_INSTRUCTIONS' | translate}}</div>
+                      <div class="view-transfer mt20" (click)="showTransferInstructionModal()">{{'YOUR_PORTFOLIO.VIEW_TRANSFER_INSTRUCTIONS' | translate}}</div>
                     </div>
                   </div>
                 </div>

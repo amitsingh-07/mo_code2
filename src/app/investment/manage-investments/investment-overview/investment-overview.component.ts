@@ -226,20 +226,6 @@ export class InvestmentOverviewComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  /*
-  * Method to show transfer instruction steps modal
-  */
-  showTransferInstructionModal() {
-    this.manageInvestmentsService.showTransferInstructionModal();
-  }
-
-  /*
-  * Method to show recipients/entity name instructions modal
-  */
-  showPopUp() {
-    this.manageInvestmentsService.showPopUp();
-  }
-
   showToastMessage() {
     this.isToastMessageShown = true;
     this.manageInvestmentsService.clearToastMessage();
