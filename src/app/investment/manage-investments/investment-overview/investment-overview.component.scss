@@ -116,7 +116,6 @@ app-investment-overview {
           border: 1px solid #f1f1f1;
           display: flex;
           justify-content: center;
-          align-items: center;
 
           &:active {
             outline: none;
@@ -125,10 +124,13 @@ app-investment-overview {
 
           .topup-btn-img {
             height: 25px;
+            width: 42px;
+            margin-right: 10px;
+            display: flex;
 
             img {
               width: 100%;
-              height: 25px;
+              height: auto;
               margin: 0;
             }
           }
@@ -156,9 +158,9 @@ app-investment-overview {
     }
   }
 
-  .container-fluid{
+  .container-fluid {
     &.max-width--1024 {
-      @include allmobiles{
+      @include allmobiles {
         padding-left: 15px !important;
         padding-right: 15px !important;
       }
@@ -171,13 +173,13 @@ app-investment-overview {
     .container-fluid {
       &.max-width--1024 {
         padding-top: 0 !important;
-        padding-bottom: 40px !important;
+        padding-bottom: 0px !important;
 
         @include allmobiles {
           padding-top: 60px !important;
           padding-left: 0px !important;
           padding-right: 0px !important;
-          padding-bottom: 50px !important;
+          padding-bottom: 0px !important;
         }
       }
     }
@@ -189,8 +191,12 @@ app-investment-overview {
         letter-spacing: -0.24px;
         text-align: right;
         color: #ffffff;
-        padding: 23px 30px 16px 0;
+        padding: 20px 30px;
         background-color: #3bbfbf;
+
+        @include allmobiles {
+          padding: 20px 15px;
+        }
       }
 
       .multiple-portfolio-content {
@@ -203,6 +209,11 @@ app-investment-overview {
             color: #007d7d;
             background-color: #e4f1f1;
             padding: 5px 30px;
+            line-height: normal;
+
+            @include allmobiles {
+              padding: 5px 15px;
+            }
           }
 
           .portfolio-list {
@@ -216,7 +227,7 @@ app-investment-overview {
               font-family: $muli-regular;
               color: #000000;
               border: 1px solid #e5e5e5;
-              padding: 24px 30px;
+              padding: 20px 30px;
               display: flex;
               width: 100%;
               cursor: pointer;
@@ -246,6 +257,8 @@ app-investment-overview {
                   font-family: $muli-bold;
                   font-size: 16px;
                   letter-spacing: -0.3px;
+                  white-space: normal;
+                  word-wrap: break-word;
                 }
 
                 .ref-code {
@@ -262,7 +275,7 @@ app-investment-overview {
 
                   .buy-request {
                     font-family: $muli-regular;
-                    font-size: 12px;
+                    font-size: 13px;
                     letter-spacing: -0.23px;
                     float: right;
                     margin-top: 9px;
@@ -328,7 +341,7 @@ app-investment-overview {
     padding: 30px 28px;
     text-align: center;
 
-    @include allmobiles{
+    @include allmobiles {
       padding: 30px 15px 12px;
     }
 
@@ -350,7 +363,8 @@ app-investment-overview {
       font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.34px;
-      @include allmobiles{
+
+      @include allmobiles {
         width: 100%;
       }
     }
@@ -380,4 +394,43 @@ app-investment-overview {
   .hidden {
     display: none;
   }
+
+  .srs-block {
+    .container-fluid {
+      &.max-width--1024 {
+        padding-top: 10px !important;
+        padding-bottom: 20px !important;
+
+        @include allmobiles {
+          padding-bottom: 50px !important;
+        }
+      }
+    }
+
+    .srs-reminder {
+      display: flex;
+      align-items: center;
+      padding: 25px 45px 25px 25px;
+      background-color: #3ec5c5;
+
+      @include allmobiles {
+        padding: 25px 30px 25px 15px;
+        margin: 0px -15px;
+      }
+
+      .srs-txt {
+        font-family: $muli-italic;
+        font-size: 13px;
+        font-weight: normal;
+        letter-spacing: -0.13px;
+        line-height: 1.23;
+        color: $white-color;
+      }
+
+      .mail-img {
+        margin-right: 20px;
+      }
+    }
+  }
+
 }

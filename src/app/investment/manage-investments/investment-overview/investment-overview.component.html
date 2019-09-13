@@ -58,10 +58,12 @@
                 </div>
               </div>
               <div class="flex-row mb20 space-btwn align-center">
-                <div *ngIf="!portfolioList || portfolioList.length < 2" class="your_portfolio_label" id="investment_overview_your_portfolios">
+                <div *ngIf="!portfolioList || portfolioList.length < 2" class="your_portfolio_label"
+                  id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIO' | translate}}
                 </div>
-                <div *ngIf="portfolioList?.length > 1" class="your_portfolio_label" id="investment_overview_your_portfolios">
+                <div *ngIf="portfolioList?.length > 1" class="your_portfolio_label"
+                  id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
                 </div>
                 <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img
@@ -90,6 +92,14 @@
       <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
       <button type="button" class="btn btn-primary" id="add_portfolio" (click)="startPortfolio()">
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+    </div>
+  </div>
+</div>
+<div class="srs-block">
+  <div class="container-fluid max-width--1024">
+    <div class="srs-reminder">
+      <img class="mail-img" src="../../../assets/images/srs-joint-account/mail.svg" />
+      <div class="srs-txt">{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}</div>
     </div>
   </div>
 </div>
