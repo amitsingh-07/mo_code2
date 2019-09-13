@@ -154,7 +154,7 @@ export class YourPortfolioComponent implements OnInit {
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_BANK_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_BANK_ACCOUNT');
         break;
-      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT: /* TODO: the value will be given by backend team */
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.CASH_ACCOUNT_TO_BANK_ACCOUNT');
         break;
       default:
