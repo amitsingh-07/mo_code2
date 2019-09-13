@@ -372,7 +372,8 @@ export class YourPortfolioComponent implements OnInit {
       isShown: true,
       desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
       link_label: '',
-      link_url: ''
+      link_url: '',
+      id: this.portfolio.customerPortfolioId
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
