@@ -260,14 +260,8 @@ export class InvestmentOverviewComponent implements OnInit {
 
   addPortfolio() {
     this.authService.saveEnquiryId(null);
-    this.clearJourneyData();
+    this.investmentCommonService.clearJourneyData();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  }
-
-  clearJourneyData() {
-    this.investmentEngagementJourneyService.clearData();
-    this.investmentCommonService.clearConfirmPortfolioName();
-    this.investmentCommonService.clearAccountCreationActions();
   }
 
   gotoTopUp() {  // GO TO TOP-UP
