@@ -41,9 +41,9 @@ export class TransferInstructionsModalComponent implements OnInit {
   showTipModal() {
     this.openModal.emit();
   }
-  goToTopUp() {
-  this.topUpActionBtn.emit();
-  this.activeModal.close();
-  }
 
+  goToTopUp() {
+    this.topUpActionBtn.emit();
+    this.activeModal.close();
+  }
 }

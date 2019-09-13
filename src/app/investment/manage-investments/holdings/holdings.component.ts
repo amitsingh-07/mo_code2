@@ -49,7 +49,7 @@ export class HoldingsComponent implements OnInit {
   }
 
    setPageTitle(title: string) {
-    const stepLabel = this.translate.instant(this.portfolio.portfolioName);
+    const stepLabel = this.portfolio.portfolioName;
     this.navbarService.setPageTitle(
       title,
       undefined,
