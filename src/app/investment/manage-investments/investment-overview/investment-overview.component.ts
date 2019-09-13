@@ -110,6 +110,13 @@ export class InvestmentOverviewComponent implements OnInit {
     }
   }
 
+  yourPortfolioDynamic() {
+    if (this.toastMsg) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.toastMsg.id);
+      this.router.navigate([this.toastMsg.link_url]);
+    }
+  }
+
   getInvestmentOverview() {
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
