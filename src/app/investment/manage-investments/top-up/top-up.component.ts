@@ -83,9 +83,6 @@ export class TopUpComponent implements OnInit {
       ]
     });
     this.buildFormInvestment();
-    // this.getMonthlyInvestmentInfo();
-    // this.getOneTimeInvestmentInfo();
-
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
@@ -209,7 +206,6 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.saveFundingDetails();
-    // this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
     this.showReviewBuyRequestModal();
   }
   saveFundingDetails() {
