@@ -222,6 +222,7 @@
 
             li {
               border-left: none;
+              padding-bottom: 0px;
             }
           }
 
@@ -252,4 +253,7 @@
       background: $app-backgrnd-secondary-color;
     }
   }
+}
+.summary-step3-title{
+  font-size: 16px;
 }
