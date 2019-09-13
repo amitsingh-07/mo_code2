@@ -159,7 +159,15 @@
         </ng-template>
       </ngb-tab>
       <ngb-tab>
-        <ng-template ngbTabTitle><div class="pending-request"><div>{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}</div><div class="circle">{{portfolio.pendingRequestDTO.numberOfPendingRequests}}</div></div></ng-template>
+        <ng-template ngbTabTitle>
+          <div class="pending-request">
+            <div>{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}</div>
+            <div class="circle">
+              <span *ngIf="pendingBuyRequests && pendingBuyRequests.value">{{pendingBuyRequests.value.length}}</span>
+              <span *ngIf="!(pendingBuyRequests && pendingBuyRequests.value)">0</span>
+            </div>
+          </div>
+        </ng-template>
         <ng-template ngbTabContent>
           <div class="pending-request-panel-content">
             <div class="withdrawal" *ngIf="pendingSellRequests && pendingSellRequests.value">

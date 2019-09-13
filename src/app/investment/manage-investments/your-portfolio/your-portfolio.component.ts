@@ -83,7 +83,7 @@ export class YourPortfolioComponent implements OnInit {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
-      this.holdingValues = this.portfolio.dPMSPortfolio.dpmsDetailsDisplay;
+      this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
                                     ? this.portfolio.dPMSPortfolio.totalReturns
