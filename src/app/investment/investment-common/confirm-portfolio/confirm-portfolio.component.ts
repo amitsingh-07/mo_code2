@@ -474,7 +474,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 );
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
               }
-              this.clearJourneyData();
+              this.investmentCommonService.clearJourneyData();
             }
           }
         },
@@ -500,12 +500,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
-  }
-
-  clearJourneyData() {
-    this.investmentEngagementJourneyService.clearData();
-    this.investmentCommonService.clearConfirmPortfolioName();
-    this.investmentCommonService.clearAccountCreationActions();
   }
 
   constructCreateInvAccountParams(cddFailedStatus) {
