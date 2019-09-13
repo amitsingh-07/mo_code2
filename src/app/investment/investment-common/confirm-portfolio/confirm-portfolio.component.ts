@@ -269,7 +269,8 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolio() {
     this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000) {
-        this.showAddPortfolioNameModal(data.objectList[this.portfolio.customerPortfolioId]);
+        const defaultPortfolioName = data.objectList.portfolioName;
+        this.showAddPortfolioNameModal(defaultPortfolioName);
       } else if (data.responseMessage.responseCode === 5119) {
         const confirmationPortfolio = this.investmentCommonService.getConfirmPortfolioName();
         this.showAddPortfolioNameModal(confirmationPortfolio);
