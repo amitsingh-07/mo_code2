@@ -39,4 +39,5 @@ export interface IToastMessage {
   desc: string;
   link_label: string;
   link_url: any;
+  id: number;
 }
