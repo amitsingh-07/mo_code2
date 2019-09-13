@@ -497,7 +497,14 @@ export class ConfirmPortfolioComponent implements OnInit {
       link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.clearJourneyData();
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  clearJourneyData() {
+    this.investmentEngagementJourneyService.clearData();
+    this.investmentCommonService.clearConfirmPortfolioName();
+    this.investmentCommonService.clearAccountCreationActions();
   }
 
   constructCreateInvAccountParams(cddFailedStatus) {
