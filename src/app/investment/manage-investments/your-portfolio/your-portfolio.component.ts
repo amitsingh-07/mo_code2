@@ -252,7 +252,11 @@ export class YourPortfolioComponent implements OnInit {
     window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
   showTransferInstructionModal() {
-  this.manageInvestmentsService.showTransferInstructionModal(this.portfolio.pendingRequestDTO.numberOfPendingRequests);
+    let pendingBuyRequestCount = 0;
+    if (this.pendingBuyRequests && this.pendingBuyRequests.value) {
+      pendingBuyRequestCount = this.pendingBuyRequests.value.length;
+    }
+  this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
   }
   showRenamePortfolioModal() {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
