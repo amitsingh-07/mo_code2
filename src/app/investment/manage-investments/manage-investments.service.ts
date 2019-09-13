@@ -416,29 +416,35 @@ export class ManageInvestmentsService {
   /*
   * Method to show transfer instruction steps modal
   */
-  showTransferInstructionModal() {
+  showTransferInstructionModal(numberOfPendingRequest) {
     this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
             windowClass : 'transfer-steps-modal custom-full-height'
     });
     this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
     this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
     this.transferInstructionModal.componentInstance.activeMode = this.activeModal;
+    this.transferInstructionModal.componentInstance.numberOfPendingReq = numberOfPendingRequest;
     this.transferInstructionModal.componentInstance.closeModal.subscribe(() => {
       this.transferInstructionModal.dismiss();
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     });
     this.transferInstructionModal.componentInstance.openModal.subscribe(() => {
-      this.showPopUp();
+      this.showPopUp(numberOfPendingRequest);
     });
 
     this.transferInstructionModal.componentInstance.activeTab.subscribe((res) => {
       this.activeModal = res;
     });
+    this.transferInstructionModal.componentInstance.topUpActionBtn.subscribe(() => {
+      this.transferInstructionModal.dismiss();
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+     });
   }
 
   /*
   * Method to show recipients/entity name instructions modal
   */
-  showPopUp() {
+  showPopUp(numberOfPendingRequest) {
     this.transferInstructionModal.dismiss();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -450,7 +456,7 @@ export class ManageInvestmentsService {
     );
     ref.result.then((result) => {
     }, (reason) => {
-      this.showTransferInstructionModal();
+      this.showTransferInstructionModal(numberOfPendingRequest);
     });
   }
 

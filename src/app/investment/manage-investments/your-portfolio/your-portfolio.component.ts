@@ -230,7 +230,9 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 5: {
-      this.showDeletePortfolioModal();
+      if (this.portfolio.entitlements.showDelete) {
+        this.showDeletePortfolioModal();
+      }
       break;
     }
   }
@@ -255,7 +257,13 @@ export class YourPortfolioComponent implements OnInit {
   goToTopupInstructionLink() {
     window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
-
+  showTransferInstructionModal() {
+    let pendingBuyRequestCount = 0;
+    if (this.pendingBuyRequests && this.pendingBuyRequests.value) {
+      pendingBuyRequestCount = this.pendingBuyRequests.value.length;
+    }
+  this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
+  }
   showRenamePortfolioModal() {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
     ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;

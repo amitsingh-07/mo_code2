@@ -5,8 +5,6 @@
     "SELECT_PORTFOLIO": "1. Select Portfolio ",
     "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
-    "PLEASE_TOPUP": "Please transfer",
-    "CASH_ACCOUNT": " to your cash account.",
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit",
     "CONTINUE": "Continue",
