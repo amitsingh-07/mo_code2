@@ -323,7 +323,6 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   showDeletePortfolioModal() {
-    if (this.portfolio.entitlements.showDelete) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
       ref.componentInstance.errorMessage = this.translate.instant(
@@ -360,7 +359,6 @@ export class YourPortfolioComponent implements OnInit {
         });
       });
       ref.componentInstance.noClickAction.subscribe(() => { });
-    }
   }
 
   showCustomErrorModal(title, desc) {
