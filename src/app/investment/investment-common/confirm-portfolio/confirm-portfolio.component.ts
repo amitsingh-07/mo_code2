@@ -475,6 +475,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 );
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
               }
+              this.clearJourneyData();
             }
           }
         },
@@ -499,7 +500,6 @@ export class ConfirmPortfolioComponent implements OnInit {
       id: this.portfolio.customerPortfolioId
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
-    this.clearJourneyData();
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
   }
 
