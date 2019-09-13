@@ -1362,9 +1362,9 @@ export class ComprehensiveService {
         }
       }
     }
-    otherLongTermCareValue = this.transformAsCurrency(
-      cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-    );
+    // otherLongTermCareValue = this.transformAsCurrency(
+    //   cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+    // );
     return {
       title: 'Risk-Proof Your Journey',
       expanded: true,
