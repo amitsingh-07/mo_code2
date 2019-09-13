@@ -1087,7 +1087,7 @@ export class ComprehensiveService {
             value:
               (item.location === null ? '' : item.location) +
               (item.educationCourse === null ? '' : ', ' + item.educationCourse) //+
-              //(item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '%'
+            //(item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '%'
           });
         });
       }
@@ -1278,6 +1278,7 @@ export class ComprehensiveService {
     let criticalIllnessValue = '$0';
     let ocpDisabilityValue = '$0';
     let longTermCareValue = '$0';
+    let otherLongTermCareValue = '$0'
     if (isCompleted) {
       const haveHospitalPlan =
         cmpSummary.comprehensiveInsurancePlanning.haveHospitalPlan;
@@ -1361,7 +1362,9 @@ export class ComprehensiveService {
         }
       }
     }
-
+    // otherLongTermCareValue = this.transformAsCurrency(
+    //   cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+    // );
     return {
       title: 'Risk-Proof Your Journey',
       expanded: true,
@@ -1407,7 +1410,11 @@ export class ComprehensiveService {
               this.getMyProfile().dateOfBirth,
               new Date()
             ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
-            : true
+            : true,
+          // list: [{
+          //   title: 'Other coverage amount',
+          //   value: otherLongTermCareValue
+          // }]
         }
       ]
     };
@@ -1434,20 +1441,64 @@ export class ComprehensiveService {
       retirementAgeValue =
         retireAgeVal > 60 ? '62 or later' : retireAgeVal + ' yrs old';
     }
+    let subItemsArray = [];
+    subItemsArray.push({
+      id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+      path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+      title: 'Retirement Age',
+      value: retirementAgeValue,
+      completed: isCompleted
+    })
+    if (cmpSummary.comprehensiveRetirementPlanning) {
+      cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
+        subItemsArray.push({
+          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          title: 'Retirement Income ' + (index + 1),
+          value: '',
+          completed: isCompleted,
+          list: [{
+            title: 'Monthly Payout',
+            value: this.transformAsCurrency(item.monthlyPayout)
+          },
+          {
+            title: 'Payout Start Age',
+            value: item.payoutStartAge + ' years old'
+          },
+          {
+            title: 'Payout Duration',
+            value: item.payoutDuration
+          }]
+        })
+      });
+
+
+      cmpSummary.comprehensiveRetirementPlanning.lumpSumBenefitSet.forEach((item, index) => {
+        subItemsArray.push({
+          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          title: 'Lump Sum Amount ' + (index + 1),
+          value: '',
+          completed: isCompleted,
+          list: [{
+            title: 'Maturity Amount',
+            value: this.transformAsCurrency(item.maturityAmount)
+          },
+          {
+            title: 'Maturity Year',
+            value: item.maturityYear
+          }]
+        })
+      });
+    }
+
     return {
       title: 'Financial Independence',
       expanded: true,
       completed: false,
       customStyle: 'retirement-icon',
-      subItems: [
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
-          path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
-          title: 'Retirement Age',
-          value: retirementAgeValue,
-          completed: isCompleted
-        }
-      ]
+      subItems: subItemsArray
+
     };
   }
 

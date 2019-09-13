@@ -303,6 +303,7 @@
     "MY_SPENDINGS": {
       "HEADER": "What You Spend",
       "ABOUT": "When you spend, you draw from your income bucket.",
+      "BUCKET_DESC": "Please input your individual share of expenses and/or loan repayment only",
       "MONTHLY_LIVING_EXPENSES": "Monthly Living Expenses",
       "MONTHLY_LIVING_EXPENSES_HINT": "(e.g. food, utilities, rent)",
       "YEARLY_AD_HOC_EXPENSES": "Yearly or Ad-Hoc Expenses",
