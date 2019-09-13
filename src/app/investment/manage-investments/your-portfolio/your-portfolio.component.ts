@@ -280,7 +280,7 @@ export class YourPortfolioComponent implements OnInit {
       this.loaderService.hideLoader();
       if (response.responseMessage.responseCode >= 6000) {
         this.showToastMessage(this.portfolio.portfolioName, portfolioName);
-        this.portfolio.portfolioName = portfolioName;
+        this.getCustomerPortfolioDetailsById(this.portfolio.customerPortfolioId);
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
