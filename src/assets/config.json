@@ -10,7 +10,7 @@
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": false,
-  "marqueeEnabled": true,
+  "marqueeEnabled": false,
   "resetPasswordUrl": "/#/account/reset-password",
   "verifyEmailUrl": "/#/account/email-verification",
   "hospitalPlanData": [{
