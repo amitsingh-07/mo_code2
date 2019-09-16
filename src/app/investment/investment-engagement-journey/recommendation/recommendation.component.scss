@@ -49,8 +49,8 @@ app-recommendation {
     position: fixed;
     opacity: 0.95;
     width: 100%;
-    // height: 100%;
-    height: 100vh;
+    height: 100%;
+    // height: 100vh;
     z-index: 9999;
     top: 0;
     left: 0;
@@ -59,31 +59,65 @@ app-recommendation {
   .custom-modal-wrapper {
     //top: 20px;
     //left: 0;
-    width: 100%;
-    height: 100vh;
-    position: relative;
+    // width: 100%;
+    // height: 100vh;
+    // position: relative;
     //position: absolute;
+    // z-index: 10000;
+    // text-align: center;
+    // @extend .flex;
+    // @extend .justify-center;
+    // @extend .align-center;
+
+
+    top: 0;
+    width: 100%;
+    position: fixed;
     z-index: 10000;
     text-align: center;
     @extend .flex;
     @extend .justify-center;
     @extend .align-center;
+    flex-direction: column;
+    height: 100%;
+    @include allmobiles{
+      top: 105px;
+      justify-content: flex-start;
+    }
+    @include max360{
+      top: 50px;
+    }
   }
 
-  .custom-modal-content {
-    width: 100%;
-    height: 100%;
+  .custom-modal--content {
+    // width: 100%;
+    // height: 100%;
+    text-align: center;
 
-    img {
-      width: 100%;
-      height: 100%;
+    // img {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    .btn{
+      &.btn-primary {
+        width: 320px !important;
+        margin-top: 68px;
+  
+        @include allmobiles {
+          position: fixed !important;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        }
+      }
     }
   }
 
   .custom-modal--icon {
-
+    display: flex;
+    justify-content: center;
     //height: 100%;
-    .width50 {
       @include desktop {
         width: 340px;
       }
@@ -93,10 +127,13 @@ app-recommendation {
       }
 
       @include allmobiles {
-        width: 50%;
+        width: 285px;
       }
-
-    }
+      img{
+        width: 100%;
+        height: auto;
+        display: flex;
+      }
   }
 
   .custom-modal--title {
@@ -115,6 +152,7 @@ app-recommendation {
     letter-spacing: -0.2px;
     font-family: $muli-regular;
     max-width: 480px;
+    margin: 0 auto;
 
     @include allmobiles {
       padding: 0 10%;
