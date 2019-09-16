@@ -13,6 +13,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments/manage-investments.constants';
 import { IAccountCreationActions, InvestmentCommonFormData } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -25,7 +26,8 @@ export class InvestmentCommonService {
     private investmentApiService: InvestmentApiService,
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
   }
   savePortfolioName(data) {
@@ -184,5 +186,11 @@ export class InvestmentCommonService {
       return true;
     }
     return false;
+  }
+
+  clearJourneyData() {
+    this.investmentEngagementJourneyService.clearData();
+    this.clearConfirmPortfolioName();
+    this.clearAccountCreationActions();
   }
 }

@@ -61,7 +61,7 @@
         <ng-template ngbTabContent>
             <div class="flex-col-12">
                 <div class="portfolio-panel-content">
-                  <div class="row" *ngIf="true">
+                  <div class="row" *ngIf="isWhatsNextSectionShown">
                     <div class="col-lg-12 col-md-12">
                       <div class="form-group-with-bg start-investing">
                         <div class="form-group-with-bg--header ">
@@ -93,7 +93,10 @@
                     <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED'">
                       <div class="form-group-with-bg">
                         <div class="form-group-with-bg--header your_total_value" [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
-                          <div id="portdolio_value" class="total_values"><span *ngIf="portfolio.dPMSPortfolio">{{portfolio.dPMSPortfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span></div>
+                          <div id="portdolio_value" class="total_values">
+                            <span *ngIf="portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.currentValue; else display_zero">{{portfolio.dPMSPortfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                            <ng-template #display_zero>$0</ng-template>
+                          </div>
                           <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
                         </div> 
                         <!--Form Content-->
@@ -145,7 +148,7 @@
                       </div>
                     </div>
                   </div>
-                    <button *ngIf="portfolio.portfolioStatus === 'PURCHASED' && portfolio.dPMSPortfolio.dpmsDetailsDisplay" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+                    <button *ngIf="portfolio.portfolioStatus === 'PURCHASED' && portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.dpmsDetailsDisplay" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
                       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
                       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
                     </button>
@@ -256,7 +259,7 @@
                   <!-- NO REQUESTS -->
                   <div class="flex-col" *ngIf="!pendingOnetimeBuyRequests">
                     <div class="flex-col-12 flex-row">
-                      <div class="topup-btn">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
+                      <div class="topup-btn" (click)="gotoTopUp()">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
                       <div class="fund-amt">$0</div>
                     </div>
                   </div>
@@ -309,7 +312,7 @@
                   
                   <div class="flex-col" *ngIf="!pendingMonthlyBuyRequests">
                     <div class="flex-col-12 flex-row">
-                      <div class="topup-btn">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
+                      <div class="topup-btn" (click)="gotoTopUp()">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
                       <div class="fund-amt">$0</div>
                     </div>
                   </div>

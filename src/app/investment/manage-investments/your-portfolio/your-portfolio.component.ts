@@ -92,6 +92,7 @@ export class YourPortfolioComponent implements OnInit {
                            ? this.portfolio.dPMSPortfolio.yearlyReturns
                            : null;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
+      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,
@@ -109,7 +110,6 @@ export class YourPortfolioComponent implements OnInit {
           this.pendingMonthlyBuyRequests = this.groupBuyRequests(this.pendingBuyRequests, 'MONTHLY');
         }
       }
-      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       this.showOrHideWhatsNextSection();
     },
     (err) => {
@@ -118,23 +118,34 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   groupBuyRequests(buyRequests, transactionFrequency) {
+    let awaitingFundRequests;
+    let processingRequests;
+    let recievedRequests;
     const onetimeMonthlyRequestGroups = new GroupByPipe().transform(
       buyRequests.value,
       'transactionFrequency'
     );
     const targetedBuyRequests = this.investmentEngagementJourneyService.findGroupByGroupName(onetimeMonthlyRequestGroups, transactionFrequency);
-    const transactionStatusGroups = new GroupByPipe().transform(
-      targetedBuyRequests.value,
-      'transactionStatus'
-    );
-    const awaitingFundRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'AWAITING_FUND');
-    const processingRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'PROCESSING');
-    const recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECIEVED');
-    return {
-      awaitingFundRequests : awaitingFundRequests ? awaitingFundRequests.value : [],
-      processingRequests: processingRequests ? processingRequests.value : [],
-      recievedRequests: recievedRequests ? recievedRequests.value : []
-    };
+    if(targetedBuyRequests) {
+      const transactionStatusGroups = new GroupByPipe().transform(
+        targetedBuyRequests.value,
+        'transactionStatus'
+      );
+      awaitingFundRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'AWAITING_FUND');
+      processingRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'PROCESSING');
+      recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECIEVED');
+    }
+    if ((awaitingFundRequests && awaitingFundRequests.value && awaitingFundRequests.value.length)
+      || (processingRequests && processingRequests.value && processingRequests.value.length)
+      || (recievedRequests && recievedRequests.value && recievedRequests.value.length)) {
+        return {
+          awaitingFundRequests : awaitingFundRequests ? awaitingFundRequests.value : [],
+          processingRequests: processingRequests ? processingRequests.value : [],
+          recievedRequests: recievedRequests ? recievedRequests.value : []
+        };
+    } else {
+      return null;
+    }
   }
 
   showOrHideWhatsNextSection() {
