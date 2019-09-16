@@ -6,8 +6,10 @@ app-funding-instructions {
     &.clearfix {
       overflow: auto;
     }
-  font-family: $muli-regular;
- .strong {
+
+    font-family: $muli-regular;
+
+    .strong {
       font-weight: bold;
     }
 
@@ -424,14 +426,21 @@ app-funding-instructions {
       }
     }
   }
-.multiline-ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    /* autoprefixer: off */
-    -webkit-box-orient: vertical;
-    max-width: 120px;
-    word-break: break-word;
+
+  .multiline-ellipsis {
+    max-width: 200px;
+    letter-spacing: -0.16px;
+    @include allmobiles {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /* autoprefixer: off */
+      -webkit-box-orient: vertical;
+      max-width: 130px;
+      word-break: break-word;
+      letter-spacing: -0.16px;
+    }
   }
 }
+

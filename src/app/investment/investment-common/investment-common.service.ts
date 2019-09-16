@@ -190,7 +190,7 @@ export class InvestmentCommonService {
 
   clearJourneyData() {
     this.investmentEngagementJourneyService.clearData();
-    this.clearConfirmPortfolioName();
+   // this.clearConfirmPortfolioName();
     this.clearAccountCreationActions();
   }
 }
