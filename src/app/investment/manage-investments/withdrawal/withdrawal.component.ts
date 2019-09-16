@@ -69,6 +69,8 @@ export class WithdrawalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.buildForm();
+
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
@@ -81,21 +83,44 @@ export class WithdrawalComponent implements OnInit {
       MIN_WITHDRAW_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
     };
-    this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0])
-    this.buildForm();
+    // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0])
+    this.entitlements = {
+      showDelete: false,
+      showInvest: false,
+      showTopup: false,
+      showWithdrawPvToBa: true,
+      showWithdrawPvToCa: true,
+      showWithdrawCaToBa: true // always allowed irrespective of portfolio status
+    };
+    // this.setSelectedPortfolio();
+  }
+
+   // Find in portfolioList using the selectedCustomerPortfolioId from formValues and set the dropdown value to it
+   setSelectedPortfolio() {
+    if (this.formValues['selectedCustomerPortfolioId'] && this.portfolioList.length !== 0) {
+      this.withdrawForm.controls.withdrawPortfolio.value = this.portfolioList.find((portfolio) => {
+        return portfolio.customerPortfolioId === this.formValues['selectedCustomerPortfolioId'];
+      });
+      this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
+    }
+    this.withdrawForm.controls.withdrawType.value = null;
   }
 
   buildForm() {
     this.withdrawForm = this.formBuilder.group({
-      withdrawType: [this.formValues.withdrawType, Validators.required]
+      withdrawType: [this.formValues.withdrawType, Validators.required],
+      withdrawPortfolio: [this.formValues.PortfolioValues, new FormControl('', Validators.required)],
+      withdrawAmount: ['', new FormControl('', [Validators.required,
+        this.withdrawAmountValidator(this.withdrawForm.controls.withdrawAmount.value, 'PORTFOLIO')
+      ])]
     });
 
     // Withdraw Type Changed Event
     this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       this.isRedeemAll = false;
       if (value) {
-        this.withdrawForm.removeControl('withdrawPortfolio');
-        this.withdrawForm.removeControl('withdrawAmount');
+        // this.withdrawForm.removeControl('withdrawPortfolio');
+        // this.withdrawForm.removeControl('withdrawAmount');
         setTimeout(() => {
           switch (value.id) {
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
@@ -121,6 +146,7 @@ export class WithdrawalComponent implements OnInit {
     }
     if (this.withdrawForm.get('withdrawPortfolio')) {
       // trigger change event
+      console.log('TRIGGER PORTFOLIO')
       this.withdrawForm
         .get('withdrawPortfolio')
         .setValue(this.formValues.withdrawPortfolio);
@@ -128,11 +154,7 @@ export class WithdrawalComponent implements OnInit {
   }
 
   buildFormForPortfolioToCash() {
-    this.withdrawForm.addControl(
-      'withdrawPortfolio',
-      new FormControl('', Validators.required)
-    );
-    this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
+    this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
           ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.0-2').replace(/,/g, ''))
@@ -156,21 +178,19 @@ export class WithdrawalComponent implements OnInit {
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
           this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
         });
-      } else {
-        this.withdrawForm.removeControl('withdrawAmount');
       }
+      //  else {
+      //   this.withdrawForm.removeControl('withdrawAmount');
+      // }
     });
-    this.withdrawForm.controls.withdrawPortfolio.setValue(
-      this.formValues.PortfolioValues
-    );
+    // this.withdrawForm.controls.withdrawPortfolio.setValue(
+    //   this.formValues.PortfolioValues
+    // );
   }
 
   // tslint:disable
   buildFormForPortfolioToBank() {
-    this.withdrawForm.addControl(
-      'withdrawPortfolio',
-      new FormControl('', Validators.required)
-    );
+    console.log('PTOB = ',this.withdrawForm.get('withdrawPortfolio'))
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
@@ -195,13 +215,14 @@ export class WithdrawalComponent implements OnInit {
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
           this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
         });
-      } else { 
-        this.withdrawForm.removeControl('withdrawAmount');
       }
+      // else { 
+      //   this.withdrawForm.removeControl('withdrawAmount');
+      // }
     });
-    this.withdrawForm.controls.withdrawPortfolio.setValue(
-      this.formValues.PortfolioValues
-    );
+    // this.withdrawForm.controls.withdrawPortfolio.setValue(
+    //   this.formValues.PortfolioValues
+    // );
   }
 
   buildFormForCashToBank() {
@@ -219,7 +240,7 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       this.isRedeemAll =  ( (amtValue == this.cashBalance) && this.cashBalance > 0 );
     });
-    this.withdrawForm.removeControl('withdrawPortfolio');
+    // this.withdrawForm.removeControl('withdrawPortfolio');
   }
 
   getLookupList() {
@@ -232,6 +253,10 @@ export class WithdrawalComponent implements OnInit {
 
   setDropDownValue(key, value) {
     this.withdrawForm.controls[key].setValue(value);
+     // Set the entitlements based on the selected portfolio
+     if (key === 'withdrawPortfolio') {
+      this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
+    }
   }
 
   setNestedDropDownValue(key, value, nestedKey) {
@@ -301,6 +326,7 @@ export class WithdrawalComponent implements OnInit {
         title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),
         desc: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.DESC')
       });
+      console.log('formValues = ', this.formValues)
       this.manageInvestmentsService.sellPortfolio(this.formValues).subscribe(
         (response) => {
           this.isRequestSubmitted = false;
@@ -366,6 +392,7 @@ export class WithdrawalComponent implements OnInit {
   }
 
   withdrawAmountValidator(balance, source): ValidatorFn {
+    console.log('IN WITHDRAWAMOUNTVALID')
     balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
       if (control) {

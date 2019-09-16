@@ -26,7 +26,7 @@ export let investmentApiConstants = {
             buyPortfolio: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/buy?handleError=true',
             deletePortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios',
             monthlyInvestment: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/InvestmentObjective/monthlyInvestment?handleError=true',
-            sellPortfolio: INVESTMENT_API_BASE_URL + '/portfolio/sell?handleError=true',
+            sellPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/sell?handleError=true',
             saveNationality: INVESTMENT_API_BASE_URL + '/customer/setNationality',
             investmentoverview: INVESTMENT_API_BASE_URL + '/customers/investment-profile?handleError=true',
             porfolioDetails: INVESTMENT_API_BASE_URL + '/customer/portfolios/$CUSTOMER_PORTFOLIO_ID$/summary',
