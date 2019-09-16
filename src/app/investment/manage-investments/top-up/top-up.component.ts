@@ -72,7 +72,7 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.PortfolioValues, Validators.required],
+      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
         this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
         Validators.required
