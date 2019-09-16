@@ -33,13 +33,13 @@
                           <div class="dropdown-control">
                             <div ngbDropdown>
                               <button class="btn btn-dropdown" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
-                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.riskProfileType :'Select
+                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.portfolioName :'Select
                                 Portfolio'}}
                               </button>
                               <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                                 <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;"
                                   (click)="setDropDownValue('portfolio',portfolio)"
-                                  id="topup_portfolio_option-{{i}}">{{portfolio.riskProfileType}}</button>
+                                  id="topup_portfolio_option-{{i}}">{{portfolio.portfolioName}}</button>
                               </div>
                             </div>
                           </div>
@@ -100,11 +100,6 @@
                           </div>
                         </div>
                       </div>
-                      <p id="cash_account_balance" class="balance-amount mb10">{{'TOPUP.CASH_ACCOUNT_BALANCE' |
-                        translate}}{{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
-                      <p id="topup_amount" class="topupportfolio-amount" *ngIf="isAmountExceedBalance">{{'TOPUP.PLEASE_TOPUP' |
-                        translate}} {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}} {{'TOPUP.CASH_ACCOUNT' |
-                        translate}}</p>
                     </div>
                   </div>
                 </div>

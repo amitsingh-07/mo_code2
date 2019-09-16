@@ -35,8 +35,7 @@
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
-                  <div class="flex-row mb20 total_cash_balance"
-                    *ngIf="userProfileInfo.investementDetails.showTotalReturn">
+                  <div class="flex-row mb20 total_cash_balance">
                     <div class="flex-col">
                       <div class="total_cash_label" id="investment_overview_total_returns_labl">
                         {{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
@@ -52,14 +51,19 @@
                   <div class="flex-row">
                     <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
-                          src="../../../assets/images/investment-account/money-topup.svg" alt="" /></span>
+                          src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
                     </button>
                   </div>
                 </div>
               </div>
               <div class="flex-row mb20 space-btwn align-center">
-                <div class="your_portfolio_label" id="investment_overview_your_portfolios">
+                <div *ngIf="!portfolioList || portfolioList.length < 2" class="your_portfolio_label"
+                  id="investment_overview_your_portfolios">
+                  {{'YOUR_INVESTMENT.MY_PORTFOLIO' | translate}}
+                </div>
+                <div *ngIf="portfolioList?.length > 1" class="your_portfolio_label"
+                  id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
                 </div>
                 <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img
@@ -74,7 +78,7 @@
   </div>
 </section>
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
-  [showTotalReturn]="userProfileInfo.investementDetails.showTotalReturn" (detailSelected)="yourPortfolio($event)"
+  [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
   [portfolioData]="investmentoverviewlist">
@@ -88,6 +92,14 @@
       <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
       <button type="button" class="btn btn-primary" id="add_portfolio" (click)="startPortfolio()">
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+    </div>
+  </div>
+</div>
+<div class="srs-block">
+  <div class="container-fluid max-width--1024">
+    <div class="srs-reminder">
+      <img class="mail-img" src="../../../assets/images/srs-joint-account/mail.svg" />
+      <div class="srs-txt">{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}</div>
     </div>
   </div>
 </div>

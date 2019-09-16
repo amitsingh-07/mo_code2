@@ -21,7 +21,7 @@ app-add-portfolio-name {
     text-align: center;
     display: flex;
     justify-content: center;
-    
+
     @include desktop {
       align-items: center;
     }
@@ -48,8 +48,29 @@ app-add-portfolio-name {
       .portfolio-naming {
         max-width: 320px;
         margin: auto;
+
+        @include desktop {
+          margin-bottom: 60px;
+        }
+
+        @include tablet {
+          margin-bottom: 60px;
+        }
+
+        @include phablet {
+          margin-bottom: 60px;
+        }
+
+        .portfolio_name_title {
+          font-family: $muli-bold;
+          font-size: 18px;
+          letter-spacing: -0.34px;
+          text-align: center;
+          color: $black-color;
+        }
       }
-      .portfolio-naming--content{
+
+      .portfolio-naming--content {
         max-width: 320px;
       }
     }
@@ -60,21 +81,18 @@ app-add-portfolio-name {
       letter-spacing: -0.3px;
       text-align: center;
       color: $custom-modal-title-color;
-      padding: 40px 15px;
+      padding-bottom: 30px;
       line-height: 40px;
-
-      @include allmobiles {
-        padding: 0px 15px 30px;
-      }
     }
 
     .portfolio-success {
       text-align: center;
 
       img {
-        width: 133px;
-        height: 140px;
+        width: 115px;
+        height: 120px;
       }
+
     }
 
     .input-control {
@@ -83,7 +101,7 @@ app-add-portfolio-name {
 
     .desc {
       font-family: $muli-regular;
-      font-size: 21px;
+      font-size: 20px;
       letter-spacing: -0.34px;
       text-align: center;
       color: $black-color;
@@ -139,24 +157,25 @@ app-add-portfolio-name {
   }
 
   .btn {
-    &.btn-primary{
-    z-index: 1001;
-    &:disabled {
-      border-radius: 6px;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-      background-color: $portfolio-name-btn !important;
-      color: $white-color;
-    }
+    &.btn-primary {
+      z-index: 1001;
 
-    &:hover {
-      border-radius: 6px;
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-      background-color: $portfolio-name-btn !important;
-      color: $white-color;
-    }
+      &:disabled {
+        border-radius: 6px;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        background-color: $portfolio-name-btn !important;
+        color: $white-color;
+      }
 
+      &:hover {
+        border-radius: 6px;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        background-color: $portfolio-name-btn !important;
+        color: $white-color;
+      }
+
+    }
   }
-}
 
   .modal.close {
     top: 25px !important;

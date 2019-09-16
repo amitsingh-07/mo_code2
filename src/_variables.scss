@@ -15,6 +15,7 @@ $dark-grey-color: #4a4a4a;
 $dusty-grey-color: #9b9b9b;
 $border-grey-color:#e1e1e1;
 $teal-grey-color: #8d9aa8;
+$grimmy-grey-color: #777777;
 $teal-color: #00a7a7;
 $dark-teal-color: #2d8289;
 $darker-teal-color: #007d7d;
@@ -60,6 +61,10 @@ $pardiso-green-color: #276f75;
 $catskill-white-color: #e7f3f3;
 $regent-grey-color: #8a9ba9;
 $gallery-grey-color: #eaeaea;
+$manatee-color: #898f9c;
+$spindle-color: #c2d9ec;
+$silver-chalice-color: #a4a4a4;
+$tuna-color: #313644;
 
 // common color
 $login-shadow-color : rgba(0, 0, 0, 0.2);
@@ -160,7 +165,7 @@ $custom-modal-desc-color : $silver-grey-color;
 
 /*** form colors ***/
 // Form block color
-$form-block-title-color: #313644;
+$form-block-title-color: $tuna-color;
 $form-block-sub-title-color: $silver-grey-color;
 $form-title-backgrnd-color:#c0eded;
 $form-title-mob-backgrnd-color:#45bbbb;
@@ -197,15 +202,22 @@ $spinner-bg : #4dc1c1;
 
 //guide-me
 $ci-note-color: $teal-color;
-$ci-note-brdr-color:#c2d9ec;
+$ci-note-brdr-color:$spindle-color;
 
-//Portfolio - Slider color
+//Portfolio - Slider color in investment period
+$callout-bg: $white-color;
+$callout-txt-color: $teal-color;
 $slider-selection-color:#ff872f;
 $accordion-link-color:#ec681c;
 $investment-slider-noui-base-bg: #007474;
+$investment-time-horizon-bg: $white-color;
 $investment-time-horizon-clr: $darker-teal-color;
 $investment-time-horizon-desc-clr: $watercourse-color;
 $investment-time-horizon-desc-title-brdr-clr: #00a7a7;
+
+// Investment Your-Financials
+$emergency-fund-btn-bg: $black-squeeze-grey-color;
+$emergency-fund-hover-btn-color: $teal-color;
 
 // step - indicator color
 $step-indicator-bg : #31e5db;
@@ -237,9 +249,16 @@ $portfolio-wgt-content-text-color: $teal-color;
 $intro-block-tab-bg-color: $aqua-color;
 $intro-block-content-desc-color : $white-color;
 $intro-block-heading-color : #8cd7d7;
+$question-info-bg : $white-color;
 $question-info-brdr-color : $silver-color;
+$question-info-input-lbl-color: $tuna-color;
 $risk-table-cell-bg-color : #f2f9fa;
 $risk-table-cell-color : $darker-teal-color;
+$risk-table-cell-brdr-color : $teal-color;
+$risk-table-lbl-color : $tuna-color;
+$risk-table-head-color : $tuna-color;
+$risk-profile-page-title-color: $teal-color;
+$risk-profile-title-color: $teal-color;
 
 // review block in portfolio details & confirm portfolio
 $review-text-color : $jungle-mist-blue-color;
@@ -250,7 +269,7 @@ $post-login-widget-title : $watercourse-color;
 
 // fund details modal colors
 $fund-details-title-brdr : #edeff1;
-$fund-details-dimentional-brdr : #c2d9ec;
+$fund-details-dimentional-brdr : $spindle-color;
 $fund-details-card-brdr : #c9ddee;
 $fund-details-arrow-color : #2d8288;
 $fund-details-btn-color: $crusta-orange-color;
@@ -342,8 +361,11 @@ $widget-title-bg-color: $white-color;
 $widget-body-color: $dark-teal-color;
 
 // Investmnent-welcome 
-$promo-sub-lbl-color: #898f9c;
-$promo-input-brdr-color: #c2d9ec;
+$journey-content-color: $dark-grey-color;
+$promo-code-lbl-bg: $white-color;
+$promo-sub-lbl-color: $manatee-color;
+$promo-input-brdr-color: $spindle-color;
+$offer-code-placeholder-color: $silver-chalice-color;
 
 // Investment Account
 $upload-file-log-color : #ceebeb;

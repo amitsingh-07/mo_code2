@@ -93,8 +93,9 @@ export class InvestmentApiService {
       );
   }
 
-  getIndividualPortfolioDetails(portfolioId) {
-    return this.http.get(investmentApiConstants.endpoint.investmentAccount.porfolioDetails + '/' + portfolioId)
+  getCustomerPortfolioDetailsById(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.porfolioDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -207,8 +208,9 @@ export class InvestmentApiService {
   }
 
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
-  buyPortfolio(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.buyPortfolio, data)
+  buyPortfolio(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.buyPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -216,14 +218,16 @@ export class InvestmentApiService {
   // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   deletePortfolio(data) {
     // need to change the correct endpoint
-    return this.http.delete(investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.portfolioId + '?handleError=true', data)
+    return this.http.delete(
+      investmentApiConstants.endpoint.investmentAccount.deletePortfolio + '/' + data.customerPortfolioId + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
-  monthlyInvestment(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.monthlyInvestment, data)
+  monthlyInvestment(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.monthlyInvestment.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -257,8 +261,9 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getOneTimeInvestmentInfo() {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective)
+  getOneTimeInvestmentInfo(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -306,13 +311,6 @@ export class InvestmentApiService {
     // tslint:disable-next-line:no-commented-code
     // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
     const url = '../../../assets/mock-data/portfolioList.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
- getMoreList() {
-    const url = '../assets/mock-data/moreList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

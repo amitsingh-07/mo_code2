@@ -61,7 +61,7 @@
     },
      "ADD_PORTFOLIO_NAME": {
       "TITLE": "Your portfolio is almost ready.",
-      "ADD_PORTFOLIO_NAME_LAB": "Let’s give it a unique name!",
+      "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
       "DONE":"Done",
       "VALIDATION_MESSAGE":"Please enter Alphabets and Numbers only",
       "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
@@ -123,7 +123,7 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK_TRANSFER":"Bank Transfer",    
+    "BANK_TRANSFER":"Bank Transfer",
     "DESC":"Please transfer the following amount using your preferred payment method details:",
     "FUNDING_DESC":"Please transfer the following amount using Bank Transfer or PayNow.",
     "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",

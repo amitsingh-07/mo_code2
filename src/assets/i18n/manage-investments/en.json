@@ -1,12 +1,10 @@
 {
   "TOPUP": {
     "TITLE": "Buy Request",
-    "DESC":"Submit a buy request and transfer money into your cash account.",
+    "DESC": "Submit a buy request and transfer money into your cash account.",
     "SELECT_PORTFOLIO": "1. Select Portfolio ",
     "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
-    "PLEASE_TOPUP": "Please transfer",
-    "CASH_ACCOUNT": " to your cash account.",
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit",
     "CONTINUE": "Continue",
@@ -25,10 +23,22 @@
   "TOPUP_REQUEST": {
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
     "REQUEST_PROCESSED": "Request will be processed once fund transfer is complete",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "BUY_REQUEST_SUBMITTED": "Your buy request has been submitted",
+    "ONE_TIME_MSG": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_MSG": "Your request will be processed on the 15th, it will take 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "OK_GOT_IT": "Okay, Got It!",
+    "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
+    "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
+    "REFERENCE_CODE_LBL": "Reference Code:",
+    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments” section in your funds transfer / PayNow screen.</span>",
+    "BANK_TRANSFER": "Bank Transfer",
+    "SHOWPOPUP": {
+      "TITLE": "Recipient’s / Entity Name",
+      "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+    }
   },
   "YOUR_INVESTMENT": {
-    "TITLE": "Your Investment",
+    "TITLE": "Your Investments",
     "PROFILE_DEC": "Here’s a performance summary of your investments.",
     "TOTAL_VALUE": "Total Value",
     "TOTAL_RETURNS": "Total Returns ",
@@ -36,7 +46,8 @@
     "TOTAL_INVESTED": "Total Invested",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "TOTAL_OF": "Total of",
-    "MY_PORTFOLIOS": "My Portfolio",
+    "MY_PORTFOLIO": "My Portfolio",
+    "MY_PORTFOLIOS": "My Portfolios",
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
     "ADD_PORTFOLIO": "Add Portfolio",
@@ -93,14 +104,49 @@
       "CASH_ACCOUNT_BALANCE": {
         "TITLE": "Cash Account",
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
+      },
+      "RENAME_PORTFOLIO": {
+        "RENAME_PORTFOLIO_TXT": "Rename Portfolio",
+        "VALIDATION_MESSAGE": "Please enter Alphabets and Numbers only",
+        "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
+        "MAX_NUMBER_CHARACHTER": "/ 50 characters",
+        "LOADING_TITLE": "Loading...",
+        "LOADING_DESC": "Please wait."
       }
-    }
+    },
+    "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
+    "PENDING_NO_REQUEST_INFO": "You have no Buy Requests",
+    "RISK_PROFILE_NAME": "{{riskProfileName}} Portfolio",
+    "MORE": "More",
+    "PORTFOLIO_SUMMARY": "Portfolio Summary",
+    "WHATS_NEXT": "What’s Next?",
+    "WHATS_NEXT_DESC": "Start investing in {{portfolioName}} portfolio.",
+    "HOW_TO_TOPUP": "How to top up?",
+    "OR_DO_YOU_WANT_TO": "Or do you want to",
+    "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
+    "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / Cash Account",
+    "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
+    "ONE_TIME": "One-time",
+    "FUND_BY": "Fund by",
+    "FUND_RECIEVED_AND_PROCESSED": "Fund received & will process in 1-2 working days.",
+    "PROCESSING": "Processing",
+    "PROCESSING_TIME": "It will take 3 - 4 working days to complete.",
+    "MONTHLY": "Monthly",
+    "MONTHLY_FUND_TIME": "Fund by 10th of the month.",
+    "CASH_ACCOUNT": "Cash Account",
+    "BALANCE_AMOUNT": "Balance Amount",
+    "REFERENCE_CODE": "Reference Code",
+    "TRANSFER_NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions",
+    "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
+    "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
+    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
-    "WITHDRAW_TYPE_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",
+    "WITHDRAW_TYPE_DESC": "You may withdraw money from your cash account after transferring funds from your portfolio.",
     "PORTFOLIO": "Portfolio",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "PORTFOLIO_VALUE": "Portfolio Value",
@@ -166,7 +212,7 @@
     "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
     "IF_WISH_TO_CHANGE_WRITE": "If you wish to change your mailing address, please write to us",
     "CONTACT_EMAIL": "help@moneyowl.com.sg",
-    "WITHDRAW_DESC":"You may withdraw money from your cash account after transferring funds from your portfolio.",
+    "WITHDRAW_DESC": "You may withdraw money from your cash account after transferring funds from your portfolio.",
     "ADD_BANK_MODAL": {
       "TITLE": "Add Bank Account",
       "EDIT_TITLE": "Edit Bank Details",
@@ -174,7 +220,7 @@
       "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
       "BANK_NAME": "Bank Name",
       "ACCOUNT_NO": "Account No.",
-      "APPLY_CHANGE":"Apply Changes"
+      "APPLY_CHANGE": "Apply Changes"
     }
   },
   "TRANSACTIONS": {
@@ -199,7 +245,7 @@
     "TOTAL_VALUE": " Total Value",
     "NUMBER_OF_VALUE": "Number of Units",
     "NAV": "NAV",
-    "PORTFOLIO":"Portfolio"
+    "PORTFOLIO": "Portfolio"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"
@@ -211,7 +257,40 @@
     "TITLE": "Asset Allocation",
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
     "ANNUAL_FEES": "Annual Fees"
-
+  },
+  "REVIEW_BUY_REQUEST": {
+    "TITLE": "Review Buy Request",
+    "YOU_ARE_SUBMITTING": "You are submitting a ",
+    "REQUEST": "{{requestType}} request",
+    "PORTFOLIO": "{{portfolioType}} Portfolio.",
+    "BUY_REQUEST": "Buy Request",
+    "ONE_TIME_LBL": "(one-time)",
+    "MONTHLY_LBL": "/ mth",
+    "PORTFOLIO_TYPE": " - {{portfolioType}} Portfolio",
+    "TOP_UP_AMOUNT": "Amount to top up to your cash account:",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance:",
+    "NOTE": "Note:",
+    "MONTHLY_NOTE": [
+      "Please fund by the 10th of the month for the recurring buy request.",
+      "This request will only be processed once your cash account has sufficient funds.",
+      "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
+      "You may submit a new monthly investment amount before the 15th to overwrite this request.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "SUFFICIENT_ONETIME_NOTE": [
+      "This request will only be processed once your cash account has sufficient funds.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "INSUFFICIENT_ONETIME_NOTE": [
+      "This request will only be processed once your cash account has sufficient funds.",
+      "This request will expire if you do not fund within 7 working days",
+      "You may submit a new one-time investment amount to overwrite this request.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "SUBMIT_REQUEST": "Submit Request"
+  },
+  "TOAST_MESSAGES": {
+    "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
+    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been deleted."
   }
-
 }
