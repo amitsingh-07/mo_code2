@@ -148,6 +148,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
     ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     if (this.userBankList && this.userBankList.length) {
       ref.componentInstance.bankAccountNo = this.userBankList[0].accountNumber;
+      this.formValues['bankAccountNo'] = this.userBankList[0].accountNumber;
     }
     ref.componentInstance.userInfo = this.userInfo;
     ref.componentInstance.confirmed.subscribe((data) => {

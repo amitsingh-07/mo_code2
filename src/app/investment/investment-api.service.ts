@@ -234,8 +234,9 @@ export class InvestmentApiService {
   }
 
   // tslint:disable-next-line:no-identical-functions
-  sellPortfolio(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.sellPortfolio, data)
+  sellPortfolio(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.sellPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

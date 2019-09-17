@@ -194,7 +194,7 @@
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
     "DESC": "We will update you on the status of your request within 2 working days.",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "BACK_TO_INVEST": "Okay, Got It!"
   },
   "WITHDRAW_PAYMENT_METHOD": {
     "ADD_BANK_ACCOUNT": "Add Bank Account",

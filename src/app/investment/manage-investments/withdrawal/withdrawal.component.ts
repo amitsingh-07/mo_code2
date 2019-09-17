@@ -5,22 +5,18 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import {
-    ConfirmWithdrawalModalComponent
-} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
-import {
-    ForwardPricingModalComponent
-} from './forward-pricing-modal/forward-pricing-modal.component';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { ConfirmWithdrawalModalComponent } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { ForwardPricingModalComponent } from './forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal',
@@ -76,34 +72,39 @@ export class WithdrawalComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
-    this.cashBalance = parseFloat(this.decimalPipe.transform(this.manageInvestmentsService.getUserCashBalance(), '1.0-2').replace(/,/g, ''));
     this.translateParams = {
       MIN_WITHDRAW_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
     };
-    this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0])
     this.buildForm();
+    this.setSelectedPortfolio();
+  }
+
+   // Set selected portfolio's entitlements, cash balance
+   setSelectedPortfolio() {
+    if (this.withdrawForm.controls.withdrawPortfolio && this.withdrawForm.controls.withdrawPortfolio.value) {
+      const selectedPortfolio = this.withdrawForm.controls.withdrawPortfolio.value;
+      this.entitlements = selectedPortfolio['entitlements'];
+      this.cashBalance = parseFloat(this.decimalPipe.transform(selectedPortfolio['cashAccountBalance'] || 0, '1.0-2').replace(/,/g, ''));
+    }
   }
 
   buildForm() {
     this.withdrawForm = this.formBuilder.group({
-      withdrawType: [this.formValues.withdrawType, Validators.required]
+      withdrawType: [this.formValues.withdrawType, Validators.required],
+      withdrawPortfolio: [this.formValues.PortfolioValues, new FormControl('', Validators.required)]
     });
 
     // Withdraw Type Changed Event
     this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       this.isRedeemAll = false;
       if (value) {
-        this.withdrawForm.removeControl('withdrawPortfolio');
         this.withdrawForm.removeControl('withdrawAmount');
         setTimeout(() => {
           switch (value.id) {
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
-              this.buildFormForPortfolioToCash();
-              this.isFromPortfolio = true;
-              break;
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID:
-              this.buildFormForPortfolioToBank();
+              this.buildFormForPortfolioType();
               this.isFromPortfolio = true;
               break;
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CASH_TO_BANK_TYPE_ID:
@@ -128,33 +129,29 @@ export class WithdrawalComponent implements OnInit {
   }
 
   buildFormForPortfolioToCash() {
-    this.withdrawForm.addControl(
-      'withdrawPortfolio',
-      new FormControl('', Validators.required)
-    );
-    this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
+    this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
           ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.0-2').replace(/,/g, ''))
           : 0;
         this.isRedeemAll = (roundOffValue <
-                          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
-                          && roundOffValue > 0);
+          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
+          && roundOffValue > 0);
         this.withdrawForm.addControl(
-            'withdrawAmount',
-            new FormControl( {
-              value: this.isRedeemAll ? roundOffValue : '',
-              disabled: this.isRedeemAll
-              }, [
-              Validators.required,
-              this.withdrawAmountValidator(
-                this.withdrawForm.get('withdrawPortfolio').value.currentValue,
-                'PORTFOLIO'
-              )
-            ])
-          );
+          'withdrawAmount',
+          new FormControl({
+            value: this.isRedeemAll ? roundOffValue : '',
+            disabled: this.isRedeemAll
+          }, [
+            Validators.required,
+            this.withdrawAmountValidator(
+              this.withdrawForm.get('withdrawPortfolio').value.currentValue,
+              'PORTFOLIO'
+            )
+          ])
+        );
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
-          this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
+          this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });
       } else {
         this.withdrawForm.removeControl('withdrawAmount');
@@ -167,24 +164,20 @@ export class WithdrawalComponent implements OnInit {
 
   // tslint:disable
   buildFormForPortfolioToBank() {
-    this.withdrawForm.addControl(
-      'withdrawPortfolio',
-      new FormControl('', Validators.required)
-    );
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
           ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.0-2').replace(/,/g, ''))
           : 0;
         this.isRedeemAll = (roundOffValue <
-                          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
-                          && roundOffValue > 0 );
+          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
+          && roundOffValue > 0);
         this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl({
             value: this.isRedeemAll ? roundOffValue : '',
             disabled: this.isRedeemAll
-            }, [
+          }, [
             Validators.required,
             this.withdrawAmountValidator(
               this.withdrawForm.get('withdrawPortfolio').value.currentValue,
@@ -193,7 +186,7 @@ export class WithdrawalComponent implements OnInit {
           ])
         )
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
-          this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
+          this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });
       } else { 
         this.withdrawForm.removeControl('withdrawAmount');
@@ -202,6 +195,30 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.controls.withdrawPortfolio.setValue(
       this.formValues.PortfolioValues
     );
+  }
+
+  buildFormForPortfolioType() {
+    const roundOffValue = this.withdrawForm.get('withdrawPortfolio').value.portfolioValue
+    ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.0-2').replace(/,/g, ''))
+    : 0;
+    this.isRedeemAll = (roundOffValue <
+                    (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
+                    && roundOffValue > 0 );    this.withdrawForm.addControl(
+      'withdrawAmount',
+      new FormControl({
+        value: this.isRedeemAll ? this.cashBalance : '',
+        disabled: this.isRedeemAll
+        }, [
+        Validators.required,
+        this.withdrawAmountValidator(
+          this.withdrawForm.get('withdrawPortfolio').value.currentValue,
+          'PORTFOLIO'
+        )
+      ])
+    );
+    this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+      this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
+    });
   }
 
   buildFormForCashToBank() {
@@ -219,7 +236,6 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       this.isRedeemAll =  ( (amtValue == this.cashBalance) && this.cashBalance > 0 );
     });
-    this.withdrawForm.removeControl('withdrawPortfolio');
   }
 
   getLookupList() {
@@ -232,6 +248,13 @@ export class WithdrawalComponent implements OnInit {
 
   setDropDownValue(key, value) {
     this.withdrawForm.controls[key].setValue(value);
+     // Set the entitlements based on the selected portfolio
+     if (key === 'withdrawPortfolio') {
+      this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
+      this.withdrawForm.controls.withdrawType.value = null;
+      this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.0-2').replace(/,/g, ''));
+      this.withdrawForm.removeControl('withdrawAmount');
+    }
   }
 
   setNestedDropDownValue(key, value, nestedKey) {

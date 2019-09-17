@@ -42,7 +42,7 @@ app-your-portfolio {
               font-size: 21px;
               line-height: 1.24;
               letter-spacing: -0.28px;            
-              max-width: 250px;
+              max-width: 240px;
               padding-right: 15px;
             }
             @include max360{
@@ -169,6 +169,9 @@ app-your-portfolio {
           font-size: 15px;
           font-family: $muli-regular;
           letter-spacing: -0.14px;
+          @include allmobiles{
+            font-size: 14px;
+          }
           &.active {
             color: #ffffff;
             font-family: $muli-semi-bold;
