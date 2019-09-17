@@ -430,6 +430,7 @@ app-funding-instructions {
   .multiline-ellipsis {
     max-width: 200px;
     letter-spacing: -0.16px;
+    text-transform: capitalize;
     @include allmobiles {
       overflow: hidden;
       text-overflow: ellipsis;
