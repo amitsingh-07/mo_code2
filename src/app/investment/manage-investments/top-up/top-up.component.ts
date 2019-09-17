@@ -72,7 +72,7 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.PortfolioValues, Validators.required],
+      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
         this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
         Validators.required
@@ -82,6 +82,10 @@ export class TopUpComponent implements OnInit {
         Validators.required
       ]
     });
+    if (this.formValues['selectedCustomerPortfolio']) {
+      this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
+      this.getOneTimeInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
+    }
     this.buildFormInvestment();
   }
   getPortfolioList() {
@@ -90,6 +94,7 @@ export class TopUpComponent implements OnInit {
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
     this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
+    this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
   }
   getTopupInvestmentList() {
     this.manageInvestmentsService.getTopupInvestmentList().subscribe((data) => {
@@ -223,8 +228,8 @@ export class TopUpComponent implements OnInit {
     this.manageInvestmentsService.setFundingDetails(topupValues);
   }
 
-  getMonthlyInvestmentInfo() {
-    this.manageInvestmentsService.getMonthlyInvestmentInfo().subscribe((response) => {
+  getMonthlyInvestmentInfo(customerPortfolioId) {
+    this.manageInvestmentsService.getMonthlyInvestmentInfo(customerPortfolioId).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
         this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
          // If monthly investment already exists, allow zero

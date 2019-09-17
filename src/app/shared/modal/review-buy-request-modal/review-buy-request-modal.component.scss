@@ -47,9 +47,8 @@
   }
 
   .transfer-div {
-    height: 180px;
     background-color: $teal-color;
-    padding: 19px 14px;
+    padding: 20px;
     display: flex;
     .from-account {
       display: flex;
@@ -147,7 +146,7 @@
         height: 8px;
         border-radius: 50%;
         background-color: $teal-color;
-        margin-top: 12px;
+        margin-top: 7px;
         margin-right: 12px;
       }
       .note-point-text {

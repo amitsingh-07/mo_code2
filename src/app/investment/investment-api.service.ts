@@ -255,8 +255,9 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }  // Get User's monthly investment Information
-  getMonthlyInvestmentInfo() {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.setInvestmentObjective)
+  getMonthlyInvestmentInfo(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investment.monthlyInvestmentInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
