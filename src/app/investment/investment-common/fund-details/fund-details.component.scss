@@ -169,7 +169,8 @@ app-fund-details {
     align-items: center;
     justify-content: space-between;
     position: relative;
-
+    cursor: pointer;
+    
     span {
       &:first-child {
         padding-right: 30px;
