@@ -10,6 +10,7 @@ app-your-portfolio {
       justify-content: space-between;
       @include allmobiles{
         padding-left: 20px;
+        padding-right: 0;
       }
       .user_summary{
         display: flex;
@@ -34,10 +35,18 @@ app-your-portfolio {
             letter-spacing: -0.49px;
             color: #ffffff;
             padding-bottom: 5px;
+            max-width: 390px;
+            white-space: normal;
+            word-break: break-word;
             @include allmobiles{
               font-size: 21px;
               line-height: 1.24;
-              letter-spacing: -0.28px;
+              letter-spacing: -0.28px;            
+              max-width: 250px;
+              padding-right: 15px;
+            }
+            @include max360{
+              max-width: 200px;
             }
           }
           .portfolio-type{
@@ -61,8 +70,8 @@ app-your-portfolio {
         z-index: 1;
         @include allmobiles {
           position: absolute;
-          top: 85px;
-          right: 30px;
+          top: 81px;
+          right: 20px;
         }
         .dropdown-control{
           .btn-dropdown{
@@ -330,6 +339,9 @@ app-your-portfolio {
           color: $text-color-secondary;
           font-size: 16px;
           color: $dark-teal-color;
+          img{
+            cursor: pointer;
+          }
         }
         .total_return_value {
           font-family: $muli-bold;
@@ -439,6 +451,7 @@ app-your-portfolio {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          cursor: pointer;
           &:active {
             outline: none;
             background-color: $review-block-bg;
@@ -633,6 +646,7 @@ app-your-portfolio {
             font-size: 18px;
             letter-spacing: -0.18px;
             color: #ff872f;
+            cursor:pointer;
           }
           .widthdrawal-content{
             font-size: 14px;

@@ -66,9 +66,8 @@
                   id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
                 </div>
-                <div (click)="startPortfolio()" class="add_portfolio_label" id="investment_overview_total_of"><img
-                    class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span
-                    class="cursor_pointer">{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
+                <div (click)="addPortfolio()" class="add_portfolio_label cursor_pointer" id="investment_overview_total_of"><img
+                    class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
               </div>
             </div>
           </div>
@@ -79,7 +78,7 @@
 </section>
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
-  (deleteSelected)="deletePortfolio($event)" (investAgainSelected)="investAgain($event)"
+  (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
   [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
@@ -90,7 +89,7 @@
       <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
       <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
-      <button type="button" class="btn btn-primary" id="add_portfolio" (click)="startPortfolio()">
+      <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
     </div>
   </div>

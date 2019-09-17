@@ -11,10 +11,16 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+    INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+    InvestmentEngagementJourneyService
+} from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
@@ -63,7 +69,9 @@ export class InvestmentOverviewComponent implements OnInit {
     public activeModal: NgbActiveModal,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpApiService: SignUpApiService
+    private signUpApiService: SignUpApiService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,10 +101,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
   }
 
-  addPortfolio() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  }
-
   selectToastMessageDetail(url) {
     if (this.toastMsg && this.toastMsg['portfolio']) {
       this.router.navigate(url);
@@ -107,6 +111,13 @@ export class InvestmentOverviewComponent implements OnInit {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+    }
+  }
+
+  yourPortfolioDynamic() {
+    if (this.toastMsg) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.toastMsg.id);
+      this.router.navigate([this.toastMsg.link_url]);
     }
   }
 
@@ -247,8 +258,9 @@ export class InvestmentOverviewComponent implements OnInit {
     return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
   }
 
-  startPortfolio() {
+  addPortfolio() {
     this.authService.saveEnquiryId(null);
+    this.investmentCommonService.clearJourneyData();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 

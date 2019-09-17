@@ -457,6 +457,7 @@ export class ConfirmPortfolioComponent implements OnInit {
                 );
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
               }
+              this.investmentCommonService.clearJourneyData();
             }
           }
         },
@@ -476,8 +477,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     const toastMessage: IToastMessage = {
       isShown: false,
       desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.userGivenPortfolioName} ),
-      link_label: '', /* TODO: 'View' should be passed once portfolio screen is ready */
-      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO
+      link_label: this.translate.instant('TOAST_MESSAGES.VIEW'),
+      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO,
+      id: this.portfolio.customerPortfolioId
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);

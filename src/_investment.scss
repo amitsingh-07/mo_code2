@@ -294,9 +294,11 @@
           .container-fluid{
             &.max-width--1024{
               padding-bottom: 0;
+              padding-top: 45px !important;
               @include allmobiles{
                 padding-left: 15px !important;
                 padding-right: 15px !important;
+                padding-top: 35px !important;
               }
             }
           }
@@ -317,6 +319,7 @@
   max-width: 1024px;
   margin: 0 auto;
     @include allmobiles{
+      top: 0px;
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
     }
 
@@ -340,7 +343,8 @@
         padding: 30px 20px;
         width: 100%;
         left: 0;
-        right:0;
+        right: 0;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
       }
       .toast-msg{
         width: 200px;
