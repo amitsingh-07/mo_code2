@@ -104,7 +104,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : this.liabilitiesDetails.homeLoanOutstandingAmount,
+        value: this.comprehensiveService.getHomeLoanChanges() ? this.liabilitiesDetails.homeLoanOutstandingAmount : this.insurancePlanFormValues.homeProtectionCoverageAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{

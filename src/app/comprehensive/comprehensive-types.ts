@@ -83,6 +83,7 @@ export interface IMyLiabilities {
     otherLoanOutstandingAmount: number;
     carLoansAmount: number;
     totalAnnualLiabilities: number;
+    homeLoanChanges: boolean
 }
 export class HospitalPlan {
     hospitalClass: string;
