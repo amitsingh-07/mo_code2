@@ -398,6 +398,18 @@ export class ComprehensiveService {
     this.commit();
   }
 
+  getHomeLoanChanges() {
+    if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
+      this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges = {} as boolean;
+    }
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges;
+  }
+
+  setHomeLoanChanges(homeLoanChanges: boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges = homeLoanChanges;
+    this.commit();
+  }
+
   getMyEarnings() {
     if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome) {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveIncome = {} as IMyEarnings;

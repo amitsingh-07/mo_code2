@@ -79,8 +79,9 @@ $minus-content-color:#ff872f;
   border: none !important;
   background: $dark-teal-color !important;
   color: $white-color !important;
-  font-size: 18px;
+  font-size: 18px; 
 }
+
 
 .spare-cash {
   width: 34px;
@@ -204,6 +205,8 @@ $minus-content-color:#ff872f;
     right: -120px;
     min-width: 100px;
     text-align: left;
+    font-size: 12px;
+    font-family:$muli-light;
   }
 
   &__investment-indicator {
@@ -223,6 +226,8 @@ $minus-content-color:#ff872f;
     height: 1px;
     min-width: 100px;
     text-align: right;
+    font-size: 12px;
+    font-family:$muli-light;
   }
 }
 
@@ -241,4 +246,7 @@ $minus-content-color:#ff872f;
   .summary-modal__page-title{
     font-size: 16px!important;
   }
+}
+.f12{
+  font-size: 12px!important;
 }

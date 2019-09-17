@@ -23,7 +23,9 @@
     width: 218px;
     height: 150px;
   }
-
+  #result-btn{
+  font-family: $muli-bold;
+  }
   .result-panel {
     &__about {
       font-size: 14px;

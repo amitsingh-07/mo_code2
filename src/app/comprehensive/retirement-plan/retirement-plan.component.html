@@ -63,7 +63,7 @@
                       [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  retirementIncomeSet['controls'].monthlyPayout.invalid}">
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                        appCurrencyInput maxLength="4" #monthlyPayout formControlName="monthlyPayout">
+                        appCurrencyInput maxLength="6" #monthlyPayout formControlName="monthlyPayout">
 
                     </div>
                   </div>
@@ -149,7 +149,7 @@
                       [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  lumpSumBenefitSet['controls'].maturityAmount.invalid}">
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                        appCurrencyInput maxLength="4" #maturityAmount formControlName="maturityAmount">
+                        appCurrencyInput maxLength="6" #maturityAmount formControlName="maturityAmount">
 
                     </div>
                   </div>
