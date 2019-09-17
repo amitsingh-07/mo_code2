@@ -80,7 +80,6 @@ export class YourPortfolioComponent implements OnInit {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
-    this.activeTab = 'tab-1';
     this.showBuyRequest();
   }
 
@@ -388,6 +387,8 @@ export class YourPortfolioComponent implements OnInit {
     if (this.signUpService.getByRequestFlag()) {
       this.signUpService.clearByRequestFlag();
       this.activeTab = 'tab-2';
+    } else {
+      this.activeTab = 'tab-1';
     }
   }
 }
