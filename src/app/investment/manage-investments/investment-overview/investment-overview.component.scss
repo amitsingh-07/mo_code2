@@ -84,6 +84,9 @@ app-investment-overview {
         .total_cash_label {
           line-height: 1.31;
           letter-spacing: -0.15px;
+          img{
+            cursor: pointer;
+          }
         }
 
         .total_cash_value {
