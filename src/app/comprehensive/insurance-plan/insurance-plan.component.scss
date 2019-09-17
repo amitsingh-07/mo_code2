@@ -31,7 +31,7 @@
       border-radius: 6px!important;
   }
   .fixed-btn--sm-comprehensive {
-    width: 90%;
+    width: 100%;
   }
   .fixed-btn--sm-comprehensive {
     &.full-width {
@@ -67,6 +67,12 @@
   .form-group-with-bg--content-white--title {
     @include allmobiles {
       font-size: 18px;
+    }
+  }
+  .insurance-input-radio{
+    justify-content: space-between;
+    .flex-col-4,.flex-col-6{
+      max-width: 95px;;
     }
   }
 }
