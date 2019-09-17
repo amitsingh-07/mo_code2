@@ -286,7 +286,6 @@ export class ManageInvestmentsService {
   }
 
   sellPortfolio(data) {
-    console.log('data = ', data)
     const payload = this.constructSellPortfolioRequestParams(data);
     return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
@@ -294,9 +293,6 @@ export class ManageInvestmentsService {
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
-    request['portfolioId'] = data.withdrawPortfolio.customerPortfolioId
-      ? data.withdrawPortfolio.productCode
-      : null;
     request['redemptionAmount'] = data.withdrawAmount;
     request['customerBankDetail'] = {
       accountNumber: data.bankAccountNo ? data.bankAccountNo : null
