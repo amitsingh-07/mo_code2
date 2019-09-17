@@ -460,8 +460,8 @@ export class ManageInvestmentsService {
     });
   }
 
-  getMonthlyInvestmentInfo() {
-    return this.investmentApiService.getMonthlyInvestmentInfo();
+  getMonthlyInvestmentInfo(customerPortfolioId) {
+    return this.investmentApiService.getMonthlyInvestmentInfo(customerPortfolioId);
   }
 
   getOneTimeInvestmentInfo(customerProfileId) {
