@@ -6,13 +6,14 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments/manage-investments.constants';
 import { IAccountCreationActions, InvestmentCommonFormData } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -25,7 +26,8 @@ export class InvestmentCommonService {
     private investmentApiService: InvestmentApiService,
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
   }
   savePortfolioName(data) {
@@ -66,24 +68,24 @@ export class InvestmentCommonService {
     this.commit();
   }
 
-  setInvAccountStatusInfoToSession(accountCreationStatusInfo: IAccountCreationActions) {
-    this.investmentCommonFormData.accountCreationStatusInfo = accountCreationStatusInfo;
+  setAccountCreationActionsToSession(accountCreationActions: IAccountCreationActions) {
+    this.investmentCommonFormData.accountCreationActions = accountCreationActions;
     this.commit();
   }
 
-  clearInvAccountStatusInfo() {
-    this.investmentCommonFormData.accountCreationStatusInfo = null;
+  clearAccountCreationActions() {
+    this.investmentCommonFormData.accountCreationActions = null;
     this.commit();
   }
 
   getAccountCreationActions(): Observable<IAccountCreationActions> {
-    const accStatusInfoFromSession = this.getInvestmentCommonFormData().accountCreationStatusInfo;
+    const accStatusInfoFromSession = this.getInvestmentCommonFormData().accountCreationActions;
     if (accStatusInfoFromSession) {
       return Observable.of(accStatusInfoFromSession);
     } else {
       return this.getFirstInvAccountCreationStatus().map((data: any) => {
         if (data && data.objectList) {
-          this.setInvAccountStatusInfoToSession(data.objectList);
+          this.setAccountCreationActionsToSession(data.objectList);
           return {
             accountCreationState: data.objectList.accountCreationState,
             allowEngagementJourney: data.objectList.allowEngagementJourney,
@@ -94,9 +96,9 @@ export class InvestmentCommonService {
           this.investmentAccountService.showGenericErrorModal();
         }
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     }
   }
 
@@ -159,8 +161,8 @@ export class InvestmentCommonService {
   getInvestmentStatus() {
     const investmentsSummary = this.investmentCommonFormData.investmentsSummary;
     const investmentStatus = investmentsSummary && investmentsSummary.investmentAccountStatus &&
-    investmentsSummary.investmentAccountStatus.accountCreationState ?
-    investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
+      investmentsSummary.investmentAccountStatus.accountCreationState ?
+      investmentsSummary.investmentAccountStatus.accountCreationState.toUpperCase() : null;
     return investmentStatus;
   }
 
@@ -169,15 +171,26 @@ export class InvestmentCommonService {
     this.commit();
   }
 
- getConfirmPortfolioName() {
+  getConfirmPortfolioName() {
     return this.investmentCommonFormData.portfolioName;
-    }
+  }
+
+  clearConfirmPortfolioName() {
+    this.investmentCommonFormData.portfolioName = null;
+    this.commit();
+  }
 
   isUsersFirstPortfolio(data: IAccountCreationActions) {
     if (data.showInvestmentAccountCreationForm
-        && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(data.accountCreationState) < 0) {
-          return true;
+      && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(data.accountCreationState) < 0) {
+      return true;
     }
     return false;
+  }
+
+  clearJourneyData() {
+    this.investmentEngagementJourneyService.clearData();
+   // this.clearConfirmPortfolioName();
+    this.clearAccountCreationActions();
   }
 }

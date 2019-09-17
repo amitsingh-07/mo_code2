@@ -72,7 +72,7 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.PortfolioValues, Validators.required],
+      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
         this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
         Validators.required
@@ -83,9 +83,6 @@ export class TopUpComponent implements OnInit {
       ]
     });
     this.buildFormInvestment();
-    // this.getMonthlyInvestmentInfo();
-    // this.getOneTimeInvestmentInfo();
-
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
@@ -209,7 +206,6 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.saveFundingDetails();
-    // this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
     this.showReviewBuyRequestModal();
   }
   saveFundingDetails() {
