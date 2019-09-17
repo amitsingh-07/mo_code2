@@ -72,23 +72,21 @@ export class WithdrawalComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
-    this.cashBalance = parseFloat(this.decimalPipe.transform(this.manageInvestmentsService.getUserCashBalance(), '1.0-2').replace(/,/g, ''));
     this.translateParams = {
       MIN_WITHDRAW_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
     };
     this.buildForm();
+    this.setSelectedPortfolio();
   }
 
-   // Find in portfolioList using the selectedCustomerPortfolioId from formValues and set the dropdown value to it
+   // Set selected portfolio's entitlements, cash balance
    setSelectedPortfolio() {
-    if (this.formValues['selectedCustomerPortfolioId'] && this.portfolioList.length !== 0) {
-      this.withdrawForm.controls.withdrawPortfolio.value = this.portfolioList.find((portfolio) => {
-        return portfolio.customerPortfolioId === this.formValues['selectedCustomerPortfolioId'];
-      });
-      this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
+    if (this.withdrawForm.controls.withdrawPortfolio && this.withdrawForm.controls.withdrawPortfolio.value) {
+      const selectedPortfolio = this.withdrawForm.controls.withdrawPortfolio.value;
+      this.entitlements = selectedPortfolio['entitlements'];
+      this.cashBalance = parseFloat(this.decimalPipe.transform(selectedPortfolio['cashAccountBalance'] || 0, '1.0-2').replace(/,/g, ''));
     }
-    this.withdrawForm.controls.withdrawType.value = null;
   }
 
   buildForm() {
@@ -254,6 +252,7 @@ export class WithdrawalComponent implements OnInit {
      if (key === 'withdrawPortfolio') {
       this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
       this.withdrawForm.controls.withdrawType.value = null;
+      this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.0-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');
     }
   }
