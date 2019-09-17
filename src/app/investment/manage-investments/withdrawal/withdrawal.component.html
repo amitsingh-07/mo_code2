@@ -44,7 +44,7 @@
               </div>
             </div>
             <!-- TYPE -->
-            <div class="form-group">
+            <div class="form-group" *ngIf="withdrawForm.controls.withdrawPortfolio.value">
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label for="withdraw-type-drpdown" id="withdraw-type-lbl">
