@@ -265,6 +265,7 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   gotoTopUp() {  // GO TO TOP-UP
+    this.manageInvestmentsService.clearTopUpData();
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
