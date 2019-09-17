@@ -21,6 +21,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -45,11 +46,13 @@ export class YourPortfolioComponent implements OnInit {
   isToastMessageShown: boolean;
   showErrorMessage: boolean;
   toastMsg: any;
+  activeTab: string;
 
   constructor (
     public readonly translate: TranslateService,
     private router: Router,
     public navbarService: NavbarService,
+    public signUpService: SignUpService,
     public authService: AuthenticationService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
@@ -77,6 +80,7 @@ export class YourPortfolioComponent implements OnInit {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
+    this.showBuyRequest();
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
@@ -388,5 +392,14 @@ export class YourPortfolioComponent implements OnInit {
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
+  }
+
+  showBuyRequest() {
+    if (this.signUpService.getByRequestFlag()) {
+      this.signUpService.clearByRequestFlag();
+      this.activeTab = 'tab-2';
+    } else {
+      this.activeTab = 'tab-1';
+    }
   }
 }

@@ -32,4 +32,5 @@ export class SignUpFormData {
     updateEmail: boolean;
 
     isUnsupportedNoteShown: boolean;
+    buyRequestFlag: boolean;
 }

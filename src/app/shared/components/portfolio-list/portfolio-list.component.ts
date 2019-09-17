@@ -105,6 +105,10 @@ export class PortfolioListComponent implements OnInit {
     this.topUpSelected.emit();
   }
 
+  gotoBuyRequest() {
+    this.signUpService.setByRequestFlag(true);
+  }
+
   transferInst($event) {
     this.transferInstSelected.emit($event);
   }

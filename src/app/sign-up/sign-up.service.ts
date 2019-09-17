@@ -588,4 +588,18 @@ export class SignUpService {
     this.commit();
   }
 
+  setByRequestFlag(buyRequestFlag) {
+    this.signUpFormData.buyRequestFlag = buyRequestFlag;
+    this.commit();
+  }
+
+  getByRequestFlag() {
+    return this.signUpFormData.buyRequestFlag;
+  }
+
+  clearByRequestFlag() {
+    this.signUpFormData.buyRequestFlag = false;
+    this.commit();
+  }
+
 }
