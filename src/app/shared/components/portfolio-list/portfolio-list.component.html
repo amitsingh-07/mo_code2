@@ -41,7 +41,7 @@
                               <div class="portfolio-value">
                                 <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                 <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                                <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" >{{portfolio?.buyRequestCount}} {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                                <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}} {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                               </div>
                               <div class="portfolio-btn">
                                 <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
