@@ -481,8 +481,8 @@ export class ManageInvestmentsService {
         showDelete: false,
         showInvest: false,
         showTopup: false,
-        showWithdrawPvToBa: true,
-        showWithdrawPvToCa: true,
+        showWithdrawPvToBa: false,
+        showWithdrawPvToCa: false,
         showWithdrawCaToBa: true // always allowed irrespective of portfolio status
       };
     }
