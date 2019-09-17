@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
+import { SuccessIcons } from './successIcon';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -18,6 +19,7 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 })
 export class AddPortfolioNameComponent implements OnInit {
   profileIcon;
+  portfolioSuccessIcon;
   characterLength;
   portfolioNameFormGroup: FormGroup;
   @Input() riskProfileId;
@@ -32,6 +34,7 @@ export class AddPortfolioNameComponent implements OnInit {
     private formBuilder: FormBuilder) { }
   ngOnInit() {
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
+    this.portfolioSuccessIcon = SuccessIcons[this.riskProfileId - 1]['icon'];
     this.portfolioNameFormGroup = this.formBuilder.group({
       portfolioName: new FormControl(this.userPortfolioName,
         [Validators.pattern(RegexConstants.AlphanumericWithSpaces)])

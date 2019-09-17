@@ -1,19 +1,17 @@
 <div class="portfolio-naming-modal-backdrop"></div>
 <div class="portfolio-naming-modal-wrapper">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true"></span>
-  </button>
-  <form [formGroup]="portfolioNameFormGroup">
+ <form [formGroup]="portfolioNameFormGroup">
     <div class="portfolio-block">
       <div class="portfolio-naming">
         <div *ngIf="false" class="title">{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE' | translate}}</div>
-              <div class="title" *ngIf="true">Your portfolio is created successfully!</div>
+              <div class="title" *ngIf="true">{{
+                'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE_TWO' | translate}}</div>
         <div *ngIf="false" class="portfolio-success mb30">
           <img src={{profileIcon}} id="riskProfileImg" />
         </div>
         <div  *ngIf="true" class="portfolio-success mb30">
-          <img src={{profileIcon}} id="riskProfileImg" />
+          <img src={{portfolioSuccessIcon}} id="riskProfileImg" />
         </div>
         <div class="portfolio_name_title">{{defaultPortfolioName}}</div>
       </div>
@@ -43,7 +41,7 @@
         <button type="button" [disabled]="disableCtnBTn"
           class="btn btn-primary width100 pt10 mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
           id="prfBtn1">{{
-            'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
+            'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CONTINUE' | translate}}</button>
       </div>
     </div>
   </form>

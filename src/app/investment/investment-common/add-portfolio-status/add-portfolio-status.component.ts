@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { SuccessIcons } from './successIcon';
+
 
 @Component({
   selector: 'app-add-portfolio-status',
@@ -20,7 +20,7 @@ export class AddPortfolioStatusComponent implements OnInit {
               public investmentAccountService: InvestmentAccountService) { }
 
   ngOnInit() {
-    this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
+   // this.iconImage = SuccessIcons[this.riskProfileId - 1]['icon'];
     this.investmentAccountService.restrictBackNavigation();
   }
 

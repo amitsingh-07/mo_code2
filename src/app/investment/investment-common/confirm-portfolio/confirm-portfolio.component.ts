@@ -293,7 +293,11 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-    this.savePortfolioName(portfolioName);
+      if (portfolioName) {
+      this.savePortfolioName(portfolioName);
+      } else {
+        this.reDirectToNextScreen();
+      }
     });
   }
 
