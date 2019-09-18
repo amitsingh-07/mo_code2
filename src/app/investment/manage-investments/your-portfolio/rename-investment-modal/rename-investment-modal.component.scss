@@ -5,12 +5,17 @@
   width: 49%;
 }
 .characters {
+  width: 123px;
+  height: 19px;
+  font-family: Muli;
   font-size: 15px;
+  font-weight: normal;
   font-style: italic;
+  font-stretch: normal;
+  line-height: normal;
   letter-spacing: -0.15px;
-  color: $portfolio-name-length-color;
   text-align: right;
-  padding: 0px 15px 10px;
+  color: $portfolio-name-length-color;
 }
 .action-button {
   width: 100%;

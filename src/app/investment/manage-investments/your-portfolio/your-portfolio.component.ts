@@ -226,6 +226,7 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 3: {
+      this.showErrorMessage = false;
       this.showRenamePortfolioModal();
       break;
     }
