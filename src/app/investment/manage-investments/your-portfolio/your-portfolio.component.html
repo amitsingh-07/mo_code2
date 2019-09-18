@@ -69,7 +69,7 @@
         <ng-template ngbTabContent>
           <div class="flex-col-12">
             <div class="portfolio-panel-content">
-              <div class="row" *ngIf="isWhatsNextSectionShown">
+              <div class="row" *ngIf="showOrHideWhatsNextSection()">
                 <div class="col-lg-12 col-md-12">
                   <div class="form-group-with-bg start-investing">
                     <div class="form-group-with-bg--header ">
@@ -82,7 +82,8 @@
                       <div class="start-investing-info">
                         <div class="flex-col">
                           <div class="pb10">
-                            {{'YOUR_PORTFOLIO.WHATS_NEXT_DESC' | translate: {portfolioName: portfolio.portfolioName} }}
+                              <span *ngIf="portfolio.portfolioStatus !== 'PURCHASED'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_NOT_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
+                              <span *ngIf="portfolio.portfolioStatus === 'PURCHASED'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
                           </div>
                           <div class="txt-lyt" (click)="goToTopupInstructionLink()">
                             {{'YOUR_PORTFOLIO.HOW_TO_TOPUP' | translate }}</div>
