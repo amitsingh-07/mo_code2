@@ -120,7 +120,8 @@
     "MORE": "More",
     "PORTFOLIO_SUMMARY": "Portfolio Summary",
     "WHATS_NEXT": "What’s Next?",
-    "WHATS_NEXT_DESC": "Start investing in {{portfolioName}} portfolio.",
+    "WHATS_NEXT_DESC_NOT_FUNDED": "Start investing in {{portfolioName}} portfolio.",
+    "WHATS_NEXT_DESC_FUNDED": "Top up with {{portfolioName}} portfolio.",
     "HOW_TO_TOPUP": "How to top up?",
     "OR_DO_YOU_WANT_TO": "Or do you want to",
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
@@ -263,6 +264,7 @@
     "YOU_ARE_SUBMITTING": "You are submitting a ",
     "REQUEST": "{{requestType}} request",
     "PORTFOLIO": "{{portfolioType}} Portfolio.",
+    "FOLLOWING_PORTFOLIO": " to the following portfolio.",
     "BUY_REQUEST": "Buy Request",
     "ONE_TIME_LBL": "(one-time)",
     "MONTHLY_LBL": "/ mth",
@@ -283,7 +285,7 @@
     ],
     "INSUFFICIENT_ONETIME_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
-      "This request will expire if you do not fund within 7 working days",
+      "This request will expire if you do not fund within 7 working days.",
       "You may submit a new one-time investment amount to overwrite this request.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
@@ -291,6 +293,6 @@
   },
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
-    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been deleted."
+    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
   }
 }

@@ -41,7 +41,6 @@ export class YourPortfolioComponent implements OnInit {
   pendingSellRequests;
   pendingOnetimeBuyRequests;
   pendingMonthlyBuyRequests;
-  isWhatsNextSectionShown = false;
   riskProfileImage;
   isToastMessageShown: boolean;
   showErrorMessage: boolean;
@@ -137,7 +136,7 @@ export class YourPortfolioComponent implements OnInit {
       );
       awaitingFundRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'AWAITING_FUND');
       processingRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'PROCESSING');
-      recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECIEVED');
+      recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECEIVED');
     }
     if ((awaitingFundRequests && awaitingFundRequests.value && awaitingFundRequests.value.length)
       || (processingRequests && processingRequests.value && processingRequests.value.length)
@@ -153,11 +152,7 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   showOrHideWhatsNextSection() {
-    if (this.portfolio.portfolioStatus === 'PURCHASED'
-    && !this.portfolio.investmentAccountDTO.accountBalance
-    && !(this.pendingBuyRequests && this.pendingBuyRequests.value)) {
-          this.isWhatsNextSectionShown = true;
-    }
+    return !(this.pendingBuyRequests && this.pendingBuyRequests.value);
   }
 
   getWithdrawType(mode) {
@@ -237,6 +232,7 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 3: {
+      this.showErrorMessage = false;
       this.showRenamePortfolioModal();
       break;
     }

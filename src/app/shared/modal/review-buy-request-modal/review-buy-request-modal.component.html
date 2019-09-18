@@ -2,7 +2,7 @@
   <div class="title-container">
     <div class="modal-body-title">{{'REVIEW_BUY_REQUEST.TITLE' | translate}}</div>
     <div class="modal-body-message">
-      {{'REVIEW_BUY_REQUEST.YOU_ARE_SUBMITTING' | translate}}<span class="bold-text">{{'REVIEW_BUY_REQUEST.REQUEST' | translate:({'requestType': requestType})}}</span> to your <span class="bold-text">{{'REVIEW_BUY_REQUEST.PORTFOLIO' | translate:({'portfolioType': portfolioType})}}</span></div>
+      {{'REVIEW_BUY_REQUEST.YOU_ARE_SUBMITTING' | translate}}<span class="bold-text">{{'REVIEW_BUY_REQUEST.REQUEST' | translate:({'requestType': requestType})}}</span>{{'REVIEW_BUY_REQUEST.FOLLOWING_PORTFOLIO' | translate}}</div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
@@ -21,22 +21,22 @@
       <ng-template #defaultImg>
         <img class="portfolio-type" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
       </ng-template>
-      <div class="white-text multiline-ellipsis">{{fundDetails['portfolio']['portfolioName']}}{{'REVIEW_BUY_REQUEST.PORTFOLIO_TYPE' | translate:({'portfolioType': portfolioType})}}</div>
+      <div class="white-text multiline-ellipsis">{{fundDetails['portfolio']['portfolioName']}} - {{fundDetails['portfolio']['refNo']}}</div>
     </div>
   </div>
   <div class="instruction-div">
-    <ng-container *ngIf="fundDetails['isAmountExceedBalance'] === true">
+    <ng-container *ngIf="fundDetails['isAmountExceedBalance']">
       <div class="top-up-amt-text">{{'REVIEW_BUY_REQUEST.TOP_UP_AMOUNT' | translate}}</div>
       <div class="deduct-cash-box">
-        <div class="deduct-amount">{{requestAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+        <div class="deduct-amount">{{requestAmount - cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
         <div class="cash-account-balance">{{'REVIEW_BUY_REQUEST.CASH_ACCOUNT_BALANCE' | translate}}&nbsp;{{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
       </div>
     </ng-container>
-    <div class="note-text">{{'REVIEW_BUY_REQUEST.NOTE' | translate}}</div>
+    <div [ngClass]="fundDetails['isAmountExceedBalance']? 'note-text': 'note-text2'">{{'REVIEW_BUY_REQUEST.NOTE' | translate}}</div>
     <div *ngFor="let note of noteArray, let i = index;" class="note-list">
       <div class="teal-oval"></div>
       <div class="note-point-text">{{note}}</div>
     </div>
-    <button type="button" class="btn btn-primary width100 footer-btn" (click)="buyPortfolio()">{{'REVIEW_BUY_REQUEST.SUBMIT_REQUEST' | translate}}</button>
+    <button type="button" class="btn btn-primary width100 footer-btn" (click)="onSubmit()">{{'REVIEW_BUY_REQUEST.SUBMIT_REQUEST' | translate}}</button>
   </div>
 </div>
