@@ -32,14 +32,14 @@
                         <div class="flex-col-12">
                           <div class="dropdown-control">
                             <div ngbDropdown>
-                              <button class="btn btn-dropdown" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
-                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.portfolioName :'Select
+                              <button class="btn btn-dropdown capital-letter" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
+                                {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.portfolioName + ' - ' + topForm.controls.portfolio.value.refNo :'Select
                                 Portfolio'}}
                               </button>
                               <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                                <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;"
+                                <button class="dropdown-item capital-letter" *ngFor="let portfolio of portfolioList; let i = index;"
                                   (click)="setDropDownValue('portfolio',portfolio)"
-                                  id="topup_portfolio_option-{{i}}">{{portfolio.portfolioName}}</button>
+                                  id="topup_portfolio_option-{{i}}">{{portfolio.portfolioName}} - {{portfolio['refNo']}}</button>
                               </div>
                             </div>
                           </div>
