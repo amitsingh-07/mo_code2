@@ -400,13 +400,13 @@ export class ComprehensiveService {
 
   getHomeLoanChanges() {
     if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
-      this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges = {} as boolean;
+      this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities = {} as boolean;
     }
-    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges;
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities
   }
 
-  setHomeLoanChanges(homeLoanChanges: boolean) {
-    this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities.homeLoanChanges = homeLoanChanges;
+  setHomeLoanChanges(homeLoanUpdatedByLiabilities: boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities = homeLoanUpdatedByLiabilities;
     this.commit();
   }
 
