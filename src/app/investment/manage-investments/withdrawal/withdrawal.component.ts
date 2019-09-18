@@ -92,7 +92,7 @@ export class WithdrawalComponent implements OnInit {
   buildForm() {
     this.withdrawForm = this.formBuilder.group({
       withdrawType: [this.formValues.withdrawType, Validators.required],
-      withdrawPortfolio: [this.formValues.PortfolioValues, new FormControl('', Validators.required)]
+      withdrawPortfolio: ['', new FormControl('', Validators.required)]
     });
 
     // Withdraw Type Changed Event
@@ -211,7 +211,7 @@ export class WithdrawalComponent implements OnInit {
         }, [
         Validators.required,
         this.withdrawAmountValidator(
-          this.withdrawForm.get('withdrawPortfolio').value.currentValue,
+          this.withdrawForm.get('withdrawPortfolio').value.portfolioValue,
           'PORTFOLIO'
         )
       ])
@@ -267,7 +267,7 @@ export class WithdrawalComponent implements OnInit {
     });
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
-    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.currentValue;
+    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
     ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
     ref.componentInstance.confirmed.subscribe(() => {
