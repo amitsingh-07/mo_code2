@@ -1,0 +1,12 @@
+{
+    "promoId": 20,
+    "type": 1,
+    "owner": "NTUC",
+    "title": "Get up to $1,200 CapitalVouchers when you start today!",
+    "thumbnail": "/assets/promotions/images/9/thumbnail.jpg",
+    "desc": "Enjoy up to $1200 CapitaVouchers with purchase of selected NTUC Income’s plans",
+    "date_created": "1568053800000",
+    "date_expiry": "1572201000000",
+    "tag": ["Insurance", "Retirement"],
+    "external": false
+}
