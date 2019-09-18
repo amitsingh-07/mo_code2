@@ -14,7 +14,9 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { LoaderService } from './../../../shared/components/loader/loader.service';
 import { ReviewBuyRequestModalComponent } from './../../../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../manage-investments-routes.constants';
 
 @Component({
   selector: 'app-top-up',
@@ -39,6 +41,8 @@ export class TopUpComponent implements OnInit {
   fundDetails;
   currentMonthlyInvAmount; // current monthly rsp amount
   currentOneTimeInvAmount; // current monthly rsp amount
+  isRequestSubmitted = false;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -50,7 +54,8 @@ export class TopUpComponent implements OnInit {
     private modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,6 +98,7 @@ export class TopUpComponent implements OnInit {
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
+    console.log('value = ', value)
     this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
   }
@@ -106,8 +112,8 @@ export class TopUpComponent implements OnInit {
     });
   }
   validateAmonut(amount) {
-    if (amount > this.cashBalance) {
-      this.topupAmount = amount - this.cashBalance;
+    if (amount > this.fundDetails['portfolio']['cashAccountBalance']) {
+      this.topupAmount = amount - this.fundDetails['portfolio']['cashAccountBalance'];
       this.isAmountExceedBalance = true;
     } else {
       this.isAmountExceedBalance = false;
@@ -194,16 +200,8 @@ export class TopUpComponent implements OnInit {
         ref.componentInstance.errorMessage = error.errorMessage;
         // tslint:disable-next-line:triple-equals
       } else {
-        if (this.formValues.Investment === 'Monthly Investment' && this.currentMonthlyInvAmount) {
-          this.showConfirmOverwriteModal(form, this.currentMonthlyInvAmount, 'MonthlyInvestmentAmount',
-           'TOPUP.CONFIRM_OVERWRITE_MODAL.DESC');
-        } else if ((this.formValues.Investment === 'One-time Investment' || !this.formValues.Investment)
-         && this.currentOneTimeInvAmount) {
-          this.showConfirmOverwriteModal(form, this.currentOneTimeInvAmount, 'oneTimeInvestmentAmount',
-           'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
-        } else {
           this.saveAndProceed(form);
-        }
+        // }
       }
     }
   }
@@ -211,9 +209,16 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.saveFundingDetails();
-    this.showReviewBuyRequestModal();
+    this.showReviewBuyRequestModal(form);
   }
   saveFundingDetails() {
+
+    if (this.formValues.oneTimeInvestmentAmount) {
+      this.topupAmount = this.formValues.oneTimeInvestmentAmount - this.formValues.portfolio['cashAccountBalance'];
+    } else {
+      this.topupAmount = this.formValues.MonthlyInvestmentAmount || 0 - this.formValues.portfolio['cashAccountBalance'];
+    }
+
     const topupValues = {
       source: MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.TOPUP,
       portfolio: this.formValues.portfolio,
@@ -222,7 +227,7 @@ export class TopUpComponent implements OnInit {
       fundingType: this.formValues.Investment === 'Monthly Investment'
         ? MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY
         : MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME,
-      isAmountExceedBalance: this.isAmountExceedBalance,
+      isAmountExceedBalance: this.topupAmount > 0 ? true : false,
       exceededAmount: this.topupAmount
     };
     this.manageInvestmentsService.setFundingDetails(topupValues);
@@ -275,18 +280,134 @@ export class TopUpComponent implements OnInit {
     ref.componentInstance.isInlineButton = true;
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-      this.saveAndProceed(form);
+      ref.close();
+      this.buyPortfolio();
     });
     ref.componentInstance.secondaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.NO');
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
       ref.close();
     });
-
   }
 
-  showReviewBuyRequestModal() {
+  showReviewBuyRequestModal(form) {
     const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
     ref.componentInstance.fundDetails = this.manageInvestmentsService.getFundingDetails();
+    ref.componentInstance.submitRequest.subscribe((emittedValue) => {
+      this.checkIfExistingBuyRequest(form);
+    });
   }
+
+  checkIfExistingBuyRequest(form) {
+    if (this.formValues.Investment === 'Monthly Investment' && this.currentMonthlyInvAmount) {
+      this.showConfirmOverwriteModal(form, this.currentMonthlyInvAmount, 'MonthlyInvestmentAmount',
+       'TOPUP.CONFIRM_OVERWRITE_MODAL.DESC');
+    } else if ((this.formValues.Investment === 'One-time Investment' || !this.formValues.Investment)
+     && this.currentOneTimeInvAmount) {
+      this.showConfirmOverwriteModal(form, this.currentOneTimeInvAmount, 'oneTimeInvestmentAmount',
+       'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
+     } else {
+      this.buyPortfolio();
+     }
+  }
+
+  buyPortfolio() {
+    const buyRequestFundDetails = this.manageInvestmentsService.getFundingDetails();
+    if (this.fundDetails.oneTimeInvestment) {
+      this.topUpOneTime(buyRequestFundDetails);
+    } else {
+      this.topUpMonthly(buyRequestFundDetails);
+    }
+  }
+ // ONETIME INVESTMENT
+ topUpOneTime(buyRequestFundDetails) {
+  if (!this.isRequestSubmitted) {
+    this.isRequestSubmitted = true;
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+    this.manageInvestmentsService.buyPortfolio(buyRequestFundDetails).subscribe(
+      (response) => {
+        this.successHandler(response);
+      },
+      (err) => {
+        this.errorHandler();
+      }
+    );
+  }
+}
+// MONTHLY INVESTMENT
+topUpMonthly(buyRequestFundDetails) {
+  if (!this.isRequestSubmitted) {
+    this.isRequestSubmitted = true;
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+    this.manageInvestmentsService.monthlyInvestment(buyRequestFundDetails).subscribe(
+      (response) => {
+        this.successHandler(response);
+      },
+      (err) => {
+        this.errorHandler();
+      }
+    );
+  }
+}
+
+  showLoader() {
+    this.isRequestSubmitted = true;
+    this.loaderService.showLoader({
+      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
+      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
+    });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+
+  successHandler(response) {
+    this.isRequestSubmitted = false;
+    this.loaderService.hideLoader();
+    if (response.responseMessage.responseCode < 6000) {
+      if (
+        response.objectList &&
+        response.objectList.length &&
+        response.objectList[response.objectList.length - 1].serverStatus &&
+        response.objectList[response.objectList.length - 1].serverStatus.errors &&
+        response.objectList[response.objectList.length - 1].serverStatus.errors.length
+      ) {
+        this.showCustomErrorModal(
+          'Error!',
+          response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
+        );
+      } else if (response.responseMessage && response.responseMessage.responseDescription) {
+        const errorResponse = response.responseMessage.responseDescription;
+        this.showCustomErrorModal('Error!', errorResponse);
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    } else {
+      if (!this.fundDetails.isAmountExceedBalance) {
+        this.router.navigate([
+          MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/success'
+        ]);
+      } else {
+        this.router.navigate([
+          MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/pending'
+        ]);
+      }
+    }
+  }
+
+  errorHandler() {
+    this.isRequestSubmitted = false;
+    this.loaderService.hideLoader();
+    this.investmentAccountService.showGenericErrorModal();
+  }
+
 }

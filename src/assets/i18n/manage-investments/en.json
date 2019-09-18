@@ -263,6 +263,7 @@
     "YOU_ARE_SUBMITTING": "You are submitting a ",
     "REQUEST": "{{requestType}} request",
     "PORTFOLIO": "{{portfolioType}} Portfolio.",
+    "FOLLOWING_PORTFOLIO": " to the following portfolio.",
     "BUY_REQUEST": "Buy Request",
     "ONE_TIME_LBL": "(one-time)",
     "MONTHLY_LBL": "/ mth",
@@ -283,7 +284,7 @@
     ],
     "INSUFFICIENT_ONETIME_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
-      "This request will expire if you do not fund within 7 working days",
+      "This request will expire if you do not fund within 7 working days.",
       "You may submit a new one-time investment amount to overwrite this request.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
