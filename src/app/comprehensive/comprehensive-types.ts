@@ -29,6 +29,7 @@ export interface IComprehensiveEnquiry {
     reportStatus: string;
     stepCompleted: number;
     reportId: number;
+    homeLoanUpdatedByLiabilities?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -83,7 +84,6 @@ export interface IMyLiabilities {
     otherLoanOutstandingAmount: number;
     carLoansAmount: number;
     totalAnnualLiabilities: number;
-    homeLoanChanges: boolean
 }
 export class HospitalPlan {
     hospitalClass: string;
