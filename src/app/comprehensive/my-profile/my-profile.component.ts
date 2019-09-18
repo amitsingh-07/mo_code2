@@ -95,6 +95,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.viewMode = this.comprehensiveService.getViewableMode();
+        if (!this.viewMode) {
+            this.buildProfileForm();
+            this.myProfileShow = true;
+        }
+
     }
 
     ngOnInit() {
