@@ -92,7 +92,7 @@ export class WithdrawalComponent implements OnInit {
   buildForm() {
     this.withdrawForm = this.formBuilder.group({
       withdrawType: [this.formValues.withdrawType, Validators.required],
-      withdrawPortfolio: ['', new FormControl('', Validators.required)]
+      withdrawPortfolio: [this.formValues.withdrawPortfolio ? this.formValues.withdrawPortfolio : this.formValues.selectedCustomerPortfolio, new FormControl('', Validators.required)]
     });
 
     // Withdraw Type Changed Event
@@ -119,12 +119,6 @@ export class WithdrawalComponent implements OnInit {
     if (this.formValues.withdrawType) {
       // trigger change event
       this.withdrawForm.get('withdrawType').setValue(this.formValues.withdrawType);
-    }
-    if (this.withdrawForm.get('withdrawPortfolio')) {
-      // trigger change event
-      this.withdrawForm
-        .get('withdrawPortfolio')
-        .setValue(this.formValues.withdrawPortfolio);
     }
   }
 
