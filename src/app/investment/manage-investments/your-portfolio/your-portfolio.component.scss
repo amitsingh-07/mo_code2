@@ -13,7 +13,6 @@ app-your-portfolio {
         padding-right: 0;
       }
       .user_summary{
-        display: flex;
         padding-top: 45px;
         .user_portfolio-icon{
           width:52px;
@@ -27,28 +26,31 @@ app-your-portfolio {
             height: auto;
           }
         }
-        .user_portfolio{
-          .user_portfolio_lbl{
-            font-family: $muli-bold;
-            font-size: 36px;
-            line-height: 0.83;
-            letter-spacing: -0.49px;
-            color: #ffffff;
-            padding-bottom: 5px;
-            max-width: 390px;
-            white-space: normal;
-            word-break: break-word;
-            @include allmobiles{
-              font-size: 21px;
-              line-height: 1.24;
-              letter-spacing: -0.28px;            
-              max-width: 240px;
-              padding-right: 15px;
-            }
-            @include max360{
-              max-width: 200px;
-            }
+        .user_portfolio_lbl{
+          font-family: $muli-bold;
+          font-size: 36px;
+          line-height: 0.83;
+          letter-spacing: -0.49px;
+          color: #ffffff;
+          padding-bottom: 5px;
+          max-width: 500px;
+          white-space: normal;
+          word-break: break-word;
+          @include allmobiles{
+            font-size: 21px;
+            line-height: 1.24;
+            letter-spacing: -0.28px;            
+            max-width: 250px;
+            padding-right: 15px;
           }
+        }
+        .user_portfolio{
+          padding-left: 67px;
+          padding-bottom: 50px;
+          @include allmobiles{
+            padding-left: 62px;
+          padding-bottom: 40px;
+          }       
           .portfolio-type{
             font-family: $muli-regular;
             font-size: 18px;
@@ -61,73 +63,69 @@ app-your-portfolio {
               letter-spacing: -0.2px;
             }
           }
-        }
-      }
-      .more-menu {
-        position: relative;
-        top: 76px;
-        max-width: 71px;
-        z-index: 1;
-        @include allmobiles {
-          position: absolute;
-          top: 81px;
-          right: 20px;
-        }
-        .dropdown-control{
-          .btn-dropdown{
-            background-color: #009999;
-            color: #ffffff;
-            padding: 6px 9px;
-            padding-right: 20px;
-            font-size: 15px;
-            letter-spacing: -0.14px;
-            &::after{
-              background-image: url('/assets/images/dropdown_white.svg');
-              width: 16px;
-              height: 10px;
-              border: none;
-              position: absolute;
-              top: 14px;
-              right: 0;
-              background-repeat: no-repeat;
+          .more-menu {
+            max-width: 71px;
+            @include allmobiles {
+              margin-right: 20px;
             }
-          }
-          .dropdown-menu{
-            &.show {
-              left: auto !important;
-              right: 0 !important;
-              overflow: auto;
-              height: auto;
-              max-height: 264px;
-              padding-top: 0;
-              padding-bottom: 0;
-              box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
-            }
-          }
-          .dropdown-item {
-            display: block;
-            width: 100%;
-            clear: both;
-            font-size: 16px;
-            font-family: $muli-regular;
-            text-align: inherit;
-            white-space: nowrap !important;
-            background-color: transparent;
-            border: 0;
-            letter-spacing: -0.2px;
-            color: #000000 !important;
-            border-bottom: solid 1px #e7e7e7 !important;
-            
-            &.hide {
-              display:none;
-            }
-            &.disabled {
-              color: #9b9b9b !important;
-              cursor: not-allowed;
+            .dropdown-control{
+              .btn-dropdown{
+                background-color: #009999;
+                color: #ffffff;
+                padding: 6px 9px;
+                padding-right: 20px;
+                font-size: 15px;
+                letter-spacing: -0.14px;
+                &::after{
+                  background-image: url('/assets/images/dropdown_white.svg');
+                  width: 16px;
+                  height: 10px;
+                  border: none;
+                  position: absolute;
+                  top: 14px;
+                  right: 0;
+                  background-repeat: no-repeat;
+                }
+              }
+              .dropdown-menu{
+                &.show {
+                  left: auto !important;
+                  right: 0 !important;
+                  overflow: auto;
+                  height: auto;
+                  max-height: 264px;
+                  padding-top: 0;
+                  padding-bottom: 0;
+                  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+                }
+              }
+              .dropdown-item {
+                display: block;
+                width: 100%;
+                clear: both;
+                font-size: 16px;
+                font-family: $muli-regular;
+                text-align: inherit;
+                white-space: nowrap !important;
+                background-color: transparent;
+                border: 0;
+                letter-spacing: -0.2px;
+                color: #000000 !important;
+                border-bottom: solid 1px #e7e7e7 !important;
+                
+                &.hide {
+                  display:none;
+                }
+                &.disabled {
+                  color: #9b9b9b !important;
+                  cursor: not-allowed;
+                }
+              }
             }
           }
         }
       }
+      
     }
   }
   .portfolio-panel{
