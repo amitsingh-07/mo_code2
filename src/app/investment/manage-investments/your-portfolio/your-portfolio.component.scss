@@ -131,11 +131,15 @@ app-your-portfolio {
     }
   }
   .portfolio-panel{
+    @include allmobiles{
+      position: relative;
+      top: 60px;
+    }
     .container-fluid{
       &.max-width--1024{
         padding-top: 20px;
         @include allmobiles{
-          padding: 80px 15px !important;
+          padding: 15px 15px 80px !important;
         }
       }
     }
@@ -147,6 +151,10 @@ app-your-portfolio {
     }
     .nav-tabs{
       border: none;
+      margin-bottom: 20px;
+      @include allmobiles{
+        margin-bottom: 15px;
+      }
       li{
         &:first-child{
           width: 20%;
@@ -169,8 +177,11 @@ app-your-portfolio {
           font-size: 15px;
           font-family: $muli-regular;
           letter-spacing: -0.14px;
+          padding-top: 0;
+          padding-bottom: 12px;
           @include allmobiles{
             font-size: 14px;
+            padding-bottom: 15px;
           }
           &.active {
             color: #ffffff;
@@ -203,7 +214,6 @@ app-your-portfolio {
         }
       }
     .portfolio-panel-content{
-        padding-top: 20px;
         .form-group-with-bg {
           box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
           background-color: $white-color;
@@ -481,7 +491,6 @@ app-your-portfolio {
       }
 
     .pending-request-panel-content{
-      padding-top: 20px;
       .pending-buy-rqst-lbl{
         font-family: $muli-bold;
         font-size: 16px;
