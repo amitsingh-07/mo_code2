@@ -1464,7 +1464,7 @@ export class ComprehensiveService {
     if (cmpSummary.comprehensiveRetirementPlanning) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
-          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '1',
           path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
           title: 'Retirement Income ' + (index + 1),
           value: '',
@@ -1487,7 +1487,7 @@ export class ComprehensiveService {
 
       cmpSummary.comprehensiveRetirementPlanning.lumpSumBenefitSet.forEach((item, index) => {
         subItemsArray.push({
-          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '2',
           path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
           title: 'Lump Sum Amount ' + (index + 1),
           value: '',
