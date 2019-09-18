@@ -49,6 +49,7 @@ app-top-up {
     @include allmobiles{
       margin: 0 auto; 
       padding-left: 0px;
+      max-width: 100%;
     }
   }
   .form-group-with-bg .form-group-with-bg--content {
