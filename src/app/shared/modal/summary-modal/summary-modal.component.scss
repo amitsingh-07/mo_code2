@@ -56,6 +56,7 @@ $minus-content-color:#ff872f;
   .step-num {
     color: #000000;
     font-size: 14px !important;
+    margin-bottom: 5px;
   }
 
   .modal-body-title {
@@ -64,7 +65,7 @@ $minus-content-color:#ff872f;
 
   .modal-body {
     @include allmobiles {
-      padding: 10px 20px 100px !important;
+      padding: 25px 20px 40px !important;
     }
   }
 

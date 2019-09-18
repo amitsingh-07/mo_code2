@@ -119,11 +119,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.authService.clearSession();
 
         this.signUpService.logoutUser();
-        const customError: IError = {
-          error: [],
-          message: 'Your session has unexpectedly expired. Please login again'
-        };
-        this.helper.showCustomErrorModal(customError);
+
+        let message = 'Your session has unexpectedly expired. Please login again'
+        this.showCustomErrorModal('', message);
       } else {
         this.authService.authenticate().subscribe((token) => {
         });
