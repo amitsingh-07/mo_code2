@@ -291,6 +291,6 @@
   },
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
-    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been deleted."
+    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
   }
 }
