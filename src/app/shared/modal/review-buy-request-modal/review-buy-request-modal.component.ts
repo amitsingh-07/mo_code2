@@ -52,7 +52,6 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       this.riskProfileImg =
         ProfileIcons[this.fundDetails.portfolio.riskProfileId - 1]['icon'];
     }
-    console.log('', this.fundDetails);
   }
 
   onSubmit() {
