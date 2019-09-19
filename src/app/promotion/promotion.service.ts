@@ -97,6 +97,12 @@ export class PromotionService {
     if (in_promotion.bundle_enquiry_form_title) {
       promotion.bundle_enquiry_form_title = in_promotion.bundle_enquiry_form_title;
     }
+    if (in_promotion.bundle_enquiry_form_subtitle) {
+      promotion.bundle_enquiry_form_subtitle = in_promotion.bundle_enquiry_form_subtitle;
+    }
+    if (in_promotion.bundle_enquiry_child_enabled) {
+      promotion.bundle_enquiry_child_enabled = in_promotion.bundle_enquiry_child_enabled;
+    }
     return promotion;
   }
 

@@ -2,14 +2,12 @@
   <div class="col-lg-7 margin-auto">
     <div class="form-title">{{promoDetails.bundle_enquiry_form_title}}</div>
     <div class="form-sub-title">
-      <span *ngIf="promoDetails.promoId === 15">Receive a FREE MoneyOwl towel when you successfully sign up for the Child Education Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.</span>
-      <span *ngIf="promoDetails.promoId === 19">Receive a FREE MoneyOwl towel when you successfully sign up for the Child Protection Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.</span>
-      <span *ngIf="promoDetails.promoId === 16">Sign up, and receive $30 NTUC FairPrice voucher<span class="plus-icon">+</span> today!</span>
+      <span *ngIf="subTitle !== null" [innerHTML]=subTitle></span>
     </div>
     <form id="bundleEnquiryForm" name="bundleEnquiryForm" [formGroup]="bundleEnquiryForm">
       <div class="flex-row">
         <div class="col-lg-6 stretch">
-          <div class="form-group-floating-label">
+        <div class="form-group-floating-label">
             <input type="text" class="form-control" #firstName formControlName="firstName" placeholder="Your First Name"
               required>
           </div>

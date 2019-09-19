@@ -32,6 +32,10 @@ app-bundle-enquiry{
             text-align: center;
             color: $dark-grey-color;
             padding-bottom: 25px;
+            sup{
+                font-family: $muli-bold;
+                font-size:12px;
+            }
             @include allmobiles{
                 padding: 0 15px;
             }
