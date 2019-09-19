@@ -13,7 +13,7 @@
               fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="max-width col-lg-6 col-md-6">
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
@@ -31,12 +31,12 @@
                           <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                               translate}}</span>
                         <span
-                          *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioName}}</span>
+                          *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioName + ' - ' + withdrawForm.controls.withdrawPortfolio.value.refNo}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refNo}}</button>
                       </div>
                     </div>
                   </div>
