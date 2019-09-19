@@ -26,12 +26,11 @@ export class AddPortfolioNameComponent implements OnInit {
   @Input() defaultPortfolioName;
   @Input() userPortfolioName;
   @Input() showErrorMessage;
-  disableCtnBTn = false;
   @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
-    public investmentAccountService: InvestmentAccountService,
-    private formBuilder: FormBuilder) { }
+              public investmentAccountService: InvestmentAccountService,
+              private formBuilder: FormBuilder) { }
   ngOnInit() {
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
     this.portfolioSuccessIcon = SuccessIcons[this.riskProfileId - 1]['icon'];
@@ -51,12 +50,7 @@ export class AddPortfolioNameComponent implements OnInit {
 
   showLength(event) {
     this.characterLength = event.currentTarget.value.length;
-    if (event.currentTarget.value.toLowerCase() === this.defaultPortfolioName.toLowerCase()) {
-      this.disableCtnBTn = true;
-    } else {
-      this.disableCtnBTn = false;
-    }
-  }
+   }
 
   getInlineErrorStatus(control) {
     return this.showErrorMessage;

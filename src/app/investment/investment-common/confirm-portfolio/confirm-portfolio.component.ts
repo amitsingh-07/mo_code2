@@ -272,8 +272,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const defaultPortfolioName = data.objectList.portfolioName;
         this.showAddPortfolioNameModal(defaultPortfolioName);
       } else if (data.responseMessage.responseCode === 5119) {
-        const confirmationPortfolio = this.investmentCommonService.getConfirmPortfolioName();
-        this.showAddPortfolioNameModal(confirmationPortfolio);
+        this.showAddPortfolioNameModal(data.objectList.portfolioName);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -293,7 +292,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.defaultPortfolioName = defaultPortfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-      if (portfolioName) {
+      if ( portfolioName && portfolioName.toLowerCase() && defaultPortfolioName .toLowerCase()) {
       this.savePortfolioName(portfolioName);
       } else {
         this.reDirectToNextScreen();
@@ -301,10 +300,10 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
   }
 
-  constructSavePortfolioName(data) {
+  constructSavePortfolioName(portfolioNameValue) {
     return {
       customerPortfolioId: this.portfolio.customerPortfolioId,
-      portfolioName: data
+      portfolioName: portfolioNameValue
     };
   }
 
@@ -316,10 +315,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     const param = this.constructSavePortfolioName(portfolioName);
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
-      if (response.responseMessage.responseCode >= 6000) {
+      if (response.responseMessage.responseCode === 6000) {   
         this.userGivenPortfolioName = portfolioName;
         this.reDirectToNextScreen();
-       // #this.showErrorMessage = false;
+      }
+      if (response.responseMessage.responseCode === 5120) {    
+        this.userGivenPortfolioName = portfolioName;
+        this.showAddPortfolioNameModal(this.userGivenPortfolioName);
+        this.showErrorMessage = true;
       }  else {
         this.investmentAccountService.showGenericErrorModal();
       }
