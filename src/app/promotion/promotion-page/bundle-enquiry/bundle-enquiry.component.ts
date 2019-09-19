@@ -24,6 +24,7 @@ export class BundleEnquiryComponent implements OnInit {
   formSubmitted = false;
   dobPlaceholder: string;
   invalidEmail = false;
+  subTitle: string;
 
   constructor(
     public authService: AuthenticationService,
@@ -42,6 +43,7 @@ export class BundleEnquiryComponent implements OnInit {
   ngOnInit() {
     const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
     this.setPlaceholder();
+    this.subTitle = this.promoDetails.bundle_enquiry_form_subtitle ? this.promoDetails.bundle_enquiry_form_subtitle : null;
     this.bundleEnquiryForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
@@ -59,8 +61,13 @@ export class BundleEnquiryComponent implements OnInit {
   }
 
   setPlaceholder() {
-    this.dobPlaceholder = this.promoDetails.promoId === 16 ? 'Date of Birth' : 'Child’s Date of Birth';
-    this.genderPlaceholder = this.selectedGender = this.promoDetails.promoId === 16 ? 'Gender' : 'Child’s Gender';
+    if(this.promoDetails.bundle_enquiry_child_enabled) {
+      this.dobPlaceholder = 'Child’s Date of Birth';
+      this.genderPlaceholder = this.selectedGender = 'Child’s Gender';
+    } else {
+      this.dobPlaceholder = 'Date of Birth';
+      this.genderPlaceholder = this.selectedGender = 'Gender';
+    }
   }
 
   sendBundleEnquiry(form: any) {
