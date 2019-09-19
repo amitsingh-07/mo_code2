@@ -275,9 +275,10 @@ export class YourPortfolioComponent implements OnInit {
     }
   this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
   }
-  showRenamePortfolioModal() {
+
+  showRenamePortfolioModal(errorValue?: string) {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
-    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
+    ref.componentInstance.userPortfolioName = errorValue ? errorValue : this.portfolio.portfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
       this.savePortfolioName(renamedPortfolioName);
@@ -305,8 +306,7 @@ export class YourPortfolioComponent implements OnInit {
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
-        this.portfolio.portfolioName = portfolioName;
-        this.showRenamePortfolioModal();
+        this.showRenamePortfolioModal(portfolioName);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
