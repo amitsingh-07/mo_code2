@@ -709,11 +709,11 @@ export class WillWritingService {
         members['isAlt'] = profileMembers.isAltTrusteee === 'Y';
         will.execTrustee.push(JSON.parse(JSON.stringify(members)));
       }
-      if (profileMembers.isBeneficiary === 'Y') {
+      if (profileMembers.isBeneficiary === 'Y' || profileMembers.isFamily === 'Y') {
         if (members.hasOwnProperty('isAlt')) {
           delete members['isAlt'];
         }
-        members['selected'] = true;
+        members['selected'] = profileMembers.isBeneficiary === 'Y';
         members['distPercentage'] = profileMembers.distribution;
         will.beneficiary.push(JSON.parse(JSON.stringify(members)));
       }
