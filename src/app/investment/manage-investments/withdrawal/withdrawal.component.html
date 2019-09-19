@@ -124,8 +124,7 @@
                   </div>
                   <div class="col-5 text-right">
                     <span
-                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioValue | currency }}</span>
-                    <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value"> {{ 0 | currency }}</span>
+                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) | currency }}</span>
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && isFromPortfolio && withdrawForm.valid">
@@ -133,7 +132,7 @@
                     {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
                   </div>
                   <div class="col-5 text-right">
-                    {{withdrawForm.controls.withdrawPortfolio.value.portfolioValue - withdrawForm.controls.withdrawAmount.value | currency}}
+                    {{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) - withdrawForm.controls.withdrawAmount.value | currency}}
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && !isFromPortfolio && withdrawForm.valid">
