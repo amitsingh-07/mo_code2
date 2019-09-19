@@ -68,11 +68,17 @@
     @include allmobiles {
       font-size: 18px;
     }
+    @include iphone5{
+      margin-bottom: 40px!important;
+    }
   }
   .insurance-input-radio{
     justify-content: space-between;
     .flex-col-4,.flex-col-6{
-      max-width: 95px;;
+      max-width: 91px;
+      @include iphone5 {
+        max-width: 76px;
+      }
     }
   }
   .insurancePlanForm{
