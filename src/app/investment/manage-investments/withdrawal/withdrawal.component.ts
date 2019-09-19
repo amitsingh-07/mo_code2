@@ -82,11 +82,12 @@ export class WithdrawalComponent implements OnInit {
 
    // Set selected portfolio's entitlements, cash balance
    setSelectedPortfolio() {
-    if (this.withdrawForm.controls.withdrawPortfolio && this.withdrawForm.controls.withdrawPortfolio.value) {
-      const selectedPortfolio = this.withdrawForm.controls.withdrawPortfolio.value;
-      this.entitlements = selectedPortfolio['entitlements'];
-      this.cashBalance = parseFloat(this.decimalPipe.transform(selectedPortfolio['cashAccountBalance'] || 0, '1.0-2').replace(/,/g, ''));
-    }
+     if (this.formValues) {
+       const data = this.portfolioList.find((portfolio) => {
+         return portfolio.customerPortfolioId === this.formValues.selectedCustomerPortfolioId;
+       });
+       this.setDropDownValue('withdrawPortfolio', data);
+     }
   }
 
   buildForm() {
