@@ -241,8 +241,9 @@
             </div>
             <!-- buy request -->
             <div class="buy-request">
-              <div *ngIf="portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">
-                {{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: portfolio.pendingRequestDTO.numberOfPendingRequests} }}
+              <div *ngIf="pendingBuyRequests && pendingBuyRequests.value && pendingBuyRequests.value.length" class="pending-buy-rqst-lbl">
+                <span *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: pendingBuyRequests.value.length} }}</span>
+                <ng-template #single_pending_template><span>{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO_SINGLE' | translate: { count: pendingBuyRequests.value.length} }}</span></ng-template>
               </div>
               <div *ngIf="!portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">
                 {{'YOUR_PORTFOLIO.PENDING_NO_REQUEST_INFO' | translate }}</div>
