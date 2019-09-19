@@ -38,7 +38,6 @@ app-your-portfolio {
           line-height: 30px;
           letter-spacing: -0.49px;
           color: #ffffff;
-          // padding-bottom: 5px;
           max-width: 500px;
           white-space: normal;
           word-break: break-word;
@@ -51,12 +50,8 @@ app-your-portfolio {
           }
         }
         .user_portfolio{
-          // padding-left: 67px;
-          // padding-bottom: 50px;
           width: calc(100% - 67px);
           @include allmobiles{
-            // padding-left: 62px;
-            // padding-bottom: 40px;
             width: calc(100% - 61px);
           }       
           .portfolio-type{
@@ -64,10 +59,8 @@ app-your-portfolio {
             font-size: 18px;
             line-height: 30px;
             letter-spacing: -0.24px;
-            // padding-top: 5px;
             @include allmobiles{
               font-size: 15px;
-              // line-height: 2;
               letter-spacing: -0.2px;
             }
           }
