@@ -134,8 +134,9 @@ export class InvestmentApiService {
       );
   }
 
-  updateInvestment(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.updateInvestment, data)
+  updateInvestment(customerPortfolioId, data) {
+    // tslint:disable-next-line:max-line-length
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.updateInvestment.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

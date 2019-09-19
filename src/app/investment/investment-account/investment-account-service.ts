@@ -924,8 +924,8 @@ export class InvestmentAccountService {
     return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 
-  updateInvestment(params) {
-    return this.investmentApiService.updateInvestment(params);
+  updateInvestment(customerPortfolioId, params) {
+    return this.investmentApiService.updateInvestment(customerPortfolioId, params);
   }
 
   additionalDeclarationsRequest() {
