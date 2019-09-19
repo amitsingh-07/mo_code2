@@ -6,12 +6,12 @@
                 <td colspan="3" class="cell--header text--center">Qualifying Policies: VivoAssure, VivoCash Prime, VivoLife, VivoChild, Cancer Protect, iTerm, Mortgage Term, TermLife Solitaire, RevoGift, RevoEase, RevoRetire, RevoSave, RevoSecure, VivoChild, Protection Plan</td>
             </tr>
             <tr>
-                <td rowspan="2" class="cell--header text--center">Minimum Monthly Premium</td>
-                <td colspan="2" class="cell--header text--center">Amount of CapitaVouchers^ with policy term of</td>
+                <td rowspan="2" class="text--bold text--center">Minimum Monthly Premium</td>
+                <td colspan="2" class="text--bold text--center">Amount of CapitaVouchers^ with policy term of</td>
             </tr>
             <tr>
-                <td class="cell--header text--center">10 years and below</td>
-                <td class="cell--header text--center">11 years and above</td>
+                <td class="text--bold text--center">10 years and below</td>
+                <td class="text--bold text--center">11 years and above</td>
             </tr>
             <tr>
                 <td class="text--center">$300</td>
