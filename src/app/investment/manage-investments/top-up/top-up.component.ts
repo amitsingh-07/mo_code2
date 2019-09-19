@@ -92,13 +92,23 @@ export class TopUpComponent implements OnInit {
       this.getOneTimeInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
     }
     this.buildFormInvestment();
+    this.setSelectedPortfolio();
+  }
+
+  // set the selected portfolio if there when page loaded
+  setSelectedPortfolio() {
+    if (this.formValues['selectedCustomerPortfolioId']) {
+      const value = this.formValues.userPortfolios.find((data) => {
+        return data.customerPortfolioId = this.formValues['selectedCustomerPortfolioId'];
+      });
+      this.setDropDownValue('portfolio', value);
+    }
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
-    console.log('value = ', value)
     this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
   }
@@ -112,8 +122,8 @@ export class TopUpComponent implements OnInit {
     });
   }
   validateAmonut(amount) {
-    if (amount > this.fundDetails['portfolio']['cashAccountBalance']) {
-      this.topupAmount = amount - this.fundDetails['portfolio']['cashAccountBalance'];
+    if (amount > this.cashBalance) {
+      this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
     } else {
       this.isAmountExceedBalance = false;
@@ -200,8 +210,7 @@ export class TopUpComponent implements OnInit {
         ref.componentInstance.errorMessage = error.errorMessage;
         // tslint:disable-next-line:triple-equals
       } else {
-          this.saveAndProceed(form);
-        // }
+        this.saveAndProceed(form);
       }
     }
   }
@@ -212,11 +221,10 @@ export class TopUpComponent implements OnInit {
     this.showReviewBuyRequestModal(form);
   }
   saveFundingDetails() {
-
     if (this.formValues.oneTimeInvestmentAmount) {
       this.topupAmount = this.formValues.oneTimeInvestmentAmount - this.formValues.portfolio['cashAccountBalance'];
     } else {
-      this.topupAmount = this.formValues.MonthlyInvestmentAmount || 0 - this.formValues.portfolio['cashAccountBalance'];
+      this.topupAmount = (Number(this.formValues.MonthlyInvestmentAmount) || 0) - this.formValues.portfolio['cashAccountBalance'];
     }
 
     const topupValues = {
