@@ -12,6 +12,8 @@
         "external": false,
         "bundle_enquiry_form_type": "child-protection-bundle",
         "bundle_enquiry_form_title": "Child Protection Bundle Enquiry",
+        "bundle_enquiry_form_sub_title": "Receive a FREE MoneyOwl towel when you successfully sign up for the Child Protection Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.",
+        "bundle_enquiry_child_enabled": true,
         "tracking_id": "WsX0CIux_aUBEP_VqfUC"
     },
     {
@@ -27,6 +29,8 @@
         "external": false,
         "bundle_enquiry_form_type": "child-education-bundle",
         "bundle_enquiry_form_title": "Child Education Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Receive a FREE MoneyOwl towel when you successfully sign up for the Child Education Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.",
+        "bundle_enquiry_child_enabled": true,
         "tracking_id": "WsX0CIux_aUBEP_VqfUC"
     },
     {
@@ -42,6 +46,7 @@
         "external": false,
         "bundle_enquiry_form_type": "adult-bundle",
         "bundle_enquiry_form_title": "Young Working Adult Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Sign up, and receive $30 NTUC FairPrice voucher<span class=\"plus-icon\">+</span> today!",
         "tracking_id": "ITmJCNHA9aUBEP_VqfUC"
     },
     {
