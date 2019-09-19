@@ -228,6 +228,9 @@
 
           span {
             word-break: break-word;
+            strong{
+              font-family: $muli-bold;
+            }
           }
         }
       }
