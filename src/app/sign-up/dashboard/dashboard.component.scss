@@ -172,6 +172,9 @@ app-dashboard{
                                     letter-spacing: -0.2px;
                                     color: #00a7a7;
                                     padding-top: 3px;
+                                    @include allmobiles{
+                                        font-size: 18px;
+                                    }
                                 }
                             }
                         }

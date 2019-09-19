@@ -13,9 +13,12 @@ app-your-portfolio {
         padding-right: 0;
       }
       .user_summary{
+        width: 100%;
         padding-top: 45px;
+        padding-bottom: 50px;
         @include allmobiles{
           padding-top: 35px;
+          padding-bottom: 40px
         }
         .user_portfolio-icon{
           width:52px;
@@ -32,44 +35,46 @@ app-your-portfolio {
         .user_portfolio_lbl{
           font-family: $muli-bold;
           font-size: 36px;
-          line-height: 0.83;
+          line-height: 30px;
           letter-spacing: -0.49px;
           color: #ffffff;
-          padding-bottom: 5px;
+          // padding-bottom: 5px;
           max-width: 500px;
           white-space: normal;
           word-break: break-word;
           @include allmobiles{
             font-size: 21px;
-            line-height: 1.24;
+            line-height: 26px;
             letter-spacing: -0.28px;            
             max-width: 250px;
             padding-right: 15px;
           }
         }
         .user_portfolio{
-          padding-left: 67px;
-          padding-bottom: 50px;
+          // padding-left: 67px;
+          // padding-bottom: 50px;
+          width: calc(100% - 67px);
           @include allmobiles{
-            padding-left: 62px;
-          padding-bottom: 40px;
+            // padding-left: 62px;
+            // padding-bottom: 40px;
+            width: calc(100% - 61px);
           }       
           .portfolio-type{
             font-family: $muli-regular;
             font-size: 18px;
-            line-height: 1.67;
+            line-height: 30px;
             letter-spacing: -0.24px;
-            padding-top: 5px;
+            // padding-top: 5px;
             @include allmobiles{
               font-size: 15px;
-              line-height: 2;
+              // line-height: 2;
               letter-spacing: -0.2px;
             }
           }
           .more-menu {
             max-width: 71px;
             @include allmobiles {
-              margin-right: 20px;
+              margin-right: 25px;
             }
             .dropdown-control{
               .btn-dropdown{

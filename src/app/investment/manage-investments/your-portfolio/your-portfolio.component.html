@@ -20,37 +20,38 @@
         </div>
         <div class="invest-bg-content">
           <div class="flex-row user_content flex-col-12">
-            <div class="user_summary flex-col-12" id="your_portfolio_summary">
+            <div class="user_summary" id="your_portfolio_summary">
               <div class="flex-row">
                   <div class="user_portfolio-icon">
                       <img [src]="riskProfileImage" />
                     </div>
-                    <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
-              </div>
-              
-              <div class="user_portfolio flex-col">
-                <div class="flex-row space-between">
-                  <div class="portfolio-type">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
-                  <div class="more-menu">
-                    <div class="dropdown-control">
-                      <div ngbDropdown>
-                        <button class="btn btn-dropdown without-border" id="your_portfolio-drpdown" ngbDropdownToggle>
-                          {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
-                        <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item"
-                            [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
-                            || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
-                            [class.disabled]="(option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete)"
-                            *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
-                            id="additional_declaration_sourse-drpdown-option-{{i}}">
-                            {{option.name}}
-                          </button>
+                    <div class="user_portfolio flex-col">
+                        <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
+                      <div class="flex-row space-between">
+                        <div class="portfolio-type">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
+                        <div class="more-menu">
+                          <div class="dropdown-control">
+                            <div ngbDropdown>
+                              <button class="btn btn-dropdown without-border" id="your_portfolio-drpdown" ngbDropdownToggle>
+                                {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
+                              <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                                <button class="dropdown-item"
+                                  [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
+                                  || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
+                                  [class.disabled]="(option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete)"
+                                  *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
+                                  id="additional_declaration_sourse-drpdown-option-{{i}}">
+                                  {{option.name}}
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
               </div>
+              
+             
             </div>
 
           </div>
