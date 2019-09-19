@@ -135,7 +135,8 @@ export class PortfolioDetailsComponent implements OnInit {
 
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
-    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
+    const customerPortfolioId = this.portfolio.customerPortfolioId;
+    this.investmentAccountService.updateInvestment( customerPortfolioId, params).subscribe((data) => {
       this.getPortfolioAllocationDetails();
     },
       (err) => {
