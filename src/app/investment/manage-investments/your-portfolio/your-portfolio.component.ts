@@ -269,6 +269,7 @@ export class YourPortfolioComponent implements OnInit {
     }
   this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
   }
+
   showRenamePortfolioModal(errorValue?: string) {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
     ref.componentInstance.userPortfolioName = errorValue ? errorValue : this.portfolio.portfolioName;
