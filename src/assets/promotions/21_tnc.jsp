@@ -12,7 +12,7 @@
     </li>
     <li>
         The $500/month and $8,000 lump sum are estimated payouts from a retirement income insurance policy. Of these payouts, $400/month over 20 years is guaranteed and the rest is non-guaranteed. These values are based on illustrated insurance fund returns of 4.75% p.a. Please refer to the insurance policy benefit illustration for details.
-    <li>
+    </li>
     <li>
         This is based on investing $100/month over 10 years in a portfolio with a projected net return of 6.7% p.a. and remaining invested for a further 25 years.   
     </li>
