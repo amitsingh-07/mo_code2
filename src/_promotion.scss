@@ -469,7 +469,7 @@
                         justify-content:center;
                         align-items:center;
                         span{
-                            font-family: $muli-bold;
+                            font-family: $muli-extra-bold;
                             font-style: italic;
                             color:$teal-color;
                             font-size:28px;
@@ -556,7 +556,7 @@
                         .middle-label{
                             position: relative;
                             display:block;
-                            font-family: $muli;
+                            font-family: $muli-regular;
                             font-size:21px;
                             color:$black-color;
                             letter-spacing:-0.22px;
@@ -876,7 +876,7 @@
             margin:85px 0px 29px 0px;
         }
         .content{
-            font-family:$muli;
+            font-family:$muli-regular;
             font-size:21px;
             line-height:1.1;
             letter-spacing:-0.22px;
