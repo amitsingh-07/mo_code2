@@ -329,6 +329,11 @@
     @include minMobilemaxPhablet{
         padding:0px;
     }
+    sup{
+        font-size:68%;
+        top:-0.8em;
+        left:.1em;
+    }
     .bundle-bg{
         display:flex;
         margin-bottom: 42px;
@@ -350,8 +355,10 @@
         letter-spacing: -0.22px;
         line-height:normal;
         color:$black-color;
-        
-        
+        margin-bottom:55px;
+        p{
+            margin-top:1rem;
+        }
         @include minMobilemaxPhablet{
             margin: 8px auto 40px;
             padding:0px 15px;
@@ -361,9 +368,11 @@
                 letter-spacing:-0.8px;
             }
             p{
+                margin-top:1rem;
                 font-family:$muli-regular;
                 font-size:21px;
                 letter-spacing:-0.22px;
+                
             }
         }
         @include tablet{
@@ -382,6 +391,7 @@
             margin-bottom:85px;
         }
         @include minMobilemaxPhablet{
+            padding:45px 15px 120px 15px;
             .heading{
                 font-size:26px;
                 letter-spacing:-0.27px;

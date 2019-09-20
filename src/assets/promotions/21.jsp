@@ -41,7 +41,7 @@
               </div>
             <div class="link"></div>
             <div class="age-bubble">
-              <span>age 80</span>
+              <span>Age 80</span>
             </div>
           </div>
           <div class="content-timeline">
@@ -52,7 +52,7 @@
                 <p>He optimises his CPF using the proprietary MoneyOwl CPF Analyser.</p>
               </div>
               <div class="pop-label">
-                He gets $1,000 <sup>3</sup> in commission rebates over 3 years.
+                He gets $1,000<sup>3</sup> in commission rebates over 3 years.
               </div>
             </div>
             <div class="content55to60">
