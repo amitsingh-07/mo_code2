@@ -98,8 +98,8 @@ export class TopUpComponent implements OnInit {
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
     if (this.formValues['selectedCustomerPortfolioId']) {
-      const value = this.formValues.userPortfolios.find((data) => {
-        return data.customerPortfolioId = this.formValues['selectedCustomerPortfolioId'];
+      const value = this.portfolioList.find((data) => {
+        return data.customerPortfolioId === this.formValues['selectedCustomerPortfolioId'];
       });
       this.setDropDownValue('portfolio', value);
     }
@@ -217,7 +217,9 @@ export class TopUpComponent implements OnInit {
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
+    // Save all the details of the top up before proceed
     this.saveFundingDetails();
+    // Open up show review buy request pop up
     this.showReviewBuyRequestModal(form);
   }
   saveFundingDetails() {
@@ -226,7 +228,6 @@ export class TopUpComponent implements OnInit {
     } else {
       this.topupAmount = (Number(this.formValues.MonthlyInvestmentAmount) || 0) - this.formValues.portfolio['cashAccountBalance'];
     }
-
     const topupValues = {
       source: MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.TOPUP,
       portfolio: this.formValues.portfolio,
@@ -238,7 +239,9 @@ export class TopUpComponent implements OnInit {
       isAmountExceedBalance: this.topupAmount > 0 ? true : false,
       exceededAmount: this.topupAmount
     };
+    // Set and also update the fund details for use in this component
     this.manageInvestmentsService.setFundingDetails(topupValues);
+    this.fundDetails = this.manageInvestmentsService.getFundingDetails();
   }
 
   getMonthlyInvestmentInfo(customerPortfolioId) {
@@ -300,7 +303,7 @@ export class TopUpComponent implements OnInit {
 
   showReviewBuyRequestModal(form) {
     const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
-    ref.componentInstance.fundDetails = this.manageInvestmentsService.getFundingDetails();
+    ref.componentInstance.fundDetails = this.fundDetails;
     ref.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
     });
@@ -320,22 +323,21 @@ export class TopUpComponent implements OnInit {
   }
 
   buyPortfolio() {
-    const buyRequestFundDetails = this.manageInvestmentsService.getFundingDetails();
     if (this.fundDetails.oneTimeInvestment) {
-      this.topUpOneTime(buyRequestFundDetails);
+      this.topUpOneTime();
     } else {
-      this.topUpMonthly(buyRequestFundDetails);
+      this.topUpMonthly();
     }
   }
  // ONETIME INVESTMENT
- topUpOneTime(buyRequestFundDetails) {
+ topUpOneTime() {
   if (!this.isRequestSubmitted) {
     this.isRequestSubmitted = true;
     this.loaderService.showLoader({
       title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
       desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
     });
-    this.manageInvestmentsService.buyPortfolio(buyRequestFundDetails).subscribe(
+    this.manageInvestmentsService.buyPortfolio(this.fundDetails).subscribe(
       (response) => {
         this.successHandler(response);
       },
@@ -346,14 +348,14 @@ export class TopUpComponent implements OnInit {
   }
 }
 // MONTHLY INVESTMENT
-topUpMonthly(buyRequestFundDetails) {
+topUpMonthly() {
   if (!this.isRequestSubmitted) {
     this.isRequestSubmitted = true;
     this.loaderService.showLoader({
       title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
       desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
     });
-    this.manageInvestmentsService.monthlyInvestment(buyRequestFundDetails).subscribe(
+    this.manageInvestmentsService.monthlyInvestment(this.fundDetails).subscribe(
       (response) => {
         this.successHandler(response);
       },
