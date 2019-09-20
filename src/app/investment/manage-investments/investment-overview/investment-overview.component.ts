@@ -92,9 +92,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
-    if (this.toastMsg && this.toastMsg['isShown']) {
-      this.showToastMessage();
-    }
   }
 
   getMoreList() {
@@ -171,9 +168,7 @@ export class InvestmentOverviewComponent implements OnInit {
         this.investmentoverviewlist.cashAccountDetails.availableBalance
       );
     }
-    /* First portfolio's entitlement is considered for now as global entitlement,
-        need to change when multiple portfolio logic is implemented */
-    // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+    this.showToastMessage();
   }
 
   ViewTransferInst(productCode) {
@@ -238,15 +233,17 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   showToastMessage() {
-    this.isToastMessageShown = true;
-    this.manageInvestmentsService.clearToastMessage();
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 1);
-    setTimeout(() => {
-      this.isToastMessageShown = false;
-      this.toastMsg = null;
-    }, 3000);
+    if (this.toastMsg && this.toastMsg['isShown']) {
+      this.isToastMessageShown = true;
+      this.manageInvestmentsService.clearToastMessage();
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 1);
+      setTimeout(() => {
+        this.isToastMessageShown = false;
+        this.toastMsg = null;
+      }, 3000);
+    }
   }
 
   investAgain(portfolio) {

@@ -30,11 +30,11 @@
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
                           <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                               translate}}</span>
-                        <span
+                        <span class="capital-letter"
                           *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioName + ' - ' + withdrawForm.controls.withdrawPortfolio.value.refNo}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
-                        <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;"
+                        <button class="dropdown-item capital-letter" *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refNo}}</button>
                       </div>
@@ -99,13 +99,8 @@
                 <div class="flex-col-12">
                   <div class="withdraw-error"
                     *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinWithdrawal">
-                    <img src="../../../assets/images/info-orange.png" alt="" />
+                    <img src="../../../assets/images/info-orange.svg" alt="" />
                     <span [innerHTML]="'WITHDRAW.MIN_WITHDRAWAL_INFO' | translate:translateParams"> </span>
-                  </div>
-                  <div class="withdraw-error"
-                    *ngIf="isFromPortfolio && (isRedeemAll || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
-                    <img src="../../../assets/images/info-orange.png" alt="" />
-                    <span [innerHTML]="'WITHDRAW.REDEEM_ALL_INFO' | translate:translateParams"> </span>
                   </div>
                 </div>
               </div>
@@ -141,6 +136,15 @@
                   </div>
                   <div class="col-5 text-right">
                     {{cashBalance - withdrawForm.controls.withdrawAmount.value | currency}}
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="withdraw-error"
+                    *ngIf="isFromPortfolio && (isRedeemAll || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
+                    <img src="../../../assets/images/info-orange.svg" alt="" />
+                    <span [innerHTML]="'WITHDRAW.REDEEM_ALL_INFO' | translate:translateParams"> </span>
                   </div>
                 </div>
               </div>
