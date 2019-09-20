@@ -92,9 +92,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
-    if (this.toastMsg && this.toastMsg['isShown']) {
-      this.showToastMessage();
-    }
   }
 
   getMoreList() {
@@ -142,9 +139,11 @@ export class InvestmentOverviewComponent implements OnInit {
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
+      this.showToastMessage();
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
+        this.showToastMessage();
       });
   }
 
@@ -238,15 +237,17 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   showToastMessage() {
-    this.isToastMessageShown = true;
-    this.manageInvestmentsService.clearToastMessage();
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 1);
-    setTimeout(() => {
-      this.isToastMessageShown = false;
-      this.toastMsg = null;
-    }, 3000);
+    if (this.toastMsg && this.toastMsg['isShown']) {
+      this.isToastMessageShown = true;
+      this.manageInvestmentsService.clearToastMessage();
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 1);
+      setTimeout(() => {
+        this.isToastMessageShown = false;
+        this.toastMsg = null;
+      }, 3000);
+    }
   }
 
   investAgain(portfolio) {
