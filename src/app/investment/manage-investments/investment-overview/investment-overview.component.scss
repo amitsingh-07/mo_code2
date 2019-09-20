@@ -262,6 +262,9 @@ app-investment-overview {
                   letter-spacing: -0.3px;
                   white-space: normal;
                   word-wrap: break-word;
+                  @include allmobiles{
+                    padding-right: 55px;
+                  }
                 }
 
                 .ref-code {
