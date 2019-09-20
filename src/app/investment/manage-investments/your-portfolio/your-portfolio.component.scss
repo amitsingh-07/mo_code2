@@ -2,33 +2,6 @@
 @import '../../../../_mixins.scss';
 
 app-your-portfolio {
-  .fade-out-animation {
-    -webkit-animation: fadeOut 3000ms ease-in-out;
-    /* Chrome, Safari, Opera */
-    animation: fadeOut 3000ms ease-in-out;
-  }
-
-  /* Chrome, Safari, Opera */
-  @-webkit-keyframes fadeOut {
-    0% {
-      opacity: 0.8;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  /* Standard syntax */
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
   .invest-bg-content{
     .user_content{
       max-width: 1024px;
@@ -124,7 +97,7 @@ app-your-portfolio {
                   max-height: 264px;
                   padding-top: 0;
                   padding-bottom: 0;
-                  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+                  box-shadow: none !important;
                 }
               }
               .dropdown-item {
