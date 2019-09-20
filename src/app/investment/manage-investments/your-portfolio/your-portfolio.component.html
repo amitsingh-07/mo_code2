@@ -396,7 +396,7 @@
                     <div class="flex-row">
                       <span class="balance-amount-lbl">{{'YOUR_PORTFOLIO.BALANCE_AMOUNT' | translate}}:</span>
                       <span>
-                        {{portfolio.investmentAccountDTO.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                        {{portfolio.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                     </div>
                   </div>
                 </div>
@@ -404,7 +404,7 @@
                 <div class="form-group-with-bg--content">
                   <div class="cash-account-content">
                     <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
-                      {{portfolio.investmentAccountDTO.referenceCode }}</div>
+                      {{portfolio.referenceCode }}</div>
                     <div class="flex">
                       <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
                       <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>
