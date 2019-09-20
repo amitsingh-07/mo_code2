@@ -139,11 +139,9 @@ export class InvestmentOverviewComponent implements OnInit {
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
-      this.showToastMessage();
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-        this.showToastMessage();
       });
   }
 
@@ -170,9 +168,7 @@ export class InvestmentOverviewComponent implements OnInit {
         this.investmentoverviewlist.cashAccountDetails.availableBalance
       );
     }
-    /* First portfolio's entitlement is considered for now as global entitlement,
-        need to change when multiple portfolio logic is implemented */
-    // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+    this.showToastMessage();
   }
 
   ViewTransferInst(productCode) {
