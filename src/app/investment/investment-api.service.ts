@@ -134,8 +134,9 @@ export class InvestmentApiService {
       );
   }
 
-  updateInvestment(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.updateInvestment, data)
+  updateInvestment(customerPortfolioId, data) {
+    // tslint:disable-next-line:max-line-length
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.updateInvestment.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -234,8 +235,9 @@ export class InvestmentApiService {
   }
 
   // tslint:disable-next-line:no-identical-functions
-  sellPortfolio(data) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.sellPortfolio, data)
+  sellPortfolio(customerPortfolioId, data) {
+    const url = investmentApiConstants.endpoint.investmentAccount.sellPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -255,8 +257,9 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }  // Get User's monthly investment Information
-  getMonthlyInvestmentInfo() {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.setInvestmentObjective)
+  getMonthlyInvestmentInfo(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investment.monthlyInvestmentInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

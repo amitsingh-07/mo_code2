@@ -21,6 +21,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -40,16 +41,17 @@ export class YourPortfolioComponent implements OnInit {
   pendingSellRequests;
   pendingOnetimeBuyRequests;
   pendingMonthlyBuyRequests;
-  isWhatsNextSectionShown = false;
   riskProfileImage;
   isToastMessageShown: boolean;
   showErrorMessage: boolean;
   toastMsg: any;
+  activeTab: string;
 
   constructor (
     public readonly translate: TranslateService,
     private router: Router,
     public navbarService: NavbarService,
+    public signUpService: SignUpService,
     public authService: AuthenticationService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
@@ -77,6 +79,7 @@ export class YourPortfolioComponent implements OnInit {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
+    this.showBuyRequest();
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
@@ -133,7 +136,7 @@ export class YourPortfolioComponent implements OnInit {
       );
       awaitingFundRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'AWAITING_FUND');
       processingRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'PROCESSING');
-      recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECIEVED');
+      recievedRequests = this.investmentEngagementJourneyService.findGroupByGroupName(transactionStatusGroups, 'RECEIVED');
     }
     if ((awaitingFundRequests && awaitingFundRequests.value && awaitingFundRequests.value.length)
       || (processingRequests && processingRequests.value && processingRequests.value.length)
@@ -149,11 +152,7 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   showOrHideWhatsNextSection() {
-    if (this.portfolio.portfolioStatus === 'PURCHASED'
-    && !this.portfolio.investmentAccountDTO.accountBalance
-    && !(this.pendingBuyRequests && this.pendingBuyRequests.value)) {
-          this.isWhatsNextSectionShown = true;
-    }
+    return !(this.pendingBuyRequests && this.pendingBuyRequests.value);
   }
 
   getWithdrawType(mode) {
@@ -233,6 +232,7 @@ export class YourPortfolioComponent implements OnInit {
       break;
     }
     case 3: {
+      this.showErrorMessage = false;
       this.showRenamePortfolioModal();
       break;
     }
@@ -275,9 +275,10 @@ export class YourPortfolioComponent implements OnInit {
     }
   this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
   }
-  showRenamePortfolioModal() {
+
+  showRenamePortfolioModal(errorValue?: string) {
     const ref = this.modal.open(RenameInvestmentModalComponent, { centered: true });
-    ref.componentInstance.userPortfolioName = this.portfolio.portfolioName;
+    ref.componentInstance.userPortfolioName = errorValue ? errorValue : this.portfolio.portfolioName;
     ref.componentInstance.showErrorMessage = this.showErrorMessage;
     ref.componentInstance.renamePortfolioBtn.subscribe((renamedPortfolioName) => {
       this.savePortfolioName(renamedPortfolioName);
@@ -305,8 +306,7 @@ export class YourPortfolioComponent implements OnInit {
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
-        this.portfolio.portfolioName = portfolioName;
-        this.showRenamePortfolioModal();
+        this.showRenamePortfolioModal(portfolioName);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -388,5 +388,14 @@ export class YourPortfolioComponent implements OnInit {
     };
     this.manageInvestmentsService.setToastMessage(toastMessage);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
+  }
+
+  showBuyRequest() {
+    if (this.signUpService.getByRequestFlag()) {
+      this.signUpService.clearByRequestFlag();
+      this.activeTab = 'tab-2';
+    } else {
+      this.activeTab = 'tab-1';
+    }
   }
 }

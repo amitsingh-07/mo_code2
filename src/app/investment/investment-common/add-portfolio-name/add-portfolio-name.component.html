@@ -19,8 +19,7 @@
         <div class="flex-col-12">
           <div class="desc">{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}</div>
-          <div class="form-control mt20"
-            [ngClass]="{'inline-error':getInlineErrorStatus(portfolioNameFormGroup.controls.portfolioName)}">
+          <div class="form-control mt20" [ngClass]="{'inline-error': showErrorMessage}">
             <input class="input-control" type="text" placeholder="Enter a unique portfolio name" #portfolioName
               formControlName="portfolioName" (keyup)="showLength($event)" maxlength="50">
           </div>
@@ -30,7 +29,7 @@
             {{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}}
           </div>
-          <div *ngIf="showErrorMessage && !portfolioNameFormGroup.get('portfolioName').pristine" class="error-message">
+          <div *ngIf="showErrorMessage" class="error-message">
             <span><img class="success-tick"
                 src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
             <span>{{

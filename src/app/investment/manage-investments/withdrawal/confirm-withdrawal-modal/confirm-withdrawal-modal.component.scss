@@ -5,11 +5,6 @@ app-confirm-withdrawal-modal {
     font-family: $muli;
 
     .modal-body-message {
-      margin-bottom: 15px;
-      @include allmobiles{
-        padding-bottom: 40px;
-      }
-
       .warning {
         padding:6px 0 20px 0;
         font-size: 16px;
@@ -85,11 +80,15 @@ app-confirm-withdrawal-modal {
     }
 
     .amount-section {
+      width: 500px;
+      border-top: 1px solid $spindle-color;
       padding: 20px;
-      border: 1px solid $fund-details-dimentional-brdr;
-      border-radius: 6px;
-      margin: 15px 0px;
+      margin: 20px -25px;
       text-align: center;
+
+      @include allmobiles{
+        width: 100vw;
+      }
 
       .amt {
         font-size: 22px;
@@ -109,6 +108,12 @@ app-confirm-withdrawal-modal {
       &.btn-primary {
         font-family: $muli-bold;
       }
+    }
+    .border-btm {
+      border-bottom: 1px solid $spindle-color;
+    }
+    .capital-letter {
+      text-transform: capitalize;
     }
   }
 }

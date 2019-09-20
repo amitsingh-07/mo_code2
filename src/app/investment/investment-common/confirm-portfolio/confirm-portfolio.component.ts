@@ -230,7 +230,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
-    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
+    const customerPortfolioId = this.portfolio.customerPortfolioId;
+    this.investmentAccountService.updateInvestment(customerPortfolioId,params).subscribe((data) => {
       this.getPortfolioDetails();
     },
       (err) => {
@@ -269,8 +270,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolio() {
     this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000) {
-        const defaultPortfolioName = data.objectList.portfolioName;
-        this.showAddPortfolioNameModal(defaultPortfolioName);
+         this.showAddPortfolioNameModal(data.objectList.portfolioName);
       } else if (data.responseMessage.responseCode === 5119) {
         this.showAddPortfolioNameModal(data.objectList.portfolioName);
       } else {
@@ -315,13 +315,12 @@ export class ConfirmPortfolioComponent implements OnInit {
     const param = this.constructSavePortfolioName(portfolioName);
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
-      if (response.responseMessage.responseCode === 6000) {   
+      if (response.responseMessage.responseCode === 6000) {
         this.userGivenPortfolioName = portfolioName;
+        this.showErrorMessage = false;
         this.reDirectToNextScreen();
-      }
-      if (response.responseMessage.responseCode === 5120) {    
-        this.userGivenPortfolioName = portfolioName;
-        this.showAddPortfolioNameModal(this.userGivenPortfolioName);
+      } else if (response.responseMessage.responseCode === 5120) {
+        this.showAddPortfolioNameModal(portfolioName);
         this.showErrorMessage = true;
       }  else {
         this.investmentAccountService.showGenericErrorModal();
