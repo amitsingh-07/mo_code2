@@ -43,6 +43,7 @@ app-top-up {
   .top-up-block{
     padding-left: 50px;
     padding-right: 0;
+    max-width: 100%;
     @include tablet{
       padding-left: 0px;
     }
@@ -219,17 +220,9 @@ app-top-up {
     padding-right: 46px;
   }
   .btn__footer--fixed {
-    font-family: $muli-bold !important;
-    &:disabled {
-      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-      background-color: $btn-disabled-light-bg !important;
-      color: $btn-disabled-teal-color;
-     }
-     &:hover {
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-        background-color: $btn-disabled-light-bg !important;
-        color: $white-color;
-      }
-    
+    font-family: $muli-bold !important;  
+  }
+  .capital-letter {
+    text-transform: capitalize;
   }
 }

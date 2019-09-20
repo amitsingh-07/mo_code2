@@ -75,4 +75,9 @@ app-withdrawal {
       }
     }
   }
+  .max-width {
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
 }

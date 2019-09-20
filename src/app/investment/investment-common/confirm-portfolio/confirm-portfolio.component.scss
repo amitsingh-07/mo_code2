@@ -16,7 +16,7 @@ app-confirm-portfolio {
       border-radius: 6px;
 
       .portfolio-allocation-details__content {
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         border-radius: 6px;
 
         .portfolio-allocation-details__content__desc {
@@ -64,7 +64,6 @@ app-confirm-portfolio {
             cursor: pointer;
             .edit_button {
               background: url('/assets/images/edit-icon.svg') no-repeat;
-              cursor: pointer;
               display: inline-flex;
               margin-left: 12px;
               width: 23px;
@@ -76,11 +75,11 @@ app-confirm-portfolio {
     }
 
     .asset-allocation {
-      margin-top: 33px;
+      margin-top: 30px;
 
       .title {
         font-family: $muli-bold;
-        font-size: 21px;
+        font-size: 19px;
         letter-spacing: -0.4px;
         color: $asset-allocation-title-txt-color;
         padding-bottom: 14px;

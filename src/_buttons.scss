@@ -43,6 +43,7 @@ button:active:focus {
       outline: none !important;
       background: #00c5c4 !important;
       border-color: none !important;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
     }
 
     &.active {

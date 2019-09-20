@@ -95,19 +95,21 @@
 
     .graph_values {
       position: absolute;
-      top: -24px;
+      top: -19px;
       text-align: left;
       @include max360{
         top: -30px;
       }
       span {
-        padding: 23px 10px 7px;
+        padding: 23px 10px 5px;
+        &:first-child{
+          margin-top: -4px;
+        }
         &:nth-child(2){
-          margin-top: 7px;
+          margin-top: 9px;
           }
        &:last-child{
-          margin-bottom: 4px;
-          margin-top: 0;
+          margin-top: 1px;
           @include ieSpecific {
             margin-top: 30px !important;
           }
@@ -116,23 +118,29 @@
     }
     @media(min-width:$col-md) {
       .graph_values {
-        top: -29px;
+        top: -22px;
         span {
+          &:first-child{
+            margin-top: 0;
+          }
           &:nth-child(2){
-            margin-top: -2px;
+            margin-top: 1px;
           }
           &:last-child{
-            margin-top: 5px;
+            margin-top: -4px;
           }
         }
       }
     }
     @media(min-width:$col-lg) {
       .graph_values {
-        top: -24px;
+        top: -22px;
         span {
+          &:first-child{
+            margin-top: 0;
+          }
           &:nth-child(2){
-            margin-top: 17px;
+            margin-top: 18px;
           }
           &:last-child{
             margin-top: 10px;

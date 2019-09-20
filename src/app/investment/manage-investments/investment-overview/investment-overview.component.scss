@@ -84,6 +84,10 @@ app-investment-overview {
         .total_cash_label {
           line-height: 1.31;
           letter-spacing: -0.15px;
+
+          img {
+            cursor: pointer;
+          }
         }
 
         .total_cash_value {
@@ -229,7 +233,6 @@ app-investment-overview {
               border: 1px solid #e5e5e5;
               padding: 20px 30px;
               display: flex;
-              width: 100%;
               cursor: pointer;
 
               @include allmobiles {
@@ -237,10 +240,9 @@ app-investment-overview {
               }
 
               .portfolio-icon {
-                width: 32px !important;
-                height: 32px !important;
-                margin-right: 13px;
-                padding-top: 8px;
+                max-width: 32px !important;
+                max-height: 32px !important;
+                margin-top: 8px;
 
                 img {
                   width: 100%;
@@ -251,7 +253,8 @@ app-investment-overview {
               .portfolio-details {
                 display: flex;
                 flex-direction: column;
-                width: 100%;
+                width: calc(100% - 32px);
+                padding-left: 13px;
 
                 .portfolio-name {
                   font-family: $muli-bold;
@@ -259,6 +262,9 @@ app-investment-overview {
                   letter-spacing: -0.3px;
                   white-space: normal;
                   word-wrap: break-word;
+                  @include allmobiles{
+                    padding-right: 55px;
+                  }
                 }
 
                 .ref-code {
@@ -324,6 +330,7 @@ app-investment-overview {
             display: flex;
             justify-content: center;
             cursor: pointer;
+
             img {
               margin-left: 8px;
             }
