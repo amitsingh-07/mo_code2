@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../manage-investments-routes.constants';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../manage-investments.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
   styleUrls: ['./withdrawal-status.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalStatusComponent implements OnInit {
+export class WithdrawalStatusComponent implements OnInit, OnDestroy {
   formValues;
   topupportfolioamount;
   topupFormValues;
@@ -42,7 +42,14 @@ export class WithdrawalStatusComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.classList.add('bg-color');
+    this.navbarService.setNavbarVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.refreshUserProfileInfo();
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('bg-color');
   }
 
   refreshUserProfileInfo() {
@@ -82,6 +89,6 @@ export class WithdrawalStatusComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 }
