@@ -1,81 +1,88 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-/*Modal styles*/
+
+.bg-color {
+  background-color: $dark-teal-color !important;
+}
+
 app-withdrawal-status {
-  .account-created-success-modal {
-    .custom-modal-backdrop {
-      background: $dark-teal-color;
-      position: fixed;
-      opacity: 1;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      top: 0;
-    }
-    .custom-modal-wrapper {
-      top: 0;
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      z-index: 10000;
-      text-align: center;
-    }
-    .custom-modal-content {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-    .custom-modal--icon {
-      width: 100%;
-      @include allmobiles{
-        margin-bottom: 60px;
-      }
-    }
-    .custom-modal--title {
-      font-family: $muli-regular;
-      font-size: 32px;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: $white-color;
-      @include allmobiles{
-        font-family:$muli-bold;
-        font-size: 24px;
-      }
-    }
-    .custom-modal--desc {
-      font-family: $muli-regular;
-      font-size: 18px;;
-      line-height: normal;
-      letter-spacing: -0.1px;
-      text-align: center;
-      color: $white-color;
-      @include allmobiles {
-        font-family: 16px;
-      }
-    }
-    .custom-modal--content {
-      @include allmobiles {
-        width: 250px;
-        margin: 0 auto;
-      }
-    }
-    .btn-primary {
-      width: 275px;
-      font-family: $muli-bold;
-    }
+  .content {
+    min-height: calc(100vh - 84px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     @include allmobiles {
-      .btn__footer--fixed {
-        width: 100%;
-      }
+      height: calc(100vh - 106px);
+      padding-bottom: 0px;
     }
   }
+
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .custom-modal--icon {
+    width: 100%;
+
+    @include allmobiles {
+      margin-bottom: 60px;
+    }
+  }
+
+  .custom-modal--title {
+    font-family: $muli-regular;
+    font-size: 32px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $white-color;
+
+    @include allmobiles {
+      font-family: $muli-bold;
+      font-size: 24px;
+    }
+  }
+
+  .custom-modal--desc {
+    font-family: $muli-regular;
+    font-size: 18px;
+    ;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: $white-color;
+
+    @include allmobiles {
+      font-family: 16px;
+    }
+  }
+
+  .custom-modal--content {
+    @include allmobiles {
+      width: 250px;
+      margin: 0 auto;
+    }
+  }
+
+  .btn-primary {
+    width: 275px;
+    font-family: $muli-bold;
+  }
+
+  @include allmobiles {
+    .btn__footer--fixed {
+      width: 100%;
+    }
+  }
+
   .success-text-content {
     padding: 0px 50px 30px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding: 0px 20px 30px;
     }
   }

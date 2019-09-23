@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
   styleUrls: ['./withdrawal-status.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalStatusComponent implements OnInit {
+export class WithdrawalStatusComponent implements OnInit, OnDestroy {
   formValues;
   topupportfolioamount;
   topupFormValues;
@@ -42,7 +42,14 @@ export class WithdrawalStatusComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.classList.add('bg-color');
+    this.navbarService.setNavbarVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.refreshUserProfileInfo();
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('bg-color');
   }
 
   refreshUserProfileInfo() {
