@@ -83,6 +83,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   }
 
   buildInsuranceForm() {
+    let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan : 0;
+    if (this.comprehensiveService.getHomeLoanChanges()) {
+      homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount
+    }
     this.insurancePlanForm = this.formBuilder.group({
       haveHospitalPlan: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
@@ -104,7 +108,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.comprehensiveService.getHomeLoanChanges() ? this.liabilitiesDetails.homeLoanOutstandingAmount : this.insurancePlanFormValues.homeProtectionCoverageAmount,
+        value: homeLoanOutstandingAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{
