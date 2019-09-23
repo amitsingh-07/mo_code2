@@ -3,14 +3,14 @@
   <form [formGroup]="portfolioNameFormGroup">
     <div class="portfolio-block">
       <div class="portfolio-naming">
-        <div *ngIf="false" class="title">{{
+        <div *ngIf="!accountCreationStatus" class="title">{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE' | translate}}</div>
-        <div class="title" *ngIf="true">{{
+        <div *ngIf="accountCreationStatus" class="title">{{
                 'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE_TWO' | translate}}</div>
-        <div *ngIf="false" class="portfolio-success mb30">
+        <div *ngIf="!accountCreationStatus" class="portfolio-success mb30">
           <img src={{profileIcon}} id="riskProfileImg" />
         </div>
-        <div *ngIf="true" class="portfolio-success mb30">
+        <div *ngIf="accountCreationStatus" class="portfolio-success mb30">
           <img src={{portfolioSuccessIcon}} id="riskProfileImg" />
         </div>
         <div class="portfolio_name_title">{{defaultPortfolioName}}</div>
@@ -39,12 +39,12 @@
         <div class="characters">{{characterLength ? characterLength : 0}}
           / 50 characters</div>
 
-        <button type="button" class="btn btn-primary width100  mt20"
-          (click)="addPortfolioName(portfolioNameFormGroup)" id="prfBtn1">{{
+        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
+          id="prfBtn1" *ngIf="!accountCreationStatus">{{
             'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CONTINUE' | translate}}</button>
 
-        <button type="button" class="btn btn-primary width100  mt20"
-          (click)="addPortfolioName(portfolioNameFormGroup)" id="prfBtn1" *ngIf="false">
+        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
+          id="prfBtn1" *ngIf="accountCreationStatus">
           {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
       </div>
     </div>

@@ -30,15 +30,19 @@ export class AddPortfolioNameComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
               public investmentAccountService: InvestmentAccountService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router,) { }
   ngOnInit() {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
+    .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        this.activeModal.dismiss();
+    });
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
     this.portfolioSuccessIcon = SuccessIcons[this.riskProfileId - 1]['icon'];
     this.portfolioNameFormGroup = this.formBuilder.group({
       portfolioName: new FormControl(this.userPortfolioName,
-        [Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
+        [Validators.pattern(RegexConstants.portfolioName)])
     });
-    this.investmentAccountService.restrictBackNavigation();
   }
 
   addPortfolioName(form) {
@@ -50,9 +54,5 @@ export class AddPortfolioNameComponent implements OnInit {
 
   showLength(event) {
     this.characterLength = event.currentTarget.value.length;
-   }
-
-  getInlineErrorStatus(control) {
-    return this.showErrorMessage;
   }
 }

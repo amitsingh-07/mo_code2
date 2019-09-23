@@ -65,7 +65,7 @@
       "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
       "CONTINUE":"Continue",
       "DONE":"Done",
-      "VALIDATION_MESSAGE":"Please enter Alphabets and Numbers only",
+      "VALIDATION_MESSAGE":"First character should not be space",
       "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
    },
      "ADD_PORTFOLIO_STATUS": {
