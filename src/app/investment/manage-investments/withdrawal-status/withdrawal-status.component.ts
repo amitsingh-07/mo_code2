@@ -82,6 +82,6 @@ export class WithdrawalStatusComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 }
