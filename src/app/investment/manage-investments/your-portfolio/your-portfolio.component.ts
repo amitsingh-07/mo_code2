@@ -13,15 +13,15 @@ import { GroupByPipe } from '../../../shared/Pipes/group-by.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -47,7 +47,7 @@ export class YourPortfolioComponent implements OnInit {
   toastMsg: any;
   activeTab: string;
 
-  constructor (
+  constructor(
     public readonly translate: TranslateService,
     private router: Router,
     public navbarService: NavbarService,
@@ -89,19 +89,19 @@ export class YourPortfolioComponent implements OnInit {
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
-                                    ? this.portfolio.dPMSPortfolio.totalReturns
-                                    : 0;
+        ? this.portfolio.dPMSPortfolio.totalReturns
+        : 0;
       this.yearlyReturns = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.yearlyReturns
-                           ? this.portfolio.dPMSPortfolio.yearlyReturns
-                           : null;
+        ? this.portfolio.dPMSPortfolio.yearlyReturns
+        : null;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,
-            'createdDate',
-            'asc'
-          );
+          'createdDate',
+          'asc'
+        );
         const buySellRequestGroups = new GroupByPipe().transform(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,
           'transactionType'
@@ -115,9 +115,9 @@ export class YourPortfolioComponent implements OnInit {
       }
       this.showOrHideWhatsNextSection();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   groupBuyRequests(buyRequests, transactionFrequency) {
@@ -128,8 +128,9 @@ export class YourPortfolioComponent implements OnInit {
       buyRequests.value,
       'transactionFrequency'
     );
-    const targetedBuyRequests = this.investmentEngagementJourneyService.findGroupByGroupName(onetimeMonthlyRequestGroups, transactionFrequency);
-    if(targetedBuyRequests) {
+    const targetedBuyRequests =
+      this.investmentEngagementJourneyService.findGroupByGroupName(onetimeMonthlyRequestGroups, transactionFrequency);
+    if (targetedBuyRequests) {
       const transactionStatusGroups = new GroupByPipe().transform(
         targetedBuyRequests.value,
         'transactionStatus'
@@ -141,11 +142,11 @@ export class YourPortfolioComponent implements OnInit {
     if ((awaitingFundRequests && awaitingFundRequests.value && awaitingFundRequests.value.length)
       || (processingRequests && processingRequests.value && processingRequests.value.length)
       || (recievedRequests && recievedRequests.value && recievedRequests.value.length)) {
-        return {
-          awaitingFundRequests : awaitingFundRequests ? awaitingFundRequests.value : [],
-          processingRequests: processingRequests ? processingRequests.value : [],
-          recievedRequests: recievedRequests ? recievedRequests.value : []
-        };
+      return {
+        awaitingFundRequests: awaitingFundRequests ? awaitingFundRequests.value : [],
+        processingRequests: processingRequests ? processingRequests.value : [],
+        recievedRequests: recievedRequests ? recievedRequests.value : []
+      };
     } else {
       return null;
     }
@@ -157,7 +158,7 @@ export class YourPortfolioComponent implements OnInit {
 
   getWithdrawType(mode) {
     let withdrawType;
-    switch(mode.toUpperCase()) {
+    switch (mode.toUpperCase()) {
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CASH_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_CASH_ACCOUNT');
         break;
@@ -168,7 +169,7 @@ export class YourPortfolioComponent implements OnInit {
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.CASH_ACCOUNT_TO_BANK_ACCOUNT');
         break;
       default:
-        withdrawType = "";
+        withdrawType = '';
     }
     return withdrawType;
   }
@@ -221,33 +222,33 @@ export class YourPortfolioComponent implements OnInit {
   /*
   * Method to navigate to topup, transactions and withdraw based on menu selection
   */
- showMenu(option) {
-  switch (option.id) {
-    case 1: {
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-      break;
-    }
-    case 2: {
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
-      break;
-    }
-    case 3: {
-      this.showErrorMessage = false;
-      this.showRenamePortfolioModal();
-      break;
-    }
-    case 4: {
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
-      break;
-    }
-    case 5: {
-      if (this.portfolio.entitlements.showDelete) {
-        this.showDeletePortfolioModal();
+  showMenu(option) {
+    switch (option.id) {
+      case 1: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+        break;
       }
-      break;
+      case 2: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 3: {
+        this.showErrorMessage = false;
+        this.showRenamePortfolioModal();
+        break;
+      }
+      case 4: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+        break;
+      }
+      case 5: {
+        if (this.portfolio.entitlements.showDelete) {
+          this.showDeletePortfolioModal();
+        }
+        break;
+      }
     }
   }
-}
 
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -260,9 +261,9 @@ export class YourPortfolioComponent implements OnInit {
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.manageInvestmentsService.setBankPayNowDetails(data.objectList);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   goToTopupInstructionLink() {
@@ -273,7 +274,7 @@ export class YourPortfolioComponent implements OnInit {
     if (this.pendingBuyRequests && this.pendingBuyRequests.value) {
       pendingBuyRequestCount = this.pendingBuyRequests.value.length;
     }
-  this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
+    this.manageInvestmentsService.showTransferInstructionModal(pendingBuyRequestCount);
   }
 
   showRenamePortfolioModal(errorValue?: string) {
@@ -321,7 +322,7 @@ export class YourPortfolioComponent implements OnInit {
     this.toastMsg = {
       isShown: true,
       desc: this.translate.instant('TOAST_MESSAGES.RENAME_PORTFOLIO_SUCCESS',
-       {oldPortfolioName : oldName, newPortfolioName: newName} )
+        { oldPortfolioName: oldName, newPortfolioName: newName })
     };
     this.isToastMessageShown = true;
     setTimeout(() => {
@@ -334,42 +335,42 @@ export class YourPortfolioComponent implements OnInit {
   }
 
   showDeletePortfolioModal() {
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-      ref.componentInstance.errorMessage = this.translate.instant(
-        'YOUR_INVESTMENT.DELETE_TXT'
-      );
-      ref.componentInstance.yesOrNoButton = 'Yes';
-      ref.componentInstance.yesClickAction.subscribe(() => {
-        this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
-          if (data.responseMessage.responseCode < 6000) {
-            if (
-              data.objectList &&
-              data.objectList.length &&
-              data.objectList[data.objectList.length - 1].serverStatus &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors.length
-            ) {
-              this.showCustomErrorModal(
-                'Error!',
-                data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-              );
-            } else if (data.responseMessage && data.responseMessage.responseDescription) {
-              const errorResponse = data.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
-            } else {
-              this.investmentAccountService.showGenericErrorModal();
-            }
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.DELETE_TXT'
+    );
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.yesClickAction.subscribe(() => {
+      this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
+        if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
           } else {
-            this.authService.saveEnquiryId(null);
-            this.goToInvOverview();
+            this.investmentAccountService.showGenericErrorModal();
           }
-        },
+        } else {
+          this.authService.saveEnquiryId(null);
+          this.goToInvOverview();
+        }
+      },
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
         });
-      });
-      ref.componentInstance.noClickAction.subscribe(() => { });
+    });
+    ref.componentInstance.noClickAction.subscribe(() => { });
   }
 
   showCustomErrorModal(title, desc) {
@@ -381,7 +382,7 @@ export class YourPortfolioComponent implements OnInit {
     this.manageInvestmentsService.clearToastMessage();
     const toastMessage: IToastMessage = {
       isShown: true,
-      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolio['portfolioName']} ),
+      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', { userGivenPortfolioName: this.portfolio['portfolioName'] }),
       link_label: '',
       link_url: '',
       id: this.portfolio.customerPortfolioId
