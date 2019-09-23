@@ -322,33 +322,33 @@
       top: 0px;
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
     }
-    &.fade-out-animation {
-      -webkit-animation: fadeOut 3100ms ease-in-out;
-      /* Chrome, Safari, Opera */
-      animation: fadeOut 3100ms ease-in-out;
-    }
+    // &.fade-out-animation {
+    //   -webkit-animation: fadeOut 3100ms ease-in-out;
+    //   /* Chrome, Safari, Opera */
+    //   animation: fadeOut 3100ms ease-in-out;
+    // }
 
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes fadeOut {
-      0% {
-        opacity: 0.8;
-      }
+    // /* Chrome, Safari, Opera */
+    // @-webkit-keyframes fadeOut {
+    //   0% {
+    //     opacity: 0.8;
+    //   }
 
-      100% {
-        opacity: 0;
-      }
-    }
+    //   100% {
+    //     opacity: 0;
+    //   }
+    // }
 
-    /* Standard syntax */
-    @keyframes fadeOut {
-      0% {
-        opacity: 1;
-      }
+    // /* Standard syntax */
+    // @keyframes fadeOut {
+    //   0% {
+    //     opacity: 1;
+    //   }
 
-      100% {
-        opacity: 0;
-      }
-    }
+    //   100% {
+    //     opacity: 0;
+    //   }
+    // }
     .toast-msg-container {
       color: #e57300;
       background: #fff;
