@@ -714,7 +714,7 @@ export class WillWritingService {
           delete members['isAlt'];
         }
         members['selected'] = profileMembers.isBeneficiary === 'Y';
-        members['distPercentage'] = profileMembers.distribution;
+        members['distPercentage'] = profileMembers.distribution || 0;
         will.beneficiary.push(JSON.parse(JSON.stringify(members)));
       }
     }
