@@ -261,6 +261,7 @@ app-your-portfolio {
                   text-align: left;
                 }
                 .flex-col{
+                  word-break: break-word;
                   @include allmobiles{
                     width: 200px;
                   }
