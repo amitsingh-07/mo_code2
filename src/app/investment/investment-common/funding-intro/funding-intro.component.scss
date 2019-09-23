@@ -147,6 +147,8 @@ app-funding-intro {
         line-height: normal;
         text-align: center;
         color: $intro-block-content-desc-color;
+        max-width: 325px;
+        margin: 20px auto 6px;
 
         @include allmobiles {
           margin-top: 30px;
@@ -168,7 +170,7 @@ app-funding-intro {
           font-size: 18px;
           line-height: 22px;
           letter-spacing: -0.18px;
-          margin: 25px;
+          margin: 0px;
         }
       }
     }
@@ -185,7 +187,7 @@ app-funding-intro {
       height: 60px;
       border: 1px solid rgba(0, 135, 134, 0.4);
       background: #ffffff;
-      box-shadow: 0 6px 7px 0 #00a7a7 !important;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
 
       @include allmobiles {
         width: 100%;

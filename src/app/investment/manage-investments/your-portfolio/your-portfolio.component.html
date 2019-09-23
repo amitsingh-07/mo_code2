@@ -1,4 +1,4 @@
-<div class="toast-msg-block fade-out-animation" *ngIf="isToastMessageShown">
+<div class="toast-msg-block" *ngIf="isToastMessageShown">
   <div class="toast-msg-container">
     <div class="flex-col-1">
       <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
@@ -178,11 +178,11 @@
               </div>
               <button
                 *ngIf="portfolio.portfolioStatus === 'PURCHASED' && portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.dpmsDetailsDisplay"
-                type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+                type="button" class="asset_allocation_btn mb10" id="holdings_btn" (click)="goToHoldings()">
                 {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
                 <img src="../../../assets/images/investment-account/forward.svg" alt="" />
               </button>
-              <button type="button" class="asset_allocation_btn mb20" id="asset_allocation_btn"
+              <button type="button" class="asset_allocation_btn" id="asset_allocation_btn"
                 (click)="goToAssetAllocation()">
                 {{'YOUR_PORTFOLIO.ASSET_ALLOCATION' | translate}}
                 <img src="../../../assets/images/investment-account/forward.svg" alt="" />
