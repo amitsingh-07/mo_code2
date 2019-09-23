@@ -75,12 +75,12 @@
   .insurance-input-radio{
     .flex-col-4,.flex-col-6{
       padding-right: 10px;
-      max-width: 91px;
+      max-width: 105px;
       @include iphone5 {
         max-width: 76px;
       }
       @include min360{
-        max-width:90px;
+        max-width:105px;
       }
     }
   }
