@@ -1,5 +1,22 @@
 [
     {
+        "promoId": 21,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "RetireWise Bundle",
+        "thumbnail": "/assets/promotions/images/21/thumbnail.png",
+        "banner": "/assets/promotions/images/21/banner.jpg", 
+        "desc": "Receive a $50 NTUC FairPrice voucher if you purchase before 31 December 2019!",
+        "date_created": "1560902400000",
+        "date_expiry": "1577807999000",
+        "tag": [],
+        "external": false,
+        "bundle_enquiry_form_type": "retirement-bundle",
+        "bundle_enquiry_form_title": "RetireWise Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Sign up, and receive $50 NTUC FairPrice voucher<sup>1</sup> today!",
+        "tracking_id": "3G7hCPHSwqsBEP_VqfUC"
+    },
+    {
         "promoId": 19,
         "type": 4,
         "owner": "MoneyOwl",
