@@ -54,17 +54,12 @@ export class TransactionsComponent implements OnInit {
   }
 
   createTransactionStatement() {
-    if (this.portfolio.pendingRequestDTO &&
-      this.portfolio.pendingRequestDTO.transactionDetailsDTO &&
-      this.portfolio.pendingRequestDTO.transactionDetailsDTO &&
-      this.portfolio.pendingRequestDTO.transactionDetailsDTO[0]) {
+    if (this.portfolio && this.portfolio.accountCreatedDate) {
       const accountCreationDate = this.convertStringToDate(
-        // this.userProfileInfo.investementDetails.account.accountCreatedDate
-        '12-03-2019'
+        this.portfolio.accountCreatedDate
       );
       const recentStatementAvailDate = this.convertStringToDate(
-        // this.userProfileInfo.investementDetails.account.statementCreatedDate
-        '12-09-2019'
+        this.portfolio.statementCreatedDate
        );
       this.statementMonthsList = this.manageInvestmentsService.getMonthListByPeriod(
         accountCreationDate,
