@@ -122,7 +122,7 @@
     "PORTFOLIO_SUMMARY": "Portfolio Summary",
     "WHATS_NEXT": "What’s Next?",
     "WHATS_NEXT_DESC_NOT_FUNDED": "Start investing in {{portfolioName}} portfolio.",
-    "WHATS_NEXT_DESC_FUNDED": "Top up with {{portfolioName}} portfolio.",
+    "WHATS_NEXT_DESC_FUNDED": "Top up to {{portfolioName}} portfolio.",
     "HOW_TO_TOPUP": "How to top up?",
     "OR_DO_YOU_WANT_TO": "Or do you want to",
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
