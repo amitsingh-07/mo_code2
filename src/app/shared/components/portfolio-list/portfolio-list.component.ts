@@ -100,9 +100,9 @@ export class PortfolioListComponent implements OnInit {
     }
     this.topClickedFlag = false;
   }
-  gotoTopUp() {
+  gotoTopUp(portfolio) {
     this.topClickedFlag = true;
-    this.topUpSelected.emit();
+    this.topUpSelected.emit(portfolio);
   }
 
   gotoBuyRequest() {

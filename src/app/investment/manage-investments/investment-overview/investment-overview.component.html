@@ -31,7 +31,7 @@
                       {{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
-                      {{'YOUR_INVESTMENT.TOTAL_VALUE' | translate}}</div>
+                      {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
@@ -79,7 +79,7 @@
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (investAgainSelected)="investAgain($event)"
-  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
+  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
   [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
 <div class="container-fluid max-width--1024"
