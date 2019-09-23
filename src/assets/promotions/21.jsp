@@ -139,10 +139,10 @@
   <div class="retire-bundle-more__container">
     <p class="heading">What's more</p>
     <p class="content">
-      If Mr Tan suffers severe disability, he will receive $1,600 p.m.   for life. This includes the payouts that he will receive under CareShield Life (from 2020).
+      If Mr Tan suffers severe disability, he will receive $1,600 p.m.<sup>6</sup> for life. This includes the payouts that he will receive under CareShield Life (from 2020).
       <br/>
       <br/>
-      Mr Tan also receives $1,000 commission rebates   over 3 years. This lowers the cost for Mr Tan!
+      Mr Tan also receives $1,000 commission rebates<sup>3</sup> over 3 years. This lowers the cost for Mr Tan!
     </p>
     <p class="heading">What this means for Mr Tan</p>
     <div class="retire-bundle-more__card-container">
