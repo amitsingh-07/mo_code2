@@ -58,8 +58,8 @@
                 <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                   <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                 </span>
-                <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED'
-                  | translate}}</span>
+                <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW'
+                  | translate}}<span *ngIf="investmentsSummary?.portfolioSummary?.numberOfPortfolios > 1"> ({{investmentsSummary?.portfolioSummary?.numberOfPortfolios}})</span></span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -67,21 +67,16 @@
                   <div class="portfolio" *ngIf="showPortfolioPurchased">
                     <div class="portfolio_value">
                       <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                      <div class="value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      <div *ngIf="investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">{{investmentsSummary?.portfolioSummary?.totalPortfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      <div *ngIf="!investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">$0</div>
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-5" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0" class="portfolio_footer_value">
-                          {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
-                      </div>
-                      <div class="flex-col col-7" [ngClass]="{'col-12': !userProfileInfo.investementDetails.showTotalReturn}">
-                        <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_ref_code" (click)="showTransferInstructionModal()" *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">(<span class="portfolio_ref_code_text">{{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}}</span>)</div>
-
-                        <div class="portfolio_footer_value">
-                          {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      <div class="flex-col col-12">
+                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_ACCOUNT_BALANCE' | translate}}</div>
+                        <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
+                          {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">$0</div>
                       </div>
                     </div>
                   </div>

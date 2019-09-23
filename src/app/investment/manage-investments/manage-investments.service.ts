@@ -4,23 +4,23 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { InvestmentApiService } from '../investment-api.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import {
     MANAGE_INVESTMENTS_ROUTE_PATHS
 } from './manage-investments-routes.constants';
-import { TopUPFormError } from './top-up/top-up-form-error';
-import { ManageInvestmentsFormData } from './manage-investments-form-data';
-import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
-import { ApiService } from '../../shared/http/api.service';
-import { InvestmentApiService } from '../investment-api.service';
+import { TopUPFormError } from './top-up/top-up-form-error';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
@@ -90,11 +90,8 @@ export class ManageInvestmentsService {
   getPortfolioList() {
     return this.investmentApiService.getPortfolioList();
   }
-  getMoreList() {
-    return this.investmentApiService.getMoreList();
-  }
-  getIndividualPortfolioDetails(portfolioId) {
-    return this.investmentApiService.getIndividualPortfolioDetails(portfolioId);
+  getCustomerPortfolioDetailsById(portfolioId) {
+    return this.investmentApiService.getCustomerPortfolioDetailsById(portfolioId);
   }
 
   doFinancialValidations(form, allowMonthlyZero) {
@@ -167,8 +164,8 @@ export class ManageInvestmentsService {
     return this.manageInvestmentsFormData.fundDetails;
   }
 
-  getTransferDetails() {
-    return this.investmentApiService.getTransferDetails();
+  getTransferDetails(customerPortfolioId) {
+    return this.investmentApiService.getTransferDetails(customerPortfolioId);
   }
   getInvestmentOverview() {
     return this.investmentApiService.getInvestmentOverview();
@@ -180,37 +177,16 @@ export class ManageInvestmentsService {
 
   constructDeletePortfolioParams(data) {
     return {
-      portfolioId: data.productCode
+      customerPortfolioId: data.customerPortfolioId
     };
   }
 
-  setPortfolioValues(portfolio) {
-    this.manageInvestmentsFormData.PortfolioValues = portfolio;
-    this.commit();
-  }
-  getPortfolioValues() {
-    return this.manageInvestmentsFormData.PortfolioValues;
-  }
-  setSelectedPortfolio(portfolio) {
-    this.manageInvestmentsFormData.selectedPortfolio = portfolio;
-    this.commit();
-  }
-  getSelectedPortfolio() {
-    return this.manageInvestmentsFormData.selectedPortfolio;
-  }
   setUserPortfolioList(portfolioList) {
     this.manageInvestmentsFormData.userPortfolios = portfolioList;
     this.commit();
   }
   getUserPortfolioList() {
     return this.manageInvestmentsFormData.userPortfolios;
-  }
-  setSelectedPortfolioForTopup(portfolio) {
-    this.manageInvestmentsFormData.selectedPortfolioForTopup = portfolio;
-    this.commit();
-  }
-  getSelectedPortfolioForTopup(portfolio) {
-    return this.manageInvestmentsFormData.selectedPortfolioForTopup;
   }
   setUserCashBalance(amount) {
     this.manageInvestmentsFormData.cashAccountBalance = amount;
@@ -223,13 +199,7 @@ export class ManageInvestmentsService {
       return 0;
     }
   }
-  setHoldingValues(holdingList) {
-    this.manageInvestmentsFormData.holdingList = holdingList;
-    this.commit();
-  }
-  getHoldingValues() {
-    return this.manageInvestmentsFormData.holdingList;
-  }
+
   setAssetAllocationValues(assetAllocationValues) {
     this.manageInvestmentsFormData.assetAllocationValues = assetAllocationValues;
     this.commit();
@@ -317,18 +287,15 @@ export class ManageInvestmentsService {
 
   sellPortfolio(data) {
     const payload = this.constructSellPortfolioRequestParams(data);
-    return this.investmentApiService.sellPortfolio(payload);
+    return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
-    request['portfolioId'] = data.withdrawPortfolio
-      ? data.withdrawPortfolio.productCode
-      : null;
     request['redemptionAmount'] = data.withdrawAmount;
     request['customerBankDetail'] = {
-      accountNumber: data.bank ? data.bank.accountNumber : null
+      accountNumber: data.bankAccountNo ? data.bankAccountNo : null
     };
     request['redeemAll'] = data.isRedeemAll;
     return request;
@@ -336,14 +303,13 @@ export class ManageInvestmentsService {
   // ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
-    return this.investmentApiService.buyPortfolio(payload);
+    return this.investmentApiService.buyPortfolio(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioParams(data) {
     let oneTimeInvestment: number;
     oneTimeInvestment = data.oneTimeInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
       investmentAmount: Number(oneTimeInvestment) // todo
     };
   }
@@ -351,14 +317,13 @@ export class ManageInvestmentsService {
   // MONTHLY INVESTMENT PAYLOAD
   monthlyInvestment(data) {
     const payload = this.constructBuyPortfolioForMonthly(data);
-    return this.investmentApiService.monthlyInvestment(payload);
+    return this.investmentApiService.monthlyInvestment(data['portfolio']['customerPortfolioId'], payload);
   }
 
   constructBuyPortfolioForMonthly(data) {
     let monthlyInvestmentAmount: number;
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
-      portfolioId: data.portfolio.productCode,
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
@@ -432,67 +397,51 @@ export class ManageInvestmentsService {
   }
 
   /*
-  * Method to navigate to topup, transactions and withdraw based on menu selection
-  */
-  showMenu(option) {
-    switch (option.id) {
-      case 1: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-        break;
-      }
-      case 2: {
-        this.bankDetails && this.paynowDetails ? this.showTransferInstructionModal() : '';
-        break;
-      }
-      case 3: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
-        break;
-      }
-      case 4: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
-        break;
-      }
-    }
-  }
-
-  /*
   * Method to get details based on bank or paynow
   */
  setBankPayNowDetails(data) {
+   if (data) {
   this.bankDetails = data.filter(
     (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
   )[0];
   this.paynowDetails = data.filter(
     (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
   )[0];
+   }
 }
 
   /*
   * Method to show transfer instruction steps modal
   */
-  showTransferInstructionModal() {
+  showTransferInstructionModal(numberOfPendingRequest) {
     this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
             windowClass : 'transfer-steps-modal custom-full-height'
     });
     this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
     this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
     this.transferInstructionModal.componentInstance.activeMode = this.activeModal;
+    this.transferInstructionModal.componentInstance.numberOfPendingReq = numberOfPendingRequest;
     this.transferInstructionModal.componentInstance.closeModal.subscribe(() => {
       this.transferInstructionModal.dismiss();
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     });
     this.transferInstructionModal.componentInstance.openModal.subscribe(() => {
-      this.showPopUp();
+      this.showPopUp(numberOfPendingRequest);
     });
 
     this.transferInstructionModal.componentInstance.activeTab.subscribe((res) => {
       this.activeModal = res;
     });
+    this.transferInstructionModal.componentInstance.topUpActionBtn.subscribe(() => {
+      this.transferInstructionModal.dismiss();
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+     });
   }
 
   /*
   * Method to show recipients/entity name instructions modal
   */
-  showPopUp() {
+  showPopUp(numberOfPendingRequest) {
     this.transferInstructionModal.dismiss();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -504,22 +453,22 @@ export class ManageInvestmentsService {
     );
     ref.result.then((result) => {
     }, (reason) => {
-      this.showTransferInstructionModal();
+      this.showTransferInstructionModal(numberOfPendingRequest);
     });
   }
 
-  getMonthlyInvestmentInfo() {
-    return this.investmentApiService.getMonthlyInvestmentInfo();
+  getMonthlyInvestmentInfo(customerPortfolioId) {
+    return this.investmentApiService.getMonthlyInvestmentInfo(customerPortfolioId);
   }
 
-  getOneTimeInvestmentInfo() {
-    return this.investmentApiService.getOneTimeInvestmentInfo();
+  getOneTimeInvestmentInfo(customerProfileId) {
+    return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
   }
 
   getEntitlementsFromPortfolio(portfolio) {
     const userProfileInfo = this.signUpService.getUserProfileInfo();
     const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
-      (portfolioItem) => portfolioItem.portfolioId === portfolio.productCode
+      (portfolioItem) => (portfolio && portfolioItem.portfolioId === portfolio.productCode)
     )[0];
     if (filteredPortfolio && filteredPortfolio.entitlements) {
       return filteredPortfolio.entitlements;
@@ -534,4 +483,34 @@ export class ManageInvestmentsService {
       };
     }
   }
+
+  setToastMessage(toastMessage) {
+    this.manageInvestmentsFormData.toastMessage = toastMessage;
+    this.commit();
+  }
+
+  activateToastMessage() {
+    this.manageInvestmentsFormData.toastMessage.isShown = true;
+    this.commit();
+  }
+
+  clearToastMessage() {
+    this.manageInvestmentsFormData.toastMessage = null;
+    this.commit();
+  }
+
+  getToastMessage() {
+    return this.manageInvestmentsFormData.toastMessage;
+  }
+
+  setSelectedCustomerPortfolioId(id) {
+    this.manageInvestmentsFormData.selectedCustomerPortfolioId = id;
+    this.commit();
+  }
+
+  setSelectedCustomerPortfolio(portfolio) {
+    this.manageInvestmentsFormData.selectedCustomerPortfolio = portfolio;
+    this.commit();
+  }
+
 }

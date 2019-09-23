@@ -16,7 +16,7 @@ app-confirm-portfolio {
       border-radius: 6px;
 
       .portfolio-allocation-details__content {
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         border-radius: 6px;
 
         .portfolio-allocation-details__content__desc {
@@ -38,7 +38,7 @@ app-confirm-portfolio {
             letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
-            padding: 20px 15px;
+            padding: 20px 48px;
 
             @include allmobiles {
               font-size: 14px;
@@ -61,10 +61,9 @@ app-confirm-portfolio {
             background-color: $portfolio-allocation-review-bg-color;
             border-radius: 0 0 6px 6px;
             padding: 20px;
-
+            cursor: pointer;
             .edit_button {
               background: url('/assets/images/edit-icon.svg') no-repeat;
-              cursor: pointer;
               display: inline-flex;
               margin-left: 12px;
               width: 23px;
@@ -76,11 +75,11 @@ app-confirm-portfolio {
     }
 
     .asset-allocation {
-      margin-top: 33px;
+      margin-top: 30px;
 
       .title {
         font-family: $muli-bold;
-        font-size: 21px;
+        font-size: 19px;
         letter-spacing: -0.4px;
         color: $asset-allocation-title-txt-color;
         padding-bottom: 14px;
@@ -171,7 +170,6 @@ app-confirm-portfolio {
       line-height: 1.44;
       letter-spacing: -0.2px;
       color: $recommend-footer-txt1-color;
-      //padding: 0 20px 5px 0px;
       padding-bottom: 5px;
     }
 
@@ -182,7 +180,6 @@ app-confirm-portfolio {
       letter-spacing: -0.1px;
       color: $recommend-footer-txt2-color;
       padding-bottom: 5px;
-      //padding: 0 20px 5px 0px;
     }
   }
 }

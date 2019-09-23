@@ -72,7 +72,16 @@ app-withdrawal {
         font-family: $muli-italic;
         color:#fff;
         font-size: 16px;
+        line-height: 21px;
       }
     }
+  }
+  .max-width {
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+  .capital-letter {
+    text-transform: capitalize;
   }
 }

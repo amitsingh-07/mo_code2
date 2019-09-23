@@ -3,21 +3,8 @@
 
 app-upload-documents {
   .upload-doc-nric {
-     .step-indicator-container {
-    //   padding: 20px 0px;
-    //   top: 76px;
+    .step-indicator-container {
 
-    //   @include allmobiles {
-    //     top: 60px;
-    //     position: relative;
-    //     background-color: $white-color;
-    //     padding: 10px 0px;
-    //   }
-
-    //   .container-fluid {
-    //     padding-top: 0px;
-    //     padding-bottom: 0px;
-    //   }
 
       .page-caption {
         color: $text-color-secondary;
@@ -27,25 +14,8 @@ app-upload-documents {
         text-align: center;
       }
 
-    //   @include stepindicator-desktop-extraspace;
     }
 
-    // .container-fluid {
-      // padding-top: 16px;
-
-      // @include allmobiles {
-      //   padding-top: 80px;
-      // }
-
-      // .title-small {
-      //   font-family: $muli-bold;
-      //   font-size: 16px;
-      //   line-height: 1.38;
-      //   letter-spacing: -0.2px;
-      //   color: $white-color;
-      //   margin-bottom: 20px;
-      // }
-    // }
 
     .doc-upload-instructions {
       background: $review-block-bg;
@@ -102,45 +72,7 @@ app-upload-documents {
         letter-spacing: -0.3px;
       }
 
-      // .upload-file {
-      //   font-family: $muli-semi-bold;
-      //   font-size: 16px;
-      //   background: $white-color;
-      //   border-radius: 6px;
-      //   margin-top: 15px;
-      //   padding: 6px;
-      //   display: flex;
-      //   .selected-state {
-      //     display: none;
-      //   }
-      //   .unselected-state {
-      //     display: inline-block;
-      //   }
-      //   &.selected {
-      //     .selected-state {
-      //       display: inline-block;
-      //     }
-      //     .unselected-state {
-      //       display: none;
-      //     }
-      //     button {
-      //       background-color: $btn-primary-backgrnd-color;
-      //     }
-      //   }
-      //   .btn {
-      //     font-size: 16px;
-      //     background-color: $secondary-action-color;
-      //     color: $white-color;
-      //     display: flex;
-      //     flex: 2;
-      //   }
-      //   div {
-      //     display: flex;
-      //     align-self: center;
-      //     padding-right: 10px;
-      //     cursor: pointer;
-      //   }
-      // }
+
     }
 
     .upload-doc {
@@ -160,6 +92,7 @@ app-upload-documents {
         flex: 1;
         margin-right: 10px;
         margin-bottom: 38px;
+        cursor: pointer;
 
         @include desktop {
           min-height: 165px;
@@ -194,7 +127,6 @@ app-upload-documents {
           display: flex;
           align-items: center;
           padding: 10px 0 20px;
-          cursor: pointer;
 
           .thumbnail {
             margin: 0 auto;

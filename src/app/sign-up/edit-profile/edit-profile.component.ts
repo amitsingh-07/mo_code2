@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
@@ -11,7 +12,6 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -60,7 +60,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private signUpApiService: SignUpApiService,
+    private investmentCommonService: InvestmentCommonService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -83,7 +83,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
-    this.investmentStatus = this.signUpService.getInvestmentStatus();
+    this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
   }
   setPageTitle(title: string) {
@@ -277,7 +277,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       const dateArr = dob.split('/');
       if (dateArr.length === 3) {
         this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
-     } 
+     }
     }
   }
 }

@@ -1,33 +1,39 @@
-<div class="app-asset-allocation">
-<div class="asset-allocation-bg">
-    <div class="container-fluid">
-      <img id="investment_overview_background_img" class="background_img web_bg"
-        src="assets/images/investment_header_web.svg" />
-      <img id="investment_overview_background_img" class="background_img mobile_bg"
-        src="assets/images/investment_header_mobile.svg" />
-    </div>
-    <div class="flex-row user_content flex-col-12">
-      <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
-          {{'HOLDINGS.PORTFOLIO' | translate}} {{assetAllocation.riskProfile.type}}
-          <div>{{this.pageTitle}}</div>
+<section class="invest-section">
+  <div class="invest-section-items">
+    <div class="invest-section-content">
+      <div class="invest-bg">
+        <div class="invest-bg-media">
+          <div class="invest-bg-image"></div>
+          <div class="invest-bg-color"></div>
+        </div>
+        <div class="invest-bg-content">
+          <div class="flex-row user_content flex-col-12">
+            <div class="user_summary" id="your_portfolio_summary">
+              <div class="user_portfolio flex-col">
+                <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
+                <div>{{this.pageTitle}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-<div class="container-fluid max-width--1024">
-    <div class="container-fluid">
-  <div class="portfolio-allocation-details">
-    <div class="flex-col-12 asset-allocation">
-      <!-- bonds -->
-      <app-allocation [funds]="assetAllocation.funds" [assets]="assetAllocation.sectorAllocations" [colors]="colors"></app-allocation>
-    </div>
-    <div class="flex-col-12 annual-fees">
-      <div class="title">{{ 'ASSET_ALLOCATION.ANNUAL_FEES' | translate}}</div>
-      <app-annual-fees [feeDetails]="assetAllocation.feeDetails"></app-annual-fees>
-    </div>
-    <div class="faq_link">
-      <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+</section>
+<div class="app-asset-allocation">
+  <div class="container-fluid max-width--1024">
+    <div class="portfolio-allocation-details">
+      <div class="flex-col-12 asset-allocation">
+        <!-- bonds -->
+        <app-allocation [funds]="portfolio.funds" [assets]="portfolio.sectorAllocations" [colors]="colors"></app-allocation>
+      </div>
+      <div class="flex-col-12 annual-fees">
+        <div class="title">{{ 'ASSET_ALLOCATION.ANNUAL_FEES' | translate}}</div>
+        <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+      </div>
+      <div class="faq_link">
+        <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+      </div>
     </div>
   </div>
-  </div>
-</div>
 </div>

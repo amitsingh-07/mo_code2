@@ -25,7 +25,8 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 @Component({
   selector: 'app-your-investment-amount',
   templateUrl: './your-investment-amount.component.html',
-  styleUrls: ['./your-investment-amount.component.scss']
+  styleUrls: ['./your-investment-amount.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class YourInvestmentAmountComponent implements OnInit {
   investmentAmountForm: FormGroup;
@@ -37,6 +38,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   translator: any;
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -88,6 +90,10 @@ export class YourInvestmentAmountComponent implements OnInit {
     if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
       this.monthlyInvestmentChkBoxVal = true;
     }
+    this.buildInvestAmountForm();
+  }
+
+  buildInvestAmountForm() {
     this.investmentAmountForm = new FormGroup({
       initialInvestment: new FormControl(
         this.investmentAmountFormValues.initialInvestment,
@@ -150,4 +156,5 @@ export class YourInvestmentAmountComponent implements OnInit {
     }
 
   }
+
 }

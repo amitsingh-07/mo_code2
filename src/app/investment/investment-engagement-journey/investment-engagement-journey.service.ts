@@ -244,7 +244,9 @@ export class InvestmentEngagementJourneyService {
       percentageOfSaving: this.investmentEngagementJourneyFormData.percentageOfSaving,
       totalAssets: this.investmentEngagementJourneyFormData.totalAssets,
       totalLiabilities: this.investmentEngagementJourneyFormData.totalLiabilities,
-      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund
+      suffEmergencyFund: this.investmentEngagementJourneyFormData.suffEmergencyFund,
+      firstTimeUser: this.investmentEngagementJourneyFormData.firstTimeUser
+
     };
   }
   setYourFinancial(formData) {
@@ -301,8 +303,7 @@ export class InvestmentEngagementJourneyService {
     return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
   }
   getPortfolioAllocationDetails(params) {
-    const urlParams = this.buildQueryString(params);
-    return this.investmentApiService.getPortfolioAllocationDetails(urlParams);
+    return this.investmentApiService.getPortfolioAllocationDetails(params);
   }
 
   getFundDetails() {
@@ -336,6 +337,12 @@ export class InvestmentEngagementJourneyService {
       }
       return 0;
     });
+  };
+
+  findGroupByGroupName(groupList, groupName) {
+    return groupList.filter(
+      (group) => group.groupName === groupName
+    )[0];
   }
 
   clearFormData() {
@@ -373,13 +380,16 @@ export class InvestmentEngagementJourneyService {
   }
   // #SET THE FINANCIAL PAGE.
   getUserFinancialDetails() {
-    return this.apiService.getUserFinancialDetails();
+    return this.investmentApiService.getUserFinancialDetails();
   }
-  setApiFinancialDetails(financialDetails) {
-    this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
-    this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
-    this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
-    this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+  setFinancialDetails(financialDetails) {
+    if (financialDetails) {
+      this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;
+      this.investmentEngagementJourneyFormData.percentageOfSaving = financialDetails.incomePercentageSaved;
+      this.investmentEngagementJourneyFormData.totalAssets = financialDetails.totalAssets;
+      this.investmentEngagementJourneyFormData.totalLiabilities = financialDetails.totalLoans;
+    }
+    this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
 }

@@ -419,20 +419,6 @@ export class SignUpService {
     return this.apiService.getDetailedCustomerInfo();
   }
 
-  getInvestmentStatus() {
-    const userInfo = this.getUserProfileInfo();
-    let investmentStatus = userInfo && userInfo.investementDetails
-      && userInfo.investementDetails.account
-      && userInfo.investementDetails.account.accountStatus ?
-      userInfo.investementDetails.account.accountStatus.toUpperCase() : null;
-    const portfoliosLength = userInfo && userInfo.investementDetails &&
-      userInfo.investementDetails.portfolios ? userInfo.investementDetails.portfolios.length : 0;
-    if ((investmentStatus === null || !investmentStatus) && portfoliosLength > 0) {
-      investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED.toUpperCase();
-    }
-    return investmentStatus;
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   getFormErrorList(form) {
     const controls = form.controls;
@@ -599,6 +585,20 @@ export class SignUpService {
     if (window.sessionStorage && sessionStorage.getItem(USER_MOBILE)) {
       this.setUserMobileNo(mobileNumber);
     }
+    this.commit();
+  }
+
+  setByRequestFlag(buyRequestFlag) {
+    this.signUpFormData.buyRequestFlag = buyRequestFlag;
+    this.commit();
+  }
+
+  getByRequestFlag() {
+    return this.signUpFormData.buyRequestFlag;
+  }
+
+  clearByRequestFlag() {
+    this.signUpFormData.buyRequestFlag = false;
     this.commit();
   }
 

@@ -13,7 +13,7 @@
     alt="" /></span>
     <span *ngIf="lockIcon" class="lock"><img src="../../../../assets/images/lock.svg" ></span>
   </div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
   <div class="journey-wrapper" *ngIf="portfolioExist">

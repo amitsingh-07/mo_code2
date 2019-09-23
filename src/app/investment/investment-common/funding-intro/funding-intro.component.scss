@@ -52,56 +52,57 @@ app-funding-intro {
 
   .custom-modal-wrapper {
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
     position: fixed;
     z-index: 10000;
     text-align: center;
     @extend .flex;
     @extend .justify-center;
     @extend .align-center;
+    flex-direction: column;
+    height: 100%;
+    @include allmobiles{
+      top: 105px;
+      justify-content: flex-start;
+    }
   }
 
-  .custom-modal-content {
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
+  .custom-modal--content {
+    // img {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    .btn{
+      &.btn-primary {
+        width: 320px !important;
+        margin-top: 68px;
+  
+        @include allmobiles {
+          position: fixed !important;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        }
+      }
     }
   }
 
   .custom-modal--icon {
-    width: 100%;
-    // height: 100%;
-    position: absolute;
+    width: 266px;
+    height: 200px;
+    display: flex;
 
     @include allmobiles {
-      height: 67%;
+      width: 285px;
+      height: 200px;
     }
 
     img {
-      @include desktop {
-        width: 266px;
-        height: 200px;
-      }
+      width: 100%;
+      height: auto;
 
-      @include allmobiles {
-        width: 285px;
-        height: 200px;
-      }
-    }
-
-    .width30 {
-      width: 30%;
-      margin-top: 30px;
-
-      @include desktop {
-        width: 340px;
-        height: 60px;
-      }
+      @include desktop {}
     }
   }
 
@@ -112,20 +113,6 @@ app-funding-intro {
     letter-spacing: -0.4px;
     line-height: 1.11;
     margin-top: 20px;
-    padding-top: 12px;
-  }
-
-  .custom-modal--desc {
-    color: $custom-modal-desc-color;
-    font-size: 18px;
-    line-height: 1.33;
-    letter-spacing: -0.2px;
-    font-family: $muli-regular;
-    padding: 0 35%;
-
-    @include allmobiles {
-      padding: 0 10%;
-    }
   }
 
   .container-fluid {
@@ -135,97 +122,56 @@ app-funding-intro {
   }
 
   .app-additional-declaration {
-    // .btn-proceed {
-    //   border: 0px;
-    //   border-radius: 6px;
-    //   background-color: $white-color;
-    //   box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color;
-    //   cursor: pointer;
-    //   font-family: $muli-bold;
-    //   font-size: 22px;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: -0.2px;
-    //   text-align: center;
-    //   color: $teal-color;
-
-    //   @include allmobiles {
-    //     position: fixed;
-    //     width: 100%;
-    //     bottom: 0px;
-    //     left: 0px;
-    //     border-radius: 0px;
-    //   }
-    // }
-
-    .intro-block__tab-container {
-      @extend .flex;
-      @extend .space-btwn;
-      width: 100%;
-
-      .intro-block__tab {
-        width: calc(50% - 10px);
-        opacity: 0.2;
-        padding-right: 10px;
-        background-color: $app-backgrnd-secondary-color;
-        min-height: 5px;
-
-        &.active {
-          opacity: 1;
-        }
-      }
-    }
-
     .intro-block__content {
-      @include tablet {
-        .banner-image img {
-          max-width: 90%;
+
+      .banner-image {
+        img {
+          @include tablet {
+            max-width: 90%;
+          }
+
+          @include allmobiles {
+            max-width: 70%;
+            padding-top: 5vh;
+          }
+
+          @include iPadProPortrait {
+            max-width: 80%;
+          }
         }
       }
 
-      @include allmobiles {
-        .banner-image img {
-          max-width: 70%;
-          padding-top: 5vh;
-        }
-      }
-
-      @include iPadProPortrait {
-        .banner-image img {
-          max-width: 80%;
-        }
-      }
-    }
-
-    .intro-block__content__desc {
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      text-align: center;
-      color: $white-color;
-
-      @include allmobiles {
-        margin-top: 30px;
+      &__desc {
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
         text-align: center;
-      }
+        color: $intro-block-content-desc-color;
+        max-width: 325px;
+        margin: 20px auto 6px;
 
-      @include tablet {
-        margin-top: 30px;
-      }
+        @include allmobiles {
+          margin-top: 30px;
+          text-align: center;
+        }
 
-      .intro-block__content__heading {
-        font-family: $muli-bold;
-        font-size: 24px;
-        letter-spacing: -0.25px;
-      }
+        @include tablet {
+          margin-top: 30px;
+        }
 
-      .intro-block__content__title {
-        font-family: $muli-regular;
-        font-size: 18px;
-        line-height: 22px;
-        letter-spacing: -0.18px;
-        margin: 25px;
+        .intro-block__content__heading {
+          font-family: $muli-bold;
+          font-size: 24px;
+          letter-spacing: -0.25px;
+        }
+
+        .intro-block__content__title {
+          font-family: $muli-regular;
+          font-size: 18px;
+          line-height: 22px;
+          letter-spacing: -0.18px;
+          margin: 0px;
+        }
       }
     }
   }
@@ -233,18 +179,18 @@ app-funding-intro {
   .text-center {
     text-align: center;
 
-    button {
+
+    .btn-proceed {
+      font-family: $muli-bold;
+      font-size: 22px;
+      width: 337px;
+      height: 60px;
+      border: 1px solid rgba(0, 135, 134, 0.4);
+      background: #ffffff;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
+
       @include allmobiles {
         width: 100%;
-      }
-
-      @include tablet {
-        width: 30%;
-      }
-
-      @include desktop {
-        width: 337px;
-        height: 60px;
       }
     }
   }

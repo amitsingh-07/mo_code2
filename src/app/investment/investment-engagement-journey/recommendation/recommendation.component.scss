@@ -2,7 +2,7 @@
 @import '../../../../_mixins.scss';
 
 app-recommendation {
-  .splash-screen{
+  .splash-screen {
     position: fixed;
     left: 0;
     right: 0;
@@ -12,7 +12,7 @@ app-recommendation {
   }
 
   .hide-custom-modal {
-    display: none;   
+    display: none;
   }
 
   .fade-out-animation {
@@ -49,51 +49,69 @@ app-recommendation {
     position: fixed;
     opacity: 0.95;
     width: 100%;
-   // height: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 9999;
     top: 0;
     left: 0;
   }
 
   .custom-modal-wrapper {
-    //top: 20px;
-    //left: 0;
+    top: 0;
     width: 100%;
-    height: 100vh;
-    position: relative;
-    //position: absolute;
+    position: fixed;
     z-index: 10000;
     text-align: center;
     @extend .flex;
     @extend .justify-center;
     @extend .align-center;
+    flex-direction: column;
+    height: 100%;
+    @include allmobiles{
+      top: 105px;
+      justify-content: flex-start;
+    }
+    @include max360{
+      top: 50px;
+    }
   }
 
-  .custom-modal-content {
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
+  .custom-modal--content {
+    text-align: center;
+    .btn{
+      &.btn-primary {
+        width: 320px !important;
+        margin-top: 45px;
+  
+        @include allmobiles {
+          position: fixed !important;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        }
+      }
     }
   }
 
   .custom-modal--icon {
-    //height: 100%;
-    .width50 {
+    display: flex;
+    justify-content: center;
       @include desktop {
         width: 340px;
       }
+
       @include tablet {
         width: 340px;
       }
+
       @include allmobiles {
-        width: 50%;
+        width: 285px;
       }
-     
-    }
+      img{
+        width: 100%;
+        height: auto;
+        display: flex;
+      }
   }
 
   .custom-modal--title {
@@ -112,6 +130,8 @@ app-recommendation {
     letter-spacing: -0.2px;
     font-family: $muli-regular;
     max-width: 480px;
+    margin: 0 auto;
+
     @include allmobiles {
       padding: 0 10%;
     }
@@ -119,16 +139,14 @@ app-recommendation {
 
   .risk-profile-block {
     @include continue-button;
+
     .web-title {
       font-family: $muli-semi-bold;
       font-size: 36px;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
       letter-spacing: -0.4px;
       text-align: center;
-      color: $teal-color;
-      padding:30px;
+      color: $risk-profile-page-title-color;
+      padding: 30px;
     }
 
     .container-fluid {
@@ -139,49 +157,35 @@ app-recommendation {
       @include allmobiles {
         padding-top: 60px !important;
       }
-      @include minPhabletmaxTablet{
+
+      @include minPhabletmaxTablet {
         padding-top: 60px !important;
-       
+
       }
+
       @include tablet {
         padding-top: 0px !important;
-       
+
       }
-     
+
     }
-
-    .fin-accessment-block__tab-container {
-      @extend .flex;
-      @extend .space-btwn;
-      width: 100%;
-
-      .fin-accessment-block__tab {
-        width: calc(50% - 10px);
-        opacity: 0.2;
-        padding-right: 10px;
-        background-color: $app-backgrnd-secondary-color;
-        min-height: 5px;
-
-        &.active {
-          opacity: 1;
-        }
-      }
-    }
-
     .risk-profile-block__content {
-      .portfolio-img{
-        img{
+      .portfolio-img {
+        img {
           z-index: 99;
           position: relative;
-          &:last-child{
+
+          &:last-child {
             z-index: 1;
           }
-          &.secondPortfolio{
-           margin-right: -20px !important;
-           }
-         }
+
+          &.secondPortfolio {
+            margin-right: -20px !important;
+          }
+        }
       }
-     @include tablet {
+
+      @include tablet {
         .banner-image img {
           max-width: 90%;
         }
@@ -206,31 +210,22 @@ app-recommendation {
       padding: 30px 30px 65px !important;
       top: 285px;
 
-      @include allmobiles{
+      @include allmobiles {
         padding: 35px 30px 65px !important;
         top: 205px;
       }
+
       @include tablet {
         top: 270px !important;
       }
+
       @include iPadLandscape {
         top: 270px !important;
       }
+
       @include phablet {
         top: 166px !important;
       }
-    }
-
-    .risk-profile-block__content__heading {
-      opacity: 0.55;
-      font-family: $muli-regular;
-      font-size: 36px;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.4px;
-      color: $white-color;
-      margin-bottom: 15px;
     }
 
     .risk-profile-block__content__title {
@@ -238,39 +233,33 @@ app-recommendation {
       font-size: 24px;
       line-height: normal;
       letter-spacing: -0.17px;
-      color: $teal-color;
+      color: $risk-profile-title-color;
       text-align: center;
       margin: 0;
       padding-top: 15px;
       display: block;
-      &.secondPortfolio{
+
+      &.secondPortfolio {
         padding-left: 13px;
-       }
+      }
     }
 
     .risk-profile-block__content__sub-title {
       font-family: $muli-regular;
       font-size: 16px;
-      font-style: normal;
-      font-stretch: normal;
       line-height: 21px;
       letter-spacing: -0.15px;
       color: $white-color;
       margin-bottom: 30px;
     }
 
-    .btn-proceed {
+    .btn__footer--fixed {
       font-family: $muli-bold !important;
       font-size: 22px;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
       letter-spacing: -0.25px;
-      text-align: center;
-      color: $white-color;
-      font-weight: normal;
-     }
-     .portfolio_btn_produced{
+    }
+
+    .portfolio_btn_produced {
       border-radius: 6px;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.25);
       background-color: $white-color;
@@ -278,49 +267,57 @@ app-recommendation {
       font-size: 18px;
       letter-spacing: -0.3px;
       color: $teal-color;
-      @include allmobiles{
-        padding :0px;
+
+      @include allmobiles {
+        padding: 0px;
       }
-    
+
 
       &:active {
         outline: none;
         background-color: $white-color !important;
         color: $teal-color !important;
       }
+
       &:hover {
         outline: none;
       }
+
       &:focus {
         outline: none;
         background-color: $white-color !important;
         color: $teal-color !important;
       }
-      .portfolio_btn{
+
+      .portfolio_btn {
         display: flex;
         justify-content: space-between;
         text-align: center;
         align-items: center;
-        .flex-row{
+
+        .flex-row {
           align-items: center;
         }
-        @include allmobiles{
+
+        @include allmobiles {
           padding: 0px;
         }
       }
-      
-     }
-     .portfolio-btn{
+
+    }
+
+    .portfolio-btn {
       width: 65px;
       height: 65px;
       padding: 5px;
-      }
-      .forward_img{
-        @include allmobiles{
+    }
+
+    .forward_img {
+      @include allmobiles {
         padding-right: 5px
-        }
       }
-    
+    }
+
   }
 
   .banner-image img {
@@ -343,7 +340,8 @@ app-recommendation {
     width: 100%;
     left: 0;
     right: 0;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-top: 25px;
     }
   }

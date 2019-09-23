@@ -6,6 +6,7 @@ import { InvestmentEngagementJourneyService } from './investment/investment-enga
 import { SignUpService } from './sign-up/sign-up.service';
 import { ManageInvestmentsService } from './investment/manage-investments/manage-investments.service';
 import { WillWritingService } from './will-writing/will-writing.service';
+import { InvestmentCommonService } from './investment/investment-common/investment-common.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
@@ -29,7 +30,8 @@ export class AppService {
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
     private manageInvestmentsService: ManageInvestmentsService,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private investmentCommonService: InvestmentCommonService
   ) { }
 
   commit(key, data) {
@@ -57,6 +59,7 @@ export class AppService {
     this.investmentEngagementJourneyService.clearData();
     this.investmentAccountService.clearData();
     this.manageInvestmentsService.clearData();
+    this.investmentCommonService.clearData();
   }
 
   setJourneyType(type: string) {
