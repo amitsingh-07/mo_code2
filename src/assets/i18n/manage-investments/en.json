@@ -112,6 +112,10 @@
         "MAX_NUMBER_CHARACHTER": "/ 50 characters",
         "LOADING_TITLE": "Loading...",
         "LOADING_DESC": "Please wait."
+      },
+      "INVESTMENT_OVERVIEW": {
+        "TITLE": "Loading Investment Overview",
+        "MESSAGE": "Please wait while we Investment Overview."
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",

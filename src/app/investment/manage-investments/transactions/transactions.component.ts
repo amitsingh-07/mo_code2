@@ -70,7 +70,7 @@ export class TransactionsComponent implements OnInit {
 
   setPageTitle(title: string) {
     console.log(this.portfolio.portfolioName);
-    this.navbarService.setPageTitle(this.portfolio.portfolioName, title, false, false, true);
+    this.navbarService.setPageTitle(title, null, false, false, true, this.portfolio.portfolioName);
   }
 
   convertStringToDate(dateStr) {

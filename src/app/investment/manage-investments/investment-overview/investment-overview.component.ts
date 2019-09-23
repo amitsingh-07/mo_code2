@@ -82,7 +82,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
       this.setPageTitle(this.pageTitle);
-      this.getInvestmentOverview();
     });
   }
 
@@ -94,6 +93,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
+    this.getInvestmentOverview();
     this.headerSubscription();
     this.getMoreList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -130,9 +130,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   getInvestmentOverview() {
-    this.loaderService.showLoader({
-      title: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.TITLE'),
-      desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE')
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
+        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE')
+      });
     });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       this.loaderService.hideLoader();
