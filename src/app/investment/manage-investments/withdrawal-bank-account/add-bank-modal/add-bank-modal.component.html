@@ -72,11 +72,11 @@
           </div>
         </div>
       </div>
-      <button type="button" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary width100 mt5"
+      <button type="button" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn">{{
         'LABEL.SAVE' | translate}}</button>
 
-      <button *ngIf="bankDetails" type="button" (click)="save(addBankForm)" class="btn btn-primary width100 mt5"
+      <button *ngIf="bankDetails" type="button" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn"> {{'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.APPLY_CHANGE' | translate}}
       </button>
     </div>

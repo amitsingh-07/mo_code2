@@ -14,7 +14,7 @@
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID" innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}"></span><br />
-      <div class="amount-section">
+      <div [ngClass]="(withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID) ? 'border-btm': ''" class="amount-section">
         <img src="../../../../assets/images/topupwithdraw/withdraw-hand.svg" alt="" />
         <div class="amt">{{withdrawAmount | currency}}</div>
         <div class="lbl">{{ 'WITHDRAW.WITHDRAWAL_AMOUNT' | translate}}</div>
@@ -30,7 +30,7 @@
         <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.WITHDRAW_DETAILS' | translate}}</span>
         <div class="caption-values">
           <span class="caption" *ngIf="portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}} </span>
-          <span class="values" *ngIf="portfolio">{{portfolio['portfolioName']}}</span>
+          <span class="values capital-letter" *ngIf="portfolio">{{portfolio['portfolioName']}}</span>
           <span class="caption" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}} </span>
           <span class="values" *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{portfolio['refNo']}}</span>
           <span class="caption" *ngIf="bankAccountNo">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>

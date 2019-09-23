@@ -199,7 +199,7 @@ app-investment-overview {
         background-color: #3bbfbf;
 
         @include allmobiles {
-          padding: 20px 15px;
+          padding: 10px 15px;
         }
       }
 
@@ -230,13 +230,13 @@ app-investment-overview {
             .portfolio {
               font-family: $muli-regular;
               color: #000000;
-              border: 1px solid #e5e5e5;
-              padding: 20px 30px;
+              border-bottom: 1px solid #e5e5e5;
+              padding: 30px 25px;
               display: flex;
               cursor: pointer;
 
               @include allmobiles {
-                padding: 25px 15px;
+                padding: 20px 15px;
               }
 
               .portfolio-icon {
@@ -439,5 +439,4 @@ app-investment-overview {
       }
     }
   }
-
 }

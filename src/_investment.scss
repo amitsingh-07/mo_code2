@@ -176,7 +176,7 @@
       .input-group-append {
         .btn-primary {
           box-shadow: none !important;
-  
+
           &:disabled {
             color: $form-control-disabled-txt-color !important;
             background-color: $form-control-disabled-bg-color !important;
@@ -191,14 +191,14 @@
   .dropdown-control {
     .btn-dropdown {
       color: $form-dropdown-txt-color !important;
-      
-      &:disabled, 
+
+      &:disabled,
       &.disabled {
         cursor: not-allowed;
         color: $form-control-disabled-txt-color !important;
         background-color: $form-control-disabled-bg-color !important;
         opacity: 1 !important;
-        
+
         &:hover {
           background-color: $form-control-disabled-bg-color !important;
         }
@@ -207,7 +207,7 @@
   }
 
 
-  // form-control 
+  // form-control
   .form-control {
     &:disabled,
     &.disabled {
@@ -322,15 +322,42 @@
       top: 0px;
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
     }
+    &.fade-out-animation {
+      -webkit-animation: fadeOut 3100ms ease-in-out;
+      /* Chrome, Safari, Opera */
+      animation: fadeOut 3100ms ease-in-out;
+    }
 
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes fadeOut {
+      0% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Standard syntax */
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
     .toast-msg-container {
       color: #e57300;
       background: #fff;
       padding: 20px;
       background-color: #fff1e3;
-      border-top: 1px solid #dfdfdf;
+      // border-top: 1px solid #dfdfdf;
       font-family: "Muli Bold", sans-serif;
       font-size: 15px;
+      line-height: 19px;
       display: flex;
       //justify-content: space-between;
       align-items: center;
@@ -338,6 +365,7 @@
       width: 370px;
       position: absolute;
       right: 15px;
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       @include allmobiles{
         border-radius: 0;
         padding: 30px 20px;
@@ -349,6 +377,7 @@
       .toast-msg{
         width: 200px;
         margin-left: 14px;
+        word-wrap: break-word;
       }
       .flex-col-3{
         color: #00a7a7;

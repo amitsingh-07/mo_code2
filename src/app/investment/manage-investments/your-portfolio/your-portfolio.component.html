@@ -1,4 +1,4 @@
-<div class="toast-msg-block" *ngIf="isToastMessageShown">
+<div class="toast-msg-block fade-out-animation" *ngIf="isToastMessageShown">
   <div class="toast-msg-container">
     <div class="flex-col-1">
       <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
@@ -196,9 +196,8 @@
         <ng-template ngbTabTitle>
           <div class="pending-request">
             <div>{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}</div>
-            <div class="circle">
-              <span *ngIf="pendingBuyRequests && pendingBuyRequests.value">{{pendingBuyRequests.value.length}}</span>
-              <span *ngIf="!(pendingBuyRequests && pendingBuyRequests.value)">0</span>
+            <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
+              <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
         </ng-template>
@@ -246,7 +245,7 @@
                 <span *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: pendingBuyRequests.value.length} }}</span>
                 <ng-template #single_pending_template><span>{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO_SINGLE' | translate: { count: pendingBuyRequests.value.length} }}</span></ng-template>
               </div>
-              <div *ngIf="!portfolio.pendingRequestDTO.numberOfPendingRequests" class="pending-buy-rqst-lbl">
+              <div *ngIf="!pendingBuyRequests" class="pending-buy-rqst-lbl">
                 {{'YOUR_PORTFOLIO.PENDING_NO_REQUEST_INFO' | translate }}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
@@ -397,7 +396,7 @@
                     <div class="flex-row">
                       <span class="balance-amount-lbl">{{'YOUR_PORTFOLIO.BALANCE_AMOUNT' | translate}}:</span>
                       <span>
-                        {{portfolio.investmentAccountDTO.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                        {{portfolio.accountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                     </div>
                   </div>
                 </div>
@@ -405,7 +404,7 @@
                 <div class="form-group-with-bg--content">
                   <div class="cash-account-content">
                     <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
-                      {{portfolio.investmentAccountDTO.referenceCode }}</div>
+                      {{portfolio.referenceCode }}</div>
                     <div class="flex">
                       <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
                       <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>
