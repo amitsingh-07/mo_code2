@@ -59,6 +59,19 @@
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
     },
+     "ADD_PORTFOLIO_NAME": {
+      "TITLE": "Your portfolio is almost ready.",
+      "ADD_PORTFOLIO_NAME_LAB": "Let’s give it a unique name!",
+      "DONE":"Done",
+      "VALIDATION_MESSAGE":"Please enter Alphabets and Numbers only",
+      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
+   },
+     "ADD_PORTFOLIO_STATUS": {
+      "TITLE": "Portfolio created successfully!",
+      "ADD_PORTFOLIO_NAME": "Jason’s Education Fund",
+      "CONTINUE":"Continue",
+      "ADD_PORTFOLIO_NAME_LAB": "has been added to your account."
+    },
     "ACCOUNT_CREATION_ERROR_MODAL": {
       "TITLE": "Error !",
       "DESCRIPTION": "Please fix the below list of errors and then proceed."
@@ -110,8 +123,12 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK_TRANSFER":"Bank Transfer",    
+    "BANK_TRANSFER":"Bank Transfer",
     "DESC":"Please transfer the following amount using your preferred payment method details:",
+    "FUNDING_DESC":"Please transfer the following amount using Bank Transfer or PayNow.",
+    "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "CASH_ACCOUNT_BALANCE_LBL":"Cash Account Balance:",
+    "REFERENCE_CODE_LBL":"Reference Code: ",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
         "STEP_1": "STEP 1",
@@ -151,5 +168,9 @@
         "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
       }
     }
+  },
+  "TOAST_MESSAGES": {
+    "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
+    "VIEW": "View"
   }
 }

@@ -5,15 +5,16 @@
     <div class="custom-modal--icon">
       <img src="../../../assets/images/portfolio/flash_recommended.svg"
         id="portfolioRecommenadtionCustModalImg1" />
+      </div>
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">
           {{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
         <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">
           {{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
+
+          <button type="button" class="btn btn-primary" (click)="dismissFlashScreen()"  
+          id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
       </div>
-      <button type="button" class="btn btn-primary width50" (click)="dismissFlashScreen()"  
-      id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
-   </div>
   </div>
 </div>
 <!-- popUp -->
@@ -50,10 +51,10 @@
             *ngIf="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
           <div class="text-center">
             <button type="button" *ngIf="showSinglePortfolio" (click)="goToNext(selectedRiskProfile.riskProfileId)"
-              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              class="btn btn-primary btn__footer--fixed btn-ftr-get-started"
               id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
             <button type="button" *ngIf="showNoPortfolio" (click)="goToHomepage()"
-              class="btn btn__footer--fixed btn-ftr-get-started btn-primary btn-proceed"
+              class="btn btn-primary btn__footer--fixed btn-ftr-get-started"
               id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
           </div>
           <!-- buttons -->

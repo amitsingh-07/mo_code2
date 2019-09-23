@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
-import { InvestmentAccountService } from '../investment-account-service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
-import { TranslateService } from '@ngx-translate/core';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 
 @Component({
   selector: 'app-account-status',
@@ -31,7 +32,8 @@ export class AccountStatusComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public footerService: FooterService,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {});
@@ -43,6 +45,7 @@ export class AccountStatusComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentCommonService.clearJourneyData();
     this.investmentAccountService.restrictBackNavigation();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

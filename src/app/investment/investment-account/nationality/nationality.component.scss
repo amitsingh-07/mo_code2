@@ -1,99 +1,65 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 app-nationality {
-  h2{
+  h2 {
     font-size: 30px;
     margin-bottom: 11px
   }
+
   .banner-image {
     img {
       padding-top: 1vh;
-      @include desktop{
-        width:160px;
-        height:160px;
+
+      @include desktop {
+        width: 160px;
+        height: 160px;
       }
     }
   }
+
   .container-fluid {
-     padding-top: 20px !important;
-    @include allmobiles{
-       padding-top: 20px !important;
+    padding-top: 20px !important;
+
+    @include allmobiles {
+      padding-top: 20px !important;
     }
-    .row{
+
+    .row {
       justify-content: center;
     }
   }
+
   .flex-row {
     align-items: center;
   }
-  // .dropdown-control {
-  //   .dependent-count {
-  //     margin-right: 4px;
-  //     font-size: 16px;
-  //     line-height: 1.25;
-  //     letter-spacing: -0.2px;
-  //   }
-  // }
+
   label {
     font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
     padding-right: 10px;
   }
+
   .form-group {
     @include allmobiles {
       padding-bottom: 30px;
     }
   }
-  // .dropdown-menu.show {
-  //   right: 0 !important;
-  //   overflow: auto;
-  //   height: auto;
-  //   max-height: 200px;
-  // }
-  // .dropdown-item {
-  //   white-space: normal;
-  //   word-break: break-word;
-  // }
-  // .dropdown-control .btn-dropdown {
-  //   padding-right: 27px;
-  //   max-height: 52px;
-  //   white-space: nowrap;
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  // }
-  .dropdown-control{
-    .btn {
-      &:disabled {
-        color: $teal-color !important;
-        background-color: $inv-btn-disabled-bg-color !important;
-        opacity: 1 !important;
-        &:hover{
-          background-color: $inv-btn-disabled-bg-color !important;
-        }
-      }
-    }
-  }
+
   .fixed-btn--sm {
     color: $white-color;
   }
-  // .text {
-  //   font-family: $muli-regular;
-  //   font-size: 18px;
-  //   line-height: 1.17;
-  //   letter-spacing: -0.2px;
-  //   text-align: center;
-  //   padding-left: 17px;
-  //   padding-right: 14px;
-  // }
+
   .btn__footer--fixed {
     font-family: $muli-bold !important;
-    &.btn-primary{
-      &:disabled{
+
+    &.btn-primary {
+      &:disabled {
         background-color: $btn-disabled-light-bg;
-        color: $disabled-teal-color;
+        color: $btn-disabled-teal-color;
       }
     }
   }
- 
+
 }

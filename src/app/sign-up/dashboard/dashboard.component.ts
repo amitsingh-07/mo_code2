@@ -10,16 +10,15 @@ import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+ } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -29,9 +28,9 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
+import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 
 @Component({
@@ -71,12 +70,14 @@ export class DashboardComponent implements OnInit {
   bankDetails;
   paynowDetails;
   transferInstructionModal;
+  investmentsSummary;
 
   constructor(
     private router: Router,
     private configService: ConfigService,
     private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
     public navbarService: NavbarService,
@@ -93,16 +94,12 @@ export class DashboardComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.investmentAccountService.getUserPortfolioExistStatus()) {
-        this.investmentAccountService.setUserPortfolioExistStatus(false);
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_DESC');
-        ref.componentInstance.primaryActionLabel = this.translate.instant('DASHBOARD.INVESTMENT.PORTFOLIO_EXIST_BTN_LABEL');
-        ref.componentInstance.portfolioExist = true;
-        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
-         });
+      const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
+      if (initialMessage && initialMessage.dashboardInitMessageShow) {
+        this.investmentAccountService.setDashboardInitialMessage(null);
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = initialMessage.dashboardInitMessageTitle;
+        ref.componentInstance.errorMessage = initialMessage.dashboardInitMessageDesc;
       }
      });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -139,7 +136,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.getDashboardList();
         this.checkSRSPopStatus(userInfo.objectList.id);
       }
     },
@@ -178,13 +174,27 @@ export class DashboardComponent implements OnInit {
         this.insurance.hasInsurance = false;
       }
     });
-
-    this.getTransferDetails();
+    this.getInvestmentsSummary();
   }
 
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
+    });
+  }
+
+  getInvestmentsSummary() {
+    this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
+      if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.investmentsSummary = data.objectList;
+        this.setInvestmentsSummary(this.investmentsSummary);
+        this.getInvestmentStatus();
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -238,22 +248,16 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
-  getDashboardList() {
-    const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED.toUpperCase() ||
-      investmentStatus === SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED.toUpperCase()) {
-      this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
-      this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ?
-        this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.availableBalance = this.userProfileInfo.investementDetails.account &&
-        this.userProfileInfo.investementDetails.account.cashAccountBalance ?
-        this.userProfileInfo.investementDetails.account.cashAccountBalance : 0;
-    }
-    this.setInvestmentDashboardStatus(investmentStatus);
+  setInvestmentsSummary(investmentsSummary) {
+    this.investmentCommonService.setInvestmentsSummary(investmentsSummary);
   }
 
-  setInvestmentDashboardStatus(investmentStatus) {
+  getInvestmentStatus() {
+    const investmentStatus = this.investmentCommonService.getInvestmentStatus();
+    this.showInvestmentsSummary(investmentStatus);
+  }
+
+  showInvestmentsSummary(investmentStatus) {
     switch (investmentStatus) {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
@@ -380,32 +384,6 @@ export class DashboardComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
-  }
-
- /*
-  * Method to get transfer details
-  */
-  getTransferDetails() {
-    this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-      this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-    },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
-  }
-
-  /*
-  * Method to show transfer instruction steps modal
-  */
-  showTransferInstructionModal() {
-    this.manageInvestmentsService.showTransferInstructionModal();
-  }
-
-  /*
-  * Method to show recipients/entity name instructions modal
-  */
-  showPopUp() {
-    this.manageInvestmentsService.showPopUp();
   }
 
   // Show SRS Joint Account Popup

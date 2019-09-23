@@ -19,6 +19,7 @@ export class InvestmentEngagementJourneyFormData {
   suffEmergencyFund: string;
   oneTimeInvestmentChkBox: boolean;
   monthlyInvestmentChkBox: boolean;
+  firstTimeUser: boolean;
 
   // RISK PROFILE
   riskProfileId: number;

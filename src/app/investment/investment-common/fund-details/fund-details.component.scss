@@ -15,6 +15,7 @@ app-fund-details {
     margin-right: 0;
     padding-bottom: 10px;
   }
+
   .modal-body.white-bg .close {
     width: 25px !important;
     height: 25px !important;
@@ -23,40 +24,49 @@ app-fund-details {
     top: 28px !important;
     right: 18px !important;
     background-repeat: no-repeat !important;
+
     @include allmobiles {
       top: 28px !important;
       right: 18px !important;
     }
   }
+
   .modal-body {
     padding: 20px 0 !important;
     max-height: 100%;
-    @include allmobiles{
+
+    @include allmobiles {
       border-radius: 0;
       min-height: 100vh;
     }
   }
+
   .fund-details-content {
     .dimentional {
       padding: 26px 25px 23px;
       border-bottom: 1px solid $fund-details-dimentional-brdr;
+
       .img-container {
         width: 180px;
         height: 41px;
         object-fit: contain;
         text-align: left;
+
         img {
           max-width: 100%;
           height: auto;
         }
       }
     }
+
     .card {
       border: none;
+
       .card-header {
         padding: 23px 48px 19px 22px;
         border-bottom-color: $fund-details-card-brdr;
         background: $white-color;
+
         .btn {
           white-space: normal;
           padding: 0;
@@ -69,25 +79,31 @@ app-fund-details {
           color: $black-color;
           display: flex;
           align-items: center;
+
           i {
             color: $fund-details-arrow-color;
             position: absolute;
             right: 25px;
           }
+
           &:hover {
             text-decoration: none;
           }
+
           &:active {
             text-decoration: none;
           }
+
           &:focus {
             text-decoration: none;
           }
         }
       }
+
       .card-body {
         color: $black-color;
         padding: 13px 45px 27px 32px;
+
         .btn {
           margin-top: 22px;
           font-family: $muli-bold;
@@ -96,15 +112,22 @@ app-fund-details {
         }
       }
     }
-    .btn-orange {
+
+    .btn-white {
       font-family: $muli-bold;
       font-size: 18px;
       letter-spacing: -0.1px;
       text-align: center;
-      color: $secondary-action-color;
+      color: $fund-details-btn-color !important;
+      box-shadow: none !important;
       border: none;
       background: none;
       padding: 29px 29px 33px;
+
+      &:hover {
+        background: $fund-details-btn-hover-bg !important;
+        box-shadow: none !important;
+      }
     }
   }
 
@@ -124,14 +147,13 @@ app-fund-details {
     float: right;
     position: absolute;
     right: 20px;
-    // margin-top:6px;
   }
+
   .fund-heading.active .arrow {
     -webkit-transform: rotate(135deg);
     -ms-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
-    //   margin-top:10px;
     margin-top: 6px;
   }
 
@@ -147,12 +169,15 @@ app-fund-details {
     align-items: center;
     justify-content: space-between;
     position: relative;
+    cursor: pointer;
+    
     span {
       &:first-child {
         padding-right: 30px;
       }
     }
   }
+
   .funding-content {
     font-family: $muli-regular;
     font-size: 16px;
@@ -163,6 +188,7 @@ app-fund-details {
     border-bottom: 1px solid $fund-details-dimentional-brdr;
     display: none;
   }
+
   .funding-content.first {
     display: block;
   }

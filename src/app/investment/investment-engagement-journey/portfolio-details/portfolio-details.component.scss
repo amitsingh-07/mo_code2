@@ -14,21 +14,22 @@ app-portfolio-details {
 
   .portfolio-allocation-details {
     .portfolio-allocation-details__container {
-      color: $white-color;
+      color: $portfolio-allocation-container-txt-color;
       border-radius: 6px;
 
-      // box-shadow: 0 10px 14px 0 $portfolio-allocation-container-shadow-color;
-      // background-color: $portfolio-allocation-container-bg-color;
       .portfolio-allocation-details__content {
-        margin-bottom: 14px;
+        margin-bottom: 10px;
         border-radius: 6px;
-        @include allmobiles{
+
+        @include allmobiles {
           margin-bottom: 10px;
         }
+
         .portfolio-allocation-details__content__desc {
           .portfolio_img {
             text-align: center;
             padding-top: 30px;
+
             img {
               width: 80px;
               height: 80px;
@@ -36,24 +37,26 @@ app-portfolio-details {
           }
 
           .portfolio-allocation-details__content__block {
-            color: $dark-teal-color;
-            background-color:$white-color;
+            color: $portfolio-allocation-content-txt-color;
+            background-color: $portfolio-allocation-content-bg-color;
             font-size: 18px;
             line-height: 1.5;
             letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
-            padding: 20px 15px;
-            @include allmobiles{
+            padding: 20px 48px;
+
+            @include allmobiles {
               font-size: 14px;
               padding: 20px 30px;
             }
+
             strong {
               font-family: $muli-bold;
             }
           }
         }
-        
+
       }
 
       .review-edit {
@@ -63,14 +66,14 @@ app-portfolio-details {
         font-size: 18px;
         font-weight: 400;
         letter-spacing: -0.2px;
-        color: $review-text-color;
+        color: $portfolio-allocation-review-txt-color;
         background-color: $portfolio-allocation-review-bg-color;
         border-radius: 0 0 6px 6px;
         padding: 20px;
+        cursor: pointer;
 
         .edit_button {
           background: url('/assets/images/edit-icon.svg') no-repeat;
-          cursor: pointer;
           display: inline-flex;
           margin-left: 12px;
           width: 23px;
@@ -81,13 +84,13 @@ app-portfolio-details {
   }
 
   .asset-allocation {
-    margin-top: 33px;
+    margin-top: 30px;
 
     .title {
       font-family: $muli-bold;
       font-size: 19px;
       letter-spacing: -0.4px;
-      color: $white-color;
+      color: $asset-allocation-title-txt-color;
       padding-bottom: 14px;
     }
   }
@@ -99,9 +102,11 @@ app-portfolio-details {
     letter-spacing: -0.2px;
     text-align: center;
     padding: 21px 0 105px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding: 21px 0 50px;
     }
+
     a {
       color: $white-color;
       text-decoration: underline;
@@ -152,7 +157,7 @@ app-portfolio-details {
     border-radius: 0 !important;
     left: 0;
     z-index: 999;
-    background-color: $white-color;
+    background-color:  $recommend-footer-bg-color;
     padding: 15px 30px !important;
 
     .footer-content {
@@ -160,9 +165,10 @@ app-portfolio-details {
       justify-content: space-around;
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-      .btn-primary{
+
+      .btn-primary {
         font-size: 22px;
-        padding:10px 20px;
+        padding: 10px 20px;
       }
     }
 
@@ -171,8 +177,7 @@ app-portfolio-details {
       font-size: 18px;
       line-height: 1.44;
       letter-spacing: -0.2px;
-      color:$teal-color;
-      //padding: 0 20px 5px 0px;
+      color: $recommend-footer-txt1-color;
       padding-bottom: 5px;
     }
 
@@ -181,9 +186,8 @@ app-portfolio-details {
       font-size: 13px;
       line-height: 1.15;
       letter-spacing: -0.1px;
-      color: $dark-teal-color;
+      color: $recommend-footer-txt2-color;
       padding-bottom: 5px;
-      //padding: 0 20px 5px 0px;
     }
   }
 }

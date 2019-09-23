@@ -1,29 +1,31 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
-import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+    INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+    InvestmentEngagementJourneyService
+} from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-investment-overview',
@@ -31,7 +33,7 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investmen
   styleUrls: ['./investment-overview.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class InvestmentOverviewComponent implements OnInit {
+export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   totalPortfolio;
   welcomeInfo;
   investmentoverviewlist: any;
@@ -46,10 +48,7 @@ export class InvestmentOverviewComponent implements OnInit {
   portfolios;
   userProfileInfo;
   riskProfileImg: any;
-  portfolio;
-  productCode;
   entitlements: any;
-
   showAlretPopUp = false;
   selected;
 
@@ -59,22 +58,23 @@ export class InvestmentOverviewComponent implements OnInit {
   transferInstructionModal;
   isToastMessageShown;
   toastMsg;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
-    private formBuilder: FormBuilder,
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
     public footerService: FooterService,
-    private currencyPipe: CurrencyPipe,
     public signUpService: SignUpService,
     public activeModal: NgbActiveModal,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpApiService: SignUpApiService
+    private signUpApiService: SignUpApiService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -82,70 +82,65 @@ export class InvestmentOverviewComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
+    this.headerSubscription();
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getTransferDetails();
-
+    this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+  }
+
   getMoreList() {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
   }
-  addPortfolio() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  }
-  yourPortfolio(portfolio) {
-    if (portfolio.portfolioStatus !== 'EXPIRED') {
-      this.manageInvestmentsService.setPortfolioValues(portfolio);
-      this.manageInvestmentsService.setHoldingValues(portfolio.dpmsDetailsDisplay);
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+
+  selectToastMessageDetail(url) {
+    if (this.toastMsg && this.toastMsg['portfolio']) {
+      this.router.navigate(url);
     }
   }
+
+  yourPortfolio(portfolio) {
+    if (portfolio.portfolioStatus !== 'EXPIRED') {
+     this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
+     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+    }
+  }
+
+  yourPortfolioDynamic() {
+    if (this.toastMsg) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.toastMsg.id);
+      this.router.navigate([this.toastMsg.link_url]);
+    }
+  }
+
   getInvestmentOverview() {
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
-        this.investmentoverviewlist = data.objectList;
-        this.totalReturns = this.investmentoverviewlist.data.totalReturns
-          ? this.investmentoverviewlist.data.totalReturns
-          : 0;
-        this.cashAccountBalance = this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          ? this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          : 0;
-        this.totalValue = this.investmentoverviewlist.data.totalValue
-          ? this.investmentoverviewlist.data.totalValue
-          : 0;
-        this.portfolioList = this.investmentoverviewlist.data.portfolios;
-        this.totalPortfolio = this.portfolioList.length;
-        this.welcomeInfo = {
-          name: this.userProfileInfo.firstName,
-          total: this.totalPortfolio
-        };
-        this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
-        if (this.investmentoverviewlist.data.cashAccountDetails) {
-          this.manageInvestmentsService.setUserCashBalance(
-            this.investmentoverviewlist.data.cashAccountDetails.availableBalance
-          );
-        }
-        /* First portfolio's entitlement is considered for now as global entitlement,
-            need to change when multiple portfolio logic is implemented */
-        this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+        this.setInvestmentData(data);
       } else if (
         data.objectList &&
-        data.objectList.length &&
-        data.objectList[data.objectList.length - 1].serverStatus &&
-        data.objectList[data.objectList.length - 1].serverStatus.errors &&
-        data.objectList[data.objectList.length - 1].serverStatus.errors.length
+        data.objectList['length'] &&
+        data.objectList[data.objectList['length'] - 1].serverStatus &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors.length
       ) {
         this.showCustomErrorModal(
           'Error!',
-          data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+          data.objectList[data.objectList['length'] - 1].serverStatus.errors[0].msg
         );
       } else if (data.responseMessage && data.responseMessage.responseDescription) {
         const errorResponse = data.responseMessage.responseDescription;
@@ -154,37 +149,50 @@ export class InvestmentOverviewComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
-  }
-
-  showTotalReturnPopUp() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE'
-    );
-  }
-  ViewTransferInst(productCode) {
-    this.productCode = productCode;
-    this.getPortfolioHoldingList(productCode);   // SET PORTFOLIO CODE
-  }
-
-  getPortfolioHoldingList(portfolioid) {   // CALLING THE API
-    this.manageInvestmentsService
-      .getIndividualPortfolioDetails(portfolioid)
-      .subscribe((data) => {
-        this.portfolio = data.objectList;
-        const fundingParams = this.constructFundingParams(data.objectList);
-        this.manageInvestmentsService.setFundingDetails(fundingParams);
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
-      },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  setInvestmentData(data) {
+    this.investmentoverviewlist = (data.objectList) ? data.objectList : {};
+    this.totalReturns = this.investmentoverviewlist.totalReturns
+      ? this.investmentoverviewlist.totalReturns
+      : 0;
+    this.cashAccountBalance = this.investmentoverviewlist.totalCashAccountBalance
+      ? this.investmentoverviewlist.totalCashAccountBalance
+      : 0;
+    this.totalValue = this.investmentoverviewlist.totalValue
+      ? this.investmentoverviewlist.totalValue
+      : 0;
+    this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios : [];
+    this.totalPortfolio = this.portfolioList.length;
+    this.welcomeInfo = {
+      name: this.userProfileInfo.firstName,
+      total: this.totalPortfolio
+    };
+    this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
+    if (this.investmentoverviewlist.cashAccountDetails) {
+      this.manageInvestmentsService.setUserCashBalance(
+        this.investmentoverviewlist.cashAccountDetails.availableBalance
+      );
+    }
+    this.showToastMessage();
+  }
+
+  ViewTransferInst(productCode) {
+    this.getCustomerPortfolioDetailsById(productCode);   // SET PORTFOLIO CODE
+  }
+
+  getCustomerPortfolioDetailsById(portfolioid) {   // CALLING THE API
+    this.manageInvestmentsService.getCustomerPortfolioDetailsById(portfolioid).subscribe((data) => {
+        const fundingParams = this.constructFundingParams(data.objectList);
+        this.manageInvestmentsService.setFundingDetails(fundingParams);
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
   }
 
   constructFundingParams(data) {   // SET FUND DETAILS VAlUES
@@ -202,7 +210,7 @@ export class InvestmentOverviewComponent implements OnInit {
       exceededAmount: 0
     };
   }
-  // tslint:disable-next-line
+
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -213,67 +221,16 @@ export class InvestmentOverviewComponent implements OnInit {
     );
   }
 
-  getImg(i) {
-    const riskProfileImg = ProfileIcons[i - 1]['icon'];
-    return riskProfileImg;
-  }
   alertPopUp(i, event) {
     event.stopPropagation();
     this.selected = i;
     this.showAlretPopUp = true;
   }
+
   ClosedPopup() {
     this.showAlretPopUp = false;
   }
-  deletePortfolio(portfolio) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_INVESTMENT.DELETE_TXT'
-    );
-    ref.componentInstance.yesOrNoButton = 'Yes';
-    ref.componentInstance.yesClickAction.subscribe(() => {
-      this.manageInvestmentsService.deletePortfolio(portfolio).subscribe((data) => {
-        if (data.responseMessage.responseCode < 6000) {
-          if (
-            data.objectList &&
-            data.objectList.length &&
-            data.objectList[data.objectList.length - 1].serverStatus &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors.length
-          ) {
-            this.showCustomErrorModal(
-              'Error!',
-              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-            );
-          } else if (data.responseMessage && data.responseMessage.responseDescription) {
-            const errorResponse = data.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
-          } else {
-            this.investmentAccountService.showGenericErrorModal();
-          }
-        } else {
-          this.authService.saveEnquiryId(null);
-          const translateParams = {
-            portfolioName: portfolio.riskProfile.type
-          };
-          const toastMsg = this.translate.instant('YOUR_INVESTMENT.PORTFOLIO_DELETE_MESSAGE', translateParams);
-          this.showToastMessage(toastMsg);
-          this.getInvestmentOverview();
-          this.getUserProfileInfo();
-        }
-      },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
-    });
-    ref.componentInstance.noClickAction.subscribe(() => { });
-  }
 
-  selectOption(option) {
-    this.manageInvestmentsService.showMenu(option);
-  }
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
   }
@@ -284,55 +241,47 @@ export class InvestmentOverviewComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-/*
-* Method to get transfer details
-*/
- getTransferDetails() {
-  this.manageInvestmentsService.getTransferDetails().subscribe((data) => {
-    this.manageInvestmentsService.setBankPayNowDetails(data.objectList[0]);
-  },
-  (err) => {
-    this.investmentAccountService.showGenericErrorModal();
-  });
- }
-
-/*
-* Method to show transfer instruction steps modal
-*/
-showTransferInstructionModal() {
-  this.manageInvestmentsService.showTransferInstructionModal();
-}
-
-/*
-* Method to show recipients/entity name instructions modal
-*/
-showPopUp() {
-  this.manageInvestmentsService.showPopUp();
-}
-
-  showToastMessage(msg) {
-    this.isToastMessageShown = true;
-    this.toastMsg = msg;
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 1);
-    setTimeout(() => {
-      this.isToastMessageShown = false;
-    }, 3000);
+  showToastMessage() {
+    if (this.toastMsg && this.toastMsg['isShown']) {
+      this.isToastMessageShown = true;
+      this.manageInvestmentsService.clearToastMessage();
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 1);
+      setTimeout(() => {
+        this.isToastMessageShown = false;
+        this.toastMsg = null;
+      }, 3000);
+    }
   }
 
   investAgain(portfolio) {
-    this.manageInvestmentsService.setPortfolioValues(portfolio);
+    this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
-  startPortfolio() {
+  verticalScrollPresent() {
+    return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
+  }
+
+  addPortfolio() {
     this.authService.saveEnquiryId(null);
+    this.investmentCommonService.clearJourneyData();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
-  gotoTopUp() {  // GO TO TOP-UP
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-      }
+
+  gotoTopUp(portfolio?) {
+    // Added check if got portfolio, set it as selected one else set null for the main top up button
+    if (portfolio) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
+    } else {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    }
+     // GO TO TOP-UP
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+  }
 
   getUserProfileInfo() {
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
@@ -357,17 +306,29 @@ showPopUp() {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        /* First portfolio's entitlement is considered for now as global entitlement, 
+        /* First portfolio's entitlement is considered for now as global entitlement,
             need to change when multiple portfolio logic is implemented */
-        this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
+        // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getEntitlementsFromPortfolio(portfolio) {
     return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
+  }
+
+  scrollTop() {
+    window.scrollTo(0, 0);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      }
+    });
   }
 }

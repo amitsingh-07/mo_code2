@@ -1,50 +1,62 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-funding-instructions {
   .fund-your-account {
     &.clearfix {
       overflow: auto;
     }
-    font-family: $muli;
+
+    font-family: $muli-regular;
+
     .strong {
       font-weight: bold;
     }
+
     &.container-fluid {
-      &.invest-web-width{
+      &.invest-web-width {
         max-width: 700px;
         padding-top: 40px;
-        @include allmobiles{
+
+        @include allmobiles {
           padding-top: 90px;
         }
       }
     }
-    .page-title{
+
+    .page-title {
       font-family: $muli-semi-bold;
       font-size: 32px;
       letter-spacing: -0.33px;
       text-align: center;
       padding-bottom: 35px;
     }
+
     /* FUND SUMMARY */
     .fund-summary {
       display: flex;
       margin-bottom: 35px;
+
       .from-account {
         display: flex;
         flex-direction: column;
         flex: 4;
         align-items: center;
         font-family: $muli-regular;
+
         img {
           height: 80px;
           margin-bottom: 10px;
-          @include allmobiles{
+
+          @include allmobiles {
             height: 55px;
           }
         }
+
         .strong {
           font-family: $muli-bold;
         }
+
         div {
           align-self: center;
           text-align: center;
@@ -52,15 +64,18 @@ app-funding-instructions {
           letter-spacing: -0.2px;
         }
       }
+
       .right-arrow {
         display: flex;
         flex: 1;
         align-self: center;
         justify-content: center;
+
         img {
           width: 26px;
         }
       }
+
       .to-account {
         display: flex;
         flex-direction: column;
@@ -68,95 +83,127 @@ app-funding-instructions {
         flex: 4;
         font-family: $muli-regular;
         letter-spacing: -0.2px;
+
         img {
           height: 80px;
           margin-bottom: 10px;
-          @include allmobiles{
+
+          @include allmobiles {
             height: 55px;
           }
         }
+
         .strong {
           font-family: $muli-bold;
         }
+
         div {
           align-self: center;
           text-align: center;
         }
       }
     }
+
     .fund-instruction {
       font-family: $muli-regular;
       padding: 0 5px;
       line-height: 21px;
       letter-spacing: -0.15px;
     }
+
     /* TRANSFER DETAILS */
     .transfer-details {
-      margin: 25px 0px;
-      color: $teal-color;
+      margin: 20px 0px;
+      color: $fund-transfer-details-color;
+
       .tab-links {
-         display: flex;
-         width: 100%;
-         letter-spacing: -0.2px;
+        display: flex;
+        width: 100%;
+        letter-spacing: -0.2px;
+
         .tab-link-item {
           display: flex;
           flex-grow: 1;
           flex-basis: 0;
-          color: #2e9e9e;
+          color: $fund-tab-link-color;
           font-size: 18px;
           font-family: $muli-bold;
           padding: 15px 35px;
           text-align: center;
           align-items: center;
-          background-color: #c4e5ea;
+          background-color: $fund-tab-link-bg;
           margin-right: 9px;
           border-radius: 10px 10px 0 0;
           justify-content: center;
           line-height: 1.17;
           letter-spacing: -0.18px;
           opacity: 0.5;
-          .pay-tab{
-            max-width:84px;
+          cursor: pointer;
+
+          .pay-tab {
+            max-width: 84px;
             height: 42px;
             display: flex;
             align-items: center;
-            img{
+
+            img {
               width: 55px;
               height: 35px;
             }
           }
-          &:first-child{
-           flex-direction: column;
+
+          &:first-child {
+            flex-direction: column;
           }
-          &:last-child{
+
+          &:last-child {
             margin: 0px;
           }
-           &.active {
-            background-color: #ffffff;
+
+          &.active {
+            background-color: $fund-tab-link-active-bg;
             opacity: 1;
-           }
+          }
         }
       }
+
       .tab-content-container {
-        background-color: $bond-container-bg;
+        background-color: $fund-tab-content-bg;
         border-radius: 0px 0px 6px 6px;
+
         .tab-content {
           padding: 30px;
           display: none;
+
           &.active {
             display: block;
           }
+
+          &.fund-instruction {
+            padding: 30px 10px;
+
+            @include allmobiles {
+              padding: 20px 0;
+            }
+
+            .instruction-content {
+              padding-top: 0;
+            }
+          }
         }
       }
+
       .instruction-txt {
         font-size: 15px;
         margin-bottom: 15px;
         font-family: $muli-regular;
-        color: $text-color-secondary;
+        color: $fund-instruction-txt-color;
+
         strong {
           font-family: $muli-bold;
         }
       }
+
       .btn-bordered {
         border: 1px solid $teal-color;
         border-radius: 28px;
@@ -168,36 +215,44 @@ app-funding-instructions {
         display: flex;
         padding: 6px 30px;
       }
+
       .account-detail {
         margin-top: 20px;
         font-family: $muli-semi-bold;
         letter-spacing: -0.3px;
+
         label {
           font-family: $muli-semi-bold;
           font-size: 18px;
           color: $dark-teal-color;
           margin-bottom: 0px;
         }
+
         .value {
           color: $black-color;
           font-size: 16px;
           margin-bottom: 10px;
+
           &.ref_num {
             font-family: $muli-semi-bold;
             font-size: 18px;
             letter-spacing: -0.3px;
-            color: #ff872f;
+            color: $fund-account-detail-ref-num-color;
           }
+
           .investment-values {
             display: flex;
             flex-direction: row;
+
             div {
               display: flex;
               color: $dark-teal-color;
               font-family: $muli-regular;
+
               &:first-child {
                 margin-right: 20px;
               }
+
               span {
                 color: $secondary-action-color;
                 font-family: $muli-semi-bold;
@@ -205,57 +260,26 @@ app-funding-instructions {
             }
           }
         }
-        .ref_code_info{
-         display: flex;
-         justify-content: space-between;
-         color:#e57300;
-         line-height: 22px;
-         letter-spacing: -0.1px;
-         font-family: $muli-regular;
-         font-size: 15px;
-         span {
-          padding:0px 8px 20px 0px;
-        }
+
+        .ref_code_info {
+          display: flex;
+          justify-content: space-between;
+          color: $fund-account-detail-ref-code-info-color;
+          line-height: 22px;
+          letter-spacing: -0.1px;
+          font-family: $muli-regular;
+          font-size: 15px;
+
+          span {
+            padding: 0px 8px 20px 0px;
+          }
 
         }
       }
-      .sub-text {
-        color: $text-color-secondary;
-        font-size: 13px;
-        line-height: 1.38;
-        font-family: $muli-regular;
-        letter-spacing: -0.1px;
-      }
-      .setup-auto-deposit {
-        border: 1.5px solid $dark-teal-color;
-        border-radius: 6px;
-        padding: 25px;
-        position: relative;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-        font-family: $muli-regular;
-        .head {
-          font-family: $muli-bold;
-          font-size: 16px;
-          text-align: center;
-          color: $teal-color;
-          position: absolute;
-          top: -18px;
-          padding: 5px 15px 5px 55px;
-          background-color: $bond-container-bg;
-          display: flex;
-          flex: 1;
-          background: url('/assets/images/investment-account/subcard_owl.svg') no-repeat;
-          background-color: $bond-container-bg;
-          background-position: 15px 4px;
-        }
-        p {
-          color: $black-color;
-        }
-      }
+
+
     }
+
     .btn-with-icon {
       border-radius: 6px;
       box-shadow: 0 6px 7px 0 $btn-shadow-color;
@@ -275,51 +299,150 @@ app-funding-instructions {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+
       &:active {
         outline: none;
         background-color: $action-btn-active-bg;
         color: $white-color;
       }
+
       &:hover {
         outline: none;
         background-color: $action-btn-active-bg;
         border-color: $action-btn-active-bg;
         color: $white-color;
       }
+
       &:focus {
         outline: none;
         border: none;
       }
+
       img {
         position: absolute;
         right: 10px;
       }
     }
+
     .process-time-info {
       font-family: $muli-bold;
       font-size: 18px;
-      color: $white-color;
+      color: $fund-process-info-color;
       text-align: center;
-      margin: 15px 0px;
       padding: 30px 18px;
-      background: $review-block-bg;
+      background: $fund-process-info-bg;
+
       @include allmobiles {
         margin-bottom: 66px;
       }
     }
+
     .topup_success {
       font-family: $muli-regular;
       padding: 17px 42px;
       line-height: 21px;
-      letter-spacing:  -0.2px;
+      letter-spacing: -0.2px;
       text-align: center;
+
       @include allmobiles {
         margin-bottom: 66px;
       }
     }
+
     .btn__footer--fixed {
       font-family: $muli-bold !important;
       font-size: 22px;
+      margin-top: 0 !important;
+
+      &.fund-instruction-btn {
+        width: 340px;
+
+        @include allmobiles {
+          width: 100%;
+        }
+      }
+    }
+
+    // multiple portfolio
+
+    .cash-account {
+      margin: 20px 0;
+      color: $fund-cash-account-color;
+
+      .cash-account-content {
+        .investment-value {
+          font-family: $muli-bold;
+          font-size: 21px;
+          letter-spacing: -0.39px;
+          text-align: center;
+          color: $fund-investment-value-color;
+          padding-bottom: 5px;
+        }
+
+        .cash-account-balance {
+          font-size: 14px;
+          letter-spacing: -0.14px;
+          text-align: center;
+          color: $fund-cash-balance-color;
+          padding-bottom: 13px;
+        }
+
+        .ref-code {
+          padding: 14px 0 10px;
+          font-family: $muli-bold;
+          font-size: 18px;
+          line-height: 1.17;
+          letter-spacing: -0.17px;
+          text-align: center;
+          color: $fund-ref-color;
+          border-radius: 4px;
+          border: 2px solid $fund-ref-brdr-color;
+          background-color: $fund-ref-bg-color;
+          margin-bottom: 10px;
+        }
+
+        .note-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 15px;
+          display: flex;
+          margin-top: 5px;
+        }
+
+        .note {
+          font-family: $muli-regular;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.62;
+          letter-spacing: -0.12px;
+          color: $fund-cash-note-color;
+
+          span {
+            font-family: $muli-bold;
+          }
+        }
+
+      }
+    }
+  }
+
+  .multiline-ellipsis {
+    max-width: 200px;
+    letter-spacing: -0.16px;
+    text-transform: capitalize;
+    @include allmobiles {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /* autoprefixer: off */
+      -webkit-box-orient: vertical;
+      max-width: 130px;
+      word-break: break-word;
+      letter-spacing: -0.16px;
     }
   }
 }
+
