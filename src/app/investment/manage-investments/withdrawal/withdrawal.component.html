@@ -76,7 +76,8 @@
                 </div>
               </div>
             </div>
-            <div class="form-group" *ngIf="withdrawForm.get('withdrawAmount')">
+            <!-- AMOUNT -->
+            <div class="form-group" *ngIf="withdrawForm.controls.withdrawType.value && withdrawForm.get('withdrawAmount')">
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
