@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -9,6 +10,7 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
@@ -31,7 +33,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
   styleUrls: ['./investment-overview.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class InvestmentOverviewComponent implements OnInit {
+export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   totalPortfolio;
   welcomeInfo;
   investmentoverviewlist: any;
@@ -56,6 +58,7 @@ export class InvestmentOverviewComponent implements OnInit {
   transferInstructionModal;
   isToastMessageShown;
   toastMsg;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -88,10 +91,16 @@ export class InvestmentOverviewComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
+    this.headerSubscription();
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   getMoreList() {
@@ -305,5 +314,13 @@ export class InvestmentOverviewComponent implements OnInit {
 
   scrollTop() {
     window.scrollTo(0, 0);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      }
+    });
   }
 }
