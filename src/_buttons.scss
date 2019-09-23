@@ -134,6 +134,7 @@ button:active:focus {
     border-color: transparent;
     box-shadow: none;
     border: none;
+    cursor: not-allowed;
 
     &:hover {
       background-color: $btn-disabled-bg !important;
@@ -206,6 +207,7 @@ button:active:focus {
 
 .btn:disabled:hover {
   background: #009a9a !important;
+  cursor: not-allowed;
 }
 
 /*Fixed button small*/

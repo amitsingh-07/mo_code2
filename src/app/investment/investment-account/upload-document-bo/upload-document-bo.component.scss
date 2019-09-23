@@ -138,6 +138,7 @@ app-upload-document-bo {
         flex: 1;
         margin-right: 10px;
         margin-bottom: 38px;
+        cursor: pointer;
 
         @include desktop {
           min-height: 165px;
@@ -172,7 +173,6 @@ app-upload-document-bo {
           display: flex;
           align-items: center;
           padding: 10px 0 20px;
-          cursor: pointer;
 
           .thumbnail {
             margin: 0 auto;
