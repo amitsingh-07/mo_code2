@@ -261,8 +261,16 @@ export class InvestmentOverviewComponent implements OnInit {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
-  gotoTopUp() {  // GO TO TOP-UP
-    this.manageInvestmentsService.clearTopUpData();
+  gotoTopUp(portfolio?) {
+    // Added check if got portfolio, set it as selected one else set null for the main top up button
+    if (portfolio) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
+    } else {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    }
+     // GO TO TOP-UP
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 

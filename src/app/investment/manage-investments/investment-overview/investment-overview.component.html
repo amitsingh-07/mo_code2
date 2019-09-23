@@ -79,7 +79,7 @@
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (investAgainSelected)="investAgain($event)"
-  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
+  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
   [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
 <div class="container-fluid max-width--1024"
