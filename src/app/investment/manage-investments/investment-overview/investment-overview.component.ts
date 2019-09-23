@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -71,12 +72,14 @@ export class InvestmentOverviewComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
       this.setPageTitle(this.pageTitle);
+      this.getInvestmentOverview();
     });
   }
 
@@ -89,7 +92,6 @@ export class InvestmentOverviewComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getMoreList();
-    this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
@@ -119,7 +121,12 @@ export class InvestmentOverviewComponent implements OnInit {
   }
 
   getInvestmentOverview() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.TITLE'),
+      desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE')
+    });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoader();
       if (data.responseMessage.responseCode >= 6000) {
         this.setInvestmentData(data);
       } else if (
@@ -141,6 +148,7 @@ export class InvestmentOverviewComponent implements OnInit {
       }
     },
       (err) => {
+        this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       });
   }

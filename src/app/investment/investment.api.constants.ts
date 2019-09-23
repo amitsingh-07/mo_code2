@@ -41,7 +41,7 @@ export let investmentApiConstants = {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
             getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks',
             addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?handleError=true',
-            getTransactions: INVESTMENT_API_BASE_URL + '/customer/transactions',
+            getTransactions: INVESTMENT_API_BASE_URL + '/customers/portfolios/',
             getStatement: INVESTMENT_API_BASE_URL + '/getStatements',
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/CustomerInvestmentObjective',
             getFirstInvAccountCreationStatus: INVESTMENT_API_BASE_URL + '/customer/investmentAccount/actions'

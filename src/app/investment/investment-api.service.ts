@@ -243,16 +243,15 @@ export class InvestmentApiService {
       );
   }
 
-  getTransactionHistory(from?, to?) {
-    const queryString = from ? '?fromDate=' + from + '&toDate=' + to : '';
-    return this.http.get(investmentApiConstants.endpoint.investment.getTransactions + queryString)
+  getTransactionHistory(id) {
+    return this.http.get(investmentApiConstants.endpoint.investment.getTransactions + id + '/transactions/search')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   downloadStatement(data) {
-    return this.http.getBlob(investmentApiConstants.endpoint.investment.getStatement + '?' + data)
+    return this.http.getBlob(investmentApiConstants.endpoint.investment.getTransactions + '' + data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

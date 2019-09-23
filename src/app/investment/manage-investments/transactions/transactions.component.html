@@ -10,9 +10,9 @@
             <div class="flex-row user_content flex-col-12">
               <div class="user_summary" id="your_portfolio_summary">
                 <div class="user_portfolio flex-col">
-                  <div class="user_portfolio_lbl">Happy</div>
+                  <div class="user_portfolio_lbl">{{portfolio?.portfolioName}}</div>
                   <!-- {{portfolio.portfolioName}}-->
-                  <div>Transactions</div>
+                  <div>{{ 'TRANSACTIONS.TITLE' | translate}}</div>
                   <!-- {{this.pageTitle}} -->
                 </div>
               </div>
@@ -25,7 +25,6 @@
 <div class="transaction-panel">
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title hidden-sm-md">Transactions</div>
       <ngb-tabset>
         <ngb-tab title="History">
           <ng-template ngbTabContent>
@@ -61,6 +60,10 @@
                             <div class="flex-col-5 text-right">
                               <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span>
                               {{fund.splitAmount | currency }}
+                            </div>
+                            <div class="flex-col-12 text-left unit-price">
+                              <span>Units Price: {{'$'+fund.unitPrice}} </span>
+                              <span>Units: {{fund.unit}}</span>
                             </div>
                           </div>
                         </div>

@@ -26,7 +26,7 @@ export class TransactionsComponent implements OnInit {
   Object = Object;
   activeTransactionIndex;
   userProfileInfo;
-
+  portfolio: any;
   constructor(
     private router: Router,
     public footerService: FooterService,
@@ -38,6 +38,7 @@ export class TransactionsComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService
   ) {
+    this.portfolio = this.manageInvestmentsService.getSelectedCustomerPortfolio();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('TRANSACTIONS.TITLE');
@@ -49,19 +50,21 @@ export class TransactionsComponent implements OnInit {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getTransactionHistory();
+    this.createTransactionStatement();
+  }
 
-    // Statement
-    this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    if (
-      this.userProfileInfo.investementDetails &&
-      this.userProfileInfo.investementDetails.account &&
-      this.userProfileInfo.investementDetails.account.accountCreatedDate
-    ) {
+  createTransactionStatement() {
+    if (this.portfolio.pendingRequestDTO &&
+      this.portfolio.pendingRequestDTO.transactionDetailsDTO &&
+      this.portfolio.pendingRequestDTO.transactionDetailsDTO &&
+      this.portfolio.pendingRequestDTO.transactionDetailsDTO[0]) {
       const accountCreationDate = this.convertStringToDate(
-       this.userProfileInfo.investementDetails.account.accountCreatedDate
+        // this.userProfileInfo.investementDetails.account.accountCreatedDate
+        '12-03-2019'
       );
       const recentStatementAvailDate = this.convertStringToDate(
-        this.userProfileInfo.investementDetails.account.statementCreatedDate
+        // this.userProfileInfo.investementDetails.account.statementCreatedDate
+        '12-09-2019'
        );
       this.statementMonthsList = this.manageInvestmentsService.getMonthListByPeriod(
         accountCreationDate,
@@ -69,8 +72,10 @@ export class TransactionsComponent implements OnInit {
       );
     }
   }
+
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title, null, false, false, true);
+    console.log(this.portfolio.portfolioName);
+    this.navbarService.setPageTitle(this.portfolio.portfolioName, title, false, false, true);
   }
 
   convertStringToDate(dateStr) {
@@ -78,31 +83,36 @@ export class TransactionsComponent implements OnInit {
     return new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
   }
 
-  getTransactionHistory(from?, to?) {
+  getTransactionHistory() {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.TITLE'),
         desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE')
       });
     });
-    this.manageInvestmentsService.getTransactionHistory(from, to).subscribe((response) => {
+    if (this.portfolio) {
+      this.manageInvestmentsService.getTransactionHistory(
+        this.portfolio.customerPortfolioId).subscribe((response) => {
+        this.loaderService.hideLoader();
+        this.transactionHistory = response.objectList;
+        this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
+        this.investmentEngagementJourneyService.sortByProperty(
+          this.transactionHistory,
+          'createdDate',
+          'desc'
+        );
+        this.transactionHistory = new GroupByPipe().transform(
+          this.transactionHistory,
+          'displayCreatedDate'
+        );
+      },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+    } else {
       this.loaderService.hideLoader();
-      this.transactionHistory = response.objectList;
-      this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
-      this.investmentEngagementJourneyService.sortByProperty(
-        this.transactionHistory,
-        'createdDate',
-        'desc'
-      );
-      this.transactionHistory = new GroupByPipe().transform(
-        this.transactionHistory,
-        'displayCreatedDate'
-      );
-    },
-    (err) => {
-      this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
-    });
+    }
   }
 
   calculateSplitAmounts(transactionHistory) {
@@ -119,14 +129,14 @@ export class TransactionsComponent implements OnInit {
   }
 
   downloadStatement(month) {
-    const params = this.constructDownloadStatementParams(month);
+    const param = this.constructDonwloadStatementParam(month);
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.TITLE'),
         desc: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.MESSAGE')
       });
     });
-    this.manageInvestmentsService.downloadStatement(params).subscribe((response) => {
+    this.manageInvestmentsService.downloadStatement(param).subscribe((response) => {
       this.loaderService.hideLoader();
       this.downloadFile(response, month);
     },
@@ -141,6 +151,13 @@ export class TransactionsComponent implements OnInit {
     params = params.append('month', data.monthName.substring(0, 3).toUpperCase());
     params = params.append('year', data.year);
     return params;
+  }
+
+  constructDonwloadStatementParam(data) {
+    if (this.portfolio && data && data.monthName) {
+      return this.portfolio.customerPortfolioId + '/statements/' + data.monthName.substring(0, 3).toUpperCase() + '/' + data.year;
+    }
+    return '';
   }
 
   downloadFile(data, month) {

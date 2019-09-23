@@ -327,8 +327,8 @@ export class ManageInvestmentsService {
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
-  getTransactionHistory(from?, to?) {
-    return this.investmentApiService.getTransactionHistory(from, to);
+  getTransactionHistory(id) {
+    return this.investmentApiService.getTransactionHistory(id);
   }
 
   getPortfolioAllocationDetails(params) {
@@ -511,6 +511,10 @@ export class ManageInvestmentsService {
   setSelectedCustomerPortfolio(portfolio) {
     this.manageInvestmentsFormData.selectedCustomerPortfolio = portfolio;
     this.commit();
+  }
+
+  getSelectedCustomerPortfolio() {
+    return this.manageInvestmentsFormData.selectedCustomerPortfolio;
   }
 
 }
