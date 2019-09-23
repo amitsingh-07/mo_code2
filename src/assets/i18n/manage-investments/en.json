@@ -40,7 +40,7 @@
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investments",
     "PROFILE_DEC": "Here’s a performance summary of your investments.",
-    "TOTAL_VALUE": "Total Value",
+    "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "TOTAL_INVESTED": "Total Invested",
