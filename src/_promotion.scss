@@ -710,7 +710,7 @@
                             }
                             @include minMobilemaxPhablet{
                                 margin-bottom:18px;
-                                height:236px;
+                                min-height:236px;
                                 width:230px;
                                 .arrow{
                                     display:none;
