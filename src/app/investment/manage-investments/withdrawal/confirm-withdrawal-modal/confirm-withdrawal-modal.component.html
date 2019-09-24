@@ -32,7 +32,7 @@
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
         </div>
       </div>
-    <button type="button" (click)="confirmWithdrawal()" class="btn btn-primary-dark width100 mt5" id="incomeBtn">{{
+    <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5" id="incomeBtn">{{
       'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
   </div>
 </div>
