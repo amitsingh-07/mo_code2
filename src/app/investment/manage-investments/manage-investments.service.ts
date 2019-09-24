@@ -392,8 +392,8 @@ export class ManageInvestmentsService {
     }
   }
 
-  downloadStatement(data) {
-    return this.investmentApiService.downloadStatement(data);
+  downloadStatement(data, id) {
+    return this.investmentApiService.downloadStatement(data, id);
   }
 
   /*

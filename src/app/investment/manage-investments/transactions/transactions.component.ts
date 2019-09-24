@@ -124,14 +124,14 @@ export class TransactionsComponent implements OnInit {
   }
 
   downloadStatement(month) {
-    const param = this.constructDonwloadStatementParam(month);
+    const params = this.constructDonwloadStatementParams(month);
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.TITLE'),
         desc: this.translate.instant('TRANSACTIONS.MODAL.STATEMENT_FETCH_LOADER.MESSAGE')
       });
     });
-    this.manageInvestmentsService.downloadStatement(param).subscribe((response) => {
+    this.manageInvestmentsService.downloadStatement(params, this.portfolio.customerPortfolioId).subscribe((response) => {
       this.loaderService.hideLoader();
       this.downloadFile(response, month);
     },
@@ -141,16 +141,9 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  constructDownloadStatementParams(data) {
-    let params = new HttpParams();
-    params = params.append('month', data.monthName.substring(0, 3).toUpperCase());
-    params = params.append('year', data.year);
-    return params;
-  }
-
-  constructDonwloadStatementParam(data) {
-    if (this.portfolio && data && data.monthName) {
-      return this.portfolio.customerPortfolioId + '/statements/' + data.monthName.substring(0, 3).toUpperCase() + '/' + data.year;
+  constructDonwloadStatementParams(data) {
+    if (data && data.monthName) {
+      return data.monthName.substring(0, 3).toUpperCase() + '/' + data.year;
     }
     return '';
   }
