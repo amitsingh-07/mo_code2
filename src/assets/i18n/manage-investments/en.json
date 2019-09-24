@@ -110,12 +110,12 @@
         "VALIDATION_MESSAGE": "Please enter Alphabets and Numbers only",
         "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
         "MAX_NUMBER_CHARACHTER": "/ 50 characters",
-        "LOADING_TITLE": "Loading...",
+        "LOADING_TITLE": "Loading.",
         "LOADING_DESC": "Please wait."
       },
       "INVESTMENT_OVERVIEW": {
-        "TITLE": "Loading Investment Overview",
-        "MESSAGE": "Please wait while we Investment Overview."
+        "TITLE": "Loading.",
+        "MESSAGE": "Please wait."
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
