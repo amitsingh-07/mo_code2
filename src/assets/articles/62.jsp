@@ -11,7 +11,7 @@
 </p>
 <p>
     <h5>The case for preparing your will now</h5> 
-    <p><a href="https://www.moneyowl.com.sg/#/will-writing">Making your own will</a> means you get to make the decision for your assets and your family yourself. Making your will is your final act of love to your family.<br/><br/>
+    <p><a href="https://www.moneyowl.com.sg/will-writing">Making your own will</a> means you get to make the decision for your assets and your family yourself. Making your will is your final act of love to your family.<br/><br/>
     Here are some good reasons to have a well-thought out will prepared, no matter how old or young you are, or how much you have.</p>
 </p> 
 <p>
@@ -89,10 +89,10 @@
     </p>
 <p>
     <h5>So how can I get my will written quickly</h5>
-    <p>There are many ways to write a will. If your estate is relatively uncomplicated, you can easily find <a href="https://www.moneyowl.com.sg/#/faq#will-writing">guidelines</a> on how you can write a will on your own. However, you may wish to have someone else to prepare it with you, to ensure you fulfil every legal requirement and account for every aspect of your estate planning.</p>
-    <p>In this case, you can opt for a will writing service offered by <a href="https://www.moneyowl.com.sg/#/home">MoneyOwl</a>, so you can be assured that your last will and testament fulfils all the legal requirements, without incurring the costs and hassle of getting it drafted, approved or witnessed by a lawyer. This simple will writing service is eligible for anyone who is at least 21 years of age, and who has a sound mind.</p>
-    <p><a href="https://www.moneyowl.com.sg/#/will-writing">MoneyOwl’s will writing service</a> would also work best for people who do not have overseas assets or complicated distribution requirements.</p>
-    <p>On the other hand, <a href="https://www.moneyowl.com.sg/#/will-writing/">MoneyOwl’s will writing service</a> will not be able to cover the needs listed below. 
+    <p>There are many ways to write a will. If your estate is relatively uncomplicated, you can easily find <a href="https://www.moneyowl.com.sg/faq#will-writing">guidelines</a> on how you can write a will on your own. However, you may wish to have someone else to prepare it with you, to ensure you fulfil every legal requirement and account for every aspect of your estate planning.</p>
+    <p>In this case, you can opt for a will writing service offered by <a href="https://www.moneyowl.com.sg/home">MoneyOwl</a>, so you can be assured that your last will and testament fulfils all the legal requirements, without incurring the costs and hassle of getting it drafted, approved or witnessed by a lawyer. This simple will writing service is eligible for anyone who is at least 21 years of age, and who has a sound mind.</p>
+    <p><a href="https://www.moneyowl.com.sg/will-writing">MoneyOwl’s will writing service</a> would also work best for people who do not have overseas assets or complicated distribution requirements.</p>
+    <p>On the other hand, <a href="https://www.moneyowl.com.sg/will-writing/">MoneyOwl’s will writing service</a> will not be able to cover the needs listed below. 
         <ul>
             <li>Muslim wills. Muslim wills must adhere to Faraid guidelines. Unfortunately, we are not able to provide this service.</li> 
             <li>If you want to give a combination of fixed amounts and percentages. For example, if you have $100,000 of assets and wish to give a fixed amount of $40,000 to your mother and the residual assets ($60,000) to be divided among your siblings by proportion.</li>
@@ -100,7 +100,7 @@
             <li>If your needs are more complex. For example, if you wish to distribute your estate primarily to your spouse and children, but in the event where the entire family passes on in a common disaster, you might want to re-distribute your estate wishes.</li>
             </ul>
     </p>
-    <p>In <a href="https://www.moneyowl.com.sg/#/will-writing">MoneyOwl’s will writing process</a>, we will guide you in identifying your beneficiaries and the proportion of estate you intend to distribute, as well as guardians (if you have a young child), executors and trustees. For more advanced needs, you may wish to seek legal advice.</p> 
-    <p>With <a href="https://www.moneyowl.com.sg/#/will-writing">MoneyOwl’s online will writing service</a>, you don't have to procrastinate any longer - it is easy, simple and fast. </p>
+    <p>In <a href="https://www.moneyowl.com.sg/will-writing">MoneyOwl’s will writing process</a>, we will guide you in identifying your beneficiaries and the proportion of estate you intend to distribute, as well as guardians (if you have a young child), executors and trustees. For more advanced needs, you may wish to seek legal advice.</p> 
+    <p>With <a href="https://www.moneyowl.com.sg/will-writing">MoneyOwl’s online will writing service</a>, you don't have to procrastinate any longer - it is easy, simple and fast. </p>
 </p>
-<a class="btn btn-primary text-white" href="https://www.moneyowl.com.sg/#/will-writing">Start your will writing journey today</a>
+<a class="btn btn-primary text-white" href="https://www.moneyowl.com.sg/will-writing">Start your will writing journey today</a>

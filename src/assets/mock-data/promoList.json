@@ -202,7 +202,7 @@
         "date_expiry": "1620230399000",
         "tag" : ["Wills"],
         "external": true,
-        "url": "https://www.moneyowl.com.sg/#/home#subscribe",
+        "url": "https://www.moneyowl.com.sg/home#subscribe",
         "button_label": "Subscribe Now!"
     },
     {
@@ -263,6 +263,18 @@
         "date_created": "1565193600000",
         "date_expiry": "1569254399000",
         "tag": ["Insurance"],
+        "external": false
+    },
+    {
+        "promoId": 20,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,200 CapitalVouchers when you start today!",
+        "thumbnail": "/assets/promotions/images/20/main.jpg",
+        "desc": "Enjoy up to $1200 CapitaVouchers with purchase of selected NTUC Income’s plans",
+        "date_created": "1568053800000",
+        "date_expiry": "1572201000000",
+        "tag": ["Insurance", "Retirement"],
         "external": false
     }
 ]

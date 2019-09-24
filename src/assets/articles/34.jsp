@@ -72,7 +72,7 @@
   <p class="text-muted"><em>The edited version appeared in The Straits Times on 15th May 2016.</em></p>
   <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme">
   <img src="assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

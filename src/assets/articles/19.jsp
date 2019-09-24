@@ -88,7 +88,7 @@
 <p>I  hope that more of us will understand and spread the word of the purpose of  insurance and the importance of insuring ourselves sufficiently. We do not have  to overpay when we purchase the right type of insurance and it does not cost us  an arm and a leg for us to be adequately insured for our loved ones.</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme/">
 	<img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

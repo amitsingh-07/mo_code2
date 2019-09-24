@@ -1,4 +1,3 @@
-import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,6 +28,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
+import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
@@ -386,8 +386,6 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
-  
 
   // Show SRS Joint Account Popup
   openSRSJointAccPopup() {

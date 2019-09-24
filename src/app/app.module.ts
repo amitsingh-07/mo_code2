@@ -4,7 +4,7 @@ import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqx
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
-    CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe
+    CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {
     HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
@@ -189,7 +189,7 @@ export function tokenGetterFn() {
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
