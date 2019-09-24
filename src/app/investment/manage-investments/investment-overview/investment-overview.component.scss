@@ -167,6 +167,7 @@ app-investment-overview {
       @include allmobiles {
         padding-left: 15px !important;
         padding-right: 15px !important;
+        padding-bottom: 20px !important;
       }
     }
   }
@@ -262,6 +263,7 @@ app-investment-overview {
                   letter-spacing: -0.3px;
                   white-space: normal;
                   word-wrap: break-word;
+                  text-transform: capitalize;
                   @include allmobiles{
                     padding-right: 55px;
                   }
@@ -351,6 +353,7 @@ app-investment-overview {
 
     @include allmobiles {
       padding: 30px 15px 12px;
+      margin-bottom: 0 !important;
     }
 
     .msg {
@@ -410,7 +413,7 @@ app-investment-overview {
         padding-bottom: 20px !important;
 
         @include allmobiles {
-          padding-bottom: 50px !important;
+          padding-bottom: 0px !important;
         }
       }
     }

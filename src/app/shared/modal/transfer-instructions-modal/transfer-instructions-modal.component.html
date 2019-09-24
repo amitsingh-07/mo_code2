@@ -13,13 +13,13 @@
   </div>
   <div class="cash-account">
     <div class="flex-row" *ngIf="!numberOfPendingReq">
-      <div class="text-center width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}</div>
+      <div class="transfer-instruction-lbl width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}</div>
       <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="goToTopUp()">
         <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg"
             alt="" /></span> <span>{{ 'TRANSFER_INSTRUCTION.TOP_UP' | translate }}</span>
       </button>
     </div>
-    <div class="text-center mb20" *ngIf="numberOfPendingReq">
+    <div class="transfer-instruction-lbl mb20" *ngIf="numberOfPendingReq">
       {{ 'TRANSFER_INSTRUCTION.TRANSFER_INSTRUCTION_LBL' | translate }}</div>
     <div class="form-group-with-bg" *ngIf="numberOfPendingReq">
       <!--Form Content-->
@@ -27,7 +27,7 @@
         <div class="cash-account-content">
           <div class="ref-code">{{ 'TRANSFER_INSTRUCTION.REFERENCE_CODE_LBL' | translate }}
             {{bankDetails.referenceNumber}}</div>
-          <div class="flex align-center">
+          <div class="flex align-flex-start">
             <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
             <div class="note" innerHTML="{{'TRANSFER_INSTRUCTION.NOTE' | translate}}"></div>
           </div>
