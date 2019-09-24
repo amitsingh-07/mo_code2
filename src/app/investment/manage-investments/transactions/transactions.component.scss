@@ -2,6 +2,49 @@
 @import '../../../../_mixins.scss';
 //Transaction Module Styles
 app-transactions {
+
+  .invest-section {
+    @include allmobiles {
+      display: none;
+    }
+  }
+
+  .invest-bg-content {
+    .user_content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 75px;
+
+      @include allmobiles {
+        padding-left: 20px;
+      }
+    }
+
+    .user_summary {
+      display: flex;
+      padding-top: 45px;
+      padding-left: 37px;
+      font-family: $muli-regular;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+
+      .user_portfolio_lbl {
+        font-size: 18px;
+        max-width: 500px;
+        line-height: normal;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+
+      div {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -0.41px;
+      }
+    }
+  }
+
+
   .container-fluid{
     padding-top: 0px;
     padding-bottom: 0px;
@@ -133,11 +176,21 @@ app-transactions {
       min-height: calc(100vh - 222px);
       padding-top: 10%;
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       @include allmobiles{
         min-height: calc(100vh - 154px);
         padding-top: 65px;
       }
+    }
+  }
+  .unit-price {
+    font-family: Muli;
+    font-size: 14px;
+    letter-spacing: -0.26px;
+    text-align: right;
+    color: #777777 !important;
+    span{
+      padding-right: 10px;
     }
   }
 }

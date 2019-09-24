@@ -1,7 +1,30 @@
+<section class="invest-section">
+    <div class="invest-section-items">
+      <div class="invest-section-content">
+        <div class="invest-bg">
+          <div class="invest-bg-media">
+            <div class="invest-bg-image"></div>
+            <div class="invest-bg-color"></div>
+          </div>
+          <div class="invest-bg-content">
+            <div class="flex-row user_content flex-col-12">
+              <div class="user_summary" id="your_portfolio_summary">
+                <div class="user_portfolio flex-col">
+                  <div class="user_portfolio_lbl">{{portfolio?.portfolioName}}</div>
+                  <!-- {{portfolio.portfolioName}}-->
+                  <div>{{ 'TRANSACTIONS.TITLE' | translate}}</div>
+                  <!-- {{this.pageTitle}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <div class="transaction-panel">
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title hidden-sm-md">Transactions</div>
       <ngb-tabset>
         <ngb-tab title="History">
           <ng-template ngbTabContent>
@@ -37,6 +60,10 @@
                             <div class="flex-col-5 text-right">
                               <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span>
                               {{fund.splitAmount | currency }}
+                            </div>
+                            <div class="flex-col-12 text-left unit-price">
+                              <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{'$'+fund.unitPrice}} </span>
+                              <span>{{ 'TRANSACTIONS.UNITS' | translate}} {{fund.unit}}</span>
                             </div>
                           </div>
                         </div>
