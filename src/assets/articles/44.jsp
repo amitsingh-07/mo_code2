@@ -33,7 +33,7 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 	<p> <a href="https://www.iras.gov.sg/irashome/Individuals/Locals/Working-Out-Your-Taxes/Income-Tax-Rates/" target="_blank">Based on current  tax rates</a>, the first $20,000 is not taxable and hence you do not  have to pay any taxes if you have no additional income. </p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
 	<img src=" /assets/articles/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
 -->

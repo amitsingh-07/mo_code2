@@ -14,7 +14,7 @@
 <br><p><strong>50% Commission Rebates* and Promotions</strong></p>
 <p>In addition to ongoing promotions which could significantly reduce your cost, MoneyOwl provides 50% commission rebates* back to all consumers in cash when you purchase any product through us and that means greater cost savings to you.</p>
 <br><p><strong>No limits to amount of Insurance Coverage</strong></p>
-<p>A person will easily need $700,000 to more than $1million of life insurance coverage. An illustration of a life insurance calculation can be found in <a href=" https://www.moneyowl.com.sg/#/articles/entry/16">this article</a>. This is to sufficiently provide for our dependents' livelihood on our unfortunate demise. Not having sufficient coverage means our dependents may have trouble paying off our housing loan, education fees and to maintain their lifestyle without an income.</p> 
+<p>A person will easily need $700,000 to more than $1million of life insurance coverage. An illustration of a life insurance calculation can be found in <a href=" https://www.moneyowl.com.sg/articles/entry/16">this article</a>. This is to sufficiently provide for our dependents' livelihood on our unfortunate demise. Not having sufficient coverage means our dependents may have trouble paying off our housing loan, education fees and to maintain their lifestyle without an income.</p> 
 <br><p>Assuming an example of the following  profile:</p>
 <div class="white-box">
 <p>A 30 year-old Male <br>
@@ -150,4 +150,4 @@
 </div>
 -->
 <br/>
-<small class="text-muted">*Please refer to our <a href="https://www.moneyowl.com.sg/#/faq">FAQ</a> on how rebates work.</small>
+<small class="text-muted">*Please refer to our <a href="https://www.moneyowl.com.sg/faq">FAQ</a> on how rebates work.</small>

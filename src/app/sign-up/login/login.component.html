@@ -56,10 +56,10 @@
 
           <!-- FORGOT -->
           <div class="forgot-link" *ngIf="!hideForgotPassword">
-            <a id="login_forgotpwd_link" [routerLink]="'/account/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}} <!-- <span id="login_clickhere_lbl" class="mobile-only">{{
+            <a id="login_forgotpwd_link" [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}} <!-- <span id="login_clickhere_lbl" class="mobile-only">{{
                 'LOGIN.CLICK_HERE' | translate}}</span>--></a>
           </div>
-          <div class="start-link"><a id="login_signup_link" [routerLink]="'/account/sign-up'">Don’t have an account? Get started!</a></div>
+          <div class="start-link"><a id="login_signup_link" [routerLink]="'/accounts/sign-up'">Don’t have an account? Get started!</a></div>
           <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button" class="btn btn__footer--fixed btn-primary width100 ">{{
             'COMMON.LOGIN' | translate }}</button>
         </form>

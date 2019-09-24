@@ -63,7 +63,7 @@
 <p>Let&rsquo;s encourage one another to clear our  debts, build our emergency savings, plan for our important expenses and insure ourselves adequately now. We are not only doing ourselves a favour but a very  important favour for our loved ones as well.</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme/">
   <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->
