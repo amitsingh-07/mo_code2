@@ -24,11 +24,6 @@ const routes: Routes = [
     canActivate: [InvestmentCommonGuardService]
   },
   {
-    path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
-    component: FundingInstructionsComponent,
-    canActivate: [InvestmentCommonGuardService]
-  },
-  {
     path: INVESTMENT_COMMON_ROUTES.ADD_PORTFOLIO_NAME,
     component: AddPortfolioNameComponent,
     canActivate: [InvestmentCommonGuardService]
@@ -36,6 +31,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.FUND_INTRO,
     component: FundingIntroComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
+    component: FundingInstructionsComponent,
     canActivate: [AuthGuard]
   }
 ];
