@@ -27,8 +27,9 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
     this.WITHDRAW_CONSTANTS = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW;
   }
 
-  confirmWithdrawal() {
+  confirmWithdrawal(event) {
     this.confirmed.emit();
+    event.stopPropagation();
   }
   learnMore() {
     this.showLearnMore.emit();
