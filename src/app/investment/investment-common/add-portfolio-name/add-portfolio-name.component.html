@@ -1,43 +1,52 @@
 <div class="portfolio-naming-modal-backdrop"></div>
 <div class="portfolio-naming-modal-wrapper">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true"></span>
-  </button>
   <form [formGroup]="portfolioNameFormGroup">
-    <div class="portfolio-naming">
-      <div class="title">{{
+    <div class="portfolio-block">
+      <div class="portfolio-naming">
+        <div *ngIf="!accountCreationStatus" class="title">{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE' | translate}}</div>
-      <div class="portfolio-success mb30">
-        <img src={{profileIcon}} id="riskProfileImg" />
+        <div *ngIf="accountCreationStatus" class="title">{{
+                'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE_TWO' | translate}}</div>
+        <div *ngIf="!accountCreationStatus" class="portfolio-success mb30">
+          <img src={{profileIcon}} id="riskProfileImg" />
+        </div>
+        <div *ngIf="accountCreationStatus" class="portfolio-success mb30">
+          <img src={{portfolioSuccessIcon}} id="riskProfileImg" />
+        </div>
+        <div class="portfolio_name_title">{{defaultPortfolioName}}</div>
       </div>
       <div class="portfolio-naming--content">
         <div class="flex-col-12">
           <div class="desc">{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}</div>
-          <div class="form-control mt20"
-            [ngClass]="{'inline-error':getInlineErrorStatus(portfolioNameFormGroup.controls.portfolioName)}">
-            <input class="input-control" type="text" 
-            [placeholder]="getDefaultPortfolioName()"
+          <div class="form-control mt20" [ngClass]="{'inline-error': showErrorMessage}">
+            <input class="input-control" type="text" placeholder="Enter a unique portfolio name" #portfolioName
               formControlName="portfolioName" (keyup)="showLength($event)" maxlength="50">
           </div>
-          <div  *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine" class="error-message">
+          <div
+            *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine"
+            class="error-message">
             {{
-              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}} 
-           </div>
-          <div  *ngIf="showErrorMessage" class="error-message">
+              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}}
+          </div>
+          <div *ngIf="showErrorMessage" class="error-message">
             <span><img class="success-tick"
                 src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
             <span>{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ERROR_MESSAGE' | translate}}</span>
           </div>
-       </div>
-        <div class="characters">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} / 50 characters</div>
-        <button type="button" [disabled]="!portfolioNameFormGroup.controls.portfolioName.value"
-          class="btn btn-primary width100 pt10 mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
-          id="prfBtn1">{{
-            'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
+        </div>
+        <div class="characters">{{characterLength ? characterLength : (userPortfolioName ? userPortfolioName :0)}}
+          / 50 characters</div>
+
+        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
+          id="prfBtn1" *ngIf="!accountCreationStatus">{{
+            'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CONTINUE' | translate}}</button>
+
+        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
+          id="prfBtn1" *ngIf="accountCreationStatus">
+          {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
       </div>
     </div>
   </form>
 </div>
-

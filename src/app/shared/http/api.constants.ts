@@ -19,7 +19,7 @@ export let apiConstants = {
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: INSURANCE_RECOMMEND_API_BASE_URL + '/getRecommendations',
         updateProductEnquiry: ACCOUNT_API_BASE_URL + '/updateCustomerEnquiry',
-        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoV3',
+        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         signUp: ACCOUNT_API_BASE_URL + '/signupV2',
         updateUserId: ACCOUNT_API_BASE_URL + '/updatePersonalDetails?handleError=true',
         verifyOTP: ACCOUNT_API_BASE_URL + '/verifyOTP',

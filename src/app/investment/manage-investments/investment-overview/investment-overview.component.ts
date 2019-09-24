@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -74,7 +75,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -91,9 +93,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
+    this.getInvestmentOverview();
     this.headerSubscription();
     this.getMoreList();
-    this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
@@ -128,7 +130,14 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   getInvestmentOverview() {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
+        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE')
+      });
+    });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoader();
       if (data.responseMessage.responseCode >= 6000) {
         this.setInvestmentData(data);
       } else if (
@@ -150,6 +159,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       }
     },
       (err) => {
+        this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       });
   }

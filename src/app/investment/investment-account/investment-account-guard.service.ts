@@ -3,37 +3,30 @@ import { CanActivate, Router } from '@angular/router';
 
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { SignUpService } from '../../sign-up/sign-up.service';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from './investment-account.constant';
+import { InvestmentCommonService } from './../investment-common/investment-common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvestmentAccountGuardService implements CanActivate {
   constructor(
-    private signUpService: SignUpService,
     private route: Router,
+    private investmentCommonService: InvestmentCommonService,
     private authService: AuthenticationService
-  ) {}
-  canActivate(): boolean {
-    // tslint:disable-next-line: no-commented-code
-    /*
-    const investmentStatus = this.signUpService.getInvestmentStatus();
-    if (!this.authService.isSignedUser()) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-      return false;
-    } else if (
-      INVESTMENT_ACCOUNT_CONSTANTS.INVESTMENT_ACCOUNT_GUARD_STATUS.indexOf(investmentStatus) >= 0
-    ) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-      return false;
-    }
-    */
-
-   if (!this.authService.isSignedUser()) {
+  ) { }
+  canActivate() {
+    if (this.authService.isSignedUser()) {
+      return this.investmentCommonService.getAccountCreationActions().map((data) => {
+        if (data && data.showInvestmentAccountCreationForm) {
+          return true;
+        } else {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          return false;
+        }
+      });
+    } else {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     }
-    return true;
   }
 }
