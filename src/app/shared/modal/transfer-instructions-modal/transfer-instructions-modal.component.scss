@@ -4,7 +4,8 @@
 .modal-body {
   $self: &;
   padding: 0;
-  border-radius: 0px;
+  padding-bottom: 20px;
+  //border-radius: 0px;
   @include allmobiles {
     padding: 0 !important;
   }
@@ -199,7 +200,7 @@
     .tab-content-container {
       background-color: $bond-container-bg;
       border-radius: 0px 0px 6px 6px;
-      margin-bottom: 16px;
+      margin-bottom: 6px;
       .tab-content {
         display: none;
 
