@@ -83,7 +83,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   }
 
   buildInsuranceForm() {
-    let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan : 0;
+    let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : 0;
     if (this.comprehensiveService.getHomeLoanChanges()) {
       homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount
     }
