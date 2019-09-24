@@ -31,6 +31,3 @@ export class InvestmentCommonGuardService implements CanActivate {
     }
   }
 }
-
-
-if (MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(investmentStatus) < 0 )
