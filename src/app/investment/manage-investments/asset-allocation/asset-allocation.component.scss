@@ -27,11 +27,13 @@ app-asset-allocation {
       font-family: $muli-regular;
       letter-spacing: -0.2px;
       color: #ffffff;
+      padding-bottom: 50px;
 
       .user_portfolio_lbl {
         font-size: 18px;
         max-width: 400px;
         line-height: normal;
+        text-transform: capitalize;
       }
 
       div {
@@ -56,6 +58,7 @@ app-asset-allocation {
 
         @include allmobiles {
           padding-top: 80px;
+          padding-bottom: 60px;
         }
       }
     }

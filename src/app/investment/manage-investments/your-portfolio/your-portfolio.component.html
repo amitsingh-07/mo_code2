@@ -265,8 +265,8 @@
                       <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}}
                         {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
                       <div class="flex-col-12 flex-row">
-                        <div><span
-                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
+                        <div class="flex-row">
+                          <span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
