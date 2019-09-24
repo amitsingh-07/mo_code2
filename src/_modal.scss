@@ -873,3 +873,16 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+// Transfer Instructions modal styles Robo2
+.modal-body {
+  .cash-account{
+    .cash-account-content {
+      .note{
+        span {
+          font-family: $muli-bold;
+        }
+      }
+    }
+  } 
+}
