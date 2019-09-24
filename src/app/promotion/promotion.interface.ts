@@ -16,6 +16,8 @@ export interface IPromotion {
     logo ?: string;
     bundle_enquiry_form_type ?: string;
     bundle_enquiry_form_title ?: string;
+    bundle_enquiry_form_subtitle ?: string;
+    bundle_enquiry_child_enabled ?: boolean;
     tracking_id ?: string;
 }
 
