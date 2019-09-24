@@ -8,7 +8,6 @@ import {
 import { FundingIntroComponent } from '../investment-common/funding-intro/funding-intro.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
-import { AddPortfolioStatusComponent } from './add-portfolio-status/add-portfolio-status.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
     FundingInstructionsComponent
@@ -34,11 +33,6 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.ADD_PORTFOLIO_NAME,
     component: AddPortfolioNameComponent,
-    canActivate: []
-  },
-  {
-    path: INVESTMENT_COMMON_ROUTES.ADD_PORTFOLIO_STATUS,
-    component: AddPortfolioStatusComponent,
     canActivate: []
   },
   {

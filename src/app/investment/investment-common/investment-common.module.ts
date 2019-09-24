@@ -11,7 +11,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
-import { AddPortfolioStatusComponent } from './add-portfolio-status/add-portfolio-status.component';
+
 import {
     AccountCreationErrorModalComponent
 } from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
@@ -52,7 +52,6 @@ export function createTranslateLoader(http: HttpClient) {
     FundingInstructionsComponent,
     AccountCreationErrorModalComponent,
     AddPortfolioNameComponent,
-    AddPortfolioStatusComponent,
     FundingIntroComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],

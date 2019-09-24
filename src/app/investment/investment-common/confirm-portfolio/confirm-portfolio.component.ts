@@ -32,9 +32,6 @@ import { IToastMessage } from '../../manage-investments/manage-investments-form-
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { AddPortfolioNameComponent } from '../add-portfolio-name/add-portfolio-name.component';
-import {
-  AddPortfolioStatusComponent
-} from '../add-portfolio-status/add-portfolio-status.component';
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
