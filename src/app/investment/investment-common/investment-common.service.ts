@@ -10,10 +10,10 @@ import {
 } from '../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments/manage-investments.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
 import { IAccountCreationActions, InvestmentCommonFormData } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -109,7 +109,10 @@ export class InvestmentCommonService {
   /* Login Redirection Logic */
   redirectToInvestmentFromLogin() {
     this.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
-      if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
+      if (this.isUserNotAllowed(data)) {
+        this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+          'INVESTMENT_ADD_PORTFOLIO_ERROR.NOT_ALLOW_USER_ERROR');
+      } else if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
         this.goToFirstAccountCreation(data);
       } else { // SECOND PORTFOLIO
         this.goToAdditionalAccountCreation(data);
@@ -121,33 +124,18 @@ export class InvestmentCommonService {
     if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
     } else {
-      const dashboardMessage = {
-        show: true,
-        title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-        desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
-      };
-      this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
     }
   }
 
   goToAdditionalAccountCreation(data) {
     if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-      const dashboardMessage = {
-        show: true,
-        title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-        desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
-      };
-      this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+        'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
     } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
-      const dashboardMessage = {
-        show: true,
-        title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
-        desc: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
-      };
-      this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
     } else {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
     }
@@ -182,7 +170,15 @@ export class InvestmentCommonService {
 
   isUsersFirstPortfolio(data: IAccountCreationActions) {
     if (data.showInvestmentAccountCreationForm
-      && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_TOPUP_WITHDRAW_GUARD.indexOf(data.accountCreationState) < 0) {
+      && INVESTMENT_COMMON_CONSTANTS.FIRST_PORTFOLIO_GUARD.indexOf(data.accountCreationState) < 0) {
+      return true;
+    }
+    return false;
+  }
+
+  isUserNotAllowed(data: IAccountCreationActions) {
+    if (data.showInvestmentAccountCreationForm
+      && INVESTMENT_COMMON_CONSTANTS.NOT_ALLOW_USER_GUARD.indexOf(data.accountCreationState) >= 0) {
       return true;
     }
     return false;
@@ -190,7 +186,17 @@ export class InvestmentCommonService {
 
   clearJourneyData() {
     this.investmentEngagementJourneyService.clearData();
-   // this.clearConfirmPortfolioName();
+    // this.clearConfirmPortfolioName();
     this.clearAccountCreationActions();
+  }
+
+  goToDashboard(title, error) {
+    const dashboardMessage = {
+      show: true,
+      title: this.translate.instant(title),
+      desc: this.translate.instant(error)
+    };
+    this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }

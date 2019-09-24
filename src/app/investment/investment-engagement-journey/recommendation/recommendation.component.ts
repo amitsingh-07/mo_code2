@@ -106,7 +106,10 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
       this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
-        if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+        if (this.investmentCommonService.isUserNotAllowed(data)) {
+          this.investmentCommonService.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+            'INVESTMENT_ADD_PORTFOLIO_ERROR.NOT_ALLOW_USER_ERROR');
+        } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
         } else {
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
