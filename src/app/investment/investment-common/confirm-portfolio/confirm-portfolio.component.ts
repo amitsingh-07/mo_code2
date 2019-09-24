@@ -483,11 +483,11 @@ export class ConfirmPortfolioComponent implements OnInit {
                 );
                 // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
                 // Show the add portfolio name - TODO
-                this.accountCreationStatus = true;
+                this.accountCreationStatus = false;
                 this.navigationRoute = INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING;
                 this.showAddPortfolioNameModal();
               }
-              //this.investmentCommonService.clearJourneyData(); // TODO
+              this.investmentCommonService.clearJourneyData(); // TODO
             }
           }
         },
