@@ -26,17 +26,18 @@ export class AddPortfolioNameComponent implements OnInit {
   @Input() defaultPortfolioName;
   @Input() userPortfolioName;
   @Input() showErrorMessage;
+  @Input() accountCreationStatus;
   @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
               public investmentAccountService: InvestmentAccountService,
               private formBuilder: FormBuilder,
-              private router: Router,) { }
+              private router: Router, ) { }
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
         this.activeModal.dismiss();
-    });
+      });
     this.profileIcon = ProfileIcons[this.riskProfileId - 1]['icon'];
     this.portfolioSuccessIcon = SuccessIcons[this.riskProfileId - 1]['icon'];
     this.portfolioNameFormGroup = this.formBuilder.group({

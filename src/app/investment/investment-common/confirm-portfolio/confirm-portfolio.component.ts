@@ -65,7 +65,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
   isRequestSubmitted = false;
   isSubsequentPortfolio = false;
-
   defaultPortfolioName;
   confirmPortfolioValue;
   portfolioName;
@@ -74,9 +73,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   navigationRoute;
   accountCreationStatus = false;
   userPortfolioName;
-
-
- constructor(
+  constructor(
     public readonly translate: TranslateService,
     private router: Router,
     private currencyPipe: CurrencyPipe,
@@ -275,7 +272,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 5119) {
         this.defaultPortfolioName = data.objectList.portfolioName;
-        // #this.showAddPortfolioNameModal(data.objectList.portfolioName); // TODO
         this.checkAmlAndCreateAccount();
       } else {
         this.investmentAccountService.showGenericErrorModal();
@@ -306,7 +302,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       } else {
         this.userGivenPortfolioName = this.defaultPortfolioName;
         this.investmentCommonService.setConfirmPortfolioName(this.defaultPortfolioName);
-        this.goToNext(); // #TODO
+        this.goToNext();
         this.showToastMessage();
       }
     });
@@ -329,7 +325,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.loaderService.hideLoader();
       if (response.responseMessage.responseCode === 6000) {
         this.showErrorMessage = false;
-        this.goToNext(); // #TODO
+        this.goToNext();
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
         this.userPortfolioName = portfolioName;
@@ -352,8 +348,6 @@ export class ConfirmPortfolioComponent implements OnInit {
         const pepData = this.investmentAccountService.getPepData();
         const OldPepData = this.investmentAccountService.getOldPepData();
         if (pepData && !OldPepData) {
-          // this.goToAdditionalDeclaration();
-          // Show the add portfolio name - TODO
           this.accountCreationStatus = false;
           this.navigationRoute = INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION;
           this.showAddPortfolioNameModal();
@@ -414,8 +408,6 @@ export class ConfirmPortfolioComponent implements OnInit {
           ) {
             this.createInvestmentAccount(false);
           } else {
-            // this.goToAdditionalDeclaration();
-            // Show the add portfolio name - TODO
             this.accountCreationStatus = false;
             this.navigationRoute = INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION;
             this.showAddPortfolioNameModal();
@@ -481,13 +473,11 @@ export class ConfirmPortfolioComponent implements OnInit {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
                 );
-                // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
-                // Show the add portfolio name - TODO
                 this.accountCreationStatus = false;
                 this.navigationRoute = INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING;
                 this.showAddPortfolioNameModal();
               }
-              this.investmentCommonService.clearJourneyData(); // TODO
+              this.investmentCommonService.clearJourneyData(); 
             }
           }
         },
@@ -504,8 +494,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (this.isSubsequentPortfolio) {
       this.investmentAccountService.setAccountSuccussModalCounter(0);
     }
-    // this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
-    // Show the add portfolio name - TODO
     this.accountCreationStatus = true;
     this.navigationRoute = INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO;
     this.investmentAccountService.restrictBackNavigation();
