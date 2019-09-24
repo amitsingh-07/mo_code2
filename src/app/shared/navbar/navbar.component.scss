@@ -145,6 +145,11 @@
 .superTitle{
     font-size:18px;
     margin-bottom:-8px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
 }
 
 .no-notification {

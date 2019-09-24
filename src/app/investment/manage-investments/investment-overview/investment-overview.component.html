@@ -1,4 +1,4 @@
-<div class="toast-msg-block fade-out-animation" *ngIf="isToastMessageShown">
+<div class="toast-msg-block" *ngIf="isToastMessageShown">
   <div class="toast-msg-container">
     <div class="flex-col-1">
       <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
@@ -31,7 +31,7 @@
                       {{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
-                      {{'YOUR_INVESTMENT.TOTAL_VALUE' | translate}}</div>
+                      {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
@@ -79,7 +79,7 @@
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (investAgainSelected)="investAgain($event)"
-  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp()"
+  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
   [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
 <div class="container-fluid max-width--1024"
@@ -103,6 +103,6 @@
   </div>
 </div>
 <div class="text-center" *ngIf="investmentoverviewlist" [ngClass]="verticalScrollPresent() ? '' : 'hidden'">
-  <button type="button" class="btn btn-primary scroll-btn btn__footer--fixed"
+  <button type="button" class="btn btn-primary scroll-btn"
     (click)="scrollTop()">{{'YOUR_INVESTMENT.SCROLL_TO_TOP' | translate}}</button>
 </div>
