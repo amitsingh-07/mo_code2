@@ -1,9 +1,8 @@
-
 <div class="modal-header hidden-sm">
-    <div class="modal-title popup-header-icon">
-      <img src="./assets/images/owl.svg" />
-    </div>
-   </div>
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
+  </div>
+</div>
 <div class="modal-body">
   <div class="title-container">
     <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
@@ -20,7 +19,8 @@
             alt="" /></span> <span>{{ 'TRANSFER_INSTRUCTION.TOP_UP' | translate }}</span>
       </button>
     </div>
-    <div class="text-center mb20" *ngIf="numberOfPendingReq">{{ 'TRANSFER_INSTRUCTION.TRANSFER_INSTRUCTION_LBL' | translate }}</div>
+    <div class="text-center mb20" *ngIf="numberOfPendingReq">
+      {{ 'TRANSFER_INSTRUCTION.TRANSFER_INSTRUCTION_LBL' | translate }}</div>
     <div class="form-group-with-bg" *ngIf="numberOfPendingReq">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
@@ -60,7 +60,10 @@
         <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
           (showToolTip)="showTipModal()"></app-instruction-steps>
       </div>
-      <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()"> {{ 'TRANSFER_INSTRUCTION.OKAY_GOT_IT_BTN' | translate }}</button>
     </div>
+
+    <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()">
+      {{ 'TRANSFER_INSTRUCTION.OKAY_GOT_IT_BTN' | translate }}</button>
+
   </div>
 </div>
