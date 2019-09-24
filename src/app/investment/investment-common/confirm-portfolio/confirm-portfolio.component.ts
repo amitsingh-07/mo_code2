@@ -299,9 +299,9 @@ export class ConfirmPortfolioComponent implements OnInit {
       } else {
         this.userGivenPortfolioName = this.defaultPortfolioName;
         this.investmentCommonService.setConfirmPortfolioName(this.defaultPortfolioName);
-        this.goToNext();
         this.showToastMessage();
-      }
+        this.goToNext();
+        }
     });
   }
 
