@@ -259,6 +259,7 @@ export class DashboardComponent implements OnInit {
 
   showInvestmentsSummary(investmentStatus) {
     switch (investmentStatus) {
+      case SIGN_UP_CONFIG.INVESTMENT.PROPOSED:
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.showSetupAccount = true;
