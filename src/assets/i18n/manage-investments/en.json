@@ -235,7 +235,7 @@
     "NO_TRANSACTION_STATEMENTS": "No Transaction Statements!",
     "CASH_TOP_UP": "Cash Account Top Up",
     "CASH_WITHDRAWAL": "Cash Account Withdrawal",
-    "UNIT_PRICE": "Units Price:",
+    "UNIT_PRICE": "Unit Price:",
     "UNITS": "Units:",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
