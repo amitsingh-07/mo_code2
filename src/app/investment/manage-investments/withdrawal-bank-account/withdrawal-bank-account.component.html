@@ -6,85 +6,35 @@
           <h2> {{'WITHDRAW.TITLE' | translate}}</h2>
           <h6>{{ 'WITHDRAW_PAYMENT_METHOD.WITHDRAW_DESC' | translate}}</h6>
           <div class="banner-image">
-            <img src="assets/images/investment-account/withdraw.svg"/>
+            <img src="assets/images/investment-account/withdraw.svg" />
           </div>
-           <div class="faq_link">
-              <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
-              </div>
+          <div class="faq_link">
+            <a target="_blank" routerLink="/faq"
+              fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+          </div>
         </div>
         <div class="col-lg-6 col-md-6">
-            <div class="flex-col add_account mb20" (click)="showNewBankFormModal()"  *ngIf="hideAddBankAccount" >
-              <!-- *ngIf="hideAddBankAccount" -->
-              <div class="bank-icon"><img src="../../../assets/images/bank_icon.svg"/></div>
-              <div class="flex-row"><img src="../../../assets/images/plus-white.svg"/><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span></div>        
+          <div class="flex-col add_account mb20" (click)="showNewBankFormModal()" *ngIf="hideAddBankAccount">
+            <div class="bank-icon"><img src="../../../assets/images/bank_icon.svg" /></div>
+            <div class="flex-row"><img
+                src="../../../assets/images/plus-white.svg" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
             </div>
-            <div class="bank_transfer flex-col" >
-              <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;">
-                <div class="selected_logo" ><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>
-                <div class="bank-icon">
-                  <img class="bank_img" src="../../../assets/images/bank_icon.svg" />
-                  <div class="edit-bank" (click)="showEditBankFormModal(i)"><img src="../../../assets/images/investment-account/edit-dark.svg"/></div>
-                </div>
-                <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
-                <div class="user_account">{{userBank.accountNumber}}</div>
-                <div class="user_name">{{userBank.accountName | titlecase}}</div>
-              </div>
-            </div>
-            <label class="label" (click)="gotoEditProfile()" *ngIf="!hideAddBankAccount">{{ 'WITHDRAW_PAYMENT_METHOD.GO_TO_EDIT_PROFILE' | translate}}</label>
-          <!-- <div class="flex-row">
-            <div class="flex-col-12 mb20">
-              <div class="btn-group--toggle tabs">
-                <div class="flex-row">
-                  <div class="flex-col-6">
-                    <button type="button" class="btn btn-primary width100 right-btn" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'" (click)="selectMode('BANK')">
-                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER_LBL1' | translate}}</div>
-                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER_LBL2' | translate}}</div> 
-                    </button>
-                  </div>
-                  <div class="flex-col-6">
-                    <button type="button" class="btn btn-primary width100 left-btn" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'" (click)="selectMode('CHEQUE')">
-                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE_LBL1' | translate}}</div>
-                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE_LBL2' | translate}}</div> 
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <!-- BANK -->
-          <!-- <div class="bank_transfer flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'">
-            <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;" (click)="selectBank(userBank)"
-              [ngClass]="{'selected': (bankForm.controls.withdrawBank.value) && (bankForm.controls.withdrawBank.value === userBank)}">
+          </div>
+          <div class="bank_transfer flex-col">
+            <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;">
               <div class="selected_logo"><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>
-              <div class="bank_logo"><img class="bank_img" src="../../../assets/banks/icons/{{userBank.bank.value}}.png" /></div>
+              <div class="bank-icon">
+                <img class="bank_img" src="../../../assets/images/bank_icon.svg" />
+                <div class="edit-bank" (click)="showEditBankFormModal(i)"><img
+                    src="../../../assets/images/investment-account/edit-dark.svg" /></div>
+              </div>
+              <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
               <div class="user_account">{{userBank.accountNumber}}</div>
-              <div>{{userBank.accountName}}</div>
-            </div> -->
-            <!--
-            <div class="flex-col available_accounts selected">
-              <div class="selected_logo"><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>  
-              <div class="bank_logo"><img src="" /></div>
-              <div class="user_account">01234567899</div>
-              <div>Kelvin Goh</div>
+              <div class="user_name">{{userBank.accountName | titlecase}}</div>
             </div>
-            -->
-          <!-- </div> -->
-          <!-- CHEQUE -->
-          <!-- <div class="cheque flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'">
-            <div class="cheque_msg">{{ 'WITHDRAW_PAYMENT_METHOD.CHEQUES_WILL_BE_POSTED_ADDRESS' | translate}}:</div>
-            <div class="cheque_address flex-col" *ngIf="userAddress">
-              <div *ngIf="userAddress.addressLine1">{{ userAddress.addressLine1 }},</div>
-              <div *ngIf="userAddress.addressLine2">{{ userAddress.addressLine2 }},</div>
-              <div *ngIf="userAddress.townName">{{ userAddress.townName }},</div>
-              <div *ngIf="userAddress.state">{{ userAddress.state }},</div>
-              <div>{{ userAddress.country.country | titlecase }}.</div>
-            </div>
-            <div class="cheque_footer">
-                {{ 'WITHDRAW_PAYMENT_METHOD.IF_WISH_TO_CHANGE_WRITE' | translate}} <span class="link">{{ 'WITHDRAW_PAYMENT_METHOD.CONTACT_EMAIL' | translate}}</span>
-            </div>
-          </div> -->        
-          <button type="button" [disabled]="userBankList && userBankList.length === 0" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-          id="portfolioRecommendationNextBtn">{{
+          </div>
+          <button type="button" [disabled]="userBankList && userBankList.length === 0" (click)="goToNext()"
+            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">{{
           'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
