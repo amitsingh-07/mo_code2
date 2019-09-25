@@ -127,7 +127,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
           this.residentialAddress = data.objectList.contactDetails.homeAddress;
         }
-        this.empolymentDetails = data.objectList.employmentDetails;
+        // Hidden the Employment details
+        // this.empolymentDetails = data.objectList.employmentDetails;
+        this.empolymentDetails = null;
         if (data.objectList.customerBankDetail) {
           this.bankDetails = data.objectList.customerBankDetail[0];
         }
