@@ -35,6 +35,7 @@ import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving
 import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -82,9 +83,19 @@ export function createTranslateLoader(http: HttpClient) {
     ComprehensiveViewModeDirective,
     ValidateResultComponent,
     ComprehensiveReviewComponent
-    ],
-    providers: [NgbDateCustomParserFormatter],
-    exports: [ComprehensiveDashboardComponent]
+  ],
+  providers: [NgbDateCustomParserFormatter],
+  exports: [ComprehensiveDashboardComponent]
 
 })
-export class ComprehensiveModule { }
+export class ComprehensiveModule {
+
+  constructor(private signUpService: SignUpService) {
+    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+    if (!this.signUpService.isMobileDevice() && !isUnsupportedNoteShown) {
+      this.signUpService.showUnsupportedDeviceModal();
+      this.signUpService.setUnsupportedNoteShownFlag();
+    }
+  }
+}
+}
