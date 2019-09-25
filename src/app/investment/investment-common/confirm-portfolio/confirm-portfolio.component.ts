@@ -292,10 +292,10 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.accountCreationStatus = this.isAccountCreated();
     ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
       if (portfolioName && portfolioName.toUpperCase() !== this.defaultPortfolioName.toUpperCase()) {
-        this.savePortfolioName(portfolioName);
         this.userGivenPortfolioName = portfolioName;
         this.investmentCommonService.setConfirmPortfolioName(portfolioName);
         this.showToastMessage();
+        this.savePortfolioName(portfolioName);
       } else {
         this.userGivenPortfolioName = this.defaultPortfolioName;
         this.investmentCommonService.setConfirmPortfolioName(this.defaultPortfolioName);
@@ -314,7 +314,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   savePortfolioName(portfolioName) {
     this.loaderService.showLoader({
-      title: 'Loading...',
+      title: 'Loading.',
       desc: 'Please wait.'
     });
     const param = this.constructSavePortfolioName(portfolioName);
