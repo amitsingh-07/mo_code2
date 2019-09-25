@@ -385,9 +385,10 @@
     "FOR_ENQUIRY": "For enquiries, please contact us at:"
   },
   "INVESTMENT_ADD_PORTFOLIO_ERROR": {
-    "TITLE": "Portfolio can not be added.",
-    "MAX_PORTFOLIO_LIMIT_ERROR": "You have just reached the maximum number of 20 portfolios limit and You can try another recommendation or delete any portfolio(s) that are not yet invested in",
-    "ACCOUNT_CREATION_PENDING_ERROR": "At least you must have one ifast account to add subsequent portfolios. Please proceed to complete your first Investment account set up",
+    "MAX_PORTFOLIO_LIMIT_TITLE": "You have just reached the maximum number of 20 portfolios limit.",
+    "MAX_PORTFOLIO_LIMIT_ERROR": "You may <b>delete</b> the portfolio(s) that you have not yet invested in.",
+    "ACCOUNT_CREATION_PENDING_TITLE": "Sorry, Investment Account Setup in-progress",
+    "ACCOUNT_CREATION_PENDING_ERROR": "Please wait for account to be ready to add or view portfolio.",
     "NOT_ALLOW_USER_ERROR": "Your investment account set up is unsuccessful and portfolio creation is not allowed."
   }
 }

@@ -54,7 +54,7 @@ export class PortfolioListComponent implements OnInit {
     this.investedList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
-        if (portfolio.portfolioStatus === 'PURCHASED') {
+        if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING') {
           this.investedList.push(portfolio);
         } else {
           this.notInvestedList.push(portfolio);

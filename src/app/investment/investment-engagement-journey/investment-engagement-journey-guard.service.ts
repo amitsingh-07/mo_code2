@@ -32,7 +32,9 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
         } else {
           const dashboardMessage = {
             show: true,
-            title: this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE'),
+            title: data.portfolioLimitExceeded
+                  ? this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE')
+                  : this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE'),
             desc: data.portfolioLimitExceeded
                   ? this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR')
                   : this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
