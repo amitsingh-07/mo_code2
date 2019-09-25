@@ -20,6 +20,9 @@ app-withdrawal-bank-account {
      }
   }
   .withdraw {
+    .bank_transfer {
+      margin-bottom: 16px;
+    }
     .btn-group--toggle {
       &.tabs {
         .flex-row {
@@ -74,7 +77,6 @@ app-withdrawal-bank-account {
       font-family: $muli-regular;
       font-size: 16px;
       color: $teal-color;
-      margin-bottom: 10px;
       align-items: center;
       justify-content: center;
       position: relative;
@@ -104,19 +106,6 @@ app-withdrawal-bank-account {
       .user_name {
         color: $black-color;
       }
-      // &.selected{
-      //     opacity: 1 !important;
-      //     border: 2px solid #007d7d;
-      //     position: relative;
-      //     .selected_logo{
-      //         display: block;
-      //         position: absolute;
-      //         top: 15px;
-      //         right: 15px;
-      //         width: 28px;
-      //         height: 28px;
-      //     }
-      // }
     }
     .bank-icon {
       width: 71px;

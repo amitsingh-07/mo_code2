@@ -59,7 +59,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
     component: EmploymentDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [InvestmentAccountGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,
@@ -79,7 +79,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SETUP_PENDING,
     component: AccountStatusComponent,
-    canActivate: [InvestmentAccountGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
