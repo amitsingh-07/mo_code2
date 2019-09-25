@@ -1,8 +1,9 @@
+@import '../../../variables';
+@import '../../../mixins';
 app-cmp-my-profile {
   #dropdownNationality {
     text-transform: capitalize;
   }
-
   .dob-valid-error {
     color: #ff9141 !important;
     position: relative;
