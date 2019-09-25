@@ -124,17 +124,17 @@ export class InvestmentCommonService {
     if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
     } else {
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
         'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
     }
   }
 
   goToAdditionalAccountCreation(data) {
     if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE',
         'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
     } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
+      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
         'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
     } else {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
@@ -190,13 +190,15 @@ export class InvestmentCommonService {
     this.clearAccountCreationActions();
   }
 
-  goToDashboard(title, error) {
-    const dashboardMessage = {
-      show: true,
-      title: this.translate.instant(title),
-      desc: this.translate.instant(error)
-    };
-    this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
+  goToDashboard(title?, error?) {
+    if (title && error) {
+      const dashboardMessage = {
+        show: true,
+        title: this.translate.instant(title),
+        desc: this.translate.instant(error)
+      };
+      this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
+    }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }
