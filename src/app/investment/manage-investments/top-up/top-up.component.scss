@@ -40,18 +40,6 @@ app-top-up {
       color: $top-up-faq-link-color;
      }
   }
-  .top-up-block{
-    padding-left: 50px;
-    padding-right: 0;
-    max-width: 100%;
-    @include tablet{
-      padding-left: 0px;
-    }
-    @include allmobiles{
-      margin: 0 auto; 
-      padding-left: 0px;
-    }
-  }
   .form-group-with-bg .form-group-with-bg--content {
     padding: 20px 20px 30px 20px;
   }

@@ -171,10 +171,7 @@
       font-family: $muli-bold;
       background-color: $teal-color;
       box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
-      @include allmobiles {
-        margin-top: 68px;
-      }
-      margin-top: 31px;
+      margin-top: 30px;
     }
   }
   .multiline-ellipsis {
