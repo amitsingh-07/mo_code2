@@ -10,8 +10,9 @@ app-topup-status {
       flex-direction: column;
       align-content: center;
       padding-bottom: 47px;
+      height: calc(100vh - 84px);
       @include allmobiles{
-        padding-bottom: 0px;
+        height: calc(100vh - 61px);
       }
     }
     .sufficient-container {
@@ -28,15 +29,10 @@ app-topup-status {
       align-items: center;
       width: 550px;
       margin: auto;
-      padding: 0px;
+      padding-bottom: 47px;
       @include allmobiles{
         width: 335px;
-      }
-    }
-    .success-img {
-      margin-top: 96px;
-      @include allmobiles{
-        margin-top: 44px;
+        padding: 0px;
       }
     }
     .insufficient-success-img {
