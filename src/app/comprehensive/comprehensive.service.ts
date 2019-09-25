@@ -1361,6 +1361,9 @@ export class ComprehensiveService {
           longTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
           );
+          otherLongTermCareValue = this.transformAsCurrency(
+            cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+          );
         } else if (
           cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
           0
@@ -1374,9 +1377,7 @@ export class ComprehensiveService {
         }
       }
     }
-    // otherLongTermCareValue = this.transformAsCurrency(
-    //   cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-    // );
+
     return {
       title: 'Risk-Proof Your Journey',
       expanded: true,
@@ -1423,10 +1424,10 @@ export class ComprehensiveService {
               new Date()
             ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
             : true,
-          // list: [{
-          //   title: 'Other coverage amount',
-          //   value: otherLongTermCareValue
-          // }]
+          list: [{
+            title: 'Other coverage amount',
+            value: otherLongTermCareValue
+          }]
         }
       ]
     };

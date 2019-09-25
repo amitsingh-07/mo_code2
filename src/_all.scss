@@ -2270,7 +2270,10 @@ select:-webkit-autofill:focus {
     bottom: 0;
     width: 600px;
     z-index: 1030;
-  }
+    @include allmobiles {
+      width: 100%;
+      }
+    }
 
   .income-bucket-panel {
     text-align: center;
