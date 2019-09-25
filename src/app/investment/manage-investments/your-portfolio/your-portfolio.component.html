@@ -259,14 +259,14 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div class="flex-col"
+                  <div class="mb20"
                     *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
-                    <div *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
+                    <div class="flex-col" *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
                       <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}}
                         {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
                       <div class="flex-col-12 flex-row">
-                        <div class="flex-row">
-                          <span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
+                        <div><span
+                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
@@ -277,9 +277,9 @@
                   </div>
 
                   <!-- RECIEVED -->
-                  <div class="flex-col"
+                  <div class="mb20"
                     *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
-                    <div *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
+                    <div class="flex-col" *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
@@ -329,9 +329,9 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div class="flex-col"
+                  <div class="mb20"
                     *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
-                    <div *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
+                    <div class="flex-col" *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div><span
@@ -346,9 +346,9 @@
                   </div>
 
                   <!-- RECIEVED -->
-                  <div class="flex-col"
+                  <div class="mb20"
                     *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
-                    <div *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
+                    <div class="flex-col" *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
