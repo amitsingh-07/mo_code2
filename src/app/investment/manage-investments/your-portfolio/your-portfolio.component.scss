@@ -206,8 +206,8 @@ app-your-portfolio {
           }
           .circle{
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             background-color: #87dfdf;
             font-family: $muli-semi-bold;
             font-size: 11px;
@@ -216,6 +216,9 @@ app-your-portfolio {
             text-align: center;
             margin-left: 8px;
             padding: 0px 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }
