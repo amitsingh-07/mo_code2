@@ -97,18 +97,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // On page destroy, set the top up values back to default
-    this.clearFormValues();
-  }
-
-  clearFormValues() {
-    const data = {
-      portfolio: '',
-      oneTimeInvestmentAmount: 0,
-      MonthlyInvestmentAmount: 0,
-      Investment: '',
-      topupportfolioamount: 0,
-    };
-    this.manageInvestmentsService.setTopUp(data);
+    this.manageInvestmentsService.clearTopUpData();
   }
 
   // set the selected portfolio if there when page loaded
