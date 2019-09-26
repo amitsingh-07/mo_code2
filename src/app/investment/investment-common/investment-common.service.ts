@@ -176,8 +176,7 @@ export class InvestmentCommonService {
   }
 
   isUserNotAllowed(data: IAccountCreationActions) {
-    if (data.showInvestmentAccountCreationForm
-      && INVESTMENT_COMMON_CONSTANTS.NOT_ALLOW_USER_GUARD.indexOf(data.accountCreationState) >= 0) {
+    if (INVESTMENT_COMMON_CONSTANTS.NOT_ALLOW_USER_GUARD.indexOf(data.accountCreationState) >= 0) {
       return true;
     }
     return false;
