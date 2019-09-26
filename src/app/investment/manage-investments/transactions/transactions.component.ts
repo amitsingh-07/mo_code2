@@ -143,7 +143,7 @@ export class TransactionsComponent implements OnInit {
 
   constructDonwloadStatementParams(data) {
     if (data && data.monthName) {
-      return data.monthName.substring(0, 3).toUpperCase() + '/' + data.year;
+      return data.year + '/' + data.monthName.substring(0, 3).toUpperCase();
     }
     return '';
   }
