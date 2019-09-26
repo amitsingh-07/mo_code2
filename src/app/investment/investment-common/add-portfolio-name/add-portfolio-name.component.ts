@@ -48,11 +48,16 @@ export class AddPortfolioNameComponent implements OnInit {
 
   addPortfolioName(form) {
     if (form.valid) {
-      const portfolioTitleCase = form.controls.portfolioName.value.toLowerCase().split(' ')
-    .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
-    .join(' ').trim();
-      this.addPortfolioBtn.emit(portfolioTitleCase);
-      this.activeModal.close();
+      if (form.controls.portfolioName.value) {
+        const portfolioTitleCase = form.controls.portfolioName.value.toLowerCase().split(' ')
+          .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
+          .join(' ').trim();
+        this.addPortfolioBtn.emit(portfolioTitleCase);
+        this.activeModal.close();
+      } else {
+        this.addPortfolioBtn.emit(null);
+        this.activeModal.close();
+      }
     }
   }
 
