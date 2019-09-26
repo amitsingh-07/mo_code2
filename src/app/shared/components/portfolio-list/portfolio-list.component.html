@@ -15,11 +15,11 @@
                               <div class="portfolio-value">
                                   <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                   <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                                <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
+                                  <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
                                      {{portfolio?.buyRequestCount}}
                                      <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                                      <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
-                                </span>
+                                  </span>
                               </div>
                               <div class="portfolio-btn" >
                                 <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
@@ -46,9 +46,9 @@
                                 <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                 <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                                 <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
-                                    <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
-                                    <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
-                                  </span>
+                                  <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                                  <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
+                                </span>
                               </div>
                               <div class="portfolio-btn">
                                 <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
