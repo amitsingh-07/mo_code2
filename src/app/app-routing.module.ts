@@ -8,10 +8,10 @@ import { PendingChangesGuard } from './changes.guard';
 import {
     EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
-import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
