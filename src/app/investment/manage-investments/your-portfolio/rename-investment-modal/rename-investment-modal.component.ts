@@ -40,12 +40,15 @@ export class RenameInvestmentModalComponent implements OnInit {
     });
     this.renameForm = new FormGroup({
       investName: new FormControl(this.userPortfolioName,
-        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
+        [Validators.required])
     });
   }
 
   renamePortfolio(renameForm) {
-    this.renamePortfolioBtn.emit(renameForm.controls.investName.value);
+    const portfolioTitleCase = renameForm.controls.investName.value.toLowerCase().split(' ')
+    .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
+    .join(' ').trim();
+    this.renamePortfolioBtn.emit(portfolioTitleCase);
     this.activeModal.close();
   }
 
