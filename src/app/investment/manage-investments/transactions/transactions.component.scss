@@ -22,11 +22,15 @@ app-transactions {
 
     .user_summary {
       display: flex;
-      padding-top: 45px;
+      padding-top: 38px;
       padding-left: 37px;
       font-family: $muli-regular;
       letter-spacing: -0.2px;
       color: #ffffff;
+
+      .user_portfolio {
+        padding-bottom: 45px;
+      }
 
       .user_portfolio_lbl {
         font-size: 18px;
@@ -34,6 +38,7 @@ app-transactions {
         line-height: normal;
         white-space: normal;
         word-wrap: break-word;
+        padding-bottom: 4px;
       }
 
       div {
