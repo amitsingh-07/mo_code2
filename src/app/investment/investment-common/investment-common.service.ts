@@ -110,8 +110,7 @@ export class InvestmentCommonService {
   redirectToInvestmentFromLogin() {
     this.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
       if (this.isUserNotAllowed(data)) {
-        this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.TITLE',
-          'INVESTMENT_ADD_PORTFOLIO_ERROR.NOT_ALLOW_USER_ERROR');
+        this.goToDashboard();
       } else if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
         this.goToFirstAccountCreation(data);
       } else { // SECOND PORTFOLIO
