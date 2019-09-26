@@ -461,6 +461,8 @@ export class ConfirmPortfolioComponent implements OnInit {
           } else {
             // SUCCESS SCENARIO
             if (response.objectList[response.objectList.length - 1]) {
+              // Restrict back navigation
+              this.investmentAccountService.restrictBackNavigation();
               if (
                 response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
@@ -474,7 +476,9 @@ export class ConfirmPortfolioComponent implements OnInit {
                 this.navigationRoute = INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING;
                 this.showAddPortfolioNameModal();
               }
-              this.investmentCommonService.clearJourneyData(); 
+              this.investmentCommonService.clearJourneyData();
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
             }
           }
         },
@@ -493,7 +497,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     }
     this.accountCreationStatus = true;
     this.navigationRoute = INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO;
-    this.investmentAccountService.restrictBackNavigation();
     this.showAddPortfolioNameModal();
   }
 
