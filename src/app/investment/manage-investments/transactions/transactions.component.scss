@@ -28,12 +28,17 @@ app-transactions {
       letter-spacing: -0.2px;
       color: #ffffff;
 
+      .user_portfolio {
+        padding-bottom: 45px;
+      }
+
       .user_portfolio_lbl {
         font-size: 18px;
         max-width: 500px;
         line-height: normal;
         white-space: normal;
         word-wrap: break-word;
+        padding-bottom: 4px;
       }
 
       div {
