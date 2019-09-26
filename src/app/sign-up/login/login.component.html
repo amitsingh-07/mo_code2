@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <form id="loginForm" name="loginForm" [formGroup]="loginForm">
+        <form id="loginForm" name="loginForm" [formGroup]="loginForm" (keyup.enter)="doLogin(loginForm)">
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
