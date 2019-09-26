@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../manage-investments-routes.c
   styleUrls: ['./top-up.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TopUpComponent implements OnInit {
+export class TopUpComponent implements OnInit, OnDestroy {
   pageTitle: string;
   portfolio;
   investment;
@@ -77,7 +77,7 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio ? this.formValues.portfolio : this.formValues.selectedCustomerPortfolio, Validators.required],
+      portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
         this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
         Validators.required
@@ -93,6 +93,11 @@ export class TopUpComponent implements OnInit {
     }
     this.buildFormInvestment();
     this.setSelectedPortfolio();
+  }
+
+  ngOnDestroy() {
+    // On page destroy, set the top up values back to default
+    this.manageInvestmentsService.clearTopUpData();
   }
 
   // set the selected portfolio if there when page loaded
@@ -333,10 +338,7 @@ export class TopUpComponent implements OnInit {
  topUpOneTime() {
   if (!this.isRequestSubmitted) {
     this.isRequestSubmitted = true;
-    this.loaderService.showLoader({
-      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
-      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
-    });
+    this.showLoader();
     this.manageInvestmentsService.buyPortfolio(this.fundDetails).subscribe(
       (response) => {
         this.successHandler(response);
@@ -351,10 +353,7 @@ export class TopUpComponent implements OnInit {
 topUpMonthly() {
   if (!this.isRequestSubmitted) {
     this.isRequestSubmitted = true;
-    this.loaderService.showLoader({
-      title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
-      desc: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.DESC')
-    });
+    this.showLoader();
     this.manageInvestmentsService.monthlyInvestment(this.fundDetails).subscribe(
       (response) => {
         this.successHandler(response);
