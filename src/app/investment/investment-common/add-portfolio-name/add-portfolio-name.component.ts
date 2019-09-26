@@ -30,9 +30,9 @@ export class AddPortfolioNameComponent implements OnInit {
   @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
-    public investmentAccountService: InvestmentAccountService,
-    private formBuilder: FormBuilder,
-    private router: Router, ) { }
+              public investmentAccountService: InvestmentAccountService,
+              private formBuilder: FormBuilder,
+              private router: Router, ) { }
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
@@ -55,7 +55,8 @@ export class AddPortfolioNameComponent implements OnInit {
         this.addPortfolioBtn.emit(portfolioTitleCase);
         this.activeModal.close();
       } else {
-        this.addPortfolioBtn.emit(false);
+        this.addPortfolioBtn.emit(null);
+        this.activeModal.close();
       }
     }
   }

@@ -101,14 +101,10 @@ app-add-portfolio-name {
 
     .desc {
       font-family: $muli-regular;
-      font-size: 20px;
-      letter-spacing: -0.39px;
+      font-size: 18px;
+      letter-spacing: -0.34px;
       text-align: center;
       color: $black-color;
-      @include allmobiles{
-        font-size: 18px;
-        letter-spacing: -0.34px;
-      }
     }
 
     .characters {
