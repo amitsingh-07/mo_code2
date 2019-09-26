@@ -30,9 +30,9 @@ export class AddPortfolioNameComponent implements OnInit {
   @Output() addPortfolioBtn = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
-              public investmentAccountService: InvestmentAccountService,
-              private formBuilder: FormBuilder,
-              private router: Router, ) { }
+    public investmentAccountService: InvestmentAccountService,
+    private formBuilder: FormBuilder,
+    private router: Router, ) { }
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
@@ -48,12 +48,22 @@ export class AddPortfolioNameComponent implements OnInit {
 
   addPortfolioName(form) {
     if (form.valid) {
-      this.addPortfolioBtn.emit(form.controls.portfolioName.value);
-      this.activeModal.close();
+      if (form.controls.portfolioName.value) {
+        const portfolioTitleCase = form.controls.portfolioName.value.toLowerCase().split(' ')
+          .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
+          .join(' ').trim();
+        this.addPortfolioBtn.emit(portfolioTitleCase);
+        this.activeModal.close();
+      } else {
+        this.addPortfolioBtn.emit(false);
+      }
     }
   }
 
   showLength(event) {
+    if (this.characterLength !== event.currentTarget.value.length) {
+      this.showErrorMessage = false;
+    }
     this.characterLength = event.currentTarget.value.length;
   }
 }
