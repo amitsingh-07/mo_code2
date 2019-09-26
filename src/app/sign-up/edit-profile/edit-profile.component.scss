@@ -63,6 +63,9 @@ app-edit-profile{
           display: flex;
           justify-content: flex-end;
         }
+        &.cursor_pointer {
+          cursor: pointer;
+        }
       }
       .dots{
         background-color: $edit-card-bg; 
