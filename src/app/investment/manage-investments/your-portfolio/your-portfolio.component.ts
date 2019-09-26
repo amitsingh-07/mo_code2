@@ -191,7 +191,10 @@ export class YourPortfolioComponent implements OnInit {
     this.manageInvestmentsService.setFundingDetails(FundValues);
   }
 
-  gotoTopUp() {
+  gotoTopUp(monthly?) {
+    const data = this.manageInvestmentsService.getTopUpFormData();
+    data['Investment'] = monthly ?
+    MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
