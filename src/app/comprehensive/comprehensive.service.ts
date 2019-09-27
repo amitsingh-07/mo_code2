@@ -1290,7 +1290,9 @@ export class ComprehensiveService {
     let criticalIllnessValue = '$0';
     let ocpDisabilityValue = '$0';
     let longTermCareValue = '$0';
-    let otherLongTermCareValue = '$0'
+    let otherLongTermCareValue = '$0';
+    let longTermCareList = [];
+
     if (isCompleted) {
       const haveHospitalPlan =
         cmpSummary.comprehensiveInsurancePlanning.haveHospitalPlan;
@@ -1364,6 +1366,12 @@ export class ComprehensiveService {
           otherLongTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
           );
+          longTermCareList.push({
+            title: 'Other coverage amount',
+            value: otherLongTermCareValue,
+          })
+
+
         } else if (
           cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
           0
@@ -1377,6 +1385,7 @@ export class ComprehensiveService {
         }
       }
     }
+
 
     return {
       title: 'Risk-Proof Your Journey',
@@ -1424,10 +1433,7 @@ export class ComprehensiveService {
               new Date()
             ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
             : true,
-          list: [{
-            title: 'Other coverage amount',
-            value: otherLongTermCareValue
-          }]
+          list: longTermCareList
         }
       ]
     };
