@@ -65,24 +65,29 @@
                 </div>
                 <div class="widget-body">
                   <div class="scenarios flex-col-12">
-                    <!-- parchased portfolio -->
+                    <!-- Purchased Portfolio -->
                     <div class="portfolio" *ngIf="showPortfolioPurchased">
-                      <div class="portfolio_value">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                        <div *ngIf="investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">
-                          {{investmentsSummary?.portfolioSummary?.totalPortfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                        <div *ngIf="!investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">$0</div>
-                      </div>
-                      <div class="portfolio_graph"></div>
-                      <div class="portfolio_footer">
-                        <div class="flex-col col-12">
-                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_ACCOUNT_BALANCE' | translate}}</div>
-                          <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
-                            {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
-                          </div>
-                          <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
-                            $0</div>
+                      <div>
+                        <div class="portfolio_value">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
+                          <div *ngIf="investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">
+                            {{investmentsSummary?.portfolioSummary?.totalPortfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          <div *ngIf="!investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">$0</div>
                         </div>
+                        <div class="portfolio_graph"></div>
+                        <div class="portfolio_footer">
+                          <div class="flex-col col-12">
+                            <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE' | translate}}</div>
+                            <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
+                              {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
+                            <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance" class="portfolio_footer_value">
+                              $0</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="investment_icon">
+                        <img src="assets/images/investment-account/investment-icon.svg" />
                       </div>
                     </div>
                     <!--  STEP-1 PORTFOLIO -->
