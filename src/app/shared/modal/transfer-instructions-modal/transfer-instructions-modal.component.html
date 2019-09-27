@@ -14,14 +14,14 @@
   <div class="cash-account">
     <div class="flex-row" *ngIf="!numberOfPendingReq">
       <div class="transfer-instruction-lbl width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}</div>
-      <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="goToTopUp()">
+      <button type="button" class="btn-with-icon" id="topup_button" (click)="goToTopUp()">
         <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg"
             alt="" /></span> <span>{{ 'TRANSFER_INSTRUCTION.TOP_UP' | translate }}</span>
       </button>
     </div>
     <div class="transfer-instruction-lbl mb20" *ngIf="numberOfPendingReq">
       {{ 'TRANSFER_INSTRUCTION.TRANSFER_INSTRUCTION_LBL' | translate }}</div>
-    <div class="form-group-with-bg" *ngIf="numberOfPendingReq">
+    <div class="form-group-with-bg mb20" *ngIf="numberOfPendingReq">
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="cash-account-content">
