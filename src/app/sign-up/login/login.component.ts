@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   showCaptcha: boolean;
   hideForgotPassword = false;
   duplicateError: any;
+  progressModal = false;
+
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -190,6 +192,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
+      this.progressModal = true;
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
@@ -236,6 +239,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.setCaptchaValidator();
             }
           }
+        }).add(() => {
+          this.progressModal = false;
         });
     }
   }
