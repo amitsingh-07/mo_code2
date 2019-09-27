@@ -1,3 +1,16 @@
+<!--Custom Modal-->
+<div class="mobile-verify-modal" *ngIf="progressModal">
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper">
+    <div class="custom-modal--icon">
+      <div class="loader-outer">
+        <div class="loader"></div>
+        <img src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1" />
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid max-width--1024 plr20 full-height">
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
   <div class="content">
