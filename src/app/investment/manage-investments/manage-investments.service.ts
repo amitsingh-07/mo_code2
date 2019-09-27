@@ -186,7 +186,9 @@ export class ManageInvestmentsService {
     this.commit();
   }
   getUserPortfolioList() {
-    return this.manageInvestmentsFormData.userPortfolios;
+    return this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
+      return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
+    });
   }
   setUserCashBalance(amount) {
     this.manageInvestmentsFormData.cashAccountBalance = amount;
@@ -515,6 +517,15 @@ export class ManageInvestmentsService {
 
   getSelectedCustomerPortfolio() {
     return this.manageInvestmentsFormData.selectedCustomerPortfolio;
+  }
+
+  // Update new portfolio name for specific customer portfolio
+  updateNewPortfolioName(customerPortfolioId, newPortfolioName) {
+    this.manageInvestmentsFormData.userPortfolios.find((portfolio) => {
+      if (portfolio.customerPortfolioId === customerPortfolioId) {
+        portfolio.portfolioName = newPortfolioName;
+      }
+    });
   }
 
 }

@@ -308,6 +308,7 @@ export class YourPortfolioComponent implements OnInit {
       if (response.responseMessage.responseCode >= 6000) {
         this.showToastMessage(this.portfolio.portfolioName, portfolioName);
         this.getCustomerPortfolioDetailsById(this.portfolio.customerPortfolioId);
+        this.manageInvestmentsService.updateNewPortfolioName(this.portfolio.customerPortfolioId, portfolioName);
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;

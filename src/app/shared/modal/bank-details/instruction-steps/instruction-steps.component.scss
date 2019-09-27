@@ -53,6 +53,22 @@ app-instruction-steps {
             position: relative;
           }
 
+          span{
+            font-family: $muli-bold;
+          }
+
+          .ref-code-context {
+            color: $ref-code-context-color;
+            letter-spacing: -0.16px;
+            font-family: $muli-regular !important;
+            font-weight: normal !important;
+        
+            span {
+              font-family: $muli-bold;
+              color: $ref-code-context-must-color;
+              letter-spacing: -0.15px;
+            }
+          }
 
         }
       }
@@ -224,14 +240,5 @@ app-instruction-steps {
   //   color: $black-color;
   // }
 
-  .ref-code-context {
-    color: $ref-code-context-color;
-    letter-spacing: -0.16px;
-
-    span {
-      font-family: $muli-bold;
-      color: $ref-code-context-must-color;
-      letter-spacing: -0.15px;
-    }
-  }
+  
 }

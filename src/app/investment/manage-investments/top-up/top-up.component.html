@@ -12,7 +12,7 @@
             fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
         </div>
       </div>
-      <div class="col-lg-7 col-md-6">
+      <div class="col-lg-6 col-md-6 padding-none">
         <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
           <div class="flex-row">
             <div class="col-lg-12 col-md-12 pl0 pr0">
@@ -78,7 +78,7 @@
                     </label>
                   </div>
                   <!-- Onetimeinvestment -->
-                  <div class="flex-row mb10 mt10" *ngIf="showOnetimeInvestmentAmount">
+                  <div class="flex-row mt10" *ngIf="showOnetimeInvestmentAmount">
                     <div class="flex-col-12">
                       <div class="form-control">
                         <i id="myFinancialDollerSymbThree">$</i>

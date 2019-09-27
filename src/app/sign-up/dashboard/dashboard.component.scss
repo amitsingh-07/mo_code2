@@ -131,13 +131,16 @@ app-dashboard{
                             color: #ff9c39;
                         }
                     }
-                    .portfolio{
+                    .portfolio {
                         font-family: $muli-regular;
                         font-size: 16px;
                         line-height: 1.31;
                         letter-spacing: -0.1px;
                         color: #8a9ba9;
                         padding: 0 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         .portfolio_value{
                             color: #2d8289;
                             .value{
