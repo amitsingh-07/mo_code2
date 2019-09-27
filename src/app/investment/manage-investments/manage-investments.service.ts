@@ -517,4 +517,13 @@ export class ManageInvestmentsService {
     return this.manageInvestmentsFormData.selectedCustomerPortfolio;
   }
 
+  // Update new portfolio name for specific customer portfolio
+  updateNewPortfolioName(customerPortfolioId, newPortfolioName) {
+    this.manageInvestmentsFormData.userPortfolios.find((portfolio) => {
+      if (portfolio.customerPortfolioId === customerPortfolioId) {
+        portfolio.portfolioName = newPortfolioName;
+      }
+    });
+  }
+
 }
