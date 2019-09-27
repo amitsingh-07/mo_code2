@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row mb20 space-btwn align-center">
+              <div class="flex-row space-btwn align-center">
                 <div *ngIf="!portfolioList || portfolioList.length < 2" class="your_portfolio_label"
                   id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIO' | translate}}
@@ -82,7 +82,7 @@
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
   [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
-<div class="container-fluid max-width--1024"
+<div class="container-fluid max-width--1024 no-portfolio-container"
   *ngIf="investmentoverviewlist && (!portfolioList || portfolioList.length == 0)">
   <div class="form-group-with-bg no-portfolio">
     <div class="flex-col align-center">

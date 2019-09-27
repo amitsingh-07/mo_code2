@@ -2,6 +2,11 @@
 @import '../../../../_mixins.scss';
 
 app-investment-overview {
+  .invest-bg-content{
+    .container-fluid{
+      padding-bottom: 20px !important;
+    }
+  }
   .user_summary {
     font-family: $muli-regular;
     font-size: 18px;
@@ -169,22 +174,33 @@ app-investment-overview {
         padding-right: 15px !important;
         padding-bottom: 20px !important;
       }
+      &.no-portfolio-container{
+        padding-bottom: 0 !important;
+        padding-top: 20px !important;
+        @include allmobiles{
+          padding-top: 80px !important;
+          padding-bottom: 20px !important;
+        }
+      }
     }
   }
 
   .multiple-portfolio-container {
-    margin-top: 10px;
-
+    position: relative;
+    top: 10px;
+    padding-bottom: 10px;
+    @include allmobiles{
+      top: 70px;
+      padding-bottom: 70px;
+    }
     .container-fluid {
       &.max-width--1024 {
         padding-top: 0 !important;
-        padding-bottom: 0px !important;
+        padding-bottom: 10px !important;
 
         @include allmobiles {
-          padding-top: 60px !important;
-          padding-left: 0px !important;
-          padding-right: 0px !important;
-          padding-bottom: 0px !important;
+         padding: 0 !important;
+         padding-bottom: 10px !important;
         }
       }
     }
@@ -409,7 +425,7 @@ app-investment-overview {
   .srs-block {
     .container-fluid {
       &.max-width--1024 {
-        padding-top: 10px !important;
+        padding-top: 0px !important;
         padding-bottom: 20px !important;
 
         @include allmobiles {
