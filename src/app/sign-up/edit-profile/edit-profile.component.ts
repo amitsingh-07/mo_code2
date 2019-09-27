@@ -69,7 +69,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = this.translate.instant('EDIT_PROFILE.CONFIRMATION');
+      this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
     });
     this.getNationalityCountryList();
