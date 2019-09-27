@@ -186,7 +186,9 @@ export class ManageInvestmentsService {
     this.commit();
   }
   getUserPortfolioList() {
-    return this.manageInvestmentsFormData.userPortfolios;
+    return this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
+      return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
+    });
   }
   setUserCashBalance(amount) {
     this.manageInvestmentsFormData.cashAccountBalance = amount;
