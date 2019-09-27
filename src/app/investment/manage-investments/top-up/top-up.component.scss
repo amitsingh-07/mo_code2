@@ -1,6 +1,12 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 app-top-up {
+  .padding-none {
+    padding: 0px;
+    @include allmobiles {
+      padding: 0px 15px;
+    }
+  }
   h2{
     font-size:30px !important;
     margin-bottom: 15px;
@@ -41,7 +47,7 @@ app-top-up {
      }
   }
   .form-group-with-bg .form-group-with-bg--content {
-    padding: 20px 20px 30px 20px;
+    padding: 20px;
   }
   .request_txt {
     background-color: $review-block-bg;
@@ -108,7 +114,7 @@ app-top-up {
     }
     input[type='radio'] + label,
     input[type='checkbox'] + label {
-      padding: 16px 19px 13px;
+      padding: 13px 25px 11px;
       background: $white-color;
       color: $teal-color;
       font-family: $muli-bold;
