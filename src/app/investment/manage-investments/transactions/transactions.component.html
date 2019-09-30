@@ -35,7 +35,7 @@
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
                     <div class="transaction-panel__history--details">
                       <div *ngFor="let transaction of group.value; let j = index">
-                        <div class="flex-row transaction-panel__history--details--title" (click)="expandCollapseAccordion(i, j)">
+                        <div class="flex-row transaction-panel__history--details--title" [class.cursor_pointer]="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length" (click)="expandCollapseAccordion(i, j)">
                           <div class="flex-col-7">
                             <div class="history-type-transaction">
                               <span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--sale"
