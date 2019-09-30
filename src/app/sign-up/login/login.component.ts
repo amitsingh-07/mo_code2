@@ -124,6 +124,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           message: 'Your session has unexpectedly expired. Please login again'
         };
         this.helper.showCustomErrorModal(customError);
+        this.authService.authenticate().subscribe((token) => {
+        });
       } else {
         this.authService.authenticate().subscribe((token) => {
         });
@@ -194,6 +196,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -213,7 +219,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
-    } else {
+    } else if (this.authService.isAuthenticated()) {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
