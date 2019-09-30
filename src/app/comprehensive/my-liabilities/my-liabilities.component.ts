@@ -143,9 +143,13 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.showSummaryModal();
     } else {
       if (this.validateLiabilities(form)) {
+
         const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
 
         if (!form.pristine || Util.isEmptyOrNull(liabilitiesData)) {
+          if (!form.controls.homeLoanOutstandingAmount.pristine) {
+            this.comprehensiveService.setHomeLoanChanges(true);
+          }
           this.liabilitiesDetails = form.value;
           this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
           this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();

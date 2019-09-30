@@ -83,6 +83,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   }
 
   buildInsuranceForm() {
+    let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : 0;
+    if (this.comprehensiveService.getHomeLoanChanges()) {
+      homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount
+    }
     this.insurancePlanForm = this.formBuilder.group({
       haveHospitalPlan: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
@@ -104,7 +108,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : this.liabilitiesDetails.homeLoanOutstandingAmount,
+        value: homeLoanOutstandingAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{
@@ -187,6 +191,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
+        if (!form.controls.homeProtectionCoverageAmount.pristine) {
+          this.comprehensiveService.setHomeLoanChanges(false);
+        }
         if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
           form.value.homeProtectionCoverageAmount = 0;
         }

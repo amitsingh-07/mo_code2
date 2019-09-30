@@ -29,6 +29,7 @@ export interface IComprehensiveEnquiry {
     reportStatus: string;
     stepCompleted: number;
     reportId: number;
+    homeLoanUpdatedByLiabilities?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;

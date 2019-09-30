@@ -2,9 +2,9 @@
   <div class="modal-body white-bg text-center">
     <div class='text-center step-num'> {{ summaryModalDetails.contentObj.TITLE}}</div>
     <div class="modal-body-title text-center">{{ summaryModalDetails.contentObj.TITLE_DESC}}</div>
-    <div class="modal-title text-center mt20 mb20"><img
+    <div class="modal-title text-center mt10 mb20"><img
         src="./assets/images/comprehensive/summary-page/step-tick.svg" /></div>
-    <div class="modal-title text-center mt20 mb20" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img
+    <div class="modal-title text-center mt10 mb20" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img
         src="./assets/images/comprehensive/summary-page/{{ summaryModalDetails.contentObj.TITLE_IMAGE }}" /></div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('dismiss')">
       <span aria-hidden="true"></span>
@@ -81,7 +81,7 @@
         <div class="summary-modal__details mb20 retire-sub-content text-left">
           <div class="summary-modal__details--label">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21 }}<br />
             <span
-              class="summary-modal__details--label-grey">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21_NOTE }}</span>
+              class="summary-modal__details--label-grey ">{{ summaryModalDetails.contentObj.SUB_CONTENT_DESC_21_NOTE }}</span>
           </div>
         </div>
         <div class="summary-modal__details mb20 retire-sub-content text-left">
@@ -154,7 +154,8 @@
     <div class="modal-body-message pr0"
       *ngIf="summaryModalDetails.setTemplateModal == 3 && summaryModalDetails.dependantModelSel">
       <div class="instruction-content insurance-planning-section">
-        <div class="mb20 summary-modal__page-title">{{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
+        <div class="mb20 summary-modal__page-title ">
+          {{ summaryModalDetails.contentObj.CONTENT_TITLE }}</div>
         <div class="mb30">
           {{ summaryModalDetails.contentObj.CONTENT_DESC }}
         </div>
@@ -244,7 +245,7 @@
               class="explanation-graph__investment-indicator"></span><span
               class="explanation-graph__investment-value">{{ summaryModalDetails.contentObj.INVESTMENT_STATISTIC_LABEL }}</span>
           </div>
-          <div class='summary-modal__box-content-body mb20 summary-modal__details--label-grey text-center'>
+          <div class='summary-modal__box-content-body mb20 summary-modal__details--label-grey text-center f12'>
             {{ summaryModalDetails.contentObj.SUB_TITLE_NOTE }}</div>
           <div class='summary-modal__box-content-body mb20 summary-modal__details--label-black text-left'>
             {{ summaryModalDetails.contentObj.SUB_CONTENT_DESC1 }}</div>
