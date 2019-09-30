@@ -113,17 +113,24 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
-
+      this.loaderService.showLoader({ title: 'Loading' });
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
         this.authService.clearSession();
-
+        this.authService.clearAuthDetails();
         this.signUpService.logoutUser();
-
-        let message = 'Your session has unexpectedly expired. Please login again'
-        this.showCustomErrorModal('', message);
+        this.appService.startAppSession();
+        this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
+          const customError: IError = {
+            error: [],
+            message: 'Your session has unexpectedly expired. Please login again'
+          };
+          this.helper.showCustomErrorModal(customError);
+        });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
         });
       }
 
@@ -192,6 +199,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -211,7 +222,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
-    } else {
+    } else if (this.authService.isAuthenticated()) {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
@@ -434,3 +445,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     ref.componentInstance.errorMessage = desc;
   }
 }
+
