@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { Route, Router, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
 import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
 import { ArticleEnableGuard } from './article/article-enable-guard';
@@ -99,7 +99,11 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
+}
 
 // MyInfo changes
 export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Route) {
