@@ -65,36 +65,43 @@ app-recommendation {
     @extend .justify-center;
     @extend .align-center;
     flex-direction: column;
-    min-height: 100%;
+    height: 100%;
     overflow: scroll;
     @include allmobiles{
-      top: 45px;
-      justify-content: flex-start !important;
+      //justify-content: space-between !important;
       padding-bottom: 30px;
     }
     @include max360{
       top: 0px;
     }
+    .btn{
+      &.btn-primary {
+        width: 320px !important;
+        margin: 0 auto;
+  
+        @include allmobiles {
+          position: absolute !important;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        }
+      }
+    }
+  }
+
+  .splash-screen-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
   }
 
   .custom-modal--content {
     text-align: center;
     padding-bottom: 45px;
   }
-  .btn{
-    &.btn-primary {
-      width: 320px !important;
-      margin: 0px;
-
-      @include allmobiles {
-        position: relative !important;
-        bottom: 0px;
-        left: 0;
-        right: 0;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-      }
-    }
-  }
+  
   .custom-modal--icon {
     display: flex;
     justify-content: center;
@@ -109,6 +116,7 @@ app-recommendation {
       @include allmobiles {
         width: 285px;
         height: 200px;
+        margin-top: 45px;
       }
       img{
         width: 100%;
