@@ -2,6 +2,7 @@
 <div class="splash-screen" [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
+    <div class="splash-screen-content">
     <div class="custom-modal--icon">
       <img src="../../../assets/images/portfolio/flash_recommended.svg"
         id="portfolioRecommenadtionCustModalImg1" />
@@ -12,6 +13,7 @@
         <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">
           {{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
       </div>
+    </div>
       <button type="button" class="btn btn-primary" (click)="dismissFlashScreen()"  
       id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
   </div>
