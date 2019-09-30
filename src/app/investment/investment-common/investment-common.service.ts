@@ -184,7 +184,6 @@ export class InvestmentCommonService {
 
   clearJourneyData() {
     this.investmentEngagementJourneyService.clearData();
-    // this.clearConfirmPortfolioName();
     this.clearAccountCreationActions();
   }
 
@@ -199,4 +198,40 @@ export class InvestmentCommonService {
     }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
+  // getUserProfileAndNavigate(routePath) {
+  //   this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+  //     if (userInfo.responseMessage.responseCode < 6000) {
+  //       if (
+  //         userInfo.objectList &&
+  //         userInfo.objectList.length &&
+  //         userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+  //         userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+  //         userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
+  //       ) {
+  //         this.showCustomErrorModal(
+  //           'Error!',
+  //           userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
+  //         );
+  //       } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+  //         const errorResponse = userInfo.responseMessage.responseDescription;
+  //         this.showCustomErrorModal('Error!', errorResponse);
+  //       } else {
+  //         this.investmentAccountService.showGenericErrorModal();
+  //       }
+  //     } else {
+  //       this.signUpService.setUserProfileInfo(userInfo.objectList);
+  //       this.router.navigate([routePath]);
+  //     }
+  //   },
+  //     (err) => {
+  //       this.investmentAccountService.showGenericErrorModal();
+  //     });
+  // }
+
+  // showCustomErrorModal(title, desc) {
+  //   const ref = this.modal.open(ErrorModalComponent, { centered: true });
+  //   ref.componentInstance.errorTitle = title;
+  //   ref.componentInstance.errorMessage = desc;
+  // }
 }

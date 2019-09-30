@@ -119,7 +119,7 @@ export class SingPassComponent implements OnInit {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
         this.myInfoService.closeMyInfoPopup(false);
-        const currentUrl = window.location.toString();
+        /** const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + MY_INFO_START_PATH;
         if (window.location.href === redirectObjective) {
@@ -128,7 +128,8 @@ export class SingPassComponent implements OnInit {
           });
         } else {
           window.location.href = redirectObjective;
-        }
+        } */
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
       } else {
         this.myInfoService.closeMyInfoPopup(true);
       }
