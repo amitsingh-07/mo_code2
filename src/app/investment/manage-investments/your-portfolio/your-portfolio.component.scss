@@ -626,6 +626,9 @@ app-your-portfolio {
             &:first-child{
               padding-top: 0; 
             }
+            & + .processing-state{
+              margin-top: 20px;
+            }
           }
           .processing-state{
             .processing-time{
@@ -636,7 +639,7 @@ app-your-portfolio {
           }
           .process_lbl{
             padding: 10px 20px;
-            margin: 0px -20px 15px;
+            margin: 0px -20px 20px;
             font-family: $muli-bold;
             font-size: 14px;
             line-height: 1.14;
