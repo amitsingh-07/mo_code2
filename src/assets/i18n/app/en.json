@@ -94,7 +94,8 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT": [{
+    "SORT": [
+      {
         "displayText": "Highest Ranking",
         "value": "premium.ranking"
       },
@@ -229,7 +230,6 @@
         "TITLE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
       }
     }
-
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -332,7 +332,7 @@
   "IFAST_ERROR_TITLE": "Error !",
   "UNSUPPORTED_DEVICE_MODAL": {
     "TITLE": "Note !",
-    "DESC": "This website is optimized for mobile viewing. Please use mobile browsers such as Safari or Chrome for best experience."
+    "DESC": "This is mobile optimized web-page and recommended to view in mobile browsers such as safari or chrome for better experience."
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
