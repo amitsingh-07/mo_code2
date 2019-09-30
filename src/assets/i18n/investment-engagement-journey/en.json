@@ -168,7 +168,7 @@
     "PORTFOLIO_SECOND_BTN":"View {{secondPortfolio}} Portfolio"
   },
   "PRELOGIN_MODAL": {
-    "DESC": "To continue, please log in or create a MoneyOwl account.",
+    "DESC": "<div class=\"pr20\">To continue, please log in or create a MoneyOwl account.</div>",
     "LOG_IN": "Log In",
     "CREATE_ACCOUNT": "Create Account"
   },
