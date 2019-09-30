@@ -113,21 +113,24 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
-
+      this.loaderService.showLoader({ title: 'Loading' });
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
         this.authService.clearSession();
-
+        this.authService.clearAuthDetails();
         this.signUpService.logoutUser();
-        const customError: IError = {
-          error: [],
-          message: 'Your session has unexpectedly expired. Please login again'
-        };
-        this.helper.showCustomErrorModal(customError);
+        this.appService.startAppSession();
         this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
+          const customError: IError = {
+            error: [],
+            message: 'Your session has unexpectedly expired. Please login again'
+          };
+          this.helper.showCustomErrorModal(customError);
         });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
         });
       }
 
