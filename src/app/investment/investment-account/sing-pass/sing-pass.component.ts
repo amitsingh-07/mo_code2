@@ -123,10 +123,11 @@ export class SingPassComponent implements OnInit {
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + MY_INFO_START_PATH;
         if (window.location.href === redirectObjective) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START], { skipLocationChange: true }).then(() => {
-            // #window.location.href = redirectObjective;
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-          });
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+          // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START], { skipLocationChange: true }).then(() => {
+          //   // #window.location.href = redirectObjective;
+          //   this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+          // });
         } else {
           // #window.location.href = redirectObjective;
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);

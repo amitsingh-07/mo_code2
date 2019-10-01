@@ -55,6 +55,9 @@ export class StartComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.formData.isMyInfoEnabled ? false : true;
+    if (this.formData.isMyInfoEnabled) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+    }
   }
   goBack() {
     this._location.back();
