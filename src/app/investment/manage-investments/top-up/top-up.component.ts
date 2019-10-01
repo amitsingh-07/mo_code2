@@ -292,16 +292,13 @@ export class TopUpComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant(descText, translateParams);
-    ref.componentInstance.primaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.YES');
-    ref.componentInstance.isInlineButton = true;
+    ref.componentInstance.yesOrNoButton = true;
     ref.componentInstance.closeBtn = false;
-    ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+    ref.componentInstance.yesClickAction.subscribe((emittedValue) => {
       ref.close();
       this.buyPortfolio();
     });
-    ref.componentInstance.secondaryActionLabel = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.NO');
-    ref.componentInstance.secondaryActionDim = true;
-    ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+    ref.componentInstance.noClickAction.subscribe((emittedValue) => {
       ref.close();
     });
   }
