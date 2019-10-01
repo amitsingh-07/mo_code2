@@ -1288,9 +1288,9 @@ export class ComprehensiveService {
     let hospitalPlanValue = '';
     let cpfDependantProtectionSchemeValue = '$0';
     let criticalIllnessValue = '$0';
-    let ocpDisabilityValue = '$0';
-    let longTermCareValue = '$0';
-    let otherLongTermCareValue = '$0';
+    let ocpDisabilityValue = '$0 /mth';
+    let longTermCareValue = '$0 /mth';
+    let otherLongTermCareValue = '$0 /mth';
     let longTermCareList = [];
 
     if (isCompleted) {
@@ -1348,7 +1348,7 @@ export class ComprehensiveService {
         ocpDisabilityValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning
             .disabilityIncomeCoverageAmount
-        );
+        ) + " /mth";
       }
 
       if (
@@ -1362,10 +1362,10 @@ export class ComprehensiveService {
         ) {
           longTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-          );
+          ) + " /mth";
           otherLongTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-          );
+          ) + " /mth";
           longTermCareList.push({
             title: 'Other coverage amount',
             value: otherLongTermCareValue,

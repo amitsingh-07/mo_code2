@@ -186,7 +186,7 @@ $minus-content-color:#ff872f;
     position: absolute;
     top: 7px;
     right: 0;
-    border: 1px solid #035e5e;
+    border:0.5px solid #004472;
     -webkit-transform: rotate(45deg);
     transform: rotate(-30deg);
     width: 20px;
@@ -196,7 +196,7 @@ $minus-content-color:#ff872f;
     position: absolute;
     top: 2px;
     right: -18px;
-    border: 1px solid #035e5e;
+    border:0.5px solid #004472;
     width: 20px;
   }
 
@@ -208,6 +208,7 @@ $minus-content-color:#ff872f;
     text-align: left;
     font-size: 12px;
     font-family:$muli-light;
+    color:#004472!important;
   }
 
   &__investment-indicator {
