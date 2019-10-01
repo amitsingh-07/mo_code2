@@ -56,7 +56,7 @@ app-add-portfolio-name {
 
         @include allmobiles {
           margin: 0px auto;
-          height: calc(100vh - 260px);
+          height: calc(100vh - 320px);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -90,7 +90,7 @@ app-add-portfolio-name {
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          height: 260px;
+          height: 320px;
           padding-bottom: 50px;
         }
       }
