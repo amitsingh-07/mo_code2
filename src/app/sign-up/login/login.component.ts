@@ -116,9 +116,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loaderService.showLoader({ title: 'Loading' });
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
+        this.signUpService.setUserProfileInfo(null);
         this.authService.clearSession();
         this.authService.clearAuthDetails();
         this.signUpService.logoutUser();
+        this.appService.clearData();
         this.appService.startAppSession();
         this.authService.authenticate().subscribe((token) => {
           this.loaderService.hideLoader();
