@@ -32,6 +32,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 @Component({
@@ -83,6 +84,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private selectedPlansService: SelectedPlansService,
     private changeDetectorRef: ChangeDetectorRef,
     private stateStoreService: StateStoreService,
+    private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -251,7 +253,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const journeyType = this.appService.getJourneyType();
     if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
-      this.investmentCommonService.redirectToInvestmentFromLogin();
+      this.getUserProfileAndNavigate();
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
     } else {
@@ -373,5 +375,35 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
+  }
+
+  getUserProfileAndNavigate() {
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      if (userInfo.responseMessage.responseCode < 6000) {
+        if (
+          userInfo.objectList &&
+          userInfo.objectList.length &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors &&
+          userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors.length
+        ) {
+          this.showCustomErrorModal(
+            'Error!',
+            userInfo.objectList[userInfo.objectList.length - 1].serverStatus.errors[0].msg
+          );
+        } else if (userInfo.responseMessage && userInfo.responseMessage.responseDescription) {
+          const errorResponse = userInfo.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      } else {
+        this.signUpService.setUserProfileInfo(userInfo.objectList);
+        this.investmentCommonService.redirectToInvestmentFromLogin();
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 }

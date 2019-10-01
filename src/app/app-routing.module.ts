@@ -99,7 +99,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 // MyInfo changes
 export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Route) {

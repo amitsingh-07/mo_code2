@@ -83,17 +83,32 @@ export class WithdrawalComponent implements OnInit {
    // Set selected portfolio's entitlements, cash balance
    setSelectedPortfolio() {
      if (this.formValues) {
+       // Set the customerPortfolioId depend on which is the portfolio
+       const customerPortfolioId = this.formValues.withdrawPortfolio ?
+       this.formValues.withdrawPortfolio.customerPortfolioId : this.formValues.selectedCustomerPortfolioId;
        const data = this.portfolioList.find((portfolio) => {
-         return portfolio.customerPortfolioId === this.formValues.selectedCustomerPortfolioId;
+         return portfolio.customerPortfolioId === customerPortfolioId;
        });
        this.setDropDownValue('withdrawPortfolio', data);
+       this.setWithdrawTypeAndAmt();
+     }
+  }
+
+  setWithdrawTypeAndAmt() {
+    // If user press back from withdrawal-bank-account set the type and amount
+    if (this.formValues.withdrawType && this.formValues.withdrawAmount) {
+      this.setDropDownValue('withdrawType', this.formValues.withdrawType);
+      setTimeout(() => {
+        this.withdrawForm.get('withdrawAmount').setValue(this.formValues.withdrawAmount);
+       }, 0);
      }
   }
 
   buildForm() {
     this.withdrawForm = this.formBuilder.group({
       withdrawType: [this.formValues.withdrawType, Validators.required],
-      withdrawPortfolio: [this.formValues.withdrawPortfolio ? this.formValues.withdrawPortfolio : this.formValues.selectedCustomerPortfolio, new FormControl('', Validators.required)]
+      withdrawPortfolio: [this.formValues.withdrawPortfolio ? this.formValues.withdrawPortfolio : this.formValues.selectedCustomerPortfolio, new FormControl('', Validators.required)],
+      withdrawAmount: [this.formValues.withdrawAmount, Validators.required]
     });
 
     // Withdraw Type Changed Event
@@ -245,7 +260,7 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.controls[key].setValue(value);
      // Set the entitlements based on the selected portfolio
      if (key === 'withdrawPortfolio') {
-      this.entitlements = this.withdrawForm.controls.withdrawPortfolio.value['entitlements'];
+      this.entitlements = value['entitlements'];
       this.withdrawForm.controls.withdrawType.value = null;
       this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.0-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');

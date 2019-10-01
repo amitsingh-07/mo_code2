@@ -30,7 +30,7 @@
     "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
     "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
     "REFERENCE_CODE_LBL": "Reference Code:",
-    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments” section in your funds transfer / PayNow screen.</span>",
+    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
     "BANK_TRANSFER": "Bank Transfer",
     "SHOWPOPUP": {
       "TITLE": "Recipient’s / Entity Name",
@@ -205,6 +205,7 @@
   },
   "WITHDRAW_PAYMENT_METHOD": {
     "ADD_BANK_ACCOUNT": "Add Bank Account",
+    "WITHDRAW_TO_ACCOUNT": "Withdrawing to the account below:",
     "BANK_DETAIL": "Bank Details",
     "TITLE": "Bank Details",
     "SELECT": "Select",

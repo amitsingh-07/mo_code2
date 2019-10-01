@@ -212,7 +212,7 @@
                         <div class="widthdrawal-header">
                           <div class="flex-row">
                             <span class="widthdrawal-icon">
-                              <img src="../../../assets/images/topupwithdraw/withdraw-hand.svg" />
+                              <img src="../../../assets/images/investment-account/portfolio-withdrawal.svg" />
                             </span>
                             <span>{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
                           </div>
@@ -259,8 +259,7 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div class="mb20"
-                    *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
+                  <ng-container *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.awaitingFundRequests.length">
                     <div class="flex-col" *ngFor="let awaitingRequest of pendingOnetimeBuyRequests.awaitingFundRequests; let i = index;">
                       <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}}
                         {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
@@ -274,11 +273,10 @@
                               src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
                   <!-- RECIEVED -->
-                  <div class="mb20"
-                    *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
+                  <ng-container *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.recievedRequests.length">
                     <div class="flex-col" *ngFor="let recievedRequest of pendingOnetimeBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
@@ -289,32 +287,35 @@
                               src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
                   <!-- PROCESSING -->
-                  <div class="processing-state"
-                    *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.processingRequests.length">
-                    <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
-                    <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
-                    <div class="flex-col"
-                      *ngFor="let processingRequest of pendingOnetimeBuyRequests.processingRequests; let i = index;">
-                      <div class="flex-col-12 flex-row">
-                        <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
-                        <div class="fund-amt">
-                          <span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
-                            class="forward-icon" *ngIf="false"><img
-                              src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                  <ng-container *ngIf="pendingOnetimeBuyRequests && pendingOnetimeBuyRequests.processingRequests.length">
+                    <div class="processing-state">
+                      <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
+                      <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
+                      <div class="flex-col"
+                        *ngFor="let processingRequest of pendingOnetimeBuyRequests.processingRequests; let i = index;">
+                        <div class="flex-col-12 flex-row">
+                          <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
+                          <div class="fund-amt">
+                            <span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
+                              class="forward-icon" *ngIf="false"><img
+                                src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
                   <!-- NO REQUESTS -->
-                  <div class="flex-col" *ngIf="!pendingOnetimeBuyRequests">
-                    <div class="flex-col-12 flex-row">
-                      <div class="topup-btn" (click)="gotoTopUp()">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
-                      <div class="fund-amt">$0</div>
+                  <ng-container *ngIf="!pendingOnetimeBuyRequests">
+                    <div class="flex-col">
+                      <div class="flex-col-12 flex-row">
+                        <div class="topup-btn" (click)="gotoTopUp()">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
+                        <div class="fund-amt">$0</div>
+                      </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
               <div class="form-group-with-bg">
@@ -329,12 +330,11 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <!-- AWAITING FUND -->
-                  <div class="mb20"
-                    *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
+                  <ng-container *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
                     <div class="flex-col" *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
                       <div class="flex-col-12 flex-row">
-                        <div><span
+                          <div class="flex align-center"><span
                             class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
@@ -343,11 +343,10 @@
                               src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
                   <!-- RECIEVED -->
-                  <div class="mb20"
-                    *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
+                  <ng-container *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.recievedRequests.length">
                     <div class="flex-col" *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
                       <div class="flex-col-12 flex-row">
@@ -358,31 +357,34 @@
                               src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
                   <!-- PROCESSING -->
-                  <div class="processing-state"
-                    *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length">
-                    <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
-                    <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
-                    <div class="flex-col"
-                      *ngFor="let processingRequest of pendingMonthlyBuyRequests.processingRequests; let i = index;">
-                      <div class="flex-col-12 flex-row">
-                        <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
-                        <div class="fund-amt">
-                          <span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
-                            class="forward-icon" *ngIf="false"><img
-                              src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                  <ng-container *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length">
+                    <div class="processing-state">
+                      <div class="process_lbl">{{'YOUR_PORTFOLIO.PROCESSING' | translate}}</div>
+                      <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
+                      <div class="flex-col"
+                        *ngFor="let processingRequest of pendingMonthlyBuyRequests.processingRequests; let i = index;">
+                        <div class="flex-col-12 flex-row">
+                          <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
+                          <div class="fund-amt">
+                            <span>{{processingRequest.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span><span
+                              class="forward-icon" *ngIf="false"><img
+                                src="../../../assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </ng-container>
 
-                  <div class="flex-col" *ngIf="!pendingMonthlyBuyRequests">
-                    <div class="flex-col-12 flex-row">
-                      <div class="topup-btn" (click)="gotoTopUp(true)">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
-                      <div class="fund-amt">$0</div>
+                  <ng-container *ngIf="!pendingMonthlyBuyRequests">
+                    <div class="flex-col">
+                      <div class="flex-col-12 flex-row">
+                        <div class="topup-btn" (click)="gotoTopUp(true)">{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</div>
+                        <div class="fund-amt">$0</div>
+                      </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
               <!-- buy request -->
