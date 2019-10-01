@@ -205,6 +205,7 @@
   },
   "WITHDRAW_PAYMENT_METHOD": {
     "ADD_BANK_ACCOUNT": "Add Bank Account",
+    "WITHDRAW_TO_ACCOUNT": "Withdrawing to the account below:",
     "BANK_DETAIL": "Bank Details",
     "TITLE": "Bank Details",
     "SELECT": "Select",

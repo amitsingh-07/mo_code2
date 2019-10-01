@@ -60,7 +60,7 @@
                     <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
                   </span>
                   <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW'
-                                      | translate}}<span *ngIf="investmentsSummary?.portfolioSummary?.numberOfPortfolios > 1">
+                                      | translate}}<span *ngIf="investmentsSummary?.portfolioSummary?.numberOfPortfolios > 0">
                       ({{investmentsSummary?.portfolioSummary?.numberOfPortfolios}})</span></span>
                 </div>
                 <div class="widget-body">
