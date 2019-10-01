@@ -89,6 +89,10 @@ app-transactions {
       font-size: 18px;
       font-family: $muli-bold;
       letter-spacing: -0.2px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.active {
         color: $secondary-action-color;
         border-bottom: 6px solid $secondary-action-color;
