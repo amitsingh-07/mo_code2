@@ -125,14 +125,14 @@ app-top-up {
       border-radius: 6px;
       //@include allmobiles {
         width: calc(100% - 10px);
-        height: 104px;
+        height: auto;
         text-align: center;
         position: relative;
         @include allmobiles{
           max-width: 163px;
         }
         @include tablet{
-          padding: 17px 21px;
+          padding: 17px;
         }
         &.ltc {
           padding: 25px 21px;
