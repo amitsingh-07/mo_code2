@@ -42,24 +42,30 @@ app-add-portfolio-name {
       @include allmobiles {
         display: flex;
         flex-direction: column;
-        height: 95vh;
+        height: 100vh;
+        justify-content: flex-start;
+        position: relative;
       }
 
       .portfolio-naming {
         max-width: 320px;
         margin: auto;
 
-        @include desktop {
-          margin-bottom: 60px;
+        @include allmobiles{
+          margin: 60px auto 0;
         }
 
-        @include tablet {
-          margin-bottom: 60px;
-        }
+        // @include desktop {
+        //   margin-bottom: 60px;
+        // }
 
-        @include phablet {
-          margin-bottom: 60px;
-        }
+        // @include tablet {
+        //   margin-bottom: 60px;
+        // }
+
+        // @include phablet {
+        //   margin-bottom: 60px;
+        // }
 
         .portfolio_name_title {
           font-family: $muli-bold;
@@ -72,6 +78,13 @@ app-add-portfolio-name {
 
       .portfolio-naming--content {
         max-width: 320px;
+
+        @include allmobiles{
+          position: absolute;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+        }
       }
     }
 
