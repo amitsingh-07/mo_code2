@@ -242,6 +242,7 @@ export class YourPortfolioComponent implements OnInit {
         break;
       }
       case 4: {
+        this.manageInvestmentsService.clearWithdrawalTypeFormData();
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
         break;
       }

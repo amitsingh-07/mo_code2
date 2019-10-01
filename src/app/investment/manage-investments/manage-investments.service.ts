@@ -252,6 +252,14 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  clearWithdrawalTypeFormData() {
+    this.manageInvestmentsFormData.withdrawType = null;
+    this.manageInvestmentsFormData.withdrawAmount = null;
+    this.manageInvestmentsFormData.withdrawPortfolio = null;
+    this.manageInvestmentsFormData.isRedeemAll = null;
+    this.commit();
+  }
+
   getUserBankList() {
     return this.investmentApiService.getUserBankList();
   }
@@ -526,6 +534,7 @@ export class ManageInvestmentsService {
         portfolio.portfolioName = newPortfolioName;
       }
     });
+    this.commit();
   }
 
 }
