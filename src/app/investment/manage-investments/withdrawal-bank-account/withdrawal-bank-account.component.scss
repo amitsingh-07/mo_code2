@@ -20,6 +20,13 @@ app-withdrawal-bank-account {
      }
   }
   .withdraw {
+    .withdraw_to_acc {
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: normal;
+      letter-spacing: -0.17px;
+      margin-bottom: 20px;
+    }
     .bank_transfer {
       margin-bottom: 16px;
     }

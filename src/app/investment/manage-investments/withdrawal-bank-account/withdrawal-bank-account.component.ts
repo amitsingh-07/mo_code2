@@ -4,7 +4,6 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -12,15 +11,14 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
-import {
-    ConfirmWithdrawalModalComponent
-} from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../manage-investments.service';
+import { ConfirmWithdrawalModalComponent } from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
     ForwardPricingModalComponent
 } from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../manage-investments.service';
+import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 
 @Component({
   selector: 'app-withdrawal-bank-account',
@@ -96,9 +94,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
 
   getTitle() {
     let title = '';
-    title = this.hideAddBankAccount
-      ? this.translate.instant('WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT')
-      : this.translate.instant('WITHDRAW_PAYMENT_METHOD.BANK_DETAIL');
+    title = this.translate.instant('WITHDRAW_PAYMENT_METHOD.BANK_DETAIL');
     return title;
   }
 
