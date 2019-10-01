@@ -283,7 +283,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     const ref = this.modal.open(AddPortfolioNameComponent, {
       centered: true,
       backdropClass: 'portfolio-naming-backdrop',
-      windowClass: 'portfolio-naming',
+      windowClass: 'portfolio-naming custom-full-height'
     });
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = this.defaultPortfolioName;
