@@ -2,7 +2,10 @@
 @import '../../../../mixins';
 
 .toggle-btn{
-  width: 49%;
+  flex: 1;
+}
+.padding-right-10 {
+  padding-right: 10px;
 }
 .action-button {
   width: 100%;
