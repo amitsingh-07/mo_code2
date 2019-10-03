@@ -429,10 +429,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
-        title: this.translate.instant(
+        title: this.isSubsequentPortfolio ? this.translate.instant(
+          'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.TITLE'
+        ) : this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
-        desc: this.translate.instant(
+        desc: this.isSubsequentPortfolio ? this.translate.instant(
+          'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
+        ) : this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
