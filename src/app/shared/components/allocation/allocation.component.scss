@@ -30,6 +30,9 @@ app-allocation {
 
         .bar-container {
           background-color: $bonds-bar-container-bg-color;
+          @include max360{
+            max-width: 140px;
+          }
 
           @include allmobiles {
             width: 50%;
