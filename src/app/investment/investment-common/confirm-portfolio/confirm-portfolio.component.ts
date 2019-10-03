@@ -283,7 +283,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     const ref = this.modal.open(AddPortfolioNameComponent, {
       centered: true,
       backdropClass: 'portfolio-naming-backdrop',
-      windowClass: 'portfolio-naming',
+      windowClass: 'portfolio-naming custom-full-height'
     });
     ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
     ref.componentInstance.defaultPortfolioName = this.defaultPortfolioName;
@@ -429,10 +429,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
-        title: this.translate.instant(
+        title: this.isSubsequentPortfolio ? this.translate.instant(
+          'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.TITLE'
+        ) : this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.TITLE'
         ),
-        desc: this.translate.instant(
+        desc: this.isSubsequentPortfolio ? this.translate.instant(
+          'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
+        ) : this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
         )
       });
