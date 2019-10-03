@@ -15,28 +15,17 @@ app-add-portfolio-name {
   .portfolio-naming-modal-wrapper {
     top: 0;
     width: 100%;
-    // max-height: calc(100vh - 56px);
     position: fixed;
     z-index: 10000;
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 
     @include allmobiles {
       align-items: flex-end;
     }
-
-    // @include desktop {
-    //   align-items: center;
-    // }
-
-    // @include tablet {
-    //   align-items: center;
-    // }
-
-    // @include phablet {
-    //   align-items: center;
-    // }
 
     .modal .close {
       top: 25px !important;
@@ -46,7 +35,6 @@ app-add-portfolio-name {
       @include allmobiles {
         display: flex;
         flex-direction: column;
-        // max-height: calc(100vh - 56px);
         justify-content: space-between;
       }
 
@@ -62,17 +50,9 @@ app-add-portfolio-name {
           justify-content: center;
         }
 
-        // @include desktop {
-        //   margin-bottom: 60px;
-        // }
-
-        // @include tablet {
-        //   margin-bottom: 60px;
-        // }
-
-        // @include phablet {
-        //   margin-bottom: 60px;
-        // }
+        @include iphonex{
+          height: calc(100vh - 360px);
+        }
 
         .portfolio_name_title {
           font-family: $muli-bold;
@@ -92,6 +72,9 @@ app-add-portfolio-name {
           justify-content: flex-end;
           height: 320px;
           padding-bottom: 50px;
+        }
+        @include iphonex{
+          height: 360px;
         }
       }
     }
@@ -178,10 +161,6 @@ app-add-portfolio-name {
   }
 
   .btn {
-    @include allmobiles {
-      margin-bottom: 30px;
-    }
-
     &.btn-primary {
       z-index: 1001;
 
