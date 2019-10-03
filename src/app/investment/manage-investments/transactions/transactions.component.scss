@@ -127,6 +127,11 @@ app-transactions {
         letter-spacing: -0.34px;
         .history-type-transaction {
           min-width: 235px;
+          display: flex;
+          align-items: baseline;
+          .portfolio-name{
+            word-break: break-word;
+          }
         }
         .fa-chevron-down,.fa-chevron-up{
          font-size: 13px;
