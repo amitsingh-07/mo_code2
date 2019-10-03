@@ -15,15 +15,25 @@ export class ManageInvestmentsGuardService implements CanActivate {
     private route: Router,
     private authService: AuthenticationService
   ) {}
-  canActivate(): boolean {
+  canActivate() {
     const investmentStatus = this.investmentCommonService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
-    } else if (MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(investmentStatus) < 0 ) {
+    } else if (investmentStatus && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(investmentStatus) < 0 ) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
+    } else if (!investmentStatus) {
+      return this.investmentCommonService.getAccountCreationActions().map((data) => {
+        if (data && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(data.accountCreationState) < 0) {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          return false;
+        } else {
+          return true;
+        }
+      });
+    } else {
+      return true;
     }
-    return true;
   }
 }

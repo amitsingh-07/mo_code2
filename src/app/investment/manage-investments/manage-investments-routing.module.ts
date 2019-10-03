@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { HoldingsComponent } from './holdings/holdings.component';
-import { TopUpComponent } from './top-up/top-up.component';
+import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
 import { ManageInvestmentsGuardService as  ManageInvestmentsGuard} from './manage-investments-guard.service';
 import { MANAGE_INVESTMENTS_ROUTES } from './manage-investments-routes.constants';
+import { TopUpComponent } from './top-up/top-up.component';
 import { TopupStatusComponent } from './topup-status/topup-status.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { WithdrawalBankAccountComponent } from './withdrawal-bank-account/withdrawal-bank-account.component';
 import { WithdrawalStatusComponent } from './withdrawal-status/withdrawal-status.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
-import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
 const routes: Routes = [
@@ -34,7 +33,7 @@ const routes: Routes = [
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT,
     component: InvestmentOverviewComponent,
-    canActivate: []
+    canActivate: [ManageInvestmentsGuard]
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_PORTFOLIO,
