@@ -255,7 +255,7 @@ export class SignUpApiService {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + '/#/comprehensive',
+      callbackUrl: environment.apiBaseUrl + '/comprehensive',
       hostedServerName: window.location.hostname
     } as IResendEmail;
     return this.apiService.sendWelcomeEmail(payload);

@@ -15,6 +15,10 @@ $muli-extra-light : 'Muli Extra Light',
 sans-serif;
 $muli-extra-bold : 'Muli Extra Bold',
 sans-serif;
+$muli-bold-italic : 'Muli Bold Italic',
+sans-serif;
+$muli-light-italic : 'Muli Light Italic',
+sans-serif;
 
 /* SCSS Variables */
 $white-color: #ffffff;
@@ -76,30 +80,6 @@ $spindle-color: #c2d9ec;
 $silver-chalice-color: #a4a4a4;
 $tuna-color: #313644;
 
-$form-title-backgrnd-color:#c0eded;
-$form-title-mob-backgrnd-color:#45bbbb;
-$form-backgrnd-color:#51c2c2;
-// font usage of muli
-$muli: 'Muli',
-sans-serif;
-$muli-regular : 'Muli Regular',
-sans-serif;
-$muli-light: 'Muli Light',
-sans-serif;
-$muli-bold: 'Muli Bold',
-sans-serif;
-$muli-semi-bold: 'Muli Semi Bold',
-sans-serif;
-$muli-italic : 'Muli Italic',
-sans-serif;
-$muli-extra-light : 'Muli Extra Light',
-sans-serif;
-$muli-extra-bold : 'Muli Extra Bold',
-sans-serif;
-$muli-bold-italic : 'Muli Bold Italic',
-sans-serif;
-$muli-light-italic : 'Muli Light Italic',
-sans-serif;
 // common color
 $login-shadow-color : rgba(0, 0, 0, 0.2);
 $btn-shadow-color: rgba(0, 0, 0, 0.14);
@@ -508,9 +488,6 @@ $col-lg: 992px;
 $col-md: 768px;
 $col-sm: 576px;
 $col-xs: 450px;
-
-// Post Login Dashboard
-$welcome-user-txt-color: #00a6a6;
 
 //Comprehensive
 $light-grey-color: #f5f5f5;

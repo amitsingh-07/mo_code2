@@ -302,270 +302,270 @@
 
 .pb15 {
   padding-bottom: 15px !important;
+}
 
-  .pb20 {
-    padding-bottom: 20px !important;
+.pb20 {
+  padding-bottom: 20px !important;
+}
+
+.pb30 {
+  padding-bottom: 30px !important;
+}
+
+.pb60 {
+  padding-bottom: 60px !important;
+}
+
+.pb0 {
+  padding-bottom: 0 !important;
+}
+
+.absolute-top {
+  top: 0 !important
+}
+
+.plr20 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.pall15 {
+  padding: 15px !important;
+}
+
+//Base Styles for mobile only
+@include min568max767 {
+  .pab-mb15 {
+    margin-bottom: 15px !important;
   }
 
-  .pb30 {
-    padding-bottom: 30px !important;
+  .pab-mt30 {
+    margin-top: 30px !important;
   }
 
-  .pb60 {
+  .pab-mt80 {
+    margin-top: 80px !important;
+  }
+
+  .pab-mrAuto {
+    margin-right: auto !important;
+  }
+
+  .pab-mlAuto {
+    margin-left: auto !important;
+  }
+}
+
+@include tablet {
+  .tab-ml35 {
+    margin-left: 35px !important;
+  }
+
+  .tab-mr35 {
+    margin-right: 35px !important;
+  }
+}
+
+@include allmobiles {
+  .sm-pb0 {
+    padding-bottom: 0px !important;
+  }
+
+  .sm-pb50 {
+    padding-bottom: 50px !important;
+  }
+
+  .sm-pb60 {
     padding-bottom: 60px !important;
   }
 
-  .pb0 {
-    padding-bottom: 0 !important;
+  .sm-mt20 {
+    margin-top: 20px !important;
   }
 
-  .absolute-top {
-    top: 0 !important
+  .sm-mt30 {
+    margin-top: 30px !important;
   }
 
-  .plr20 {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+  .sm-mt50 {
+    margin-top: 50px !important;
   }
 
-  .pall15 {
-    padding: 15px !important;
+  .sm-mb0 {
+    margin-bottom: 0px !important;
   }
 
-  //Base Styles for mobile only
-  @include min568max767 {
-    .pab-mb15 {
-      margin-bottom: 15px !important;
-    }
-
-    .pab-mt30 {
-      margin-top: 30px !important;
-    }
-
-    .pab-mt80 {
-      margin-top: 80px !important;
-    }
-
-    .pab-mrAuto {
-      margin-right: auto !important;
-    }
-
-    .pab-mlAuto {
-      margin-left: auto !important;
-    }
+  .sm-mb10 {
+    margin-bottom: 10px !important;
   }
 
-  @include tablet {
-    .tab-ml35 {
-      margin-left: 35px !important;
-    }
-
-    .tab-mr35 {
-      margin-right: 35px !important;
-    }
+  .sm-mb15 {
+    margin-bottom: 15px !important;
   }
 
-  @include allmobiles {
-    .sm-pb0 {
-      padding-bottom: 0px !important;
-    }
-
-    .sm-pb50 {
-      padding-bottom: 50px !important;
-    }
-
-    .sm-pb60 {
-      padding-bottom: 60px !important;
-    }
-
-    .sm-mt20 {
-      margin-top: 20px !important;
-    }
-
-    .sm-mt30 {
-      margin-top: 30px !important;
-    }
-
-    .sm-mt50 {
-      margin-top: 50px !important;
-    }
-
-    .sm-mb0 {
-      margin-bottom: 0px !important;
-    }
-
-    .sm-mb10 {
-      margin-bottom: 10px !important;
-    }
-
-    .sm-mb15 {
-      margin-bottom: 15px !important;
-    }
-
-    .sm-mb20 {
-      margin-bottom: 20px !important;
-    }
-
-    .sm-mb30 {
-      margin-bottom: 30px !important;
-    }
-
-    .sm-mb50 {
-      margin-bottom: 50px !important;
-    }
-
-    .sm-mb60 {
-      margin-bottom: 50px !important;
-    }
-
-    .sm-mlAuto {
-      margin-left: auto !important;
-    }
-
-    .sm-mr0 {
-      margin-right: 0px !important;
-    }
-
-    .sm-mrAuto {
-      margin-right: auto !important;
-    }
+  .sm-mb20 {
+    margin-bottom: 20px !important;
   }
 
-  .order1 {
+  .sm-mb30 {
+    margin-bottom: 30px !important;
+  }
+
+  .sm-mb50 {
+    margin-bottom: 50px !important;
+  }
+
+  .sm-mb60 {
+    margin-bottom: 50px !important;
+  }
+
+  .sm-mlAuto {
+    margin-left: auto !important;
+  }
+
+  .sm-mr0 {
+    margin-right: 0px !important;
+  }
+
+  .sm-mrAuto {
+    margin-right: auto !important;
+  }
+}
+
+.order1 {
+  order: 1;
+}
+
+.order2 {
+  order: 2;
+}
+
+.order3 {
+  order: 3;
+}
+
+@include allmobiles {
+  .sm-order1 {
     order: 1;
   }
 
-  .order2 {
+  .sm-order2 {
     order: 2;
   }
 
-  .order3 {
+  .sm-order3 {
     order: 3;
   }
+}
 
-  @include allmobiles {
-    .sm-order1 {
-      order: 1;
-    }
+/* nouiSlider styles */
+.noUi-horizontal .noUi-handle {
+  border-radius: 100% !important;
+  width: 25px !important;
+  height: 25px !important;
+  top: -6px !important;
+  cursor: pointer;
+  border: 1px solid rgb(153, 207, 206);
+  box-shadow: none;
+}
 
-    .sm-order2 {
-      order: 2;
-    }
+.noUi-connect {
+  background: rgb(0, 197, 196) !important;
+}
 
-    .sm-order3 {
-      order: 3;
-    }
+.noUi-base {
+  background: rgba(0, 167, 167, 0.35) !important;
+  border-radius: 15px !important;
+}
+
+.noUi-target {
+  height: 14px !important;
+  border: none !important;
+}
+
+[disabled].noUi-target {
+  opacity: .5;
+}
+
+.noUi-connects {
+  border-radius: 15px !important;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  background: none !important;
+}
+
+nouislider {
+  padding: 0 !important;
+}
+
+/* Base styles for the entire tooltip */
+.noUi-horizontal .noUi-tooltip {
+  background-image: url("./assets/images/slider-tooltip.svg");
+  background-color: transparent;
+  height: 44px;
+  width: 52px;
+  color: #00a7a7;
+  line-height: 30px;
+  border: none;
+}
+
+.align-items-top {
+  align-items: flex-start !important;
+
+  .total {
+    font-weight: 600;
+    float: right;
+    text-align: right;
+    position: inherit !important;
+    min-width: 45%;
+  }
+}
+
+.text-bold {
+  font-family: $muli-bold;
+
+  &.grey {
+    color: $text-color-secondary;
   }
 
-  /* nouiSlider styles */
-  .noUi-horizontal .noUi-handle {
-    border-radius: 100% !important;
-    width: 25px !important;
-    height: 25px !important;
-    top: -6px !important;
-    cursor: pointer;
-    border: 1px solid rgb(153, 207, 206);
-    box-shadow: none;
+  a {
+    color: $white-color;
+    text-decoration: none;
   }
+}
 
-  .noUi-connect {
-    background: rgb(0, 197, 196) !important;
-  }
+.pos-fixed {
+  position: fixed;
+}
 
-  .noUi-base {
-    background: rgba(0, 167, 167, 0.35) !important;
-    border-radius: 15px !important;
-  }
+.margin-auto {
+  margin: 0 auto;
+}
 
-  .noUi-target {
-    height: 14px !important;
-    border: none !important;
-  }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
 
-  [disabled].noUi-target {
-    opacity: .5;
-  }
+input[type=number] {
+  -moz-appearance: textfield !important;
+}
 
-  .noUi-connects {
-    border-radius: 15px !important;
-  }
+input::-ms-clear {
+  display: none !important;
+}
 
-  .noUi-handle:after,
-  .noUi-handle:before {
-    background: none !important;
-  }
+.txt-capitalize {
+  text-transform: capitalize !important;
+}
 
-  nouislider {
-    padding: 0 !important;
-  }
+.pointer-cursor {
+  cursor: pointer;
+}
 
-  /* Base styles for the entire tooltip */
-  .noUi-horizontal .noUi-tooltip {
-    background-image: url("./assets/images/slider-tooltip.svg");
-    background-color: transparent;
-    height: 44px;
-    width: 52px;
-    color: #00a7a7;
-    line-height: 30px;
-    border: none;
-  }
-
-  .align-items-top {
-    align-items: flex-start !important;
-
-    .total {
-      font-weight: 600;
-      float: right;
-      text-align: right;
-      position: inherit !important;
-      min-width: 45%;
-    }
-  }
-
-  .text-bold {
-    font-family: $muli-bold;
-
-    &.grey {
-      color: $text-color-secondary;
-    }
-
-    a {
-      color: $white-color;
-      text-decoration: none;
-    }
-  }
-
-  .pos-fixed {
-    position: fixed;
-  }
-
-  .margin-auto {
-    margin: 0 auto;
-  }
-
-  input[type=number]::-webkit-outer-spin-button,
-  input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
-    margin: 0 !important;
-  }
-
-  input[type=number] {
-    -moz-appearance: textfield !important;
-  }
-
-  input::-ms-clear {
-    display: none !important;
-  }
-
-  .txt-capitalize {
-    text-transform: capitalize !important;
-  }
-
-  .pointer-cursor {
-    cursor: pointer;
-  }
-
-  .border-all8 {
-    border-radius: 8px;
-  }
+.border-all8 {
+  border-radius: 8px;
 }
