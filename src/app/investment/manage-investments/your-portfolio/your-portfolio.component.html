@@ -65,7 +65,7 @@
     <ngb-tabset [activeId]="activeTab">
       <ngb-tab id="tab-1">
         <ng-template ngbTabTitle>
-          <div>{{'YOUR_PORTFOLIO.PORTFOLIO_SUMMARY' | translate}}</div>
+          <div class="your-portfolio-tab-title" innerHTML="{{'YOUR_PORTFOLIO.PORTFOLIO_SUMMARY' | translate}}"></div>
         </ng-template>
         <ng-template ngbTabContent>
           <div class="flex-col-12">
@@ -195,7 +195,7 @@
       <ngb-tab id="tab-2">
         <ng-template ngbTabTitle>
           <div class="pending-request">
-            <div>{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}</div>
+            <div class="your-portfolio-tab-title" innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
