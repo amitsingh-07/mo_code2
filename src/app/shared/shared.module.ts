@@ -56,6 +56,10 @@ import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
+import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-modal.component';
+import { SlickModule } from 'ngx-slick';
+import { ReviewBuyRequestModalComponent } from '../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -78,7 +82,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SlickModule.forRoot()
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe,
@@ -105,7 +110,7 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownWithSearchComponent,
     StartsWithPipe,
     RoadmapComponent,
-    SecurePipe],
+    SecurePipe, PortfolioListComponent, InstructionStepsComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -140,14 +145,19 @@ export function createTranslateLoader(http: HttpClient) {
     StartsWithPipe,
     SecurityPolicyComponent,
     TermsModalComponent,
-    SecurePipe
+    SecurePipe,
+    PortfolioListComponent,
+    CarouselModalComponent,
+    ReviewBuyRequestModalComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
     ProgressTrackerModalComponent,
     IfastErrorModalComponent,
     TransferInstructionsModalComponent,
-    InstructionStepsComponent
+    InstructionStepsComponent,
+    CarouselModalComponent,
+    ReviewBuyRequestModalComponent
   ],
   providers: [ProgressTrackerService, RoundPipe]
 })

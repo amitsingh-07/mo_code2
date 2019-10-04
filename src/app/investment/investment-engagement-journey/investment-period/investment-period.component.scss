@@ -1,0 +1,189 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+
+app-investment-period {
+
+  .container-fluid {
+    @include allmobiles {
+      padding-top: 68px;
+    }
+
+    @include desktop {
+      padding-right: 75px !important;
+      padding-left: 75px !important;
+    }
+
+    padding-right: 20px !important;
+    padding-left: 23px !important;
+
+  }
+
+  .callout {
+    padding: 15px;
+    background-color: $callout-bg;
+    border-radius: 6px;
+    margin-top: 30px;
+    position: relative;
+    font-family: $muli-regular;
+    font-size: 15px;
+    letter-spacing: -0.15px;
+    color: $callout-txt-color;
+  }
+
+  .time-horizon {
+    padding: 15px;
+    background-color: $investment-time-horizon-bg;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.15px;
+    color: $investment-time-horizon-clr;
+
+    .txt-nrml {
+      font-family: $muli-regular;
+      color: $black-color;
+      letter-spacing: -0.16px;
+    }
+
+    .desc {
+      padding-bottom: 20px;
+      border-bottom: 1px solid $investment-time-horizon-desc-title-brdr-clr;
+
+      .list-none {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      li {
+        font-size: 13px;
+        line-height: 3.08;
+        letter-spacing: -0.13px;
+        color: $investment-time-horizon-desc-clr;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &.title {
+          color: $investment-time-horizon-clr;
+          border: 1px solid $investment-time-horizon-desc-title-brdr-clr;
+          border-right: none;
+          border-left: none;
+        }
+      }
+    }
+  }
+
+  .pointer-container {
+    position: absolute;
+    bottom: -14px;
+    left: 30px;
+    left: 34px;
+    right: 0px;
+    transform: translate(-100%, 0px);
+  }
+
+  .personalInfoInvestmentDesc,
+  .personalInfoSliderDesc {
+    font-family: $muli-italic;
+    font-size: 15px;
+    color: $text-color-secondary;
+  }
+
+  .personalInfoSliderDesc b {
+    font-family: $muli-bold;
+  }
+
+  .Continue {
+    font-family: $muli-bold !important;
+    font-size: 22px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: $white-color;
+  }
+
+  .pointer {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 20px solid $white-color;
+    right: 0px;
+    left: auto;
+    position: absolute;
+  }
+
+  .callout h5 {
+    color: $teal-color;
+    font-size: 21px;
+    letter-spacing: -0.2px;
+    font-family: $muli-bold;
+  }
+
+  .callout h5 .period-count {
+    color: $slider-selection-color;
+    text-decoration: underline;
+  }
+}
+
+.btn {
+  &:disabled {
+    background-color: $btn-disabled-light-bg;
+    color: $btn-disabled-teal-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $btn-disabled-light-bg !important;
+      color: $btn-disabled-teal-color;
+
+    }
+  }
+}
+
+.investmentSlider {
+  .noUi-target {
+    height: 50px !important;
+    border-radius: 25px !important;
+  }
+
+  .noUi-base {
+    border-radius: 25px !important;
+  }
+
+  .noUi-base {
+    background-color: $investment-slider-noui-base-bg !important;
+  }
+
+  .noUi-connects {
+    border-radius: 25px !important;
+  }
+
+  .noUi-connect {
+    background-color: $slider-selection-color !important;
+  }
+
+  .noUi-horizontal .noUi-handle {
+    width: 63px !important;
+    height: 64px !important;
+    background: url('/assets/images/owl-icon.png') no-repeat center;
+    border: none !important;
+    right: 0px;
+  }
+
+  .noUi-origin {
+    width: 93%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .noUi-origin {
+      width: 96%;
+    }
+  }
+}

@@ -1,0 +1,195 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-carousel-modal {
+  .slide-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .extra-margin-top {
+    margin-top: 38px;
+  }
+
+  .extra-margin-top-18 {
+    margin-top: 30px !important;
+  }
+
+  .title-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    .title-img {
+      margin-right: 4px;
+    }
+  }
+  
+  .title-txt {
+    font-family: $muli-bold;
+    font-size: 22px;
+    color: #ff872f;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+
+  .img {
+    width: 260px;
+    height: 115px;
+    object-fit: contain;
+    margin-top: 20px;
+  }
+
+  .img-title {
+    font-family: $muli-bold;
+    font-size: 18px;
+    color: $teal-color;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .slide-txt {
+    font-family: $muli-regular;
+    font-size: 14px;
+    color: $text-color-secondary;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 18px;
+    text-align: center;
+  }
+
+  .url-txt {
+    font-family: $muli-regular;
+    font-size: 16px;
+    color: #ff872f;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .slick-dots {
+    bottom: initial;
+    margin-top: 27px;
+    position: relative;
+  }
+
+  .slick-dots li {
+    height: 8px;
+    width: 8px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 8px;
+    color: #d8d8d8;
+    opacity: 1;
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: #00c5c4;
+    opacity: 1;
+  }
+
+  .dismiss-txt {
+    font-family: $muli-regular;
+    font-size: 18px;
+    color: $text-color-secondary;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-right: 31px;
+    cursor: pointer;
+  }
+
+  .got-it-txt {
+    font-family: $muli-bold;
+    font-size: 22px;
+    color: $teal-color;
+    line-height: normal;
+    letter-spacing: normal;
+    cursor: pointer;
+  }
+
+  .contact-div {
+    width: 300px;
+    height: 160px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    background-color: #f6f6f6;
+    margin-top: 30px;
+
+    .contact-txt {
+      font-family: $muli-bold;
+      font-size: 14px;
+      color: $text-color-secondary;
+      line-height: normal;
+      letter-spacing: normal;
+    }
+
+    .contact-tel-div {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .contact-tel {
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: $teal-color;
+      line-height: 1.71;
+      letter-spacing: -0.14px;
+    }
+
+    .contact-email-div {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .contact-email {
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: $teal-color;
+      line-height: 1.71;
+      letter-spacing: -0.14px;
+    }
+
+    .margin-right {
+      margin-right: 8px;
+    }
+  }
+
+  .btn-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .img-margin-right {
+    margin-right: 31px;
+  }
+
+  .carousel-btn-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .last-carousel-btn-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 65px;
+  }
+
+  div.modal-body.white-bg {
+    padding: 36px 60px 36px !important;
+  }
+}

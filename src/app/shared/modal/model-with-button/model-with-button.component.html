@@ -13,7 +13,7 @@
     alt="" /></span>
     <span *ngIf="lockIcon" class="lock"><img src="../../../../assets/images/lock.svg" ></span>
   </div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
   <div class="journey-wrapper" *ngIf="portfolioExist">
@@ -41,7 +41,7 @@
   </button> -->
   <!-- yes - or - no -->
   <div class="flex-row flex-col-12 space-btwn" *ngIf="yesOrNoButton">
-    <div class="toggle-btn">
+    <div class="toggle-btn padding-right-10">
         <button type="button" class="action-button " (click)="yesButtonClick()" id="errorModeButton">
             Yes
           </button>

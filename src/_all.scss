@@ -55,27 +55,24 @@ h6 {
     max-width: 1024px;
   }
 
-  &.invest-web-width {
-    @include LargeDevice {
-      max-width: 600px;
-      padding-top: 90px;
-    }
-
-    @include MediumDevice {
-      max-width: 600px;
-      padding-top: 90px;
-    }
-  }
-
-  &.invest-web-pt-90 {
-    @include LargeDevice {
-      padding-top: 90px;
-    }
-
-    @include MediumDevice {
-      padding-top: 90px;
-    }
-  }
+  // &.invest-web-width{
+  //   @include LargeDevice {
+  //     max-width: 600px;
+  //     padding-top: 90px;
+  //   }
+  //   @include MediumDevice {
+  //     max-width: 600px;
+  //     padding-top: 90px;
+  //   }
+  // }
+  // &.invest-web-pt-90{
+  //   @include LargeDevice {
+  //     padding-top: 90px;
+  //   }
+  //   @include MediumDevice {
+  //     padding-top: 90px;
+  //   }
+  // }
 }
 
 .navbar {
@@ -165,7 +162,10 @@ h6 {
       text-align: center;
       padding-left: 20px;
       padding-right: 20px;
-      color: #00a7a7 !important;
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.19px;
 
       &.subMode {
         padding-top: 12px;
@@ -287,6 +287,7 @@ h6 {
         max-width: 515px;
       }
     }
+
 
 
     @include minMobilemaxPhablet {
@@ -1893,20 +1894,20 @@ a.link-white {
   position: relative;
 
   hr {
-    border: 1px solid #008c8c;
+    border: 1px solid $or-seperator-brdr-color;
     margin: 0;
   }
 
   .or-circle {
     width: 43px;
     height: 43px;
-    border: 5px solid #00a7a7;
-    background-color: #008c8c;
+    border: 5px solid $or-circle-brdr-color;
+    background-color: $or-circle-bg-color;
     border-radius: 50%;
     font-family: $muli-bold;
     font-size: 13px;
     letter-spacing: -0.12px;
-    color: #98dfdf;
+    color: $or-circle-txt-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2270,10 +2271,11 @@ select:-webkit-autofill:focus {
     bottom: 0;
     width: 600px;
     z-index: 1030;
+
     @include allmobiles {
       width: 100%;
-      }
     }
+  }
 
   .income-bucket-panel {
     text-align: center;
@@ -2283,7 +2285,7 @@ select:-webkit-autofill:focus {
     }
 
     &__desc {
-      padding-bottom: 16px!important;
+      padding-bottom: 16px !important;
       font-size: 16px;
     }
 
@@ -2292,6 +2294,7 @@ select:-webkit-autofill:focus {
       font-family: $muli-bold;
       font-size: 24px;
     }
+
     &__value-desc {
       padding-bottom: 10px;
       font-family: $muli-italic !important;

@@ -1,0 +1,387 @@
+@import './variables';
+@import './mixins';
+
+.container-fluid {
+  &.invest-web-width {
+    @include LargeDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      max-width: 600px;
+      padding-top: 90px;
+    }
+  }
+
+  &.invest-web-pt-90 {
+    @include LargeDevice {
+      padding-top: 90px;
+    }
+
+    @include MediumDevice {
+      padding-top: 90px;
+    }
+  }
+}
+
+//common styles
+.investment {
+  h2 {
+    font-size: 30px !important;
+    margin-bottom: 15px;
+  }
+
+  .banner-image {
+    img {
+      padding-top: 0;
+    }
+  }
+
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+    font-size: 22px;
+
+    &:disabled {
+      background-color: $btn-disabled-light-bg;
+      color: $btn-disabled-teal-color;
+    }
+  }
+
+  .btn-proceed {
+    border: 0px;
+    border-radius: 6px;
+    background-color: $white-color;
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
+    cursor: pointer;
+    font-family: $muli-bold;
+    font-weight: normal !important;
+    font-size: 22px;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $teal-color;
+    width: 370px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 54px;
+
+    @include allmobiles {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  .container-fluid {
+    .title-small {
+      font-family: $muli-bold;
+      font-size: 16px;
+      line-height: 1.38;
+      letter-spacing: -0.2px;
+      color: $white-color;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// investment-account module
+.investment-account {
+  .container-fluid {
+    padding-top: 16px;
+
+    @include allmobiles {
+      padding-top: 80px;
+    }
+  }
+
+  // step indicator
+  .step-indicator-container {
+    padding: 20px 0px;
+    position: relative;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    @include allmobiles {
+      top: 60px;
+      background-color: $white-color;
+      padding: 10px 0px;
+    }
+
+    .page-caption {
+      color: $text-color-secondary;
+      font-size: 16px;
+      font-family: $muli;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    @include stepindicator-desktop-extraspace;
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+  // button proceed
+  .btn-proceed {
+    border: 0px;
+    border-radius: 6px;
+    background-color: $white-color;
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
+    cursor: pointer;
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: $teal-color;
+    font-weight: 400;
+    width: 370px;
+
+    @include allmobiles {
+      position: fixed;
+      width: 100%;
+      bottom: 0px;
+      left: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  .postal-code-control {
+    display: flex;
+
+    div.control {
+      display: flex;
+      flex: 3;
+    }
+
+    div.button {
+      display: flex;
+      flex: 2;
+    }
+  }
+
+  // date picker
+  .datepicker-control {
+    .date-picker {
+      .input-group-append {
+        .btn-primary {
+          box-shadow: none !important;
+
+          &:disabled {
+            color: $form-control-disabled-txt-color !important;
+            background-color: $form-control-disabled-bg-color !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+  }
+
+  // dropdown
+  .dropdown-control {
+    .btn-dropdown {
+      color: $form-dropdown-txt-color !important;
+
+      &:disabled,
+      &.disabled {
+        cursor: not-allowed;
+        color: $form-control-disabled-txt-color !important;
+        background-color: $form-control-disabled-bg-color !important;
+        opacity: 1 !important;
+
+        &:hover {
+          background-color: $form-control-disabled-bg-color !important;
+        }
+      }
+    }
+  }
+
+
+  // form-control
+  .form-control {
+    &:disabled,
+    &.disabled {
+      color: $form-control-disabled-txt-color !important;
+      -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+      background-color: $form-control-disabled-bg-color !important;
+      opacity: 1 !important;
+
+      &:hover {
+        background-color: $form-control-disabled-bg-color !important;
+      }
+
+      input {
+        background-color: $form-control-disabled-bg-color !important;
+        padding-top: 6px;
+        padding-bottom: 6px;
+      }
+    }
+  }
+}
+
+
+.invest-section{
+  display: block;
+  background-color: transparent;
+  position: relative;
+  margin: 0;
+  overflow: visible;
+  @include allmobiles{
+    top:60px;
+  }
+  .invest-section-items{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    .invest-section-content{
+      position: relative;
+      width: 100%;
+      .invest-bg{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        height: 100%;
+        .invest-bg-media{
+          border: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          & > *{
+            transition: all 0.50s ease-in-out;
+            transition-property: background, border-radius, color, border-color, box-shadow;
+          }
+          .invest-bg-image{
+            background-image: url("/assets/images/investment_header_web.svg");
+            background-position: right top;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            background-color: #00c2c0;
+            background-size: 230px 150px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @include allmobiles{
+              background-size: 150px 100px;
+            }
+          }
+          .invest-bg-color{
+            background-color: rgba(0, 167, 167, 0.75);
+            background-image: none;
+          }
+        }
+        .invest-bg-content{
+          position: relative;
+          -webkit-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          min-width: 0;
+          min-height: 1px;
+          .container-fluid{
+            &.max-width--1024{
+              padding-bottom: 0;
+              padding-top: 45px !important;
+              @include allmobiles{
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                padding-top: 35px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// investment bg end
+
+// toast msg
+
+.toast-msg-block {
+  position: relative;
+  top: 10px;
+  z-index: 9999;
+  max-width: 1024px;
+  margin: 0 auto;
+    @include allmobiles{
+      top: 0px;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+    }
+    // &.fade-out-animation {
+    //   -webkit-animation: fadeOut 3100ms ease-in-out;
+    //   /* Chrome, Safari, Opera */
+    //   animation: fadeOut 3100ms ease-in-out;
+    // }
+
+    // /* Chrome, Safari, Opera */
+    // @-webkit-keyframes fadeOut {
+    //   0% {
+    //     opacity: 0.8;
+    //   }
+
+    //   100% {
+    //     opacity: 0;
+    //   }
+    // }
+
+    // /* Standard syntax */
+    // @keyframes fadeOut {
+    //   0% {
+    //     opacity: 1;
+    //   }
+
+    //   100% {
+    //     opacity: 0;
+    //   }
+    // }
+    .toast-msg-container {
+      color: #e57300;
+      background: #fff;
+      padding: 20px;
+      background-color: #fff1e3;
+      // border-top: 1px solid #dfdfdf;
+      font-family: "Muli Bold", sans-serif;
+      font-size: 15px;
+      line-height: 19px;
+      display: flex;
+      //justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+      width: 370px;
+      position: absolute;
+      right: 15px;
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+      @include allmobiles{
+        border-radius: 0;
+        padding: 30px 20px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+      }
+      .toast-msg{
+        width: 200px;
+        margin-left: 14px;
+        word-wrap: break-word;
+      }
+      .flex-col-3{
+        color: #00a7a7;
+        text-align: right;
+      }
+    }
+  }

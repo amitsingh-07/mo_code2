@@ -2,13 +2,13 @@
 
 <p>There was a recent article that discussed when it was suitable to Buy  Term and Invest the Rest (BTIR) and when to use <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" style="font-weight:600;" target="_blank">Whole Life Insurance</a>. </p>
 <br/>
-<p>Contrary to what many think, the purpose of buying <a href="https://www.moneyowl.com.sg/#/articles/entry/35" style="font-weight:bold;" target="_blank">term insurance</a> is not  so that one can invest the difference from the amount saved by buying a term  instead of a whole life.</p>
+<p>Contrary to what many think, the purpose of buying <a href="https://www.moneyowl.com.sg/articles/entry/35" style="font-weight:bold;" target="_blank">term insurance</a> is not  so that one can invest the difference from the amount saved by buying a term  instead of a whole life.</p>
 <br/>
 <p>The main purpose of buying insurance is for protection and buying Term  Insurance is the best way to be sufficiently covered. Whether one should invest  the rest is a different discussion together. </p>
 <p>&nbsp;</p>
 <h2 class="primary-color"><strong>Why is Term Insurance the most appropriate?</strong></h2>
 <br/>
-<p>Most people are not against that the main purpose of insurance is for  protection, to transfer a potential financial risk loss to the insurer. There  are 2 main reasons why <a href="https://www.moneyowl.com.sg/#/articles/entry/35" style="font-weight:bold;" target="_blank">Term insurance</a> is the most appropriate to help us  achieve our purpose. </p>
+<p>Most people are not against that the main purpose of insurance is for  protection, to transfer a potential financial risk loss to the insurer. There  are 2 main reasons why <a href="https://www.moneyowl.com.sg/articles/entry/35" style="font-weight:bold;" target="_blank">Term insurance</a> is the most appropriate to help us  achieve our purpose. </p>
 <br/>
 <p class="primary-color"><strong>a. Most of our top  priority needs are not permanent</strong></p>
 <div class="table-responsive" >
@@ -84,7 +84,7 @@
 <p>&nbsp;</p>
 
 <p class="primary-color"><strong>b. Term Insurance is the  most affordable way to be fully covered</strong></p>
-<p>We illustrate with an example. For a 45-year-old male to be insured with  $1M life insurance coverage, a <a href="https://www.moneyowl.com.sg/#/articlce/entry/35" style="font-weight:bold;" target="_blank" title="Term Insurance">term insurance</a> policy would cost $2,913 while a  <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Insurance">whole life Insurance</a> would cost $29,162. </p>
+<p>We illustrate with an example. For a 45-year-old male to be insured with  $1M life insurance coverage, a <a href="https://www.moneyowl.com.sg/articlce/entry/35" style="font-weight:bold;" target="_blank" title="Term Insurance">term insurance</a> policy would cost $2,913 while a  <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Insurance">whole life Insurance</a> would cost $29,162. </p>
 <br/>
 <p>Possible insurance plans for a 45 year-old  male to cover $1,000,000 Death/TPD </p>
 <div class="table-responsive" >
@@ -166,7 +166,7 @@
 <p>It is only when we understand the true purpose of how we use the  different types of insurance to meet our needs that we can spend smartly on  insurance and insure our loved ones and ourselves the right way.</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme">
   <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

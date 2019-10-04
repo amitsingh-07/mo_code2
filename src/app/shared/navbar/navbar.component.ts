@@ -8,7 +8,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
   TransactionModalComponent
@@ -25,6 +25,8 @@ import { ComprehensiveService } from './../../comprehensive/comprehensive.servic
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
+import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
+import { SelectedPlansService } from './../Services/selected-plans.service';
 
 @Component({
   selector: 'app-navbar',
@@ -106,6 +108,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService,
+    private errorHandler: CustomErrorHandlerService,
+    private selectedPlansService: SelectedPlansService,
     private progressTrackerService: ProgressTrackerService,
     private comprehensiveService: ComprehensiveService) {
     this.browserCheck();
@@ -234,7 +238,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   onPageChanged() {
-    this.isComprehensivePath = (window.location.href.indexOf('#/comprehensive') !== -1);
+    this.isComprehensivePath = (window.location.href.indexOf('/comprehensive/') !== -1);
     this.showComprehensiveTitle = this.isComprehensiveEnabled && this.isComprehensivePath
       && this.journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE
       && !Util.isEmptyOrNull(this.pageTitle);
@@ -307,7 +311,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   goToHome(in_fragment?: string) {
     if (in_fragment) {
       const extra = { fragment: in_fragment } as NavigationExtras;
-      this.router.navigate([appConstants.homePageUrl], extra);
+      // Added check to see if current route is same
+      if (this.router.url === appConstants.HOME_ROUTE + in_fragment) {
+        this.toggleMenu();
+      } else {
+        this.router.navigate([appConstants.homePageUrl], extra);
+      }
     } else {
       this.router.navigate([appConstants.homePageUrl]);
     }
@@ -409,6 +418,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.authService.clearSession();
     this.appService.clearData();
     this.appService.startAppSession();
+    this.selectedPlansService.clearData();
     this.router.navigate([appConstants.homePageUrl]);
   }
 
@@ -416,9 +426,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   goToDashboard() {
     if (!this.authService.isSignedUser()) {
       this.clearLoginDetails();
+      this.errorHandler.handleAuthError();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      // If user is on dashboard page already, close the menu
+      this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
+    }
+  }
+
+  // Added to check if current route is same as the navigating route
+  // If its current route, close the menu else navigate as usual
+  checkCurrentRouteAndNavigate(route) {
+    if (this.router.url === route) {
+      this.toggleMenu();
+    } else {
+      this.router.navigate([route]);
     }
   }
 

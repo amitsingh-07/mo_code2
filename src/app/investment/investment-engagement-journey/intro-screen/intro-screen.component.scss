@@ -1,0 +1,79 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-intro-screen {
+  .intro-block {
+    .container-fluid {
+      padding-top: 30px !important;
+      padding-bottom: 0 !important;
+
+      @include allmobiles {
+        padding-top: 10px !important;
+      }
+    }
+
+    .intro-block__tab-container {
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+
+      .intro-block__tab {
+        width: calc(50% - 10px);
+        opacity: 0.2;
+        padding-right: 10px;
+        background-color: $intro-block-tab-bg-color;
+        min-height: 5px;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+
+    .intro-block__content {
+      .banner-image img {
+        padding-top: 85px;
+
+        @include allmobiles {
+          padding-top: 30px;
+        }
+      }
+
+      .intro-block__content__desc {
+        margin: 15px auto 0;
+        max-width: 400px;
+        color: $intro-block-content-desc-color;
+
+        @include allmobiles {
+          margin-top: 30px;
+          text-align: center;
+        }
+
+        @include tablet {
+          margin-top: 30px;
+        }
+
+        .intro-block__content__heading {
+          font-size: 36px;
+          letter-spacing: -0.4px;
+          text-align: center;
+          color: $intro-block-heading-color;
+        }
+
+        .intro-block__content__title {
+          font-family: $muli-semi-bold;
+          font-size: 24px;
+          letter-spacing: -0.3px;
+          text-align: center;
+        }
+
+        .intro-block__content__sub-title {
+        font-size: 18px;
+          line-height: 1.22;
+          letter-spacing: -0.2px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

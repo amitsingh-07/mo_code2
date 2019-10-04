@@ -12,7 +12,14 @@
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
         "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-        "FIND_OUT_MORE": "Find Out More"
+        "FIND_OUT_MORE": "Find Out More",
+        "SRS_PROMO": {
+            "TITLE": "Joint Account and SRS are now available!",
+            "SUB_CONTENT": "Email to <br/><a href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a><br/>to find out more!"
+        },
+        "MARQUEE_PROMO": {
+            "CONTENT": "Are you looking for a <strong>SRS approved short-term 3 year savings plan</strong> with guaranteed capital <strong>+2.3% p.a.</strong> returns?<br/> Click here! Act fast as it is on a first-come, first-served basis."
+        }
     },
     "INSURANCE": {
         "LABEL": "Insure",

@@ -16,6 +16,7 @@ export let appConstants = {
     JOURNEY_TYPE_DIRECT: 'DIRECT',
     JOURNEY_TYPE_GUIDED: 'GUIDED',
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING',
+    HOME_ROUTE: '/home#',
     JOURNEY_TYPE_COMPREHENSIVE: 'COMPREHENSIVE',
     SESSION_KEY: {
         COMPREHENSIVE: 'app-comprehensive-session'

@@ -264,7 +264,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         } else if (this.isFormAltered) {
           this.openConfirmationModal(url, false);
         } else {
-          this.save(url);
+          this.router.navigate([url]);
         }
       } else {
         this.save(url);

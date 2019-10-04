@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <div class="modal-title popup-header-icon" *ngIf="imgType == 1">
+        <img src="./assets/images/owl.svg" id="errorModelImage" />
+    </div>
+    <div class="modal-title popup-header-icon glass" *ngIf="imgType == 2">
+        <img src="./assets/images/investment-account/fees_owl.svg" id="errorModelImage" />
+    </div>
+</div>
+<div class="modal-body white-bg">
+    <div class="modal-body-title">
+        <div id="errorModeltitle">{{'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.RENAME_PORTFOLIO_TXT' | translate}}</div>
+        <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="../../../assets/images/investment-account/topup-alert.svg"
+    alt="" /></span>
+        <span *ngIf="lockIcon" class="lock"><img src="../../../../assets/images/lock.svg" ></span>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
+    <form id="renameForm" name="renameForm" [formGroup]="renameForm">
+        <div class="row">
+            <div class="col-12">
+                <input type="text" [ngClass]="{'inline-error': showErrorMessage}" class="form-control mb10" formControlName="investName" placeholder="Investment Name" (keyup)="showLength($event)" maxlength="50" required>
+                <div *ngIf="showErrorMessage" class="error-message">
+                    <span><img class="success-tick"
+                        src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
+                    <span>{{
+                      'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.ERROR_MESSAGE' | translate}}</span>
+                </div>
+            </div>
+            <div class="characters col-12">{{characterLength ? characterLength :(userPortfolioName ? userPortfolioName.length :0)}} {{'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.MAX_NUMBER_CHARACHTER' | translate}}</div>
+            <div class="col-12">
+                <button type="button" class="action-button"
+                 [ngClass]="{'disabled': !(!showErrorMessage && renameForm?.controls?.investName?.dirty && renameForm.get('investName').valid)}"
+                 [disabled]="!(!showErrorMessage && renameForm?.controls?.investName?.dirty && renameForm.get('investName').valid)"
+                 (click)="renamePortfolio(renameForm)" id="errorModeButton">
+                 {{'YOUR_PORTFOLIO.MODAL.RENAME_PORTFOLIO.RENAME_PORTFOLIO_TXT' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+

@@ -1,0 +1,176 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-additional-declaration1 {
+  .app-add-step1 {
+    .dropdown-control {
+      .dependent-count {
+        color: $text-color-secondary;
+        margin-left: 4px;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+      }
+    }
+
+    label {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      padding-right: 5px;
+    }
+
+    .dropdown-control .dropdown-menu.show {
+      right: 0 !important;
+      overflow: auto;
+      height: calc(70vh);
+    }
+
+    .btn-group--toggle {
+      label {
+        font-size: 16px;
+        font-family: $muli-regular;
+      }
+    }
+
+    .dropdown-item {
+      white-space: normal;
+    }
+
+    .fixed-btn--sm {
+      color: $white-color;
+    }
+
+    .text {
+      font-family: $muli-regular;
+      font-size: 18px;
+      line-height: 1.17;
+      letter-spacing: -0.2px;
+      text-align: center;
+      padding-left: 17px;
+      padding-right: 14px;
+    }
+
+    .tooltip-icon {
+      background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      display: block;
+      margin-top: 3px;
+    }
+
+    .country_text {
+      width: 100px;
+      height: 69px;
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+    }
+
+    .tin_question_text {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      margin-bottom: 12px;
+    }
+
+    .pep_text {
+      font-family: $muli-regular;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      margin-bottom: 12px;
+    }
+
+    .disabled {
+      cursor: not-allowed;
+      border-color: $fixed-btn-brdr-color;
+    }
+
+    .input-control {
+      text-align: left;
+    }
+
+    .form-group {
+      .full_name {
+        font-size: 18px;
+        letter-spacing: -0.3px;
+
+        .full_name_sub {
+          font-size: 14px;
+        }
+      }
+
+    }
+
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+      }
+
+      &:disabled,
+      &.disabled {
+        input {
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button {
+          display: none;
+        }
+      }
+    }
+
+    .autofill-link {
+      border: 1px solid $secondary-action-color;
+      padding: 23px 34px;
+      background-color: $white-color;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      display: flex;
+
+      .autofill-logo {
+        width: 35%;
+      }
+
+      .autofill-text {
+        width: 65%;
+        font-family: $muli-bold;
+        font-size: 18px;
+        color: $inline-error-border-color;
+      }
+    }
+
+
+    .office-addr-lbl {
+      margin-top: 25px;
+      margin-bottom: 24px;
+      font-size: 18px;
+    }
+
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+
+    color: $text-color-secondary
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+
+}

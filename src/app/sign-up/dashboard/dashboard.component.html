@@ -14,141 +14,230 @@
                 <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
               </span>
             </div>
+            <div class="announcement-div" (click)="openSRSJointAccPopup()">
+              <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
+              <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}</div>
+            </div>
           </div>
           <div class="widgets">
             <app-comprehensive-dashboard></app-comprehensive-dashboard>
-            <div class="widget investment-widget" *ngIf="isInvestmentEnabled">
+            <div class="widget insurance" *ngIf="showInsuranceSection">
               <div class="widget-title">
-                <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
-                  <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
-                </span>
-                <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.PROCEED'
-                  | translate}}</span>
+                <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
-                  <!-- parchased portfolio -->
-                  <div class="portfolio" *ngIf="showPortfolioPurchased">
-                    <div class="portfolio_value">
-                      <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                      <div class="value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                    </div>
-                    <div class="portfolio_graph"></div>
-                    <div class="portfolio_footer">
-                      <div class="flex-col col-5" *ngIf="userProfileInfo.investementDetails.showTotalReturn">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div [class.negativeValue]="this.userProfileInfo.investementDetails.totalReturns < 0"
-                          class="portfolio_footer_value">
-                          {{formatReturns(totalReturns)}}{{totalReturns | number : '1.0-2'}}%</div>
-                      </div>
-                      <div class="flex-col col-7"
-                        [ngClass]="{'col-12': !userProfileInfo.investementDetails.showTotalReturn}">
-                        <div>{{'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}</div>
-                        <div class="portfolio_ref_code" (click)="showTransferInstructionModal()"
-                          *ngIf="userProfileInfo.investementDetails && userProfileInfo.investementDetails.account">
-                          (<span
-                            class="portfolio_ref_code_text">{{'DASHBOARD.INVESTMENT.REF_CODE' | translate}}{{userProfileInfo.investementDetails.account.refNo}}</span>)
-                        </div>
-
-                        <div class="portfolio_footer_value">
-                          {{availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  STEP-1 PORTFOLIO -->
-                  <div class="no_account col-12" *ngIf="showStartInvesting">
+                  <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                        <span
+                          *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span *ngIf="insurance.hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{
+                            insurance.lastTransactionDate | date: 'dd MMM yyyy'}}.</span>
+                      </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
-                          <img src="assets/images/investment-account/investment-icon.svg" />
+                          <img src="assets/images/insure-dash.svg" />
                         </div>
                       </div>
                     </div>
                     <div class="flex">
-                      <button (click)="goToEngagement()" type="button" class="btn btn-primary col-12">
-                        <div>{{'DASHBOARD.INVESTMENT.START_INVESTING' | translate}}</div>
-                        <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_MINS' | translate}}</div>
+                      <button type="button" class="btn btn-primary col-12" *ngIf="!insurance.isGuidedJourney"
+                        routerLink="/guideme">
+                        <div>{{'DASHBOARD.INSURANCE.ASSESS_MY_NEEDS' | translate}}</div>
+                        <div>{{'DASHBOARD.INSURANCE.ESTIMATED_MINS' | translate}}</div>
+                      </button>
+                      <button type="button" class="btn btn-ghost col-12" *ngIf="insurance.isGuidedJourney"
+                        routerLink="/guideme">
+                        {{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}
                       </button>
                     </div>
-                  </div>
-                  <!-- Pending Documents Upload -->
-                  <div class="warning col-12" *ngIf="showInvestmentDetailsSaved">
-                    <div class="warning-txt">
-                      <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
-                    </div>
-                    <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE'
-                        | translate}}</button>
-                    </div>
-                  </div>
-                  <!-- CDD CHECK IS ONGOING EDD ONGOING -->
-                  <div class="pending col-12" *ngIf="showCddCheckOngoing">
-                    <div class="warning-txt">
-                      <div>{{'DASHBOARD.INVESTMENT.CDD_CHECK_ONGOING' | translate}}</div>
-                    </div>
-                  </div>
-                  <!-- CDD CHECKFAIL -->
-                  <div class="verify col-12" *ngIf="showCddCheckFail">
-                    <div class="warning-txt">
-                      <div>{{'DASHBOARD.INVESTMENT.CDD_CHECK_FAIL_DESC' | translate}}</div>
-                    </div>
-                    <div class="flex">
-                      <button type="button" (click)="verifyCustomerDetails()" class="btn btn-ghost col-12">
-                        {{'DASHBOARD.INVESTMENT.VERIFY_DETAILS' | translate}}</button>
-                    </div>
-                  </div>
-                  <!-- RECOMMEND -->
-                  <div class="set-up col-12" *ngIf=showSetupAccount>
-                    <div class="warning-txt">
-                      <div>{{'DASHBOARD.INVESTMENT.SETUP_YOUR_ACCOUNT_DESC' | translate}}</div>
-                    </div>
-                    <div class="flex">
-                      <button type="button" (click)="goToInvestmentAccount()" class="btn btn-ghost col-12">
-                        {{'DASHBOARD.INVESTMENT.SET_UP_ACCOUNT' | translate}} </button>
-                    </div>
-                  </div>
-                  <!-- Suspended Account -->
-                  <div class="suspended col-12" *ngIf=showSuspendedAccount>
-                    <div class="warning-txt">
-                      <div innerHTML="{{'DASHBOARD.INVESTMENT.SUSPENDED_INVESTMENT_ACCOUNT' | translate}}"> </div>
-                    </div>
-                  </div>
-                  <!--Blocked nationality -->
-                  <div class="compliance col-12" *ngIf=showBlockedNationalityStatus>
-                    <div class="warning-txt">
-                      <div innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}" div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Compliance Rejected Account or EDD check fail  -->
-                  <div class="compliance col-12" *ngIf=showEddCheckFailStatus>
-                    <div class="warning-txt">
-                      <div innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}" div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- THIS SENARIO IS NOT COVERED  -->
-                  <div class="no_portfolio col-12" *ngIf="false">
-                    <div class="warning-txt">
-                      <div class="flex-col-8">
-                        {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
-                      <div class="flex-col-4">
-                        <div class="investment_icon">
-                          <img src="assets/images/investment-account/investment-icon.svg" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex">
-                      <button type="button" class="btn btn-primary col-12">
-                        <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
-                        <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
-                      </button>
-                    </div>
+                    <div class="find-plan"><a
+                        routerLink="/direct">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' | translate}}</a></div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="widget">
+              <ng-container *ngIf="isInvestmentEnabled; else loader">
+                <div class="widget-title">
+                  <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
+                    <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
+                  </span>
+                  <span class="view_all" *ngIf="showPortfolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW'
+                                      | translate}}<span
+                      *ngIf="investmentsSummary?.portfolioSummary?.numberOfPortfolios > 0">
+                      ({{investmentsSummary?.portfolioSummary?.numberOfPortfolios}})</span></span>
+                </div>
+                <div class="widget-body">
+                  <div class="scenarios flex-col-12">
+                    <!-- Purchased Portfolio -->
+                    <div class="portfolio" *ngIf="showPortfolioPurchased">
+                      <div>
+                        <div class="portfolio_value">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
+                          <div *ngIf="investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">
+                            {{investmentsSummary?.portfolioSummary?.totalPortfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}
+                          </div>
+                          <div *ngIf="!investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">$0</div>
+                        </div>
+                        <div class="portfolio_graph"></div>
+                        <div class="portfolio_footer">
+                          <div class="flex-col col-12">
+                            <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE' | translate}}</div>
+                            <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance"
+                              class="portfolio_footer_value">
+                              {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
+                            <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance"
+                              class="portfolio_footer_value">
+                              $0</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="investment_icon">
+                        <img src="assets/images/investment-account/investment-icon.svg" />
+                      </div>
+                    </div>
+                    <!--  STEP-1 PORTFOLIO -->
+                    <div class="no_account col-12" *ngIf="showStartInvesting">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">
+                          {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <button (click)="goToEngagement()" type="button" class="btn btn-primary col-12">
+                          <div>{{'DASHBOARD.INVESTMENT.START_INVESTING' | translate}}</div>
+                          <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_MINS' | translate}}</div>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- Pending Documents Upload -->
+                    <div class="warning col-12" *ngIf="showInvestmentDetailsSaved">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE'
+                                            | translate}}</button>
+                      </div>
+                    </div>
+                    <!-- CDD CHECK IS ONGOING EDD ONGOING -->
+                    <div class="pending col-12" *ngIf="showCddCheckOngoing">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">{{'DASHBOARD.INVESTMENT.CDD_CHECK_ONGOING' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- CDD CHECKFAIL -->
+                    <div class="verify col-12" *ngIf="showCddCheckFail">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">{{'DASHBOARD.INVESTMENT.CDD_CHECK_FAIL_DESC' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <button type="button" (click)="verifyCustomerDetails()" class="btn btn-ghost col-12">
+                          {{'DASHBOARD.INVESTMENT.VERIFY_DETAILS' | translate}}</button>
+                      </div>
+                    </div>
+                    <!-- RECOMMEND -->
+                    <div class="set-up col-12" *ngIf=showSetupAccount>
+                      <div class="warning-txt">
+                        <div class="flex-col-8">{{'DASHBOARD.INVESTMENT.SETUP_YOUR_ACCOUNT_DESC' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <button type="button" (click)="goToInvestmentAccount()" class="btn btn-ghost col-12">
+                          {{'DASHBOARD.INVESTMENT.SET_UP_ACCOUNT' | translate}} </button>
+                      </div>
+                    </div>
+                    <!-- Suspended Account -->
+                    <div class="suspended col-12" *ngIf=showSuspendedAccount>
+                      <div class="warning-txt">
+                        <div class="flex-col-8"
+                          innerHTML="{{'DASHBOARD.INVESTMENT.SUSPENDED_INVESTMENT_ACCOUNT' | translate}}">
+                        </div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Blocked nationality -->
+                    <div class="compliance col-12" *ngIf=showBlockedNationalityStatus>
+                      <div class="warning-txt">
+                        <div class="flex-col-8"
+                          innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}">
+                        </div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Compliance Rejected Account or EDD check fail  -->
+                    <div class="compliance col-12" *ngIf=showEddCheckFailStatus>
+                      <div class="warning-txt">
+                        <div class="flex-col-8"
+                          innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}">
+                        </div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- THIS SENARIO IS NOT COVERED  -->
+                    <div class="no_portfolio col-12" *ngIf="false">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">
+                          {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                        <div class="flex-col-4">
+                          <div class="investment_icon">
+                            <img src="assets/images/investment-account/investment-icon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex">
+                        <button type="button" class="btn btn-primary col-12">
+                          <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
+                          <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #loader>
+                <div class="loader-div">
+                  <img src="assets/styles/ajax-loader.gif" />
+                </div>
+              </ng-template>
             </div>
             <!-- End of Investment widget -->
             <div class="widget will-writing" *ngIf="showWillWritingSection">

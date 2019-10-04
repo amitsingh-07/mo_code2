@@ -1,0 +1,759 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-your-portfolio {
+  .invest-bg-content{
+    .user_content{
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 75px;
+      justify-content: space-between;
+      @include allmobiles{
+        padding-left: 20px;
+        padding-right: 0;
+      }
+      .user_summary{
+        width: 100%;
+        padding-top: 45px;
+        padding-bottom: 50px;
+        @include allmobiles{
+          padding-top: 35px;
+          padding-bottom: 30px
+        }
+        .user_portfolio-icon{
+          width:52px;
+          height: 52px;
+          margin-right: 15px;
+          @include allmobiles{
+            margin-right: 9px;
+          }
+          img{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .user_portfolio_lbl{
+          font-family: $muli-bold;
+          font-size: 36px;
+          line-height: 40px;
+          letter-spacing: -0.49px;
+          color: #ffffff;
+          max-width: 500px;
+          white-space: normal;
+          word-break: break-word;
+          text-transform: capitalize;
+          padding-bottom: 10px;
+          @include allmobiles{
+            font-size: 21px;
+            line-height: 26px;
+            letter-spacing: -0.28px;            
+            max-width: 250px;
+            padding-right: 15px;
+          }
+        }
+        .user_portfolio{
+          width: calc(100% - 67px);
+          @include allmobiles{
+            width: calc(100% - 61px);
+          }       
+          .portfolio-type{
+            font-family: $muli-regular;
+            font-size: 18px;
+            line-height: 30px;
+            letter-spacing: -0.24px;
+            @include allmobiles{
+              font-size: 15px;
+              letter-spacing: -0.2px;
+            }
+          }
+          .more-menu {
+            width: 70px;
+            @include allmobiles {
+              margin-right: 25px;
+            }
+            .dropdown-control{
+              .btn-dropdown{
+                background-color: #009999;
+                color: #ffffff;
+                padding: 4px 9px;
+                padding-right: 20px;
+                font-size: 15px;
+                letter-spacing: -0.14px;
+                &::after{
+                  background-image: url('/assets/images/dropdown_white.svg');
+                  width: 16px;
+                  height: 10px;
+                  border: none;
+                  position: absolute;
+                  top: 12px;
+                  right: 0;
+                  background-repeat: no-repeat;
+                }
+                @include allmobiles{
+                  font-family: $muli-semi-bold;
+                  font-size: 13px;
+                  padding: 5.5px 9px;
+                }
+              }
+              .dropdown-menu{
+                &.show {
+                  left: auto !important;
+                  right: 0 !important;
+                  overflow: auto;
+                  height: auto;
+                  max-height: 264px;
+                  padding-top: 0;
+                  padding-bottom: 0;
+                  border: none !important;
+                }
+              }
+              .dropdown-item {
+                display: block;
+                width: 100%;
+                clear: both;
+                font-size: 16px;
+                font-family: $muli-regular;
+                text-align: inherit;
+                white-space: nowrap !important;
+                background-color: transparent;
+                border: 0;
+                letter-spacing: -0.2px;
+                color: #000000 !important;
+                border-bottom: solid 1px #e7e7e7 !important;
+                
+                &.hide {
+                  display:none;
+                }
+                &.disabled {
+                  color: #9b9b9b !important;
+                  cursor: not-allowed;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+    }
+  }
+  .portfolio-panel{
+    @include allmobiles{
+      position: relative;
+      top: 60px;
+    }
+    .container-fluid{
+      &.max-width--1024{
+        padding-top: 20px;
+        @include allmobiles{
+          padding: 15px 15px 60px !important;
+        }
+      }
+    }
+    .nav-item {
+      text-align: left;
+      @include allmobiles{
+        text-align: center;
+      }
+    }
+    .nav-tabs{
+      border: none;
+      margin-bottom: 20px;
+      @include allmobiles{
+        margin-bottom: 15px;
+      }
+      li{
+        &:first-child{
+          width: 20%;
+          @include allmobiles{
+            width: 40%;
+            padding-left: 5px;
+          }
+        }
+        &:last-child{
+          width: 35%;
+          @include allmobiles{
+            width: 60%;
+            padding-right: 5px;
+          }
+        }
+      }
+       .nav-link {
+          border: none;
+          color: #ffffff;
+          font-size: 15px;
+          font-family: $muli-regular;
+          letter-spacing: -0.14px;
+          padding-top: 0;
+          padding-bottom: 12px;
+          @include allmobiles{
+            font-size: 14px;
+            padding-bottom: 15px;
+          }
+          &.active {
+            color: #ffffff;
+            font-family: $muli-semi-bold;
+            border-bottom: 4px solid #2ab3b3;
+            background: transparent;
+          }
+          .pending-request{
+            display: flex;
+            align-items: center;
+          }
+          &.active {
+            .circle{
+              visibility:hidden;
+            }
+          }
+          .circle{
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #87dfdf;
+            font-family: $muli-semi-bold;
+            font-size: 11px;
+            letter-spacing: -0.08px;
+            color: #00a7a7;
+            text-align: center;
+            margin-left: 8px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    .portfolio-panel-content{
+        .form-group-with-bg {
+          box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
+          background-color: $white-color;
+          margin-bottom: 20px;
+          .your_total_value {
+            background-color: $top-up-your-portfolio-your-total-value-bg;
+            padding: 20px 20px 17px;
+            &.no-returns {
+              border-bottom-left-radius: 8px;
+              border-bottom-right-radius: 8px;
+            }
+          }
+          &.start-investing{
+            .form-group-with-bg--header{
+              font-family: $muli-bold;
+              font-size: 15px;
+              letter-spacing: -0.16px;
+              color: #009999;
+              .start-investing-header{
+                display: flex;
+                align-items: center;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #f1f1f1;
+                .header-icon{
+                  width: 23px;
+                  height: 30px;
+                  display: flex;
+                  margin-right: 17.3px;
+                }
+                @include allmobiles{
+                  justify-content: center;
+                }
+              }
+            }
+            .form-group-with-bg--content{
+              color: #000000;
+              padding-bottom: 20px;
+              .start-investing-info{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                @include allmobiles{
+                  flex-direction: row;
+                  justify-content: space-between;
+                  text-align: left;
+                }
+                .flex-col{
+                  word-break: break-word;
+                  @include allmobiles{
+                    width: 200px;
+                  }
+                  .txt-lyt{
+                    font-size: 15px;
+                    letter-spacing: -0.15px;
+                    color: #9b9b9b;
+                    cursor:pointer;
+                  }
+                }
+                .topup-btn{
+                  font-family: $muli-bold;
+                  font-size: 21px;
+                  letter-spacing: -0.16px;
+                  color: #ff872f;
+                  padding-top: 10px;
+                  cursor:pointer;
+                  @include allmobiles{
+                    padding-top: 18px;
+                  }
+                }
+              }
+              .or-seperator{
+                padding-top: 16px;
+                @include allmobiles{
+                  padding-top: 22px;
+                }
+                .brdr-btm{
+                  border-bottom: 1px solid #e6f0f0;
+                }
+                .txt-lyt{
+                  font-size: 14px;
+                  line-height: 1.57;
+                  letter-spacing: -0.14px;
+                  text-align: center;
+                  color: #9b9b9b;
+                  padding: 0 38px;
+                  max-width: 350px;
+                  background: #ffffff;
+                  margin: -10px auto 0;
+                  @include allmobiles{
+                    max-width: 195px;
+                  }
+                }
+              }
+              .try-btn{
+                font-family: $muli-semi-bold;
+                font-size: 16px;
+                letter-spacing: -0.12px;
+                text-align: center;
+                color: #00a7a7;
+                padding: 16px 38px 14px;
+                margin: 9px auto 0;
+                width: 300px;
+                border-radius: 6px;
+                border: 1px solid #e6f0f0;
+                @include allmobiles{
+                  padding: 16px 30px 14px;
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+        .total_values {
+          font-family: $muli-bold;
+          font-size: 32px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: -0.4px;
+          text-align: center;
+          color: $white-color;
+          @include allmobiles{
+            font-size: 30px;
+          }
+        }
+        .total_values_label {
+          font-family: $muli-regular;
+          font-size: 16px;
+          line-height: 0.88;
+          letter-spacing: -0.1px;
+          text-align: center;
+          color: $white-color;
+          margin-top: 6px;
+        }
+        .total_return_label {
+          color: $text-color-secondary;
+          font-size: 16px;
+          color: $dark-teal-color;
+          img{
+            cursor: pointer;
+          }
+        }
+        .total_return_value {
+          font-family: $muli-bold;
+          font-size: 16px;
+          letter-spacing: -0.2px;
+          text-align: right;
+          color: $transaction-panel-buy-color;
+          word-break: break-all;
+          &.negativeValue {
+            color: $red-color;
+          }
+        }
+        .your_portfolio_label {
+          font-family: $muli-regular;
+          font-size: 21px;
+          letter-spacing: -0.2px;
+          color: $white-color;
+        }
+        .start_investment_label {
+          font-size: 13px;
+          line-height: 1.62;
+          letter-spacing: -0.1px;
+          color: $text-color-secondary;
+        }
+        .your_portfolio_number {
+          font-family: $muli-regular;
+          font-size: 15px;
+          letter-spacing: -0.3px;
+          color: $white-color;
+        }
+        .your_portfolio_value {
+          background-color: $top-up-your-portfolio-value-bg;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 11px !important;
+          .flex-row {
+            align-items: center !important;
+            .conserve-icon {
+              width: 35px;
+              height: 35px;
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+            }
+          }
+          .forward_img {
+            margin-left: 25px;
+          }
+        }
+        .portfolio_heading {
+          font-family: $muli-bold;
+          font-size: 18px;
+          letter-spacing: -0.3px;
+          color: $teal-color;
+          padding-left: 15px;
+        }
+        .btn-with-icon {
+          border-radius: 6px;
+          box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) !important !important;
+          border: 1px solid $fixed-btn-brdr-color;
+          background-color: $white-color;
+          font-family: $muli-bold;
+          font-size: 18px;
+          line-height: 23px;
+          letter-spacing: -0.3px;
+          text-align: center;
+          width: 100%;
+          padding: 17px 0px 16px;
+          color: $secondary-action-color;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          &:active {
+            outline: none;
+            background-color: $white-color;
+          }
+          &:hover {
+            outline: none;
+          }
+          &:focus {
+            outline: none;
+            background-color: $white-color;
+          }
+          .topup-btn-img {
+            height: 25px;
+            img{
+              width:100%;
+              height: 25px;
+            }
+          }
+        }
+        .asset_allocation_btn {
+          border-radius: 6px;
+          border: 1px solid $top-up-your-portfolio-asset-btn-shadow;
+          background-color: $review-block-bg;
+          font-family: $muli-bold;
+          font-size: 18px;
+          line-height: normal;
+          letter-spacing: -0.3px;
+          text-align: center;
+          color: $white-color;
+          width: 100%;
+          padding: 21px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          &:active {
+            outline: none;
+            background-color: $review-block-bg;
+            color: $white-color;
+          }
+          &:hover {
+            outline: none;
+          }
+          &:focus {
+            outline: none;
+            background-color: $review-block-bg;
+            color: $white-color;
+          }
+        }
+        .form-group-with-bg .form-group-with-bg--content {
+          padding: 18px 17px 25px 23px;
+          .flex-row:not(:last-child) {
+            margin-bottom: 0px;
+          }
+        }
+        hr {
+          background-color: $withdrawal-add-account-brdr-color;
+        }
+      }
+
+    .pending-request-panel-content{
+      .pending-buy-rqst-lbl{
+        font-family: $muli-bold;
+        font-size: 16px;
+        line-height: 1.44;
+        letter-spacing: -0.16px;
+        color: #ffffff;
+        padding-bottom: 14px;
+      }
+      .cash-account-lbl{
+        font-family: $muli-bold;
+        font-size: 16px;
+        letter-spacing: -0.15px;
+        color: #ffffff;
+        padding-bottom: 14px;
+      }
+      .withdrawal{
+        .card{
+          border-radius: 8px;
+          border: none !important;
+          .card-header {
+            padding: 0;
+            background: #ffffff;
+            border-radius: 8px;
+            border: none;
+            .btn{
+              padding: 0;
+              width: 100%;
+              &.btn-link{
+                  text-decoration: none !important;
+              }
+            }
+          }
+          .card-body{
+            padding: 0;
+          }
+        }
+        .form-group-with-bg{
+          background: #ffffff;
+          .form-group-with-bg--header{
+               border-radius: 8px;
+               padding: 10px 20px 10px;
+               @include allmobiles{
+                 padding: 10px 20px 10px;
+               }
+          }
+        }
+      }
+      .form-group-with-bg{
+        background: #ffffff;
+        .form-group-with-bg--header{
+          padding: 20px 20px 0px;
+          color: #000000;
+          font-family: $muli-semi-bold;
+          font-size: 14px;
+          line-height: 1.57;
+          letter-spacing: -0.14px;
+          .invest-type{
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f1f1;
+            .invest-type-icon{
+              width: 34px;
+              height: 24px;
+              margin-right: 5px;
+              img{
+                width:100%;
+                height: auto;
+              }
+            }
+          }    
+          .widthdrawal-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: $muli-regular;
+            line-height: 1.64;
+            // padding-bottom: 10px;
+            .flex-row{
+              align-items: center;
+            }
+            .widthdrawal-icon{
+              width: 50px;
+              height: 50px;
+              display: flex;
+              margin-right: 10px;
+            }
+          } 
+          .downward-icon{
+            width: 16px;
+            height: 10px;
+            display: flex;
+            img{
+              width: 100%;
+              height: auto;
+            }
+          } 
+          .cash-account-header{
+            font-size: 16px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f1f1;
+            .flex-row{
+              justify-content: space-between;
+              align-items: center;
+            }
+            .balance-amount-lbl{
+              font-family: $muli-bold;
+              font-size: 18px;
+              line-height: 1.17;
+              letter-spacing: -0.17px;
+              color: #007d7d;
+            }
+          }        
+        }
+        .form-group-with-bg--content{
+          font-family: $muli-semi-bold;
+          font-size: 15px;
+          letter-spacing: -0.15px;
+          color: #000000;
+          padding-top: 10px;
+          .flex-col{
+            padding-top: 15px;
+            &:first-child{
+              padding-top: 0; 
+            }
+            & + .processing-state{
+              margin-top: 20px;
+            }
+          }
+          .processing-state{
+            .processing-time{
+              & + .flex-col{
+                padding-top: 0 !important;
+              }
+            }
+          }
+          .process_lbl{
+            padding: 10px 20px;
+            margin: 0px -20px 20px;
+            font-family: $muli-bold;
+            font-size: 14px;
+            line-height: 1.14;
+            letter-spacing: -0.14px;
+            color: #00a7a7;
+            background-color: #f7f7f7;
+          }
+          .processing-time{
+            font-size: 13px;
+            letter-spacing: -0.13px;
+            color: #9b9b9b;
+            padding-bottom: 10px;
+          }
+          .fund-state{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #d0021b;
+            margin-right: 10px;
+          }
+          .flex-row{
+            justify-content: space-between;
+            margin-bottom: 0;
+          }
+          .fund-amt{
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+          }
+          .forward-icon{
+            width: 7px;
+            height: 11px;
+            display: flex;
+            margin-left: 10px;
+          }
+          .topup-btn{
+            font-size: 18px;
+            letter-spacing: -0.18px;
+            color: #ff872f;
+            cursor:pointer;
+          }
+          .widthdrawal-content{
+            font-size: 14px;
+            .processing-time{
+              font-family: $muli-regular;
+            }
+            .withdraw-amt{
+              font-size: 16px;
+            }
+            .flex-col{
+              border-bottom: 1px solid #f1f1f1;
+              padding-bottom: 15px;
+              &:last-child{
+                border-bottom: none;
+                padding-bottom: 0; 
+              }
+            }
+          }
+          .cash-account-content{
+            padding-top: 5px;
+            .ref-code{
+              padding: 14px 0 10px;
+              font-family: $muli-bold;
+              font-size: 18px;
+              line-height: 1.17;
+              letter-spacing: -0.17px;
+              text-align: center;
+              color: #ff872f;
+              border-radius: 4px;
+              border: 2px solid #00a7a7;
+              background-color: #ffffff;
+              margin-bottom: 15px;
+            }
+            .note-icon{
+              width: 24px;
+              height: 24px;
+              margin-right: 15px;
+              margin-top: 5px;
+              display: flex;
+            }
+            .note{
+              font-family: $muli-regular;
+              font-size: 13px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: 1.62;
+              letter-spacing: -0.12px;
+              color: #4a4a4a;
+              span{
+                font-family: $muli-bold;
+              }
+              @include allmobiles{
+                line-height: normal;
+              }
+            }
+            .view-transfer{
+              font-family: $muli-bold;
+              font-size: 18px;
+              letter-spacing: -0.19px;
+              text-align: center;
+              color: #ffffff;
+              padding: 15px 0;
+              border-radius: 6px;
+              box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
+              border: 1px solid rgba(0, 135, 134, 0.4);
+              background-color: #00a7a7;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+  } 
+}
