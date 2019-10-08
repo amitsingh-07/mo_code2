@@ -576,21 +576,20 @@ export class ApiService {
       );
   }
 
-  // Get customer SRS pop up status
-  getSrsPopStatus(payload) {
-    return this.http.post(apiConstants.endpoint.getSrsPopStatus, payload)
+  // Get customer pop up status
+  getPopupStatus(payload) {
+    return this.http.post(apiConstants.endpoint.getPopupStatus, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  // Set customer SRS pop up status
-  setSrsPopStatus(payload) {
-    return this.http.post(apiConstants.endpoint.setSrsPopStatus, payload)
+  // Set customer pop up status
+  setPopupStatus(payload) {
+    return this.http.post(apiConstants.endpoint.setPopupStatus, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- 
- 
+
 }

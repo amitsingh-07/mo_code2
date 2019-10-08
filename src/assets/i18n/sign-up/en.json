@@ -331,14 +331,14 @@
     "SRS_JOINT_ACCOUNT": {
       "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
       "SRS_JOINT_ACCOUNT_SLIDES":  [
-        {"TITLE": "New Updates", "TITLE_IMG": "speaker.svg", "IMAGE": "srs.svg",
+        {"TITLE": "New Updates", "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "Start Investing Your SRS!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings.",
-          "URL": "https://www.google.com.sg", "URL_TEXT": "Learn More About SRS Account"},
-          {"TITLE": "New Updates",  "TITLE_IMG": "speaker.svg", "IMAGE": "joint-account.svg",
+          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About SRS Account"},
+          {"TITLE": "New Updates",  "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/joint-account.svg",
           "IMG_TITLE": "Apply For A Joint Account!",
           "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
-          "URL": "https://www.google.com.sg", "URL_TEXT": "Learn More About Joint Account"},
+          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About Joint Account"},
           {"TITLE": "Apply Now!", "TEXT": "Please note that SRS and Joint Investment Accounts are currently handled offline.",
           "CONTACT": "Contact us to apply:", "TEL": "(65) 6329 9188", "EMAIL": "enquiries@moneyowl.com.sg"}
       ],
