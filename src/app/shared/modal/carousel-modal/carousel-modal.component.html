@@ -29,19 +29,19 @@
     </div>
   </ngx-slick>
   <div [ngStyle]="btnDivStyle" class="btn-div">
-    <ng-container *ngIf="currentSlide === 0">
-      <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
-      <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
-    </ng-container>
-    <ng-container *ngIf="(currentSlide > 0) && (currentSlide < slides.length - 1)">
-      <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" class="img-margin-right"
-        (click)="prevSlide()" />
-      <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
-    </ng-container>
-    <ng-container *ngIf="currentSlide === slides.length - 1">
-      <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" class="img-margin-right"
-        (click)="prevSlide()" />
-      <div class="got-it-txt" (click)="closePopup(true)">{{endBtnTxt}}</div>
-    </ng-container>
+    <div class="btn-inner-div">
+      <ng-container *ngIf="currentSlide === 0">
+        <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
+        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+      </ng-container>
+      <ng-container *ngIf="(currentSlide > 0) && (currentSlide < slides.length - 1)">
+        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+      </ng-container>
+      <ng-container *ngIf="currentSlide === slides.length - 1">
+        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+        <div class="got-it-txt" (click)="closePopup(true)">{{endBtnTxt}}</div>
+      </ng-container>
+    </div>
   </div>
 </div>
