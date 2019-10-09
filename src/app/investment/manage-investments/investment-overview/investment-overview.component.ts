@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { CarouselModalComponent } from './../../../shared/modal/carousel-modal/carousel-modal.component';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -52,6 +53,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   entitlements: any;
   showAlretPopUp = false;
   selected;
+  showMpPopup = false;
+  showAnimation = false;
 
   // transfer instructions
   bankDetails;
@@ -76,7 +79,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     private signUpApiService: SignUpApiService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -97,6 +100,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.headerSubscription();
     this.getMoreList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
 
@@ -340,5 +344,61 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }
     });
+  }
+
+  // Check if user is first time seeing SRS popup
+  checkMpPopStatus() {
+    if (this.userProfileInfo.id) {
+      this.signUpApiService.getPopupStatus(this.userProfileInfo.id, 'MP_POP').subscribe((status) => {
+        // Check if track_status is available or false
+        if (!status.objectList || !status.objectList['trackStatus']) {
+          this.showMpPopup = true;
+          this.checkAnimation();
+        }
+      }, (error) => console.log('ERROR: ', error));
+    }
+  }
+
+  // Check if user has seen the animation before
+  checkAnimation() {
+    const customerId = this.userProfileInfo.id;
+    let parsedArray = [];
+    if (window.localStorage.getItem('MP_ANIMATION') !== null) {
+      parsedArray = JSON.parse(window.localStorage.getItem('MP_ANIMATION'));
+    }
+    if (window.localStorage.getItem('MP_ANIMATION') === null || !parsedArray.includes(customerId)) {
+      this.showAnimation = true;
+      parsedArray.push(customerId);
+      window.localStorage.setItem('MP_ANIMATION', JSON.stringify(parsedArray));
+    }
+  }
+
+  // Show Multi Portfolio Walkthrough Popup
+  openMPWalkthrough() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'mp-walkthrough-modal' });
+    ref.componentInstance.slides = this.translate.instant('YOUR_INVESTMENT.MP_WALKTHROUGH.MP_WALKTHROUGH_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('YOUR_INVESTMENT.MP_WALKTHROUGH.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('YOUR_INVESTMENT.MP_WALKTHROUGH.END_BTN');
+    ref.componentInstance.imgClass = 'mp-walkthrough-img';
+    ref.componentInstance.imgTitleClass = 'mp-walkthrough-img-title';
+    ref.componentInstance.textStyle = {'margin-top': '10px', 'padding': '0 30px'};
+    ref.componentInstance.btnDivStyle = {'padding-bottom': '40px'};
+    ref.componentInstance.closeAction.subscribe((emittedValue) => {
+      this.closeMpPopup();
+    });
+  }
+
+  // Set the status to true as user don't want to see this popup anymore
+  closeMpPopup(event?) {
+    if (this.userProfileInfo.id) {
+      this.signUpApiService.setPopupStatus(this.userProfileInfo.id, 'MP_POP').subscribe((status) => {
+        if (status.responseMessage.responseCode === 6000) {
+          this.showMpPopup = false;
+        }
+      }, (error) => console.log('ERROR: ', error));
+    }
+    if (event) {
+      event.stopPropagation();
+    }
   }
 }
