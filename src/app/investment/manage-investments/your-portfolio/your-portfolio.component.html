@@ -104,7 +104,7 @@
               </div>
               <!--  ALREADY FUNDED PORTFOLIO-->
               <div class="row">
-                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED'">
+                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'">
                   <div class="form-group-with-bg">
                     <div class="form-group-with-bg--header your_total_value"
                       [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
@@ -150,8 +150,9 @@
                 </div>
               </div>
               <!-- NOT FUNDED PORTFOLIO  -->
-              <div class="row">
-                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus !== 'PURCHASED'">
+              <d
+              iv class="row">
+                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REDEEMING'">
                   <div class="form-group-with-bg">
                     <div class="form-group-with-bg--header your_total_value">
                       <div id="your_portfolio_total_lb" class="total_values">$0</div>
