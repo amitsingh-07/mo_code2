@@ -630,15 +630,22 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 
-  div.modal-body.white-bg {
+  app-carousel-modal div.modal-body.white-bg {
     max-width: 420px;
     height: 535px;
+    padding: 36px 60px 36px;
   }
 
   .modal-dialog {
     @media (min-width: 576px) {
       max-width: 420px !important;
     }
+  }
+  
+  .slick-dots {
+    bottom: initial;
+    margin-top: 27px;
+    position: relative;
   }
 }
 
@@ -885,4 +892,30 @@ body.modal-open::-webkit-scrollbar {
       }
     }
   } 
+}
+
+.mp-walkthrough-modal {
+  @media (max-width: 567px) and (min-width: 320px) {
+    max-height: 100% !important;
+  }
+  .modal-body {
+      height: 592px;
+      @media (max-width: 567px) and (min-width: 321px) {
+        height: 100vh;
+      }
+  }
+  app-carousel-modal div.modal-body.white-bg {
+    padding: 0px !important;
+  }
+  .modal-dialog {
+    width: 375px;
+    @include allmobiles {
+      width: 100%;
+    }
+  }
+  .slick-dots {
+    bottom: initial;
+    margin-top: 14px;
+    position: relative;
+  }
 }

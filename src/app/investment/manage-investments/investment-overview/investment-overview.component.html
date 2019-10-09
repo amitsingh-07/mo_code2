@@ -21,9 +21,19 @@
         <div class="invest-bg-content">
           <div class="flex-col user_content flex-col-12">
             <div class="container-fluid max-width--1024">
-              <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
-                {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
+              <div *ngIf="showMpPopup" class="mp-walkthrough-container flex-col-12">
+                <div [ngClass]="showAnimation? 'mp-animation': ''" class="new-investment-div" (click)="openMPWalkthrough()">
+                  <img class="owl-stars-img" src="assets/images/mp-walkthrough/owl-stars.svg">
+                  <div class="new-investment-txt">
+                    <span>{{'YOUR_INVESTMENT.MP_WALKTHROUGH.NEW_INVESTMENT_UPDATE' | translate}}</span>
+                    <br />{{'YOUR_INVESTMENT.MP_WALKTHROUGH.SHOW_ME_AROUND' | translate}}
+                  </div>
+                  <img  (click)="closeMpPopup($event)" class="cross-img" src="assets/images/mp-walkthrough/cross-grey.svg">
+                </div>
               </div>
+              <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
+                  {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
+                </div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header your_total_value">
                   <div id="myFinancialLbl">

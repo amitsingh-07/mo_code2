@@ -216,7 +216,7 @@ export class WithdrawalComponent implements OnInit {
                     && roundOffValue > 0 );    this.withdrawForm.addControl(
       'withdrawAmount',
       new FormControl({
-        value: this.isRedeemAll ? this.cashBalance : '',
+        value: this.isRedeemAll ? roundOffValue: '',
         disabled: this.isRedeemAll
         }, [
         Validators.required,
