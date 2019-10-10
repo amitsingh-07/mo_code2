@@ -203,7 +203,13 @@ button:active:focus {
 }
 
 .btn.btn-primary:hover {
-  //background-color: #0de0de !important;
+  background-color: #0de0de !important;
+  @include allmobiles{
+    background-color: #00c5c4 !important;
+  }
+  @include tablet{
+    background-color: #00c5c4 !important;
+  }
 }
 
 .btn:disabled:hover {
