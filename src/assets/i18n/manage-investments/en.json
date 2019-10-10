@@ -81,7 +81,34 @@
     "REF_LABEL": "Ref Code:",
     "INVESTED": "Invested",
     "LIST_ALL": "List All",
-    "SHOW_LESS": "Show Less"
+    "SHOW_LESS": "Show Less",
+    "MP_WALKTHROUGH": {
+      "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
+      "SHOW_ME_AROUND": "Show me around!",
+      "MP_WALKTHROUGH_SLIDES": [{
+          "IMAGE": "mp-walkthrough/portfolio-view.svg",
+          "IMG_TITLE": "Improved Portfolio View",
+          "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
+        },
+        {
+          "IMAGE": "mp-walkthrough/multiple-portfolios.svg",
+          "IMG_TITLE": "Multiple Portfolios",
+          "TEXT": "Add up to 20 portfolios for your different financial needs."
+        },
+        {
+          "IMAGE": "mp-walkthrough/manage-request.svg",
+          "IMG_TITLE": "Manage Requests",
+          "TEXT": "See your top up and withdrawal requests status and amount."
+        },
+        {
+          "IMAGE": "mp-walkthrough/more-button.svg",
+          "IMG_TITLE": "Manage with More Button",
+          "TEXT": "Use the More button to manage your portfolio. Top up, withdraw, rename portfolio and more…"
+        }
+      ],
+      "START_BTN": "Skip",
+      "END_BTN": "Got it!"
+    }
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -124,14 +151,14 @@
     "PENDING_NO_REQUEST_INFO": "You have no Buy Requests",
     "RISK_PROFILE_NAME": "{{riskProfileName}} Portfolio",
     "MORE": "More",
-    "PORTFOLIO_SUMMARY": "Portfolio Summary",
+    "PORTFOLIO_SUMMARY": "Portfolio <span>Summary</span>",
     "WHATS_NEXT": "What’s Next?",
     "WHATS_NEXT_DESC_NOT_FUNDED": "Start investing in {{portfolioName}} portfolio.",
     "WHATS_NEXT_DESC_FUNDED": "Top up to {{portfolioName}} portfolio.",
     "HOW_TO_TOPUP": "How to top up?",
     "OR_DO_YOU_WANT_TO": "Or do you want to",
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
-    "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / Cash Account",
+    "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
     "ONE_TIME": "One-time",
     "FUND_BY": "Fund by",

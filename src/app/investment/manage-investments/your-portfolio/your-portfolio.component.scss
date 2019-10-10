@@ -149,8 +149,13 @@ app-your-portfolio {
         }
       }
     }
+    .your-portfolio-tab-title span{
+      @include allmobiles{
+        display:block;
+      }
+    }
     .nav-item {
-      text-align: left;
+      text-align: center;
       @include allmobiles{
         text-align: center;
       }
@@ -165,15 +170,14 @@ app-your-portfolio {
         &:first-child{
           width: 20%;
           @include allmobiles{
-            width: 40%;
+            width: 50%;
             padding-left: 5px;
           }
         }
         &:last-child{
           width: 35%;
           @include allmobiles{
-            width: 60%;
-            padding-right: 5px;
+            width: 50%;
           }
         }
       }
@@ -194,14 +198,19 @@ app-your-portfolio {
             font-family: $muli-semi-bold;
             border-bottom: 4px solid #2ab3b3;
             background: transparent;
+            padding-right:0px;
+            padding-left:0px;
           }
           .pending-request{
-            display: flex;
-            align-items: center;
+            position: relative;
+            padding-right:15px;
           }
           &.active {
             .circle{
               visibility:hidden;
+            }
+            .pending-request {
+              padding-right:0px;
             }
           }
           .circle{
@@ -218,7 +227,14 @@ app-your-portfolio {
             padding: 10px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center;    
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            @include allmobiles{
+              top: 14px;
+              right: -5px;
+            }
           }
         }
       }

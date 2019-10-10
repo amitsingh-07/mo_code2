@@ -275,18 +275,20 @@ export class SignUpApiService {
     return this.apiService.requestResetPassword(data);
   }
 
-  getSrsPopStatus(customerId) {
-    const payload = {
-      customer_id: customerId
-    };
-    return this.apiService.getSrsPopStatus(payload);
-  }
-
-  setSrsPopStatus(customerId) {
+  getPopupStatus(customerId, popupType) {
     const payload = {
       customer_id: customerId,
-      check: true
+      track_code: popupType
     };
-    return this.apiService.setSrsPopStatus(payload);
+    return this.apiService.getPopupStatus(payload);
+  }
+
+  setPopupStatus(customerId, popupType) {
+    const payload = {
+      customer_id: customerId,
+      check: true,
+      track_code: popupType
+    };
+    return this.apiService.setPopupStatus(payload);
   }
 }

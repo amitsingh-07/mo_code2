@@ -399,13 +399,13 @@ export class DashboardComponent implements OnInit {
   // Check if user is first time seeing SRS popup
   checkSRSPopStatus(customerId) {
     if (customerId) {
-      this.signUpApiService.getSrsPopStatus(customerId).subscribe((status) => {
-        // Check if srs_pop_status is available or false
-        if (!status.objectList['srs_pop_status']) {
+      this.signUpApiService.getPopupStatus(customerId, 'SRS_POP').subscribe((status) => {
+        // Check if track_status is available or false
+        if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
             this.openSRSJointAccPopup();
           });
-          this.signUpApiService.setSrsPopStatus(customerId).subscribe((result) => {
+          this.signUpApiService.setPopupStatus(customerId, 'SRS_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
       }, (error) => console.log('ERROR: ', error));

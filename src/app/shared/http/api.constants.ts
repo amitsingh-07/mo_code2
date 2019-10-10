@@ -42,8 +42,8 @@ export let apiConstants = {
         editMobileNumber: ACCOUNT_API_BASE_URL + '/update-mobileno',
         registerBundleEnquiry: ACCOUNT_API_BASE_URL + '/registerBundleEnquiry',
         enquiryByEmail: ACCOUNT_API_BASE_URL + '/enquiryByEmail',
-        getSrsPopStatus: ACCOUNT_API_BASE_URL + '/getSrsPopStatus',
-        setSrsPopStatus: ACCOUNT_API_BASE_URL + '/setSrsPopStatus',
+        getPopupStatus: ACCOUNT_API_BASE_URL + '/getTrackStatus',
+        setPopupStatus: ACCOUNT_API_BASE_URL + '/setTrackStatus',
         sendWelcomeMail: ACCOUNT_API_BASE_URL + '/sendWelcomeMail',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/getTop8Articles',
