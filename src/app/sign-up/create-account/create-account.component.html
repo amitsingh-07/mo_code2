@@ -28,50 +28,97 @@
                 </div>
               </div>
             </div>
-            <div class="flex-col-7 stretch" [formGroup]="createAccountForm">
-              <div class="form-group-floating-label">
+            <div class="flex-col-7 stretch">
+              <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.mobileNumber.errors}">
                 <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder"
-                  for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
+                  for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
               </div>
             </div>
-
+            <div class="alert-msg" *ngIf="submitted && account.mobileNumber.errors">
+              <div *ngIf="account.mobileNumber.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="account.mobileNumber.errors?.mobileRange">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
+              </div>
+            </div>
           </div>
           <div class="flex-row mb10">
-            <div class="flex-col-5 stretch mr15" [formGroup]="createAccountForm">
-              <div class="form-group-floating-label">
+            <div class="flex-col-5 stretch mr15">
+              <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.firstName.errors}">
                 <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
-                <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' |
+                <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.LABEL' |
                   translate}}</label>
               </div>
             </div>
-            <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
-              <div class="form-group-floating-label">
+            <div class="flex-col-5 stretch">
+              <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.lastName.errors}">
                 <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
                 <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.LABEL' | translate}}</label>
               </div>
+            </div>
+            <div class="alert-msg flex-col-12" *ngIf="submitted && account.firstName.errors">
+                <div *ngIf="account.firstName.errors?.required">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div *ngIf="account.firstName.errors?.minlength || account.firstName.errors?.maxlength">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
+                </div>
+                <div *ngIf="account.firstName.errors?.pattern">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.ERROR.INVALID' | translate}}</span>
+                </div>
+            </div>
+            <div class="alert-msg flex-col-12" *ngIf="submitted && account.lastName.errors">
+                <div *ngIf="account.lastName.errors?.required">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div *ngIf="account.lastName.errors?.minlength  || account.lastName.errors?.maxlength">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
+                </div>
+                <div *ngIf="account.lastName.errors?.pattern">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME.ERROR.INVALID' | translate}}</span>
+                </div>
             </div>
           </div>
           <div class="flex-row mb10">
-            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-              <div class="form-group-floating-label">
+            <div class="flex-col-12 stretch">
+              <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
                 <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
                 <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' | translate}}</label>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="submitted && account.email.errors">
+              <div *ngIf="account.email.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="account.email.errors?.email">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
               </div>
             </div>
           </div>
           <div class="flex-row mb10">
-            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-              <div [ngClass]="{'inline-error': !confirmEmailFocus && !createAccountForm.controls.email.errors && createAccountForm.controls.confirmEmail.dirty && createAccountForm.controls.confirmEmail.errors && confirmEmail.value.length}" class="form-group-floating-label">
+            <div class="flex-col-12 stretch">
+              <div [ngClass]="{'inline-error': (submitted && account.confirmEmail.errors?.required) || (!confirmEmailFocus && !account.email.errors && account.confirmEmail.errors?.notEquivalent)}" class="form-group-floating-label">
                 <input type="text" id="crtAccInpt5" (blur)="showValidity('confirmEmail')" (focus)="showValidity('confirmEmail')" class="form-control" #confirmEmail formControlName="confirmEmail"
                   required>
                 <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL' | translate}}</label>
+                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
                 <div class="error-tooltip"
-                  *ngIf="confirmEmailFocus && !createAccountForm.controls.email.errors && createAccountForm.controls.confirmEmail.dirty && createAccountForm.controls.confirmEmail.errors && confirmEmail.value.length">
+                  *ngIf="confirmEmailFocus && !account.email.errors && account.confirmEmail.errors?.notEquivalent">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'CREATE_ACCOUNT.ERROR_MESSAGE.TITLE' | translate}}</p>
@@ -81,10 +128,20 @@
                 </div>
               </div>
             </div>
+            <div class="alert-msg" *ngIf="account.confirmEmail.errors">
+              <div *ngIf="submitted && account.confirmEmail.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="!confirmEmailFocus && !account.email.errors && account.confirmEmail.errors?.notEquivalent">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.ERROR.MATCH' | translate}}</span>
+              </div>
+            </div>
           </div>
           <div class="flex-row mb10">
-            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-              <div [ngClass]="{'inline-error': !isPasswordValid && !passwordFocus }" class="form-group-floating-label">
+            <div class="flex-col-12 stretch">
+              <div [ngClass]="{'inline-error': (submitted && isPasswordValid && account.password.errors?.required) || (!isPasswordValid && !passwordFocus) }" class="form-group-floating-label">
                 <input id="crtAccInpt6" type="password" (blur)="showValidity('password')" (focus)="showValidity('password')" (keyup)="onPasswordInputChange()" class="form-control"
                   formControlName="password" #password required>
                 <label class="form-control-placeholder" for="password">{{ 'PASSWORD.FORM.PASSWORD' | translate}}</label>
@@ -95,26 +152,36 @@
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
                     <p
-                      [ngClass]="!createAccountForm.controls.password.errors?.length ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      [ngClass]="!account.password.errors?.length ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
                       'PASSWORD.ERROR_MESSAGE.LENGTH' | translate}}<span
-                        *ngIf="!createAccountForm.controls.password.errors?.length" class="tick-mark"></span></p>
+                        *ngIf="!account.password.errors?.length" class="tick-mark"></span></p>
                     <p
-                      [ngClass]="!createAccountForm.controls.password.errors?.upperLower ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      [ngClass]="!account.password.errors?.upperLower ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
                       'PASSWORD.ERROR_MESSAGE.UPPER_LOWER' | translate}}<span
-                        *ngIf="!createAccountForm.controls.password.errors?.upperLower" class="tick-mark"></span></p>
+                        *ngIf="!account.password.errors?.upperLower" class="tick-mark"></span></p>
                     <p
-                      [ngClass]="!createAccountForm.controls.password.errors?.numberSymbol ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
+                      [ngClass]="!account.password.errors?.numberSymbol ? 'error-tooltip__desc-one': 'error-tooltip__desc-three'">{{
                       'PASSWORD.ERROR_MESSAGE.NUMBER_SYMBOL' | translate}}<span
-                        *ngIf="!createAccountForm.controls.password.errors?.numberSymbol" class="tick-mark"></span></p>
+                        *ngIf="!account.password.errors?.numberSymbol" class="tick-mark"></span></p>
                     <span class="error-tooltip__arrow"></span>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="alert-msg" *ngIf="account.password.errors">
+              <div *ngIf="submitted && isPasswordValid && account.password.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.PASSWORD.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="!isPasswordValid && !passwordFocus && (account.password.errors?.length || account.password.errors?.upperLower || account.password.errors?.numberSymbol)">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.PASSWORD.ERROR.MATCH' | translate}}</span>
+              </div>
+            </div>
           </div>
           <div class="flex-row mb10">
-            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-              <div [ngClass]="{'inline-error': !confirmPwdFocus && !createAccountForm.controls.password.errors && createAccountForm.controls.confirmPassword.dirty && createAccountForm.controls.confirmPassword.errors && confirmPassword.value.length}" class="form-group-floating-label">
+            <div class="flex-col-12 stretch">
+              <div [ngClass]="{'inline-error': (submitted && account.confirmPassword.errors?.required) || (!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent)}" class="form-group-floating-label">
                 <input id="crtAccInpt7" type="password" class="form-control" (blur)="showValidity('confirmPassword')" (focus)="showValidity('confirmPassword')" formControlName="confirmPassword"
                   #confirmPassword required>
                 <label class="form-control-placeholder" for="confirmPassword">{{ 'PASSWORD.FORM.CONFIRM_PASSWORD' |
@@ -122,7 +189,7 @@
                 <span [ngClass]="(confirmPassword.type === 'text') ? 'show-password' : 'hide-password'"
                   (click)="showHidePassword(confirmPassword)"></span>
                 <div class="error-tooltip"
-                  *ngIf="confirmPwdFocus && !createAccountForm.controls.password.errors && createAccountForm.controls.confirmPassword.dirty && createAccountForm.controls.confirmPassword.errors && confirmPassword.value.length">
+                  *ngIf="confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent">
                   <div class="error-tooltip__desc">
                     <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'PASSWORD.ERROR_MESSAGE.TITLE' | translate}}</p>
@@ -130,6 +197,16 @@
                     <span class="error-tooltip__arrow"></span>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="account.confirmPassword.errors">
+              <div *ngIf="submitted && account.confirmPassword.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_PASSWORD.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_PASSWORD.ERROR.MATCH' | translate}}</span>
               </div>
             </div>
           </div>
@@ -141,12 +218,22 @@
               </div>
             </div>
             <div class="flex-col-6 stretch">
-              <div class="form-group-floating-label">
+              <div class="form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.captcha.errors?.required) || (account.captcha.errors?.match)}">
                 <input type="text" id="crtAccInpt8" class="form-control" #captcha formControlName="captcha" required>
                 <label class="form-control-placeholder" for="lastName">{{ 'COMMON.CAPTCHA' | translate}}</label>
               </div>
               <div (click)="refreshCaptcha()" class="link-white text-right">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}}
                 <i class="fa fa-refresh" style="color: white; margin-left: 10px;"></i></div>
+            </div>
+            <div class="alert-msg" *ngIf="account.captcha.errors">
+              <div *ngIf="submitted && account.captcha.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CAPTCHA.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="account.captcha.errors?.match">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CAPTCHA.ERROR.MATCH' | translate}}</span>
+              </div>
             </div>
           </div>
           <div class="checkbox-button one-label mb10" style="display:none">

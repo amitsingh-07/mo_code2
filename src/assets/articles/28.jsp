@@ -2,7 +2,7 @@
 <p>Retirees need a reliable stream of income to fund their living expenses. This income stream can come from several sources such as <a href="https://www.cpf.gov.sg/members/schemes/schemes/retirement/cpf-life" target="_blank" title="CPF LIFE">CPF LIFE</a>, annuities, rental income and dividends. They could also fund their retirement lifestyle by drawing down from bank deposits and investments.</p>
 			<p>In recent years, insurance companies have been rolling out many types of retirement products into the market. Because of its complexity, a typical consumer usually finds it hard to understand or compare. </p>
 			<br>
-            <p>At <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Retirement Plans Now">MoneyOwl</a>, we try to make it easier by categorising retirement income products based on:</p>
+            <p>At <a href="https://www.moneyowl.com.sg/direct" target="_blank" title="Compare Retirement Plans Now">MoneyOwl</a>, we try to make it easier by categorising retirement income products based on:</p>
 			<br>
 			<h4>1. Nature of income payout</h4>	
 					
@@ -183,7 +183,7 @@
 				<p class="toplinesbox simple-box">Hopefully, this article provides you a better understanding of getting a plan that suits your retirement needs.</p>
 		<br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
 	<img src="../assets/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
 -->

@@ -1,0 +1,114 @@
+<section class="invest-section">
+    <div class="invest-section-items">
+      <div class="invest-section-content">
+        <div class="invest-bg">
+          <div class="invest-bg-media">
+            <div class="invest-bg-image"></div>
+            <div class="invest-bg-color"></div>
+          </div>
+          <div class="invest-bg-content">
+            <div class="flex-row user_content flex-col-12">
+              <div class="user_summary" id="your_portfolio_summary">
+                <div class="user_portfolio flex-col">
+                  <div class="user_portfolio_lbl">{{portfolio?.portfolioName}}</div>
+                  <!-- {{portfolio.portfolioName}}-->
+                  <div>{{ 'TRANSACTIONS.TITLE' | translate}}</div>
+                  <!-- {{this.pageTitle}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<div class="transaction-panel">
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <ngb-tabset>
+        <ngb-tab title="History">
+          <ng-template ngbTabContent>
+            <div class="flex-row" *ngIf="transactionHistory">
+              <div class="flex-col-12 transction-screen">
+                <div class="transaction-panel__history white-bg">
+                  <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
+                    <div class="transaction-panel__history--date">{{group.groupName}}</div>
+                    <div class="transaction-panel__history--details">
+                      <div *ngFor="let transaction of group.value; let j = index">
+                        <div class="flex-row transaction-panel__history--details--title" [class.cursor_pointer]="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length" (click)="expandCollapseAccordion(i, j)">
+                          <div class="flex-col-7">
+                            <div class="history-type-transaction">
+                              <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--sale"
+                                *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW'">{{transaction.transactionType.name}}</div>
+                              <div *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">{{ 'TRANSACTIONS.CASH_TOP_UP' | translate}}</div>
+                              <div *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">{{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</div>
+                              <div class="portfolio-name" *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</div>
+                            </div>
+                          </div>
+                          <div class="flex-col-5 text-right"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY' || transaction.transactionType.name.toUpperCase() === 'FUNDING'"
+                              class="transaction-panel__history--details--title--amount--sale"><span *ngIf="transaction.transactionType.name.toUpperCase() === 'SELL' || transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">-</span>
+                              {{transaction.amount | currency}}</span>
+                            <i *ngIf="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length"
+                              class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()"
+                              [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
+                          </div>
+                        </div>
+                        <div *ngFor="let fund of transaction.fundInvestmentSplits">
+                          <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc"
+                            [class.show]="activeTransactionIndex === i.toString() + j.toString()">
+                            <div class="flex-col-7">{{fund.fund.name}}</div>
+                            <div class="flex-col-5 text-right">
+                              <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span>
+                              {{fund.splitAmount | currency }}
+                            </div>
+                            <div class="flex-col-12 text-left unit-price">
+                              <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{'$'+fund.unitPrice}} </span>
+                              <span>{{ 'TRANSACTIONS.UNITS' | translate}} {{fund.unit}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
+                  <div class="no-content">
+                    <img src="../../../assets/images/investment-account/light_owl.svg" />
+                    <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_HISTORY' | translate}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab class="btn width100" title="Statements">
+          <ng-template ngbTabContent>
+            <div class="flex-row">
+              <div class="flex-col-12 transction-screen">
+                <div class="transaction-panel__statements white-bg">
+                  <div *ngIf="statementMonthsList">
+                    <div *ngFor="let statementMonth of statementMonthsList" class="statement-group">
+                      <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
+                      <div class="flex-row transaction-panel__statements--details" *ngFor="let month of statementMonth.months">
+                        <div class="flex-col-6">{{month.monthName}}</div>
+                        <div class="flex-col-6 text-right">
+                          <a class="download-link" target="_blank" download (click)="downloadStatement(month)">Download</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="no-transaction" *ngIf="!statementMonthsList || !statementMonthsList.length">
+                  <div class="no-content">
+                    <img src="../../../assets/images/investment-account/light_owl.svg" />
+                    <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_STATEMENTS' | translate}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

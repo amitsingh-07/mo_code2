@@ -14,7 +14,9 @@ import { SignUpApiService } from './../sign-up.api.service';
 })
 export class EmailVerificationComponent implements OnInit {
   email: string;
-  emailVerified: boolean;
+  showLoader: boolean = true;
+  statusMessages: any = {};
+  message: string;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -24,15 +26,26 @@ export class EmailVerificationComponent implements OnInit {
     private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
+    this.translate.get('EMAIL_VERIFICATION').subscribe((result: any) => {
+      this.statusMessages['verified'] = result.LOADING.VERIFIED;
+      this.statusMessages['alreadyVerified'] = result.LOADING.ALREADY_VERIFIED;
+      this.statusMessages['expired'] = result.LOADING.LINK_EXPIRED;
+      this.message = result.LOADING.VERIFYING;
+    });
   }
 
   /**
    * Getting email confirmation code from URL.
    */
   ngOnInit() {
-    this.emailVerified = false;
     this.route.queryParams.subscribe((queryParams) => {
-      this.verifyEmail(queryParams.confirmation_token);
+      if (!this.authService.isAuthenticated()) {
+        this.authService.authenticate().subscribe(() => {
+          this.verifyEmail(queryParams.confirmation_token);
+        });
+      } else {
+        this.verifyEmail(queryParams.confirmation_token);
+      }
     });
   }
 
@@ -41,13 +54,20 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(verifyCode) {
-    this.authService.authenticate().subscribe((token) => {
-      this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-        if (data.responseMessage.responseCode === 6000) {
-          this.emailVerified = true;
-          this.email = data.objectList[0].email;
-        }
-      });
+    this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+      if (data.responseMessage.responseCode === 6000) {
+        this.email = data.objectList[0].email;
+        this.message = this.statusMessages['verified'];
+      } else if (data.responseMessage.responseCode === 5022) {
+        this.message = this.statusMessages['expired'];
+      } else if (data.responseMessage.responseCode === 5023) {
+        this.message = this.statusMessages['alreadyVerified'];
+      } else if (data.responseMessage.responseCode === 5010) {
+        this.message = data.responseMessage.responseDescription;
+        this.email = '';
+      }
+    }).add(() => {
+      this.showLoader = false;
     });
   }
 

@@ -1,0 +1,81 @@
+<div class="container-fluid max-width--1024 investment">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2> {{ 'INVESTMENT_AMOUNT.TITLE' | translate}}</h2>
+        <h6> {{ 'INVESTMENT_AMOUNT.INVESTMENT_AMOUNT_LBL' | translate}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/investment-account/portfolio-financial.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <form id="myFinancialForm" name="myFinancialForm" [formGroup]="investmentAmountForm">
+          <div class="row second-section">
+            <div class="col-lg-12 col-md-12">
+              <div class="form-group-with-bg">
+                <div class="form-group-with-bg--header">
+                  <div class="flex-row">
+                    <div class="flex-col-12">
+                      <div class="form-group-with-bg--header-label" id="My_financialInvestment_Lbl">
+                        {{ 'INVESTMENT_AMOUNT.INVESTMENT_LBL' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group-with-bg--content">
+                  <div class="checkbox_instruction"> {{ 'INVESTMENT_AMOUNT.AT_LEAST_ONE' | translate}}</div>
+                  <div class="form-group-single-column mb0 flex-col-12">
+                    <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
+                      <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox"
+                        name="firstChkBox" (change)="firstChkBoxChange()">
+                      <label for="1" id="c1">
+                        <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.INITIAL_DEPOSIT_LBL' | translate}}</div>
+                        <div class="input-label-normal"> {{ 'INVESTMENT_AMOUNT.MIN_100' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="flex-col-6">
+                      <div class="form-control">
+                        <i id="myFinancialDollerSymbFour">$</i>
+                        <div name="initialInvestment" >
+                          <input class="input-control" id="myFinancialInitialDepositInput" type="text"
+                            appCurrencyInputPortfolio maxLength="7" #initialInvestment
+                            formControlName="initialInvestment" value="0">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group-single-column mb0 flex-col-12">
+                    <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
+                      <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox"
+                        name="secondChkBox" (change)="secondChkBoxChange()">
+                      <label for="2" id="c2">
+                        <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.MONTHLY_DEPOSIT_LBL' | translate}}</div>
+                        <div class="input-label-normal">{{ 'INVESTMENT_AMOUNT.MIN_50' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="flex-col-6">
+                      <div class="form-control form-control-right">
+                        <i id="myFinancialDollerSymbFour">$</i>
+                        <div name="monthlyInvestment">
+                          <input class="input-control " id="myFinancialMonthlyDepositInput" type="text"
+                            appCurrencyInputPortfolio maxLength="6" #monthlyInvestment
+                            formControlName="monthlyInvestment" value="0">
+                          <i class="right">/mth</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button"
+            [disabled]="(investmentAmountForm.controls.firstChkBox.value == false) && (investmentAmountForm.controls.secondChkBox.value == false)"
+            (click)="goToNext(investmentAmountForm)" class="btn btn__footer--fixed btn-primary width100"
+            id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

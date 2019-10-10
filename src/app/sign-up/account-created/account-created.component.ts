@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ConfigService } from '../../config/config.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
@@ -11,17 +12,20 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-account-created',
   templateUrl: './account-created.component.html',
   styleUrls: ['./account-created.component.scss']
 })
-export class AccountCreatedComponent implements OnInit {
+export class AccountCreatedComponent implements OnInit, OnDestroy {
 
   resendEmail: boolean;
   emailTriggered = false;
   emailSent = false;
+
+  routeSubscription: Subscription;
 
   constructor(
     private translate: TranslateService,
@@ -32,8 +36,14 @@ export class AccountCreatedComponent implements OnInit {
     private signUpService: SignUpService,
     private configService: ConfigService,
     private router: Router,
-    private signUpApiService: SignUpApiService) {
+    private signUpApiService: SignUpApiService,
+    public authService: AuthenticationService) {
     this.translate.use('en');
+    this.routeSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.authService.clearAuthDetails();
+      }
+    });
   }
   // constonts
   @HostListener('window:popstate', ['$event'])
@@ -41,10 +51,16 @@ export class AccountCreatedComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  ngOnDestroy() {
+    if (this.routeSubscription instanceof Subscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
   ngOnInit() {
     // Environment
     if (environment.gtagPropertyId) {
-      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/axAbCJ74s50BEP_VqfUC');
+      this.googleAnalyticsService.emitConversionsTracker(environment.gtagPropertyId + '/FF5kCLaf9aUBEP_VqfUC');
     }
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
 

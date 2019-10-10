@@ -75,8 +75,10 @@ export class PromotionService {
       date_created: in_promotion.date_created,
       date_expiry: in_promotion.date_expiry,
       tag: in_promotion.tags,
-      external: in_promotion.external
+      external: in_promotion.external,
+      tracking_id: in_promotion.tracking_id
     } as IPromotion;
+
     if (in_promotion.banner) {
       promotion.banner = in_promotion.banner;
     }
@@ -94,6 +96,12 @@ export class PromotionService {
     }
     if (in_promotion.bundle_enquiry_form_title) {
       promotion.bundle_enquiry_form_title = in_promotion.bundle_enquiry_form_title;
+    }
+    if (in_promotion.bundle_enquiry_form_subtitle) {
+      promotion.bundle_enquiry_form_subtitle = in_promotion.bundle_enquiry_form_subtitle;
+    }
+    if (in_promotion.bundle_enquiry_child_enabled) {
+      promotion.bundle_enquiry_child_enabled = in_promotion.bundle_enquiry_child_enabled;
     }
     return promotion;
   }

@@ -209,8 +209,8 @@
 <p>You are advised to approach a financial adviser to determine your needs and to understand the features, details and current quotes of the products before purchasing a product or surrendering your existing policies.</p>
 <p>
 		<br/>
-		To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/#/guideme">insurance guided journey here</a><br/>
-		If you already know what you need, use MoneyOwl&rsquo;s <a href="https://www.moneyowl.com.sg/#/direct">insurance comparison tool here</a><br/>
+		To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/guideme">insurance guided journey here</a><br/>
+		If you already know what you need, use MoneyOwl&rsquo;s <a href="https://www.moneyowl.com.sg/direct">insurance comparison tool here</a><br/>
 		<br/>
 	</p>
 	<p>
@@ -220,14 +220,14 @@
 		<strong>Coverage until 65 years old:</strong> There comes a time in our life when our dependents (E.g. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should any thing unexpected happen to us.
 						65 years old is a good estimate for how long one should cover ourselves with life insurance until.
 	</p>
-<p>For $1million term life insurance comparison table, <strong><a href="https://www.moneyowl.com.sg/#/articles/entry/20">click here</a></strong>.</p>
+<p>For $1million term life insurance comparison table, <strong><a href="https://www.moneyowl.com.sg/articles/entry/20">click here</a></strong>.</p>
 <br>
 <p><strong>Credit Ratings Explained</strong></p>
 <p><strong>Credit Rating:</strong> An insurance company credit rating is the opinion of an independent agency regarding the financial strength of an insurance company. An insurance company's credit rating indicates its ability to pay policyholders&#39; claims.</p>
 
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme">
   <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

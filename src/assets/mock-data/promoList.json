@@ -1,15 +1,54 @@
 [
     {
+        "promoId": 21,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "RetireWise Bundle",
+        "thumbnail": "/assets/promotions/images/21/thumbnail.png",
+        "banner": "/assets/promotions/images/21/banner.jpg", 
+        "desc": "Receive a $50 NTUC FairPrice voucher if you purchase before 31 December 2019!",
+        "date_created": "1560902400000",
+        "date_expiry": "1577807999000",
+        "tag": [],
+        "external": false,
+        "bundle_enquiry_form_type": "retirement-bundle",
+        "bundle_enquiry_form_title": "RetireWise Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Sign up, and receive $50 NTUC FairPrice voucher<sup>1</sup> today!",
+        "tracking_id": "3G7hCPHSwqsBEP_VqfUC"
+    },
+    {
+        "promoId": 19,
+        "type": 4,
+        "owner": "MoneyOwl",
+        "title": "Child Protection Bundle",
+        "thumbnail": "/assets/promotions/images/19/main.jpg",
+        "desc": "Receive a MoneyOwl Towel upon successful application",
+        "date_created": "1560902400000",
+        "date_expiry": "1577730600000",
+        "tag": [],
+        "external": false,
+        "bundle_enquiry_form_type": "child-protection-bundle",
+        "bundle_enquiry_form_title": "Child Protection Bundle Enquiry",
+        "bundle_enquiry_form_sub_title": "Receive a FREE MoneyOwl towel when you successfully sign up for the Child Protection Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.",
+        "bundle_enquiry_child_enabled": true,
+        "tracking_id": "WsX0CIux_aUBEP_VqfUC"
+    },
+    {
         "promoId": 15,
         "type": 4,
         "owner": "MoneyOwl",
-        "title": "Baby Bundle (Child Protection & Education)",
+        "title": "Child Education Bundle",
         "thumbnail": "/assets/promotions/images/15/main.jpg",
-        "desc": "Receive a $50 NTUC FairPrice voucher valid till 31 August 2019!",
+        "desc": "Receive a MoneyOwl Towel upon successful application",
         "date_created": "1560902400000",
-        "date_expiry": "1567209600000",
+        "date_expiry": "1577730600000",
         "tag": [],
-        "external": false
+        "external": false,
+        "bundle_enquiry_form_type": "child-education-bundle",
+        "bundle_enquiry_form_title": "Child Education Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Receive a FREE MoneyOwl towel when you successfully sign up for the Child Education Bundle. Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you sign up for both Child Protection & Child Education Bundle.",
+        "bundle_enquiry_child_enabled": true,
+        "tracking_id": "WsX0CIux_aUBEP_VqfUC"
     },
     {
         "promoId": 16,
@@ -17,11 +56,15 @@
         "owner": "MoneyOwl",
         "title": "Young Working Adult Protection Bundle",
         "thumbnail": "/assets/promotions/images/16/main.jpg",
-        "desc": "Receive a $30 NTUC FairPrice voucher valid till 31 August 2019!",
+        "desc": "Receive a $30 NTUC FairPrice voucher valid till 31 December 2019!",
         "date_created": "1560902400000",
-        "date_expiry": "1567209600000",
+        "date_expiry": "1577730600000",
         "tag": [],
-        "external": false
+        "external": false,
+        "bundle_enquiry_form_type": "adult-bundle",
+        "bundle_enquiry_form_title": "Young Working Adult Bundle Enquiry",
+        "bundle_enquiry_form_subtitle": "Sign up, and receive $30 NTUC FairPrice voucher<span class=\"plus-icon\">+</span> today!",
+        "tracking_id": "ITmJCNHA9aUBEP_VqfUC"
     },
     {
         "promoId": 12, 
@@ -159,7 +202,7 @@
         "date_expiry": "1620230399000",
         "tag" : ["Wills"],
         "external": true,
-        "url": "https://www.moneyowl.com.sg/#/home#subscribe",
+        "url": "https://www.moneyowl.com.sg/home#subscribe",
         "button_label": "Subscribe Now!"
     },
     {
@@ -196,6 +239,42 @@
         "date_created": "1556553600000",
         "date_expiry": "1559577599000",
         "tag": ["Insurance", "Protection"],
+        "external": false
+    },
+    {
+        "promoId": 17,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $800 CapitaVouchers when you start today!",
+        "thumbnail": "/assets/promotions/images/17/thumbnail.jpg",
+        "desc": "Receive up to $800 CapitaVoucher with purchase of NTUC SAIL Plan",
+        "date_created": "1565193600000",
+        "date_expiry": "1567007999000",
+        "tag": ["Insurance", "Retirement"],
+        "external": false
+    },
+    {
+        "promoId": 18,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Enjoy up to 20% Premium Discount for Manulife LifeReady Plus",
+        "thumbnail": "/assets/promotions/images/18/thumbnail.jpg",
+        "desc": "Enjoy first year premium discount with purchase of Manulife LifeReady Plus",
+        "date_created": "1565193600000",
+        "date_expiry": "1569254399000",
+        "tag": ["Insurance"],
+        "external": false
+    },
+    {
+        "promoId": 20,
+        "type": 1,
+        "owner": "NTUC",
+        "title": "Get up to $1,200 CapitalVouchers when you start today!",
+        "thumbnail": "/assets/promotions/images/20/main.jpg",
+        "desc": "Enjoy up to $1200 CapitaVouchers with purchase of selected NTUC Income’s plans",
+        "date_created": "1568053800000",
+        "date_expiry": "1572201000000",
+        "tag": ["Insurance", "Retirement"],
         "external": false
     }
 ]

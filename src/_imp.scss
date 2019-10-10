@@ -288,6 +288,10 @@
   padding-top: 10px !important;
 }
 
+.pt0 {
+  padding-top: 0px !important;
+}
+
 .pt50 {
   padding-top: 50px !important;
 }
@@ -300,6 +304,10 @@
   padding-bottom: 15px !important;
 }
 
+.pb20 {
+  padding-bottom: 20px !important;
+}
+
 .pb30 {
   padding-bottom: 30px !important;
 }
@@ -307,9 +315,11 @@
 .pb60 {
   padding-bottom: 60px !important;
 }
+
 .pb0 {
   padding-bottom: 0 !important;
 }
+
 .absolute-top {
   top: 0 !important
 }
@@ -551,6 +561,7 @@ input::-ms-clear {
 .txt-capitalize {
   text-transform: capitalize !important;
 }
+
 .pointer-cursor {
   cursor: pointer;
 }

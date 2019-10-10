@@ -87,6 +87,7 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.removeItem(appConstants.APP_JWT_TOKEN_KEY);
       sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
+      sessionStorage.removeItem(appConstants.APP_ENQUIRY_ID);
     }
   }
 

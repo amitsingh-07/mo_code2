@@ -63,6 +63,9 @@ app-edit-profile{
           display: flex;
           justify-content: flex-end;
         }
+        &.cursor_pointer {
+          cursor: pointer;
+        }
       }
       .dots{
         background-color: $edit-card-bg; 
@@ -196,7 +199,7 @@ app-edit-profile{
     width: 100%;
     height: 57px;
     border-radius: 6px;
-    box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow;
+    box-shadow: 0 6px 7px 0 $btn-shadow-color;
     background-color:$white-color;
     border: 1px solid $teal-color;
     margin-top: 15px;

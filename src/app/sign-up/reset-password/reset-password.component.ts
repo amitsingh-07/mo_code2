@@ -33,6 +33,8 @@ export class ResetPasswordComponent implements OnInit {
   confirmPwdFocus = false;
   isPasswordValid = true;
 
+  submitted: boolean = false;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -50,6 +52,9 @@ export class ResetPasswordComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
     });
   }
+
+  get reset() { return this.resetPasswordForm.controls; }
+
   buildResetPasswordForm() {
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
@@ -58,6 +63,7 @@ export class ResetPasswordComponent implements OnInit {
       resetConfirmPassword: ['']
     }, { validator: this.validateMatchPassword() });
   }
+
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -96,24 +102,16 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   save(form: any) {
-    if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      const error = this.signUpService.currentFormError(form);
-      if (error.errorMessage) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = error.errorTitle;
-        ref.componentInstance.errorMessage = error.errorMessage;
-      }
-      return false;
-    } else {
+    this.submitted = true;
+    if (form.valid) {
       this.signUpApiService.resetPassword(form.value.resetPassword, this.token).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
           this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
         }
+      }).add(() => {
+        this.submitted = false;
       });
     }
   }
@@ -140,13 +138,15 @@ export class ResetPasswordComponent implements OnInit {
   onPasswordInputChange() {
     if (this.resetPasswordForm.controls.resetPassword.errors && this.resetPasswordForm.controls.resetPassword.dirty
       && this.resetPasswordForm.controls.resetPassword.value) {
-      this.isPasswordValid = false;
-    } else {
-      const _self = this;
-      setTimeout(() => {
-        _self.isPasswordValid = true;
-      }, 500);
-    }
+        this.isPasswordValid = false;
+      } else if (!this.resetPasswordForm.controls.resetPassword.value.length) {
+        this.isPasswordValid = true;
+      } else {
+        const _self = this;
+        setTimeout(() => {
+          _self.isPasswordValid = true;
+        }, 500);
+      }
   }
 
   showValidity(from) {

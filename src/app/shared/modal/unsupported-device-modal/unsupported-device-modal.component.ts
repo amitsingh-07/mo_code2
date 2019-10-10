@@ -5,8 +5,12 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
-import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profile.component';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+    RecommendationComponent
+} from '../../../investment/investment-engagement-journey/recommendation/recommendation.component';
 
 @Component({
   selector: 'app-unsupported-device-modal',
