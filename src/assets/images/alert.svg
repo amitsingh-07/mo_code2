@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>form/icon/alert</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="form/error_msg_white" transform="translate(0.000000, -3.000000)">
+            <g id="form/icon/alert" transform="translate(0.000000, 3.000000)">
+                <g id="Group-3-Copy-2">
+                    <circle id="Oval-2" fill="#FF9C39" cx="7.5" cy="7.5" r="7.5"></circle>
+                    <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="7.1601683 9.48976625 6.66666667 3.33333333 8.57898551 3.34567087 8.09782141 9.48976625"></polygon>
+                    <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="6.76536699 10.4027443 8.49262272 10.4027443 8.49262272 12.13 6.76536699 12.13"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
