@@ -379,6 +379,8 @@
       "COMPREHENSIVE_PLANNING_PENDING_DESC": "You are almost there! Complete your journey and get your financial report!",
       "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
       "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
+      "COMPREHENSIVE_MAKE_CHANGES_CONTENT": "You can now make further edits to your inputs and/or resubmit them to generate another report.",
+      "COMPREHENSIVE_MAKE_CHANGES": "Make Changes",
       "INSURANCE": "Insurance",
       "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
       "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
@@ -394,7 +396,8 @@
       "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
       "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
       "DEFAULT_START": "Start Planning",
-      "DEFAULT_ESTIMATED": "Estimated 20 mins"
+      "DEFAULT_ESTIMATED": "Estimated 20 mins",
+      "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE"
     }
   },
   "TRANSFER_INSTRUCTION": {

@@ -66,6 +66,13 @@ $minus-content-color:#ff872f;
   .modal-body {
     @include allmobiles {
       padding: 25px 20px 40px !important;
+      max-height: calc(100vh - 80px);
+      padding-bottom: 50px !important;
+    }
+    @include iphoneX {
+      padding: 25px 20px 40px !important;
+      max-height: calc(100vh - 80px);
+      padding-bottom: 70px !important;
     }
   }
 

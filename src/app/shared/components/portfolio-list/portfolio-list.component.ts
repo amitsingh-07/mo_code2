@@ -33,13 +33,13 @@ export class PortfolioListComponent implements OnInit {
   @Output() investAgainSelected = new EventEmitter<boolean>();
 
   constructor(public readonly translate: TranslateService,
-              private manageInvestmentsService: ManageInvestmentsService,
-              public signUpService: SignUpService,
-              private currencyPipe: CurrencyPipe,
-              private investmentAccountService: InvestmentAccountService) {
-                this.translate.use('en');
-                this.translate.get('COMMON').subscribe((result: string) => {});
-              }
+    private manageInvestmentsService: ManageInvestmentsService,
+    public signUpService: SignUpService,
+    private currencyPipe: CurrencyPipe,
+    private investmentAccountService: InvestmentAccountService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => { });
+  }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -65,24 +65,24 @@ export class PortfolioListComponent implements OnInit {
     }
   }
   sortByDate(myArray) {
-   return  myArray.sort(
+    return myArray.sort(
       (d1, d2) => new Date(d2.createdDate).getTime() - new Date(d1.createdDate).getTime()
     );
   }
   getMonthlyInvestValidity(index: number) {
     if (this.userProfileInfo && this.userProfileInfo.investementDetails
-       && this.userProfileInfo.investementDetails.portfolios
-       && this.userProfileInfo.investementDetails.portfolios[index]
-       && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
-       && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
-         this.monthlyInvestment = this.currencyPipe.transform(
-          this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
-          'USD',
-          'symbol-narrow',
-          '1.0-2'
-        );
-         return true;
-       }
+      && this.userProfileInfo.investementDetails.portfolios
+      && this.userProfileInfo.investementDetails.portfolios[index]
+      && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
+      && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
+      this.monthlyInvestment = this.currencyPipe.transform(
+        this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
+        'USD',
+        'symbol-narrow',
+        '1.0-2'
+      );
+      return true;
+    }
     return false;
   }
   getEntitlementsFromPortfolio(portfolio) {
