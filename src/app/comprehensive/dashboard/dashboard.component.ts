@@ -69,14 +69,18 @@ export class ComprehensiveDashboardComponent implements OnInit {
         this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
           && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
-        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.islocked === null) {
+        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && (this.islocked === null || !this.islocked)) {
           this.comprehensivePlanning = 3;
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
+          this.comprehensivePlanning = 5;
+          let lastSubmittedDate = new Date();
+          if (this.getComprehensiveSummary.comprehensiveEnquiry && this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
+            lastSubmittedDate = new Date(this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp);
+          }
+          const submittedDateAPI = lastSubmittedDate;
+          this.submittedDate = this.datePipe.transform(submittedDateAPI, 'dd MMM` yy');
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.comprehensivePlanning = 0;
-        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && !this.islocked) {
-          this.comprehensivePlanning = 5;
-          const submittedDateAPI = new Date(this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp);
-          this.submittedDate = this.datePipe.transform(submittedDateAPI, 'dd MMM` yy');
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
           this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
           this.generateReport();
@@ -124,8 +128,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.comprehensiveService.setViewableMode(true);
       if (!this.islocked) {
-        this.comprehensiveService.setViewableMode(false);
         this.getComprehensiveCall();
+
       }
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
@@ -140,6 +144,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
           if (summaryData) {
             this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+            this.comprehensiveService.setViewableMode(true);
+            console.log(summaryData, "summaryData")
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
           }
         });
