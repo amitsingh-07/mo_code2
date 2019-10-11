@@ -283,13 +283,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-      this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
-      this.getUserProfileAndNavigate();
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
@@ -411,7 +410,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     ref.componentInstance.errorMessage = desc;
   }
 
-  getUserProfileAndNavigate() {
+  getUserProfileAndNavigate(journeyType) {
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         if (
@@ -433,7 +432,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        this.investmentCommonService.redirectToInvestmentFromLogin();
+        if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
+        } else if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
+          this.investmentCommonService.redirectToInvestmentFromLogin();
+        } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+          this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        }
       }
     },
       (err) => {
