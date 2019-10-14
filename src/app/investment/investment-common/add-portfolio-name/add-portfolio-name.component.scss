@@ -51,14 +51,10 @@ app-add-portfolio-name {
         }
 
         @include iphonex{
-          height: calc(100vh - 360px);
+          height: calc(100vh - 360px) !important;
         }
 
         @include iphone11{
-          height: calc(100vh - 400px);
-        }
-
-        @include iphone11ProMax{
           height: calc(100vh - 400px);
         }
 
@@ -81,15 +77,12 @@ app-add-portfolio-name {
           height: 320px;
           padding-bottom: 50px;
         }
+
         @include iphonex{
-          height: 360px;
+          height: 360px !important;
         }
 
         @include iphone11{
-          height: 400px;
-        }
-
-        @include iphone11ProMax{
           height: 400px;
         }
 
