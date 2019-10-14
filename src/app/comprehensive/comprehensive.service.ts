@@ -1923,7 +1923,6 @@ export class ComprehensiveService {
     } else {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
     }
-    console.log(this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode)
     if (commitFlag) {
       this.commit();
     }
