@@ -4,7 +4,8 @@
 .modal-body {
   $self: &;
   padding: 0;
-  border-radius: 0px;
+  padding-bottom: 20px;
+  //border-radius: 0px;
   @include allmobiles {
     padding: 0 !important;
   }
@@ -12,6 +13,10 @@
 
   .title-container {
     background-color: $white-color;
+    border-radius: 6px;
+    @include allmobiles{
+      border-radius: 0px;
+    }
   }
 
   &-title {
@@ -23,6 +28,12 @@
     background-color: $white-color;
     margin: 0;
     padding: 20px 40px 15px 25px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    @include allmobiles{
+      border-radius: 0px;
+    }
+
   }
 
   &-message {
@@ -41,9 +52,95 @@
     top: 25px !important;
   }
 
+  .cash-account{
+    margin: 20px 1rem;
+    color: #ffffff;
+    .transfer-instruction-lbl{
+      text-align: center;
+      padding: 0 20px;
+      @include allmobiles{
+        text-align: left;
+      }
+    }
+    .btn-with-icon {
+      border-radius: 6px;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
+      border: 1px solid $fixed-btn-brdr-color;
+      background-color: $white-color;
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: -0.3px;
+      text-align: center;
+      width: 100%;
+      padding: 17px 0px 16px;
+      color: $secondary-action-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &:active {
+        outline: none;
+        background-color: $white-color;
+      }
+      &:hover {
+        outline: none;
+      }
+      &:focus {
+        outline: none;
+        background-color: $white-color;
+      }
+      .topup-btn-img {
+        height: 25px;
+        img{
+          width:100%;
+          height: 25px;
+        }
+      }
+    }
+    .cash-account-content{
+      .ref-code{
+        padding: 14px 0 10px;
+        font-family: $muli-bold;
+        font-size: 18px;
+        line-height: 1.17;
+        letter-spacing: -0.17px;
+        text-align: center;
+        color: #ff872f;
+        border-radius: 4px;
+        border: 2px solid #00a7a7;
+        background-color: #ffffff;
+        margin-bottom: 15px;
+      }
+      .note-icon{
+        width: 24px;
+        height: 24px;
+        margin-right: 15px;
+        margin-top: 5px;
+        display: flex;
+      }
+      .note{
+        font-family: $muli-regular;
+        font-size: 13px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.62;
+        letter-spacing: -0.12px;
+        color: #4a4a4a;
+        span{
+          font-family: $muli-bold !important;
+        }
+        @include allmobiles{
+          line-height: normal;
+        }
+      }
+    }
+   }
+
   /* TRANSFER DETAILS */
   .transfer-details {
-    margin: 35px 1rem 0px;
+    margin: 15px 1rem 0px;
     color: $teal-color;
     @include allmobiles {
       padding-bottom: 80px;
@@ -76,6 +173,7 @@
           justify-content: center;
           background-color: $fixed-btn-txt-color;
           border-radius: 10px 10px 0px 0px;
+          cursor: pointer;
 
           &.active {
             background-color: $white-color;
@@ -98,7 +196,7 @@
     .tab-content-container {
       background-color: $bond-container-bg;
       border-radius: 0px 0px 6px 6px;
-
+      margin-bottom: 6px;
       .tab-content {
         display: none;
 
@@ -107,19 +205,6 @@
         }
       }
     }
-  }
-}
-
-.modal-footer {
-  border: none;
-  background-color: $teal-color;
-  @include allmobiles {
-    padding: 0;
-  }
-
-  .btn-primary {
-    font-size: 24px;
-    font-family: $muli-bold;
-    letter-spacing: -0.2px;
+    
   }
 }

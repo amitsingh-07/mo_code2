@@ -52,7 +52,7 @@
                       </div>
                       <div class="button" *ngIf="!isDisabled('postalCode')">
                         <button type="button" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)"
-                          class="btn btn-secondary right">{{
+                          class="btn btn-orange width100">{{
                           'COMMON.LABEL.RETRIEVE' | translate}}
                         </button>
                       </div>
@@ -256,7 +256,7 @@
                         </div>
                         <div class="button" *ngIf="!isDisabled('mailPostalCode')">
                           <button type="button" (click)="retrieveAddress(addressForm.controls.mailingAddress.controls.mailPostalCode.value, addressForm.controls.mailingAddress.controls.mailAddress1, addressForm.controls.mailingAddress.controls.mailAddress2)"
-                            class="btn btn-secondary right">{{
+                            class="btn btn-orange width100">{{
                             'COMMON.LABEL.RETRIEVE' | translate}}
                           </button>
                         </div>

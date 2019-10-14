@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoggedUserService } from '../sign-up/auth-guard.service';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
@@ -21,27 +20,23 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 const routes: Routes = [
-  {
-    path: '', canActivate: [LoggedUserService], children: [
-      { path: GUIDE_ME_ROUTES.ROOT, component: ProfileComponent },
-      { path: GUIDE_ME_ROUTES.PROFILE, component: ProfileComponent },
-      { path: GUIDE_ME_ROUTES.GET_STARTED, component: GetStartedComponent },
-      { path: GUIDE_ME_ROUTES.FINANCIAL_ASSESSMENT, component: FinAssessmentComponent },
-      { path: GUIDE_ME_ROUTES.INSURE_ASSESSMENT, component: InsureAssessmentComponent },
-      { path: GUIDE_ME_ROUTES.PROTECTION_NEEDS, component: ProtectionNeedsComponent },
-      { path: GUIDE_ME_ROUTES.INCOME, component: IncomeComponent },
-      { path: GUIDE_ME_ROUTES.EXPENSES, component: ExpensesComponent },
-      { path: GUIDE_ME_ROUTES.ASSETS, component: MyAssetsComponent },
-      { path: GUIDE_ME_ROUTES.LIABILITIES, component: LiabilitiesComponent },
-      { path: GUIDE_ME_ROUTES.LIFE_PROTECTION, component: LifeProtectionComponent },
-      { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent },
-      { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent },
-      { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent },
-      { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent },
-      { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent },
-      { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent }
-    ]
-  }
+  { path: GUIDE_ME_ROUTES.ROOT, component: ProfileComponent },
+  { path: GUIDE_ME_ROUTES.PROFILE, component: ProfileComponent },
+  { path: GUIDE_ME_ROUTES.GET_STARTED, component: GetStartedComponent },
+  { path: GUIDE_ME_ROUTES.FINANCIAL_ASSESSMENT, component: FinAssessmentComponent },
+  { path: GUIDE_ME_ROUTES.INSURE_ASSESSMENT, component: InsureAssessmentComponent },
+  { path: GUIDE_ME_ROUTES.PROTECTION_NEEDS, component: ProtectionNeedsComponent },
+  { path: GUIDE_ME_ROUTES.INCOME, component: IncomeComponent },
+  { path: GUIDE_ME_ROUTES.EXPENSES, component: ExpensesComponent },
+  { path: GUIDE_ME_ROUTES.ASSETS, component: MyAssetsComponent },
+  { path: GUIDE_ME_ROUTES.LIABILITIES, component: LiabilitiesComponent },
+  { path: GUIDE_ME_ROUTES.LIFE_PROTECTION, component: LifeProtectionComponent },
+  { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent },
+  { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent },
+  { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent },
+  { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent },
+  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent },
+  { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent }
 ];
 
 @NgModule({

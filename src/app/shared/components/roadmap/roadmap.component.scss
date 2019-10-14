@@ -2,7 +2,7 @@
 @import '../../../../_mixins.scss';
 
 .roadmap-widget {   
-    background-color:#009999;
+    background-color: $road-map-bg;
     border-radius:6px;
     padding:20px;
 
@@ -16,7 +16,7 @@
             padding-left: 45px;
             position:relative;
             min-height:50px;
-            color: #c8e7e7;
+            color: $road-map-item-color;
             font-family:$muli-regular;
             font-size:15px;
 
@@ -27,15 +27,15 @@
                 width:40px;
                 height:100%;
 
-                span.line {
+                .line {
                     display:block;
                     width:2px;
                     height:100%;
-                    background-color:$top-up-your-portfolio-your-total-value-bg;
+                    background-color: $road-map-line-bg;
                     margin: 0 auto;
                     margin-top:4px;
                 }
-                span.icon {
+                .icon {
                     display:block;
                     background-repeat: no-repeat;
                     background-position: center top;
@@ -48,7 +48,7 @@
             }
             &:last-child {
                 .roadmap-icon {
-                    span.line {
+                    .line {
                         display:none;
                     }
                 }
@@ -69,7 +69,7 @@
                 }
                 .roadmap-item-title{
                     font-family: $muli-bold;
-                    color: #81d2d2;
+                    color: $road-mag-inprogress-color;
                 }
             }
             &.completed{

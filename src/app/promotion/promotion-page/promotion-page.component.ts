@@ -54,7 +54,7 @@ export class PromotionPageComponent implements OnInit {
     });
   }
 
-  getPromoDetails() {
+getPromoDetails() {
     window.scroll(0, 0);
     this.promotionApiService.getPromoList().subscribe((promoList) => {
       let is_exist: boolean;

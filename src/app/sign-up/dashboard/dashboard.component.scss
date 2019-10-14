@@ -131,17 +131,21 @@ app-dashboard{
                             color: #ff9c39;
                         }
                     }
-                    .portfolio{
+                    .portfolio {
                         font-family: $muli-regular;
                         font-size: 16px;
                         line-height: 1.31;
                         letter-spacing: -0.1px;
                         color: #8a9ba9;
                         padding: 0 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         .portfolio_value{
                             color: #2d8289;
                             .value{
-                                font-size: 24px;
+                                font-family: $muli-bold;
+                                font-size: 18px;
                                 letter-spacing: -0.3px;
                                 color: #00a7a7;
                                 margin-bottom: 11px;
@@ -150,8 +154,6 @@ app-dashboard{
                         .portfolio_footer{
                             display: flex;
                             justify-content: space-between;
-                            border-top: 1px solid #c0c0c0;
-                            padding-top: 11px;
                             color: #2d8289;
                             .flex-col{
                                 &.col-5{
@@ -170,7 +172,8 @@ app-dashboard{
                                     font-family: $muli;
                                 }
                                 .portfolio_footer_value{
-                                    font-size: 16px;
+                                    font-family: $muli-bold;
+                                    font-size: 18px;
                                     letter-spacing: -0.2px;
                                     color: #00a7a7;
                                     padding-top: 3px;
@@ -247,6 +250,24 @@ app-dashboard{
                         }
                     }
                 }
+                .find-plan{
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    letter-spacing: -0.11px;
+                    text-align: center;
+                    color: $teal-color;
+                    margin-top: 12px;
+                    a{
+                        text-decoration: underline;
+                        color: $teal-color;
+                    }
+                }
+            }
+            .loader-div {
+              min-height: 200px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
         }
         .investment-widget{
@@ -260,6 +281,28 @@ app-dashboard{
             margin-left: 10px;
             background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
+        }
+    }
+    .announcement-div {
+        display: flex; 
+        align-items: center; 
+        margin-top: 21px;
+        padding: 13px 16px 14px 16px; 
+        border-radius: 6px; 
+        border: solid 3px #ffa32c;  
+        background-color: rgba(0, 89, 96, 0.3);
+        cursor: pointer;
+        .announcement-img {
+            width: 40px;
+            height: auto;
+            margin-right: 8px;
+        }
+        .announcement-txt {
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            letter-spacing: -0.16px;
+            line-height: normal;
+            color: $white-color; 
         }
     }
 }

@@ -154,7 +154,7 @@
 <p>The above  examples are for illustration purposes only. Policy projections are  non-guaranteed and actual figures are dependent on the performance of their  life funds.</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
 	<img src="/assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
 </div>
 -->

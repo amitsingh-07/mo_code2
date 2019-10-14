@@ -188,7 +188,7 @@
 </ul>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme">
   <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
 -->

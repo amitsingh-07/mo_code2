@@ -1,0 +1,57 @@
+@import '../../../../variables';
+@import '../../../../_mixins.scss';
+
+app-residential-address {
+  .residential-address {
+
+    label {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      padding-right: 10px;
+
+      @include max360 {
+        padding-right: 8px;
+      }
+    }
+
+    .input-control {
+      text-align: left;
+    }
+
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+      }
+
+      &:disabled,
+      &.disabled {
+
+        input {
+
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button {
+          display: none;
+        }
+      }
+    }
+
+    .your-mailing-address {
+      font-family: $muli-bold;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+      color: $white-color;
+      padding-bottom: 28px;
+    }
+  }
+
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+  }
+
+  /* firefox only CSS code for dropdown with ellipsis */
+  @include dropdown-ellipsis();
+}

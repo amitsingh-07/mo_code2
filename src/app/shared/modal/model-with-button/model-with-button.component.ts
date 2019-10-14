@@ -1,11 +1,17 @@
 import { filter } from 'rxjs/operators';
+
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
-import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profile.component';
+import {
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+    RecommendationComponent
+} from '../../../investment/investment-engagement-journey/recommendation/recommendation.component';
+
 @Component({
   selector: 'app-model-with-button',
   templateUrl: './model-with-button.component.html',
@@ -25,6 +31,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() portfolioExist: boolean;
   @Input() secondaryActionDim: boolean;
   @Input() isInlineButton: boolean;
+  @Input() closeBtn = true;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();

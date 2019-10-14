@@ -41,7 +41,7 @@
     </div>
     <!-- Update user id section -->
     <div class="edit-profile-section-bg">
-      <div class="flex-row" (click)=showHide(showHideUser)>
+      <div class="flex-row cursor_pointer" (click)=showHide(showHideUser)>
         <div class="flex-col-11">
           <div class="form-group-heading">
             {{'EDIT_PROFILE.UPDATE_USER_ID' | translate}}
@@ -78,7 +78,7 @@
     </div>
     <!-- Change Password Section  -->
     <div class="edit-profile-section-bg">
-      <div class="flex-row" (click)=showHide(showHidePassword)>
+      <div class="flex-row cursor_pointer" (click)=showHide(showHidePassword)>
         <div class="flex-col-11">
           <div class="form-group-heading">
             {{'EDIT_PROFILE.CHANGE_PASS' | translate}}
@@ -110,7 +110,7 @@
   <div *ngIf="contactDetails">
     <!-- remove  *ngIf="contactDetails === false" when contact details needs to display , hiding it temporarily -->
     <div class="edit-profile-section-bg" *ngIf="contactDetails === false">
-      <div class="flex-row" (click)=showHide(showHideContact)>
+      <div class="flex-row cursor_pointer" (click)=showHide(showHideContact)>
         <div class="flex-col-11">
           <div class="form-group-heading">
             {{'EDIT_PROFILE.UPDATE_CONTACT' | translate}}
@@ -289,7 +289,7 @@
     <!-- Update Employee Details  -->
     <div *ngIf="empolymentDetails">
       <div class="edit-profile-section-bg">
-        <div class="flex-row" (click)=showHide(showHideEmp)>
+        <div class="flex-row cursor_pointer" (click)=showHide(showHideEmp)>
           <div class="flex-col-11">
             <div class="form-group-heading">
               {{'EDIT_PROFILE.UPDATE_EMP' | translate}}
@@ -450,7 +450,7 @@
     <!-- Update bank details  -->
     <div class="bank_details" *ngIf=showAddbank>
       <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
-        <div class="flex-row">
+        <div class="flex-row cursor_pointer">
           <div class="flex-col-11">
             <div class="bank-details-heading">
               {{'EDIT_PROFILE.UPDATE_BANK' | translate}}

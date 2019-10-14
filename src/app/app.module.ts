@@ -4,7 +4,7 @@ import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqx
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
-  CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe
+  CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {
   HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
@@ -47,9 +47,9 @@ import {
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
-import { FundDetailsComponent } from './portfolio/fund-details/fund-details.component';
-import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
+import { FundDetailsComponent } from './investment/investment-common/fund-details/fund-details.component';
+import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
@@ -112,6 +112,8 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
+import { RestrictAddPortfolioModalComponent } from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
+
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -159,7 +161,8 @@ export function tokenGetterFn() {
     SummaryModalComponent,
     DiyModalComponent,
     NotFoundComponent,
-    EmailEnquirySuccessComponent
+    EmailEnquirySuccessComponent,
+    RestrictAddPortfolioModalComponent
   ],
   imports: [
     BrowserModule,
@@ -191,7 +194,7 @@ export function tokenGetterFn() {
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
@@ -218,16 +221,12 @@ export function tokenGetterFn() {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent,
-    BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
-    CreateAccountModelComponent, ExistingCoverageModalComponent,
-    RecommendationsModalComponent, TermsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent,
-    WillDisclaimerComponent, TransactionModalComponent,
-    LoginCreateAccountModelComponent, SummaryModalComponent,
-    FundDetailsComponent, UnsupportedDeviceModalComponent]
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
+    FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
+    LoginCreateAccountModelComponent, SummaryModalComponent]
 })
 
 export class AppModule {

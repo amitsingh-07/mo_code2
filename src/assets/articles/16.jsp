@@ -28,7 +28,7 @@
           <br>
           <li>
               <p><strong>b) Do  you need to provide for your child&rsquo;s university education?</strong></p>
-              <p>The cost of <a href="https://www.moneyowl.com.sg/#/articles/entry/56" target="_blank" title="Forward Planning for your Child&rsquo;s Education">university education</a> is expensive. How much you need depends on the number of children you are supporting and their  field of study (medicine or non-medicine course). </p>
+              <p>The cost of <a href="https://www.moneyowl.com.sg/articles/entry/56" target="_blank" title="Forward Planning for your Child&rsquo;s Education">university education</a> is expensive. How much you need depends on the number of children you are supporting and their  field of study (medicine or non-medicine course). </p>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <tr class="cell-turquoise" >
@@ -111,10 +111,10 @@
   </li>
 </ol>
 
-<br>You could input all of these considerations into our guided journey and find out if you have a shortfall or an excess in your life insurance needs. <a href="https://www.moneyowl.com.sg/#/direct">Give it a go today</a><br>
+<br>You could input all of these considerations into our guided journey and find out if you have a shortfall or an excess in your life insurance needs. <a href="https://www.moneyowl.com.sg/direct">Give it a go today</a><br>
 </p>
 <!--
-  <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="/assets/images/banners/compare_pro_540w.png" alt="direct protection plans"></a>
 </div>
 -->

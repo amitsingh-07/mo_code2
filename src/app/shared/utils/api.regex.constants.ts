@@ -47,5 +47,6 @@ export const RegexConstants = {
         HSBC: /^[0-9]{12}$/,
         POSB: /^[0-9]{9}$/
     },
-    MobileNumber: /^(8|9)\d{7}$/
+    MobileNumber: /^(8|9)\d{7}$/,
+    portfolioName: /^\S.*$/
 };

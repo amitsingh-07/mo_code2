@@ -38,6 +38,9 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   pageData;
   coverageToolTip;
 
+  monthlySalary: number;
+  annualBonus: number;
+
   private subscription: Subscription;
 
   ciSliderConfig: any = {
@@ -74,11 +77,12 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.navbarService.setNavbarDirectGuided(true);
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
     this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears ? this.ciAssessmentFormValues.coverageYears : 65;
-    let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
-    if (!monthlySalary) {
-      monthlySalary = 0;
+    this.monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
+    if (!this.monthlySalary) {
+      this.monthlySalary = 0;
     }
-    this.ciAssessmentFormValues.annualSalary = monthlySalary * 12;
+    this.annualBonus = Number(this.guideMeService.getMyIncome().annualBonus ? this.guideMeService.getMyIncome().annualBonus : 0);
+    this.ciAssessmentFormValues.annualSalary = this.monthlySalary * 12;
     if (!this.ciAssessmentFormValues.ciMultiplier) {
       this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
     } else {
@@ -90,7 +94,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       ciMultiplier: new FormControl(this.ciAssessmentFormValues.ciMultiplier),
       coverageYears: new FormControl(this.ciAssessmentFormValues.coverageYears)
     });
-    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
+    this.ciCoverageAmt = (this.ciAssessmentFormValues.annualSalary + this.annualBonus) * this.ciAssessmentFormValues.ciMultiplier;
     // tslint:disable-next-line:max-line-length
     this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
@@ -118,7 +122,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   onSliderChange(value): void {
     this.ciMultiplier = value;
-    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
+    this.ciCoverageAmt = (this.ciAssessmentFormValues.annualSalary + this.annualBonus) * this.ciMultiplier;
   }
 
   selectRetirementAge(count) {
