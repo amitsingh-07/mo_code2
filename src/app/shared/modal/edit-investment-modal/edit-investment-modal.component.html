@@ -27,7 +27,7 @@
            
           </div>
         </div>
-        <div clas="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.oneTimeInvestment.hasError('minInitialAmount')">
+        <div class="error-label" *ngIf="editInvestmentForm.controls.oneTimeInvestment.hasError('minInitialAmount')">
             <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.MINIMUM_INITIAL_AMOUNT' | translate}}</span>
         </div>
       </div>
@@ -46,10 +46,10 @@
             </div>          
           </div>
         </div>
-        <div class="flex-col-12" class="error-label" *ngIf="editInvestmentForm.controls.monthlyInvestment.hasError('minMonthlyAmount')">
+        <div  class="error-label" *ngIf="editInvestmentForm.controls.monthlyInvestment.hasError('minMonthlyAmount')">
             <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.MINIMUM_MONTHLY_AMOUNT' | translate}}</span>
         </div>
-        <div class="flex-col-12" class="error-label" *ngIf="editInvestmentForm.hasError('atleastOne')">
+        <div  class="error-label" *ngIf="editInvestmentForm.hasError('atleastOne')">
             <span>{{ 'PORTFOLIO_RECOMMENDATION.ERRORS.ATLEAST_ONE_SHOULD_INVEST' | translate}}</span>
         </div>
       </div>
