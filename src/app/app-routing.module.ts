@@ -8,18 +8,25 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
-import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
+import {
+  EmailEnquirySuccessComponent
+} from './email-enquiry-success/email-enquiry-success.component';
 import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
+import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { InvestmentChildEnableGuard } from './portfolio/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './portfolio/investment-enable-guard';
+
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
-import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
-import { SecurityPolicyComponent } from './shared/components/security-policy/security-policy.component';
+import {
+  PrivacyPolicyComponent
+} from './shared/components/privacy-policy/privacy-policy.component';
+import {
+  SecurityPolicyComponent
+} from './shared/components/security-policy/security-policy.component';
 import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
@@ -36,7 +43,7 @@ const routes: Routes = [
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
-      { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
+      { path: 'accounts', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
@@ -58,20 +65,26 @@ const routes: Routes = [
         canActivateChild: [ArticleEnableGuard]
       },
       {
-        path: 'invest',
-        loadChildren: './portfolio/portfolio.module#PortfolioModule',
+        path: 'investment/engagement',
+        loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
-        path: 'invest/account',
-        loadChildren: './investment-account/investment-account.module#InvestmentAccountModule',
+        path: 'investment/account',
+        loadChildren: './investment/investment-account/investment-account.module#InvestmentAccountModule',
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
+      {
+        path: 'investment/manage',
+        loadChildren: './investment/manage-investments/manage-investments.module#ManageInvestmentsModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
         path: 'investment',
-        loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule',
+        loadChildren: './investment/investment-common/investment-common.module#InvestmentCommonModule',
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },

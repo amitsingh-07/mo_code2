@@ -138,10 +138,10 @@
 	<h3 class="primary-color"><strong>Our Verdict</strong></h3>
 	<p>Based on the above example, NTUC Income VivoChild seems to be the most attractive plan, because it offers the flexibility of payouts before University age as well as choice of premium duration, all while offering one of the highest returns of the five.</p>
 	<br/>
-	<p>Do note that the most suitable plan may differ for children of different profiles (Eg. age and gender). Have a chat with one of our experts for guidance. Also check out our <a href="https://www.moneyowl.com.sg/#/direct/" target="_blank" title="Compare Savings Plans Now">comparison tool</a> to compare the plans today!</p>
+	<p>Do note that the most suitable plan may differ for children of different profiles (Eg. age and gender). Have a chat with one of our experts for guidance. Also check out our <a href="https://www.moneyowl.com.sg/direct/" target="_blank" title="Compare Savings Plans Now">comparison tool</a> to compare the plans today!</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="/assets/images/banners/compare_sav_540w.png" alt="direct savings plans"></a>
 </div>
 -->

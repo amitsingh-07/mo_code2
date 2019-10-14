@@ -678,6 +678,7 @@ export class WillWritingService {
     will.guardian = [];
     will.beneficiary = [];
     will.execTrustee = [];
+    let pos = 0;
     for (const profileMembers of data.willProfileMembers) {
       const members: any = {
         name: profileMembers.name,
@@ -685,7 +686,6 @@ export class WillWritingService {
         uin: profileMembers.uin
       };
       if (profileMembers.isFamily === 'Y') {
-        let pos = 0;
         if (profileMembers.relationshipCode === 'S') {
           will.spouse.push(JSON.parse(JSON.stringify(members)));
         } else if (profileMembers.relationshipCode === 'C') {
@@ -709,12 +709,12 @@ export class WillWritingService {
         members['isAlt'] = profileMembers.isAltTrusteee === 'Y';
         will.execTrustee.push(JSON.parse(JSON.stringify(members)));
       }
-      if (profileMembers.isBeneficiary === 'Y') {
+      if (profileMembers.isBeneficiary === 'Y' || profileMembers.isFamily === 'Y') {
         if (members.hasOwnProperty('isAlt')) {
           delete members['isAlt'];
         }
-        members['selected'] = true;
-        members['distPercentage'] = profileMembers.distribution;
+        members['selected'] = profileMembers.isBeneficiary === 'Y';
+        members['distPercentage'] = profileMembers.distribution || 0;
         will.beneficiary.push(JSON.parse(JSON.stringify(members)));
       }
     }
@@ -722,6 +722,9 @@ export class WillWritingService {
       const [altExecutor, mainExecutor] = will.execTrustee;
       will.execTrustee[0] = mainExecutor;
       will.execTrustee[1] = altExecutor;
+    }
+    if (will.spouse.length > 0 && will.guardian.length === 1) {
+      delete will.guardian;
     }
     this.willWritingFormData = will;
     this.commit();

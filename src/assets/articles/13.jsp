@@ -30,7 +30,7 @@ If that doesn't convince you, here are a few more reasons:</p>
 <p>ILPs' claim to kill two birds with one stone certainly has its appeal. However, we've shown that there's a very real possibility that you might end up achieving neither the protection nor the investment objective, so it's better to keep them separate. </p>  
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="/assets/images/banners/compare_sav_540w.png" alt="compare savings plans"></a>
 </div>
 -->

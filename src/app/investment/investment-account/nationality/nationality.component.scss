@@ -1,0 +1,65 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-nationality {
+  h2 {
+    font-size: 30px;
+    margin-bottom: 11px
+  }
+
+  .banner-image {
+    img {
+      padding-top: 1vh;
+
+      @include desktop {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  }
+
+  .container-fluid {
+    padding-top: 20px !important;
+
+    @include allmobiles {
+      padding-top: 20px !important;
+    }
+
+    .row {
+      justify-content: center;
+    }
+  }
+
+  .flex-row {
+    align-items: center;
+  }
+
+  label {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    padding-right: 10px;
+  }
+
+  .form-group {
+    @include allmobiles {
+      padding-bottom: 30px;
+    }
+  }
+
+  .fixed-btn--sm {
+    color: $white-color;
+  }
+
+  .btn__footer--fixed {
+    font-family: $muli-bold !important;
+
+    &.btn-primary {
+      &:disabled {
+        background-color: $btn-disabled-light-bg;
+        color: $btn-disabled-teal-color;
+      }
+    }
+  }
+
+}

@@ -1917,8 +1917,8 @@ export class ComprehensiveService {
   setViewableMode(commitFlag: boolean) {
     if (
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
-        .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-    ) {
+        .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+        .isLocked) {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
     } else {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = false;
@@ -2026,6 +2026,14 @@ export class ComprehensiveService {
   getReportStatus() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .reportStatus;
+  }
+  setLocked(lock: boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isLocked = lock;
+    this.commit();
+  }
+  getLocked() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .isLocked;
   }
   setReportId(reportId: number) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.reportId = reportId;

@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './../../../shared/analytics/google-analytics.service';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -23,12 +24,14 @@ export class BundleEnquiryComponent implements OnInit {
   formSubmitted = false;
   dobPlaceholder: string;
   invalidEmail = false;
+  subTitle: string;
 
   constructor(
     public authService: AuthenticationService,
     private promotionApiService: PromotionApiService,
     private formBuilder: FormBuilder,
-    private config: NgbDatepickerConfig
+    private config: NgbDatepickerConfig,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     const today: Date = new Date();
     config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
@@ -40,6 +43,7 @@ export class BundleEnquiryComponent implements OnInit {
   ngOnInit() {
     const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
     this.setPlaceholder();
+    this.subTitle = this.promoDetails.bundle_enquiry_form_subtitle ? this.promoDetails.bundle_enquiry_form_subtitle : null;
     this.bundleEnquiryForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.AlphaWithSymbol)]],
@@ -57,8 +61,13 @@ export class BundleEnquiryComponent implements OnInit {
   }
 
   setPlaceholder() {
-    this.dobPlaceholder = this.promoDetails.promoId === 15 ? 'Baby’s Date of Birth' : 'Date of Birth';
-    this.genderPlaceholder = this.selectedGender = this.promoDetails.promoId === 15 ? 'Baby’s Gender' : 'Gender';
+    if(this.promoDetails.bundle_enquiry_child_enabled) {
+      this.dobPlaceholder = 'Child’s Date of Birth';
+      this.genderPlaceholder = this.selectedGender = 'Child’s Gender';
+    } else {
+      this.dobPlaceholder = 'Date of Birth';
+      this.genderPlaceholder = this.selectedGender = 'Gender';
+    }
   }
 
   sendBundleEnquiry(form: any) {
@@ -75,6 +84,9 @@ export class BundleEnquiryComponent implements OnInit {
       this.formSubmitted = false;
       if (data.responseMessage.responseCode === 6000) {
         this.showSuccess = true;
+        if (this.promoDetails.tracking_id) {
+          this.googleAnalyticsService.emitConversionsTracker(this.promoDetails.tracking_id);
+        }
       } else if (data.responseMessage.responseCode === 5000) {
         this.invalidEmail = true;
       }

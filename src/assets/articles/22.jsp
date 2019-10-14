@@ -25,7 +25,7 @@
 <br>As we strive towards our goals, it is important that we are  aware of our financial responsibilities. It is essential that we understand how  we could transfer these financial risks away to protect our loved ones and  ourselves from the heavy financial impact of any unexpected event.</p>
 <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme">
 	<img src="assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
 </div>
 -->

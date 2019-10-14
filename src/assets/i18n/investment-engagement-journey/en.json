@@ -1,0 +1,186 @@
+{
+  "COMMON": {
+    "LABEL": {
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details"
+    }
+  },
+  "START": {
+    "DESC1": "Investments can help to grow your savings beyond bank deposit rates.",
+    "DESC2": "But you need to be able to ride out the ups and downs and stay invested to capture this higher return.",
+    "DESC3": "In the following steps, we help you discover your Risk Profile – your ability and willingness to take risks – and recommend the most suitable portfolio for you.",
+    "GETSTARTED": "Get Started",
+    "PAGE_TITLE": "Welcome",
+    "PROMO_ERROR": "Invalid promo code. Please try again."
+  },
+  "GETSTARTED_STEP1": {
+    "TITLE": "Step 1",
+    "CAPTION": "Your Risk Ability",
+    "DESCRIPTION": "In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.",
+    "PROCEED": "Proceed"
+  },
+  "PERSONAL_INFO": {
+    "TITLE": "Your Investment Period",
+    "STEP_1_LABEL": "Step 1",
+    "YEARS": "Years",
+    "BORN_ON": "I was born on",
+    "INVESTMENT_PERIOD":"Your Investment Period",
+    "HOW_MANY_YEARS":"For how many years do you want to stay invested?",
+    "SELECT_INVESTMENT_HEAD": "Select Investment Period",
+    "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for this portfolio.",
+    "I_WANT_INVEST_LBL": "I want to invest for",
+    "NOTE":"<u>Note:</u> Investment period is only used for portfolio recommendation. You can withdraw your investments anytime by selling the investments at the market price.",
+    "TIME_HORIZON_DESC":"Stock markets can be very volatile in the short term but go up in the long term. You can have more equities if you have a longer time for recovery from a decline.",
+    "TIME_HORIZON_GUIDE":"Here’s a guide on how investment period changes portfolio asset allocation.",
+    "TIME_HORIZON_DESC_TITLE_YEAR":"Years",
+    "TIME_HORIZON_DESC_TITLE_ASSET":"Potential Asset Allocation ",
+    "LIST_LBL_1":"Less than 4",
+    "LIST_LBL_2":"4 to 5",
+    "LIST_LBL_3":"Up to 8",
+    "LIST_LBL_4":"Up to 11",
+    "LIST_LBL_5":"Up to 14",
+    "LIST_LBL_6":"15 or more",
+    "LIST_LBL_DESC_1":"Not recommended to invest",
+    "LIST_LBL_DESC_2":"Up to 20% Equities (80% Bonds)",
+    "LIST_LBL_DESC_3":"Up to 40% Equities (60% Bonds)",
+    "LIST_LBL_DESC_4":"Up to 60% Equities (40% Bonds)",
+    "LIST_LBL_DESC_5":"Up to 80% Equities (20% Bonds)",
+    "LIST_LBL_DESC_6":"Up to 100% Equities",
+    "TIME_HORIZON_ALERT":"Our final recommendation will depend on your willingness to take risk and other factors."
+  },
+  "GETSTARTED_STEP2": {
+    "TITLE": "Step 2",
+    "CAPTION": "Your Risk Willingness",
+    "DESCRIPTION": "In the next step, we will assess your willingness to take risk based on your answers selected for the questionnaire. Your inputs will determine the recommendations suggested."
+  },
+  "RISK_ASSESSMENT": {
+    "TITLE": "Your Risk Willingness",
+    "QUESTION_LBL": "Question",
+    "OF_LBL": "of",
+    "STEP_2_LABEL": "Step 2"
+  },
+  "INVESTMENT_AMOUNT": {
+    "TITLE": "Your Investment Amount",
+    "INVESTMENT_AMOUNT_LBL": "How much do you want to invest?",
+    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
+    "AT_LEAST_ONE": "Select at least one of the following.",
+    "INVESTMENT_LBL": "I want to invest",
+    "MIN_100":"Min. $100",
+    "MIN_50":"Min. $50"
+    },
+  "MY_FINANCIALS": {
+    "REVIEW_INPUT": "Review My Inputs",
+    "PROCEED_NEXT": "Proceed To Next Step",
+    "RETURN_HOME": "Return To Homepage",
+    "LABEL_YES": "Yes",
+    "LABEL_NO": "No",
+    "TITLE": "Your Financials",
+    "STEP_1_LABEL": "Step 1",
+    "MONTHLY_INCOME_LBL": "Monthly Income",
+    "MONTHLY_INCOME_SUB_LBL": "(E.g. Salary, Bonus, Rental, Others)",
+    "SAVED_INCOME_LBL": "% of My Income Saved",
+    "TOTAL_ASSET_LBL": "Total Assets ",
+    "TOTAL_ASSET_SUB_LBL": "(E.g. Cash, CPF, Investment, Property)",
+    "LOANS_LBL": "Total Loans",
+    "LOANS_SUB_LBL": "(E.g. Car, Property)",
+    "BUTTON_LBL": "Continue",
+    "INFO": "Oops! Is this correct?",
+    "TRY_AGAIN": "Try Again",
+    "MY_FINANCIALS_LBL": "My Finances",
+    "MY_FINANCIAL_LBL":"How much do you own and owe?",  
+    "RESPONSE_LOADER": {
+      "TITLE": "loading...",
+      "DESC": "Please wait loading financial details."
+    },
+    "modalData": {
+      "modalTitle": "Insufficient Emergency Fund",
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
+    },
+    "helpData": {
+      "modalTitle": "Emergency Fund",
+      "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
+    },
+    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years.",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "REVIEW_SUB_TEXT": "Review your inputs or proceed to start investing in this portfolio.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "TITLE": "Your Portfolio Details",
+    "PORTFOLIO": "Portfolio",
+    "EDIT_INVESTMENT": {
+      "TITLE": "Review My Inputs",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
+    "MODAL_TITLE": "Portfolio Recommendations",
+    "MODAL_DESC": "In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
+    "PROJECTED_PORTF_VALUE": "Projected Portfolio Value in",
+    "CONTINUE": "Continue",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "WHATS_THE_RISK": "What’s the risk?",
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "VIEW_DETAILS": "View Details",
+    "helpDate": {
+      "modalTitle": "Projected Returns",
+      "modalMessage": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
+    },
+    "editModel": {
+      "modalTitle": "Edit Portfolio",
+      "modalMessage": "To make changes to your portfolio, you need to reassess your risk. Are you sure you want to continue?"
+    },
+    "ERRORS": {
+      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+    }
+  },
+  "WHATS_THE_RISK": {
+    "TITLE": "What’s The Risk"
+  },
+  "FUND_DETAILS": {
+    "TITLE": "Fund Details",
+    "DOWNLOAD_FACTSHEET": "Download Factsheet",
+    "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Highlight Sheet"
+  },
+  "RISK_PROFILE": {
+    "TITLE": "Your Recommendation",
+    "BUTTON_TITLE": "View My Portfolio",
+    "RETURN_TO_HOMEPAGE": "Back To Homepage",
+    "YOUR_RISK_APPETITE": "Your Risk Appetite",
+    "YOUR_PORTFOLIO_RECOMMENDATION": "Your Portfolio Recommendation",
+    "PORTFOLIO_FIRST_BTN":"View {{firstPortfolio}} Portfolio",
+    "PORTFOLIO_SECOND_BTN":"View {{secondPortfolio}} Portfolio"
+  },
+  "PRELOGIN_MODAL": {
+    "DESC": "<div class=\"pr20\">To continue, please log in or create a MoneyOwl account.</div>",
+    "LOG_IN": "Log In",
+    "CREATE_ACCOUNT": "Create Account"
+  },
+  "PORTFOLIO_EXIST": {
+    "DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
+    "PROCEED_BTN_TEXT": "Proceed To Portfolio"
+  },
+  "TOPUP": {
+    "TOPUP_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait"
+    }
+  }
+
+}

@@ -255,7 +255,7 @@ export class SignUpApiService {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + '/#/comprehensive',
+      callbackUrl: environment.apiBaseUrl + '/comprehensive',
       hostedServerName: window.location.hostname
     } as IResendEmail;
     return this.apiService.sendWelcomeEmail(payload);
@@ -273,5 +273,22 @@ export class SignUpApiService {
   resetPassword(password, key) {
     const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
     return this.apiService.requestResetPassword(data);
+  }
+
+  getPopupStatus(customerId, popupType) {
+    const payload = {
+      customer_id: customerId,
+      track_code: popupType
+    };
+    return this.apiService.getPopupStatus(payload);
+  }
+
+  setPopupStatus(customerId, popupType) {
+    const payload = {
+      customer_id: customerId,
+      check: true,
+      track_code: popupType
+    };
+    return this.apiService.setPopupStatus(payload);
   }
 }

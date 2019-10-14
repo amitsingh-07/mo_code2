@@ -198,7 +198,8 @@ body.modal-open::-webkit-scrollbar {
   letter-spacing: -0.2px;
   color: #009999;
   margin-bottom: 10px;
-  margin-right: 20px;
+  margin-right: 30px;
+  word-break: break-word;
   //padding: 0 15px 0 0;
 }
 
@@ -652,12 +653,77 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.srs-dashboard-modal {
+  @include allmobiles {
+    margin: 0 15px !important;
+    width: 92% !important;
+    top: 31px !important;
+
+    div.modal-body.white-bg {
+      border-radius: 6px !important;
+      padding: 39px 30px 35px !important;
+    }
+  }
+
+  app-carousel-modal div.modal-body.white-bg {
+    max-width: 420px;
+    height: 535px;
+    padding: 36px 60px 36px;
+  }
+
+  .modal-dialog {
+    @media (min-width: 576px) {
+      max-width: 420px !important;
+    }
+  }
+
+  .slick-dots {
+    bottom: initial;
+    margin-top: 27px;
+    position: relative;
+  }
+}
+
 .custom-full-height {
   @include allmobiles {
     max-height: calc(100vh - 56px) !important;
   }
 }
 
+// ADD PORTFOLIO NAMING //
+.modal-backdrop {
+  &.portfolio-naming-backdrop {
+    opacity: 0 !important;
+    background-color: transparent !important;
+
+  }
+}
+
+.portfolio-naming {
+  &.modal {
+    min-width: 100%;
+    min-height: 100%;
+
+    .close {
+      top: 25px !important;
+      right: 25px !important;
+    }
+  }
+
+  .modal-dialog {
+    overflow-y: initial !important;
+    max-width: 100% !important;
+    margin: 0px;
+    height: 100% !important;
+
+    @include allmobiles {
+      max-width: 100% !important;
+      margin: 0px
+    }
+  }
+}
+
+// ADD  PORTFOLIO NAMING //
 .full-height {
   &.modal {
     display: block !important;
@@ -1022,5 +1088,58 @@ body.modal-open::-webkit-scrollbar {
       overflow-y: auto;
       padding-bottom: 50px;
     }
+  }
+}
+
+.review-buy-request-modal {
+  .modal-dialog {
+    @media (min-width: 576px) {
+      max-width: 500px;
+    }
+  }
+}
+
+// Transfer Instructions modal styles Robo2
+.modal-body {
+  .cash-account {
+    .cash-account-content {
+      .note {
+        span {
+          font-family: $muli-bold;
+        }
+      }
+    }
+  }
+}
+
+.mp-walkthrough-modal {
+  @media (max-width: 567px) and (min-width: 320px) {
+    max-height: 100% !important;
+  }
+
+  .modal-body {
+    height: 592px;
+
+    @media (max-width: 567px) and (min-width: 321px) {
+      height: 100vh;
+    }
+  }
+
+  app-carousel-modal div.modal-body.white-bg {
+    padding: 0px !important;
+  }
+
+  .modal-dialog {
+    width: 375px;
+
+    @include allmobiles {
+      width: 100%;
+    }
+  }
+
+  .slick-dots {
+    bottom: initial;
+    margin-top: 14px;
+    position: relative;
   }
 }

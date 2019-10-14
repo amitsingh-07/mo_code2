@@ -1,0 +1,167 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-acknowledgement {
+  .app-acknowledgement {
+    background-color: $white-color;
+
+
+    .acknowledgement-title {
+      font-family: $muli-semi-bold;
+      font-size: 30px;
+      color: $teal-color;
+      text-align: center;
+    }
+
+    .acknowledgement_text {
+      font-family: $muli-regular;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.31;
+      letter-spacing: -0.2px;
+      color: $acknowledgement-text-color;
+    }
+
+    .text-bold {
+      font-weight: bold;
+      color: $black-color;
+
+      a {
+        color: $acknowledgement-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    ol {
+      padding: 0;
+      margin: 0;
+      padding-left: 18px;
+
+      ul.list-none {
+        padding: 10px 0;
+        font-weight: normal;
+        color: $acknowledgement-text-color;
+
+        li {
+          padding: 5px 0;
+        }
+
+        .flex {
+          span {
+            &:first-child {
+              padding-right: 5px;
+            }
+          }
+
+          li {
+            width: 100%;
+          }
+
+
+        }
+
+        strong {
+          font-family: $muli-bold;
+          color: $black-color;
+        }
+      }
+
+      .inner-list {
+        li {
+          padding-left: 20px !important;
+        }
+      }
+
+      .list-style {
+        padding-left: 10px !important;
+
+        .flex {
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .disc {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: $acknowledgement-text-color;
+          padding: 0 !important;
+        }
+      }
+
+      li {
+        &:last-child {
+          ul.list-none {
+            .flex {
+              span {
+                &.text-bold {
+                  padding-top: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .list-none {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+
+    .transaction-table {
+      color: #000000;
+      border: 1px solid #848484;
+      margin-top: 10px;
+      font-family: $muli-regular;
+
+      .heading {
+        font-family: $muli-bold;
+      }
+
+      .tansaction_label {
+        border-right: 1px solid #848484;
+        padding: 5px;
+      }
+
+      .flex-col-8 {
+        border-right: 1px solid #848484;
+        flex: 1;
+
+        div {
+          padding: 5px;
+        }
+
+        hr {
+          margin-top: 5px;
+          margin-bottom: 0px;
+          border: 0;
+          border-top: 1px solid #848484;
+        }
+      }
+    }
+
+    .italic {
+      font-style: italic;
+      color: $acknowledgement-text-color;
+    }
+
+    .flex-row {
+      border-bottom: 1px solid #848484;
+
+
+      &:nth-child(even) {
+        background-color: #bdb7b7;
+      }
+    }
+
+
+  }
+}
