@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -15,6 +15,7 @@ import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-inv-personal-info',
@@ -92,11 +93,17 @@ export class PersonalInfoComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.setOptionList();
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.investmentAccountService.loadInvestmentAccountRoadmap();
   }
 
   buildForm() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    const gender = this.userProfileInfo.gender ? this.userProfileInfo.gender : null;
+    const dateOfBirth = this.userProfileInfo.dateOfBirth ?
+      this.investmentAccountService.dateFormatFromApi(this.userProfileInfo.dateOfBirth) : null;
+    this.formValues.gender = this.formValues.gender ? this.formValues.gender : gender;
+    this.formValues.dob = this.formValues.dob ? this.formValues.dob : dateOfBirth;
     if (this.investmentAccountService.isSingaporeResident()) {
       this.invPersonalInfoForm = this.buildFormForNricNumber();
       this.showPassport = false;
@@ -264,7 +271,7 @@ export class PersonalInfoComponent implements OnInit {
       closeEle.close();
     }
   }
-  goToNext(form) {
+  validatePersonalInfo(form) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
@@ -274,7 +281,7 @@ export class PersonalInfoComponent implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
+      this.validatePersonalInfoChange(form.getRawValue());
     }
   }
 
@@ -355,6 +362,48 @@ export class PersonalInfoComponent implements OnInit {
 
   isDisabled(fieldName) {
     return this.investmentAccountService.isDisabled(fieldName);
+  }
+
+  validatePersonalInfoChange(data) {
+    const gender = this.userProfileInfo.gender ? this.userProfileInfo.gender : null;
+    const dateOfBirth = this.userProfileInfo.dateOfBirth ?
+      this.investmentAccountService.dateFormatFromApi(this.userProfileInfo.dateOfBirth) : null;
+    const newDateOfBirth = data.dob;
+    if (dateOfBirth && gender && this.userProfileInfo.comprehensiveReportStatus &&
+      this.userProfileInfo.comprehensiveReportStatus === 'submitted' &&
+      (dateOfBirth.day !== newDateOfBirth.day || dateOfBirth.month !== newDateOfBirth.month ||
+        dateOfBirth.year !== newDateOfBirth.year || gender !== data.gender)) {
+      this.showErrorMessage();
+    } else {
+      this.goToNext();
+    }
+  }
+
+  goToNext() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
+  }
+
+  showErrorMessage() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.PERSONAL_INFO_ERROR.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.PERSONAL_INFO_ERROR.DESCRIPTION');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.PERSONAL_INFO_ERROR.CANCEL_BTN_LBL');
+    ref.componentInstance.secondaryActionLabel = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.PERSONAL_INFO_ERROR.PROCEED_BTN_LBL');
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.dismissPopup(ref);
+    });
+    ref.componentInstance.secondaryAction.subscribe(() => {
+      this.goToNext();
+    });
+  }
+
+  dismissPopup(ref: NgbModalRef) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        ref.close();
+      }
+    });
   }
 
   setControlValue(value, controlName, formName) {
