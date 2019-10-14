@@ -54,6 +54,14 @@ app-add-portfolio-name {
           height: calc(100vh - 360px);
         }
 
+        @include iphone11{
+          height: calc(100vh - 400px);
+        }
+
+        @include iphone11ProMax{
+          height: calc(100vh - 400px);
+        }
+
         .portfolio_name_title {
           font-family: $muli-bold;
           font-size: 18px;
@@ -76,6 +84,15 @@ app-add-portfolio-name {
         @include iphonex{
           height: 360px;
         }
+
+        @include iphone11{
+          height: 400px;
+        }
+
+        @include iphone11ProMax{
+          height: 400px;
+        }
+
       }
     }
 
@@ -160,21 +177,21 @@ app-add-portfolio-name {
     }
   }
 
-  .btn {
-    &.btn-primary {
-      z-index: 1001;
+  // .btn {
+  //   &.btn-primary {
+  //     z-index: 1001;
 
-      &:disabled {
-        border-radius: 6px;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-        background-color: $portfolio-name-btn !important;
-        color: $white-color;
-      }
-    }
-  }
+  //     &:disabled {
+  //       border-radius: 6px;
+  //       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+  //       background-color: $portfolio-name-btn !important;
+  //       color: $white-color;
+  //     }
+  //   }
+  // }
 
-  .modal.close {
-    top: 25px !important;
-    right: 25px !important;
-  }
+  // .modal.close {
+  //   top: 25px !important;
+  //   right: 25px !important;
+  // }
 }
