@@ -33,6 +33,9 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { HelperService } from './../../shared/http/helper.service';
+import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 @Component({
@@ -85,7 +88,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private stateStoreService: StateStoreService,
     private investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService) {
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService,
+    private helper: HelperService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -107,8 +112,29 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
+      this.loaderService.showLoader({ title: 'Loading' });
+      const userInfo = this.signUpService.getUserProfileInfo();
+      if (userInfo) {
+        this.signUpService.setUserProfileInfo(null);
+        this.authService.clearSession();
+        this.authService.clearAuthDetails();
+        this.navbarService.logoutUser();
+        this.appService.clearData();
+        this.appService.startAppSession();
+        this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
+          const customError: IError = {
+            error: [],
+            message: 'Your session has unexpectedly expired. Please login again'
+          };
+          this.helper.showCustomErrorModal(customError);
+        });
+      } else {
+        this.authService.authenticate().subscribe((token) => {
+          this.loaderService.hideLoader();
+        });
+      }
+
     }
   }
 
@@ -174,6 +200,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -193,7 +223,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
-    } else {
+    } else if (this.authService.isAuthenticated()) {
       this.progressModal = true;
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
@@ -253,9 +283,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const journeyType = this.appService.getJourneyType();
     if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
-      this.getUserProfileAndNavigate();
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
@@ -377,7 +407,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     ref.componentInstance.errorMessage = desc;
   }
 
-  getUserProfileAndNavigate() {
+  getUserProfileAndNavigate(journeyType) {
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
         if (
@@ -399,7 +429,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        this.investmentCommonService.redirectToInvestmentFromLogin();
+        if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
+          this.investmentCommonService.redirectToInvestmentFromLogin();
+        } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+          this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        }
       }
     },
       (err) => {
