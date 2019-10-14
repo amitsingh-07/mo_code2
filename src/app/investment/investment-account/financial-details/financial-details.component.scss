@@ -1,0 +1,33 @@
+@import '../../../../variables';
+@import '../../../../_mixins.scss';
+
+app-financial-details {
+  .financial-details {
+
+    label {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      padding-right: 10px;
+    }
+
+    .input-control {
+      text-align: right;
+      color: $text-color-secondary;
+    }
+
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+
+        input {
+          margin-top: 6px;
+        }
+      }
+    }
+
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
+}

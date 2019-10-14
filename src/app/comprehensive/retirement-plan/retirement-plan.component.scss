@@ -73,9 +73,14 @@
     }
     #maturityYear{
         text-align: left;
+        font-family: "muli light"
     }
     .retirement-border-top{
         border-top: solid 1px #cee5e4;
         border-radius: 0px!important;
+    }
+    .form-control i.right {
+       top: 52%;
+       font-family: "muli regular";
     }
 }

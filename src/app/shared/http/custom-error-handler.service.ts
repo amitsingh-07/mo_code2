@@ -35,13 +35,14 @@ export class CustomErrorHandlerService {
   /*
     * Handle API authentication errors.
     */
-  public handleAuthError(error: HttpErrorResponse) {
+  public handleAuthError(error?: HttpErrorResponse) {
     // clear stored credentials; they're invalid
     // redirect to the login route
     // or show a modal
     const customError: IError = {
       error: [],
-      message: (error.error && error.error.message) ? error.error.message : 'Your session has unexpectedly expired. Please login again'
+      message: (error && error.error && error.error.message) ?
+        error.error.message : 'Your session has unexpectedly expired. Please login again'
     };
     this.helper.showCustomErrorModal(customError);
     // navigate back to the login page
@@ -56,7 +57,7 @@ export class CustomErrorHandlerService {
       console.error('An error occured do nothing let it flow');
     } else {
       console.log('Do nothing let it flow');
-      }
+    }
     return throwError(
       'Something bad happened; please try again later.');
   }

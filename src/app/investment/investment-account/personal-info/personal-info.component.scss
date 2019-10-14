@@ -1,0 +1,84 @@
+@import '../../../../variables';
+@import '../../../../_mixins.scss';
+
+app-inv-personal-info {
+  .personal-info {
+
+
+    .btn-group--toggle {
+      label {
+        padding: 0.9rem;
+        font-size: 16px;
+      }
+
+      .btn-outline-primary {
+        &.disabled {
+          cursor: not-allowed;
+          border-color: $radio-btn-disabled-border-color !important;
+
+          &.active {
+            border: 1px solid $radio-btn-active-border-color !important;
+          }
+        }
+      }
+
+      .fixed-btn--sm {
+        border-color: $radio-btn-border-color;
+      }
+    }
+
+    label {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      padding-right: 5px;
+    }
+
+    .sub-label {
+      font-size: 14px;
+    }
+
+    .input-control {
+      text-align: left;
+    }
+
+
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+
+        input {
+          margin-top: 6px;
+        }
+      }
+    }
+
+
+
+    input::placeholder {
+      color: $form-input-placeholder-txt-color !important;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+
+    .fixed-btn--sm {
+      color: $fixed-btn-txt-color;
+    }
+
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+
+}

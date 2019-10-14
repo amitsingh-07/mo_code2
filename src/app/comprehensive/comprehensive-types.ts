@@ -3,7 +3,7 @@ import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-
 
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
-    dependentsList: IDependantDetail[];
+    dependentsSummaryList: IdependentsSummaryList;
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     comprehensiveDownOnLuck: HospitalPlan;
@@ -29,6 +29,9 @@ export interface IComprehensiveEnquiry {
     reportStatus: string;
     stepCompleted: number;
     reportId: number;
+    homeLoanUpdatedByLiabilities?: boolean;
+    isLocked: boolean;
+    reportSubmittedTimeStamp: string;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -54,7 +57,11 @@ export interface IDependantDetail {
     enquiryId: number;
     isInsuranceNeeded: boolean;
 }
-
+export interface IdependentsSummaryList {
+    dependentsList: IDependantDetail[];
+    houseHoldIncome: string;
+    noOfHouseholdMembers: number;
+}
 export interface IChildEndowment {
     id: number;
     dependentId: number;
@@ -62,6 +69,7 @@ export interface IChildEndowment {
     enquiryId: number;
     location: string;
     educationCourse: string;
+    educationSpendingShare: number;
     endowmentMaturityAmount: number;
     endowmentMaturityYears: number;
     dateOfBirth: string;
@@ -205,6 +213,7 @@ export interface IInsurancePlan {
     disabilityIncomeCoverageAmount: number;
     haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
+    otherLongTermCareInsuranceAmount: number;
 }
 export interface IRetirementPlan {
     enquiryId: number;

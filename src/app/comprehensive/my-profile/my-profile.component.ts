@@ -95,6 +95,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         });
 
         this.viewMode = this.comprehensiveService.getViewableMode();
+
     }
 
     ngOnInit() {
@@ -102,6 +103,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.loaderService.showLoader({ title: 'Fetching Data' });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+            if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+
+            }
             this.loaderService.hideLoader();
             this.checkRedirect();
         });

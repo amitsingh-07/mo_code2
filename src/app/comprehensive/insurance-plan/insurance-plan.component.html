@@ -23,9 +23,9 @@
         <div class="form-group-with-bg--content-white--desc">1.
           {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_1' | translate}}
         </div>
-        <div class="flex-col-8 mt15">
+        <div class="flex-col-8" [ngClass]="{'mb20' : insurancePlanForm.get('haveHospitalPlan').value}">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlan">
-            <div class="flex-row mb0">
+            <div class="flex-row insurance-input-radio mb0">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
@@ -45,14 +45,14 @@
           </div>
         </div>
 
-        <div class="mt-3" *ngIf="insurancePlanForm.get('haveHospitalPlan').value ">
+        <div *ngIf="insurancePlanForm.get('haveHospitalPlan').value ">
           <div class="form-group-with-bg--content-white--desc flex-row">
             <div class="flex-col-1">2.</div>
             <div class="flex-col-10"> {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_2' | translate}}</div>
           </div>
-          <div class="flex-col-12 mb-3">
+          <div class="flex-col-12">
             <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlanWithRider">
-              <div class="flex-row mb0">
+              <div class="flex-row insurance-input-radio mb0">
                 <div class="flex-col-4 ">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                     [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
@@ -97,7 +97,7 @@
         <div class="flex-col-12 mb-3">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
             formControlName="haveCPFDependentsProtectionScheme">
-            <div class="flex-row mb0">
+            <div class="flex-row mb0 insurance-input-radio">
               <div class="flex-col-4 ">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
@@ -105,14 +105,14 @@
                     translate}}
                 </label>
               </div>
-              <div class="flex-col-4">
+              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                   <input ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
                     translate}}
                 </label>
               </div>
-              <div class="flex-col-4">
+              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                   [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                   <input ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
@@ -148,7 +148,7 @@
           <div class="flex-col-12 mb-3">
             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
               formControlName="haveHDBHomeProtectionScheme">
-              <div class="flex-row mb0">
+              <div class="flex-row mb0 insurance-input-radio">
                 <div class="flex-col-4 ">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                     [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
@@ -163,7 +163,7 @@
                     translate}}
                   </label>
                 </div>
-                <div class="flex-col-4 pl-1">
+                <div class="flex-col-4">
                   <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                     [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                     <input id="myProfileRadioFemale" ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
@@ -294,7 +294,7 @@
               {{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL' | translate}}</div>
             <div class="flex-col-12 mb-3">
               <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveLongTermElderShield">
-                <div class="flex-row mb0">
+                <div class="flex-row mb0 insurance-input-radio">
                   <div class="flex-col-4 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
@@ -303,7 +303,7 @@
                         translate}}
                     </label>
                   </div>
-                  <div class="flex-col-4">
+                  <div (click)="resetLongTermShieldAmount()" class="flex-col-4">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                       <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{
@@ -311,7 +311,7 @@
                         translate}}
                     </label>
                   </div>
-                  <div class="flex-col-4 pl-1">
+                  <div (click)="resetLongTermShieldAmount()" class="flex-col-4 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
                       [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
                       <input id="myProfileRadioFemale" ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
@@ -323,24 +323,46 @@
             </div>
 
           </div>
-          <div class="flex-row payout-width" *ngIf="insurancePlanForm.get('haveLongTermElderShield').value === 1">
-            <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
-              formControlName="longTermElderShieldAmount">
-              <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                  [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="300">{{
+          <div *ngIf="insurancePlanForm.get('haveLongTermElderShield').value === 1">
+            <div class="flex-row payout-width">
+              <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
+                formControlName="longTermElderShieldAmount">
+                <div class="flex-col-12 mb-3">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
+                    [ngClass]="{'inline-error': submitted}">
+                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="300">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_1' |
                     translate}}
-                </label>
-              </div>
-              <div class="flex-col-12 mb-3">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                  [ngClass]="{'inline-error': submitted}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]="400">{{
+                  </label>
+                </div>
+                <div class="flex-col-12 mb-3">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
+                    [ngClass]="{'inline-error': submitted}">
+                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="400">{{
                     'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_2' |
                     translate}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group-with-bg--content-white--desc flex-row">
+              <div class="flex-col-1">2.</div>
+              <div class="flex-col-11"> {{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL_2' | translate}}</div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-5 pr5">
+                <label for="name" id="myDependantFormLb1">
+                  <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
+                  </div>
                 </label>
+              </div>
+              <div class="pr0 flex-col-7">
+                <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
+                  <i>$</i>
+                  <input type="text" class="input-control" appCurrencyInput maxLength="8"
+                    formControlName="otherLongTermCareInsuranceAmount" value="0">
+                  <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
+                </div>
               </div>
             </div>
           </div>

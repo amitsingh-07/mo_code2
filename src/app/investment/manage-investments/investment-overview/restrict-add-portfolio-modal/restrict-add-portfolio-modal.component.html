@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" id="errorModelImage" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title" id="errorModeltitle">{{errorTitle}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
+  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage">{{errorMessage}}</div>
+
+</div>

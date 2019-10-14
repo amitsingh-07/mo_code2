@@ -1,35 +1,46 @@
 <div class="container-fluid max-width--1024 comprehensive">
   <ul class="road-map">
-    <li [ngClass]=" {'active': step===1, 'success': (reportStatus==='ready' || reportStatus==='submitted' || step === 2 || step === 3 || step=== 4) } "><span></span>
-      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 1</div>
-      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE' | translate}} </div>
+    <li
+      [ngClass]=" {'active': (step===1 || step === 2 || step === 3 || step=== 4), 'success': (step === 2 || step === 3 || step=== 4) } ">
+      <span (click)="(step === 2 || step === 3 || step=== 4) ? goToNext(1) : ''"></span>
+      <div class="road-map__step-number" (click)="(step === 2 || step === 3 || step=== 4) ? goToNext(1) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 1</div>
+      <div class="road-map__step-title" (click)="(step === 2 || step === 3 || step=== 4) ? goToNext(1) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE' | translate}} </div>
       <div *ngIf="step===1" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_1_DESC' | translate}}</div>
     </li>
-    <li [ngClass]="{'active': step===2, 'success': (reportStatus==='ready' || reportStatus==='submitted' || step === 3 || step=== 4)}"><span></span>
-      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 2</div>
-      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE' | translate}} </div>
+    <li [ngClass]="{'active': (step===2 || step === 3 || step=== 4), 'success': (step === 3 || step=== 4)}">
+      <span (click)="(step === 3 || step=== 4) ? goToNext(2) : ''"></span>
+      <div class="road-map__step-number" (click)="(step === 3 || step=== 4) ? goToNext(2) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 2</div>
+      <div class="road-map__step-title" (click)="(step === 3 || step=== 4) ? goToNext(2) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE' | translate}} </div>
       <div *ngIf="step===2" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_2_DESC' | translate}}</div>
     </li>
-    <li [ngClass]="{'active': step===3, 'success': (reportStatus==='ready' || reportStatus==='submitted' || step===4)}"><span></span>
-      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 3</div>
-      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
+    <li [ngClass]="{'active': (step===3 || step=== 4), 'success': (step===4)}">
+      <span (click)="(step=== 4) ? goToNext(3) : ''"></span>
+      <div class="road-map__step-number" (click)="(step=== 4) ? goToNext(3) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 3</div>
+      <div class="road-map__step-title" (click)="(step=== 4) ? goToNext(3) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
       <div *ngIf="step===3" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_DESC' | translate}}</div>
     </li>
-    <li [ngClass]="{'active': step===4, 'success': (reportStatus==='ready' || reportStatus==='submitted' || step===5)}"><span></span>
-      <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 4</div>
-      <div class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
+    <li [ngClass]="{'active': step===4, 'success': (step===5)}">
+      <span (click)="(step=== 5) ? goToNext(4) : ''"></span>
+      <div class="road-map__step-number" (click)="(step=== 5) ? goToNext(4) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 4</div>
+      <div class="road-map__step-title" (click)="(step=== 5) ? goToNext(4) : ''">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
     </li>
-    <li [ngClass]="{ 'success': (reportStatus==='ready' || reportStatus==='submitted')}"><span></span>
+    <li [ngClass]="{ 'success': (reportStatus==='ready')}"><span></span>
       <div class="road-map__step-number">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE' | translate}}</div>
-      <div *ngIf="step!==4" class="road-map__step-title">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC' | translate}}</div>
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_5_DESC2' | translate}}</div>
     </li>
   </ul>
   <div class="footer-cta">
-  <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">
+    <button type="button" (click)="goToNext(step)" class="btn btn-primary  width100" id="dependantSelectionBtn">
       {{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
-  </button>
+    </button>
   </div>
 </div>
-

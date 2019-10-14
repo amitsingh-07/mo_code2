@@ -4,8 +4,6 @@
   </header>
   <div class="result-panel mt30 text-center">
     <div class="result-panel__img resultImg"></div>
-    <div class="result-panel__about mb20">{{'CMP.RESULT.DESC' | translate }}</div>
-
   </div>
   <div class="text-center about mb30">
     {{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span>
@@ -13,7 +11,10 @@
   <div class="what-next">
     <div class="what-next--title">{{'CMP.RESULT.STEP_TITLE' | translate }}</div>
     <ul class="pl0">
-      <li class="report">
+      <div class="what-next--desc">
+        {{'CMP.RESULT.STEP_DESC' | translate }}
+      </div>
+      <li class="mt-3 report">
         {{'CMP.RESULT.STEP_1' | translate }}
       </li>
       <li class="choose">
@@ -25,7 +26,7 @@
     </ul>
   </div>
   <div class="footer-cta">
-    <button type="button" (click)="goToNext()" class="btn btn-primary mt-5 width100" id="moDpdnt2BtnFooter">{{'CMP.RESULT.DASHBOARD'
+    <button type="button" (click)="goToNext()" class="btn btn-primary mt-5 width100" id="result-btn">{{'CMP.RESULT.DASHBOARD'
     | translate}}
     </button>
   </div>

@@ -23,7 +23,9 @@
     width: 218px;
     height: 150px;
   }
-
+  #result-btn{
+  font-family: $muli-bold;
+  }
   .result-panel {
     &__about {
       font-size: 14px;
@@ -58,6 +60,12 @@
       letter-spacing: -0.16px;
       line-height: 24px;
       margin-bottom: 15px;
+    }
+    &--desc{
+      font-family: $muli-regular;
+      font-size: 14px;
+      line-height: 1.21;
+      letter-spacing: -0.14px;
     }
     li {
       font-size: 14px;

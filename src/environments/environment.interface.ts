@@ -6,7 +6,8 @@ export interface IEnvironment {
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
     gaPropertyId: string; // Google Analytics
-    gtagPropertyId?: string; // Google Pixel
+    gAdPropertyId?: string; // Google Pixel
+    gtagPropertyId?: string; // Google Tag Manager
     fbPropertyId?: string; // Facebook Pixel
     adRollPropertyId?: string; // AdRoll Property Id
     adRollAdvId?: string; // AdRoll Advert Id

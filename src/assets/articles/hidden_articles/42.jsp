@@ -9,7 +9,7 @@
 <br><br>We hope to empower you to make informed decisions about your insurance purchases based on no one’s agenda except your own. </p>
   <br>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="/assets/images/banners/compare_pro_540w.png" alt="compare protection plans"></a>
 </div>
 -->

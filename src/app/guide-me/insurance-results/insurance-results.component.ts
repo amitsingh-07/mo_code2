@@ -297,7 +297,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     const entries = [] as IResultItemEntry[];
     entries.push({
       title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
-      value: this.criticalIllnessValues.annualSalary, currency: this.planData.DOLLER
+      value: this.criticalIllnessValues.annualSalary + Number(this.monthlySalary.annualBonus), currency: this.planData.DOLLER
     } as IResultItemEntry);
     entries.push({
       title: this.planData.CRITICAL_ILLNESS.YEARS_TO_REPLACE,
@@ -312,7 +312,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       total: {
         title: this.planData.COVARAGE_NEEDED,
         // tslint:disable-next-line:max-line-length
-        value: (this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier)
+        value: ((this.criticalIllnessValues.annualSalary + Number(this.monthlySalary.annualBonus)) * this.criticalIllnessValues.ciMultiplier)
       }
     };
   }

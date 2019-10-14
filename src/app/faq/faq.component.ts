@@ -1,4 +1,4 @@
-import { Component,
+import {  AfterViewChecked, Component,
          ElementRef,
          OnInit,
          Renderer2,
@@ -21,7 +21,7 @@ import { IFAQSection } from './faq.interface';
   encapsulation: ViewEncapsulation.None
 })
 
-export class FAQComponent implements OnInit {
+export class FAQComponent implements OnInit, AfterViewChecked {
   public pageTitle: string;
   public sections: any;
   public extras: any;
@@ -31,6 +31,7 @@ export class FAQComponent implements OnInit {
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
+  viewChecked = false;
 
   @ViewChild('faqContainer') FaqElement: ElementRef;
 
@@ -66,6 +67,14 @@ export class FAQComponent implements OnInit {
     this.footerService.setFooterVisibility(true);
   }
 
+  ngAfterViewChecked() {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === 'srs-joint-account' && this.viewChecked === false) {
+        this.navigateToSection();
+      }
+    });
+  }
+
   goToRoute(fragment) {
     if (fragment === 'insurance') {
       this.activeSection = 0;
@@ -78,6 +87,9 @@ export class FAQComponent implements OnInit {
     } else
     if (fragment === 'comprehensive' && this.isComprehensiveEnabled) {
       this.activeSection = 3;
+    } else
+    if (fragment === 'srs-joint-account' && this.isInvestmentEnabled) {
+      this.activeSection = 2;
     } else {
       this.activeSection = 0;
     }
@@ -125,6 +137,12 @@ export class FAQComponent implements OnInit {
       extra: section_disclaimer
     } as IFAQSection;
     return section;
+  }
+  validateTitle(sectionTitle: string, index: number) {
+    if (sectionTitle && sectionTitle.split('|').length === 2) {
+      return sectionTitle.split('|')[index];
+    }
+    return sectionTitle;
   }
 
   getFAQExtra(data: any) {
@@ -188,4 +206,32 @@ export class FAQComponent implements OnInit {
         this.activeSection = 0;
       }
     }
+
+  // For navigating to a specific section of faq
+  navigateToSection() {
+    setTimeout(() => {
+      if (document.getElementsByClassName('faq-category__body active')[0]) {
+        const faq_element = document.querySelectorAll('.faq-selection__element');
+        const qns_panel = document.querySelectorAll('.questions__panel');
+        const investmentContent = this.translate.instant('FAQ.CONTENT.Investment');
+        const jointSrsContent = this.validateTitle(Object.keys(investmentContent)[2], 0);
+        for ( let i = 0; i < faq_element.length; i ++) {
+          if (faq_element[i]['innerHTML'] === Object.keys(investmentContent)[0]) {
+            faq_element[i].classList.remove('active');
+            qns_panel[i].classList.remove('active');
+          }
+          if (faq_element[i]['innerHTML'] === jointSrsContent) {
+            faq_element[i].className += ' active';
+            qns_panel[i].className += ' active';
+          }
+        }
+        const btnDropdownEle = document.getElementsByClassName('btn-dropdown');
+        btnDropdownEle[2].innerHTML = jointSrsContent;
+        const selectedSection = document.getElementsByClassName('faq-category__body active')[0].getBoundingClientRect();
+        const elemOffsetTop = selectedSection.top - document.getElementsByTagName('nav')[0].offsetHeight;
+        window.scrollTo({ top: elemOffsetTop, behavior: 'smooth' });
+        this.viewChecked = true;
+      }
+    });
+  }
 }

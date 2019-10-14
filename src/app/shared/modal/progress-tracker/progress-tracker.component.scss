@@ -222,11 +222,15 @@
 
             li {
               border-left: none;
+              padding-bottom: 0px;
             }
           }
 
           span {
             word-break: break-word;
+            strong{
+              font-family: $muli-bold;
+            }
           }
         }
       }

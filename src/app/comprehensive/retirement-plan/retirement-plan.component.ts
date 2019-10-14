@@ -190,7 +190,7 @@ export class RetirementPlanComponent
     const retirementIncomeSet = [];
 
     if (
-      this.retirementDetails.retirementIncomeSet &&
+      this.retirementDetails &&
       this.retirementDetails.retirementIncomeSet.length > 0
     ) {
       this.showRetirementIncome = true;
@@ -206,7 +206,7 @@ export class RetirementPlanComponent
     }
     const lumpSumBenefitSet = [];
     if (
-      this.retirementDetails.lumpSumBenefitSet &&
+      this.retirementDetails &&
       this.retirementDetails.lumpSumBenefitSet.length > 0
     ) {
       this.showLumpSumBenefit = true;
@@ -317,22 +317,22 @@ export class RetirementPlanComponent
       form.value.lumpSumBenefitSet.forEach((lumpSumBenefit: any, index) => {
         const otherPropertyControl =
           form.controls.lumpSumBenefitSet['controls'][index]['controls'][
-            'maturityYear'
+          'maturityYear'
           ];
         let yearValidator = !this.showLumpSumBenefit
           ? []
-          : [Validators.required, this.payOffYearValid];
+          : [this.payOffYearValid];
         otherPropertyControl.setValidators(yearValidator);
         otherPropertyControl.updateValueAndValidity();
       });
       form.value.retirementIncomeSet.forEach((retirementIncome: any, index) => {
         const otherPropertyControl =
           form.controls.retirementIncomeSet['controls'][index]['controls'][
-            'payoutStartAge'
+          'payoutStartAge'
           ];
         let ageValidator = !this.showRetirementIncome
           ? []
-          : [Validators.required, this.ageValidation];
+          : [this.ageValidation];
         otherPropertyControl.setValidators(ageValidator);
         otherPropertyControl.updateValueAndValidity();
       });
@@ -400,25 +400,51 @@ export class RetirementPlanComponent
     };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
-  openConfirmationModal(i, array) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.unSaved = true;
-    ref.componentInstance.hasImpact = this.confirmRetirementData;
-    ref.result.then(data => {
-      if (data === 'yes') {
-        const retirementIncomeDetails = this.retirementPlanForm.get(
-          array
-        ) as FormArray;
-        retirementIncomeDetails.removeAt(i);
-        this.retirementPlanForm.get(array).markAsDirty();
-      }
-    });
-    return false;
+  openConfirmationModal() {
+    if (this.showRetirementIncome || this.showLumpSumBenefit) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.unSaved = true;
+      ref.componentInstance.hasImpact = this.confirmRetirementData;
+      ref.result.then(data => {
+        if (data === 'yes') {
+          const retirementIncomeDetails = this.retirementPlanForm.get('retirementIncomeSet') as FormArray;
+
+          const lumpSumBenefitSet = this.retirementPlanForm.get('lumpSumBenefitSet') as FormArray;
+          for (let i = retirementIncomeDetails.length; i > 0; i--) {
+            this.deleteRetirementDetails(i - 1, 'retirementIncomeSet');
+          }
+          for (let i = lumpSumBenefitSet.length; i > 0; i--) {
+            this.deleteRetirementDetails(i - 1, 'lumpSumBenefitSet');
+          }
+          this.retirementPlanForm.controls['haveOtherSourceRetirementIncome'].setValue(false);
+        }
+      });
+      return false;
+    }
+
   }
+  deleteRetirementDetails(i, array) {
+
+    const retirementIncomeDetails = this.retirementPlanForm.get(
+      array
+    ) as FormArray;
+    if (retirementIncomeDetails.length === 0) {
+      if (array === 'retirementIncomeSet') {
+        this.showRetirementIncome = false;
+      } else if (array === 'lumpSumBenefitSet') {
+        this.showLumpSumBenefit = false;
+      }
+    } else {
+      retirementIncomeDetails.removeAt(i);
+    }
+    this.retirementPlanForm.get(array).markAsDirty();
+  }
+
   ageValidation(form) {
-    if (parseInt(form.value) < 100 && parseInt(form.value) > 0) {
+    if (parseInt(form.value) < 100 && parseInt(form.value) >= 0) {
       return null;
     }
+
     return { pattern: true };
   }
   payOffYearValid(payOffYearVal) {

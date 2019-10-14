@@ -16,7 +16,7 @@ import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
-import { IDependantDetail, IMySummaryModal } from './../comprehensive-types';
+import { IDependantDetail, IMySummaryModal, IdependentsSummaryList } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
@@ -46,6 +46,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
+  houseHold: IdependentsSummaryList;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -203,12 +204,16 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         });
         if (!form.pristine) {
           this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
+          this.houseHold = this.comprehensiveService.gethouseHoldDetails();
+
           form.value.hasDependents = this.hasDependant;
-          this.loaderService.showLoader({ title: 'Saving Details' });
+          form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers,
+            form.value.houseHoldIncome = this.houseHold.houseHoldIncome,
+            this.loaderService.showLoader({ title: 'Saving Details' });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
             this.loaderService.hideLoader();
             this.comprehensiveService.setHasDependant(true);
-            this.comprehensiveService.setMyDependant(data.objectList);
+            this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);
             this.comprehensiveService.clearEndowmentPlan();
             this.comprehensiveService.setEndowment(null);
             this.goToNextPage();

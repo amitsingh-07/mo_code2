@@ -1,6 +1,8 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+app-login {
+
 input::-ms-clear,
 input::-ms-reveal {
   display: none;
@@ -107,4 +109,139 @@ input::-webkit-credentials-auto-fill-button {
   @include allmobiles {
     display: block !important;
   }
+}
+
+/*Modal styles*/
+.mobile-verify-modal {
+  .custom-modal-backdrop {
+    background: $app-backgrnd-color;
+    position: fixed;
+    opacity: 0.85;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+  }
+
+  .custom-modal-wrapper {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .custom-modal--icon {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 20%;
+
+    img {
+      width: 185px;
+      height: 185px;
+    }
+  }
+
+  .custom-modal--title {
+    color: $white-color;
+    font-family: $muli-regular;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    line-height: 0.56;
+    margin-top: 30px;
+    position: relative;
+  }
+
+  .custom-modal--desc {
+    color: $white-color;
+    font-size: 24px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-bold;
+    padding: 0 35%;
+
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+
+  .btn-primary {
+    width: 275px;
+  }
+
+  @include allmobiles {
+    .btn__footer--fixed {
+      width: 100%;
+    }
+  }
+  .btn-primary {
+    box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
+  }
+}
+
+.loader-outer {
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    position: absolute;
+    border: 10px solid $brdr-teal-color;
+    border-radius: 50%;
+    border-top: 12px solid $brdr-dark-color;
+    width: 205px;
+    height: 205px;
+
+    @include allmobiles {
+      width: 185px;
+      height: 185px;
+    }
+
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+  }
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 }

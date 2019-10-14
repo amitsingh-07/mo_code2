@@ -81,6 +81,31 @@
               </div>
             </div>
           </div>
+          <div class="flex-row  sharePercentFamily">
+            <div class="mt20 with-help-icon">
+              <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
+                'CMP.FORM_LABEL.SHARE_CHILD_EDUCATION_EXPENSES' | translate}}
+                <div class="help-icon"
+                  (click)="showToolTipModal('CHILD_EDUCATION_EXPENSES_TITLE','CHILD_EDUCATION_EXPENSES_MESSAGE')"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label">
+                {{ 'CMP.FORM_LABEL.YOUR_SHARE' | translate}}</div>
+            </div>
+            <div class="flex-col-6">
+              <input id="sharePercent-{{i}}" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
+                [readonly]="true" name="sharePercent" class="text-right form-control with-input-style"
+                [value]="sliderValue[i]+'%'" />
+            </div>
+          </div>
+          <div class="width100">
+            <nouislider id="sharePercentSlider-{{i}}" [disabled]="(viewMode)?true:false" #ciMultiplierSlider
+              (slide)="onSliderChange($event, i)" [config]="ciSliderConfig" [min]="0" [max]="100" [step]="1">
+            </nouislider>
+          </div>
         </div>
       </div>
     </div>

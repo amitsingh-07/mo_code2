@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -83,6 +83,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   }
 
   buildInsuranceForm() {
+    let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : 0;
+    if (this.comprehensiveService.getHomeLoanChanges()) {
+      homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount
+    }
     this.insurancePlanForm = this.formBuilder.group({
       haveHospitalPlan: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHospitalPlan
@@ -97,14 +101,14 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 0, disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 46000, disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
         disabled: this.viewMode
       }, [Validators.required]],
       homeProtectionCoverageAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : this.liabilitiesDetails.homeLoanOutstandingAmount,
+        value: homeLoanOutstandingAmount,
         disabled: this.viewMode
       }, [Validators.required]],
       otherLifeProtectionCoverageAmount: [{
@@ -127,6 +131,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.longTermElderShieldAmount
           : 0, disabled: this.viewMode
       }, [Validators.required]],
+      otherLongTermCareInsuranceAmount: [{
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.otherLongTermCareInsuranceAmount
+          : 0, disabled: this.viewMode
+      }, [Validators.required]],
+
     });
   }
   ngOnInit() {
@@ -136,6 +145,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       if (this.pageId === pageId) {
         this.progressService.show();
       }
+
+
     });
 
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
@@ -150,6 +161,14 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  resetLifeProtectionAmount() {
+    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(46000);
+  }
+  resetLongTermShieldAmount() {
+    this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
+    this.insurancePlanForm.controls['otherLongTermCareInsuranceAmount'].setValue(0);
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
@@ -172,16 +191,20 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
-        if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
-          form.value.lifeProtectionAmount = 0;
+        if (!form.controls.homeProtectionCoverageAmount.pristine) {
+          this.comprehensiveService.setHomeLoanChanges(false);
         }
-
         if (form.value.haveHDBHomeProtectionScheme !== 1 || form.value.homeProtectionCoverageAmount == '') {
           form.value.homeProtectionCoverageAmount = 0;
         }
         if (form.value.haveLongTermElderShield !== 1 || form.value.longTermElderShieldAmount == '') {
+
           form.value.longTermElderShieldAmount = 0;
+          if (form.value.otherLongTermCareInsuranceAmount == '') {
+            form.value.otherLongTermCareInsuranceAmount = 0;
+          }
         }
+
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           this.comprehensiveService.setInsurancePlanningList(form.value);

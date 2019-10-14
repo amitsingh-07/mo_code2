@@ -52,7 +52,8 @@
     "PROCEED": "Proceed",
     "SAVE_CONTINUE": "Save and Continue",
     "SEND": "Send",
-    "BACK_TO_HOME": "Back To Home"
+    "BACK_TO_HOME": "Back To Home",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADD_EXISTING_COVERAGES": {
     "TITLE": "Add Existing Coverage",
@@ -94,7 +95,8 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT": [{
+    "SORT": [
+      {
         "displayText": "Highest Ranking",
         "value": "premium.ranking"
       },
@@ -185,7 +187,7 @@
     "CHOOSE_OPTIONS": "Choose one of these options to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Log In",
-    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life.",
+    "DISCLAIMER": "Note: Premiums quoted are only an estimate based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life.",
     "OR": "or",
     "ENQUIRY_TITLE": "Receive more info on selected plans via email",
     "FORM": {
@@ -217,6 +219,13 @@
           "REQUIRED": "*Please enter your confirm e-mail address"
         }
       },
+      "MOBILE_NUMBER": {
+        "LABEL": "Mobile Number",
+        "ERROR": {
+          "INVALID": "*Invalid Mobile Number",
+          "REQUIRED": "*Please enter your mobile number"
+        }
+      },
       "CAPTCHA": {
         "TITLE": "Enter the characters shown in the image",
         "TRY": "Try another text",
@@ -226,10 +235,10 @@
         }
       },
       "MARKETING": {
-        "TITLE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        "EMAIL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
+        "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
       }
     }
-
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -332,7 +341,7 @@
   "IFAST_ERROR_TITLE": "Error !",
   "UNSUPPORTED_DEVICE_MODAL": {
     "TITLE": "Note !",
-    "DESC": "This website is optimized for mobile viewing. Please use mobile browsers such as Safari or Chrome for best experience."
+    "DESC": "This is mobile optimized web-page and recommended to view in mobile browsers such as safari or chrome for better experience."
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
@@ -370,6 +379,8 @@
       "COMPREHENSIVE_PLANNING_PENDING_DESC": "You are almost there! Complete your journey and get your financial report!",
       "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
       "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
+      "COMPREHENSIVE_MAKE_CHANGES_CONTENT": "You can now make further edits to your inputs and/or resubmit them to generate another report.",
+      "COMPREHENSIVE_MAKE_CHANGES": "Make Changes",
       "INSURANCE": "Insurance",
       "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
       "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
@@ -385,20 +396,27 @@
       "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
       "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
       "DEFAULT_START": "Start Planning",
-      "DEFAULT_ESTIMATED": "Estimated 20 mins"
+      "DEFAULT_ESTIMATED": "Estimated 20 mins",
+      "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE"
     }
   },
   "TRANSFER_INSTRUCTION": {
     "INSTITUTION_TYPE_BANK": "bank",
     "INSTITUTION_TYPE_PAY_NOW": "PayNow",
+    "TOP_UP_REQUEST_LBL":"You do not have any Top Up Requests.",
+    "TOP_UP":"Top Up",
+    "TRANSFER_INSTRUCTION_LBL":"Please transfer using Bank Transfer or PayNow.",
+    "REFERENCE_CODE_LBL":"Reference Code: ",
+    "OKAY_GOT_IT_BTN":"Okay, Got It!",
+    "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
     "TRANSFER_FUND_TITLE": "Transfer Funds to your Cash Account",
     "TRANSFER_FUND_DESCRIPTION": "Simply follow the instructions below to transfer funds to your cash account. Bank transfer and PayNow are available.",
     "STEPS_TITLE_BANK": "Steps via Bank Transfer",
     "STEPS_TITLE_PAYNOW": "Steps via PayNow Transfer",
-    "FUND_YOUR_ACCOUNT": {
+    "FUNDING_INSTRUCTIONS": {
       "VIA_BANK": "Bank Transfer",
       "VIA_PAYNOW": "PayNow",
-      "ADD_REFERENCE_CODE_INFO": "You <span class='ref-code-bold'>MUST</span> indicate this Reference Code in the <span class='ref-code-quote'>“Remarks / Descriptions / Comments”</span>.",
+      "ADD_REFERENCE_CODE_INFO": "You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span>.",
       "MODAL": {
         "SHOW_TRANSACTION_STEPS": {
           "STEP_1": "STEP 1",
@@ -408,7 +426,7 @@
           "STEP_5": "STEP 5",
           "STEP_6": "STEP 6",
           "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
-          "LBL_STEP_2": "Select an <span class='sub-section-bold'>account of your own (registered under your name)</span> to transfer from and <span class='sub-section-bold'>enter the amount</span> to transfer.",
+          "LBL_STEP_2": "Select an <span>account of your own (registered under your name)</span> to transfer from and <span>enter the amount</span> to transfer.",
           "LBL_STEP_3": "Enter transfer information.",
           "LBL_STEP_4": "Enter reference code.",
           "LBL_STEP_5": "Verify and confirm the transaction details.",
@@ -434,5 +452,12 @@
     "THANKYOU": "Thank you!",
     "TITLE": "Your interest in the selected insurance plan(s) has been submitted. Our advisors will contact you by the end of the next working day.",
     "FOR_ENQUIRY": "For enquiries, please contact us at:"
+  },
+  "INVESTMENT_ADD_PORTFOLIO_ERROR": {
+    "MAX_PORTFOLIO_LIMIT_TITLE": "You have just reached the maximum number of 20 portfolios limit.",
+    "MAX_PORTFOLIO_LIMIT_ERROR": "You may <b>delete</b> the portfolio(s) that you have not yet invested in.",
+    "ACCOUNT_CREATION_PENDING_TITLE": "Sorry, Investment Account Setup in-progress",
+    "ACCOUNT_CREATION_PENDING_ERROR": "Please wait for account to be ready to add or view portfolio.",
+    "NOT_ALLOW_USER_ERROR": "Your investment account set up is unsuccessful and portfolio creation is not allowed."
   }
 }

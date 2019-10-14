@@ -31,17 +31,67 @@
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Please fill in your details below.",
     "FORM": {
-      "MOBILE_NUMBER": "Mobile Number",
-      "FIRST_NAME": "First Name",
-      "LAST_NAME": "Last Name",
-      "EMAIL": "Email Address",
-      "CONFIRM_EMAIL": "Confirm Email Address",
+      "MOBILE_NUMBER": {
+        "LABEL": "Mobile Number",
+        "ERROR": {
+          "REQUIRED": "Enter a mobile number",
+          "INVALID": "Enter a valid mobile number"
+        }
+      },
+      "FIRST_NAME": {
+        "LABEL": "First Name",
+        "ERROR": {
+          "REQUIRED": "Enter first name",
+          "INVALID": "First name must not contain numbers",
+          "MIN_MAX_LENGTH": "First name must be 2 - 40 characters"
+        }
+      },
+      "LAST_NAME": {
+        "LABEL": "Last Name",
+        "ERROR": {
+          "REQUIRED": "Enter last name",
+          "INVALID": "Last name must not contain numbers",
+          "MIN_MAX_LENGTH": "Last name must be 2 - 40 characters"
+        }
+      },
+      "EMAIL": {
+        "LABEL": "Email Address",
+        "ERROR": {
+          "REQUIRED": "Enter an email address",
+          "INVALID": "Enter a valid email address"
+        }
+      },
+      "CONFIRM_EMAIL": {
+        "LABEL": "Confirm Email Address",
+        "ERROR": {
+          "REQUIRED": "Enter a confirm email address",
+          "MATCH": "Email address does not match confirmation"
+        }
+      },
+      "PASSWORD": {
+        "ERROR": {
+          "REQUIRED": "Enter a password",
+          "MATCH": "Password criteria does not match"
+        }
+      },
+      "CONFIRM_PASSWORD": {
+        "ERROR": {
+          "REQUIRED": "Enter a confirm password",
+          "MATCH": "Password does not match confirmation"
+        }
+      },
+      "CAPTCHA": {
+        "ERROR": {
+          "REQUIRED": "Enter characters shown in the image",
+          "MATCH": "Captcha does not match"
+        }
+      },
       "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
       "MARKETING_ACCEPTANCE": "I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same."
     },
     "ERROR_MESSAGE": {
       "TITLE": "Email Address Criteria",
-      "MATCH": "Email Address do not match"
+      "MATCH": "Email address does not match confirmation"
     }
   },
   "VERIFY_MOBILE": {
@@ -81,7 +131,7 @@
       "LENGTH": "8 - 20 Alphanumeric Characters",
       "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
       "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
-      "MATCH": "Passwords do not match"
+      "MATCH": "Password does not match confirmation"
     }
   },
   "EMAIL_VERIFICATION": {
@@ -230,14 +280,14 @@
       "TITLE_MY_INVESTMENT": "My Investment",
       "TITLE_INVESTMENT": "Investment",
       "VIEW_ALL": "View all",
-      "PROCEED": "Proceed",
+      "VIEW": "View",
       "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
       "CREATE_YOUR_PORTFOLIO_DESC": "Answer a few questions to determine the portfolio most suited to you!",
       "GET_STARTED": "Get Started!",
       "TIME": "8mins",
       "TOTAL_PORTFOLIO": "Total Portfolio Value",
       "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
-      "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
+      "TOTAL_CASH_BALANCE": "Total Cash Balance",
       "REF_CODE": "Ref Code: ",
       "TOTAL_RETURNS": "Total Returns",
       "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
@@ -271,8 +321,29 @@
     },
     "INSURANCE":{
       "TITLE": "Insurance",
-      "NO_INSURANCE_DESC": "If you had submitted a quote request, please check your email for summary details. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188.",
-      "INSURANCE_DESC": "We received your quote request on "
+      "NO_INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
+      "INSURANCE_DESC": "We received your quote request on ",
+      "ESTIMATED_MINS": "Estimated 5 mins",
+      "ASSESS_MY_NEEDS": "Assess My Needs",
+      "REASSESS_MY_NEEDS": "Reassess My Needs",
+      "DIRECT_JOURNEY": "I know my needs, find my plan."
+    },
+    "SRS_JOINT_ACCOUNT": {
+      "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
+      "SRS_JOINT_ACCOUNT_SLIDES":  [
+        {"TITLE": "New Updates", "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/srs.svg",
+          "IMG_TITLE": "Start Investing Your SRS!",
+          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings.",
+          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About SRS Account"},
+          {"TITLE": "New Updates",  "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/joint-account.svg",
+          "IMG_TITLE": "Apply For A Joint Account!",
+          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
+          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About Joint Account"},
+          {"TITLE": "Apply Now!", "TEXT": "Please note that SRS and Joint Investment Accounts are currently handled offline.",
+          "CONTACT": "Contact us to apply:", "TEL": "(65) 6329 9188", "EMAIL": "enquiries@moneyowl.com.sg"}
+      ],
+      "START_BTN": "Dismiss",
+      "END_BTN": "Got it!"
     }
   },
   "EDIT_PROFILE": {
@@ -310,7 +381,7 @@
     "BANK_ACC": " Bank Account",
     "NO_BANK": "No bank added",
     "ADD_BANK": " Add Bank",
-    "CONFIRMATION": "Confirmation",
+    "MY_PROFILE": "My Profile",
     "EDIT_PASSWORD_TITLE": "Your Password",
     "OLD_PASSWORD": "Old Password",
     "NEW_PASSWORD": "New Password",

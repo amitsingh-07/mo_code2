@@ -1,0 +1,66 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-additional-declaration-info {
+  .container-fluid {
+    padding-top: 30px !important;
+
+    @include allmobiles {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      padding-top: 10px !important;
+    }
+  }
+
+  .app-additional-declaration {
+
+    .intro-block__content {
+
+      .banner-image {
+        img {
+          @include tablet {
+            max-width: 90%;
+          }
+
+          @include allmobiles {
+            max-width: 70%;
+            padding-top: 5vh;
+          }
+
+          @include iPadProPortrait {
+            max-width: 80%;
+          }
+        }
+      }
+
+      .intro-block__content__desc {
+        color: $intro-block-content-desc-color;
+
+        @include allmobiles {
+          margin-top: 30px;
+          text-align: center;
+        }
+
+        @include tablet {
+          margin-top: 30px;
+        }
+
+        .intro-block__content__heading {
+          font-family: $muli-semi-bold;
+          font-size: 24px;
+          letter-spacing: -0.25px;
+          text-align: center;
+          color: $white-color;
+        }
+
+        .intro-block__content__title {
+          font-family: $muli-regular;
+          font-size: 18px;
+          line-height: 22px;
+          letter-spacing: -0.18px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

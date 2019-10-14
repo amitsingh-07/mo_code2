@@ -21,6 +21,10 @@
             "EMAIL": "marketing@moneyowl.com.sg"
         },
         {
+            "SUBJECT": "Bug Reports",
+            "EMAIL": "dev.support@moneyowl.com.sg"
+        },
+        {
             "SUBJECT": "Others",
             "EMAIL": "enquiries@moneyowl.com.sg"
         }

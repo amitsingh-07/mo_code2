@@ -208,7 +208,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   onTotalAnnualIncomeBucket() {
     //const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
     //this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
-    this.totalAnnualIncomeBucket = this.comprehensiveService.getTotalEarningsBucket(this.myEarningsForm.value);
+    this.totalAnnualIncomeBucket = this.comprehensiveService.getTotalAnnualIncomeByEarnings(this.myEarningsForm.value);
     const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
     const earningInput = this.myEarningsForm.value;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);

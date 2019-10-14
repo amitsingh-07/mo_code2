@@ -7,7 +7,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IMySummaryModal } from '../comprehensive-types';
+import { IMySummaryModal, IdependentsSummaryList } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -33,8 +33,8 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   householdIncomeList: any;
   routerEnabled = false;
   viewMode: boolean;
-  submitted = false;
-
+  submitted: any;
+  householdDetails: IdependentsSummaryList;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -96,10 +96,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   buildMyDependantSelectionForm() {
     this.hasDependant = this.cmpService.hasDependant();
+    this.householdDetails = this.cmpService.gethouseHoldDetails();
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
-      noOfHouseholdMembers: new FormControl('', Validators.required),
-      houseHoldIncome: new FormControl('', Validators.required),
+      noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
+      houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
     });
 
   }
@@ -122,11 +123,15 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       }
     } else {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
+      dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
+      this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
       if (dependantSelectionForm.value.dependantSelection) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
         const payload = {
           hasDependents: false,
+          noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
+          houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
           dependentMappingList: [{
             id: 0,
             customerId: 0,
@@ -172,3 +177,4 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
 }
+

@@ -43,7 +43,7 @@
                         <span>{{i + 1}}</span>
                         <div class="form-group-with-bg--header-sub-label"></div>
                       </div>
-                      <span class="delete-icon" (click)="openConfirmationModal(i,'retirementIncomeSet')"
+                      <span class="delete-icon" (click)="deleteRetirementDetails(i,'retirementIncomeSet')"
                         id="retirementDeleteIcon" *ngIf="!viewMode "></span>
 
                     </div>
@@ -63,7 +63,7 @@
                       [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  retirementIncomeSet['controls'].monthlyPayout.invalid}">
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                        appCurrencyInput maxLength="4" #monthlyPayout formControlName="monthlyPayout">
+                        appCurrencyInput maxLength="6" #monthlyPayout formControlName="monthlyPayout">
 
                     </div>
                   </div>
@@ -129,7 +129,7 @@
                         <span>{{i + 1}}</span>
                         <div class="form-group-with-bg--header-sub-label"></div>
                       </div>
-                      <span class="delete-icon" (click)="openConfirmationModal(i,'lumpSumBenefitSet')"
+                      <span class="delete-icon" (click)="deleteRetirementDetails(i,'lumpSumBenefitSet')"
                         id="retirementDeleteIcon" *ngIf="!viewMode "></span>
 
                     </div>
@@ -149,7 +149,7 @@
                       [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  lumpSumBenefitSet['controls'].maturityAmount.invalid}">
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                        appCurrencyInput maxLength="4" #maturityAmount formControlName="maturityAmount">
+                        appCurrencyInput maxLength="6" #maturityAmount formControlName="maturityAmount">
 
                     </div>
                   </div>
@@ -194,7 +194,7 @@
       </div>
       <!--Form label /-->
       <!--Form label-->
-      <div class="checkbox-button one-label">
+      <div (click)="openConfirmationModal()" class="checkbox-button one-label">
         <input id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
           formControlName="haveOtherSourceRetirementIncome" type="radio" [value]=false class="field radio"
           appComprehensiveViewMode="{{viewMode}}" mode=1>

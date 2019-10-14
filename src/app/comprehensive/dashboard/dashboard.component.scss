@@ -19,7 +19,7 @@
         font-size: 22px !important;
     }
     &.container-fluid {
-        padding-top: 0;
+        padding: 0!important;
         @include allmobiles {
             padding: 0 !important
         }
@@ -126,5 +126,8 @@
         img {
             margin-top: 90px;
         }
+    }
+    .submittedDate{
+        font-family: $muli-regular!important;
     }
 }
