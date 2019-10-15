@@ -1,0 +1,114 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-holdings {
+
+  .invest-section {
+    @include allmobiles {
+      display: none;
+    }
+  }
+
+  .invest-bg-content {
+    .user_content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 75px;
+
+      @include allmobiles {
+        padding-left: 20px;
+      }
+    }
+
+    .user_summary {
+      display: flex;
+      padding-top: 45px;
+      padding-left: 37px;
+      font-family: $muli-regular;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      padding-bottom: 50px;
+   
+      .user_portfolio_lbl {
+        font-size: 18px;
+        max-width: 400px;
+        line-height: normal;
+        text-transform: capitalize;
+      }
+
+      div {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -0.41px;
+      }
+    }
+  }
+
+  .app-holdings {
+    position: relative;
+    top: -24px;
+
+    @include allmobiles {
+      top: 0;
+    }
+
+    .container-fluid {
+      &.max-width--1024 {
+        padding-top: 0;
+
+        @include allmobiles {
+          padding-top: 80px;
+          padding-bottom: 60px !important;
+        }
+      }
+    }
+
+    .form-group-with-bg {
+      border-radius: 6px !important;
+
+      .form-group-with-bg--header {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        background-color: $review-block-bg;
+        padding: 26px;
+        font-family: $muli-bold;
+        font-size: 16px;
+      }
+
+      .form-group-with-bg--content {
+        border-radius: 6px;
+        background-color: $bond-container-bg;
+        margin-bottom: 22px;
+      }
+
+      .flex-row {
+        margin-bottom: 14px;
+      }
+
+      .value_lab {
+        font-family: $muli-regular;
+        font-size: 14px;
+        line-height: 1.64;
+        letter-spacing: -0.1px;
+        color: $black-color;
+      }
+
+      .text_bold {
+        font-family: $muli-bold;
+      }
+
+      .value {
+        font-family: $muli-bold;
+        font-size: 14px;
+        line-height: 1.64;
+        letter-spacing: -0.1px;
+        color: $teal-color;
+        text-align: right;
+      }
+
+      .flex-row:not(:last-child) {
+        margin-bottom: 14px !important;
+      }
+    }
+  }
+}

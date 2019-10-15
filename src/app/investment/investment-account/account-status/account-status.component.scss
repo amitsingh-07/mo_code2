@@ -1,0 +1,94 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+/*Modal styles*/
+app-account-status {
+  .account-created-success-modal {
+    .custom-modal-backdrop {
+      background: $dark-teal-color;
+      position: fixed;
+      opacity: 1;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      top: 0;
+    }
+
+    .custom-modal-wrapper {
+      top: 0;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 10000;
+      text-align: center;
+    }
+
+    .custom-modal-content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .custom-modal--icon {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 20%;
+
+      @include allmobiles {
+        top: 40px;
+      }
+    }
+
+    .custom-modal--content {
+      @include allmobiles {
+        width: 250px;
+        margin: 0 auto;
+
+        @include allmobiles {
+          width: 283px;
+          padding-bottom: 70px;
+        }
+      }
+    }
+
+    .custom-modal--desc {
+      font-family: $muli-regular;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.12px;
+      text-align: center;
+      color: $white-color;
+      margin: 0 auto;
+
+      @include allmobiles {
+        width: 283px;
+      }
+    }
+
+    .custom-modal--title {
+      font-family: $muli-semi-bold;
+      font-size: 30px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.18px;
+      text-align: center;
+      color: $white-color;
+    }
+
+    .btn-primary {
+      width: 275px;
+    }
+
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+
+      @include allmobiles {
+        width: 100%;
+      }
+    }
+  }
+}

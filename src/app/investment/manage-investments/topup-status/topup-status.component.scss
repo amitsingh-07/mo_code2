@@ -1,0 +1,345 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+/*Modal styles*/
+.bg-color {
+  background-color: #2d8289 !important;
+}
+app-topup-status {
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      padding-bottom: 47px;
+      height: calc(100vh - 84px);
+      @include allmobiles{
+        height: calc(100vh - 61px);
+      }
+    }
+    .sufficient-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 335px;
+      padding: 0px;
+      margin: auto;
+    }
+    .insufficient-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 550px;
+      margin: auto;
+      padding-bottom: 47px;
+      @include allmobiles{
+        width: 335px;
+        padding: 0px;
+      }
+    }
+    .insufficient-success-img {
+      width: 96.7px;
+      height: 100px;
+      margin-top: 80px;
+      @include allmobiles{
+        margin-top: 31px;
+      }
+    }
+    .buy-request-submitted {
+      font-family: $muli-bold;
+      font-size: 28px;
+      line-height: 1.21;
+      letter-spacing: -0.21px;
+      color: $white-color;
+      text-align: center;
+      margin-top: 18px;
+      @include allmobiles{
+        margin-top: 25px;
+      }
+    }
+    .buy-request-msg {
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: normal;
+      letter-spacing: -0.16px;
+      color: $white-color;
+      text-align: center;
+      margin-top: 18px;
+      @include allmobiles{
+        margin-top: 16px;
+      }
+    }
+    .btn-primary {
+      width: 275px;
+    }
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+      margin-top: 28px !important;
+      @include allmobiles{
+        width: 100%;
+      }
+    }
+    .success-text-content {
+      padding: 0px 50px 30px;
+      @include allmobiles{
+        padding: 0px 20px 30px;
+      }
+    }
+
+    .cash-account {
+      margin-top: 15px;
+      color: $fund-cash-account-color;
+      width: 100%;
+
+      .transfer-text {
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 1.38;
+        letter-spacing: -0.15px;
+        text-align: center;
+        @include allmobiles{
+          padding: 0 19px;
+          text-align: left;
+        }
+      }
+
+      .cash-account-summary {
+        margin-top: 17px;
+        padding: 24px 20px 32px;
+        border-radius: 6px;
+        border: solid 1px $light-teal-color;
+        background-color: $white-color;
+        @include allmobiles{
+          margin-top: 16px;
+          padding: 20px 15px;
+        }
+      }
+
+      .cash-account-content {
+        .investment-value {
+          font-family: $muli-bold;
+          font-size: 21px;
+          letter-spacing: -0.39px;
+          text-align: center;
+          color: $fund-investment-value-color;
+        }
+
+        .cash-account-balance {
+          font-size: 14px;
+          letter-spacing: -0.14px;
+          text-align: center;
+          color: $fund-cash-balance-color;
+          margin-top: 5px;
+          @include allmobiles{
+            margin-top: 3px;
+          }
+        }
+
+        .ref-code {
+          margin: 13px 0 15px;
+          padding: 14px 0 10px;
+          font-family: $muli-bold;
+          font-size: 18px;
+          line-height: 1.17;
+          letter-spacing: -0.17px;
+          text-align: center;
+          color: $fund-ref-color;
+          border-radius: 4px;
+          border: 2px solid $fund-ref-brdr-color;
+          background-color: $fund-ref-bg-color;
+          @include allmobiles{
+            margin: 11px 0 13px;
+            padding: 12px 0 8px;
+          }
+        }
+
+        .note-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 15px;
+        }
+
+        .note {
+          font-family: $muli-regular;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: -0.12px;
+          color: $fund-cash-note-color;
+
+          span {
+            font-family: $muli-bold;
+          }
+        }
+
+      }
+    }
+
+    /* TRANSFER DETAILS */
+    .transfer-details {
+      margin: 22px 0px 0px;
+      color: $fund-transfer-details-color;
+      @include allmobiles{
+        margin: 22px 0px 82px;
+      }
+      .tab-links {
+        display: flex;
+        width: 100%;
+        letter-spacing: -0.2px;
+
+        .tab-link-item {
+          display: flex;
+          flex-grow: 1;
+          flex-basis: 0;
+          color: $fund-tab-link-color;
+          font-size: 18px;
+          font-family: $muli-bold;
+          padding: 15px 35px;
+          text-align: center;
+          align-items: center;
+          background-color: $fund-tab-link-bg;
+          margin-right: 7px;
+          border-radius: 10px 10px 0 0;
+          justify-content: center;
+          line-height: 1.17;
+          letter-spacing: -0.18px;
+          opacity: 0.5;
+
+          .pay-tab {
+            max-width: 84px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+
+            img {
+              width: 55px;
+              height: 35px;
+            }
+          }
+
+          &:first-child {
+            flex-direction: column;
+          }
+
+          &:last-child {
+            margin: 0px;
+          }
+
+          &.active {
+            background-color: $fund-tab-link-active-bg;
+            opacity: 1;
+          }
+        }
+      }
+
+      .tab-content-container {
+        background-color: $fund-tab-content-bg;
+        border-radius: 0px 0px 6px 6px;
+
+        .tab-content {
+          padding: 30px;
+          display: none;
+
+          &.active {
+            display: block;
+          }
+
+          &.fund-instruction {
+            padding: 30px 10px;
+
+            @include allmobiles {
+              padding: 20px 0;
+            }
+
+            .instruction-content {
+              padding-top: 0;
+            }
+          }
+        }
+      }
+
+      .instruction-txt {
+        font-size: 15px;
+        margin-bottom: 15px;
+        font-family: $muli-regular;
+        color: $fund-instruction-txt-color;
+
+        strong {
+          font-family: $muli-bold;
+        }
+      }
+
+      .btn-bordered {
+        border: 1px solid $teal-color;
+        border-radius: 28px;
+        background-color: transparent;
+        font-size: 14px;
+        font-family: $muli;
+        text-align: center;
+        color: $teal-color;
+        display: flex;
+        padding: 6px 30px;
+      }
+
+      .account-detail {
+        margin-top: 20px;
+        font-family: $muli-semi-bold;
+        letter-spacing: -0.3px;
+
+        label {
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          color: $dark-teal-color;
+          margin-bottom: 0px;
+        }
+
+        .value {
+          color: $black-color;
+          font-size: 16px;
+          margin-bottom: 10px;
+
+          &.ref_num {
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+            color: $fund-account-detail-ref-num-color;
+          }
+
+          .investment-values {
+            display: flex;
+            flex-direction: row;
+
+            div {
+              display: flex;
+              color: $dark-teal-color;
+              font-family: $muli-regular;
+
+              &:first-child {
+                margin-right: 20px;
+              }
+
+              span {
+                color: $secondary-action-color;
+                font-family: $muli-semi-bold;
+              }
+            }
+          }
+        }
+
+        .ref_code_info {
+          display: flex;
+          justify-content: space-between;
+          color: $fund-account-detail-ref-code-info-color;
+          line-height: 22px;
+          letter-spacing: -0.1px;
+          font-family: $muli-regular;
+          font-size: 15px;
+
+          span {
+            padding: 0px 8px 20px 0px;
+          }
+
+        }
+      }
+    }
+}

@@ -1,0 +1,76 @@
+@import '../../../../variables';
+@import '../../../../_mixins.scss';
+
+app-employment-details {
+  .employement-details {
+    .flex-row {
+      align-items: center;
+    }
+
+    .emp_add_lbl {
+      font-family: $muli-regular;
+      padding: 21px 0 16px;
+    }
+
+    label {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      padding-right: 10px;
+
+      @include max360 {
+        padding-right: 8px;
+      }
+    }
+
+    .input-control {
+      text-align: left;
+    }
+
+    .container-fluid {
+
+      &.invest-web-pt-90 {
+        @include tablet {
+          padding-top: 90px;
+        }
+
+        @include desktop {
+          padding-top: 90px;
+        }
+      }
+
+    }
+
+    .form-control {
+      &.with-button {
+        padding: 0.5rem;
+        padding-left: 0.8rem;
+      }
+
+      &:disabled,
+      &.disabled {
+        input {
+          padding-top: 6px;
+          padding-bottom: 6px;
+        }
+
+        .button {
+          display: none;
+        }
+      }
+    }
+
+    .btn__footer--fixed {
+      font-family: $muli-bold !important;
+    }
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+
+}

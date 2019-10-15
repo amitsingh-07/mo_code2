@@ -9,7 +9,7 @@ import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boots
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
     TransactionModalComponent
@@ -24,6 +24,7 @@ import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
+import { SelectedPlansService } from './../Services/selected-plans.service';
 
 @Component({
   selector: 'app-navbar',
@@ -95,7 +96,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService,
-    private errorHandler: CustomErrorHandlerService) {
+    private errorHandler: CustomErrorHandlerService,
+    private selectedPlansService: SelectedPlansService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -205,7 +207,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (navbarMode ? true : false && (navbarMode !== 'default')) {
       this.navbarMode = navbarMode;
       nc = matrix[navbarMode];
-      console.log('NavBar Mode: ' + navbarMode);
       // Just cos there is no automapper. FK
       this.processMatrix(nc);
     } else {
@@ -367,6 +368,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.authService.clearAuthDetails();
     this.appService.clearData();
     this.appService.startAppSession();
+    this.selectedPlansService.clearData();
     this.router.navigate([appConstants.homePageUrl]);
   }
 

@@ -32,7 +32,7 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 		<p><strong>If  insured is able to return to work but suffers a pay drop, a partial monthly income  benefit is payable to supplement the income.</strong></p>
 
 		<p>3 years on, John is  able to return to work but at a lower capacity and could only earn $2,000 per month.  His insurance will pay him a partial benefit of $1,500 per month (benefit is  computed based on proportional drop in his income before suffering disability).  In total, John&rsquo;s income is now $3,500 ($2,000 + $1,500). The partial income  benefit serves as an incentive for John to return to work as he would receive  more income than not working.<br><br>
-            There are other benefits included  in the disability income policy, such as rehabilitation benefit (3-6 months of  income benefit) and  <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Life Protection Plans Now">death benefit</a>.<br>
+            There are other benefits included  in the disability income policy, such as rehabilitation benefit (3-6 months of  income benefit) and  <a href="https://www.moneyowl.com.sg/direct" target="_blank" title="Compare Life Protection Plans Now">death benefit</a>.<br>
   		</p>
 	</li>
 </ol>
@@ -67,7 +67,7 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 <h3 class="primary-color"><strong>Conclusion</strong></h3>
 <p>  If earning an  income is very important to you and your dependants, you need to insure it.  Disability Income insurance is the only policy that is able to do that.</p>
 <!--
-<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct">
   <img src="../assets/images/banners/compare_pro_540w.png" alt="compare protection plans"></a>
 </div>
 -->

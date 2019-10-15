@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { DirectService } from './direct/direct.service';
 import { GuideMeService } from './guide-me/guide-me.service';
-import { InvestmentAccountService } from './investment-account/investment-account-service';
-import { PortfolioService } from './portfolio/portfolio.service';
+import { InvestmentAccountService } from './investment/investment-account/investment-account-service';
+import { InvestmentEngagementJourneyService } from './investment/investment-engagement-journey/investment-engagement-journey.service';
 import { SignUpService } from './sign-up/sign-up.service';
-import { TopupAndWithDrawService } from './topup-and-withdraw/topup-and-withdraw.service';
+import { ManageInvestmentsService } from './investment/manage-investments/manage-investments.service';
 import { WillWritingService } from './will-writing/will-writing.service';
+import { InvestmentCommonService } from './investment/investment-common/investment-common.service';
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
@@ -26,10 +27,11 @@ export class AppService {
     private directService: DirectService,
     private guideMeService: GuideMeService,
     private signUpService: SignUpService,
-    private portfolioService: PortfolioService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
-    private topupAndWithDrawService: TopupAndWithDrawService,
-    private willWritingService: WillWritingService
+    private manageInvestmentsService: ManageInvestmentsService,
+    private willWritingService: WillWritingService,
+    private investmentCommonService: InvestmentCommonService
   ) { }
 
   commit(key, data) {
@@ -54,9 +56,10 @@ export class AppService {
     this.guideMeService.clearServiceData();
     this.directService.clearServiceData();
     this.signUpService.clearData();
-    this.portfolioService.clearData();
+    this.investmentEngagementJourneyService.clearData();
     this.investmentAccountService.clearData();
-    this.topupAndWithDrawService.clearData();
+    this.manageInvestmentsService.clearData();
+    this.investmentCommonService.clearData();
   }
 
   setJourneyType(type: string) {

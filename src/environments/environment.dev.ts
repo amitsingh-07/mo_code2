@@ -11,7 +11,7 @@ export const environment: IEnvironment = {
   apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
   myInfoCallbackBaseUrl: 'https://bfa-dev.ntucbfa.cloud/myinfo',
-  myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
+  myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1'
 };

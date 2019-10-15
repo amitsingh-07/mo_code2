@@ -4,14 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -60,7 +60,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private signUpApiService: SignUpApiService,
+    private investmentCommonService: InvestmentCommonService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -69,7 +69,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = this.translate.instant('EDIT_PROFILE.CONFIRMATION');
+      this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
     });
     this.getNationalityCountryList();
@@ -83,7 +83,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
-    this.investmentStatus = this.signUpService.getInvestmentStatus();
+    this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
   }
   setPageTitle(title: string) {
@@ -127,7 +127,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
           this.residentialAddress = data.objectList.contactDetails.homeAddress;
         }
-        this.empolymentDetails = data.objectList.employmentDetails;
+        // Hidden the Employment details
+        // this.empolymentDetails = data.objectList.employmentDetails;
+        this.empolymentDetails = null;
         if (data.objectList.customerBankDetail) {
           this.bankDetails = data.objectList.customerBankDetail[0];
         }
@@ -277,7 +279,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       const dateArr = dob.split('/');
       if (dateArr.length === 3) {
         this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
-     } 
+     }
     }
   }
 }

@@ -5,7 +5,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
-import { PORTFOLIO_CONFIG } from '../../../portfolio/portfolio.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { Formatter } from '../../../shared/utils/formatter.util';
 
 @Component({
@@ -29,12 +29,12 @@ export class EditInvestmentModalComponent implements OnInit {
     this.editInvestmentForm = new FormGroup({
       oneTimeInvestment: new FormControl(this.investmentData.oneTimeInvestment),
       monthlyInvestment: new FormControl(this.investmentData.monthlyInvestment)
-    });
+    }, [this.validateAtleastOne.bind(this)]);
     this.editInvestmentForm.controls['oneTimeInvestment'].setValidators(
-      [this.validateAtleastOne.bind(this), this.validateInitialAmount]
+      [this.validateInitialAmount]
     );
     this.editInvestmentForm.controls['monthlyInvestment'].setValidators(
-      [this.validateAtleastOne.bind(this), this.validateMonthlyAmount]
+      [this.validateMonthlyAmount]
     );
   }
 
@@ -65,9 +65,8 @@ export class EditInvestmentModalComponent implements OnInit {
   }
 
   validateAtleastOne(control: AbstractControl) {
-    const value = parseInt(control.value, 10);
-    if ( this.editInvestmentForm.get('oneTimeInvestment').value > 0 ||
-      this.editInvestmentForm.get('monthlyInvestment').value > 0) {
+    if (control.value.oneTimeInvestment > 0 ||
+      control.value.monthlyInvestment > 0) {
         return null;
     } else {
         return { atleastOne: true };

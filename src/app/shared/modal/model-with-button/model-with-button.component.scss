@@ -2,14 +2,17 @@
 @import '../../../../mixins';
 
 .toggle-btn{
-  width: 49%;
+  flex: 1;
+}
+.padding-right-10 {
+  padding-right: 10px;
 }
 .action-button {
   width: 100%;
   border-radius: 6px;
-  box-shadow: 0 6px 7px 0 $portfolio-allocation-details-shadow !important;
+  box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
   background-color: $teal-color;
-  border: 1px solid  $fixed-btn-brdr-color;
+  border: 1px solid  $teal-color;
   margin-top: 15px;
   font-family: $muli-bold;
   font-size: 22px;
@@ -22,21 +25,38 @@
   padding: 10px;
   cursor: pointer;
   &.secondary-button {
-    background-color:$white-color;
-    color:$teal-color;
+    background-color: $white-color;
+    color: $teal-color;
     -webkit-text-fill-color: $teal-color;
     box-shadow: none !important;
     outline: none !important;
-    &:hover{
-      background-color: #00c5c4;
-      border-color: #00c5c4;
+    border: 1px solid rgba(0, 167, 167, 0.4);
+
+    &:hover {
+      background-color: $robins-egg-blue-color;
+      border-color: $action-btn-hover-brdr-color;
       color: $white-color;
       -webkit-text-fill-color: $white-color;
+      @include allmobiles {
+        background-color: $white-color !important;
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+      }
+      @include tablet {
+        background-color: $white-color !important;
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
+      }
     }
   }
-  &:hover{
-    background-color: #00c5c4;
-    border-color: #00c5c4;
+
+  &:hover {
+      background-color: $robins-egg-blue-color;
+      border-color: $action-btn-hover-brdr-color;
+  }
+  &:active{
+    background-color: $action-btn-active-bg;
+    color: $white-color;
   }
 }
 .popup-header-icon {
@@ -55,10 +75,6 @@
 }
 .modal-body-message {
   margin-bottom: 15px;
-}
-.action-button:active {
-  background-color: $action-btn-active-bg;
-  color: $white-color;
 }
 .warning-icon {
   width: 24px;
