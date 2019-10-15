@@ -90,7 +90,7 @@
                     [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawAmount)}">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
-                      <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
+                      <input class="input-control" inputmode="decimal" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
                         decimalFormat="1.2-2" maxLength="9" #withdrawAmount formControlName="withdrawAmount" value="0">
                     </div>
                   </div>
