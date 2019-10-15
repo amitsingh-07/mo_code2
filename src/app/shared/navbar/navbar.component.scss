@@ -67,6 +67,7 @@
       border: 0px;
       z-index: 2;
     }
+  }
 
     &__arrow {
       position: absolute;
@@ -157,7 +158,7 @@
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
-  }
+}
 
   .navbar__helpIcon--mobile-filter {
     position: absolute;
@@ -224,7 +225,6 @@
       box-shadow: none !important;
     }
   }
-}
 
 .comprehensive-desktop-header {
   position: fixed;
