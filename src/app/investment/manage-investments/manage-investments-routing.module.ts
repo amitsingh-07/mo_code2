@@ -69,7 +69,8 @@ const routes: Routes = [
     path: MANAGE_INVESTMENTS_ROUTES.ASSET_ALLOCATION,
     component: AssetAllocationComponent,
     canActivate: [ManageInvestmentsGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

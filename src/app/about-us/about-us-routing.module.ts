@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: '', component: AboutUsComponent},
   { path: 'customer-reviews', component: CustomerReviewsComponent},
   { path: 'contact-us', component: ContactUsComponent},
-  { path: 'why-moneyowl', component: WhyMoneyOwlComponent}
+  { path: 'why-moneyowl', component: WhyMoneyOwlComponent},
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

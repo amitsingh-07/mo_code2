@@ -12,7 +12,8 @@ const routes: Routes = [
     path: DIRECT_ROUTES.COMPARE_PLANS,
     component: ComparePlansComponent,
     canActivate: [DirectAccessGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
