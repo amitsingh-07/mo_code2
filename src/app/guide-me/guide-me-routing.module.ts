@@ -36,7 +36,8 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent },
   { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent },
   { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent },
-  { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent }
+  { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

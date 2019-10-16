@@ -13,7 +13,8 @@ const routes: Routes = [
   /* Legacy Routes */
   { path: 'learn-about-insurance', redirectTo: '', pathMatch: 'full'},
   { path: 'learn-articles', component: ArticleCategoryComponent},
-  { path: 'html', component: ArticleEntryComponent}
+  { path: 'html', component: ArticleEntryComponent},
+  { path: '**', redirectTo: '/page-not-found' }
   // There is learn/learn-articles?category=All so use Activated Routes to get search params properly
 ];
 
