@@ -127,7 +127,7 @@
     "MODAL": {
       "TOTAL_RETURNS": {
         "TITLE": "Total Returns",
-        "MESSAGE": "The total returns are calculated by geometrically linking the periodic returns between all your transactions. This return is also known as the time-weighted return."
+        "MESSAGE": "This shows you how much $1 of your investment would have grown throughout your investment period, without considering the size and timing of interim cash inflows or outflows. This is also known as the time-weighted return."
       },
       "CASH_ACCOUNT_BALANCE": {
         "TITLE": "Cash Account",

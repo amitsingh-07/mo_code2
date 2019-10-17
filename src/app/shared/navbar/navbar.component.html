@@ -1,4 +1,5 @@
-<nav class="navbar fixed-top center" #navbar [ngClass]="{'nav--shadow': showNavShadow, 'browser-error': browserError}">
+<nav class="navbar fixed-top comprehensive center" #navbar
+  [ngClass]="{'nav--shadow': showNavShadow, 'browser-error': browserError}">
   <!-- Browser Detection (Error if IE11 or below) -->
   <div *ngIf="browserError" class="navbar-wrapper error">
     <div class="navbar__inner-wrapper">

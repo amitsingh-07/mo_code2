@@ -1916,8 +1916,9 @@ export class ComprehensiveService {
   }
   setViewableMode(commitFlag: boolean) {
     if (
-      this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
-        .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+        .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+          .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) && this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
         .isLocked) {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveViewMode = true;
     } else {

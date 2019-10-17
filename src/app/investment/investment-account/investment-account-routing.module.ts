@@ -105,7 +105,8 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
     canActivate: [InvestmentAccountGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
