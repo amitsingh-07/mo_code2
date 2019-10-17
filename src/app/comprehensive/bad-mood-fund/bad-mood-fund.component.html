@@ -8,7 +8,7 @@
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.YOUR_FINANCES.HEADER' | translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.ABOUT' | translate}}</div>
   <div class="text-center mt20 mb20"><img src="./assets/images/{{ bucketImage }}" /></div>
-  <div class="comprehensive__page-sub-heading-big">{{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
+  <div class="comprehensive__page-sub-heading">{{'CMP.YOUR_FINANCES.TITLE' | translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.DESC' | translate}}</div>
   <!--Page form-->
   <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="comprehensive__page-sub-heading-big"> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</div>
+    <div class="comprehensive__page-sub-heading"> {{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE' | translate}}</div>
     <div class="comprehensive__page-content">{{'CMP.YOUR_FINANCES.HOSPITAL_CHOICE_DESC' | translate}}</div>
     <div class="form-group mb0 flex-col flex__box--sm-horz mrg-minus10">
       <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
