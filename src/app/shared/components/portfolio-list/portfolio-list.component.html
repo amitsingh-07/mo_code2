@@ -32,45 +32,48 @@
                     {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="list-btn" *ngIf="notInvestedList.length > 5">
-            <span *ngIf="!showAllForNotInvested"
-              (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}}
-              ({{ notInvestedList.length - 5 }})<img src="../assets/images/investment-account/list-down.svg" /></span>
-            <span *ngIf="showAllForNotInvested"
-              (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}} <img
-                class="show-less" src="../assets/images/investment-account/list-down.svg" /></span>
-          </div>
-        </div>
-        <div class="multiple-portfolio-type" *ngIf="investedList?.length > 0">
-          <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.INVESTED' | translate}}</div>
-          <div (click)="detail(portfolio)" class="portfolio-list invested"
-            *ngFor="let portfolio of investedList; let i = index;">
-            <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
-              <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
-              <div class="portfolio-details">
-                <div class="portfolio-name">{{portfolio?.portfolioName}}</div>
-                <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
-                <div class="portfolio-value">
-                  <span *ngIf="!portfolio?.portfolioValue">$0</span>
-                  <span
-                    *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                  <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount"
-                    (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
-                    <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
-                    <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
-                  </span>
+              <div class="multiple-portfolio-type" *ngIf="investedList?.length > 0">
+                <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.INVESTED' | translate}}</div>
+                <div (click)="detail(portfolio)" class="portfolio-list invested"
+                  *ngFor="let portfolio of investedList; let i = index;">
+                  <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
+                    <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                    <div class="portfolio-details">
+                      <div class="portfolio-name">{{portfolio?.portfolioName}}</div>
+                      <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
+                      <div class="portfolio-value">
+                        <span *ngIf="!portfolio?.portfolioValue">$0</span>
+                        <span
+                          *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                        <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount"
+                          (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
+                          <span *ngIf="portfolio?.buyRequestCount == 1">
+                            {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                          <span *ngIf="portfolio?.buyRequestCount > 1">
+                            {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
+                        </span>
+                      </div>
+                      <div class="portfolio-btn">
+                        <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
+                        <span *ngIf="portfolio?.totalReturns && showTotalReturn"
+                          [class.negativeValue]="portfolio?.totalReturns < 0"
+                          class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
+                        <span *ngIf="!portfolio?.cashAccountBalance"
+                          class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
+                        <span *ngIf="portfolio?.cashAccountBalance"
+                          class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
+                          {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="portfolio-btn">
-                  <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
-                  <span *ngIf="portfolio?.totalReturns && showTotalReturn"
-                    class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
-                  <span *ngIf="!portfolio?.cashAccountBalance"
-                    class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                  <span *ngIf="portfolio?.cashAccountBalance"
-                    class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
-                    {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                <div class="list-btn" *ngIf="investedList.length > 5">
+                  <span *ngIf="!showAllForInvested"
+                    (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}}
+                    ({{ investedList.length - 5}})<img src="../assets/images/investment-account/list-down.svg" /></span>
+                  <span *ngIf="showAllForInvested"
+                    (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
+                      class="show-less" src="../assets/images/investment-account/list-down.svg" /></span>
                 </div>
               </div>
             </div>

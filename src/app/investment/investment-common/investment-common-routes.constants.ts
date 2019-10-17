@@ -1,6 +1,8 @@
 export const INVESTMENT_COMMON_BASE_ROUTE = '../investment/';
 
 export const INVESTMENT_COMMON_ROUTES = {
+    ROOT: '',
+    ENGAGEMENT_START: '/investment/engagement/start-journey',
     ACKNOWLEDGEMENT: 'acknowledgement',
     CONFIRM_PORTFOLIO: 'confirm-portfolio',
     FUNDING_INSTRUCTIONS: 'funding-instructions',

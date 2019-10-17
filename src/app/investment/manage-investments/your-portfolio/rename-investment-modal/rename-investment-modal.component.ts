@@ -47,7 +47,7 @@ export class RenameInvestmentModalComponent implements OnInit {
   renamePortfolio(renameForm) {
     const portfolioTitleCase = renameForm.controls.investName.value.toLowerCase().split(' ')
     .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
-    .join(' ').trim();
+    .join(' ').trim().replace(/  +/g, ' ');
     this.renamePortfolioBtn.emit(portfolioTitleCase);
     this.activeModal.close();
   }
