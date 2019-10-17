@@ -107,7 +107,8 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.UPDATE_BANK,
     component: AddUpdateBankComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

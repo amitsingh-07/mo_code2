@@ -14,6 +14,11 @@ import { INVESTMENT_COMMON_ROUTES } from './investment-common-routes.constants';
 
 const routes: Routes = [
   {
+    path: INVESTMENT_COMMON_ROUTES.ROOT,
+    redirectTo: INVESTMENT_COMMON_ROUTES.ENGAGEMENT_START,
+    pathMatch: 'full'
+  },
+  {
     path: INVESTMENT_COMMON_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
     canActivate: [InvestmentCommonGuardService]
@@ -37,7 +42,8 @@ const routes: Routes = [
     path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
     component: FundingInstructionsComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

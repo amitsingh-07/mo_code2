@@ -7,6 +7,7 @@ import { PromotionPageComponent } from './promotion-page/promotion-page.componen
 const routes: Routes = [
   { path: '', component: PromotionLandingComponent},
   { path: ':id', component: PromotionPageComponent},
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
