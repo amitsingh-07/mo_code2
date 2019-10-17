@@ -126,7 +126,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       this.comprehensiveService.setViewableMode(true);
       if (!this.islocked) {
         this.getComprehensiveCall();
