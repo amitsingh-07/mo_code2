@@ -1,6 +1,7 @@
 // Button styles
 button {
   box-shadow: none !important;
+  cursor: pointer;
 }
 
 button:active {
@@ -43,6 +44,7 @@ button:active:focus {
       outline: none !important;
       background: #00c5c4 !important;
       border-color: none !important;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
     }
 
     &.active {
@@ -133,6 +135,7 @@ button:active:focus {
     border-color: transparent;
     box-shadow: none;
     border: none;
+    cursor: not-allowed;
 
     &:hover {
       background-color: $btn-disabled-bg !important;
@@ -158,6 +161,34 @@ button:active:focus {
       background-color: transparent !important;
     }
   }
+
+  // retrieve button - postal code
+  &.btn-orange {
+    padding: 0.5rem;
+    font-size: 16px;
+    background-color: $btn-orange-bg-color !important;
+    color: $btn-orange-txt-color !important;
+    border: none !important;
+    font-family: $muli-semi-bold;
+
+    &:hover {
+      background-color: $btn-orange-hover-bg-color !important;
+      border: none !important;
+      color: $btn-orange-hover-txt-color !important;
+    }
+
+    &:focus {
+      background-color: $btn-orange-focus-bg-color !important;
+      border: none !important;
+      color: $btn-orange-focus-txt-color !important;
+    }
+
+    &:active {
+      background-color: $btn-orange-active-bg-color !important;
+      border: none !important;
+      color: $btn-orange-active-txt-color !important;
+    }
+  }
 }
 
 .btn.active.focus,
@@ -173,10 +204,17 @@ button:active:focus {
 
 .btn.btn-primary:hover {
   background-color: #0de0de !important;
+  @include allmobiles{
+    background-color: #00c5c4 !important;
+  }
+  @include tablet{
+    background-color: #00c5c4 !important;
+  }
 }
 
 .btn:disabled:hover {
   background: #009a9a !important;
+  cursor: not-allowed;
 }
 
 /*Fixed button small*/
@@ -864,9 +902,10 @@ button:active:focus {
     }
   }
 }
-// dropdown-listitems with 24px gap 
+
+// dropdown-item with 24px gap 
 .dropdown-control {
-  .dropdown{
+  .dropdown {
     .btn-dropdown {
       padding-right: 27px;
       max-height: 52px;
@@ -875,8 +914,9 @@ button:active:focus {
       text-overflow: ellipsis;
     }
   }
+
   .dropdown-menu {
-    &.show{
+    &.show {
       right: 0 !important;
       overflow: auto;
       height: auto;
@@ -884,18 +924,21 @@ button:active:focus {
       padding-top: 0;
       padding-bottom: 0;
       box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+
       .dropdown-item {
         padding: 10px 14.4px;
         white-space: normal;
         word-break: break-word;
-        &:hover{
-          background-color: #EAFAF9;
-          border:none;
+
+        &:hover {
+          background-color: $form-dropdown-item-hover-bg-color;
+          border: none;
         }
-        &:active{
-          background-color: #EAFAF9;
-          border:none;
-          color: #00a7a7;
+
+        &:active {
+          background-color: $form-dropdown-item-hover-bg-color;
+          border: none;
+          color: $form-dropdown-txt-color;
         }
       }
     }

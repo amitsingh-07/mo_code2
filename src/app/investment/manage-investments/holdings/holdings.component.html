@@ -1,0 +1,82 @@
+<section class="invest-section">
+  <div class="invest-section-items">
+    <div class="invest-section-content">
+      <div class="invest-bg">
+        <div class="invest-bg-media">
+          <div class="invest-bg-image"></div>
+          <div class="invest-bg-color"></div>
+        </div>
+        <div class="invest-bg-content">
+          <div class="flex-row user_content flex-col-12">
+            <div class="user_summary" id="your_portfolio_summary">
+              <div class="user_portfolio flex-col">
+                <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
+                <div>{{'HOLDINGS.TITLE' | translate}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="app-holdings">
+  <div class="container-fluid max-width--1024 holding-blocks">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div *ngFor="let holding of portfolio.dPMSPortfolio.dpmsDetailsDisplay; let i = index">
+          <div class="form-group-with-bg" *ngIf="holding.productName !== 'Discretionary Cash Account(SGD)'">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div id="holdings_head_label">{{holding.productName}}</div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="value_lab text_bold" for="total return" id="investment_overview_total_returns_labl">{{
+                  'HOLDINGS.TOTAL_VALUE' | translate}}
+                  </div>
+                </div>
+                <div class="flex-col-7">
+                  <div class="value" for="total value" id="investment_overview_total_returns_value">{{holding.currentValue
+                  | currency:'USD':'symbol-narrow':'1.0-2'}}
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="value_lab " for="name" id="investment_overview_investment_start_labl">{{
+                  'HOLDINGS.NUMBER_OF_VALUE' | translate}}
+                  </div>
+                </div>
+                <div class="flex-col-7">
+                  <div *ngIf="holding.availableUnits" class="value" for="name"
+                    id="investment_overview_investment_start_value">{{holding.availableUnits}}
+                  </div>
+                  <div *ngIf="!holding.availableUnits" class="value" for="name"
+                    id="investment_overview_investment_start_value">0</div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="value_lab" for="total" id="investment_overview_total_invested_lbl">{{ 'HOLDINGS.NAV' |
+                  translate}}
+                  </div>
+                </div>
+                <div class="flex-col-7">
+                  <div *ngIf="holding.indicativePrice" class="value" for="name"
+                    id="investment_overview_total_invested__value">{{holding.indicativePrice
+                  | currency:'USD':'symbol-narrow':'1.0-7'}}
+                  </div>
+                  <div *ngIf="!holding.indicativePrice" class="value" for="name"
+                    id="investment_overview_total_invested__value">$0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-get-started-step2 {
+  .back-btn {
+    background-image: url('/assets/images/back-web.svg');
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    background-repeat: no-repeat;
+  }
+
+  .step2-block {
+    .container-fluid {
+      padding-top: 0px !important;
+      padding-bottom: 54px !important;
+      @include allmobiles{
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+}

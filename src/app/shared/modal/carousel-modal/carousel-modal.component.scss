@@ -20,35 +20,66 @@ app-carousel-modal {
   .title-div {
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    height: 40px;
     .title-img {
       margin-right: 4px;
     }
-
-    .title-txt {
-      font-family: $muli-bold;
-      font-size: 22px;
-      color: #ff872f;
-      line-height: normal;
-      letter-spacing: normal;
-    }
+  }
+  
+  .title-txt {
+    font-family: $muli-bold;
+    font-size: 22px;
+    color: #ff872f;
+    line-height: normal;
+    letter-spacing: normal;
   }
 
-  .img {
+  .srs-img {
     width: 260px;
     height: 115px;
     object-fit: contain;
     margin-top: 20px;
   }
 
-  .img-title {
+  .mp-walkthrough-img {
+    // width: 375px;
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 6px 6px 0 0;
+    @include allmobiles {
+      // height: 440px;
+      height: 54.2vh;
+      object-fit: contain;
+      border-radius: 0;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .srs-img-title {
     font-family: $muli-bold;
     font-size: 18px;
     color: $teal-color;
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    margin-top: 30px;
+  }
+
+  .mp-walkthrough-img-title {
+    font-family: $muli-bold;
+    font-size: 18px;
+    color: $teal-color;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: 44px;
+    @include allmobiles {
+      margin-top: 5.42vh;
+    }
   }
 
   .slide-txt {
@@ -71,12 +102,6 @@ app-carousel-modal {
     text-align: center;
   }
 
-  .slick-dots {
-    bottom: initial;
-    margin-top: 27px;
-    position: relative;
-  }
-
   .slick-dots li {
     height: 8px;
     width: 8px;
@@ -96,11 +121,10 @@ app-carousel-modal {
 
   .dismiss-txt {
     font-family: $muli-regular;
-    font-size: 18px;
+    font-size: 16px;
     color: $text-color-secondary;
     line-height: normal;
     letter-spacing: normal;
-    margin-right: 31px;
     cursor: pointer;
   }
 
@@ -167,13 +191,15 @@ app-carousel-modal {
 
   .btn-div {
     display: flex;
-    align-items: center;
     justify-content: center;
     margin-top: 30px;
   }
 
-  .img-margin-right {
-    margin-right: 31px;
+  .btn-inner-div {
+    width: 140px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
   }
 
   .carousel-btn-div {
@@ -186,9 +212,5 @@ app-carousel-modal {
     display: flex;
     justify-content: center;
     margin-top: 65px;
-  }
-
-  div.modal-body.white-bg {
-    padding: 36px 60px 36px !important;
   }
 }

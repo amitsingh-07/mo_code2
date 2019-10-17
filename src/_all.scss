@@ -54,24 +54,24 @@ h6 {
   &.max-width--1024 {
     max-width: 1024px;
   }
-  &.invest-web-width{
-    @include LargeDevice {
-      max-width: 600px;
-      padding-top: 90px;
-    }
-    @include MediumDevice {
-      max-width: 600px;
-      padding-top: 90px;
-    }
-  }
-  &.invest-web-pt-90{
-    @include LargeDevice {
-      padding-top: 90px;
-    }
-    @include MediumDevice {
-      padding-top: 90px;
-    }
-  }
+  // &.invest-web-width{
+  //   @include LargeDevice {
+  //     max-width: 600px;
+  //     padding-top: 90px;
+  //   }
+  //   @include MediumDevice {
+  //     max-width: 600px;
+  //     padding-top: 90px;
+  //   }
+  // }
+  // &.invest-web-pt-90{
+  //   @include LargeDevice {
+  //     padding-top: 90px;
+  //   }
+  //   @include MediumDevice {
+  //     padding-top: 90px;
+  //   }
+  // }
 }
 
 .navbar {
@@ -157,6 +157,10 @@ h6 {
       text-align: center;
       padding-left: 20px;
       padding-right: 20px;
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.19px;
       &.subMode{
         padding-top:12px;
       }
@@ -266,6 +270,7 @@ h6 {
     }
     
 
+
     @include minMobilemaxPhablet {
       flex-direction: column;
       width: 100%;
@@ -281,7 +286,7 @@ h6 {
 
     .navbar-nav {
       transition: 0.5s;
-      
+
       &.primary {
         justify-content: space-between;
         flex-basis: 100%;
@@ -334,8 +339,8 @@ h6 {
                 }
               }
             }
-            
-            
+
+
             // &:hover, &:active{
             //   a{
             //     .navbar--text {
@@ -386,7 +391,7 @@ h6 {
           order: 1;
         }
       }
-      
+
       &.noMenu {
         justify-content:flex-end;
       }
@@ -1779,23 +1784,24 @@ a.link-white {
     margin-top: 0;
   }
 }
+
 .or-block{
   padding: 25px 0 45px;
   position: relative;
   hr{
-    border: 1px solid #008c8c;
+    border: 1px solid $or-seperator-brdr-color;
     margin: 0;
   }
   .or-circle{
     width: 43px;
     height: 43px;
-    border: 5px solid #00a7a7;
-    background-color: #008c8c;
+    border: 5px solid $or-circle-brdr-color;
+    background-color: $or-circle-bg-color;
     border-radius: 50%;
     font-family: $muli-bold;
     font-size: 13px;
     letter-spacing: -0.12px;
-    color: #98dfdf;
+    color: $or-circle-txt-color;
     display: flex;
     justify-content: center;
     align-items: center;

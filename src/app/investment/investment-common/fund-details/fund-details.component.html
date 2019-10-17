@@ -1,0 +1,28 @@
+<div class="modal-body white-bg">
+  <div class="modal-body-title" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" id="fund-details-close_button">
+    <span aria-hidden="true"></span>
+  </button>
+  <!--  Bank Transfer: -->
+  <div class="fund-details-content">
+    <div class="dimentional">
+      <div class="img-container">
+        <img src="assets/images/dimensional.png" id="fund-details-img" />
+      </div>
+    </div>
+    <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
+      <div (click)=showHide(i) id="fund-details-arrow">
+        <div class="fund-heading" [class.active]="j === 0" id="fund-details-heading_{{i}}">
+          <span>{{fund.name}}</span>
+          <span class='arrow' [class.active]="j === 0" id="fund-details-arrow">
+          </span>
+        </div>
+      </div>
+      <div class="funding-content" [class.first]="j === 0" id="fund-details-content_{{j}}">
+        {{fund.htmlDesc}}        
+        <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
+      </div>
+    </div>
+    <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
+   </div>
+</div>

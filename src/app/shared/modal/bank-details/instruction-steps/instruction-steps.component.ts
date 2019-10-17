@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-instruction-steps',
   templateUrl: './instruction-steps.component.html',
-  styleUrls: ['./instruction-steps.component.scss']
+  styleUrls: ['./instruction-steps.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InstructionStepsComponent implements OnInit {
 

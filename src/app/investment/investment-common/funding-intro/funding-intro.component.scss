@@ -1,0 +1,195 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-funding-intro {
+  .hide-custom-modal {
+    display: none;
+  }
+
+  .fade-out-animation {
+    -webkit-animation: fadeOut 1000ms ease-in-out;
+    /* Chrome, Safari, Opera */
+    animation: fadeOut 1000ms ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Standard syntax */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .custom-modal-backdrop {
+    background: $white-color;
+    position: fixed;
+    opacity: 0.95;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+  }
+
+  .custom-modal-wrapper {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+    flex-direction: column;
+    height: 100%;
+    @include allmobiles{
+      top: 105px;
+      justify-content: flex-start;
+    }
+  }
+
+  .custom-modal--content {
+    // img {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    .btn{
+      &.btn-primary {
+        width: 320px !important;
+        margin-top: 68px;
+  
+        @include allmobiles {
+          position: fixed !important;
+          bottom: 30px;
+          left: 0;
+          right: 0;
+          box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        }
+      }
+    }
+  }
+
+  .custom-modal--icon {
+    width: 266px;
+    height: 200px;
+    display: flex;
+
+    @include allmobiles {
+      width: 285px;
+      height: 200px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+
+      @include desktop {}
+    }
+  }
+
+  .custom-modal--title {
+    color: $custom-modal-title-color;
+    font-family: $muli-regular;
+    font-size: 36px;
+    letter-spacing: -0.4px;
+    line-height: 1.11;
+    margin-top: 20px;
+  }
+
+  .container-fluid {
+    @include allmobiles {
+      padding-top: 10px;
+    }
+  }
+
+  .app-additional-declaration {
+    .intro-block__content {
+
+      .banner-image {
+        img {
+          @include tablet {
+            max-width: 90%;
+          }
+
+          @include allmobiles {
+            max-width: 70%;
+            padding-top: 5vh;
+          }
+
+          @include iPadProPortrait {
+            max-width: 80%;
+          }
+        }
+      }
+
+      &__desc {
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        text-align: center;
+        color: $intro-block-content-desc-color;
+        max-width: 325px;
+        margin: 20px auto 6px;
+
+        @include allmobiles {
+          margin-top: 30px;
+          text-align: center;
+        }
+
+        @include tablet {
+          margin-top: 30px;
+        }
+
+        .intro-block__content__heading {
+          font-family: $muli-bold;
+          font-size: 24px;
+          letter-spacing: -0.25px;
+        }
+
+        .intro-block__content__title {
+          font-family: $muli-regular;
+          font-size: 18px;
+          line-height: 22px;
+          letter-spacing: -0.18px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+
+  .text-center {
+    text-align: center;
+
+
+    .btn-proceed {
+      font-family: $muli-bold;
+      font-size: 22px;
+      width: 337px;
+      background: #ffffff;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
+
+      @include allmobiles {
+        width: 100%;
+      }
+    }
+  }
+}
