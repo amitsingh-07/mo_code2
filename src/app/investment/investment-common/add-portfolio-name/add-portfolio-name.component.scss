@@ -51,7 +51,11 @@ app-add-portfolio-name {
         }
 
         @include iphonex{
-          height: calc(100vh - 360px);
+          height: calc(100vh - 360px) !important;
+        }
+
+        @include iphone11{
+          height: calc(100vh - 400px);
         }
 
         .portfolio_name_title {
@@ -73,9 +77,15 @@ app-add-portfolio-name {
           height: 320px;
           padding-bottom: 50px;
         }
+
         @include iphonex{
-          height: 360px;
+          height: 360px !important;
         }
+
+        @include iphone11{
+          height: 400px;
+        }
+
       }
     }
 
@@ -158,23 +168,5 @@ app-add-portfolio-name {
         background-color: $secondary-action-color !important;
       }
     }
-  }
-
-  .btn {
-    &.btn-primary {
-      z-index: 1001;
-
-      &:disabled {
-        border-radius: 6px;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-        background-color: $portfolio-name-btn !important;
-        color: $white-color;
-      }
-    }
-  }
-
-  .modal.close {
-    top: 25px !important;
-    right: 25px !important;
   }
 }

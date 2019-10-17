@@ -106,7 +106,8 @@ const routes: Routes = [
     path: WILL_WRITING_ROUTES.VALIDATE_YOUR_WILL,
     component: ValidateYourWillComponent,
     canActivate: [WillWritingAccessGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
