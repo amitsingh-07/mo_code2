@@ -1976,6 +1976,7 @@ select:-webkit-autofill:focus {
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
+    font-family: $muli-semi-bold!important;
 
     &-big {
       font-size: 20px;
@@ -2073,9 +2074,9 @@ select:-webkit-autofill:focus {
         }
 
         span {
-          background-image: url(/assets/images/comprehensive/createAccount-icon.svg);
-          width: 30px;
-          height: 30px;
+          background-image: url(/assets/images/comprehensive/comprehensive-step.svg);
+          width: 35px;
+          height: 35px;
           position: absolute;
           left: -68px;
           background-color: transparent;
